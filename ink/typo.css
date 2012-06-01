@@ -1,0 +1,212 @@
+/*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+/* Size Variables */
+/* Offset Variables */
+/* Color Variables */
+/* Estes valores têm que ser em rbga */
+/* Botões*/
+/*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+/*@borderRadius*/
+/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* Functions */
+body {
+  color: #555555;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+a:link {
+  color: #0069d6;
+  text-decoration: none;
+}
+a:visited {
+  color: #808080;
+}
+a:active {
+  color: red;
+}
+a:hover {
+  color: #007ed5;
+  text-decoration: underline;
+}
+a:focus {
+  outline: none;
+}
+/* Headings  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  color: #404040;
+  margin: .3em 0;
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.8em;
+}
+h4 {
+  font-size: 1.4em;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  font-size: 1em;
+}
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+}
+h1 small {
+  font-size: .6em;
+  color: #BFBFBF;
+  font-weight: 100;
+}
+small {
+  color: #a2a2a2;
+  font-size: .6em;
+}
+/* Paragraphs  */
+p {
+  line-height: 1.3;
+  margin-bottom: .5em;
+}
+input, textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #666;
+}
+h1 small,
+h2 small,
+h3 small,
+h4 small {
+  color: #bbb;
+  font-size: .6em;
+  font-weight: 100;
+  line-height: 1;
+}
+address {
+  color: #888888;
+  font-size: 1em;
+  line-height: 1.4;
+}
+address h6 {
+  color: #555555;
+}
+dl dd {
+  margin: .5em 0;
+  margin-right: 0;
+}
+blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-weight: 200;
+  font-size: 1.1em;
+}
+blockquote small {
+  font-size: .9em;
+}
+blockquote small::before, blockquote small::after {
+  content: ' — ';
+}
+ul, ol, dl {
+  margin: 0px;
+  padding-left: 1.4em;
+}
+ul li, ol li, dl dd {
+  margin: .5em 0;
+  color: #6f6f6f;
+}
+ul.unstyled {
+  list-style: none;
+  padding-left: 0em;
+}
+ul.unstyled ul {
+  list-style: disc outside;
+  padding-left: 1.4em;
+}
+ol li {
+  list-style: decimal outside;
+}
+dl {
+  padding: 0em;
+}
+dl dt {
+  font-weight: bold;
+  margin-top: .7em;
+}
+dl dd {
+  padding-left: 1em;
+}
+.note {
+  font-size: .9em;
+  color: #888888;
+}
+.note strong {
+  color: #555555;
+}
+.label_new,
+.label_warning,
+.label_error,
+.label_info {
+  padding: .2em .5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  font-size: .85em;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
+.label_new {
+  background-color: #85bd11;
+}
+.label_warning {
+  background-color: #ff9c00;
+}
+.label_error {
+  background-color: #cd0000;
+}
+.label_info {
+  background-color: #0f8bda;
+}
+h1 .label_new,
+h1 .label_warning,
+h1 .label_error,
+h1 .label_info,
+h2 .label_new,
+h2 .label_warning,
+h2 .label_error,
+h2 .label_info,
+h3 .label_new,
+h3 .label_warning,
+h3 .label_error,
+h3 .label_info,
+h4 .label_new,
+h4 .label_warning,
+h4 .label_error,
+h4 .label_info {
+  font-size: .55em;
+  vertical-align: top;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
+}
+.lead {
+  font-size: 1.1em;
+  font-weight: bold;
+}
