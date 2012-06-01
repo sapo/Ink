@@ -2,7 +2,7 @@
 
 class Welcome extends CI_Controller {
 
-	/**
+	/*l*
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
@@ -19,8 +19,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->library('skeletor');
-		$this->load->view('welcome page');
+		$this->load->library('skeletor','skeletor');
+		$this->skeletor->doctype = 'html5';
+		$data = $this->skeletor;
+		var_dump($data);
+		$this->load->view('welcome_message',$data);
 	}
 }
 

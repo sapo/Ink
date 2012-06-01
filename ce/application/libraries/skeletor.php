@@ -4,11 +4,17 @@
 
 class Skeletor {
 
-  var $structure;
+  var $layout;
 
   public function __construct(){
     $this->CI =& get_instance();
-    $structure = new StdClass();
+    $log_message = new document;
   }
 
+}
+
+class document {
+  var $doctype;
+  var $structure;
+  var $components;
 }
