@@ -16,3 +16,8 @@ Lib SAPO JS components
 - MaskedInput
 - Resizable
 - TimePicker
+- Sprite toggle
+
+Lib SAPO JS effects
+- Slide
+- Fade
