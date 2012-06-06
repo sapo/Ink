@@ -1,16 +1,3 @@
-/*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
-/* Size Variables */
-/* Offset Variables */
-/* Color Variables */
-/* Estes valores têm que ser em rbga */
-/* Botões*/
-/*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
-/*@borderRadius*/
-/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
 @media only screen and (max-device-width: 320px) {
   html body {
@@ -60,7 +47,7 @@
   .topbar .content {
     background: #1a1a1a;
     zoom: 1;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a1a1a', endColorstr='#4d4d4d');
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#1a1a1a', endColorstr='#4d4d4d');
     background: -moz-linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1a1a1a), color-stop(100%, #4d4d4d));
     background: -webkit-linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
@@ -75,7 +62,7 @@
     line-height: 2.4em;
     background: #4d4d4d;
     zoom: 1;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d4d4d', endColorstr='#1a1a1a');
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4d4d4d', endColorstr='#1a1a1a');
     background: -moz-linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4d4d4d), color-stop(100%, #1a1a1a));
     background: -webkit-linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
@@ -84,9 +71,9 @@
     background: linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
     border-right: 1px solid #292929;
     border-left: 1px solid #292929;
-    -webkit-box-shadow: 0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3);
-    -moz-box-shadow: 0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3);
-    box-shadow: 0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3);
+    -webkit-box-shadow: 0 -4px 10px #000000, 0 0px 2px rgba(255, 255, 255, 0.3);
+    -moz-box-shadow: 0 -4px 10px #000000, 0 0px 2px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 -4px 10px #000000, 0 0px 2px rgba(255, 255, 255, 0.3);
     font-weight: bold;
     margin: 5px 10px;
     -webkit-border-top-left-radius: 0.2em;
@@ -132,11 +119,41 @@
     width: 100%!important;
   }
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-  html body {
-    width: 480px;
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .container_width {
+    width: auto !important;
   }
+}
+/* Smartphones (landscape) */
+@media only screen and (min-width: 321px) {
+  /* Styles */
+}
+/* Smartphones (portrait) */
+@media only screen and (max-width: 320px) {
+  /* Styles */
+}
+/* iPads (portrait and landscape) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Styles */
+}
+/* iPads (landscape) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* Styles */
+}
+/* iPads (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+}
+/* Desktops and laptops */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+}
+/* Large screens */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+}
+/* iPhone 4 */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /* Styles */
 }

@@ -1,58 +1,201 @@
-@import url('conf.less');
-@import url('lib.less');
+/* Functions */
+@media only screen
+and (max-device-width: 320px) {
 
-@media only screen and (max-device-width: 320px) {
-	html body {font-size: 16px; width: 100%;}
-	.siteWidth {width: 100%; padding:0px}
+	html body {
+		font-size: 16px;
+		width: 100%;
+	}
 	
-	html {-webkit-text-size-adjust: none;}
-	.megaheader {display: none;}
-	.topbar {position:fixed}
+	.siteWidth {
+		width: 100%;
+		padding: 0px;
+	}
+	
+	html {
+		-webkit-text-size-adjust: none;
+	}
+	
+	.megaheader {
+		display: none;
+	}
+	
+	.topbar {
+		position: fixed;
+	}
+	
 	.topbar .nav {
 		display: none;
 		width: auto;
-		position:absolute;
-		right:10px;
-		top:110px;
+		position: absolute;
+		right: 10px;
+		top: 110px;
 		width: 60%;
 		background: #000;
-		padding:0px!important;
-		.round-corners(14px);
-		.box-shadow("0 4px 10px #000");
-				
+		padding: 0px!important;
+		border-radius: 14px;
+		-webkit-border-radius: 14px;
+		-moz-border-radius: 14px;
+		-webkit-box-shadow: 0 4px 10px #000;
+		-moz-box-shadow: 0 4px 10px #000;
+		box-shadow: 0 4px 10px #000;
 	}
-	.topbar .nav li{display: block; padding:0px !important}
-	.topbar .nav li a {font-size: 45px; display: block;	padding:.8em 1.8em!important;  margin:0px!important; border-bottom: 1px solid #444;}
-	.topbar .content{.gradient(darken(@tobBar-Bg-Color, 10%), lighten(@tobBar-Bg-Color, 10%), 100%);}
-	.topbar #toggleNavigation {
-		float:right;
+	
+	.topbar .nav li {
 		display: block;
-		padding:0em 1.5em; 
+		padding: 0px !important;
+	}
+	
+	.topbar .nav li a {
+		font-size: 45px;
+		display: block;
+		padding: .8em 1.8em!important;
+		margin: 0px!important;
+		border-bottom: 1px solid #444;
+	}
+	
+	.topbar .content {
+		background: #1a1a1a;
+		zoom: 1;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a1a1a', endColorstr='#4d4d4d');
+		background: -moz-linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1a1a1a), color-stop(100%, #4d4d4d));
+		background: -webkit-linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
+		background: -o-linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
+		background: -ms-linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
+		background: linear-gradient(top, #1a1a1a 0%, #4d4d4d 100%);
+	}
+	
+	.topbar #toggleNavigation {
+		float: right;
+		display: block;
+		padding: 0em 1.5em;
 		line-height: 2.4em;
-		.gradient(lighten(@tobBar-Bg-Color, 10%), darken(@tobBar-Bg-Color, 10%),  100%);
+		background: #4d4d4d;
+		zoom: 1;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d4d4d', endColorstr='#1a1a1a');
+		background: -moz-linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4d4d4d), color-stop(100%, #1a1a1a));
+		background: -webkit-linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
+		background: -o-linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
+		background: -ms-linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
+		background: linear-gradient(top, #4d4d4d 0%, #1a1a1a 100%);
 		border-right: 1px solid #292929;
 		border-left: 1px solid #292929;
-		.box-shadow("0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3)");
+		-webkit-box-shadow: 0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3);
+		-moz-box-shadow: 0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3);
+		box-shadow: 0 -4px 10px #000, 0 0px 2px rgba( 255, 255, 255, 0.3);
 		font-weight: bold;
-		margin:5px 10px;
-		.i-round-corners(.2em, .2em, 0,0);
+		margin: 5px 10px;
+		-webkit-border-top-left-radius: 0.2em;
+		-moz-border-radius-topleft: 0.2em;
+		border-top-left-radius: 0.2em;
+		-webkit-border-top-right-radius: 0.2em;
+		-moz-border-radius-topright: 0.2em;
+		border-top-right-radius: 0.2em;
+		-webkit-border-bottom-right-radius: 0;
+		-moz-border-radius-bottomright: 0;
+		border-bottom-right-radius: 0;
+		-webkit-border-bottom-left-radius: 0;
+		-moz-border-radius-bottomleft: 0;
+		border-bottom-left-radius: 0;
 	}
-	.topbar #toggleNavigation.active {background-color: #000;}
-
-	.topbar h1 {background: transparent!important; padding:5px 15px!important }
-	.topbar h1 a{ color:#fff!important; }
-	.topbar.fixed {position:static}
 	
-	.g90, .g80, .g75, .g70, .g66, .g60, .g50, .g40,.g33, .g30, .g25, .g20, .g10 {float:none; width: 100%!important;}
+	.topbar #toggleNavigation.active {
+		background-color: #000;
+	}
 	
-
+	.topbar h1 {
+		background: transparent!important;
+		padding: 5px 15px !important;
+	}
+	
+	.topbar h1 a {
+		color: #fff!important;
+	}
+	
+	.topbar.fixed {
+		position: static;
+	}
+	
+	.g90,
+	.g80,
+	.g75,
+	.g70,
+	.g66,
+	.g60,
+	.g50,
+	.g40,
+	.g33,
+	.g30,
+	.g25,
+	.g20,
+	.g10 {
+		float: none;
+		width: 100%!important;
+	}
 
 }
 
+/* Smartphones (portrait and landscape) */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+	
+	.container_width {width:auto !important}
+
+}
+
+/* Smartphones (landscape) */
+@media only screen
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) */
+@media only screen
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops */
+@media only screen
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens */
+@media only screen
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 */
 @media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-	html body {width: 480px;}
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
 }
