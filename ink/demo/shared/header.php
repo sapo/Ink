@@ -8,7 +8,7 @@
 	
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
 	<link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
@@ -36,24 +36,24 @@
 
 
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
     <script>$(function () { prettyPrint() })</script>
 	
-  <script type="text/javascript">
-  // 		window.onscroll = function (e) {
-  // 			var Mobj = document.getElementById('topMenu');  	
-  // 			if (window.pageYOffset > 620) {	Mobj.className += "topbar fixed";}
-  // 			else {Mobj.className = "topbar";}
-  // 		}
-  // 		
-  // 		function toogleNav() {
-  // 			var navObj = document.getElementById('navigation');
-  // 			var trigObj = document.getElementById('toggleNavigation');
-  // 			if (navObj.style.display == "none") { navObj.style.display = "block"; trigObj.className = "active";	}
-  // 			else { navObj.style.display = "none";  trigObj.className = "";	}
-  // }
-  // 		
-   </script>
+	<script type="text/javascript">
+// 		window.onscroll = function (e) {
+// 			var Mobj = document.getElementById('topMenu');  	
+// 			if (window.pageYOffset > 620) {	Mobj.className += "topbar fixed";}
+// 			else {Mobj.className = "topbar";}
+// 		}
+// 		
+// 		function toogleNav() {
+// 			var navObj = document.getElementById('navigation');
+// 			var trigObj = document.getElementById('toggleNavigation');
+// 			if (navObj.style.display == "none") { navObj.style.display = "block"; trigObj.className = "active";	}
+// 			else { navObj.style.display = "none";  trigObj.className = "";	}
+// }
+// 		
+	</script>
 </head>
 <body>

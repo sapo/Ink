@@ -1,20 +1,20 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <div class="blackMenu" id="topMenu">
-	 <h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
-	<nav>
-	<ul class="h_navigation">
-		<li><a href="intro.php">Intro</a></li>
-		<li><a href="grid.php">Grelha</a></li>
-		<li><a href="typo.php">Tipografia</a></li>
-		<li class="active"><a href="forms.php">Formulários</a></li>
-		<li><a href="tables.php">Tabelas</a></li>
-		<li><a href="alerts.php">Alerts</a></li>
-		<li><a href="navigation.php">Navegação</a></li>
-		<li><a href="widgets.php">Widgets</a></li>
-	</ul>
-	</nav>
+	<h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
 	<a href="#" onclick="toogleNav()" id="toggleNavigation">Menu</a>
+	<nav>
+		<ul class="h_navigation">
+			<li><a href="intro.php">Intro</a></li>
+			<li><a href="grid.php">Grelha</a></li>
+			<li><a href="typo.php">Tipografia</a></li>
+			<li class="active"><a href="forms.php">Formulários</a></li>
+			<li><a href="tables.php">Tabelas</a></li>
+			<li><a href="alerts.php">Alerts</a></li>
+			<li><a href="navigation.php">Navegação</a></li>
+			<li><a href="widgets.php">Widgets</a></li>
+		</ul>
+	</nav>
 </div>
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 

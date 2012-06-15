@@ -1,4 +1,3 @@
-/* Functions */
 /*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
@@ -12,6 +11,7 @@
 /*@borderRadius*/
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* Functions */
 @font-face {
   font-family: 'MavenProBold';
   src: url('../webfonts/maven_pro_bold-webfont.eot');
@@ -45,7 +45,6 @@ body {
   background: linear-gradient(top, #fafafa 0%, #ffffff 50%);
 }
 .container_width {
-  width: 980px;
   /* Defenir Largura do Site  */
 
 }
@@ -119,13 +118,18 @@ h2 span {
   background-color: #fff;
   padding: 1em;
 }
+.g100 {
+  width: auto;
+}
 mark {
   font-family: Monaco, Andale Mono, Courier New, monospace;
   background-color: #deedf1;
   padding: 1px 3px;
   font-size: .9em;
 }
-.gridExemple .box p, .gridExemple2 div p, .gridExemple2 .level1 {
+.gridExemple .box p,
+.gridExemple2 div p,
+.gridExemple2 .level1 {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -196,7 +200,9 @@ mark {
 #headingExemple h5 {
   margin-bottom: 20px;
 }
-#listExemple ul, #listExemple ol, #listExemple dl {
+#listExemple ul,
+#listExemple ol,
+#listExemple dl {
   margin-bottom: 1.5em;
 }
 a.visited {
@@ -207,7 +213,7 @@ a.hover {
   text-decoration: underline;
 }
 a.active {
-  color: red;
+  color: #ff0000;
 }
 /*..........................................  Forms  ...................................................*/
 .exempleForm {
@@ -285,7 +291,7 @@ a.active {
   letter-spacing: 1px;
   text-align: center;
 }
-.section ..blackMenu {
+.section .blackMenu {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
