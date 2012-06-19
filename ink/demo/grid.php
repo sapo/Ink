@@ -121,8 +121,6 @@
 							<div class="g50  level2"><p>50%</p></div>
 							<div class="g50  level2"><p>50%</p></div>
 						</div>
-					</div>
-					<div class="g100">
 						<div class="g25"><p>25%</p></div>
 						<div class="g25"><p>25%</p></div>
 						<div class="g25"><p>25%</p></div>

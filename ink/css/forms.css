@@ -12,6 +12,12 @@
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
+.box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
 /* Form Styles */
 form {
   color: inherit;
@@ -59,12 +65,6 @@ textarea:empty,
 select:empty {
   clear: none !important;
 }
-input,
-textarea,
-select,
-.e_wrap .help {
-  margin: 0 5px;
-}
 input[type=text],
 input[type=password],
 input[type=file],
@@ -92,6 +92,10 @@ select {
   width: 300px;
   line-height: 1.3em;
   font-size: 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 input[type=radio],
 input[type=checkbox] {
@@ -109,7 +113,7 @@ select {
   background: -o-linear-gradient(top, #ffffff 0%, #f1f1f1 100%);
   background: -ms-linear-gradient(top, #ffffff 0%, #f1f1f1 100%);
   background: linear-gradient(top, #ffffff 0%, #f1f1f1 100%);
-  width: 312px;
+  width: 300px;
 }
 select[multiple] {
   height: auto;

@@ -12,6 +12,12 @@
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
+.box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
 /* Smartphones (portrait and landscape) */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   html body {
@@ -132,6 +138,28 @@
   .g10 {
     float: none;
     width: 100%!important;
+  }
+  /* Forms */
+  label {
+    width: auto;
+    float: none;
+    text-align: left;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="file"],
+  input[type="reset"],
+  textarea,
+  select {
+    width: 100%;
+  }
+  .emptyLabel,
+  .formList {
+    padding-left: 0;
+  }
+  .e_wrap .help {
+    width: auto;
+    margin-left: 0;
   }
 }
 /* Smartphones (landscape) */
