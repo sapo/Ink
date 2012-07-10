@@ -1,5 +1,5 @@
-@import "lib";
 @import "conf";
+@import "lib";
 
 /* Form Styles */
 form {color: @baseColor; font-size: @fontSize;}
@@ -31,7 +31,6 @@ label {
 label span{display: block; padding-left: 27px;}
 label input{float:left}
 input:empty, textarea:empty, select:empty {clear:none!important}
-input, textarea, select, .e_wrap .help {margin:@elementsMargin;}
 input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
 	.round-corners(@borderRadius);
 	.box-shadow(@basicBoxShadow);
@@ -42,9 +41,10 @@ input[type=text], input[type=password], input[type=file], input[type=reset], tex
 	width: @elementsWidth;
 	line-height: 1.3em;
 	font-size: @fontSize;
+	.box-sizing
 }
 input[type=radio], input[type=checkbox] {width: 17px; height: 17px;}
-select {height: 30px; .gradient(#fff, #f1f1f1, 100%); width:@elementsWidth + 12;}
+select {height: 30px; .gradient(#fff, #f1f1f1, 100%); width:@elementsWidth}
 select[multiple] {height: auto; .gradient(@gradientStartColor, @gradientEndColor, @gradientStop)}
 input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {.input_focus(@focusBlurSize, @focusColor)}
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
@@ -103,12 +103,12 @@ form .warning {color: fadein(@warningColor, 100%);}
 .warning .help {color: fadein(@warningColor, 100%);}
 .error .help {color: fadein(@errorColor, 100%);}
 .arrow-left {
-  width:0px; 
-  height:0px; 
-  border-bottom:6px solid transparent;
-  border-top:6px solid transparent;
-  border-right:5px solid #2f2f2f; 
-  font-size:0px;
+	width:0px; 
+	height:0px; 
+	border-bottom:6px solid transparent;
+	border-top:6px solid transparent;
+	border-right:5px solid #2f2f2f; 
+	font-size:0px;
 	position:absolute;
 	left:-4px;
 	top:4px;
@@ -134,15 +134,12 @@ form .warning {color: fadein(@warningColor, 100%);}
 	.round-corners(@borderRadius);
 	color: @btnColor;
 	text-shadow:0 1px 0 rgba(255,255,255,1);
-	
 	margin:5px;
 	text-decoration: none;
 }
 
 
 input[type=submit]:hover, button:hover, .defaultBtn:hover {}
-
-
 input[type=submit].btn_success, .btn_success, input[type=button].btn_success{.createBtn(@successBtnBg);}			            
 input[type=submit].btn_info, .btn_info, input[type=button].btn_info{.createBtn(@InfoBtnBg);}						
 input[type=submit].btn_delete, .btn_delete, input[type=button].btn_delete{.createBtn(@DeleteBtnBg);}

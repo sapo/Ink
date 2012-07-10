@@ -11,7 +11,8 @@
 	 <div  class="glow2"><img src="styles/imgs/glow2.png" width="830" height="400" alt="Glow1"/> </div> 
 </div> 
 <div class="blackMenu">
-	 <h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
+	<h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
+	<a href="#" onclick="toogleNav()" id="toggleNavigation">Menu</a>
 	<nav >
 	<ul class="h_navigation">
 		<li><a href="intro.php">Intro</a></li>
@@ -24,7 +25,6 @@
 		<li><a href="widgets.php">Widgets</a></li>
 	</ul>
 	</nav>
-	<a href="#" onclick="toogleNav()" id="toggleNavigation">Menu</a>
 </div>    
 
 <div class="container_width">

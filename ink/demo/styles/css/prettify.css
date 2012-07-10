@@ -1,17 +1,17 @@
 /* Prettyfier  */
 var {background-color: #ecda83; font-family: Monaco, Andale Mono, Courier New, monospace; padding:1px 3px; font-size: .9em;}
 pre{
-background: #FEFBF3;
--webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
--moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-font-family: Monaco, Andale Mono, Courier New, monospace;
-display: block;
-line-height: 18px;
-font-size: 12px;
-padding:9px;
-color: #aaa;
-margin:1em;
+	background: #FEFBF3;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	font-family: Monaco, Andale Mono, Courier New, monospace;
+	display: block;
+	line-height: 18px;
+	font-size: 12px;
+	padding:9px;
+	color: #aaa;
+	margin:1em;
 }
 pre ol {list-style: decimal; margin: 0 0 0 40px; line-height: 1; }
 pre ol li {line-height: 20px; white-space: pre-wrap; word-wrap: break-word;}
@@ -28,12 +28,13 @@ pre .hightlight {font-weight: bold; color: red;}
 .typ, .atn, .dec, .var { color: #CB4B16; }
 .pln { color: #93a1a1; }
 pre.prettyprint {
-  background: #fefbf3;
-  padding: 9px;
-  border: 1px solid rgba(0,0,0,.2);
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	background: #fefbf3;
+	padding: 9px;
+	border: 1px solid rgba(0,0,0,.2);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	white-space: pre-wrap;
 }
 
 .prettyprint {margin-top: 2em;}

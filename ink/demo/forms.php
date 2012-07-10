@@ -1,20 +1,33 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <div class="blackMenu" id="topMenu">
-	 <h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
-	<nav>
-	<ul class="h_navigation">
-		<li><a href="intro.php">Intro</a></li>
-		<li><a href="grid.php">Grelha</a></li>
-		<li><a href="typo.php">Tipografia</a></li>
-		<li class="active"><a href="forms.php">Formulários</a></li>
-		<li><a href="tables.php">Tabelas</a></li>
-		<li><a href="alerts.php">Alerts</a></li>
-		<li><a href="navigation.php">Navegação</a></li>
-		<li><a href="widgets.php">Widgets</a></li>
-	</ul>
-	</nav>
+	<h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
 	<a href="#" onclick="toogleNav()" id="toggleNavigation">Menu</a>
+	<nav>
+		<ul class="h_navigation">
+			<li><a href="intro.php">Intro</a></li>
+			<li><a href="grid.php">Grelha</a></li>
+			<li><a href="typo.php">Tipografia</a></li>
+			<li class="active"><a href="forms.php">Formulários</a></li>
+			<li><a href="tables.php">Tabelas</a></li>
+			<li><a href="alerts.php">Alerts</a></li>
+			<li><a href="navigation.php">Navegação</a></li>
+			<li><a href="widgets.php">Widgets</a></li>
+		</ul>
+	</nav>
+	<script type="text/javascript">
+		$(document).ready(
+			$("#toggleNavigation").click(function () {
+			
+				if ($("ul.h_navigation").is(":hidden")) {
+					$("ul.h_navigation").slideDown("fast");
+					} else {
+					$("ul.h_navigation").slideUp("fast");
+					}
+				})
+			
+			);
+	</script>
 </div>
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 
@@ -73,8 +86,8 @@
 					<label>Lista de Checkboxs</label>
 					<ul class="formList">
 						<li><label for="checkbox1"><input id="checkbox1" type="checkbox"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></label></li>
-						<li><label for="checkbox2"><input id="checkbox2" type="checkbox">Checkbox Label</label></li>
-						<li><label for="checkbox3"><input id="checkbox3" type="checkbox">Checkbox Label</label></li>
+						<li><label for="checkbox2"><input id="checkbox2" type="checkbox"><span>Checkbox Label</span></label></li>
+						<li><label for="checkbox3"><input id="checkbox3" type="checkbox"><span>Checkbox Label</span></label></li>
 					</ul>
 				</div>
 				<div class="e_wrap error">
@@ -88,42 +101,42 @@
 				</div>	
 			</fieldset>
 		</form> 
-				<div class="g33">
-					<div class="space">
-						<h3>Estrutura</h3>
-						<p>Os campos dos formulários devem ser envolvidos por um elemento com a class <mark>.e_wrap</mark><br>
-							Esta class existe para separar os elementos do formulários assim como assiste na estilização de erros
-						</p>
-						<pre class="prettyprint">&lt;form&gt;
-&lt;div class=&quot;e_wrap&quot;&gt;
-  &lt;label for=&quot;inputId&quot;&gt;Nome&lt;/label&gt;
-    &lt;input type=&quot;text&quot; id=&quot;inputId&quot; /&gt;
-  &lt;/div&gt;
-&lt;/form&gt;</pre><br><br>  
-						<div class="v_space">
-							<h4>Formulários em bloco</h4>
-							<form class="form_block exempleForm">
-								<label for="exField">Nome do Campo</label>
-								<input type="text" id="exField" style="width:94%"/>
-							</form>
-							<p>Neste exemplo a <mark>&lt;label&gt;</mark> do respectivo campo do formulário encontra-se acima deste, em bloco</p>
-							<p>Para este efeito o <mark>&lt;form&gt;</mark> deverá ter a class <mark>.form_block</mark></p>
-						</div>
-						<br><br>
-						<div class="v_space">
-							<h4>Erros e Avisos</h4>
-							<form class="form_block exempleForm"> 
-								<div class="e_wrap error">
-									<label for="inpuTypeTex"> Input com Erro</label>
-									<input id="inpuTypeTex" type="text"  style="width:94%">
-								</div>
-							</form>
-							<p>Para assinalar um campo com erro ou aviso basta adicionar ao element <mark>.e_wrap</mark> a class <mark>.error</mark> ou <mark>.warning</mark>.</p>
-							<p>A messagem de erro pode aparecer inline usando o elemento <mark>&lt;p&gt;</mark> com a class <mark>.help</mark> podendo esta classe tambem ser usada para notas várias</p>
-						</div>
-					</div>
-				</div>
 		
+		<div class="g33">
+			<div class="space">
+				<h3>Estrutura</h3>
+				<p>Os campos dos formulários devem ser envolvidos por um elemento com a class <mark>.e_wrap</mark><br>
+					Esta class existe para separar os elementos do formulários assim como assiste na estilização de erros
+				</p>
+				<pre class="prettyprint">&lt;form&gt;
+&lt;div class=&quot;e_wrap&quot;&gt;
+&lt;label for=&quot;inputId&quot;&gt;Nome&lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;inputId&quot; /&gt;
+&lt;/div&gt;
+&lt;/form&gt;</pre><br><br>  
+				<div class="v_space">
+					<h4>Formulários em bloco</h4>
+					<form class="form_block exempleForm">
+						<label for="exField">Nome do Campo</label>
+						<input type="text" id="exField" style="width:94%"/>
+					</form>
+					<p>Neste exemplo a <mark>&lt;label&gt;</mark> do respectivo campo do formulário encontra-se acima deste, em bloco</p>
+					<p>Para este efeito o <mark>&lt;form&gt;</mark> deverá ter a class <mark>.form_block</mark></p>
+				</div>
+				<br><br>
+				<div class="v_space">
+					<h4>Erros e Avisos</h4>
+					<form class="form_block exempleForm"> 
+						<div class="e_wrap error">
+							<label for="inpuTypeTex"> Input com Erro</label>
+							<input id="inpuTypeTex" type="text"  style="width:94%">
+						</div>
+					</form>
+					<p>Para assinalar um campo com erro ou aviso basta adicionar ao element <mark>.e_wrap</mark> a class <mark>.error</mark> ou <mark>.warning</mark>.</p>
+					<p>A messagem de erro pode aparecer inline usando o elemento <mark>&lt;p&gt;</mark> com a class <mark>.help</mark> podendo esta classe tambem ser usada para notas várias</p>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<!-- .................................  ERROS	.................................  -->
