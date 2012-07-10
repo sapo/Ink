@@ -12,7 +12,7 @@ class Skeletor {
   }
 
   // public function set_p
-  public function insert_child($parent,$specs){
+  public function insert_child(){
     echo "YAY!";
   }
 
@@ -21,7 +21,7 @@ class Skeletor {
   }
 
   public function delete_child(){
-    w
+    
   }
 
   public function get_document_from_storage(){

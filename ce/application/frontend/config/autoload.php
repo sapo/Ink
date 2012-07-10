@@ -27,6 +27,20 @@
 |
 */
 
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Sparks
+| -------------------------------------------------------------------
+| Prototype:
+|
+| $autoload['sparks'] = array('restclient/2.1.0', 'curl/1.2.0');
+|
+*/
+
+$autoload['sparks'] = array('restclient/2.1.0',);
+
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Packges
@@ -52,7 +66,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('skeletor');
+$autoload['libraries'] = array();
 
 
 /*
