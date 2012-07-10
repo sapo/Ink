@@ -17,13 +17,25 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+
+	public function __construct()
 	{
+		parent::__construct();
 		$this->load->library('skeletor','skeletor');
 		$this->skeletor->doctype = 'html5';
+	}
+
+	public function index()
+	{
+		
 		$data = $this->skeletor;
+		$this->skeletor->insert_child();
 		var_dump($data);
-		$this->load->view('welcome_message',$data);
+		// $this->load->view('welcome_message',$data);
+	}
+
+	public function new_document(){
+		
 	}
 }
 
