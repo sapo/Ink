@@ -2,28 +2,8 @@
 @import url('lib.less');
 
 /* Smartphones (portrait and landscape) */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-
-	html body {
-		font-size: 16px;
-		width: 100%;
-	}
-	
-	.siteWidth {
-		width: 100%;
-		padding: 0px;
-	}
-	
-	html {
-		-webkit-text-size-adjust: none;
-	}
-	
-	.megaheader {
-		display: none;
-	}
-	
+@media only screen
+and (max-width : 900px) {
 	#topMenu {
 		position: static !important;
 		margin:0 10px;
@@ -69,7 +49,7 @@ and (max-device-width : 480px) {
 		   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
 		  		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
 		font-weight: bold;
-		margin: 5px 10px;
+		margin: 8px 10px;
 		-webkit-border-radius: 0.2em;
 		-moz-border-radius: 0.2em;
 		border-radius: 0.2em;
@@ -86,6 +66,10 @@ and (max-device-width : 480px) {
 	
 	.blackMenu.fixed {
 		position: static;
+	}
+	
+	.blackMenu input {
+		margin:4px 0
 	}
 	
 	.blackMenu .h_navigation li a {
@@ -141,7 +125,6 @@ and (max-device-width : 480px) {
 		margin-left:0
 	}
 	
-
 }
 
 /* Smartphones (landscape) */

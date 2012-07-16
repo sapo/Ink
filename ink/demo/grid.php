@@ -74,7 +74,7 @@
 &lt;div class=&quot;g30&quot;&gt;
   Elemento ocupa 30% do elemento pai
 &lt;/div&gt;
-</pre>
+				</pre>
 			</div>
 		</div>		
 	</div>
