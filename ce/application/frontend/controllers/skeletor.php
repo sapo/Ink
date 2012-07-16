@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Skeletor extends CI_Controller {
 
 	/*l*
 	 * Index Page for this controller.
@@ -17,13 +17,23 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	public function __construct()
+	{
+		parent::__construct();
+		// Initialize the rest client
+		$this->rest->initialize(array('server' => $this->config->item('api_url')));
+	}
+
 	public function index()
 	{
-		$this->load->library('skeletor','skeletor');
-		$this->skeletor->doctype = 'html5';
-		$data = $this->skeletor;
-		var_dump($data);
-		$this->load->view('welcome_message',$data);
+		$tweets = $this->rest->get('');
+		var_dump($tweets);
+		// echo "beep";
+	}
+
+	public function new_document(){
+		
 	}
 }
 
