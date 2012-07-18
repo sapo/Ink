@@ -41,9 +41,10 @@ input[type=text], input[type=password], input[type=file], input[type=reset], tex
 	width: @elementsWidth;
 	line-height: 1.3em;
 	font-size: @fontSize;
-	.box-sizing
+	.box-sizing(border-box);
 }
-input[type=radio], input[type=checkbox] {width: 17px; height: 17px;}
+
+input[type=radio], input[type=checkbox] {width:17px; height:17px;}
 select {height: 30px; .gradient(#fff, #f1f1f1, 100%); width:@elementsWidth}
 select[multiple] {height: auto; .gradient(@gradientStartColor, @gradientEndColor, @gradientStop)}
 input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {.input_focus(@focusBlurSize, @focusColor)}
@@ -57,25 +58,23 @@ form .help {display: block; font-size: 11px; color:#bbb; float:none!important}
 .e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@elementsPadding)/2;}
 .emptyLabel, .formList {padding-left: @labelWidth + 10px + @labelMargin;}
 .emptyLabel label, .formList label{width: auto; text-align: left; vertical-align: top; font-weight: normal; float:none; margin: 0; display: block;}
-.formList {padding-top: 5px;}
 .formList label input {margin-bottom: 0px;}
 .formList label {margin-bottom: 10px;}
 form li {list-style: none;}
+
 /*|||||||||||||||||||||| Block Form Styles ||||||||||||||||||||||*/
 .form_block label {display: block; float:none; width: auto; text-align: left; margin-top:0px; margin-bottom: .1em;}
 .form_block label:after {clear:both}
 .form_block .help {margin:@elementsMargin;}
 .form_block .emptyLabel, .form_block .formList {padding-left:0}
+
 /*|||||||||||||||||||||| Errors & Warning Styles ||||||||||||||||||||||*/
 form .error, form .warning {
 	.round-corners(@borderRadius);
-	padding:5px;
+	padding:10px 0 5px;
 	margin:5px 0;
-	padding-top: 10px;
-	padding-left: 0;
 	color: fadein(@errorColor, 100%);
 	vertical-align: top;
-	
 }
 .emptyLabel.error, .formList.error, .emptyLabel.warning, .formList.warning{padding-left: @labelWidth + 10px + @labelMargin;}
 .form_block  .emptyLabel.error, .form_block .formList.error, .form_block .emptyLabel.warning, .form_block .formList.warning {padding-left: 0em;}
@@ -103,11 +102,11 @@ form .warning {color: fadein(@warningColor, 100%);}
 .warning .help {color: fadein(@warningColor, 100%);}
 .error .help {color: fadein(@errorColor, 100%);}
 .arrow-left {
-	width:0px; 
-	height:0px; 
+	width:0px;
+	height:0px;
 	border-bottom:6px solid transparent;
 	border-top:6px solid transparent;
-	border-right:5px solid #2f2f2f; 
+	border-right:5px solid #2f2f2f;
 	font-size:0px;
 	position:absolute;
 	left:-4px;
@@ -122,7 +121,6 @@ form .warning {color: fadein(@warningColor, 100%);}
 
 
 /*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/
-
 .defaultBtn, input[type=submit], input[type=button], button {
 	font-size: 1em;
 	font-weight: bold;
@@ -136,8 +134,8 @@ form .warning {color: fadein(@warningColor, 100%);}
 	text-shadow:0 1px 0 rgba(255,255,255,1);
 	margin:5px;
 	text-decoration: none;
+	display:inline-block;
 }
-
 
 input[type=submit]:hover, button:hover, .defaultBtn:hover {}
 input[type=submit].btn_success, .btn_success, input[type=button].btn_success{.createBtn(@successBtnBg);}			            
@@ -147,4 +145,3 @@ input[type=submit].btn_delete, .btn_delete, input[type=button].btn_delete{.creat
 .MediumBtn {font-size: 1.5em!important;}
 
 .bigBtn {font-size: 1.75em!important;}
-

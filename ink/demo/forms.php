@@ -29,12 +29,12 @@
 			);
 	</script>
 </div>
-<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 
+<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
 <div class="container_width">
 	<h2><span>Formulários</span></h2>
 	<div class="space">
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
 	<div class="section">
 		<form class="g66">
@@ -76,7 +76,7 @@
 					<label for="checkbox"><input id="checkbox" type="checkbox">Checkbox Label</label>
 				</div>
 				<div class="e_wrap emptyLabel" >
-					<label for="radio"> <input id="radio" type="radio">Radio Label</label>
+					<label for="radio"><input id="radio" type="radio">Radio Label</label>
 				</div>
 				<div class="e_wrap">
 					<label>Inline Inputs</label>
@@ -118,7 +118,7 @@
 					<h4>Formulários em bloco</h4>
 					<form class="form_block exempleForm">
 						<label for="exField">Nome do Campo</label>
-						<input type="text" id="exField" style="width:94%"/>
+						<input type="text" id="exField" style="width:100%"/>
 					</form>
 					<p>Neste exemplo a <mark>&lt;label&gt;</mark> do respectivo campo do formulário encontra-se acima deste, em bloco</p>
 					<p>Para este efeito o <mark>&lt;form&gt;</mark> deverá ter a class <mark>.form_block</mark></p>
@@ -129,7 +129,7 @@
 					<form class="form_block exempleForm"> 
 						<div class="e_wrap error">
 							<label for="inpuTypeTex"> Input com Erro</label>
-							<input id="inpuTypeTex" type="text"  style="width:94%">
+							<input id="inpuTypeTex" type="text"  style="width:100%">
 						</div>
 					</form>
 					<p>Para assinalar um campo com erro ou aviso basta adicionar ao element <mark>.e_wrap</mark> a class <mark>.error</mark> ou <mark>.warning</mark>.</p>
@@ -187,19 +187,19 @@
 					<button type="button" class="btn_info">Info</button>
 					<button type="button" class="btn_delete">Apagar</button>
 				</div> 
-				 <div class="e_wrap">
+				<div class="e_wrap">
 					<button type="button" class="defaultBtn MediumBtn">Default</button>
-		            <input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success MediumBtn">
+					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success MediumBtn">
 					<button type="button" class="btn_info MediumBtn">Info</button>
 					<button type="button" class="btn_delete MediumBtn">Apagar</button>
-		          </div>
-
-				  <div class="e_wrap">
+				</div>
+				
+				<div class="e_wrap">
 					<button type="button" class="defaultBtn bigBtn">Default</button>
-		            <input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success bigBtn">
+					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success bigBtn">
 					<button type="button" class="btn_info bigBtn">Info</button>
 					<button type="button" class="btn_delete bigBtn">Apagar</button>
-		          </div>
+				</div>
 			</form>
 		</div>
 		<div class="g33">
@@ -218,5 +218,4 @@
 	
 </div>
 
-		
 <?php include 'shared/footer.php'; ?>	

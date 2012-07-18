@@ -14,17 +14,30 @@
 	<h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
 	<a href="#" onclick="toogleNav()" id="toggleNavigation">Menu</a>
 	<nav >
-	<ul class="h_navigation">
-		<li><a href="intro.php">Intro</a></li>
-		<li><a href="grid.php">Grelha</a></li>
-		<li><a href="typo.php">Tipografia</a></li>
-		<li><a href="forms.php">Formulários</a></li>
-		<li><a href="tables.php">Tabelas</a></li>
-		<li class="active"><a href="alerts.php">Alerts</a></li>
-		<li><a href="navigation.php">Navegação</a></li>
-		<li><a href="widgets.php">Widgets</a></li>
-	</ul>
+		<ul class="h_navigation">
+			<li><a href="intro.php">Intro</a></li>
+			<li><a href="grid.php">Grelha</a></li>
+			<li><a href="typo.php">Tipografia</a></li>
+			<li><a href="forms.php">Formulários</a></li>
+			<li><a href="tables.php">Tabelas</a></li>
+			<li class="active"><a href="alerts.php">Alerts</a></li>
+			<li><a href="navigation.php">Navegação</a></li>
+			<li><a href="widgets.php">Widgets</a></li>
+		</ul>
 	</nav>
+	<script type="text/javascript">
+		$(document).ready(
+			$("#toggleNavigation").click(function () {
+			
+				if ($("ul.h_navigation").is(":hidden")) {
+					$("ul.h_navigation").slideDown("fast");
+					} else {
+					$("ul.h_navigation").slideUp("fast");
+					}
+				})
+			
+			);
+	</script>
 </div>    
 
 <div class="container_width">
