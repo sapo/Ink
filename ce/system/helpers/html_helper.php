@@ -28,6 +28,65 @@
 // ------------------------------------------------------------------------
 
 /**
+ * Title
+ *
+ * Generates an HTML title tag.  First param is the data.
+ *
+ * @access	public
+ * @param	string
+ */
+if ( ! function_exists('title'))
+{
+	function title($data = '')
+	{
+		return "<title>".$data."</title>";
+	}
+}
+
+/**
+ * Script
+ *
+ * Generates an script tag.  First param is the script source (src).
+ * Second parameter is the script itself, if wanted.
+ *
+ * @access	public
+ * @param	string
+ */
+if ( ! function_exists('script'))
+{
+	function script($src = '',$data = '')
+	{
+		$tag  = '<script type="text/javascript"';
+		(!empty($src)) ? $tag .= ' src="'.$src.'">' : $tag .= '>';
+		(!empty($data)) ? $tag .= $data : '';
+		$tag .= '</script>';
+		return $tag;
+	}
+}
+
+/**
+ * Div
+ *
+ * Generates an script title tag.  First param is the data.
+ *
+ * @access	public
+ * @param	string
+ */
+if ( ! function_exists('script'))
+{
+	function script($src = '',$data = '')
+	{
+		$tag  = '<script type="text/javascript"';
+		(!empty($src)) ? $tag .= ' src="'.$src.'">' : $tag .= '>';
+		(!empty($data)) ? $tag .= $data : '';
+		$tag .= '</script>';
+		return $tag;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
  * Heading
  *
  * Generates an HTML heading tag.  First param is the data.

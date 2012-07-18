@@ -38,8 +38,10 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "ink_builder";
 $route['404_override'] = '';
+
+$route['document'] = 'document/index';
 
 
 /* End of file routes.php */

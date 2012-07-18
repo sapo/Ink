@@ -27,14 +27,49 @@ class Skeletor extends CI_Controller {
 
 	public function index()
 	{
-		$tweets = $this->rest->get('');
-		var_dump($tweets);
-		// echo "beep";
+		$document = $this->rest->get('document/new/format/serialize');
+		$this->parse_document($document);
 	}
 
 	public function new_document(){
 		
 	}
+
+
+	private function parse_document($obj,$key = null)
+	{
+
+			// if (is_array($obj))
+			// {
+			// 	foreach ($obj as $key => $item) {
+			// 		echo "array\n";
+			// 		echo $key;
+			// 		echo $item;
+			// 	}
+			// }
+			
+			if(is_object($obj))
+			{
+				foreach ($obj as $var => $value)
+				{
+					$this->parse_document($value,$var);
+				}
+			} 
+			else
+			{
+				var_dump($obj);
+			}
+
+		
+	}
+
+	// private function translate($element,$value){
+	// 	$dictionary = array(
+	// 		'doctype' => "<".$value."></".$value.">"
+	// 	);
+	// 	return $dictionary[$element];
+	// }
+
 }
 
 /* End of file welcome.php */
