@@ -30,7 +30,7 @@ label {
 }
 label span{display: block; padding-left: 27px;}
 label input{float:left}
-input:empty, textarea:empty, select:empty {clear:none!important}
+input:empty, textarea:empty, select:empty {clear:none}
 input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
 	.round-corners(@borderRadius);
 	.box-shadow(@basicBoxShadow);
@@ -54,7 +54,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 }
 input.miniInput, select.miniInput {width: @miniElementsWidth;}
 input.smallInput, select.smallInput {width: @smallElementsWidth;}
-form .help {display: block; font-size: 11px; color:#bbb; float:none!important}
+form .help {display: block; font-size: 11px; color:#bbb; float:none}
 .e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@elementsPadding)/2;}
 .emptyLabel, .formList {padding-left: @labelWidth + 10px + @labelMargin;}
 .emptyLabel label, .formList label{width: auto; text-align: left; vertical-align: top; font-weight: normal; float:none; margin: 0; display: block;}
@@ -122,7 +122,6 @@ form .warning {color: fadein(@warningColor, 100%);}
 
 /*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/
 .defaultBtn, input[type=submit], input[type=button], button {
-	font-size: 1em;
 	font-weight: bold;
 	padding: @btnPadding;
 	float:none;
@@ -142,6 +141,6 @@ input[type=submit].btn_success, .btn_success, input[type=button].btn_success{.cr
 input[type=submit].btn_info, .btn_info, input[type=button].btn_info{.createBtn(@InfoBtnBg);}						
 input[type=submit].btn_delete, .btn_delete, input[type=button].btn_delete{.createBtn(@DeleteBtnBg);}
 
-.MediumBtn {font-size: 1.5em!important;}
+.MediumBtn {font-size: 1.5em;}
 
-.bigBtn {font-size: 1.75em!important;}
+.bigBtn {font-size: 1.75em;}
