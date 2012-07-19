@@ -35,6 +35,8 @@
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tooltip/1.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script>
 	
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>

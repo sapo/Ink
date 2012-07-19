@@ -6,7 +6,7 @@
 	<nav>
 		<ul class="h_navigation">
 			<li><a href="intro.php">Intro</a></li>
-			<li class="active"><a href="grid.php">Grelha</a></li>
+			<li class="active"><a href="grid.php">Layout</a></li>
 			<li><a href="typo.php">Tipografia</a></li>
 			<li><a href="forms.php">Formulários</a></li>
 			<li><a href="tables.php">Tabelas</a></li>
@@ -33,7 +33,7 @@
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 
 <div class="container_width">
-	<h2><span>Grelhas</span></h2>
+	<h2><span>Layout</span></h2>
 	<div class="space">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
@@ -185,8 +185,6 @@
 &lt;/div&gt;</pre>
 			
 		</div>
-
-		
 	</div>
 	<div class="section">
 		<h3>Lista de Classes Disponíveis</h3>
