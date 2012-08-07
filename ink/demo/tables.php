@@ -6,7 +6,7 @@
 	<nav>
 		<ul class="h_navigation">
 			<li><a href="intro.php">Intro</a></li>
-			<li><a href="grid.php">Grelha</a></li>
+			<li><a href="grid.php">Layout</a></li>
 			<li><a href="typo.php">Tipografia</a></li>
 			<li><a href="forms.php">Formulários</a></li>
 			<li class="active"><a href="tables.php">Tabelas</a></li>
