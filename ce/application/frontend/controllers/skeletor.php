@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// include(APPPATH.'config/'.ENVIRONMENT.'/doctypes.php');
+
 class Skeletor extends CI_Controller {
 
 	/*l*
@@ -27,8 +29,10 @@ class Skeletor extends CI_Controller {
 
 	public function index()
 	{
-		$document = $this->rest->get('document/new/format/serialize');
-		$this->parse_document($document);
+		$ce_doc = $this->rest->get('document/new');
+		if($ce_doc->status){
+						
+		}
 	}
 
 	public function new_document(){
@@ -38,27 +42,6 @@ class Skeletor extends CI_Controller {
 
 	private function parse_document($obj,$key = null)
 	{
-
-			// if (is_array($obj))
-			// {
-			// 	foreach ($obj as $key => $item) {
-			// 		echo "array\n";
-			// 		echo $key;
-			// 		echo $item;
-			// 	}
-			// }
-			
-			if(is_object($obj))
-			{
-				foreach ($obj as $var => $value)
-				{
-					$this->parse_document($value,$var);
-				}
-			} 
-			else
-			{
-				var_dump($obj);
-			}
 
 		
 	}
