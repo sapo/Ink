@@ -31,7 +31,7 @@ class Skeletor extends CI_Controller {
 	{
 		$ce_doc = $this->rest->get('document/new');
 		if($ce_doc->status){
-						
+						$this->load->view('new_document');
 		}
 	}
 

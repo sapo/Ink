@@ -4,6 +4,14 @@
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Loaded/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Event/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Css/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Selector/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Communication/Ajax/1.1/"></script>
+
 	<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
@@ -65,24 +73,20 @@
 	</style>
 </head>
 <body>
+<!-- div. -->
+<script type="text/javascript">
+    (function(){
+        var req = new SAPO.Communication.Ajax(
+          'http://10.134.132.97/api.php/document/new',
+          {
+          	method: "GET",
+          	onSuccess: function(obj){
+          		console.log(obj.responseText);
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-<?=$data->doctype?>
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
-</div>
-
+          	}
+          }
+         );
+    }());
+</script>
 </body>
 </html>

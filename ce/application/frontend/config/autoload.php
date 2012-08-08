@@ -94,7 +94,7 @@ $autoload['helper'] = array('html');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('application');
 
 
 /*
