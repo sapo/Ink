@@ -1,0 +1,49 @@
+= Ink website structure =
+
+A. Homepage
+	* Intro text
+	* Screencast
+	* Example websites (thumbnail carrousel)
+
+
+B. Layout
+	* Containers
+	* Main division units
+
+C. Navigation
+	* Horizontal menus
+	* Horizontal submenus
+	* Vertical menus
+	* Vertical submenus
+	* Simple footer menus
+
+D. Typography & Icons
+	* Headings (h1, h2, h3, ...)
+	* Body & Hyper text (p, a, strong, em, ...)
+	* Lists (ol, ul, dl, ...)
+	* Special cases (code, cite, blockquote, ...)
+	* Icon Webfont
+
+E. Forms & Alerts
+	* Form building intro (fieldsets, label placement, ...)
+	* Text & Number entry
+	* Dropdowns and list boxes
+	* Checkboxes and radio buttons
+	* Buttons
+	* Alerts
+
+F. Tables
+	* Simple
+	* Borderless
+	* Sortable
+
+G. InkJS
+	* UI Components
+		* Component 1
+		* ...
+	* Visual effects
+		* Effect 1
+		* ...
+	* Core
+		* Method 1
+		* ...
