@@ -1,0 +1,36 @@
+= Ink versioning =
+
+= Majors = 
+
+The first complete version of Ink will be available in a centralized static location, under a /vX directory (in this case, /v1).
+Big changes should be deployed as a major version, under a /vX+1 directory (eg, version 2 shoud be in /v2, while version 1 remains available in /v1).
+Users can change their CSS link to reflect the new version, enabling them to check for problems and quickly go back to /v1 in case of problems.
+
+Protocol for major versions:
+
+1. Identify necessary developments to keep up with user needs and web technology
+2. Develop and test locally
+3. Deploy new files into a /vX+1 directory
+5. Update the website to reflect the new version
+4. Update the changelog:
+	* As a text file in the downloadable bundle
+	* As a text file in the /vX+1 directory
+	* As a post in the changelog page on the website
+5. Post in social media accounts
+6. Throw a party
+
+= Minors =
+
+Minor corrections can be made to the files, only if they don't severely impact the functioning of the CSS, and uploaded to replace the previous files, while keeping only the vX designation in order to not create version fragmentation.
+
+Protocol for minor versions:
+
+1. Identify minor problems through testing and user reports
+2. Fix problems and test locally
+3. Deploy the corrected files
+4. Update the changelog:
+	* As a text file in the downloadable bundle
+	* As a text file in the /vX directory
+	* As a post in the changelog page on the website
+5. Post in social media accounts
+
