@@ -1,4 +1,90 @@
 = Homepage =
 
 Welcome to Ink.
-Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your developers.
+Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
+
+= About =
+
+* What it is
+* Why we did it
+* Who we are
+* What's in store
+
+= Changelog =
+
+* What's included in each revision, posted by date
+
+= Layout =
+
+= Container unit =
+
+The container_width class is where you define the width of your layout.
+You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.
+
+Example:
+
+Let's say you need your page container to always be 80% of your view port.
+
+Markup
+
+<div class="container_width">
+	<div class="g100">
+		<p>Content</p>
+	</div>
+</div>
+
+CSS
+
+In conf.css, define:
+
+.container_width {
+	width:80%;
+}
+
+= Division units =
+
+Ink uses a percentage-based container logic which is flexible and promotes the use of fluid layouts.
+
+You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.
+
+Example:
+
+Imagine you have a webpage with a main content area which takes up 75% of your layout and a sidebar which uses up the remaining space. The content area is subsequently divided in two equal sized columns.
+
+Here's the markup:
+
+<div class="container_width">
+	<div class="g75 maincontent">
+		<div class="g50 firstcolumn"></div>
+		<div class="g50 secondcolumn"></div>
+	</div>
+	<div class="g25 sidebar"></div>
+</div>
+
+You should use the G classes for layout only and add an additional semantic class for further costumization. In this case, you could then use your conf.css file to customize .maincontent, .sidebar, etc.
+
+= Spacer units =
+
+Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.
+
+Ink uses three kinds of spacer unit, a vertical spacer, horizontal spacer and an all-around spacer. To use them, put a block-level element within your layout element with the corresponding spacer class.
+
+Example:
+
+Let's pick up our previous example and add space all around (vertical and horizontal) to our main content and sidebar, and only horizontal space to our columns.
+
+Here's the code:
+
+<div class="container_width">
+	<div class="g75 maincontent">
+		<div class="space">
+			<div class="g50 firstcolumn">
+				<div class="h_space">
+					<p>Content</p>
+				</div>
+			</div>
+			<div class="g50 secondcolumn"></div>
+		</div>
+	</div>
+	<div class="g25 sidebar"></div>
+</div>
