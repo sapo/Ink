@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "skeletor";
 $route['404_override'] = '';
+$route['testing/(:any)/(:any)'] = 'testing/index/$1/$2';
 
 
 /* End of file routes.php */
