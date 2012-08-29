@@ -1,0 +1,278 @@
+a {
+  cursor: pointer;
+}
+
+#page_header_container .container {
+ position: relative;
+}
+
+.page_info_container {
+  position: relative;
+}
+
+* html #menu ul.group li a {
+  width: 1px;
+  overflow: visible;
+}
+
+* html #menu ul.group li a span.inner {
+	width: 10px;
+}
+
+* html #menu ul.group #searchForm {
+	width: 1px;
+}
+
+* html #menu ul.group #searchForm button {
+	padding-left: 6px;
+}
+
+* html #tabs ul li a span {
+	width: 1px;
+}
+
+#page_actions {
+  position: relative;
+}
+
+.content_fix {
+  display: block !important;
+  padding-bottom: 1px;
+}
+
+.mass_edit {
+  zoom: 1;
+}
+
+* html .pagination {
+  width: 1px;
+  white-space: nowrap;
+}
+
+* html .calendar_navigation_item {
+  width: 1px;
+  white-space: nowrap;
+}
+
+* html .current .calendar_navigation_item {
+  width: auto;
+  white-space: nowrap;
+}
+
+* html .subobjects_container {
+  width: 760px;
+  padding: 0px;
+  margin: 0px;
+}
+
+* html .object_comments.resource .body{
+  margin: 0px;
+  padding: 0px;
+}
+
+* html .subobject .object_attachments.resource.object_section {
+  width: 720px;
+}
+
+* html .form_left_col {
+  width: 75%;
+}
+
+a.button span img {
+  height: 9px;
+  width: 8px;
+  margin-top: 3px;
+}
+
+input.inline {
+  background: none;
+  border: 0px;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+* html .form_right_col {
+  position: static;
+}
+
+* html #tabs ul li a.current {
+  position: relative;
+  top: 1px;
+}
+
+* html #page_actions li a.button.print {
+  cursor: pointer;
+}
+
+* html #page_actions li a.button.print img {
+  top: 1px !important;
+}
+
+* html table.select_user_project_permissions td.radio input {
+  position: static;
+}
+
+* html table.select_user_project_permissions td.label {
+  padding-top: 6px !important;
+}
+
+a.object_visibility {
+  top: 0px;
+}
+
+* html a.object_visibility {
+  position: static;
+}
+
+* html .status_update_top_links li {
+  padding-left: 5px;
+}
+
+* html #jump_to_project {
+  height: 250px;
+}
+
+* html span.time_popup_widget.with_text a {
+	position: static;
+}
+
+* html #user_details div.user_details_body_block {
+  height: 40px;
+}
+
+/************************************************************************
+*		DIALOG
+************************************************************************/
+
+* html .ui-resizable-se,
+* html .ui-resizable-sw,
+* html .ui-resizable-ne,
+* html .ui-resizable-nw,
+* html .ui-resizable-n,
+* html .ui-resizable-s,
+* html .ui-resizable-e,
+* html .ui-resizable-w {
+  display: none !important
+}
+
+* html .ui-dialog {
+  position: absolute !important; 
+	border: 5px solid #bbb !important;
+	padding: 0px !important;
+	margin-top: 45px !important;
+}
+
+.ui-dialog .col_wide{
+  width:48%;
+}
+
+.ui-dialog .col_wide2 {
+  width:48%;
+}
+
+.ui-dialog .ui-dialog-content {
+  padding-right: 0px !important;
+}
+
+* html .ui-dialog .ui-dialog-content {
+  padding-right: 15px !important;
+}
+
+* html .ui-dialog .ui-dialog-content .table_wrapper {
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+  clear: both !important;
+  width: 100% !important;
+}
+
+* html .ui-dialog .ui-dialog-content .status_updates_table span.ago {
+  margin-right: 20px !important;
+}
+
+* html .dashboard_sidebar ul.dashboard_sidebar_list li {
+	height: 1px;
+}
+
+.dashboard_sidebar ul.dashboard_sidebar_list li {
+  min-height: 1px;
+}
+
+* html #project_meta {
+	zoom: 1;
+	float: left;
+	margin-left: 20px;
+}
+
+* html #file_list .options {
+  width: auto !important;
+}
+
+* html .common_table_list li {
+	overflow: hidden;
+	zoom: 1;
+}
+
+* html div.resource .body {
+  padding: 1px 10px !important;
+}
+
+* html #page_content {
+  zoom: 1;
+}
+
+* html .resources #comments {
+  width: 740px !important;
+  overflow: hidden;
+}
+
+* html .resources #comments .subobjects_container {
+  width: 730px !important;
+}
+
+.attach_files_input img {
+  margin-left: 20px;
+}
+
+* html .main_object {
+  overflow: hidden;
+}
+
+* html .ui-dialog-content #pages_reorder {
+  height: 300px;
+}
+
+* html .height_limited_popup {
+  height: 400px !important;
+}
+
+* html .height_limited_popup.quick_add_col_container {
+  height: 340px !important;
+}
+
+* html .quick_add_col_container .quick_add_col_left,
+* html .quick_add_col_container .quick_add_col_right {
+  /*width: 250px !important;*/
+}
+
+* html .quick_add_col_container .quick_add_col_left .list_chooser {
+  height:300px;
+  overflow-y:auto;
+}
+
+tr#new_record td{
+  background: #edecec;
+}
+
+button.simple {
+  position: relative;
+  top: 1px;
+  margin-left: 4px !important;
+}
+
+.wizardbar .continue {
+  float: left;
+}
+
+.wizardbar .wizzard_back {
+  float: left;
+}

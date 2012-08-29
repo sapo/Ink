@@ -1,0 +1,200 @@
+/* ### Uni-Form by Dragan Babic  - http://dnevnikeklektika.com/ , http://draganbabic.com/ ### */ 
+/* ### Some rights reserved - http://creativecommons.org/licenses/by-sa/2.5/ ### */
+
+/* It is suggested not to edit this file directly, but rather the uni-form.css provided in the downloaded Uni-Form zip archive */
+
+.uniForm{
+  margin:0; padding:0;
+  position:relative;
+  width:100%;
+  overflow:hidden;
+}
+
+  /* Some generals */
+  .uniForm fieldset{
+    border:none;
+    margin:0; padding:0;
+  }
+    .uniForm fieldset legend{
+      margin:0; padding:0;
+    }
+
+    .uniForm .ctrlHolder{ /* This is the main unit that contains our form "modules" */
+      overflow:hidden;
+      margin:0; padding:0;
+      clear:both;
+    }
+
+    .uniForm .buttonHolder{
+      overflow:hidden;
+      clear:both;
+    }
+      .uniForm .resetButton{
+      }
+      .uniForm .submitButton{
+      }
+
+    .uniForm .inlineLabel,
+    .uniForm .inlineLabels .inlineLabel,
+    .uniForm .blockLabels .inlineLabel{
+      width:auto;
+      float:none;
+      margin:0 1em 0 0;
+      display:inline;
+    }
+      .uniForm .inlineLabel input{
+      }
+    
+    /* Highlighting the rows on input focus */
+    .uniForm .focused{
+    }
+
+    /* ########################################################################## */
+
+    /* Styles for form controls where labels are in line with the input elements */
+    /* Set the class to the parent to .inlineLabels */
+    .uniForm .inlineLabels .ctrlHolder{
+    }
+        .uniForm .inlineLabels label,
+        .uniForm .inlineLabels .label{
+          float:left;
+          margin:.3em 2% 0 0; padding:0;
+          line-height:100%;
+          position:relative;
+        }
+
+        .uniForm .inlineLabels .textInput,
+        .uniForm .inlineLabels .fileUpload{
+          float:left;
+        }
+        .uniForm .inlineLabels .fileUpload{
+        }
+        
+        .uniForm .inlineLabels .selectInput{
+          float:left;
+        }
+
+        .uniForm .inlineLabels textarea{
+          float:left;
+        }
+
+      .uniForm .inlineLabels .formHint{
+        clear:both;
+      }
+
+        /* inlineLabels esthetics */
+        .uniForm .inlineLabels .formHint strong{
+        }
+
+
+    /* ########################################################################## */
+
+    /* Styles for form controls where labels are above the input elements */
+    /* Set the class to the parent to .blockLabels */
+    .uniForm .blockLabels .ctrlHolder{
+    }
+
+      .uniForm .blockLabels label,
+      .uniForm .blockLabels .label{
+        display:block;
+        float:none;
+        margin:.3em 0; padding:0;
+        line-height:100%;
+        width:auto;
+      }
+      .uniForm .blockLabels .label{
+        float:left;
+        margin-right:3em;
+      }
+
+      .uniForm .blockLabels .inlineLabel{
+        position:relative; top:.15em;
+      }
+
+      .uniForm .blockLabels .textInput,
+      .uniForm .blockLabels .fileUpload{
+        float:left;
+      }
+      .uniForm .blockLabels .fileUpload{
+      }
+      
+      .uniForm .blockLabels .selectInput{
+        display:block;
+      }
+
+      .uniForm .blockLabels textarea{
+        float:left;
+        display:block;
+      }
+
+      .uniForm .blockLabels .formHint{
+        float:right;
+        margin:0;
+        clear:none;
+      }
+
+      /* blockLabels esthetics */
+      .uniForm .blockLabels .ctrlHolder{
+      }
+
+      .uniForm .blockLabels .focused{
+      }
+
+    /* ########################################################################## */
+
+    /* Focus pseudoclasses */
+    .uniForm .ctrlHolder .textInput:focus{
+    }
+    .uniForm div.focused .textInput:focus{
+    }
+    .uniForm div.focused .formHint{
+    }
+
+    /* Required asterisk styling, use if needed */
+    .uniForm label em,
+    .uniForm .label em{
+      display:block;
+      position:absolute; left:100%;
+      font-style:normal;
+      font-weight:bold;
+    }
+    .uniForm .blockLabels label em,
+    .uniForm .blockLabels .label em{
+      position:static;
+      display:inline;
+    }
+
+    /* ########################################################################## */
+
+    /* Messages */
+    .uniForm #errorMsg,
+    .uniForm .error{
+    }
+      .uniForm #errorMsg dt,
+      .uniForm #errorMsg h3{
+      }
+      .uniForm #errorMsg dd{
+      }
+        .uniForm #errorMsg ol{
+        }
+          .uniForm #errorMsg ol li{
+          }
+      .errorField{
+      }
+
+    /* ########################################################################## */
+
+    /* Add the following classes to your fieldsets (preferably) if you want columns */
+    .uniForm .col{
+      float:left;
+    }
+    .uniForm .columnLeft{
+      float:left;
+    }
+    .uniForm .columnRight{
+      float:right;
+    }
+    
+.form_ctr_holder_toggler {
+  display: none;
+}

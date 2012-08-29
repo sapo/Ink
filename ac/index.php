@@ -1,0 +1,1 @@
+<?php define("NOT_THROUGH_PUBLIC", true); require_once "public/index.php" ?>

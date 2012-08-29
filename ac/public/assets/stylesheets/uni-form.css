@@ -1,0 +1,640 @@
+/*@import "uni-form-generic.css";*/
+/* Your styles below */
+
+.uniForm {
+  position: static;
+  overflow: visible;
+}
+
+/* Generals */
+.uniForm fieldset{
+  margin:1em 0;  /* Assign your value */
+}
+.uniForm fieldset legend{
+  color:#000; /* Reset IE */
+  font-weight:bold; /* Assign your value */
+  font-size:120%; /* Assign your value */
+}
+.uniForm .ctrlHolder{ /* This is the main unit that contains our form "modules" */
+  margin: 3px 0;
+  /*padding:7px;*/ /* Assign your value */
+  padding: 7px 0px;
+  line-height: 140%;
+  overflow: hidden;
+}
+
+.uniForm .ctrlHolder.col {
+  clear: none;
+}
+
+.buttonHolder{
+  /*text-align:right;*/ /* Recommended */
+  border-top: 1px solid #ccc;
+  padding-top: 14px;
+  margin-top: 10px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+table .uniForm .buttonHolder {
+  padding-top: 0px;
+  margin-top: 0px;
+  border-top: 0px;
+}
+
+.buttonHolder button {
+  margin-right: 10px;
+}
+
+.buttonHolder .text_button {
+  font-weight: bold;
+  color: #333;
+  font-size: 11px;
+  margin-top: 4px;
+  margin: 4px 5px 0px;
+  float: left;
+}
+
+.uniForm .focused{
+  /*background:#FFFCDF;*/ /* Assign your value */
+}
+
+.uniForm .focused input,
+.uniForm .focused textarea,
+.uniForm .focused select {
+  border: 1px solid #aaa;
+}
+
+.uniForm .focused input.inline {
+  border: 0px;
+}
+
+/* .inlineLabels */
+
+.uniForm .inlineLabels .field_wrapper {
+  float: left;
+}
+
+.uniForm .inlineLabels label,
+.uniForm .inlineLabels .label{
+  width:110px; /* Assign your value */
+  text-align: right;
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 6px !important;
+  margin-right: 10px !important;
+}
+
+.uniForm .inlineLabels label.inline {
+  width: auto !important;
+  margin: 0px 0px 0px 0px !important;
+}
+
+.uniForm .inlineLabels .textInput,
+.uniForm .inlineLabels .fileUpload{
+  width:45%; /* Assign your value */
+}
+.uniForm .inlineLabels .selectInput{
+  width:45%; /* Assign your value */
+}
+.uniForm .inlineLabels textarea{
+  width:45%; /* Assign the value best fit to your design */
+  height:12em; /* Assign the value best fit to your design */
+}
+.uniForm .inlineLabels .formHint{
+  margin-top:0;
+  margin-left:47%;
+}
+
+.uniForm .inlineLabels label em {
+  display: inline !important;
+  position: static !important;
+  margin-left: 2px;
+}
+
+.uniForm .inlineLabels .ctrlHolder {
+  padding: 7px 0px;
+  overflow: hidden;
+}
+
+.uniForm .inlineLabels .details {
+  margin-left: 120px !important;
+}
+
+.uniForm .inlineLabels .errorField {
+  zoom: 1;
+  overflow: hidden;
+}
+
+.uniForm .inlineLabels .errorField strong {
+  margin: 0; padding: 0;
+  float: right;
+  text-align: right;
+  background: #c90000;
+  color: #fff;
+  padding: 0px 5px;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 5px;
+}
+
+/* .blockLabels */
+.uniForm .blockLabels .textInput,
+.uniForm .blockLabels .fileUpload{
+  width:53%;
+}
+
+.uniForm .blockLabels .selectInput{
+  display:block;
+  width:53.5%;
+}
+.uniForm .blockLabels textarea{
+  width:53%; /* Assign the value best fit to your design */
+  height:12em; /* Assign the value best fit to your design */
+}
+
+.uniForm .blockLabels textarea.long {
+  width: 98%;
+}
+
+.uniForm .blockLabels .formHint{
+  width:45%;
+}
+
+.uniForm .blockLabels .errorField {
+  margin: 0; padding: 0;
+  float: right;
+  text-align: right;
+  background: #c90000;
+  color: #fff;
+  padding: 0px 5px;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 5px;
+}
+
+/* Columns */
+.col{
+  width:31%;
+  margin:0 2% 0 0;
+}
+
+.col_wide{
+  width:49%;
+  margin:0 1% 0 0;
+  float: left
+}
+
+.col_wide2 {
+  width:49%;
+  margin:0 0 0 1%;
+  float: right
+}
+
+.uniForm .col .notify_assignees {
+  float: left;
+  margin: 2px 0px 0px 15px;
+}
+
+.uniForm .columnLeft{
+  width:49%;
+}
+.uniForm .columnRight{
+  width:49%;
+}
+
+/* Messages */
+.uniForm #errorMsg{
+  background:#ffdfdf;
+  /* margin:0 0 1em 0; padding:1em; */
+}
+.uniForm .error{
+  /*background:#ffdfdf;*/
+}
+  .uniForm #errorMsg dt,
+  .uniForm #errorMsg h3 {
+    margin:0 0 .5em 0;
+    font-size:110%;
+    line-height:100%;
+    font-weight:bold;
+  }
+  .uniForm #errorMsg dd {
+    margin:0; padding:0;
+  }
+    .uniForm #errorMsg ol {
+      margin:0; padding:0;
+    }
+      .uniForm #errorMsg ol li {
+        margin:0; padding:2px;
+        list-style-position:inside;
+        border-bottom:1px dotted #df7d7d;
+        position:relative;
+      }
+      
+
+    
+    
+.uniForm .error input,
+.uniForm .error textarea,
+.uniForm .error select {
+  background-image: url('images/validation_error.gif');
+  background-repeat: no-repeat;
+  background-position: -7px center;
+  background-color: #ffe9e9;
+}
+    
+/** Custom, activeCollab stuff **/
+
+form.outlined {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #f8f8f8;
+}
+
+fieldset {
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  padding: 0 10px 5px 10px;
+}
+
+fieldset legend {
+  margin: 0;
+  padding: 0 5px;
+  font-size: 90%;
+}
+
+input, textarea, select {
+  width: 250px;
+  /*background: #f8f8f8;*/
+  background: #FFF;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  /*padding: 4px 4px;*/
+}
+.master_checkbox,
+.slave_checkbox,
+.checkbox input,
+input.input_checkbox,
+input.input_radio {
+  margin: 0px !important;
+  padding: 0px !important;
+  border: 0px !important;
+  background: none;
+  width: auto !important;
+  vertical-align: text-bottom;
+}
+
+table .master_checkbox,
+.common_table_list .master_checkbox,
+table .slave_checkbox,
+.common_table_list .slave_checkbox,
+table .checkbox input,
+.common_table_list .checkbox input,
+table input.input_checkbox,
+.common_table_list input.input_checkbox,
+table input.input_radio,
+.common_table_list input.input_radio {
+  vertical-align: baseline !important;
+}
+
+select {
+  padding: 2px 2px;
+}
+
+input.inline {
+  width: auto !important;
+  padding: 0 !important;
+}
+
+button {
+  padding: 3px 5px;
+  cursor: pointer;
+}
+
+label em {
+  color: red;
+}
+
+label.inline {
+  display: inline !important; /** override uni-form label **/
+}
+
+input.short {
+  width: 50px;
+}
+
+input.medium {
+  width: 200px;
+}
+
+input.long, input.title, textarea.long {
+  width: 98%;
+}
+
+/*
+textarea {
+  font: 10pt verdana, arial, helvetica, sans-serif;
+}
+*/
+
+textarea.high {
+  height: 250px;
+}
+
+textarea.editor {
+  width: 98% !important;
+  height: 250px;
+}
+
+.yes_no input {
+  margin-right: 4px !important;
+}
+
+.yes_no label {
+  margin-right: 8px !important;
+}
+
+.uniForm .blockLabels label {
+  padding-bottom: 3px;
+  font-weight: bold;
+  font-size: 10px;
+  text-align: left;
+  width: 100%
+}
+
+.uniForm .blockLabels label.inline {
+  font-weight: normal;
+}
+
+.form_left_col {
+  width: 78%;
+  float: left;
+  border-right: 1px solid #f1f1f1;
+  padding-right: 1.5%;
+}
+
+.big_form .form_left_col input.long,
+.big_form .form_left_col input.title,
+.big_form .form_left_col textarea.long {
+  width: 686px;
+}
+
+.form_left_col .errorField {
+  margin-right: 4px;
+}
+
+.big_form .form_left_col .errorField {
+  margin-right: 7px;
+}
+
+.form_right_col {
+  width: 18%;
+  border-left: 1px solid #f1f1f1;
+  /*padding-left: 2%;*/
+  padding-left: 15px;
+  float: left;
+  font-size: 11px;
+  padding-top: 7px;
+  /*position: relative;
+  left: -1px;*/
+  margin-left: -1px;
+  
+}
+
+.form_right_col select,
+.form_right_col input {
+  width: 150px;
+}
+
+.form_right_col select {
+  width: 159px;
+}
+
+.form_right_col .details {
+  font-size: 10px;
+}
+
+.form_right_col label {
+  
+  padding-bottom: 1px;
+}
+
+.form_right_col .ctrlHolder {
+  padding-top: 0px;
+}
+
+.mceToolbarContainer {
+  background: #fafafa !important;
+  border: 0px !important;
+}
+
+.mceEditorIframe {
+  border: 1px solid #ddd !important;
+}
+
+.uniForm .focused .mceEditorIframe {
+  border: 1px solid #666 !important;
+}
+
+.mceEditorIframe body {
+  background: #f8f8f8 !important;
+}
+
+.uniForm .focused .mceEditorIframe {
+  background: #FFFFFF !important;
+}
+
+.mceEditor {
+  width: 98% !important;
+  display: block;
+}
+
+.big_form .form_left_col .mceEditor {
+  width: 694px !important;
+}
+
+.mceStatusbarResize {
+  background-color: #fafafa !important;
+  border: 0px !important;
+}
+
+a.mceButtonNormal img:hover, a.mceButtonSelected img:hover {
+  background-color:#EAE8CC !important;
+  border:1px solid #C6C38F !important;
+  cursor:default;
+}
+
+.mceToolbarContainer select {
+  margin: 0px 4px;
+  position: relative;
+  top: 4px;
+}
+
+.uniForm .ctrlHolderNoBottomPadding {
+  padding-bottom: 0px;
+}
+
+.uniForm .ctrlHolderNoTopPadding {
+  padding-top: 0px;
+}
+
+a.additional_form_links {
+  font-size: 11px;
+  color: #666;
+  text-decoration: underline;
+}
+
+.uniForm .columns {
+  zoom: 1;
+  overflow: hidden;
+  padding-left: 15px;
+}
+
+.add_task_form {
+  border-left: 1px dotted #ddd;
+  border-right: 1px dotted #ddd;
+  border-bottom: 1px dotted #ddd;
+  padding: 0px 0px 0px;
+  background: #f5f4dd;
+}
+
+.add_task_form .form_left_col {
+  margin-bottom: 10px;
+}
+
+
+.add_task_form .form_right_col {
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.add_task_form .buttonHolder {
+  border-top: 1px solid #ccc !important;
+  padding: 10px 15px !important;
+  background: #fff;
+}
+
+.add_task_form .buttonHolder button {
+  float: left;
+}
+
+/********************************
+  TINY MCE
+********************************/
+
+.defaultSkin .mceIframeContainer {
+  border: 0px !important;
+}
+
+.defaultSkin table.mceLayout,
+.defaultSkin table.mceLayout tr.mceFirst td,
+.defaultSkin table.mceLayout tr.mceLast td {
+  border-color: #DDD !important;
+}
+
+.defaultSkin table {
+  background: #f1f1f1 !important;
+}
+
+.focused .defaultSkin table.mceLayout,
+.focused .defaultSkin table.mceLayout tr.mceFirst td,
+.focused .defaultSkin table.mceLayout tr.mceLast td {
+  border-color: #aaa !important;
+}
+
+.defaultSkin td.mceToolbar {
+  padding: 5px 5px !important;
+}
+
+.defaultSkin .mceButtonEnabled:hover,
+.defaultSkin a.mceButtonSelected,
+.defaultSkin a.mceButtonActive {
+  border: 1px solid #cdc054 !important;
+  background-color: #FFF !important;
+}
+
+.defaultSkin .mceListBox .mceText,
+.defaultSkin .mceListBox .mceOpen {
+  border-color: #e9e9e9 !important;
+}
+
+.defaultSkin .mceListBox .mceOpen {
+  background-color: #e1e1e1 !important;
+}
+
+.defaultSkin .mceListBox .mceText:hover,
+.defaultSkin .mceListBox:hover .mceText,
+.defaultSkin .mceListBox .mceOpen:hover,
+.defaultSkin .mceListBox:hover .mceOpen {
+  border-color: #cdc054 !important;
+}
+
+.error .defaultSkin iframe {
+  background-image: url('images/validation_error.gif') !important;
+  background-repeat: no-repeat !important;
+  background-position: -7px center !important;
+  background-color: #ffe9e9 !important;
+}
+
+.quick_comment_form .mceEditor {
+  width: auto !important;
+}
+
+.ctrlHolderToggler {
+  font-size: 11px;
+  color: #666;
+  text-decoration: underline;
+}
+
+.ctrlHolderContainer {
+  overflow: hidden;
+  zoom: 1;
+}
+
+.mceEditor tr.mceFirst,
+.mceEditor tr.mceLast {
+  display: none;
+}
+
+.mceEditor tr.mceFirst td ,
+.mceEditor tr.mceLast td {
+  border: 0px !important;
+}
+
+.mceEditor.expanded tr.mceFirst,
+.mceEditor.expanded tr.mceLast {
+  display: block;
+}
+
+.mceLayout {
+  height: auto !important;
+  border: 1px solid #ddd !important;
+}
+
+table.inline_controls td {
+  vertical-align: top;
+  padding: 5px 0px 5px 0px;
+}
+
+table.inline_controls label {
+  display: inline !important;
+  margin-top: 7px !important;
+}
+
+table.inline_controls .ctrlHolder {
+  padding: 0px !important;
+}
+
+table.inline_controls .label_col {
+  text-align: right;
+  padding: 10px 10px 0px 0px;
+}
+
+.checkbox_complete input {
+  margin-right: 4px !important;
+  vertical-align: 0px !important;
+}

@@ -1,0 +1,390 @@
+/*******************************************************************************
+  Module globals
+*******************************************************************************/
+.source_container {
+  padding-right: 20px;
+  padding-top: 15px;
+}
+
+.main_object.browse_directory {
+  width: 100% !important;
+  border-right: 0px !important;
+}
+
+/*******************************************************************************
+  Repository Lising
+*******************************************************************************/
+
+.repository_listing table td {
+  vertical-align: middle;
+  line-height: 140%;
+  padding: 5px;
+}
+
+.repository_listing td.revision {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.repository_listing .revision {
+  text-align: right;
+}
+
+.repository_listing .last_commit {
+  text-align: right;
+}
+
+.repository_listing td.last_commit {
+  color: #999;
+  font-size: 11px;
+}
+
+.repository_listing .graph {
+  text-align: right;
+  padding-right: 10px;
+}
+
+/*******************************************************************************
+  Commit History
+*******************************************************************************/
+
+.history_header .show,
+.history_header .hide {
+  margin-top: 10px;
+  float: right;
+}
+
+.grouped_commits {
+  clear: both;  
+}
+
+.grouped_commits h2.section_name {
+  float: left;
+}
+
+.grouped_commits h2.section_name span {
+  float: left;
+}
+
+.commit_history_table {
+  clear: both;
+  margin-bottom: 10px;
+}
+
+.commit_history_table .single_day td {
+  font-weight: bold;
+  padding: 5px 10px !important;
+  font-size: 12px;
+  color: #000;
+  border-top: 1px solid #c5c5c5;
+  border-bottom: 1px solid #aaa;
+}
+
+.commit_history_table .commit .revision_time,
+.commit_history_table .commit .revision_user {
+ width: 90px;
+ color: #666;
+}
+
+.commit_history_table .commit .revision_date {
+ width: 130px;
+ text-align: right;
+}
+
+.commit_history_table .commit td.revision_date {
+ color: #666;
+}
+
+.commit_history_table .commit .revision_number {
+  width: 40px;
+  text-align: right;
+}
+
+.commit_history_table .commit .revision_number a.number {
+  font-weight: bold;
+}
+
+.commit_history_table .commit .revision_number a.modified {
+  color: #666;
+  font-size: 11px;
+  border-bottom: 1px solid #eee;
+}
+
+.commit_history_table .commit .revision_details .commit_time {
+  color: #999;
+}
+
+.commit_history_table .commit .revision_details .commit_message {
+  font-size: 11px;
+}
+
+.commit_history_table .commit .revision_details .commit_files {
+  border-top: 1px solid #eee;
+  margin-top: 8px;
+  padding-top: 3px;
+}
+
+.commit_history_table .commit .revision_files {
+  text-align: right;
+  width: 80px;
+}
+
+.commit_history_table .commit .revision_files a {
+  color: #666;
+}
+
+.commit_history_table .commit .revision_details .commit_modified_files {
+  margin-top: 8px;
+  color: #999;
+  border-bottom: 1px solid #eee;
+}
+
+.commit_history_table .commit .revision_details .commit_files .action_group {
+  margin: 4px 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.commit_history_table .commit .revision_details .commit_files .action {
+  font-weight: bold;
+  background: #FFF;
+  color: #333;
+  padding: 1px 4px;
+}
+
+
+
+.commit_history_table .commit .revision_details .commit_files .action_group ul {
+  margin-top: 4px;
+  list-style: none;
+}
+
+.commit_history_table .commit .revision_details .commit_files .action_group ul a { 
+  color: #666;
+}
+
+a.project_object_missing {
+  border-bottom: 1px dotted;
+  text-decoration: none;
+}
+
+/*******************************************************************************
+  File Source
+*******************************************************************************/
+
+.file_source {
+  width: 100%;
+  boder: 0px;
+  line-height: 130%;
+  clear: both;
+}
+
+.file_source td {
+  boder: 0px;
+  padding: 5px;
+}
+
+.file_source td.lines {
+  background: #f1f1f1;
+  width: 35px;
+  text-align:right;
+  color: #999;
+}
+
+.file_source pre {
+  line-height: 130%;
+}
+
+.file_source td.source pre {
+  width: 710px;
+  overflow: auto;
+}
+
+/*******************************************************************************
+  File Diff
+*******************************************************************************/
+
+.file_diff {
+  clear: both;
+  width: 100%;
+  line-height: 130%;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.file_diff .source span {
+  display: block;
+}
+
+.file_diff td.lines {
+  background: #f1f1f1;
+  width: 80px;
+  text-align:center;
+  color: #999;
+  padding: 5px;
+}
+
+.file_diff td.source {
+  padding: 5px 0px;
+}
+
+.file_diff td.source pre {
+  overflow-x: auto;
+  width: 809px;
+  display: block;
+  color: #444;
+}
+
+.file_diff.narrower td.source pre {
+  width: 670px;
+}
+
+.file_diff span.line_removed {
+  background-color: #FFDDDD;
+  color: #9b0000;
+}
+
+.file_diff span.line_added {
+  background-color: #DDFFDD;
+  color: green;
+}
+
+/*******************************************************************************
+  Timeline
+*******************************************************************************/
+
+ul.timeline {
+  display: block;
+  width: 165px;
+  height: 40px;
+  margin: 0;
+  padding: 3px;
+/*  border: 1px solid #ccc; */
+  background: #fff;
+  white-space: nowrap;
+  list-style-type: none;
+  float: right;
+}
+
+ul.timeline li {
+  position: relative;
+  float: left;
+  width: 9px;
+  margin: 0 1px;
+  padding: 0;
+  height: 100%;
+  background: #eef3f7;
+}
+
+ul.timeline li a {
+  cursor: default;
+  display: block;
+  height: 100%;
+}
+
+ul.timeline li a .count {
+  display: block;
+  position: absolute;
+  bottom: 0; left: 0; height: 0;
+  width: 100%;
+  background: #d3d09e;
+  overflow: hidden;
+}
+
+ul.timeline li:hover {
+  background: #ddd;
+}
+
+ul.timeline li a:hover .count {
+  background: #900;
+}
+
+
+/*******************************************************************************
+  Source directory browser
+*******************************************************************************/
+.source_directory_browser td {
+  color: #666;
+}
+
+.source_directory_browser .directory {
+  font-weight: bold;
+}
+
+.source_directory_browser a img {
+  vertical-align: bottom;
+}
+
+.source_directory_browser .revision a {
+  color: #666;
+}
+
+.source_directory_browser .directory a {
+  background: url(modules/source/images/folder_icon.gif) no-repeat left center;
+  padding-left: 18px;
+}
+
+.source_directory_browser .file a {
+  background: url(modules/source/images/file_icon.gif) no-repeat left center;
+  padding-left: 18px;
+} 
+
+.source_directory_browser .revision {
+  width: 50px;
+  text-align: right;
+}
+
+.source_directory_browser .author {
+  width: 80px;
+}
+
+.source_directory_browser .date {
+  width: 90px;
+}
+
+.source_directory_browser .info {
+  width: 20px;
+}
+
+.source_directory_browser .file_size {
+  width: 80px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.source_directory_browser td.file_size {
+  color: #333;
+}
+
+/*******************************************************************************
+  Date slip
+*******************************************************************************/
+.date_slip {
+  background: #eee;
+  border: 1px solid #ddd;
+  padding: 5px 10px 5px 10px;
+  float: left;
+  margin-bottom: 3px;
+  -moz-border-radius: 0px 7px 7px 0px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.date_slip span {
+}
+
+/*******************************************************************************
+  other
+*******************************************************************************/
+
+.zoom_in {
+  background: url(images/icons/zoom_in.gif) no-repeat left center;
+}
+
+.zoom_out {
+  background: url(images/icons/zoom_out.gif) no-repeat left center;
+}
+
+.back_to_top {
+  background: url(images/icons/top.gif) no-repeat left center;
+}

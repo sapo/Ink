@@ -1,0 +1,26 @@
+#print_preview_header {
+  background: #EEEEEE;
+  padding: 2em 4em;
+  border-bottom: 5px solid #aaaaaa;
+  margin-bottom: 50px;
+  display: block;
+}
+
+#print_preview_header h2 {
+  margin: 0px;
+  padding: 0px;
+}
+
+#print_preview_header ul {
+  margin: 0; padding: 0;
+  float: right;
+}
+
+#print_preview_header ul li {
+  display: inline;
+}
+
+.container {
+  width: 55em;
+  padding: 0px 3em;
+}

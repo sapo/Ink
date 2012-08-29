@@ -1,0 +1,387 @@
+body,html {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font: 12px "Palatino", "Georgia", "Times New Roman";
+  line-height:1.6em;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.dont_print {
+  display: none !important;
+}
+
+.container {
+  width: 100%;
+}
+
+#site_log {
+  display: none;
+}
+
+#logged_user {
+  display: none;
+}
+
+#menu {
+  display: none;
+}
+
+#breadcrumbs {
+  display: none;
+}
+
+img {
+  border: 0px;
+}
+
+#page_actions {
+  display: none;
+}
+
+.progress {
+  /*display: none;*/
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  text-align: left;
+  padding: 2px 5px;
+  border-top: 0px !important;
+  border-bottom: 2px solid #666;
+}
+
+table td {
+  border-bottom: 1px solid #666;
+  padding: 2px 5px;
+}
+
+table td a {
+}
+
+table .star,
+table .checkbox,
+table .download,
+table .options,
+table .pinned,
+table .actions {
+  display: none;
+}
+
+table td.name span,
+table td.name a {
+  margin-right: 4px !important;
+}
+
+table td.name .details {
+  font-size: 0.8em;
+}
+
+table td.user,
+table td.due {
+  text-align: right;
+}
+
+table .comments,
+table .revisions,
+table .priority,
+table .revision_num,
+table .ticket_id {
+  width: 3em;
+  text-align: center;
+}
+
+table .meta {
+  width: 30%;
+}
+
+table dl dt {
+  width: 30%;
+  float: left;
+  text-align: right;
+}
+
+table dl dd {
+  margin-left: 35%;
+}
+
+.common_table_list .option.star,
+.common_table_list .right_options {
+  display: none;
+}
+
+.common_table_list .option.checkbox img {
+  vertical-align: middle;
+}
+
+#tabs {
+  display: none;
+}
+
+#print_preview_header {
+  display: none;
+}
+
+#project_icon {
+  float: right;
+}
+
+.section_name {
+  margin: 1em 0px 0.2em 0px;
+  padding: 0em 0.5em 0.5em 0.5em;
+  border-bottom: 3px solid #666;
+  font-size: 1.3em;
+}
+
+.section_name .section_options {
+  display: none;
+}
+
+.section_container {
+  padding: 0.5em 0.5em;
+}
+
+ul {
+  list-style: circle;
+}
+
+#footer {
+  display: none;
+}
+
+#page_title {
+  margin: 0px;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  border-bottom: 5px solid #000;
+  font-size: 1.5em;
+}
+
+form {
+  /*display: none;*/
+}
+
+form label,
+form input,
+form textarea,
+form button,
+form select {
+  display: none;
+}
+
+.object_options {
+  display: none;
+}
+
+dl.properties {
+  border: 2px solid #666;
+  padding: 1em;
+}
+
+dl.properties dt {
+  width: 30%;
+  float: left;
+}
+
+dl.properties dd {
+  padding-left: 33%;
+  border-bottom: 1px solid #666;
+  margin-left: 0px;
+}
+
+dl.properties a {
+  text-decoration: none;
+}
+
+iframe {
+  display: none;
+}
+
+.mceEditor {
+  display: none;
+}
+
+.quick_comment_form {
+  display: none;
+}
+
+#page_details {
+  text-align: right;
+  font-size: 0.8em;
+  margin-top: 0px;
+}
+
+.resource h3 {
+  font-size: 1em;
+}
+
+.dontprint {
+  display: none;
+}
+
+ul.category_list {
+  display: none;
+}
+
+.details a {
+  border: 0px;
+  text-decoration: none;
+}
+
+.flash {
+  display: none;
+}
+
+.pagination {
+  display: none;
+}
+
+p {
+  padding: 0px;
+  margin: 0.4em 0em;
+}
+
+.project_row .icon {
+  width: 50px;
+}
+
+.project_row td.progress {
+  width: 22em;
+}
+
+.project_row .name dl {
+  margin: 0px;
+}
+
+.project_row .name dt {
+  width: 10em;
+  text-align: left;
+}
+
+.project_row .name dd {
+  margin-left: 10.5em;
+}
+
+.project_row .name h3 {
+  margin: 0px;
+}
+
+.project_progress {
+}
+
+.project_progress .progress_wrapper {
+  border: 1px solid #333;
+  padding: 2px 2px;
+  position: relative;
+}
+
+.project_progress .progress_wrapper .progress {
+  background: #999 !important;
+  overflow: visible;
+  height: 14px;
+  border: 2px solid #333;
+}
+
+@media print {
+  .project_progress .progress_wrapper .progress {
+    background: #999 !important;
+  }
+}
+
+.project_progress .progress span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  position: absolute;
+  top: 1px;
+  font-weight: bold;
+}
+
+.project_progress p {
+  text-align: center;
+  font-size: 0.8em;
+  color: #666;
+}
+
+p.next_page {
+  display: none;
+}
+
+.empty_slate {
+  display: none;
+}
+
+.page_message {
+  background-repeat: no-repeat;
+  padding: 5px 10px 5px 31px;
+  border: 1px solid #ccc;
+  background-position: 10px 10px;
+}
+
+.activity {
+  zoom: 1;
+  overflow: hidden;
+  padding-bottom: 3px;
+}
+
+.activity .log_icon {
+  float: left;
+}
+
+.activity .log_time {
+  float: right;
+}
+
+.activity .log_info {
+  margin-left: 20px;
+}
+
+.activity .log_info_foot {
+  display: none;
+}
+
+.activity .object_star {
+  display: none;
+}
+
+.activity .log_info_body {
+  color: #999;
+}
+
+.activity a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.activity .project_link {
+  text-decoration: none !important;
+}
+
+#dashboard ul.dashboard_tabs {
+  display: none !important;
+  position: absolute;
+  left: -10000px;
+}
+
+#dashboard #dashboard_sidebars {
+  display: none !important;
+  position: absolute;
+  left: -10000px;
+}
+
+ul.company_users {
+  margin-left: 0px;
+  list-style: none;
+  padding-left: 0px;
+}

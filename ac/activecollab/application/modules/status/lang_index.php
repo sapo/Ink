@@ -1,0 +1,17 @@
+<?php return array (
+  0 => ':name\'s Status Archive',
+  1 => 'Status Archive',
+  2 => 'All users',
+  3 => 'User has no status updates',
+  4 => 'No status messages logged',
+  5 => 'What are you doing?',
+  6 => 'Browse Archive',
+  7 => 'Track Using RSS',
+  8 => 'Recent Messages',
+  9 => 'Status Module',
+  10 => 'Can post updates?',
+  11 => 'Status Updates',
+  12 => 'Status message is required',
+  13 => 'Adds simple, globally available communication channel. Tell your team members or clients what you are working on or have a quick chat',
+  14 => 'Module will be deactivated. All data generated using it will be deleted',
+); ?>

@@ -1,0 +1,49 @@
+table.discussions td {
+  padding: 5px 5px;
+}
+
+table.discussions td.icon {
+  display: none;
+}
+
+table.discussions td.last_comment {
+  width: 30%;
+}
+
+table.discussions td.comments_count {
+  width: 5em;
+  text-align: center;
+}
+
+
+table.discussions h3 {
+  margin: 0px;
+}
+
+table.discussions td a {
+  text-decoration: none;
+}
+
+.comment_options {
+  display: none;
+}
+
+.subobject_author .avatar {
+  float: left;
+}
+
+.subobject_author .subobject_author_info {
+  margin-left: 50px;
+  margin-bottom: 10px;
+}
+
+.subobject {
+  border-bottom: 2px solid #666;
+  margin-bottom: 1em;
+  padding-bottom: 7px;
+}
+
+.object_tasks ul {
+  list-style: none;
+  padding-left: 0;
+}

@@ -1,0 +1,57 @@
+#checklists {
+  border-top: 1px dotted #BBBBBB;
+}
+
+#checklists td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+#checklists td.star {
+  width: 16px;
+}
+
+#checklists td.visibility {
+  width: 16px;
+}
+
+#quick_add_checklist p.quick_add_checklist_task input {
+  width: 97%;
+}
+
+.checklist .tasks_container {
+  background: #FFF;
+}
+
+.checklist .tasks_container .resource,
+.checklist .tasks_container .resource .body {
+  padding: 0px 0px 10px 0px !important;
+  margin: 0px !important;
+}
+
+.checklist .tasks_container .resource .body .even,
+.checklist .tasks_container .resource .body .odd {
+  background: #FFF !important;
+  border: 0px !important;
+}
+
+.checklists_table {
+  border: 0px !important;
+  border-top: none !important;
+}
+
+.checklists_table .checklist_tasks td {
+  padding: 0px !important;
+}
+
+.checklists_table tr.expanded td {
+  border-bottom: 0px !important;
+}
+
+.checklists_table tr.expanded td.stats span {
+  display: none;
+}
+
+.checklists_table td.expander {
+  padding-left: 2px !important;
+}

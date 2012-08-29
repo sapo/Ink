@@ -1,0 +1,12 @@
+name = "Entity query access test"
+description = "Support module for checking entity query results."
+package = Testing
+version = VERSION
+core = 7.x
+hidden = TRUE
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.15"
+project = "drupal"
+datestamp = "1343839327"
+

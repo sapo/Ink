@@ -1,0 +1,52 @@
+body, html {
+  margin: 0px;
+  padding: 0px;
+  background: #e5e3e3;
+	font: 12px "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	color: #333333;
+	text-align: center;
+}
+
+#error_box {
+  width: 380px;
+  margin: 0px auto 25px;
+  border: 1px solid #ddd;
+  padding: 30px 30px;
+  text-align: left;
+  background: #FFF;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#error_box h1 {
+  margin: 0px;
+  padding: 0px 0px 0px 20px;
+  font-size: 16px;
+  color: #950000;
+  background: url(../images/warning_indicator.gif) no-repeat left 2px;
+}
+
+#error_box p {
+  line-height: 160%;
+  margin: 15px 0px 5px;
+  color: #666;
+}
+
+#error_box .description {
+  border-top: 1px solid #ddd;
+  margin-top: 5px;
+}
+
+a {
+  color: #950000;
+}
+
+#company_logo {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+img {
+  border: 0px;
+}

@@ -1,0 +1,623 @@
+/*******************************************************************************
+  Object comments
+*******************************************************************************/
+
+.object_comments {
+  margin-top: 0px !important;
+}
+
+.object_comments .body {
+  padding-left: 0px !important;
+}
+
+p#locked_comments {
+  margin-top: 16px;
+  padding-left: 20px;
+  text-align: center;
+}
+
+p#locked_comments span {
+  padding: 3px 0 3px 20px;
+  background: url('images/messages/locked.gif') no-repeat center left;
+}
+
+/*******************************************************************************
+  New Comment Form
+*******************************************************************************/
+
+#recent_comments {
+  margin-top: 36px;
+}
+
+#recent_comments div.recent_comment {
+  margin: 16px 0;
+}
+
+#recent_comments p.author {
+  padding: 4px;
+  border-bottom: 1px solid #ccc;
+}
+
+#recent_comments p.body {
+  padding: 5px 10px;
+}
+
+/*******************************************************************************
+  Recent activities
+*******************************************************************************/
+
+#recent_activities div.newcommentactivitylog_activity div.comment_details {
+  margin-top: 5px;
+}
+
+/*******************************************************************************
+  Select assignees
+*******************************************************************************/
+
+div.select_assignees_widget p {
+  margin: 0 0 8px 4px;
+}
+
+div.select_assignees_widget ul {
+  margin: 0 0 8px 4px;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+}
+
+div.select_assignees_widget ul li {
+  line-height: 16px;
+  background: url('images/assignee_icon.gif') no-repeat 0px 3px;
+  padding-left: 13px;
+  margin-bottom: 2px;
+  display: list-item !important;
+}
+
+div.select_assignees_widget ul li.responsible {
+  background-image: url('images/responsible_icon.gif') !important;
+}
+
+div.select_assignees_widget ul li.hovered {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+div.select_assignees_widget a.assignees_button,
+div.select_users_widget a.assignees_button {
+  background: #ccc url(images/icons/assignees.gif) no-repeat 10px center;
+  padding: 4px 10px 4px 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+div.select_assignees_widget a.assignees_button:hover,
+div.select_users_widget a.assignees_button:hover {
+  background-color: #ddd;
+}
+
+/*******************************************************************************
+  Comment Options
+*******************************************************************************/
+
+.comment_options {
+  float: right;
+  margin-top: 10px !important;
+}
+
+.comment_options a {
+  margin-top: 2px;
+}
+
+.comment_options .comment_options_first {
+  padding-right: 10px;
+	color: #999;
+	font-size: 11px;
+	margin-top: 1px;
+	position: relative;
+	top: -4px;
+}
+
+/*******************************************************************************
+  Assignments Filter Form
+*******************************************************************************/
+
+#assignmenst_filter_form table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+#assignmenst_filter_form table td.filter_select_label {
+  width: 100px;
+}
+
+#assignmenst_filter_form table td.filter_select_select {
+  width: 350px;
+}
+
+#assignmenst_filter_form table td.filter_select_select select {
+  width: 360px;
+}
+
+#assignmenst_filter_form table td.filter_select_additional {
+  padding-left: 32px;
+  background: url('images/arrow-right-small.gif') no-repeat 8px 10px;
+}
+
+#assignmenst_filter_form table td.filter_select_additional table {
+  width: 300px;
+}
+
+#assignmenst_filter_form table td.filter_select_additional table td {
+  padding: 0 10px 0 0;
+  border: 0;
+  width: 150px;
+}
+
+/*******************************************************************************
+  Reminders
+*******************************************************************************/
+
+#send_reminder_users_form div.label_wrapper {
+  padding: 2px 0;
+}
+
+#send_reminder_users_form div.label_wrapper label {
+  font-weight: bold;
+}
+
+#send_reminder_users_form div.content_wrapper {
+  padding: 4px 0 4px 20px;
+}
+
+#send_reminder_users_form textarea {
+  width: 98%;
+  height: 100px;
+}
+
+.reminders_table .options {
+  width: 16px !important;
+}
+
+.reminders_table .from {
+  width: 20%;
+}
+
+.reminders_table .reminder {
+  width: 80%;
+}
+
+
+
+
+/*******************************************************************************
+  Object attachments
+*******************************************************************************/
+
+div.object_attachments div.body.brief {
+  padding: 0;
+}
+
+div.object_attachments div.brief_files_view ul {
+  margin-left: 16px;
+}
+
+div.object_attachments div.brief_files_view ul li {
+  font-size: 11px;
+  display: block;
+  list-style: square;
+  padding: 4px 0;
+}
+
+div.object_attachments table td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+div.object_attachments table td.brief_name {
+  width: 300px;
+}
+
+div.object_attachments td.thumbnail {
+  width: 100px;
+  text-align: center;
+}
+
+div.object_attachments td.thumbnail .has_preview img {
+  border: 1px solid #ccc;
+}
+
+div.object_attachments td.options {
+  width: 16px;
+}
+
+div.object_attachments div.attach_another_file form {
+  width: auto;
+  padding: 3px 16px 10px 16px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+div.object_attachments div.attach_another_file p.details {
+  display: inline;
+}
+
+div.object_attachments .full_files_view td {
+  vertical-align: middle;
+}
+
+.comment .object_attachments,
+.subobject .object_attachments,
+.discussion .object_attachments {
+  background: #f1f1f1 !important;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 5px 10px;
+  zoom: 1;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.comment .object_attachments,
+.subobject .object_attachments {
+  margin-right: 0px;
+}
+
+.comment .object_attachments h4,
+.subobject .object_attachments h4,
+.discussion .object_attachments h4 {
+  margin: 0px 0px 5px 0px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-bottom: 1px solid #FFF;
+  color: #666;
+}
+
+.comment .object_attachments .attachments_options,
+.subobject .object_attachments .attachments_options,
+.discussion .object_attachments .attachments_options {
+  font-size: 11px;
+  float: right;
+  margin-top: 5px;
+}
+
+.comment .object_attachments .attachments_options a,
+.subobject .object_attachments .attachments_options a,
+.discussion .object_attachments .attachments_options a {
+  color: #666;
+} 
+
+.comment .object_attachments .attachments_options li,
+.subobject .object_attachments .attachments_options li,
+.discussion .object_attachments .attachments_options li {
+  display: inline;
+  margin-left: 10px;
+}
+
+.comment .object_attachments .brief_files_view {
+  zoom: 1;
+  overflow: hidden;
+}
+
+.comment .object_attachments .brief_files_view ul {
+  margin-left: 6px;
+}
+
+.comment .object_attachments .brief_files_view li {
+  padding: 4px 5px;
+}
+
+.comment .object_attachments .odd td {
+  background: none;
+}
+
+/*******************************************************************************
+  Attach files
+*******************************************************************************/
+
+div.attach_files div.attach_files_input {
+  margin: 8px 0;
+}
+
+/*******************************************************************************
+  Assignments
+*******************************************************************************/
+
+#assignments table.filter {
+  background: #f9f9f9;
+  border: 1px solid #EAEAEA;
+  margin-top: 1px;
+  width: 896px;
+  margin-left: 1px;
+  margin-bottom: 10px;
+}
+
+#assignments table.filter td {
+  padding: 5px 10px;
+}
+
+#assignments table.filter td select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 240px;
+}
+
+#assignments #assignments_filter_options {
+  text-align: right;
+  width: 200px;
+}
+
+#assignments #assignments_filter_options span.tooltip {
+  padding-right: 10px;
+	color: #999;
+	font-size: 11px;
+	margin-top: 1px;
+	position: relative;
+	top: -4px;
+}
+
+#assignments #assignments_filter_details {
+  margin: 5px;
+  padding: 2px 10px;
+  background: #f8f8f8;
+  border: 1px dotted #e8e8e8;
+  font-size: 11px;
+}
+
+#assignments_list {
+  margin-top: 10px;
+}
+
+#assignments_list table td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+#assignments_list table td.star, #assignments_list table td.checkbox, #assignments_list table td.priority {
+  width: 16px;
+  padding: 3px;
+}
+
+#assignments_list table td.name span.details {
+  margin-top: 4px;
+}
+
+#assignments_list table td.project {
+  width: 150px;
+}
+
+#assignments_list table td.options {
+  width: 76px;
+}
+
+#assignments p.assignments_filter_rss {
+  margin-top: 16px;
+  text-align: center;
+}
+
+#assignments p.assignments_filter_rss a {
+  padding: 3px 0 3px 20px;
+  background: url('images/rss.gif') no-repeat center left;
+}
+
+/*******************************************************************************
+  Sortable list
+*******************************************************************************/
+.tasks_table li .main_data {
+  margin: 0px 100px 0px 70px;
+}
+
+.sort_form .blockLabels {
+  padding: 2px 1px 1px 1px!important;
+}
+
+.completed_tasks_table {
+  color: #bbb;
+  border: 0px !important;
+  margin-top: 15px !important;
+  clear: left;
+}
+
+.completed_tasks_table li .details {
+  color: #bbb;
+}
+
+.completed_tasks_table li .details a {
+  color: #aaa !important;
+}
+
+.completed_tasks_table li {
+  border: 0px !important;
+  padding: 0px 5px !important;
+  background: none !important;
+}
+
+.completed_tasks_table li a{
+  text-decoration: none;
+}
+
+.completed_tasks_table li .main_data {
+  margin-left: 24px;
+}
+
+.completed_tasks_table li.list_all_completed {
+  text-align: center;
+  height: 16px;
+}
+
+.completed_tasks_table li.list_all_completed a {
+  text-decoration: underline;
+  color: #999;
+}
+
+.drag_placeholder {
+/*  height: 0px !important;
+  background: #f3f2e2;
+  display: none !important;
+  padding: 0px !important;*/
+}
+
+.common_table .add_object_row {
+  padding: 0px;
+}
+
+.common_table.dragging {
+  outline: 1px dashed #ae1b1b;
+  -moz-outline: 1px dashed #ae1b1b;
+}
+
+.common_table.tasks_table {
+  cursor: move;
+}
+
+.common_table.tasks_table .options {
+  padding-top: 5px;
+}
+
+.tasks_table .content {
+  width: 544px;
+}
+
+.common_table.tasks_table .details {
+  color: #bbb !important;
+}
+
+.common_table.tasks_table .details a {
+  text-decoration: none;
+  color: #999 !important;
+  border-bottom: 1px dotted #ccc;
+}
+
+/*******************************************************************************
+  Categories
+*******************************************************************************/
+
+div.manage_categories.async div.manage_categories_table_wrapper {
+  max-height: 300px;
+  overflow: auto;
+}
+
+div.manage_categories form.add_category_form {
+  padding: 10px 5px 0 5px;
+}
+
+div.manage_categories table td {
+  vertical-align: middle;
+}
+
+div.manage_categories td.name input {
+  width: 150px;
+  margin-right: 8px;
+}
+
+div.manage_categories td.options {
+  width: 40px;
+}
+
+div.manage_categories form.add_category_form img {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  cursor: pointer;
+}
+
+/*******************************************************************************
+  Subscriptions
+*******************************************************************************/
+
+#object_subscriptions table {
+  width: auto;
+  margin-bottom: 12px;
+}
+
+#object_subscriptions table td {
+  padding: 5px;
+}
+
+#object_subscriptions table td.name {
+  width: 300px;
+}
+
+#object_subscriptions table td.avatar, #object_subscriptions table td.subscription {
+  width: 16px;
+}
+
+
+/*******************************************************************************
+  Select users inline widget
+*******************************************************************************/
+
+.select_asignees_inline_widget {
+  /*
+  padding: 2px 10px !important;
+  */
+}
+
+.select_asignees_inline_widget_responsible_block {
+  font-size: 10px;
+  padding: 0px 0px 0px;
+  float: right;
+  position: relative;
+  top: -20px;
+}
+
+.select_asignees_inline_widget .company_name {
+  padding-top: 2px !important;
+  font-weight: normal !important;
+  font-size: 11px !important;
+  background: #f9f9f9;
+  border-bottom: 1px dotted #f1f1f1;
+}
+
+
+.select_asignees_inline_widget .company_user {
+  display: inline !important;
+  font-weight: normal !important;
+  margin-right: 10px !important;
+  font-size: 10px;
+  color: #666 !important;
+}
+
+.select_asignees_inline_widget .company_users {
+  padding: 0px 0px 8px 0px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+.select_asignees_inline_widget .company_users table {
+  width: auto !important;
+  margin-left: 16px;
+}
+
+
+.select_asignees_inline_widget input {
+  margin: 0px 0px 0px 0px !important;
+  vertical-align: text-bottom;
+}
+
+.select_asignees_inline_widget .company_name input {
+  margin-right: 3px !important;
+}
+
+.select_asignees_inline_widget .company_user span.responsible_setter {
+  cursor: pointer;
+
+}
+
+.select_asignees_inline_widget .company_user span,
+.select_asignees_inline_widget .company_name span {
+  padding: 1px 2px;
+  margin-left: 0px;
+}
+
+.select_asignees_inline_widget .company_user span.responsible {
+  background: #ccc;
+}
+
+/*******************************************************************************
+  Editor paste cleaned text widget
+*******************************************************************************/
+#editor_clean_text_dialog_container textarea {
+  width: 98%;
+}

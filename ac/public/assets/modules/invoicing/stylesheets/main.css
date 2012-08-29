@@ -1,0 +1,523 @@
+/*******************************************************************************
+  Invoices
+*******************************************************************************/
+
+table.invoices th, table.invoices td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+table.invoices td.invoice {
+  width: 100px;
+}
+
+table.invoices td.client {
+  width: 150px;
+}
+
+table.invoices td.billed_on,
+table.invoices th.billed_on {
+  width: 120px;
+  text-align: center;
+}
+
+table.invoices th.status,
+table.invoices td.status {
+  width: 70px;
+}
+
+table.invoices td.status {
+  
+}
+
+table.invoices th.total,
+table.invoices td.total {
+  text-align: right;
+  width: 150px;
+}
+
+table.invoices th.invoice_id,
+table.invoices td.invoice_id {
+  width: 100px;
+}
+
+
+table.invoices th.completed_on, table.invoices td.completed_on {
+  text-align: center;
+  width: 120px;
+}
+
+table.invoices td.options {
+  text-align: right;
+  width: 40px;
+}
+
+table.invoices tr.overdue td {
+  background: #ffe9e9;
+}
+
+/*******************************************************************************
+  Invoice details
+*******************************************************************************/
+
+#invoice_details table.items th, #invoice_details table.items td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+#invoice_details table.items td.num {
+  width: 10px;
+}
+
+#invoice_details table.items th.quantity, #invoice_details table.items td.quantity, 
+#invoice_details table.items th.unit_cost, #invoice_details table.items td.unit_cost,
+#invoice_details table.items th.tax_rate, #invoice_details table.items td.tax_rate {
+  text-align: center;
+  width: 60px;
+}
+
+#invoice_details table.items th.total, #invoice_details table.items td.total {
+  text-align: right;
+  width: 100px;
+}
+
+#invoice_details dl.invoice_summary {
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+#invoice_details dl.invoice_summary dt, #invoice_details dl.invoice_summary dd {
+  padding: 5px;
+  border-bottom: 1px dotted #ddd;
+}
+
+#invoice_details dl.invoice_summary dt {
+  float: left;
+  width: 600px;
+  text-align: right;
+}
+
+#invoice_details dl.invoice_summary dd {
+  overflow: hidden;
+  text-align: right;
+}
+
+#invoice_details dl.invoice_summary dt.total_cost, #invoice_details dl.invoice_summary dd.total_cost {
+  font-weight: bold;
+}
+
+#invoice_details .invoice_note {
+  color: #666;
+  font-size: 11px;
+  margin-top: 15px;
+  line-height: 150%;
+}
+
+/*******************************************************************************
+  Payments table
+*******************************************************************************/
+
+table.payments th, table.payments td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+table.payments th.amount, table.payments td.amount {
+  text-align: right;
+  width: 200px;
+}
+
+table.payments td.paid_on {
+  width: 100px;
+}
+
+table.payments td.options {
+  text-align: right;
+  width: 50px;
+}
+
+table.payments td.total_paid {
+  font-weight: bold;
+  text-align: right;
+}
+
+/*******************************************************************************
+  Invoice time
+*******************************************************************************/
+
+#release_invoice_time_records {
+  margin: 16px 0 30px 0;
+  text-align: center;
+}
+
+#release_invoice_time_records a {
+  margin: 0 5px;
+  padding: 3px 0 3px 20px;
+  background: url('modules/invoicing/images/release-small.gif') no-repeat center left;
+}
+
+/*******************************************************************************
+  Invoice Form
+*******************************************************************************/
+
+#invoice_form_head {
+/*  position: relative;*/
+/*  height: 300px; */
+}
+
+#invoice_form_head .col {
+  width: 200px !important;
+}
+
+#invoice_form_head .col input,
+#invoice_form_head .col select {
+  width: 190px;
+}
+
+#invoice_form_head #invoiceDueOn {
+  padding: 4px 0 0 18px;
+}
+
+#invoice_client {
+  width: 378px !important;
+  float: right;
+  margin-right: 0px;
+  zoom: 1;
+  overflow: visible;
+}
+
+#invoice_client table {
+  float: right;
+}
+
+#invoice_client #companyAddress {
+  width: 242px !important;
+  height: 92px !important;  
+}
+
+#invoice_items {
+  overflow: visible !important;
+}
+
+#invoice_items table th, #invoice_items table td {
+  padding: 7px 5px;
+  font-size: 11px;
+}
+
+#invoice_items table td input, #invoice_items table td select {
+  font-size: 11px;
+}
+
+#invoice_items table td.num {
+  width: 20px;
+  font-size: 11px;
+}
+
+#invoice_items table td.description input {
+  width: 350px;
+}
+
+#invoice_items.focused table input,
+#invoice_items.focused table select {
+  border: 1px solid #ddd !important;
+}
+
+#invoice_items table td.quantity, #invoice_items table td.unit_cost, #invoice_items table td.tax_rate, #invoice_items table td.total {
+  width: 100px;
+}
+
+#invoice_items table .invoice_totals  td.total {
+  width: auto !important;
+}
+
+
+#invoice_items table td.quantity input,
+#invoice_items table td.total input,
+#invoice_items table td.unit_cost input {
+  width: 80px;
+  text-align: right;
+}
+
+#invoice_items table td.tax_rate select {
+  width: 100px;
+}
+
+#invoice_items table th.total, #invoice_items table td.total {
+  text-align: right;
+}
+
+#invoice_items table td.options {
+  width: 36px;
+  text-align: right;
+}
+
+#invoice_items table tr.subtotal td.total {
+  font-size: 11px;
+  color: #666;
+}
+
+#invoice_items table tr.total td.total {
+  font-weight: bolder;
+  text-align: right;
+}
+
+#invoice_items .button_add {
+  margin-right: 10px;
+}
+
+#invoice_items .move_handle {
+  display: none;
+  cursor: pointer;
+}
+
+.invoice_private_note,
+#invoice_note {
+  width: 513px;
+}
+
+/*******************************************************************************
+  Issue invoice
+*******************************************************************************/
+
+#issue_invoice form {
+  margin-bottom: 16px;
+}
+
+#select_invoice_recipients {
+  padding: 8px 0 8px 12px;
+}
+
+#issue_invoice table {
+  width: auto;
+}
+
+#issue_invoice table td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+#issue_invoice table td.radio, #issue_invoice table td.avatar {
+  width: 16px;
+  text-align: center;
+}
+
+#issue_invoice table td.name {
+  width: 400px;
+}
+
+#add_invoice #companyAddress {
+  background-image: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 70px;
+}
+
+#add_invoice #companyAddress.loading {
+  background-image: url('images/indicator.gif');
+}
+
+#add_invoice #autogenerateID .field_wrapper,
+#edit_invoice #autogenerateID .field_wrapper {
+  padding-top: 1px;
+  color: #999;
+}
+
+
+#add_invoice #invoiceNumberGenerator a,
+#edit_invoice #invoiceNumberGenerator a {
+  font-size: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+#add_invoice #invoiceNumberGenerator input,
+#edit_invoice #invoiceNumberGenerator input {
+  width: 242px;
+}
+
+#add_invoice .items_wrapper,
+#edit_invoice .items_wrapper {
+  background: #f7f7f7;
+  padding: 5px 20px;
+}
+
+#add_invoice .items_wrapper .odd td,
+#edit_invoice .items_wrapper .odd td {
+  background: none !important;
+}
+
+/*******************************************************************************
+  Issue invoice
+*******************************************************************************/
+
+#invoices_archive table td {
+  padding: 5px;
+}
+
+#invoices_archive table th.count, #invoices_archive table td.count, #invoices_archive table th.billed, #invoices_archive table td.billed {
+  text-align: center;
+  width: 100px;
+}
+
+/*******************************************************************************
+  Company invoices
+*******************************************************************************/
+
+#company_invoices table {
+  /*width: auto;*/
+}
+
+#company_invoices table th, #company_invoices table td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+#company_invoices table.invoices td.invoice, #company_invoices table.invoices td.project {
+  width: 150px;
+}
+
+#company_invoices table.invoices td.status {
+  width: 300px;
+}
+
+#company_invoices table.invoices td.due_on {
+  width: 100px;
+}
+
+#company_invoices table.payments th.invoice, #company_invoices table.payments td.invoice {
+  width: 200px !important;
+}
+
+#company_invoices table.payments th.amount, #company_invoices table.payments td.amount, #company_invoices table.payments th.paid_on, #company_invoices table.payments td.paid_on {
+  text-align: left !important;
+  width: 100px !important;
+}
+
+#company_invoices table.invoices td.pdf a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#company_invoices table.invoices td.pdf img {
+  vertical-align: text-bottom;
+}
+
+/*******************************************************************************
+  Invoicing administration
+*******************************************************************************/
+
+textarea.invoicing_company_address {
+  height: 180px !important;
+}
+
+.company_identity_details .identity_info {
+  border: 1px solid #ddd;
+  display: block;
+  padding: 5px 5px;
+  margin-top: 5px;
+}
+
+.company_identity_details p > strong {
+  font-size: 11px;
+}
+
+.company_identity_details .company_logo {
+  margin-top: 10px;
+  display: block; 
+}
+
+/*******************************************************************************
+  Tax rates admin
+*******************************************************************************/
+
+#taxrates table {
+  width: auto !important;
+  margin-bottom: 30px;
+}
+
+#taxrates table th, #taxrates table td {
+  padding: 5px;
+}
+
+#taxrates table td.name {
+  width: 250px;
+}
+
+#taxrates table td.percentage {
+  width: 80px;
+}
+
+#taxrates table td.options {
+  text-align: right;
+}
+
+/*******************************************************************************
+  Currencies admin
+*******************************************************************************/
+
+#currencies table {
+  width: auto !important;
+  margin-bottom: 30px;
+}
+
+#currencies table th, #currencies table td {
+  padding: 5px;
+}
+
+#currencies table td.checkbox {
+  width: 16px;
+}
+
+#currencies table td.name {
+  width: 250px;
+}
+
+#currencies table td.code, #currencies table td.rate {
+  width: 100px;
+}
+
+#taxrates table td.options {
+  text-align: right;
+}
+
+/*******************************************************************************
+  Invoice item templates
+*******************************************************************************/
+
+#invoice_item_templates_list td.move_handle img {
+  cursor: move;
+}
+
+.generator_patterns_and_counters {
+  background:#f1f1f1;
+  padding: 15px 20px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+.invoice_generator_variables {
+  list-style: none;
+  margin: 0px 40px 0px 0px;
+  padding: 0px;
+  color: #999;
+  font-size: 11px;
+  line-height: 110%;
+  float: left;
+}
+
+.invoice_generator_variables li {
+  margin: 6px 0px;
+}
+
+.invoice_generator_variables a {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.invoice_generator_variables strong {
+  color: #333;
+}
+
+.invoice_generator_pattern_input {
+  width: 400px;
+}

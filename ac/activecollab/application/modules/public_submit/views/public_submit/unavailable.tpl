@@ -1,0 +1,1 @@
+<p class="notice">This feature is not enabled yet. Please contact site administrator</p>

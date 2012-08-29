@@ -1,0 +1,941 @@
+body {
+	background: #e5e3e3;
+}
+
+a {
+	color: #950000;
+}
+
+button {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+
+/*******************************************************************************
+  Classes
+*******************************************************************************/
+
+.details {
+  color: #999;
+}
+
+.details a {
+  color: #666 !important;
+}
+
+/*******************************************************************************
+  Buttons
+*******************************************************************************/
+button {
+  background: none;
+  font-size: 10px;
+  outline: none !important;
+  font-weight: bold;
+  color: #222;
+  margin-right: 6px;
+  text-decoration: none;
+  zoom: 1;
+  width: auto !important;
+  white-space: nowrap !important;
+}
+
+button::-moz-focus-inner { border: 0; }
+
+button.default {
+  font-weight: bold !important;
+}
+
+button span {
+  background: transparent url('images/bg_button_span.gif') no-repeat;
+  display: block;
+  height: 24px;
+  line-height: 24px;
+  outline: none !important;
+  zoom: 1;
+  white-space: nowrap !important;
+}
+
+button span span {
+  background: transparent url('images/bg_button_a.gif') no-repeat scroll top right;
+  display: block;
+  padding: 0px 19px;
+  outline: none !important;
+  zoom: 1;
+  white-space: nowrap !important;
+}
+
+button:hover span {
+  background-position: left center;
+}
+
+button:hover span span {
+  background-position: right center;
+}
+
+button:active {
+  outline: none !important;
+}
+
+button:active span {
+  background-position: left bottom;
+  outline: none !important;
+}
+
+button:active span span {
+  background-position: right bottom;
+  outline: none !important;
+}
+
+button.simple {
+  float: none !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  line-height: 24px;
+  height: 24px;
+  width: 82px;
+  background: #FFF url('images/bg_button_simple.gif') no-repeat;
+  display: inline !important;
+}
+
+button.simple:hover {
+  background-position: center center;
+}
+
+.button_disabled {
+  opacity: 0.5;
+}
+
+.button_disabled:hover {
+  background-position: left top !important;
+}
+
+a.button {
+  border: 0px;
+  background: transparent url('images/bg_button_a.gif') no-repeat scroll top right;
+  color: #222;
+  display: block;
+  float: left;
+  height: 24px;
+  margin-right: 6px;
+  padding-right: 12px; /* sliding doors padding */
+  text-decoration: none;
+  overflow: hidden;
+  font-size: 10px;
+  outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button.default {
+  font-weight: bold !important;
+}
+
+a.button span {
+    background: transparent url('images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 12px;
+}
+
+* html a.button span {
+   padding: 5px 0 6px 12px;
+}
+
+a.button:hover {
+  background-position: right center;
+}
+
+
+a.button:hover span {
+  background-position: left center;
+}
+
+a.button span img {
+	margin-left: 2px;
+}
+
+/*******************************************************************************
+  Construction
+*******************************************************************************/
+
+#top {
+	background: #9b0000 url('images/main_header.gif') repeat-x top left;
+}
+
+#logged_user {
+  background: url('images/ac_user_info_left.gif') no-repeat top left;
+ 	color: #FFF;
+}
+
+#logged_user .inner {
+	background:url('images/ac_user_info_right.gif') no-repeat top right;
+}
+
+
+#logged_user a {
+	color: #FFF;
+	text-decoration: underline;
+	padding: 0px 2px;
+}
+
+#logged_user a:hover {
+	text-decoration: none;
+}
+
+#logged_user a.active {
+  text-decoration: none;
+  background: #FFF;
+  color: #5b0000;
+}
+
+#header {
+	background:url('images/main_header_body.gif') no-repeat top left;
+	border: 0px;
+}
+
+#menu ul.group li a {
+	background:url('images/navigation_background.gif') repeat-x top left;
+}
+
+#menu ul.group li.first a {
+	background:url('images/navigation_background_first.gif') no-repeat top left;
+}
+
+#menu ul.group li.last a {
+	background:url('images/navigation_background_last.gif') no-repeat top right;
+}
+
+#menu ul.group li.last a span.inner {
+	border: none !important;
+}
+
+#menu ul.group li a:hover{
+	background-position: bottom left;
+	text-decoration: none;
+}
+
+#menu ul.group li.active a {
+	background-position: bottom left;
+	text-decoration: none;
+	/*
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	-webkit-opacity: 0.5;
+	*/
+}
+
+#menu ul.group li.last a:hover,
+#menu ul.group li.last.active a {
+	background-position: bottom right;
+}
+
+#menu ul.group li a span.inner {
+	border-right: 1px solid #DFDCBB;
+}
+
+#menu ul.group li a:hover span.inner,
+#menu ul.group li.active a span.inner {
+	border-right: 1px solid #D2CD9C;
+}
+
+#menu .additional a span {
+  border-right:1px solid #DFDCBB;
+}
+
+#menu ul.group li.single a {
+  background:url('images/navigation_background_first.gif') no-repeat top left;
+}
+
+#menu ul.group li.single a span.outer {
+	background: url('images/navigation_background_last.gif') no-repeat right top !important;
+}
+
+#menu ul.group li.single a span.inner {
+  border:none !important;
+}
+
+#menu ul.group li.single a:hover {
+	background-position: bottom left !important;
+}
+
+#menu ul.group li.single a:hover span.outer {
+	background-position: bottom right !important;
+}
+
+#menu ul.group #searchForm {
+	background:url('images/navigation_background_first.gif') no-repeat top left;
+}
+
+#menu ul.group #searchForm .inner {
+	background: url('images/navigation_background_last.gif') no-repeat right top;
+}
+
+#menu ul.group #searchForm input.text {
+	border: 1px solid #bfbd82;
+}
+
+#menu ul.group #searchForm button {
+	border: none;
+	color: #950000;
+}
+
+#menu ul.group #searchForm button span {
+  background: none !important;
+  padding: 0px !important;
+}
+
+/*******************************************************************************
+  TABS
+*******************************************************************************/
+#tabs {
+	background: #AA1A1A url('images/main_tabs_background.gif') repeat-x left bottom;
+}
+
+#tabs .container {
+	background:url('images/main_tabs_container.gif') repeat-x left top;
+	border-bottom: none;
+}
+
+#tabs ul li a {
+	background: url('images/main_tab_left.gif') no-repeat left top;
+	color: #575132;
+	border: 0px;
+}
+
+#tabs ul li a span {
+	background: url('images/main_tab_right.gif') no-repeat right top;
+}
+
+#tabs ul li a.current {
+  background-position: left bottom;
+}
+
+#tabs ul li a.current span {
+	background-position: right bottom;
+}
+
+#tabs ul li.first a{
+  color: #840000;	
+}
+
+/*******************************************************************************
+  PAGE
+*******************************************************************************/
+
+#page .container {
+	background: #FFF url('images/page_container.gif') repeat-y top left;
+	border: 0px;
+	width: 980px;
+}
+
+#page .container_inner {
+	background:url('images/page_container_inner.gif') no-repeat left bottom;
+	padding: 0px 1px 20px 1px;
+}
+
+#page_header_container {
+  background: #ECECEC;
+}
+
+#page_header {
+	background: #FBFBFB url('images/page_title.gif') repeat-x left bottom;
+	border-bottom: 0px;
+}
+
+#page_header #page_details {
+	color: #999;
+}
+
+#page_header #page_details span {
+  color: #666;
+}
+
+#page_header #page_details a {
+  color: #666;
+  text-decoration: none;
+}
+
+#page_header #page_details a:hover {
+  color: #666;
+  text-decoration: underline;
+}
+
+#page_actions .with_subitems ul {
+  background: #fcfcfc url(images/dropdown_background.gif) repeat-x top left;
+}
+
+#page_actions .with_subitems ul a {
+  color: #555;
+}
+
+#page_actions .with_subitems a.button {
+  border-bottom: 1px solid #fbfbfb;
+}
+
+#breadcrumbs {
+  background: url('images/breadcrumbs.gif') repeat-x left top;
+  color: #999;
+}
+
+#breadcrumbs li {
+  color: #bbb;
+}
+
+#breadcrumbs a {
+	color: #333;
+}
+
+#breadcrumbs a:hover {
+	text-decoration: underline;
+}
+
+/*******************************************************************************
+  Object Options (tabs on side)
+*******************************************************************************/
+
+.object_options a {
+	background:url('images/object_option_top.gif') no-repeat top right;
+	color: #333;
+}
+
+.object_options a span {
+	background:url('images/object_option_bottom.gif') no-repeat bottom right;
+}
+
+.object_options a:hover {
+	background:url('images/object_option_top_hover.gif') no-repeat top right;
+/**	text-decoration: underline; **/
+}
+
+.object_options a:hover span {
+	background:url('images/object_option_bottom_hover.gif') no-repeat bottom right;
+}
+
+.object_options a.current {
+	background:url('images/object_option_top_hover.gif') no-repeat top right;
+	text-decoration: underline;
+}
+
+.object_options a.current span {
+	background:url('images/object_option_bottom_hover.gif') no-repeat bottom right;
+}
+
+.main_object .object_options a {
+	color: #950000;
+}
+
+/*******************************************************************************
+  Flash
+*******************************************************************************/
+
+.flash  {
+  display: block;
+  background: url('images/information_bar_right.gif') no-repeat right top;
+  height: 30px;
+  overflow: hidden;
+  margin: 5px 40px 12px !important;
+  padding: 0px !important;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 0px;
+}
+
+.flash .flash_inner {
+  display: block;
+  height: 30px;
+  padding: 9px 10px 0px 45px;
+}
+
+#success .flash_inner {
+  color: #207a29;
+  background: url('images/flash_success.gif') no-repeat left top;
+  border: 0px;
+}
+
+#error .flash_inner {
+  color: #b7220a;
+  background: url('images/flash_error.gif') no-repeat left top;
+  border: 0px;
+}
+
+.object_list td h3 a {
+  color: #333;
+}
+
+/*******************************************************************************
+  Category List
+*******************************************************************************/
+
+.category_list a {
+  background: url('images/categories_tab_top.gif') no-repeat right top;
+  color: #666;
+}
+
+.category_list a span {
+  background: url('images/categories_tab_bottom.gif') no-repeat right bottom; 
+}
+
+.category_list .selected a {
+  background: url('images/categories_tab_top_selected.gif') no-repeat right top;
+  color: #950000;
+  border: 0px;
+  border-left: 1px solid #FFF;
+}
+
+.category_list .selected a span {
+  background: url('images/categories_tab_bottom_selected.gif') no-repeat right bottom;
+}
+
+/*******************************************************************************
+  Login Form
+*******************************************************************************/
+
+#auth_dialog_container {
+  background: #9C0000 url(images/login_form_background.gif) repeat-x left top;
+}
+
+#auth_dialog_container_inner {
+  background: url(images/login_form_background_inner.gif) repeat-x left bottom;
+}
+
+#auth_dialog button span,
+.grey_button span {
+  background-image: url('images/login_bg_button_span.gif');
+}
+
+#auth_dialog button span span,
+.grey_button span span {
+  background-image: url('images/login_bg_button_a.gif');
+}
+
+#auth_dialog {
+  width: 340px;
+  background: #EDECEC url(images/login_form_top.gif) no-repeat left top;
+  border: 0px;
+}
+
+#auth_dialog form {
+  background: url(images/login_form_bottom.gif) no-repeat left bottom;
+}
+
+.auth_elements {
+  padding-left: 16px !important;
+}
+
+/*******************************************************************************
+  Overlay Dialog
+*******************************************************************************/
+
+div.dialog {
+  border: 2px solid #DDDAAE;
+  border-top: 0px;
+}
+
+.ui-dialog-titlebar {
+  background: #ecead0 !important;
+}
+
+/*
+.ui-dialog-titlebar-close {
+  background: #d6d4ab;
+}
+
+.ui-dialog-titlebar-close:hover {
+  background: #950000;
+}
+*/
+.ui-dialog-content {
+  background: #FFF url('images/popup_background.gif') repeat-x left 0px !important;
+}
+
+
+/*******************************************************************************
+  Sections
+*******************************************************************************/
+
+h2.section_name {
+  background: url(images/section_start.gif) no-repeat left top;
+  border: 0px;
+}
+
+h2.section_name span.section_name_span {
+  background: url(images/section_end.gif) no-repeat right top; 
+  padding: 8px 15px 9px;
+}
+
+h2.new_section_name {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 15px 8px;
+  background: url(images/section_background.gif) repeat-x left bottom;
+}
+
+/*******************************************************************************
+    PAGINATION
+*******************************************************************************/
+
+.pagination {
+  background: url(images/pagination_left.gif) no-repeat left top;
+  border: 0px;
+}
+
+.pagination .inner_pagination {
+  background: url(images/pagination_right.gif) no-repeat right top;
+}
+
+.pagination .inner_pagination a.active {
+  color: #000 !important;
+}
+
+/*******************************************************************************
+  Adiministration
+*******************************************************************************/
+
+#admin_sections .section {
+  border: 0px;
+  display: block;
+  width: 372px;
+  background: #FFF url(images/admin/admin_section_button_top.gif) no-repeat left top;
+}
+
+#admin_sections .section .section_inner {
+  display: block;
+  background: url(images/admin/admin_section_button_bottom.gif) no-repeat left bottom;
+  padding: 25px 20px 25px;
+  min-height: 75px;
+}
+
+#admin_sections .section.hover {  
+  text-decoration: none !important;
+  background-image: url(images/admin/admin_section_button_top_hover.gif);
+}
+
+#admin_sections .section.hover .section_inner {
+  background-image: url(images/admin/admin_section_button_bottom_hover.gif);
+}
+
+/*******************************************************************************
+  Project overview
+*******************************************************************************/
+
+#project_details .button {
+  background-image: url(images/bg_button_a_pdetails.gif);
+}
+
+#project_details .button span {
+  background-image: url(images/bg_button_span_pdetails.gif);
+}
+
+#show_me {
+  border-color: #E4E2BD;
+}
+
+#project_icon {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-width: 3px;
+  border-color: #ddd;
+}
+
+
+/*******************************************************************************
+  Dashboard
+*******************************************************************************/
+
+
+div.project_progress .progress_wrapper .progress {
+  background: #950000 url(images/progressbar.gif) !important;
+}
+
+#assignments_filter table.filter, 
+#time_report table.report,
+table.stripped_background {
+  background: url(images/system_message.gif);
+}
+
+.dashboard_sidebar {
+  background: #f5f4dd;
+  border: 1px solid #e4e2bd;
+  border-right: 2px solid #e4e2bd;
+  border-bottom: 2px solid #e4e2bd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
+.dashboard_sidebar.alt {
+  background: #fafafa;
+  border-color: #ddd;
+}
+
+.dashboard_sidebar ul.dashboard_sidebar_list {
+  border-bottom: 1px solid #e4e2bd;
+}
+
+.dashboard_sidebar ul.dashboard_sidebar_list li {
+  border-top: 1px solid #e4e2bd;
+}
+
+.top_tabs {
+  margin: 0px;
+  padding: 0px 0px 0px 10px;
+  list-style: none;
+  overflow: visible;
+  zoom: 1;
+  height: 28px;
+}
+
+.top_tabs li {
+  -moz-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+}
+  
+#assignments #assignments_filter_details {
+  background-color: #f5f4dd;
+  border-color: #E7E3BC;
+}
+
+.top_tabs li a {
+  color: #999;
+}
+
+.top_tabs li.selected a {
+  color: #000;
+}
+
+.top_tabs li a:hover {
+  color: #333;
+}
+
+.top_tabs li.selected a span.slip {
+  border-color: #9d976f;
+  background: #f6f0cf;
+  color: #726a42;
+}
+
+.dashboard_wide_sidebar { 
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  background: #f5f4dd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-color: #e4e2bd;
+}
+
+.dashboard_wide_sidebar.alt {
+  border-color: #ddd;
+  background: #fafafa;
+}
+
+/** Time Reports **/
+
+#global_time #time_report_details {
+  background-color: #f5f4dd;
+  border-color: #E7E3BC;
+}
+
+/*******************************************************************************
+  Calendar
+*******************************************************************************/
+
+#calendar table.calendar td.not_empty_day div.day_num { 
+  background: #e8e6c5 url('images/icons/gray-dot.gif') no-repeat right center;
+}
+
+#calendar table.calendar td.not_empty_day.weekend div.day_num { 
+  background: #e8dbc5 url('images/icons/weekend-gray-dot.gif') no-repeat right center;
+}
+
+#calendar table.calendar td.weekend {
+  background: #f2e9da;
+}
+
+#calendar table.calendar tbody td.weekend div.day_num {
+  background:#e8dbc5;
+}
+
+#calendar table.calendar tbody td.weekend div.day_num a{
+  background:#DFC08B;
+}
+
+#calendar table.calendar td.weekday {
+  background: #F2F1DF;
+}
+
+#calendar table.calendar tbody td div.day_num {
+  background: #e8e6c5;
+}
+
+
+#calendar table.calendar tbody td.today .day_num { 
+  padding: 3px 5px;
+  border: 2px solid #950000;
+}
+
+#calendar table.calendar tbody td div.day_num a {
+  background: #CFCB8E;
+  color: #fff;
+}
+
+#calendar table.calendar tbody td.weekend div.day_num a{
+  background:#DFC08B;
+}
+
+.calendar_navigation_item {
+  background: url(images/pagination_left.gif) no-repeat left top;
+  border: 0px;
+}
+
+.calendar_navigation_item .calendar_navigation_item_inner {
+  background: url(images/pagination_right.gif) no-repeat right top;
+}
+
+#new_record {
+  background: url(images/system_message.gif);
+}
+
+#search table.search_form {
+  background: url(images/system_message.gif);
+}
+
+#versions_to_compare {
+  background: url(images/system_message.gif);
+}
+
+
+/*******************************************************************************
+  Date slip
+*******************************************************************************/
+
+.date_slip {
+  background-color: #f5f4dd;
+  border-color: #e4e2bd;
+  color: #585233;
+}
+
+.date_slip span {
+
+}
+
+/*******************************************************************************
+  Page Actions
+*******************************************************************************/
+
+.section_options a {
+  background: #b6b48d;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+#page_header_container #page_actions a {
+  background: url(images/page_actions_middle.gif) repeat-x left top;
+  border: 0px;
+  border-right: 1px solid #d9d9d9;
+}
+
+#page_header_container #page_actions li.first a {
+  background-image: url(images/page_actions_first.gif);
+}
+
+#page_header_container #page_actions a:hover {
+  background-position: left bottom;
+}
+
+#page_header_container #page_actions li.last a {
+  background: url(images/page_actions_last.gif) no-repeat right top;
+  border-right: 0px;
+}
+
+#page_header_container #page_actions li.last a:hover {
+  background-position: right bottom;
+}
+
+#page_header_container #page_actions li.single a {
+  background-image: url(images/page_actions_first.gif);
+  border-right: 0px;
+}
+
+#page_header_container #page_actions li.single a span {
+  background: url(images/page_actions_last_single.gif) no-repeat right top;
+}
+
+#page_header_container #page_actions li.single a:hover span {
+  background-position: right bottom;
+}
+
+#page_actions .with_subitems ul {
+  right: 8px;
+}
+
+/*******************************************************************************
+  Asignees
+*******************************************************************************/
+
+div.select_assignees_widget a.assignees_button,
+div.select_users_widget a.assignees_button {
+  background-color: #dad7bb;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+div.select_assignees_widget a.assignees_button:hover,
+div.select_users_widget a.assignees_button:hover {
+  background-color: #b6b48d;
+}
+
+.select_asignees_inline_widget .company_user span.responsible {
+  background: #d7d4a5;
+  color: #000;
+  -moz-border-radius: 4px;
+}
+
+a.button_add {
+  background-color: #f3f2e2;
+  border: 1px solid #dedaaf;
+  color: #333;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+
+a.button_add:hover {
+  background-color: #dedaaf;
+}
+
+span.button_dropdown {
+  background-color: #f3f2e2;
+  border: 1px solid #dedaaf;
+  color: #333;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+
+span.button_dropdown:hover {
+  background-color: #dedaaf;
+}
+
+span.button_dropdown ul {
+  background: #dedaaf;
+  top: 22px;
+}
+
+
+span.button_dropdown ul li a {
+  color: #333;
+  border-bottom: 1px solid #f3f2e2;
+}
+span.button_dropdown ul li a:hover {
+  background: #f3f2e2;
+}

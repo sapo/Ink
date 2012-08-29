@@ -1,0 +1,12 @@
+name = RDF
+description = Enriches your content with metadata to let other applications (e.g. search engines, aggregators) better understand its relationships and attributes.
+package = Core
+version = VERSION
+core = 7.x
+files[] = rdf.test
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.15"
+project = "drupal"
+datestamp = "1343839327"
+

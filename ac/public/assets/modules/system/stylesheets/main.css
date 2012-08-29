@@ -1,0 +1,2196 @@
+/*******************************************************************************
+  Copyright
+*******************************************************************************/
+
+#copyright {
+  color: #666;
+  font-size: 11px;
+}
+
+/*******************************************************************************
+  Companies
+*******************************************************************************/
+
+#companies table td {
+  padding: 5px;
+}
+
+#companies table td.icon {
+  width: 16px;
+}
+
+/*******************************************************************************
+  Company Details
+*******************************************************************************/
+
+#company_details div.body table th, #company_details div.body table td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+#company_details div.body table td.icon {
+  width: 40px;
+}
+
+#company_details div.body table th.last_activity, #company_details div.body table td.last_activity {
+  width: 200px;
+  text-align: right;
+}
+
+/*******************************************************************************
+  User Details
+*******************************************************************************/
+
+#user_details div.user_details_body_block {
+  margin: 16px 0;
+  padding-left: 32px;
+  min-height: 40px;
+}
+
+#user_details #user_details_contact {
+  background: url('images/admin/contact.gif') no-repeat left 6px;
+}
+
+#user_details #user_details_time {
+  background: url('images/admin/time.gif') no-repeat left 6px;
+}
+
+/*******************************************************************************
+  New User
+*******************************************************************************/
+
+#new_user div.additional_step {
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+#new_user div.additional_step div.head label {
+  font-weight: bold;
+}
+
+#new_user div.additional_step div.body {
+  padding-left: 20px;
+  display: none;
+}
+
+/*******************************************************************************
+  Welcome
+*******************************************************************************/
+
+#send_welcome_message.async textarea {
+  width: 460px;
+}
+
+/*******************************************************************************
+  Administration
+*******************************************************************************/
+
+.admin_sections_container {
+  border-top: 1px solid #eee;
+}
+
+.admin_section {
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee !important;
+}
+
+.admin_section h3 {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.admin_section.odd {
+
+}
+
+.admin_section.even {
+  background: #f9f9f9;
+}
+
+.admin_section ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  
+}
+
+.admin_section ul li {
+  display: inline;
+}
+
+.admin_section ul li a {
+  text-align: center;
+  float: left;
+  display: block;
+  font-size: 11px;
+  color: #333;
+  margin: 1px 5px;
+  width: 70px;
+  padding: 5px 5px;
+}
+
+.admin_section ul li a {
+  text-decoration: none !important;
+}
+
+.admin_section ul li a span {
+  display: block;
+}
+
+.admin_section ul li a:hover span {
+  text-decoration: underline !important;
+}
+
+.admin_section .installation_details {
+  color: #777;
+  font-size: 11px;
+  line-height: 170%;
+  zoom: 1;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.admin_section .installation_details dl {
+  margin: 0px;
+  padding: 0px;
+  float: left;
+}
+
+.admin_section .installation_details dl dt {
+  width: 130px;
+  float: left;
+  padding-right: 5px;
+  clear: left;
+}
+
+.admin_section .installation_details dl dd {
+  color: #333;
+  width: 380px;
+  float: left;
+}
+
+p.contact_support {
+  margin: 16px 0 16px 0;
+  text-align: center;
+}
+
+p.contact_support a {
+  padding: 3px 0 3px 20px;
+  background: url('images/help-small.gif') no-repeat center left;
+}
+
+p.contact_support_disclaimer {
+  font-size: 11px;
+  color: #666;
+}
+
+p.contact_support span.privacy_notice, p.contact_support_disclaimer span.privacy_notice {
+  color: red !important;
+}
+
+.admin_test_setting {
+  clear: both;
+  margin-top: 29px;
+}
+
+.admin_test_setting .test_results {
+  padding-left: 20px;
+}
+
+.admin_test_setting .test_results span {
+  font-size: 11px;
+  color: #666;
+}
+
+.admin_test_setting .test_results img {
+  position: relative;
+  top: 4px;
+}
+
+/*******************************************************************************
+  Mailing Settings
+*******************************************************************************/
+
+#mailingAuthenticateWrapper {
+  overflow: auto;
+}
+
+.test_smtp_connection {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-top: 1px dotted #ccc;
+  padding-top: 10px;
+}
+
+/*******************************************************************************
+  Settings administration
+*******************************************************************************/
+
+#settings .section {
+  clear: left;
+  margin: 16px 0;
+}
+
+#settings .section .icon {
+  float: left;
+  width: 24px;
+}
+
+#settings .section .meta {
+  margin-left: 36px;
+}
+
+/*******************************************************************************
+  General Settings
+*******************************************************************************/
+
+#on_logout_url_container {
+  padding: 4px 0 0 16px;
+}
+
+#on_logout_url_container input {
+  width: 350px;
+}
+
+/*******************************************************************************
+  Modules Administration
+*******************************************************************************/
+
+#modules_admin table.modules_list td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+#modules_admin table.modules_list td.icon_medium {
+  width: 24px;
+}
+
+#modules_admin table.modules_list td.is_system {
+  text-align: center;
+  width: 75px;
+}
+
+#modules_admin table.modules_list td.options {
+  width: 100px;
+}
+
+#modules_admin table.modules_list th.version, #modules_admin table.modules_list td.version {
+  text-align: center;
+  width: 75px;
+}
+
+#available_modules {
+  margin-top: 32px;
+}
+
+#install_module ol {
+  margin: 16px;
+}
+
+#install_module_button {
+  margin-top: 16px;
+}
+
+/*******************************************************************************
+  Modules Details
+*******************************************************************************/
+
+div.module_admin_details div.icon {
+  padding-top: 5px;
+  float: left;
+  width: 32px;
+}
+
+div.module_admin_details div.meta {
+  margin-left: 50px;
+}
+
+div.module_admin_details dl dt, div.module_admin_details dl dd {
+  padding: 5px;
+  font-size: 11px;
+}
+
+div.module_admin_details dl dt {
+  float: left;
+  width: 100px;
+}
+
+div.module_admin_details dl dd {
+  padding-left: 100px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+table.module_role_permissions {
+  width: auto;
+}
+
+table.module_role_permissions td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+table.module_role_permissions td.role_name {
+  width: 200px;
+}
+
+table.module_role_permissions th.permission, table.module_role_permissions td.permission {
+  text-align: center;
+  width: 150px;
+}
+
+table.module_role_permissions th.permission.wide, table.module_role_permissions td.permission.wide {
+  width: 200px;
+}
+
+/*******************************************************************************
+  Project Progress
+*******************************************************************************/
+
+.project_progress .progress_wrapper {
+  border: 1px solid #ccc;
+  height: 15px;
+}
+
+.project_progress .progress_wrapper .progress {
+  background: #ccc;
+  height: 15px;
+}
+
+.project_progress .progress_wrapper .progress span {
+  display: none;
+}
+
+/*******************************************************************************
+  Starred objects
+*******************************************************************************/
+
+#starred #open_in_separate_page {
+  margin: 16px 0 0 0;
+  text-align: center;
+}
+
+/*******************************************************************************
+  Late / Today
+*******************************************************************************/
+
+#late_today table td {
+  padding: 5px;
+}
+
+#late_today table td.star, #late_today table td.checkbox, #late_today table td.priority {
+  width: 16px;
+  padding: 5px 3px;
+  text-align: center;
+}
+
+#late_today table td.star {
+  padding-left: 6px;
+}
+
+#late_today table td.priority {
+  width: 14px;
+  padding-left: 0;
+}
+
+#late_today table td.due {
+  text-align: center;
+}
+
+#late_today #open_in_separate_page {
+  margin: 16px 0 0 0;
+  text-align: center;
+}
+
+/*******************************************************************************
+  Project overview
+*******************************************************************************/
+.projects_table td {
+  vertical-align: middle;
+}
+
+#project_icon {
+  float: left;
+  margin: 0px 0px 0px 0px;
+  padding: 10px 0px;
+  width: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+#project_details h2 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.project_details_buttons {
+  zoom: 1;
+  overflow: hidden;
+  float: right;
+}
+
+.project_details_buttons a {
+  margin: 3px 0px;
+}
+
+.project_details_left {
+  margin-right: 0px;
+}
+
+.project_details_right {
+  width: 170px;
+  float: right;
+}
+
+#project_meta {
+  margin-left: 80px;
+}
+
+#project_icon a, #project_icon img {
+  margin: 0; padding: 0; border: 0;
+}
+
+#show_me {
+  border-left: 1px dotted #ccc;
+  padding-left: 10px;
+}
+
+#show_me h2 {
+  margin-top: 0px;
+}
+
+
+#show_me ul {
+  margin: 4px 0px 0px 0px !important;
+  list-style: none;
+  padding: 0px 0px;
+}
+
+#show_me.with_overview ul {
+  margin-top: 24px !important;
+}
+
+#show_me ul li {
+  padding: 0 0 0 26px;
+  margin: 0px 0 8px;
+  background-repeat: no-repeat;
+  background-position: left 0px;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+#show_me #show_me_assignments {
+  background-image: url('modules/system/images/show_me_assignments.gif');
+}
+
+#show_me #show_me_ical {
+  background-image: url('modules/system/images/show_me_ical.gif');
+}
+
+#show_me #show_me_rss {
+  background-image: url('modules/system/images/show_me_rss.gif');
+}
+
+/*******************************************************************************
+  Late / Today / Upcoming
+*******************************************************************************/
+
+#late_today, #upcoming {
+  
+}
+
+#late_today table,
+#upcoming table {
+  margin: 8px 0;
+}
+
+#late_today td,
+#upcoming td {
+  padding: 5px;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+#late_today td.star,
+#upcoming td.star {
+  width: 16px;
+}
+
+#late_today td.due,
+#upcoming td.due {
+  text-align: right !important;
+  width: 80px;
+}
+
+#late_today td.due span,
+#upcoming td.due span {
+  font-size: 9px;
+  font-weight: bold;
+}
+
+/*******************************************************************************
+  Cards
+*******************************************************************************/
+
+.card {
+  margin: 16px 0;
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+}
+
+.card .head {
+  height: 50px;
+  border-bottom: 1px dotted #ccc;
+}
+
+.card .head a.icon, .card .head span.icon {
+  float: left;
+  width: 50px;
+  line-height: 50px;
+}
+
+.card .head h2.name {
+  margin: 0;
+  line-height: 45px;
+}
+
+.card .head div.options {
+  float: right;
+  padding-top: 15px;
+}
+
+.card .head div.options ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card .head div.options ul li {
+  display: inline;
+}
+
+.card .head div.options ul li.first {
+  padding-right: 10px;
+	color: #999;
+	font-size: 11px;
+	margin-top: 1px;
+	position: relative;
+	top: -4px;
+}
+
+.card .meta {
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+* html .card .meta {
+  height: 50px;
+}
+
+.card .meta h2 {
+  margin-top: 0;
+}
+
+/*******************************************************************************
+  People
+*******************************************************************************/
+
+#people table td {
+  padding: 8px 5px;
+  font-size: 11px;
+}
+
+#people table td.name {
+  width: 200px;
+}
+
+#people td.role {
+  color: #666;
+  width: 150px;
+}
+
+#people table td.name h3 {
+  font-size: 11px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  padding-top: 3px;
+}
+
+#people table td.name h3 a {
+  color: #444;
+}
+
+#people table td.avatar {
+  width: 16px;
+  padding-bottom: 6px;
+}
+
+#people table td.avatar img {
+  padding: 1px;
+  border: 1px solid #eee;
+  background: white;
+}
+
+#people table td.meta dt, #people table td.meta dd {
+  line-height: 20px;
+  font-size: 11px;
+}
+
+#people table td.meta dt {
+  float: left;
+  width: 70px;
+  color: #999;
+  text-align: right;
+}
+
+#people table td.meta dd {
+  margin-left: 78px;
+}
+
+#people table td.options {
+  width: 50px;
+  text-align: right;
+  padding-top: 10px;
+}
+
+/*******************************************************************************
+  Dashboard
+*******************************************************************************/
+
+#dashboard #active_reminders table td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+#dashboard #active_reminders table td.name span.type {
+  font-weight: bolder;
+}
+
+#dashboard #active_reminders table td.name span.project {
+  color: #999;
+}
+
+#dashboard #active_reminders table td.name span.project a {
+  color: #666;
+}
+
+#dashboard #active_reminders table td.name span.show_hide_reminder_comment {
+  float: right;
+}
+
+#dashboard #active_reminders table td.name span.show_hide_reminder_comment a {
+  color: #666;
+}
+
+#dashboard #active_reminders table td.name span.reminder_comment {
+  display: block;
+  margin: 5px;
+  padding: 10px;
+  background: #f8f8f8;
+  border: 1px dotted #e8e8e8;
+}
+
+#dashboard #active_reminders table td.created_by {
+  width: 300px;
+  color: #999;
+  text-align: right;
+}
+
+#dashboard #active_reminders table td.options {
+  width: 16px;
+}
+
+#dashboard {
+  zoom: 1;
+  overflow: hidden;
+}
+
+#dashboard_sections {
+  width: 594px;
+  float: left;
+}
+
+#dashboard_sections .top_tabs_object_list {
+  clear: both;
+  margin-top: 0px !important;
+}
+
+#dashboard_sections .dashboard_sections_loading {
+  padding: 30px 0px;
+  text-align: center;
+}
+
+.top_tabs {
+  margin: 0px;
+  padding: 0px 0px 0px 10px;
+  list-style: none;
+  overflow: visible;
+  zoom: 1;
+  height: 28px;
+}
+
+.top_tabs li {
+  display: block;
+  float: left;
+  height: 27px;
+  line-height: 27px;
+  margin-right: 3px;
+  background-repeat: no-repeat;
+  background-position: top left;
+  border-top: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  cursor: pointer;
+}
+
+.top_tabs li.selected {
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #fafafa;
+  background: #fafafa;
+  position: relative;
+  top: 1px;
+}
+
+.top_tabs li.selected a {
+  font-weight: bold;
+}
+
+.top_tabs li a {
+  display: block;
+  float: left;
+  height: 27px;
+  line-height: 27px;
+  padding: 0px 10px;
+  background-repeat: no-repeat;
+  background-position: top right;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.top_tabs li a:hover {
+  text-decoration: none;
+}
+
+.top_tabs li a span.slip {
+  border: 1px solid #ccc;
+  padding: 0px 5px;
+  font-size: 9px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #f1f1f1;
+}
+
+.dashboard_wide_sidebar {
+  border: 1px solid #ddd;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  background: #fafafa;
+  zoom: 1;
+  overflow: hidden;
+  margin: 10px 0px;
+}
+
+.dashboard_wide_sidebar .dashboard_wide_sidebar_inner_2 {
+  padding: 10px 15px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+#dashboard_sidebars {
+  float: right;
+  width: 288px;
+  padding: 17px 0px 0px 0px;
+}
+
+.dashboard_sidebar {
+  border-right: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  background: #f1f1f1;
+  margin: 10px 0px 10px;
+  font-size: 11px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+.dashboard_sidebar_inner_2 {
+  padding: 10px 15px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+.dashboard_sidebar.alt {
+  background: #fafafa;
+  border-color: #ddd;
+}
+
+.dashboard_sidebar h2 {
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
+.dashboard_sidebar h3 {
+  border-bottom: 1px solid #AAAAAA;
+  font-size: 11px !important;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  padding:6px 0 3px 5px !important;
+}
+
+.dashboard_sidebar h3 a {
+  color: #333;
+}
+
+.dashboard_sidebar ul.dashboard_sidebar_list {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.dashboard_sidebar ul.dashboard_sidebar_list li {
+  line-height: 18px;
+  border-top: 1px solid #ccc;
+  padding: 3px 5px;
+}
+
+
+.dashboard_sidebar ul li .name,
+.dashboard_sidebar ul li .details {
+  display: block;
+}
+
+.dashboard_sidebar ul li .details {
+  color: #999;
+  line-height: 11px;
+  margin-bottom: 2px;
+}
+
+.dashboard_sidebar ul li.with_icon .name,
+.dashboard_sidebar ul li.with_icon .details {
+  margin-left: 20px;
+}
+
+.dashboard_sidebar ul li.with_icon img {
+  vertical-align: middle;
+  float: left;
+  margin-right: 2px;
+}
+
+.dashboard_sidebar .title {
+  zoom: 1;
+  overflow: hidden;
+}
+
+.dashboard_sidebar .title h2 {
+  float: left;
+}
+
+.dashboard_sidebar .title .actions {
+  float: right;
+}
+
+#dashboard_important ul li.reminder {
+  background: url(images/important.gif) no-repeat left 3px;
+  text-indent: 14px;
+}
+
+#dashboard_important ul li img {
+  vertical-align: bottom;
+  margin-left: 1px;
+}
+
+
+#pinned_projects.dashboard_sidebar a.unpin {
+  float: right;
+  margin-top: 3px;
+  display: none;
+}
+
+#pinned_projects.dashboard_sidebar .drop_here {
+  border-top-width : 1px;
+  border-bottom : 0px;
+  border-left-width : 1px;
+  border-right : 1px;
+  border-style: dotted !important;
+  border-color: #E4E2BD !important;
+  color: #ceccab;
+  text-align: center;
+  font-weight: bold;
+  padding: 16px 0px;
+  display: none;
+}
+
+#pinned_projects.dashboard_sidebar .drop_here.hover {
+  background: #E4E2BD;
+  color: #FFF;
+}
+
+#pinned_projects ul.droppable_active {
+  background: #E4E2BD;
+}
+
+.dashboard_important_list {
+  margin: 0px; padding: 0px; list-style: none;
+  zoom: 1;
+  overflow: hidden;
+}
+
+.dashboard_important_list li {
+  display: inline;
+  margin: 3px 7px 3px 0px;
+  display: block;
+  float: left;
+}
+
+.dashboard_important_list li a:hover {
+  text-decoration: none;
+}
+
+.dashboard_important_list li a:hover span {
+  text-decoration: underline;
+}
+
+#project_home {
+  zoom: 1;
+  overflow: hidden;
+}
+
+#project_home .project_home_left {
+  float:left;
+  width:594px;
+}
+
+#project_home .project_home_right {
+  float:right;
+  width:288px;
+}
+
+#project_details {
+  margin-top: 0px;
+  zoom: 1;
+  overflow: hidden;
+  font-size: 11px;
+}
+
+#project_home_progress {
+  margin-top: 0px;
+}
+
+
+#project_home_progress .project_progress {
+  margin-left: 0px;
+}
+
+#project_home .company_users {
+  margin: 7px 0px;
+  padding: 0px 0px 0px 4px;
+  list-style: none;
+}
+
+#project_home .company_users li {
+  margin: 4px 0px;
+  overflow: hidden;
+  zoom: 1;
+}
+
+#project_home .company_users li .ago {
+  color: #999;
+  font-size: 9px;
+  margin-left: 6px;
+}
+
+#project_home .company_users li .icon_holder {
+  width: 24px;
+  height: 16px;
+  float: left;
+}
+
+#project_home .company_users li img {
+}
+
+#dashboard_section_active_projects_content .active_projects td {
+  cursor: move;
+}
+
+/*******************************************************************************
+  New since last visit
+*******************************************************************************/
+
+#new_since_last_visit table td {
+  padding: 5px;
+}
+
+#new_since_last_visit table td.star {
+  width: 16px;
+}
+
+#new_since_last_visit table td.project {
+  font-size: 11px;
+  color: #999;
+  width: 180px;
+  text-align: right;
+}
+
+#new_since_last_visit #mark_all_read {
+  margin: 16px 0 0 0;
+  text-align: center;
+}
+
+/** Project card stuff **/
+
+.active_projects td {
+  padding-top: 8px;
+}
+
+.active_projects .icon {
+  width: 16px;
+}
+
+.active_projects td.progress {
+  width: 150px;
+  padding-top: 6px;
+}
+
+.active_projects .project_progress {
+  margin-left: 0px !important;
+}
+
+.active_projects .progress_wrapper {
+  margin-bottom: 0px !important;
+}
+
+.active_projects .ui-draggable-dragging .client,
+.active_projects .ui-draggable-dragging .progress {
+  display: none;
+}
+
+tr.project_row td {
+  padding: 10px !important;
+  color: #666;
+  font-size: 11px;
+}
+
+tr.project_row td a {
+  color: #333;
+}
+
+tr.project_row td dl {
+  margin: 0;
+}
+
+tr.project_row td dl dt {
+  float: left;
+  line-height: 20px;
+}
+
+tr.project_row td dl dd {
+  margin-left: 100px;
+  line-height: 20px;
+}
+
+tr.project_row td.icon {
+  width: 32px;
+  vertical-align: middle;
+}
+
+tr.project_row td.name {
+  width: 300px;
+}
+
+tr.project_row td.status {
+  text-align: center;
+}
+
+tr.project_row td.pinned {
+  padding: 5px 15px;
+}
+
+p.priority {
+  display: block;
+  margin: -5px 0px 0px 0px;
+  padding: 4px 15px;
+  background: #F5F5F5;
+  font-weight: bold;
+}
+
+/** Project progress **/
+
+div.project_progress {
+  margin-top: 0px;
+  margin-left: 16px;  
+  font-size: 11px;
+  text-align: center;
+  color: #666;
+}
+
+div.project_progress p {
+  padding: 0px;
+  margin: 0px;
+}
+
+div.project_progress .progress_wrapper {
+  background: #FFF;
+  margin-bottom: 5px;
+  padding: 2px;
+  height: 13px !important;
+}
+
+div.project_progress .progress_wrapper .progress {
+  height: 13px !important;
+  margin-right: auto;
+  margin-left: 0px;
+}
+
+/*******************************************************************************
+  Project groups
+*******************************************************************************/
+
+div.manage_project_groups.async div.manage_project_groups_table_wrapper {
+  max-height: 300px;
+  overflow: auto;
+}
+
+div.manage_project_groups form.add_project_group_form {
+  padding: 10px 5px 0 5px;
+}
+
+div.manage_project_groups table td {
+  vertical-align: middle;
+}
+
+div.manage_project_groups td.name input {
+  width: 150px;
+  margin-right: 8px;
+}
+
+div.manage_project_groups td.options {
+  width: 40px;
+}
+
+div.manage_project_groups form.add_project_group_form img {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  cursor: pointer;
+}
+
+/*******************************************************************************
+  Jump to Project
+*******************************************************************************/
+
+#jump_to_project {
+  max-height: 250px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+#jump_to_project td {
+  padding: 5px;
+}
+
+#jump_to_project td.icon {
+  width: 16px;
+}
+
+/*******************************************************************************
+  Select Projects
+*******************************************************************************/
+
+div.select_projects_widget_popup {
+  max-height: 250px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+div.select_projects_widget_popup td {
+  padding: 5px;
+}
+
+div.select_projects_widget_popup td.checkbox, div.select_projects_widget_popup td.icon {
+  width: 16px;
+}
+
+div.select_projects_widget a.projects_button {
+  background: #dad7bb url('images/icons/projects.gif') no-repeat 10px center;
+  padding: 4px 10px 4px 30px;
+  color: #333;
+  font-weight: bold;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+div.select_projects_widget p {
+  margin: 0 0 8px 4px;
+}
+
+div.select_projects_widget ul {
+  margin: 0 0 8px 4px;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+}
+
+div.select_projects_widget ul li {
+  line-height: 16px;
+  background: url('images/project_icon.gif') no-repeat 0px 3px;
+  padding-left: 13px;
+  margin-bottom: 2px;
+  display: list-item !important;
+}
+
+div.select_projects_widget a.projects_button:hover {
+  background-color: #b6b48d;
+}
+
+/*******************************************************************************
+  iCal Subscribe
+*******************************************************************************/
+
+#ical_subscribe img {
+  float: left;
+}
+
+#ical_subscribe p {
+  margin-left: 48px;
+}
+
+/*******************************************************************************
+  Quick add
+*******************************************************************************/
+
+#quick_add h3 {
+  margin-bottom: 0;
+  padding: 2px 5px;
+  color: #950000;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+#quick_add h3:hover {
+  background: #E8E6C8;
+  cursor: pointer;
+}
+
+#quick_add div.quick_add_section_body {
+  /*padding: 5px;*/
+  position: relative;
+}
+
+#quick_add .object_list {
+  width: 657px;
+  border-top: 1px solid #D6D6D6;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+
+#quick_add .list_view {
+  background-position: 656px top;
+}
+
+#quick_add .pagination {
+  margin-top: 0px;
+}
+
+#quick_add .col_wide input,
+#quick_add .col_wide2 input {
+  width: 95%;
+}
+
+#quick_add .col_wide select,
+#quick_add .col_wide2 select {
+  width: 95%;
+}
+
+#quick_add .category_list {
+  margin-top: 30px;
+}
+
+#quick_add .quick_add_section_body .section_container {
+  padding-right: 25px !important;
+}
+
+#quick_add h4.section_name {
+  border: 0px;
+  padding: 6px 10px 6px;
+  border-bottom: 1px dotted #DDD;
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  background: #f9f9f9;
+  margin-top: 0px;
+}
+
+.quick_add_columns_container {
+  zoom: 1;
+  overflow: hidden;
+}
+
+.quick_add_columns_container .quick_add_left_column {
+  width: 70%;
+  float: left;
+}
+
+.quick_add_columns_container .quick_add_left_column .quick_add_left_column_inner {
+
+  padding: 0px 10px 3px;
+}
+
+.quick_add_columns_container .quick_add_right_column {
+  width: 28%;
+  float: right;
+  margin-right: 10px;
+}
+
+.quick_add_columns_container .quick_add_right_column .quick_add_right_column_inner {
+  background: #f1f1f1;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0px 0px 0px 15px;
+}
+
+.quick_add_columns_container .quick_add_right_column .select_asignees_inline_widget .company_user {
+  display: block !important;
+}
+
+.quick_add_columns_container .quick_add_right_column .select_asignees_inline_widget .company_users {
+  padding-left: 4px;
+}
+
+.quick_add_columns_container .quick_add_right_column .select_asignees_inline_widget .select_asignees_inline_widget_responsible_block {
+  display: none;
+}
+
+.quick_add_columns_container .quick_add_left_column input.title {
+  width: 97% !important;
+}
+
+.quick_add_columns_container .quick_add_left_column textarea {
+  width: 97% !important;
+  height: 140px !important;
+}
+
+.quick_add_loading {
+  text-align: center;
+  padding: 30px 0px;
+}
+
+.quick_add_col_container {
+  zoom: 1;
+  overflow: hidden;
+}
+
+.quick_add_col_container .quick_add_col_left {
+  float: left;
+  width: 260px;
+}
+
+.quick_add_col_container .quick_add_col_right {
+  float: right;
+  width: 260px;
+}
+
+#quick_add .list_chooser {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  border-top: 1px dotted #ccc;
+}
+
+.quick_add_col_container .quick_add_col_left .list_chooser {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.quick_add_col_container .quick_add_col_right .list_chooser {
+
+}
+
+#quick_add .list_chooser label {
+  border: 1px dotted #ccc;
+  border-top: 0px;
+  padding: 4px 10px;
+  font-size: 11px;
+  background: #fafafa;
+  cursor: pointer;
+  display: block;
+}
+
+#quick_add .list_chooser label input {
+  margin-right: 5px !important;
+  vertical-align: middle;
+}
+
+#quick_add .list_chooser label.hover {
+  background: #eee;
+}
+
+#quick_add .list_chooser label.selected {
+  background: #ECEAD0;
+}
+
+#quick_add .wizardbar {
+  zoom: 1;
+  overflow: hidden;
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+#quick_add .wizardbar .wizzard_back {
+  color: #333;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 5px 5px 4px 4px;
+}
+
+#quick_add .wizardbar .wizzard_continue {
+  display: block;
+  float: right;
+  color: #333;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 4px 16px 4px 5px;
+  background: url(images/wizard_next.gif) no-repeat right center;
+}
+
+/*******************************************************************************
+  Discussions
+*******************************************************************************/
+
+.discussions {
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+}
+
+/** Projects **/
+
+#group_projects_by {
+  float: right;
+}
+
+#filter_projects_by_status {
+  float: right;
+  margin-right: 5px;
+}
+
+#module dl dt, #module dl dd {
+  padding: 5px;
+  font-size: 11px;
+}
+
+.section_container {
+  padding: 0px 10px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+/*******************************************************************************
+  Quick search
+*******************************************************************************/
+
+#quick_search_form #quick_search_input {
+  width: 335px;
+}
+
+#quick_search_button {
+  margin: 0; padding: 0; border: 0;
+}
+
+#quick_search_form ul {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#quick_search_form ul li {
+  margin-right: 5px;
+  padding: 4px 4px 4px 22px;
+  border: 1px solid white;
+  display: inline;
+  font-size: 90%;
+}
+
+#quick_search_form ul li.selected {
+  border-color: #ccc;
+}
+
+#quick_search_form #search_in_projects {
+  background: url('images/search-in-project.gif') no-repeat 2px 2px;
+}
+
+#quick_search_form #search_for_people {
+  background: url('images/search-for-user.gif') no-repeat 2px 2px;
+}
+
+#quick_search_form #search_for_projects {
+  background: url('images/search-for-project.gif') no-repeat 2px 2px;
+}
+
+#quick_search_results td {
+  padding: 5px;
+  font-size: 90%;
+  color: #666;
+}
+
+#quick_search_results td.icon {
+  width: 16px;
+}
+
+#quick_search_more_results {
+  text-align: center;
+}
+
+#quick_search_project_objects_result table td.star {
+  width: 16px;
+}
+
+#quick_search_project_objects_result table td.name span.details {
+  display: block;
+}
+
+#quick_search_users_result table td.avatar {
+  width: 16px;
+}
+
+#quick_search_projects_result td.icon {
+  width: 16px;
+}
+
+#quick_search_projects_result td.status {
+  width: 100px;
+}
+
+/*******************************************************************************
+  Search
+*******************************************************************************/
+
+#search table.search_form {
+  background: #EDECEC; 
+  border: 1px solid #EAEAEA;
+  margin-top: 1px;
+  width: 896px;
+  margin-left: 1px;
+}
+
+#search table.search_form .ctrlHolder {
+  margin: 0; padding: 0;
+}
+
+#search table.search_form .ctrlHolder.error, #search table.search_form .ctrlHolder.focused {
+  background: transparent;
+}
+
+#search table.search_form .ctrlHolder.error input, #search table.search_form .ctrlHolder.error select {
+  background: #FFDFDF;
+  color: red;
+}
+
+#search table.search_form.error {
+  background-color: #FFDFDF;
+  border-bottom: 1px solid #b2b2b2;
+}
+
+#search table.search_form td {
+  padding: 10px 7px;
+}
+
+#search table.search_form td.search_form_caption {
+  font-weight: bolder;
+}
+
+#search table.search_form td.search_for input {
+  width: 550px;
+}
+
+#search table.search_form td.search_type select {
+  width: 150px;
+}
+
+#search table.search_form td.search_form_button {
+  height: 45px;
+}
+
+#search #people_list {
+  width: 600px;
+}
+
+#search #people_list td {
+  padding: 5px;
+}
+
+#search #people_list td.avatar {
+  width: 16px;
+}
+
+#search #people_list td.email {
+  width: 200px;
+}
+
+#search #people_list td.email a, #search #people_list td.email a:hover {
+  color: #333;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+#search #people_list td.email a:hover {
+  text-decoration: underline;
+}
+
+#search #projects_list {
+  width: 600px;
+}
+
+#search #projects_list td {
+  padding: 5px;
+}
+
+#search #projects_list td.icon {
+  width: 16px;
+}
+
+#search #projects_list td.progress {
+  width: 200px;
+}
+
+/*******************************************************************************
+  String list
+*******************************************************************************/
+
+div.string_list {
+  width: 400px;
+}
+
+div.string_list td {
+  padding: 5px;
+}
+
+div.string_list td.num {
+  font-size: 10px;
+  color: #999;
+  width: 16px;
+}
+
+div.string_list td.value sup {
+  color: red;
+  font-size: 10px;
+  padding-left: 8px;
+}
+
+div.string_list td.remove {
+  width: 16px;
+}
+
+div.string_list div.add_list_item {
+  margin-top: 16px;
+}
+
+div.string_list input.add_list_item_name {
+  width: 150px;
+}
+
+div.string_list input.add_list_item_button {
+  margin: 0; 
+  border: 0; 
+  padding: 0; 
+  width: 16px; height: 16px;
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+/*******************************************************************************
+  Languages administration
+*******************************************************************************/
+
+#languages td.checkbox {
+  width: 16px;
+}
+
+#language_details dt, #language_details dd {
+  padding: 5px;
+  font-size: 11px;
+}
+
+#language_details dt {
+  float: left;
+  width: 100px;
+}
+
+#language_details dd {
+  padding-left: 100px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+#translation_files table {
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+#translation_files table td {
+  padding: 5px;
+}
+
+#translation_files table td.options {
+  text-align: right;
+  width: 70px;
+}
+
+/*******************************************************************************
+  Select users widget
+*******************************************************************************/
+
+div.select_users_widget p {
+  margin: 0 0 8px 4px;
+}
+
+div.select_users_widget ul {
+  margin: 0 0 8px 4px;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+}
+
+div.select_users_widget ul li {
+  line-height: 16px;
+  background: url('images/assignee_icon.gif') no-repeat 0px 3px;
+  padding-left: 13px;
+  margin-bottom: 2px;
+  display: list-item !important;
+}
+
+/*******************************************************************************
+  Select multiple users popup
+*******************************************************************************/
+
+div.select_users_widget_popup td.users_list, div.select_users_widget_popup td.selected_users {
+  width: 260px;
+  vertical-align: top;
+}
+
+div.select_users_widget_popup table.select_users_layout td.divider {
+  text-align: center;
+  vertical-align: middle;
+}
+
+div.select_users_widget_popup table.select_users_layout td.divider img {
+  cursor: pointer;
+}
+
+div.select_users_widget_popup input {
+  width: 250px;
+}
+
+div.select_users_widget_popup select {
+  width: 258px;
+  height: 296px;
+  font-size: 10px;
+}
+
+div.select_users_widget_popup input.default_value {
+  color: #999;
+  font-style: italic;
+}
+
+div.select_users_widget_popup option {
+  padding: 2px 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+div.select_users_widget_popup option.odd {
+  background: #fafafa;
+}
+
+div.select_users_widget_popup div.selected_users_list_container {
+  border: 1px solid #ddd;
+  height: 292px;
+  overflow: auto;
+}
+
+div.select_users_widget_popup td.selected_users table {
+  width: 100%;
+}
+
+div.select_users_widget_popup td.selected_users table td {
+  padding: 5px;
+  font-size: 10px;
+}
+
+div.select_users_widget_popup td.selected_users table td.display_name {
+  color: #999;
+}
+
+div.select_users_widget_popup td.selected_users table td.display_name span {
+  color: #333;
+}
+
+div.select_users_widget_popup td.selected_users table td.remove {
+  width: 16px;
+  text-align: right;
+}
+
+div.select_users_widget_popup td.selected_users table td.remove img {
+  cursor: pointer;
+}
+
+div.select_users_widget_popup td.selected_users p.no_users_selected {
+  margin: 0;
+  padding: 65px 15px 0 15px;
+  font-size: 200%;
+  color: #666;
+  text-align: center;
+}
+
+div.select_users_widget_popup td.selected_users p.no_users_selected span {
+  font-size: 70%;
+  color: #ccc;
+}
+
+.important_block {
+  border: 1px dotted #c6c38f;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 12px;
+  background: #fdfcea;
+}
+
+.important_block a {
+  font-weight: bold;
+}
+
+/*******************************************************************************
+  Select System Permission Widgets
+*******************************************************************************/
+
+table.select_system_permissions {
+  width: 500px;
+}
+
+table.select_system_permissions td {
+  padding: 5px;
+}
+
+table.select_system_permissions td.permission_name {
+  width: 350px;
+}
+
+/*******************************************************************************
+  Select Project Permissions Widgets
+*******************************************************************************/
+
+table.select_project_permissions td {
+  padding: 5px;
+}
+
+table.select_project_permissions td.permission_name, table.select_project_permissions td.permission_value {
+  width: 20%;
+}
+
+table.select_project_permissions td.no_access {
+  color: red;
+}
+
+table.select_project_permissions td.has_access {
+  color: green;
+}
+
+table.select_project_permissions .hover td {
+  background: #eee;
+}
+
+table.select_project_permissions .hover td.permission_name {
+  text-decoration: underline;
+}
+
+/*******************************************************************************
+  Select User Project Permissions Widget
+*******************************************************************************/
+
+table.select_user_project_permissions tr td {
+  vertical-align: top;
+  padding: 5px;
+}
+
+table.select_user_project_permissions td.radio {
+  width: 16px;
+}
+
+table.select_user_project_permissions td.radio input {
+  position: relative;
+  top: -1px;
+}
+
+table.select_user_project_permissions td.label label {
+  margin: 0;
+  padding: 3px 0 0 0;
+}
+
+table.select_user_project_permissions td.label table {
+  margin-top: 16px;
+  width: 700px;
+}
+
+/*******************************************************************************
+  Role
+*******************************************************************************/
+
+#role table {
+  margin-bottom: 16px;
+}
+
+#role td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+#role td.icon {
+  width: 16px;
+}
+
+#role td.options {
+  width: 100px;
+  text-align: right;
+}
+
+#roles_administration table td.checkbox {
+  width: 16px;
+}
+
+#empty_slate_system_roles {
+  margin-top: 16px;
+}
+
+/*******************************************************************************
+  Email templates
+*******************************************************************************/
+
+#email_template_translations {
+  width: 300px;
+}
+
+#email_template_translations td {
+  padding: 5px;
+}
+
+#email_template_translations td.options {
+  width: 18px;
+}
+
+/*******************************************************************************
+  Object visibility
+*******************************************************************************/
+
+#object_visibility_details dl {
+  border: 1px solid #e8e8e8;
+  background: url('images/normal.gif') no-repeat 8px 8px;
+  padding: 4px;
+}
+
+/*******************************************************************************
+  Scheduled Tasks
+*******************************************************************************/
+
+#scheduled_tasks table {
+  width: auto;
+}
+
+#scheduled_tasks table th, #scheduled_tasks table td {
+  padding: 5px;
+  font-size: 11px;
+}
+
+#scheduled_tasks table th.event, #scheduled_tasks table td.event {
+  width: 150px;
+}
+
+#scheduled_tasks table th.last_activity, #scheduled_tasks table td.last_activity {
+  text-align: right;
+  width: 150px;
+}
+
+/*******************************************************************************
+  Search index
+*******************************************************************************/
+
+#search_index_admin table {
+  width: auto;
+}
+
+#search_index_admin table td {
+  padding: 5px;
+  width: 150px;
+}
+
+/*******************************************************************************
+  Recent activities
+*******************************************************************************/
+
+#recent_activities h3 {
+  margin: 15px 0;
+}
+
+
+#recent_activities .day_activities {
+  margin-bottom: 10px;
+}
+
+#recent_activities div.activity {
+  overflow: hidden;
+  zoom: 1;
+  font-size: 11px;
+  /* border-bottom: 1px solid #eee; */
+  border-bottom: 1px solid #f1f1f1;
+  padding: 10px 5px 8px;
+}
+
+#recent_activities div.activity div.log_icon {
+  float: left;
+  width: 16px;
+  padding: 0px 5px 0px;
+  margin-top: -2px;
+}
+
+#recent_activities div.activity div.log_time {
+  float: right;
+  color: #999;
+  font-size: 9px;
+  padding: 0px 5px 0px;
+  text-align: right;
+}
+
+#recent_activities div.activity div.log_time img {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+
+#recent_activities div.activity div.log_time a {
+  color: #999;
+}
+
+#recent_activities div.activity div.log_info {
+  padding: 0px 0 0px 25px;
+}
+
+#recent_activities div.activity div.log_info div.log_info_head {
+  margin: 0 0 0px 0;
+}
+
+#recent_activities div.activity div.log_info div.log_info_head a {
+  /*font-weight: bold;*/
+}
+
+#recent_activities div.activity div.log_info_body {
+  overflow: hidden;
+  margin-top: 5px;
+  color: #888;
+  padding-left: 0px;
+  line-height: 150%;
+  background: #fafafa;
+  -moz-border-radius: 5px;
+  margin-right: 25px;
+  padding: 3px 7px;
+}
+
+
+#recent_activities div.activity div.log_info_body .new_object_name a {
+  color: #666;
+  font-weight: bold;
+}
+
+#recent_activities div.activity div.log_info div.log_info_foot {
+  margin: 8px 0 0 7px;
+  font-size: 10px;
+}
+
+#recent_activities div.log_info_head del a {
+  color: #999;
+}
+
+p.recent_activities_rss {
+  margin-top: 16px;
+  text-align: center;
+}
+
+p.recent_activities_rss a {
+  padding: 3px 0 3px 20px;
+  background: url('images/rss.gif') no-repeat center left;
+}
+
+p.archive_link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+p.archive_link a {
+  padding: 3px 0 3px 20px;
+  background: url('images/archive.gif') no-repeat center left;
+}
+
+/*******************************************************************************
+  Who's online
+*******************************************************************************/
+
+#refresh_online_users_list {
+  padding: 3px 0 3px 18px;
+  background: url('images/refresh-small.gif') no-repeat center left;
+}
+
+/*******************************************************************************
+  Icon Picker
+*******************************************************************************/
+
+.current_avatar {
+  background: #f5f4dd;
+  border-right: 2px solid #e4e2bd;
+  border-bottom: 2px solid #e4e2bd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 10px 0px 10px;
+  padding: 10px 15px;
+  font-size: 11px;
+  zoom: 1;
+  overflow: hidden;
+}
+
+.current_avatar #updated_icon {
+  background: white;
+  border:1px solid #CCCCCC;
+  float: left;
+  /*
+  height: 40px;
+  width: 40px;*/
+  padding: 5px;
+}
+
+.current_avatar .details {
+  float: left;
+  margin: 18px 0px 0px 10px;
+  padding: 0px 0px 0px 0px;
+}
+
+.current_avatar .delete_current {
+  color: #950000 !important;
+  background: url(images/gray-delete.gif) no-repeat left center;
+  padding-left: 19px;
+  font-weight: bold;
+}
+
+/*******************************************************************************
+  First Aid
+*******************************************************************************/
+
+.first_aid_table .first_aid_icon {
+  width: 16;
+  text-align: center;
+}

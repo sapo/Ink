@@ -1,0 +1,11 @@
+name = Overlay
+description = Displays the Drupal administration interface in an overlay.
+package = Core
+version = VERSION
+core = 7.x
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.15"
+project = "drupal"
+datestamp = "1343839327"
+

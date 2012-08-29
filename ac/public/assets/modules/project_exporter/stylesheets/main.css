@@ -1,0 +1,37 @@
+#export_table .status_indicator {
+  width: 16px;
+  padding-top: 4px;
+  padding-bottom: 0px;
+}
+
+#export_table .module_name {
+  width: 100px;
+}
+
+#download_link_block {
+  border: 1px dotted #c6c38f;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 11px;
+  background: #fdfcea;
+  display: none;
+}
+
+#download_link_block a {
+  font-weight: bold;
+  font-size: 12px;
+  display: block;
+  margin-top: 10px;
+}
+
+.download_link_block_top {
+  margin-top: 0px !important;
+  margin-bottom: 20px;
+}
+
+#download_link_block strong {
+  font-weight: bold;
+  font-size: 12px;
+  display: block;
+  margin-top: 10px;
+}

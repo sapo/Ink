@@ -1,0 +1,34 @@
+/*******************************************************************************
+  Discussions list
+*******************************************************************************/
+
+table.discussions td {
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 11px;
+}
+
+table.discussions h3 {
+  margin: 0px;
+  padding: 0px !important;
+  font-size: 15px;
+  font-weight: bold; 
+}
+
+table.discussions td.icon {
+  width: 24px;
+}
+
+table.discussions th.comments_count, table.discussions td.comments_count {
+  text-align: center;
+  width: 100px;
+}
+
+table.discussions th.last_comment, table.discussions td.last_comment {
+  text-align: right;
+  width: 200px;
+}
+
+table.discussions td.visibility {
+  width: 16px;
+}

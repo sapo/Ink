@@ -1,0 +1,75 @@
+.documents_table {
+  border-top: 1px dotted #DDDDDD;
+}
+
+.documents_table td {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.documents_table td.pin {
+  padding-left: 10px !important;
+  width: 16px;
+}
+
+.documents_table td.thumbnail {
+  width: 95px;
+  text-align: center;
+}
+
+.documents_table td.thumbnail img {
+	
+}
+
+.documents_table td.name {
+	font-size: 11px;
+}
+
+.documents_table td.private {
+	width: 20px;
+	text-align: right;
+}
+
+.documents_table td.options {
+	width: 40px;
+	text-align: right;
+}
+
+/** Module details **/
+
+#documents_module div.empty_slate {
+  margin-top: 30px;
+}
+
+/*******************************************************************************
+  Manage document groups
+*******************************************************************************/
+
+div.manage_document_categories.async div.manage_document_categories_table_wrapper {
+  max-height: 300px;
+  overflow: auto;
+}
+
+div.manage_document_categories form.add_document_category_form {
+  padding: 10px 5px 0 5px;
+}
+
+div.manage_document_categories table td {
+  vertical-align: middle;
+}
+
+div.manage_document_categories td.name input {
+  width: 150px;
+  margin-right: 8px;
+}
+
+div.manage_document_categories td.options {
+  width: 40px;
+}
+
+div.manage_document_categories form.add_document_category_form img {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  cursor: pointer;
+}

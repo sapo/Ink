@@ -1,0 +1,216 @@
+#mailbox_form #test_connection {
+  clear: both;
+  zoom: 1;
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#mailbox_form #test_connection .connection_ok{
+  color: green;
+}
+
+#mailbox_form #test_connection .connection_error {
+  color: #cc0000;
+}
+
+#mailbox_form #test_connection .test_connection_results {
+  padding-top: 4px;
+  display: block;
+  padding-left: 140px;
+  font-weight: bold;
+}
+
+#mailbox_form #test_connection img {
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  margin-right: 5px;
+}
+
+#mailbox_table .incoming_mailbox_status_0,
+#mailbox_table .incoming_mailbox_status_0 a {
+  color: #ddcd8b;
+  font-weight: bold;
+}
+
+#mailbox_table .incoming_mailbox_status_1,
+#mailbox_table .incoming_mailbox_status_1 a {
+  color: green;
+  font-weight: bold;
+}
+
+#mailbox_table .incoming_mailbox_status_2,
+#mailbox_table .incoming_mailbox_status_2 a {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+#mailbox_table .account_email {
+  width: 150px;
+  background: #eee;
+  font-weight: bold;
+}
+
+#mailbox_table .icon {
+  width: 16px;
+  padding-right: 0px;
+}
+
+#mailbox_table .mailbox_host {
+  width: 150px;
+}
+
+#mailbox_table .object_type {
+  width: 90px;
+}
+
+#mailbox_table .mailbox_active {
+  text-align: center;
+  width: 50px;
+}
+
+.import_error {
+  background: #ffdddd;
+  color: red;
+  padding: 6px 10px;
+  font-size: 11px;
+  text-align: center;
+}
+/*
+#import_form textarea {
+  width: 355px;
+}
+
+#import_form input.text_input {
+  width: 355px;
+}
+*/
+
+#import_dialog {
+  overflow: hidden;
+  zoom: 1;
+}
+
+.import_dialog_left {
+  width: 68%;
+  float: left;
+}
+
+.import_dialog_right {
+  width: 28%;
+  float: right;
+}
+
+.import_dialog_left .input_text,
+.import_dialog_left textarea {
+  width: 95% !important;
+}
+
+.import_dialog_right .input_text,
+.import_dialog_right select {
+  width: 95% !important;
+}
+
+.incoming_mails_table .imported_sucessfully td,
+.incoming_mails_table .imported_sucessfully td a {
+  text-decoration: line-through !important;
+  color: #999 !important;
+}
+
+.incoming_mails_table .imported_sucessfully td.options * {
+  display: none;
+}
+
+.incoming_mails_table .checkbox {
+  padding-left: 15px;
+}
+
+.mailbox_activity .unread_messages,
+.mailbox_activity .failed_messages,
+.mailbox_activity .conflicted_messages,
+.mailbox_activity .imported_messages {
+  width: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mailbox_activity td.failed_messages,
+.mailbox_activity td.conflicted_messages {
+  color: red;
+}
+
+.mailbox_activity td.imported_messages {
+  color: green;
+}
+
+.mailbox_activity .created_on {
+  width: 140px;
+}
+
+.mailbox_activity tr.error td {
+  background: #ffdfdf;
+}
+
+.mailbox_activity tr.error td.response {
+  color: red;
+}
+
+.incoming_mail_log_table td.time {
+  width: 60px;
+}
+
+.incoming_mail_log_table td.response {
+}
+
+.incoming_mail_log_table .incoming_mail_conflict td.response {
+  color: #CC0000;
+}
+
+.incoming_mail_log_table .incoming_mail_ok td.response {
+  color: green;
+}
+
+.incoming_mail_log_table td.mailbox_name {
+  width: 80px;
+  font-weight: bold;
+  background: #eee;
+}
+
+.incoming_mail_log_table td.mailbox_name a {
+  color: #333;
+}
+
+.incoming_mail_log_table td.sender {
+  width: 180px;
+}
+
+.incoming_mail_log_table td.subject {
+  width: 180px;
+}
+
+.incoming_mail_log_table td.options {
+  width: 40px;
+}
+
+.incoming_mail_log_table td.icon {
+  width: 16px;
+  padding-right: 0px !important;
+}
+
+#recent_activities.incoming_mail_activities h3.day_section {
+  margin: 0px;
+  padding: 0px;
+}
+
+.incoming_mail_log_table {
+  margin-bottom: 10px;
+}
+
+.simple_toggler {
+  margin: 0px;
+}
+
+.simple_toggler label {
+  color: #333;
+}

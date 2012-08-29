@@ -1,0 +1,60 @@
+
+.dashboard_sidebar {
+  border: 0px !important;
+  background: url(images/dashboard/dashboard_narrow_tile.gif) repeat-y left top;
+}
+
+.dashboard_sidebar .dashboard_sidebar_inner {
+  background: url(images/dashboard/dashboard_narrow_top.gif) no-repeat left top;
+}
+
+.dashboard_sidebar .dashboard_sidebar_inner_2 {
+  background: url(images/dashboard/dashboard_narrow_bottom.gif) no-repeat left bottom;
+}
+
+.dashboard_sidebar.alt {
+  background: url(images/dashboard/dashboard_narrow_alt_tile.gif) repeat-y left top !important;
+}
+
+.dashboard_sidebar.alt .dashboard_sidebar_inner {
+  background: url(images/dashboard/dashboard_narrow_alt_top.gif) no-repeat left top;
+}
+
+.dashboard_sidebar.alt .dashboard_sidebar_inner_2 {
+  background: url(images/dashboard/dashboard_narrow_alt_bottom.gif) no-repeat left bottom;
+}
+
+.dashboard_wide_sidebar {
+  border: 0px !important;
+  background: url(images/dashboard/dashboard_wide_tile.gif) repeat-y left top;
+}
+
+.dashboard_wide_sidebar .dashboard_wide_sidebar_inner {
+  background: url(images/dashboard/dashboard_wide_top.gif) no-repeat left top;
+}
+
+.dashboard_wide_sidebar .dashboard_wide_sidebar_inner_2 {
+  background: url(images/dashboard/dashboard_wide_bottom.gif) no-repeat left bottom;
+}
+
+.dashboard_wide_sidebar.alt {
+  background: url(images/dashboard/dashboard_wide_alt_tile.gif) repeat-y left top !important;
+}
+
+.dashboard_wide_sidebar.alt .dashboard_wide_sidebar_inner {
+  background: url(images/dashboard/dashboard_wide_alt_top.gif) no-repeat left top;
+}
+
+.dashboard_wide_sidebar.alt .dashboard_wide_sidebar_inner_2 {
+  background: url(images/dashboard/dashboard_wide_alt_bottom.gif) no-repeat left bottom;
+}
+
+#dashboard_sections .dashboard_wide_sidebar.alt,
+.project_home_left .dashboard_sidebar.alt {
+  background: url(images/dashboard/dashboard_wide_alt_tile.gif) repeat-y left top !important;
+}
+
+#dashboard_sidebars .dashboard_sidebar.alt,
+.project_home_right .dashboard_sidebar.alt {
+  background: url(images/dashboard/dashboard_narrow_alt_tile.gif) repeat-y left top !important;
+}

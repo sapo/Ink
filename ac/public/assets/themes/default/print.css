@@ -1,0 +1,57 @@
+.dashboard_wide_sidebar_inner {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar_inner .dashboard_wide_sidebar_inner {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar_inner .dashboard_wide_sidebar_inner_2 {
+  background: none !important;
+}
+
+.dashboard_sidebar.alt {
+  background: none !important;
+}
+
+.dashboard_sidebar.alt .dashboard_sidebar_inner {
+  background: none !important;
+}
+
+.dashboard_sidebar.alt .dashboard_sidebar_inner_2 {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar .dashboard_wide_sidebar_inner {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar .dashboard_wide_sidebar_inner_2 {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar.alt {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar.alt .dashboard_wide_sidebar_inner {
+  background: none !important;
+}
+
+.dashboard_wide_sidebar.alt .dashboard_wide_sidebar_inner_2 {
+  background: none !important;
+}
+
+#dashboard_sections .dashboard_wide_sidebar.alt,
+.project_home_left .dashboard_sidebar.alt {
+  background: none !important;
+}
+
+#dashboard_sidebars .dashboard_sidebar.alt,
+.project_home_right .dashboard_sidebar.alt {
+  background: none !important;
+}

@@ -1,0 +1,98 @@
+#show_me {
+  display: none;
+}
+
+.project_details_buttons {
+  display: none;
+}
+
+#new_late_starred {
+  display: none;
+}
+
+.project_details_inner {
+  border: 2px solid #aaa;
+  padding: 2em;
+}
+
+.recent_activities_rss {
+  display: none;
+}
+
+.company_card {
+  border: 2px solid #aaa;
+  padding: 1em 2em 1.5em;
+  margin-bottom: 15px;
+}
+
+.company_card .icon {
+  float: left;
+  margin-top: -10px;
+}
+
+.company_card .meta {
+  margin-left: 85px;
+}
+
+.company_card .meta h2 {
+  margin-top: 0px;
+}
+
+.company_card .options {
+  display: none;
+}
+
+.user_card {
+  border-top: 2px solid #aaa;
+  padding: 0em 2em 0.5em;
+}
+
+.user_card .options {
+  display: none;
+}
+
+.user_card .local_time {
+  float: right;
+  font-size: 0.8em;
+}
+
+.user_card .icon {
+  float: left;
+  margin-top: -10px;
+}
+
+.user_card .meta {
+  margin-left: 85px;
+}
+
+.user_card .meta h2 {
+  margin-top: 0px;
+  font-size: 1.2em;
+  margin-bottom: 0px;
+}
+
+.details_list dt {
+  width: 100px;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  text-align: right;
+}
+
+.details_list dd {
+  margin: 0px;
+  padding: 0px;
+  margin-left: 110px;
+}
+
+#assignments_filter {
+  display: none;
+}
+
+.assignments_filter_rss {
+  display: none;
+}
+
+#assignments_filter_details {
+  display: none !important;;
+}

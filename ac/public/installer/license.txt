@@ -1,0 +1,91 @@
+Please review the following license agreement before installing or using the 
+activeCollab, any individual plug-in component or other software product, and/or 
+all related materials.
+
+Definitions:
+============
+This A51 doo End-User Software License Agreement ("EULA") is a legal agreement 
+between you (either as an individual user, corporation or single entity) and 
+A51 doo for the activeCollab software product - which includes computer 
+software, and may include associated media, printed materials, and "online" or 
+electronic documentation ("activeCollab" or "SOFTWARE"). By exercising your 
+rights to install the activeCollab, you agree to be bound by the terms of this 
+End User License Agreement ("EULA"), including the limitations and warranty 
+disclaimers. If you do NOT agree to the terms of this EULA, you may not install 
+nor use the activeCollab; If this is the case, please uninstall the activeCollab 
+from your system immediately, and destroy all copies of the activeCollab and all 
+of its component parts, source code, associated documentation, and related 
+materials.
+
+activeCollab License:
+=====================
+The activeCollab is protected by copyright laws and international copyright 
+treaties, as well as other intellectual property laws and treaties.
+
+1. GRANT OF LICENSE.
+--------------------
+
+This is a license agreement, and NOT an agreement for sale. A51 doo retains 
+ownership of the copy of THE SOFTWARE in your possession, and all copies you may 
+be licensed to make. A51 doo retains all rights not expressly granted to you in 
+this LICENSE. A51 doo hereby grants to you, and you accept, a non-exclusive, 
+non-transferable license to use, copy and modify THE SOFTWARE only as authorized 
+below.
+
+This EULA grants you the following rights:
+
+You are granted a license AT A SINGLE WEBSITE LOCATION (URL). You are also 
+prohibited to remove "activeCollab Powered" link at the bottom of the webpage, 
+unless you purchase "Branding Removal" option which allows you to remove all 
+marks of A51 doo or activeCollab.
+
+In no case shall you rent, lease, lend, redistribute nor re-license activeCollab 
+or any related source code to a 3rd party individual or entity. In no case shall 
+you grant further redistribution rights for activeCollab to the end-users of 
+your solution.
+
+UNDER NO CIRCUMSTANCES MAY THE SOURCE CODE OR THE COMPILED PRODUCT BE USED AS 
+THE BASIS FOR CREATING A PRODUCT THAT CONTAINS THE SAME, OR SUBSTANTIALLY THE 
+SAME, FUNCTIONALITY AS ANY A51 DOO PRODUCT.
+
+2. DESCRIPTION OF OTHER RIGHTS AND LIMITATIONS.
+-----------------------------------------------
+
+Termination: Without prejudice to any other rights, A51 doo may terminate this 
+EULA if you fail to comply with the terms and conditions of this EULA. In such 
+event, you must destroy all copies of the activeCollab and all of its component 
+parts, source code, associated documentation, and related materials.
+
+3. COPYRIGHT.
+-------------
+
+All title and copyrights in and to the activeCollab (including but not limited 
+to any images, photographs, animations, video, audio, music, text, and "applets" 
+incorporated into the activeCollab), the accompanying printed materials, and any 
+copies of the activeCollab are owned by A51 doo.
+
+The activeCollab is protected by U.S. copyright laws and international treaty 
+provisions. Therefore, you must treat the activeCollab like any other 
+copyrighted material.
+
+4. LIMITED WARRANTY.
+--------------------
+
+NO WARRANTIES. A51 doo expressly disclaims any warranty for the activeCollab. 
+The activeCollab and any related documentation is provided "as is" without 
+warranty of any kind, either expressed or implied, including, without 
+limitation, the implied warranties of merchantability, fitness for a particular 
+purpose, or non-infringement. The entire risk arising out of use or performance 
+of the activeCollab remains with you.
+
+5. LIMITATION OF LIABILITY.
+---------------------------
+
+NO LIABILITY FOR CONSEQUENTIAL DAMAGES. In no event shall A51 doo or its 
+distributors be liable for any damages whatsoever (including, without 
+limitation, damages for loss of business profits, business interruption, loss of 
+business information, or any other pecuniary loss) arising out of the use of or 
+inability to use this A51 doo product (activeCollab) and related materials, even 
+if A51 doo has been advised of the possibility of such damages. Because some 
+states do not allow the exclusion or limitation of liability for consequential 
+or incidental damages, the above limitation may not apply to you.

@@ -1,0 +1,87 @@
+.table_wrapper {
+	height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	margin-bottom: 10px;
+	border: 1px solid #EEEEEE;
+	clear: both;
+}
+
+* html #status_updates_dialog div.table_wrapper {
+  width: 342px;
+  *padding-right: 20px;
+}
+
+html>body .table_wrapper {
+  *padding-right: 20px;
+}
+
+.status_updates_table .author {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.status_updates_table .author a {
+  color: #333;
+}
+
+.status_updates_table .ago {
+  float: right;
+  color: #999;
+  font-size: 10px;
+}
+
+.table_wrapper td.message .update{
+  display: block;
+  width: 287px;
+  overflow: hidden;
+}
+
+#update_status_form input{
+  width: 331px;
+  float: left;
+}
+
+#update_status_form #status_update_button {
+  position: relative;
+  top: 3px;
+  left: 7px;
+  cursor: pointer;
+}
+
+#status_update_archive_work_indicator {
+  position: relative;
+  top: 3px;
+}
+
+.status_update_top_links {
+  margin: 0px 0px 5px;
+  padding: 0px;
+  list-style: none;
+  float: right;
+}
+
+.status_update_top_links li {
+  display: inline;
+  color: #666;
+  font-size: 11px;
+  line-height: 16px;
+  vertical-align: middle;
+}
+
+.status_update_top_links li a img {
+  vertical-align: middle;
+}
+
+.status_update_top_links .first {
+  padding-right: 5px;
+}
+
+#status_updates_dialog .dialog_title {
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 16px;
+  vertical-align: middle;
+  margin: 0px 0px 5px;
+}

@@ -1,0 +1,111 @@
+body, td, pre {color:#000; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:8px;}
+body {
+  color:#333333;
+  font-family:"Lucida Grande",Verdana,Verdana,Arial,Helvetica,sans-serif;
+  font-size:12px;
+  font-size-adjust:none;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+  line-height:150%;
+  background: #FFF;
+}
+body.mceForceColors {background:#FFF; color:#000;}
+h1 {font-size: 2em}
+h2 {font-size: 1.5em}
+h3 {font-size: 1.17em}
+h4 {font-size: 1em}
+h5 {font-size: .83em}
+h6 {font-size: .75em}
+.mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {border: 1px dashed #BBB;}
+a.mceItemAnchor {width:12px; line-height:6px; overflow:hidden; padding-left:12px; background:url(img/items.gif) no-repeat bottom left;}
+img.mceItemAnchor {width:12px; height:12px; background:url(img/items.gif) no-repeat;}
+img {border:0;}
+table {cursor:default}
+table td, table th {cursor:text}
+ins {border-bottom:1px solid green; text-decoration: none; color:green}
+del {color:red; text-decoration:line-through}
+cite {border-bottom:1px dashed blue}
+acronym {border-bottom:1px dotted #CCC; cursor:help}
+abbr, html\:abbr {border-bottom:1px dashed #CCC; cursor:help}
+
+p {
+  padding: 0px;
+  margin: 6px 0px;
+}
+
+/* IE */
+* html body {
+scrollbar-3dlight-color:#F0F0EE;
+scrollbar-arrow-color:#676662;
+scrollbar-base-color:#F0F0EE;
+scrollbar-darkshadow-color:#DDD;
+scrollbar-face-color:#E0E0DD;
+scrollbar-highlight-color:#F0F0EE;
+scrollbar-shadow-color:#F0F0EE;
+scrollbar-track-color:#F5F5F5;
+}
+
+.title {
+  font-size:160%;
+  border-bottom:1px solid #E7E7E7;
+  font-weight:bold;
+}
+
+p.title {
+  display:block;
+  padding-bottom:4px;
+}
+
+.subtitle {
+  font-size:130%;
+  border-bottom:1px solid #E7E7E7;
+  font-weight:bold;
+}
+
+p.subtitle {
+  display:block;
+  padding-bottom:4px;
+}
+
+.quote {
+  background:transparent url(img/blockquote.gif) no-repeat scroll 0 0px;
+  color:#666666;
+  font-style:italic;
+  margin:0; 
+}
+
+p.quote {
+  display:block;
+  padding:9px 0 9px 75px;
+}
+
+.important {
+  background:#FFCFD1;
+  border-bottom:3px double red;
+  border-color:red;
+}
+
+.note {
+  background:#FFFFCF;
+}
+
+.updated {
+  background: #CFFFD1;
+}
+
+pre {
+  -x-system-font:none;
+  border:1px solid #E7E7E7;
+  font-family:monospace;
+  font-size:12px;
+  font-size-adjust:none;
+  font-stretch:normal;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+  line-height:normal;
+  margin:0 10px;
+  overflow:auto;
+  padding:10px;
+}

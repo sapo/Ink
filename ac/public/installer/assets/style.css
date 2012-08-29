@@ -1,0 +1,271 @@
+* {
+  margin: 0; padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 11px Verdana, Arial, Helvetica, sans-serif;
+  color: #333;
+  text-align: center;
+  line-height: 150%;
+  background: #ebebeb;
+}
+
+a {
+  color: #8C1116;
+  text-decoration: none;
+  border-bottom: 1px dotted #666;
+}
+
+a:hover {
+  color: #BA0101;
+  border-bottom: 1px solid #003562;
+}
+
+img {
+  border: 0;
+}
+
+div.clear {
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+h1, h2, h3 {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-weight: bolder;
+  color: #880000;
+}
+
+h1 { font-size: 18pt; }
+h2 { font-size: 14pt; }
+
+ul, ol {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+ul {
+  list-style: none;
+}
+
+ol {
+  padding: 0 0 0 25px;
+}
+
+p, ul, ol {
+  margin: 8px 0;
+}
+
+fieldset {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #DCDCDC;
+  padding: 10px 15px;
+}
+
+fieldset img {
+  float: right;
+}
+
+label {
+  margin: 3px 0;
+  display: block;
+  font: 10pt 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+input, textarea {
+  border: 1px solid #d2d2d2;
+  padding: 4px 5px;
+  color: #999;
+  font: 10pt 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+}
+
+input.short {
+  width: 50px;
+}
+
+input.long {
+  width: 450px;
+}
+
+input:focus, textarea:focus {
+  color: #333;
+}
+
+textarea {
+  width: auto;
+}
+
+.clear {
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* SUBMIT BUTTON */
+
+button {
+  margin: 0px;
+  padding: 0px !important;
+  border: 0px;
+  background: transparent url('images/bg_button_a.gif') no-repeat scroll top right;
+  color: #222;
+  display: block;
+  float: left;
+  height: 24px;
+  margin-right: 6px;
+  padding-right: 12px !important;
+  text-decoration: none;
+  overflow: hidden;
+  font-size: 10px;
+  outline: none !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button, x:-moz-any-link {
+  padding-right: 8px !important; /* sliding doors padding */
+}
+
+* html button {
+  padding-right: 10px !important;
+}
+
+button.default {
+  font-weight: bold !important;
+}
+
+button span {
+  background: transparent url('images/bg_button_span.gif') no-repeat;
+  display: block;
+  line-height: 14px;
+  padding: 5px 8px 5px 20px;
+  outline: none !important;
+}
+
+/* FIREFOX FIX */
+button span, x:-moz-any-link {
+  position: relative;
+  top: -1px;
+}
+
+* html button span {
+  padding: 5px 0 5px 12px;
+}
+
+button:hover {
+  background-position: right center;
+}
+
+
+button:hover span {
+  background-position: left center;
+}
+
+/** Construction **/
+
+#wrapper {
+  width: 100%;
+}
+
+#headerWrapper {
+  padding: 0;
+  height: 150px;
+  background: white url('images/header-back.gif') repeat-x bottom;
+  text-align: center;
+}
+
+#header {
+  width: 758px;
+  margin: 0 auto;
+  height: 150px;
+  background: white url('images/header.jpg') no-repeat left bottom;
+  text-align: left;
+  position: relative;
+}
+
+#header a, #header a:hover {
+  border: 0;
+  position: absolute;
+  display: block;
+  width: 173px;
+  height: 32px;
+  top: 85px;
+  left: 49px;
+}
+
+#header a span {
+  display: none;
+}
+
+#descriptionWrapper {
+  background: #dcdcdc url('images/desc-wrapper-back.gif') repeat-x;
+  text-align: center;
+}
+
+#description {
+  padding: 2px 25px;
+  width: 708px;
+  margin: 0 auto;
+  text-align: left;
+  background: #eeecd6;
+}
+
+#contentWrapper {
+  margin: 0;
+  font: 11pt 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+#contentBlock {
+  padding: 15px 25px;
+  width: 708px;
+  margin: 0 auto;
+  text-align: left;
+  background: white url('images/content-bottom.gif') no-repeat left bottom;
+}
+
+#contentWrapper div.ctrlHolder {
+  padding: 5px 0;
+}
+
+p.aid {
+  color: #999 !important;
+  font-size: 8pt !important;
+}
+
+#buttons {
+  margin-top: 16px;
+}
+
+.ok span, .warning span, .error span {
+  font-weight: bolder;
+}
+
+.ok span {
+  color: green;
+}
+
+.error span {
+  color: red;
+}
+
+#legend {
+  padding: 5px;
+  border: 1px dotted #ccc;
+  font-size: 11px;
+}
+
+#license_textarea {
+  width: 100%;
+  font-family: monospace;
+}
+
+#footer {
+  font-size: 11px;
+}

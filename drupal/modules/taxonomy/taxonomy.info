@@ -1,0 +1,15 @@
+name = Taxonomy
+description = Enables the categorization of content.
+package = Core
+version = VERSION
+core = 7.x
+dependencies[] = options
+files[] = taxonomy.module
+files[] = taxonomy.test
+configure = admin/structure/taxonomy
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.15"
+project = "drupal"
+datestamp = "1343839327"
+

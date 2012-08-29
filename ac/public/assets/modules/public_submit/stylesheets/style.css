@@ -1,0 +1,180 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background: #FFF;
+	text-align: center;
+	font-family: "Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	color: #333;
+	padding: 15px 0px;
+}
+
+img {
+	border: 0px;
+}
+
+#wrapper {
+	width: 780px;
+	margin:  0px auto;
+	text-align: left;
+}
+
+#footer {
+	text-align: center;
+	border-top: 2px solid #ddd;
+	padding-top: 10px;
+}
+
+#footer #benchmark {
+	margin-top:  10px;
+}
+
+#header h1 {
+	font-size: 17px;
+	color: #CF4454;
+	border-bottom: 2px solid #ddd;
+	text-align: left !important;
+	padding: 5px 20px;	
+}
+
+.notice {
+	text-align: center;
+	padding: 15px 0px;
+}
+
+form {
+	padding: 15px 20px;
+}
+
+.clear {
+	clear: both;
+}
+
+.col {
+	width: 340px;
+	float: left;
+	padding: 0px 20px 0px 0px;
+}
+
+form .ctrlHolder {
+	padding: 0px 0px 10px 0px;
+}
+
+form .ctrlHolder label {
+	display: block;
+	padding-bottom: 3px;
+}
+
+form .ctrlHolder .errorField {
+	float: right;
+	font-weight: normal !important;
+	color: red;
+	font-size: 10px;
+}
+
+form .ctrlHolder .errorField strong {
+	font-weight: normal !important;
+}
+
+form .ctrlHolder label em {
+	color: red;
+}
+
+form .ctrlHolder .details {
+	color: #999;
+	font-size: 11px;
+	padding-top: 5px;
+}
+
+.content_container {
+}
+
+.mceEditorIframe {
+	background: #FFF;
+}
+
+.mceToolbarContainer,
+.mceStatusbarBottom {
+	background-color: transparent !important;
+}
+
+.mceStatusbarBottom br {
+	display: none;
+}
+
+input, select {
+	border: 1px solid #ccc;
+	font-family: "Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	padding: 3px 5px;
+	width: 250px;
+}
+
+select {
+	padding: 1px;
+}
+
+.error input,
+.error select,
+.error textarea,
+.error .mceEditorIframe {
+	background: #fee8eb;
+}
+
+#errorMsg {
+	background: #fee8eb;
+	border: 1px solid #CF4454;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+	font-size: 11px;
+}
+
+#errorMsg ol {
+	margin-top: 5px;
+	margin-left: 15px;
+	padding-left: 15px;
+}
+
+body:first-of-type input[type=file] {
+	border: none;
+}
+
+.ticket_data,
+.buttonHolder {
+	border-top: 1px solid #eee;
+	padding-top: 15px;
+	margin-top: 10px;
+}
+
+.ticket_data input {
+	width: 730px;
+}
+
+.focused input,
+.focused selected {
+	border: 1px solid #555;
+}
+
+.ticket_data textarea {
+	width: 730px;
+	padding: 3px 5px;
+	height: 150px;
+}
+
+.buttonHolder button {
+	padding: 4px 15px;
+}
+
+span.captcha img.captcha {
+  border: 1px solid #ccc;
+  float: left;
+  margin-right: 10px;
+}
+
+span.captcha input {
+  margin-top: 5px;
+  width: 50px;
+}

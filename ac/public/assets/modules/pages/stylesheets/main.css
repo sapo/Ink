@@ -1,0 +1,137 @@
+#pages h3 {
+  margin: 8px 0;
+}
+
+#pages table td {
+  padding: 5px;
+}
+
+#pages table td.star {
+  width: 16px;
+}
+
+#pages table td.age {
+  width: 200px;
+  text-align: right;
+}
+
+#pages table td.visibility {
+  width: 16px;
+}
+
+/*******************************************************************************
+  Category pages
+*******************************************************************************/
+
+table.pages_tree td {
+  padding: 5px;
+}
+
+table.pages_tree td.star {
+  width: 16px;
+}
+
+table.pages_tree td.name span.indent {
+  margin-right: 5px;
+  color: #ccc;
+}
+
+table.pages_tree td.name del a {
+  color: #999;
+}
+
+table.pages_tree td.age {
+  width: 200px;
+  text-align: right;
+}
+
+table.pages_tree td.visibility {
+  width: 16px;
+}
+
+/*******************************************************************************
+  Diff
+*******************************************************************************/
+
+#versions_to_compare {
+  background: #EDECEC;
+  border: 1px solid #EAEAEA;
+  margin-left: 1px;
+  margin-top: 1px;
+}
+
+#versions_to_compare td {
+  padding: 10px 7px;
+}
+
+#versions_to_compare td select {
+  width: 150px;
+}
+
+#versions_to_compare td.go {
+  width: 50px;
+}
+
+#compared_versions {
+  margin: 16px 0;
+}
+
+#compared_versions td {
+  padding: 5px;
+  overflow: auto;
+  width: 50%;
+  vertical-align: top;
+  line-height: 150%;
+}
+
+#compared_versions td h2 {
+  margin: 0;
+}
+
+#compared_versions td div.auto_overflow {
+  width: 435px;
+}
+
+/*******************************************************************************
+  Revisions table
+*******************************************************************************/
+
+table.revisions_table td {
+  padding: 3px;
+  font-size: 11px;
+}
+
+table.revisions_table td.star {
+  width: 16px;
+}
+
+table.revisions_table td.revision_num {
+  width: 10px;
+}
+
+table.revisions_table td.options {
+  width: 40px;
+  text-align: right;
+}
+
+/*******************************************************************************
+  Category pages
+*******************************************************************************/
+
+#pages_reorder {
+  position: relative;
+}
+
+.ui-dialog-content #pages_reorder {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#pages_reorder ul li {
+  font-size: 11px;
+}
+
+#pages_reorder.tree .tree-default li a,
+#pages_reorder.tree .tree-default li span {
+  background-image: url(images/icons/drag.gif) !important;
+}

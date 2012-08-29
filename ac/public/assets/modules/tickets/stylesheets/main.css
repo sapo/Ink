@@ -1,0 +1,97 @@
+/** List **/
+
+#tickets table {
+  border-top: 1px dotted #DDDDDD;
+  font-size: 11px;
+}
+
+#tickets table td {
+  padding: 3px;
+  border-bottom: 1px dotted #DDDDDD;
+}
+
+#tickets td.priority {
+  width: 16px;
+}
+
+#tickets td.star {
+  width: 16px;
+}
+
+#tickets td.ticket_id {
+  width: 10px;
+  font-size: 11px;
+}
+
+#tickets td.ticket_id, #tickets td.name {
+  color: #999;
+  font-size: 11px;
+}
+
+#tickets td.name a, #tickets td.name a:hover {
+  color: #333;
+  border: 0;
+  text-decoration: none;
+}
+
+#tickets td.name a:hover {
+  text-decoration: underline;
+}
+
+#tickets td.checkbox {
+  width: 16px;
+}
+
+#tickets td.visibility {
+  width: 16px;
+}
+
+/*******************************************************************************
+  Changes
+*******************************************************************************/
+
+#ticket_changes {
+  margin-top: 2px !important;
+}
+
+#ticket_changes ul {
+  padding-left: 0 !important;
+  list-style: circle !important;
+}
+
+#ticket_changes ul li {
+  display: list-item !important;
+}
+
+#ticket_changes .ticket_change {
+  margin: 3px 0 10px;
+  line-height: 150%;
+  font-size: 11px;
+}
+
+#ticket_changes .ticket_change h3 {
+  font-size: 11px;
+}
+
+#ticket_changes .ticket_change ul {
+  margin-left: 20px;
+  color: #666;
+}
+
+#show_all_ticket_changes {
+  margin-top: 16px;
+  text-align: center;
+}
+
+#show_all_ticket_changes a {
+  padding: 3px 0 3px 20px;
+  background: url('images/hourglass-small.gif') no-repeat center left;
+}
+
+.common_table_list li .ticket_id {
+  width: 28px;
+  text-align: right;
+  color: #999;
+  position: relative;
+  top: -4px;
+}

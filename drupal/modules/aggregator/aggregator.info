@@ -1,0 +1,14 @@
+name = Aggregator
+description = "Aggregates syndicated content (RSS, RDF, and Atom feeds)."
+package = Core
+version = VERSION
+core = 7.x
+files[] = aggregator.test
+configure = admin/config/services/aggregator/settings
+stylesheets[all][] = aggregator.css
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.15"
+project = "drupal"
+datestamp = "1343839327"
+

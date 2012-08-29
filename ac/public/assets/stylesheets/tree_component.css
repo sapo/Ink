@@ -1,0 +1,335 @@
+/* TREE LAYOUT */
+.tree ul {
+	margin:0 0 0 5px;
+	padding:0;
+	list-style-type:none;
+}
+.tree li {
+	display:block;
+	min-height:18px;
+	line-height:18px;
+	padding:0 0 0 15px;
+	margin:0 0 0 0;
+	clear:both;
+}
+.tree li ul {
+	display:none;
+	clear:both;
+}
+.tree li a,
+.tree li span {
+	display:inline;
+	float:left;
+	line-height:16px;
+	height:16px;
+	padding:1px 4px 1px 23px !important;
+	color:black;
+	white-space:nowrap;
+	text-decoration:none;
+	background-color:transparent;
+	background-repeat:no-repeat;
+	background-position:4px 1px; 
+	-moz-border-radius:3px;
+	border:0;
+	margin:0;
+}
+.tree li a:hover, 
+.tree li a.hover {
+	background-color: #e7f4f9;
+	border:1px solid #d8f0fa;
+	padding:0px 3px 0px 22px !important;
+	background-position:3px 0px; 
+}
+.tree li a.clicked,
+.tree li a.clicked:hover,
+.tree li span.clicked {
+	background-color: #beebff;
+	border:1px solid #99defd;
+	padding:0px 3px 0px 22px !important;
+	background-position:3px 0px; 
+}
+.tree li span.clicked {
+	padding:0px 3px 0px 20px !important;
+}
+
+.tree li a input,
+.tree li span input {
+	margin:0;
+	padding:0 0;
+	display:block;
+	height:12px !important;
+	border:1px solid white;
+	background:white;
+	font-size:10px;
+	font-family:Verdana;
+}
+.tree li a input:not([class="xxx"]),
+.tree li span input:not([class="xxx"]) {
+	padding:1px 0;
+}
+
+.locked li a {
+	color:gray;
+}
+
+/* FOR DOTS */
+.tree ul {
+	background-position:6px 1px;
+	background-repeat:repeat-y;
+}
+.tree li {
+	background-position:7px center;
+	background-repeat:no-repeat;
+}
+.tree li.last {
+	background-position:5px top;
+	background-repeat:no-repeat;
+}
+/* NO DOTS */
+.no_dots ul {
+	background:transparent !important;
+}
+.no_dots li, .no_dots li.last {
+	background-color:transparent !important;
+}
+.no_dots li.leaf {
+	background-image:none !important;
+	background-color:transparent !important;
+}
+
+/* OPEN OR CLOSE */
+.tree li.open ul {
+	display:block;
+	clear:both;
+}
+.tree li.closed ul {
+	display:none !important;
+}
+
+
+/* FOR DRAGGING */
+.tree #dragged {
+	padding:0 3px;
+	margin:0;
+	background:white;
+	opacity: .85;
+	filter: alpha(opacity=85);
+
+	position:absolute;
+	top:-10px;
+	left:-10px;
+}
+.tree #dragged.last,
+.tree #dragged:last-child {
+	background:white;
+}
+.tree #dragged ul ul {
+	display:none;
+}
+
+/* HACKY-HACKY */
+/* EXPLORER 7 */
+*:first-child+html .tree li {
+	margin-bottom:-2px;
+} 
+*:first-child+html .tree li ul {
+	padding-bottom:2px;
+}
+/* EXPLORER 6 */
+.tree li {
+	_width:50%;
+	_margin-bottom:-2px;
+}
+.tree li ul {
+	_padding-bottom:2px;
+}
+
+/* 
+ * FF & OPERA FIXES
+.tree li:not([class="xxx"]) {
+	margin-bottom:0px;
+}
+html:first-child .tree li {
+	margin-bottom:0px;
+}
+.tree li ul:not([class="xxx"]) {
+	padding-bottom:0;
+}
+html:first-child .tree ul {
+	padding-bottom:0;
+}
+*/
+
+
+/* RTL modification */
+.rtl * {
+	direction:rtl;
+}
+.rtl ul {
+	margin:0 5px 0 0;
+}
+.rtl li {
+	padding:0 15px 0 0;
+}
+.rtl li.last {
+	background-position:right top;
+}
+.rtl li a,
+.rtl li span {
+	float:right;
+	padding:1px 23px 1px 4px !important;
+	background-position:right 1px; 
+	margin-right:1px;
+}
+.rtl li a:hover, 
+.rtl li a.hover {
+	background-color: #e7f4f9;
+	border:1px solid #d8f0fa;
+	padding:0px 23px 0px 3px !important;
+	background-position:right 0px; 
+	margin-right:0px;
+}
+.rtl li a.clicked,
+.rtl li a.clicked:hover,
+.rtl li span.clicked {
+	background-color: #beebff;
+	border:1px solid #99defd;
+	padding:0px 23px 0px 3px !important;
+	background-position:right 0px; 
+	margin-right:0px;
+}
+.rtl li span.clicked {
+	padding:0px 21px 0px 3px !important;
+}
+
+.rtl ul {
+	background-position:right 1px;
+}
+.rtl li {
+	background-position:right center;
+}
+.rtl #dragged li.open {
+	background-position: right 5px;
+}
+
+/* CONTEXT MENU */
+.tree .context {
+	display:none;
+	position:absolute;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.tree .context .separator {
+	display:none;
+}
+.tree .context a {
+	display:block;
+	margin:0;
+	padding:0;
+}
+
+/* DOTS */
+.tree .tree-default, 
+.tree .tree-default ul {
+	background-image:url("images/tree_component/default/dot.gif");
+}
+.tree .tree-default li {
+	background-image:url("images/tree_component/default/li.gif");
+}
+.tree .tree-default li.last {
+	background-image:url("images/tree_component/default/lastli.gif");
+	background-color:white !important;
+}
+
+/* OPEN or CLOSED */
+.tree .tree-default li.open {
+	background:url("images/tree_component/default/fminus.gif") 3px 6px no-repeat;
+}
+
+.tree .tree-default li.closed {
+	background:url("images/tree_component/default/fplus.gif") 5px 5px no-repeat;
+}
+
+.tree .tree-default #dragged li.open {
+	/* background:url("images/tree_component/default/fplus.gif") 5px 5px no-repeat; */
+}
+
+/* RIGHT TO LEFT SUPPORT */
+.rtl .tree-default li {
+	margin-right:1px;
+}
+.rtl .tree-default li.last {
+	background-image:url("images/tree_component/default/lastli_rtl.gif");
+	margin-right:0;
+	padding-right:16px;
+}
+.rtl .tree-default li.open {
+	/* background:url("images/tree_component/default/fminus_rtl.gif") right 6px no-repeat; */
+	margin-right:0;
+	padding-right:16px;
+}
+.rtl .tree-default li.closed {
+  /*	background:url("images/tree_component/default/fplus_rtl.gif") right 4px no-repeat; */
+	margin-right:0;
+	padding-right:16px;
+}
+.rtl .tree-default #dragged li.open {
+	background-position: right 5px;
+}
+
+/* DEFAULT ICON */
+.tree .tree-default li a, 
+.tree .tree-default li span {
+	background-image:url("images/tree_component/default/f.png");
+}
+
+.tree .tree-default li a.loading {
+	background-image:url("images/tree_component/default/throbber.gif");
+}
+
+/* CONTEXT MENU */
+.tree .tree-default .context {
+	width:160px;
+	background:#F0F0F0 url("images/tree_component/default/context.gif") 22px 0 repeat-y;
+	border:1px solid silver;
+}
+
+.tree .tree-default .context a,
+.tree .tree-default .context a.disabled:hover {
+	text-decoration:none;
+	color:black;
+	text-indent:26px;
+	line-height:20px;
+	background-repeat: no-repeat;
+	background-position: 3px center;
+	padding:1px 0;
+	background-color:transparent;
+	border:0;
+}
+.tree .tree-default .context a:hover {
+	background-color: #e7f4f9;
+	border:1px solid #d8f0fa;
+	background-position: 2px center;
+	padding:0;
+	text-indent:25px;
+}
+.tree .tree-default .context a.disabled,
+.tree .tree-default .context a.disabled:hover {
+	color:silver;
+}
+
+.tree .tree-default .context .separator {
+	background:#FFFFFF;;
+	border-top:1px solid #E0E0E0;
+	font-size:1px;
+	height:1px;
+	line-height:1px;
+	margin:0 2px 0 24px;
+	min-height:1px;
+	display:block;
+}
+
+#marker {
+  z-index: 1100 !important;
+}

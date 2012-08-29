@@ -1,0 +1,3 @@
+.completed_tasks_table * {
+  text-decoration: line-through;
+}

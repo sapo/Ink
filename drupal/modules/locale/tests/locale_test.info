@@ -1,0 +1,12 @@
+name = "Locale Test"
+description = "Support module for the locale layer tests."
+core = 7.x
+package = Testing
+version = VERSION
+hidden = TRUE
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.15"
+project = "drupal"
+datestamp = "1343839327"
+

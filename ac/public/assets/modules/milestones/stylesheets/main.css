@@ -1,0 +1,78 @@
+#milestones td {
+  padding: 5px;
+}
+
+#milestones td a {
+  color: #950000;
+}
+
+#milestones td.star, #milestones td.priority {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+#milestones td.star {
+  width: 16px;
+}
+
+#milestones td.priority {
+  width: 14px;
+}
+
+#milestones td.date {
+  width: 180px;
+  text-align: center;
+}
+
+#milestones td.date, #milestones td.due {
+  font-size: 11px;
+}
+
+#milestones td.due {
+  width: 100px;
+  text-align: right;
+}
+
+#milestones tr.late td.due {
+  color: red;
+}
+
+#milestones tr.upcoming td.due {
+  color: green;
+}
+
+/*******************************************************************************
+  Milestones ical
+*******************************************************************************/
+
+p.milestones_ical {
+  margin-top: 16px;
+  text-align: center;
+}
+
+p.milestones_ical a {
+  padding: 3px 0 3px 20px;
+  background: url('images/ical.gif') no-repeat center left;
+}
+
+/*******************************************************************************
+  Successive milestones
+*******************************************************************************/
+
+div.with_successive_milestones div.successive_milestones {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.quick_add_milestone .quick_add_columns_container .quick_add_left_column {
+  width: 60%;
+}
+
+.quick_add_milestone .quick_add_columns_container .quick_add_right_column {
+  width: 38%;
+}
+
+.quick_add_milestone .quick_add_columns_container .quick_add_left_column .col {
+  width: 50%;
+  margin: 0px;
+}

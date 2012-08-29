@@ -1,0 +1,30 @@
+.existing_backups {
+  border: 1px solid #eee;
+  padding: 5px 10px;
+  font-size: 11px;
+  margin-top: 10px;
+  background: #f8f8f8;
+}
+
+.existing_backups ul {
+  list-style: disc !important;
+  margin: 0px 0px 10px !important;
+  padding: 0px 0px !important;
+}
+
+.existing_backups ul li {
+  display: inline !important;
+  margin-right: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.existing_backups .backup_valid {
+  font-weight: bold;
+  color: green;
+}
+
+
+.existing_backups .backup_corrupted {
+  font-weight: bold;
+  color: red;
+}

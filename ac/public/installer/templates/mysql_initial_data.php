@@ -1,0 +1,92 @@
+INSERT INTO `<?php echo $table_prefix ?>project_groups` (`id`, `name`) VALUES ('1', 'Default');
+INSERT INTO `<?php echo $table_prefix ?>languages` (`id`, `name`, `locale`) VALUES (1, 'English', 'en_US.UTF-8');
+
+INSERT INTO `<?php echo $table_prefix ?>assignment_filters` (`id`, `name`, `group_name`, `is_private`, `user_filter`, `user_filter_data`, `project_filter`, `project_filter_data`, `date_filter`, `date_from`, `date_to`, `objects_per_page`, `order_by`, `created_by_id`) VALUES 
+  (1, 'All', 'Mine', 0, 'logged_user', 'N;', 'active', 'N;', 'all', NULL, NULL, 30, 'priority DESC', 0),
+  (2, 'Today', 'Mine', 0, 'logged_user', 'N;', 'active', 'N;', 'today', NULL, NULL, 30, 'priority DESC', 0),
+  (3, 'Late', 'Mine', 0, 'logged_user', 'N;', 'active', 'N;', 'late', NULL, NULL, 30, 'due_on ASC', 0);
+
+INSERT INTO `<?php echo $table_prefix ?>time_reports` (`id`, `name`, `group_name`, `is_default`, `user_filter`, `user_filter_data`, `billable_filter`, `date_filter`, `date_from`, `date_to`, `sum_by_user`) VALUES 
+  (1, 'Last week', 'General', 1, 'anybody', 'N;', 'all', 'last_week', NULL, NULL, 0),
+  (2, 'Last week, summarized', 'General', 0, 'anybody', 'N;', 'all', 'last_week', NULL, NULL, 1),
+  (3, 'Last month', 'General', 0, 'anybody', 'N;', 'all', 'last_month', NULL, NULL, 0),
+  (4, 'Last month, summarized', 'General', 0, 'anybody', 'N;', 'all', 'last_month', NULL, NULL, 1);
+
+INSERT INTO `<?php echo $table_prefix ?>modules` (`name`, `is_system`, `position`) VALUES ('system', '1', '1'),
+  ('resources', '1', '2'),
+  ('discussions', '0', '3'),
+  ('milestones', '1', '4'),
+  ('files', '0', '5'),
+  ('calendar', '0', '6'),
+  ('pages', '0', '7'),
+  ('tickets', '0', '8'),
+  ('timetracking', '0', '9'),
+  ('mobile_access', '0', '10');
+
+INSERT INTO `<?php echo $table_prefix ?>config_options` (`name`, `module`, `type`, `value`) VALUES ('default_role', 'system', 'system', 'i:4;'),
+  ('project_templates_group', 'system', 'system', 'i:0;'),
+  ('projects_use_client_icons', 'system', 'system', 'b:0;'),
+  ('show_welcome_message', 'system', 'system', 'b:1;'),
+  ('maintenance_enabled', 'system', 'system', 'b:0;'),
+  ('maintenance_message', 'system', 'system', 'N;'),
+  ('on_logout_url', 'system', 'system', 's:0:\"\";'),
+  ('mailing', 'system', 'system', 's:6:\"native\";'),
+  ('mailing_smtp_authenticate', 'system', 'system', 'b:0;'),
+  ('mailing_smtp_host', 'system', 'system', 's:0:\"\";'),
+  ('mailing_smtp_username', 'system', 'system', 's:0:\"\";'),
+  ('mailing_smtp_password', 'system', 'system', 's:0:\"\";'),
+  ('mailing_smtp_port', 'system', 'system', 'i:25;'),
+  ('mailing_smtp_security', 'system', 'system', 'i:25;'),
+  ('mailing_native_options', 'system', 'system', 's:9:\"-oi -f %s\";'),
+  ('mailing_mark_as_bulk', 'system', 'system', 'b:1;'),
+  ('mailing_empty_return_path', 'system', 'system', 'b:0;'),
+  ('im_type', 'system', 'user', 's:0:\"\";'),
+  ('im_value', 'system', 'user', 's:0:\"\";'),
+  ('notifications_from_name', 'system', 'system', 's:0:\"\";'),
+  ('notifications_from_email', 'system', 'system', 's:0:\"\";'),
+  ('last_frequently_activity', 'system', 'system', 'N;'),
+  ('last_hourly_activity', 'system', 'system', 'N;'),
+  ('last_daily_activity', 'system', 'system', 'N;'),
+  ('office_address', 'system', 'company', 's:0:\"\";'),
+  ('office_fax', 'system', 'company', 's:0:\"\";'),
+  ('office_homepage', 'system', 'company', 's:0:\"\";'),
+  ('office_phone', 'system', 'company', 's:0:\"\";'),
+  ('title', 'system', 'user', 'b:0;'),
+  ('phone_mobile', 'system', 'user', 's:0:\"\";'),
+  ('phone_work', 'system', 'user', 's:0:\"\";'),
+  ('default_assignments_filter', 'system', 'user', 'i:1;'),
+  ('visual_editor', 'system', 'user', 'b:1;'),
+  ('theme', 'system', 'user', 's:7:\"default\";'),
+  ('language', 'system', 'user', 'i:1;'),
+  ('welcome_message', 'system', 'user', 'N;'),
+  ('time_dst', 'system', 'user', 'b:0;'),
+  ('time_first_week_day', 'system', 'user', 'i:0;'),
+  ('time_timezone', 'system', 'user', 'i:0;'),
+  ('format_date', 'system', 'user', 's:9:\"%b %e. %Y\";'),
+  ('format_time', 'system', 'user', 's:8:\"%I:%M %p\";'),
+  ('discussion_categories', 'discussions', 'system', 'a:1:{i:0;s:7:\"General\";}'),
+  ('file_categories', 'files', 'system', 'a:1:{i:0;s:7:\"General\";}'),
+  ('pages_categories', 'pages', 'system', 'a:1:{i:0;s:7:\"General\";}'),
+  ('ticket_categories', 'tickets', 'system', 'a:1:{i:0;s:7:\"General\";}');
+
+INSERT INTO `<?php echo $table_prefix ?>roles` (`id`, `name`, `type`, `permissions`) VALUES ('1', 'Administrator', 'system', 'a:11:{s:13:\"system_access\";b:1;s:17:\"people_management\";b:1;s:18:\"project_management\";b:1;s:12:\"admin_access\";b:1;s:11:\"add_project\";b:1;s:22:\"manage_company_details\";b:1;s:23:\"can_see_private_objects\";b:1;s:12:\"manage_trash\";b:1;s:16:\"use_time_reports\";b:1;s:19:\"manage_time_reports\";b:1;s:25:\"manage_assignment_filters\";b:1;}'),
+  ('2', 'Project Manager', 'system', 'a:11:{s:13:\"system_access\";b:1;s:17:\"people_management\";b:0;s:18:\"project_management\";b:1;s:12:\"admin_access\";b:0;s:11:\"add_project\";b:1;s:22:\"manage_company_details\";b:0;s:23:\"can_see_private_objects\";b:1;s:12:\"manage_trash\";b:1;s:16:\"use_time_reports\";b:1;s:19:\"manage_time_reports\";b:1;s:25:\"manage_assignment_filters\";b:1;}'),
+  ('3', 'Member', 'system', 'a:11:{s:13:\"system_access\";b:1;s:17:\"people_management\";b:0;s:18:\"project_management\";b:0;s:12:\"admin_access\";b:0;s:11:\"add_project\";b:1;s:22:\"manage_company_details\";b:0;s:23:\"can_see_private_objects\";b:1;s:12:\"manage_trash\";b:1;s:16:\"use_time_reports\";b:0;s:19:\"manage_time_reports\";b:0;s:25:\"manage_assignment_filters\";b:1;}'),
+  ('4', 'Client Company Member', 'system', 'a:11:{s:13:\"system_access\";b:1;s:17:\"people_management\";b:0;s:18:\"project_management\";b:0;s:12:\"admin_access\";b:0;s:11:\"add_project\";b:0;s:22:\"manage_company_details\";b:0;s:23:\"can_see_private_objects\";b:0;s:12:\"manage_trash\";b:0;s:16:\"use_time_reports\";b:0;s:19:\"manage_time_reports\";b:0;s:25:\"manage_assignment_filters\";b:0;}'),
+  ('5', 'Client Company Manager', 'system', 'a:11:{s:13:\"system_access\";b:1;s:17:\"people_management\";b:0;s:18:\"project_management\";b:0;s:12:\"admin_access\";b:0;s:11:\"add_project\";b:0;s:22:\"manage_company_details\";b:1;s:12:\"manage_trash\";b:0;s:23:\"can_see_private_objects\";b:0;s:16:\"use_time_reports\";b:0;s:19:\"manage_time_reports\";b:0;s:25:\"manage_assignment_filters\";b:0;}');
+
+INSERT INTO `<?php echo $table_prefix ?>email_templates` (`name`, `module`, `subject`, `body`, `variables`) VALUES ('forgot_password', 'system', 'Reset your password', '<p>Hi,</p>\n<p>Visit <a href=\":reset_url\">this page</a> to reset your password. This page will be valid for 2 days!</p>\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nreset_url'),
+  ('new_user', 'system', 'Your account has been created', '<p>Hi,</p>\n\n<p><a href=\":created_by_url\">:created_by_name</a> has created a new account for you. You can <a href=\":login_url\">log in</a> with these parameters:</p>\n\n<p>Email: \':email\' (without quotes)<br />Password: \':password\' (without quotes)</p>\n\n<hr />\n\n<p>:welcome_body</p>\n\n<hr />\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\ncreated_by_id\ncreated_by_name\ncreated_by_url\nemail\npassword\nlogin_url\nwelcome_body'),
+  ('reminder', 'system', '[:project_name] :reminded_by_name sent you a reminder', '<p>Hi,</p>\n\n<p><a href=\":reminded_by_url\">:reminded_by_name</a> wants you to check out <a href=\":object_url\">:object_name</a> :object_type. Comment:</p>\n\n<hr />\n\n<p>:comment_body</p>\n\n<hr />\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nreminded_by_name\nreminded_by_url\nobject_name\nobject_url\nobject_type\ncomment_body\nproject_name\nproject_url'),
+  ('new_comment', 'resources', '[:project_name] New comment on \':object_name\' :object_type has been posted', '<p>Hi,</p>\n\n<p><a href=\":created_by_url\">:created_by_name</a> has replied to <a href=\":object_url\">:object_name</a> :object_type:</p>\n\n<hr />\n\n:comment_body\n<hr />\n\n<p><a href=\":comment_url\">Click here</a> to see the comment. <a href=\":object_url\">:object_name</a> :object_type details:</p>\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncomment_body\ncomment_url\ncreated_by_url\ncreated_by_name\ndetails_body'),
+  ('task_assigned', 'resources', '[:project_name] New :object_type has been posted', '<p>Hi,</p>\n\n<p><a href=\":created_by_url\">:created_by_name</a> created a new :object_type:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\ndetails_body'),
+  ('task_reassigned', 'resources', '[:project_name] \':object_name\' :object_type reassigned', '<p>Hi,</p>\n\n<p>We have an update that you might be interested in: :object_type <a href=\":object_url\">:object_name</a> has been updated. Changes:\n\n:changes_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\nchanges_body'),
+  ('task_completed', 'resources', '[:project_name] \':object_name\' :object_type has been completed', '<p>Hi,</p>\n\n<p><a href=\":completed_by_url\">:completed_by_name</a> has completed :object_type <a href=\":object_url\">:object_name</a>:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\ncompleted_by_name\ncompleted_by_url\ndetails_body'),
+  ('task_completed_with_comment', 'resources', '[:project_name] \':object_name\' :object_type has been completed', '<p>Hi,</p>\n\n<p><a href=\":completed_by_url\">:completed_by_name</a> has completed :object_type <a href=\":object_url\">:object_name</a> with a comment:</p>\n\n<hr />\n\n:completion_comment_body\n\n<hr />\n\n<p><a href=\":object_url\">:object_name</a> :object_type details:</p>\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\ncompleted_by_name\ncompleted_by_url\ncompletion_comment_body\ndetails_body'),
+  ('task_reopened', 'resources', '[:project_name] \':object_name\' :object_type has been reopened', '<p>Hi,</p>\n\n<p><a href=\":reopened_by_url\">:reopened_by_name</a> has reopened :object_type <a href=\":object_url\">:object_name</a>:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\nreopened_by_name\nreopened_by_url\ndetails_body'),
+  ('new_discussion', 'discussions', '[:project_name] Discussion \':object_name\' has been started', '<p>Hi,</p>\n<p><a href=\":created_by_url\">:created_by_name</a> has started a new discussion:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\nlast_comment_body\ndetails_body'),
+  ('new_file', 'files', '[:project_name] File \':object_name\' has been uploaded', '<p>Hi,</p>\n\n<p><a href=\":created_by_url\">:created_by_name</a> uploaded a new file:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\ndetails_body'),
+  ('new_revision', 'files', '[:project_name] New version of \':object_name\' file is up', '<p>Hi,</p>\n<p><a href=\":created_by_url\">:created_by_name</a> has uploaded a new version of <a href=\":object_url\">:object_name</a> file in <a href=\":project_url\">:project_name</a> project.</p>\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_url\ncreated_by_name'),
+  ('new_page', 'pages', '[:project_name] Page \':object_name\' has been created', '<p>Hi,</p>\n\n<p><a href=\":created_by_url\">:created_by_name</a> has created a new page:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_name\ncreated_by_url\ndetails_body'),
+  ('new_revision', 'pages', '[:project_name] Revision #:revision_num of \':old_name\' page has been posted', '<p>Hi,</p>\n\n<p><a href=\":created_by_url\">:created_by_name</a> has created a new version of <a href=\":old_url\">:old_name</a> page:</p>\n\n:details_body\n\n<p>Best,<br />:owner_company_name</p>', 'owner_company_name\nproject_name\nproject_url\nobject_type\nobject_name\nobject_body\nobject_url\ncreated_by_url\ncreated_by_name\nrevision_num\nold_url\nold_name\nold_body\nnew_url\nnew_name\nnew_body\ndetails_body');
+

@@ -1,0 +1,1 @@
+<p class="notice">Ticket submitted successfully. Thank You!</p>

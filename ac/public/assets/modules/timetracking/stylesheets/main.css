@@ -1,0 +1,474 @@
+/** Both reports and records pages **/
+
+#start_date, #end_date  {
+  width: 80px !important;
+  padding: 1px 2px;
+}
+
+#assignmenst_filter_form table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+/*******************************************************************************
+  New report form
+*******************************************************************************/
+
+#time_report_form table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+#time_report_form table td.report_select_label {
+  width: 100px;
+}
+
+#time_report_form table td.report_select_select {
+  width: 250px;
+}
+
+#time_report_form table td.report_select_additional {
+  padding-left: 32px;
+  background: url('images/arrow-right-small.gif') no-repeat 8px 10px;
+}
+
+#time_report_form table td.report_select_additional table {
+  width: 300px;
+}
+
+#time_report_form table td.report_select_additional table td {
+  padding: 0 10px 0 0;
+  border: 0;
+  width: 150px;
+}
+
+/*******************************************************************************
+  Reports form (old!)
+*******************************************************************************/
+
+#generate_report {
+  margin-bottom: 16px;
+  background-color: #edecec;
+}
+
+#generate_report td {
+  padding: 5px;
+}
+
+#generate_report table td.type {
+  padding-left: 10px;
+  width: 150px;
+}
+
+#generate_report table td.type select {
+  width: 150px;
+}
+
+#generate_report td.start_date, #generate_report td.end_date {
+  width: 110px;
+}
+
+#generate_report td.start_date div,
+#generate_report td.end_date div {
+  display: none;
+}
+
+#generate_report td.date_separator_container {
+  width: 15px;
+}
+
+#generate_report .date_separator {
+  display: none;
+  color: #999;
+}
+
+/*******************************************************************************
+  Time Records
+*******************************************************************************/
+ 
+#new_record {
+  background: #EDECEC; 
+  border: 1px solid #EAEAEA;
+  border-left: 0px;
+  border-right: 0px;
+  margin-top: 1px;
+}
+
+
+#new_record td {
+  padding-top: 6px !important;
+  padding-bottom: 5px !important;
+}
+
+#new_record .ctrlHolder {
+  margin: 0; padding: 0;
+}
+
+#new_record .ctrlHolder.error, #new_record .ctrlHolder.focused {
+  background: transparent;
+}
+
+#new_record .ctrlHolder.error input, #new_record .ctrlHolder.error select {
+  background: #FFDFDF;
+  color: red;
+}
+
+#new_record.error {
+  background-color: #FFDFDF;
+  border-bottom: 1px solid #b2b2b2;
+}
+
+#new_record td {
+  padding: 10px 7px;
+}
+
+#new_record .actions {
+  width: 71px !important;
+  text-align: center !important;
+  height: 37px !important;
+}
+
+#new_record .actions button {
+  margin: 0px !important;
+  float: right;
+}
+
+#timerecords {
+
+}
+
+#timerecords_table {
+  position: relative;
+}
+
+#timerecords_table .fake_row td {
+  margin: 0px;
+  padding: 0px;
+  height: 46px;
+}
+
+#timerecords td {
+  padding: 6px 5px;
+}
+
+#timerecords .date {
+  width: 120px;
+  white-space: nowrap;
+}
+
+#timerecords .user {
+  width: 150px;
+} 
+
+#timerecords .user select {
+  width: 150px;
+}
+
+#timerecords .hours {
+  width: 50px;
+  text-align: right;
+}
+
+#timerecords .hours input {
+  width: 40px;
+}
+
+#timerecords .desc input {
+  width: 97%;
+}
+
+#timerecords .billable {
+  width: 50px;
+  text-align: center;
+}
+
+#timerecords .actions {
+  width: 40px;
+  text-align: right;
+}
+
+#timerecords .checkbox {
+  width: 16px;
+}
+
+#timerecords #records table tr.billed {
+  text-decoration: line-through;
+}
+
+#timerecords #records table tr.billed td, #timerecords #records table tr.billed td a {
+  color: #666 !important;
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+#timerecords #records table td.total {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: right;
+}
+
+#total_time {
+  float: right;
+  width: 350px;
+  text-align: right;
+}
+
+#total_time b{
+  margin-left: 10px;
+}
+
+#export_to_csv {
+  float: right;
+  margin-right: 4px;
+  width: 525px;
+  text-align: right;
+}
+
+#timerecord_list thead th {
+  margin-bottom: 100px !important;
+}
+
+/*******************************************************************************
+  Quick add
+*******************************************************************************/
+
+#quick_add_time_record div.ctrlHolder.right_record_field {
+  clear: none;
+}
+
+#quick_add_time_record div.left_record_field {
+  float: left;
+  width: 200px;
+}
+
+#quick_add_time_record div.left_record_field input {
+  width: 70px;
+}
+
+#quick_add_time_record div.left_record_field input.inline {
+  width: auto;
+}
+
+#quick_add_time_record div.right_record_field {
+  padding-top: 9px;
+  margin-left: 10px;
+}
+
+#add_time {
+  /*margin-bottom: 20px;*/
+}
+
+table.timerecords {
+  font-size: 11px;
+}
+
+table.timerecords td {
+  padding: 3px 5px !important;
+}
+
+table.timerecords tr.no_records td {
+  text-align: center;
+  color: #999;
+  padding: 16px !important;
+  font-size: 14px;
+}
+
+
+table.timerecords tfoot td {
+  padding: 5px 5px !important;
+}
+
+/*******************************************************************************
+  Time popup
+*******************************************************************************/
+
+span.time_popup_widget.with_text a {
+  position: relative;
+  top: 3px;
+}
+
+div.object_time_popup p.object_time_add_link {
+  margin-top: 12px;
+  margin-left: 4px;
+}
+
+div.object_time_popup p.object_time_add_link a {
+  padding: 3px 0 3px 20px;
+  background: url('images/plus-small.gif') no-repeat center left;
+}
+
+div.object_time_popup div.object_time_popup_details {
+  overflow: hidden;
+  zoom: 1;
+  padding: 10px;
+  border: 1px dotted #ccc;
+}
+
+div.object_time_popup div.object_time_popup_details img {
+  float: left;
+}
+
+div.object_time_popup div.object_time_popup_details dl {
+  width: 350px;
+  overflow: hidden;
+  float: right;
+}
+
+div.object_time_popup .total_time {
+  border-top: 1px dotted #ccc;
+  font-weight: bold;
+}
+
+div.object_time_popup div.object_time_add {
+  padding: 0 10px;
+}
+
+div.object_time_popup .col {
+  width: 48%;
+}
+
+div.object_time_popup .time_popup_date_wrapper, div.object_time_popup .time_popup_user_wrapper, div.object_time_popup .time_popup_hours_wrapper {
+  float: left;
+  margin-right: 10px;
+}
+
+div.object_time_popup .time_popup_date_wrapper {
+  width: 130px;
+}
+
+div.object_time_popup .time_popup_user_wrapper {
+  width: 155px;
+}
+
+div.object_time_popup .time_popup_hours_wrapper {
+  width: 60px;
+}
+
+div.object_time_popup .time_popup_user_wrapper select {
+  width: 150px;
+}
+
+div.object_time_popup .time_popup_summary_wrapper input {
+  width: 355px;
+}
+
+/*******************************************************************************
+  Time Reports
+*******************************************************************************/
+
+#global_time table.report {
+  background: #f9f9f9;
+  border: 1px solid #EAEAEA;
+  margin-top: 1px;
+  width: 896px;
+  margin-left: 1px;
+  margin-bottom: 10px;
+}
+
+#global_time table.report td {
+  padding: 5px 10px;
+}
+
+#global_time table.report td select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 240px;
+}
+
+#global_time #time_report_options {
+  text-align: right;
+  width: 200px;
+}
+
+#global_time #time_report_options span.tooltip {
+  padding-right: 10px;
+	color: #999;
+	font-size: 11px;
+	margin-top: 1px;
+	position: relative;
+	top: -4px;
+}
+
+#global_time #time_report_details {
+  margin: 5px;
+  padding: 2px 10px;
+  background: #f8f8f8;
+  border: 1px dotted #e8e8e8;
+  font-size: 11px;
+}
+
+/*******************************************************************************
+  Time Reports
+*******************************************************************************/
+
+#time_report_records tr.billed {
+  text-decoration: line-trough;
+}
+
+#time_report_records td {
+  padding: 5px;
+}
+
+#time_report_records th.date, #time_report_records td.date {
+  width: 100px;
+}
+
+#time_report_records th.user, #time_report_records td.user {
+  width: 150px;
+}
+
+#time_report_records th.hours, #time_report_records td.hours {
+  text-align: right;
+  width: 50px;
+}
+
+#time_report_records th.billed, #time_report_records td.billed {
+  text-align: center;
+  width: 50px;
+}
+
+#time_report_records th.project, #time_report_records td.project {
+  text-align: right;
+  width: 120px;
+}
+
+#time_report_records td.total {
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#time_report_summarized_by_user {
+  width: 400px;
+}
+
+#time_report_summarized_by_user td {
+  padding: 5px;
+}
+
+#time_report_summarized_by_user th.hours, #time_report_summarized_by_user td.hours {
+  text-align: right;
+}
+
+#time_report_summarized_by_user td.total {
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/*******************************************************************************
+  Time Report Export
+*******************************************************************************/
+
+#time_report_footer_options {
+  margin: 16px;
+  text-align: center;
+}
+
+#time_report_footer_options a {
+  margin: 0 5px;
+  padding: 3px 0 3px 20px;
+  background: url('images/csv.gif') no-repeat center left;
+}
