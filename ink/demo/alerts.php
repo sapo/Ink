@@ -2,7 +2,7 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <div class="blackMenu" id="topMenu">
 	<h1><a href="intro.php" title="Site Title">InK <small>Interface kit</small></a></h1>
-	<a href="#" onclick="toogleNav()" id="toggleNavigation">Menu</a>
+	<a href="#" id="toggleNavigation">Menu</a>
 	<nav>
 	<ul class="h_navigation">
 		<li><a href="intro.php">Intro</a></li>

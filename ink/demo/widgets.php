@@ -187,4 +187,4 @@
 	cssURI: '/Assets/Images/DatePicker/style.css'
 	});
 </script>
-<?php include 'shared/footer.php'; ?>	
+<?php include 'shared/footer.php'; ?>

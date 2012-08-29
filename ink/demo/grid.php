@@ -151,7 +151,7 @@
 				<div class="v_space"><p>.v_space</p></div>
 			</div>
 			<div class="h_space">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div><pre  class="prettyprint">//Define a Largura
 &lt;div class=&quot;g33&quot;&gt; 
   //Define as Margins ou Paddings
@@ -164,7 +164,7 @@
 				<div class="h_space" id="ola3" alt="bla vla vla"><p>.h_space</p></div>
 			</div>
 			<div class="h_space">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div><pre  class="prettyprint">//Define a Largura
 &lt;div class=&quot;g33&quot;&gt; 
   //Define as Margins ou Paddings
@@ -177,7 +177,7 @@
 				<div class="space"><p>.space</p></div>
 			</div>
 			<div class="h_space">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div><pre  class="prettyprint">//Define a Largura
 &lt;div class=&quot;g33&quot;&gt; 
   //Define as Margins ou Paddings

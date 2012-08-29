@@ -1,14 +1,23 @@
+
+Don't forget:
+
+Templates para páginas e layouts tipo
+	* boilerplate
+	* artigo
+	* resultados de pesquisa
+
 = Ink website structure =
 
 A. Homepage
 	* Intro text
 	* Screencast
 	* Example websites (thumbnail carrousel)
-
+	* Download link
 
 B. Layout
-	* Containers
-	* Main division units
+	* Container units
+	* Division units
+	* Spacing units
 
 C. Navigation
 	* Horizontal menus

@@ -122,6 +122,9 @@
   line-height: 2em;
   vertical-align: middle;
   display: block;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
 }
 .sapo_cal_month .sapo_cal_header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -141,11 +144,11 @@
   width: 100%;
 }
 .sapo_cal_top:after,
-.sapo_cal_top_options:after,
 .sapo_cal_middle:after,
+.sapo_cal_top_options:after,
 .sapo_component_datepicker:after,
-.sapo_cal_month .sapo_cal_middle ul:after,
-.sapo_cal_month .sapo_cal_header:after {
+.sapo_cal_month .sapo_cal_header:after,
+.sapo_cal_month .sapo_cal_middle ul:after {
   content: ".";
   display: block;
   height: 0;
@@ -156,7 +159,7 @@
 .sapo_cal_on,
 .sapo_cal_on:hover {
   background-color: #00c1f9;
-  color: #000000;
+  color: #000;
 }
 .sapo_cal_year_selector,
 .sapo_cal_month_selector {
