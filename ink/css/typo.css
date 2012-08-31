@@ -3,19 +3,18 @@
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
 /* Offset Variables */
-/* Color Variables */
-/* Estes valores têm que ser em rbga */
+/* color Variables */
+/* Estes valores têm que ser em rbackgrounda */
 /* Botões*/
 /*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
-/*@borderRadius*/
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
 body {
   color: #555555;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
 }
 a:link {
   color: #0069d6;

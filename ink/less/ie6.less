@@ -37,20 +37,20 @@
 .defaultBtn, .btn_success, .btn_info, .btn_delete {
 	font-size: 1em;
 	font-weight: bold;
-	padding: @btnPadding;
+	padding: @button-padding;
 	float:none;
 	border: 1px solid #ccc;
 	cursor:pointer;
-	.createBtn(@btnBg);
-	.round-corners(@borderRadius);
-	color: @btnColor;
+	.createBtn(@button-background);
+	.round-corners(@border-radius);
+	color: @button-color;
 	text-shadow:0 1px 0 rgba(255,255,255,1);
 	margin:5px;
 	text-decoration: none;
 }
 
-input.btn_success, .btn_success{.createBtn(@successBtnBg);}			            
-input.btn_info, .btn_info{.createBtn(@InfoBtnBg);}						
-input.btn_delete, .btn_delete{.createBtn(@DeleteBtnBg);}
+input.btn_success, .btn_success{.createBtn(@button-background-success);}			            
+input.btn_info, .btn_info{.createBtn(@button-background-info);}						
+input.btn_delete, .btn_delete{.createBtn(@button-background-delete);}
 
 #topMenu h1 a{text-decoration: none!important;}

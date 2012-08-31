@@ -43,8 +43,8 @@
 	<script type="text/javascript">
 // 		window.onscroll = function (e) {
 // 			var Mobj = document.getElementById('topMenu');  	
-// 			if (window.pageYOffset > 620) {	Mobj.className += "topbar fixed";}
-// 			else {Mobj.className = "topbar";}
+// 			if (window.pageYOffset > 620) {	Mobj.className += "top-bar fixed";}
+// 			else {Mobj.className = "top-bar";}
 // 		}
 // 		
 // 		function toogleNav() {

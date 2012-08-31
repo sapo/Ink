@@ -1,86 +1,90 @@
 /*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
-@basicMargin: 10px;
-@basicPadding: 15px;
-@siteWidth: auto;
-@sitePadding:15px;
-@siteMargin: @sitePadding;
-@maxWidth: 1260px;
-@minWidth: 500px;
-@borderRadius:4px;
+
+@basic-margin: 10px;
+@basic-padding: 15px;
+@site-width: auto;
+@site-padding:64px;
+@site-margin: @site-padding;
+@max-width: 1260px;
+@min-width: 500px;
+@border-radius: 4px;
+@grid-gutter: 32px;
 
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
-@base-Color:#555;
-@base-Font-Size:13px;
-@base-Font-Family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-@link-Color:#0069D6;
-@link-visited-Color: #808080;
-@link-active-Color:red;
-@link-hover-Color:#007ED5 ;
-@link-focus-Color:@link-hover-Color;
+@text-color: #555555;
+@font-size:13px;
+@font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+@link-color:#0069D6;
+@link-visited-color: #808080;
+@link-active-color: red;
+@link-hover-color: #007ED5 ;
+@link-focus-color:@link-hover-color;
 
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
-@elementsWidth:300px;
-@labelWidth: 120px;
-@smallElementsWidth:100px;
-@miniElementsWidth:55px;
-@fontSize: 12px;
+@elements-width: 300px;
+@label-width: 120px;
+@small-elements-width: 100px;
+@mini-elements-width: 55px;
+@font-size: 12px;
 /* Offset Variables */
-@wraperPadding:10px 0;
-@elementsPadding:6px;
-@elementsMargin:0 5px;
-@labelMargin:7px 5px;
-/* Color Variables */
-@baseColor: inherit;
+@wrapper-padding: 10px 0;
+@elements-padding: 6px;
+@elements-margin: 0 5px;
+@label-margin: 7px 5px;
+/* color Variables */
+@base-color: inherit;
 @border-color: #e5e5e5;
-@focusColor: rgba(150, 216, 71, 0.6); /* Estes valores têm que ser em rbga */
-@focusBlurSize: 10px;
-@disabledColor:#eee;
-@errorColor:rgba(200, 10, 16, 0.5);
-@warningColor:rgba(255, 156, 0, 0.6);
-@gradientStartColor:#f1f1f1;
-@gradientEndColor:#fff;  
-@gradientStop:50%;
+@focus-color: rgba(150, 216, 71, 0.6); /* Estes valores têm que ser em rbackgrounda */
+@focus-blur-size: 10px;
+@disabled-color: #eee;
+@error-color: rgba(200, 10, 16, 0.5);
+@warning-color: rgba(255, 156, 0, 0.6);
+@gradient-start-color :#f1f1f1;
+@gradient-end-color: #fff;  
+@gradient-stop: 50%;
+
 /* Botões*/
-@btnPadding:.6em 1.8em;
-@btnColor: rgba(0,0,0,0.8); 
-@btnBg: #eee;
-@successBtnBg: #9dce62;
-@InfoBtnBg: #479cd8;
-@DeleteBtnBg: #eb6363;
-@basicBoxShadow: "inset 0 1px 5px #e5e5e5";
+@button-padding: .6em 1.8em;
+@button-color: rgba(0,0,0,0.8); 
+@button-background: #eee;
+@button-background-success: #9dce62;
+@button-background-info: #479cd8;
+@button-background-delete: #eb6363;
+@basic-box-shadow: "inset 0 1px 5px #e5e5e5";
 
 
 /*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
 
-@tobBar-Bg-Color:#333;
-@tobBar-Menu-Color: #fff;
-@topBar-Margin:auto;
-@topbar-Height:42px;
+@top-bar-background-color:#333;
+@top-bar-menu-color: #fff;
+@top-bar-margin:auto;
+@top-bar-height:42px;
 
-@menu-Bg-Color:#eee;
-@menu-Color:#333;
-@menu-RoundCorners: 4px;
-@menu-Active-Bg-Color:#97d847;
-@menu-Hover-Bg-Color: rgba(0,0,0, .1);
-@menu-Items-RoundCorners: @menu-RoundCorners;
+@menu-background-color:#eee;
+@menu-color:#333;
+@menu-corner-radius: 4px;
+@menu-active-background-color:#97d847;
+@menu-hover-background-color: rgba(0,0,0, .1);
+@menu-items-corner-radius: @menu-corner-radius;
 
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 
-@pagination-Bg-Color: @menu-Bg-Color;
-@pagination-Selected-Bg-Color: @menu-Active-Bg-Color;
-@pagination-Corners: 2px; /*@borderRadius*/
-@pagination-Color:@base-Color;
+@pagination-background-color: @menu-background-color;
+@pagination-selected-background-color: @menu-active-background-color;
+@pagination-corner-radius: 2px; 
+@pagination-color: @base-color;
 
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 
-@tabs-border-radius:@borderRadius;
+@tabs-border-radius:@border-radius;
 
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 
-@alertMsg-border-radius:@borderRadius;
-@alertMsg-Warning-Bg: #ff9c00;
-@alertMsg-Error-Bg:#cd0000;
-@alertMsg-success-Bg:#85BD11;
-@alertMsg-Info-Bg:#0f8bda;
+@message-border-radius:@border-radius;
+@message-warning-background: #ff9c00;
+@message-error-background: #cd0000;
+@message-success-background: #85BD11;
+@message-info-background: #0f8bda;

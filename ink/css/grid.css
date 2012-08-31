@@ -3,12 +3,11 @@
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
 /* Offset Variables */
-/* Color Variables */
-/* Estes valores têm que ser em rbga */
+/* color Variables */
+/* Estes valores têm que ser em rbackgrounda */
 /* Botões*/
 /*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
-/*@borderRadius*/
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 caption,
@@ -38,7 +37,7 @@ h6 {
 .container_width {
   margin: auto;
   width: auto;
-  padding: 0 15px;
+  padding: 0 64px;
 }
 .g100 {
   width: 100%;
@@ -115,16 +114,27 @@ h6 {
   clear: both;
 }
 .space {
-  margin: 10px;
-  padding: 15px;
+  margin: 32px;
 }
 .v_space {
-  margin: 10px 0;
-  padding: 15px 0;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 .h_space {
-  margin: 0 10px;
-  padding: 0 15px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.t_space {
+  margin-top: 16px;
+}
+.r_space {
+  margin-right: 16px;
+}
+.b_space {
+  margin-bottom: 16px;
+}
+.l_space {
+  margin-left: 16px;
 }
 .clear,
 .g100,

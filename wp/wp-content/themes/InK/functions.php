@@ -1,75 +1,38 @@
 <?php
-/**
- * @package WordPress
- * @subpackage InK
- */
 
-// Custom HTML5 Comment Markup
-function mytheme_comment($comment, $args, $depth) {
-   $GLOBALS['comment'] = $comment; ?>
-   <li>
-     <article <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-       <header class="comment-author vcard">
-          <?php echo get_avatar($comment,$size='48',$default='<path_to_url>' ); ?>
-          <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-          <time><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf(__('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a></time>
-          <?php edit_comment_link(__('(Edit)'),'  ','') ?>
-       </header>
-       <?php if ($comment->comment_approved == '0') : ?>
-          <em><?php _e('Your comment is awaiting moderation.') ?></em>
-          <br />
-       <?php endif; ?>
+add_action( 'after_setup_theme', 'ink_setup' );
 
-       <?php comment_text() ?>
+if ( ! function_exists('ink_setup_styles')):
 
-       <nav>
-         <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-       </nav>
-     </article>
-    <!-- </li> is added by wordpress automatically -->
-<?php
-}
+	function ink_setup_styles()
+	{
+		wp_register_style('ink_styles', get_template_directory_uri() . '/style.css', $ver = 1, $media = 'all');
+		wp_enqueue_style('ink_styles');
+	}
 
-automatic_feed_links();
-
-// Widgetized Sidebar HTML5 Markup
-if ( function_exists('register_sidebar') ) {
-	register_sidebar(array(
-		'before_widget' => '<section>',
-		'after_widget' => '</section>',
-		'before_title' => '<h2 class="widgettitle">',
-		'after_title' => '</h2>',
-	));
-}
+endif;
 
 
-// Widgetized Sidebar HTML5 Markup
-if ( function_exists('register_sidebar') ) {
-  register_nav_menu('primary','InK');
-}
+if ( ! function_exists('ink_setup_menus')):
 
-// Custom Functions for CSS/Javascript Versioning
-$GLOBALS["TEMPLATE_URL"] = get_bloginfo('template_url')."/";
-$GLOBALS["TEMPLATE_RELATIVE_URL"] = wp_make_link_relative($GLOBALS["TEMPLATE_URL"]);
+	function ink_setup_menus()
+	{
+		register_nav_menu('primary', 'InK');
+	}
 
-// Add ?v=[last modified time] to style sheets
-function versioned_stylesheet($relative_url, $add_attributes=""){
-  echo '<link rel="stylesheet" href="'.versioned_resource($relative_url).'" '.$add_attributes.'>'."\n";
-}
+endif;
 
-// Add ?v=[last modified time] to javascripts
-function versioned_javascript($relative_url, $add_attributes=""){
-  echo '<script src="'.versioned_resource($relative_url).'" '.$add_attributes.'></script>'."\n";
-}
+if(!function_exists('ink_setup')):
 
-// Add ?v=[last modified time] to a file url
-function versioned_resource($relative_url){
-  $file = $_SERVER["DOCUMENT_ROOT"].$relative_url;
-  $file_version = "";
+	function ink_setup()
+	{
+		// handle the theme stylesheets
+		ink_setup_styles();
 
-  if(file_exists($file)) {
-    $file_version = "?v=".filemtime($file);
-  }
+		// handle the theme menu
+		ink_setup_menus();
+	}
 
-  return $relative_url.$file_version;
-}
+endif;
+
+?>

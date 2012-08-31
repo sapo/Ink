@@ -2,15 +2,15 @@
 @import "lib";
 
 body {
-	color: @base-Color;
-	font-family: @base-Font-Family;
-	font-size: @base-Font-Size;
+	color: @text-color;
+	font-family: @font-family;
+	font-size: @font-size;
 } 
 
-a:link {color: @link-Color; text-decoration: none;}
-a:visited {color: @link-visited-Color;}
-a:active {color:@link-active-Color;}
-a:hover { color:@link-hover-Color; text-decoration: underline;}
+a:link {color: @link-color; text-decoration: none;}
+a:visited {color: @link-visited-color;}
+a:active {color:@link-active-color;}
+a:hover { color:@link-hover-color; text-decoration: underline;}
 a:focus {outline:none;}
 
 /* Headings  */
@@ -28,7 +28,7 @@ h3, h4, h5, h6 {
 
 h1 small {font-size: .6em; color: #BFBFBF; font-weight: 100;}
 
-small {color: lighten(@base-Color, 30%); font-size: .6em;}
+small {color: lighten(@text-color, 30%); font-size: .6em;}
 
 /* Paragraphs  */
 p {line-height: 1.5em; margin-bottom: .5em;}
@@ -42,11 +42,11 @@ h1 small, h2 small, h3 small, h4 small {
 	line-height: 1;
 }
 address {
-	color: lighten(@base-Color, 20%);
+	color: lighten(@text-color, 20%);
 	font-size: 1em;
 	line-height: 1.4em;
 }
-address h6 {color: @base-Color;}
+address h6 {color: @text-color;}
 dl {}
 dl dd {
 	margin:.5em 0;
@@ -59,7 +59,7 @@ blockquote small::before , blockquote small::after{
 content: ' — ';
 }
 ul, ol, dl{margin:0px; padding-left: 1.4em;}
-ul li, ol li,  dl dd {margin:.5em 0; color: lighten(@base-Color, 10%);} 
+ul li, ol li,  dl dd {margin:.5em 0; color: lighten(@text-color, 10%);} 
 ul.unstyled {list-style:none; padding-left: 0em;}
 ul.unstyled ul {list-style:disc outside;  padding-left: 1.4em;}
 ol li {list-style: decimal outside;}
@@ -67,8 +67,8 @@ dl {padding: 0em;}
 dl dt {font-weight: bold; margin-top: .7em;}  
 dl dd {padding-left: 1em;} 
 
-.note {font-size: .9em; color: lighten(@base-Color, 20%) }
-.note strong {color: @base-Color;}
+.note {font-size: .9em; color: lighten(@text-color, 20%) }
+.note strong {color: @text-color;}
 
 .label_new, .label_warning, .label_error, .label_info  {
 	padding:.2em .5em;
@@ -78,10 +78,10 @@ dl dd {padding-left: 1em;}
 	font-size: .85em;
 	.round-corners(2px)
 }
-.label_new {background-color: @alertMsg-success-Bg;}
-.label_warning {background-color: @alertMsg-Warning-Bg;}
-.label_error {background-color: @alertMsg-Error-Bg;}
-.label_info {background-color: @alertMsg-Info-Bg;}
+.label_new {background-color: @message-success-background;}
+.label_warning {background-color: @message-warning-background;}
+.label_error {background-color: @message-error-background;}
+.label_info {background-color: @message-info-background;}
 
 h1 .label_new, h1 .label_warning, h1 .label_error, h1 .label_info,
 h2 .label_new, h2 .label_warning, h2 .label_error, h2 .label_info,

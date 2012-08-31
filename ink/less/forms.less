@@ -2,7 +2,7 @@
 @import "lib";
 
 /* Form Styles */
-form {color: @baseColor; font-size: @fontSize;}
+form {color: @base-color; font-size: @font-size;}
 legend {
 	clear:both;
 	text-align: left;
@@ -10,7 +10,7 @@ legend {
 	padding-bottom: 15px;
 	display: block;
 }
-.e_wrap {padding:@wraperPadding; width: auto; display: block; position:relative }
+.e_wrap {padding:@wrapper-padding; width: auto; display: block; position:relative }
 .e_wrap:after {
 	content: ".";
     display: block;
@@ -20,10 +20,10 @@ legend {
 	zoom: 1;
 }
 label {
-	width: @labelWidth;
+	width: @label-width;
 	font-weight: bold;
 	display: block;
-	margin:@labelMargin;
+	margin:@label-margin;
 	vertical-align: top;
 	float:left; 
 	text-align: right;
@@ -32,31 +32,31 @@ label span{display: block; padding-left: 27px;}
 label input{float:left}
 input:empty, textarea:empty, select:empty {clear:none}
 input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
-	.round-corners(@borderRadius);
-	.box-shadow(@basicBoxShadow);
-	.gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
-	padding: @elementsPadding;
+	.round-corners(@border-radius);
+	.box-shadow(@basic-box-shadow);
+	.gradient (@gradient-start-color, @gradient-end-color, @gradient-stop);
+	padding: @elements-padding;
 	border:1px solid @border-color;
 	resize: none;
-	width: @elementsWidth;
+	width: @elements-width;
 	line-height: 1.3em;
-	font-size: @fontSize;
+	font-size: @font-size;
 	.box-sizing(border-box);
 }
 
 input[type=radio], input[type=checkbox] {width:17px; height:17px;}
-select {height: 30px; .gradient(#fff, #f1f1f1, 100%); width:@elementsWidth}
-select[multiple] {height: auto; .gradient(@gradientStartColor, @gradientEndColor, @gradientStop)}
-input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {.input_focus(@focusBlurSize, @focusColor)}
+select {height: 30px; .gradient(#fff, #f1f1f1, 100%); width:@elements-width}
+select[multiple] {height: auto; .gradient(@gradient-start-color, @gradient-end-color, @gradient-stop)}
+input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {.input_focus(@focus-blur-size, @focus-color)}
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
-	background: @disabledColor;
+	background: @disabled-color;
 	cursor: not-allowed;
 }
-input.miniInput, select.miniInput {width: @miniElementsWidth;}
-input.smallInput, select.smallInput {width: @smallElementsWidth;}
+input.miniInput, select.miniInput {width: @mini-elements-width;}
+input.smallInput, select.smallInput {width: @small-elements-width;}
 form .help {display: block; font-size: 11px; color:#bbb; float:none}
-.e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@elementsPadding)/2;}
-.emptyLabel, .formList {padding-left: @labelWidth + 10px + @labelMargin;}
+.e_wrap .help {margin-left: @label-width + 15px; width:@elements-width; padding:(@elements-padding)/2;}
+.emptyLabel, .formList {padding-left: @label-width + 10px + @label-margin;}
 .emptyLabel label, .formList label{width: auto; text-align: left; vertical-align: top; font-weight: normal; float:none; margin: 0; display: block;}
 .formList label input {margin-bottom: 0px;}
 .formList label {margin-bottom: 10px;}
@@ -65,18 +65,18 @@ form li {list-style: none;}
 /*|||||||||||||||||||||| Block Form Styles ||||||||||||||||||||||*/
 .form_block label {display: block; float:none; width:auto; text-align:left; margin-top:0px; margin-bottom:.1em}
 .form_block label:after {clear:both}
-.form_block .help {margin:@elementsMargin;}
+.form_block .help {margin:@elements-margin;}
 .form_block .emptyLabel, .form_block .formList {padding-left:0}
 
 /*|||||||||||||||||||||| Errors & Warning Styles ||||||||||||||||||||||*/
 form .error, form .warning {
-	.round-corners(@borderRadius);
+	.round-corners(@border-radius);
 	padding:10px 0 5px;
 	margin:5px 0;
-	color: fadein(@errorColor, 100%);
+	color: fadein(@error-color, 100%);
 	vertical-align: top;
 }
-.emptyLabel.error, .formList.error, .emptyLabel.warning, .formList.warning{padding-left: @labelWidth + 10px + @labelMargin;}
+.emptyLabel.error, .formList.error, .emptyLabel.warning, .formList.warning{padding-left: @label-width + 10px + @label-margin;}
 .form_block  .emptyLabel.error, .form_block .formList.error, .form_block .emptyLabel.warning, .form_block .formList.warning {padding-left: 0em;}
 form .error .e_msg, form .warning .e_msg {
 	padding:3px 8px;
@@ -84,7 +84,7 @@ form .error .e_msg, form .warning .e_msg {
 	color:white;
 	.round-corners(2px);
 	position:relative;
-	background-color: fadein(@errorColor, 100%);
+	background-color: fadein(@error-color, 100%);
 	text-transform: uppercase;
 	font-weight: bold;
 	z-index: 999;
@@ -93,14 +93,14 @@ form .error .e_msg, form .warning .e_msg {
 	display: block;
 	float:right
 }
-.error input, .error textarea, .error select, .warning input, .warning textarea, .warning select {margin-bottom:5px; .input_focus (10px, @errorColor)}
-form .warning {color: fadein(@warningColor, 100%);}
+.error input, .error textarea, .error select, .warning input, .warning textarea, .warning select {margin-bottom:5px; .input_focus (10px, @error-color)}
+form .warning {color: fadein(@warning-color, 100%);}
 
-.warning input, .warning textarea, .warning select {.input_focus (10px, @warningColor)}
-.warning .e_msg {background-color: fadein(@warningColor, 100%);}
+.warning input, .warning textarea, .warning select {.input_focus (10px, @warning-color)}
+.warning .e_msg {background-color: fadein(@warning-color, 100%);}
 
-.warning .help {color: fadein(@warningColor, 100%);}
-.error .help {color: fadein(@errorColor, 100%);}
+.warning .help {color: fadein(@warning-color, 100%);}
+.error .help {color: fadein(@error-color, 100%);}
 .arrow-left {
 	width:0px;
 	height:0px;
@@ -114,32 +114,7 @@ form .warning {color: fadein(@warningColor, 100%);}
 	z-index: 9999;
 
 }
-.error .arrow-left {border-right:6px solid fadein(@errorColor, 100%)}
-.warning .arrow-left {border-right:6px solid fadein(@warningColor, 100%)}
+.error .arrow-left {border-right:6px solid fadein(@error-color, 100%)}
+.warning .arrow-left {border-right:6px solid fadein(@warning-color, 100%)}
 
 .required .e_msg {font-size: 2em; color:#ccc; vertical-align: middle; }
-
-/*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/
-.defaultBtn, input[type=submit], input[type=button], button {
-	font-weight: bold;
-	padding: @btnPadding;
-	float:none;
-	border: 1px solid #ccc;
-	cursor:pointer;
-	.createBtn(@btnBg);
-	.round-corners(@borderRadius);
-	color: @btnColor;
-	text-shadow:0 1px 0 rgba(255,255,255,1);
-	margin:5px;
-	text-decoration: none;
-	display:inline-block;
-}
-
-input[type=submit]:hover, button:hover, .defaultBtn:hover {}
-input[type=submit].btn_success, .btn_success, input[type=button].btn_success{.createBtn(@successBtnBg);}			            
-input[type=submit].btn_info, .btn_info, input[type=button].btn_info{.createBtn(@InfoBtnBg);}						
-input[type=submit].btn_delete, .btn_delete, input[type=button].btn_delete{.createBtn(@DeleteBtnBg);}
-
-.MediumBtn {font-size: 1.5em;}
-
-.bigBtn {font-size: 1.75em;}

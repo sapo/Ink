@@ -3,19 +3,18 @@
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
 /* Offset Variables */
-/* Color Variables */
-/* Estes valores têm que ser em rbga */
+/* color Variables */
+/* Estes valores têm que ser em rbackgrounda */
 /* Botões*/
 /*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
-/*@borderRadius*/
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
-.datepicker-Bg-Color {
+.datepicker-background-color {
   background: #eaeaea;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eaeaea', endColorstr='#d0d0d0');
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#eaeaea', endcolorstr='#d0d0d0');
   background: -moz-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eaeaea), color-stop(100%, #d0d0d0));
   background: -webkit-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
@@ -35,7 +34,7 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
   background: #eaeaea;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eaeaea', endColorstr='#d0d0d0');
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#eaeaea', endcolorstr='#d0d0d0');
   background: -moz-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eaeaea), color-stop(100%, #d0d0d0));
   background: -webkit-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);

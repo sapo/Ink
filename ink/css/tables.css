@@ -24,7 +24,7 @@ table td {
 table th {
   background: #f7f7f7;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#e2e2e2');
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#f7f7f7', endcolorstr='#e2e2e2');
   background: -moz-linear-gradient(top, #f7f7f7 0%, #e2e2e2 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #e2e2e2));
   background: -webkit-linear-gradient(top, #f7f7f7 0%, #e2e2e2 100%);

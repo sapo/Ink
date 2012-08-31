@@ -26,7 +26,7 @@
 .gradient (@gsc, @gec, @gs) {
 	background: @gsc;
 	zoom:1;
-	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{gsc}', endColorstr='@{gec}')";
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startcolorstr='@{gsc}', endcolorstr='@{gec}')";
 	background: -moz-linear-gradient(top, @gsc 0%, @gec @gs);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @gsc), color-stop(@gs, @gec));
 	background: -webkit-linear-gradient(top, @gsc 0%,@gec @gs);

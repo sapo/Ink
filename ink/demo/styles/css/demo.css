@@ -3,12 +3,12 @@
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
 /* Offset Variables */
-/* Color Variables */
-/* Estes valores têm que ser em rbga */
+/* color Variables */
+/* Estes valores têm que ser em rbackgrounda */
 /* Botões*/
 /*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
-/*@borderRadius*/
+/*@border-radius*/
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
@@ -36,7 +36,7 @@
 body {
   background: #fafafa;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#ffffff');
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#fafafa', endcolorstr='#ffffff');
   background: -moz-linear-gradient(top, #fafafa 0%, #ffffff 50%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fafafa), color-stop(50%, #ffffff));
   background: -webkit-linear-gradient(top, #fafafa 0%, #ffffff 50%);
@@ -237,7 +237,7 @@ a.active {
 #download {
   background: #37598a;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37598a', endColorstr='#66cde1');
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#37598a', endcolorstr='#66cde1');
   background: -moz-linear-gradient(top, #37598a 0%, #66cde1 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #37598a), color-stop(100%, #66cde1));
   background: -webkit-linear-gradient(top, #37598a 0%, #66cde1 100%);
@@ -265,7 +265,7 @@ a.active {
   display: block;
   background: #ffffff;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#ffffff', endcolorstr='#cccccc');
   background: -moz-linear-gradient(top, #ffffff 0%, #cccccc 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
   background: -webkit-linear-gradient(top, #ffffff 0%, #cccccc 100%);

@@ -3,17 +3,17 @@
 
 @color: #00c1f9;
 @color2: #97D847;
-.datepicker-Bg-Color { 
+.datepicker-background-color { 
 	.gradient(lighten(#ddd, 5%), darken(#ddd, 5%), 100%)
 }
 
 .sapo_component_datepicker {
-	.round-corners(@borderRadius);
+	.round-corners(@border-radius);
 	text-align: center;
 	padding:5px;
 	font-size: 13px;
 	.box-shadow ('0 2px 3px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff');
-	.datepicker-Bg-Color;
+	.datepicker-background-color;
     position:absolute;
 	display: none;
 	z-index:1
@@ -29,7 +29,7 @@
 	line-height: 2em; 
 	background-color: rgba(255,255,255,.7); 
 	vertical-align: middle; 
-	.round-corners(@borderRadius)
+	.round-corners(@border-radius)
 }	
 
 .sapo_cal_top div {
@@ -86,7 +86,7 @@
 	line-height: 2em;
 	vertical-align: middle;
 	display: block;
-	.round-corners(@borderRadius);
+	.round-corners(@border-radius);
 }
 .sapo_cal_month .sapo_cal_header {
 	border-bottom: 1px solid rgba(0,0,0,.1); 
