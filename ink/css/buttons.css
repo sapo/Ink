@@ -12,12 +12,12 @@
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
 /*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/
-.defaultBtn,
+.default-button,
 input[type=submit],
 input[type=button],
 button {
   font-weight: bold;
-  padding: 0.6em 1.8em;
+  padding: 0.5em 1em;
   float: none;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -46,7 +46,7 @@ button {
   text-decoration: none;
   display: inline-block;
 }
-.defaultBtn:hover,
+.default-button:hover,
 input[type=submit]:hover,
 input[type=button]:hover,
 button:hover {
@@ -63,7 +63,7 @@ button:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.defaultBtn:active,
+.default-button:active,
 input[type=submit]:active,
 input[type=button]:active,
 button:active {
@@ -80,13 +80,13 @@ button:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-a.defaultBtn {
+a.default-button {
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
 }
-input[type=submit].btn_success,
-.btn_success,
-input[type=button].btn_success {
+input[type=submit].button-success,
+.button-success,
+input[type=button].button-success {
   color: #fff;
   background: #9dce62;
   zoom: 1;
@@ -104,9 +104,9 @@ input[type=button].btn_success {
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input[type=submit].btn_success:hover,
-.btn_success:hover,
-input[type=button].btn_success:hover {
+input[type=submit].button-success:hover,
+.button-success:hover,
+input[type=button].button-success:hover {
   background: #b5da89;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#b5da89', endcolorstr='#77ad36');
@@ -120,9 +120,9 @@ input[type=button].btn_success:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input[type=submit].btn_success:active,
-.btn_success:active,
-input[type=button].btn_success:active {
+input[type=submit].button-success:active,
+.button-success:active,
+input[type=button].button-success:active {
   background: #8cc647;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#8cc647', endcolorstr='#aed67d');
@@ -136,9 +136,9 @@ input[type=button].btn_success:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-input[type=submit].btn_info,
-.btn_info,
-input[type=button].btn_info {
+input[type=submit].button-info,
+.button-info,
+input[type=button].button-info {
   color: #fff;
   background: #479cd8;
   zoom: 1;
@@ -156,9 +156,9 @@ input[type=button].btn_info {
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input[type=submit].btn_info:hover,
-.btn_info:hover,
-input[type=button].btn_info:hover {
+input[type=submit].button-info:hover,
+.button-info:hover,
+input[type=button].button-info:hover {
   background: #71b3e1;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#71b3e1', endcolorstr='#2575ae');
@@ -172,9 +172,9 @@ input[type=button].btn_info:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input[type=submit].btn_info:active,
-.btn_info:active,
-input[type=button].btn_info:active {
+input[type=submit].button-info:active,
+.button-info:active,
+input[type=button].button-info:active {
   background: #2c8ccf;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#2c8ccf', endcolorstr='#64acde');
@@ -188,9 +188,9 @@ input[type=button].btn_info:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-input[type=submit].btn_delete,
-.btn_delete,
-input[type=button].btn_delete {
+input[type=submit].button-delete,
+.button-delete,
+input[type=button].button-delete {
   color: #fff;
   background: #eb6363;
   zoom: 1;
@@ -208,9 +208,9 @@ input[type=button].btn_delete {
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input[type=submit].btn_delete:hover,
-.btn_delete:hover,
-input[type=button].btn_delete:hover {
+input[type=submit].button-delete:hover,
+.button-delete:hover,
+input[type=button].button-delete:hover {
   background: #f19090;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#f19090', endcolorstr='#e21f1f');
@@ -224,9 +224,9 @@ input[type=button].btn_delete:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input[type=submit].btn_delete:active,
-.btn_delete:active,
-input[type=button].btn_delete:active {
+input[type=submit].button-delete:active,
+.button-delete:active,
+input[type=button].button-delete:active {
   background: #e74343;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#e74343', endcolorstr='#ef8383');
@@ -240,9 +240,9 @@ input[type=button].btn_delete:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-.MediumBtn {
+.medium-button {
   font-size: 1.5em;
 }
-.bigBtn {
+.big-button {
   font-size: 1.75em;
 }

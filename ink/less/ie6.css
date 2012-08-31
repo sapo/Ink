@@ -95,8 +95,8 @@
   z-index: 9;
   color: #444;
 }
-.defaultBtn,
-.btn_success,
+.default-button,
+.button-success,
 .btn_info,
 .btn_delete {
   font-size: 1em;
@@ -129,8 +129,8 @@
   margin: 5px;
   text-decoration: none;
 }
-.defaultBtn:hover,
-.btn_success:hover,
+.default-button:hover,
+.button-success:hover,
 .btn_info:hover,
 .btn_delete:hover {
   background: #ffffff;
@@ -146,8 +146,8 @@
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.defaultBtn:active,
-.btn_success:active,
+.default-button:active,
+.button-success:active,
 .btn_info:active,
 .btn_delete:active {
   background: #dcdcdc;
@@ -163,7 +163,7 @@
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-input.btn_success, .btn_success {
+input.button-success, .button-success {
   color: #fff;
   background: #9dce62;
   zoom: 1;
@@ -181,7 +181,7 @@ input.btn_success, .btn_success {
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input.btn_success:hover, .btn_success:hover {
+input.button-success:hover, .button-success:hover {
   background: #b5da89;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#b5da89', endcolorstr='#77ad36');
@@ -195,7 +195,7 @@ input.btn_success:hover, .btn_success:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input.btn_success:active, .btn_success:active {
+input.button-success:active, .button-success:active {
   background: #8cc647;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#8cc647', endcolorstr='#aed67d');

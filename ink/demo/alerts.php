@@ -111,7 +111,7 @@
 						<a href="#close" class="close">&times;</a>
 						<h4>Processo Concluído</h4>
 						<p>O seu formulário foi submetido e aguarda revisão.<br> No entanto pode:</p>
-						<p><a href="#" class="defaultBtn">Voltar ao site</a><a href="#"  class="defaultBtn">Sair</a></p>
+						<p><a href="#" class="default-button">Voltar ao site</a><a href="#"  class="default-button">Sair</a></p>
 					</div>
 					<pre class="prettyprint">&lt;div class=&quot;block-alert-msg error&quot;&gt;
   &lt;a href=&quot;#close&quot; class=&quot;close&quot;&gt;&times;&lt;/a&gt;

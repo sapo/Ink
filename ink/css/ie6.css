@@ -95,13 +95,13 @@ form .warning {
   z-index: 9;
   color: #444;
 }
-.defaultBtn,
-.btn_success,
-.btn_info,
-.btn_delete {
+.default-button,
+.button-success,
+.button-info,
+.button-delete {
   font-size: 1em;
   font-weight: bold;
-  padding: 0.6em 1.8em;
+  padding: 0.5em 1em;
   float: none;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -129,10 +129,10 @@ form .warning {
   margin: 5px;
   text-decoration: none;
 }
-.defaultBtn:hover,
-.btn_success:hover,
-.btn_info:hover,
-.btn_delete:hover {
+.default-button:hover,
+.button-success:hover,
+.button-info:hover,
+.button-delete:hover {
   background: #ffffff;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#ffffff', endcolorstr='#c8c8c8');
@@ -146,10 +146,10 @@ form .warning {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.defaultBtn:active,
-.btn_success:active,
-.btn_info:active,
-.btn_delete:active {
+.default-button:active,
+.button-success:active,
+.button-info:active,
+.button-delete:active {
   background: #dcdcdc;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#dcdcdc', endcolorstr='#ffffff');
@@ -163,8 +163,8 @@ form .warning {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-input.btn_success,
-.btn_success {
+input.button-success,
+.button-success {
   color: #fff;
   background: #9dce62;
   zoom: 1;
@@ -182,8 +182,8 @@ input.btn_success,
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input.btn_success:hover,
-.btn_success:hover {
+input.button-success:hover,
+.button-success:hover {
   background: #b5da89;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#b5da89', endcolorstr='#77ad36');
@@ -197,8 +197,8 @@ input.btn_success:hover,
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input.btn_success:active,
-.btn_success:active {
+input.button-success:active,
+.button-success:active {
   background: #8cc647;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#8cc647', endcolorstr='#aed67d');
@@ -212,8 +212,8 @@ input.btn_success:active,
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-input.btn_info,
-.btn_info {
+input.button-info,
+.button-info {
   color: #fff;
   background: #479cd8;
   zoom: 1;
@@ -231,8 +231,8 @@ input.btn_info,
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input.btn_info:hover,
-.btn_info:hover {
+input.button-info:hover,
+.button-info:hover {
   background: #71b3e1;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#71b3e1', endcolorstr='#2575ae');
@@ -246,8 +246,8 @@ input.btn_info:hover,
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input.btn_info:active,
-.btn_info:active {
+input.button-info:active,
+.button-info:active {
   background: #2c8ccf;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#2c8ccf', endcolorstr='#64acde');
@@ -261,8 +261,8 @@ input.btn_info:active,
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-input.btn_delete,
-.btn_delete {
+input.button-delete,
+.button-delete {
   color: #fff;
   background: #eb6363;
   zoom: 1;
@@ -280,8 +280,8 @@ input.btn_delete,
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
-input.btn_delete:hover,
-.btn_delete:hover {
+input.button-delete:hover,
+.button-delete:hover {
   background: #f19090;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#f19090', endcolorstr='#e21f1f');
@@ -295,8 +295,8 @@ input.btn_delete:hover,
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-input.btn_delete:active,
-.btn_delete:active {
+input.button-delete:active,
+.button-delete:active {
   background: #e74343;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#e74343', endcolorstr='#ef8383');

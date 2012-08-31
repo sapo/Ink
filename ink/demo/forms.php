@@ -182,23 +182,23 @@
 		<div class="g66">
 			<form class="space"> 
 				<div class="e_wrap">
-					<button type="button" class="defaultBtn">Default</button>
-					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success">
-					<button type="button" class="btn_info">Info</button>
-					<button type="button" class="btn_delete">Apagar</button>
+					<button type="button" class="default-button">Default</button>
+					<input id="inpuTypeTex" type="submit" value="Gravar" class="button-success">
+					<button type="button" class="button-info">Info</button>
+					<button type="button" class="button-delete">Apagar</button>
 				</div> 
 				<div class="e_wrap">
-					<button type="button" class="defaultBtn MediumBtn">Default</button>
-					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success MediumBtn">
-					<button type="button" class="btn_info MediumBtn">Info</button>
-					<button type="button" class="btn_delete MediumBtn">Apagar</button>
+					<button type="button" class="default-button medium-button">Default</button>
+					<input id="inpuTypeTex" type="submit" value="Gravar" class="button-success medium-button">
+					<button type="button" class="button-info medium-button">Info</button>
+					<button type="button" class="button-delete medium-button">Apagar</button>
 				</div>
 				
 				<div class="e_wrap">
-					<button type="button" class="defaultBtn bigBtn">Default</button>
-					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success bigBtn">
-					<button type="button" class="btn_info bigBtn">Info</button>
-					<button type="button" class="btn_delete bigBtn">Apagar</button>
+					<button type="button" class="default-button big-button">Default</button>
+					<input id="inpuTypeTex" type="submit" value="Gravar" class="button-success big-button">
+					<button type="button" class="button-info big-button">Info</button>
+					<button type="button" class="button-delete big-button">Apagar</button>
 				</div>
 			</form>
 		</div>
@@ -206,10 +206,10 @@
 			<div class="space">
 				<h4>Botões</h4> 
 				<p>Estão contemplados no estilo base dos formulários quatro tipo de botões:</p>
-				<p><mark>.defaultBtn</mark> - Para vários tipos acções</p> 
-				<p><mark>.btn_success</mark> - Associado a acções submissão</p>
-				<p><mark>.btn_info</mark> - Para obter mais informações</p>
-				<p><mark>.btn_delete</mark> - Associado a acções de eliminação</p>    
+				<p><mark>.default-button</mark> - Para vários tipos acções</p> 
+				<p><mark>.button-success</mark> - Associado a acções submissão</p>
+				<p><mark>.button-info</mark> - Para obter mais informações</p>
+				<p><mark>.button-delete</mark> - Associado a acções de eliminação</p>    
 				<hr />
 				<p class="note"><strong>Nota:</strong> Qualquer tipo de elemento <mark>&lt;button&gt;</mark> ou <mark>&lt;input type=&quot;button&quot;&gt;</mark> sem class definida herdará o estilo default </p>
 			</div>
