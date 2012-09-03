@@ -10,40 +10,33 @@
 		padding: 10px;
 	}
 	</style>
+	<!--[if  ie 9]>
+	<style type="text/css" media="screen">
+	    .round-gradient-box
+	    {
+	        filter: none;
+	    }
+	</style>
+	<![endif]-->
 </head>
 <body>
 	<div class="demo container_width">
-		<div class="g33">
-			<div class="r_space v_space">
-				<h1>this is a title</h1>
-				<p>lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing</p>
-				<p><a href="#" class="defaultBtn">button</a></p>
-			</div>
-		</div>
-		<div class="g33">
-			<div class="h_space v_space">
-				<h1>this is a title</h1>
-				<p>lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing</p>
-			</div>
-		</div>
-		<div class="g33">
-			<div class="l_space v_space">
-				<h1>this is a title</h1>
-			<p>lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing</p>
-			</div>
-		</div>
-		<div class="g50">
-			<div class="r_space v_space">
-				<h1>this is a title</h1>
-				<p>lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing</p>
-			</div>
-		</div>
-		<div class="g50">
-			<div class="l_space v_space">
-				<h1>this is a title</h1>
-				<p>lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing lorem ipsum dolor sit amet adispiscing</p>
-			</div>
-		</div>
+		<input type="button" class="default-button" value="input type button">
+		<input type="button" class="default-button button-success" value="input type button">
+		<input type="button" class="default-button button-info" value="input type button">
+		<input type="button" class="default-button button-delete" value="input type button">
+	</div>
+	<div class="demo container_width">
+		<a href="#" class="default-button">link button</a>
+		<a href="#" class="default-button button-success">link button</a>
+		<a href="#" class="default-button button-info">link button</a>
+		<a href="#" class="default-button button-delete">link button</a>
+	</div>
+	<div class="demo container_width">
+		<input type="submit" class="default-button" value="input type submit">
+		<input type="submit" class="default-button button-success" value="input type submit">
+		<input type="submit" class="default-button button-info" value="input type submit">
+		<input type="submit" class="default-button button-delete" value="input type submit">
 	</div>
 </body>
 </html>

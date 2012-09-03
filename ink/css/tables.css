@@ -1,3 +1,16 @@
+/*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+/* Size Variables */
+/* Offset Variables */
+/* color Variables */
+/* Estes valores têm que ser em rbackgrounda */
+/* Botões*/
+/*  |||||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Tables   ||||||||||||||||||||||||||| */
 /* Functions */
 /*@table-header-color:#1EA7C0;*/
 table {
@@ -12,16 +25,7 @@ table {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
-table td,
-table th {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-table td {
-  border-left: 1px solid #eee;
-}
-table th {
+table thead tr th {
   background: #f7f7f7;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#f7f7f7', endcolorstr='#e2e2e2');
@@ -35,6 +39,15 @@ table th {
   font-weight: bold;
   font-size: 1.3em;
   border-bottom: 1px solid #bcbcbc;
+}
+table td,
+table th {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+table td {
+  border-left: 1px solid #eee;
 }
 table tr {
   border-right: 1px solid #eee;

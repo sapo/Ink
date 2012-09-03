@@ -10,8 +10,13 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Tables   ||||||||||||||||||||||||||| */
 /* Functions */
 /*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/
+a.default-button {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+}
 .default-button,
 input[type=submit],
 input[type=button],
@@ -45,6 +50,7 @@ button {
   margin: 5px;
   text-decoration: none;
   display: inline-block;
+  font-size: 12px;
 }
 .default-button:hover,
 input[type=submit]:hover,
@@ -80,13 +86,10 @@ button:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-a.default-button {
-  color: rgba(0, 0, 0, 0.8);
-  text-decoration: none;
-}
 input[type=submit].button-success,
 .button-success,
-input[type=button].button-success {
+input[type=button].button-success,
+a.button-success {
   color: #fff;
   background: #9dce62;
   zoom: 1;
@@ -106,7 +109,8 @@ input[type=button].button-success {
 }
 input[type=submit].button-success:hover,
 .button-success:hover,
-input[type=button].button-success:hover {
+input[type=button].button-success:hover,
+a.button-success:hover {
   background: #b5da89;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#b5da89', endcolorstr='#77ad36');
@@ -122,7 +126,8 @@ input[type=button].button-success:hover {
 }
 input[type=submit].button-success:active,
 .button-success:active,
-input[type=button].button-success:active {
+input[type=button].button-success:active,
+a.button-success:active {
   background: #8cc647;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#8cc647', endcolorstr='#aed67d');
@@ -138,7 +143,8 @@ input[type=button].button-success:active {
 }
 input[type=submit].button-info,
 .button-info,
-input[type=button].button-info {
+input[type=button].button-info,
+a.button-info {
   color: #fff;
   background: #479cd8;
   zoom: 1;
@@ -158,7 +164,8 @@ input[type=button].button-info {
 }
 input[type=submit].button-info:hover,
 .button-info:hover,
-input[type=button].button-info:hover {
+input[type=button].button-info:hover,
+a.button-info:hover {
   background: #71b3e1;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#71b3e1', endcolorstr='#2575ae');
@@ -174,7 +181,8 @@ input[type=button].button-info:hover {
 }
 input[type=submit].button-info:active,
 .button-info:active,
-input[type=button].button-info:active {
+input[type=button].button-info:active,
+a.button-info:active {
   background: #2c8ccf;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#2c8ccf', endcolorstr='#64acde');
@@ -190,7 +198,8 @@ input[type=button].button-info:active {
 }
 input[type=submit].button-delete,
 .button-delete,
-input[type=button].button-delete {
+input[type=button].button-delete,
+a.button-delete {
   color: #fff;
   background: #eb6363;
   zoom: 1;
@@ -210,7 +219,8 @@ input[type=button].button-delete {
 }
 input[type=submit].button-delete:hover,
 .button-delete:hover,
-input[type=button].button-delete:hover {
+input[type=button].button-delete:hover,
+a.button-delete:hover {
   background: #f19090;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#f19090', endcolorstr='#e21f1f');
@@ -226,7 +236,8 @@ input[type=button].button-delete:hover {
 }
 input[type=submit].button-delete:active,
 .button-delete:active,
-input[type=button].button-delete:active {
+input[type=button].button-delete:active,
+a.button-delete:active {
   background: #e74343;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#e74343', endcolorstr='#ef8383');

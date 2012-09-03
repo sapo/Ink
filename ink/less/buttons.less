@@ -3,6 +3,11 @@
 
 /*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/
 
+a.default-button {
+	color: @button-color;
+	text-decoration: none;
+}
+
 .default-button, input[type=submit], input[type=button], button {
 	font-weight: bold;
 	padding: @button-padding;
@@ -16,17 +21,44 @@
 	margin:5px;
 	text-decoration: none;
 	display:inline-block;
+	font-size: @font-size;
 }
 
-a.default-button {
-	color: @button-color;
-	text-decoration: none;
+
+
+input[type=submit]:hover, 
+button:hover, 
+.default-button:hover, 
+a.default-button:hover {
+
 }
 
-input[type=submit]:hover, button:hover, .default-button:hover {}
-input[type=submit].button-success, .button-success, input[type=button].button-success{.createBtn(@button-background-success);}			            
-input[type=submit].button-info, .button-info, input[type=button].button-info{.createBtn(@button-background-info);}						
-input[type=submit].button-delete, .button-delete, input[type=button].button-delete{.createBtn(@button-background-delete);}
+input[type=submit].button-success, 
+.button-success, 
+input[type=button].button-success, 
+a.button-success {
+	.createBtn(@button-background-success);
+}
 
-.medium-button {font-size: 1.5em;}
-.big-button {font-size: 1.75em;}
+input[type=submit].button-info, 
+.button-info, 
+input[type=button].button-info, 
+a.button-info {
+	.createBtn(@button-background-info);
+}						
+input[type=submit].button-delete, 
+.button-delete, 
+input[type=button].button-delete, 
+a.button-delete {
+	.createBtn(@button-background-delete);
+}
+
+// Button sizes
+.medium-button {
+	font-size: 1.5em;
+}
+.big-button { 
+	font-size: 1.75em;
+}
+
+// Block Buttons
