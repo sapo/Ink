@@ -1,0 +1,48 @@
+@import "conf";
+
+caption, th { text-align:left; } 
+h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
+.clearfix:after,
+.container_width:after,
+.section:after,
+.space:after,
+.g100:after {
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden; 
+	zoom: 1
+}
+
+.container_width {
+	margin: auto; 
+	width: @siteWidth; 
+	padding:0 @sitePadding
+}
+ 
+.g100	{width: 100%}
+.g90	{width: 90%}
+.g80	{width: 80%}
+.g75	{width: 75%}
+.g70	{width: 70%}
+.g66	{width: 66.66%}
+.g60	{width: 60%}                           
+.g50	{width: 50%}
+.g40	{width: 40%}
+.g33	{width: 33.33%}
+.g30	{width: 30%}
+.g25	{width: 25%}
+.g20	{width: 20%}
+.g10	{width: 10%}
+
+.g10, .g20, .g25, .g30, .g33, .g40, .g50, .g60, .g66, .g70, .g75, .g80, .g90  {float:left; zoom:1}
+.g100:empty, .g90:empty, .g80:empty, .g75:empty, .g70:empty, .g66:empty, .g60:empty, .g50:empty, .g40:empty,.g33:empty, .g30:empty, .g25:empty, .g20:empty, .g10:empty {clear:both}
+
+.space			{margin:@basicMargin; padding:@basicPadding}
+.v_space		{margin:@basicMargin 0; padding:@basicPadding 0}
+.h_space 		{margin:0 @basicMargin; padding:0 @basicPadding}
+.right_space 	{margin:0 @basicMargin 0 0; padding:0 @basicPadding 0 0}
+
+.clear, .g100, .section {clear:both}
+.clearleft {clear:left}

@@ -1,0 +1,150 @@
+@import "conf";
+@import "lib";
+
+.h_navigation {
+	display: block; 
+	font-size: 0em; 
+	padding: 0; 
+	border-bottom: 1px solid #ddd; 
+	border-top: 1px solid #ddd
+}
+
+.h_navigation li {
+	font-size: 10pt; 
+	display: inline-block; 
+	vertical-align: baseline; 
+	position:relative; 
+	margin-top:0px; 
+	margin-bottom:0px
+}
+
+.h_navigation a {
+	font-size: 10pt;
+	padding:.7em 1.5em;  
+	display: inline-block;
+}
+        
+.h_navigation .submenu {
+	display: none;
+	position:absolute;
+	overflow: hidden;
+	height: 0px;
+	margin-top:0px;  
+	padding-left: 0em;
+	left:0;
+	min-width:100%;       
+	width: 150px;
+	z-index: 8; 
+	background-color: #fff;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.h_navigation .submenu li, .h_navigation .submenu a {display: block;}
+.h_navigation li:hover .submenu {display: block; height: auto;}
+.h_navigation .submenu a{border-bottom: 1px solid #ddd;}
+.h_navigation .searchInput {float:right; padding:2px}
+.h_navigation .searchInput input {width: 200px;} 
+.h_navigation .active a, .h_navigation a.active {font-weight: bold;  color: #000;} 
+
+.menu:after,
+#topbar:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	zoom: 1;
+}
+
+#topbar {
+	height:@topbar-height;
+	background:@topbar-bgColor;
+	font-size:@topbar-fontSize;
+	.box-shadow ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+	margin:@topbar-margin;
+	vertical-align: top;
+	position:relative;
+	overflow: visible;
+}
+
+#topbar a {
+	padding: 0 .8em;
+	line-height: @topbar-height; 
+	color:@topbar-color;
+	text-decoration: none;
+	display: block;
+}
+
+#topbar a:hover {
+	color:@topbar-colorHover;
+}
+
+#topbar h1 {
+	font-size: 1.625em;
+	padding:0;
+	float:left;
+	margin:0;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+
+#topbar h1 small {
+	margin-left:0.5em;
+}
+
+#topbar ul				{float:left}
+#topbar ul li 			{margin:0 -2px; display:inline-block}
+#topbar ul li a:hover 	{background:#383838}
+#topbar ul li.active {
+	.gradient(darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
+	.box-shadow("0 0px 2px rgba( 255, 255, 255, 0.3)");
+}
+#topbar ul li.active a {
+	.gradient(darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
+	.box-shadow("0 0px 2px rgba( 255, 255, 255, 0.3)");
+	color: #fff;
+}
+
+.menu {
+	height:@menu-height;
+	font-size:@menu-fontSize;
+	margin:@menu-margin;
+	border-top:1px solid #cacaca;
+	vertical-align: top;
+	position:relative;
+	overflow: visible;
+}
+
+.menu a {
+	padding: 0 .8em;
+	line-height: @menu-height; 
+	color:@menu-color;
+	text-decoration: none;
+	display: block;
+}
+
+.menu ul {
+	float:left
+}
+
+.menu ul li {
+	margin:0 -2px; 
+	display:inline-block;
+	border-right:1px solid #CACACA;
+}
+
+.menu ul li:last-child {
+	border-right:none;
+}
+
+.menu ul li a:hover {
+	background:rgba(0,0,0,0.05)
+}
+
+.menu ul li.active {
+	border-right:none;
+	.gradient(#2e2e2e, #222, 100%);
+}
+
+.menu ul .active a {
+	color: #fff;
+}

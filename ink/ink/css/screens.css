@@ -1,0 +1,91 @@
+/*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+/* Size Variables */
+/* Offset Variables */
+/* Color Variables */
+/* Estes valores têm que ser em rbga */
+/* Botões*/
+/* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
+/* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+/*@borderRadius*/
+/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* Functions */
+/* Smartphones (portrait and landscape) */
+@media only screen and (max-width: 900px) {
+  .g90,
+  .g80,
+  .g75,
+  .g70,
+  .g66,
+  .g60,
+  .g50,
+  .g40,
+  .g33,
+  .g30,
+  .g25,
+  .g20,
+  .g10 {
+    float: none;
+    width: 100%;
+  }
+  .container_width {
+    width: auto;
+  }
+  /* Forms */
+  label {
+    width: auto;
+    float: none;
+    text-align: left;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="file"],
+  input[type="reset"],
+  textarea,
+  select {
+    width: 100%;
+  }
+  .emptyLabel,
+  .formList {
+    padding-left: 0;
+  }
+  .e_wrap .help {
+    width: auto;
+    margin-left: 0;
+  }
+}
+/* Smartphones (landscape) */
+@media only screen and (min-width: 321px) {
+  /* Styles */
+}
+/* Smartphones (portrait) */
+@media only screen and (max-width: 320px) {
+  /* Styles */
+}
+/* iPads (portrait and landscape) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Styles */
+}
+/* iPads (landscape) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* Styles */
+}
+/* iPads (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+}
+/* Desktops and laptops */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+}
+/* Large screens */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+}
+/* iPhone 4 */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /* Styles */
+}

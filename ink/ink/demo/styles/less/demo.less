@@ -1,0 +1,292 @@
+@import "../../../less/conf.less";
+@import "../../../less/lib.less";
+
+@basicMargin: 1em;
+@basicPadding: 0;
+
+.animate(@speed){
+	transition: all ease-in-out @speed;
+	-o-transition: all ease-in-out @speed;
+	-moz-transition: all ease-in-out @speed;
+	-webkit-transition: all ease-in-out @speed;
+}
+
+@font-face {
+    font-family: 'MavenProBold';
+    src: url('../webfonts/maven_pro_bold-webfont.eot');
+    src: url('../webfonts/maven_pro_bold-webfont.eot?#iefix') format('eot'),
+         url('../webfonts/maven_pro_bold-webfont.woff') format('woff'),
+         url('../webfonts/maven_pro_bold-webfont.ttf') format('truetype'),
+         url('../webfonts/maven_pro_bold-webfont.svg#webfontNOU7iUTL') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MavenProMedium';
+    src: url('../webfonts/maven_pro_medium-webfont.eot');
+    src: url('../webfonts/maven_pro_medium-webfont.eot?#iefix') format('eot'),
+         url('../webfonts/maven_pro_medium-webfont.woff') format('woff'),
+         url('../webfonts/maven_pro_medium-webfont.ttf') format('truetype'),
+         url('../webfonts/maven_pro_medium-webfont.svg#webfontNj5iy4Dl') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MavenProRegular';
+    src: url('../webfonts/maven_pro_regular-webfont.eot');
+    src: url('../webfonts/maven_pro_regular-webfont.eot?#iefix') format('eot'),
+         url('../webfonts/maven_pro_regular-webfont.woff') format('woff'),
+         url('../webfonts/maven_pro_regular-webfont.ttf') format('truetype'),
+         url('../webfonts/maven_pro_regular-webfont.svg#webfontOM8fITNz') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@themeColor: #131e24 ;
+@themeBackground: #DEEDF1;
+
+h2 span {
+	padding-right: .5em;
+}
+
+.space {margin: @basicMargin; padding:@basicPadding;}
+.v_space { margin: @basicMargin 0; padding:@basicPadding 0;}
+.h_space {margin:0 @basicMargin; padding:0 @basicPadding;}
+
+.section {margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #eee;}
+.box {
+	.round-corners(4px);
+	.box-shadow("0 1px 3px #aaa");
+	background-color: #fff;
+	padding: 1em;	
+}
+
+.g100 {
+	width:auto
+}
+
+mark {font-family: Monaco, Andale Mono, Courier New, monospace; background-color: @themeBackground; padding:1px 3px; font-size: .9em;}
+
+.gridExemple .box p, .gridExemple2 div p, .gridExemple2 .level1 {
+	.round-corners(4px);
+	background-color: #DEEDF1;
+	margin:.2em 2px;
+	padding: .75em;
+	color: #7AA6B3;
+	text-align: right;
+}
+
+.gridExemple2 .level1 {padding: .1em;}
+.gridExemple2 .level1 > p {padding:.75em 0; text-align: center; }
+.gridExemple2 .level2 p{ margin:2px; text-align: center; background-color: #fff;}
+.g50.level1 {width: 48.4%;}
+
+#spaceExemples .box {padding:0px}
+#spaceExemples .box div {
+	text-align: center;
+	font-weight: bold;
+	margin:0px
+}
+#spaceExemples .box div p {
+	font-size: 3em;
+	line-height: 200px;
+	vertical-align: middle;
+	background-color:#DEEDF1;
+	color: #fff;
+	margin-bottom: 0em;
+}
+#spaceExemples .box div:hover {
+	background-color: #68b9cf;
+	.animate(300ms);
+	.round-corners(4px)
+}
+
+#spaceExemples .box .space {padding:1em}
+#spaceExemples .box .v_space {padding:1em 0}
+#spaceExemples .box .h_space {padding:0 1em}
+#spaceExemples .box .h_space p {padding:13px 0}
+
+/*..........................................  Typography  ...................................................*/
+#headingExemple h1,
+#headingExemple h2,
+#headingExemple h3,
+#headingExemple h4,
+#headingExemple h5 {
+	margin-bottom:20px;
+}
+   
+#listExemple ul, #listExemple ol,#listExemple dl {margin-bottom: 1.5em;}
+ 
+a.visited {color: @link-visited-Color;}
+a.hover {color:@link-hover-Color;  text-decoration: underline;}
+a.active {color:@link-active-Color;}
+
+/*..........................................  Forms  ...................................................*/
+.exempleForm {margin:1em 0; padding:1em 0; border-top:1px solid #eee;  border-bottom:1px solid #eee}
+.exempleForm .e_wrap {margin:0px; padding:0px}     
+#buttonsExemple .e_wrap{text-align: right;}
+   
+.whatIs {font-size:1.125em}  
+.whatIs h2 {
+	font-size: 3em; 
+	font-family: 'MavenProMedium';
+	letter-spacing: -.1em;
+	color: @themeColor;
+	text-shadow:0 1px 0 #fff;
+	margin: .7em 0 1em;
+	height: .4em;
+}
+
+#download {text-align:center}
+
+#download a {
+	font-weight: bold;
+	padding:.8em;
+	display: block;
+	.gradient(#2e2e2e, #222, 100%);
+	.box-shadow("0 1px 3px rgba(0,0,0,.5)");
+	.round-corners(4px);
+	color: #FFF;
+} 
+
+#download a:hover {
+	.gradient(#3c3c3c, #2e2e2e, 100%);
+	text-decoration: none;
+	
+} 
+
+#download p {margin:1em;}
+
+.section #topbar {.round-corners(4px)}
+
+/*..........................................  Footer  ...................................................*/
+.callToAction{
+	position: relative;
+	
+	color: white;
+	
+	width: 100%;
+	height: 100%;
+		
+	background-image: -webkit-gradient(radial, 50% 75%, 0, 50% 75%, 700, 
+				from(#66cde1), to(rgba(55,89,138,0))),
+			-webkit-gradient(linear,center bottom,center top,
+				color-stop(0, #385A8C),color-stop(0.6, #000000));
+	background-image: -moz-radial-gradient(50% 75%, circle, 
+			rgba(55,89,138,0.5) 0px, rgba(55,89,138,0) 400px),
+			-moz-linear-gradient(center bottom,#385A8C 0%,#000000 60%); 
+	overflow: hidden; 
+}  
+
+.logo_hp {margin:auto; display: block; position:relative; z-index: 9; opacity: 0.8;
+-moz-opacity: 0.8;
+filter:alpha(opacity=80);
+
+-webkit-transition: all 500ms ; 
+   -moz-transition: all 500ms ; 
+    -ms-transition: all 500ms ; 
+     -o-transition: all 500ms ; 
+        transition: all 500ms  /* custom */    
+}    
+.glow1, .glow2 {position:absolute; top:0px; width: 100%; height: 400px; text-align: center;}  
+
+ .glow1 {
+-webkit-animation: glower 3s infinite;
+ -moz-animation: glower 3s infinite;
+ -ms-animation: glower 3s infinite;  
+z-index: 8;
+} 
+
+ .glow2 {
+-webkit-animation: glower 2s infinite;
+ -moz-animation: glower 2s infinite;
+ -ms-animation: glower 2s infinite;  
+z-index: 7;
+}
+
+.logo_hp:hover {
+	opacity: 1;
+	-moz-opacity: 1;
+	filter:alpha(opacity=1);  
+	
+	
+}
+
+@-webkit-keyframes glower {
+        0%   { opacity: 1;}
+        50% { opacity: 0;}
+		100%   { opacity: 1;}
+}
+@-moz-keyframes glower {
+    0%   { opacity: 0; }
+    50% { opacity: 1; }
+	100%   { opacity: 0; }
+}
+@-ms-keyframes glower {
+    0%   { opacity: 0; }
+    50% { opacity: 1; }
+	100%   { opacity: 0; }
+}
+
+/*..........................................  Footer  ...................................................*/
+footer {
+	border-top:1px solid #CCC;
+	background:@footer-bgColor
+}
+
+.corporatelinks li {
+	display: inline;
+	font-size:0.875em;
+	margin-right:1em;
+}
+
+footer .SAPOlogo {
+	background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+	text-indent: -9999px;
+	display: block;
+	width: 101px;
+	height: 30px;
+}
+
+footer .PTClogo {
+	background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
+	text-indent: -9999px;
+	display: block;
+	float: left;
+	width: 41px;
+	height: 43px;
+	margin-right:1em
+}
+
+footer .copyright {
+	font-size:0.875em;
+}
+
+footer h5 {
+	font-size: 1em;
+	float: left;
+	line-height: 2.1em;
+}
+
+footer ul.sociallinks li {
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+	margin-left: 6px;
+}
+
+footer ul.sociallinks a.Fb_link, 
+footer ul.sociallinks a.Twt_link, 
+footer ul.sociallinks a.Gplus_link {
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+}
+
+footer ul.sociallinks li a.Fb_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px}
+footer ul.sociallinks li a.Twt_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -117px}
+footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -145px}
+
+
