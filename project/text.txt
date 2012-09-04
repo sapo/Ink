@@ -25,7 +25,14 @@ As to styling, we offer generic styling classes which can be applied to many ele
 This makes Ink very easy to learn and reuse over time, making your life easier. And with a quick configurator, you can change the properties of any styiling class so that the default .ink-warning class is no longer red with white text, but becomes yellow with red text, for example. You can then consistently use .ink-warning to get a red paragraph on a yellow background, or a yellow button with red text or even a yellow table row with red text in the table cells.
 
 * Who we are
+
+We are SAPO. You might mistake us for a small startup, because that's our spirit. We are in fact Portugal's largest internet enterprise with businesses ranging from content and advertising to services and app development, all based on a solid, 17-year old web brand and integrated into a multinational telecomunitations company, Portugal Telecom.
+
 * What's in store
+
+We want to keep up with the times, while keeping Ink flexible and easy to use. We'll be revising and updating the framework using a major-version scheme in order to keep previous versions solid and not force updates to anyone who doesn't want them.
+
+We'll also be expanding Ink to be a lot more than just a framework or a collection of Javascript components and code snippets. We'll be adding design patterns and publishing a huge knowledge base of best practices in design, coding, usability, accessibility and more, making Ink your one-stop reference for web front-end development and design.
 
 = Changelog =
 
@@ -35,7 +42,7 @@ This makes Ink very easy to learn and reuse over time, making your life easier. 
 
 = Container unit =
 
-The container_width class is where you define the width of your layout.
+The .ink-container class is where you define the width of your layout.
 You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.
 
 Example:
@@ -44,7 +51,7 @@ Let's say you need your page container to always be 80% of your view port.
 
 Markup
 
-<div class="container_width">
+<div class="ink-container">
 	<div class="g100">
 		<p>Content</p>
 	</div>
@@ -54,7 +61,7 @@ CSS
 
 In conf.css, define:
 
-.container_width {
+.ink-container {
 	width:80%;
 }
 
@@ -70,7 +77,7 @@ Imagine you have a webpage with a main content area which takes up 75% of your l
 
 Here's the markup:
 
-<div class="container_width">
+<div class="ink-container">
 	<div class="g75 maincontent">
 		<div class="g50 firstcolumn"></div>
 		<div class="g50 secondcolumn"></div>
@@ -84,7 +91,7 @@ You should use the G classes for layout only and add an additional semantic clas
 
 Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.
 
-Ink uses three kinds of spacer unit, a vertical spacer, horizontal spacer and an all-around spacer. To use them, put a block-level element within your layout element with the corresponding spacer class.
+Ink uses seven kinds of spacer unit: a vertical spacer, a horizontal spacer, and all-around spacer and one for each side of your box (top, right, bottom, left). To use them, put a block-level element within your layout element with the corresponding spacer class.
 
 Example:
 
@@ -92,7 +99,7 @@ Let's pick up our previous example and add space all around (vertical and horizo
 
 Here's the code:
 
-<div class="container_width">
+<div class="ink-container">
 	<div class="g75 maincontent">
 		<div class="space">
 			<div class="g50 firstcolumn">
