@@ -1,0 +1,49 @@
+/*  Ubuntu Webfont @font-face declarations for Regular, Italic, Bold and Bold-italic  */
+
+@font-face {
+    font-family: 'ubunturegular';
+    src: url('../webfonts/ubuntu-r-webfont.eot');
+    src: url('../webfonts/ubuntu-r-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/ubuntu-r-webfont.woff') format('woff'),
+         url('../webfonts/ubuntu-r-webfont.ttf') format('truetype'),
+         url('../webfonts/ubuntu-r-webfont.svg#ubunturegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ubuntuitalic';
+    src: url('../webfonts/ubuntu-ri-webfont.eot');
+    src: url('../webfonts/ubuntu-ri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/ubuntu-ri-webfont.woff') format('woff'),
+         url('../webfonts/ubuntu-ri-webfont.ttf') format('truetype'),
+         url('../webfonts/ubuntu-ri-webfont.svg#ubuntuitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ubuntubold';
+    src: url('../webfonts/ubuntu-b-webfont.eot');
+    src: url('../webfonts/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/ubuntu-b-webfont.woff') format('woff'),
+         url('../webfonts/ubuntu-b-webfont.ttf') format('truetype'),
+         url('../webfonts/ubuntu-b-webfont.svg#ubuntubold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ubuntubold_italic';
+    src: url('../webfonts/ubuntu-bi-webfont.eot');
+    src: url('../webfonts/ubuntu-bi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/ubuntu-bi-webfont.woff') format('woff'),
+         url('../webfonts/ubuntu-bi-webfont.ttf') format('truetype'),
+         url('../webfonts/ubuntu-bi-webfont.svg#ubuntubold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
