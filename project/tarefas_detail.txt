@@ -8,25 +8,24 @@ Tables
 
 Layouts:
 
-	* Só com linhas nas rows .lines
-	* Grelha .grid
-	* Zebra .zebra
-	* Com border na table .bordered
+	* Só com linhas nas rows .ink-lines
+	* Grelha .ink-gridded
+	* Zebra .ink-zebra
+	* Com border na table .ink-bordered
 
 Opções:
 
-	* Hover nas rows
-	* Pintar certas rows com uma class (vermelho, verde, azul)
+	* Hover nas rows .ink-rowhover
+	* Pintar certas rows com uma class (vermelho, verde, azul) .ink-warning .ink-info .ink-caution .ink-success .ink-disabled
 
 Forms
 
-
 Layout de cada campo:
 
-	* Label
-	* Help text
+	* Label .ink-label
+	* Help text .ink-helptxt
 	* Campo/s
-	* Error text
+	* Error text .ink-warningtxt
 
 Conjunto de controlos (checkboxes, radio buttons):
 
@@ -38,47 +37,54 @@ Botões > mostly done
 
 Variantes:
 	
-	* Cinco "cores"
-	* Estados disabled para todos os anteriores
-	* Três tamanhos
+	* Cinco "cores", usar .ink-warning, etc (ver acima)
+	* Estados disabled para todos os anteriores (idem)
+	* Três tamanhos .ink-medium .ink-small .ink-large (?)
 
 Icons
 
-	* Ver awesome font, testar, report back
+	* Usar Font Awesome
+	* Incluir CSS e webfont para ser chamada
+	* Incluir attribution
 
 Navegação
 
-
-	* Navbar
-	* Navbar com dropdown
-	* Navlist
-	* Navlist com "dropright"
-	* Tabbar até três níveis, ver GLV
+	* Navbar .ink-navbar
+	* Navbar com dropdown .ink-dropdown
+	* Navlist .ink-navlist
+	* Navlist com flyout .ink-flyout
+	* Sistema de navbar até três níveis inspirado no GLV
 
 Mensagens e Avisos
 
+	* Erro .ink-warning
+	* Aviso .ink-caution
+	* Informação .ink-info
+	* Sucesso .ink-success
+	* Espera .ink-wait
+	* Disabled .ink-disabled
 
-	* Erro
-	* Aviso
-	* Informação
-	* Sucesso
-	* Espera
-
-Layout:
+Layout dos avisos:
 
 	* Título
 	* Texto
-	* Dismiss
-	* Acções (nalguns casos)
+	* Dismiss (cruz no canto)
+	* Acções (nalguns casos) -> botões
 
 Tipografia
 
 Testar font "Ubuntu" e decidir se é para usar
 
 	* Defnir todos os elementos
+		* h1 a 6
+		* p
+		* ol, ul, dd
+		* cite, blockquote
+		* code
+		* b, i, em, strong, mark
 
 
-Como usar as classes ink-
+Como usar as classes .ink-
 
 <table class="ink-table ink-zebra">
 
