@@ -1,0 +1,151 @@
+INK
+Notas e Definições
+
+Todas as classes da framework devem ter um prefixo .ink-
+
+Tables
+
+
+Layouts:
+
+	* Só com linhas nas rows .lines
+	* Grelha .grid
+	* Zebra .zebra
+	* Com border na table .bordered
+
+Opções:
+
+	* Hover nas rows
+	* Pintar certas rows com uma class (vermelho, verde, azul)
+
+Forms
+
+
+Layout de cada campo:
+
+	* Label
+	* Help text
+	* Campo/s
+	* Error text
+
+Conjunto de controlos (checkboxes, radio buttons):
+
+	* Usar fieldset legend para "label" do conjunto de controlos
+	* Usar as labels em cada controlo
+
+Botões > mostly done
+
+
+Variantes:
+	
+	* Cinco "cores"
+	* Estados disabled para todos os anteriores
+	* Três tamanhos
+
+Icons
+
+	* Ver awesome font, testar, report back
+
+Navegação
+
+
+	* Navbar
+	* Navbar com dropdown
+	* Navlist
+	* Navlist com "dropright"
+	* Tabbar até três níveis, ver GLV
+
+Mensagens e Avisos
+
+
+	* Erro
+	* Aviso
+	* Informação
+	* Sucesso
+	* Espera
+
+Layout:
+
+	* Título
+	* Texto
+	* Dismiss
+	* Acções (nalguns casos)
+
+Tipografia
+
+Testar font "Ubuntu" e decidir se é para usar
+
+	* Defnir todos os elementos
+
+
+Como usar as classes ink-
+
+<table class="ink-table ink-zebra">
+
+
+table.zebra {}
+
+.table-zebra {}
+
+#ink table.zebra {}
+
+.ink-zebra
+
+<ul class="ink-zebra">
+	<li>
+	<li>
+	<li>
+</ul>
+
+
+@media screen and (max-width: 600px ) {
+	
+	.ink-table thead tr {
+		display: block;
+	}
+	.ink-table td {
+		display: inline-block;
+	}
+
+}
+
+
+/**
+ *	<table>
+ *		<thead>
+ *			<tr>
+ *				<th>xpto</th>
+ *				<th>xpto</th>
+ *			<tr>
+ *		</thead>
+ *		<tbody>
+ *			<tr>
+ *				<td></td>
+ *				<td></td>
+ *			</tr>
+ *		</tbody>
+ *	</table>
+ *
+ */
+.ink-table {
+	
+}
+	.ink-table {
+
+	}
+
+.ink-zebra td,
+.ink-zebra li {
+	background-color: white;
+}
+.ink-zebra tr:nth-child(odd) td,
+.ink-zebra li:nth-child(odd) {
+	background-color: #ddd;
+}
+
+
+
+
+
+
+	

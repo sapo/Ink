@@ -6,7 +6,24 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 = About =
 
 * What it is
-* Why we did it
+
+Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
+
+You have several options to use Ink
+	* Download and use CSS and our boilerplate HTML as is
+	* Create your exceptions using CSS or Less
+	* Just get slices of markup and CSS off ou documentation to solve specific problems
+
+* Why use ink
+
+Ink presents a unique vision of what a front end framework should be. More than a ready made solution (although it can be that), we went for a builing block approach. By offering generic components that you can use in different contexts to obtain consistent results, Ink is both flexible and powerful while remaining easy to use.
+
+Our grid system is different from any other currently out there as it offers you true flexibility to build your layouts. Because it's all percentage-based, the grid is truly fluid and you don't have to count columns and rely on memorizing offsets and spans. Just naturally divide up your space in 10 to 100% blocks, divided into the most common steps, such as halves, quarters, fifths, etc.
+
+As to styling, we offer generic styling classes which can be applied to many elements in different contexts to obtain a consistent result. Say you want a zebra-stripe table but also a zebra-stripe list. With Ink, you use the same class .ink-zebra and the CSS takes care of applying correct layout and styling according to what type of markup element you used it on.
+
+This makes Ink very easy to learn and reuse over time, making your life easier. And with a quick configurator, you can change the properties of any styiling class so that the default .ink-warning class is no longer red with white text, but becomes yellow with red text, for example. You can then consistently use .ink-warning to get a red paragraph on a yellow background, or a yellow button with red text or even a yellow table row with red text in the table cells.
+
 * Who we are
 * What's in store
 
