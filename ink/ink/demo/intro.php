@@ -4,7 +4,7 @@
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
     
 <nav id="topbar">
-	<div class="container_width">
+	<div class="ink-container">
 		<h1><a href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li><a href="grid.php">Layout</a></li>
@@ -23,10 +23,10 @@
 	<div  class="glow2"><img src="styles/imgs/glow2.png" width="830" height="400" alt="Glow1"> </div> 
 </div>
 
-<div class="container_width">
+<div class="ink-container">
 	
-	<div class="g100 whatIs">
-		<div class="v_space">
+	<div class="ink-g100 whatIs">
+		<div class="ink-vspace">
 			<h3>Welcome to Ink</h3>
 			<p>
 				Ink is an interface kit for quick development of web interfaces, simple to use and expand on. 
@@ -35,21 +35,21 @@
 			</p>
 		</div>
 	</div>
-	<div class="g100" id="download">
-		<div class="g33"> 
-			<div class="space">
+	<div class="ink-g100" id="download">
+		<div class="ink-g33"> 
+			<div class="ink-space">
 				<a href="#" >Version 1.0</a>
 				<p>Download InK's current build</p>
 			</div>
 		</div>	
-		<div class="g33"> 
-			<div class="space">
+		<div class="ink-g33"> 
+			<div class="ink-space">
 				<a href="#" >Custom</a>
 				<p>Customize your basic layout - site width, gutters, spacers, and much more</p>
 			</div>
 		</div>
-		<div class="g33"> 
-			<div class="space">
+		<div class="ink-g33"> 
+			<div class="ink-space">
 				<a href="#" >Github repo</a>
 				<p>Download, fork, pull, comment or report bugs at InK's Github</p>
 			</div>

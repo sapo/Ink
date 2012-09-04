@@ -36,19 +36,19 @@
 h2 span {
   padding-right: .5em;
 }
-.space {
+.ink-space {
   margin: 1em;
   padding: 0;
 }
-.v_space {
+.ink-vspace {
   margin: 1em 0;
   padding: 0 0;
 }
-.h_space {
+.ink-hspace {
   margin: 0 1em;
   padding: 0 0;
 }
-.section {
+.ink-section {
   margin: 1em 0;
   padding-bottom: 1em;
   border-bottom: 1px solid #eee;
@@ -63,7 +63,7 @@ h2 span {
   background-color: #fff;
   padding: 1em;
 }
-.g100 {
+.ink-g100 {
   width: auto;
 }
 mark {
@@ -96,7 +96,7 @@ mark {
   text-align: center;
   background-color: #fff;
 }
-.g50.level1 {
+.ink-g50.level1 {
   width: 48.4%;
 }
 #spaceExemples .box {
@@ -125,16 +125,16 @@ mark {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
-#spaceExemples .box .space {
+#spaceExemples .box .ink-space {
   padding: 1em;
 }
-#spaceExemples .box .v_space {
+#spaceExemples .box .ink-vspace {
   padding: 1em 0;
 }
-#spaceExemples .box .h_space {
+#spaceExemples .box .ink-hspace {
   padding: 0 1em;
 }
-#spaceExemples .box .h_space p {
+#spaceExemples .box .ink-hspace p {
   padding: 13px 0;
 }
 /*..........................................  Typography  ...................................................*/
@@ -225,7 +225,7 @@ a.active {
 #download p {
   margin: 1em;
 }
-.section #topbar {
+.ink-section #topbar {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;

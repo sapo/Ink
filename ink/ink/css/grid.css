@@ -23,11 +23,11 @@ h5,
 h6 {
   margin-bottom: 5px;
 }
-.clearfix:after,
-.container_width:after,
-.section:after,
-.space:after,
-.g100:after {
+.ink-clearfix:after,
+.ink-container:after,
+.ink-section:after,
+.ink-space:after,
+.ink-g100:after {
   content: ".";
   display: block;
   height: 0;
@@ -35,106 +35,109 @@ h6 {
   visibility: hidden;
   zoom: 1;
 }
-.container_width {
+.ink-container {
   margin: auto;
   width: 960px;
   padding: 0 15px;
 }
-.g100 {
+.ink-g100 {
   width: 100%;
 }
-.g90 {
+.ink-g90 {
   width: 90%;
 }
-.g80 {
+.ink-g80 {
   width: 80%;
 }
-.g75 {
+.ink-g75 {
   width: 75%;
 }
-.g70 {
+.ink-g70 {
   width: 70%;
 }
-.g66 {
+.ink-g66 {
   width: 66.66%;
 }
-.g60 {
+.ink-g60 {
   width: 60%;
 }
-.g50 {
+.ink-g50 {
   width: 50%;
 }
-.g40 {
+.ink-g40 {
   width: 40%;
 }
-.g33 {
+.ink-g33 {
   width: 33.33%;
 }
-.g30 {
+.ink-g30 {
   width: 30%;
 }
-.g25 {
+.ink-g25 {
   width: 25%;
 }
-.g20 {
+.ink-g20 {
   width: 20%;
 }
-.g10 {
+.ink-g10 {
   width: 10%;
 }
-.g10,
-.g20,
-.g25,
-.g30,
-.g33,
-.g40,
-.g50,
-.g60,
-.g66,
-.g70,
-.g75,
-.g80,
-.g90 {
+.ink-g10,
+.ink-g20,
+.ink-g25,
+.ink-g30,
+.ink-g33,
+.ink-g40,
+.ink-g50,
+.ink-g60,
+.ink-g66,
+.ink-g70,
+.ink-g75,
+.ink-g80,
+.ink-g90 {
   float: left;
   zoom: 1;
 }
-.g100:empty,
-.g90:empty,
-.g80:empty,
-.g75:empty,
-.g70:empty,
-.g66:empty,
-.g60:empty,
-.g50:empty,
-.g40:empty,
-.g33:empty,
-.g30:empty,
-.g25:empty,
-.g20:empty,
-.g10:empty {
+.ink-g100:empty,
+.ink-g90:empty,
+.ink-g80:empty,
+.ink-g75:empty,
+.ink-g70:empty,
+.ink-g66:empty,
+.ink-g60:empty,
+.ink-g50:empty,
+.ink-g40:empty,
+.ink-g33:empty,
+.ink-g30:empty,
+.ink-g25:empty,
+.ink-g20:empty,
+.ink-g10:empty {
   clear: both;
 }
-.space {
+.ink-space {
   margin: 10px;
   padding: 15px;
 }
-.v_space {
+.ink-vspace {
   margin: 10px 0;
   padding: 15px 0;
 }
-.h_space {
+.ink-hspace {
   margin: 0 10px;
   padding: 0 15px;
 }
-.right_space {
+.ink-rspace {
   margin: 0 10px 0 0;
   padding: 0 15px 0 0;
 }
-.clear,
-.g100,
-.section {
+.ink-clear,
+.ink-g100,
+.ink-section {
   clear: both;
 }
-.clearleft {
+.ink-clear-left {
   clear: left;
+}
+.ink-clear-right {
+  clear: right;
 }

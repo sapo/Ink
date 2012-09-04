@@ -1,7 +1,7 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
-	<div class="container_width">
+	<div class="ink-container">
 		<h1><a href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li><a href="grid.php">Layout</a></li>
@@ -14,15 +14,15 @@
 	</div>
 </nav>  
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
-<div class="container_width whatIs">
-	<div class="space">
+<div class="ink-container whatIs">
+	<div class="ink-space">
 		<h2>InK JS</h2>
 		<p>A JS component lib to go along with your awsome site</p>
 	</div>
 </div>
 
 <nav class="menu">
-	<div class="container_width">
+	<div class="ink-container">
 		<ul>
 			<li class="active"><a href="#">UI components</a></li>
 			<li><a href="#">Visual effects</a></li>
@@ -31,16 +31,16 @@
 	</div>
 </nav>  
 
-<div class="container_width">
-	<div class="section">
-		<div class="g33">
-			<div class="space">
+<div class="ink-container">
+	<div class="ink-section">
+		<div class="ink-g33">
+			<div class="ink-space">
 				<h3>DatePicker</h3>
 				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
 		</div>
-		<form class="g66">
-			<fieldset class="box space">
+		<form class="ink-g66">
+			<fieldset class="box ink-space">
 				<div class="e_wrap">
 					<p>Neste caso o componente está a ser utilizado com onFocus (comportamento default) e com o formato mm/dd/yyyy</p>
 					<input id="data" type="text" value="">

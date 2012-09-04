@@ -1,7 +1,7 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
-	<div class="container_width">
+	<div class="ink-container">
 		<h1><a href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li><a href="grid.php">Layout</a></li>
@@ -15,15 +15,15 @@
 </nav>  
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
-<div class="container_width">
+<div class="ink-container">
 	<h2><span>Alertas</span></h2>
-	<div class="space">
+	<div class="ink-space">
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div> 
     
-	<div class="section">
-		<div class="g25">
-			<div class="space">
+	<div class="ink-section">
+		<div class="ink-g25">
+			<div class="ink-space">
 				<h3>Alertas Básicos</h3>
 				<p>Os Avisos Básicos são úteis para formulários ou notificações simples.</p><br>
 				<p>Para usar o estilo dos avisos básicos basta usar a class <mark>.alert-msg</mark>, podendo esta ser acompanhada das classes:</p>
@@ -34,8 +34,8 @@
 				</ul>
 			</div>
 		</div> 
-		<div class="g75">
-			<div class="space">
+		<div class="ink-g75">
+			<div class="ink-space">
 					<div class="alert-msg">
 						<a href="#close" class="close">&times;</a>
 						<p><b>Aviso:</b> Aqui fica o texto da notificação</p>
@@ -62,9 +62,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
-		<div class="g25">
-			<div class="space">
+	<div class="ink-section">
+		<div class="ink-g25">
+			<div class="ink-space">
 				<h3>Alertas em Bloco</h3>
 				<p>Os Avisos Básicos são úteis para formulários com explicação detalhada de erros ou erros onde será necessário acção.</p>
 				<ul class="unstyled">
@@ -74,8 +74,8 @@
 				</ul>
 			</div>
 		</div>
-		<div class="g75">
-			<div class="space">
+		<div class="ink-g75">
+			<div class="ink-space">
 					<div class="block-alert-msg">
 						<a href="#close" class="close">&times;</a>
 						<h4>Isto é uma notificação</h4>

@@ -12,57 +12,57 @@
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
-.clearfix,
-.container_width,
+.ink-clearfix,
+.ink-container,
 .section,
-.space,
-.g100 {
+.ink-space,
+.ink-g100 {
   zoom: 1;
 }
 .h_navigation li {
   list-style: none!important;
   display: inline;
 }
-.g100 {
+.ink-g100 {
   width: 99.9% !important;
 }
-.g90 {
+.ink-g90 {
   width: 89.9% !important;
 }
-.g80 {
+.ink-g80 {
   width: 79.9% !important;
 }
-.g75 {
+.ink-g75 {
   width: 74.9% !important;
 }
-.g70 {
+.ink-g70 {
   width: 69.9% !important;
 }
-.g66 {
+.ink-g66 {
   width: 66.56% !important;
 }
-.g60 {
+.ink-g60 {
   width: 59.9% !important;
 }
-.g50 {
+.ink-g50 {
   width: 49.7% !important;
 }
-.g40 {
+.ink-g40 {
   width: 39.9% !important;
 }
-.g33 {
+.ink-g33 {
   width: 33.23% !important;
 }
-.g30 {
+.ink-g30 {
   width: 29.9% !important;
 }
-.g25 {
+.ink-g25 {
   width: 24.9% !important;
 }
-.g20 {
+.ink-g20 {
   width: 19.9% !important;
 }
-.g10 {
+.ink-g10 {
   width: 9.9% !important;
 }
 .e_wrap.error, form .warning {

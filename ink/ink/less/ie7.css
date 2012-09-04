@@ -12,11 +12,11 @@
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
-.clearfix,
-.container_width,
+.ink-clearfix,
+.ink-container,
 .section,
-.space,
-.g100 {
+.ink-space,
+.ink-g100 {
   zoom: 1;
 }
 .h_navigation li {

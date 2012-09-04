@@ -1,7 +1,7 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
-	<div class="container_width">
+	<div class="ink-container">
 		<h1><a href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li><a href="grid.php">Layout</a></li>
@@ -14,8 +14,8 @@
 	</div>
 </nav>  
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
-<div class="container_width whatIs">
-	<div class="space">
+<div class="ink-container whatIs">
+	<div class="ink-space">
 		<h2>Forms & Alerts</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
@@ -23,7 +23,7 @@
 </div>
 
 <nav class="menu">
-	<div class="container_width">
+	<div class="ink-container">
 		<ul>
 			<li class="active"><a href="#">Form building</a></li>
 			<li><a href="#">Text & Number entry</a></li>
@@ -34,10 +34,10 @@
 	</div>
 </nav>  
 
-<div class="container_width">
-	<div class="section">
-		<form class="g66">
-			<fieldset class="box space">
+<div class="ink-container">
+	<div class="ink-section">
+		<form class="ink-g66">
+			<fieldset class="box ink-space">
 				<p class="note"><strong>Nota:</strong> Os campos * são de preenchimento Obrigatório</p>
 				<div class="e_wrap">
 					<label for="inpuTypeTex">Input</label>
@@ -101,8 +101,8 @@
 			</fieldset>
 		</form> 
 		
-		<div class="g33">
-			<div class="space">
+		<div class="ink-g33">
+			<div class="ink-space">
 				<h3>Estrutura</h3>
 				<p>Os campos dos formulários devem ser envolvidos por um elemento com a class <mark>.e_wrap</mark><br>
 					Esta class existe para separar os elementos do formulários assim como assiste na estilização de erros
@@ -113,7 +113,7 @@
 &lt;input type=&quot;text&quot; id=&quot;inputId&quot; /&gt;
 &lt;/div&gt;
 &lt;/form&gt;</pre><br><br>  
-				<div class="v_space">
+				<div class="ink-vspace">
 					<h4>Formulários em bloco</h4>
 					<form class="form_block exempleForm">
 						<label for="exField">Nome do Campo</label>
@@ -123,7 +123,7 @@
 					<p>Para este efeito o <mark>&lt;form&gt;</mark> deverá ter a class <mark>.form_block</mark></p>
 				</div>
 				<br><br>
-				<div class="v_space">
+				<div class="ink-vspace">
 					<h4>Erros e Avisos</h4>
 					<form class="form_block exempleForm"> 
 						<div class="e_wrap error">
@@ -140,9 +140,9 @@
 	
 	<!-- .................................  ERROS	.................................  -->
 	
-	<div class="section">
-		<div class="g50">
-			<div class="space">
+	<div class="ink-section">
+		<div class="ink-g50">
+			<div class="ink-space">
 				<h4>Lista de Checkboxes</h4>
 				<p>Listas de checkbox são especialmente úteis para formulários que exigem a aceitação de vários dados.</p>
 				<pre class="prettyprint">&lt;form  class=&quot;form_block&quot;&gt;
@@ -157,8 +157,8 @@
 &lt;/form&gt;</pre><br>
 			</div>
 		</div>
-		<div class="g50">
-			<div class="space">
+		<div class="ink-g50">
+			<div class="ink-space">
 				<h4>Inline Inputs</h4>
 				<p>Listas de checkbox são especialmente úteis para formulários que exigem a aceitação de vários dados.</p>
 				<form class="exempleForm">
@@ -176,10 +176,10 @@
 	</div>
 	
 	<!-- .................................  BOTÕES	.................................  -->
-	<div class="section" id="buttonsExemple">
+	<div class="ink-section" id="buttonsExemple">
 
-		<div class="g66">
-			<form class="space"> 
+		<div class="ink-g66">
+			<form class="ink-space"> 
 				<div class="e_wrap">
 					<button type="button" class="defaultBtn">Default</button>
 					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success">
@@ -201,8 +201,8 @@
 				</div>
 			</form>
 		</div>
-		<div class="g33">
-			<div class="space">
+		<div class="ink-g33">
+			<div class="ink-space">
 				<h4>Botões</h4> 
 				<p>Estão contemplados no estilo base dos formulários quatro tipo de botões:</p>
 				<p><mark>.defaultBtn</mark> - Para vários tipos acções</p> 
