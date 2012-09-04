@@ -1,8 +1,0 @@
-API:
-
-document 
-  -> head
-    -> charset
-
-  -> body
-    -> does
