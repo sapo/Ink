@@ -1,0 +1,51 @@
+Ink bundle structure
+
+What you get when you unzip Ink.
+
+Root files:
+
+> index.html (clean boilerplate-like template)
+> apple-touch-icon-57x57-precomposed.png
+> apple-touch-icon-72x72-precomposed.png
+> apple-touch-icon-114x114-precomposed.png
+> apple-touch-icon-144x144-precomposed.png
+> apple-touch-icon-precomposed.png
+> apple-touch-icon.png
+> favicon.ico
+> humans.txt
+> robots.txt
+
+Directories:
+
+> css (base compiled CSS and awesome font CSS)
+	font-awesome.css
+	font-awesome-ie7.css
+
+> less (less files)
+
+> img (empty, for user)
+
+> fonts (necessary webfonts and font awesome files)
+	ubuntu-r-webfont.eot
+	ubuntu-r-webfont.svg
+	ubuntu-r-webfont.ttf
+	ubuntu-r-webfont.woff
+	ubuntu-ri-webfont.eot
+	ubuntu-ri-webfont.svg
+	ubuntu-ri-webfont.ttf
+	ubuntu-ri-webfont.woff
+	ubuntumono-b-webfont.eot
+	ubuntumono-b-webfont.svg
+	ubuntumono-b-webfont.ttf
+	ubuntumono-b-webfont.woff
+	ubuntumono-bi-webfont.eot
+	ubuntumono-bi-webfont.svg
+	ubuntumono-bi-webfont.ttf
+	ubuntumono-bi-webfont.woff
+	fontawesome-webfont.eot
+	fontawesome-webfont.svg
+	fontawesome-webfont.ttf
+	fontawesome-webfont.woff
+
+> js (javascript)
+> docs (licenses and documentation)
