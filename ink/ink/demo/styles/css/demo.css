@@ -36,23 +36,6 @@
 h2 span {
   padding-right: .5em;
 }
-.ink-space {
-  margin: 1em;
-  padding: 0;
-}
-.ink-vspace {
-  margin: 1em 0;
-  padding: 0 0;
-}
-.ink-hspace {
-  margin: 0 1em;
-  padding: 0 0;
-}
-.ink-section {
-  margin: 1em 0;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #eee;
-}
 .box {
   border-radius: 4px;
   -webkit-border-radius: 4px;
