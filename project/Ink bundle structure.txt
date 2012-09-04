@@ -56,7 +56,6 @@ Directories:
 	typo.less
 	widgets.less
 
-
 > img (empty, for user)
 
 > fonts (necessary webfonts and font awesome files)
@@ -82,4 +81,6 @@ Directories:
 	fontawesome-webfont.woff
 
 > js (javascript)
+
 > docs (licenses and documentation)
+	licenses.txt
