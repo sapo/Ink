@@ -36,9 +36,8 @@ h6 {
   zoom: 1;
 }
 .ink-container {
-  margin: auto;
+  margin: 0 auto;
   width: 960px;
-  padding: 0 15px;
 }
 .ink-g100 {
   width: 100%;
@@ -129,6 +128,11 @@ h6 {
 .ink-rspace {
   margin: 0 10px 0 0;
   padding: 0 15px 0 0;
+}
+.ink-section {
+  margin: 1em 0;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #eee;
 }
 .ink-clear,
 .ink-g100,

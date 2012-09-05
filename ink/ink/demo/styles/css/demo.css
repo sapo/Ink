@@ -298,11 +298,12 @@ a.active {
 footer {
   border-top: 1px solid #CCC;
   background: #f0f0f0;
+  overflow: hidden;
 }
 .corporatelinks li {
-  display: inline;
+  display: inline-block;
   font-size: 0.875em;
-  margin-right: 1em;
+  margin: 0 1em 0 0;
 }
 footer .SAPOlogo {
   background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;

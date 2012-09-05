@@ -2,7 +2,7 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
+		<h1><a class="logoPlaceholder" href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li class="active"><a href="grid.php">Layout</a></li>
 			<li><a href="navigation.php">Navigation</a></li>
@@ -15,7 +15,7 @@
 </nav>  
 
 <div class="ink-container whatIs">
-	<div class="ink-space">
+	<div class="ink-vspace">
 		<h2>Layout</h2>
 		<p>Insert hipster text, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 	</div>
@@ -189,7 +189,7 @@
 		</div>
 	</div>
 	<div class="ink-section">
-		<h3>Lista de Classes Disponíveis</h3>
+		<h3>List of available Classes</h3>
 		<div class="ink-space">
 			.ink-container <br>
 			.ink-section<br>

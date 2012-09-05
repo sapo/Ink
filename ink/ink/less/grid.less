@@ -16,9 +16,8 @@ h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
 }
 
 .ink-container {
-	margin: auto; 
+	margin:@siteMargin; 
 	width: @siteWidth; 
-	padding:0 @sitePadding
 }
  
 .ink-g100	{width: 100%}
@@ -39,11 +38,12 @@ h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
 .ink-g10, .ink-g20, .ink-g25, .ink-g30, .ink-g33, .ink-g40, .ink-g50, .ink-g60, .ink-g66, .ink-g70, .ink-g75, .ink-g80, .ink-g90  {float:left; zoom:1}
 .ink-g100:empty, .ink-g90:empty, .ink-g80:empty, .ink-g75:empty, .ink-g70:empty, .ink-g66:empty, .ink-g60:empty, .ink-g50:empty, .ink-g40:empty,.ink-g33:empty, .ink-g30:empty, .ink-g25:empty, .ink-g20:empty, .ink-g10:empty {clear:both}
 
-.ink-space			{margin:@basicMargin; padding:@basicPadding}
+.ink-space		{margin:@basicMargin; padding:@basicPadding}
 .ink-vspace		{margin:@basicMargin 0; padding:@basicPadding 0}
-.ink-hspace 		{margin:0 @basicMargin; padding:0 @basicPadding}
+.ink-hspace 	{margin:0 @basicMargin; padding:0 @basicPadding}
 .ink-rspace 	{margin:0 @basicMargin 0 0; padding:0 @basicPadding 0 0}
+.ink-section 	{margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #eee;}
 
 .ink-clear, .ink-g100, .ink-section {clear:both}
-.ink-clear-left { clear:left }
-.ink-clear-right { clear:right }
+.ink-clear-left {clear:left }
+.ink-clear-right {clear:right }

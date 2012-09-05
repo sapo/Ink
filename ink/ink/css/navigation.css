@@ -91,6 +91,9 @@
   position: relative;
   overflow: visible;
 }
+#topbar a.logoPlaceholder {
+  padding: 0;
+}
 #topbar a {
   padding: 0 .8em;
   line-height: 40px;
@@ -103,7 +106,6 @@
 }
 #topbar h1 {
   font-size: 1.625em;
-  padding: 0;
   float: left;
   margin: 0;
   font-family: Helvetica Neue, Helvetica, sans-serif;
@@ -163,6 +165,9 @@
   color: #000000;
   text-decoration: none;
   display: block;
+}
+.menu ul {
+  padding: 0;
 }
 .menu ul li {
   margin: 0;
