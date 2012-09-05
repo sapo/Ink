@@ -170,7 +170,7 @@
 			</div>
 			<div class="ink-g100 ink-vspace">
 				<h4>Hover rows table</h4>
-				<table class="ink-table ink-columns">
+				<table class="ink-table ink-bordered">
 					<thead>
 						<tr>
 							<th>ID</th>

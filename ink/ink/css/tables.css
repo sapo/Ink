@@ -12,7 +12,6 @@
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
-/*@table-header-color:#1EA7C0;*/
 table.ink-table {
   width: 100%;
   border-collapse: separate;
@@ -20,17 +19,17 @@ table.ink-table {
   background: none;
 }
 table.ink-table thead tr th {
-  padding: 5px;
+  padding: 0 10px;
   border-bottom: #cccccc 1px solid;
   background: none;
   font-weight: 700;
-  line-height: 25px;
+  line-height: 2;
 }
 table.ink-table tbody tr td {
-  padding: 5px;
+  padding: 0 10px;
   border-bottom: #cccccc 1px solid;
   background: none;
-  line-height: 25px;
+  line-height: 2;
 }
 table.ink-table.ink-zebra tbody tr:nth-child(odd) {
   background-color: #f9f9f9;
