@@ -5,7 +5,6 @@ Todas as classes da framework devem ter um prefixo .ink-
 
 Tables
 
-
 Layouts:
 
 	* Só com linhas nas rows .ink-lines
@@ -104,6 +103,23 @@ table.zebra {}
 </ul>
 
 
+Sistema de grelha com múltiplos níveis:
+
+	* Em vez de apenas g10 a g100:
+		* s10 a s100 para "small"
+		* m10 a m100 para "medium"
+		* l10 a l100 para "large"
+
+Gutters
+
+	* .ink-hspace
+	* .ink-vspace
+	* .ink-rspace
+	* .ink-lspace
+	* .ink-tspace
+	* .ink-bspace
+
+
 @media screen and (max-width: 600px ) {
 	
 	.ink-table thead tr {
@@ -151,7 +167,34 @@ table.zebra {}
 
 
 
+<div id="ink-slideshow">
+	<ul>
+		<li></li>
+	</ul>
+</div>
 
+/* ***************** */
 
+<div id="container">
+</div>
+<script>
 
-	
+var opt = {
+	target: 'container',
+	mode: 'a',	
+	data: [
+		{
+			img: 'http://url/img1.jpg',
+			text: 'texto 1'		
+		},
+		{
+			img: 'http://url/img2.jpg',
+			text: 'text 2'
+		}
+	]
+
+};
+
+new SAPO.Component.Gallery(opt)
+
+</script>
