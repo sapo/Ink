@@ -6,7 +6,7 @@ table {
 	&.ink-table {
 
 		width: 100%;
-		border-collapse: separate;
+		border-collapse: collapse;
 		border-spacing: 0;
 		background: none;
 
@@ -51,7 +51,7 @@ table {
 			tbody {
 
 					tr:hover {
-						background: @table-zebra-row-color;
+						background: @table-row-hover-color;
 						cursor: pointer;
 					}
 
@@ -59,19 +59,36 @@ table {
 
 		}
 
-		&.ink-columns {
+		&.ink-bordered {
+
+			border-collapse: separate;
+			border: @table-cell-border-color 1px solid;
+			.round-corners(5px);
 
 			thead {
 				tr {
 					th {
 						border-left: @table-cell-border-color 1px solid;
+						&:first-child {
+							border-left: none;
+						}
 					}
 				}
 			}
 			tbody {
 				tr {
+
+					&:last-child {
+						td {
+							border-bottom: none;
+						}
+					}
+
 					td {
 						border-left: @table-cell-border-color 1px solid;
+						&:first-child {
+							border-left: none;
+						}
 					}
 				}
 			}

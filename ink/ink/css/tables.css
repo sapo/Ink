@@ -14,7 +14,7 @@
 /* Functions */
 table.ink-table {
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
   background: none;
 }
@@ -35,12 +35,28 @@ table.ink-table.ink-zebra tbody tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 table.ink-table.ink-hover tbody tr:hover {
-  background: #f9f9f9;
+  background: #fefbd6;
   cursor: pointer;
 }
-table.ink-table.ink-columns thead tr th {
+table.ink-table.ink-bordered {
+  border-collapse: separate;
+  border: #cccccc 1px solid;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+table.ink-table.ink-bordered thead tr th {
   border-left: #cccccc 1px solid;
 }
-table.ink-table.ink-columns tbody tr td {
+table.ink-table.ink-bordered thead tr th:first-child {
+  border-left: none;
+}
+table.ink-table.ink-bordered tbody tr:last-child td {
+  border-bottom: none;
+}
+table.ink-table.ink-bordered tbody tr td {
   border-left: #cccccc 1px solid;
+}
+table.ink-table.ink-bordered tbody tr td:first-child {
+  border-left: none;
 }
