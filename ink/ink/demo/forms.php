@@ -37,7 +37,7 @@
 
 <div class="ink-container">
 	<div class="ink-section">
-		<form class="ink-g66">
+		<form class="ink-l66">
 			<fieldset class="box ink-space">
 				<p class="note"><strong>Nota:</strong> Os campos * são de preenchimento Obrigatório</p>
 				<div class="e_wrap">
@@ -102,7 +102,7 @@
 			</fieldset>
 		</form> 
 		
-		<div class="ink-g33">
+		<div class="ink-l33">
 			<div class="ink-space">
 				<h3>Estrutura</h3>
 				<p>Os campos dos formulários devem ser envolvidos por um elemento com a class <mark>.e_wrap</mark><br>
@@ -142,7 +142,7 @@
 	<!-- .................................  ERROS	.................................  -->
 	
 	<div class="ink-section">
-		<div class="ink-g50">
+		<div class="ink-l50">
 			<div class="ink-space">
 				<h4>Lista de Checkboxes</h4>
 				<p>Listas de checkbox são especialmente úteis para formulários que exigem a aceitação de vários dados.</p>
@@ -158,7 +158,7 @@
 &lt;/form&gt;</pre><br>
 			</div>
 		</div>
-		<div class="ink-g50">
+		<div class="ink-l50">
 			<div class="ink-space">
 				<h4>Inline Inputs</h4>
 				<p>Listas de checkbox são especialmente úteis para formulários que exigem a aceitação de vários dados.</p>
@@ -178,35 +178,43 @@
 	
 	<!-- .................................  BOTÕES	.................................  -->
 	<div class="ink-section" id="buttonsExemple">
-
-		<div class="ink-g66">
+		<div class="ink-l66">
 			<form class="ink-space"> 
 				<div class="e_wrap">
-					<button type="button" class="defaultBtn">Default</button>
-					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success">
-					<button type="button" class="btn_info">Info</button>
-					<button type="button" class="btn_delete">Apagar</button>
+					<button type="button" class="ink-small">Default</button>
+					<button type="button" class="ink-small ink-success">Default</button>
+					<button type="button" class="ink-small ink-warning">Default</button>
+					<button type="button" class="ink-small ink-error">Default</button>
+					<button type="button" class="ink-small ink-info">Default</button>
+				</div>
+				<div class="e_wrap">
+					<button type="button">Default</button>
+					<button type="button" class=" ink-success">Default</button>
+					<button type="button" class=" ink-warning">Default</button>
+					<button type="button" class=" ink-error">Default</button>
+					<button type="button" class=" ink-info">Default</button>
 				</div> 
 				<div class="e_wrap">
-					<button type="button" class="defaultBtn MediumBtn">Default</button>
-					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success MediumBtn">
-					<button type="button" class="btn_info MediumBtn">Info</button>
-					<button type="button" class="btn_delete MediumBtn">Apagar</button>
-				</div>
-				
+					<button type="button" class="ink-medium">Default</button>
+					<button type="button" class="ink-medium ink-success">Default</button>
+					<button type="button" class="ink-medium ink-warning">Default</button>
+					<button type="button" class="ink-medium ink-error">Default</button>
+					<button type="button" class="ink-medium ink-info">Default</button>
+				</div> 
 				<div class="e_wrap">
-					<button type="button" class="defaultBtn bigBtn">Default</button>
-					<input id="inpuTypeTex" type="submit" value="Gravar" class="btn_success bigBtn">
-					<button type="button" class="btn_info bigBtn">Info</button>
-					<button type="button" class="btn_delete bigBtn">Apagar</button>
-				</div>
+					<button type="button" class="ink-large">Default</button>
+					<button type="button" class="ink-large ink-success">Default</button>
+					<button type="button" class="ink-large ink-warning">Default</button>
+					<button type="button" class="ink-large ink-error">Default</button>
+					<button type="button" class="ink-large ink-info">Default</button>
+				</div> 
 			</form>
 		</div>
-		<div class="ink-g33">
+		<div class="ink-l33">
 			<div class="ink-space">
 				<h4>Botões</h4> 
 				<p>Estão contemplados no estilo base dos formulários quatro tipo de botões:</p>
-				<p><mark>.defaultBtn</mark> - Para vários tipos acções</p> 
+				<p><mark>.ink-button</mark> - Para vários tipos acções</p> 
 				<p><mark>.btn_success</mark> - Associado a acções submissão</p>
 				<p><mark>.btn_info</mark> - Para obter mais informações</p>
 				<p><mark>.btn_delete</mark> - Associado a acções de eliminação</p>    

@@ -36,7 +36,7 @@
 
 <div class="ink-container">
 	<div class="ink-section">
-		<div class="ink-g100">
+		<div class="ink-l100">
 			<div class="ink-vspace">
 				<nav>
 					<ul class="h_navigation">
@@ -57,7 +57,7 @@
 				</nav>
 			</div>
 		</div>
-		<div class="ink-g50">
+		<div class="ink-l50">
 			<div class="ink-hspace">
 				<h3>Menu Horizontal</h3>
 				<p>Os menus horizontais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.</p>
@@ -73,7 +73,7 @@
 	  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
 	&lt;/ul&gt;</pre>
 		</div>
-		<div class="ink-g50">
+		<div class="ink-l50">
 			<div class="ink-hspace">
 				<h4>Submenu</h4>
 				<p>Os menus que se baseiam em <mark>&lt;ul&gt;</mark>(Unsorted Lists) pode ter submenus respeitando a estrutura abaixo.</p>
@@ -113,7 +113,7 @@
 			<form><input type="text" placeholder="Pesquisar"/></form>
 			<a href="#" onClick="toogleNav()" id="toggleNavigation">Menu</a>
 		</div> 
-		<div class="ink-g50">
+		<div class="ink-l50">
 			<div class="ink-space">
 				<h3>Menu Estilizado</h3>
 				<p></p>
@@ -121,7 +121,7 @@
 		</div>   	
 	</div>
 	
-	<div class="ink-g100 ink-section">
+	<div class="ink-l100 ink-section">
 		<div class="ink-vspace">
 			<div id="exempleBar">
 				<div class="whiteMenu">
@@ -140,19 +140,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="ink-g33">
+		<div class="ink-l33">
 			<div class="ink-space">
 				<h3>Round Menu</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
 		</div>
-		<div class="ink-g33">
+		<div class="ink-l33">
 			<div class="ink-space">
 				<h4>SubMenu</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
 		</div>
-		<div class="ink-g33">
+		<div class="ink-l33">
 			<div class="ink-space">
 				<h4>Pesquisa Incorporada</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

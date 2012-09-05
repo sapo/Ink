@@ -1,49 +1,10 @@
 @import "conf";
 
-caption, th { text-align:left; } 
-h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
-.ink-clearfix:after,
-.ink-container:after,
-.ink-section:after,
-.ink-space:after,
-.ink-g100:after {
-	content: "."; 
-	display: block; 
-	height: 0; 
-	clear: both; 
-	visibility: hidden; 
-	zoom: 1
-}
-
-.ink-container {
-	margin: auto; 
-	width: @siteWidth; 
-	padding:0 @sitePadding
-}
- 
-.ink-g100	{width: 100%}
-.ink-g90	{width: 90%}
-.ink-g80	{width: 80%}
-.ink-g75	{width: 75%}
-.ink-g70	{width: 70%}
-.ink-g66	{width: 66.66%}
-.ink-g60	{width: 60%}                           
-.ink-g50	{width: 50%}
-.ink-g40	{width: 40%}
-.ink-g33	{width: 33.33%}
-.ink-g30	{width: 30%}
-.ink-g25	{width: 25%}
-.ink-g20	{width: 20%}
-.ink-g10	{width: 10%}
-
-.ink-g10, .ink-g20, .ink-g25, .ink-g30, .ink-g33, .ink-g40, .ink-g50, .ink-g60, .ink-g66, .ink-g70, .ink-g75, .ink-g80, .ink-g90  {float:left; zoom:1}
-.ink-g100:empty, .ink-g90:empty, .ink-g80:empty, .ink-g75:empty, .ink-g70:empty, .ink-g66:empty, .ink-g60:empty, .ink-g50:empty, .ink-g40:empty,.ink-g33:empty, .ink-g30:empty, .ink-g25:empty, .ink-g20:empty, .ink-g10:empty {clear:both}
-
 .ink-space			{margin:@basicMargin; padding:@basicPadding}
 .ink-vspace		{margin:@basicMargin 0; padding:@basicPadding 0}
 .ink-hspace 		{margin:0 @basicMargin; padding:0 @basicPadding}
 .ink-rspace 	{margin:0 @basicMargin 0 0; padding:0 @basicPadding 0 0}
 
-.ink-clear, .ink-g100, .ink-section {clear:both}
+.ink-clear, .ink-l100, .ink-m100, .ink-s100, .ink-section {clear:both}
 .ink-clear-left { clear:left }
 .ink-clear-right { clear:right }

@@ -11,32 +11,29 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
-.ink-space {
-  margin: 10px;
-  padding: 15px;
+/* Functions */
+.ink-warning {
+  background-color: #ff9c00;
+  color: #fff;
 }
-.ink-vspace {
-  margin: 10px 0;
-  padding: 15px 0;
+.ink-error {
+  background-color: #cd0000;
+  color: #fff;
 }
-.ink-hspace {
-  margin: 0 10px;
-  padding: 0 15px;
+.ink-info {
+  background-color: #0f8bda;
+  color: #fff;
 }
-.ink-rspace {
-  margin: 0 10px 0 0;
-  padding: 0 15px 0 0;
+.ink-success {
+  background-color: #85bd11;
+  color: #fff;
 }
-.ink-clear,
-.ink-l100,
-.ink-m100,
-.ink-s100,
-.ink-section {
-  clear: both;
+.ink-small {
+  font-size: 0.90em;
 }
-.ink-clear-left {
-  clear: left;
+.ink-medium {
+  font-size: 1.25em;
 }
-.ink-clear-right {
-  clear: right;
+.ink-large {
+  font-size: 1.5em;
 }

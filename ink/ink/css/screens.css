@@ -1,3 +1,8 @@
+@import url(small.css) (max-width: 650px);
+
+@import url(medium.css) (min-width: 651px) and (max-width: 900px);
+
+@import url(large.css) (min-width: 901px);
 /*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
@@ -12,79 +17,45 @@
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* Functions */
-/* Smartphones (portrait and landscape) */
-@media only screen and (max-width: 900px) {
-  .ink-g90,
-  .ink-g80,
-  .ink-g75,
-  .ink-g70,
-  .ink-g66,
-  .ink-g60,
-  .ink-g50,
-  .ink-g40,
-  .ink-g33,
-  .ink-g30,
-  .ink-g25,
-  .ink-g20,
-  .ink-g10 {
-    float: none;
-    width: 100%;
-  }
-  .ink-container {
-    width: auto;
-  }
-  /* Forms */
-  label {
-    width: auto;
-    float: none;
-    text-align: left;
-  }
-  input[type="text"],
-  input[type="password"],
-  input[type="file"],
-  input[type="reset"],
-  textarea,
-  select {
-    width: 100%;
-  }
-  .emptyLabel,
-  .formList {
-    padding-left: 0;
-  }
-  .e_wrap .help {
-    width: auto;
-    margin-left: 0;
-  }
+/*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+/* Size Variables */
+/* Offset Variables */
+/* Color Variables */
+/* Estes valores têm que ser em rbga */
+/* Botões*/
+/* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
+/* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+caption,
+th {
+  text-align: left;
 }
-/* Smartphones (landscape) */
-@media only screen and (min-width: 321px) {
-  /* Styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 5px;
 }
-/* Smartphones (portrait) */
-@media only screen and (max-width: 320px) {
-  /* Styles */
+.ink-clearfix:after,
+.ink-container:after,
+.ink-section:after,
+.ink-space:after,
+.ink-l100:after,
+.ink-m100:after,
+.ink-s100:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  zoom: 1;
 }
-/* iPads (portrait and landscape) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Styles */
-}
-/* iPads (landscape) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  /* Styles */
-}
-/* iPads (portrait) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles */
-}
-/* Desktops and laptops */
-@media only screen and (min-width: 1224px) {
-  /* Styles */
-}
-/* Large screens */
-@media only screen and (min-width: 1824px) {
-  /* Styles */
-}
-/* iPhone 4 */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  /* Styles */
-}
+/* Customize these breakpoints */
+/* Customize these breakpoints */
+/* Customize these breakpoints */
