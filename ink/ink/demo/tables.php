@@ -25,7 +25,8 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a href="#">Simple</a></li>
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">Simple</a></li>
 			<li><a href="#">Borderless</a></li>
 			<li><a href="#">Sortable</a></li>
 		</ul>

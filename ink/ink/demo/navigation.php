@@ -24,7 +24,8 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a href="#">Horizontal menus</a></li>
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">Horizontal menus</a></li>
 			<li><a href="#">Horizontal submenus</a></li>
 			<li><a href="#">Vertical menus</a></li>
 			<li><a href="#">Vertical submenus</a></li>
