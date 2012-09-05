@@ -24,9 +24,24 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a href="#">UI components</a></li>
-			<li><a href="#">Visual effects</a></li>
-			<li><a href="#">Core</a></li>
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">UI Components</a></li>
+			<li>
+				<a href="#">Visual FX</a>
+				<ul class="submenu">
+					<li><a href="#">Effect 1</a></li>
+					<li><a href="#">Effect 2</a></li>
+					<li><a href="#">...</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Core</a>
+				<ul class="submenu">
+					<li><a href="#">Method 1</a></li>
+					<li><a href="#">Method 2</a></li>
+					<li><a href="#">...</a></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </nav>  

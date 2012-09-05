@@ -25,7 +25,8 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a href="#">Headings</a></li>
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">Headings</a></li>
 			<li><a href="#">Body & Hyper text</a></li>
 			<li><a href="#">Lists</a></li>
 			<li><a href="#">Special cases</a></li>

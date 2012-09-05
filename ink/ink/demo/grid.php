@@ -24,7 +24,8 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a href="grid.php">Containers</a></li>
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="grid.php">Containers</a></li>
 			<li><a href="navigation.php">Division</a></li>
 			<li><a href="typo.php">Spacing</a></li>
 		</ul>

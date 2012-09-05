@@ -25,7 +25,8 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a href="#">Form building</a></li>
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">Form building</a></li>
 			<li><a href="#">Text & Number entry</a></li>
 			<li><a href="#">Dropdowns and list boxes</a></li>
 			<li><a href="#">Buttons</a></li>
