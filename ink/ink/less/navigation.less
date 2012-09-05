@@ -92,7 +92,7 @@
 }
 
 #topbar ul				{float:left}
-#topbar ul li 			{margin:0 -2px; display:inline-block}
+#topbar ul li 			{margin:0; float:left}
 #topbar ul li a:hover 	{background:#383838}
 #topbar ul li.active {
 	.gradient(darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
@@ -106,8 +106,6 @@
 
 .menu {
 	height:@menu-height;
-	font-size:@menu-fontSize;
-	margin:@menu-margin;
 	border-top:1px solid #cacaca;
 	vertical-align: top;
 	position:relative;
@@ -124,12 +122,8 @@
 
 .menu ul li {
 	margin:0; 
-	display:inline-block;
+	float:left;
 	border-right:1px solid #CACACA;
-}
-
-.menu ul li:last-child {
-	border-right:none;
 }
 
 .menu ul li a:hover {
@@ -169,6 +163,7 @@
 
 .menu .submenu li {
 	display: block;
+	float:none;
 	border-right:1px solid #CACACA;
 	border-bottom:1px solid #CACACA;
 	border-left:1px solid #CACACA;
