@@ -1,17 +1,17 @@
 /* Geral */
-.SAPOGallery {
+.ink-gallery {
 	width:700px;
 	margin:5em;
 	position:relative;
 }
 
-.SAPOGallery .pagination {
+.ink-gallery .pagination {
 	width:100%;
 	text-align:center;
 	position:absolute; bottom:0;
 }
 
-.SAPOGallery .pagination a {
+.ink-gallery .pagination a {
 	height:16px;
 	width:16px;
 	border-radius:8px;
@@ -20,52 +20,52 @@
 	background:rgba(255,255,255,0.4);
 }
 
-.SAPOGallery .pagination a.active {
+.ink-gallery .pagination a.active {
 	background:rgba(255,255,255,0.9);
 }
 
 /* Typography */
-.SAPOGallery .article_text.example1 {
+.ink-gallery .article_text.example1 {
 	background:rgba(0,0,0,0.6);
 	position:absolute;
 	top:0; right:0; bottom:0; left:66%;
 	padding:1em;
 }
 
-.SAPOGallery .article_text.example2 {
+.ink-gallery .article_text.example2 {
 	background:rgba(0,0,0,0.6);
 	position:absolute;
 	left:0; right:0; bottom:0;
 	padding:0.5em;
 }
 
-.SAPOGallery .article_text h1 {
+.ink-gallery .article_text h1 {
 	color:#FFF;
 	margin-bottom:0.5em;
 	font-weight:normal;
 }
 
-.SAPOGallery .article_text p {
+.ink-gallery .article_text p {
 	color:#FFF;
 	font-size:0.875em;
 	line-height:1.5em;
 }
 
 /* Gallery -  Thumbs bottom */
-.SAPOGallery .SAPOGalleryStage {
+.ink-gallery .stage {
 	height:400px;
 	background:#FFF;
 	position:relative;
 }
 
-.SAPOGallery .SAPOGalleryStage a.next,
-.SAPOGallery .SAPOGalleryStage a.previous, {
+.ink-gallery .stage a.next,
+.ink-gallery .stage a.previous, {
 	height:0;
 	width:0;
 	display:block;
 }
 
-.SAPOGallery .SAPOGalleryStage a.next {
+.ink-gallery .stage a.next {
 	position: absolute;
 	top:46%; right:-14px;
 	border-top: 32px solid rgba(255, 255, 255, 0);
@@ -73,7 +73,7 @@
 	border-bottom: 32px solid rgba(255, 255, 255, 0);
 }
 
-.SAPOGallery .SAPOGalleryStage a.previous {
+.ink-gallery .stage a.previous {
 	position: absolute;
 	top:46%; left:-14px;
 	border-top: 32px solid rgba(255, 255, 255, 0);
@@ -81,12 +81,12 @@
 	border-bottom: 32px solid rgba(255, 255, 255, 0);
 }
 
-.SAPOGallery .thumbs {
+.ink-gallery .thumbs {
 	overflow:hidden;
 	white-space:nowrap;
 }
 
-.SAPOGallery .thumbs li {
+.ink-gallery .thumbs li {
 	width:96px;
 	display:inline-block;
 	margin:10px 0 10px 10px;
@@ -95,41 +95,41 @@
 	line-height:1.5em;
 }
 
-.SAPOGallery .thumbs li:first-child {
+.ink-gallery .thumbs li:first-child {
 	margin-left:0
 }
 
-.SAPOGallery .thumbs li a {
+.ink-gallery .thumbs li a {
 	display:block;
 	text-decoration:none;
 	color:#0069D6
 }
 
-.SAPOGallery .thumbs li a:hover {
+.ink-gallery .thumbs li a:hover {
 	text-decoration:underline
 }
 
-.SAPOGallery .thumbs li span {
+.ink-gallery .thumbs li span {
 	white-space:pre-wrap;
 	display:block;
 }
 
 /* Gallery - Thumbs left */
-.SAPOGallery.leftNav .SAPOGalleryStage {
+.ink-gallery.leftNav .stage {
 	float:left;
 }
 
-.SAPOGallery.leftNav .thumbs {
+.ink-gallery.leftNav .thumbs {
 	height:400px;
 	overflow:hidden;
 }
 
-.SAPOGallery.leftNav .thumbs img {
+.ink-gallery.leftNav .thumbs img {
 	float:left;
 	margin-right:10px;
 }
 
-.SAPOGallery.leftNav .thumbs li {
+.ink-gallery.leftNav .thumbs li {
 	width:290px;
 	margin:0 0 10px 10px;
 	clear:both;
@@ -138,7 +138,7 @@
 }
 
 /* Slidebox */
-.SAPOModalbox {
+.ink-modal {
 	height:400px;
 	width:700px;
 	margin:5em;
@@ -148,7 +148,7 @@
 	box-shadow:0px 0px 20px rgba(0, 0, 0, 0.4)
 }
 
-.SAPOModalbox a.close {
+.ink-modal a.close {
 	height:26px;
 	width:28px;
 	border-radius:14px;

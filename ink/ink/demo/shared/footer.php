@@ -7,7 +7,7 @@
 				<li><a href="#">About</a></li>
 			</ul>
 	
-			<a class="ink-vspace SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
+			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
 			
 			<p class="ink-vspace copyright">
 				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />

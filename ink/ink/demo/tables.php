@@ -2,12 +2,7 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1>
-			<a href="intro.php" title="Site Title">
-				InK
-				<small>Interface kit</small>
-			</a>
-		</h1>
+		<h1><a class="logoPlaceholder" href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li>
 				<a href="grid.php">Layout</a>

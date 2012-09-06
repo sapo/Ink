@@ -166,7 +166,7 @@ a.active {
   letter-spacing: -0.1em;
   color: #131e24;
   text-shadow: 0 1px 0 #fff;
-  margin: .4em 0;
+  margin: .2em 0 .4em;
 }
 #download {
   text-align: center;
@@ -298,11 +298,12 @@ a.active {
 footer {
   border-top: 1px solid #CCC;
   background: #f0f0f0;
+  overflow: hidden;
 }
 .corporatelinks li {
-  display: inline;
+  display: inline-block;
   font-size: 0.875em;
-  margin-right: 1em;
+  margin: 0 1em 0 0;
 }
 footer .SAPOlogo {
   background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;

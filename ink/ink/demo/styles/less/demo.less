@@ -51,11 +51,6 @@ h2 span {
 	padding-right: .5em;
 }
 
-// .ink-space {margin: @basicMargin; padding:@basicPadding;}
-// .ink-vspace { margin: @basicMargin 0; padding:@basicPadding 0;}
-// .ink-hspace {margin:0 @basicMargin; padding:0 @basicPadding;}
-
-// .ink-section {margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #eee;}
 .box {
 	.round-corners(4px);
 	.box-shadow("0 1px 3px #aaa");
@@ -135,7 +130,7 @@ a.active {color:@link-active-Color;}
 	letter-spacing: -.1em;
 	color: @themeColor;
 	text-shadow:0 1px 0 #fff;
-	margin: .4em 0;
+	margin: .2em 0 .4em;
 }
 
 #download {text-align:center}
@@ -232,13 +227,14 @@ z-index: 7;
 /*..........................................  Footer  ...................................................*/
 footer {
 	border-top:1px solid #CCC;
-	background:@footer-bgColor
+	background:@footer-bgColor;
+	overflow:hidden;
 }
 
 .corporatelinks li {
-	display: inline;
+	display: inline-block;
 	font-size:0.875em;
-	margin-right:1em;
+	margin:0 1em 0 0;
 }
 
 footer .SAPOlogo {

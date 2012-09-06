@@ -2,7 +2,7 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
+		<h1><a class="logoPlaceholder" href="intro.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>
 			<li><a href="grid.php">Layout</a></li>
 			<li><a href="navigation.php">Navigation</a></li>
@@ -15,7 +15,7 @@
 </nav>  
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 <div class="ink-container whatIs">
-	<div class="ink-space">
+	<div class="ink-vspace">
 		<h2>InK JS</h2>
 		<p>A JS component lib to go along with your awsome site</p>
 	</div>
