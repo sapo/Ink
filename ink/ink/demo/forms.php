@@ -259,93 +259,6 @@
 		</div>
 	</div>
 
-	<!-- .................................  BOTÕES	.................................  -->
-	<div class="ink-section" id="buttonsExemple">
-		<div class="ink-l66">
-			<form class="ink-space">
-				<div class="e_wrap">
-					<button type="button" class="ink-size-s">Default</button>
-					<input type="button" class="ink-size-s" value="Default">
-					<a href="#" class="ink-button ink-size-s">Default</a>
-					<button type="button" class="ink-size-s" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-success">Default</button>
-					<button type="button" class="ink-size-s ink-success" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-warning">Default</button>
-					<button type="button" class="ink-size-s ink-warning" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-error">Default</button>
-					<button type="button" class="ink-size-s ink-error" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-info">Default</button>
-					<button type="button" class="ink-size-s ink-info" disabled>Default</button>
-				</div>
-				<div class="e_wrap">
-
-					<button type="button" class="ink-size-s" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-success">Default</button>
-					<button type="button" class="ink-size-s ink-success" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-warning">Default</button>
-					<button type="button" class="ink-size-s ink-warning" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-error">Default</button>
-					<button type="button" class="ink-size-s ink-error" disabled>Default</button>
-					<button type="button" class="ink-size-s ink-info">Default</button>
-					<button type="button" class="ink-size-s ink-info" disabled>Default</button>
-				</div>
-				<div class="e_wrap">
-					<button type="button">Default</button>
-					<button type="button" class=" ink-success">Default</button>
-					<button type="button" class=" ink-warning">Default</button>
-					<button type="button" class=" ink-error">Default</button>
-					<button type="button" class=" ink-info">Default</button>
-				</div>
-				<div class="e_wrap">
-					<button type="button" class="ink-size-l">Default</button>
-					<button type="button" class="ink-size-l ink-success">Default</button>
-					<button type="button" class="ink-size-l ink-warning">Default</button>
-					<button type="button" class="ink-size-l ink-error">Default</button>
-					<button type="button" class="ink-size-l ink-info">Default</button>
-				</div>
-				<div class="e_wrap">
-					<button type="button" class="ink-size-xl">Default</button>
-					<button type="button" class="ink-size-xl ink-success">Default</button>
-					<button type="button" class="ink-size-xl ink-warning">Default</button>
-					<button type="button" class="ink-size-xl ink-error">Default</button>
-					<button type="button" class="ink-size-xl ink-info">Default</button>
-				</div>
-			</form>
-
-		</div>
-
-		<div class="ink-l33">
-			<div class="ink-space">
-				<h4>Botões</h4>
-				<p>
-					Estão contemplados no estilo base dos formulários quatro tipo de botões:
-				</p>
-				<p>
-					<mark>.ink-button</mark>
-					- Para vários tipos acções
-				</p>
-				<p>
-					<mark>.btn_success</mark>
-					- Associado a acções submissão
-				</p>
-				<p>
-					<mark>.btn_info</mark>
-					- Para obter mais informações
-				</p>
-				<p>
-					<mark>.btn_delete</mark>
-					- Associado a acções de eliminação
-				</p>
-				<hr />
-				<p class="note"> <strong>Nota:</strong>
-					Qualquer tipo de elemento
-					<mark>&lt;button&gt;</mark>
-					ou
-					<mark>&lt;input type=&quot;button&quot;&gt;</mark>
-					sem class definida herdará o estilo default
-				</p>
-			</div>
-		</div>
 		<div class="g100">
 
 			<h4>Buttons</h4>
@@ -376,7 +289,7 @@
 					<tr>
 						<td>Default</td>
 						<td>
-							
+							<button type="button">Default</button>
 						</td>
 						<td>
 							<button disabled>Default</button>
@@ -394,28 +307,29 @@
 							<button class="ink-success" disabled>Success</button>
 						</td>
 						<td>
-							<code>&lt;button class=&quot;ink-success&quot;&gt;Success&lt;/button&gt;</code>
+							<code>&lt;button class=&quot;ink-success&quot;&gt;Success&lt;/button&gt;</code><br>
+							<code>&lt;button type=&quot;button&quot; class=&quot;ink-success disabled&quot;&gt;Success&lt;/button&gt;</code>
 						</td>
 					</tr>
 					<tr>
 						<td>Warning</td>
 						<td>
-							<button class="ink-warning">Default</button>
+							<button class="ink-warning">Warning</button>
 						</td>
 						<td>
-							<button class="ink-warning" disabled>Default</button>
+							<button class="ink-warning" disabled>Warning</button>
 						</td>
 						<td>
 							<code>blah</code>
 						</td>
 					</tr>
 					<tr>
-						<td>Danger</td>
+						<td>Caution</td>
 						<td>
-							<button class="ink-error">Default</button>
+							<button class="ink-caution">Caution</button>
 						</td>
 						<td>
-							<button class="ink-error" disabled>Default</button>
+							<button class="ink-caution" disabled>Caution</button>
 						</td>
 						<td>
 							<code>blah</code>
@@ -424,10 +338,10 @@
 					<tr>
 						<td>Info</td>
 						<td>
-							<button class="ink-info">Default</button>
+							<button class="ink-info">Info</button>
 						</td>
 						<td>
-							<button class="ink-info" disabled>Default</button>
+							<button class="ink-info" disabled>Info</button>
 						</td>
 						<td>
 							<code>blah</code>
@@ -436,14 +350,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="g100 ink-vspace">
-			<button class="ink-size-s">Small</button>
-			<button>Default</button>
-			<button class="ink-size-l">Large</button>
-			<button class="ink-size-xl">Extra large</button>
-		</div>
 	</div>
-
 </div>
 
 <?php include 'shared/footer.php'; ?>

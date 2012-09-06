@@ -195,7 +195,7 @@ h4 .label_new,
 h4 .label_warning,
 h4 .label_error,
 h4 .label_info {
-  font-size: .55em;
+  font-size: 0.55em;
   vertical-align: top;
 }
 hr {
@@ -206,4 +206,14 @@ hr {
 .lead {
   font-size: 1.1em;
   font-weight: bold;
+}
+.ink-label {
+  padding: .2em .5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  font-size: .85em;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
 }

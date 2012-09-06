@@ -83,7 +83,7 @@
 }
 
 .make-error (){
-	background-color: @error-bg-color;
+	background-color: @caution-bg-color;
 	color: #fff;
 }
 
@@ -102,16 +102,27 @@
 	color: #fff;
 }
 
-.disable (@color){
-	opacity: 0.6;
-	background: darken(@color,5%);
+.disable (@color) when (lightness(@color) < 60%){
+	background: lighten(desaturate(@color,50%),25%);
 	box-shadow: none;
 	border: none;
 	&:hover {
-		background: darken(@color,5%);
+		background: lighten(desaturate(@color,50%),25%);
 		cursor: not-allowed;
 	}
 }
+
+.disable (@color) when (lightness(@color) > 60%){
+	background: @color;
+	box-shadow: none;
+	border: none;
+	&:hover {
+		background: @color;
+		cursor: not-allowed;
+	}
+}
+
+.disable (){}
 
 .body-font-size (@base-font-size) when (ispixel(@base-font-size)) and (@base-font-size > 0) {
 	font-size: @base-font-size;
