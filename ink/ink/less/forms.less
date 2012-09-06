@@ -2,7 +2,7 @@
 @import "lib";
 
 /* Form Styles */
-form {color: @baseColor; font-size: @fontSize;}
+form {color: @baseColor; }
 legend {
 	clear:both;
 	text-align: left;
@@ -54,7 +54,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 }
 input.miniInput, select.miniInput {width: @miniElementsWidth;}
 input.smallInput, select.smallInput {width: @smallElementsWidth;}
-form .help {display: block; font-size: 11px; color:#bbb; float:none}
+form .help {display: block; /*font-size: 11px;*/ color:#bbb; float:none}
 .e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@elementsPadding)/2;}
 .emptyLabel, .formList {padding-left: @labelWidth + 10px + @labelMargin;}
 .emptyLabel label, .formList label{width: auto; text-align: left; vertical-align: top; font-weight: normal; float:none; margin: 0; display: block;}

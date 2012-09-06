@@ -112,3 +112,9 @@
 		cursor: not-allowed;
 	}
 }
+
+.body-font-size (@base-font-size) when (ispixel(@base-font-size)) and (@base-font-size > 0) {
+	font-size: @base-font-size;
+}
+
+.body-font-size (@base-font-size){}

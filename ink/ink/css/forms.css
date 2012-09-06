@@ -16,7 +16,6 @@
 /* Form Styles */
 form {
   color: inherit;
-  font-size: 12px;
 }
 legend {
   clear: both;
@@ -151,7 +150,7 @@ select.smallInput {
 }
 form .help {
   display: block;
-  font-size: 11px;
+  /*font-size: 11px;*/
   color: #bbb;
   float: none;
 }

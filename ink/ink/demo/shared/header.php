@@ -20,7 +20,7 @@
 	
 	<!-- <link rel="stylesheet" href="../css/addictive.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
 
-	<link rel="stylesheet" href="../css/reseter.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/normalize.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<!-- <link rel="stylesheet" href="../css/grids/small.css" media="screen and (max-width: 650px)">
 	<link rel="stylesheet" href="../css/grids/medium.css" media="screen and (min-width: 651px) and (max-width: 900px);">
