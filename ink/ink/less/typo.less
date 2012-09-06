@@ -7,7 +7,7 @@ html {
 
 body {
 	color: @base-Color;
-	font-family: @base-Font-Family;	
+	.ink-font-stack();
 } 
 
 a			{color: @link-Color; text-decoration: none;}
@@ -70,14 +70,14 @@ dl dd {padding-left: 1em;}
 .note {font-size: .9em; color: lighten(@base-Color, 20%) }
 .note strong {color: @base-Color;}
 
-.label_new, .label_warning, .label_error, .label_info  {
-	padding:.2em .5em;
-	text-transform: uppercase;
-	font-weight: bold;
-	color: #fff;
-	font-size: .85em;
-	.round-corners(2px)
-}
+// .label_new, .label_warning, .label_error, .label_info  {
+// 	padding:.2em .5em;
+// 	text-transform: uppercase;
+// 	font-weight: bold;
+// 	color: #fff;
+// 	font-size: .85em;
+// 	.round-corners(2px)
+// }
 .label_new {background-color: @alertMsg-success-Bg;}
 .label_warning {background-color: @alertMsg-Warning-Bg;}
 .label_error {background-color: @alertMsg-Error-Bg;}
@@ -96,10 +96,10 @@ hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
 
 
 .ink-label {
-	padding:.2em .5em;
+	.ink-font-stack();
+	padding: 0.2em 0.5em;
 	text-transform: uppercase;
 	font-weight: bold;
-	color: #fff;
-	font-size: .85em;
-	.round-corners(2px)
+	font-size: 0.85em;
+	.round-corners(2px);
 }
