@@ -154,19 +154,6 @@ dl dd {
 .note strong {
   color: #555555;
 }
-.label_new,
-.label_warning,
-.label_error,
-.label_info {
-  padding: .2em .5em;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #fff;
-  font-size: .85em;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-}
 .label_new {
   background-color: #85bd11;
 }
@@ -208,11 +195,11 @@ hr {
   font-weight: bold;
 }
 .ink-label {
-  padding: .2em .5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 0.2em 0.5em;
   text-transform: uppercase;
   font-weight: bold;
-  color: #fff;
-  font-size: .85em;
+  font-size: 0.85em;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;

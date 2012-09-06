@@ -204,15 +204,13 @@
 			<div class="ink-space">
 				<h4>Labels</h4>
 				<p>
-					As labels são úteis para utilizar no decorrer de texto ou separadamente.<br>
-					Geralmente são elementos inline como <mark>&lt;span&gt;</mark> podendo ter como class
-					<mark>.label_new</mark>, <mark>.label_info</mark>, <mark>.label_warning</mark>, <mark>.label_error</mark>
-					  e dividem-se em:
+					Labels can be created by adding the <mark>ink-label</mark> class to an element. 
+					When combined with the <mark>ink-success</mark>, <mark>ink-warning</mark>, <mark>ink-caution</mark> or <mark>ink-info</mark> classes further meaning is added by the means of color.
 				</p>
-				<p><span class="label_new">Novo</span> Para mensagens de successo ou novidade</p>
-				<p><span class="label_warning">Aviso</span> Para avisos</p>
-				<p><span class="label_error">Erro</span> Para apresentar erros</p>
-				<p><span class="label_info">Info</span> Para notas informativas </p>
+				<p><mark class="ink-label ink-success">Novo</mark> Para mensagens de successo ou novidade</p>
+				<p><mark class="ink-label ink-warning">Aviso</mark> Para avisos</p>
+				<p><mark class="ink-label ink-caution">Erro</mark> Para apresentar erros</p>
+				<p><mark class="ink-label ink-info">Info</mark> Para notas informativas </p>
 				
 			</div>
 		</div>
