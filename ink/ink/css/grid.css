@@ -1,3 +1,8 @@
+@import url(grids/small.css) (max-width: 650px);
+
+@import url(grids/medium.css) (min-width: 651px) and (max-width: 900px);
+
+@import url(grids/large.css) (min-width: 901px);
 /*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
@@ -11,6 +16,8 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK:TABLES */
+/* Functions */
 caption,
 th {
   text-align: left;
@@ -27,7 +34,9 @@ h6 {
 .ink-container:after,
 .ink-section:after,
 .ink-space:after,
-.ink-g100:after {
+.ink-l100:after,
+.ink-m100:after,
+.ink-s100:after {
   content: ".";
   display: block;
   height: 0;
@@ -35,99 +44,25 @@ h6 {
   visibility: hidden;
   zoom: 1;
 }
-.ink-container {
-  margin: 0 auto;
-  width: 960px;
-}
-.ink-g100 {
-  width: 100%;
-}
-.ink-g90 {
-  width: 90%;
-}
-.ink-g80 {
-  width: 80%;
-}
-.ink-g75 {
-  width: 75%;
-}
-.ink-g70 {
-  width: 70%;
-}
-.ink-g66 {
-  width: 66.66%;
-}
-.ink-g60 {
-  width: 60%;
-}
-.ink-g50 {
-  width: 50%;
-}
-.ink-g40 {
-  width: 40%;
-}
-.ink-g33 {
-  width: 33.33%;
-}
-.ink-g30 {
-  width: 30%;
-}
-.ink-g25 {
-  width: 25%;
-}
-.ink-g20 {
-  width: 20%;
-}
-.ink-g10 {
-  width: 10%;
-}
-.ink-g10,
-.ink-g20,
-.ink-g25,
-.ink-g30,
-.ink-g33,
-.ink-g40,
-.ink-g50,
-.ink-g60,
-.ink-g66,
-.ink-g70,
-.ink-g75,
-.ink-g80,
-.ink-g90 {
-  float: left;
-  zoom: 1;
-}
-.ink-g100:empty,
-.ink-g90:empty,
-.ink-g80:empty,
-.ink-g75:empty,
-.ink-g70:empty,
-.ink-g66:empty,
-.ink-g60:empty,
-.ink-g50:empty,
-.ink-g40:empty,
-.ink-g33:empty,
-.ink-g30:empty,
-.ink-g25:empty,
-.ink-g20:empty,
-.ink-g10:empty {
-  clear: both;
-}
+/* Customize these breakpoints */
+/* Customize these breakpoints */
+/* Customize these breakpoints */
 .ink-space {
-  margin: 10px;
-  padding: 15px;
+  margin: 32px;
 }
 .ink-vspace {
-  margin: 10px 0;
-  padding: 15px 0;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 .ink-hspace {
-  margin: 0 10px;
-  padding: 0 15px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 .ink-rspace {
-  margin: 0 10px 0 0;
-  padding: 0 15px 0 0;
+  margin-right: 16px;
+}
+.ink-lspace {
+  margin-left: 16px;
 }
 .ink-section {
   margin: 1em 0;

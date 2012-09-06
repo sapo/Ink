@@ -22,7 +22,7 @@
 	</div> 
     
 	<div class="ink-section">
-		<div class="ink-g25">
+		<div class="ink-l25">
 			<div class="ink-space">
 				<h3>Alertas Básicos</h3>
 				<p>Os Avisos Básicos são úteis para formulários ou notificações simples.</p><br>
@@ -34,7 +34,7 @@
 				</ul>
 			</div>
 		</div> 
-		<div class="ink-g75">
+		<div class="ink-l75">
 			<div class="ink-space">
 					<div class="alert-msg">
 						<a href="#close" class="close">&times;</a>
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-g25">
+		<div class="ink-l25">
 			<div class="ink-space">
 				<h3>Alertas em Bloco</h3>
 				<p>Os Avisos Básicos são úteis para formulários com explicação detalhada de erros ou erros onde será necessário acção.</p>
@@ -74,7 +74,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="ink-g75">
+		<div class="ink-l75">
 			<div class="ink-space">
 					<div class="block-alert-msg">
 						<a href="#close" class="close">&times;</a>
@@ -95,7 +95,7 @@
 						<a href="#close" class="close">&times;</a>
 						<h4>Processo Concluído</h4>
 						<p>O seu formulário foi submetido e aguarda revisão.<br> No entanto pode:</p>
-						<p><a href="#" class="defaultBtn">Voltar ao site</a><a href="#"  class="defaultBtn">Sair</a></p>
+						<p><a href="#" class="ink-button">Voltar ao site</a><a href="#"  class="ink-button">Sair</a></p>
 					</div>
 					<pre class="prettyprint">&lt;div class=&quot;block-alert-msg error&quot;&gt;
   &lt;a href=&quot;#close&quot; class=&quot;close&quot;&gt;&times;&lt;/a&gt;

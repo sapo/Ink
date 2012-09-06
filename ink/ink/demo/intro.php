@@ -25,7 +25,7 @@
 
 <div class="ink-container">
 	
-	<div class="ink-g100 whatIs">
+	<div class="ink-l100 whatIs">
 		<div class="ink-vspace">
 			<h3>Welcome to Ink</h3>
 			<p>
@@ -35,20 +35,20 @@
 			</p>
 		</div>
 	</div>
-	<div class="ink-g100" id="download">
-		<div class="ink-g33"> 
+	<div class="ink-l100" id="download">
+		<div class="ink-l33"> 
 			<div class="ink-space">
 				<a href="#" >Version 1.0</a>
 				<p>Download InK's current build</p>
 			</div>
 		</div>	
-		<div class="ink-g33"> 
+		<div class="ink-l33"> 
 			<div class="ink-space">
 				<a href="#" >Custom</a>
 				<p>Customize your basic layout - site width, gutters, spacers, and much more</p>
 			</div>
 		</div>
-		<div class="ink-g33"> 
+		<div class="ink-l33"> 
 			<div class="ink-space">
 				<a href="#" >Github repo</a>
 				<p>Download, fork, pull, comment or report bugs at InK's Github</p>

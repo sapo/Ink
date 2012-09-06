@@ -1,0 +1,93 @@
+/*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+/* Size Variables */
+/* Offset Variables */
+/* Color Variables */
+/* Estes valores têm que ser em rbga */
+/* Botões*/
+/* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
+/* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK:TABLES */
+html body .ink-container {
+  width: 960px;
+  padding: 0 15px;
+  margin: auto;
+}
+html body .ink-l100 {
+  width: 100%;
+}
+html body .ink-l90 {
+  width: 90%;
+}
+html body .ink-l80 {
+  width: 80%;
+}
+html body .ink-l75 {
+  width: 75%;
+}
+html body .ink-l70 {
+  width: 70%;
+}
+html body .ink-l66 {
+  width: 66.66%;
+}
+html body .ink-l60 {
+  width: 60%;
+}
+html body .ink-l50 {
+  width: 50%;
+}
+html body .ink-l40 {
+  width: 40%;
+}
+html body .ink-l33 {
+  width: 33.33%;
+}
+html body .ink-l30 {
+  width: 30%;
+}
+html body .ink-l25 {
+  width: 25%;
+}
+html body .ink-l20 {
+  width: 20%;
+}
+html body .ink-l10 {
+  width: 10%;
+}
+html body .ink-l10,
+html body .ink-l20,
+html body .ink-l25,
+html body .ink-l30,
+html body .ink-l33,
+html body .ink-l40,
+html body .ink-l50,
+html body .ink-l60,
+html body .ink-l66,
+html body .ink-l70,
+html body .ink-l75,
+html body .ink-l80,
+html body .ink-l90 {
+  float: left;
+  zoom: 1;
+}
+html body .ink-l100:empty,
+html body .ink-l90:empty,
+html body .ink-l80:empty,
+html body .ink-l75:empty,
+html body .ink-l70:empty,
+html body .ink-l66:empty,
+html body .ink-l60:empty,
+html body .ink-l50:empty,
+html body .ink-l40:empty,
+html body .ink-l33:empty,
+html body .ink-l30:empty,
+html body .ink-l25:empty,
+html body .ink-l20:empty,
+html body .ink-l10:empty {
+  clear: both;
+}

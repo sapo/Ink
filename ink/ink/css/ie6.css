@@ -11,6 +11,7 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK:TABLES */
 /* Functions */
 .ink-clearfix,
 .ink-container,
@@ -96,13 +97,13 @@ form .warning {
   z-index: 9;
   color: #444;
 }
-.defaultBtn,
+.ink-button,
 .btn_success,
 .btn_info,
 .btn_delete {
   font-size: 1em;
   font-weight: bold;
-  padding: 0.6em 1.8em;
+  padding: 0.45em 0.8em;
   float: none;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -130,7 +131,7 @@ form .warning {
   margin: 5px;
   text-decoration: none;
 }
-.defaultBtn:hover,
+.ink-button:hover,
 .btn_success:hover,
 .btn_info:hover,
 .btn_delete:hover {
@@ -147,7 +148,7 @@ form .warning {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.defaultBtn:active,
+.ink-button:active,
 .btn_success:active,
 .btn_info:active,
 .btn_delete:active {

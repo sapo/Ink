@@ -1,12 +1,15 @@
-@import "conf";
+@import 'conf.less';
+@import 'lib.less';
 
 caption, th { text-align:left; } 
-h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
+h1, h2, h3, h4, h5, h6 { margin-bottom:5px; }
 .ink-clearfix:after,
 .ink-container:after,
 .ink-section:after,
 .ink-space:after,
-.ink-g100:after {
+.ink-l100:after,
+.ink-m100:after,
+.ink-s100:after {
 	content: "."; 
 	display: block; 
 	height: 0; 
@@ -15,35 +18,24 @@ h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
 	zoom: 1
 }
 
-.ink-container {
-	margin:@siteMargin; 
-	width: @siteWidth; 
-}
- 
-.ink-g100	{width: 100%}
-.ink-g90	{width: 90%}
-.ink-g80	{width: 80%}
-.ink-g75	{width: 75%}
-.ink-g70	{width: 70%}
-.ink-g66	{width: 66.66%}
-.ink-g60	{width: 60%}                           
-.ink-g50	{width: 50%}
-.ink-g40	{width: 40%}
-.ink-g33	{width: 33.33%}
-.ink-g30	{width: 30%}
-.ink-g25	{width: 25%}
-.ink-g20	{width: 20%}
-.ink-g10	{width: 10%}
+/* Customize these breakpoints */
+@import url(grids/small.css) (max-width: 650px);
 
-.ink-g10, .ink-g20, .ink-g25, .ink-g30, .ink-g33, .ink-g40, .ink-g50, .ink-g60, .ink-g66, .ink-g70, .ink-g75, .ink-g80, .ink-g90  {float:left; zoom:1}
-.ink-g100:empty, .ink-g90:empty, .ink-g80:empty, .ink-g75:empty, .ink-g70:empty, .ink-g66:empty, .ink-g60:empty, .ink-g50:empty, .ink-g40:empty,.ink-g33:empty, .ink-g30:empty, .ink-g25:empty, .ink-g20:empty, .ink-g10:empty {clear:both}
+/* Customize these breakpoints */
+@import url(grids/medium.css) (min-width: 651px) and (max-width: 900px);
 
-.ink-space		{margin:@basicMargin; padding:@basicPadding}
-.ink-vspace		{margin:@basicMargin 0; padding:@basicPadding 0}
-.ink-hspace 	{margin:0 @basicMargin; padding:0 @basicPadding}
-.ink-rspace 	{margin:0 @basicMargin 0 0; padding:0 @basicPadding 0 0}
+/* Customize these breakpoints */
+@import url(grids/large.css) (min-width: 901px);
+
+.ink-space { margin: @grid-gutter; }
+.ink-vspace { margin-top: @grid-gutter; margin-bottom: @grid-gutter; }
+.ink-hspace	{ margin-left: @grid-gutter / 2; margin-right: @grid-gutter / 2; }
+.ink-rspace 	{ margin-right: @grid-gutter / 2; }
+.ink-lspace 	{ margin-left: @grid-gutter / 2; }
 .ink-section 	{margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #eee;}
 
-.ink-clear, .ink-g100, .ink-section {clear:both}
-.ink-clear-left {clear:left }
-.ink-clear-right {clear:right }
+.ink-clear,
+.ink-g100,
+.ink-section { clear: both; }
+.ink-clear-left { clear: left; }
+.ink-clear-right { clear: right; }
