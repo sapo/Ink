@@ -1,6 +1,3 @@
-@import url('conf.less');
-@import url('lib.less');
-
 // /* Smartphones (portrait and landscape) */
 // @media only screen
 // and (max-width : 900px) {
@@ -106,10 +103,11 @@
 // /* Styles */
 // }
 
-@import "conf";
+@import url('conf.less');
+@import url('lib.less');
 
 caption, th { text-align:left; } 
-h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
+h1, h2, h3, h4, h5, h6 { margin-bottom:5px; }
 .ink-clearfix:after,
 .ink-container:after,
 .ink-section:after,
@@ -126,10 +124,10 @@ h1, h2, h3, h4, h5, h6 { margin-bottom:5px;}
 }
 
 /* Customize these breakpoints */
-@import url(small.css) (max-width: 650px);
+@import url(grids/small.css) (max-width: 650px);
 
 /* Customize these breakpoints */
-@import url(medium.css) (min-width: 651px) and (max-width: 900px);
+@import url(grids/medium.css) (min-width: 651px) and (max-width: 900px);
 
 /* Customize these breakpoints */
-@import url(large.css) (min-width: 901px);
+@import url(grids/large.css) (min-width: 901px);

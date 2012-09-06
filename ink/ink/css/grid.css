@@ -27,10 +27,13 @@
   margin: 0 10px 0 0;
   padding: 0 15px 0 0;
 }
+.ink-section {
+  margin: 1em 0;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #eee;
+}
 .ink-clear,
-.ink-l100,
-.ink-m100,
-.ink-s100,
+.ink-g100,
 .ink-section {
   clear: both;
 }
