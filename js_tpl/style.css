@@ -24,6 +24,21 @@
 	background:rgba(255,255,255,0.9);
 }
 
+.ink-gallery .slider {
+	width:100%;
+	height:100%;
+	overflow:hidden
+}
+
+.ink-gallery .slider ul {
+	white-space:nowrap;
+	font-size:0
+}
+
+.ink-gallery .slider li {
+	display:inline-block;
+}
+
 /* Typography */
 .ink-gallery .article_text.example1 {
 	background:rgba(0,0,0,0.6);
@@ -59,26 +74,39 @@
 }
 
 .ink-gallery .stage a.next,
-.ink-gallery .stage a.previous, {
-	height:0;
-	width:0;
+.ink-gallery .stage a.previous {
 	display:block;
+	height:100%;
+	width:50%;
+	position:absolute; 
 }
 
 .ink-gallery .stage a.next {
-	position: absolute;
-	top:46%; right:-14px;
-	border-top: 32px solid rgba(255, 255, 255, 0);
-	border-left: 24px solid rgba(0,0,0,0.6);
-	border-bottom: 32px solid rgba(255, 255, 255, 0);
+	right:0
 }
 
 .ink-gallery .stage a.previous {
-	position: absolute;
-	top:46%; left:-14px;
+	left:0
+}
+
+.ink-gallery .stage a.next:after,
+.ink-gallery .stage a.previous:after {
+	content:"";
+	height:0;
+	width:0;
+	position: absolute; top:46%;
 	border-top: 32px solid rgba(255, 255, 255, 0);
-	border-right: 24px solid rgba(0,0,0,0.6);
 	border-bottom: 32px solid rgba(255, 255, 255, 0);
+}
+
+.ink-gallery .stage a.next:after {
+	right:-14px;
+	border-left: 24px solid rgba(0,0,0,0.6);
+}
+
+.ink-gallery .stage a.previous:after {
+	left:-14px;
+	border-right: 24px solid rgba(0,0,0,0.6);
 }
 
 .ink-gallery .thumbs {
@@ -116,6 +144,7 @@
 
 /* Gallery - Thumbs left */
 .ink-gallery.leftNav .stage {
+	width:400px;
 	float:left;
 }
 
