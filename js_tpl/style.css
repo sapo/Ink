@@ -21,6 +21,7 @@
 	background:rgba(255,255,255,0.4);
 }
 
+.ink-gallery .pagination a:hover,
 .ink-gallery .pagination a.active {
 	background:rgba(255,255,255,0.9);
 }
@@ -145,7 +146,7 @@
 
 .ink-gallery .thumbs .pagination {
 	position:relative;
-	background:rgba(0,0,0,0.3)
+	background:rgba(0,0,0,0.2)
 }
 
 .ink-gallery .thumbs .pagination a {
@@ -153,6 +154,35 @@
 	width:12px;
 	border-radius:6px;
 	margin:10px 3px;
+}
+
+.ink-gallery .thumbs a.next,
+.ink-gallery .thumbs a.previous {
+	content:"";
+	height:0;
+	width:0;
+	position:relative;
+	background:transparent;
+	border-radius:0;
+	border-top: 12px solid rgba(255, 255, 255, 0);
+	border-bottom: 12px solid rgba(255, 255, 255, 0);
+}
+
+.ink-gallery .thumbs a.next{
+	margin-left:6px;
+	border-left: 10px solid rgba(255, 255, 255, 0.4);
+}
+
+.ink-gallery .thumbs a.previous {
+	margin-right:6px;
+	border-right: 10px solid rgba(255, 255, 255, 0.4);
+}
+
+.ink-gallery .thumbs a.next:hover {
+	border-left: 10px solid rgba(255, 255, 255, 0.9);
+}
+.ink-gallery .thumbs a.previous:hover {
+	border-right: 10px solid rgba(255, 255, 255, 0.9);
 }
 
 /* Gallery - Thumbs left */
