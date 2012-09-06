@@ -17,6 +17,7 @@
 	border-radius:8px;
 	margin:10px 3px;
 	display:inline-block;
+	vertical-align:middle;
 	background:rgba(255,255,255,0.4);
 }
 
@@ -69,49 +70,49 @@
 /* Gallery -  Thumbs bottom */
 .ink-gallery .stage {
 	height:400px;
-	background:#FFF;
 	position:relative;
 }
 
-.ink-gallery .stage a.next,
-.ink-gallery .stage a.previous {
+.ink-gallery nav a.next,
+.ink-gallery nav a.previous {
 	display:block;
 	height:100%;
 	width:50%;
 	position:absolute; 
 }
 
-.ink-gallery .stage a.next {
+.ink-gallery nav a.next {
 	right:0
 }
 
-.ink-gallery .stage a.previous {
+.ink-gallery nav a.previous {
 	left:0
 }
 
-.ink-gallery .stage a.next:after,
-.ink-gallery .stage a.previous:after {
+.ink-gallery nav a.next:after,
+.ink-gallery nav a.previous:after {
 	content:"";
-	height:0;
-	width:0;
 	position: absolute; top:46%;
 	border-top: 32px solid rgba(255, 255, 255, 0);
 	border-bottom: 32px solid rgba(255, 255, 255, 0);
 }
-
-.ink-gallery .stage a.next:after {
+.ink-gallery nav a.next:after {
 	right:-14px;
 	border-left: 24px solid rgba(0,0,0,0.6);
 }
 
-.ink-gallery .stage a.previous:after {
+.ink-gallery nav a.previous:after {
 	left:-14px;
 	border-right: 24px solid rgba(0,0,0,0.6);
 }
 
 .ink-gallery .thumbs {
-	overflow:hidden;
+	position:relative
+}
+
+.ink-gallery .thumbs ul {
 	white-space:nowrap;
+	overflow:hidden;
 }
 
 .ink-gallery .thumbs li {
@@ -140,6 +141,18 @@
 .ink-gallery .thumbs li span {
 	white-space:pre-wrap;
 	display:block;
+}
+
+.ink-gallery .thumbs .pagination {
+	position:relative;
+	background:rgba(0,0,0,0.3)
+}
+
+.ink-gallery .thumbs .pagination a {
+	height:12px;
+	width:12px;
+	border-radius:6px;
+	margin:10px 3px;
 }
 
 /* Gallery - Thumbs left */
