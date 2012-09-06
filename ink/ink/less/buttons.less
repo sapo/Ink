@@ -24,20 +24,36 @@ a.ink-button {
 	text-decoration: none;
 	display:inline-block;
 
+	&[disabled], .ink-disabled {
+			.disable(@btnBg);
+		}
+
 	&.ink-warning {
 		.createBtn(@warning-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@warning-bg-color);
+		}
 	}
 
 	&.ink-error {
 		.createBtn(@error-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@error-bg-color);
+		}
 	}
 
 	&.ink-success {
 		.createBtn(@success-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@success-bg-color);
+		}
 	}
 
 	&.ink-info {
 		.createBtn(@info-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@info-bg-color);
+		}
 	}
 
 }

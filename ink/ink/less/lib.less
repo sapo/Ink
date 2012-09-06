@@ -101,3 +101,14 @@
 	background-color: @info-bg-color;
 	color: #fff;
 }
+
+.disable (@color){
+	opacity: 0.6;
+	background: darken(@color,5%);
+	box-shadow: none;
+	border: none;
+	&:hover {
+		background: darken(@color,5%);
+		cursor: not-allowed;
+	}
+}

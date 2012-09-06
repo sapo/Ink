@@ -11,6 +11,7 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK:TABLES */
 /* Functions */
 /**
 	* InK Buttons
@@ -86,6 +87,34 @@ a.ink-button:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
+.ink-button[disabled],
+button[disabled],
+input[type="button"][disabled],
+input[type="submit"][disabled],
+a.ink-button[disabled],
+.ink-button .ink-disabled,
+button .ink-disabled,
+input[type="button"] .ink-disabled,
+input[type="submit"] .ink-disabled,
+a.ink-button .ink-disabled {
+  opacity: 0.6;
+  background: #e1e1e1;
+  box-shadow: none;
+  border: none;
+}
+.ink-button[disabled]:hover,
+button[disabled]:hover,
+input[type="button"][disabled]:hover,
+input[type="submit"][disabled]:hover,
+a.ink-button[disabled]:hover,
+.ink-button .ink-disabled:hover,
+button .ink-disabled:hover,
+input[type="button"] .ink-disabled:hover,
+input[type="submit"] .ink-disabled:hover,
+a.ink-button .ink-disabled:hover {
+  background: #e1e1e1;
+  cursor: not-allowed;
+}
 .ink-button.ink-warning,
 button.ink-warning,
 input[type="button"].ink-warning,
@@ -143,6 +172,34 @@ a.ink-button.ink-warning:active {
   -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
+}
+.ink-button.ink-warning[disabled],
+button.ink-warning[disabled],
+input[type="button"].ink-warning[disabled],
+input[type="submit"].ink-warning[disabled],
+a.ink-button.ink-warning[disabled],
+.ink-button.ink-warning .ink-disabled,
+button.ink-warning .ink-disabled,
+input[type="button"].ink-warning .ink-disabled,
+input[type="submit"].ink-warning .ink-disabled,
+a.ink-button.ink-warning .ink-disabled {
+  opacity: 0.6;
+  background: #e68c00;
+  box-shadow: none;
+  border: none;
+}
+.ink-button.ink-warning[disabled]:hover,
+button.ink-warning[disabled]:hover,
+input[type="button"].ink-warning[disabled]:hover,
+input[type="submit"].ink-warning[disabled]:hover,
+a.ink-button.ink-warning[disabled]:hover,
+.ink-button.ink-warning .ink-disabled:hover,
+button.ink-warning .ink-disabled:hover,
+input[type="button"].ink-warning .ink-disabled:hover,
+input[type="submit"].ink-warning .ink-disabled:hover,
+a.ink-button.ink-warning .ink-disabled:hover {
+  background: #e68c00;
+  cursor: not-allowed;
 }
 .ink-button.ink-error,
 button.ink-error,
@@ -202,6 +259,34 @@ a.ink-button.ink-error:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
+.ink-button.ink-error[disabled],
+button.ink-error[disabled],
+input[type="button"].ink-error[disabled],
+input[type="submit"].ink-error[disabled],
+a.ink-button.ink-error[disabled],
+.ink-button.ink-error .ink-disabled,
+button.ink-error .ink-disabled,
+input[type="button"].ink-error .ink-disabled,
+input[type="submit"].ink-error .ink-disabled,
+a.ink-button.ink-error .ink-disabled {
+  opacity: 0.6;
+  background: #b40000;
+  box-shadow: none;
+  border: none;
+}
+.ink-button.ink-error[disabled]:hover,
+button.ink-error[disabled]:hover,
+input[type="button"].ink-error[disabled]:hover,
+input[type="submit"].ink-error[disabled]:hover,
+a.ink-button.ink-error[disabled]:hover,
+.ink-button.ink-error .ink-disabled:hover,
+button.ink-error .ink-disabled:hover,
+input[type="button"].ink-error .ink-disabled:hover,
+input[type="submit"].ink-error .ink-disabled:hover,
+a.ink-button.ink-error .ink-disabled:hover {
+  background: #b40000;
+  cursor: not-allowed;
+}
 .ink-button.ink-success,
 button.ink-success,
 input[type="button"].ink-success,
@@ -260,6 +345,34 @@ a.ink-button.ink-success:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
+.ink-button.ink-success[disabled],
+button.ink-success[disabled],
+input[type="button"].ink-success[disabled],
+input[type="submit"].ink-success[disabled],
+a.ink-button.ink-success[disabled],
+.ink-button.ink-success .ink-disabled,
+button.ink-success .ink-disabled,
+input[type="button"].ink-success .ink-disabled,
+input[type="submit"].ink-success .ink-disabled,
+a.ink-button.ink-success .ink-disabled {
+  opacity: 0.6;
+  background: #75a60f;
+  box-shadow: none;
+  border: none;
+}
+.ink-button.ink-success[disabled]:hover,
+button.ink-success[disabled]:hover,
+input[type="button"].ink-success[disabled]:hover,
+input[type="submit"].ink-success[disabled]:hover,
+a.ink-button.ink-success[disabled]:hover,
+.ink-button.ink-success .ink-disabled:hover,
+button.ink-success .ink-disabled:hover,
+input[type="button"].ink-success .ink-disabled:hover,
+input[type="submit"].ink-success .ink-disabled:hover,
+a.ink-button.ink-success .ink-disabled:hover {
+  background: #75a60f;
+  cursor: not-allowed;
+}
 .ink-button.ink-info,
 button.ink-info,
 input[type="button"].ink-info,
@@ -317,5 +430,33 @@ a.ink-button.ink-info:active {
   -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
+}
+.ink-button.ink-info[disabled],
+button.ink-info[disabled],
+input[type="button"].ink-info[disabled],
+input[type="submit"].ink-info[disabled],
+a.ink-button.ink-info[disabled],
+.ink-button.ink-info .ink-disabled,
+button.ink-info .ink-disabled,
+input[type="button"].ink-info .ink-disabled,
+input[type="submit"].ink-info .ink-disabled,
+a.ink-button.ink-info .ink-disabled {
+  opacity: 0.6;
+  background: #0d7cc2;
+  box-shadow: none;
+  border: none;
+}
+.ink-button.ink-info[disabled]:hover,
+button.ink-info[disabled]:hover,
+input[type="button"].ink-info[disabled]:hover,
+input[type="submit"].ink-info[disabled]:hover,
+a.ink-button.ink-info[disabled]:hover,
+.ink-button.ink-info .ink-disabled:hover,
+button.ink-info .ink-disabled:hover,
+input[type="button"].ink-info .ink-disabled:hover,
+input[type="submit"].ink-info .ink-disabled:hover,
+a.ink-button.ink-info .ink-disabled:hover {
+  background: #0d7cc2;
+  cursor: not-allowed;
 }
 /*|||||||||||||||||||||| Buttons Styles ||||||||||||||||||||||*/

@@ -181,11 +181,16 @@
 		<div class="ink-l66">
 			<form class="ink-space"> 
 				<div class="e_wrap">
-					<button type="button" class="ink-small">Default</button>
+					
+					<button type="button" class="ink-small" disabled>Default</button>
 					<button type="button" class="ink-small ink-success">Default</button>
+					<button type="button" class="ink-small ink-success" disabled>Default</button>
 					<button type="button" class="ink-small ink-warning">Default</button>
+					<button type="button" class="ink-small ink-warning" disabled>Default</button>
 					<button type="button" class="ink-small ink-error">Default</button>
+					<button type="button" class="ink-small ink-error" disabled>Default</button>
 					<button type="button" class="ink-small ink-info">Default</button>
+					<button type="button" class="ink-small ink-info" disabled>Default</button>
 				</div>
 				<div class="e_wrap">
 					<button type="button">Default</button>
@@ -209,7 +214,11 @@
 					<button type="button" class="ink-large ink-info">Default</button>
 				</div> 
 			</form>
+
+			
+
 		</div>
+
 		<div class="ink-l33">
 			<div class="ink-space">
 				<h4>Botões</h4> 
@@ -221,7 +230,56 @@
 				<hr />
 				<p class="note"><strong>Nota:</strong> Qualquer tipo de elemento <mark>&lt;button&gt;</mark> ou <mark>&lt;input type=&quot;button&quot;&gt;</mark> sem class definida herdará o estilo default </p>
 			</div>
-		</div>	
+		</div>
+		<div class="g100">
+			<table class="ink-table ink-bordered">
+				<thead>
+					<tr>
+						<th>type</th>
+						<th>active</th>
+						<th>disabled</th>
+						<th>description</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td colspan="4">bla bla bla</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<td>Default</td>
+						<td><button class="ink-small">Default</button></td>
+						<td><button class="ink-small" disabled>Default</button></td>
+						<td><code>&lt;button class=&quot;ink-small&quot; disabled&gt;Default&lt;/button&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Success</td>
+						<td><button class="ink-small ink-success">Default</button></td>
+						<td><button class="ink-small ink-success" disabled>Default</button></td>
+						<td><code>&lt;button class=&quot;ink-small&quot; disabled&gt;Default&lt;/button&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Warning</td>
+						<td><button class="ink-small ink-warning">Default</button></td>
+						<td><button class="ink-small ink-warning" disabled>Default</button></td>
+						<td><code>&lt;button class=&quot;ink-small&quot; disabled&gt;Default&lt;/button&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Danger</td>
+						<td><button class="ink-small ink-error">Default</button></td>
+						<td><button class="ink-small ink-error" disabled>Default</button></td>
+						<td><code>&lt;button class=&quot;ink-small&quot; disabled&gt;Default&lt;/button&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Info</td>
+						<td><button class="ink-small ink-info">Default</button></td>
+						<td><button class="ink-small ink-info" disabled>Default</button></td>
+						<td><code>&lt;button class=&quot;ink-small&quot; disabled&gt;Default&lt;/button&gt;</code></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	
 </div>

@@ -1,3 +1,8 @@
+@import url(grids/small.css) (max-width: 650px);
+
+@import url(grids/medium.css) (min-width: 651px) and (max-width: 900px);
+
+@import url(grids/large.css) (min-width: 901px);
 /*  |||||||||||||||||||||||||||||  Base Sizes   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
@@ -11,21 +16,53 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK:TABLES */
+/* Functions */
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 5px;
+}
+.ink-clearfix:after,
+.ink-container:after,
+.ink-section:after,
+.ink-space:after,
+.ink-l100:after,
+.ink-m100:after,
+.ink-s100:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  zoom: 1;
+}
+/* Customize these breakpoints */
+/* Customize these breakpoints */
+/* Customize these breakpoints */
 .ink-space {
-  margin: 10px;
-  padding: 15px;
+  margin: 32px;
 }
 .ink-vspace {
-  margin: 10px 0;
-  padding: 15px 0;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 .ink-hspace {
-  margin: 0 10px;
-  padding: 0 15px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 .ink-rspace {
-  margin: 0 10px 0 0;
-  padding: 0 15px 0 0;
+  margin-right: 16px;
+}
+.ink-lspace {
+  margin-left: 16px;
 }
 .ink-section {
   margin: 1em 0;

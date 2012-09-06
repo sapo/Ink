@@ -11,6 +11,7 @@
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK:TABLES */
 /* Functions */
 table.ink-table {
   width: 100%;
@@ -19,20 +20,20 @@ table.ink-table {
   background: none;
 }
 table.ink-table thead tr th {
-  padding: 0 10px;
+  padding: 5px 10px;
   border-bottom: #cccccc 1px solid;
   background: none;
   font-weight: 700;
   line-height: 2;
 }
 table.ink-table tbody tr td {
-  padding: 0 10px;
+  padding: 5px 10px;
   border-bottom: #cccccc 1px solid;
   background: none;
   line-height: 2;
 }
 table.ink-table tfoot tr td {
-  padding: 0 10px;
+  padding: 5px 10px;
   border-bottom: #cccccc 1px solid;
   background: none;
   line-height: 2;
