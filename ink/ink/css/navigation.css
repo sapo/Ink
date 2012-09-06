@@ -116,6 +116,7 @@
 }
 #topbar ul {
   float: left;
+  list-style-type: none;
 }
 #topbar ul li {
   margin: 0;
@@ -169,6 +170,7 @@
 }
 .menu ul {
   padding: 0;
+  list-style-type: none;
 }
 .menu ul li {
   margin: 0;
