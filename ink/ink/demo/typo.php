@@ -74,9 +74,9 @@
 	</div>
 	<div class="ink-section" id="listExemple">
 		<div class="ink-l25 ">
-			<div class="ink-space">
+			<div class="ink-space ink-zebra">
 				<h4>Lista</h4>
-				<ul>
+				<ul class="ink-zebra">
 					<li>Proin metus odio, aliquam eget molestie</li>
 					<li>Phasellus quis est sed turpis sollicitudin</li>
 					<li>In condimentum facilisis porta. Sed nec diam</li>

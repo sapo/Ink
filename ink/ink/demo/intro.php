@@ -23,7 +23,7 @@
 	<div  class="glow2"><img src="styles/imgs/glow2.png" width="830" height="400" alt="Glow1"> </div> 
 </div>
 
-<div class="ink-container">
+<div class="ink-container"> ink-
 	
 	<div class="ink-l100 whatIs">
 		<div class="ink-vspace">

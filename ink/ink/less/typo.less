@@ -65,7 +65,17 @@ ul.unstyled ul {list-style:disc outside;  padding-left: 1.4em;}
 ol li {list-style: decimal outside;}
 dl {padding: 0em;}
 dl dt {font-weight: bold; margin-top: .7em;}  
-dl dd {padding-left: 1em;} 
+dl dd {padding-left: 1em;}
+
+
+ul, ol {
+	margin:0px; 
+	padding-left: 1.4em;
+	li {
+		margin:.5em 0; 
+		color: lighten(@base-Color, 10%);
+	}
+}
 
 .note {font-size: .9em; color: lighten(@base-Color, 20%) }
 .note strong {color: @base-Color;}
