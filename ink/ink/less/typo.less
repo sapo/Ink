@@ -2,16 +2,16 @@
 @import "lib";
 
 html {
-	.body-font-size(@base-font-size);
+	.body-font-size(@font-size);
 }
 
 body {
-	color: @base-Color;
+	color: @text-color;
 	.ink-font-stack();
 } 
 
-a			{color: @link-Color; text-decoration: none;}
-a:hover		{color:@link-hover-Color; text-decoration: underline;}
+a			{color: @link-color; text-decoration: none;}
+a:hover		{color:@link-hover-color; text-decoration: underline;}
 
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {font-weight: bold; color: #404040; margin:.3em 0;}
@@ -28,7 +28,7 @@ h3, h4, h5, h6 {
 
 h1 small {font-size: .6em; color: #BFBFBF; font-weight: 100;}
 
-small {color: lighten(@base-Color, 30%); font-size: .6em;}
+small {color: lighten(@text-color, 30%); font-size: .6em;}
 
 /* Paragraphs  */
 p {line-height: 1.5em; margin-bottom: .5em;}
@@ -42,11 +42,11 @@ h1 small, h2 small, h3 small, h4 small {
 	line-height: 1;
 }
 address {
-	color: lighten(@base-Color, 20%);
+	color: lighten(@text-color, 20%);
 	font-size: 1em;
 	line-height: 1.4em;
 }
-address h6 {color: @base-Color;}
+address h6 {color: @text-color;}
 dl {}
 dl dd {
 	margin:.5em 0;
@@ -59,7 +59,7 @@ blockquote small::before , blockquote small::after{
 content: ' — ';
 }
 ul, ol, dl{margin:0px; padding-left: 1.4em;}
-ul li, ol li,  dl dd {margin:.5em 0; color: lighten(@base-Color, 10%);} 
+ul li, ol li,  dl dd {margin:.5em 0; color: lighten(@text-color, 10%);} 
 ul.unstyled {list-style:none; padding-left: 0em;}
 ul.unstyled ul {list-style:disc outside;  padding-left: 1.4em;}
 ol li {list-style: decimal outside;}
@@ -73,12 +73,12 @@ ul, ol {
 	padding-left: 1.4em;
 	li {
 		margin:.5em 0; 
-		color: lighten(@base-Color, 10%);
+		color: lighten(@text-color, 10%);
 	}
 }
 
-.note {font-size: .9em; color: lighten(@base-Color, 20%) }
-.note strong {color: @base-Color;}
+.note {font-size: .9em; color: lighten(@text-color, 20%) }
+.note strong {color: @text-color;}
 
 // .label_new, .label_warning, .label_error, .label_info  {
 // 	padding:.2em .5em;
