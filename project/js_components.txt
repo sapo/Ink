@@ -1,0 +1,23 @@
+Lib SAPO JS components
+
+- Context menu
+- Date picker
+- Dialog
+- Gallery
+- Lightbox
+- Password meter
+- ProxyGallery
+- Slidebox
+- SortableList
+- Table
+- Tabs
+- Tags
+- Tooltip
+- MaskedInput
+- Resizable
+- TimePicker
+- Sprite toggle
+
+Lib SAPO JS effects
+- Slide
+- Fade

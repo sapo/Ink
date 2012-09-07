@@ -1,0 +1,41 @@
+@import 'conf.less';
+@import 'lib.less';
+
+caption, th { text-align:left; } 
+h1, h2, h3, h4, h5, h6 { margin-bottom:5px; }
+.ink-clearfix:after,
+.ink-container:after,
+.ink-section:after,
+.ink-space:after,
+.ink-l100:after,
+.ink-m100:after,
+.ink-s100:after {
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden; 
+	zoom: 1
+}
+
+/* Customize these breakpoints */
+@import url(grids/small.css) (max-width: 650px);
+
+/* Customize these breakpoints */
+@import url(grids/medium.css) (min-width: 651px) and (max-width: 900px);
+
+/* Customize these breakpoints */
+@import url(grids/large.css) (min-width: 901px);
+
+.ink-space { margin: @grid-gutter; }
+.ink-vspace { margin-top: @grid-gutter; margin-bottom: @grid-gutter; }
+.ink-hspace	{ margin-left: @grid-gutter / 2; margin-right: @grid-gutter / 2; }
+.ink-rspace 	{ margin-right: @grid-gutter / 2; }
+.ink-lspace 	{ margin-left: @grid-gutter / 2; }
+.ink-section 	{margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #eee;}
+
+.ink-clear,
+.ink-g100,
+.ink-section { clear: both; }
+.ink-clear-left { clear: left; }
+.ink-clear-right { clear: right; }
