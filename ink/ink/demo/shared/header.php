@@ -52,25 +52,6 @@
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script>
-	
-	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
-    <script>$(function () { prettyPrint() })</script>
-	
-	<script type="text/javascript">
-// 		window.onscroll = function (e) {
-// 			var Mobj = document.getElementById('topbar');  	
-// 			if (window.pageYOffset > 620) {	Mobj.className += "topbar fixed";}
-// 			else {Mobj.className = "topbar";}
-// 		}
-// 		
-// 		function toogleNav() {
-// 			var navObj = document.getElementById('navigation');
-// 			var trigObj = document.getElementById('toggleNavigation');
-// 			if (navObj.style.display == "none") { navObj.style.display = "block"; trigObj.className = "active";	}
-// 			else { navObj.style.display = "none";  trigObj.className = "";	}
-// }
-// 		
-	</script>
+
 </head>
 <body>

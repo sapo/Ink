@@ -158,70 +158,79 @@ a.active {color:@link-active-Color;}
 /*..........................................  Footer  ...................................................*/
 .callToAction{
 	position: relative;
-	
-	color: white;
-	
 	width: 100%;
 	height: 100%;
-		
-	background-image: -webkit-gradient(radial, 50% 75%, 0, 50% 75%, 700, 
-				from(#66cde1), to(rgba(55,89,138,0))),
-			-webkit-gradient(linear,center bottom,center top,
-				color-stop(0, #385A8C),color-stop(0.6, #000000));
-	background-image: -moz-radial-gradient(50% 75%, circle, 
-			rgba(55,89,138,0.5) 0px, rgba(55,89,138,0) 400px),
-			-moz-linear-gradient(center bottom,#385A8C 0%,#000000 60%); 
+	background-image: -webkit-gradient(linear, left center, right center, from(#e65d5b), to(#e35c57), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958));
+	background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+	background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+	background-image: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+	background-image: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+	background-image: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+	background: url(../imgs/home_bkg.png) center;
 	overflow: hidden; 
 }  
 
-.logo_hp {margin:auto; display: block; position:relative; z-index: 9; opacity: 0.8;
--moz-opacity: 0.8;
-filter:alpha(opacity=80);
+.logo_hp {
+	margin:auto; 
+	display: block; 
+	position:relative; 
+	z-index: 9; 
+	opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=80);
 
 -webkit-transition: all 500ms ; 
    -moz-transition: all 500ms ; 
     -ms-transition: all 500ms ; 
      -o-transition: all 500ms ; 
         transition: all 500ms  /* custom */    
-}    
-.glow1, .glow2 {position:absolute; top:0px; width: 100%; height: 400px; text-align: center;}  
-
- .glow1 {
--webkit-animation: glower 3s infinite;
- -moz-animation: glower 3s infinite;
- -ms-animation: glower 3s infinite;  
-z-index: 8;
+}   
+ 
+.glow {
+	position:absolute; 
+	top:0px; 
+	width: 100%; 
+	text-align: center;
+	-webkit-animation: glower 5s infinite;
+	-moz-animation: glower 5s infinite;
+	-ms-animation: glower 5s infinite;  
+	-o-animation: glower 5s infinite;  
+	z-index: 8;
 } 
-
- .glow2 {
--webkit-animation: glower 2s infinite;
- -moz-animation: glower 2s infinite;
- -ms-animation: glower 2s infinite;  
-z-index: 7;
-}
 
 .logo_hp:hover {
 	opacity: 1;
 	-moz-opacity: 1;
-	filter:alpha(opacity=1);  
-	
-	
+}
+
+@keyframes glower {
+	from 	{ opacity: 0;}
+	50% 	{ opacity: 1;}
+	to 		{ opacity: 0;}
 }
 
 @-webkit-keyframes glower {
-        0%   { opacity: 1;}
-        50% { opacity: 0;}
-		100%   { opacity: 1;}
+	from 	{ opacity: 0;}
+	50% 	{ opacity: 1;}
+	to 		{ opacity: 0;}
 }
+
 @-moz-keyframes glower {
-    0%   { opacity: 0; }
-    50% { opacity: 1; }
-	100%   { opacity: 0; }
+    from	{ opacity: 0; }
+    50% 	{ opacity: 1; }
+	to   	{ opacity: 0; }
 }
+
 @-ms-keyframes glower {
-    0%   { opacity: 0; }
-    50% { opacity: 1; }
-	100%   { opacity: 0; }
+    from    { opacity: 0; }
+    50% 	{ opacity: 1; }
+	to   	{ opacity: 0; }
+}
+
+@-o-keyframes glower {
+    from    { opacity: 0; }
+    50% 	{ opacity: 1; }
+	to   	{ opacity: 0; }
 }
 
 /*..........................................  Footer  ...................................................*/
@@ -229,6 +238,12 @@ footer {
 	border-top:1px solid #CCC;
 	background:@footer-bgColor;
 	overflow:hidden;
+}
+
+.sociallinks,
+.corporatelinks {
+	padding:0;
+	margin:1em 0 2em;
 }
 
 .corporatelinks li {

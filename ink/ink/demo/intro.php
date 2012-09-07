@@ -18,9 +18,8 @@
 </nav>  
 
 <div class="callToAction">
-	<img src="styles/imgs/logo_home.png" width="830" height="400" alt="Logo Home" class="logo_hp">
-	<div  class="glow1"><img src="styles/imgs/glow1.png" width="830" height="400" alt="Glow1"> </div>
-	<div  class="glow2"><img src="styles/imgs/glow2.png" width="830" height="400" alt="Glow1"> </div> 
+	<img src="styles/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
+	<div class="glow"><img src="styles/imgs/glow1.png" alt="Glow1"></div>
 </div>
 
 <div class="ink-container">

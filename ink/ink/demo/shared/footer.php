@@ -1,7 +1,7 @@
 <footer class="ink-l100">
 	<div class="ink-container">
 		<div class="ink-l75">
-			<ul class="ink-vspace corporatelinks">
+			<ul class="corporatelinks">
 				<li><a href="#">Changelog</a></li>
 				<li><a href="#">Showcase</a></li>
 				<li><a href="#">About</a></li>
@@ -17,7 +17,7 @@
 		</div>
 		
 		<div class="ink-l25">
-			<ul class="sociallinks ink-vspace">
+			<ul class="sociallinks">
 				<h5>Follow SAPO:</h5>
 				<li><a class="Fb_link" href="#"></a></li>
 				<li><a class="Twt_link" href="#"></a></li>
