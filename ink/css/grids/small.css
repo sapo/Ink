@@ -1,0 +1,91 @@
+/* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+/* Size Variables */
+/* Offset Variables */
+/* Color Variables */
+/* Estes valores têm que ser em rbga */
+/* Botões*/
+/* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
+/* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/* INK > TABLES */
+.ink_container {
+  width: auto;
+}
+.ink-s100 {
+  width: 100%;
+}
+.ink-s90 {
+  width: 100%;
+}
+.ink-s80 {
+  width: 100%;
+}
+.ink-s75 {
+  width: 100%;
+}
+.ink-s70 {
+  width: 100%;
+}
+.ink-s66 {
+  width: 100%;
+}
+.ink-s60 {
+  width: 100%;
+}
+.ink-s50 {
+  width: 100%;
+}
+.ink-s40 {
+  width: 100%;
+}
+.ink-s33 {
+  width: 100%;
+}
+.ink-s30 {
+  width: 100%;
+}
+.ink-s25 {
+  width: 100%;
+}
+.ink-s20 {
+  width: 100%;
+}
+.ink-s10 {
+  width: 100%;
+}
+.ink-s10,
+.ink-s20,
+.ink-s25,
+.ink-s30,
+.ink-s33,
+.ink-s40,
+.ink-s50,
+.ink-s60,
+.ink-s66,
+.ink-s70,
+.ink-s75,
+.ink-s80,
+.ink-s90 {
+  float: none;
+  zoom: 1;
+}
+.ink-s100:empty,
+.ink-s90:empty,
+.ink-s80:empty,
+.ink-s75:empty,
+.ink-s70:empty,
+.ink-s66:empty,
+.ink-s60:empty,
+.ink-s50:empty,
+.ink-s40:empty,
+.ink-s33:empty,
+.ink-s30:empty,
+.ink-s25:empty,
+.ink-s20:empty,
+.ink-s10:empty {
+  clear: both;
+}
