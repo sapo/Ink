@@ -124,12 +124,12 @@
 
 .disable (){}
 
-.body-font-size (@base-font-size) when (ispixel(@base-font-size)) and (@base-font-size > 0) {
-	font-size: @base-font-size;
+.body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
+	font-size: @font-size;
 }
 
-.body-font-size (@base-font-size){}
+.body-font-size (@font-size){}
 
 .ink-font-stack () {
-	font-family: @base-font-family;
+	font-family: @font-family;
 }

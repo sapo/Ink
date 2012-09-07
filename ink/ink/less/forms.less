@@ -32,7 +32,7 @@ label span{display: block; padding-left: 27px;}
 label input{float:left}
 input:empty, textarea:empty, select:empty {clear:none}
 input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
-	.round-corners(@borderRadius);
+	.round-corners(@border-radius);
 	.box-shadow(@basicBoxShadow);
 	.gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
 	padding: @elementsPadding;
@@ -70,7 +70,7 @@ form li {list-style: none;}
 
 /*|||||||||||||||||||||| Errors & Warning Styles ||||||||||||||||||||||*/
 form .error, form .warning {
-	.round-corners(@borderRadius);
+	.round-corners(@border-radius);
 	padding:10px 0 5px;
 	margin:5px 0;
 	color: fadein(@errorColor, 100%);
@@ -127,7 +127,7 @@ form .warning {color: fadein(@warningColor, 100%);}
 // 	border: 1px solid #ccc;
 // 	cursor:pointer;
 // 	.createBtn(@btnBg);
-// 	.round-corners(@borderRadius);
+// 	.round-corners(@border-radius);
 // 	color: @btnColor;
 // 	text-shadow:0 1px 0 rgba(255,255,255,1);
 // 	margin:5px;
