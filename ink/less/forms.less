@@ -5,9 +5,21 @@ form {
 
 
 	fieldset {
+		border: none;
+		width: 100%;
 
 		legend {
 
+			margin-left: 4px;
+			font-size: 1.5em;
+			font-weight: 700;
+			color: #454545;
+			border-bottom: 1px solid #DDD;
+			padding-bottom: 4px;
+			margin-top: 32px;
+			text-shadow: 0 1px 0 white;
+			display: block;
+			width: 100%;
 		}
 
 	}
@@ -22,6 +34,15 @@ form {
 			vertical-align: top;
 		}
 
+		input[type=text], input[type=password], input[type=file], input[type=reset], select {
+			width: 93%;
+		}
+
+		textarea {
+			min-width: 92.3%;
+			max-width: 92.3%;
+		}
+
 	}
 
 	&.ink-labels-left {
@@ -34,22 +55,24 @@ form {
 			vertical-align: top;
 			float: left;			
 			margin-right: 0.5em;
+			line-height: 2.2;
 		}
 
 	}
 
 	label {
 		line-height: 1.3em;
+		font-size: 0.90em;
 	}
 
 	input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
 		.round-corners(@border-radius);
-		.box-shadow(@basicBoxShadow);
-		.gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
+		// .box-shadow(@basicBoxShadow);
+		// .gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
 		padding: @elementsPadding;
 		border:1px solid @border-color;
 		resize: none;
-		width: 100%;
+		// width: 100%;
 		// line-height: 1.3em;
 		font-size: @fontSize;
 		.box-sizing(border-box);

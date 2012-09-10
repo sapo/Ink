@@ -68,7 +68,7 @@
 
 <div class="ink-container">
 	<div class="ink-section">
-		<form class="ink-l66">
+		<!-- <form class="ink-l66">
 		<fieldset class="box ink-space">
 			<p class="note"> <strong>Nota:</strong>
 				Os campos * são de preenchimento Obrigatório
@@ -151,32 +151,30 @@
 				<input id="fileInput" type="file"></div>
 		</fieldset>
 	</form>
-	
-	<form action="" class="ink-labels-above">
+	-->
+	<form action="" class="ink-labels-above ink-l66">
 		<fieldset>
+			<legend>Legend</legend>
 			<div class="ink-control-group ink-required-field">
-				<label for="f1">Label stays above</label>
-				<input id="f1" type="text">
+				<label for="text-inpu">Label stays above</label>
+				<input id="text-inpu" type="text">
 				<p class="ink-field-tip">This field takes some form of data</p>
 			</div>
 			<div class="ink-control-group">
-				<label for="f1">Label stays above</label>
+				<label for="select">Label stays above</label>
 				<select name="" id="select">
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
+					<option value="">onions</option>
+					<option value="">carrots</option>
+					<option value="">potatoes</option>
+					<option value="">beets</option>
 				</select>
 			</div>
 			<div class="ink-control-group">
-				<label for="f1">Label stays above</label>
-				<input id="f1" type="text">
-			</div>
+				<label for="textarea">Label stays above</label>
+				<textarea name="" id="textarea"></textarea>
 			<div class="ink-control-group">
 				<label for="f1">Label stays above</label>
-				<input id="f1" type="text">
-			</div>
+				<input id="f1" type="text"></div>
 		</fieldset>
 	</form>
 
