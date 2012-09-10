@@ -157,6 +157,24 @@ ol li {
   margin: .5em 0;
   color: #6f6f6f;
 }
+ul.ink-zebra li,
+ol.ink-zebra li {
+  padding: 5px;
+  border-radius: 4px;
+}
+ul.ink-zebra li:nth-child(odd),
+ol.ink-zebra li:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+ul.ink-hover li,
+ol.ink-hover li {
+  padding: 5px;
+  border-radius: 4px;
+}
+ul.ink-hover li:hover,
+ol.ink-hover li:hover {
+  background: #fefbd6;
+}
 .note {
   font-size: .9em;
   color: #888888;
