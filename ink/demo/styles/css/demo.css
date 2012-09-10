@@ -47,9 +47,6 @@ h2 span {
   background-color: #fff;
   padding: 1em;
 }
-.ink-g100 {
-  width: auto;
-}
 mark {
   font-family: Monaco, Andale Mono, Courier New, monospace;
   background-color: #deedf1;
@@ -92,12 +89,12 @@ mark {
   margin: 0px;
 }
 #spaceExemples .box div p {
-  font-size: 3em;
+  font-size: 1.75em;
   line-height: 200px;
   vertical-align: middle;
   background-color: #DEEDF1;
   color: #fff;
-  margin-bottom: 0em;
+  margin: 0;
 }
 #spaceExemples .box div:hover {
   background-color: #68b9cf;
