@@ -92,12 +92,12 @@ mark {
   margin: 0px;
 }
 #spaceExemples .box div p {
-  font-size: 3em;
+  font-size: 1.75em;
   line-height: 200px;
   vertical-align: middle;
   background-color: #DEEDF1;
   color: #fff;
-  margin-bottom: 0em;
+  margin: 0em;
 }
 #spaceExemples .box div:hover {
   background-color: #68b9cf;
