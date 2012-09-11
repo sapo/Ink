@@ -16,46 +16,47 @@
   width: auto;
 }
 .ink-s100 {
-  width: 100%;
+  width: auto;
+  clear: both;
 }
 .ink-s90 {
-  width: 100%;
+  width: 90%;
 }
 .ink-s80 {
-  width: 100%;
+  width: 80%;
 }
 .ink-s75 {
-  width: 100%;
+  width: 75%;
 }
 .ink-s70 {
-  width: 100%;
+  width: 70%;
 }
 .ink-s66 {
-  width: 100%;
+  width: 66.66%;
 }
 .ink-s60 {
-  width: 100%;
+  width: 60%;
 }
 .ink-s50 {
-  width: 100%;
+  width: 50%;
 }
 .ink-s40 {
-  width: 100%;
+  width: 40%;
 }
 .ink-s33 {
-  width: 100%;
+  width: 33.33%;
 }
 .ink-s30 {
-  width: 100%;
+  width: 30%;
 }
 .ink-s25 {
-  width: 100%;
+  width: 25%;
 }
 .ink-s20 {
-  width: 100%;
+  width: 20%;
 }
 .ink-s10 {
-  width: 100%;
+  width: 10%;
 }
 .ink-s10,
 .ink-s20,
