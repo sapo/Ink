@@ -41,20 +41,20 @@
 	</div>
 	<div class="ink-section gridExemple ink-clearfix">
 		<div class="ink-space box">
-			<div class="ink-l100 ink-clear"><p>100%</p></div>
-			<div class="ink-l90 ink-clear"><p>90%</p></div>
-			<div class="ink-l80 ink-clear"><p>80%</p></div>
-			<div class="ink-l75 ink-clear"><p>75%</p></div>
-			<div class="ink-l70 ink-clear"><p>70%</p></div>
-			<div class="ink-l66 ink-clear"><p>66%</p></div>
-			<div class="ink-l60 ink-clear"><p>60%</p></div>
-			<div class="ink-l50 ink-clear"><p>50%</p></div>
-			<div class="ink-l40 ink-clear"><p>40%</p></div>
-			<div class="ink-l33 ink-clear"><p>33%</p></div>
-			<div class="ink-l30 ink-clear"><p>30%</p></div>
-			<div class="ink-l25 ink-clear"><p>25%</p></div>
-			<div class="ink-l20 ink-clear"><p>20%</p></div>
-			<div class="ink-l10 ink-clear"><p>10%</p></div>
+			<div class="ink-l100 ink-m100 ink-s100 ink-clear"><p>100%</p></div>
+			<div class="ink-l90 ink-m90 ink-s90 ink-clear"><p>90%</p></div>
+			<div class="ink-l80 ink-m80 ink-s80 ink-clear"><p>80%</p></div>
+			<div class="ink-l75 ink-m75 ink-s75 ink-clear"><p>75%</p></div>
+			<div class="ink-l70 ink-m70 ink-s70 ink-clear"><p>70%</p></div>
+			<div class="ink-l66 ink-m66 ink-s66 ink-clear"><p>66%</p></div>
+			<div class="ink-l60 ink-m60 ink-s60 ink-clear"><p>60%</p></div>
+			<div class="ink-l50 ink-m50 ink-s50 ink-clear"><p>50%</p></div>
+			<div class="ink-l40 ink-m40 ink-s40 ink-clear"><p>40%</p></div>
+			<div class="ink-l33 ink-m33 ink-s33 ink-clear"><p>33%</p></div>
+			<div class="ink-l30 ink-m30 ink-s30 ink-clear"><p>30%</p></div>
+			<div class="ink-l25 ink-m25 ink-s25 ink-clear"><p>25%</p></div>
+			<div class="ink-l20 ink-m20 ink-s20 ink-clear"><p>20%</p></div>
+			<div class="ink-l10 ink-m10 ink-s10 ink-clear"><p>10%</p></div>
 		</div>
 
 		<div class="ink-l33 ink-clear-left">

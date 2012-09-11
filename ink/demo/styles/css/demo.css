@@ -47,9 +47,6 @@ h2 span {
   background-color: #fff;
   padding: 1em;
 }
-.ink-g100 {
-  width: auto;
-}
 mark {
   font-family: Monaco, Andale Mono, Courier New, monospace;
   background-color: #deedf1;
@@ -63,7 +60,7 @@ mark {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   background-color: #DEEDF1;
-  margin: .2em 2px;
+  margin: .2em;
   padding: .75em;
   color: #7AA6B3;
   text-align: right;
