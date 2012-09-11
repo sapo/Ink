@@ -39,7 +39,7 @@
 		<h2>Containers</h2>
 		<p>The ink-container class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
 	</div>
-	<div class="ink-section gridExemple ink-clear">
+	<div class="ink-section gridExemple">
 		<div class="ink-space box">
 			<div class="ink-l100 ink-m100"><p>100%</p></div>
 			<div class="ink-l90 ink-m100 ink-clear"><p>90%</p></div>
@@ -57,7 +57,7 @@
 			<div class="ink-l10 ink-m100 ink-clear"><p>10%</p></div>
 		</div>
 
-		<div class="ink-l33 ink-clear-left">
+		<div class="ink-l33">
 			<div class="ink-space">
 				<h3>Markup</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -100,7 +100,7 @@
 						<div class="ink-l25 ink-m100 level2"><p>25%</p></div>
 					</div>
 				</div>
-				<pre  class="prettyprint">&lt;div class=&quot;ink-l100&quot;&gt;
+				<pre  class="prettyprint ink-space">&lt;div class=&quot;ink-l100&quot;&gt;
   &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
@@ -115,21 +115,21 @@
 					<div class="ink-l100 ink-m100 level1">
 						<div class="ink-l50 ink-m100 level2">
 							<div class="ink-l100 ink-m100 level2"><p>50%</p></div>
-							<div class="ink-l50 ink-m100 level2"><p>50%</p></div>
-							<div class="ink-l50 ink-m100 level2"><p>50%</p></div>
+							<div class="ink-l50 ink-m50 level2"><p>50%</p></div>
+							<div class="ink-l50 ink-m50 level2"><p>50%</p></div>
 						</div>
 						<div class="ink-l50 ink-m100 level2">
 							<div class="ink-l100 ink-m100 level2"><p>50%</p></div>
-							<div class="ink-l50 ink-m100 level2"><p>50%</p></div>
-							<div class="ink-l50 ink-m100 level2"><p>50%</p></div>
+							<div class="ink-l50 ink-m50 level2"><p>50%</p></div>
+							<div class="ink-l50 ink-m50 level2"><p>50%</p></div>
 						</div>
-						<div class="ink-l25 ink-m100"><p>25%</p></div>
-						<div class="ink-l25 ink-m100"><p>25%</p></div>
-						<div class="ink-l25 ink-m100"><p>25%</p></div>
-						<div class="ink-l25 ink-m100"><p>25%</p></div>
+						<div class="ink-l25 ink-m50"><p>25%</p></div>
+						<div class="ink-l25 ink-m50"><p>25%</p></div>
+						<div class="ink-l25 ink-m50"><p>25%</p></div>
+						<div class="ink-l25 ink-m50"><p>25%</p></div>
 					</div>
 				</div>
-				<pre  class="prettyprint">&lt;div class=&quot;ink-l50&quot;&gt;
+				<pre  class="prettyprint ink-space">&lt;div class=&quot;ink-l50&quot;&gt;
   &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -146,41 +146,34 @@
 	
 	
 	<div class="ink-section" id="spaceExemples">
-		<h2><span>Margens</span></h2>
+		<h2><span>Margins</span></h2>
 		<div class="ink-l33">
-			<h4 class="ink-space">Margens Verticais</h4>
+			<h4 class="ink-space">Vertical margin</h4>
 			<div class="ink-space box">
 				<div class="ink-vspace"><p>.ink-vspace</p></div>
-			</div>
-			<div class="ink-hspace">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div><pre  class="prettyprint">//Define a Largura
+			</div><pre  class="prettyprint ink-space">//Defines width
 &lt;div class=&quot;ink-l33&quot;&gt; 
   //Define as Margins ou Paddings
   &lt;div class=&quot;ink-vspace&quot;&gt;...&lt;/div&gt;
 &lt;/div&gt;</pre>
 		</div>
 		<div class="ink-l33">
-			<h4 class="ink-space">Margens Horizontais</h4>
+			<h4 class="ink-space">Horizontal margin</h4>
 			<div class="ink-space box">
 				<div class="ink-hspace" id="ola3" alt="bla vla vla"><p>.ink-hspace</p></div>
 			</div>
-			<div class="ink-hspace">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div><pre  class="prettyprint">//Define a Largura
+			<pre  class="prettyprint ink-space">//Defines width
 &lt;div class=&quot;ink-l33&quot;&gt; 
   //Define as Margins ou Paddings
   &lt;div class=&quot;ink-hspace&quot;&gt;...&lt;/div&gt;
 &lt;/div&gt;</pre>
 		</div>
 		<div class="ink-l33">
-			<h4 class="ink-space">Margens Horizontais & Verticais</h4>
+			<h4 class="ink-space">Horizontal & Vertical margin</h4>
 			<div class="ink-space box">
 				<div class="ink-space"><p>.ink-space</p></div>
 			</div>
-			<div class="ink-hspace">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div><pre  class="prettyprint">//Define a Largura
+			<pre  class="prettyprint ink-space">//Defines width
 &lt;div class=&quot;ink-l33&quot;&gt; 
   //Define as Margins ou Paddings
   &lt;div class=&quot;ink-space&quot;&gt;...&lt;/div&gt;
