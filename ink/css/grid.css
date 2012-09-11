@@ -1,5 +1,3 @@
-@import url(grids/small.css) (max-width: 650px);
-
 @import url(grids/medium.css) (min-width: 651px) and (max-width: 900px);
 
 @import url(grids/large.css) (min-width: 901px);
@@ -44,7 +42,9 @@ h6 {
   visibility: hidden;
   zoom: 1;
 }
-/* Customize these breakpoints */
+/* Customize these breakpoints 
+@import url(grids/small.css) (max-width: 650px);
+
 /* Customize these breakpoints */
 /* Customize these breakpoints */
 .ink-space {
@@ -70,7 +70,9 @@ h6 {
   border-bottom: 1px solid #eee;
 }
 .ink-clear,
-.ink-g100,
+.ink-l100,
+.ink-m100,
+.ink-s100,
 .ink-section {
   clear: both;
 }
@@ -79,4 +81,20 @@ h6 {
 }
 .ink-clear-right {
   clear: right;
+}
+html body .ink-l100:empty,
+html body .ink-l90:empty,
+html body .ink-l80:empty,
+html body .ink-l75:empty,
+html body .ink-l70:empty,
+html body .ink-l66:empty,
+html body .ink-l60:empty,
+html body .ink-l50:empty,
+html body .ink-l40:empty,
+html body .ink-l33:empty,
+html body .ink-l30:empty,
+html body .ink-l25:empty,
+html body .ink-l20:empty,
+html body .ink-l10:empty {
+  clear: both;
 }
