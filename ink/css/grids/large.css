@@ -19,6 +19,7 @@ html body .ink-container {
 }
 html body .ink-l100 {
   width: auto;
+  clear: both;
 }
 html body .ink-l90 {
   width: 90%;
