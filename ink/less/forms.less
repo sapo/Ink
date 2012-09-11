@@ -7,6 +7,7 @@ form {
 	fieldset {
 		border: none;
 		width: 100%;
+		margin-bottom: 1.5em;
 
 		legend {
 
@@ -23,13 +24,13 @@ form {
 
 	}
 
+
 	&.ink-labels-above {
 
 		label {
 			font-weight: bold;
 			display: block;
-			line-height: 1.5;
-
+			margin-left: 0.1em;
 		}
 
 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
@@ -42,7 +43,17 @@ form {
 			min-height: 5em;
 		}
 
-	}
+		input[type="checkbox"] {
+			margin-top: 0.1em;
+		}
+
+		input[type="checkbox"] + label {
+			display: inline;
+			line-height: 0;
+			margin-left: 0.35em;
+		}
+
+	}	
 
 	&.ink-labels-left {
 
@@ -60,8 +71,23 @@ form {
 	}
 
 	label {
-		line-height: 1.3em;
-		font-size: 0.90em;
+		line-height: 1.5;
+		font-size: 0.80em;
+	}
+
+	.ink-form-validation {
+
+		&.ink-tostas::after {
+			background: green;
+			content: "h";
+			display: block;
+			// width: 7%;
+			padding: 2px;
+			.round-corners(50%);
+			height: 15px;
+			width: 15px;
+		}
+
 	}
 
 	input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
@@ -75,21 +101,28 @@ form {
 		.box-sizing(border-box);
 	}
 
-
+	select[multiple] {
+		line-height: 2;
+		option {
+			padding: 654px;
+		}
+	}
 
 	div {
 
 		&.ink-form-row {
 
+			display: block;
+			margin: 1.5em 0;
+			line-height: 2;
+
 			&.ink-required-field {
 				label:after {
-					vertical-align: middle;
 					content: "*";
 					color: @caution-bg-color;
 					font-size: 1.5em;
-					// padding-top: 0.5em;
-					margin-left: 0.3em;
-					// line-height: 
+					line-height: 1;
+					margin-left: 0.1em;
 					font-weight: 500;
 				}
 			}
@@ -98,15 +131,14 @@ form {
 
 			}
 
-			display: block;
-			margin: 1.5em 0;
-			line-height: 2;
 
 			p {
 
 				&.ink-field-tip {
-					margin: 0.5em 0;
+					margin: 0;
+					line-height: 2.0;
 					font-size: 0.8em;
+					color: lighten(@text-color,35%);
 				}
 			}
 
