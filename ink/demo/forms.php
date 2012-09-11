@@ -154,14 +154,14 @@
 	-->
 	<form action="" class="ink-labels-above ink-l66">
 		<fieldset>
-			<legend>Legend</legend>
-			<div class="ink-form-row ink-required-field">
-				<label for="text-inpu">Label stays above</label>
+			<legend>Fieldset legend</legend>
+			<div class="ink-form-row">
+				<label for="text-inpu">Text input</label>
 				<input id="text-inpu" type="text">
-				<p class="ink-field-tip">This field takes some form of data</p>
+				<p class="ink-field-tip">Fields can have tips.</p>
 			</div>
 			<div class="ink-form-row">
-				<label for="select">Label stays above</label>
+				<label for="select">Select</label>
 				<select name="" id="select">
 					<option value="">onions</option>
 					<option value="">carrots</option>
@@ -170,12 +170,43 @@
 				</select>
 			</div>
 			<div class="ink-form-row">
-				<label for="textarea">Label stays above</label>
-				<textarea name="" id="textarea"></textarea>
+				<label for="multiSelect">Multiple select</label>
+				<select multiple="multiple" id="multiSelect">
+					<option>onions</option>
+					<option>carrots</option>
+					<option>potatoes</option>
+					<option>beets</option>
+					<option>kale</option>
+				</select>
+			</div>
 			<div class="ink-form-row">
-				<label for="f1">Label stays above</label>
-				<input id="f1" type="text"></div>
+				<label for="textarea">Textarea</label>
+				<textarea name="" id="textarea"></textarea>
+				<span class="ink-form-validation ink-tostas"></span>
+			</div>				
 		</fieldset>
+		<fieldset>
+			<legend>Here's a group of options in a fieldset</legend>
+			<div class="ink-form-row">
+					<input type="checkbox" id="cb1" name="cb1" value="">
+					<label for="cb1">Option 1</label>
+				</div>
+				<div class="ink-form-row">
+					<input type="checkbox" id="cb2" name="cb2" value="">
+					<label for="cb2">Option 2</label>
+				</div>
+				<div class="ink-form-row">
+					<input type="checkbox" id="cb3" name="cb3" value="">
+					<label for="cb3">Option 3</label>
+				</div>
+				<div class="ink-form-row">
+					<input type="checkbox" id="cb4" name="cb4" value="">
+					<label for="cb4">Option 4</label>
+				</div>
+		</fieldset>
+		<div class="ink-form-row">
+			<button type="button" class="ink-success">Submit this form</button>
+		</div>
 	</form>
 
 	<div class="ink-l33">

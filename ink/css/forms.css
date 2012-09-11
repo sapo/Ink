@@ -16,6 +16,7 @@
 form fieldset {
   border: none;
   width: 100%;
+  margin-bottom: 1.5em;
 }
 form fieldset legend {
   margin: 0;
@@ -31,7 +32,7 @@ form fieldset legend {
 form.ink-labels-above label {
   font-weight: bold;
   display: block;
-  line-height: 1.5;
+  margin-left: 0.1em;
 }
 form.ink-labels-above input[type=text],
 form.ink-labels-above input[type=password],
@@ -45,6 +46,14 @@ form.ink-labels-above textarea {
   max-width: 92.3%;
   min-height: 5em;
 }
+form.ink-labels-above input[type="checkbox"] {
+  margin-top: 0.1em;
+}
+form.ink-labels-above input[type="checkbox"] + label {
+  display: inline;
+  line-height: 0;
+  margin-left: 0.35em;
+}
 form.ink-labels-left label {
   font-weight: bold;
   display: block;
@@ -55,8 +64,19 @@ form.ink-labels-left label {
   line-height: 2.2;
 }
 form label {
-  line-height: 1.3em;
-  font-size: 0.90em;
+  line-height: 1.5;
+  font-size: 0.80em;
+}
+form .ink-form-validation.ink-tostas::after {
+  background: green;
+  content: "h";
+  display: block;
+  padding: 2px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  height: 15px;
+  width: 15px;
 }
 form input[type=text],
 form input[type=password],
@@ -68,7 +88,7 @@ form select {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   padding: 6px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #dddddd;
   resize: none;
   font-size: 12px;
   -webkit-box-sizing: border-box;
@@ -76,22 +96,30 @@ form select {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+form select[multiple] {
+  line-height: 2;
+}
+form select[multiple] option {
+  padding: 654px;
+}
 form div.ink-form-row {
   display: block;
   margin: 1.5em 0;
   line-height: 2;
 }
 form div.ink-form-row.ink-required-field label:after {
-  vertical-align: middle;
   content: "*";
   color: #cd0000;
   font-size: 1.5em;
-  margin-left: 0.3em;
+  line-height: 1;
+  margin-left: 0.1em;
   font-weight: 500;
 }
 form div.ink-form-row p.ink-field-tip {
-  margin: 0.5em 0;
+  margin: 0;
+  line-height: 2.0;
   font-size: 0.8em;
+  color: #aeaeae;
 }
 form div.ink-form-row:first-child {
   margin-top: 0;
