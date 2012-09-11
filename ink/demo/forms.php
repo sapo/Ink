@@ -155,12 +155,12 @@
 	<form action="" class="ink-labels-above ink-l66">
 		<fieldset>
 			<legend>Legend</legend>
-			<div class="ink-control-group ink-required-field">
+			<div class="ink-form-row ink-required-field">
 				<label for="text-inpu">Label stays above</label>
 				<input id="text-inpu" type="text">
 				<p class="ink-field-tip">This field takes some form of data</p>
 			</div>
-			<div class="ink-control-group">
+			<div class="ink-form-row">
 				<label for="select">Label stays above</label>
 				<select name="" id="select">
 					<option value="">onions</option>
@@ -169,10 +169,10 @@
 					<option value="">beets</option>
 				</select>
 			</div>
-			<div class="ink-control-group">
+			<div class="ink-form-row">
 				<label for="textarea">Label stays above</label>
 				<textarea name="" id="textarea"></textarea>
-			<div class="ink-control-group">
+			<div class="ink-form-row">
 				<label for="f1">Label stays above</label>
 				<input id="f1" type="text"></div>
 		</fieldset>

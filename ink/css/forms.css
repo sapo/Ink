@@ -18,12 +18,11 @@ form fieldset {
   width: 100%;
 }
 form fieldset legend {
-  margin-left: 4px;
-  font-size: 1.5em;
+  margin: 0;
+  font-size: 1.2em;
   font-weight: 700;
-  color: #454545;
   border-bottom: 1px solid #DDD;
-  padding-bottom: 4px;
+  padding-bottom: 0.40em;
   margin-top: 32px;
   text-shadow: 0 1px 0 white;
   display: block;
@@ -32,8 +31,7 @@ form fieldset legend {
 form.ink-labels-above label {
   font-weight: bold;
   display: block;
-  margin-bottom: .1em;
-  vertical-align: top;
+  line-height: 1.5;
 }
 form.ink-labels-above input[type=text],
 form.ink-labels-above input[type=password],
@@ -43,8 +41,9 @@ form.ink-labels-above select {
   width: 93%;
 }
 form.ink-labels-above textarea {
-  min-width: 92.3%;
+  min-width: 93%;
   max-width: 92.3%;
+  min-height: 5em;
 }
 form.ink-labels-left label {
   font-weight: bold;
@@ -69,7 +68,7 @@ form select {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   padding: 6px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #e0e0e0;
   resize: none;
   font-size: 12px;
   -webkit-box-sizing: border-box;
@@ -77,26 +76,27 @@ form select {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-form div.ink-control-group {
+form div.ink-form-row {
   display: block;
   margin: 1.5em 0;
   line-height: 2;
 }
-form div.ink-control-group.ink-required-field label:after {
+form div.ink-form-row.ink-required-field label:after {
+  vertical-align: middle;
   content: "*";
   color: #cd0000;
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-left: 0.3em;
   font-weight: 500;
 }
-form div.ink-control-group p.ink-field-tip {
+form div.ink-form-row p.ink-field-tip {
   margin: 0.5em 0;
   font-size: 0.8em;
 }
-form div.ink-control-group:first-child {
+form div.ink-form-row:first-child {
   margin-top: 0;
 }
-form div.ink-control-group:last-child {
+form div.ink-form-row:last-child {
   margin-bottom: 0;
 }
 /* Form Styles */

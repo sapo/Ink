@@ -10,12 +10,11 @@ form {
 
 		legend {
 
-			margin-left: 4px;
-			font-size: 1.5em;
+			margin: 0;
+			font-size: 1.2em;
 			font-weight: 700;
-			color: #454545;
 			border-bottom: 1px solid #DDD;
-			padding-bottom: 4px;
+			padding-bottom: 0.40em;
 			margin-top: 32px;
 			text-shadow: 0 1px 0 white;
 			display: block;
@@ -29,9 +28,8 @@ form {
 		label {
 			font-weight: bold;
 			display: block;
-			// margin:@labelMargin;
-			margin-bottom: .1em;
-			vertical-align: top;
+			line-height: 1.5;
+
 		}
 
 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
@@ -39,8 +37,9 @@ form {
 		}
 
 		textarea {
-			min-width: 92.3%;
+			min-width: 93%;
 			max-width: 92.3%;
+			min-height: 5em;
 		}
 
 	}
@@ -67,10 +66,8 @@ form {
 
 	input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
 		.round-corners(@border-radius);
-		// .box-shadow(@basicBoxShadow);
-		// .gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
-		padding: @elementsPadding;
-		border:1px solid @border-color;
+		padding: @form-elements-padding;
+		border:1px solid @form-elements-border-color;
 		resize: none;
 		// width: 100%;
 		// line-height: 1.3em;
@@ -82,18 +79,23 @@ form {
 
 	div {
 
-		&.ink-control-group {
+		&.ink-form-row {
 
 			&.ink-required-field {
 				label:after {
+					vertical-align: middle;
 					content: "*";
 					color: @caution-bg-color;
-					font-size: 1.2em;
+					font-size: 1.5em;
 					// padding-top: 0.5em;
 					margin-left: 0.3em;
 					// line-height: 
 					font-weight: 500;
 				}
+			}
+
+			&.ink-validation-error {
+
 			}
 
 			display: block;
@@ -156,8 +158,8 @@ form {
 // 	.round-corners(@border-radius);
 // 	.box-shadow(@basicBoxShadow);
 // 	.gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
-// 	padding: @elementsPadding;
-// 	border:1px solid @border-color;
+// 	padding: @form-elements-padding;
+// 	border:1px solid form-elements-border-color;
 // 	resize: none;
 // 	width: @elementsWidth;
 // 	line-height: 1.3em;
@@ -176,7 +178,7 @@ form {
 // input.miniInput, select.miniInput {width: @miniElementsWidth;}
 // input.smallInput, select.smallInput {width: @smallElementsWidth;}
 // form .help {display: block; /*font-size: 11px;*/ color:#bbb; float:none}
-// .e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@elementsPadding)/2;}
+// .e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@form-elements-padding)/2;}
 // .emptyLabel, .formList {padding-left: @labelWidth + 10px + @labelMargin;}
 // .emptyLabel label, .formList label{width: auto; text-align: left; vertical-align: top; font-weight: normal; float:none; margin: 0; display: block;}
 // .formList label input {margin-bottom: 0px;}
