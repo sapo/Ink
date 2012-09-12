@@ -22,6 +22,7 @@ input[type="button"],
 input[type="submit"],
 a.ink-button {
   font-weight: bold;
+  font-size: 0.90em;
   padding: 0.45em 0.8em;
   float: none;
   border: 1px solid #ccc;

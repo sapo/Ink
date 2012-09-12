@@ -17,9 +17,10 @@ form fieldset {
   border: none;
   width: 100%;
   margin-bottom: 1.5em;
+  padding: 0;
 }
 form fieldset legend {
-  margin: 0;
+  margin: 1em 0;
   font-size: 1.2em;
   font-weight: 700;
   border-bottom: 1px solid #DDD;
