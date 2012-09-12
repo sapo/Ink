@@ -156,8 +156,8 @@
 		<fieldset>
 			<legend>Fieldset legend</legend>
 			<div class="ink-form-row">
-				<label for="text-inpu">Text input</label>
-				<input id="text-inpu" type="text">
+				<label for="text-input">Text input</label>
+				<input id="text-input" type="text" placeholder="Please input some text">
 				<p class="ink-field-tip">Fields can have tips.</p>
 			</div>
 			<div class="ink-form-row">
@@ -168,6 +168,7 @@
 					<option value="">potatoes</option>
 					<option value="">beets</option>
 				</select>
+				<span class="ink-form-validation ink-success">Onions are a great choice.</span>
 			</div>
 			<div class="ink-form-row">
 				<label for="multiSelect">Multiple select</label>
@@ -182,7 +183,7 @@
 			<div class="ink-form-row">
 				<label for="textarea">Textarea</label>
 				<textarea name="" id="textarea"></textarea>
-				<span class="ink-form-validation ink-tostas"></span>
+				<span class="ink-form-validation ink-caution">Damn! Something went wrong. Here's a nifty validation message.</span>
 			</div>				
 		</fieldset>
 		<fieldset>

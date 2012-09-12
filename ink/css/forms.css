@@ -39,11 +39,11 @@ form.ink-labels-above input[type=password],
 form.ink-labels-above input[type=file],
 form.ink-labels-above input[type=reset],
 form.ink-labels-above select {
-  width: 93%;
+  width: 100%;
 }
 form.ink-labels-above textarea {
-  min-width: 93%;
-  max-width: 92.3%;
+  min-width: 100%;
+  max-width: 100%;
   min-height: 5em;
 }
 form.ink-labels-above input[type="checkbox"] {
@@ -67,16 +67,13 @@ form label {
   line-height: 1.5;
   font-size: 0.80em;
 }
-form .ink-form-validation.ink-tostas::after {
-  background: green;
-  content: "h";
-  display: block;
-  padding: 2px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  height: 15px;
-  width: 15px;
+form .ink-form-validation.ink-success,
+form .ink-form-validation.ink-caution {
+  font-size: 0.75em;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
 }
 form input[type=text],
 form input[type=password],
@@ -101,6 +98,16 @@ form select[multiple] {
 }
 form select[multiple] option {
   padding: 654px;
+}
+form input:empty,
+form textarea:empty,
+form select:empty {
+  background: rgba(178, 199, 212, 0.1);
+}
+form input:focus,
+form textarea:focus,
+form select:focus {
+  background: none;
 }
 form div.ink-form-row {
   display: block;

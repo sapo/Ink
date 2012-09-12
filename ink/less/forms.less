@@ -34,12 +34,12 @@ form {
 		}
 
 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
-			width: 93%;
+			width: 100%;
 		}
 
 		textarea {
-			min-width: 93%;
-			max-width: 92.3%;
+			min-width: 100%;
+			max-width: 100%;
 			min-height: 5em;
 		}
 
@@ -77,15 +77,11 @@ form {
 
 	.ink-form-validation {
 
-		&.ink-tostas::after {
-			background: green;
-			content: "h";
-			display: block;
-			// width: 7%;
-			padding: 2px;
-			.round-corners(50%);
-			height: 15px;
-			width: 15px;
+		&.ink-success, &.ink-caution {
+			font-size: 0.75em;
+			padding: 0.2em 0.4em;
+			.round-corners(4px);
+			// opacity: 0.5;
 		}
 
 	}
@@ -107,6 +103,9 @@ form {
 			padding: 654px;
 		}
 	}
+
+	input:empty, textarea:empty, select:empty { background: fade(#B2C7D4,10%); }
+	input:focus, textarea:focus, select:focus { background: none; }
 
 	div {
 
