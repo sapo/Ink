@@ -152,13 +152,15 @@
 		</fieldset>
 	</form>
 	-->
-	<form action="" class="ink-labels-left ink-l66">
+
+	<h2>Form with labels above fields</h2>
+
+	<form action="" class="ink-labels-above ink-l66">
 		<fieldset>
 			<legend>Fieldset legend</legend>
 			<div class="ink-form-row">
 				<label for="text-input">Text input</label>
 				<input id="text-input" type="text" placeholder="Please input some text">
-				<p class="ink-field-tip">Fields can have tips.</p>
 			</div>
 			<div class="ink-form-row">
 				<label for="select">Select</label>
@@ -169,7 +171,7 @@
 					<option value="">beets</option>
 				</select>
 			</div>
-			<div class="ink-form-row">
+			<div class="ink-form-row ink-required-field">
 				<label for="multiSelect">Multiple select</label>
 				<select multiple="multiple" id="multiSelect">
 					<option>onions</option>
@@ -182,7 +184,11 @@
 			<div class="ink-form-row">
 				<label for="textarea">Textarea</label>
 				<textarea name="" id="textarea" placeholder="Please enter some text"></textarea>
-			</div>				
+			</div>
+			<div class="ink-form-row">
+				<label for="file-input">File input</label>
+				<input type="file" name="" id="file-input">
+			</div>		
 		</fieldset>
 		<fieldset>
 			<legend>Here's a group of checkboxes in a fieldset</legend>
@@ -212,29 +218,12 @@
 					<label for="rb4">Option 4</label>
 				</div>
 		</fieldset>
-		<fieldset>
-			<legend>Here's a group of radio buttons in a fieldset</legend>
-			<div class="ink-form-row">
-				<label for="rb1">Select a number</label>
-				<input type="number" id="rb1" name="rb" value="0" min="1" max="100">
-			</div>
-			<div class="ink-form-row">
-				<label for="rb1">Select a number</label>
-				<input type="range" id="rb1" name="rb" value="0" min="0" max="100">
-			</div>
-			<div class="ink-form-row">
-				<label for="rb1">Select a number</label>
-				<input type="search" id="rb1" name="rb">
-			</div>
-			<div class="ink-form-row">
-				<label for="rb1">Select a number</label>
-				<input type="email" id="rb1" name="rb" value="">
-			</div>
-		</fieldset>
 		<div class="ink-form-row">
-			<button type="button" class="ink-success">Submit this form</button>
+			<button type="button" class="ink-success ink-size-s">Submit this form</button>
 		</div>
 	</form>
+
+
 
 	<div class="ink-l33">
 		<div class="ink-space">
