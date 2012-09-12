@@ -17,7 +17,7 @@
 <div class="ink-container whatIs">
 	<div class="ink-vspace">
 		<h2>Layout</h2>
-		<p>Insert hipster text, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<p>Build a true fluid layout. Ink doesn't care how many colums your layout has, you just need to put your taste to good use.</p>
 	</div>
 </div>
 
@@ -25,9 +25,9 @@
 	<div class="ink-container">
 		<ul>
 			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="grid.php">Containers</a></li>
-			<li><a href="navigation.php">Division</a></li>
-			<li><a href="typo.php">Spacing</a></li>
+			<li><a href="#">Containers</a></li>
+			<li><a href="#">Spacer units</a></li>
+			<li><a href="#">Spacing</a></li>
 		</ul>
 	</div>
 </nav>  
@@ -37,7 +37,7 @@
 <div class="ink-container">
 	<div class="ink-space">
 		<h2>Containers</h2>
-		<p>The ink-container class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
+		<p>The <strong>.ink-container</strong> class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
 	</div>
 	<div class="ink-section gridExemple">
 		<div class="ink-space box">
@@ -57,38 +57,32 @@
 			<div class="ink-l10 ink-m100 ink-clear"><p>10%</p></div>
 		</div>
 
-		<div class="ink-l33">
-			<div class="ink-space">
-				<h3>Markup</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<div class="ink-space">
+			<h3>Markup</h3>
+			<p>Let's say you need your page container to always be 80% of your view port.</p>
+		</div>
+		<div class="ink-space">
+			<pre  class="prettyprint">&lt;div class=&quot;ink-container&quot;&gt;
+  &lt;div class=&quot;ink-l100&quot;&gt;
+    &lt;p&gt;Content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+//In conf.css, define:
+.ink-container { width:80% }</pre>
 			</div>
 		</div>
-		<div class="ink-l66">
-			<div class="ink-space">
-				<pre  class="prettyprint">&lt;div class=&quot;ink-l100&quot;&gt;
-  Elemento ocupa 100% do elemento pai
-&lt;/div&gt;
-
-&lt;div class=&quot;ink-l75&quot;&gt;
-  Elemento ocupa 75% do elemento pai
-&lt;/div&gt;
-
-&lt;div class=&quot;ink-l30&quot;&gt;
-  Elemento ocupa 30% do elemento pai
-&lt;/div&gt;
-				</pre>
-			</div>
-		</div>		
-	</div>
+		
 		<div class="ink-section">
-			<div class="ink-l100">
-				<div class="ink-space">
-					<h3 id="ddd" alt="Conteudo">Combinações</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
+			
+			<div class="ink-space">
+				<h2>Division</h2>
+				<p>Ink uses a percentage-based container logic which is flexible and promotes the use of fluid layouts.</p>
+				<p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
 			</div>
+			
 			<div class="ink-l50 gridExemple2">
-				<div class="ink-space box">
+				<div class="ink-hspace box">
 					<div class="ink-l100 ink-m100 level1">
 						<p>100%</p>
 						<div class="ink-l50 ink-m100 level2"><p>50%</p></div>
@@ -111,7 +105,7 @@
 &lt;/div&gt;</pre>
 			</div>
 			<div class="ink-l50 gridExemple2">
-				<div class="ink-space box">
+				<div class="ink-hspace box">
 					<div class="ink-l100 ink-m100 level1">
 						<div class="ink-l50 ink-m100 level2">
 							<div class="ink-l100 ink-m100 level2"><p>50%</p></div>
@@ -142,14 +136,24 @@
 &lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;</pre>
 			</div>		
+			<div class="ink-space">
+				<p>You should use the <strong>.ink-lxx, .ink-mxx and ink-sxx</strong> classes for layout only and add an additional semantic class for further costumization. In this case, you could then use your conf.css file to customize .maincontent, .sidebar, etc.</p>
+			</div>
 		</div>
 	
 	
-	<div class="ink-section" id="spaceExemples">
-		<h2><span>Margins</span></h2>
+		<div class="ink-section" id="spaceExemples">
+		<div class="ink-space">
+			<h2>Spacer units</h2>
+			<p>Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. 
+			Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.</p>
+
+			<p>Ink uses seven kinds of spacer unit: a vertical spacer, an horizontal spacer, and all-around spacer and one for each side of your box (top, right, bottom, left). 
+			To use them, put a block-level element within your layout element with the corresponding spacer class.</p>
+		</div>
 		<div class="ink-l33">
-			<h4 class="ink-space">Vertical margin</h4>
-			<div class="ink-space box">
+			
+			<div class="ink-hspace box">
 				<div class="ink-vspace"><p>.ink-vspace</p></div>
 			</div><pre  class="prettyprint ink-space">//Defines width
 &lt;div class=&quot;ink-l33&quot;&gt; 
@@ -158,8 +162,8 @@
 &lt;/div&gt;</pre>
 		</div>
 		<div class="ink-l33">
-			<h4 class="ink-space">Horizontal margin</h4>
-			<div class="ink-space box">
+			
+			<div class="ink-hspace box">
 				<div class="ink-hspace" id="ola3" alt="bla vla vla"><p>.ink-hspace</p></div>
 			</div>
 			<pre  class="prettyprint ink-space">//Defines width
@@ -169,8 +173,8 @@
 &lt;/div&gt;</pre>
 		</div>
 		<div class="ink-l33">
-			<h4 class="ink-space">Horizontal & Vertical margin</h4>
-			<div class="ink-space box">
+			
+			<div class="ink-hspace box">
 				<div class="ink-space"><p>.ink-space</p></div>
 			</div>
 			<pre  class="prettyprint ink-space">//Defines width
@@ -181,17 +185,18 @@
 			
 		</div>
 	</div>
-	<div class="ink-section">
-		<h3>List of available Classes</h3>
-		<div class="ink-space">
-			.ink-container <br>
-			.ink-section<br>
-			.ink-space<br>
-			.ink-vspace<br>
-			.ink-hspace<br>
-			
-		</div>
+	
+	<div class="ink-space">
+		<h2>Available Classes</h2>
+		<p>
+		.ink-container <br>
+		.ink-section<br>
+		.ink-space<br>
+		.ink-vspace<br>
+		.ink-hspace<br>
+		</p>
 	</div>
+	
 </div>
 
 <?php include 'shared/footer.php'; ?>	
