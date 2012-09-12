@@ -123,6 +123,21 @@ form .warning {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-transition-property: background-color, color;
+  -moz-transition-property: background-color, color;
+  -o-transition-property: background-color, color;
+  -ms-transition-property: background-color, color;
+  transition-property: background-color, color;
+  -webkit-transition-duration: 125ms;
+  -moz-transition-duration: 125ms;
+  -o-transition-duration: 125ms;
+  -ms-transition-duration: 125ms;
+  transition-duration: 125ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -183,6 +198,21 @@ input.btn_success,
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-transition-property: background-color, color;
+  -moz-transition-property: background-color, color;
+  -o-transition-property: background-color, color;
+  -ms-transition-property: background-color, color;
+  transition-property: background-color, color;
+  -webkit-transition-duration: 125ms;
+  -moz-transition-duration: 125ms;
+  -o-transition-duration: 125ms;
+  -ms-transition-duration: 125ms;
+  transition-duration: 125ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
 input.btn_success:hover,
 .btn_success:hover {
@@ -232,6 +262,21 @@ input.btn_info,
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-transition-property: background-color, color;
+  -moz-transition-property: background-color, color;
+  -o-transition-property: background-color, color;
+  -ms-transition-property: background-color, color;
+  transition-property: background-color, color;
+  -webkit-transition-duration: 125ms;
+  -moz-transition-duration: 125ms;
+  -o-transition-duration: 125ms;
+  -ms-transition-duration: 125ms;
+  transition-duration: 125ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
 input.btn_info:hover,
 .btn_info:hover {
@@ -281,6 +326,21 @@ input.btn_delete,
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-transition-property: background-color, color;
+  -moz-transition-property: background-color, color;
+  -o-transition-property: background-color, color;
+  -ms-transition-property: background-color, color;
+  transition-property: background-color, color;
+  -webkit-transition-duration: 125ms;
+  -moz-transition-duration: 125ms;
+  -o-transition-duration: 125ms;
+  -ms-transition-duration: 125ms;
+  transition-duration: 125ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
 input.btn_delete:hover,
 .btn_delete:hover {

@@ -152,7 +152,7 @@
 		</fieldset>
 	</form>
 	-->
-	<form action="" class="ink-labels-above ink-l66">
+	<form action="" class="ink-labels-left ink-l66">
 		<fieldset>
 			<legend>Fieldset legend</legend>
 			<div class="ink-form-row">
@@ -168,7 +168,6 @@
 					<option value="">potatoes</option>
 					<option value="">beets</option>
 				</select>
-				<span class="ink-form-validation ink-success">Onions are a great choice.</span>
 			</div>
 			<div class="ink-form-row">
 				<label for="multiSelect">Multiple select</label>
@@ -182,28 +181,55 @@
 			</div>
 			<div class="ink-form-row">
 				<label for="textarea">Textarea</label>
-				<textarea name="" id="textarea"></textarea>
-				<span class="ink-form-validation ink-caution">Damn! Something went wrong. Here's a nifty validation message.</span>
+				<textarea name="" id="textarea" placeholder="Please enter some text"></textarea>
 			</div>				
 		</fieldset>
 		<fieldset>
-			<legend>Here's a group of options in a fieldset</legend>
+			<legend>Here's a group of checkboxes in a fieldset</legend>
 			<div class="ink-form-row">
+					<p class="ink-field-tip">Please select one or more options</p>
 					<input type="checkbox" id="cb1" name="cb1" value="">
 					<label for="cb1">Option 1</label>
-				</div>
-				<div class="ink-form-row">
 					<input type="checkbox" id="cb2" name="cb2" value="">
 					<label for="cb2">Option 2</label>
-				</div>
-				<div class="ink-form-row">
 					<input type="checkbox" id="cb3" name="cb3" value="">
 					<label for="cb3">Option 3</label>
-				</div>
-				<div class="ink-form-row">
 					<input type="checkbox" id="cb4" name="cb4" value="">
 					<label for="cb4">Option 4</label>
 				</div>
+		</fieldset>
+		<fieldset>
+			<legend>Here's a group of radio buttons in a fieldset</legend>
+			<div class="ink-form-row">
+					<p class="ink-field-tip">Please select one of these option</p>
+					<input type="radio" id="rb1" name="rb" value="">
+					<label for="rb1">Option 1</label>
+					<input type="radio" id="rb2" name="rb" value="">
+					<label for="rb2">Option 2</label>
+					<input type="radio" id="rb3" name="rb" value="">
+					<label for="rb3">Option 3</label>
+					<input type="radio" id="rb4" name="rb" value="">
+					<label for="rb4">Option 4</label>
+				</div>
+		</fieldset>
+		<fieldset>
+			<legend>Here's a group of radio buttons in a fieldset</legend>
+			<div class="ink-form-row">
+				<label for="rb1">Select a number</label>
+				<input type="number" id="rb1" name="rb" value="0" min="1" max="100">
+			</div>
+			<div class="ink-form-row">
+				<label for="rb1">Select a number</label>
+				<input type="range" id="rb1" name="rb" value="0" min="0" max="100">
+			</div>
+			<div class="ink-form-row">
+				<label for="rb1">Select a number</label>
+				<input type="search" id="rb1" name="rb">
+			</div>
+			<div class="ink-form-row">
+				<label for="rb1">Select a number</label>
+				<input type="email" id="rb1" name="rb" value="">
+			</div>
 		</fieldset>
 		<div class="ink-form-row">
 			<button type="button" class="ink-success">Submit this form</button>
