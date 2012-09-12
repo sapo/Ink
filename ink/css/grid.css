@@ -31,10 +31,11 @@ h6 {
   margin-bottom: 5px;
 }
 .ink-clear:after,
-.ink-clearfix:after,
 .ink-container:after,
 .ink-section:after,
 .ink-space:after,
+.ink-hspace:after,
+.ink-vspace:after,
 .ink-l100:after,
 .ink-m100:after,
 .ink-s100:after {
@@ -56,15 +57,21 @@ h6 {
   margin-bottom: 32px;
 }
 .ink-hspace {
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 32px;
+  margin-right: 32px;
 }
 .ink-rspace {
-  margin-right: 16px;
+  margin-right: 32px;
 }
 .ink-lspace {
-  margin-left: 16px;
+  margin-left: 32px;
 }
+/*
+.ink-vspace 	{ margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; }
+.ink-hspace		{ margin-left: @ink-grid-gutter / 2; margin-right: @ink-grid-gutter / 2; }
+.ink-rspace 	{ margin-right: @ink-grid-gutter / 2; }
+.ink-lspace 	{ margin-left: @ink-grid-gutter / 2; }
+*/
 .ink-section {
   margin: 1em 0;
   padding-bottom: 1em;

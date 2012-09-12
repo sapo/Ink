@@ -205,11 +205,6 @@ a.active {
 #download p {
   margin: 1em;
 }
-.ink-section #topbar {
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-}
 /*..........................................  Footer  ...................................................*/
 .callToAction {
   position: relative;
