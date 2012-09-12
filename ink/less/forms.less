@@ -22,53 +22,7 @@ form {
 			width: 100%;
 		}
 
-	}
-
-
-	&.ink-labels-above {
-
-		label {
-			font-weight: bold;
-			display: block;
-			margin-left: 0.1em;
-		}
-
-		input[type=text], input[type=password], input[type=file], input[type=reset], select {
-			width: 100%;
-		}
-
-		textarea {
-			min-width: 100%;
-			max-width: 100%;
-			min-height: 5em;
-		}
-
-		input[type="checkbox"] {
-			margin-top: 0.1em;
-		}
-
-		input[type="checkbox"] + label {
-			display: inline;
-			line-height: 0;
-			margin-left: 0.35em;
-		}
-
 	}	
-
-	&.ink-labels-left {
-
-		label {
-			font-weight: bold;
-			display: block;
-			// margin:@labelMargin;
-			margin-bottom: .5em;
-			vertical-align: top;
-			float: left;			
-			margin-right: 0.5em;
-			line-height: 2.2;
-		}
-
-	}
 
 	label {
 		line-height: 1.5;
@@ -86,7 +40,7 @@ form {
 
 	}
 
-	input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
+	input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
 		.round-corners(@border-radius);
 		padding: @form-elements-padding;
 		border:1px solid @form-elements-border-color;
@@ -104,15 +58,13 @@ form {
 		}
 	}
 
-	input:empty, textarea:empty, select:empty { background: fade(#B2C7D4,10%); }
-	input:focus, textarea:focus, select:focus { background: none; }
 
 	div {
 
 		&.ink-form-row {
 
 			display: block;
-			margin: 1.5em 0;
+			margin-bottom: 0.8em;
 			line-height: 2;
 
 			&.ink-required-field {
@@ -129,15 +81,17 @@ form {
 			&.ink-validation-error {
 
 			}
-
+ 
 
 			p {
 
 				&.ink-field-tip {
 					margin: 0;
-					line-height: 2.0;
+					line-height: 2.2;
 					font-size: 0.8em;
 					color: lighten(@text-color,35%);
+					position: relative;
+					margin-left: 0.1em;
 				}
 			}
 
@@ -149,6 +103,102 @@ form {
 				margin-bottom: 0;
 			}
 
+		}
+
+	}
+
+	&.ink-labels-above {
+
+		label {
+			font-weight: bold;
+			display: block;
+			margin: 0.5em 0 0 0.2em;
+		}
+
+		input[type=text], input[type=password], input[type=file], input[type=reset], select {
+			width: 100%;
+		}
+
+		textarea {
+			min-width: 100%;
+			max-width: 100%;
+			min-height: 5em;
+		}
+
+		input[type="checkbox"], input[type="radio"] {
+			line-height: 2;
+			margin-top: 0.55em;
+			float: left;
+			clear: left;
+		}
+
+		input[type="checkbox"] + label, input[type="radio"] + label {
+			float: left;
+			line-height: 2.5;
+			margin-left: 0.55em;
+			margin-top: 0;
+		}
+
+	}	
+
+	&.ink-labels-left {
+
+		label {
+			font-weight: bold;
+			display: block;
+			// margin:@labelMargin;
+			margin-bottom: .5em;
+			vertical-align: top;
+			float: left;			
+			margin-top: 0.5em;
+			margin-right: 0.5em;
+			line-height: 1.51;
+			min-width: 20%;
+			width: 20%;
+			max-width: 20%;
+			text-align: right;
+		}
+
+		input[type=text], input[type=password], input[type=file], input[type=reset], select {
+			min-width: 40%;
+			max-width: 50%;
+		}
+
+		textarea {
+			min-width: 40%;
+			max-width: 50%;
+			min-height: 5em;
+		}
+
+		input[type="checkbox"], input[type="radio"] {
+			line-height: 2;
+			margin-top: 0.55em;
+			float: left;
+		}
+
+		input[type="checkbox"] + label, input[type="radio"] + label {
+			line-height: 2.5;
+			margin: 0 1.55em 0 0.55em;
+			margin-top: 0;
+			width: auto;
+			min-width: auto;
+		}
+
+		.ink-form-validation {
+			margin-left: 21%;
+		}
+
+		fieldset {
+			div {
+				&.ink-form-row {
+					margin-bottom: 1em;
+					p {
+						&.ink-field-tip {
+							// margin-left: 21.5%;
+						}
+					}
+				}
+			}
 		}
 
 	}

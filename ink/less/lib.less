@@ -57,6 +57,24 @@
 	box-shadow: ~"@{sty}";
 }
 
+.transition (@property: ~"background-color, color", @duration: 125ms, @easing: ease-in-out) {
+	-webkit-transition-property: @property;
+	-moz-transition-property: @property;
+	-o-transition-property: @property;
+	-ms-transition-property: @property;
+	transition-property: @property;
+	-webkit-transition-duration: @duration;
+	-moz-transition-duration: @duration;
+	-o-transition-duration: @duration;
+	-ms-transition-duration: @duration;
+	transition-duration: @duration;
+	-webkit-transition-timing-function: @easing;
+	-moz-transition-timing-function: @easing;
+	-o-transition-timing-function: @easing;
+	-ms-transition-timing-function: @easing;
+	transition-timing-function: @easing;	
+}
+
 .createBtn (@bcl) {
 	color: #fff; 
 	.gradient( lighten(@bcl, 0%), darken(@bcl, 15%), 100%);
@@ -64,6 +82,7 @@
 	border-bottom-color: darken(@bcl, 25%);
 	text-shadow:0 -.09em .03em rgba(0,0,0,.5);
 	.box-shadow ('inset 0 1px 0 rgba(255, 255, 255, 0.2)');
+	.transition ();
 
 	&:hover {
 		.gradient( lighten(@bcl, 10%), darken(@bcl, 15%), 100%); 

@@ -29,40 +29,6 @@ form fieldset legend {
   display: block;
   width: 100%;
 }
-form.ink-labels-above label {
-  font-weight: bold;
-  display: block;
-  margin-left: 0.1em;
-}
-form.ink-labels-above input[type=text],
-form.ink-labels-above input[type=password],
-form.ink-labels-above input[type=file],
-form.ink-labels-above input[type=reset],
-form.ink-labels-above select {
-  width: 100%;
-}
-form.ink-labels-above textarea {
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 5em;
-}
-form.ink-labels-above input[type="checkbox"] {
-  margin-top: 0.1em;
-}
-form.ink-labels-above input[type="checkbox"] + label {
-  display: inline;
-  line-height: 0;
-  margin-left: 0.35em;
-}
-form.ink-labels-left label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: .5em;
-  vertical-align: top;
-  float: left;
-  margin-right: 0.5em;
-  line-height: 2.2;
-}
 form label {
   line-height: 1.5;
   font-size: 0.80em;
@@ -79,6 +45,10 @@ form input[type=text],
 form input[type=password],
 form input[type=file],
 form input[type=reset],
+form input[type=number],
+form input[type=range],
+form input[type=search],
+form input[type=email],
 form textarea,
 form select {
   border-radius: 4px;
@@ -99,19 +69,9 @@ form select[multiple] {
 form select[multiple] option {
   padding: 654px;
 }
-form input:empty,
-form textarea:empty,
-form select:empty {
-  background: rgba(178, 199, 212, 0.1);
-}
-form input:focus,
-form textarea:focus,
-form select:focus {
-  background: none;
-}
 form div.ink-form-row {
   display: block;
-  margin: 1.5em 0;
+  margin-bottom: 0.8em;
   line-height: 2;
 }
 form div.ink-form-row.ink-required-field label:after {
@@ -124,14 +84,94 @@ form div.ink-form-row.ink-required-field label:after {
 }
 form div.ink-form-row p.ink-field-tip {
   margin: 0;
-  line-height: 2.0;
+  line-height: 2.2;
   font-size: 0.8em;
   color: #aeaeae;
+  position: relative;
+  margin-left: 0.1em;
 }
 form div.ink-form-row:first-child {
   margin-top: 0;
 }
 form div.ink-form-row:last-child {
   margin-bottom: 0;
+}
+form.ink-labels-above label {
+  font-weight: bold;
+  display: block;
+  margin: 0.5em 0 0 0.2em;
+}
+form.ink-labels-above input[type=text],
+form.ink-labels-above input[type=password],
+form.ink-labels-above input[type=file],
+form.ink-labels-above input[type=reset],
+form.ink-labels-above select {
+  width: 100%;
+}
+form.ink-labels-above textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 5em;
+}
+form.ink-labels-above input[type="checkbox"],
+form.ink-labels-above input[type="radio"] {
+  line-height: 2;
+  margin-top: 0.55em;
+  float: left;
+  clear: left;
+}
+form.ink-labels-above input[type="checkbox"] + label,
+form.ink-labels-above input[type="radio"] + label {
+  float: left;
+  line-height: 2.5;
+  margin-left: 0.55em;
+  margin-top: 0;
+}
+form.ink-labels-left label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: .5em;
+  vertical-align: top;
+  float: left;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.51;
+  min-width: 20%;
+  width: 20%;
+  max-width: 20%;
+  text-align: right;
+}
+form.ink-labels-left input[type=text],
+form.ink-labels-left input[type=password],
+form.ink-labels-left input[type=file],
+form.ink-labels-left input[type=reset],
+form.ink-labels-left select {
+  min-width: 40%;
+  max-width: 50%;
+}
+form.ink-labels-left textarea {
+  min-width: 40%;
+  max-width: 50%;
+  min-height: 5em;
+}
+form.ink-labels-left input[type="checkbox"],
+form.ink-labels-left input[type="radio"] {
+  line-height: 2;
+  margin-top: 0.55em;
+  float: left;
+}
+form.ink-labels-left input[type="checkbox"] + label,
+form.ink-labels-left input[type="radio"] + label {
+  line-height: 2.5;
+  margin: 0 1.55em 0 0.55em;
+  margin-top: 0;
+  width: auto;
+  min-width: auto;
+}
+form.ink-labels-left .ink-form-validation {
+  margin-left: 21%;
+}
+form.ink-labels-left fieldset div.ink-form-row {
+  margin-bottom: 1em;
 }
 /* Form Styles */
