@@ -21,6 +21,7 @@ button,
 input[type="button"],
 input[type="submit"],
 a.ink-button {
+  -webkit-appearance: menuitem;
   font-weight: bold;
   font-size: 0.90em;
   padding: 0.45em 0.8em;

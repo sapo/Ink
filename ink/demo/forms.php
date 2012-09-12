@@ -188,7 +188,7 @@
 			<div class="ink-form-row">
 				<label for="file-input">File input</label>
 				<input type="file" name="" id="file-input">
-			</div>		
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Here's a group of checkboxes in a fieldset</legend>
