@@ -70,6 +70,21 @@ form select[multiple] {
 form select[multiple] option {
   padding: 654px;
 }
+form .ink-form-validation {
+  font-weight: 700;
+}
+form .ink-form-validation.ink-caution {
+  background-color: #fff;
+  color: #cd0000;
+  padding: 0;
+}
+form .ink-form-validation.ink-success {
+  color: #85bd11;
+  background-color: #fff;
+  color: #85bd11;
+  background-color: #fff;
+  padding: 0;
+}
 form div.ink-form-row {
   display: block;
   margin-bottom: 0.8em;
@@ -169,10 +184,15 @@ form.ink-labels-left input[type="radio"] + label {
   width: auto;
   min-width: auto;
 }
-form.ink-labels-left .ink-form-validation {
-  margin-left: 21%;
-}
 form.ink-labels-left fieldset div.ink-form-row {
   margin-bottom: 1em;
+}
+form.ink-labels-left fieldset div.ink-form-row  > input + p.ink-field-tip,
+form.ink-labels-left fieldset div.ink-form-row  > select + p.ink-field-tip {
+  margin-left: 21%;
+}
+form.ink-labels-left fieldset div.ink-form-row  > input + p.ink-form-validation,
+form.ink-labels-left fieldset div.ink-form-row  > select + p.ink-form-validation {
+  margin-left: 21%;
 }
 /* Form Styles */
