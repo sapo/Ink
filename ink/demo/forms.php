@@ -155,7 +155,7 @@
 
 	<h2>Form with labels above fields</h2>
 
-	<form action="" class="ink-labels-left ink-l66">
+	<form action="" class="ink-labels-above ink-l66">
 		<fieldset>
 			<legend>Fieldset legend</legend>
 			<div class="ink-form-row">

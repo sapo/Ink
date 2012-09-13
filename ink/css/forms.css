@@ -34,6 +34,9 @@ form label {
   line-height: 1.5;
   font-size: 0.80em;
 }
+form .ink-form-validation {
+  margin: 0.5em 0.2em;
+}
 form .ink-form-validation.ink-success,
 form .ink-form-validation.ink-caution {
   font-size: 0.75em;
