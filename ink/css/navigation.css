@@ -125,20 +125,6 @@
 #topbar ul li a:hover {
   background: #383838;
 }
-#topbar ul li.active {
-  background: #080808;
-  zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#080808', endColorstr='#3c3c3c');
-  background: -moz-linear-gradient(top, #080808 0%, #3c3c3c 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #080808), color-stop(100%, #3c3c3c));
-  background: -webkit-linear-gradient(top, #080808 0%, #3c3c3c 100%);
-  background: -o-linear-gradient(top, #080808 0%, #3c3c3c 100%);
-  background: -ms-linear-gradient(top, #080808 0%, #3c3c3c 100%);
-  background: linear-gradient(top, #080808 0%, #3c3c3c 100%);
-  -webkit-box-shadow: 0 0px 2px rgba( 255, 255, 255, 0.3);
-  -moz-box-shadow: 0 0px 2px rgba( 255, 255, 255, 0.3);
-  box-shadow: 0 0px 2px rgba( 255, 255, 255, 0.3);
-}
 #topbar ul li.active a {
   background: #080808;
   zoom: 1;
@@ -152,7 +138,7 @@
   -webkit-box-shadow: 0 0px 2px rgba( 255, 255, 255, 0.3);
   -moz-box-shadow: 0 0px 2px rgba( 255, 255, 255, 0.3);
   box-shadow: 0 0px 2px rgba( 255, 255, 255, 0.3);
-  color: #fff;
+  color: #ffffff;
 }
 .menu {
   height: 43px;

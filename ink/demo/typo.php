@@ -1,35 +1,19 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
-<nav id="topbar">
+<div id="topbar">
 	<div class="ink-container">
-		<h1>
-			<a class="logoPlaceholder" href="intro.php" title="Site Title">
-				InK
-				<small>Interface kit</small>
-			</a>
-		</h1>
-		<ul>
-			<li>
-				<a href="grid.php">Layout</a>
-			</li>
-			<li>
-				<a href="navigation.php">Navigation</a>
-			</li>
-			<li class="active">
-				<a href="typo.php">Typography & Icons</a>
-			</li>
-			<li>
-				<a href="forms.php">Forms & Alerts</a>
-			</li>
-			<li>
-				<a href="tables.php">Tables</a>
-			</li>
-			<li>
-				<a href="widgets.php">InkJS</a>
-			</li>
+		<h1><a class="logoPlaceholder" href="index.php" title="Site Title">InK<small>Interface kit</small></a></h1>
+		<ul>	
+			
+			<li><a href="grid.php">Layout</a></li>
+			<li><a href="navigation.php">Navigation</a></li>
+			<li class="active"><a href="typo.php">Typography & Icons</a></li>
+			<li><a href="forms.php">Forms & Alerts</a></li>
+			<li><a href="tables.php">Tables</a></li>
+			<li><a href="widgets.php">InkJS</a></li>
 		</ul>
 	</div>
-</nav>
+</div>
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
 <div class="ink-container whatIs">
 	<div class="ink-vspace">
@@ -74,12 +58,14 @@
 			</div>
 			<div class="ink-space">
 				<h4>Links</h4>
-				<p>Links (or hyperlinks) are defined by the tag <mark>&lt;a&gt;</mark></p>
-				<p>There are 4 states for links:</p>
-				<p><a href="#">Normal</a></p>
-				<p><a href="#" class="visited">Visited</a></p>
-				<p><a href="#" class="active">Active</a></p>
-				<p><a href="#" class="hover">Hover</a></p>
+				<ul class="unstyled">
+					<li>Links (or hyperlinks) are defined by the tag <mark>&lt;a&gt;</mark></li>
+					<li>There are 4 states for links:</li>
+					<li><a href="#">Normal</a></li>
+					<li><a href="#" class="visited">Visited</a></li>
+					<li><a href="#" class="active">Active</a></li>
+					<li><a href="#" class="hover">Hover</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -198,7 +184,7 @@
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</p>
-					<small>Nome do Autor</small>
+					<small>Author's name</small>
 				</blockquote>
 			</div>
 		</div>
