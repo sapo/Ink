@@ -155,14 +155,15 @@
 
 	<h2>Form with labels above fields</h2>
 
-	<form action="" class="ink-labels-above ink-l66">
+	<form action="" class="ink-labels-left ink-l66">
 		<fieldset>
 			<legend>Fieldset legend</legend>
 			<div class="ink-form-row">
 				<label for="text-input">Text input</label>
 				<input id="text-input" type="text" placeholder="Please input some text">
+				<p class="ink-field-tip">You can add help text to fields</p>
 			</div>
-			<div class="ink-form-row">
+			<div class="ink-form-row ink-required-field">
 				<label for="select">Select</label>
 				<select name="" id="select">
 					<option value="">onions</option>
@@ -170,6 +171,7 @@
 					<option value="">potatoes</option>
 					<option value="">beets</option>
 				</select>
+				<p class="ink-form-validation ink-caution">An error occured. Let your user know about it</p>
 			</div>
 			<div class="ink-form-row ink-required-field">
 				<label for="multiSelect">Multiple select</label>

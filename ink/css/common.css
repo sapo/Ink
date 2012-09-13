@@ -13,10 +13,6 @@
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* INK > TABLES */
 /* Functions */
-.ink-warning {
-  background-color: #ff9c00;
-  color: #fff;
-}
 .ink-caution {
   background-color: #cd0000;
   color: #fff;
