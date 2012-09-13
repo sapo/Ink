@@ -19,13 +19,10 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['pages'] = $this->config->item('site-pages');
-		$data['title'] = $this->config->item('site-title');
-
-		$this->load->view('common/document_top',$data);
+		$data['sitePages'] = $this->config->item('site-pages');
+		$this->load->view('common/document_top');
 		$this->load->view('common/main_navigation',$data);
-		$this->load->view('home',$data);		
-		$this->load->view('common/document_bottom',$data);
+		$this->load->view('common/document_bottom');
 	}
 }
 

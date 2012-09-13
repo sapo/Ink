@@ -3,7 +3,7 @@
 <nav id="topbar">
 	<div class="ink-container">
 		<h1>
-			<a class="logoPlaceholder" href="intro.php" title="Site Title">
+			<a class="logoPlaceholder" href="./" title="Site Title">
 				InK
 				<small>Interface kit</small>
 			</a>

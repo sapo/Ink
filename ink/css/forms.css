@@ -166,11 +166,11 @@ form.ink-labels-left input[type=file],
 form.ink-labels-left input[type=reset],
 form.ink-labels-left select {
   min-width: 40%;
-  max-width: 50%;
+  width: 78%;
 }
 form.ink-labels-left textarea {
   min-width: 40%;
-  max-width: 50%;
+  width: 78%;
   min-height: 5em;
 }
 form.ink-labels-left input[type="checkbox"],
