@@ -19,7 +19,7 @@
 		),
 		array(
 			'text' => 'Icons',
-			'url' => 'Icons'
+			'url' => 'icons'
 		),
 		array(
 			'text' => 'Forms',
@@ -35,7 +35,7 @@
 		),
 		array(
 			'text' => 'InK JS',
-			'url' => 'js'
+			'url' => 'inkjs'
 		)
 	);
 

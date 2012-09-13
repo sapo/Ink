@@ -1,4 +1,3 @@
-
 <nav id="topbar">
 	<div class="ink-container">
 		<h1><a class="logoPlaceholder" href="<?php echo base_url() ?>" title="Site Title">InK<small>Interface kit</small></a></h1>
@@ -10,4 +9,3 @@
 		</ul>
 	</div>
 </nav>
-<?php echo uri_string() ?>

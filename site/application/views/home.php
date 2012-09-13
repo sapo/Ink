@@ -1,5 +1,5 @@
 <div class="callToAction">
-	<img src="styles/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
+	<img src="<?php echo base_url() ?>../ink/demo/styles/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
 	<div class="glow">
 		<img src="styles/imgs/glow1.png" alt="Glow1"></div>
 </div>

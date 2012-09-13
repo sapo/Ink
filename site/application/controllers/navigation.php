@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Navigation extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,10 +19,14 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['sitePages'] = $this->config->item('site-pages');
-		$this->load->view('common/document_top');
+		$data['pages'] = $this->config->item('site-pages');
+		$data['title'] = $this->config->item('site-title');
+
+		$this->load->view('common/document_top',$data);
 		$this->load->view('common/main_navigation',$data);
-		$this->load->view('common/document_bottom');
+		$this->load->view('navigation',$data);
+		$this->load->view('common/document_footer',$data);
+		$this->load->view('common/document_bottom',$data);
 	}
 }
 
