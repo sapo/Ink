@@ -2,6 +2,33 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <div id="topbar">
 	<div class="ink-container">
+<<<<<<< HEAD
+		<h1>
+			<a class="logoPlaceholder" href="./" title="Site Title">
+				InK
+				<small>Interface kit</small>
+			</a>
+		</h1>
+		<ul>
+			<li>
+				<a href="grid.php">Layout</a>
+			</li>
+			<li>
+				<a href="navigation.php">Navigation</a>
+			</li>
+			<li class="active">
+				<a href="typo.php">Typography & Icons</a>
+			</li>
+			<li>
+				<a href="forms.php">Forms & Alerts</a>
+			</li>
+			<li>
+				<a href="tables.php">Tables</a>
+			</li>
+			<li>
+				<a href="widgets.php">InkJS</a>
+			</li>
+=======
 		<h1><a class="logoPlaceholder" href="index.php" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul>	
 			
@@ -11,6 +38,7 @@
 			<li><a href="forms.php">Forms & Alerts</a></li>
 			<li><a href="tables.php">Tables</a></li>
 			<li><a href="widgets.php">InkJS</a></li>
+>>>>>>> 34913ae47fca81622d267513e206837ef15ac0b3
 		</ul>
 	</div>
 </div>

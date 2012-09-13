@@ -25,7 +25,7 @@
 		</div>
 		<div class="ink-l33">
 			<div class="ink-space">
-				<a href="#" >Custom</a>
+				<a href="<?php echo site_url() . '/custom' ?>" >Custom</a>
 				<p>
 					Customize your basic layout - site width, gutters, spacers, and much more
 				</p>
