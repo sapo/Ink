@@ -70,6 +70,9 @@ form select[multiple] {
 form select[multiple] option {
   padding: 654px;
 }
+form .ink-form-validation {
+  font-weight: 700;
+}
 form .ink-form-validation.ink-caution {
   background-color: #fff;
   color: #cd0000;
