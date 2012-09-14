@@ -48,7 +48,7 @@
 			'attributes' => array(
 				'id' => 'layout',
 				'name' => 'layout',
-				'value' => '1',
+				'value' => '1'
 			)
 		),
 		array(
@@ -59,18 +59,62 @@
 			'attributes' => array(
 				'id' => 'navigation',
 				'name' => 'navigation',
-				'value' => '1',
+				'value' => '1'
 			)
 		),
 		array(
 			'label' => array(
-				'text' => 'Navigation',
-				'for' => 'navigation'
+				'text' => 'Typography',
+				'for' => 'typography'
 			),
 			'attributes' => array(
-				'id' => 'navigation',
-				'name' => 'navigation',
-				'value' => '1',
+				'id' => 'typography',
+				'name' => 'typography',
+				'value' => '1'
+			)
+		),
+		array(
+			'label' => array(
+				'text' => 'Icons',
+				'for' => 'icons'
+			),
+			'attributes' => array(
+				'id' => 'icons',
+				'name' => 'icons',
+				'value' => '1'
+			)
+		),
+		array(
+			'label' => array(
+				'text' => 'Forms',
+				'for' => 'forms'
+			),
+			'attributes' => array(
+				'id' => 'forms',
+				'name' => 'forms',
+				'value' => '1'
+			)
+		),
+		array(
+			'label' => array(
+				'text' => 'Alerts',
+				'for' => 'alerts'
+			),
+			'attributes' => array(
+				'id' => 'alerts',
+				'name' => 'alerts',
+				'value' => '1'
+			)
+		),
+		array(
+			'label' => array(
+				'text' => 'Tables',
+				'for' => 'tables'
+			),
+			'attributes' => array(
+				'id' => 'tables',
+				'name' => 'tables',
+				'value' => '1'
 			)
 		)
 	);

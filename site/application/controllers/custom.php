@@ -33,7 +33,22 @@ class Custom extends CI_Controller {
 	public function download()
 	{
 
+		// // var_dump($this->input->post());
 
+		// $options = $this->input->post();
+
+		// foreach($options as $option => $value)
+		// {
+		// 	echo 'css/'.$option . ".css<br>";
+		// 	echo 'less/'.$option . ".less<br>";
+		// }
+
+		$name = 'ink.txt';
+		$data = 'I was born in an elevator...';
+
+		$this->zip->add_data($name, $data);
+
+		$zip_file = $this->zip->get_zip();
 
 	}
 }
