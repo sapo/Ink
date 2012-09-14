@@ -1,5 +1,8 @@
 @import 'conf.less';
 @import 'lib.less';
+body {
+	background: @body-background
+}
 
 caption, th { text-align:left; } 
 h1, h2, h3, h4, h5, h6 { margin-bottom:5px; }
@@ -36,7 +39,8 @@ h1, h2, h3, h4, h5, h6 { margin-bottom:5px; }
 .ink-rspace 	{ margin-right: @ink-grid-gutter / 2; }
 .ink-lspace 	{ margin-left: @ink-grid-gutter / 2; }
 */
-.ink-section 	{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #eee;}
+.ink-section 			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc;}
+.ink-section:last-child { border-bottom: none;}
 
 .ink-clear,
 .ink-section { clear: both; }

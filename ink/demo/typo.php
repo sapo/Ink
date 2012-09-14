@@ -38,17 +38,17 @@
 <div class="ink-container">
 
 	<div class="ink-section">
-		<div class="ink-l30" id="headingExemple">
+		<div class="ink-l40" id="headingExemple">
 			<div class="ink-space">
-				<h1>&lt;h1&gt; Title 1</h1>
-				<h2>&lt;h2&gt; Title 2</h2>
-				<h3>&lt;h3&gt; Title 3</h3>
-				<h4>&lt;h4&gt; Title 4</h4>
-				<h5>&lt;h5&gt; Title 5</h5>
-				<h6>&lt;h6&gt; Title 6</h6>
+				<h1>&lt;h1&gt;Title 1&lt;/h1&gt;</h1>
+				<h2>&lt;h2&gt;Title 2&lt;/h2&gt;</h2>
+				<h3>&lt;h3&gt;Title 3&lt;/h3&gt;</h3>
+				<h4>&lt;h4&gt;Title 4&lt;/h4&gt;</h4>
+				<h5>&lt;h5&gt;Title 5&lt;/h5&gt;</h5>
+				<h6>&lt;h6&gt;Title 6&lt;/h6&gt;</h6>
 			</div>
 		</div>
-		<div class="ink-l70">
+		<div class="ink-l60">
 			<div class="ink-space">
 				<h3>Text sample</h3>
 				<p>Ink's typography is designed to create a strong hierarchy with basic styles. The primary font is the die hard Helvetica Neue, but the font stack can be easily changed with just a few adjustments.</p>

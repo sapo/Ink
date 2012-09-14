@@ -1,4 +1,5 @@
 /* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
@@ -346,6 +347,9 @@ footer h5 {
   font-size: 1em;
   float: left;
   line-height: 2.1em;
+}
+footer ul.sociallinks {
+  float: right;
 }
 footer ul.sociallinks li {
   height: 24px;
