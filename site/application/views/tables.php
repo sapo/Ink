@@ -1,32 +1,3 @@
-<?php include 'shared/header.php'; ?>
-<!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
-<nav id="topbar">
-	<div class="ink-container">
-		<h1><a class="logoPlaceholder" href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul>
-			<li>
-				<a href="grid.php">Layout</a>
-			</li>
-			<li>
-				<a href="navigation.php">Navigation</a>
-			</li>
-			<li>
-				<a href="typo.php">Typography & Icons</a>
-			</li>
-			<li>
-				<a href="forms.php">Forms & Alerts</a>
-			</li>
-			<li class="active">
-				<a href="tables.php">Tables</a>
-			</li>
-			<li>
-				<a href="widgets.php">InkJS</a>
-			</li>
-		</ul>
-	</div>
-</nav>
-
-<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
 <div class="ink-container whatIs">
 	<div class="ink-space">
 		<h2>Tables</h2>
@@ -37,10 +8,18 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">Simple</a></li>
-			<li><a href="#">Borderless</a></li>
-			<li><a href="#">Sortable</a></li>
+			<li class="active">
+				<a class="home" href="#">Home</a>
+			</li>
+			<li>
+				<a href="#">Simple</a>
+			</li>
+			<li>
+				<a href="#">Borderless</a>
+			</li>
+			<li>
+				<a href="#">Sortable</a>
+			</li>
 		</ul>
 	</div>
 </nav>
@@ -58,7 +37,9 @@
 		<div class="ink-space">
 			<div class="ink-l100 ink-vspace">
 				<h4>Default table style</h4>
-				<p>The default table style can be accessed by adding the ink-table css class to the table element. This will enable you to use the default style or any of the variations.</p>
+				<p>
+					The default table style can be accessed by adding the ink-table css class to the table element. This will enable you to use the default style or any of the variations.
+				</p>
 				<table class="ink-table">
 					<thead>
 						<tr>
@@ -90,7 +71,7 @@
 						</tr>
 						<tr>
 							<td>23</td>
-							<td>Some stuff </td>
+							<td>Some stuff</td>
 							<td>&euro;489,00</td>
 						</tr>
 					</tbody>
@@ -130,7 +111,7 @@
 						</tr>
 						<tr>
 							<td>23</td>
-							<td>Some stuff </td>
+							<td>Some stuff</td>
 							<td>&euro;489,00</td>
 						</tr>
 					</tbody>
@@ -169,7 +150,7 @@
 						</tr>
 						<tr>
 							<td>23</td>
-							<td>Some stuff </td>
+							<td>Some stuff</td>
 							<td>&euro;489,00</td>
 						</tr>
 					</tbody>
@@ -210,7 +191,7 @@
 						</tr>
 						<tr>
 							<td>23</td>
-							<td>Some stuff </td>
+							<td>Some stuff</td>
 							<td>&euro;489,00</td>
 						</tr>
 					</tbody>
@@ -251,7 +232,7 @@
 						</tr>
 						<tr>
 							<td>23</td>
-							<td>Some stuff </td>
+							<td>Some stuff</td>
 							<td>&euro;489,00</td>
 						</tr>
 					</tbody>
@@ -292,7 +273,7 @@
 						</tr>
 						<tr>
 							<td>23</td>
-							<td>Some stuff </td>
+							<td>Some stuff</td>
 							<td>&euro;489,00</td>
 						</tr>
 					</tbody>
@@ -301,5 +282,3 @@
 		</div>
 	</div>
 </div>
-
-<?php include 'shared/footer.php'; ?>

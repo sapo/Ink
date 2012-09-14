@@ -1,19 +1,3 @@
-<?php include 'shared/header.php'; ?>
-<!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
-<nav id="topbar">
-	<div class="ink-container">
-		<h1><a class="logoPlaceholder" href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul>
-			<li><a href="grid.php">Layout</a></li>
-			<li><a href="navigation.php">Navigation</a></li>
-			<li><a href="typo.php">Typography & Icons</a></li>
-			<li><a href="forms.php">Forms & Alerts</a></li>
-			<li><a href="tables.php">Tables</a></li>
-			<li class="active"><a href="widgets.php">InkJS</a></li>
-		</ul>
-	</div>
-</nav>  
-<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 <div class="ink-container whatIs">
 	<div class="ink-vspace">
 		<h2>InK JS</h2>
@@ -24,50 +8,70 @@
 <nav class="menu">
 	<div class="ink-container">
 		<ul>
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">UI Components</a></li>
+			<li class="active">
+				<a class="home" href="#">Home</a>
+			</li>
+			<li>
+				<a href="#">UI Components</a>
+			</li>
 			<li>
 				<a href="#">Visual FX</a>
 				<ul class="submenu">
-					<li><a href="#">Effect 1</a></li>
-					<li><a href="#">Effect 2</a></li>
-					<li><a href="#">...</a></li>
+					<li>
+						<a href="#">Effect 1</a>
+					</li>
+					<li>
+						<a href="#">Effect 2</a>
+					</li>
+					<li>
+						<a href="#">...</a>
+					</li>
 				</ul>
 			</li>
 			<li>
 				<a href="#">Core</a>
 				<ul class="submenu">
-					<li><a href="#">Method 1</a></li>
-					<li><a href="#">Method 2</a></li>
-					<li><a href="#">...</a></li>
+					<li>
+						<a href="#">Method 1</a>
+					</li>
+					<li>
+						<a href="#">Method 2</a>
+					</li>
+					<li>
+						<a href="#">...</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
 	</div>
-</nav>  
+</nav>
 
 <div class="ink-container">
 	<div class="ink-section">
 		<div class="ink-l33">
 			<div class="ink-space">
 				<h3>DatePicker</h3>
-				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
 			</div>
 		</div>
 		<form class="ink-l66">
 			<fieldset class="box ink-space">
 				<div class="e_wrap">
-					<p>Neste caso o componente está a ser utilizado com onFocus (comportamento default) e com o formato mm/dd/yyyy</p>
-					<input id="data" type="text" value="">
-				</div>
-				
+					<p>
+						Neste caso o componente está a ser utilizado com onFocus (comportamento default) e com o formato mm/dd/yyyy
+					</p>
+					<input id="data" type="text" value=""></div>
+
 				<div class="e_wrap">
 					<p>Neste caso o componente irá iniciar a data em 1980-11-22</p>
-					<input id="data_start" type="text" value="">
-				</div>
-			
+					<input id="data_start" type="text" value=""></div>
+
 				<div class="e_wrap">
-					<p>Neste caso o componente preenche as select inputs ao seu lado</p>
+					<p>
+						Neste caso o componente preenche as select inputs ao seu lado
+					</p>
 					<select id="dia2" title="Dia" name="dia2" class="miniInput">
 						<option></option>
 						<option value="1">1</option>
@@ -143,11 +147,13 @@
 					</select>
 					<a id="picker2" href="#">abrir</a>
 				</div>
-				<p>Neste caso temos o componente a ser utilizado com recurso a link e com o formato default yyyy-mm-dd</p>
+				<p>
+					Neste caso temos o componente a ser utilizado com recurso a link e com o formato default yyyy-mm-dd
+				</p>
 				<div class="e_wrap">
 					<input id="data3" type="text" value="">
 					<a id="picker3" href="#">abrir</a>
-				</div>	
+				</div>
 			</fieldset>
 		</form>
 	</div>
@@ -197,4 +203,3 @@
 	cssURI: '/Assets/Images/DatePicker/style.css'
 	});
 </script>
-<?php include 'shared/footer.php'; ?>
