@@ -1,54 +1,84 @@
 @import "../conf";
+@import "../lib";
 
-.ink_container {
+html .ink-container {
 	width: auto;
+	padding: 0 @ink-container-padding;
 }
 
-.ink-s100	{ width: auto; clear:both }
-.ink-s90	{ width: 90%; }
-.ink-s80    { width: 80%; }
-.ink-s75	{ width: 75%; }
-.ink-s70	{ width: 70%; }
-.ink-s66	{ width: 66.66%; }
-.ink-s60	{ width: 60%; }                           
-.ink-s50	{ width: 50%; }
-.ink-s40	{ width: 40%; }
-.ink-s33	{ width: 33.33%; }
-.ink-s30	{ width: 30%; }
-.ink-s25	{ width: 25%; }
-.ink-s20	{ width: 20%; }
-.ink-s10	{ width: 10%; }
+html .ink-s100	{ width: auto; clear:both }
+html .ink-s90	{ width: 90%; }
+html .ink-s80    { width: 80%; }
+html .ink-s75	{ width: 75%; }
+html .ink-s70	{ width: 70%; }
+html .ink-s66	{ width: 66.66%; }
+html .ink-s60	{ width: 60%; }                           
+html .ink-s50	{ width: 50%; }
+html .ink-s40	{ width: 40%; }
+html .ink-s33	{ width: 33.33%; }
+html .ink-s30	{ width: 30%; }
+html .ink-s25	{ width: 25%; }
+html .ink-s20	{ width: 20%; }
+html .ink-s10	{ width: 10%; }
 
-.ink-s10, 
-.ink-s20, 
-.ink-s25, 
-.ink-s30, 
-.ink-s33, 
-.ink-s40, 
-.ink-s50, 
-.ink-s60, 
-.ink-s66, 
-.ink-s70, 
-.ink-s75, 
-.ink-s80, 
-.ink-s90 { 
+html .ink-s10, 
+html .ink-s20, 
+html .ink-s25, 
+html .ink-s30, 
+html .ink-s33, 
+html .ink-s40, 
+html .ink-s50, 
+html .ink-s60, 
+html .ink-s66, 
+html .ink-s70, 
+html .ink-s75, 
+html .ink-s80, 
+html .ink-s90 { 
 	float: none; 
 	zoom: 1; 
 }
 
-.ink-s100:empty,
-.ink-s90:empty,
-.ink-s80:empty,
-.ink-s75:empty,
-.ink-s70:empty,
-.ink-s66:empty,
-.ink-s60:empty,
-.ink-s50:empty,
-.ink-s40:empty,
-.ink-s33:empty,
-.ink-s30:empty,
-.ink-s25:empty,
-.ink-s20:empty,
-.ink-s10:empty { 
+html .ink-s100:empty,
+html .ink-s90:empty,
+html .ink-s80:empty,
+html .ink-s75:empty,
+html .ink-s70:empty,
+html .ink-s66:empty,
+html .ink-s60:empty,
+html .ink-s50:empty,
+html .ink-s40:empty,
+html .ink-s33:empty,
+html .ink-s30:empty,
+html .ink-s25:empty,
+html .ink-s20:empty,
+html .ink-s10:empty { 
 	clear: both;
+}
+
+html .ink-space 		{ margin: @ink-grid-gutter 0; }
+html .ink-vspace 	{ margin: @ink-grid-gutter 0 }
+html .ink-hspace		{ margin: 0 }
+html .ink-rspace 	{ margin: 0 }
+html .ink-lspace 	{ margin: 0 }
+
+html #topbar {
+	height:auto;
+}
+
+html #topbar a,
+html #topbar h1, 
+html #topbar ul,				
+html #topbar ul li {
+	float:none;
+	padding: 0 
+}
+
+html #topbar ul li a {
+	background:none;
+	border-top:1px solid #333;
+}
+
+html #topbar ul li.active a {
+	.box-shadow("none");
+	background:none;
 }

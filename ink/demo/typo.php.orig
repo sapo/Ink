@@ -58,6 +58,14 @@
 			</div>
 			<div class="ink-space">
 				<h4>Links</h4>
+<<<<<<< HEAD
+				<p>Links (or hyperlinks) are defined by the tag <mark>&lt;a&gt;</mark></p>
+				<p>There are 4 states for links:</p>
+				<p><a href="#">Normal</a></p>
+				<p><a href="#" class="visited">Visited</a></p>
+				<p><a href="#" class="active">Active</a></p>
+				<p><a href="#" class="hover">Hover</a></p>
+=======
 				<ul class="unstyled">
 					<li>Links (or hyperlinks) are defined by the tag <mark>&lt;a&gt;</mark></li>
 					<li>There are 4 states for links:</li>
@@ -66,6 +74,7 @@
 					<li><a href="#" class="active">Active</a></li>
 					<li><a href="#" class="hover">Hover</a></li>
 				</ul>
+>>>>>>> 85d6ee834b0fa49a6f2b2217dd1f9d4b1bd053fa
 			</div>
 		</div>
 	</div>
@@ -150,10 +159,25 @@
 					to abbreviate the word <strong><abbr title="SAPO Interface Kit">InK</abbr></strong> 
 				</p>
 				<pre class="prettyprint">&lt;abbr title=&quot;SAPO Interface Kit&quot;&gt;InK&lt;/abbr&gt;</pre>
+<<<<<<< HEAD
+=======
 			</div>
 		</div>
 		<div class="ink-l25">
 			<div class="ink-space">
+				<h4>Address</h4>
+				<address>
+					<h6>Forum Telecom</h6>
+					Avenida Fontes Pereira de Melo 40
+					<br>
+					1050 Lisboa
+					<br></address>
+>>>>>>> 85d6ee834b0fa49a6f2b2217dd1f9d4b1bd053fa
+			</div>
+		</div>
+		<div class="ink-l25">
+			<div class="ink-space">
+<<<<<<< HEAD
 				<h4>Address</h4>
 				<address>
 					<h6>Forum Telecom</h6>
@@ -175,6 +199,18 @@
 				</address>
 			</div>
 		</div>
+=======
+				<h4>Contacts</h4>
+				<address>
+					<h6>John Doe</h6> <strong>Phone:</strong>
+					+351 111 222 333
+					<br>
+					<strong>Email:</strong>
+					<a href="mailto:john@doe.com">john@doe.com</a>
+				</address>
+			</div>
+		</div>
+>>>>>>> 85d6ee834b0fa49a6f2b2217dd1f9d4b1bd053fa
 	</div>
 	<div class="ink-section">
 		<div class="ink-l50">
@@ -184,7 +220,11 @@
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</p>
+<<<<<<< HEAD
+					<small>Nome do Autor</small>
+=======
 					<small>Author's name</small>
+>>>>>>> 85d6ee834b0fa49a6f2b2217dd1f9d4b1bd053fa
 				</blockquote>
 			</div>
 		</div>
@@ -257,4 +297,8 @@ Pode tambem ser quebrado por line-breaks&lt;br&gt;
 
 </div>
 
+<<<<<<< HEAD
 <?php include 'shared/footer.php'; ?>
+=======
+<?php include 'shared/footer.php'; ?>
+>>>>>>> 85d6ee834b0fa49a6f2b2217dd1f9d4b1bd053fa

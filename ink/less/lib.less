@@ -101,9 +101,20 @@
 	box-sizing: @bst;
 }
 
-.make-error (){
+.make-caution (@inv) when (@inv = true) {
+	background-color: #fff;
+	color: @caution-bg-color;
+}
+
+.make-caution () {
 	background-color: @caution-bg-color;
 	color: #fff;
+}
+
+
+.make-warning (@inv) when (@inv = true) {
+	color: @warning-bg-color;
+	background-color: #fff;
 }
 
 .make-warning (){
@@ -111,7 +122,17 @@
 	color: #fff;
 }
 
-.make-success (){
+.make-success (@inv) when (@inv = true) {
+	color: @success-bg-color;
+	background-color: #fff;
+}
+
+.make-success (@inv) when (@inv = true) {
+	color: @success-bg-color;
+	background-color: #fff;
+}
+
+.make-success () {
 	background-color: @success-bg-color;
 	color: #fff;
 }
@@ -140,8 +161,6 @@
 		cursor: not-allowed;
 	}
 }
-
-.disable (){}
 
 .body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
 	font-size: @font-size;

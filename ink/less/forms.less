@@ -32,6 +32,8 @@ form {
 
 	.ink-form-validation {
 
+		margin: 0.5em 0.2em;
+
 		&.ink-success, &.ink-caution {
 			font-size: 0.75em;
 			padding: 0.2em 0.4em;
@@ -59,6 +61,22 @@ form {
 		}
 	}
 
+	.ink-form-validation {
+
+		font-weight: 700;
+			
+			&.ink-caution {
+				.make-caution(true);
+				padding: 0;
+			}
+
+			&.ink-success {
+				.make-success(true);
+				padding: 0;
+			}
+
+		}
+
 
 	div {
 
@@ -78,11 +96,6 @@ form {
 					font-weight: 500;
 				}
 			}
-
-			&.ink-validation-error {
-
-			}
- 
 
 			p {
 
@@ -162,12 +175,13 @@ form {
 
 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
 			min-width: 40%;
-			max-width: 50%;
+			width: 78%;
+			// max-width: 75%;
 		}
 
 		textarea {
 			min-width: 40%;
-			max-width: 50%;
+			width: 78%;
 			min-height: 5em;
 		}
 
@@ -183,21 +197,23 @@ form {
 			margin-top: 0;
 			width: auto;
 			min-width: auto;
-		}
-
-		.ink-form-validation {
-			margin-left: 21%;
-		}
+		}		
 
 		fieldset {
+
 			div {
+
 				&.ink-form-row {
 					margin-bottom: 1em;
-					p {
-						&.ink-field-tip {
-							// margin-left: 21.5%;
-						}
+
+					& > input + p.ink-field-tip, & > select + p.ink-field-tip {
+						margin-left: 21%;
 					}
+
+					& > input + p.ink-form-validation, & > select + p.ink-form-validation {
+						margin-left: 21%;
+					}
+
 				}
 			}
 		}
