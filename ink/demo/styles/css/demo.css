@@ -141,6 +141,12 @@ a.hover {
 a.active {
   color: #ff0000;
 }
+/*..........................................  Menus  ...................................................*/
+.menu {
+  -webkit-box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+}
 /*..........................................  Forms  ...................................................*/
 .exempleForm {
   margin: 1em 0;
@@ -163,8 +169,6 @@ a.active {
   font-family: 'MavenProMedium';
   letter-spacing: -0.1em;
   color: #131e24;
-  text-shadow: 0 1px 0 #fff;
-  margin: .2em 0 .4em;
 }
 #download {
   text-align: center;

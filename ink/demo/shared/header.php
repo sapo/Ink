@@ -33,6 +33,7 @@
 	<link rel="stylesheet" href="../css/pagination.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="../css/alerts.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="../css/widgets.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<!-- <link rel="stylesheet" href="../css/screens.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
 	<link rel="stylesheet" href="../css/grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
@@ -41,6 +42,7 @@
 	<![endif]-->
 	<!--[if IE 7]>
 	<link rel="stylesheet" href="../css/ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/font-awesome-ie7.css">
 	<![endif]-->
 	
 	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
