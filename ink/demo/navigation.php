@@ -2,8 +2,8 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a class="logoPlaceholder" href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul class="ink-h-navigation">
+		<ul class="ink-h-nav">
+			<li><a class="logoPlaceholder" href="./" title="Site Title">InK</a></li>
 			<li><a href="grid.php">Layout</a></li>
 			<li class="active"><a href="navigation.php">Navigation</a></li>
 			<li><a href="typo.php">Typography & Icons</a></li>
@@ -23,7 +23,7 @@
 
 <nav class="menu">
 	<div class="ink-container">
-		<ul class="ink-h-navigation">
+		<ul class="ink-h-nav">
 			<li class="active"><a class="home" href="#">Home</a></li>
 			<li><a href="#">Horizontal menu</a></li>
 			<li><a href="#">Vertical menu</a></li>
@@ -38,20 +38,20 @@
 			<h3>Horizontal menu</h3>
 			<p>
 				Os menus horizontais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.
-				Para construir este tipo de navegação basta usar a class <mark>.h_navigation</mark>.
+				Para construir este tipo de navegação basta usar a class <mark>.ink-h-nav</mark>.
 			</p>
 		</div>
 		
 		<nav class="ink-hspace">
-			<ul class="ink-h-navigation example_menu">
+			<ul class="ink-h-nav example_menu">
 				<li class="active"><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li>
-					<a href="#">Item</a>
+					<a href="#">Submenu<i class="icon-caret-down"></i></a>
 					<ul class="submenu">
-						<li><a href="#">Item Bastante Grande</a></li>
+						<li><a href="#">Item with a very big title</a></li>
 						<li><a href="#">Item</a></li>
 						<li><a href="#">Item</a></li>
 					</ul>
@@ -68,7 +68,7 @@
 			
 				<pre class="prettyprint">
 &lt;nav&gt;
-  &lt;ul class="h_navigation"&gt;
+  &lt;ul class="ink-h-nav"&gt;
     &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
@@ -82,17 +82,29 @@
 				<p>Os menus que se baseiam em <mark>&lt;ul&gt;</mark>(Unsorted Lists) podem ter submenus respeitando a estrutura abaixo.</p>
 				
 				<pre class="prettyprint">
-&lt;ul class="h_navigation"&gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
-  &lt;ul class=&quot;submenu&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
+&lt;nav&gt;
+  &lt;ul class="ink-h-nav"&gt;
+    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
+    &lt;ul class=&quot;submenu&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
+    &lt;/ul&gt;
+    &lt;/li&gt; 
   &lt;/ul&gt;
-  &lt;/li&gt; 
-&lt;/ul&gt;</pre>
+&lt;/nav&gt;</pre>
 			</div>
+		</div>
+	</div>
+	
+	<div class="ink-section">
+		<div class="ink-space">
+			<h3>Vertical menu</h3>
+			<p>
+				Os menus verticais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.
+				Para construir este tipo de navegação basta usar a class <mark>.ink-v-nav</mark>.
+			</p>
 		</div>
 	</div>
 	<div class="ink-section">

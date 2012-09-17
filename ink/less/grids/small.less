@@ -61,24 +61,27 @@ html .ink-hspace		{ margin: 0 }
 html .ink-rspace 	{ margin: 0 }
 html .ink-lspace 	{ margin: 0 }
 
+html .menu {
+	display:none
+}
+
+html .ink-h-nav {
+	height:auto
+}
+
+html .ink-h-nav li {
+	display:	block
+}
+
 html #topbar {
-	height:auto;
+	height:auto
 }
 
-html #topbar a,
-html #topbar h1, 
-html #topbar ul,				
-html #topbar ul li {
-	float:none;
-	padding: 0 
-}
-
-html #topbar ul li a {
+html #topbar li.active a {
 	background:none;
-	border-top:1px solid #333;
-}
-
-html #topbar ul li.active a {
 	.box-shadow("none");
-	background:none;
+}
+
+html #topbar li {
+	border-top:1px solid #333
 }

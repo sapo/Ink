@@ -142,12 +142,6 @@ a.hover {
 a.active {
   color: #ff0000;
 }
-/*..........................................  Menus  ...................................................*/
-.menu {
-  -webkit-box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
-  box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
-}
 /*..........................................  Forms  ...................................................*/
 .exempleForm {
   margin: 1em 0;
@@ -309,6 +303,42 @@ a.active {
   }
 }
 /*...................................................  Menus  ....................................................*/
+.menu {
+  border-top: 1px solid #cacaca;
+  -webkit-box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+}
+.menu a {
+  padding: 0 .8em;
+  font-size: 1.143em;
+}
+.menu ul li {
+  border-right: 1px solid #CACACA;
+}
+.menu ul li.active {
+  border-right: none;
+  background: #2e2e2e;
+  zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e2e2e', endColorstr='#222222');
+  background: -moz-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2e2e), color-stop(100%, #222222));
+  background: -webkit-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: -o-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: -ms-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: linear-gradient(top, #2e2e2e 0%, #222222 100%);
+}
+.menu ul .active a {
+  color: #fff;
+}
+.menu ul li a.home {
+  width: 1em;
+  text-indent: -5555px;
+  background: url(../imgs/home_Sprite.png) 0 0 no-repeat;
+}
+.menu ul li.active a.home {
+  background: url(../imgs/home_Sprite.png) 0 -43px no-repeat;
+}
 .example_menu {
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -328,17 +358,6 @@ a.active {
 }
 .example_menu li:first-child a {
   border-radius: 4px 0 0 4px;
-}
-.example_menu a:hover {
-  background: #c3c3c3;
-  zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c3c3c3', endColorstr='#adadad');
-  background: -moz-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c3c3c3), color-stop(150%, #adadad));
-  background: -webkit-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
-  background: -o-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
-  background: -ms-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
-  background: linear-gradient(top, #c3c3c3 0%, #adadad 150%);
 }
 .example_menu .submenu li:first-child a {
   border-radius: 0;

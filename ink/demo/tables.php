@@ -3,7 +3,7 @@
 <nav id="topbar">
 	<div class="ink-container">
 		<h1><a class="logoPlaceholder" href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul class="ink-h-navigation">
+		<ul class="ink-h-nav">
 			<li>
 				<a href="grid.php">Layout</a>
 			</li>
@@ -36,7 +36,7 @@
 
 <nav class="menu">
 	<div class="ink-container">
-		<ul class="ink-h-navigation">
+		<ul class="ink-h-nav">
 			<li class="active"><a class="home" href="#">Home</a></li>
 			<li><a href="#">Simple</a></li>
 			<li><a href="#">Borderless</a></li>

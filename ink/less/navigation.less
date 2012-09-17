@@ -1,13 +1,25 @@
 @import "conf";
 @import "lib";
-
-.ink-h-navigation {
-	height: @menu-height;
-	display: block; 
-	font-size: 0em;	
+#topbar:after,
+.ink-h-nav:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	zoom: 1;
 }
 
-.ink-h-navigation li {
+.ink-h-nav {
+	height: @h-nav-height;
+	display: block; 
+	font-size: 0em;
+	vertical-align: top;
+	position:relative;
+	overflow: visible;
+}
+
+.ink-h-nav li {
 	font-size: 14px; 
 	display: inline-block; 
 	vertical-align: baseline; 
@@ -15,19 +27,23 @@
 	margin:0
 }
 
-.ink-h-navigation a {
-	line-height: @menu-height; 
+.ink-h-nav li i {
+	margin-left:0.4em;
+}
+
+.ink-h-nav a {
+	line-height: @h-nav-height; 
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
 	color:#000
 }
 
-.ink-h-navigation a:hover {
-	background:darken(@menu-bgColor,10%)
+.ink-h-nav a:hover {
+	background:darken(@h-nav-bgColor ,10%)
 }
 
-.ink-h-navigation .submenu {
+.ink-h-nav .submenu {
 	display: none;
 	width:14em;
 	position:absolute;
@@ -39,23 +55,15 @@
 	border-top:1px solid #CACACA;
 }
 
-.ink-h-navigation .submenu li {
+.ink-h-nav .submenu li {
 	display: block;
-	float:none;
 	border-right:1px solid #CACACA;
 	border-bottom:1px solid #CACACA;
 	border-left:1px solid #CACACA;
 }
 
-.ink-h-navigation li:hover .submenu 	{display: block; height: auto;}
-
-.ink-h-navigation:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-	zoom: 1;
+.ink-h-nav li:hover .submenu {
+	display: block
 }
 
 #topbar {
@@ -64,35 +72,23 @@
 	font-size:@topbar-fontSize;
 	.box-shadow ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
-	vertical-align: top;
-	position:relative;
-	overflow: visible;
 }
 
 #topbar a.logoPlaceholder {
+	width:125px;
 	padding: 0;
+	text-indent:-5000px;
+	background:url(../demo/styles/imgs/logo_topbar.png);
+	margin:0 1em 0 0
 }
 
 #topbar a.logoPlaceholder:hover {
-	color:#FFF;
-	text-decoration:none
+	background:url(../demo/styles/imgs/logo_topbar.png) 0 -40px;
 }
 
 #topbar a {
 	padding: 0 1em;
-	line-height: @topbar-height; 
 	color:@topbar-color;
-}
-
-#topbar h1 {
-	font-size: 1.625em;
-	float:left;
-	margin:0 .8em 0 0;
-	font-family: Helvetica Neue, Helvetica, sans-serif;
-}
-
-#topbar h1 small {
-	margin-left:0.5em;
 }
 
 #topbar ul li a:hover 	{background:lighten(@topbar-bgColor,6%); color:@topbar-colorHover;}
@@ -100,39 +96,4 @@
 	.gradient(darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
 	.box-shadow("0 0px 2px rgba( 255, 255, 255, 0.3)");
 	color:#FFF
-}
-
-.menu {
-	border-top:1px solid #cacaca;
-	vertical-align: top;
-	position:relative;
-	overflow: visible;
-}
-
-.menu a {
-	padding: 0 .8em;
-	font-size:1.143em
-}
-
-.menu ul li {
-	border-right:1px solid #CACACA;
-}
-
-.menu ul li.active {
-	border-right:none;
-	.gradient(#2e2e2e, #222, 100%);
-}
-
-.menu ul .active a {
-	color: #fff;
-}
-
-.menu ul li a.home {
-	width:1em;
-	text-indent:-5555px;
-	background:url(../demo/styles/imgs/home_Sprite.png) 0 0 no-repeat;
-}
-
-.menu ul li.active a.home {
-	background:url(../demo/styles/imgs/home_Sprite.png) 0 -43px no-repeat;
 }

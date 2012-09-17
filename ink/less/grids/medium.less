@@ -61,29 +61,27 @@ html body .ink-hspace	{ margin: 0 }
 html body .ink-rspace 	{ margin: 0 }
 html body .ink-lspace 	{ margin: 0 }
 
-html body #topbar {
-	height:auto;
-}
-
-html body #topbar a,
-html body #topbar h1, 
-html body #topbar ul,				
-html body #topbar ul li {
-	float:none;
-	padding: 0 
-}
-
-html body #topbar ul li a 	{
-	background:none;
-	border-top:1px solid #333;
-}
-
-html body #topbar ul li a:hover,
-html body #topbar ul li.active a {
-	.box-shadow("none");
-	background:none;
-}
-
 html body .menu {
 	display:none
+}
+
+html body .ink-h-nav {
+	height:auto
+}
+
+html body .ink-h-nav li {
+	display:	block
+}
+
+html body #topbar {
+	height:auto
+}
+
+html body #topbar li.active a {
+	background:none;
+	.box-shadow("none");
+}
+
+html body #topbar li {
+	border-top:1px solid #333
 }
