@@ -14,6 +14,7 @@
 	<div class="ink-l60">
 		<?php echo form_open('download/custom',array('class'=>'ink-labels-above')) ?>
 		<?php echo form_fieldset('Modules') ?>
+		<?php echo form_error('empty_form') ?>
 		<div class="ink-form-row">
 		<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
 		<?php foreach($modules as $module): ?>		
