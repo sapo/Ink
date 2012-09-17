@@ -19,8 +19,8 @@ class Alerts extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['pages'] = $this->config->item('site-pages');
-		$data['title'] = $this->config->item('site-title');
+		$data['pages'] = $this->config->item('site_pages');
+		$data['title'] = $this->config->item('site_title');
 
 		$this->load->view('common/document_top',$data);
 		$this->load->view('common/main_navigation',$data);

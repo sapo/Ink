@@ -19,15 +19,15 @@
 	<div class="ink-l100" id="download">
 		<div class="ink-l33">
 			<div class="ink-space">
-				<a href="#" >Version 1.0</a>
-				<p>Download InK's current build</p>
+				<a href="<?php echo site_url() . '/download/latest' ?>" >Version 1.0</a>
+				<p>Download InK's latest build</p>
 			</div>
 		</div>
 		<div class="ink-l33">
 			<div class="ink-space">
-				<a href="<?php echo site_url() . '/custom' ?>" >Custom</a>
+				<a href="<?php echo site_url() . '/download' ?>" >Custom</a>
 				<p>
-					Customize your basic layout - site width, gutters, spacers, and much more
+					If you don't need all the available modules, this is the place to go for a InK package customized to your needs.
 				</p>
 			</div>
 		</div>
@@ -38,5 +38,4 @@
 			</div>
 		</div>
 	</div>
-
 </div>
