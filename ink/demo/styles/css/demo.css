@@ -308,7 +308,44 @@ a.active {
     opacity: 0;
   }
 }
-/*..........................................  Footer  ...................................................*/
+/*...................................................  Menus  ....................................................*/
+.example_menu {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  background: #d2d2d2;
+  zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d2d2d2', endColorstr='#bcbcbc');
+  background: -moz-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d2d2d2), color-stop(150%, #bcbcbc));
+  background: -webkit-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
+  background: -o-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
+  background: -ms-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
+  background: linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+.example_menu li:first-child a {
+  border-radius: 4px 0 0 4px;
+}
+.example_menu a:hover {
+  background: #c3c3c3;
+  zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c3c3c3', endColorstr='#adadad');
+  background: -moz-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c3c3c3), color-stop(150%, #adadad));
+  background: -webkit-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
+  background: -o-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
+  background: -ms-linear-gradient(top, #c3c3c3 0%, #adadad 150%);
+  background: linear-gradient(top, #c3c3c3 0%, #adadad 150%);
+}
+.example_menu .submenu li:first-child a {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+/*...................................................  Footer  ...................................................*/
 footer {
   border-top: 1px solid #CCC;
   background: #f0f0f0;

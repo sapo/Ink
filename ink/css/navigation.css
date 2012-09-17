@@ -14,28 +14,51 @@
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
 /* INK > TABLES */
 /* Functions */
-.h_navigation {
+.ink-h-navigation {
+  height: 43px;
   display: block;
   font-size: 0em;
-  padding: 0;
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #dddddd;
 }
-.h_navigation li {
-  font-size: 10pt;
+.ink-h-navigation li {
+  font-size: 14px;
   display: inline-block;
   vertical-align: baseline;
   position: relative;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin: 0;
 }
-.h_navigation a {
-  font-size: 10pt;
-  padding: .7em 1.5em;
-  display: inline-block;
+.ink-h-navigation a {
+  line-height: 43px;
+  padding: 0 1.5em;
+  display: block;
+  text-decoration: none;
+  color: #000000;
 }
-.menu:after,
-#topbar:after {
+.ink-h-navigation a:hover {
+  background: #e6e6e6;
+}
+.ink-h-navigation .submenu {
+  display: none;
+  width: 14em;
+  position: absolute;
+  overflow: hidden;
+  padding-left: 0;
+  margin-left: -1px;
+  z-index: 8;
+  background-color: #fff;
+  border-top: 1px solid #CACACA;
+}
+.ink-h-navigation .submenu li {
+  display: block;
+  float: none;
+  border-right: 1px solid #CACACA;
+  border-bottom: 1px solid #CACACA;
+  border-left: 1px solid #CACACA;
+}
+.ink-h-navigation li:hover .submenu {
+  display: block;
+  height: auto;
+}
+.ink-h-navigation:after {
   content: ".";
   display: block;
   height: 0;
@@ -58,35 +81,27 @@
 #topbar a.logoPlaceholder {
   padding: 0;
 }
+#topbar a.logoPlaceholder:hover {
+  color: #FFF;
+  text-decoration: none;
+}
 #topbar a {
-  padding: 0 .8em;
+  padding: 0 1em;
   line-height: 40px;
   color: #bbbbbb;
-  text-decoration: none;
-  display: block;
-}
-#topbar a:hover {
-  color: #ffffff;
 }
 #topbar h1 {
   font-size: 1.625em;
   float: left;
-  margin: 0;
+  margin: 0 .8em 0 0;
   font-family: Helvetica Neue, Helvetica, sans-serif;
 }
 #topbar h1 small {
   margin-left: 0.5em;
 }
-#topbar ul {
-  float: left;
-  list-style-type: none;
-}
-#topbar ul li {
-  margin: 0;
-  float: left;
-}
 #topbar ul li a:hover {
-  background: #383838;
+  background: #313131;
+  color: #ffffff;
 }
 #topbar ul li.active a {
   background: #080808;
@@ -104,7 +119,6 @@
   color: #ffffff;
 }
 .menu {
-  height: 43px;
   border-top: 1px solid #cacaca;
   vertical-align: top;
   position: relative;
@@ -112,22 +126,10 @@
 }
 .menu a {
   padding: 0 .8em;
-  line-height: 43px;
-  color: #000000;
-  text-decoration: none;
-  display: block;
-}
-.menu ul {
-  padding: 0;
-  list-style-type: none;
+  font-size: 1.143em;
 }
 .menu ul li {
-  margin: 0;
-  float: left;
   border-right: 1px solid #CACACA;
-}
-.menu ul li a:hover {
-  background: rgba(0, 0, 0, 0.05);
 }
 .menu ul li.active {
   border-right: none;
@@ -151,26 +153,4 @@
 }
 .menu ul li.active a.home {
   background: url(../demo/styles/imgs/home_Sprite.png) 0 -43px no-repeat;
-}
-.menu .submenu {
-  display: none;
-  width: 16%;
-  position: absolute;
-  overflow: hidden;
-  padding-left: 0;
-  margin-left: -1px;
-  z-index: 8;
-  background-color: #fff;
-  border-top: 1px solid #CACACA;
-}
-.menu .submenu li {
-  display: block;
-  float: none;
-  border-right: 1px solid #CACACA;
-  border-bottom: 1px solid #CACACA;
-  border-left: 1px solid #CACACA;
-}
-.menu li:hover .submenu {
-  display: block;
-  height: auto;
 }

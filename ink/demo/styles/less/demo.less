@@ -229,7 +229,27 @@ a.active {color:@link-active-color;}
 	to   	{ opacity: 0; }
 }
 
-/*..........................................  Footer  ...................................................*/
+/*...................................................  Menus  ....................................................*/
+.example_menu {
+	.round-corners(4px);
+	.gradient (#d2d2d2, #bcbcbc, 150%);
+	.box-shadow ("1px 1px 2px rgba(0,0,0,0.4)")
+	
+}
+
+.example_menu li:first-child a {
+	border-radius:4px 0 0 4px
+}
+
+.example_menu a:hover {
+	.gradient (darken(#d2d2d2, 6%), darken(#bcbcbc,6%), 150%);
+}
+
+.example_menu .submenu li:first-child a {
+	.round-corners(0);
+}
+
+/*...................................................  Footer  ...................................................*/
 footer {
 	border-top:1px solid #CCC;
 	background:@footer-bgColor;

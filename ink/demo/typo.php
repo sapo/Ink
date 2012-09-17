@@ -3,7 +3,7 @@
 <div id="topbar">
 	<div class="ink-container">
 		<h1><a class="logoPlaceholder" href="index.php" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul>	
+		<ul class="ink-h-navigation">	
 			
 			<li><a href="grid.php">Layout</a></li>
 			<li><a href="navigation.php">Navigation</a></li>
@@ -24,7 +24,7 @@
 
 <nav class="menu">
 	<div class="ink-container">
-		<ul>
+		<ul class="ink-h-navigation">
 			<li class="active"><a class="home" href="#">Home</a></li>
 			<li><a href="#">Headings</a></li>
 			<li><a href="#">Body & Hyper text</a></li>
@@ -157,7 +157,7 @@
 					Avenida Fontes Pereira de Melo 40
 					<br>
 					1050 Lisboa
-					<br></address>
+				</address>
 			</div>
 		</div>
 		<div class="ink-l25">

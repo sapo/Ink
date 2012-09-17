@@ -8,7 +8,7 @@
 				<small>Interface kit</small>
 			</a>
 		</h1>
-		<ul>
+		<ul class="ink-h-navigation">
 			<li>
 				<a href="grid.php">Layout</a>
 			</li>
@@ -43,7 +43,7 @@
 
 <nav class="menu">
 	<div class="ink-container">
-		<ul>
+		<ul class="ink-h-navigation">
 			<li class="active">
 				<a class="home" href="#">Home</a>
 			</li>

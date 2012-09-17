@@ -1,31 +1,55 @@
 @import "conf";
 @import "lib";
 
-.h_navigation {
+.ink-h-navigation {
+	height: @menu-height;
 	display: block; 
-	font-size: 0em; 
-	padding: 0; 
-	border-bottom: 1px solid #ddd; 
-	border-top: 1px solid #ddd
+	font-size: 0em;	
 }
 
-.h_navigation li {
-	font-size: 10pt; 
+.ink-h-navigation li {
+	font-size: 14px; 
 	display: inline-block; 
 	vertical-align: baseline; 
 	position:relative; 
-	margin-top:0px; 
-	margin-bottom:0px
+	margin:0
 }
 
-.h_navigation a {
-	font-size: 10pt;
-	padding:.7em 1.5em;  
-	display: inline-block;
+.ink-h-navigation a {
+	line-height: @menu-height; 
+	padding: 0 1.5em;
+	display:block;
+	text-decoration: none;
+	color:#000
 }
 
-.menu:after,
-#topbar:after {
+.ink-h-navigation a:hover {
+	background:darken(@menu-bgColor,10%)
+}
+
+.ink-h-navigation .submenu {
+	display: none;
+	width:14em;
+	position:absolute;
+	overflow: hidden;
+	padding-left: 0;
+	margin-left:-1px;
+	z-index: 8; 
+	background-color: #fff;
+	border-top:1px solid #CACACA;
+}
+
+.ink-h-navigation .submenu li {
+	display: block;
+	float:none;
+	border-right:1px solid #CACACA;
+	border-bottom:1px solid #CACACA;
+	border-left:1px solid #CACACA;
+}
+
+.ink-h-navigation li:hover .submenu 	{display: block; height: auto;}
+
+.ink-h-navigation:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -49,22 +73,21 @@
 	padding: 0;
 }
 
-#topbar a {
-	padding: 0 .8em;
-	line-height: @topbar-height; 
-	color:@topbar-color;
-	text-decoration: none;
-	display: block;
+#topbar a.logoPlaceholder:hover {
+	color:#FFF;
+	text-decoration:none
 }
 
-#topbar a:hover {
-	color:@topbar-colorHover;
+#topbar a {
+	padding: 0 1em;
+	line-height: @topbar-height; 
+	color:@topbar-color;
 }
 
 #topbar h1 {
 	font-size: 1.625em;
 	float:left;
-	margin:0;
+	margin:0 .8em 0 0;
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 }
 
@@ -72,9 +95,7 @@
 	margin-left:0.5em;
 }
 
-#topbar ul				{float:left; list-style-type: none;}
-#topbar ul li 			{margin:0; float:left}
-#topbar ul li a:hover 	{background:#383838}
+#topbar ul li a:hover 	{background:lighten(@topbar-bgColor,6%); color:@topbar-colorHover;}
 #topbar ul li.active a {
 	.gradient(darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
 	.box-shadow("0 0px 2px rgba( 255, 255, 255, 0.3)");
@@ -82,7 +103,6 @@
 }
 
 .menu {
-	height:@menu-height;
 	border-top:1px solid #cacaca;
 	vertical-align: top;
 	position:relative;
@@ -91,25 +111,11 @@
 
 .menu a {
 	padding: 0 .8em;
-	line-height: @menu-height; 
-	color:@menu-color;
-	text-decoration: none;
-	display: block;
-}
-
-.menu ul {
-	padding:0;
-	list-style-type: none;
+	font-size:1.143em
 }
 
 .menu ul li {
-	margin:0;
-	float:left;
 	border-right:1px solid #CACACA;
-}
-
-.menu ul li a:hover {
-	background:rgba(0,0,0,0.05)
 }
 
 .menu ul li.active {
@@ -130,24 +136,3 @@
 .menu ul li.active a.home {
 	background:url(../demo/styles/imgs/home_Sprite.png) 0 -43px no-repeat;
 }
-
-.menu .submenu {
-	display: none;
-	width:16%;
-	position:absolute;
-	overflow: hidden;
-	padding-left: 0;
-	margin-left:-1px;
-	z-index: 8; 
-	background-color: #fff;
-	border-top:1px solid #CACACA;
-}
-
-.menu .submenu li {
-	display: block;
-	float:none;
-	border-right:1px solid #CACACA;
-	border-bottom:1px solid #CACACA;
-	border-left:1px solid #CACACA;
-}
-.menu li:hover .submenu 	{display: block; height: auto;}
