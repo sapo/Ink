@@ -12,12 +12,11 @@ form {
 
 		legend {
 
-			margin: 1em 0;
+			margin: 1em 0 0 0;
 			font-size: 1.2em;
 			font-weight: 700;
 			border-bottom: 1px solid #DDD;
 			padding-bottom: 0.40em;
-			margin-top: 32px;
 			text-shadow: 0 1px 0 white;
 			display: block;
 			width: 100%;
@@ -54,10 +53,11 @@ form {
 		.box-sizing(border-box);
 	}
 
-	select[multiple] {
-		line-height: 2;
+	select[multiple], select {
+		
 		option {
-			padding: 654px;
+			line-height: 2;
+			padding: @form-elements-padding / 2;
 		}
 	}
 
