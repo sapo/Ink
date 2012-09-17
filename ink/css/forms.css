@@ -1,4 +1,5 @@
 /* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
+/*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
 /* Size Variables */
@@ -20,12 +21,11 @@ form fieldset {
   padding: 0;
 }
 form fieldset legend {
-  margin: 1em 0;
+  margin: 1em 0 0 0;
   font-size: 1.2em;
   font-weight: 700;
   border-bottom: 1px solid #DDD;
   padding-bottom: 0.40em;
-  margin-top: 32px;
   text-shadow: 0 1px 0 white;
   display: block;
   width: 100%;
@@ -67,25 +67,22 @@ form select {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-form select[multiple] {
+form select[multiple] option,
+form select option {
   line-height: 2;
-}
-form select[multiple] option {
-  padding: 654px;
+  padding: 3px;
 }
 form .ink-form-validation {
   font-weight: 700;
 }
 form .ink-form-validation.ink-caution {
-  background-color: #fff;
   color: #cd0000;
+  background-color: transparent;
   padding: 0;
 }
 form .ink-form-validation.ink-success {
   color: #85bd11;
-  background-color: #fff;
-  color: #85bd11;
-  background-color: #fff;
+  background-color: transparent;
   padding: 0;
 }
 form div.ink-form-row {
