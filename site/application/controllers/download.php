@@ -96,19 +96,7 @@ class Download extends CI_Controller {
 
 		}
 
-		if(isset($ink_selected_options))
-		{
-			var_dump($ink_selected_options);
-		}
-
-		if(isset($ink_selected_modules))
-		{
-			var_dump($ink_selected_modules);
-		}
-		
-
 		// PREPARE THE COMMON AND REQUIRED FILES
-
 
 		// CHECK IF THE USER WANT'S THE LESS FILES AND INCLUDE THEM IN THE ZIP PACKAGE
 
@@ -136,14 +124,16 @@ class Download extends CI_Controller {
 
 				if(is_array($ink_modules[$ink_selected_module][$file_type]))
 				{
+
+					$this->zip->add_dir('less/grids');
+
 					foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
 					{
 						$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
 						$package_file = fopen($filename, 'r');
 						$file_content = fread($package_file,filesize($filename));
-						// echo $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type . '<br><br>';
-						// echo $file_content . '<br><br><br><br>';
-						$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type, $file_content);
+						$archive_file_name = $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
+						$this->zip->add_data($archive_file_name, $file_content);
 					}
 				} else {
 					$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
@@ -157,85 +147,84 @@ class Download extends CI_Controller {
 
 		// INCLUDE THE REQUIRED CSS FILES IN THE ZIP PACKAGE
 
-		// $file_type = 'css';
+		$file_type = 'css';
 
-		// // CHECK IF THE USER WANT'S THE CSS TO BE MINIFIED
+		// CHECK IF THE USER WANT'S THE CSS TO BE MINIFIED
 
-		// if(isset($ink_selected_options['option-minify']) && $ink_selected_options['option-minify'] == 1)
-		// {
+		if(isset($ink_selected_options['option-minify']) && $ink_selected_options['option-minify'] == 1)
+		{
 		
-		// 	$INK_MINIFIED = '';
+			$INK_MINIFIED = '';
 
-		// 	foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
-		// 		$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
-		// 		// echo $filename . '<br>';
-		// 		$package_file = $this->minify_css($filename);
-		// 		$INK_MINIFIED .= ' '.$package_file[0];
-		// 	}
+			foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
+				$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
+				$package_file = $this->minify_css($filename);
+				$INK_MINIFIED .= ' '.$package_file[0];
+			}
 
-		// 	foreach ( $ink_selected_modules as $ink_selected_module => $value ) {								
+			foreach ( $ink_selected_modules as $ink_selected_module => $value ) {								
 
-		// 		if(is_array($ink_modules[$ink_selected_module][$file_type]))
-		// 		{
-		// 			foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
-		// 			{
-		// 				$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
-		// 				$package_file = $this->minify_css($filename);
-		// 				$INK_MINIFIED .= ' '.$package_file[0];
-		// 			}
-		// 		} else {
-		// 			$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
-		// 			$package_file = $this->minify_css($filename);
-		// 			$INK_MINIFIED .= ' '.$package_file[0];
-		// 		}
+				if(is_array($ink_modules[$ink_selected_module][$file_type]))
+				{
+					foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
+					{
+						$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
+						$package_file = $this->minify_css($filename);
+						$INK_MINIFIED .= ' '.$package_file[0];
+					}
+				} else {
+					$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
+					$package_file = $this->minify_css($filename);
+					$INK_MINIFIED .= ' '.$package_file[0];
+				}
 
-		// 	}
+			}
 
-		// 	foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
-		// 		$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
-		// 		$package_file = fopen($filename, 'r');
-		// 		$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type);
-		// 	}
+			foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
+				$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
+				$package_file = fopen($filename, 'r');
+				$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type);
+			}
 
-		// 	$this->zip->add_data($file_type . '/' .'ink-min.' . $file_type, $INK_MINIFIED);
-		// } 
+			$this->zip->add_data($file_type . '/' .'ink-min.' . $file_type, $INK_MINIFIED);
+		} 
 
-		// else 
-		// {
-		// 	foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
-		// 		$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
-		// 		$package_file = fopen($filename,'r');
-		// 		$file_content = fread($package_file,filesize($filename));
-		// 		$this->zip->add_data($file_type . '/' . $ink_required_file . '.' . $file_type, $file_content);
-		// 	}
+		else 
+		{
+			foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
+				$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
+				$package_file = fopen($filename,'r');
+				$file_content = fread($package_file,filesize($filename));
+				$this->zip->add_data($file_type . '/' . $ink_required_file . '.' . $file_type, $file_content);
+			}
 
-		// 	foreach ( $ink_selected_modules as $ink_selected_module => $value ) {								
+			foreach ( $ink_selected_modules as $ink_selected_module => $value ) {								
 
-		// 		if(is_array($ink_modules[$ink_selected_module][$file_type]))
-		// 		{
-		// 			foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
-		// 			{
-		// 				$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
-		// 				$package_file = fopen($filename,'r');
-		// 				$file_content = fread($package_file,filesize($filename));
-		// 				$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type, $file_content);
-		// 			}
-		// 		} else {
-		// 			$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
-		// 			$package_file = fopen($filename, 'r');
-		// 			$file_content = fread($package_file,filesize($filename));
-		// 			$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type, $file_content);
-		// 		}
+				if(is_array($ink_modules[$ink_selected_module][$file_type]))
+				{
+					foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
+					{
+						$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
+						$package_file = fopen($filename,'r');
+						$file_content = fread($package_file,filesize($filename));
+						$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type, $file_content);
+					}
+				} else {
+					$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
+					$package_file = fopen($filename, 'r');
+					$file_content = fread($package_file,filesize($filename));
+					$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type, $file_content);
+				}
 
-		// 	}
+			}
 
-		// 	foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
-		// 		$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
-		// 		$package_file = fopen($filename, 'r');
-		// 		$file_content = fread($package_file,filesize($filename));
-		// 		$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type, $file_content);
-		// 	}
-		// }
+			foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
+				$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
+				$package_file = fopen($filename, 'r');
+				$file_content = fread($package_file,filesize($filename));
+				$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type, $file_content);
+			}
+		}
 	
 		$this->zip->download('ink-'.$ink_version_number.'-custom.zip');
 	}

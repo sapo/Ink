@@ -1,8 +1,28 @@
-@import "conf";
-@import "lib";
-#topbar:after,
-.ink-v-nav:after,
-.ink-h-nav:after {
+.h_navigation {
+	display: block; 
+	font-size: 0em; 
+	padding: 0; 
+	border-bottom: 1px solid #ddd; 
+	border-top: 1px solid #ddd
+}
+
+.h_navigation li {
+	font-size: 10pt; 
+	display: inline-block; 
+	vertical-align: baseline; 
+	position:relative; 
+	margin-top:0px; 
+	margin-bottom:0px
+}
+
+.h_navigation a {
+	font-size: 10pt;
+	padding:.7em 1.5em;  
+	display: inline-block;
+}
+
+.menu:after,
+#topbar:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -17,112 +37,100 @@
 	font-size:@topbar-fontSize;
 	.box-shadow ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
+	vertical-align: top;
+	position:relative;
+	overflow: visible;
 }
 
 #topbar a.logoPlaceholder {
-	width:125px;
 	padding: 0;
-	text-indent:-5000px;
-	background:url(../demo/styles/imgs/logo_topbar.png);
-	margin:0 1em 0 0
-}
-
-#topbar a.logoPlaceholder:hover {
-	background:url(../demo/styles/imgs/logo_topbar.png) 0 -40px;
 }
 
 #topbar a {
-	padding: 0 1em;
+	padding: 0 .8em;
+	line-height: @topbar-height; 
 	color:@topbar-color;
+	text-decoration: none;
+	display: block;
 }
 
-#topbar ul li a:hover 	{background:lighten(@topbar-bgColor,6%); color:@topbar-colorHover;}
+#topbar a:hover {
+	color:@topbar-colorHover;
+}
+
+#topbar h1 {
+	font-size: 1.625em;
+	float:left;
+	margin:0;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+
+#topbar h1 small {
+	margin-left:0.5em;
+}
+
+#topbar ul				{float:left; list-style-type: none;}
+#topbar ul li 			{margin:0; float:left}
+#topbar ul li a:hover 	{background:#383838}
 #topbar ul li.active a {
 	.gradient(darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
 	.box-shadow("0 0px 2px rgba( 255, 255, 255, 0.3)");
 	color:#FFF
 }
 
-.ink-v-nav li {
-	margin: 0;
-	position:relative;
-	border-bottom:1px solid #CCC
-}
-
-.ink-v-nav li i {
-	float:right
-}
-
-.ink-v-nav a {
-	line-height: @v-nav-height; 
-	padding: 0 1.5em;
-	display:block;
-	text-decoration: none;
-	color:#000
-}
-
-.ink-v-nav a:hover {
-	background:darken(@v-nav-bgColor ,10%)
-}
-
-.ink-v-nav .submenu {
-	display: none;
-	width:14em;
-	position:absolute; top:-1px; left:100%;
-	overflow: hidden;
-	padding-left: 0;
-	z-index: 8; 
-	background-color: #fff;
-	border-top:1px solid #CACACA;
-}
-
-.ink-v-nav .submenu li {
-	display: block;
-	border-right:1px solid #CACACA;
-	border-bottom:1px solid #CACACA;
-	border-left:1px solid #CACACA;
-}
-
-.ink-v-nav li:hover .submenu {
-	display: block
-}
-
-.ink-h-nav {
-	height: @h-nav-height;
-	display: block; 
-	font-size: 0em;
+.menu {
+	height:@menu-height;
+	border-top:1px solid #cacaca;
 	vertical-align: top;
 	position:relative;
 	overflow: visible;
 }
 
-.ink-h-nav li {
-	font-size: @h-nav-fontSize; 
-	display: inline-block; 
-	vertical-align: baseline; 
-	position:relative; 
-	margin:0
-}
-
-.ink-h-nav li i {
-	margin-left:0.4em;
-}
-
-.ink-h-nav a {
-	line-height: @h-nav-height; 
-	padding: 0 1.5em;
-	display:block;
+.menu a {
+	padding: 0 .8em;
+	line-height: @menu-height; 
+	color:@menu-color;
 	text-decoration: none;
-	color:#000
+	display: block;
 }
 
-.ink-h-nav a:hover {
-	background:darken(@h-nav-bgColor ,10%)
+.menu ul {
+	padding:0;
+	list-style-type: none;
 }
 
-.ink-h-nav .submenu {
+.menu ul li {
+	margin:0;
+	float:left;
+	border-right:1px solid #CACACA;
+}
+
+.menu ul li a:hover {
+	background:rgba(0,0,0,0.05)
+}
+
+.menu ul li.active {
+	border-right:none;
+	.gradient(#2e2e2e, #222, 100%);
+}
+
+.menu ul .active a {
+	color: #fff;
+}
+
+.menu ul li a.home {
+	width:1em;
+	text-indent:-5555px;
+	background:url(../demo/styles/imgs/home_Sprite.png) 0 0 no-repeat;
+}
+
+.menu ul li.active a.home {
+	background:url(../demo/styles/imgs/home_Sprite.png) 0 -43px no-repeat;
+}
+
+.menu .submenu {
 	display: none;
-	width:14em;
+	width:16%;
 	position:absolute;
 	overflow: hidden;
 	padding-left: 0;
@@ -132,24 +140,11 @@
 	border-top:1px solid #CACACA;
 }
 
-.ink-h-nav .submenu li {
+.menu .submenu li {
 	display: block;
+	float:none;
 	border-right:1px solid #CACACA;
 	border-bottom:1px solid #CACACA;
 	border-left:1px solid #CACACA;
 }
-
-.ink-h-nav li:hover .submenu {
-	display: block
-}
-
-.ink-footer-nav {
-	padding:0;
-	margin:1em 0 2em;
-}
-
-.ink-footer-nav li {
-	display: inline-block;
-	font-size:0.875em;
-	margin:0 1em 0 0;
-}
+.menu li:hover .submenu 	{display: block; height: auto;}
