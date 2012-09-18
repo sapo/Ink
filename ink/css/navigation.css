@@ -15,6 +15,7 @@
 /* INK > TABLES */
 /* Functions */
 #topbar:after,
+.ink-v-nav:after,
 .ink-h-nav:after {
   content: ".";
   display: block;
@@ -22,6 +23,45 @@
   clear: both;
   visibility: hidden;
   zoom: 1;
+}
+.ink-v-nav li {
+  margin: 0;
+  position: relative;
+  border-bottom: 1px solid #cccccc;
+}
+.ink-v-nav li i {
+  float: right;
+}
+.ink-v-nav a {
+  line-height: 40px;
+  padding: 0 1.5em;
+  display: block;
+  text-decoration: none;
+  color: #000000;
+}
+.ink-v-nav a:hover {
+  background: #e6e6e6;
+}
+.ink-v-nav .submenu {
+  display: none;
+  width: 14em;
+  position: absolute;
+  top: -1px;
+  left: 100%;
+  overflow: hidden;
+  padding-left: 0;
+  z-index: 8;
+  background-color: #fff;
+  border-top: 1px solid #CACACA;
+}
+.ink-v-nav .submenu li {
+  display: block;
+  border-right: 1px solid #CACACA;
+  border-bottom: 1px solid #CACACA;
+  border-left: 1px solid #CACACA;
+}
+.ink-v-nav li:hover .submenu {
+  display: block;
 }
 .ink-h-nav {
   height: 40px;

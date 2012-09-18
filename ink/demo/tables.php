@@ -2,8 +2,10 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a class="logoPlaceholder" href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
 		<ul class="ink-h-nav">
+			<li>
+				<a class="logoPlaceholder" href="./" title="Site Title">InK</a>
+			</li>
 			<li>
 				<a href="grid.php">Layout</a>
 			</li>

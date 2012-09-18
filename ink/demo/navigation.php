@@ -68,78 +68,89 @@
 			
 				<pre class="prettyprint">
 &lt;nav&gt;
-  &lt;ul class="ink-h-nav"&gt;
-    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-  &lt;/ul&gt;
+   &lt;ul class="ink-h-nav"&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+   &lt;/ul&gt;
 &lt;/nav&gt;</pre>
 			</div>
 		
 			<div class="ink-space">
 				<h4>Submenu</h4>
-				<p>Os menus que se baseiam em <mark>&lt;ul&gt;</mark>(Unsorted Lists) podem ter submenus respeitando a estrutura abaixo.</p>
+				<p>Os menus que se baseiam em <mark>&lt;ul&gt;</mark> (Unsorted Lists) podem ter submenus respeitando a estrutura abaixo.</p>
 				
 				<pre class="prettyprint">
 &lt;nav&gt;
-  &lt;ul class="ink-h-nav"&gt;
-    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
-    &lt;ul class=&quot;submenu&quot;&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
-    &lt;/ul&gt;
-    &lt;/li&gt; 
-  &lt;/ul&gt;
+   &lt;ul class="ink-h-nav"&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
+         &lt;ul class=&quot;submenu&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
+         &lt;/ul&gt;
+      &lt;/li&gt; 
+   &lt;/ul&gt;
 &lt;/nav&gt;</pre>
 			</div>
 		</div>
 	</div>
 	
 	<div class="ink-section">
-		<div class="ink-space">
-			<h3>Vertical menu</h3>
-			<p>
-				Os menus verticais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.
-				Para construir este tipo de navegação basta usar a class <mark>.ink-v-nav</mark>.
-			</p>
+		<div class="ink-l40">
+			<div class="ink-space">
+				<h3>Vertical menu</h3>
+			</div>
+			<div class="ink-space">
+				<ul class="unstyled ink-v-nav">
+					<li><a href="#">Suspendisse</a></li>
+					<li><a href="#">Vivamus</a></li>
+					<li><a href="#">Condimentum</a></li>
+					<li><a href="#">Ccommodo</a></li>
+					<li><a href="#">Egestas</a></li>
+					<li>
+						<a href="#">Submenu<i class="icon-caret-right"></i></a>
+						<ul class="submenu">
+							<li><a href="#">Item with a very big title</a></li>
+							<li><a href="#">Item</a></li>
+							<li><a href="#">Item</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="ink-l60">
+			<div class="ink-space">
+				<p>
+					Os menus verticais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.
+					Para construir este tipo de navegação basta usar a class <mark>.ink-v-nav</mark>.
+				</p>
+				<pre class="prettyprint">&lt;nav&gt;
+   &lt;ul class="ink-v-nav"&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
+         &lt;ul class=&quot;submenu&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
+         &lt;/ul&gt;
+      &lt;/li&gt; 
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+			</div>
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-l33">
-			<div class="ink-space">
-				<h3>Round Menu</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-			</div>
-		</div>
-		<div class="ink-l33">
-			<div class="ink-space">
-				<h4>SubMenu</h4>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-			</div>
-		</div>
-		<div class="ink-l33">
-			<div class="ink-space">
-				<h4>Pesquisa Incorporada</h4>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-			</div>
+		<div class="ink-space">
+			<h3>Simple footer menu</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
 		</div>
 	</div>
 </div>
