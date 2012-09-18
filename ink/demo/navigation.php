@@ -37,8 +37,8 @@
 		<div class="ink-space">
 			<h3>Horizontal menu</h3>
 			<p>
-				Os menus horizontais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.
-				Para construir este tipo de navegação basta usar a class <mark>.ink-h-nav</mark>.
+				Horizontal menus can be used as primary navigation of the website or applied as top bar.
+				To build this navigation you just need to use the class <mark>.ink-h-nav</mark>.
 			</p>
 		</div>
 		
@@ -62,8 +62,8 @@
 		<div class="ink-l100">
 			<div class="ink-space">
 				<p class="note">
-					<strong>Nota: </strong>O menu pode ser construído de várias formas podendo usar um elemento com <mark>&lt;a&gt;</mark> ou
-					<mark>&lt;ul&gt;</mark>. Pode também utilizar a nova tag <mark>&lt;nav&gt;</mark> <span class="label_new">HTML5</span>
+					<strong>Note: </strong>The menu can be built in many different ways, using  <mark>&lt;a&gt;</mark>, 
+					<mark>&lt;ul&gt;</mark> or the new <span class="label_new">HTML5</span> tag <mark>&lt;nav&gt;</mark>
 				</p>
 			
 				<pre class="prettyprint">
@@ -79,7 +79,7 @@
 		
 			<div class="ink-space">
 				<h4>Submenu</h4>
-				<p>Os menus que se baseiam em <mark>&lt;ul&gt;</mark> (Unsorted Lists) podem ter submenus respeitando a estrutura abaixo.</p>
+				<p><mark>&lt;ul&gt;</mark> (Unsorted Lists) based menus may have submenus respecting the following structure:</p>
 				
 				<pre class="prettyprint">
 &lt;nav&gt;
@@ -148,9 +148,15 @@
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 			</p>
+<pre class="prettyprint">&lt;footer&gt;
+   &lt;ul class="ink-footer-nav"&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
+   &lt;/ul&gt;
+&lt;/footer&gt;</pre>
 		</div>
 	</div>
 </div>

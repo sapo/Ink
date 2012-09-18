@@ -37,7 +37,7 @@
 <div class="ink-container">
 	<div class="ink-space">
 		<h2>Containers</h2>
-		<p>The <strong>.ink-container</strong> class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
+		<p>The <mark>.ink-container</mark> class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
 	</div>
 	<div class="ink-section gridExemple">
 		<div class="ink-space box">
