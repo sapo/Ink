@@ -2,8 +2,8 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a class="logoPlaceholder" href="index.php" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul>
+		<ul class="ink-h-nav">
+			<li><a class="logoPlaceholder" href="./" title="Site Title">InK</a></li>
 			<li class="active"><a href="grid.php">Layout</a></li>
 			<li><a href="navigation.php">Navigation</a></li>
 			<li><a href="typo.php">Typography & Icons</a></li>
@@ -23,7 +23,7 @@
 
 <nav class="menu">
 	<div class="ink-container">
-		<ul>
+		<ul class="ink-h-nav">
 			<li class="active"><a class="home" href="#">Home</a></li>
 			<li><a href="#">Containers</a></li>
 			<li><a href="#">Spacer units</a></li>

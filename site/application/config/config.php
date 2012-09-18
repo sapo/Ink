@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/ink/site/';
+$config['base_url']	= 'http://10.134.132.97/site/';
 
 /*
 |--------------------------------------------------------------------------

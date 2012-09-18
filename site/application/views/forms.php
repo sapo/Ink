@@ -2,8 +2,7 @@
 	<div class="ink-vspace">
 		<h2>Forms & Alerts</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+			InK provides a simple, uncluttered default style for form elements. 
 		</p>
 	</div>
 </div>
@@ -121,8 +120,9 @@
 	-->
 
 	<h2>Form with labels above fields</h2>
+	<p>InK forms have two basic layouts. One where the labels are placed above their element and a second where the labels are placed to the left.</p>
 
-	<form action="" class="ink-labels-above ink-l66">
+	<form action="" class="ink-labels-above ink-l100">
 		<fieldset>
 			<legend>Fieldset legend</legend>
 			<div class="ink-form-row">

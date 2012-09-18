@@ -102,8 +102,8 @@
 }
 
 .make-caution (@inv) when (@inv = true) {
-	background-color: #fff;
 	color: @caution-bg-color;
+	background-color: transparent;
 }
 
 .make-caution () {
@@ -114,7 +114,7 @@
 
 .make-warning (@inv) when (@inv = true) {
 	color: @warning-bg-color;
-	background-color: #fff;
+	background-color: transparent;
 }
 
 .make-warning (){
@@ -124,12 +124,7 @@
 
 .make-success (@inv) when (@inv = true) {
 	color: @success-bg-color;
-	background-color: #fff;
-}
-
-.make-success (@inv) when (@inv = true) {
-	color: @success-bg-color;
-	background-color: #fff;
+	background-color: transparent;
 }
 
 .make-success () {
@@ -137,9 +132,14 @@
 	color: #fff;
 }
 
-.make-info (){
-	background-color: @info-bg-color;
+.make-info (@inv) when (@inv = true) {
 	color: #fff;
+	background-color: transparent;
+}
+
+.make-info () {
+	color: #fff;
+	background-color: @info-bg-color;
 }
 
 .disable (@color) when (lightness(@color) < 60%){

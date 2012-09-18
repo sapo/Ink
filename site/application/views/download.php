@@ -12,10 +12,18 @@
 		asds
 	</div>
 	<div class="ink-l60">
-		<?php echo form_open('custom/download',array('class'=>'ink-labels-above')) ?>
-		<?php echo form_fieldset('Select things to do stuff with!') ?>
+		<?php echo form_open('download/custom',array('class'=>'ink-labels-above')) ?>
+		<?php echo form_fieldset('Modules') ?>
 		<div class="ink-form-row">
 		<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
+		<?php foreach($modules as $module): ?>		
+			<?php echo form_checkbox($module['attributes']); ?>
+			<?php echo form_label($module['label']['text'], $module['label']['for']) ?>		
+		<?php endforeach ?>
+		</div>
+		<?php echo form_fieldset_close() ?>
+		<?php echo form_fieldset('Options') ?>
+		<div class="ink-form-row">
 		<?php foreach($options as $option): ?>		
 			<?php echo form_checkbox($option['attributes']); ?>
 			<?php echo form_label($option['label']['text'], $option['label']['for']) ?>		

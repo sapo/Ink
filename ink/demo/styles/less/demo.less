@@ -114,10 +114,6 @@ a.visited {color: @link-visited-color;}
 a.hover {color:@link-hover-color;  text-decoration: underline;}
 a.active {color:@link-active-color;}
 
-/*..........................................  Menus  ...................................................*/
-.menu {
-	.box-shadow("0 -1px 2px rgba(0,0,0,0.1)");
-}
 /*..........................................  Forms  ...................................................*/
 .exempleForm {margin:1em 0; padding:1em 0; border-top:1px solid #eee;  border-bottom:1px solid #eee}
 .exempleForm .e_wrap {margin:0px; padding:0px}     
@@ -229,7 +225,56 @@ a.active {color:@link-active-color;}
 	to   	{ opacity: 0; }
 }
 
-/*..........................................  Footer  ...................................................*/
+/*...................................................  Menus  ....................................................*/
+.menu {
+	border-top:1px solid #cacaca;
+	.box-shadow("0 -1px 2px rgba(0,0,0,0.1)");
+}
+
+.menu a {
+	padding: 0 .8em;
+	font-size:1.143em
+}
+
+.menu ul li {
+	border-right:1px solid #CACACA;
+}
+
+.menu ul li.active {
+	border-right:none;
+	.gradient(#2e2e2e, #222, 100%);
+}
+
+.menu ul .active a {
+	color: #fff;
+}
+
+.menu ul li a.home {
+	width:1em;
+	text-indent:-5555px;
+	background:url(../imgs/home_Sprite.png) 0 0 no-repeat;
+}
+
+.menu ul li.active a.home {
+	background:url(../imgs/home_Sprite.png) 0 -43px no-repeat;
+}
+
+.example_menu {
+	.round-corners(4px);
+	.gradient (#d2d2d2, #bcbcbc, 150%);
+	.box-shadow ("1px 1px 2px rgba(0,0,0,0.4)")
+	
+}
+
+.example_menu li:first-child a {
+	border-radius:4px 0 0 4px
+}
+
+.example_menu .submenu li:first-child a {
+	.round-corners(0);
+}
+
+/*...................................................  Footer  ...................................................*/
 footer {
 	border-top:1px solid #CCC;
 	background:@footer-bgColor;
