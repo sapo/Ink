@@ -1,66 +1,98 @@
-/* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
+/* INK GRID */
 /*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
+
+/*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
+
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
+
 /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
+
 /* Size Variables */
+
 /* Offset Variables */
+
 /* Color Variables */
+
 /* Estes valores têm que ser em rbga */
+
 /* Botões*/
+
 /* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
+
 /* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
+
 /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
+
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
+
 /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+
 /* INK > TABLES */
+
 /* Functions */
+
 html body .ink-container {
   width: auto;
   padding: 0 15px;
 }
+
 html body .ink-m100 {
   width: auto;
   clear: both;
 }
+
 html body .ink-m90 {
   width: 90%;
 }
+
 html body .ink-m80 {
   width: 80%;
 }
+
 html body .ink-m75 {
   width: 75%;
 }
+
 html body .ink-m70 {
   width: 70%;
 }
+
 html body .ink-m66 {
   width: 66.66%;
 }
+
 html body .ink-m60 {
   width: 60%;
 }
+
 html body .ink-m50 {
   width: 50%;
 }
+
 html body .ink-m40 {
   width: 40%;
 }
+
 html body .ink-m33 {
   width: 33.33%;
 }
+
 html body .ink-m30 {
   width: 30%;
 }
+
 html body .ink-m25 {
   width: 25%;
 }
+
 html body .ink-m20 {
   width: 20%;
 }
+
 html body .ink-m10 {
   width: 10%;
 }
+
 html body .ink-m10,
 html body .ink-m20,
 html body .ink-m25,
@@ -77,6 +109,7 @@ html body .ink-m90 {
   float: left;
   zoom: 1;
 }
+
 html body .ink-m100:empty,
 html body .ink-m90:empty,
 html body .ink-m80:empty,
@@ -93,24 +126,31 @@ html body .ink-m20:empty,
 html body .ink-m10:empty {
   clear: both;
 }
+
 html body .ink-space {
   margin: 32px 0;
 }
+
 html body .ink-vspace {
   margin: 32px 0;
 }
+
 html body .ink-hspace {
   margin: 0;
 }
+
 html body .ink-rspace {
   margin: 0;
 }
+
 html body .ink-lspace {
   margin: 0;
 }
+
 html body #topbar {
   height: auto;
 }
+
 html body #topbar a,
 html body #topbar h1,
 html body #topbar ul,
@@ -118,17 +158,20 @@ html body #topbar ul li {
   float: none;
   padding: 0;
 }
+
 html body #topbar ul li a {
   background: none;
   border-top: 1px solid #333;
 }
+
 html body #topbar ul li a:hover,
 html body #topbar ul li.active a {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   background: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
 }
+
 html body .menu {
   display: none;
 }

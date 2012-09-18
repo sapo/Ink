@@ -1,0 +1,59 @@
+.border-radius (@radius) {
+	border-radius: @radius;
+}
+
+.border-radius (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
+	border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+}
+
+.top-border-radius (@topLeftRadius, @topRightRadius) {
+	border-top-right-radius: @topRightRadius;
+	border-top-left-radius: @topLeftRadius;
+}
+
+.bottom-border-radius (@bottomLeftRadius, @bottomRightRadius) {
+	border-bottom-right-radius: @topRightRadius;
+	border-bottom-left-radius: @topLeftRadius;
+}
+
+.left-border-radius (@topLeftRadius, @bottomLeftRadius) {
+	border-bottom-left-radius: @bottomLeftRadius;
+	border-top-left-radius: @topLeftRadius;
+}
+
+.right-border-radius (@topRightRadius, @bottomRightRadius) {
+	border-top-right-radius: @topRightRadius;
+	border-bottom-right-radius: @bottomRightRadius;
+}
+
+.transition-delay (@delay) {
+	-webkit-transition-delay: @delay;
+	-moz-transition-delay: @delay;
+	-o-transition-delay: @delay;
+	-ms-transition-delay: @delay;
+	transition-delay: @delay;
+}
+
+.transition-property (@property) {
+	-webkit-transition-property: @property;
+	-moz-transition-property: @property;
+	-o-transition-property: @property;
+	-ms-transition-property: @property;
+	transition-property: @property;
+}
+
+.transition-timing-function (@function) {
+	-webkit-transition-timing-function: @function;
+	-moz-transition-timing-function: @function;
+	-o-transition-timing-function: @function;
+	-ms-transition-timing-function: @function;
+	transition-timing-function: @function;
+}
+
+.transition-duration (@duration) {
+	-webkit-transition-duration: @duration;
+	-moz-transition-duration: @duration;
+	-o-transition-duration: @duration;
+	-ms-transition-duration: @duration;
+	transition-duration: @duration;
+}
