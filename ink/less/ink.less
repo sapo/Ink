@@ -3,12 +3,18 @@
 @import "alerts.less";
 @import "buttons.less";
 @import "common.less";
-@import "font-awesome.less";
+@import "icons.less";
 @import "forms.less";
 @import "grid.less";
 @import "ie6.less";
 @import "ie7.less";
 @import "navigation.less";
+@import "mixins.less";
+@import "normalize.less";
 @import "tables.less";
 @import "typo.less";
 @import "widgets.less";
+
+@import url(small.less)  (max-width: 650px);
+@import url(medium.less) (min-width: 651px) and (max-width: 900px);
+@import url(large.less)  (min-width: 901px);
