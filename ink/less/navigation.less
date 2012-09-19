@@ -1,5 +1,3 @@
-@import "conf";
-@import "lib";
 #topbar:after,
 .ink-v-nav:after,
 .ink-h-nav:after {
@@ -112,12 +110,12 @@
 	line-height: @h-nav-height; 
 	padding: 0 1.5em;
 	display:block;
-	text-decoration: none;
 	color:#000
 }
 
 .ink-h-nav a:hover {
-	background:darken(@h-nav-bgColor ,10%)
+	background:darken(@h-nav-bgColor ,10%);
+	text-decoration: none;
 }
 
 .ink-h-nav .submenu {
