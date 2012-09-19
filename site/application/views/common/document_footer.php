@@ -1,7 +1,7 @@
 <footer class="ink-l100">
 	<div class="ink-container">
 		<div class="ink-l75">
-			<ul class="corporatelinks">
+			<ul class="ink-footer-nav">
 				<li><a href="#">Changelog</a></li>
 				<li><a href="#">Showcase</a></li>
 				<li><a href="#">About</a></li>

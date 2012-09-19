@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/ink.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/large.css" media="screen and (min-width: 901px)" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/medium.css" media="screen and (min-width: 651px) and (max-width: 900px)" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/small.css" media="screen and (min-width: 901px)" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/small.css" media="screen and (max-width: 650px)" />
 
 
 	<!--[if IE 6]>
