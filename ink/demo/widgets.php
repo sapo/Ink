@@ -5,11 +5,11 @@
 		<ul class="ink-h-nav">
 			<li><a class="logoPlaceholder" href="./" title="Site Title">InK</a></li>
 			<li><a href="grid.php">Layout</a></li>
-			<li class="active"><a href="navigation.php">Navigation</a></li>
+			<li><a href="navigation.php">Navigation</a></li>
 			<li><a href="typo.php">Typography & Icons</a></li>
 			<li><a href="forms.php">Forms & Alerts</a></li>
 			<li><a href="tables.php">Tables</a></li>
-			<li><a href="widgets.php">InkJS</a></li>
+			<li class="active"><a href="widgets.php">InkJS</a></li>
 		</ul>
 	</div>
 </nav>  
@@ -349,6 +349,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="ink-section">
 		<div class="ink-vspace">
 			<div class="ink-l30">
@@ -365,6 +366,83 @@
 					<div class="ink-modal">
 						<a href="#" class="close">x</a>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<div class="ink-l70">
+				<div class="ink-space">
+					<div class="ink-tabs">
+						<ul class="ink-tabs-nav ink-h-nav">
+							<li class="active"><a href="#home">Home</a></li>
+							<li><a href="#news">News</a></li>
+							<li><a href="#description">Description</a></li>
+							<li><a href="#stuff">Stuff</a></li>
+							<li><a href="#more_stuff">More stuff</a></li>
+						</ul>
+						<div id="home" class="ink-tabs-container">
+							<p>
+								Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic organizm. Living tissue over endoskeleton. 
+								You're not going to have your mommies right behind you to wipe your little tushies. Blondes. Consider it a divorce. 
+								Talk to the hand. Take it BACK. I'll be back. Knock knock. I did nothing. The pavement with his enemy. You LIE! 
+								I'm not shitting on you. Get down or I'll put you down. You are not you you're me. Scumbag. Bring your toy back to the carpet. 
+								Bring it back to the carpet. Dylan. You son of a bitch. Get down. Of course. I'm a Terminator. 
+								Talk to the hand. I need your clothes, your boots, and your motorcycle. Into the tunnel. My name is John Kimble and I love my car. I'll be back.
+							</p>
+						</div>
+						<div id="news" class="ink-tabs-container" style="display:none">
+							<p>
+								Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic organizm. Living tissue over endoskeleton. 
+								You're not going to have your mommies right behind you to wipe your little tushies. Blondes. Consider it a divorce. 
+								Talk to the hand. Take it BACK. I'll be back. Knock knock. I did nothing. The pavement with his enemy. You LIE! 
+								I'm not shitting on you. Get down or I'll put you down. You are not you you're me. Scumbag. Bring your toy back to the carpet. 
+								Bring it back to the carpet. Dylan. You son of a bitch. Get down. Of course. I'm a Terminator. 
+								Talk to the hand. I need your clothes, your boots, and your motorcycle. Into the tunnel. My name is John Kimble and I love my car. I'll be back.
+							</p>
+						</div>
+						<div id="descripton" class="ink-tabs-container" style="display:none">
+							<p>
+								Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic organizm. Living tissue over endoskeleton. 
+								You're not going to have your mommies right behind you to wipe your little tushies. Blondes. Consider it a divorce. 
+								Talk to the hand. Take it BACK. I'll be back. Knock knock. I did nothing. The pavement with his enemy. You LIE! 
+								I'm not shitting on you. Get down or I'll put you down. You are not you you're me. Scumbag. Bring your toy back to the carpet. 
+								Bring it back to the carpet. Dylan. You son of a bitch. Get down. Of course. I'm a Terminator. 
+								Talk to the hand. I need your clothes, your boots, and your motorcycle. Into the tunnel. My name is John Kimble and I love my car. I'll be back.
+							</p>
+						</div>
+						<div id="stuff" class="ink-tabs-container" style="display:none">
+							<p>
+								Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic organizm. Living tissue over endoskeleton. 
+								You're not going to have your mommies right behind you to wipe your little tushies. Blondes. Consider it a divorce. 
+								Talk to the hand. Take it BACK. I'll be back. Knock knock. I did nothing. The pavement with his enemy. You LIE! 
+								I'm not shitting on you. Get down or I'll put you down. You are not you you're me. Scumbag. Bring your toy back to the carpet. 
+								Bring it back to the carpet. Dylan. You son of a bitch. Get down. Of course. I'm a Terminator. 
+								Talk to the hand. I need your clothes, your boots, and your motorcycle. Into the tunnel. My name is John Kimble and I love my car. I'll be back.
+							</p>
+						</div>
+						<div id="more_stuff" class="ink-tabs-container" style="display:none">
+							<p>
+								Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic organizm. Living tissue over endoskeleton. 
+								You're not going to have your mommies right behind you to wipe your little tushies. Blondes. Consider it a divorce. 
+								Talk to the hand. Take it BACK. I'll be back. Knock knock. I did nothing. The pavement with his enemy. You LIE! 
+								I'm not shitting on you. Get down or I'll put you down. You are not you you're me. Scumbag. Bring your toy back to the carpet. 
+								Bring it back to the carpet. Dylan. You son of a bitch. Get down. Of course. I'm a Terminator. 
+								Talk to the hand. I need your clothes, your boots, and your motorcycle. Into the tunnel. My name is John Kimble and I love my car. I'll be back.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ink-l30">
+				<div class="ink-space">	
+					<h3>Tabs</h3>
+					<p>
+						Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
+						The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
+					</p>
 				</div>
 			</div>
 		</div>

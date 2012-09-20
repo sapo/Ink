@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="../css/ink.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="../css/ie6.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->

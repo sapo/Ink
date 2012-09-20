@@ -10,10 +10,10 @@
 /* Botões*/
 /* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
 /* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/*  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
 /* INK > TABLES */
+/*  |||||||||||||||||||||||||||||  Ink-js   ||||||||||||||||||||||||||| */
 .alert-msg,
 .block-alert-msg h4 {
   background: #fbe8bc;
@@ -2146,6 +2146,7 @@ input.btn_delete:active,
 .ink-h-nav a:hover {
   background: #e6e6e6;
   text-decoration: none;
+  color: #000000;
 }
 .ink-h-nav .submenu {
   display: none;
@@ -2976,7 +2977,7 @@ hr {
   display: block;
   overflow: hidden;
 }
-/* Slidebox */
+/* Modal box */
 .ink-modal {
   height: 400px;
   width: 600px;
@@ -3001,6 +3002,16 @@ hr {
   color: #FFF;
   z-index: 1;
 }
+/* Tabs */
+.ink-tabs-nav {
+  border-bottom: 2px solid #e6e6e6;
+}
+.ink-tabs-nav li.active {
+  background: #E6E6E6;
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+}
 @media (max-width: 650px) {
   /* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
   /*  |||||||||||||||||||||||||||||  Default Colors   ||||||||||||||||||||||||||| */
@@ -3013,10 +3024,10 @@ hr {
   /* Botões*/
   /* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
   /* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
   /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+  /*  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
   /* INK > TABLES */
+  /*  |||||||||||||||||||||||||||||  Ink-js   ||||||||||||||||||||||||||| */
   /* Functions */
   html .ink-container {
     width: auto;
