@@ -1,0 +1,53 @@
+.ink-clearfix, .ink-container, .ink-section, .ink-space, .ink-g100 {zoom:1}
+
+.h_navigation li {list-style: none!important; display: inline;}
+
+
+.ink-g100 {width: 99.9%!important}  
+.ink-g90 {width: 89.9%!important}  
+.ink-g80 {width: 79.9%!important}  
+.ink-g75 {width: 74.9%!important}  
+.ink-g70 {width: 69.9%!important} 
+.ink-g66 {width: 66.56%!important} 
+.ink-g60 {width: 59.9%!important}                              
+.ink-g50 {width: 49.7%!important} 
+.ink-g40 {width: 39.9%!important} 
+.ink-g33 {width: 33.23%!important} 
+.ink-g30 {width: 29.9%!important} 
+.ink-g25 {width: 24.9%!important} 
+.ink-g20 {width: 19.9%!important} 
+.ink-g10 {width: 9.9%!important}
+
+.e_wrap.error, form .warning  {background: transparent!important;}
+.error input {border:1px solid red!important;}
+
+.block-alert-msg .close {position:absolute; right:0px; top:0px;}
+.block-alert-msg {
+	.gradient(#fefbf3, #fefbf3, 100%);
+	border: 1px solid #eee;
+	padding:0px;
+	position:relative
+}
+
+.block-alert-msg p {zoom:1; z-index: 9; color: #444;} 
+
+.ink-button, .btn_success, .btn_info, .btn_delete {
+	font-size: 1em;
+	font-weight: bold;
+	padding: @btnPadding;
+	float:none;
+	border: 1px solid #ccc;
+	cursor:pointer;
+	.createBtn(@btnBg);
+	.round-corners(@border-radius);
+	color: @btnColor;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	margin:5px;
+	text-decoration: none;
+}
+
+input.btn_success, .btn_success{.createBtn(@successBtnBg);}			            
+input.btn_info, .btn_info{.createBtn(@InfoBtnBg);}						
+input.btn_delete, .btn_delete{.createBtn(@DeleteBtnBg);}
+
+#topbar h1 a{text-decoration: none!important;}

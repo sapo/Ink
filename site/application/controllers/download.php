@@ -19,6 +19,9 @@ class Download extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+
+
 	public function index()
 	{
 		$data['pages'] = $this->config->item('site_pages');
@@ -33,201 +36,189 @@ class Download extends CI_Controller {
 		$this->load->view('common/document_bottom');
 	}
 
+	private function prepare_build_space(){
+
+		$build_path = $this->config->item('build_path');
+		$build_dir_name = md5(time().rand());
+		mkdir($build_path.$build_dir_name);
+		mkdir($build_path.$build_dir_name.'/ink');
+		mkdir($build_path.$build_dir_name.'/ink/assets');
+		mkdir($build_path.$build_dir_name.'/ink/assets/css');
+		mkdir($build_path.$build_dir_name.'/ink/assets/js');
+		mkdir($build_path.$build_dir_name.'/ink/assets/images');
+		mkdir($build_path.$build_dir_name.'/ink/assets/fonts');
+		mkdir($build_path.$build_dir_name.'/ink/less');
+		return array('build_site'=>$build_path.$build_dir_name,'build_name'=>$build_dir_name);
+
+	}
+
+	private function generate_ink_config($build_site,$build_name) {
+
+		$new_ink_config = fopen($build_site.'/'.$build_name.'.less','w+');
+
+		fwrite($new_ink_config, "@import \"../latest/less/normalize.less\";\n");
+		fwrite($new_ink_config, "@import \"../latest/less/conf.less\";\n");
+		fwrite($new_ink_config, "@import \"../latest/less/lib.less\";\n");
+		fwrite($new_ink_config, "@import \"../latest/less/common.less\";\n");
+
+		foreach($this->input->post() as $module_name => $module_value)
+		{
+			if($module_name != 'download'){
+				fwrite($new_ink_config, "@import \"../latest/less/".$module_name.".less\";\n");
+			}
+		}
+	}
+
+// INK = ./css/ink.css
+// INK_MIN = ./css/ink-min.css
+// INK_LESS = ./less/ink.less
+// INK_LARGE = ./css/large.css
+// INK_LARGE_MIN = ./css/large-min.css
+// INK_LARGE_LESS = ./less/large.less
+// INK_MEDIUM = ./css/medium.css
+// INK_MEDIUM_MIN = ./css/medium-min.css
+// INK_MEDIUM_LESS = ./less/medium.less
+// INK_SMALL = ./css/small.css
+// INK_SMALL_MIN = ./css/small-min.css
+// INK_SMALL_LESS = ./less/small.less
+
+// DATE=$(shell date +%I:%M%p)
+// CHECK=\033[32m✔\033[39m
+// HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+// ink:
+// 	@recess ${INK_LESS} --compile > ${INK}
+// 	@recess ${INK_LARGE_LESS} --compile > ${INK_LARGE}
+// 	@recess ${INK_MEDIUM_LESS} --compile > ${INK_MEDIUM}
+// 	@recess ${INK_SMALL_LESS} --compile > ${INK_SMALL}	
+// 	@echo "${HR}"
+// 	@echo "Compiling InK...            ${CHECK} Done"
+// 	@echo "${HR}"
+// 	@rm -f ./Makefile2
+
+
+// minified:
+// 	@recess ${INK_LESS} --compile --compress > ${INK_MIN}
+// 	@recess ${INK_LARGE_LESS} --compile --compress > ${INK_LARGE_MIN}
+// 	@recess ${INK_MEDIUM_LESS} --compile --compress > ${INK_MEDIUM_MIN}
+// 	@recess ${INK_SMALL_LESS} --compile --compress > ${INK_SMALL_MIN}	
+// 	@echo "${HR}"
+// 	@echo "Compiling minified version of InK...            ${CHECK} Done"
+// 	@echo "${HR}"
+
+// clean: 
+// 	@rm -f 
+
+	private function generate_ink_makefile($build_site,$ink_modules) {
+
+		$make_filename = 'Makefile';
+		$new_ink_makefile = fopen($build_site.'/'.$make_filename,'w+');
+		$build_path = $this->config->item('build_path');
+
+		// LESS FILES
+		fwrite($new_ink_makefile, "INK_LESS = " . $build_site . "/".$ink_modules.".less\n");
+		fwrite($new_ink_makefile, "INK_LARGE_LESS = ".$build_path."latest/less/large.less\n");
+		fwrite($new_ink_makefile, "INK_MEDIUM_LESS = ".$build_path."latest/less/medium.less\n");
+		fwrite($new_ink_makefile, "INK_SMALL_LESS = ".$build_path."latest/less/small.less\n");
+		fwrite($new_ink_makefile, "INK_IE6_LESS = ".$build_path."latest/less/ie6.less\n");
+		fwrite($new_ink_makefile, "INK_IE7_LESS = ".$build_path."latest/less/ie7.less\n\n");
+
+		// COMPILED CSS FILES
+		fwrite($new_ink_makefile, "INK = " . $build_site . "/ink/assets/css/ink.css\n");
+		fwrite($new_ink_makefile, "INK_LARGE = " . $build_site . "/ink/assets/css/large.css\n");
+		fwrite($new_ink_makefile, "INK_MEDIUM = " . $build_site . "/ink/assets/css/medium.css\n");
+		fwrite($new_ink_makefile, "INK_SMALL = " . $build_site . "/ink/assets/css/small.css\n");
+		fwrite($new_ink_makefile, "INK_IE6 = " . $build_site . "/ink/assets/css/ink-ie6.css\n");
+		fwrite($new_ink_makefile, "INK_IE7 = " . $build_site . "/ink/assets/css/ink-ie7.css\n\n");
+
+		// COMPILED AND MINIFIED CSS FILES
+		fwrite($new_ink_makefile, "INK_MIN = " . $build_site . "/ink/assets/css/ink-min.css\n");
+		fwrite($new_ink_makefile, "INK_LARGE_MIN = " . $build_site . "/ink/assets/css/large-min.css\n");
+		fwrite($new_ink_makefile, "INK_MEDIUM_MIN = " . $build_site . "/ink/assets/css/medium-min.css\n");
+		fwrite($new_ink_makefile, "INK_SMALL_MIN = " . $build_site . "/ink/assets/css/small-min.css\n");
+		fwrite($new_ink_makefile, "INK_IE6_MIN = " . $build_site . "/ink/assets/css/ink-ie6-min.css\n");
+		fwrite($new_ink_makefile, "INK_IE7_MIN = " . $build_site . "/ink/assets/css/ink-ie7-min.css\n\n");
+
+		// SOME VISUAL CRAP TO ENTERTAIN THE BUILDERS
+		fwrite($new_ink_makefile,"\nDATE=$(shell date +%I:%M%p)\n");
+		fwrite($new_ink_makefile,"CHECK=\\033[32m✔\\033[39m\n");
+		fwrite($new_ink_makefile,"HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\n\n");
+
+		// THE TARGETS
+		fwrite($new_ink_makefile, "all:\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_LESS} --compile > \${INK}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_LESS} --compile --compress > \${INK_MIN}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_LARGE_LESS} --compile > \${INK_LARGE}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_LARGE_LESS} --compile --compress > \${INK_LARGE_MIN}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_MEDIUM_LESS} --compile > \${INK_MEDIUM}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_MEDIUM_LESS} --compile --compress > \${INK_MEDIUM_MIN}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_SMALL_LESS} --compile > \${INK_SMALL}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_SMALL_LESS} --compile --compress > \${INK_SMALL_MIN}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_IE6_LESS} --compile > \${INK_IE6}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_IE6_LESS} --compile --compress > \${INK_IE6_MIN}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_IE7_LESS} --compile > \${INK_IE7}\n");
+		fwrite($new_ink_makefile, "\t@recess \${INK_IE7_LESS} --compile --compress > \${INK_IE7_MIN}\n");
+		
+
+		// fwrite($new_ink_makefile, "\t@echo \${HR}\n");
+		// fwrite($new_ink_makefile, "build-minified:\n");
+		// fwrite($new_ink_makefile, "clean:\n");		
+
+		// CLOSE THE MAKEFILE
+		fclose($new_ink_makefile);
+	}
+
+	private function build_custom_ink($build_site){
+
+		$make_command = "make -f ".$build_site."/Makefile";
+
+		exec($make_command, $result, $status_code);
+
+		if($status_code == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function latest()
 	{
-
 		$ink = $this->config->item('ink_path');
 		$ink_version_number = $this->config->item('ink_version_number');
 		$this->zip->read_dir($ink,false);
 		$this->zip->download('ink-'.$ink_version_number.'.zip');
 	}
 
-	public function minify_css($f) 
-	{
-		$command = 'yui-compressor '.$f;
-		exec($command,$result,$stc);
-		if($stc == 0){
-			return $result;
+	private function cleanup($build_site) {
+		$command = "rm -rf " . $build_site;
+		exec($command,$return,$status_code);
+		if($status_code == 0){
+			return true;
 		} else {
-			throw new Exception('Minification failed');
+			return false;
 		}
 	}
 
 	public function custom()
 	{
+		$build = $this->prepare_build_space();
+		// var_dump($build);
+		$this->generate_ink_config($build['build_site'],$build['build_name']);
+		$this->generate_ink_makefile($build['build_site'],$build['build_name']);
 
-		// PHYSICAL PATH TO INK FILES
-		$ink_path = $this->config->item('ink_path');
-
-		// CURRENT VERSION NUMBER
-		$ink_version_number = $this->config->item('ink_version_number');
-
-		// THE INK FILES 
-		$ink_files = $this->config->item('ink_files');
-
-		// REQUIRED FILES 
-		$ink_required_files = $ink_files['required'];
-
-		// MODULE FILES
-		$ink_modules = $ink_files['modules'];
-
-		// IE MODULE FILES
-		$ink_ie = $ink_files['ie'];
+		$build_status = $this->build_custom_ink($build['build_site']);
 		
-		// GET THE USER SELECTIONS FROM THE POSTED FORM 
-		$form_fields = $this->input->post();
 
 
-		// SEPARATE OPTIONS LIKE MINIFY AND INCLUDE LESS FROM THE SELECTED MODULES
-		// INTO THEIR OWN ARRAYS TO BE USED TO GENERATE THE APROPRIATE ZIP FILES.
+		$this->zip->read_dir($build['build_site']."/ink/",false);
+
+		// var_dump($this->cleanup($build['build_site']));
+
+		$this->zip->download('ink-custom.zip');
+
 		
-		foreach ($form_fields as $field => $value) 
-		{
-			// IS THIS AN OPTION?
-			if(preg_match('/option/i', $field)) 
-			{
-				$ink_selected_options[$field] = $value;
-			}
-			// IS THIS A MODULES?
-			elseif( !preg_match('/download/i', $field) ) 
-			{
-				$ink_selected_modules[$field] =  $value;
-			}
-
-		}
-
-		// PREPARE THE COMMON AND REQUIRED FILES
-
-		// CHECK IF THE USER WANT'S THE LESS FILES AND INCLUDE THEM IN THE ZIP PACKAGE
-
-		if (isset($ink_selected_options['option-include-less']) && $ink_selected_options['option-include-less'] == 1){
-
-			$file_type = 'less';
-
-			// var_dump($ink_modules[$file_type]);
-
-			foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
-				$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
-				$package_file = fopen($filename, 'r');
-				$file_content = fread($package_file,filesize($filename));
-				$this->zip->add_data($file_type . '/' . $ink_required_file . '.' . $file_type, $file_content);
-			}
-
-			foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
-				$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
-				$package_file = fopen($filename, 'r');
-				$file_content = fread($package_file,filesize($filename));
-				$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type, fread($package_file,filesize($filename)));
-			}
-
-			foreach ( $ink_selected_modules as $ink_selected_module => $value ) {
-
-				if(is_array($ink_modules[$ink_selected_module][$file_type]))
-				{
-
-					$this->zip->add_dir('less/grids');
-
-					foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
-					{
-						$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
-						$package_file = fopen($filename, 'r');
-						$file_content = fread($package_file,filesize($filename));
-						$archive_file_name = $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
-						$this->zip->add_data($archive_file_name, $file_content);
-					}
-				} else {
-					$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
-					$package_file = fopen($filename, 'r');
-					$file_content = fread($package_file,filesize($filename));
-					$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type, $file_content);
-				}
-			}		
-
-		} 
-
-		// INCLUDE THE REQUIRED CSS FILES IN THE ZIP PACKAGE
-
-		$file_type = 'css';
-
-		// CHECK IF THE USER WANT'S THE CSS TO BE MINIFIED
-
-		if(isset($ink_selected_options['option-minify']) && $ink_selected_options['option-minify'] == 1)
-		{
-		
-			$INK_MINIFIED = '';
-
-			foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
-				$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
-				$package_file = $this->minify_css($filename);
-				$INK_MINIFIED .= ' '.$package_file[0];
-			}
-
-			foreach ( $ink_selected_modules as $ink_selected_module => $value ) {								
-
-				if(is_array($ink_modules[$ink_selected_module][$file_type]))
-				{
-					foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
-					{
-						$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
-						$package_file = $this->minify_css($filename);
-						$INK_MINIFIED .= ' '.$package_file[0];
-					}
-				} else {
-					$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
-					$package_file = $this->minify_css($filename);
-					$INK_MINIFIED .= ' '.$package_file[0];
-				}
-
-			}
-
-			foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
-				$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
-				$package_file = fopen($filename, 'r');
-				$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type);
-			}
-
-			$this->zip->add_data($file_type . '/' .'ink-min.' . $file_type, $INK_MINIFIED);
-		} 
-
-		else 
-		{
-			foreach ( $ink_required_files[$file_type] as $ink_required_file ) {
-				$filename = $ink_path . $file_type . '/' . $ink_required_file . '.' . $file_type;
-				$package_file = fopen($filename,'r');
-				$file_content = fread($package_file,filesize($filename));
-				$this->zip->add_data($file_type . '/' . $ink_required_file . '.' . $file_type, $file_content);
-			}
-
-			foreach ( $ink_selected_modules as $ink_selected_module => $value ) {								
-
-				if(is_array($ink_modules[$ink_selected_module][$file_type]))
-				{
-					foreach($ink_modules[$ink_selected_module][$file_type] as $index => $module)
-					{
-						$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type;
-						$package_file = fopen($filename,'r');
-						$file_content = fread($package_file,filesize($filename));
-						$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type][$index] . '.' . $file_type, $file_content);
-					}
-				} else {
-					$filename = $ink_path . $file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type;
-					$package_file = fopen($filename, 'r');
-					$file_content = fread($package_file,filesize($filename));
-					$this->zip->add_data($file_type . '/' . $ink_modules[$ink_selected_module][$file_type] . '.' . $file_type, $file_content);
-				}
-
-			}
-
-			foreach ( $ink_ie[$file_type] as $ink_ie_module ) {
-				$filename = $ink_path . $file_type . '/' . $ink_ie_module . '.' . $file_type;
-				$package_file = fopen($filename, 'r');
-				$file_content = fread($package_file,filesize($filename));
-				$this->zip->add_data($file_type . '/' . $ink_ie_module . '.' . $file_type, $file_content);
-			}
-		}
-	
-		$this->zip->download('ink-'.$ink_version_number.'-custom.zip');
 	}
+
 }
 
 /* End of file welcome.php */

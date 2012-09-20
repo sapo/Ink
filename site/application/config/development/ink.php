@@ -16,6 +16,8 @@
 
 $config['base_path']	= '/home/pedro/work/ink/site/';
 
+$config['build_path']	= '/home/pedro/work/ink/site/builds/';
+
 /*
 |--------------------------------------------------------------------------
 | Base Site PAth
@@ -172,12 +174,13 @@ $config['ink_modules'] = array(
 	array(
 		'label' => array(
 			'text' => 'Layout',
-			'for' => 'layout'
+			'for' => 'grid'
 		),
 		'attributes' => array(
-			'id' => 'layout',
-			'name' => 'layout',
-			'value' => '1'
+			'id' => 'grid',
+			'name' => 'grid',
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	),
 	array(
@@ -188,7 +191,8 @@ $config['ink_modules'] = array(
 		'attributes' => array(
 			'id' => 'navigation',
 			'name' => 'navigation',
-			'value' => '1'
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	),
 	array(
@@ -199,7 +203,8 @@ $config['ink_modules'] = array(
 		'attributes' => array(
 			'id' => 'typography',
 			'name' => 'typography',
-			'value' => '1'
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	),
 	array(
@@ -210,7 +215,8 @@ $config['ink_modules'] = array(
 		'attributes' => array(
 			'id' => 'icons',
 			'name' => 'icons',
-			'value' => '1'
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	),
 	array(
@@ -221,7 +227,8 @@ $config['ink_modules'] = array(
 		'attributes' => array(
 			'id' => 'forms',
 			'name' => 'forms',
-			'value' => '1'
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	),
 	array(
@@ -232,7 +239,8 @@ $config['ink_modules'] = array(
 		'attributes' => array(
 			'id' => 'alerts',
 			'name' => 'alerts',
-			'value' => '1'
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	),
 	array(
@@ -243,7 +251,8 @@ $config['ink_modules'] = array(
 		'attributes' => array(
 			'id' => 'tables',
 			'name' => 'tables',
-			'value' => '1'
+			'value' => '1',
+			'checked' => 'checked'
 		)
 	)
 );
@@ -252,22 +261,22 @@ $config['ink_options'] = array(
 	array(
 		'label' => array(
 			'text' => 'Include LESS files?',
-			'for' => 'option-include-less'
+			'for' => 'o-include-less'
 		),
 		'attributes' => array(
-			'id' => 'option-include-less',
-			'name' => 'option-include-less',
+			'id' => 'o-include-less',
+			'name' => 'o-include-less',
 			'value' => '1'
 		)
 	),
 	array(
 		'label' => array(
 			'text' => 'Minify css?',
-			'for' => 'option-minify'
+			'for' => 'o-minify'
 		),
 		'attributes' => array(
-			'id' => 'option-minify',
-			'name' => 'option-minify',
+			'id' => 'o-minify',
+			'name' => 'o-minify',
 			'value' => '1'
 		)
 	),
