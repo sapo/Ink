@@ -10,10 +10,10 @@
 /* Botões*/
 /* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
 /* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
-/*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+/*  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
 /* INK > TABLES */
+/*  |||||||||||||||||||||||||||||  Ink-js   ||||||||||||||||||||||||||| */
 .alert-msg,
 .block-alert-msg h4 {
   background: #fbe8bc;
@@ -693,29 +693,6 @@ a.ink-button.ink-info .ink-disabled:hover {
 .ink-size-xl {
   font-size: 1.45em;
 }
-/*  Font Awesome
-    the iconic font designed for use with Twitter Bootstrap
-    -------------------------------------------------------
-    The full suite of pictographic icons, examples, and documentation
-    can be found at: http://fortawesome.github.com/Font-Awesome/
-
-    License
-    -------------------------------------------------------
-    The Font Awesome webfont, CSS, and LESS files are licensed under CC BY 3.0:
-    http://creativecommons.org/licenses/by/3.0/ A mention of
-    'Font Awesome - http://fortawesome.github.com/Font-Awesome' in human-readable
-    source code is considered acceptable attribution (most common on the web).
-    If human readable source code is not available to the end user, a mention in
-    an 'About' or 'Credits' screen is considered acceptable (most common in desktop
-    or mobile software).
-
-    Contact
-    -------------------------------------------------------
-    Email: dave@davegandy.com
-    Twitter: http://twitter.com/fortaweso_me
-    Work: Lead Product Designer @ http://kyruus.com
-
-    */
 @font-face {
   font-family: 'FontAwesome';
   src: url('../demo/styles/webfonts/fontawesome-webfont.eot');
@@ -2169,6 +2146,7 @@ input.btn_delete:active,
 .ink-h-nav a:hover {
   background: #e6e6e6;
   text-decoration: none;
+  color: #000000;
 }
 .ink-h-nav .submenu {
   display: none;
@@ -2810,157 +2788,229 @@ hr {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
 }
-.datepicker-Bg-Color {
-  background: #eaeaea;
-  zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eaeaea', endColorstr='#d0d0d0');
-  background: -moz-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eaeaea), color-stop(100%, #d0d0d0));
-  background: -webkit-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: -o-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: -ms-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
+/* Geral */
+.ink-gallery {
+  width: 600px;
+  position: relative;
 }
-.sapo_component_datepicker {
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+.ink-gallery .pagination {
+  width: 100%;
   text-align: center;
-  padding: 5px;
-  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
-  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
-  background: #eaeaea;
-  zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eaeaea', endColorstr='#d0d0d0');
-  background: -moz-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eaeaea), color-stop(100%, #d0d0d0));
-  background: -webkit-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: -o-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: -ms-linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
-  background: linear-gradient(top, #eaeaea 0%, #d0d0d0 100%);
   position: absolute;
-  display: none;
-  z-index: 1;
+  bottom: 0;
 }
-.sapo_component_datepicker a {
-  text-decoration: none;
-}
-.sapo_component_datepicker li {
-  list-style: none inside;
-}
-.sapo_cal_top_options {
-  padding: 5px;
-  font-size: .8em;
-  color: #aaa;
-}
-.sapo_cal_top_options .clean {
-  float: left;
-}
-.sapo_cal_top_options .close {
-  float: right;
-}
-.sapo_cal_top {
-  line-height: 2em;
-  background-color: rgba(255, 255, 255, 0.7);
+.ink-gallery .pagination a {
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  margin: 10px 3px;
+  display: inline-block;
   vertical-align: middle;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+  background: rgba(255, 255, 255, 0.4);
 }
-.sapo_cal_top div {
-  float: left;
-  color: #999999;
+.ink-gallery .pagination a:hover,
+.ink-gallery .pagination a.active {
+  background: rgba(255, 255, 255, 0.9);
 }
-.sapo_cal_top .sapo_cal_prev,
-.sapo_cal_top .sapo_cal_next {
-  width: 10%;
+.ink-gallery .slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
-.sapo_cal_top .sapo_cal_month_desc {
-  width: 80%;
+.ink-gallery .slider ul {
+  white-space: nowrap;
+  font-size: 0;
 }
-.sapo_cal_top div a {
-  color: #00c1f9;
+.ink-gallery .slider li {
+  display: inline-block;
 }
-.sapo_cal_month,
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
-  margin-top: .5em;
-  padding-left: 0;
+/* Typography */
+.ink-gallery .article_text.example1 {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 66%;
+  padding: 1em;
 }
-.sapo_cal_month ul,
-.sapo_cal_year_selector ul,
-.sapo_cal_month_selector ul {
-  clear: both;
-  padding-left: 0;
+.ink-gallery .article_text.example2 {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5em;
 }
-.sapo_cal_month .sapo_cal_header {
-  color: #aaa;
+.ink-gallery .article_text h1 {
+  color: #FFF;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+  font-size: 2em;
 }
-.sapo_cal_month li,
-.sapo_cal_year_selector ul li,
-.sapo_cal_month_selector ul li {
-  width: 2.4em;
-  float: left;
-  text-align: center;
-  padding: 0;
+.ink-gallery .article_text p {
+  color: #FFF;
+  font-size: 0.875em;
+  line-height: 1.5em;
   margin: 0;
 }
-.sapo_cal_year_selector ul li {
-  width: 4em;
+/* Gallery -  Thumbs bottom */
+.ink-gallery .stage {
+  height: 400px;
+  position: relative;
 }
-.sapo_cal_month_selector ul li {
-  width: 3.4em;
+.ink-gallery nav li {
+  margin: 0;
 }
-.sapo_cal_month li a,
-.sapo_cal_year_selector li a,
-.sapo_cal_month_selector li a {
-  margin: 0px;
-  line-height: 2em;
-  vertical-align: middle;
+.ink-gallery nav a.next,
+.ink-gallery nav a.previous {
   display: block;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  z-index: 9;
 }
-.sapo_cal_month .sapo_cal_header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 5px;
+.ink-gallery nav a.next {
+  right: 0;
 }
-.sapo_cal_month li a:hover,
-.sapo_cal_year_selector li a:hover,
-.sapo_cal_month_selector li a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.ink-gallery nav a.previous {
+  left: 0;
 }
-.sapo_cal_month li a,
-.sapo_cal_year_selector li a,
-.sapo_cal_month_selector li a {
-  color: #444444;
+.ink-gallery nav a.next:after,
+.ink-gallery nav a.previous:after {
+  content: "";
+  position: absolute;
+  top: 46%;
+  border-top: 32px solid rgba(255, 255, 255, 0);
+  border-bottom: 32px solid rgba(255, 255, 255, 0);
 }
-.sapo_cal_month.sapo_cal_header {
-  width: 100%;
+.ink-gallery nav a.next:after {
+  right: -14px;
+  border-left: 24px solid rgba(0, 0, 0, 0.6);
 }
-.sapo_cal_top:after,
-.sapo_cal_middle:after,
-.sapo_cal_top_options:after,
-.sapo_component_datepicker:after,
-.sapo_cal_month .sapo_cal_header:after,
-.sapo_cal_month .sapo_cal_middle ul:after {
-  content: ".";
+.ink-gallery nav a.previous:after {
+  left: -14px;
+  border-right: 24px solid rgba(0, 0, 0, 0.6);
+}
+.ink-gallery .thumbs {
+  position: relative;
+}
+.ink-gallery .thumbs ul {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ink-gallery .thumbs li {
+  width: 96px;
+  display: inline-block;
+  margin: 10px 0 10px 10px;
+  vertical-align: top;
+  font-size: 0.75em;
+  line-height: 1.5em;
+}
+.ink-gallery .thumbs li:first-child {
+  margin-left: 0;
+}
+.ink-gallery .thumbs li a {
   display: block;
+  text-decoration: none;
+  color: #0069d6;
+}
+.ink-gallery .thumbs li a:hover {
+  text-decoration: underline;
+}
+.ink-gallery .thumbs li span {
+  white-space: pre-wrap;
+  display: block;
+}
+.ink-gallery .thumbs .pagination {
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+}
+.ink-gallery .thumbs .pagination a {
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  margin: 10px 3px;
+}
+.ink-gallery .thumbs a.next,
+.ink-gallery .thumbs a.previous {
+  content: "";
   height: 0;
+  width: 0;
+  position: relative;
+  background: transparent;
+  border-radius: 0;
+  border-top: 12px solid rgba(255, 255, 255, 0);
+  border-bottom: 12px solid rgba(255, 255, 255, 0);
+}
+.ink-gallery .thumbs a.next {
+  margin-left: 6px;
+  border-left: 10px solid rgba(255, 255, 255, 0.4);
+}
+.ink-gallery .thumbs a.previous {
+  margin-right: 6px;
+  border-right: 10px solid rgba(255, 255, 255, 0.4);
+}
+.ink-gallery .thumbs a.next:hover {
+  border-left: 10px solid rgba(255, 255, 255, 0.9);
+}
+.ink-gallery .thumbs a.previous:hover {
+  border-right: 10px solid rgba(255, 255, 255, 0.9);
+}
+/* Gallery - Thumbs right */
+.ink-gallery.rightNav .stage {
+  width: 400px;
+  float: left;
+}
+.ink-gallery.rightNav .thumbs {
+  height: 400px;
+  overflow: hidden;
+}
+.ink-gallery.rightNav .thumbs img {
+  float: left;
+  margin-right: 10px;
+}
+.ink-gallery.rightNav .thumbs li {
+  width: 290px;
+  margin: 0 0 10px 10px;
   clear: both;
-  visibility: hidden;
-  zoom: 1;
+  display: block;
+  overflow: hidden;
 }
-.sapo_cal_on,
-.sapo_cal_on:hover {
-  background-color: #00c1f9;
+/* Modal box */
+.ink-modal {
+  height: 400px;
+  width: 600px;
+  background: #FFF;
+  z-index: 9999;
+  position: relative;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+.ink-modal a.close {
+  height: 26px;
+  width: 28px;
+  border-radius: 14px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding-top: 2px;
+  text-decoration: none;
+  text-align: center;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  color: #FFF;
+  z-index: 1;
+}
+/* Tabs */
+.ink-tabs-nav {
+  border-bottom: 2px solid #e6e6e6;
+}
+.ink-tabs-nav li.active {
+  background: #E6E6E6;
   color: #000;
-}
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
-  display: none;
+  font-weight: bold;
+  font-size: 15px;
 }
 @media (max-width: 650px) {
   /* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
@@ -2974,10 +3024,10 @@ hr {
   /* Botões*/
   /* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
   /* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
   /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
+  /*  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
   /* INK > TABLES */
+  /*  |||||||||||||||||||||||||||||  Ink-js   ||||||||||||||||||||||||||| */
   /* Functions */
   html .ink-container {
     width: auto;
@@ -3096,22 +3146,6 @@ hr {
   }
 }
 @media (min-width: 651px) and (max-width: 900px) {
-  /* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Default Colors   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Forms   ||||||||||||||||||||||||||| */
-  /* Size Variables */
-  /* Offset Variables */
-  /* Color Variables */
-  /* Estes valores têm que ser em rbga */
-  /* Botões*/
-  /* |||||||||||||||||||||||||||  Footer  ||||||||||||||||||||||||||| */
-  /* |||||||||||||||||||||||||||  Menus   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Pagination   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Tabs   ||||||||||||||||||||||||||| */
-  /*  |||||||||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||||||| */
-  /* INK > TABLES */
-  /* Functions */
   html body .ink-container {
     width: auto;
     padding: 0 15px;
