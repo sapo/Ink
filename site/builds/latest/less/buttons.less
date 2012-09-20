@@ -1,0 +1,54 @@
+.ink-button, 
+button, 
+input[type="button"], 
+input[type="submit"],
+a.ink-button {
+
+	-webkit-appearance: menuitem;
+	font-weight: bold;
+	font-size: 0.90em;
+	padding: @btnPadding;
+	float:none;
+	border: 1px solid #ccc;
+	cursor:pointer;
+	.createBtn(@btnBg);
+	.round-corners(@border-radius);
+	color: @btnColor;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	margin:5px;
+	text-decoration: none;
+	display: inline-block;
+
+	&[disabled], .ink-disabled {
+			.disable(@btnBg);
+		}
+
+	&.ink-warning {
+		.createBtn(@warning-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@warning-bg-color);
+		}
+	}
+
+	&.ink-caution {
+		.createBtn(@caution-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@caution-bg-color);
+		}
+	}
+
+	&.ink-success {
+		.createBtn(@success-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@success-bg-color);
+		}
+	}
+
+	&.ink-info {
+		.createBtn(@info-bg-color);
+		&[disabled], .ink-disabled {
+			.disable(@info-bg-color);
+		}
+	}
+
+}

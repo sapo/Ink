@@ -1,0 +1,59 @@
+@alertMsg-border-radius:@border-radius;
+@alertMsg-Bg: #f9e0a4;
+@alertMsg-Error-Bg:#eb6363;
+@alertMsg-success-Bg:#9dce62;
+@alertMsg-Info-Bg:#479cd8;
+
+.alert-msg, .block-alert-msg h4 {
+	.gradient(lighten(@alertMsg-Bg, 5%), darken(@alertMsg-Bg, 5%), 100%);
+	.box-shadow ('0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8),  inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+	padding:1em;
+	padding-top: 1.1em;
+	.round-corners(@alertMsg-border-radius);
+	font-size: .9em;
+	color: #666;  
+}
+.block-alert-msg, .alert-msg {margin:1em 0 }
+.alert-msg.success, .block-alert-msg.success h4 {.gradient(lighten(@alertMsg-success-Bg, 0%), darken(@alertMsg-success-Bg, 10%), 100%); color: #fff;}
+.alert-msg.error, .block-alert-msg.error h4 {.gradient(lighten(@alertMsg-Error-Bg, 0%), darken(@alertMsg-Error-Bg, 10%), 100%); color: #fff;}
+.alert-msg.info, .block-alert-msg.info h4 {.gradient(lighten(@alertMsg-Info-Bg, 5%), darken(@alertMsg-Info-Bg, 10%), 100%); color: #fff;}
+.alert-msg p, .block-alert-msg p {margin-right: 20px; margin-bottom: 0em;}
+
+
+.alert-msg .close, .block-alert-msg .close {
+	color: #000;
+	display: block;
+	text-decoration: none;
+	float: right;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	width: 13px; height: 12px;
+	// font-size: 22px;
+	line-height: .56em;
+	font-size: 1.8em;
+	opacity: 0.2;
+	text-shadow: white 0px 1px 0px;
+	padding:5px;
+	margin-top: -.15em;
+	margin-right: -.25em;
+	text-align: center;
+/*	background-color: #ddd;
+	.round-corners(@alertMsg-border-radius);*/
+}
+.block-alert-msg h4 {font-size: 1em; margin:0; .i-round-corners(@alertMsg-border-radius, @alertMsg-border-radius, 0, 0); .box-shadow ('inset 0 1px 0 rgba(255, 255, 255, 0.3)'); border-bottom: 1px solid darken(@alertMsg-Bg, 10%);}
+.block-alert-msg {
+	background: #FEFBF3;
+	.box-shadow ('0 1px 2px rgba(0, 0, 0, 0.1)');
+	border-bottom: 1px solid #ddd;
+	.round-corners(@alertMsg-border-radius);
+	font-size: .9em;
+}
+.block-alert-msg p, .block-alert-msg ul, .block-alert-msg ol {padding:1em;}
+.block-alert-msg .close {margin:.4em .2em 0 0}
+
+.block-alert-msg ul {list-style: inside}
+
+.block-alert-msg.success h4{border-bottom: 1px solid darken(@alertMsg-success-Bg, 10%);}
+.block-alert-msg.error h4{border-bottom: 1px solid darken(@alertMsg-Error-Bg, 10%); }
+.block-alert-msg.info h4{border-bottom: 1px solid darken(@alertMsg-Info-Bg, 10%);}
+
