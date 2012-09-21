@@ -19,7 +19,12 @@
 	<link rel="apple-touch-startup-image" href="styles/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 	
 	<link rel="stylesheet" href="../css/ink.css" type="text/css" media="screen" title="no title" charset="utf-8">
-
+	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/large-min.css" media="screen and (min-width: 901px)" />
+	<link rel="stylesheet" type="text/css" href="../css/medium-min.css" media="screen and (min-width: 651px) and (max-width: 900px)" />
+	<link rel="stylesheet" type="text/css" href="../css/small-min.css" media="screen and (max-width: 650px)" />
+	
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="../css/ie6.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
@@ -28,8 +33,6 @@
 	<link rel="stylesheet" href="../css/font-awesome-ie7.css">
 	<![endif]-->
 	
-	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/ink.js"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tabs/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tooltip/1.1/"></script>
