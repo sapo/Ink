@@ -11,6 +11,7 @@
 	<div class="ink-l40">
 		asds
 	</div>
+
 	<div class="ink-l60">
 		<?php echo form_open('download/custom',array('class'=>'ink-labels-above')) ?>
 		<?php echo form_fieldset('Modules') ?>
@@ -30,6 +31,21 @@
 			<?php echo form_label($option['label']['text'], $option['label']['for']) ?>		
 		<?php endforeach ?>
 		</div>
+		<?php echo form_fieldset_close() ?>
+		<?php echo form_fieldset('configuration') ?>
+		<?php foreach($config as $name => $vars): ?>
+			
+			<div class="ink-l33">
+				<div class="ink-rspace ink-form-">
+					<?php foreach($vars as $var => $value): ?>
+					<?php foreach($value as $abs => $merda): ?>
+						<?php echo form_label($abs,$abs)?>
+						<?php echo form_input(array('type' => 'text','id'=>$abs,'name'=>$abs,'placeholder'=>$merda)); ?>
+					<?php endforeach; ?>
+					<?php endforeach;?>
+				</div>
+			</div>
+		<?php endforeach ;?>
 		<?php echo form_fieldset_close() ?>
 		<?php echo form_submit(array('name' => 'download', 'value' => 'download', 'class' => 'button ink-info')); ?>
 		<?php echo form_close() ?>

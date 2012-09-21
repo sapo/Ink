@@ -136,7 +136,7 @@ html body .ink-vspace {
 }
 
 html body .ink-hspace {
-  margin: 0;
+  margins: 0;
 }
 
 html body .ink-rspace {
