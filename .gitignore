@@ -2,7 +2,7 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
-*/builds
+*/builds/*
 .DS_Store
 .DS_Store?
 ._*
