@@ -60,17 +60,10 @@
 		<div class="ink-space">
 			<h3>Markup</h3>
 			<p>Let's say you need your page container to always be 80% of your view port.</p>
+			<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-container"</span><span class="tag">&gt;</span></li></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l100"</span><span class="tag">&gt;</span></li><li><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+			<p>In conf.css, define:</p>
+			<pre class="prettyprint"><ol><li><span class="pun">.</span><span class="pln">ink-container </span><span class="pun">{</span></li><li><span class="pln">  </span><span class="kwd">width</span><span class="pun">:</span><span class="pln"> 80%</span><span class="pun">;</span></li><li><span class="pun">}</span></li></ol></pre>
 		</div>
-		<div class="ink-space">
-			<pre  class="prettyprint">&lt;div class=&quot;ink-container&quot;&gt;
-  &lt;div class=&quot;ink-l100&quot;&gt;
-    &lt;p&gt;Content&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-//In conf.css, define:
-.ink-container { width:80% }</pre>
-			</div>
 		</div>
 		
 		<div class="ink-section">
@@ -94,15 +87,7 @@
 						<div class="ink-l25 ink-m100 level2"><p>25%</p></div>
 					</div>
 				</div>
-				<pre  class="prettyprint ink-space">&lt;div class=&quot;ink-l100&quot;&gt;
-  &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l20&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l10&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l20&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;</pre>
+				<pre class="prettyprint ink-space"><ol><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l100"</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l20"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l10"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l20"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
 			</div>
 			<div class="ink-l50 gridExemple2">
 				<div class="ink-hspace box">
@@ -123,18 +108,7 @@
 						<div class="ink-l25 ink-m50"><p>25%</p></div>
 					</div>
 				</div>
-				<pre  class="prettyprint ink-space">&lt;div class=&quot;ink-l50&quot;&gt;
-  &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ink-l50&quot;&gt;
-  &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ink-l50&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;ink-l25&quot;&gt;&lt;/div&gt;</pre>
+				<pre class="prettyprint ink-space"><ol><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l100"</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li class="tag">&lt;/div&gt;</li><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln"></span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln"></span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln"></span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li></ol></pre>
 			</div>		
 			<div class="ink-space">
 				<p>You should use the <strong>.ink-lxx, .ink-mxx and ink-sxx</strong> classes for layout only and add an additional semantic class for further costumization. In this case, you could then use your conf.css file to customize .maincontent, .sidebar, etc.</p>
@@ -155,34 +129,25 @@
 			
 			<div class="ink-hspace box">
 				<div class="ink-vspace"><p>.ink-vspace</p></div>
-			</div><pre  class="prettyprint ink-space">//Defines width
-&lt;div class=&quot;ink-l33&quot;&gt; 
-  //Define as Margins ou Paddings
-  &lt;div class=&quot;ink-vspace&quot;&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
+			</div>
+			<pre class="prettyprint ink-space"><ol><li class="com">//Defines width</li><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l33"</span><span class="tag">&gt;</span></li><li>  <span class="com">//Defines margins</span></li><li>  <span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-vspace"</span><span class="tag">&gt;</span></li><li>    <span class="com">...</span></li><li><span class="tag">  &lt;/div&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
+
 		</div>
 		<div class="ink-l33">
 			
 			<div class="ink-hspace box">
-				<div class="ink-hspace" id="ola3" alt="bla vla vla"><p>.ink-hspace</p></div>
+				<div class="ink-hspace"><p>.ink-hspace</p></div>
 			</div>
-			<pre  class="prettyprint ink-space">//Defines width
-&lt;div class=&quot;ink-l33&quot;&gt; 
-  //Define as Margins ou Paddings
-  &lt;div class=&quot;ink-hspace&quot;&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
+			<pre class="prettyprint ink-space"><ol><li><span class="com">//Defines width</span></li><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l33"</span><span class="tag">&gt;</span></li><li>  <span class="com">//Defines margins</span></li><li>  <span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-hspace"</span><span class="tag">&gt;</span></li><li>  <span class="com">  ...</span></li><li><span class="tag">  &lt;/div&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
+
 		</div>
 		<div class="ink-l33">
 			
 			<div class="ink-hspace box">
 				<div class="ink-space"><p>.ink-space</p></div>
 			</div>
-			<pre  class="prettyprint ink-space">//Defines width
-&lt;div class=&quot;ink-l33&quot;&gt; 
-  //Define as Margins ou Paddings
-  &lt;div class=&quot;ink-space&quot;&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
-			
+			<pre class="prettyprint ink-space"><ol><li><span class="com">//Defines width</span></li><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l33"</span><span class="tag">&gt;</span></li><li>  <span class="com">//Defines margins</span></li><li>  <span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-space"</span><span class="tag">&gt;</span></li><li>    ...</li><li><span class="tag">  &lt;/div&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
+
 		</div>
 	</div>
 	
