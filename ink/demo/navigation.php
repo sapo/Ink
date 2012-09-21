@@ -7,7 +7,8 @@
 			<li><a href="grid.php">Layout</a></li>
 			<li class="active"><a href="navigation.php">Navigation</a></li>
 			<li><a href="typo.php">Typography & Icons</a></li>
-			<li><a href="forms.php">Forms & Alerts</a></li>
+			<li><a href="forms.php">Forms</a></li>
+			<li><a href="alerts.php">Alerts</a></li>
 			<li><a href="tables.php">Tables</a></li>
 			<li><a href="widgets.php">InkJS</a></li>
 		</ul>
@@ -38,7 +39,7 @@
 			<h3>Horizontal menu</h3>
 			<p>
 				Horizontal menus can be used as primary navigation of the website or applied as top bar.
-				To build this navigation you just need to use the class <mark>.ink-h-nav</mark>.
+				To build this navigation you just need to use the class <code>.ink-h-nav</code>.
 			</p>
 		</div>
 		
@@ -62,39 +63,19 @@
 		<div class="ink-l100">
 			<div class="ink-space">
 				<p class="note">
-					<strong>Note: </strong>The menu can be built in many different ways, using  <mark>&lt;a&gt;</mark>, 
-					<mark>&lt;ul&gt;</mark> or the new <span class="label_new">HTML5</span> tag <mark>&lt;nav&gt;</mark>
+					<strong>Note: </strong>The menu can be built in many different ways, using  <code>&lt;a&gt;</code>, 
+					<code>&lt;ul&gt;</code> or the new <span class="label_new">HTML5</span> tag <code>&lt;nav&gt;</code>
 				</p>
 			
-				<pre class="prettyprint">
-&lt;nav&gt;
-   &lt;ul class="ink-h-nav"&gt;
-      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-   &lt;/ul&gt;
-&lt;/nav&gt;</pre>
+				<pre class="prettyprint"><ol><li><span class="tag">&lt;nav</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-h-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/ul</span><span class="tag">&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
 			</div>
 		
 			<div class="ink-space">
 				<h4>Submenu</h4>
-				<p><mark>&lt;ul&gt;</mark> (Unsorted Lists) based menus may have submenus respecting the following structure:</p>
+				<p><code>&lt;ul&gt;</code> (Unsorted Lists) based menus may have submenus respecting the following structure:</p>
 				
-				<pre class="prettyprint">
-&lt;nav&gt;
-   &lt;ul class="ink-h-nav"&gt;
-      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
-         &lt;ul class=&quot;submenu&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
-            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
-         &lt;/ul&gt;
-      &lt;/li&gt; 
-   &lt;/ul&gt;
-&lt;/nav&gt;</pre>
-			</div>
+<pre class="prettyprint"><ol><li><span class="tag">&lt;nav</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-h-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;</span></li><li><span class="tag">      &lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;</span></li><li>      <span class="tag">&lt;ul</span> <span class="atn">class<span class="pun">=</span><span class="atv">"submenu"</span></span><span class="tag">&gt;</span></li><li>        <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">SubItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>        <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">SubItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>      <span class="tag">&lt;/ul&gt;</span></li><li><span class="tag">    &lt;/li&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/ul</span><span class="tag">&gt;</span></li><li><span class="tag">&lt;/nav&gt;</span></li></ol></pre>			
+</div>
 		</div>
 	</div>
 	
@@ -124,21 +105,10 @@
 		<div class="ink-l60">
 			<div class="ink-space">
 				<p>
-					Os menus verticais podem ser utilizados como navegação primária do site ou aplicação assim como barra de topo.
-					Para construir este tipo de navegação basta usar a class <mark>.ink-v-nav</mark>.
+					Vertical menus are built exactly the same way as the horizontal ones, just replace the <code>&lt;ul&gt;</code> class with <code>.ink-v-nav</code>. The same goes for the submenus.
 				</p>
-				<pre class="prettyprint">&lt;nav&gt;
-   &lt;ul class="ink-v-nav"&gt;
-      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
-         &lt;ul class=&quot;submenu&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt; 
-            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;  
-         &lt;/ul&gt;
-      &lt;/li&gt; 
-   &lt;/ul&gt;
-&lt;/nav&gt;</pre>
+<pre class="prettyprint"><ol><li><span class="tag">&lt;nav</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-v-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>    <span class="com">...</span></li><li><span class="tag">    &lt;li&gt;</span></li><li><span class="tag">      &lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;</span></li><li>      <span class="tag">&lt;ul</span> <span class="atn">class<span class="pun">=</span><span class="atv">"submenu"</span></span><span class="tag">&gt;</span></li><li>        <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">SubItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>        <span class="com">...</span><span class="tag"></span></li><li>      <span class="tag">&lt;/ul&gt;</span></li><li><span class="tag">    &lt;/li&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/ul</span><span class="tag">&gt;</span></li><li><span class="tag">&lt;/nav&gt;</span></li></ol></pre>			
+
 			</div>
 		</div>
 	</div>
@@ -150,13 +120,8 @@
 				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 			</p>
-<pre class="prettyprint">&lt;footer&gt;
-   &lt;ul class="ink-footer-nav"&gt;
-      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt; 
-   &lt;/ul&gt;
-&lt;/footer&gt;</pre>
+<pre class="prettyprint"><ol><li><span class="tag">&lt;footer</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-footer-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">footerItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    </span><span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">footerItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>    <span class="com">...</span><span class="tag"></span></li><li>  <span class="tag">&lt;/ul&gt;</span></li><li><span class="tag">&lt;/footer&gt;</span></li></ol></pre>			
+
 		</div>
 	</div>
 </div>

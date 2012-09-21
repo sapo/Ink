@@ -9,21 +9,17 @@ form {
 
 		legend {
 
-			margin: 1em 0 0 0;
-			font-size: 1.2em;
-			font-weight: 700;
-			border-bottom: 1px solid #DDD;
-			padding-bottom: 0.40em;
+			margin: 1em 0;
 			text-shadow: 0 1px 0 white;
 			display: block;
 			width: 100%;
+			border-bottom:1px solid #ddd;
 		}
 
 	}	
 
 	label {
 		line-height: 1.5;
-		font-size: 0.80em;
 	}
 
 	.ink-form-validation {
@@ -45,7 +41,7 @@ form {
 		border:1px solid @form-elements-border-color;
 		resize: none;
 		// width: 100%;
-		// line-height: 1.3em;
+		line-height: 1.3em;
 		font-size: @fontSize;
 		.box-sizing(border-box);
 	}
@@ -60,7 +56,7 @@ form {
 
 	.ink-form-validation {
 
-		font-weight: 700;
+		/*font-weight: 700;*/
 			
 			&.ink-caution {
 				.make-caution(true);
@@ -121,7 +117,6 @@ form {
 	&.ink-labels-above {
 
 		label {
-			font-weight: bold;
 			display: block;
 			margin: 0.5em 0 0 0.2em;
 		}
@@ -147,7 +142,7 @@ form {
 			float: left;
 			line-height: 2.5;
 			margin-left: 0.55em;
-			margin-top: 0;
+			margin-top: -.3em;
 		}
 
 	}	

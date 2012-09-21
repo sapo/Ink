@@ -7,7 +7,8 @@
 			<li><a href="grid.php">Layout</a></li>
 			<li><a href="navigation.php">Navigation</a></li>
 			<li class="active"><a href="typo.php">Typography & Icons</a></li>
-			<li><a href="forms.php">Forms & Alerts</a></li>
+			<li><a href="forms.php">Forms</a></li>
+			<li><a href="alerts.php">Alerts</a></li>
 			<li><a href="tables.php">Tables</a></li>
 			<li><a href="widgets.php">InkJS</a></li>
 		</ul>
@@ -55,7 +56,7 @@
 			<div class="ink-space">
 				<h4>Links</h4>
 				<ul class="unstyled">
-					<li>Links (or hyperlinks) are defined by the tag <mark>&lt;a&gt;</mark></li>
+					<li>Links (or hyperlinks) are defined by the tag <code>&lt;a&gt;</code></li>
 					<li>There are 4 states for links:</li>
 					<li><a href="#">Normal</a></li>
 					<li><a href="#" class="visited">Visited</a></li>
@@ -65,8 +66,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="ink-section" id="listExemple">
-		<div class="ink-l25 ">
+	<div class="ink-section">
+		<div class="ink-l25">
 			<div class="ink-space">
 				<h4>List</h4>
 				<ul>
@@ -77,10 +78,7 @@
 					<li>In hac habitasse platea dictumst. Nam pulvinar, odio</li>
 					<li>Nam pulvinar, odio sed rhoncus</li>
 				</ul>
-				<pre class="prettyprint">&lt;ul&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;/ul&gt;</pre>
+<pre class="prettyprint"><ol><li><span class="tag">&lt;ul</span><span class="pln"></span><span class="tag">&gt;</span><span class="com"></span></li><li>  <span class="tag">&lt;li</span><span class="tag">&gt;</span><span class="com">...<span class="tag">&lt;/li</span><span class="tag">&gt;</span></span></li><li>  <span class="tag">&lt;li</span><span class="tag">&gt;</span><span class="com">...<span class="tag">&lt;/li</span><span class="tag">&gt;</span></span><span class="tag"></span></li><li><span class="tag">&lt;/ul&gt;</span></li></ol></pre>
 			</div>
 		</div>
 		<div class="ink-l25">
@@ -94,10 +92,7 @@
 					<li>In hac habitasse platea dictumst. Nam pulvinar, odio</li>
 					<li>Nam pulvinar, odio sed rhoncus</li>
 				</ul>
-				<pre class="prettyprint">&lt;ul class=&quot;unstyled&quot;&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;/ul&gt;</pre>
+<pre class="prettyprint"><ol><li><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"unstyled"</span><span class="tag">&gt;</span><span class="com"></span></li><li>  <span class="tag">&lt;li</span><span class="tag">&gt;</span><span class="com">...<span class="tag">&lt;/li</span><span class="tag">&gt;</span></span></li><li>  <span class="tag">&lt;li</span><span class="tag">&gt;</span><span class="com">...<span class="tag">&lt;/li</span><span class="tag">&gt;</span></span><span class="tag"></span></li><li><span class="tag">&lt;/ul&gt;</span><span class="tag"></span></li></ol></pre>
 			</div>
 		</div>
 		<div class="ink-l25">
@@ -111,10 +106,7 @@
 					<li>In hac habitasse platea dictumst. Nam pulvinar, odio</li>
 					<li>Nam pulvinar, odio sed rhoncus</li>
 				</ol>
-				<pre class="prettyprint">&lt;ol&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;/ol&gt;</pre>
+<pre class="prettyprint"><ol><li class="com"><span class="tag">&lt;ol</span><span class="atv"></span><span class="tag">&gt;</span><span class="com"></span></li><li>  <span class="tag">&lt;li&gt;<span class="com">...</span></span><span class="tag">&lt;/li&gt;</span></li><li><span class="tag">  &lt;li&gt;<span class="com">...</span></span><span class="tag">&lt;/li&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/ol&gt;</span><span class="tag"></span></li></ol></pre>
 			</div>
 		</div>
 		<div class="ink-l25">
@@ -129,10 +121,7 @@
 					<dd>In condimentum facilisis porta. Sed nec diam</dd>
 
 				</dl>
-				<pre class="prettyprint">&lt;dl&gt;
-&lt;dt&gt;Título&lt;/dt&gt;
-&lt;dd&gt;Descrição&lt;/dd&gt;
-&lt;/dl&gt;</pre>
+<pre class="prettyprint"><ol><li class="com"><span class="tag">&lt;dl</span><span class="tag">&gt;</span><span class="com"></span></li><li>  <span class="tag">&lt;dt</span><span class="tag">&gt;</span><span class="com">...</span><span class="tag">&lt;/dt</span><span class="tag">&gt;</span></li><li>  <span class="tag">&lt;dt</span><span class="tag">&gt;</span><span class="com">...</span><span class="tag">&lt;/dt</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/dl&gt;</span><span class="tag"></span></li></ol></pre>
 			</div>
 		</div>
 	</div>
@@ -142,10 +131,10 @@
 				<h4>Abbreviations</h4>
 				<p>
 					We can use the tag
-					<mark>&lt;abbr&gt;</mark>
+					<code>&lt;abbr&gt;</code>
 					to abbreviate the word <strong><abbr title="SAPO Interface Kit">InK</abbr></strong> 
 				</p>
-				<pre class="prettyprint">&lt;abbr title=&quot;SAPO Interface Kit&quot;&gt;InK&lt;/abbr&gt;</pre>
+				<pre class="prettyprint"><span class="tag">&lt;abbr</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"SAPO Interface Kit"</span><span class="tag">&gt;</span><span class="pln">Ink</span><span class="tag">&lt;/abbr&gt;</span></pre>
 			</div>
 		</div>
 		<div class="ink-l25">
@@ -186,11 +175,14 @@
 		</div>
 		<div class="ink-l50">
 			<div class="ink-space">
-				<pre class="prettyprint">&lt;blockquote&gt;
-&lt;p&gt;O Texto deve ser dividido por parágrafos&lt;/p&gt;
-Pode tambem ser quebrado por line-breaks&lt;br&gt;
-&lt;small&gt;Nome do Autor&lt;/small&gt;
-&lt;/blockquote&gt;</pre>
+				<pre class="prettyprint">
+<span class="tag">&lt;blockquote&gt;</span>
+<span class="tag">  &lt;p&gt;
+    </span><span class="pln">O Texto deve ser dividido por parágrafos
+    Pode tambem ser quebrado por line-breaks</span><span class="tag">&lt;br&gt;</span>
+    <span class="tag">&lt;small&gt;</span><span class="pln">Nome do Autor</span><span class="tag">&lt;/small&gt;</span>
+  <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/blockquote&gt;</span></pre>
 			</div>
 		</div>
 	</div>
@@ -199,7 +191,7 @@ Pode tambem ser quebrado por line-breaks&lt;br&gt;
 			<h4>Notes</h4>
 			<p class="note">
 				<strong>Note:</strong>
-				To use the notes style you just need to add the <mark>.note</mark> class to the element.
+				To use the notes style you just need to add the <code>.note</code> class to the element.
 				<br>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 			</p>
@@ -212,16 +204,16 @@ Pode tambem ser quebrado por line-breaks&lt;br&gt;
 				<h4>Labels</h4>
 				<p>
 					Labels can be created by adding the
-					<mark>ink-label</mark>
+					<code>ink-label</code>
 					class to an element. 
 			When combined with the
-					<mark>ink-success</mark>
+					<code>.ink-success</code>
 					,
-					<mark>ink-warning</mark>
+					<code>.ink-warning</code>
 					,
-					<mark>ink-caution</mark>
+					<code>.ink-caution</code>
 					or
-					<mark>ink-info</mark>
+					<code>.ink-info</code>
 					classes further meaning is added by the means of color.
 				</p>
 				<p>
@@ -245,8 +237,8 @@ Pode tambem ser quebrado por line-breaks&lt;br&gt;
 		</div>
 		<div class="ink-l50">
 			<div class="ink-space">
-				<h4>Mark <span class="label_new">HTML5</span></h4>
-				<p>The new <mark>&lt;mark&gt;</mark> tag present in the HTML5 spec is particularly useful to mark content in inline text.</p>
+				<h4>code <span class="label_new">HTML5</span></h4>
+				<p>The new <code>&lt;mark&gt;</code> tag present in the HTML5 spec is particularly useful to mark content in inline text.</p>
 			</div>
 		</div>
 	</div>
