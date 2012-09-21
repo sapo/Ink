@@ -40,26 +40,28 @@ class Download extends CI_Controller {
 		// create the build directory
 		$current_build_path = $this->_prepare_build_space();
 
-		// create a ink.less file including the chosen moduiles
+		echo $current_build_path;
+
+		// // create a ink.less file including the chosen moduiles
 		$this->_generate_ink_config($current_build_path);
 
-		// create a makefile to setup compilation, minification and desencaralhation
+		// // create a makefile to setup compilation, minification and desencaralhation
 		$this->_generate_ink_makefile($current_build_path);
 
-		// Try to build and get the status code from the shell
-		$build_status = $this->_build_ink($current_build_path);
+		// // Try to build and get the status code from the shell
+		// $build_status = $this->_build_ink($current_build_path);
 		
-		// react to errors
-		if($build_status){
-			// add the ink code to the zip archive object
-			$this->zip->read_dir($current_build_path."/ink/", FALSE);
-			// remove the build files
-			// $this->_cleanup($build['build_site']);
-			// send the archive to the browser
-			$this->zip->download('ink-custom.zip');
-		} else {
-			// show narly error and make stupid excuses
-		}		
+		// // react to errors
+		// if($build_status) {
+		// 	// add the ink code to the zip archive object
+		// 	$this->zip->read_dir($current_build_path."/ink/", FALSE);
+		// 	// remove the build files
+		// 	// $this->_cleanup($build['build_site']);
+		// 	// send the archive to the browser
+		// 	$this->zip->download('ink-custom.zip');
+		// } else {
+		// 	// show narly error and make stupid excuses
+		// }		
 		
 	}
 
@@ -77,13 +79,13 @@ class Download extends CI_Controller {
 		mkdir($this->paths->builds.$build_dir_name.'/ink/assets/fonts');
 		mkdir($this->paths->builds.$build_dir_name.'/ink/less');
 
-		return $this->paths->builds.$build_dir_name;
+		return $this->paths->builds.$build_dir_name.'/';
 
 	}
 
-	private function _generate_ink_config($build_site,$build_name) {
+	private function _generate_ink_config($build_site) {
 
-		$new_ink_config = fopen($this->paths->builds.'ink.less','w+');
+		$new_ink_config = fopen($build_site.'/ink.less','w+');
 
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/normalize.less\";\n");
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/conf.less\";\n");
@@ -103,14 +105,14 @@ class Download extends CI_Controller {
 
 	}
 
-	private function _generate_ink_makefile($build_site,$ink_modules) {
+	private function _generate_ink_makefile($build_site) {
 
 		$make_filename = 'Makefile';
 		$new_ink_makefile = fopen($build_site.'/'.$make_filename,'w+');
 		$build_path = $this->config->item('build_path');
 
 		// LESS FILES
-		fwrite($new_ink_makefile, "INK_LESS = " . $build_site . "/ink.less\n");
+		fwrite($new_ink_makefile, "INK_LESS = " . $build_site . "ink.less\n");
 		fwrite($new_ink_makefile, "INK_LARGE_LESS = ".$this->paths->latest."less/large.less\n");
 		fwrite($new_ink_makefile, "INK_MEDIUM_LESS = ".$this->paths->latest."less/medium.less\n");
 		fwrite($new_ink_makefile, "INK_SMALL_LESS = ".$this->paths->latest."less/small.less\n");
@@ -118,20 +120,20 @@ class Download extends CI_Controller {
 		fwrite($new_ink_makefile, "INK_IE7_LESS = ".$this->paths->latest."less/ie7.less\n\n");
 
 		// COMPILED CSS FILES
-		fwrite($new_ink_makefile, "INK = " . $build_site . "/ink/assets/css/ink.css\n");
-		fwrite($new_ink_makefile, "INK_LARGE = " . $build_site . "/ink/assets/css/large.css\n");
-		fwrite($new_ink_makefile, "INK_MEDIUM = " . $build_site . "/ink/assets/css/medium.css\n");
-		fwrite($new_ink_makefile, "INK_SMALL = " . $build_site . "/ink/assets/css/small.css\n");
-		fwrite($new_ink_makefile, "INK_IE6 = " . $build_site . "/ink/assets/css/ink-ie6.css\n");
-		fwrite($new_ink_makefile, "INK_IE7 = " . $build_site . "/ink/assets/css/ink-ie7.css\n\n");
+		fwrite($new_ink_makefile, "INK = " . $build_site . "ink/assets/css/ink.css\n");
+		fwrite($new_ink_makefile, "INK_LARGE = " . $build_site . "ink/assets/css/large.css\n");
+		fwrite($new_ink_makefile, "INK_MEDIUM = " . $build_site . "ink/assets/css/medium.css\n");
+		fwrite($new_ink_makefile, "INK_SMALL = " . $build_site . "ink/assets/css/small.css\n");
+		fwrite($new_ink_makefile, "INK_IE6 = " . $build_site . "ink/assets/css/ink-ie6.css\n");
+		fwrite($new_ink_makefile, "INK_IE7 = " . $build_site . "ink/assets/css/ink-ie7.css\n\n");
 
 		// COMPILED AND MINIFIED CSS FILES
-		fwrite($new_ink_makefile, "INK_MIN = " . $build_site . "/ink/assets/css/ink-min.css\n");
-		fwrite($new_ink_makefile, "INK_LARGE_MIN = " . $build_site . "/ink/assets/css/large-min.css\n");
-		fwrite($new_ink_makefile, "INK_MEDIUM_MIN = " . $build_site . "/ink/assets/css/medium-min.css\n");
-		fwrite($new_ink_makefile, "INK_SMALL_MIN = " . $build_site . "/ink/assets/css/small-min.css\n");
-		fwrite($new_ink_makefile, "INK_IE6_MIN = " . $build_site . "/ink/assets/css/ink-ie6-min.css\n");
-		fwrite($new_ink_makefile, "INK_IE7_MIN = " . $build_site . "/ink/assets/css/ink-ie7-min.css\n\n");
+		fwrite($new_ink_makefile, "INK_MIN = " . $build_site . "ink/assets/css/ink-min.css\n");
+		fwrite($new_ink_makefile, "INK_LARGE_MIN = " . $build_site . "ink/assets/css/large-min.css\n");
+		fwrite($new_ink_makefile, "INK_MEDIUM_MIN = " . $build_site . "ink/assets/css/medium-min.css\n");
+		fwrite($new_ink_makefile, "INK_SMALL_MIN = " . $build_site . "ink/assets/css/small-min.css\n");
+		fwrite($new_ink_makefile, "INK_IE6_MIN = " . $build_site . "ink/assets/css/ink-ie6-min.css\n");
+		fwrite($new_ink_makefile, "INK_IE7_MIN = " . $build_site . "ink/assets/css/ink-ie7-min.css\n\n");
 
 		// SOME VISUAL CRAP TO ENTERTAIN THE BUILDERS
 		fwrite($new_ink_makefile,"\nDATE=$(shell date +%I:%M%p)\n");
