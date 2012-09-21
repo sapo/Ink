@@ -40,8 +40,6 @@ class Download extends CI_Controller {
 		// create the build directory
 		$current_build_path = $this->_prepare_build_space();
 
-		echo $current_build_path;
-
 		// // create a ink.less file including the chosen moduiles
 		$this->_generate_ink_config($current_build_path);
 
@@ -49,24 +47,42 @@ class Download extends CI_Controller {
 		$this->_generate_ink_makefile($current_build_path);
 
 		// // Try to build and get the status code from the shell
-		// $build_status = $this->_build_ink($current_build_path);
+		$build_status = $this->_build_ink($current_build_path);
 		
-		// // react to errors
-		// if($build_status) {
-		// 	// add the ink code to the zip archive object
-		// 	$this->zip->read_dir($current_build_path."/ink/", FALSE);
-		// 	// remove the build files
-		// 	// $this->_cleanup($build['build_site']);
-		// 	// send the archive to the browser
-		// 	$this->zip->download('ink-custom.zip');
-		// } else {
-		// 	// show narly error and make stupid excuses
-		// }		
+		if($this->input->post('o-include-less') == 1) {
+			$this->_include_less($current_build_path);
+		}
+
+		// react to errors
+		if($build_status) {
+			// add the ink code to the zip archive object
+			$this->zip->read_dir($current_build_path."/ink/", FALSE);
+			// remove the build files
+			$this->_cleanup($current_build_path);
+			// send the archive to the browser
+			$this->zip->download('ink-custom.zip');
+		} else {
+			// show narly error and make stupid excuses
+		}		
 		
 	}
 
 
-	private function _prepare_build_space(){
+	private function _include_less($build_site) 
+	{
+		$copy_less  = "cp -R " . $this->paths->latest . "less " . $build_site . "ink/";
+
+		exec($copy_less,$result,$status_code);
+
+		if($status_code == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private function _prepare_build_space()
+	{
 
 		$build_dir_name = md5(time().rand());
 		
@@ -83,7 +99,8 @@ class Download extends CI_Controller {
 
 	}
 
-	private function _generate_ink_config($build_site) {
+	private function _generate_ink_config($build_site)
+	{
 
 		$new_ink_config = fopen($build_site.'/ink.less','w+');
 
@@ -105,7 +122,8 @@ class Download extends CI_Controller {
 
 	}
 
-	private function _generate_ink_makefile($build_site) {
+	private function _generate_ink_makefile($build_site)
+	{
 
 		$make_filename = 'Makefile';
 		$new_ink_makefile = fopen($build_site.'/'.$make_filename,'w+');
@@ -159,7 +177,8 @@ class Download extends CI_Controller {
 		fclose($new_ink_makefile);
 	}
 
-	private function _build_ink($build_site){
+	private function _build_ink($build_site)
+	{
 
 		$make_command = "make -f ".$build_site."/Makefile";
 
@@ -172,7 +191,8 @@ class Download extends CI_Controller {
 		}
 	}
 
-	private function _cleanup($build_site) {
+	private function _cleanup($build_site) 
+	{
 		$command = "rm -rf " . $build_site;
 		exec($command,$return,$status_code);
 		if($status_code == 0){

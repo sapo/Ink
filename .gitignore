@@ -3,6 +3,7 @@
 */cache/*
 */cache/!index.html
 */builds/*
+*/builds/!index.html
 .DS_Store
 .DS_Store?
 ._*
