@@ -1,56 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Base Site PAth
-|--------------------------------------------------------------------------
-|
-| Real application path| 
-|
-|	/var/www/someplace
-|
-| If this is not set then CodeIgniter will guess the protocol, domain and
-| path to your installation.
-|
-*/
-
 $config['base_path']	= '/home/pedro/work/ink/site/';
-
 $config['build_path']	= '/home/pedro/work/ink/site/builds/';
-
-/*
-|--------------------------------------------------------------------------
-| Base Site PAth
-|--------------------------------------------------------------------------
-|
-| Real application path| 
-|
-|	/var/www/someplace
-|
-| If this is not set then CodeIgniter will guess the protocol, domain and
-| path to your installation.
-|
-*/
-
-
-$config['ink_path']	= '/home/pedro/work/ink/ink/';
-
-/*
-|--------------------------------------------------------------------------
-| Base Site PAth
-|--------------------------------------------------------------------------
-|
-| Real application path| 
-|
-|	/var/www/someplace
-|
-| If this is not set then CodeIgniter will guess the protocol, domain and
-| path to your installation.
-|
-*/
-
+$config['latest_path']	= '/home/pedro/work/ink/ink/';
 $config['ink_version_number'] = '1.0';
-
 
 $config['site_title'] = 'InK - Interface Kit';
 
@@ -280,6 +233,26 @@ $config['ink_options'] = array(
 			'value' => '1'
 		)
 	),
+);
+
+$config['ink_config_vars'] = array(
+	'grid shit' => array(
+		array('var-ink-grid-gutter' => '32px'),
+		array('var-site-width' => '')
+	),
+	'font-shit' => array(
+		array('var-font-family' => ''),
+		array('var-font-size' => '')
+	),
+	'color-shit' => array(
+		array('var-body-background' => '#fff'),
+		array('var-text-color' => '#555'),
+		array('var-link-color' => '#0069D6'),
+		array('var-link-visited-color' => '#808080'),
+		array('var-link-active-color' => '#ff0000'),
+		array('var-link-hover-color' => '#007ED5'),
+		array('var-link-focus-color' => '#007ED5')
+	)
 );
 
 ?>
