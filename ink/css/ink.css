@@ -2169,18 +2169,14 @@ form fieldset {
   padding: 0;
 }
 form fieldset legend {
-  margin: 1em 0 0 0;
-  font-size: 1.2em;
-  font-weight: 700;
-  border-bottom: 1px solid #DDD;
-  padding-bottom: 0.40em;
+  margin: 1em 0;
   text-shadow: 0 1px 0 white;
   display: block;
   width: 100%;
+  border-bottom: 1px solid #ddd;
 }
 form label {
   line-height: 1.5;
-  font-size: 0.80em;
 }
 form .ink-form-validation {
   margin: 0.5em 0.2em;
@@ -2209,7 +2205,8 @@ form select {
   padding: 6px;
   border: 1px solid #dddddd;
   resize: none;
-  font-size: 12px;
+  line-height: 1.3em;
+  font-size: 14px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -2221,7 +2218,8 @@ form select option {
   padding: 3px;
 }
 form .ink-form-validation {
-  font-weight: 700;
+  /*font-weight: 700;*/
+
 }
 form .ink-form-validation.ink-caution {
   color: #cd0000;
@@ -2261,7 +2259,6 @@ form div.ink-form-row:last-child {
   margin-bottom: 0;
 }
 form.ink-labels-above label {
-  font-weight: bold;
   display: block;
   margin: 0.5em 0 0 0.2em;
 }
@@ -2289,7 +2286,7 @@ form.ink-labels-above input[type="radio"] + label {
   float: left;
   line-height: 2.5;
   margin-left: 0.55em;
-  margin-top: 0;
+  margin-top: -0.3em;
 }
 form.ink-labels-left label {
   font-weight: bold;

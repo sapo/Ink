@@ -127,7 +127,11 @@ mark {
 #headingExemple h5 {
   margin-bottom: 20px;
 }
-
+#listExemple ul,
+#listExemple ol,
+#listExemple dl {
+  margin-bottom: 1.5em;
+}
 a.visited {
   color: #808080;
 }

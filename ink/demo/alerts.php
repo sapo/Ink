@@ -2,19 +2,59 @@
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul>
-			<li><a href="grid.php">Layout</a></li>
-			<li><a href="navigation.php">Navigation</a></li>
-			<li><a href="typo.php">Typography & Icons</a></li>
-			<li><a href="forms.php">Forms & Alerts</a></li>
-			<li><a href="tables.php">Tables</a></li>
-			<li class="active"><a href="alerts.php">InkJS</a></li>
+		<ul class="ink-h-nav">
+			<li>
+				<a class="logoPlaceholder" href="./" title="Site Title">InK</a>
+			</li>
+			<li>
+				<a href="grid.php">Layout</a>
+			</li>
+			<li>
+				<a href="navigation.php">Navigation</a>
+			</li>
+			<li>
+				<a href="typo.php">Typography & Icons</a>
+			</li>
+			<li>
+				<a href="forms.php">Forms</a>
+			</li>
+			<li class="active">
+				<a href="alerts.php">Alerts</a>
+			</li>
+			<li>
+				<a href="tables.php">Tables</a>
+			</li>
+			<li>
+				<a href="widgets.php">InkJS</a>
+			</li>
 		</ul>
 	</div>
-</nav>  
+</nav>
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
+<div class="ink-container whatIs">
+	<div class="ink-vspace">
+		<h2>Alerts</h2>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+		</p>
+	</div>
+</div>
+
+<nav class="menu">
+	<div class="ink-container">
+		<ul class="ink-h-nav">
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">Form building</a></li>
+			<li><a href="#">Text & Number entry</a></li>
+			<li><a href="#">Dropdowns and list boxes</a></li>
+			<li><a href="#">Buttons</a></li>
+			<li><a href="#">Alerts</a></li>
+		</ul>
+	</div>
+</nav>
+
 <div class="ink-container">
 	<h2><span>Alertas</span></h2>
 	<div class="ink-space">
