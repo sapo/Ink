@@ -48,6 +48,11 @@ class Download extends CI_Controller {
 
 		// // Try to build and get the status code from the shell
 		$build_status = $this->_build_ink($current_build_path);
+
+		if(!$this->_include_common_files($current_build_path))
+		{
+			// error something something
+		}
 		
 		if($this->input->post('o-include-less') == 1) {
 			$this->_include_less($current_build_path);
@@ -80,6 +85,16 @@ class Download extends CI_Controller {
 			return false;
 		}
 	}
+
+
+	private function _include_common_files($build_site)
+	{
+
+		$this->zip->read_dir($this->paths->latest . "demo/",false);
+		$this->zip->read_file($this->paths->latest . "my-page.html");
+		
+	}
+
 
 	private function _prepare_build_space()
 	{
