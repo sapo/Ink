@@ -1,12 +1,10 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 
-<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
-    
 <nav id="topbar">
 	<div class="ink-container">
-		<h1><a class="logoPlaceholder" href="./" title="Site Title">InK<small>Interface kit</small></a></h1>
-		<ul>
+		<ul class="ink-h-nav">
+			<li><a class="logoPlaceholder" href="./" title="Site Title">InK</a></li>
 			<li><a href="grid.php">Layout</a></li>
 			<li><a href="navigation.php">Navigation</a></li>
 			<li><a href="typo.php">Typography & Icons</a></li>
@@ -18,10 +16,11 @@
 	</div>
 </nav>  
 
+<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
+
 <div class="callToAction">
 	<img src="styles/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
-	<div class="glow">
-		<img src="styles/imgs/glow1.png" alt="Glow1"></div>
+	<div class="glow"><img src="styles/imgs/glow1.png" alt="Glow1"></div>
 </div>
 
 <div class="ink-container">

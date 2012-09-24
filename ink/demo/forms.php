@@ -59,33 +59,26 @@
 		<div class=" ink-space">
 			<h3>Form building</h3>
 			<p>
-				Os campos dos formulários devem ser envolvidos por um elemento com a class <code>.e_wrap</code>. 
-				Esta class existe para separar os elementos do formulários assim como assiste na estilização de erros
+				Os campos dos formulários devem ser envolvidos por um elemento com a class <code>.ink-form-wrapper</code>. 
+				Esta class existe para separar os elementos do formulário bem como assistir na estilização de erros
 			</p>
-			<pre class="prettyprint"><ol><li><span class="tag">&lt;form</span><span class="tag">&gt;</span></li><li>  <span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"e-wrap"</span><span class="tag">&gt;</span></li><li><span class="tag">    &lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"inputId"</span><span class="tag">&gt;</span><span class="pln">Name</span><span class="tag">&lt;/label&gt;</span></li><li>    <span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text" <span class="atn">id</span><span class="pun">=</span>"inputId"</span><span class="tag">&gt;</span></li><li><span class="tag">  &lt;/div&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/form&gt;</span><span class="tag"></span></li></ol></pre>
+			<pre class="prettyprint"><ol><li><span class="tag">&lt;form</span><span class="tag"> <span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-block"</span>&gt;</span></li><li>  <span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-wrapper"</span><span class="tag">&gt;</span></li><li><span class="tag">    &lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"inputId"</span><span class="tag">&gt;</span><span class="pln">Name</span><span class="tag">&lt;/label&gt;</span></li><li>    <span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text" <span class="atn">id</span><span class="pun">=</span>"inputId"</span><span class="tag">&gt;</span></li><li><span class="tag">  &lt;/div&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/form&gt;</span><span class="tag"></span></li></ol></pre>
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-l40">
-			<div class=" ink-space">
-				<h3>Text & Number entry</h3>
-				<p>
-					Arnold ipsum. I want my Larry. I wanna see you. I need a vacation. Bastards. Get out. My nipples are very sensitive. 
-					This hero stuff has it's limits. I don't do requests. Crumb. Your luggage. Who the fuck are you? Get down or I'll put you down. 
-					What killed the dinosaurs? The ice age. I'm the party pooper. Take your toy back to the carpet. You killed my fada. Big mistake.
-				</p>
-			</div>
+		<div class="ink-space">
+			<h3>Text & Number entry</h3>
 		</div>
 		<div class="ink-l60">
-			<form action="" class="ink-labels-above ink-space">
+			<form action="" class="ink-form-block ink-hspace">
 				<fieldset>
 					<legend><h4>Fieldset legend</h4></legend>
-					<div class="ink-form-row">
+					<div class="ink-form-wrapper">
 						<label for="text-input">Text input</label>
 						<input id="text-input" type="text" placeholder="Please input some text">
 						<p class="ink-field-tip">You can add help text to fields</p>
 					</div>
-					<div class="ink-form-row ink-required-field">
+					<div class="ink-form-wrapper ink-required-field">
 						<label for="select">Select</label>
 						<select name="" id="select">
 							<option value="">onions</option>
@@ -95,7 +88,7 @@
 						</select>
 						<p class="ink-form-validation ink-caution">An error occured. Let your user know about it</p>
 					</div>
-					<div class="ink-form-row ink-required-field">
+					<div class="ink-form-wrapper ink-required-field">
 						<label for="multiSelect">Multiple select</label>
 						<select multiple="multiple" id="multiSelect">
 							<option>onions</option>
@@ -105,64 +98,89 @@
 							<option>kale</option>
 						</select>
 					</div>
-					<div class="ink-form-row">
+					<div class="ink-form-wrapper">
 						<label for="textarea">Textarea</label>
 						<textarea name="" id="textarea" placeholder="Please enter some text"></textarea>
 					</div>
-					<div class="ink-form-row">
+					<div class="ink-form-wrapper">
 						<label for="file-input">File input</label>
 						<input type="file" name="" id="file-input">
 					</div>
 				</fieldset>
 			</form>
 		</div>
-	</div>
-	
-	<div class="ink-section">
 		<div class="ink-l40">
-			<div class="ink-space">
-				<h3>Checkboxes and radio buttons</h3>
+			<div class="ink-hspace">
 				<p>
-					You are not you you're me. This hero stuff has it's limits. But I'm all woman. Screw you! Go on! Do it now! Kill me! I'm here. 
-					Just bodies. Do it! Do it! Come on! Kill me. I'm here. Do it now. Kill me. Stick around. I'm the party pooper. Only pain. 
-					I need your clothes, your boots, and your motorcycle. Take your toy back to the carpet. I do not want to touch his ass. 
-					I want to make him talk. Wrong. No I don't stop it. I want my baby. Blondes. 
-					You're not going to have your mommies right behind you to wipe your little tushies. Grant me revenge. And if you do not listen, the hell with you.
+					Neste exemplo a <code>&lt;label&gt;</code> do respectivo campo do formulário encontra-se acima deste, em bloco
+					Para este efeito o <code>&lt;form&gt;</code> deverá ter a class <code>.ink-form-block</code>
+				</p>
+				<p>
+					Caso se pretenda usar a <code>&lt;label&gt;</code> inline basta usar a class <code>.ink-form-inline</code>
 				</p>
 			</div>
 		</div>
-		<div class="ink-l60">
-			<form action="" class="ink-hspace ink-labels-above ink-space">
+	</div>
+	<div class="ink-section">
+		<div class="ink-space">
+			<h3>Checkboxes and radio buttons</h3>
+		</div>
+		
+		<div class="ink-l50">
+			<form action="" class="ink-form-block ink-space">
 				<fieldset>
-					<legend><h4>Here's a group of checkboxes in a fieldset</h4></legend>
-						<div class="ink-form-row">
-							<p class="ink-field-tip">Please select one or more options</p>
+					<legend><h4>Group of checkboxes</h4></legend>
+					<ul class="ink-form-wrapper unstyled">
+						<p class="ink-field-tip">Please select one or more options</p>
+						<li>
 							<input type="checkbox" id="cb1" name="cb1" value="">
 							<label for="cb1">Option 1</label>
+						</li>
+						<li>
 							<input type="checkbox" id="cb2" name="cb2" value="">
 							<label for="cb2">Option 2</label>
+						</li>
+						<li>
 							<input type="checkbox" id="cb3" name="cb3" value="">
 							<label for="cb3">Option 3</label>
+						</li>
+						<li>
 							<input type="checkbox" id="cb4" name="cb4" value="">
 							<label for="cb4">Option 4</label>
-						</div>
+						</li>
+					</ul>
 				</fieldset>
-				<fieldset>
-					<legend><h4>Here's a group of radio buttons in a fieldset</h4></legend>
-						<div class="ink-form-row">
-							<p class="ink-field-tip">Please select one of these option</p>
-							<input type="radio" id="rb1" name="rb" value="">
-							<label for="rb1">Option 1</label>
-							<input type="radio" id="rb2" name="rb" value="">
-							<label for="rb2">Option 2</label>
-							<input type="radio" id="rb3" name="rb" value="">
-							<label for="rb3">Option 3</label>
-							<input type="radio" id="rb4" name="rb" value="">
-							<label for="rb4">Option 4</label>
-						</div>
-				</fieldset>
-			</form>
+				<pre class="prettyprint"><ol><li><span class="tag">&lt;form</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-block"</span>&gt;</span></li><li>  <span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-wrapper unstyled"</span><span class="tag">&gt;</span></li><li>    <span class="tag">&lt;li</span><span class="pln"></span><span class="tag">&gt;</span></li><li><span class="tag">      &lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"checkboxId"</span><span class="tag">&gt;</span><span class="pln">Option 1</span><span class="tag">&lt;/label&gt;</span></li><li>    <span class="tag">  &lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text" <span class="atn">id</span><span class="pun">=</span>"checkboxId"</span><span class="tag">&gt;</span></li><li><span class="tag">    &lt;li</span><span class="pln"></span><span class="tag">&gt;</span></li><li class="com">    ...</li><li><span class="tag">  &lt;/ul&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/form&gt;</span><span class="tag"></span></li></ol></pre>
+			</form>	
 		</div>
+		<div class="ink-l50">
+			<form action="" class="ink-form-block ink-space">
+				<fieldset>
+					<legend><h4>Group of radio buttons</h4></legend>
+						<ul class="ink-form-wrapper unstyled">
+							<p class="ink-field-tip">Please select one of these options</p>
+							<li>
+								<input type="radio" id="rb1" name="rb" value="">
+								<label for="rb1">Option 1</label>
+							</li>
+							<li>
+								<input type="radio" id="rb2" name="rb" value="">
+								<label for="rb2">Option 2</label>
+							</li>
+							<li>
+								<input type="radio" id="rb3" name="rb" value="">
+								<label for="rb3">Option 3</label>
+							</li>
+							<li>
+								<input type="radio" id="rb4" name="rb" value="">
+								<label for="rb4">Option 4</label>
+							</li>
+						</ul>
+				</fieldset>
+				<pre class="prettyprint"><ol><li><span class="tag">&lt;form</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-block"</span>&gt;</span></li><li>  <span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-wrapper unstyled"</span><span class="tag">&gt;</span></li><li>    <span class="tag">&lt;li</span><span class="pln"></span><span class="tag">&gt;</span></li><li><span class="tag">      &lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"radioId"</span><span class="tag">&gt;</span><span class="pln">Option 1</span><span class="tag">&lt;/label&gt;</span></li><li>    <span class="tag">  &lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"radio" <span class="atn">id</span><span class="pun">=</span>"radioId"</span><span class="tag">&gt;</span></li><li><span class="tag">    &lt;li</span><span class="pln"></span><span class="tag">&gt;</span></li><li class="com">    ...</li><li><span class="tag">  &lt;/ul&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/form&gt;</span><span class="tag"></span></li></ol></pre>
+			</form>	
+		</div>
+		
 	</div>
 	
 	<div class="ink-section">
