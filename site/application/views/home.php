@@ -3,9 +3,7 @@
 	<div class="glow">
 		<img src="../ink/demo/styles/imgs/glow1.png" alt="Glow1"></div>
 </div>
-
 <div class="ink-container">
-
 	<div class="ink-l100 whatIs">
 		<div class="ink-vspace">
 			<h3>Welcome to Ink</h3>
