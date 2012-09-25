@@ -206,7 +206,7 @@
 			<tbody>
 				<tr>
 					<td>Default</td>
-					<td><button class="ink-button" type="button">Default</button></td>
+					<td><button class="ink-button">Default</button></td>
 					<td><button class="ink-button" disabled>Default</button></td>
 					<td><code>&lt;button&gt;Default&lt;/button&gt;</code></td>
 				</tr>
