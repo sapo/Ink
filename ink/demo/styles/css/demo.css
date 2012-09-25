@@ -1,3 +1,4 @@
+/* INK GRID */
 /* INK GRID *//*  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Default Colors   ||||||||||||||||||||||||||| */
 /*  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
@@ -13,7 +14,6 @@
 /*  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
 /* INK > TABLES */
 /*  |||||||||||||||||||||||||||||  Ink-js   ||||||||||||||||||||||||||| */
-/* Functions */
 @font-face {
   font-family: 'MavenProBold';
   src: url('../webfonts/maven_pro_bold-webfont.eot');
@@ -421,10 +421,8 @@ footer ul.sociallinks li a.Gplus_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -145px;
 }
 code {
-  border-radius: 4px;
   border: 1px solid #E0E0E0;
   background: #E9E9E9;
-  padding: 2px 4px;
+  padding: 0 4px;
   font-size: .85em;
-  letter-spacing: 0.05em;
 }

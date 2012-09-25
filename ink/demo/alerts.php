@@ -3,30 +3,14 @@
 <nav id="topbar">
 	<div class="ink-container">
 		<ul class="ink-h-nav">
-			<li>
-				<a class="logoPlaceholder" href="./" title="Site Title">InK</a>
-			</li>
-			<li>
-				<a href="grid.php">Layout</a>
-			</li>
-			<li>
-				<a href="navigation.php">Navigation</a>
-			</li>
-			<li>
-				<a href="typo.php">Typography & Icons</a>
-			</li>
-			<li>
-				<a href="forms.php">Forms</a>
-			</li>
-			<li class="active">
-				<a href="alerts.php">Alerts</a>
-			</li>
-			<li>
-				<a href="tables.php">Tables</a>
-			</li>
-			<li>
-				<a href="widgets.php">InkJS</a>
-			</li>
+			<li><a class="logoPlaceholder" href="./" title="Site Title">InK</a></li>
+			<li><a href="grid.php">Layout</a></li>
+			<li><a href="navigation.php">Navigation</a></li>
+			<li><a href="typo.php">Typography & Icons</a></li>
+			<li><a href="forms.php">Forms</a></li>
+			<li class="active"><a href="alerts.php">Alerts</a></li>
+			<li><a href="tables.php">Tables</a></li>
+			<li><a href="widgets.php">InkJS</a></li>
 		</ul>
 	</div>
 </nav>
@@ -46,26 +30,18 @@
 	<div class="ink-container">
 		<ul class="ink-h-nav">
 			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">Form building</a></li>
-			<li><a href="#">Text & Number entry</a></li>
-			<li><a href="#">Dropdowns and list boxes</a></li>
-			<li><a href="#">Buttons</a></li>
-			<li><a href="#">Alerts</a></li>
+			<li><a href="#">Basic alerts</a></li>
+			<li><a href="#">Block alerts</a></li>
 		</ul>
 	</div>
 </nav>
 
 <div class="ink-container">
-	<h2><span>Alertas</span></h2>
-	<div class="ink-space">
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</div> 
-    
 	<div class="ink-section">
-		<div class="ink-l25">
+		<div class="ink-l30">
 			<div class="ink-space">
 				<h3>Alertas Básicos</h3>
-				<p>Os Avisos Básicos são úteis para formulários ou notificações simples.</p><br>
+				<p>Os Avisos Básicos são úteis para formulários ou notificações simples.</p>
 				<p>Para usar o estilo dos avisos básicos basta usar a class <mark>.alert-msg</mark>, podendo esta ser acompanhada das classes:</p>
 				<ul class="unstyled">
 					<li><mark>.error</mark> - Para Mensagens de erro</li>
@@ -74,36 +50,33 @@
 				</ul>
 			</div>
 		</div> 
-		<div class="ink-l75">
+		<div class="ink-l70">
 			<div class="ink-space">
 					<div class="alert-msg">
-						<a href="#close" class="close">&times;</a>
+						<button class="close">&times;</button>
 						<p><b>Aviso:</b> Aqui fica o texto da notificação</p>
 					</div>
 
 					<div class="alert-msg error">
-						<a href="#close" class="close">&times;</a>
+						<button class="close">&times;</button>
 						<p><b>Erro:</b> Mensagem de Erro</p>
 					</div>
 
 					<div class="alert-msg success">
-						<a href="#close" class="close">&times;</a>
+						<button class="close">&times;</button>
 						<p><b>Concluído:</b> Mensagem de successo</p>
 					</div>
 
 					<div class="alert-msg info">
-						<a href="#close" class="close">&times;</a>
+						<button class="close">&times;</button>
 						<p><b>Nota:</b> Mensagem de Informação</p>
 					</div>
-					<pre class="prettyprint">&lt;div class=&quot;alert-msg&quot;&gt;
-  &lt;a href=&quot;#&quot; class=&quot;close&quot;&gt;&times;&lt;/a&gt;
-  &lt;p&gt;Texto da Mensagem&lt;/p&gt;
-&lt;/div&gt;</pre>
+					<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"alert-msg"</span>&gt;</span></li><li>  <span class="tag">&lt;button</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"close"</span><span class="tag">&gt;</span><span class="pln">x</span><span class="tag">&lt;/button&gt;</span></li><li>  <span class="tag">&lt;p&gt;</span><span class="pln">Texto da mensagem</span><span class="tag">&lt;/p&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
 			</div>
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-l25">
+		<div class="ink-l30">
 			<div class="ink-space">
 				<h3>Alertas em Bloco</h3>
 				<p>Os Avisos Básicos são úteis para formulários com explicação detalhada de erros ou erros onde será necessário acção.</p>
@@ -114,37 +87,32 @@
 				</ul>
 			</div>
 		</div>
-		<div class="ink-l75">
+		<div class="ink-l70">
 			<div class="ink-space">
-					<div class="block-alert-msg">
-						<a href="#close" class="close">&times;</a>
-						<h4>Isto é uma notificação</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-					</div>
+				<div class="block-alert-msg">
+					<button class="close">&times;</button>
+					<h4>Isto é uma notificação</h4>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</p>
+				</div>
 
-					<div class="block-alert-msg error">
-						<a href="#close" class="close">&times;</a>
-						<h4>Ocurreram os seguintes erros:</h4>
-						<ul>
-							<li>Nome de Utilizador Inválido</li>
-							<li>Email Inválido</li>
-						</ul>
-					</div>
+				<div class="block-alert-msg error">
+					<button class="close">&times;</button>
+					<h4>Ocurreram os seguintes erros:</h4>
+					<ul>
+						<li>Nome de Utilizador Inválido</li>
+						<li>Email Inválido</li>
+					</ul>
+				</div>
 
-					<div class="block-alert-msg success">
-						<a href="#close" class="close">&times;</a>
-						<h4>Processo Concluído</h4>
-						<p>O seu formulário foi submetido e aguarda revisão.<br> No entanto pode:</p>
-						<p><a href="#" class="ink-button">Voltar ao site</a><a href="#"  class="ink-button">Sair</a></p>
-					</div>
-					<pre class="prettyprint">&lt;div class=&quot;block-alert-msg error&quot;&gt;
-  &lt;a href=&quot;#close&quot; class=&quot;close&quot;&gt;&times;&lt;/a&gt;
-  &lt;h4&gt;Ocurreram os seguintes erros:&lt;/h4&gt;
-  &lt;ul&gt;
-	&lt;li&gt;Nome de Utilizador Inv&aacute;lido&lt;/li&gt;
-    &lt;li&gt;Email Inv&aacute;lido&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;</pre>
+				<div class="block-alert-msg success">
+					<button class="close">&times;</button>
+					<h4>Processo Concluído</h4>
+					<p>O seu formulário foi submetido e aguarda revisão.</p>
+				</div>
+				<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"block-alert-msg error"</span>&gt;</span></li><li><span class="tag">   &lt;button</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"close"</span><span class="tag">&gt;</span><span class="pln">x</span><span class="tag">&lt;/button&gt;</span></li><li><span class="tag">   &lt;h4</span><span class="pln"></span><span class="atv"></span><span class="tag">&gt;</span><span class="pln">Ocorreram os seguintes erros</span><span class="tag">&lt;/h4&gt;</span></li><li>   <span class="tag">&lt;ul</span><span class="tag">&gt;</span></li><li>      <span class="tag">&lt;li&gt;</span><span class="pln">Nome de utilizador inválido</span><span class="tag">&lt;/li&gt;</span><span class="tag"></span></li><li><span class="tag">      &lt;li&gt;</span><span class="pln">Nome de utilizador inválido</span><span class="tag">&lt;/li&gt;</span><span class="tag"></span></li><li><span class="tag">   &lt;/ul</span><span class="pln"></span><span class="tag">&gt;</span><span class="tag"></span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
 			</div>
 		</div>
 		

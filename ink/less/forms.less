@@ -19,7 +19,7 @@ form {
 	}	
 
 	label {
-		line-height: 1.5;
+		/*line-height: 1.5;*/
 	}
 
 	.ink-form-validation {
@@ -71,9 +71,9 @@ form {
 		}
 
 
-	div {
+	div, ul {
 
-		&.ink-form-row {
+		&.ink-form-wrapper {
 
 			display: block;
 			margin-bottom: 0.8em;
@@ -114,10 +114,10 @@ form {
 
 	}
 
-	&.ink-labels-above {
+	&.ink-form-block {
 
 		label {
-			display: block;
+			
 			margin: 0.5em 0 0 0.2em;
 		}
 
@@ -147,10 +147,10 @@ form {
 
 	}	
 
-	&.ink-labels-left {
+	&.ink-form-inline {
 
 		label {
-			font-weight: bold;
+			//font-weight: bold;
 			display: block;
 			// margin:@labelMargin;
 			margin-bottom: .5em;
@@ -158,7 +158,7 @@ form {
 			float: left;			
 			margin-top: 0.5em;
 			margin-right: 0.5em;
-			line-height: 1.51;
+			line-height: 1;
 			min-width: 20%;
 			width: 20%;
 			max-width: 20%;
@@ -195,7 +195,7 @@ form {
 
 			div {
 
-				&.ink-form-row {
+				&.ink-form-wrapper {
 					margin-bottom: 1em;
 
 					& > input + p.ink-field-tip, & > select + p.ink-field-tip {
@@ -213,121 +213,3 @@ form {
 	}
 
 }
-
-/* Form Styles */
-// form {color: @baseColor; }
-// legend {
-// 	clear:both;
-// 	text-align: left;
-// 	font-size: 1.5em;
-// 	padding-bottom: 15px;
-// 	display: block;
-// }
-// .e_wrap {padding:@wraperPadding; width: auto; display: block; position:relative }
-// .e_wrap:after {
-// 	content: ".";
-//     display: block;
-//     height: 0;
-//     clear: both;
-//     visibility: hidden;
-// 	zoom: 1;
-// }
-// label {
-// 	width: @labelWidth;
-// 	font-weight: bold;
-// 	display: block;
-// 	margin:@labelMargin;
-// 	vertical-align: top;
-// 	float:left; 
-// 	text-align: right;
-// }
-// label span{display: block; padding-left: 27px;}
-// label input{float:left}
-// input:empty, textarea:empty, select:empty {clear:none}
-// input[type=text], input[type=password], input[type=file], input[type=reset], textarea, select {
-// 	.round-corners(@border-radius);
-// 	.box-shadow(@basicBoxShadow);
-// 	.gradient (@gradientStartColor, @gradientEndColor, @gradientStop);
-// 	padding: @form-elements-padding;
-// 	border:1px solid form-elements-border-color;
-// 	resize: none;
-// 	width: @elementsWidth;
-// 	line-height: 1.3em;
-// 	font-size: @fontSize;
-// 	.box-sizing(border-box);
-// }
-
-// input[type=radio], input[type=checkbox] {width:17px; height:17px;}
-// select {height: 30px; .gradient(#fff, #f1f1f1, 100%); width:@elementsWidth}
-// select[multiple] {height: auto; .gradient(@gradientStartColor, @gradientEndColor, @gradientStop)}
-// input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {.input_focus(@focusBlurSize, @focusColor)}
-// input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
-// 	background: @disabledColor;
-// 	cursor: not-allowed;
-// }
-// input.miniInput, select.miniInput {width: @miniElementsWidth;}
-// input.smallInput, select.smallInput {width: @smallElementsWidth;}
-// form .help {display: block; /*font-size: 11px;*/ color:#bbb; float:none}
-// .e_wrap .help {margin-left: @labelWidth + 15px; width:@elementsWidth; padding:(@form-elements-padding)/2;}
-// .emptyLabel, .formList {padding-left: @labelWidth + 10px + @labelMargin;}
-// .emptyLabel label, .formList label{width: auto; text-align: left; vertical-align: top; font-weight: normal; float:none; margin: 0; display: block;}
-// .formList label input {margin-bottom: 0px;}
-// .formList label {margin-bottom: 10px;}
-// form li {list-style: none;}
-
-// /*|||||||||||||||||||||| Block Form Styles ||||||||||||||||||||||*/
-// .form_block label {display: block; float:none; width:auto; text-align:left; margin-top:0px; margin-bottom:.1em}
-// .form_block label:after {clear:both}
-// .form_block .help {margin:@elementsMargin;}
-// .form_block .emptyLabel, .form_block .formList {padding-left:0}
-
-// /*|||||||||||||||||||||| Errors & Warning Styles ||||||||||||||||||||||*/
-// form .error, form .warning {
-// 	.round-corners(@border-radius);
-// 	padding:10px 0 5px;
-// 	margin:5px 0;
-// 	color: fadein(@errorColor, 100%);
-// 	vertical-align: top;
-// }
-// .emptyLabel.error, .formList.error, .emptyLabel.warning, .formList.warning{padding-left: @labelWidth + 10px + @labelMargin;}
-// .form_block  .emptyLabel.error, .form_block .formList.error, .form_block .emptyLabel.warning, .form_block .formList.warning {padding-left: 0em;}
-// form .error .e_msg, form .warning .e_msg {
-// 	padding:3px 8px;
-// 	font-size: .9em;
-// 	color:white;
-// 	.round-corners(2px);
-// 	position:relative;
-// 	background-color: fadein(@errorColor, 100%);
-// 	text-transform: uppercase;
-// 	font-weight: bold;
-// 	z-index: 999;
-// 	clear:both;
-// 	top:5px;
-// 	display: block;
-// 	float:right
-// }
-// .error input, .error textarea, .error select, .warning input, .warning textarea, .warning select {margin-bottom:5px; .input_focus (10px, @errorColor)}
-// form .warning {color: fadein(@warningColor, 100%);}
-
-// .warning input, .warning textarea, .warning select {.input_focus (10px, @warningColor)}
-// .warning .e_msg {background-color: fadein(@warningColor, 100%);}
-
-// .warning .help {color: fadein(@warningColor, 100%);}
-// .error .help {color: fadein(@errorColor, 100%);}
-// .arrow-left {
-// 	width:0px;
-// 	height:0px;
-// 	border-bottom:6px solid transparent;
-// 	border-top:6px solid transparent;
-// 	border-right:5px solid #2f2f2f;
-// 	font-size:0px;
-// 	position:absolute;
-// 	left:-4px;
-// 	top:4px;
-// 	z-index: 9999;
-
-// }
-// .error .arrow-left {border-right:6px solid fadein(@errorColor, 100%)}
-// .warning .arrow-left {border-right:6px solid fadein(@warningColor, 100%)}
-
-// .required .e_msg {font-size: 2em; color:#ccc; vertical-align: middle; }

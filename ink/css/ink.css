@@ -1,3 +1,6 @@
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
 /*! normalize.css v2.0.1 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -345,7 +348,6 @@ table {
 /*  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
 /* INK > TABLES */
 /*  |||||||||||||||||||||||||||||  Ink-js   ||||||||||||||||||||||||||| */
-/* Functions */
 body {
   background: #f5f5f5;
 }
@@ -846,7 +848,7 @@ hr {
   background: -o-linear-gradient(top, #9dce62 0%, #85c13c 100%);
   background: -ms-linear-gradient(top, #9dce62 0%, #85c13c 100%);
   background: linear-gradient(top, #9dce62 0%, #85c13c 100%);
-  color: #fff;
+  color: #ffffff;
 }
 .alert-msg.error,
 .block-alert-msg.error h4 {
@@ -859,7 +861,7 @@ hr {
   background: -o-linear-gradient(top, #eb6363 0%, #e53636 100%);
   background: -ms-linear-gradient(top, #eb6363 0%, #e53636 100%);
   background: linear-gradient(top, #eb6363 0%, #e53636 100%);
-  color: #fff;
+  color: #ffffff;
 }
 .alert-msg.info,
 .block-alert-msg.info h4 {
@@ -872,34 +874,26 @@ hr {
   background: -o-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
   background: -ms-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
   background: linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
-  color: #fff;
+  color: #ffffff;
 }
 .alert-msg p,
 .block-alert-msg p {
-  margin-right: 20px;
-  margin-bottom: 0em;
+  margin: 0 20px 0 0;
 }
 .alert-msg .close,
 .block-alert-msg .close {
   color: #000;
-  display: block;
-  text-decoration: none;
   float: right;
   font-family: Arial, sans-serif;
   font-weight: bold;
-  width: 13px;
-  height: 12px;
   line-height: .56em;
   font-size: 1.8em;
   opacity: 0.2;
   text-shadow: white 0px 1px 0px;
   padding: 5px;
-  margin-top: -0.15em;
-  margin-right: -0.25em;
-  text-align: center;
-  /*	background-color: #ddd;
-	.round-corners(@alertMsg-border-radius);*/
-
+  margin-right: -0.2em;
+  border: none;
+  background: none;
 }
 .block-alert-msg h4 {
   font-size: 1em;
@@ -938,7 +932,7 @@ hr {
   padding: 1em;
 }
 .block-alert-msg .close {
-  margin: 0.4em 0.2em 0 0;
+  margin: 0.5em 0.4em 0 0;
 }
 .block-alert-msg ul {
   list-style: inside;
@@ -952,14 +946,11 @@ hr {
 .block-alert-msg.info h4 {
   border-bottom: 1px solid #2983c3;
 }
-.ink-button,
-button,
-input[type="button"],
-input[type="submit"],
-a.ink-button {
+.ink-button {
   -webkit-appearance: menuitem;
   font-weight: bold;
-  font-size: 0.90em;
+  font-size: 0.938em;
+  line-height: 1.3em;
   padding: 0.45em 0.8em;
   float: none;
   border: 1px solid #ccc;
@@ -1004,11 +995,7 @@ a.ink-button {
   text-decoration: none;
   display: inline-block;
 }
-.ink-button:hover,
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-a.ink-button:hover {
+.ink-button:hover {
   background: #ffffff;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#c8c8c8');
@@ -1022,11 +1009,7 @@ a.ink-button:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.ink-button:active,
-button:active,
-input[type="button"]:active,
-input[type="submit"]:active,
-a.ink-button:active {
+.ink-button:active {
   background: #dcdcdc;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dcdcdc', endColorstr='#ffffff');
@@ -1041,37 +1024,17 @@ a.ink-button:active {
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
 .ink-button[disabled],
-button[disabled],
-input[type="button"][disabled],
-input[type="submit"][disabled],
-a.ink-button[disabled],
-.ink-button .ink-disabled,
-button .ink-disabled,
-input[type="button"] .ink-disabled,
-input[type="submit"] .ink-disabled,
-a.ink-button .ink-disabled {
+.ink-button .ink-disabled {
   background: #eeeeee;
   box-shadow: none;
   border: none;
 }
 .ink-button[disabled]:hover,
-button[disabled]:hover,
-input[type="button"][disabled]:hover,
-input[type="submit"][disabled]:hover,
-a.ink-button[disabled]:hover,
-.ink-button .ink-disabled:hover,
-button .ink-disabled:hover,
-input[type="button"] .ink-disabled:hover,
-input[type="submit"] .ink-disabled:hover,
-a.ink-button .ink-disabled:hover {
+.ink-button .ink-disabled:hover {
   background: #eeeeee;
   cursor: not-allowed;
 }
-.ink-button.ink-warning,
-button.ink-warning,
-input[type="button"].ink-warning,
-input[type="submit"].ink-warning,
-a.ink-button.ink-warning {
+.ink-button.warning {
   color: #fff;
   background: #ff9c00;
   zoom: 1;
@@ -1104,11 +1067,7 @@ a.ink-button.ink-warning {
   -ms-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-.ink-button.ink-warning:hover,
-button.ink-warning:hover,
-input[type="button"].ink-warning:hover,
-input[type="submit"].ink-warning:hover,
-a.ink-button.ink-warning:hover {
+.ink-button.warning:hover {
   background: #ffb033;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffb033', endColorstr='#b36d00');
@@ -1122,11 +1081,7 @@ a.ink-button.ink-warning:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.ink-button.ink-warning:active,
-button.ink-warning:active,
-input[type="button"].ink-warning:active,
-input[type="submit"].ink-warning:active,
-a.ink-button.ink-warning:active {
+.ink-button.warning:active {
   background: #db8600;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#db8600', endColorstr='#ffaa24');
@@ -1140,38 +1095,18 @@ a.ink-button.ink-warning:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-.ink-button.ink-warning[disabled],
-button.ink-warning[disabled],
-input[type="button"].ink-warning[disabled],
-input[type="submit"].ink-warning[disabled],
-a.ink-button.ink-warning[disabled],
-.ink-button.ink-warning .ink-disabled,
-button.ink-warning .ink-disabled,
-input[type="button"].ink-warning .ink-disabled,
-input[type="submit"].ink-warning .ink-disabled,
-a.ink-button.ink-warning .ink-disabled {
+.ink-button.warning[disabled],
+.ink-button.warning .ink-disabled {
   background: #dfc69f;
   box-shadow: none;
   border: none;
 }
-.ink-button.ink-warning[disabled]:hover,
-button.ink-warning[disabled]:hover,
-input[type="button"].ink-warning[disabled]:hover,
-input[type="submit"].ink-warning[disabled]:hover,
-a.ink-button.ink-warning[disabled]:hover,
-.ink-button.ink-warning .ink-disabled:hover,
-button.ink-warning .ink-disabled:hover,
-input[type="button"].ink-warning .ink-disabled:hover,
-input[type="submit"].ink-warning .ink-disabled:hover,
-a.ink-button.ink-warning .ink-disabled:hover {
+.ink-button.warning[disabled]:hover,
+.ink-button.warning .ink-disabled:hover {
   background: #dfc69f;
   cursor: not-allowed;
 }
-.ink-button.ink-caution,
-button.ink-caution,
-input[type="button"].ink-caution,
-input[type="submit"].ink-caution,
-a.ink-button.ink-caution {
+.ink-button.caution {
   color: #fff;
   background: #cd0000;
   zoom: 1;
@@ -1204,11 +1139,7 @@ a.ink-button.ink-caution {
   -ms-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-.ink-button.ink-caution:hover,
-button.ink-caution:hover,
-input[type="button"].ink-caution:hover,
-input[type="submit"].ink-caution:hover,
-a.ink-button.ink-caution:hover {
+.ink-button.caution:hover {
   background: #ff0101;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0101', endColorstr='#810000');
@@ -1222,11 +1153,7 @@ a.ink-button.ink-caution:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.ink-button.ink-caution:active,
-button.ink-caution:active,
-input[type="button"].ink-caution:active,
-input[type="submit"].ink-caution:active,
-a.ink-button.ink-caution:active {
+.ink-button.caution:active {
   background: #a90000;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a90000', endColorstr='#f10000');
@@ -1240,38 +1167,18 @@ a.ink-button.ink-caution:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-.ink-button.ink-caution[disabled],
-button.ink-caution[disabled],
-input[type="button"].ink-caution[disabled],
-input[type="submit"].ink-caution[disabled],
-a.ink-button.ink-caution[disabled],
-.ink-button.ink-caution .ink-disabled,
-button.ink-caution .ink-disabled,
-input[type="button"].ink-caution .ink-disabled,
-input[type="submit"].ink-caution .ink-disabled,
-a.ink-button.ink-caution .ink-disabled {
+.ink-button.caution[disabled],
+.ink-button.caution .ink-disabled {
   background: #d37a7a;
   box-shadow: none;
   border: none;
 }
-.ink-button.ink-caution[disabled]:hover,
-button.ink-caution[disabled]:hover,
-input[type="button"].ink-caution[disabled]:hover,
-input[type="submit"].ink-caution[disabled]:hover,
-a.ink-button.ink-caution[disabled]:hover,
-.ink-button.ink-caution .ink-disabled:hover,
-button.ink-caution .ink-disabled:hover,
-input[type="button"].ink-caution .ink-disabled:hover,
-input[type="submit"].ink-caution .ink-disabled:hover,
-a.ink-button.ink-caution .ink-disabled:hover {
+.ink-button.caution[disabled]:hover,
+.ink-button.caution .ink-disabled:hover {
   background: #d37a7a;
   cursor: not-allowed;
 }
-.ink-button.ink-success,
-button.ink-success,
-input[type="button"].ink-success,
-input[type="submit"].ink-success,
-a.ink-button.ink-success {
+.ink-button.success {
   color: #fff;
   background: #85bd11;
   zoom: 1;
@@ -1304,11 +1211,7 @@ a.ink-button.ink-success {
   -ms-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-.ink-button.ink-success:hover,
-button.ink-success:hover,
-input[type="button"].ink-success:hover,
-input[type="submit"].ink-success:hover,
-a.ink-button.ink-success:hover {
+.ink-button.success:hover {
   background: #a5ea17;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5ea17', endColorstr='#54770b');
@@ -1322,11 +1225,7 @@ a.ink-button.ink-success:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.ink-button.ink-success:active,
-button.ink-success:active,
-input[type="button"].ink-success:active,
-input[type="submit"].ink-success:active,
-a.ink-button.ink-success:active {
+.ink-button.success:active {
   background: #6e9c0e;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6e9c0e', endColorstr='#9cde14');
@@ -1340,38 +1239,18 @@ a.ink-button.ink-success:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-.ink-button.ink-success[disabled],
-button.ink-success[disabled],
-input[type="button"].ink-success[disabled],
-input[type="submit"].ink-success[disabled],
-a.ink-button.ink-success[disabled],
-.ink-button.ink-success .ink-disabled,
-button.ink-success .ink-disabled,
-input[type="button"].ink-success .ink-disabled,
-input[type="submit"].ink-success .ink-disabled,
-a.ink-button.ink-success .ink-disabled {
+.ink-button.success[disabled],
+.ink-button.success .ink-disabled {
   background: #b1c489;
   box-shadow: none;
   border: none;
 }
-.ink-button.ink-success[disabled]:hover,
-button.ink-success[disabled]:hover,
-input[type="button"].ink-success[disabled]:hover,
-input[type="submit"].ink-success[disabled]:hover,
-a.ink-button.ink-success[disabled]:hover,
-.ink-button.ink-success .ink-disabled:hover,
-button.ink-success .ink-disabled:hover,
-input[type="button"].ink-success .ink-disabled:hover,
-input[type="submit"].ink-success .ink-disabled:hover,
-a.ink-button.ink-success .ink-disabled:hover {
+.ink-button.success[disabled]:hover,
+.ink-button.success .ink-disabled:hover {
   background: #b1c489;
   cursor: not-allowed;
 }
-.ink-button.ink-info,
-button.ink-info,
-input[type="button"].ink-info,
-input[type="submit"].ink-info,
-a.ink-button.ink-info {
+.ink-button.info {
   color: #fff;
   background: #0f8bda;
   zoom: 1;
@@ -1404,11 +1283,7 @@ a.ink-button.ink-info {
   -ms-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-.ink-button.ink-info:hover,
-button.ink-info:hover,
-input[type="button"].ink-info:hover,
-input[type="submit"].ink-info:hover,
-a.ink-button.ink-info:hover {
+.ink-button.info:hover {
   background: #2ca4f0;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2ca4f0', endColorstr='#0a5d92');
@@ -1422,11 +1297,7 @@ a.ink-button.ink-info:hover {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5);
 }
-.ink-button.ink-info:active,
-button.ink-info:active,
-input[type="button"].ink-info:active,
-input[type="submit"].ink-info:active,
-a.ink-button.ink-info:active {
+.ink-button.info:active {
   background: #0d76b9;
   zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0d76b9', endColorstr='#1d9eef');
@@ -1440,30 +1311,14 @@ a.ink-button.ink-info:active {
   -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
-.ink-button.ink-info[disabled],
-button.ink-info[disabled],
-input[type="button"].ink-info[disabled],
-input[type="submit"].ink-info[disabled],
-a.ink-button.ink-info[disabled],
-.ink-button.ink-info .ink-disabled,
-button.ink-info .ink-disabled,
-input[type="button"].ink-info .ink-disabled,
-input[type="submit"].ink-info .ink-disabled,
-a.ink-button.ink-info .ink-disabled {
+.ink-button.info[disabled],
+.ink-button.info .ink-disabled {
   background: #98bad0;
   box-shadow: none;
   border: none;
 }
-.ink-button.ink-info[disabled]:hover,
-button.ink-info[disabled]:hover,
-input[type="button"].ink-info[disabled]:hover,
-input[type="submit"].ink-info[disabled]:hover,
-a.ink-button.ink-info[disabled]:hover,
-.ink-button.ink-info .ink-disabled:hover,
-button.ink-info .ink-disabled:hover,
-input[type="button"].ink-info .ink-disabled:hover,
-input[type="submit"].ink-info .ink-disabled:hover,
-a.ink-button.ink-info .ink-disabled:hover {
+.ink-button.info[disabled]:hover,
+.ink-button.info .ink-disabled:hover {
   background: #98bad0;
   cursor: not-allowed;
 }
@@ -1492,7 +1347,7 @@ a [class*=" icon-"] {
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
   vertical-align: middle;
-  font-size: 1.3333333333333332em;
+  font-size: 1.3333333333333333em;
 }
 .btn [class^="icon-"],
 .nav-tabs [class^="icon-"],
@@ -2176,7 +2031,8 @@ form fieldset legend {
   border-bottom: 1px solid #ddd;
 }
 form label {
-  line-height: 1.5;
+  /*line-height: 1.5;*/
+
 }
 form .ink-form-validation {
   margin: 0.5em 0.2em;
@@ -2231,12 +2087,14 @@ form .ink-form-validation.ink-success {
   background-color: transparent;
   padding: 0;
 }
-form div.ink-form-row {
+form div.ink-form-wrapper,
+form ul.ink-form-wrapper {
   display: block;
   margin-bottom: 0.8em;
   line-height: 2;
 }
-form div.ink-form-row.ink-required-field label:after {
+form div.ink-form-wrapper.ink-required-field label:after,
+form ul.ink-form-wrapper.ink-required-field label:after {
   content: "*";
   color: #cd0000;
   font-size: 1.5em;
@@ -2244,7 +2102,8 @@ form div.ink-form-row.ink-required-field label:after {
   margin-left: 0.1em;
   font-weight: 500;
 }
-form div.ink-form-row p.ink-field-tip {
+form div.ink-form-wrapper p.ink-field-tip,
+form ul.ink-form-wrapper p.ink-field-tip {
   margin: 0;
   line-height: 2.2;
   font-size: 0.8em;
@@ -2252,95 +2111,94 @@ form div.ink-form-row p.ink-field-tip {
   position: relative;
   margin-left: 0.1em;
 }
-form div.ink-form-row:first-child {
+form div.ink-form-wrapper:first-child,
+form ul.ink-form-wrapper:first-child {
   margin-top: 0;
 }
-form div.ink-form-row:last-child {
+form div.ink-form-wrapper:last-child,
+form ul.ink-form-wrapper:last-child {
   margin-bottom: 0;
 }
-form.ink-labels-above label {
-  display: block;
+form.ink-form-block label {
   margin: 0.5em 0 0 0.2em;
 }
-form.ink-labels-above input[type=text],
-form.ink-labels-above input[type=password],
-form.ink-labels-above input[type=file],
-form.ink-labels-above input[type=reset],
-form.ink-labels-above select {
+form.ink-form-block input[type=text],
+form.ink-form-block input[type=password],
+form.ink-form-block input[type=file],
+form.ink-form-block input[type=reset],
+form.ink-form-block select {
   width: 100%;
 }
-form.ink-labels-above textarea {
+form.ink-form-block textarea {
   min-width: 100%;
   max-width: 100%;
   min-height: 5em;
 }
-form.ink-labels-above input[type="checkbox"],
-form.ink-labels-above input[type="radio"] {
+form.ink-form-block input[type="checkbox"],
+form.ink-form-block input[type="radio"] {
   line-height: 2;
   margin-top: 0.55em;
   float: left;
   clear: left;
 }
-form.ink-labels-above input[type="checkbox"] + label,
-form.ink-labels-above input[type="radio"] + label {
+form.ink-form-block input[type="checkbox"] + label,
+form.ink-form-block input[type="radio"] + label {
   float: left;
   line-height: 2.5;
   margin-left: 0.55em;
   margin-top: -0.3em;
 }
-form.ink-labels-left label {
-  font-weight: bold;
+form.ink-form-inline label {
   display: block;
   margin-bottom: .5em;
   vertical-align: top;
   float: left;
   margin-top: 0.5em;
   margin-right: 0.5em;
-  line-height: 1.51;
+  line-height: 1;
   min-width: 20%;
   width: 20%;
   max-width: 20%;
   text-align: right;
 }
-form.ink-labels-left input[type=text],
-form.ink-labels-left input[type=password],
-form.ink-labels-left input[type=file],
-form.ink-labels-left input[type=reset],
-form.ink-labels-left select {
+form.ink-form-inline input[type=text],
+form.ink-form-inline input[type=password],
+form.ink-form-inline input[type=file],
+form.ink-form-inline input[type=reset],
+form.ink-form-inline select {
   min-width: 40%;
   width: 78%;
 }
-form.ink-labels-left textarea {
+form.ink-form-inline textarea {
   min-width: 40%;
   width: 78%;
   min-height: 5em;
 }
-form.ink-labels-left input[type="checkbox"],
-form.ink-labels-left input[type="radio"] {
+form.ink-form-inline input[type="checkbox"],
+form.ink-form-inline input[type="radio"] {
   line-height: 2;
   margin-top: 0.55em;
   float: left;
 }
-form.ink-labels-left input[type="checkbox"] + label,
-form.ink-labels-left input[type="radio"] + label {
+form.ink-form-inline input[type="checkbox"] + label,
+form.ink-form-inline input[type="radio"] + label {
   line-height: 2.5;
   margin: 0 1.55em 0 0.55em;
   margin-top: 0;
   width: auto;
   min-width: auto;
 }
-form.ink-labels-left fieldset div.ink-form-row {
+form.ink-form-inline fieldset div.ink-form-wrapper {
   margin-bottom: 1em;
 }
-form.ink-labels-left fieldset div.ink-form-row  > input + p.ink-field-tip,
-form.ink-labels-left fieldset div.ink-form-row  > select + p.ink-field-tip {
+form.ink-form-inline fieldset div.ink-form-wrapper  > input + p.ink-field-tip,
+form.ink-form-inline fieldset div.ink-form-wrapper  > select + p.ink-field-tip {
   margin-left: 21%;
 }
-form.ink-labels-left fieldset div.ink-form-row  > input + p.ink-form-validation,
-form.ink-labels-left fieldset div.ink-form-row  > select + p.ink-form-validation {
+form.ink-form-inline fieldset div.ink-form-wrapper  > input + p.ink-form-validation,
+form.ink-form-inline fieldset div.ink-form-wrapper  > select + p.ink-form-validation {
   margin-left: 21%;
 }
-/* Form Styles */
 table.ink-table {
   width: 100%;
   border-collapse: collapse;
