@@ -1,8 +1,4 @@
-.ink-button, 
-button, 
-input[type="button"], 
-input[type="submit"],
-a.ink-button {
+.ink-button {
 
 	-webkit-appearance: menuitem;
 	font-weight: bold;
@@ -23,28 +19,28 @@ a.ink-button {
 			.disable(@btnBg);
 		}
 
-	&.ink-warning {
+	&.warning {
 		.createBtn(@warning-bg-color);
 		&[disabled], .ink-disabled {
 			.disable(@warning-bg-color);
 		}
 	}
 
-	&.ink-caution {
+	&.caution {
 		.createBtn(@caution-bg-color);
 		&[disabled], .ink-disabled {
 			.disable(@caution-bg-color);
 		}
 	}
 
-	&.ink-success {
+	&.success {
 		.createBtn(@success-bg-color);
 		&[disabled], .ink-disabled {
 			.disable(@success-bg-color);
 		}
 	}
 
-	&.ink-info {
+	&.info {
 		.createBtn(@info-bg-color);
 		&[disabled], .ink-disabled {
 			.disable(@info-bg-color);

@@ -69,7 +69,7 @@
 		<div class="ink-space">
 			<h3>Text & Number entry</h3>
 		</div>
-		<div class="ink-l60">
+		<div class="ink-l50">
 			<form action="" class="ink-form-block ink-hspace">
 				<fieldset>
 					<legend><h4>Fieldset legend</h4></legend>
@@ -109,14 +109,14 @@
 				</fieldset>
 			</form>
 		</div>
-		<div class="ink-l40">
+		<div class="ink-l50">
 			<div class="ink-hspace">
 				<p>
 					Neste exemplo a <code>&lt;label&gt;</code> do respectivo campo do formulário encontra-se acima deste, em bloco
 					Para este efeito o <code>&lt;form&gt;</code> deverá ter a class <code>.ink-form-block</code>
 				</p>
 				<p>
-					Caso se pretenda usar a <code>&lt;label&gt;</code> inline basta usar a class <code>.ink-form-inline</code>
+					Caso se pretenda usar a <code>&lt;label&gt;</code> inline basta usar no <code>&lt;form&gt;</code> a class <code>.ink-form-inline</code>
 				</p>
 			</div>
 		</div>
@@ -127,7 +127,7 @@
 		</div>
 		
 		<div class="ink-l50">
-			<form action="" class="ink-form-block ink-space">
+			<form action="" class="ink-form-block ink-hspace">
 				<fieldset>
 					<legend><h4>Group of checkboxes</h4></legend>
 					<ul class="ink-form-wrapper unstyled">
@@ -154,28 +154,28 @@
 			</form>	
 		</div>
 		<div class="ink-l50">
-			<form action="" class="ink-form-block ink-space">
+			<form action="" class="ink-form-block ink-hspace">
 				<fieldset>
 					<legend><h4>Group of radio buttons</h4></legend>
-						<ul class="ink-form-wrapper unstyled">
-							<p class="ink-field-tip">Please select one of these options</p>
-							<li>
-								<input type="radio" id="rb1" name="rb" value="">
-								<label for="rb1">Option 1</label>
-							</li>
-							<li>
-								<input type="radio" id="rb2" name="rb" value="">
-								<label for="rb2">Option 2</label>
-							</li>
-							<li>
-								<input type="radio" id="rb3" name="rb" value="">
-								<label for="rb3">Option 3</label>
-							</li>
-							<li>
-								<input type="radio" id="rb4" name="rb" value="">
-								<label for="rb4">Option 4</label>
-							</li>
-						</ul>
+					<ul class="ink-form-wrapper unstyled">
+						<p class="ink-field-tip">Please select one of these options</p>
+						<li>
+							<input type="radio" id="rb1" name="rb" value="">
+							<label for="rb1">Option 1</label>
+						</li>
+						<li>
+							<input type="radio" id="rb2" name="rb" value="">
+							<label for="rb2">Option 2</label>
+						</li>
+						<li>
+							<input type="radio" id="rb3" name="rb" value="">
+							<label for="rb3">Option 3</label>
+						</li>
+						<li>
+							<input type="radio" id="rb4" name="rb" value="">
+							<label for="rb4">Option 4</label>
+						</li>
+					</ul>
 				</fieldset>
 				<pre class="prettyprint"><ol><li><span class="tag">&lt;form</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-block"</span>&gt;</span></li><li>  <span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-form-wrapper unstyled"</span><span class="tag">&gt;</span></li><li>    <span class="tag">&lt;li</span><span class="pln"></span><span class="tag">&gt;</span></li><li><span class="tag">      &lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"radioId"</span><span class="tag">&gt;</span><span class="pln">Option 1</span><span class="tag">&lt;/label&gt;</span></li><li>    <span class="tag">  &lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"radio" <span class="atn">id</span><span class="pun">=</span>"radioId"</span><span class="tag">&gt;</span></li><li><span class="tag">    &lt;li</span><span class="pln"></span><span class="tag">&gt;</span></li><li class="com">    ...</li><li><span class="tag">  &lt;/ul&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/form&gt;</span><span class="tag"></span></li></ol></pre>
 			</form>	
@@ -193,7 +193,7 @@
 			</p>
 			<p>The <code>button</code>, <code>input[type="button"]</code> and <code>input[type="submit"]</code> elements are styled by default.</p>
 		</div>
-		<div class="ink-hspace">
+		<div class="ink-space">
 		<table class="ink-table ink-bordered">
 			<thead>
 				<tr>
@@ -203,22 +203,17 @@
 					<th>description</th>
 				</tr>
 			</thead>
-			<tfoot>
-				<tr>
-					<td colspan="4">bla bla bla</td>
-				</tr>
-			</tfoot>
 			<tbody>
 				<tr>
 					<td>Default</td>
-					<td><button type="button">Default</button></td>
-					<td><button disabled>Default</button></td>
+					<td><button class="ink-button" type="button">Default</button></td>
+					<td><button class="ink-button" disabled>Default</button></td>
 					<td><code>&lt;button&gt;Default&lt;/button&gt;</code></td>
 				</tr>
 				<tr>
 					<td>Success</td>
-					<td><button class="ink-success">Success</button></td>
-					<td><button class="ink-success" disabled>Success</button></td>
+					<td><button class="ink-button success">Success</button></td>
+					<td><button class="ink-button success" disabled>Success</button></td>
 					<td>
 						<code>&lt;button class=&quot;ink-success&quot;&gt;Success&lt;/button&gt;</code>
 						<br>
@@ -227,20 +222,20 @@
 				</tr>
 				<tr>
 					<td>Warning</td>
-					<td><button class="ink-warning">Warning</button></td>
-					<td><button class="ink-warning" disabled>Warning</button></td>
+					<td><button class="ink-button warning">Warning</button></td>
+					<td><button class="ink-button warning" disabled>Warning</button></td>
 					<td><code>blah</code></td>
 				</tr>
 				<tr>
 					<td>Caution</td>
-					<td><button class="ink-caution">Caution</button></td>
-					<td><button class="ink-caution" disabled>Caution</button></td>
+					<td><button class="ink-button caution">Caution</button></td>
+					<td><button class="ink-button caution" disabled>Caution</button></td>
 					<td><code>blah</code></td>
 				</tr>
 				<tr>
 					<td>Info</td>
-					<td><button class="ink-info">Info</button></td>
-					<td><button class="ink-info" disabled>Info</button></td>
+					<td><button class="ink-button info">Info</button></td>
+					<td><button class="ink-button info" disabled>Info</button></td>
 					<td><code>blah</code></td>
 				</tr>
 			</tbody>
