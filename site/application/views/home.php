@@ -1,7 +1,7 @@
 <div class="callToAction">
 	<img src="<?php echo base_url() ?>../ink/demo/styles/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
 	<div class="glow">
-		<img src="../ink/demo/styles/imgs/glow1.png" alt="Glow1"></div>
+		<img src="<?php echo base_url() ?>../ink/demo/styles/imgs/glow1.png" alt="Glow1"></div>
 </div>
 
 <div class="ink-container">
@@ -20,14 +20,14 @@
 		<div class="ink-l33">
 			<div class="ink-space">
 				<a href="<?php echo site_url() . '/download/latest' ?>" >Version 1.0</a>
-				<p>Download InK's latest build</p>
+				<p>Download InK's current build</p>
 			</div>
 		</div>
 		<div class="ink-l33">
 			<div class="ink-space">
 				<a href="<?php echo site_url() . '/download' ?>" >Custom</a>
 				<p>
-					If you don't need all the available modules, this is the place to go for a InK package customized to your needs.
+					Customize your basic layout - site width, gutters, spacers, and much more
 				</p>
 			</div>
 		</div>
@@ -38,4 +38,5 @@
 			</div>
 		</div>
 	</div>
+
 </div>

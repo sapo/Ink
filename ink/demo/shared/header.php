@@ -21,9 +21,6 @@
 	<link rel="stylesheet" href="../css/ink.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/large.css" media="screen and (min-width: 901px)" />
-	<link rel="stylesheet" type="text/css" href="../css/medium.css" media="screen and (min-width: 651px) and (max-width: 900px)" />
-	<link rel="stylesheet" type="text/css" href="../css/small.css" media="screen and (max-width: 650px)" />
 	
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="../css/ie6.css" type="text/css" media="screen" title="no title" charset="utf-8">

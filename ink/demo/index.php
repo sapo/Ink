@@ -11,7 +11,7 @@
 			<li><a href="forms.php">Forms</a></li>
 			<li><a href="alerts.php">Alerts</a></li>
 			<li><a href="tables.php">Tables</a></li>
-			<li><a href="alerts.php">InkJS</a></li>
+			<li><a href="widgets.php">InkJS</a></li>
 		</ul>
 	</div>
 </nav>  

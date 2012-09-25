@@ -39,6 +39,13 @@
 		zoom:1; 
 	}
 
+<<<<<<< HEAD
+html body .ink-space 	{ margin: @ink-grid-gutter 0 }
+html body .ink-vspace 	{ margin: @ink-grid-gutter 0 }
+html body .ink-hspace	{ margin: 0 }
+html body .ink-rspace 	{ margin: 0 }
+html body .ink-lspace 	{ margin: 0 }
+=======
 	html body .ink-m100:empty,
 	html body .ink-m90:empty,
 	html body .ink-m80:empty,
@@ -55,10 +62,11 @@
 	html body .ink-m10:empty { 
 		clear: both;
 	}
+>>>>>>> 762d2503f21639eb405967d12154eaa6b617e7e1
 
 	html body .ink-space 	{ margin: @ink-grid-gutter 0 }
 	html body .ink-vspace 	{ margin: @ink-grid-gutter 0 }
-	html body .ink-hspace	{ margin: 0 }
+	html body .ink-hspace	{ margins: 0 }
 	html body .ink-rspace 	{ margin: 0 }
 	html body .ink-lspace 	{ margin: 0 }
 
