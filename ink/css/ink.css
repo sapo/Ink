@@ -2247,7 +2247,6 @@ form.ink-form-inline fieldset div.ink-form-wrapper  > input + p.ink-form-validat
 form.ink-form-inline fieldset div.ink-form-wrapper  > select + p.ink-form-validation {
   margin-left: 21%;
 }
-/* Form Styles */
 table.ink-table {
   width: 100%;
   border-collapse: collapse;
