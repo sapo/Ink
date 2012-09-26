@@ -980,19 +980,21 @@ hr {
   padding-top: 1.1em;
   font-size: .9em;
   color: #666;
-  background: linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
-  background: #fbe8bc;
-  background: -ms-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
-  background: -o-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
-  background: -moz-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbe8bc), color-stop(100%, #f7d88c));
   background: -webkit-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
-  border-radius: 4px;
+  background: -o-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
+  background: -ms-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
+  background: linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
+  background: #fbe8bc;
+  background: -moz-linear-gradient(top, #fbe8bc 0%, #f7d88c 100%);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fbe8bc', endColorstr='#f7d88c');
   zoom: 1;
-  -webkit-box-shadow: '0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8),  inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
-     -moz-box-shadow: '0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8),  inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
-          box-shadow: '0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8),  inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .block-alert-msg,
@@ -1002,7 +1004,7 @@ hr {
 
 .alert-msg.success,
 .block-alert-msg.success h4 {
-  color: #fff;
+  color: #ffffff;
   background: #9dce62;
   background: -moz-linear-gradient(top, #9dce62 0%, #85c13c 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9dce62), color-stop(100%, #85c13c));
@@ -1016,7 +1018,7 @@ hr {
 
 .alert-msg.error,
 .block-alert-msg.error h4 {
-  color: #fff;
+  color: #ffffff;
   background: #eb6363;
   background: -moz-linear-gradient(top, #eb6363 0%, #e53636 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eb6363), color-stop(100%, #e53636));
@@ -1030,7 +1032,7 @@ hr {
 
 .alert-msg.info,
 .block-alert-msg.info h4 {
-  color: #fff;
+  color: #ffffff;
   background: #5ca7dc;
   background: -moz-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5ca7dc), color-stop(100%, #2983c3));
@@ -1044,61 +1046,7 @@ hr {
 
 .alert-msg p,
 .block-alert-msg p {
-  margin-right: 20px;
-  margin-bottom: 0;
-}
-
-.block-alert-msg,
-.alert-msg {
-  margin: 1em 0;
-}
-
-.alert-msg.success,
-.block-alert-msg.success h4 {
-  color: #fff;
-  background: #9dce62;
-  background: -moz-linear-gradient(top, #9dce62 0%, #85c13c 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9dce62), color-stop(100%, #85c13c));
-  background: -webkit-linear-gradient(top, #9dce62 0%, #85c13c 100%);
-  background: -o-linear-gradient(top, #9dce62 0%, #85c13c 100%);
-  background: -ms-linear-gradient(top, #9dce62 0%, #85c13c 100%);
-  background: linear-gradient(top, #9dce62 0%, #85c13c 100%);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#9dce62', endColorstr='#85c13c');
-  zoom: 1;
-}
-
-.alert-msg.error,
-.block-alert-msg.error h4 {
-  color: #fff;
-  background: #eb6363;
-  background: -moz-linear-gradient(top, #eb6363 0%, #e53636 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eb6363), color-stop(100%, #e53636));
-  background: -webkit-linear-gradient(top, #eb6363 0%, #e53636 100%);
-  background: -o-linear-gradient(top, #eb6363 0%, #e53636 100%);
-  background: -ms-linear-gradient(top, #eb6363 0%, #e53636 100%);
-  background: linear-gradient(top, #eb6363 0%, #e53636 100%);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#eb6363', endColorstr='#e53636');
-  zoom: 1;
-}
-
-.alert-msg.info,
-.block-alert-msg.info h4 {
-  color: #fff;
-  background: #5ca7dc;
-  background: -moz-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5ca7dc), color-stop(100%, #2983c3));
-  background: -webkit-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
-  background: -o-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
-  background: -ms-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
-  background: linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5ca7dc', endColorstr='#2983c3');
-  zoom: 1;
-}
-
-.alert-msg p,
-.block-alert-msg p {
-  margin-right: 20px;
-  margin-bottom: 0;
+  margin: 0 20px 0 0;
 }
 
 .alert-msg .close,
@@ -1121,18 +1069,30 @@ hr {
   margin: 0;
   font-size: 1em;
   border-bottom: 1px solid #f6d074;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
-     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
-          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .block-alert-msg {
   font-size: .9em;
   background: #FEFBF3;
   border-bottom: 1px solid #ddd;
-  border-radius: 4px;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -1145,7 +1105,7 @@ hr {
 }
 
 .block-alert-msg .close {
-  margin: 0.4em 0.2em 0 0;
+  margin: 0.5em 0.4em 0 0;
 }
 
 .block-alert-msg ul {
@@ -1164,11 +1124,7 @@ hr {
   border-bottom: 1px solid #2983c3;
 }
 
-.ink-button,
-button,
-input[type="button"],
-input[type="submit"],
-a.ink-button {
+.ink-button {
   display: inline-block;
   float: none;
   padding: 0.45em 0.8em;
@@ -1219,11 +1175,7 @@ a.ink-button {
   -webkit-appearance: menuitem;
 }
 
-.ink-button:hover,
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-a.ink-button:hover {
+.ink-button:hover {
   color: #333333;
   text-decoration: none;
   background: #ffffff;
@@ -1240,11 +1192,7 @@ a.ink-button:hover {
           box-shadow: '0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 .5em rgba(255, 255, 255, 0.5)';
 }
 
-.ink-button:active,
-button:active,
-input[type="button"]:active,
-input[type="submit"]:active,
-a.ink-button:active {
+.ink-button:active {
   background: -o-linear-gradient(top, #dcdcdc 0%, #ffffff 100%);
   background: #dcdcdc;
   background: linear-gradient(top, #dcdcdc 0%, #ffffff 100%);
@@ -1260,39 +1208,19 @@ a.ink-button:active {
 }
 
 .ink-button[disabled],
-button[disabled],
-input[type="button"][disabled],
-input[type="submit"][disabled],
-a.ink-button[disabled],
-.ink-button .ink-disabled,
-button .ink-disabled,
-input[type="button"] .ink-disabled,
-input[type="submit"] .ink-disabled,
-a.ink-button .ink-disabled {
+.ink-button .ink-disabled {
   background: #eeeeee;
   border: none;
   box-shadow: none;
 }
 
 .ink-button[disabled]:hover,
-button[disabled]:hover,
-input[type="button"][disabled]:hover,
-input[type="submit"][disabled]:hover,
-a.ink-button[disabled]:hover,
-.ink-button .ink-disabled:hover,
-button .ink-disabled:hover,
-input[type="button"] .ink-disabled:hover,
-input[type="submit"] .ink-disabled:hover,
-a.ink-button .ink-disabled:hover {
+.ink-button .ink-disabled:hover {
   cursor: not-allowed;
   background: #eeeeee;
 }
 
-.ink-button.warning,
-button.warning,
-input[type="button"].warning,
-input[type="submit"].warning,
-a.ink-button.warning {
+.ink-button.warning {
   color: #ffffff;
   text-shadow: 0 -0.09em 0.03em #804e00;
   background: -ms-linear-gradient(top, #ff9c00 0%, #b36d00 100%);
@@ -1331,11 +1259,7 @@ a.ink-button.warning {
           transition-timing-function: ease-in-out;
 }
 
-.ink-button.warning:hover,
-button.warning:hover,
-input[type="button"].warning:hover,
-input[type="submit"].warning:hover,
-a.ink-button.warning:hover {
+.ink-button.warning:hover {
   background: -o-linear-gradient(top, #ffaa24 0%, #b87000 100%);
   background: #ffaa24;
   background: linear-gradient(top, #ffaa24 0%, #b87000 100%);
@@ -1350,11 +1274,7 @@ a.ink-button.warning:hover {
           box-shadow: '0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 .5em rgba(255, 255, 255, 0.5)';
 }
 
-.ink-button.warning:active,
-button.warning:active,
-input[type="button"].warning:active,
-input[type="submit"].warning:active,
-a.ink-button.warning:active {
+.ink-button.warning:active {
   background: -o-linear-gradient(top, #db8600 0%, #ffaa24 100%);
   background: #db8600;
   background: linear-gradient(top, #db8600 0%, #ffaa24 100%);
@@ -1370,39 +1290,19 @@ a.ink-button.warning:active {
 }
 
 .ink-button.warning[disabled],
-button.warning[disabled],
-input[type="button"].warning[disabled],
-input[type="submit"].warning[disabled],
-a.ink-button.warning[disabled],
-.ink-button.warning .ink-disabled,
-button.warning .ink-disabled,
-input[type="button"].warning .ink-disabled,
-input[type="submit"].warning .ink-disabled,
-a.ink-button.warning .ink-disabled {
+.ink-button.warning .ink-disabled {
   background: #dfc69f;
   border: none;
   box-shadow: none;
 }
 
 .ink-button.warning[disabled]:hover,
-button.warning[disabled]:hover,
-input[type="button"].warning[disabled]:hover,
-input[type="submit"].warning[disabled]:hover,
-a.ink-button.warning[disabled]:hover,
-.ink-button.warning .ink-disabled:hover,
-button.warning .ink-disabled:hover,
-input[type="button"].warning .ink-disabled:hover,
-input[type="submit"].warning .ink-disabled:hover,
-a.ink-button.warning .ink-disabled:hover {
+.ink-button.warning .ink-disabled:hover {
   cursor: not-allowed;
   background: #dfc69f;
 }
 
-.ink-button.caution,
-button.caution,
-input[type="button"].caution,
-input[type="submit"].caution,
-a.ink-button.caution {
+.ink-button.caution {
   color: #ffffff;
   text-shadow: 0 -0.09em 0.03em #4e0000;
   background: -ms-linear-gradient(top, #cd0000 0%, #810000 100%);
@@ -1441,11 +1341,7 @@ a.ink-button.caution {
           transition-timing-function: ease-in-out;
 }
 
-.ink-button.caution:hover,
-button.caution:hover,
-input[type="button"].caution:hover,
-input[type="submit"].caution:hover,
-a.ink-button.caution:hover {
+.ink-button.caution:hover {
   background: -o-linear-gradient(top, #f10000 0%, #860000 100%);
   background: #f10000;
   background: linear-gradient(top, #f10000 0%, #860000 100%);
@@ -1460,11 +1356,7 @@ a.ink-button.caution:hover {
           box-shadow: '0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 .5em rgba(255, 255, 255, 0.5)';
 }
 
-.ink-button.caution:active,
-button.caution:active,
-input[type="button"].caution:active,
-input[type="submit"].caution:active,
-a.ink-button.caution:active {
+.ink-button.caution:active {
   background: -o-linear-gradient(top, #a90000 0%, #f10000 100%);
   background: #a90000;
   background: linear-gradient(top, #a90000 0%, #f10000 100%);
@@ -1480,39 +1372,19 @@ a.ink-button.caution:active {
 }
 
 .ink-button.caution[disabled],
-button.caution[disabled],
-input[type="button"].caution[disabled],
-input[type="submit"].caution[disabled],
-a.ink-button.caution[disabled],
-.ink-button.caution .ink-disabled,
-button.caution .ink-disabled,
-input[type="button"].caution .ink-disabled,
-input[type="submit"].caution .ink-disabled,
-a.ink-button.caution .ink-disabled {
+.ink-button.caution .ink-disabled {
   background: #d37a7a;
   border: none;
   box-shadow: none;
 }
 
 .ink-button.caution[disabled]:hover,
-button.caution[disabled]:hover,
-input[type="button"].caution[disabled]:hover,
-input[type="submit"].caution[disabled]:hover,
-a.ink-button.caution[disabled]:hover,
-.ink-button.caution .ink-disabled:hover,
-button.caution .ink-disabled:hover,
-input[type="button"].caution .ink-disabled:hover,
-input[type="submit"].caution .ink-disabled:hover,
-a.ink-button.caution .ink-disabled:hover {
+.ink-button.caution .ink-disabled:hover {
   cursor: not-allowed;
   background: #d37a7a;
 }
 
-.ink-button.success,
-button.success,
-input[type="button"].success,
-input[type="submit"].success,
-a.ink-button.success {
+.ink-button.success {
   color: #ffffff;
   text-shadow: 0 -0.09em 0.03em #334806;
   background: -ms-linear-gradient(top, #85bd11 0%, #54770b 100%);
@@ -1551,11 +1423,7 @@ a.ink-button.success {
           transition-timing-function: ease-in-out;
 }
 
-.ink-button.success:hover,
-button.success:hover,
-input[type="button"].success:hover,
-input[type="submit"].success:hover,
-a.ink-button.success:hover {
+.ink-button.success:hover {
   background: -o-linear-gradient(top, #9cde14 0%, #577b0b 100%);
   background: #9cde14;
   background: linear-gradient(top, #9cde14 0%, #577b0b 100%);
@@ -1570,11 +1438,7 @@ a.ink-button.success:hover {
           box-shadow: '0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 .5em rgba(255, 255, 255, 0.5)';
 }
 
-.ink-button.success:active,
-button.success:active,
-input[type="button"].success:active,
-input[type="submit"].success:active,
-a.ink-button.success:active {
+.ink-button.success:active {
   background: -o-linear-gradient(top, #6e9c0e 0%, #9cde14 100%);
   background: #6e9c0e;
   background: linear-gradient(top, #6e9c0e 0%, #9cde14 100%);
@@ -1590,39 +1454,19 @@ a.ink-button.success:active {
 }
 
 .ink-button.success[disabled],
-button.success[disabled],
-input[type="button"].success[disabled],
-input[type="submit"].success[disabled],
-a.ink-button.success[disabled],
-.ink-button.success .ink-disabled,
-button.success .ink-disabled,
-input[type="button"].success .ink-disabled,
-input[type="submit"].success .ink-disabled,
-a.ink-button.success .ink-disabled {
+.ink-button.success .ink-disabled {
   background: #b1c489;
   border: none;
   box-shadow: none;
 }
 
 .ink-button.success[disabled]:hover,
-button.success[disabled]:hover,
-input[type="button"].success[disabled]:hover,
-input[type="submit"].success[disabled]:hover,
-a.ink-button.success[disabled]:hover,
-.ink-button.success .ink-disabled:hover,
-button.success .ink-disabled:hover,
-input[type="button"].success .ink-disabled:hover,
-input[type="submit"].success .ink-disabled:hover,
-a.ink-button.success .ink-disabled:hover {
+.ink-button.success .ink-disabled:hover {
   cursor: not-allowed;
   background: #b1c489;
 }
 
-.ink-button.info,
-button.info,
-input[type="button"].info,
-input[type="submit"].info,
-a.ink-button.info {
+.ink-button.info {
   color: #ffffff;
   text-shadow: 0 -0.09em 0.03em #073f63;
   background: -ms-linear-gradient(top, #0f8bda 0%, #0a5d92 100%);
@@ -1661,11 +1505,7 @@ a.ink-button.info {
           transition-timing-function: ease-in-out;
 }
 
-.ink-button.info:hover,
-button.info:hover,
-input[type="button"].info:hover,
-input[type="submit"].info:hover,
-a.ink-button.info:hover {
+.ink-button.info:hover {
   background: -o-linear-gradient(top, #1d9eef 0%, #0a6097 100%);
   background: #1d9eef;
   background: linear-gradient(top, #1d9eef 0%, #0a6097 100%);
@@ -1680,11 +1520,7 @@ a.ink-button.info:hover {
           box-shadow: '0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 .5em rgba(255, 255, 255, 0.5)';
 }
 
-.ink-button.info:active,
-button.info:active,
-input[type="button"].info:active,
-input[type="submit"].info:active,
-a.ink-button.info:active {
+.ink-button.info:active {
   background: -o-linear-gradient(top, #0d76b9 0%, #1d9eef 100%);
   background: #0d76b9;
   background: linear-gradient(top, #0d76b9 0%, #1d9eef 100%);
@@ -1700,30 +1536,14 @@ a.ink-button.info:active {
 }
 
 .ink-button.info[disabled],
-button.info[disabled],
-input[type="button"].info[disabled],
-input[type="submit"].info[disabled],
-a.ink-button.info[disabled],
-.ink-button.info .ink-disabled,
-button.info .ink-disabled,
-input[type="button"].info .ink-disabled,
-input[type="submit"].info .ink-disabled,
-a.ink-button.info .ink-disabled {
+.ink-button.info .ink-disabled {
   background: #98bad0;
   border: none;
   box-shadow: none;
 }
 
 .ink-button.info[disabled]:hover,
-button.info[disabled]:hover,
-input[type="button"].info[disabled]:hover,
-input[type="submit"].info[disabled]:hover,
-a.ink-button.info[disabled]:hover,
-.ink-button.info .ink-disabled:hover,
-button.info .ink-disabled:hover,
-input[type="button"].info .ink-disabled:hover,
-input[type="submit"].info .ink-disabled:hover,
-a.ink-button.info .ink-disabled:hover {
+.ink-button.info .ink-disabled:hover {
   cursor: not-allowed;
   background: #98bad0;
 }

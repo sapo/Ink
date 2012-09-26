@@ -1,8 +1,4 @@
-.ink-button, 
-button, 
-input[type="button"], 
-input[type="submit"],
-a.ink-button {
+.ink-button {
 
 	-webkit-appearance: menuitem;
 	font-weight: bold;
@@ -26,7 +22,6 @@ a.ink-button {
 
 	&.warning {
 		#ink > #buttons > .standard (@warning-bg-color,#fff,darken(@warning-bg-color,25%));
-		// .createBtn(@warning-bg-color);
 		&[disabled], 
 		.ink-disabled {
 			#ink > #states > .disabled (@warning-bg-color);
