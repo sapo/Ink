@@ -1,8 +1,6 @@
 <?php include 'shared/header.php'; ?>
 <!-- |||||||||||||||||||||||||||||||||  Navitation  |||||||||||||||||||||||||||||||||  -->
 
-<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
-    
 <nav id="topbar">
 	<div class="ink-container">
 		<ul class="ink-h-nav">
@@ -18,10 +16,11 @@
 	</div>
 </nav>  
 
+<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
+
 <div class="callToAction">
 	<img src="styles/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
-	<div class="glow">
-		<img src="styles/imgs/glow1.png" alt="Glow1"></div>
+	<div class="glow"><img src="styles/imgs/glow1.png" alt="Glow1"></div>
 </div>
 
 <div class="ink-container">

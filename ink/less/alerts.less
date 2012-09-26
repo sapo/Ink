@@ -13,6 +13,11 @@
 	#ink > #gradients > .gradient (lighten(@alertMsg-Bg, 5%), darken(@alertMsg-Bg, 5%), 100%);
 	#ink > #shadows > .box-shadows ('0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8),  inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 }
+.block-alert-msg, .alert-msg {margin:1em 0 }
+.alert-msg.success, .block-alert-msg.success h4 {.gradient(lighten(@alertMsg-success-Bg, 0%), darken(@alertMsg-success-Bg, 10%), 100%); color: #fff;}
+.alert-msg.error, .block-alert-msg.error h4 {.gradient(lighten(@alertMsg-Error-Bg, 0%), darken(@alertMsg-Error-Bg, 10%), 100%); color: #fff;}
+.alert-msg.info, .block-alert-msg.info h4 {.gradient(lighten(@alertMsg-Info-Bg, 5%), darken(@alertMsg-Info-Bg, 10%), 100%); color: #fff;}
+.alert-msg p, .block-alert-msg p {margin-right: 20px; margin-bottom: 0em;}
 
 .block-alert-msg, .alert-msg {
 	margin:1em 0 
@@ -41,21 +46,17 @@
 
 .alert-msg .close, .block-alert-msg .close {
 	color: #000;
-	display: block;
-	text-decoration: none;
 	float: right;
 	font-family: Arial, sans-serif;
 	font-weight: bold;
-	width: 13px; height: 12px;
-	// font-size: 22px;
 	line-height: .56em;
 	font-size: 1.8em;
 	opacity: 0.2;
 	text-shadow: white 0px 1px 0px;
 	padding:5px;
-	margin-top: -.15em;
-	margin-right: -.25em;
-	text-align: center;
+	margin-right: -.2em;
+	border:none;
+	background:none
 }
 
 .block-alert-msg h4 {
@@ -69,7 +70,7 @@
 	background: #FEFBF3;
 	.box-shadow ('0 1px 2px rgba(0, 0, 0, 0.1)');
 	border-bottom: 1px solid #ddd;
-	.round-corners(@alertMsg-border-radius);
+	#ink > #border-radius > .all (@alertMsg-border-radius);
 	font-size: .9em;
 }
 .block-alert-msg p, .block-alert-msg ul, .block-alert-msg ol {padding:1em;}
