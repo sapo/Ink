@@ -1,53 +1,60 @@
-.ink-button, 
-button, 
-input[type="button"], 
+.ink-button,
+.ink-button,
+button,
+input[type="button"],
 input[type="submit"],
-a.ink-button {
+ {
 
 	-webkit-appearance: menuitem;
 	font-weight: bold;
-	font-size: 0.90em;
+	font-size: 0.938em;
+	line-height:1.3em;
 	padding: @btnPadding;
 	float:none;
 	border: 1px solid #ccc;
-	cursor:pointer;
-	.createBtn(@btnBg);
-	.round-corners(@border-radius);
-	color: @btnColor;
-	text-shadow:0 1px 0 rgba(255,255,255,1);
+	cursor:pointer;	
 	margin:5px;
 	text-decoration: none;
 	display: inline-block;
 
-	&[disabled], .ink-disabled {
-			.disable(@btnBg);
-		}
+	#ink > #border-radius > .all (@border-radius);
+	#ink > #buttons > .standard (@btnBg,#333,#fff,true);
 
-	&.ink-warning {
-		.createBtn(@warning-bg-color);
-		&[disabled], .ink-disabled {
-			.disable(@warning-bg-color);
+	&[disabled], 
+	.ink-disabled {
+		#ink > #states > .disabled (@btnBg);
+	}
+
+	&.warning {
+		#ink > #buttons > .standard (@warning-bg-color,#fff,darken(@warning-bg-color,25%));
+		// .createBtn(@warning-bg-color);
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@warning-bg-color);
 		}
 	}
 
-	&.ink-caution {
-		.createBtn(@caution-bg-color);
-		&[disabled], .ink-disabled {
-			.disable(@caution-bg-color);
+	&.caution {
+		#ink > #buttons > .standard (@caution-bg-color,#fff,darken(@caution-bg-color,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@caution-bg-color);
 		}
 	}
 
-	&.ink-success {
-		.createBtn(@success-bg-color);
-		&[disabled], .ink-disabled {
-			.disable(@success-bg-color);
+	&.success {
+		#ink > #buttons > .standard (@success-bg-color,#fff,darken(@success-bg-color,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@success-bg-color);
 		}
 	}
 
-	&.ink-info {
-		.createBtn(@info-bg-color);
-		&[disabled], .ink-disabled {
-			.disable(@info-bg-color);
+	&.info {
+		#ink > #buttons > .standard (@info-bg-color,#fff,darken(@info-bg-color,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@info-bg-color);
 		}
 	}
 

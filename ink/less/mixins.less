@@ -1,59 +1,469 @@
-.border-radius (@radius) {
-	border-radius: @radius;
+#ink {
+
+	#border-radius {
+
+		// set the same border radius to all corners
+		.all (@radius) {
+			border-radius: @radius;
+		}
+
+		// set individual border radius to the four corners
+		.all (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
+			border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+		}
+
+		// set the same border radius to both top corners
+		.top (@radius) {
+			border-top-right-radius: @radius;
+			border-top-left-radius: @radius;
+		}
+
+		// set the same border radius to both bottom corners
+
+		.bottom (@radius) {
+			border-bottom-right-radius: @radius;
+			border-bottom-left-radius: @radius;
+		}
+
+		// set the same border radius to both left corners
+		.left (@radius) {
+			border-bottom-left-radius: @radius;
+			border-top-left-radius: @radius;
+		}
+
+		// set the same border radius to both right corners
+		.right (@radius) {
+			border-top-right-radius: @radius;
+			border-bottom-right-radius: @radius;
+		}
+		
+	}
+
+	#buttons {
+
+		.standard (@button-color, @text-color, @text-shadow-color, @shadow-above) when (@shadow-above = true) {
+
+			color: @text-color; 
+			border-color: darken(@button-color, 15%);
+			border-bottom-color: darken(@button-color, 25%);
+			#ink > #shadows > .text-shadow(0, .09em, .03em, @text-shadow-color);
+
+			#ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+			#ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+			#ink > #effects > .transition ();
+
+			&:hover {
+				#ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+				#ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+				color: @text-color;
+				text-decoration: none;
+				}
+
+			&:active {
+				#ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+				#ink > #shadows > .box-shadows ("inset 0 3px 5px rgba(0,0,0,0.25)")
+			}
+		}
+
+		.standard (@button-color, @text-color, @text-shadow-color) {
+
+			color: @text-color; 
+			border-color: darken(@button-color, 15%);
+			border-bottom-color: darken(@button-color, 25%);
+			text-shadow:0 -.09em .03em @text-shadow-color;
+
+			#ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+			#ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+			#ink > #effects > .transition ();
+
+			&:hover {
+				#ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+				#ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+				}
+
+			&:active {
+				#ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+				#ink > #shadows > .box-shadows ("inset 0 3px 5px rgba(0,0,0,0.25)")
+			}
+		}
+
+	}
+
+	#gradients {
+
+		.gradient (@start-color, @end-color, @end-color-stop) {
+			background: @start-color;
+			zoom:1;
+			filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+			background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
+			background: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+		}
+
+	}
+
+
+	#shadows {
+
+		// creates a outset box shadow. takes 5 arguments x, y, blur, spread and color. 
+		.box-shadow (@x, @y, @b, @s, @c) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow: @arguments;
+			box-shadow: @arguments;
+		}	
+
+		// creates a box shadow. takes 5 arguments x, y, blur, spread and color. 
+		// If the 6th argument is used the shadow is inset.
+		.box-shadow (@x, @y, @b, @s, @c, @i) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow: @arguments;
+			box-shadow: @arguments;
+		}
+
+		// if several box shadows are needed on the same element you can pass the declarations as a "string"
+		.box-shadows (@exp: "") {
+			-webkit-box-shadow: @exp;
+			-moz-box-shadow: @exp;
+			box-shadow: @exp;
+		}
+
+		// creates a text shadow
+		.text-shadow (@x, @y, @b, @c){
+			text-shadow: @arguments;
+		}
+	}
+
+
+	#text {
+
+		
+
+	}
+
+	#effects {
+
+		.transition-delay (@delay) {
+			-webkit-transition-delay: @delay;
+			-moz-transition-delay: @delay;
+			-o-transition-delay: @delay;
+			-ms-transition-delay: @delay;
+			transition-delay: @delay;
+		}
+
+		.transition-property (@property) {
+			-webkit-transition-property: @property;
+			-moz-transition-property: @property;
+			-o-transition-property: @property;
+			-ms-transition-property: @property;
+			transition-property: @property;
+		}
+
+		.transition-timing-function (@function) {
+			-webkit-transition-timing-function: @function;
+			-moz-transition-timing-function: @function;
+			-o-transition-timing-function: @function;
+			-ms-transition-timing-function: @function;
+			transition-timing-function: @function;
+		}
+
+		.transition-duration (@duration) {
+			-webkit-transition-duration: @duration;
+			-moz-transition-duration: @duration;
+			-o-transition-duration: @duration;
+			-ms-transition-duration: @duration;
+			transition-duration: @duration;
+		}
+
+		.transition (@property: ~"background-color, color", @duration: 125ms, @function: ease-in-out, @delay: 0) {
+			-webkit-transition-property: @property;
+			-moz-transition-property: @property;
+			-o-transition-property: @property;
+			-ms-transition-property: @property;
+			transition-property: @property;
+			-webkit-transition-duration: @duration;
+			-moz-transition-duration: @duration;
+			-o-transition-duration: @duration;
+			-ms-transition-duration: @duration;
+			transition-duration: @duration;
+			-webkit-transition-timing-function: @function;
+			-moz-transition-timing-function: @function;
+			-o-transition-timing-function: @function;
+			-ms-transition-timing-function: @function;
+			transition-timing-function: @function;
+			-webkit-transition-delay: @delay;
+			-moz-transition-delay: @delay;
+			-o-transition-delay: @delay;
+			-ms-transition-delay: @delay;
+			transition-delay: @delay;
+		}
+
+		// set element opacity
+		.opacity (@op) {
+			@percent: @op * 100;
+			filter: alpha(opacity=@percent);
+			-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
+			opacity: @op;
+		}
+
+	}
+
+	#utils {
+		// hide text inside element
+		.hide-text (){
+			text-indent: -99999px;
+			color: transparent;
+		}
+	}
+
+	#states {
+
+		.caution (@inv) when (@inv = true) {
+			color: @caution-bg-color;
+			background-color: transparent;
+		}
+
+		.caution () {
+			background-color: @caution-bg-color;
+			color: #fff;
+		}
+
+
+		.warning (@inv) when (@inv = true) {
+			color: @warning-bg-color;
+			background-color: transparent;
+		}
+
+		.warning (){
+			background-color: @warning-bg-color;
+			color: #fff;
+		}
+
+		.success (@inv) when (@inv = true) {
+			color: @success-bg-color;
+			background-color: transparent;
+		}
+
+		.success () {
+			background-color: @success-bg-color;
+			color: #fff;
+		}
+
+		.info (@inv) when (@inv = true) {
+			color: #fff;
+			background-color: transparent;
+		}
+
+		.info () {
+			color: #fff;
+			background-color: @info-bg-color;
+		}
+
+		.disabled (@color) when (lightness(@color) < 60%){
+			background: lighten(desaturate(@color,50%),25%);
+			box-shadow: none;
+			border: none;
+			&:hover {
+				background: lighten(desaturate(@color,50%),25%);
+				cursor: not-allowed;
+			}
+		}
+
+		.disabled (@color) when (lightness(@color) > 60%){
+			background: @color;
+			box-shadow: none;
+			border: none;
+			&:hover {
+				background: @color;
+				cursor: not-allowed;
+			}
+		}
+
+	}
 }
 
-.border-radius (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
-	border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+
+/////////////////////////////////////////////////////////////////////
+
+/* Functions */
+/* Functions */
+
+
+.border-radius (@br) {
+	border-radius: @br;
 }
 
-.top-border-radius (@topLeftRadius, @topRightRadius) {
-	border-top-right-radius: @topRightRadius;
-	border-top-left-radius: @topLeftRadius;
+.round-corners (@r) {
+	border-radius: @r;
+	-webkit-border-radius: @r;
+	-moz-border-radius: @r;
 }
 
-.bottom-border-radius (@bottomLeftRadius, @bottomRightRadius) {
-	border-bottom-right-radius: @topRightRadius;
-	border-bottom-left-radius: @topLeftRadius;
+.i-round-corners(@tl, @tr, @br, @bl) {
+	-webkit-border-top-left-radius: @tl;
+	-moz-border-radius-topleft: @tl;
+	border-top-left-radius: @tl;
+	
+	-webkit-border-top-right-radius: @tr;
+	-moz-border-radius-topright: @tr;
+	border-top-right-radius: @tr;
+
+	-webkit-border-bottom-right-radius: @br;
+	-moz-border-radius-bottomright: @br;
+	border-bottom-right-radius: @br;
+	
+	-webkit-border-bottom-left-radius: @bl;
+	-moz-border-radius-bottomleft: @bl;
+	border-bottom-left-radius: @bl;
 }
 
-.left-border-radius (@topLeftRadius, @bottomLeftRadius) {
-	border-bottom-left-radius: @bottomLeftRadius;
-	border-top-left-radius: @topLeftRadius;
+.gradient (@gsc, @gec, @gs) {
+	background: @gsc;
+	zoom:1;
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{gsc}', endColorstr='@{gec}')";
+	background: -moz-linear-gradient(top, @gsc 0%, @gec @gs);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @gsc), color-stop(@gs, @gec));
+	background: -webkit-linear-gradient(top, @gsc 0%,@gec @gs);
+	background: -o-linear-gradient(top, @gsc 0%,@gec @gs);
+	background: -ms-linear-gradient(top, @gsc 0%,@gec @gs);
+	background: linear-gradient(top, @gsc 0%,@gec @gs);
 }
 
-.right-border-radius (@topRightRadius, @bottomRightRadius) {
-	border-top-right-radius: @topRightRadius;
-	border-bottom-right-radius: @bottomRightRadius;
+.adv_gradient (@a:transparent, @b: transparent, @c:transparent, @d:transparent, @e: transparent, @f:transparent, @g:transparent) {
+	background: -moz-linear-gradient(top, @a, @b, @c);
+	background: -webkit-linear-gradient(top, @a, @b, @c);
+	background: -o-linear-gradient(top, @a, @b, @c);
+	background: -ms-linear-gradient(top, @a, @b, @c);
+	background: linear-gradient(top, @a, @b, @c);
 }
 
-.transition-delay (@delay) {
-	-webkit-transition-delay: @delay;
-	-moz-transition-delay: @delay;
-	-o-transition-delay: @delay;
-	-ms-transition-delay: @delay;
-	transition-delay: @delay;
+.input_focus (@fb, @fc){
+	outline: none;
+	border-color: fadeIn(@fc, 30%);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+	-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
 }
 
-.transition-property (@property) {
+.box-shadow (@sty) {
+	-webkit-box-shadow: ~"@{sty}";
+	-moz-box-shadow: ~"@{sty}";
+	box-shadow: ~"@{sty}";
+}
+
+.transition (@property: ~"background-color, color", @duration: 125ms, @easing: ease-in-out) {
 	-webkit-transition-property: @property;
 	-moz-transition-property: @property;
 	-o-transition-property: @property;
 	-ms-transition-property: @property;
 	transition-property: @property;
-}
-
-.transition-timing-function (@function) {
-	-webkit-transition-timing-function: @function;
-	-moz-transition-timing-function: @function;
-	-o-transition-timing-function: @function;
-	-ms-transition-timing-function: @function;
-	transition-timing-function: @function;
-}
-
-.transition-duration (@duration) {
 	-webkit-transition-duration: @duration;
 	-moz-transition-duration: @duration;
 	-o-transition-duration: @duration;
 	-ms-transition-duration: @duration;
 	transition-duration: @duration;
+	-webkit-transition-timing-function: @easing;
+	-moz-transition-timing-function: @easing;
+	-o-transition-timing-function: @easing;
+	-ms-transition-timing-function: @easing;
+	transition-timing-function: @easing;	
+}
+
+.createBtn (@bcl) {
+	color: #fff; 
+	.gradient( lighten(@bcl, 0%), darken(@bcl, 15%), 100%);
+	border-color: darken(@bcl, 15%);
+	border-bottom-color: darken(@bcl, 25%);
+	text-shadow:0 -.09em .03em rgba(0,0,0,.5);
+	.box-shadow ('inset 0 1px 0 rgba(255, 255, 255, 0.2)');
+	.transition ();
+
+	&:hover {
+		.gradient( lighten(@bcl, 10%), darken(@bcl, 15%), 100%); 
+		.box-shadow ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+		}
+	&:active {
+		.gradient( darken(@bcl, 7%), lighten(@bcl, 7%),  100%);
+		.box-shadow ("inset 0 3px 5px rgba(0,0,0,0.25)")
+	}
+}
+
+.box-sizing (@bst) {
+	-webkit-box-sizing: @bst;
+	-moz-box-sizing: @bst;
+	-ms-box-sizing: @bst;
+	box-sizing: @bst;
+}
+
+.make-caution (@inv) when (@inv = true) {
+	color: @caution-bg-color;
+	background-color: transparent;
+}
+
+.make-caution () {
+	background-color: @caution-bg-color;
+	color: #fff;
+}
+
+
+.make-warning (@inv) when (@inv = true) {
+	color: @warning-bg-color;
+	background-color: transparent;
+}
+
+.make-warning (){
+	background-color: @warning-bg-color;
+	color: #fff;
+}
+
+.make-success (@inv) when (@inv = true) {
+	color: @success-bg-color;
+	background-color: transparent;
+}
+
+.make-success () {
+	background-color: @success-bg-color;
+	color: #fff;
+}
+
+.make-info (@inv) when (@inv = true) {
+	color: #fff;
+	background-color: transparent;
+}
+
+.make-info () {
+	color: #fff;
+	background-color: @info-bg-color;
+}
+
+.disable (@color) when (lightness(@color) < 60%){
+	background: lighten(desaturate(@color,50%),25%);
+	box-shadow: none;
+	border: none;
+	&:hover {
+		background: lighten(desaturate(@color,50%),25%);
+		cursor: not-allowed;
+	}
+}
+
+.disable (@color) when (lightness(@color) > 60%){
+	background: @color;
+	box-shadow: none;
+	border: none;
+	&:hover {
+		background: @color;
+		cursor: not-allowed;
+	}
+}
+
+.body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
+	font-size: @font-size;
+}
+
+.body-font-size (@font-size){}
+
+.ink-font-stack () {
+	font-family: @font-family;
 }

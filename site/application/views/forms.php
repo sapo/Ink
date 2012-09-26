@@ -166,30 +166,30 @@
 				</tr>
 				<tr>
 					<td>Success</td>
-					<td><button class="ink-success">Success</button></td>
-					<td><button class="ink-success" disabled>Success</button></td>
+					<td><button class="success">Success</button></td>
+					<td><button class="success" disabled>Success</button></td>
 					<td>
-						<code>&lt;button class=&quot;ink-success&quot;&gt;Success&lt;/button&gt;</code>
+						<code>&lt;button class=&quot;success&quot;&gt;Success&lt;/button&gt;</code>
 						<br>
-						<code>&lt;button type=&quot;button&quot; class=&quot;ink-success disabled&quot;&gt;Success&lt;/button&gt;</code>
+						<code>&lt;button type=&quot;button&quot; class=&quot;success disabled&quot;&gt;Success&lt;/button&gt;</code>
 					</td>
 				</tr>
 				<tr>
 					<td>Warning</td>
-					<td><button class="ink-warning">Warning</button></td>
-					<td><button class="ink-warning" disabled>Warning</button></td>
+					<td><button class="warning">Warning</button></td>
+					<td><button class="warning" disabled>Warning</button></td>
 					<td><code>blah</code></td>
 				</tr>
 				<tr>
 					<td>Caution</td>
-					<td><button class="ink-caution">Caution</button></td>
-					<td><button class="ink-caution" disabled>Caution</button></td>
+					<td><button class="caution">Caution</button></td>
+					<td><button class="caution" disabled>Caution</button></td>
 					<td><code>blah</code></td>
 				</tr>
 				<tr>
 					<td>Info</td>
-					<td><button class="ink-info">Info</button></td>
-					<td><button class="ink-info" disabled>Info</button></td>
+					<td><button class="info">Info</button></td>
+					<td><button class="info" disabled>Info</button></td>
 					<td><code>blah</code></td>
 				</tr>
 			</tbody>
