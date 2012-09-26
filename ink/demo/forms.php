@@ -3,30 +3,14 @@
 <nav id="topbar">
 	<div class="ink-container">
 		<ul class="ink-h-nav">
-			<li>
-				<a class="logoPlaceholder" href="./" title="Site Title">InK</a>
-			</li>
-			<li>
-				<a href="grid.php">Layout</a>
-			</li>
-			<li>
-				<a href="navigation.php">Navigation</a>
-			</li>
-			<li>
-				<a href="typo.php">Typography & Icons</a>
-			</li>
-			<li class="active">
-				<a href="forms.php">Forms</a>
-			</li>
-			<li>
-				<a href="alerts.php">Alerts</a>
-			</li>
-			<li>
-				<a href="tables.php">Tables</a>
-			</li>
-			<li>
-				<a href="widgets.php">InkJS</a>
-			</li>
+			<li><a class="logoPlaceholder" href="./" title="Site Title">InK</a></li>
+			<li><a href="grid.php">Layout</a></li>
+			<li><a href="navigation.php">Navigation</a></li>
+			<li><a href="typo.php">Typography & Icons</a></li>
+			<li class="active"><a href="forms.php">Forms</a></li>
+			<li><a href="alerts.php">Alerts</a></li>
+			<li><a href="tables.php">Tables</a></li>
+			<li><a href="widgets.php">InkJS</a></li>
 		</ul>
 	</div>
 </nav>
@@ -78,7 +62,17 @@
 						<input id="text-input" type="text" placeholder="Please input some text">
 						<p class="ink-field-tip">You can add help text to fields</p>
 					</div>
+					<div class="ink-form-wrapper ink-warning-field">
+						<label for="text-input">Text input</label>
+						<input id="text-input" type="text" placeholder="Please input some text">
+						<p class="ink-form-validation ink-warning">Warn about somthing</p>
+					</div>
 					<div class="ink-form-wrapper ink-required-field">
+						<label for="text-input">Text input</label>
+						<input id="text-input" type="text" placeholder="Please input some text">
+						<p class="ink-form-validation ink-caution">Something is missing. Let your user know about it</p>
+					</div>
+					<div class="ink-form-wrapper">
 						<label for="select">Select</label>
 						<select name="" id="select">
 							<option value="">onions</option>
@@ -86,9 +80,9 @@
 							<option value="">potatoes</option>
 							<option value="">beets</option>
 						</select>
-						<p class="ink-form-validation ink-caution">An error occured. Let your user know about it</p>
+						
 					</div>
-					<div class="ink-form-wrapper ink-required-field">
+					<div class="ink-form-wrapper">
 						<label for="multiSelect">Multiple select</label>
 						<select multiple="multiple" id="multiSelect">
 							<option>onions</option>

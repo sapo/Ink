@@ -1,6 +1,5 @@
 form {
 
-
 	fieldset {
 		border: none;
 		width: 100%;
@@ -26,11 +25,10 @@ form {
 
 		margin: 0.5em 0.2em;
 
-		&.ink-success, &.ink-caution {
+		&.ink-success, &.ink-caution, &.ink-warning {
 			font-size: 0.75em;
 			padding: 0.2em 0.4em;
 			.round-corners(4px);
-			// opacity: 0.5;
 		}
 
 	}
@@ -45,6 +43,10 @@ form {
 		font-size: @fontSize;
 		.box-sizing(border-box);
 	}
+	
+	input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, input[type=reset]:focus, input[type=number]:focus, input[type=range]:focus, input[type=search]:focus, input[type=email]:focus, textarea:focus, select:focus {
+		.input_focus(@focusBlurSize, @focusColor)
+	}
 
 	select[multiple], select {
 		
@@ -56,10 +58,13 @@ form {
 
 	.ink-form-validation {
 
-		/*font-weight: 700;*/
-			
 			&.ink-caution {
 				.make-caution(true);
+				padding: 0;
+			}
+			
+			&.ink-warning {
+				.make-warning(true);
 				padding: 0;
 			}
 
@@ -79,10 +84,29 @@ form {
 			margin-bottom: 0.8em;
 			line-height: 2;
 
-			&.ink-required-field {
+			&.ink-warning-field {
+				input, textarea, select {
+					.input_focus (10px, @warningColor);
+				}
+				
 				label:after {
 					content: "*";
-					color: @caution-bg-color;
+					color: @warning-bg-color;
+					font-size: 1.5em;
+					line-height: 1;
+					margin-left: 0.1em;
+					font-weight: 500;
+				}
+			}
+			
+			&.ink-required-field {
+				input, textarea, select {
+					.input_focus (10px, @errorColor);
+				}
+				
+				label:after {
+					content: "*";
+					color: @error-bg-color;
 					font-size: 1.5em;
 					line-height: 1;
 					margin-left: 0.1em;
@@ -117,7 +141,6 @@ form {
 	&.ink-form-block {
 
 		label {
-			
 			margin: 0.5em 0 0 0.2em;
 		}
 

@@ -1,6 +1,3 @@
-/* ==========================================================================
-   HTML5 display definitions
-   ========================================================================== */
 /*! normalize.css v2.0.1 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -1347,7 +1344,7 @@ a [class*=" icon-"] {
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
   vertical-align: middle;
-  font-size: 1.3333333333333333em;
+  font-size: 1.3333333333333332em;
 }
 .btn [class^="icon-"],
 .nav-tabs [class^="icon-"],
@@ -2038,7 +2035,8 @@ form .ink-form-validation {
   margin: 0.5em 0.2em;
 }
 form .ink-form-validation.ink-success,
-form .ink-form-validation.ink-caution {
+form .ink-form-validation.ink-caution,
+form .ink-form-validation.ink-warning {
   font-size: 0.75em;
   padding: 0.2em 0.4em;
   border-radius: 4px;
@@ -2068,17 +2066,34 @@ form select {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+form input[type=text]:focus,
+form input[type=password]:focus,
+form input[type=file]:focus,
+form input[type=reset]:focus,
+form input[type=number]:focus,
+form input[type=range]:focus,
+form input[type=search]:focus,
+form input[type=email]:focus,
+form textarea:focus,
+form select:focus {
+  outline: none;
+  border-color: rgba(153, 153, 153, 0.8999999999999999);
+  -webkit-box-shadow: 0 0 10px rgba(153, 153, 153, 0.6);
+  -moz-box-shadow: 0 0 10px rgba(153, 153, 153, 0.6);
+  box-shadow: 0 0 10px rgba(153, 153, 153, 0.6);
+}
 form select[multiple] option,
 form select option {
   line-height: 2;
   padding: 3px;
 }
-form .ink-form-validation {
-  /*font-weight: 700;*/
-
-}
 form .ink-form-validation.ink-caution {
   color: #cd0000;
+  background-color: transparent;
+  padding: 0;
+}
+form .ink-form-validation.ink-warning {
+  color: #ff9c00;
   background-color: transparent;
   padding: 0;
 }
@@ -2092,6 +2107,39 @@ form ul.ink-form-wrapper {
   display: block;
   margin-bottom: 0.8em;
   line-height: 2;
+}
+form div.ink-form-wrapper.ink-warning-field input,
+form ul.ink-form-wrapper.ink-warning-field input,
+form div.ink-form-wrapper.ink-warning-field textarea,
+form ul.ink-form-wrapper.ink-warning-field textarea,
+form div.ink-form-wrapper.ink-warning-field select,
+form ul.ink-form-wrapper.ink-warning-field select {
+  outline: none;
+  border-color: rgba(255, 156, 0, 0.8999999999999999);
+  -webkit-box-shadow: 0 0 10px rgba(255, 156, 0, 0.6);
+  -moz-box-shadow: 0 0 10px rgba(255, 156, 0, 0.6);
+  box-shadow: 0 0 10px rgba(255, 156, 0, 0.6);
+}
+form div.ink-form-wrapper.ink-warning-field label:after,
+form ul.ink-form-wrapper.ink-warning-field label:after {
+  content: "*";
+  color: #ff9c00;
+  font-size: 1.5em;
+  line-height: 1;
+  margin-left: 0.1em;
+  font-weight: 500;
+}
+form div.ink-form-wrapper.ink-required-field input,
+form ul.ink-form-wrapper.ink-required-field input,
+form div.ink-form-wrapper.ink-required-field textarea,
+form ul.ink-form-wrapper.ink-required-field textarea,
+form div.ink-form-wrapper.ink-required-field select,
+form ul.ink-form-wrapper.ink-required-field select {
+  outline: none;
+  border-color: rgba(200, 10, 16, 0.8);
+  -webkit-box-shadow: 0 0 10px rgba(200, 10, 16, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(200, 10, 16, 0.5);
+  box-shadow: 0 0 10px rgba(200, 10, 16, 0.5);
 }
 form div.ink-form-wrapper.ink-required-field label:after,
 form ul.ink-form-wrapper.ink-required-field label:after {
@@ -2199,6 +2247,7 @@ form.ink-form-inline fieldset div.ink-form-wrapper  > input + p.ink-form-validat
 form.ink-form-inline fieldset div.ink-form-wrapper  > select + p.ink-form-validation {
   margin-left: 21%;
 }
+/* Form Styles */
 table.ink-table {
   width: 100%;
   border-collapse: collapse;
