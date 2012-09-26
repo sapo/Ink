@@ -1,59 +1,161 @@
-.border-radius (@radius) {
-	border-radius: @radius;
+#ink {
+
+	#styling {
+
+		// set the same border radius to all corners
+		.border-radius (@radius) {
+			border-radius: @radius;
+		}
+
+		// set individual border radius to the four corners
+		.border-radius (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
+			border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+		}
+
+		// set the same border radius to both top corners
+		.top-border-radius (@radius) {
+			border-top-right-radius: @radius;
+			border-top-left-radius: @radius;
+		}
+
+		// set the same border radius to both bottom corners
+
+		.bottom-border-radius (@radius) {
+			border-bottom-right-radius: @radius;
+			border-bottom-left-radius: @radius;
+		}
+
+		// set the same border radius to both left corners
+		.left-border-radius (@radius) {
+			border-bottom-left-radius: @radius;
+			border-top-left-radius: @radius;
+		}
+
+		// set the same border radius to both right corners
+		.right-border-radius (@radius) {
+			border-top-right-radius: @radius;
+			border-bottom-right-radius: @radius;
+		}
+
+		// create a box shadow. takes 5 arguments x, y, blur, spread and color. 
+		.box-shadow (@x, @y, @b, @s, @c) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow: @arguments;
+			box-shadow: @arguments;
+		}
+
+		// create a box shadow. takes 5 arguments x, y, blur, spread and color. 
+		// If the 6th argument is used the shadow is inset.
+		.box-shadow (@x, @y, @b, @s, @c, @i) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow: @arguments;
+			box-shadow: @arguments;
+		}
+
+		//
+		.text-shadow (@x, @y, @b, @c){
+			text-shadow: @x @y @b @c;
+		}
+
+	}
+
+	#effects {
+
+		.transition-delay (@delay) {
+			-webkit-transition-delay: @delay;
+			-moz-transition-delay: @delay;
+			-o-transition-delay: @delay;
+			-ms-transition-delay: @delay;
+			transition-delay: @delay;
+		}
+
+		.transition-property (@property) {
+			-webkit-transition-property: @property;
+			-moz-transition-property: @property;
+			-o-transition-property: @property;
+			-ms-transition-property: @property;
+			transition-property: @property;
+		}
+
+		.transition-timing-function (@function) {
+			-webkit-transition-timing-function: @function;
+			-moz-transition-timing-function: @function;
+			-o-transition-timing-function: @function;
+			-ms-transition-timing-function: @function;
+			transition-timing-function: @function;
+		}
+
+		.transition-duration (@duration) {
+			-webkit-transition-duration: @duration;
+			-moz-transition-duration: @duration;
+			-o-transition-duration: @duration;
+			-ms-transition-duration: @duration;
+			transition-duration: @duration;
+		}
+
+		// set element opacity
+		.opacity (@op) {
+			@percent: @op * 100;
+			filter: alpha(opacity=@percent);
+			-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
+			opacity: @op;
+		}
+
+	}
+
+	#utils {
+		// hide text inside element
+		.hide-text (){
+			text-indent: -99999px;
+			color: transparent;
+		}
+	}
+
+	#states {
+
+		.caution (@inv) when (@inv = true) {
+			color: @caution-bg-color;
+			background-color: transparent;
+		}
+
+		.caution () {
+			background-color: @caution-bg-color;
+			color: #fff;
+		}
+
+
+		.warning (@inv) when (@inv = true) {
+			color: @warning-bg-color;
+			background-color: transparent;
+		}
+
+		.warning (){
+			background-color: @warning-bg-color;
+			color: #fff;
+		}
+
+		.success (@inv) when (@inv = true) {
+			color: @success-bg-color;
+			background-color: transparent;
+		}
+
+		.success () {
+			background-color: @success-bg-color;
+			color: #fff;
+		}
+
+		.info (@inv) when (@inv = true) {
+			color: #fff;
+			background-color: transparent;
+		}
+
+		.info () {
+			color: #fff;
+			background-color: @info-bg-color;
+		}
+
+	}
 }
 
-.border-radius (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
-	border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
-}
 
-.top-border-radius (@topLeftRadius, @topRightRadius) {
-	border-top-right-radius: @topRightRadius;
-	border-top-left-radius: @topLeftRadius;
-}
 
-.bottom-border-radius (@bottomLeftRadius, @bottomRightRadius) {
-	border-bottom-right-radius: @topRightRadius;
-	border-bottom-left-radius: @topLeftRadius;
-}
-
-.left-border-radius (@topLeftRadius, @bottomLeftRadius) {
-	border-bottom-left-radius: @bottomLeftRadius;
-	border-top-left-radius: @topLeftRadius;
-}
-
-.right-border-radius (@topRightRadius, @bottomRightRadius) {
-	border-top-right-radius: @topRightRadius;
-	border-bottom-right-radius: @bottomRightRadius;
-}
-
-.transition-delay (@delay) {
-	-webkit-transition-delay: @delay;
-	-moz-transition-delay: @delay;
-	-o-transition-delay: @delay;
-	-ms-transition-delay: @delay;
-	transition-delay: @delay;
-}
-
-.transition-property (@property) {
-	-webkit-transition-property: @property;
-	-moz-transition-property: @property;
-	-o-transition-property: @property;
-	-ms-transition-property: @property;
-	transition-property: @property;
-}
-
-.transition-timing-function (@function) {
-	-webkit-transition-timing-function: @function;
-	-moz-transition-timing-function: @function;
-	-o-transition-timing-function: @function;
-	-ms-transition-timing-function: @function;
-	transition-timing-function: @function;
-}
-
-.transition-duration (@duration) {
-	-webkit-transition-duration: @duration;
-	-moz-transition-duration: @duration;
-	-o-transition-duration: @duration;
-	-ms-transition-duration: @duration;
-	transition-duration: @duration;
-}

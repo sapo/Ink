@@ -16,34 +16,39 @@
 	text-decoration: none;
 	display: inline-block;
 
-	&[disabled], .ink-disabled {
-			.disable(@btnBg);
-		}
+	&[disabled], 
+	.ink-disabled {
+		.disable(@btnBg);
+	}
 
 	&.warning {
 		.createBtn(@warning-bg-color);
-		&[disabled], .ink-disabled {
+		&[disabled], 
+		.ink-disabled {
 			.disable(@warning-bg-color);
 		}
 	}
 
 	&.caution {
 		.createBtn(@caution-bg-color);
-		&[disabled], .ink-disabled {
+		&[disabled], 
+		.ink-disabled {
 			.disable(@caution-bg-color);
 		}
 	}
 
 	&.success {
 		.createBtn(@success-bg-color);
-		&[disabled], .ink-disabled {
+		&[disabled], 
+		.ink-disabled {
 			.disable(@success-bg-color);
 		}
 	}
 
 	&.info {
 		.createBtn(@info-bg-color);
-		&[disabled], .ink-disabled {
+		&[disabled], 
+		.ink-disabled {
 			.disable(@info-bg-color);
 		}
 	}
