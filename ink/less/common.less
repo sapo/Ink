@@ -22,9 +22,48 @@
 	
 }
 
-.ink-size-s { font-size: 0.75em; }
-.ink-size-l { font-size: 1.2em; }
-.ink-size-xl { font-size: 1.45em; }
+.small { font-size: 0.75em; }
+.large { font-size: 1.2em; }
+.extralarge { font-size: 1.45em; }
 
 
 // .ink-warning .ink-info .ink-caution .ink-success .ink-disabled
+
+h1, h2, h3, h4 , h5, h6, p, ul, ol, dl {
+	&.warning {
+		#ink > #states > .warning (true);
+		padding: 0;
+		&.invert {
+			padding: @padding / 1.5 @padding;
+			#ink > #states > .warning ();
+			#ink > #border-radius > .all(4px);
+		}
+	}
+	&.caution {
+		#ink > #states > .caution (true);
+		padding: 0;
+		&.invert {
+			padding: @padding / 1.5 @padding;
+			#ink > #states > .caution ();
+			#ink > #border-radius > .all(4px);
+		}
+	}
+	&.info {
+		#ink > #states > .info (true);
+		padding: 0;
+		&.invert {
+			padding: @padding / 1.5 @padding;
+			#ink > #states > .info ();
+			#ink > #border-radius > .all(4px);
+		}
+	}
+	&.success {
+		#ink > #states > .success (true);
+		padding: 0;
+		&.invert {
+			padding: @padding / 1.5 @padding;
+			#ink > #states > .success ();
+			#ink > #border-radius > .all(4px);
+		}
+	}
+}
