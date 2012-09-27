@@ -13,7 +13,7 @@
 	display: inline-block;
 
 	#ink > #border-radius > .all (@border-radius);
-	#ink > #buttons > .standard (@btnBg,#333,#fff,true);
+	#ink > #buttons > .standard (@btnBg, #333, @white, true);
 
 	&[disabled], 
 	.ink-disabled {
@@ -21,7 +21,7 @@
 	}
 
 	&.warning {
-		#ink > #buttons > .standard (@warning-bg-color,#fff,darken(@warning-bg-color,25%));
+		#ink > #buttons > .standard (@warning-bg-color,@white,darken(@warning-bg-color,25%));
 		&[disabled], 
 		.ink-disabled {
 			#ink > #states > .disabled (@warning-bg-color);
@@ -29,7 +29,7 @@
 	}
 
 	&.caution {
-		#ink > #buttons > .standard (@caution-bg-color,#fff,darken(@caution-bg-color,25%));
+		#ink > #buttons > .standard (@caution-bg-color,@white,darken(@caution-bg-color,25%));
 		&[disabled], 
 		.ink-disabled {
 			#ink > #states > .disabled (@caution-bg-color);
@@ -37,7 +37,7 @@
 	}
 
 	&.success {
-		#ink > #buttons > .standard (@success-bg-color,#fff,darken(@success-bg-color,25%));
+		#ink > #buttons > .standard (@success-bg-color,@white,darken(@success-bg-color,25%));
 		&[disabled], 
 		.ink-disabled {
 			#ink > #states > .disabled (@success-bg-color);
@@ -45,7 +45,7 @@
 	}
 
 	&.info {
-		#ink > #buttons > .standard (@info-bg-color,#fff,darken(@info-bg-color,25%));
+		#ink > #buttons > .standard (@info-bg-color,@white,darken(@info-bg-color,25%));
 		&[disabled], 
 		.ink-disabled {
 			#ink > #states > .disabled (@info-bg-color);

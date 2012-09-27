@@ -39,6 +39,18 @@
 		
 	}
 
+	#forms {
+
+		.input_focus (@fb, @fc){
+			outline: none;
+			border-color: fadeIn(@fc, 30%);
+			-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+			-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+		}
+
+	}
+
 	#buttons {
 
 		.standard (@button-color, @text-color, @text-shadow-color, @shadow-above) when (@shadow-above = true) {
@@ -46,22 +58,21 @@
 			color: @text-color; 
 			border-color: darken(@button-color, 15%);
 			border-bottom-color: darken(@button-color, 25%);
-			#ink > #shadows > .text-shadow(0, .09em, .03em, @text-shadow-color);
 
+			#ink > #shadows > .text-shadow (0, .09em, .03em, @text-shadow-color);
 			#ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
 			#ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
-			#ink > #effects > .transition ();
 
 			&:hover {
 				#ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
 				#ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
-				color: @text-color;
-				text-decoration: none;
-				}
+				color: @text-color; // force text color for anchor tags
+				text-decoration: none; // remove underline on anchr tags
+			}
 
 			&:active {
 				#ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
-				#ink > #shadows > .box-shadows ("inset 0 3px 5px rgba(0,0,0,0.25)")
+				#ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25),inset);
 			}
 		}
 
@@ -70,20 +81,21 @@
 			color: @text-color; 
 			border-color: darken(@button-color, 15%);
 			border-bottom-color: darken(@button-color, 25%);
-			text-shadow:0 -.09em .03em @text-shadow-color;
 
+			#ink > #shadows > .text-shadow (0, -.09em, .03em, @text-shadow-color);
 			#ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
 			#ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
-			#ink > #effects > .transition ();
 
 			&:hover {
 				#ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
 				#ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
-				}
+				color: @text-color; // force text color for anchor tags
+				text-decoration: none; // remove underline on anchr tags
+			}
 
 			&:active {
 				#ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
-				#ink > #shadows > .box-shadows ("inset 0 3px 5px rgba(0,0,0,0.25)")
+				#ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
 			}
 		}
 
@@ -95,12 +107,12 @@
 			background: @start-color;
 			zoom:1;
 			filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
-			background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
-			background: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
-			background: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
-			background: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
-			background: linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background-image: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
+			background-image: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background-image: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background-image: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background-image: linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
 		}
 
 	}
@@ -109,7 +121,7 @@
 	#shadows {
 
 		// creates a outset box shadow. takes 5 arguments x, y, blur, spread and color. 
-		.box-shadow (@x, @y, @b, @s, @c) {
+		.box-shadow (@x, @y, @blur, @spread, @color) {
 			-webkit-box-shadow: @arguments;
 			-moz-box-shadow: @arguments;
 			box-shadow: @arguments;
@@ -117,7 +129,7 @@
 
 		// creates a box shadow. takes 5 arguments x, y, blur, spread and color. 
 		// If the 6th argument is used the shadow is inset.
-		.box-shadow (@x, @y, @b, @s, @c, @i) {
+		.box-shadow (@x, @y, @blur, @spread, @color, @inset) {
 			-webkit-box-shadow: @arguments;
 			-moz-box-shadow: @arguments;
 			box-shadow: @arguments;
@@ -131,15 +143,41 @@
 		}
 
 		// creates a text shadow
-		.text-shadow (@x, @y, @b, @c){
+		.text-shadow (@x, @y, @blur, @color){
 			text-shadow: @arguments;
+		}
+
+		// remove box-shadows
+		.no-box-shadow {
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
+
+		// remove box-shadows
+		.no-text-shadow {
+			text-shadow: none;
 		}
 	}
 
 
 	#text {
 
-		
+		// hide text inside element
+		.hide-text (){
+			text-indent: -99999px;
+			color: transparent;
+		}
+
+		.body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
+			font-size: @font-size;
+		}
+
+		.body-font-size (@font-size){}
+
+		.ink-font-stack {
+			font-family: @font-family;
+		}
 
 	}
 
@@ -211,11 +249,7 @@
 	}
 
 	#utils {
-		// hide text inside element
-		.hide-text (){
-			text-indent: -99999px;
-			color: transparent;
-		}
+		
 	}
 
 	#states {
@@ -227,7 +261,7 @@
 
 		.caution () {
 			background-color: @caution-bg-color;
-			color: #fff;
+			color: @white;
 		}
 
 
@@ -238,7 +272,7 @@
 
 		.warning (){
 			background-color: @warning-bg-color;
-			color: #fff;
+			color: @white;
 		}
 
 		.success (@inv) when (@inv = true) {
@@ -248,16 +282,16 @@
 
 		.success () {
 			background-color: @success-bg-color;
-			color: #fff;
+			color: @white;
 		}
 
 		.info (@inv) when (@inv = true) {
-			color: #fff;
+			color: @white;
 			background-color: transparent;
 		}
 
 		.info () {
-			color: #fff;
+			color: @white;
 			background-color: @info-bg-color;
 		}
 
@@ -287,13 +321,11 @@
 
 /////////////////////////////////////////////////////////////////////
 
-/* Functions */
-/* Functions */
 
 
-.border-radius (@br) {
-	border-radius: @br;
-}
+// .border-radius (@br) {
+// 	border-radius: @br;
+// }
 
 .round-corners (@r) {
 	border-radius: @r;
@@ -301,94 +333,94 @@
 	-moz-border-radius: @r;
 }
 
-.i-round-corners(@tl, @tr, @br, @bl) {
-	-webkit-border-top-left-radius: @tl;
-	-moz-border-radius-topleft: @tl;
-	border-top-left-radius: @tl;
+// .i-round-corners(@tl, @tr, @br, @bl) {
+// 	-webkit-border-top-left-radius: @tl;
+// 	-moz-border-radius-topleft: @tl;
+// 	border-top-left-radius: @tl;
 	
-	-webkit-border-top-right-radius: @tr;
-	-moz-border-radius-topright: @tr;
-	border-top-right-radius: @tr;
+// 	-webkit-border-top-right-radius: @tr;
+// 	-moz-border-radius-topright: @tr;
+// 	border-top-right-radius: @tr;
 
-	-webkit-border-bottom-right-radius: @br;
-	-moz-border-radius-bottomright: @br;
-	border-bottom-right-radius: @br;
+// 	-webkit-border-bottom-right-radius: @br;
+// 	-moz-border-radius-bottomright: @br;
+// 	border-bottom-right-radius: @br;
 	
-	-webkit-border-bottom-left-radius: @bl;
-	-moz-border-radius-bottomleft: @bl;
-	border-bottom-left-radius: @bl;
-}
+// 	-webkit-border-bottom-left-radius: @bl;
+// 	-moz-border-radius-bottomleft: @bl;
+// 	border-bottom-left-radius: @bl;
+// }
 
-.gradient (@gsc, @gec, @gs) {
-	background: @gsc;
-	zoom:1;
-	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{gsc}', endColorstr='@{gec}')";
-	background: -moz-linear-gradient(top, @gsc 0%, @gec @gs);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @gsc), color-stop(@gs, @gec));
-	background: -webkit-linear-gradient(top, @gsc 0%,@gec @gs);
-	background: -o-linear-gradient(top, @gsc 0%,@gec @gs);
-	background: -ms-linear-gradient(top, @gsc 0%,@gec @gs);
-	background: linear-gradient(top, @gsc 0%,@gec @gs);
-}
+// .gradient (@gsc, @gec, @gs) {
+// 	background: @gsc;
+// 	zoom:1;
+// 	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{gsc}', endColorstr='@{gec}')";
+// 	background: -moz-linear-gradient(top, @gsc 0%, @gec @gs);
+// 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @gsc), color-stop(@gs, @gec));
+// 	background: -webkit-linear-gradient(top, @gsc 0%,@gec @gs);
+// 	background: -o-linear-gradient(top, @gsc 0%,@gec @gs);
+// 	background: -ms-linear-gradient(top, @gsc 0%,@gec @gs);
+// 	background: linear-gradient(top, @gsc 0%,@gec @gs);
+// }
 
-.adv_gradient (@a:transparent, @b: transparent, @c:transparent, @d:transparent, @e: transparent, @f:transparent, @g:transparent) {
-	background: -moz-linear-gradient(top, @a, @b, @c);
-	background: -webkit-linear-gradient(top, @a, @b, @c);
-	background: -o-linear-gradient(top, @a, @b, @c);
-	background: -ms-linear-gradient(top, @a, @b, @c);
-	background: linear-gradient(top, @a, @b, @c);
-}
+// .adv_gradient (@a:transparent, @b: transparent, @c:transparent, @d:transparent, @e: transparent, @f:transparent, @g:transparent) {
+// 	background: -moz-linear-gradient(top, @a, @b, @c);
+// 	background: -webkit-linear-gradient(top, @a, @b, @c);
+// 	background: -o-linear-gradient(top, @a, @b, @c);
+// 	background: -ms-linear-gradient(top, @a, @b, @c);
+// 	background: linear-gradient(top, @a, @b, @c);
+// }
 
-.input_focus (@fb, @fc){
-	outline: none;
-	border-color: fadeIn(@fc, 30%);
-	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
-	-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
-}
+// .input_focus (@fb, @fc){
+// 	outline: none;
+// 	border-color: fadeIn(@fc, 30%);
+// 	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+// 	-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+// 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+// }
 
-.box-shadow (@sty) {
-	-webkit-box-shadow: ~"@{sty}";
-	-moz-box-shadow: ~"@{sty}";
-	box-shadow: ~"@{sty}";
-}
+// .box-shadow (@sty) {
+// 	-webkit-box-shadow: ~"@{sty}";
+// 	-moz-box-shadow: ~"@{sty}";
+// 	box-shadow: ~"@{sty}";
+// }
 
-.transition (@property: ~"background-color, color", @duration: 125ms, @easing: ease-in-out) {
-	-webkit-transition-property: @property;
-	-moz-transition-property: @property;
-	-o-transition-property: @property;
-	-ms-transition-property: @property;
-	transition-property: @property;
-	-webkit-transition-duration: @duration;
-	-moz-transition-duration: @duration;
-	-o-transition-duration: @duration;
-	-ms-transition-duration: @duration;
-	transition-duration: @duration;
-	-webkit-transition-timing-function: @easing;
-	-moz-transition-timing-function: @easing;
-	-o-transition-timing-function: @easing;
-	-ms-transition-timing-function: @easing;
-	transition-timing-function: @easing;	
-}
+// .transition (@property: ~"background-color, color", @duration: 125ms, @easing: ease-in-out) {
+// 	-webkit-transition-property: @property;
+// 	-moz-transition-property: @property;
+// 	-o-transition-property: @property;
+// 	-ms-transition-property: @property;
+// 	transition-property: @property;
+// 	-webkit-transition-duration: @duration;
+// 	-moz-transition-duration: @duration;
+// 	-o-transition-duration: @duration;
+// 	-ms-transition-duration: @duration;
+// 	transition-duration: @duration;
+// 	-webkit-transition-timing-function: @easing;
+// 	-moz-transition-timing-function: @easing;
+// 	-o-transition-timing-function: @easing;
+// 	-ms-transition-timing-function: @easing;
+// 	transition-timing-function: @easing;	
+// }
 
-.createBtn (@bcl) {
-	color: #fff; 
-	.gradient( lighten(@bcl, 0%), darken(@bcl, 15%), 100%);
-	border-color: darken(@bcl, 15%);
-	border-bottom-color: darken(@bcl, 25%);
-	text-shadow:0 -.09em .03em rgba(0,0,0,.5);
-	.box-shadow ('inset 0 1px 0 rgba(255, 255, 255, 0.2)');
-	.transition ();
+// .createBtn (@bcl) {
+// 	color: @white; 
+// 	.gradient( lighten(@bcl, 0%), darken(@bcl, 15%), 100%);
+// 	border-color: darken(@bcl, 15%);
+// 	border-bottom-color: darken(@bcl, 25%);
+// 	text-shadow:0 -.09em .03em rgba(0,0,0,.5);
+// 	.box-shadow ('inset 0 1px 0 rgba(255, 255, 255, 0.2)');
+// 	.transition ();
 
-	&:hover {
-		.gradient( lighten(@bcl, 10%), darken(@bcl, 15%), 100%); 
-		.box-shadow ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
-		}
-	&:active {
-		.gradient( darken(@bcl, 7%), lighten(@bcl, 7%),  100%);
-		.box-shadow ("inset 0 3px 5px rgba(0,0,0,0.25)")
-	}
-}
+// 	&:hover {
+// 		.gradient( lighten(@bcl, 10%), darken(@bcl, 15%), 100%); 
+// 		.box-shadow ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+// 		}
+// 	&:active {
+// 		.gradient( darken(@bcl, 7%), lighten(@bcl, 7%),  100%);
+// 		.box-shadow ("inset 0 3px 5px rgba(0,0,0,0.25)")
+// 	}
+// }
 
 .box-sizing (@bst) {
 	-webkit-box-sizing: @bst;
@@ -397,73 +429,63 @@
 	box-sizing: @bst;
 }
 
-.make-caution (@inv) when (@inv = true) {
-	color: @caution-bg-color;
-	background-color: transparent;
-}
+// .make-caution (@inv) when (@inv = true) {
+// 	color: @caution-bg-color;
+// 	background-color: transparent;
+// }
 
-.make-caution () {
-	background-color: @caution-bg-color;
-	color: #fff;
-}
+// .make-caution () {
+// 	background-color: @caution-bg-color;
+// 	color: @white;
+// }
 
 
-.make-warning (@inv) when (@inv = true) {
-	color: @warning-bg-color;
-	background-color: transparent;
-}
+// .make-warning (@inv) when (@inv = true) {
+// 	color: @warning-bg-color;
+// 	background-color: transparent;
+// }
 
-.make-warning (){
-	background-color: @warning-bg-color;
-	color: #fff;
-}
+// .make-warning (){
+// 	background-color: @warning-bg-color;
+// 	color: @white;
+// }
 
-.make-success (@inv) when (@inv = true) {
-	color: @success-bg-color;
-	background-color: transparent;
-}
+// .make-success (@inv) when (@inv = true) {
+// 	color: @success-bg-color;
+// 	background-color: transparent;
+// }
 
-.make-success () {
-	background-color: @success-bg-color;
-	color: #fff;
-}
+// .make-success () {
+// 	background-color: @success-bg-color;
+// 	color: @white;
+// }
 
-.make-info (@inv) when (@inv = true) {
-	color: #fff;
-	background-color: transparent;
-}
+// .make-info (@inv) when (@inv = true) {
+// 	color: @white;
+// 	background-color: transparent;
+// }
 
-.make-info () {
-	color: #fff;
-	background-color: @info-bg-color;
-}
+// .make-info () {
+// 	color: @white;
+// 	background-color: @info-bg-color;
+// }
 
-.disable (@color) when (lightness(@color) < 60%){
-	background: lighten(desaturate(@color,50%),25%);
-	box-shadow: none;
-	border: none;
-	&:hover {
-		background: lighten(desaturate(@color,50%),25%);
-		cursor: not-allowed;
-	}
-}
+// .disable (@color) when (lightness(@color) < 60%){
+// 	background: lighten(desaturate(@color,50%),25%);
+// 	box-shadow: none;
+// 	border: none;
+// 	&:hover {
+// 		background: lighten(desaturate(@color,50%),25%);
+// 		cursor: not-allowed;
+// 	}
+// }
 
-.disable (@color) when (lightness(@color) > 60%){
-	background: @color;
-	box-shadow: none;
-	border: none;
-	&:hover {
-		background: @color;
-		cursor: not-allowed;
-	}
-}
-
-.body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
-	font-size: @font-size;
-}
-
-.body-font-size (@font-size){}
-
-.ink-font-stack () {
-	font-family: @font-family;
-}
+// .disable (@color) when (lightness(@color) > 60%){
+// 	background: @color;
+// 	box-shadow: none;
+// 	border: none;
+// 	&:hover {
+// 		background: @color;
+// 		cursor: not-allowed;
+// 	}
+// }
