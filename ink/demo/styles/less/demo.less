@@ -49,8 +49,8 @@ h2 span {
 }
 
 .box {
-	.round-corners(4px);
-	.box-shadow("0 1px 3px #aaa");
+	#ink > #border-radius > .all (4px);
+	#ink > #shadows > .box-shadow (0, 1px, 3px, 0, #aaa);
 	background-color: #fff;
 	padding: 1em;	
 }
@@ -58,7 +58,7 @@ h2 span {
 mark {font-family: Monaco, Andale Mono, Courier New, monospace; background-color: @themeBackground; padding:1px 3px; font-size: .9em;}
 
 .gridExemple .box p, .gridExemple2 div p, .gridExemple2 .level1 {
-	.round-corners(4px);
+	#ink > #border-radius > .all (4px);
 	background-color: #DEEDF1;
 	margin:.2em;
 	padding: .75em;
@@ -88,7 +88,7 @@ mark {font-family: Monaco, Andale Mono, Courier New, monospace; background-color
 #spaceExemples .box div:hover {
 	background-color: #68b9cf;
 	.animate(300ms);
-	.round-corners(4px)
+	#ink > #border-radius > .all (4px);
 }
 
 #spaceExemples .box .ink-space {padding:1em}
@@ -107,9 +107,9 @@ mark {font-family: Monaco, Andale Mono, Courier New, monospace; background-color
    
 #listExemple ul, #listExemple ol,#listExemple dl {margin-bottom: 1.5em;}
  
-a.visited {color: @link-visited-color;}
-a.hover {color:@link-hover-color;  text-decoration: underline;}
-a.active {color:@link-active-color;}
+a.visited 	{color: @link-visited-color;}
+a.hover 	{color:@link-hover-color;  text-decoration: underline;}
+a.active 	{color:@link-active-color;}
 
 /*..........................................  Forms  ...................................................*/
 .exempleForm {margin:1em 0; padding:1em 0; border-top:1px solid #eee;  border-bottom:1px solid #eee}
@@ -130,14 +130,14 @@ a.active {color:@link-active-color;}
 	font-weight: bold;
 	padding:.8em;
 	display: block;
-	.gradient(#2e2e2e, #222, 100%);
-	.box-shadow("0 1px 3px rgba(0,0,0,.5)");
-	.round-corners(4px);
+	#ink > #gradients > .gradient (#2e2e2e, #222, 100%);
+	#ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
+	#ink > #border-radius > .all (4px);
 	color: #FFF;
 } 
 
 #download a:hover {
-	.gradient(#3c3c3c, #2e2e2e, 100%);
+	#ink > #gradients > .gradient (#2e2e2e, #222, 100%);
 	text-decoration: none;
 	
 } 
@@ -225,7 +225,7 @@ a.active {color:@link-active-color;}
 /*...................................................  Menus  ....................................................*/
 .menu {
 	border-top:1px solid #cacaca;
-	.box-shadow("0 -1px 2px rgba(0,0,0,0.1)");
+	#ink > #shadows > .box-shadow(0, -1px, 2px, 0, rgba(0,0,0,0.1));
 }
 
 .menu a {
@@ -239,7 +239,7 @@ a.active {color:@link-active-color;}
 
 .menu ul li.active {
 	border-right:none;
-	.gradient(#2e2e2e, #222, 100%);
+	#ink > #gradients > .gradient(#2e2e2e, #222, 100%);
 }
 
 .menu ul .active a {
@@ -257,18 +257,18 @@ a.active {color:@link-active-color;}
 }
 
 .example_menu {
-	.round-corners(4px);
-	.gradient (#d2d2d2, #bcbcbc, 150%);
-	.box-shadow ("1px 1px 2px rgba(0,0,0,0.4)")
+	#ink > #border-radius > .all (4px);
+	#ink > #gradients > .gradient (#d2d2d2, #bcbcbc, 150%);
+	#ink > #shadows > .box-shadow (1px, 1px, 2px, 0, rgba(0,0,0,0.4));
 	
 }
 
 .example_menu li:first-child a {
-	border-radius:4px 0 0 4px
+	#ink > #border-radius > .all (4px, 0, 0, 4px);
 }
 
 .example_menu .submenu li:first-child a {
-	.round-corners(0);
+	#ink > #border-radius > .all (0);
 }
 
 /*...................................................  Footer  ...................................................*/
