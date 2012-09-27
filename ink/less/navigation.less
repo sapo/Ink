@@ -13,7 +13,7 @@
 	height:@topbar-height;
 	background:@topbar-bgColor;
 	font-size:@topbar-fontSize;
-	.box-shadow ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
 }
 
@@ -38,7 +38,7 @@
 #topbar ul li.active a {
 	#ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
 	#ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
-	color:#FFF;
+	color:@white;
 }
 
 .ink-v-nav li {
@@ -56,7 +56,7 @@
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
-	color:#000
+	color:@black
 }
 
 .ink-v-nav a:hover {
@@ -71,7 +71,7 @@
 	overflow: hidden;
 	padding-left: 0;
 	z-index: 8; 
-	background-color: #fff;
+	background-color: @white;
 	border-top:1px solid #CACACA;
 }
 
@@ -112,13 +112,13 @@
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
-	color:#000
+	color:@black
 }
 
 .ink-h-nav a:hover {
 	background:darken(@h-nav-bgColor ,10%);
 	text-decoration: none;
-	color:#000
+	color:@black
 }
 
 .ink-h-nav .submenu {
@@ -129,7 +129,7 @@
 	padding-left: 0;
 	margin-left:-1px;
 	z-index: 8; 
-	background-color: #fff;
+	background-color: @white;
 	border-top:1px solid #CACACA;
 }
 

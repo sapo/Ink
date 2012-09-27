@@ -1,10 +1,10 @@
 html {
-	.body-font-size(@font-size);
+	#ink > #text > .body-font-size (@font-size);
 }
 
 body {
 	color: @text-color;
-	.ink-font-stack();
+	#ink > #text > .ink-font-stack();
 } 
 
 a			{color: @link-color; text-decoration: none;}
@@ -110,7 +110,7 @@ ul, ol {
 // 	padding:.2em .5em;
 // 	text-transform: uppercase;
 // 	font-weight: bold;
-// 	color: #fff;
+// 	color: @white;
 // 	font-size: .85em;
 // 	.round-corners(2px)
 // }
@@ -132,7 +132,7 @@ hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
 
 
 .ink-label {
-	.ink-font-stack();
+	#ink > #text > .ink-font-stack;
 	padding: 0.2em 0.5em;
 	text-transform: uppercase;
 	font-weight: bold;
