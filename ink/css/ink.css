@@ -444,16 +444,16 @@ h6 {
 }
 
 .ink-hspace {
-  margin-right: 32px;
-  margin-left: 32px;
+  margin-right: 16px;
+  margin-left: 16px;
 }
 
 .ink-rspace {
-  margin-right: 32px;
+  margin-right: 16px;
 }
 
 .ink-lspace {
-  margin-left: 32px;
+  margin-left: 16px;
 }
 
 /*
@@ -941,16 +941,140 @@ hr {
   background-color: #85bd11;
 }
 
-.ink-size-s {
+.small {
   font-size: 0.75em;
 }
 
-.ink-size-l {
+.large {
   font-size: 1.2em;
 }
 
-.ink-size-xl {
+.extralarge {
   font-size: 1.45em;
+}
+
+h1.warning,
+h2.warning,
+h3.warning,
+h4.warning,
+h5.warning,
+h6.warning,
+p.warning,
+ul.warning,
+ol.warning,
+dl.warning {
+  padding: 0;
+  color: #ff9c00;
+  background-color: transparent;
+}
+
+h1.warning.invert,
+h2.warning.invert,
+h3.warning.invert,
+h4.warning.invert,
+h5.warning.invert,
+h6.warning.invert,
+p.warning.invert,
+ul.warning.invert,
+ol.warning.invert,
+dl.warning.invert {
+  padding: 10px 15px;
+  color: #ffffff;
+  background-color: #ff9c00;
+  border-radius: 4px;
+}
+
+h1.caution,
+h2.caution,
+h3.caution,
+h4.caution,
+h5.caution,
+h6.caution,
+p.caution,
+ul.caution,
+ol.caution,
+dl.caution {
+  padding: 0;
+  color: #cd0000;
+  background-color: transparent;
+}
+
+h1.caution.invert,
+h2.caution.invert,
+h3.caution.invert,
+h4.caution.invert,
+h5.caution.invert,
+h6.caution.invert,
+p.caution.invert,
+ul.caution.invert,
+ol.caution.invert,
+dl.caution.invert {
+  padding: 10px 15px;
+  color: #ffffff;
+  background-color: #cd0000;
+  border-radius: 4px;
+}
+
+h1.info,
+h2.info,
+h3.info,
+h4.info,
+h5.info,
+h6.info,
+p.info,
+ul.info,
+ol.info,
+dl.info {
+  padding: 0;
+  color: #0f8bda;
+  background-color: transparent;
+}
+
+h1.info.invert,
+h2.info.invert,
+h3.info.invert,
+h4.info.invert,
+h5.info.invert,
+h6.info.invert,
+p.info.invert,
+ul.info.invert,
+ol.info.invert,
+dl.info.invert {
+  padding: 10px 15px;
+  color: #ffffff;
+  background-color: #0f8bda;
+  border-radius: 4px;
+}
+
+h1.success,
+h2.success,
+h3.success,
+h4.success,
+h5.success,
+h6.success,
+p.success,
+ul.success,
+ol.success,
+dl.success {
+  padding: 0;
+  color: #85bd11;
+  background-color: transparent;
+}
+
+h1.success.invert,
+h2.success.invert,
+h3.success.invert,
+h4.success.invert,
+h5.success.invert,
+h6.success.invert,
+p.success.invert,
+ul.success.invert,
+ol.success.invert,
+dl.success.invert {
+  padding: 10px 15px;
+  color: #ffffff;
+  background-color: #85bd11;
+  border-radius: 4px;
 }
 
 /**
