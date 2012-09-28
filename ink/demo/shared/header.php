@@ -22,6 +22,10 @@
 	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
+	<!--[if IE]>
+	<link rel="stylesheet" href="../css/ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/font-awesome-ie7.css">
+	<![endif]-->
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="../css/ie6.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
@@ -29,14 +33,13 @@
 	<link rel="stylesheet" href="../css/ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="../css/font-awesome-ie7.css">
 	<![endif]-->
+	<!--[if IE 8]>
+	<link rel="stylesheet" href="../css/ie8.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/font-awesome-ie7.css">
+	<![endif]-->
 	
-	<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/ink.js"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tabs/0.1/"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tooltip/1.1/"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script>
-
+	<script type="text/javascript" src="../js/html5shiv.js"></script>
+	<script type="text/javascript" src="../js/respond.src.js"></script>
+	
 </head>
 <body>
