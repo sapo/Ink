@@ -4,7 +4,7 @@
 
 	html .ink-container {
 		width: auto;
-		padding: 0 @ink-container-padding;
+		padding: 0 @ink-grid-gutter-small;
 	}
 
 	html .ink-s100	{ width: auto; clear:both }
@@ -14,7 +14,7 @@
 	html .ink-s70	{ width: 70%; }
 	html .ink-s66	{ width: 66.66%; }
 	html .ink-s60	{ width: 60%; }                           
-	html .ink-s50	{ width: 50%; }
+	shtml .ink-s50	{ width: 50%; }
 	html .ink-s40	{ width: 40%; }
 	html .ink-s33	{ width: 33.33%; }
 	html .ink-s30	{ width: 30%; }
@@ -56,11 +56,13 @@
 		clear: both;
 	}
 
-	html .ink-space 	{ margin: @ink-grid-gutter 0; }
-	html .ink-vspace 	{ margin: @ink-grid-gutter 0 }
-	html .ink-hspace	{ margin: 0 }
-	html .ink-rspace 	{ margin: 0 }
-	html .ink-lspace 	{ margin: 0 }
+	html .ink-row {
+		margin-left: -@ink-grid-gutter-small;
+	}
+
+	html .ink-space 	{ margin: @ink-grid-gutter-small; }
+	html .ink-vspace 	{ margin-top: @ink-grid-gutter-small; margin-bottom: @ink-grid-gutter-small; }
+	html .ink-hspace	{ margin-left: @ink-grid-gutter-small; }
 
 	html .menu {
 		display:none
