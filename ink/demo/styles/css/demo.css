@@ -1,3 +1,4 @@
+/*..........................................  Typography  ...................................................*/
 #ink #shadows .no-box-shadow {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -177,15 +178,15 @@ a.active {
   color: #FFF;
 }
 #download a:hover {
-  background: #2e2e2e;
+  background: #3c3c3c;
   zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e2e2e', endColorstr='#222222');
-  background-image: -moz-linear-gradient(top, #2e2e2e 0%, #222222 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2e2e), color-stop(100%, #222222));
-  background-image: -webkit-linear-gradient(top, #2e2e2e 0%, #222222 100%);
-  background-image: -o-linear-gradient(top, #2e2e2e 0%, #222222 100%);
-  background-image: -ms-linear-gradient(top, #2e2e2e 0%, #222222 100%);
-  background-image: linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#2e2e2e');
+  background-image: -moz-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(100%, #2e2e2e));
+  background-image: -webkit-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background-image: -o-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background-image: -ms-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background-image: linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
   text-decoration: none;
 }
 #download p {

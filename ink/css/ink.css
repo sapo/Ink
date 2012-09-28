@@ -1,3 +1,6 @@
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
 /*! normalize.css v2.0.1 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -344,6 +347,11 @@ table {
 body {
   background: #f5f5f5;
 }
+.ink-container {
+  width: 960px;
+  padding: 0 15px;
+  margin: auto;
+}
 caption,
 th {
   text-align: left;
@@ -639,10 +647,6 @@ address {
 address h6 {
   color: #555555;
 }
-dl dd {
-  margin: .5em 0;
-  margin-right: 0;
-}
 blockquote {
   border-left: 4px solid #ddd;
   padding-left: 1em;
@@ -656,18 +660,6 @@ blockquote small {
 blockquote small::before,
 blockquote small::after {
   content: ' — ';
-}
-ul,
-ol,
-dl {
-  margin: 0px;
-  padding-left: 1.4em;
-}
-ul li,
-ol li,
-dl dd {
-  margin: .5em 0;
-  color: #6f6f6f;
 }
 ul.unstyled {
   list-style: none;
@@ -686,12 +678,17 @@ dl {
 dl dt {
   font-weight: bold;
   margin-top: .7em;
+  line-height: 1.4;
 }
 dl dd {
   padding-left: 1em;
+  margin: .5em 0;
+  color: #6f6f6f;
+  line-height: 1.4;
 }
 ul,
 ol {
+  line-height: 1.4;
   margin: 0px;
   padding-left: 1.4em;
 }
@@ -1368,7 +1365,7 @@ a [class*=" icon-"] {
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
   vertical-align: middle;
-  font-size: 1.3333333333333332em;
+  font-size: 1.3333333333333333em;
 }
 .btn [class^="icon-"],
 .nav-tabs [class^="icon-"],
@@ -2085,6 +2082,7 @@ form select {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  background: #ffffff;
 }
 form input[type=text]:focus,
 form input[type=password]:focus,
@@ -2102,8 +2100,7 @@ form select:focus {
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
 }
-form select[multiple] option,
-form select option {
+form select[multiple] option {
   line-height: 2;
   padding: 3px;
 }
@@ -2742,6 +2739,7 @@ table.ink-table.ink-bordered tbody tr td:first-child {
   }
   html body #topbar li.active a {
     background: none;
+    filter: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
