@@ -349,7 +349,7 @@ body {
 }
 .ink-container {
   width: 960px;
-  padding: 0 15px;
+  padding: 0 32px;
   margin: auto;
 }
 caption,
@@ -381,20 +381,10 @@ th {
 }
 .ink-hspace {
   margin-left: 32px;
-  margin-right: 32px;
 }
-.ink-rspace {
-  margin-right: 16px;
+.ink-row {
+  margin-left: -32px;
 }
-.ink-lspace {
-  margin-left: 16px;
-}
-/*
-.ink-vspace 	{ margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; }
-.ink-hspace		{ margin-left: @ink-grid-gutter / 2; margin-right: @ink-grid-gutter / 2; }
-.ink-rspace 	{ margin-right: @ink-grid-gutter / 2; }
-.ink-lspace 	{ margin-left: @ink-grid-gutter / 2; }
-*/
 .ink-section {
   margin: 1em 0;
   padding-bottom: 1em;
@@ -2633,7 +2623,7 @@ table.ink-table.ink-bordered tbody tr td:first-child {
 @media screen and (min-width: 651px) and (max-width: 900px) {
   html body .ink-container {
     width: auto;
-    padding: 0 16px;
+    padding: 0 32px;
   }
   html body .ink-m100 {
     width: auto;
@@ -2710,17 +2700,20 @@ table.ink-table.ink-bordered tbody tr td:first-child {
   html body .ink-m10:empty {
     clear: both;
   }
-  html body .ink-row {
-    margin-left: -16px;
-  }
   html body .ink-space {
-    margin: 16px 0;
+    margin: 32px 0;
   }
   html body .ink-vspace {
-    margin: 16px 0;
+    margin: 32px 0;
   }
   html body .ink-hspace {
-    margin-left: 16px;
+    margin: 0;
+  }
+  html body .ink-rspace {
+    margin: 0;
+  }
+  html body .ink-lspace {
+    margin: 0;
   }
   html body .menu {
     display: none;
