@@ -373,6 +373,7 @@ th {
 }
 .ink-hspace {
   margin-left: 32px;
+<<<<<<< HEAD
   margin-right: 32px;
 }
 .ink-rspace {
@@ -387,6 +388,14 @@ th {
 .ink-rspace 	{ margin-right: @ink-grid-gutter / 2; }
 .ink-lspace 	{ margin-left: @ink-grid-gutter / 2; }
 */
+=======
+}
+
+.ink-row {
+  margin-left: -32px;
+}
+
+>>>>>>> feature/mixins
 .ink-section {
   margin: 1em 0;
   padding-bottom: 1em;
