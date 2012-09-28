@@ -4,7 +4,7 @@
 
 	html body .ink-container {
 		width: auto;
-		padding: 0 @ink-container-padding;
+		padding: 0 @ink-grid-gutter-medium;
 	}
 
 	html body .ink-m100	{ width: auto; clear:both }
@@ -56,11 +56,13 @@
 		clear: both;
 	}
 
-	html body .ink-space 	{ margin: @ink-grid-gutter 0 }
-	html body .ink-vspace 	{ margin: @ink-grid-gutter 0 }
-	html body .ink-hspace	{ margin: 0 }
-	html body .ink-rspace 	{ margin: 0 }
-	html body .ink-lspace 	{ margin: 0 }
+	html body .ink-row {
+		margin-left: -@ink-grid-gutter-medium;
+	}
+
+	html body .ink-space 	{ margin: @ink-grid-gutter-medium 0 }
+	html body .ink-vspace 	{ margin: @ink-grid-gutter-medium 0 ;}
+	html body .ink-hspace	{ margin-left: @ink-grid-gutter-medium; }
 
 	html body .menu {
 		display:none
