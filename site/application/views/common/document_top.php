@@ -39,5 +39,6 @@
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>assets/js/ink.js"></script>
+	
 </head>
 <body>
