@@ -31,6 +31,7 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>../ink/demo/styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
 	<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/ink.js"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Selector/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tabs/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tooltip/1.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
