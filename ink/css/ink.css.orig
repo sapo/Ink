@@ -972,8 +972,12 @@ th {
 .ink-footer-nav li {
   display: inline-block;
   margin: 0 1em 0 0;
+<<<<<<< HEAD
   font-size: 0.875em;
-  margin: 0 1em 0 0;
+=======
+  *zoom: 1;
+  *display: inline;
+>>>>>>> develop
 }
 
 body {
@@ -1126,9 +1130,10 @@ dl {
 
 dl dt {
   margin-top: .7em;
+<<<<<<< HEAD
   font-weight: bold;
-  margin-top: .7em;
-  line-height: 1.4;
+=======
+>>>>>>> develop
 }
 
 dl dd {
@@ -1233,7 +1238,18 @@ hr {
   text-transform: uppercase;
   border-radius: 2px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
+mark {
+  padding: 3.75px 7.5px;
+  background: yellow;
+}
+<<<<<<< HEAD
+
+=======
+>>>>>>> develop
 .ink-caution {
   color: #ffffff;
   background-color: #cd0000;
@@ -1268,12 +1284,17 @@ h4.warning,
 h5.warning,
 h6.warning,
 p.warning,
-ul.warning,
-ol.warning,
-dl.warning {
-  padding: 0;
-  color: #ff9c00;
-  background-color: transparent;
+mark.warning,
+label.warning {
+  padding: 10px 15px;
+<<<<<<< HEAD
+  color: #ffffff;
+  background-color: #ff9c00;
+=======
+  background-color: #ff9c00;
+  color: #ffffff;
+>>>>>>> develop
+  border-radius: 4px;
 }
 
 h1.warning.invert,
@@ -1283,13 +1304,17 @@ h4.warning.invert,
 h5.warning.invert,
 h6.warning.invert,
 p.warning.invert,
-ul.warning.invert,
-ol.warning.invert,
-dl.warning.invert {
-  padding: 10px 15px;
-  color: #ffffff;
-  background-color: #ff9c00;
-  border-radius: 4px;
+mark.warning.invert,
+label.warning.invert {
+<<<<<<< HEAD
+  padding: 0;
+  color: #ff9c00;
+  background-color: transparent;
+=======
+  color: #ff9c00;
+  background-color: transparent;
+  padding: 0;
+>>>>>>> develop
 }
 
 h1.caution,
@@ -1357,12 +1382,17 @@ h4.success,
 h5.success,
 h6.success,
 p.success,
-ul.success,
-ol.success,
-dl.success {
-  padding: 0;
-  color: #85bd11;
-  background-color: transparent;
+mark.success,
+label.success {
+  padding: 10px 15px;
+<<<<<<< HEAD
+  color: #ffffff;
+  background-color: #85bd11;
+=======
+  background-color: #85bd11;
+  color: #ffffff;
+>>>>>>> develop
+  border-radius: 4px;
 }
 
 h1.success.invert,
@@ -1372,15 +1402,20 @@ h4.success.invert,
 h5.success.invert,
 h6.success.invert,
 p.success.invert,
-ul.success.invert,
-ol.success.invert,
-dl.success.invert {
-  padding: 10px 15px;
-  color: #ffffff;
-  background-color: #85bd11;
-  border-radius: 4px;
+mark.success.invert,
+label.success.invert {
+<<<<<<< HEAD
+  padding: 0;
+  color: #85bd11;
+  background-color: transparent;
 }
 
+=======
+  color: #85bd11;
+  background-color: transparent;
+  padding: 0;
+}
+>>>>>>> develop
 label.warning,
 mark.warning,
 code.warning,
@@ -1431,8 +1466,10 @@ code.success {
 .block-alert-msg.success h4 {
   color: #ffffff;
   background: #9dce62;
-  zoom: 1;
+<<<<<<< HEAD
+=======
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9dce62', endColorstr='#85c13c');
+>>>>>>> develop
   background-image: -moz-linear-gradient(top, #9dce62 0%, #85c13c 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9dce62), color-stop(100%, #85c13c));
   background-image: -webkit-linear-gradient(top, #9dce62 0%, #85c13c 100%);
@@ -1446,8 +1483,10 @@ code.success {
 .block-alert-msg.error h4 {
   color: #ffffff;
   background: #eb6363;
-  zoom: 1;
+<<<<<<< HEAD
+=======
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb6363', endColorstr='#e53636');
+>>>>>>> develop
   background-image: -moz-linear-gradient(top, #eb6363 0%, #e53636 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eb6363), color-stop(100%, #e53636));
   background-image: -webkit-linear-gradient(top, #eb6363 0%, #e53636 100%);
@@ -1461,8 +1500,10 @@ code.success {
 .block-alert-msg.info h4 {
   color: #ffffff;
   background: #5ca7dc;
-  zoom: 1;
+<<<<<<< HEAD
+=======
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5ca7dc', endColorstr='#2983c3');
+>>>>>>> develop
   background-image: -moz-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5ca7dc), color-stop(100%, #2983c3));
   background-image: -webkit-linear-gradient(top, #5ca7dc 0%, #2983c3 100%);
@@ -1485,9 +1526,16 @@ code.success {
   font-size: 1.8em;
   font-weight: bold;
   line-height: .56em;
+<<<<<<< HEAD
+  color: #000000;
+=======
   font-size: 1.8em;
   padding: 5px;
-  margin-right: -0.2em;
+  border: none;
+  background: none;
+>>>>>>> develop
+  text-shadow: 0px 1px 0px #ffffff;
+  background: none;
   border: none;
   opacity: 0.2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
@@ -1895,9 +1943,13 @@ a [class*=" icon-"] {
 /* makes the font 33% larger relative to the icon container */
 
 .icon-large:before {
+<<<<<<< HEAD
   font-size: 1.3333333333333333em;
   vertical-align: middle;
-  font-size: 1.3333333333333333em;
+=======
+  vertical-align: middle;
+  font-size: 1.3333333333333332em;
+>>>>>>> develop
 }
 
 .btn [class^="icon-"],
@@ -3385,7 +3437,10 @@ table.ink-table.ink-bordered tbody tr td:first-child {
 
 .ink-tabs-nav li.active {
   font-size: 15px;
+<<<<<<< HEAD
   font-weight: bold;
   color: #000000;
   background: #E6E6E6;
+=======
+>>>>>>> develop
 }

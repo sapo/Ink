@@ -15,6 +15,7 @@
 
 .block-alert-msg, .alert-msg { 
 	margin: 1em 0 ;
+	position:relative;
 }
 
 .alert-msg.success, .block-alert-msg.success h4 { 
@@ -35,19 +36,21 @@
 
 .alert-msg .close, 
 .block-alert-msg .close {
+	position:absolute;
 	color: @black;
-	float: right;
 	font-family: Arial, sans-serif;
 	font-weight: bold;
 	line-height: .56em;
 	font-size: 1.8em;	
 	padding:5px;
-	margin-right: -0.2em;
 	border: none;
 	background:none;
 	#ink > #shadows > .text-shadow (0px, 1px, 0px, @white);
 	#ink > #effects > .opacity (0.2);
 }
+
+.alert-msg .close		{ top:.6em; right:.4em; }
+.block-alert-msg .close { top:.5em; right:.4em; }
 
 .block-alert-msg h4 {
 	font-size: 1em; margin:0; 
@@ -70,7 +73,7 @@
 	padding:1em;
 }
 
-.block-alert-msg .close { margin:.5em .4em 0 0 }
+/*.block-alert-msg .close { margin:.5em .4em 0 0 }*/
 
 
 .block-alert-msg ul 		{ list-style: inside }

@@ -100,7 +100,7 @@
 
 				<div class="block-alert-msg error">
 					<button class="close">&times;</button>
-					<h4>Ocurreram os seguintes erros:</h4>
+					<h4>Ocorreram os seguintes erros:</h4>
 					<ul>
 						<li>Nome de Utilizador Inválido</li>
 						<li>Email Inválido</li>

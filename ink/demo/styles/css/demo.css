@@ -1,4 +1,3 @@
-/*..........................................  Typography  ...................................................*/
 #ink #shadows .no-box-shadow {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -44,9 +43,9 @@ h2 span {
 }
 mark {
   font-family: Monaco, Andale Mono, Courier New, monospace;
-  background-color: #deedf1;
-  padding: 1px 3px;
   font-size: .9em;
+  background: #deedf1;
+  padding: 1px 3px;
 }
 .gridExemple .box p,
 .gridExemple2 div p,
@@ -69,9 +68,6 @@ mark {
   margin: 2px;
   text-align: center;
   background-color: #fff;
-}
-.ink-g50.level1 {
-  width: 48.4%;
 }
 #spaceExemples .box {
   padding: 0px;
@@ -163,7 +159,6 @@ a.active {
   padding: .8em;
   display: block;
   background: #2e2e2e;
-  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e2e2e', endColorstr='#222222');
   background-image: -moz-linear-gradient(top, #2e2e2e 0%, #222222 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2e2e), color-stop(100%, #222222));
@@ -179,7 +174,6 @@ a.active {
 }
 #download a:hover {
   background: #3c3c3c;
-  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#2e2e2e');
   background-image: -moz-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(100%, #2e2e2e));
@@ -307,7 +301,6 @@ a.active {
 .menu ul li.active {
   border-right: none;
   background: #2e2e2e;
-  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e2e2e', endColorstr='#222222');
   background-image: -moz-linear-gradient(top, #2e2e2e 0%, #222222 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2e2e), color-stop(100%, #222222));
@@ -330,7 +323,6 @@ a.active {
 .example_menu {
   border-radius: 4px;
   background: #d2d2d2;
-  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d2d2d2', endColorstr='#bcbcbc');
   background-image: -moz-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d2d2d2), color-stop(150%, #bcbcbc));
@@ -387,6 +379,8 @@ footer ul.sociallinks li {
   width: 24px;
   display: inline-block;
   margin-left: 6px;
+  *zoom: 1;
+  *display: inline;
 }
 footer ul.sociallinks a.Fb_link,
 footer ul.sociallinks a.Twt_link,
@@ -399,10 +393,10 @@ footer ul.sociallinks li a.Fb_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px;
 }
 footer ul.sociallinks li a.Twt_link {
-  background: url("../imgs/icon_Sprite.png") no-repeat 0 -117px;
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px;
 }
 footer ul.sociallinks li a.Gplus_link {
-  background: url("../imgs/icon_Sprite.png") no-repeat 0 -145px;
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
 }
 code {
   border: 1px solid #E0E0E0;
