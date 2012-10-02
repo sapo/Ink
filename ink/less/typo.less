@@ -8,7 +8,7 @@ body {
 } 
 
 a			{color: @link-color; text-decoration: none;}
-a:hover		{color:@link-hover-color; text-decoration: underline;}
+a:hover		{color: @link-hover-color; text-decoration: underline;}
 
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {font-weight: bold; color: #404040; margin:.3em 0;}
@@ -56,8 +56,11 @@ blockquote small::before , blockquote small::after{
 content: ' — ';
 }
 ul, ol, dl{margin:0px; padding-left: 1.4em;}
-ul li, ol li,  dl dd {margin:.5em 0; color: lighten(@text-color, 10%);} 
-ul.unstyled {list-style:none; padding-left: 0em;}
+ul li, ol li,  dl dd {
+	margin:.5em 0; 
+	// color: lighten(@text-color, 10%);
+} 
+ul.unstyled { list-style:none; padding-left: 0em; }
 ul.unstyled ul {list-style:disc outside;  padding-left: 1.4em;}
 ol li {list-style: decimal outside;}
 dl {padding: 0em;}
@@ -72,7 +75,7 @@ ul, ol {
 
 	li {
 		margin:.5em 0; 
-		color: lighten(@text-color, 10%);
+		// color: lighten(@text-color, 10%);
 	}
 
 
@@ -138,4 +141,9 @@ hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
 	font-weight: bold;
 	font-size: 0.85em;
 	#ink > #border-radius > .all (2px);
+}
+
+mark {
+	padding: @padding / 4 @padding / 2;
+	background: yellow;
 }

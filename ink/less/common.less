@@ -29,41 +29,47 @@
 
 // .ink-warning .ink-info .ink-caution .ink-success .ink-disabled
 
-h1, h2, h3, h4 , h5, h6, p, ul, ol, dl {
+h1, h2, h3, h4 , h5, h6, p, mark, label {
 	&.warning {
-		#ink > #states > .warning (true);
-		padding: 0;
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .warning ();
+		#ink > #border-radius > .all(4px);
 		&.invert {
-			padding: @padding / 1.5 @padding;
-			#ink > #states > .warning ();
-			#ink > #border-radius > .all(4px);
+			#ink > #states > .warning (true);
+			padding: 0;
 		}
 	}
 	&.caution {
-		#ink > #states > .caution (true);
-		padding: 0;
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .caution ();
+		#ink > #border-radius > .all(4px);
 		&.invert {
-			padding: @padding / 1.5 @padding;
-			#ink > #states > .caution ();
-			#ink > #border-radius > .all(4px);
+			#ink > #states > .caution (true);
+			padding: 0;
 		}
 	}
 	&.info {
-		#ink > #states > .info (true);
-		padding: 0;
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .info ();
+		#ink > #border-radius > .all(4px);
 		&.invert {
-			padding: @padding / 1.5 @padding;
-			#ink > #states > .info ();
-			#ink > #border-radius > .all(4px);
+			#ink > #states > .info (true);
+			padding: 0;
 		}
 	}
 	&.success {
-		#ink > #states > .success (true);
-		padding: 0;
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .success ();
+		#ink > #border-radius > .all(4px);
 		&.invert {
-			padding: @padding / 1.5 @padding;
-			#ink > #states > .success ();
-			#ink > #border-radius > .all(4px);
+			#ink > #states > .success (true);
+			padding: 0;
 		}
+	}
+}
+
+label, mark, code {
+	&.warning, &.caution, &.info, &.success {
+		padding: @padding / 4 @padding / 2 ;
 	}
 }
