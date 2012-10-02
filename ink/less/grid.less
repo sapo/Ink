@@ -20,14 +20,14 @@ caption, th { text-align:left; }
 .ink-m100:after,
 .ink-s100:after {
 	content: "."; 
-	display: block; 
+	display: block;
 	height: 0; 
 	clear: both; 
 	visibility: hidden; 
 	zoom: 1
 }
 
-.ink-space 		{ margin: @ink-grid-gutter; }
+.ink-space 		{ margin: @ink-grid-gutter; *overflow:hidden; *clear:both}
 .ink-vspace 	{ margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; }
 .ink-hspace		{ margin-left: @ink-grid-gutter; margin-right: @ink-grid-gutter; }
 .ink-rspace 	{ margin-right: @ink-grid-gutter / 2; }
@@ -38,7 +38,7 @@ caption, th { text-align:left; }
 .ink-rspace 	{ margin-right: @ink-grid-gutter / 2; }
 .ink-lspace 	{ margin-left: @ink-grid-gutter / 2; }
 */
-.ink-section 			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc;}
+.ink-section			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc;*overflow:hidden; *clear:both}
 .ink-section:last-child { border-bottom: none;}
 
 .ink-clear,

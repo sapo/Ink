@@ -22,7 +22,7 @@
 	padding: 0;
 	text-indent:-5000px;
 	background:url(../demo/styles/imgs/logo_topbar.png);
-	margin:0 1em 0 0
+	margin:0 1em 0 0;
 }
 
 #topbar a.logoPlaceholder:hover {
@@ -100,7 +100,9 @@
 	display: inline-block; 
 	vertical-align: baseline; 
 	position:relative; 
-	margin:0
+	margin:0;
+	zoom:1;
+	*display: inline;
 }
 
 .ink-h-nav li i {
@@ -108,7 +110,8 @@
 }
 
 .ink-h-nav a {
-	line-height: @h-nav-height; 
+	line-height: @h-nav-height;
+	height: @h-nav-height;
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
