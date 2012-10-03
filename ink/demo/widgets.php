@@ -26,9 +26,9 @@
 	<div class="ink-container">
 		<ul class="ink-h-nav">
 			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">Gallery</a></li>
-			<li><a href="#">Modal box</a></li>
-			<li><a href="#">Tabs</a></li>
+			<li><a href="#gallery">Gallery</a></li>
+			<li><a href="#modalbox">Modal box</a></li>
+			<li><a href="#tabs">Tabs</a></li>
 		</ul>
 	</div>
 </nav>  
@@ -36,7 +36,7 @@
 <div class="ink-container">
 	<div class="ink-section">
 		<div class="ink-space">
-			<h3>Gallery</h3>
+			<h3 id="gallery">Gallery</h3>
 			<p>
 				Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
 				The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
@@ -355,7 +355,7 @@
 		<div class="ink-vspace">
 			<div class="ink-l30">
 				<div class="ink-space">	
-					<h3>Modal box</h3>
+					<h3 id="modalbox">Modal box</h3>
 					<p>
 						Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
 						The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
@@ -376,6 +376,7 @@
 		<div class="ink-vspace">
 			<div class="ink-l70">
 				<div class="ink-space">
+					<h3 id="tabs">Tabs</h3>
 					<div class="ink-tabs">
 						<ul class="ink-tabs-nav ink-h-nav">
 							<li class="active"><a href="#home">Home</a></li>
