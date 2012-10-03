@@ -60,8 +60,8 @@
 }
 
 .block-alert-msg {
-	background: #FEFBF3;
-	border-bottom: 1px solid #ddd;
+	background: @alertMsg-block-Bg;
+	border-bottom: 1px solid @alertMsg-block-Border-color;
 	font-size: .9em;
 	#ink > #border-radius > .all (@alertMsg-border-radius);
 	#ink > #shadows > .box-shadow (0, 1px, 2px, 0, rgba(0, 0, 0, 0.1));
@@ -76,7 +76,7 @@
 /*.block-alert-msg .close { margin:.5em .4em 0 0 }*/
 
 
-.block-alert-msg ul 		{ list-style: inside }
-.block-alert-msg.success h4 { border-bottom: 1px solid darken(@alertMsg-success-Bg, 10%) }
-.block-alert-msg.error h4	{ border-bottom: 1px solid darken(@alertMsg-Error-Bg, 10%) }
-.block-alert-msg.info h4	{ border-bottom: 1px solid darken(@alertMsg-Info-Bg, 10%) }
+.block-alert-msg ul 		{ list-style: inside ;}
+.block-alert-msg.success h4 { border-bottom: 1px solid darken(@alertMsg-success-Bg, 10%); }
+.block-alert-msg.error h4	{ border-bottom: 1px solid darken(@alertMsg-Error-Bg, 10%); }
+.block-alert-msg.info h4	{ border-bottom: 1px solid darken(@alertMsg-Info-Bg, 10%); }
