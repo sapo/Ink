@@ -1,11 +1,22 @@
+<<<<<<< HEAD
 */ink/css/*.css
 */ink/demo/styles/css/demo.css
+=======
+# ignore compiled css files
+*/css/*.css
+# except this one
+*/css/!prettify.css
+# ignore CI log files
+>>>>>>> 3c51d75ec403752f5e119396f68d74634f0f52ad
 */logs/log-*.php
 */logs/!index.html
+# ignore CI cache files
 */cache/*
 */cache/!index.html
+# ignore temp InK build files
 */builds/*
 */builds/!index.html
+# ignore OS generated files
 .DS_Store
 .DS_Store?
 ._*
