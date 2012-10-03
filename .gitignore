@@ -3,7 +3,7 @@
 *.bak
 # ignore compiled css files
 */css/*.css
-*/styles/css/*.css
+*/demo/styles/css/*.css
 */css/!prettify.css
 # ignore CI log files
 */logs/log-*.php
