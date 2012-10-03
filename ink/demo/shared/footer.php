@@ -10,7 +10,7 @@
 			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
 			
 			<p class="ink-vspace copyright">
-				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
 				SAPO is a trademark and a search engine created at the <a href="">University of Aveiro</a>
 			</p>
 			
