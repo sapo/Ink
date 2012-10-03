@@ -379,6 +379,8 @@ footer ul.sociallinks li {
   width: 24px;
   display: inline-block;
   margin-left: 6px;
+  *zoom: 1;
+  *display: inline;
 }
 footer ul.sociallinks a.Fb_link,
 footer ul.sociallinks a.Twt_link,
