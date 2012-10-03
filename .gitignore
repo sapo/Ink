@@ -1,11 +1,17 @@
-*/ink/css/*.css
-*/ink/styles/css/demo.css
+# ignore compiled css files
+*/css/*.css
+# except this one
+*/css/!prettify.css
+# ignore CI log files
 */logs/log-*.php
 */logs/!index.html
+# ignore CI cache files
 */cache/*
 */cache/!index.html
+# ignore temp InK build files
 */builds/*
 */builds/!index.html
+# ignore OS generated files
 .DS_Store
 .DS_Store?
 ._*
