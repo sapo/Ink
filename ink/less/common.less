@@ -14,22 +14,25 @@
 	#ink > #states > .success ();
 }
 
-.ink-warning, .ink-caution, .ink-info, .ink-success {
+/* defines generic classes used to set size on several elements */
 
-	&.ink-form-validation {
-
-	}
-	
+.small { 
+	font-size: 0.75em; 
 }
 
-.small { font-size: 0.75em; }
-.large { font-size: 1.2em; }
-.extralarge { font-size: 1.45em; }
+.large { 
+	font-size: 1.2em; 
+}
+
+.extralarge { 
+	font-size: 1.45em; 
+}
 
 
-// .ink-warning .ink-info .ink-caution .ink-success .ink-disabled
+/* add .warning, .caution, .info, .success class styling to text elements */
 
 h1, h2, h3, h4 , h5, h6, p, mark, label {
+
 	&.warning {
 		padding: @padding / 1.5 @padding;
 		#ink > #states > .warning ();
@@ -39,6 +42,7 @@ h1, h2, h3, h4 , h5, h6, p, mark, label {
 			padding: 0;
 		}
 	}
+
 	&.caution {
 		padding: @padding / 1.5 @padding;
 		#ink > #states > .caution ();
@@ -48,6 +52,7 @@ h1, h2, h3, h4 , h5, h6, p, mark, label {
 			padding: 0;
 		}
 	}
+
 	&.info {
 		padding: @padding / 1.5 @padding;
 		#ink > #states > .info ();
@@ -57,6 +62,7 @@ h1, h2, h3, h4 , h5, h6, p, mark, label {
 			padding: 0;
 		}
 	}
+
 	&.success {
 		padding: @padding / 1.5 @padding;
 		#ink > #states > .success ();
@@ -66,6 +72,7 @@ h1, h2, h3, h4 , h5, h6, p, mark, label {
 			padding: 0;
 		}
 	}
+
 }
 
 label, mark, code {

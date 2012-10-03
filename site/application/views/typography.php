@@ -54,26 +54,6 @@
 	<div class="ink-section">
 		<p>You can use the InK utility classes <code>.info</code>, <code>.warning</code>, <code>.caution</code> and <code>.success</code> on html elements like headings, paragraphs, lists, mark, code.</p>
 		<div class="ink-row">
-			<div class="ink-l33 ink-m50">
-				<div class="ink-hspace">
-					<h4 class="info invert">.info</h4>
-					<p class="info invert">Ink's typography is designed to create a strong hierarchy with basic styles. The primary font is the die hard Helvetica Neue, but the font stack can be easily changed with just a few adjustments.</p>
-				</div>
-			</div>
-			<div class="ink-l33 ink-m50">
-				<div class="ink-hspace">
-					<h4 class="warning invert">.warning</h4>
-					<p class="warning invert">Ink's typography is designed to create a strong hierarchy with basic styles. The primary font is the die hard Helvetica Neue, but the font stack can be easily changed with just a few adjustments.</p>
-				</div>
-			</div>
-			<div class="ink-l33 ink-m50">
-				<div class="ink-hspace">
-					<h4 class="caution invert">.caution</h4>
-					<p class="caution invert">Ink's typography is designed to create a strong hierarchy with basic styles. The primary font is the die hard Helvetica Neue, but the font stack can be easily changed with just a few adjustments.</p>
-				</div>
-			</div>
-		</div>
-		<div class="ink-row">
 			<div class="ink-l25 ink-m50">
 				<div class="ink-hspace">
 					<h4 class="info">.info</h4>

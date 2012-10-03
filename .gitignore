@@ -1,6 +1,8 @@
+# ignore diff backups
+*.orig
+*.bak
 # ignore compiled css files
 */css/*.css
-# except this one
 */css/!prettify.css
 # ignore CI log files
 */logs/log-*.php
