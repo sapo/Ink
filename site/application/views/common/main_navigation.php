@@ -18,6 +18,7 @@
 			<li <?php echo $menu_item_class ?>><a href="<?php echo site_url() . '/' . $page['url'] ?>"><?php echo $page['text'] ?></a></li>
 			<?php endif;?>
 			<?php endforeach; ?>
+			<li><button class="ink-for-s ink-for-m">Toggle</button> </li>
 		</ul>
 	</div>
 </nav>

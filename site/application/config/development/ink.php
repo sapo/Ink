@@ -42,11 +42,11 @@ $config['site_pages'] = array(
 		'submenu' => array(
 			'ui' => array(
 				'text' => 'UI',
-				'url' => 'ui'
+				'url' => 'js/ui'
 			),
 			'core' => array(
 				'text' => 'Core',
-				'url' => 'core'
+				'url' => 'js/core'
 			)
 		)
 	)
