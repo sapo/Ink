@@ -17,24 +17,26 @@
 		</div>
 	</div>
 	<div class="ink-l100" id="download">
-		<div class="ink-l33">
-			<div class="ink-space">
-				<a href="<?php echo site_url() . '/download/latest' ?>" >Version 1.0</a>
-				<p>Download InK's current build</p>
+		<div class="ink-row">
+			<div class="ink-l33">
+				<div class="ink-gutter">
+					<a href="<?php echo site_url() . '/download/latest' ?>" >Version 1.0</a>
+					<p>Download InK's current build</p>
+				</div>
 			</div>
-		</div>
-		<div class="ink-l33">
-			<div class="ink-space">
-				<a href="<?php echo site_url() . '/download' ?>" >Custom</a>
-				<p>
-					Customize your basic layout - site width, gutters, spacers, and much more
-				</p>
+			<div class="ink-l33">
+				<div class="ink-gutter">
+					<a href="<?php echo site_url() . '/download' ?>" >Custom</a>
+					<p>
+						Customize your basic layout - site width, gutters, gutterrs, and much more
+					</p>
+				</div>
 			</div>
-		</div>
-		<div class="ink-l33">
-			<div class="ink-space">
-				<a href="#" >Github repo</a>
-				<p>Download, fork, pull, comment or report bugs at InK's Github</p>
+			<div class="ink-l33">
+				<div class="ink-gutter">
+					<a href="#" >Github repo</a>
+					<p>Download, fork, pull, comment or report bugs at InK's Github</p>
+				</div>
 			</div>
 		</div>
 	</div>
