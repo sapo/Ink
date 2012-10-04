@@ -38,7 +38,17 @@ $config['site_pages'] = array(
 	),
 	array(
 		'text' => 'InK JS',
-		'url' => 'inkjs'
+		'url' => 'inkjs',
+		'submenu' => array(
+			'ui' => array(
+				'text' => 'UI',
+				'url' => 'js/ui'
+			),
+			'core' => array(
+				'text' => 'Core',
+				'url' => 'js/core'
+			)
+		)
 	)
 );
 

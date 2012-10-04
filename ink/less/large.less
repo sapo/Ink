@@ -1,6 +1,6 @@
 /* INK: LARGE SCREENS */
 
-@media screen and (min-width: 961px) {
+// @media screen and (min-width: 961px) {
 
 	html body .ink-container {
 		width: @site-width;
@@ -58,4 +58,20 @@
 		clear: both;
 	}
 
-}
+	.ink-for-s, 
+	.ink-for-m 
+	{
+		visibility: hidden;
+		position: absolute;
+		top: -99999px;
+		left: -99999px;
+	}
+
+	.ink-for-l {
+		visibility: visible;
+		position: relative;
+		top: auto;
+		left: auto;
+	}
+
+// }
