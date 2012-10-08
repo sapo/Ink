@@ -462,18 +462,72 @@
 			<div class="ink-l70">
 				<div class="ink-space">
 					<ul class="unstyled ink-sortable-list">
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i> drag here</span> <strong>1.</strong> Integer id lacus nec tellus mattis pretium ut nec nisi</li>
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i> drag here</span> <strong>2.</strong> Nam at lectus justo, sed dictum tortor</li>
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i> drag here</span> <strong>3.</strong> Duis sed sem at justo sagittis tincidunt</li>
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i> drag here</span> <strong>4.</strong> Duis quis orci lectus, eu porttitor enim</li>
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i> drag here</span> <strong>5.</strong> Cras et sem in neque lobortis venenatis</li>
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i> drag here</span> <strong>6.</strong> Morbi adipiscing sem sed odio vulputate commodo</li>
+						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>1.</strong> Integer id lacus nec tellus mattis pretium ut nec nisi</li>
+						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>2.</strong> Nam at lectus justo, sed dictum tortor</li>
+						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>3.</strong> Duis sed sem at justo sagittis tincidunt</li>
+						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>4.</strong> Duis quis orci lectus, eu porttitor enim</li>
+						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>5.</strong> Cras et sem in neque lobortis venenatis</li>
+						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>6.</strong> Morbi adipiscing sem sed odio vulputate commodo</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+	<div class="ink-section">
+			<div class="ink-l60">
+				<div class="ink-space">
+					<ul class="ink-tree-view">
+						<li>
+							<button class="icon-caret-down"></button>
+							<a href="#">Root 1</a>
+							<ul>
+								<li>
+									<button class="icon-caret-right"></button>
+									<a href="#">Child 1.1</a>
+								</li>
+								<li>
+									<button class="icon-caret-down"></button>
+									<a href="#">Child 1.2</a>
+									<ul>
+										<li><a href="#">Child Child 1.2.1</a></li>
+										<li><a href="#">Child Child 1.2.2</a></li>
+									</ul>
+								</li>
+								<li>
+									<button class="icon-caret-right"></button>
+									<a href="#">Child 1.3</a>
+								</li>
+								<li>
+									<button class="icon-caret-right"></button>
+									<a href="#">Child 1.4</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<button class="icon-caret-right"></button>
+							<a href="#">Root 2</a>
+						</li>
+						<li>
+							<button class="icon-caret-right"></button>
+							<a href="#">Root 3</a>
+						</li>
+						<li>
+							<button class="icon-caret-right"></button>
+							<a href="#">Root 4</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="ink-l40">
+				<div class="ink-space">	
+					<h3>Tree view</h3>
+					<p>
+						Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
+						The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
+					</p>
+				</div>
+			</div>
+	</div>
 </div>
 
 <?php include 'shared/footer.php'; ?>
