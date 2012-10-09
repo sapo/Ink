@@ -145,6 +145,6 @@
 </div>
 
 <script type="text/javascript">
-    //var gal = new SAPO.InK.Gallery('#src1');
-    var gal = new SAPO.InK.Gallery('.ink-gallery-source');  // TODO SHOULD IT ACCEPT MORE THAN ONE?
+    //var gal = new SAPO.Ink.Gallery('#src1');
+    var gal = new SAPO.Ink.Gallery('.ink-gallery-source');  // TODO SHOULD IT ACCEPT MORE THAN ONE?
 </script>
