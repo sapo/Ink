@@ -135,9 +135,16 @@
 
 
 .ink-h-nav a:hover {
-	background:darken(@h-nav-bgColor ,10%);
+	background:darken(@h-nav-bgColor ,3%);
 	text-decoration: none;
 	color:@black
+}
+
+.ink-h-nav li.active a {
+	background:darken(@h-nav-bgColor ,5%);
+	text-decoration: none;
+	color:@black;
+	#ink > #shadows > .box-shadow (0,5px,2px,-2px,@grey-15,inset);
 }
 
 .ink-h-nav .submenu {
