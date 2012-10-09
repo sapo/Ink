@@ -59,7 +59,7 @@
 
 
 <script type="text/javascript">
-    var gal = new SAPO.InK.Gallery('#REPLACEME', {
+    var gal = new SAPO.Ink.Gallery('#REPLACEME', {
         layout: parseInt( location.search.substring( location.search.indexOf('layout=') + 7), 10),
         model:  [
             {
