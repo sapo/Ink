@@ -40,6 +40,8 @@
 	
 	<script type="text/javascript" src="../js/html5shiv.js"></script>
 	<script type="text/javascript" src="../js/respond.src.js"></script>
+
+    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 	
 </head>
 <body>
