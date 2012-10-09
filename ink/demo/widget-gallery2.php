@@ -41,6 +41,10 @@
         -webkit-transition: margin-left 500ms;
                 transition: margin-left 500ms;
     }
+
+    .ink-gallery .thumbs {
+        overflow: hidden;
+    }
 </style>
 
 <button onclick="location='widget-gallery2.php?layout=0'">layout 0</button>

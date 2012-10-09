@@ -41,6 +41,10 @@
         -webkit-transition: margin-left 500ms;
                 transition: margin-left 500ms;
     }
+
+    .ink-gallery .thumbs {
+        overflow: hidden;
+    }
 </style>
 
 
@@ -146,5 +150,5 @@
 
 <script type="text/javascript">
     //var gal = new SAPO.Ink.Gallery('#src1');
-    var gal = new SAPO.Ink.Gallery('.ink-gallery-source');  // TODO SHOULD IT ACCEPT MORE THAN ONE?
+    var gal = new SAPO.Ink.Gallery('.ink-gallery-source');
 </script>
