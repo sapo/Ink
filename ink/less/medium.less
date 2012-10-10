@@ -4,7 +4,16 @@
 
 	html body .ink-container {
 		width: auto;
-		padding: 0 @ink-container-padding;
+		padding: 0 @ink-grid-gutter-medium;
+	}
+
+	html body .ink-space 	{ margin: @ink-grid-gutter-medium; *overflow:hidden; *clear:both}
+	html body .ink-vspace { margin-top: @ink-grid-gutter-medium; margin-bottom: @ink-grid-gutter-medium; }
+	html body .ink-hspace { margin-left: @ink-grid-gutter-medium; margin-right: @ink-grid-gutter-medium; }
+	html body .ink-gutter { margin-left: @ink-grid-gutter-medium; }
+
+	.ink-row {
+		margin-left: -@ink-grid-gutter-medium;
 	}
 
 	html body .ink-m100	{ width: auto; clear:both }
