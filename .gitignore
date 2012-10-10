@@ -1,8 +1,11 @@
 # ignore diff backups
 *.orig
+*.bak
 # ignore compiled css files
 */css/*.css
+*/demo/styles/css/*.css
 */css/!prettify.css
+*/css/!demo.css
 # ignore CI log files
 */logs/log-*.php
 */logs/!index.html

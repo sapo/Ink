@@ -7,6 +7,15 @@
 		padding: 0 @ink-grid-gutter-small;
 	}
 
+	html .ink-space 	{ margin: @ink-grid-gutter-small; *overflow:hidden; *clear:both}
+	html .ink-vspace { margin-top: @ink-grid-gutter-small; margin-bottom: @ink-grid-gutter-small; }
+	html .ink-hspace { margin-left: @ink-grid-gutter-small; margin-right: @ink-grid-gutter-small; }
+	html .ink-gutter { margin-left: @ink-grid-gutter-small; }
+
+	html .ink-row {
+		margin-left: -@ink-grid-gutter-small;
+	}
+
 	html .ink-s100	{ width: auto; clear:both }
 	html .ink-s90	{ width: 90%; }
 	html .ink-s80   { width: 80%; }
@@ -14,7 +23,7 @@
 	html .ink-s70	{ width: 70%; }
 	html .ink-s66	{ width: 66.66%; }
 	html .ink-s60	{ width: 60%; }                           
-	shtml .ink-s50	{ width: 50%; }
+	html .ink-s50	{ width: 50%; }
 	html .ink-s40	{ width: 40%; }
 	html .ink-s33	{ width: 33.33%; }
 	html .ink-s30	{ width: 30%; }
@@ -80,13 +89,29 @@
 		height:auto
 	}
 
-	html #topbar li.active a {
+	html #topbar ul li.active a {
 		background:none;
+		filter:none;
 		#ink > #shadows > .no-box-shadow;
 	}
 
-	html #topbar li {
+	html #topbar ul li {
 		border-top:1px solid #333
+	}
+
+	.ink-for-m,  
+	.ink-for-l {
+		visibility: hidden;
+		position: absolute;
+		top: -99999px;
+		left: -99999px;
+	}
+
+	.ink-for-s {
+		visibility: visible;
+		position: relative;
+		top: auto;
+		left: auto;
 	}
 
 }

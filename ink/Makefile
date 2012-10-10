@@ -24,8 +24,12 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 
 all: ink minified
 
-ink:
-	@echo "${HR}"
+ink:	
+	@echo "${HR}" 
+	@if [ ! -d "css" ]; then \
+	echo "CSS directory does not exist. Creating it.  ${CHECK} Done"; \
+	echo "${HR}"; \
+	mkdir css; fi
 	@recess ${INK_LESS} --compile > ${INK}
 	@echo "Compiling InK                               ${CHECK} Done"
 	@echo "Compiling InK ie6 exceptions                ${CHECK} Done"

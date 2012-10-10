@@ -4,7 +4,16 @@
 
 	html body .ink-container {
 		width: auto;
-		padding: 0 @ink-container-padding;
+		padding: 0 @ink-grid-gutter-medium;
+	}
+
+	html body .ink-space 	{ margin: @ink-grid-gutter-medium; *overflow:hidden; *clear:both}
+	html body .ink-vspace { margin-top: @ink-grid-gutter-medium; margin-bottom: @ink-grid-gutter-medium; }
+	html body .ink-hspace { margin-left: @ink-grid-gutter-medium; margin-right: @ink-grid-gutter-medium; }
+	html body .ink-gutter { margin-left: @ink-grid-gutter-medium; }
+
+	.ink-row {
+		margin-left: -@ink-grid-gutter-medium;
 	}
 
 	html body .ink-m100	{ width: auto; clear:both }
@@ -78,14 +87,29 @@
 		height:auto
 	}
 
-	html body #topbar li.active a {
+	html body #topbar ul li.active a {
 		background:none;
 		filter:none;
 		#ink > #shadows > .no-box-shadow;
 	}
 
-	html body #topbar li {
+	html body #topbar ul li {
 		border-top:1px solid #333
+	}
+
+	.ink-for-s,  
+	.ink-for-l {
+		visibility: hidden;
+		position: absolute;
+		top: -99999px;
+		left: -99999px;
+	}
+
+	.ink-for-m {
+		visibility: visible;
+		position: relative;
+		top: auto;
+		left: auto;
 	}
 
 }

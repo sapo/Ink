@@ -1,8 +1,8 @@
 // INK GRID */ 
 @ink-container-margin       : 0 auto;
 @ink-grid-gutter            : 32px;
-@ink-grid-gutter-medium     : @ink-grid-gutter / 2;
-@ink-grid-gutter-small     : @ink-grid-gutter / 4;
+@ink-grid-gutter-medium     : round(@ink-grid-gutter / 1.5);
+@ink-grid-gutter-small     :  round(@ink-grid-gutter / 3);
 @ink-container-padding      : @ink-grid-gutter;
 
 //  |||||||||||||||||||||||||||||  Default dimensions   ||||||||||||||||||||||||||| */
@@ -12,7 +12,7 @@
 @border-radius              : 4px;
 
 //  |||||||||||||||||||||||||||||  Default Colors   ||||||||||||||||||||||||||| */
-@body-background			: #f5f5f5;
+@body-background			: #f7f7f7;
 
 //  |||||||||||||||||||||||||||||  Typography   ||||||||||||||||||||||||||| */
 @text-color                 : #555;
@@ -95,13 +95,13 @@
 @tabs-border-radius         : @border-radius;
 
 //  ||||||||||||||||||||||  Alerts & Errors   ||||||||||||||||||||||| */
-@alertMsg-border-radius: @border-radius;
-@alertMsg-Bg: #f9e0a4;
+@alertMsg-border-radius		: @border-radius;
+@alertMsg-Bg				: #f9e0a4;
 @alertMsg-Warning-Bg        : #ff9c00;
-@alertMsg-Error-Bg:#eb6363;
-@alertMsg-success-Bg:#9dce62;
-@alertMsg-Info-Bg:#479cd8;
-@alertMsg-block-Bg: #FEFBF3;
+@alertMsg-Error-Bg			: #eb6363;
+@alertMsg-success-Bg		: #9dce62;
+@alertMsg-Info-Bg			: #479cd8;
+@alertMsg-block-Bg			: #FEFBF3;
 @alertMsg-block-Border-color: #ddd;
 
 @warning-bg-color           : @orange;
@@ -118,17 +118,39 @@
 @table-row-hover-color      : #fefbd6;
 
 //  |||||||||||||||||||||||||||||  Ink-js   |||||||||||||||||||||||||||
-@tabs-nav-height        	:40px;
-@tabs-nav-bgColor       	:@white;
-@tabs-nav-color         	:@black;
-@tabs-nav-color-active  	:@white;
-@tabs-nav-fontSize      	:14px;
-@tabs-nav-margin        	:auto;
+@tabs-nav-height        	: 40px;
+@tabs-nav-bgColor       	: @white;
+@tabs-nav-color         	: @black;
+@tabs-nav-color-active  	: @white;
+@tabs-nav-fontSize      	: 14px;
+@tabs-nav-margin        	: auto;
+
+@sortable-list-height       : 40px;
 
 // BASIC COLORS
-@white: #fff;
-@black: #000;
-@orange: #ff9c00;
-@red: #cd0000;
-@green: #85bd11;
-@blue: #0f8bda;
+@white						: #fff;
+@black						: #000;
+@orange						: #ff9c00;
+@red						: #cd0000;
+@green						: #85bd11;
+@blue						: #0f8bda;
+
+@grey-95					: lighten(@black, 5%);
+@grey-90					: lighten(@black, 10%);
+@grey-85					: lighten(@black, 15%);
+@grey-80					: lighten(@black, 20%);
+@grey-75					: lighten(@black, 25%);
+@grey-70					: lighten(@black, 30%);
+@grey-65					: lighten(@black, 35%);
+@grey-60					: lighten(@black, 40%);
+@grey-55					: lighten(@black, 45%);
+@grey-50					: lighten(@black, 50%);
+@grey-45					: lighten(@black, 55%);
+@grey-40					: lighten(@black, 60%);
+@grey-35					: lighten(@black, 65%);
+@grey-30					: lighten(@black, 70%);
+@grey-25					: lighten(@black, 75%);
+@grey-20					: lighten(@black, 80%);
+@grey-15					: lighten(@black, 85%);
+@grey-10					: lighten(@black, 90%);
+@grey-5						: lighten(@black, 95%);
