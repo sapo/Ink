@@ -24,9 +24,9 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 
 all: ink minified
 
-ink:
-	mkdir -p ./css
-	@echo "${HR}"
+ink:	
+	@echo "${HR}" 
+	@if [ ! -d "css" ]; then mkdir css; fi
 	@recess ${INK_LESS} --compile > ${INK}
 	@echo "Compiling InK                               ${CHECK} Done"
 	@echo "Compiling InK ie6 exceptions                ${CHECK} Done"
