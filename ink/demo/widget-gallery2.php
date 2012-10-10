@@ -41,6 +41,10 @@
         -webkit-transition: margin-left 500ms;
                 transition: margin-left 500ms;
     }
+
+    .ink-gallery .thumbs {
+        overflow: hidden;
+    }
 </style>
 
 <button onclick="location='widget-gallery2.php?layout=0'">layout 0</button>
@@ -59,7 +63,7 @@
 
 
 <script type="text/javascript">
-    var gal = new SAPO.InK.Gallery('#REPLACEME', {
+    var gal = new SAPO.Ink.Gallery('#REPLACEME', {
         layout: parseInt( location.search.substring( location.search.indexOf('layout=') + 7), 10),
         model:  [
             {

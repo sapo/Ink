@@ -4,7 +4,7 @@ body {
 
 .ink-container {
 	width: @site-width;
-	padding: 0 @ink-container-padding;
+	padding: 0 @ink-grid-gutter;
 	margin: auto;
 }
 
@@ -27,17 +27,15 @@ caption, th { text-align:left; }
 	zoom: 1
 }
 
-.ink-space 	{ margin: @ink-grid-gutter; *overflow:hidden; *clear:both}
-.ink-vspace { margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; }
-.ink-hspace { margin-left: @ink-grid-gutter; margin-right: @ink-grid-gutter; }
-.ink-gutter { margin-left: @ink-grid-gutter; }
-
-.ink-row {
-	margin-left: -@ink-grid-gutter;
+.ink-section 			{ 
+	margin: 1em 0; 
+	padding-bottom: 1em; 
+	border-bottom: 1px solid #ccc; 
+	*overflow:hidden; 
+	*clear:both; 
 }
 
-.ink-section 			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc; *overflow:hidden; *clear:both}
-.ink-section:last-child { border-bottom: none;}
+.ink-section:last-child { border-bottom: none; }
 
 .ink-clear,
 .ink-section { clear: both; }
