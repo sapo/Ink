@@ -25,6 +25,7 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 all: ink minified
 
 ink:
+	mkdir -p ./css
 	@echo "${HR}"
 	@recess ${INK_LESS} --compile > ${INK}
 	@echo "Compiling InK                               ${CHECK} Done"
