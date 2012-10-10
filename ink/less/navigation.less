@@ -17,6 +17,7 @@
 	margin:@topbar-margin;
 }
 
+
 #topbar a.logoPlaceholder {
 	width:125px;
 	padding: 0;
@@ -31,7 +32,9 @@
 
 #topbar a {
 	padding: 0 1em;
+	background:@topbar-bgColor;
 	color:@topbar-color;
+	border: none;
 }
 
 #topbar ul li a:hover 	{ background:lighten(@topbar-bgColor,6%); color:@topbar-colorHover;}
@@ -94,16 +97,22 @@
 	vertical-align: top;
 	position:relative;
 	overflow: visible;
-	
+	#ink > #border-radius > .all (4px);
+
 	li {
+			a {
+				border-right: 1px solid @grey-10;	
+			}
 			&:first-child a {
-				#ink > #border-radius > .left(4px);		
+				#ink > #border-radius > .left (4px);				
 			}
 			&:last-child a {
-				#ink > #border-radius > .right(4px);
 				border-right: 1px solid @grey-10;		
 			}
 	}
+
+	background: @white;
+	border: 1px solid @grey-10;
 }
 
 .ink-h-nav li {
@@ -126,11 +135,8 @@
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
-	color:@black;
-	background: @white;
-	border: 1px solid @grey-10;
-	border-right: none;
-	#ink > #effects > .transition();
+	color:@black;	
+	#ink > #effects > .transition ();
 }	
 
 
