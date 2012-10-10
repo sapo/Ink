@@ -66,9 +66,9 @@
 							</nav>
 							<div class="slider">
 								<ul style="margin-left:-1400px">
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="pagination">
@@ -97,9 +97,9 @@
 							</nav>
 							<div class="slider">
 								<ul>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="article_text example1">
@@ -111,49 +111,49 @@
 							<ul class="unstyled">
 								<li>
 									<a href="#">
-										<img name="thumb1" src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
+										<img src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
 										<span>Etiam eleifend dui vel felis viverra congue.</span>
 									</a>
 								</li>
 								<li>
-									<a hrlef="#">
-										<img name="thumb2" src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
+									<a href="#">
+										<img src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
 										<span>Mauris at eros eu eros lacinia bibendum.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb3" src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
+										<img src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
 										<span>Sed luctus justo vel eros mattis euismod.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb4" src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
+										<img src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
 										<span>Aenean vitae elit at quam dignissim auctor.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb5" src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
+										<img src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
 										<span>Sed tincidunt est quis sem facilisis tempus.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb6" src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
+										<img src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
 										<span>Praesent at leo urna, vel aliquam sapien.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
@@ -204,9 +204,9 @@
 							</nav>
 							<div class="slider">
 								<ul class="unstyled">
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="article_text example2">
@@ -217,49 +217,49 @@
 							<ul class="unstyled">
 								<li>
 									<a href="#">
-										<img name="thumb1" src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
+										<img src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
 										<span>Etiam eleifend dui vel felis viverra congue.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb2" src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
+										<img src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
 										<span>Mauris at eros eu eros lacinia bibendum.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb3" src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
+										<img src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
 										<span>Sed luctus justo vel eros mattis euismod.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb4" src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
+										<img src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
 										<span>Aenean vitae elit at quam dignissim auctor.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb5" src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
+										<img src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
 										<span>Sed tincidunt est quis sem facilisis tempus.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb6" src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
+										<img src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
 										<span>Praesent at leo urna, vel aliquam sapien.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
@@ -283,9 +283,9 @@
 							</nav>
 							<div class="slider">
 								<ul class="unstyled" style="margin-left:-400px">
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/2.1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/2.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/2.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/2.1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/2.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/2.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="article_text example2">
@@ -295,43 +295,43 @@
 						<ul class="thumbs unstyled">
 							<li>
 								<a href="#">
-									<img name="thumb1" src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
+									<img src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
 									<span>Etiam eleifend dui vel felis viverra congue.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb2" src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
+									<img src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
 									<span>Mauris at eros eu eros lacinia bibendum.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb3" src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
+									<img src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
 									<span>Sed luctus justo vel eros mattis euismod.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb4" src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
+									<img src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
 									<span>Aenean vitae elit at quam dignissim auctor.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb5" src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
+									<img src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
 									<span>Sed tincidunt est quis sem facilisis tempus.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb6" src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
+									<img src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
 									<span>Praesent at leo urna, vel aliquam sapien.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
+									<img src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
 									<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 								</a>
 							</li>
@@ -552,7 +552,7 @@
 			
 				<div class="ink-form-wrapper">
 					<p>Neste caso o componente preenche as select inputs ao seu lado</p>
-					<select id="dia2" title="Dia" name="dia2" class="miniInput">
+					<select id="dia2" title="Dia" name="dia2">
 						<option></option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -586,7 +586,7 @@
 						<option value="30">30</option>
 						<option value="31">31</option>
 					</select>
-					<select id="mes2" title="Mês" name="mes2" class="miniInput">
+					<select id="mes2" title="Mês" name="mes2">
 						<option></option>
 						<option value="1">Jan</option>
 						<option value="2">Fev</option>
@@ -601,7 +601,7 @@
 						<option value="11">Nov</option>
 						<option value="12">Dez</option>
 					</select>
-					<select id="ano2" title="Ano" name="ano2" class="miniInput">
+					<select id="ano2" title="Ano" name="ano2">
 						<option></option>
 						<option value="2000">2000</option>
 						<option value="2001">2001</option>
