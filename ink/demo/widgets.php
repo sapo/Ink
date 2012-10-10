@@ -462,7 +462,7 @@
 			<div class="ink-l70">
 				<div class="ink-space">
 					<ul class="unstyled ink-sortable-list">
-						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>1.</strong> Integer id lacus nec tellus mattis pretium ut nec nisi</li>
+						<li class="drag"><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>1.</strong> Integer id lacus nec tellus mattis pretium ut nec nisi</li>
 						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>2.</strong> Nam at lectus justo, sed dictum tortor</li>
 						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>3.</strong> Duis sed sem at justo sagittis tincidunt</li>
 						<li><span class="ink-label ink-info"><i class="icon-reorder"></i>drag here</span><strong>4.</strong> Duis quis orci lectus, eu porttitor enim</li>
