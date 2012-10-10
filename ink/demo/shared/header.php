@@ -18,9 +18,9 @@
 	<link rel="apple-touch-startup-image" href="styles/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="styles/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 	
-	<link rel="stylesheet" href="../css/ink.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/ink.css" type="text/css" media="screen" title="no title">
+	<link rel="stylesheet" href="styles/css/demo.css" type="text/css" media="screen" title="no title">
+	<link rel="stylesheet" href="styles/css/prettify.css" type="text/css" media="screen" title="no title">
 	
 	<!--[if IE]>
 	<link rel="stylesheet" href="../css/ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -40,6 +40,8 @@
 	
 	<script type="text/javascript" src="../js/html5shiv.js"></script>
 	<script type="text/javascript" src="../js/respond.src.js"></script>
+
+    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 	
 </head>
 <body>

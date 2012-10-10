@@ -66,9 +66,9 @@
 							</nav>
 							<div class="slider">
 								<ul style="margin-left:-1400px">
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="pagination">
@@ -97,9 +97,9 @@
 							</nav>
 							<div class="slider">
 								<ul>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="article_text example1">
@@ -111,49 +111,49 @@
 							<ul class="unstyled">
 								<li>
 									<a href="#">
-										<img name="thumb1" src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
+										<img src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
 										<span>Etiam eleifend dui vel felis viverra congue.</span>
 									</a>
 								</li>
 								<li>
-									<a hrlef="#">
-										<img name="thumb2" src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
+									<a href="#">
+										<img src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
 										<span>Mauris at eros eu eros lacinia bibendum.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb3" src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
+										<img src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
 										<span>Sed luctus justo vel eros mattis euismod.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb4" src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
+										<img src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
 										<span>Aenean vitae elit at quam dignissim auctor.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb5" src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
+										<img src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
 										<span>Sed tincidunt est quis sem facilisis tempus.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb6" src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
+										<img src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
 										<span>Praesent at leo urna, vel aliquam sapien.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
@@ -204,9 +204,9 @@
 							</nav>
 							<div class="slider">
 								<ul class="unstyled">
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="article_text example2">
@@ -217,49 +217,49 @@
 							<ul class="unstyled">
 								<li>
 									<a href="#">
-										<img name="thumb1" src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
+										<img src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
 										<span>Etiam eleifend dui vel felis viverra congue.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb2" src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
+										<img src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
 										<span>Mauris at eros eu eros lacinia bibendum.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb3" src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
+										<img src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
 										<span>Sed luctus justo vel eros mattis euismod.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb4" src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
+										<img src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
 										<span>Aenean vitae elit at quam dignissim auctor.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb5" src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
+										<img src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
 										<span>Sed tincidunt est quis sem facilisis tempus.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb6" src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
+										<img src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
 										<span>Praesent at leo urna, vel aliquam sapien.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
+										<img src="styles/imgs/ink-js-placeholders/thumb8.png" alt="7">
 										<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 									</a>
 								</li>
@@ -283,9 +283,9 @@
 							</nav>
 							<div class="slider">
 								<ul class="unstyled" style="margin-left:-400px">
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/2.1.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/2.2.png" alt="1"></li>
-									<li><img name="thumb1" src="styles/imgs/ink-js-placeholders/2.3.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/2.1.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/2.2.png" alt="1"></li>
+									<li><img src="styles/imgs/ink-js-placeholders/2.3.png" alt="1"></li>
 								</ul>
 							</div>
 							<div class="article_text example2">
@@ -295,43 +295,43 @@
 						<ul class="thumbs unstyled">
 							<li>
 								<a href="#">
-									<img name="thumb1" src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
+									<img src="styles/imgs/ink-js-placeholders/thumb1.png" alt="1">
 									<span>Etiam eleifend dui vel felis viverra congue.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb2" src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
+									<img src="styles/imgs/ink-js-placeholders/thumb2.png" alt="2">
 									<span>Mauris at eros eu eros lacinia bibendum.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb3" src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
+									<img src="styles/imgs/ink-js-placeholders/thumb3.png" alt="3">
 									<span>Sed luctus justo vel eros mattis euismod.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb4" src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
+									<img src="styles/imgs/ink-js-placeholders/thumb4.png" alt="4">
 									<span>Aenean vitae elit at quam dignissim auctor.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb5" src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
+									<img src="styles/imgs/ink-js-placeholders/thumb5.png" alt="5">
 									<span>Sed tincidunt est quis sem facilisis tempus.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb6" src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
+									<img src="styles/imgs/ink-js-placeholders/thumb6.png" alt="6">
 									<span>Praesent at leo urna, vel aliquam sapien.</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img name="thumb7" src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
+									<img src="styles/imgs/ink-js-placeholders/thumb7.png" alt="7">
 									<span>Morbi porttitor nisl a eros congue molestie eget non mi.</span>
 								</a>
 							</li>
@@ -474,59 +474,166 @@
 		</div>
 	</div>
 	<div class="ink-section">
-			<div class="ink-l60">
-				<div class="ink-space">
-					<ul class="ink-tree-view">
-						<li>
-							<button class="icon-caret-down"></button>
-							<a href="#">Root 1</a>
-							<ul>
-								<li>
-									<button class="icon-caret-right"></button>
-									<a href="#">Child 1.1</a>
-								</li>
-								<li>
-									<button class="icon-caret-down"></button>
-									<a href="#">Child 1.2</a>
-									<ul>
-										<li><a href="#">Child Child 1.2.1</a></li>
-										<li><a href="#">Child Child 1.2.2</a></li>
-									</ul>
-								</li>
-								<li>
-									<button class="icon-caret-right"></button>
-									<a href="#">Child 1.3</a>
-								</li>
-								<li>
-									<button class="icon-caret-right"></button>
-									<a href="#">Child 1.4</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<button class="icon-caret-right"></button>
-							<a href="#">Root 2</a>
-						</li>
-						<li>
-							<button class="icon-caret-right"></button>
-							<a href="#">Root 3</a>
-						</li>
-						<li>
-							<button class="icon-caret-right"></button>
-							<a href="#">Root 4</a>
-						</li>
-					</ul>
-				</div>
+		<div class="ink-l60">
+			<div class="ink-space">
+				<ul class="ink-tree-view">
+					<li>
+						<button class="icon-caret-down"></button>
+						<a href="#">Root 1</a>
+						<ul>
+							<li>
+								<button class="icon-caret-right"></button>
+								<a href="#">Child 1.1</a>
+							</li>
+							<li>
+								<button class="icon-caret-down"></button>
+								<a href="#">Child 1.2</a>
+								<ul>
+									<li><a href="#">Child Child 1.2.1</a></li>
+									<li><a href="#">Child Child 1.2.2</a></li>
+								</ul>
+							</li>
+							<li>
+								<button class="icon-caret-right"></button>
+								<a href="#">Child 1.3</a>
+							</li>
+							<li>
+								<button class="icon-caret-right"></button>
+								<a href="#">Child 1.4</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<button class="icon-caret-right"></button>
+						<a href="#">Root 2</a>
+					</li>
+					<li>
+						<button class="icon-caret-right"></button>
+						<a href="#">Root 3</a>
+					</li>
+					<li>
+						<button class="icon-caret-right"></button>
+						<a href="#">Root 4</a>
+					</li>
+				</ul>
 			</div>
-			<div class="ink-l40">
-				<div class="ink-space">	
-					<h3>Tree view</h3>
-					<p>
-						Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
-						The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
-					</p>
-				</div>
+		</div>
+		<div class="ink-l40">
+			<div class="ink-space">	
+				<h3>Tree view</h3>
+				<p>
+					Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
+					The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
+				</p>
 			</div>
+		</div>
+	</div>
+	<div class="ink-section">
+		<div class="ink-l40">
+			<div class="ink-space">	
+				<h3>Date picker</h3>
+				<p>
+					Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
+					The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
+				</p>
+			</div>
+		</div>
+		<form class="ink-l60">
+			<fieldset class="box ink-space">
+				<div class="ink-form-wrapper">
+					<p>Neste caso o componente está a ser utilizado com onFocus (comportamento default) e com o formato mm/dd/yyyy</p>
+					<input id="data" type="text" value="">
+				</div>
+				
+				<div class="ink-form-wrapper">
+					<p>Neste caso o componente irá iniciar a data em 1980-11-22</p>
+					<input id="data_start" type="text" value="">
+				</div>
+			
+				<div class="ink-form-wrapper">
+					<p>Neste caso o componente preenche as select inputs ao seu lado</p>
+					<select id="dia2" title="Dia" name="dia2">
+						<option></option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+					<select id="mes2" title="Mês" name="mes2">
+						<option></option>
+						<option value="1">Jan</option>
+						<option value="2">Fev</option>
+						<option value="3">Mar</option>
+						<option value="4">Abr</option>
+						<option value="5">Mai</option>
+						<option value="6">Jun</option>
+						<option value="7">Jul</option>
+						<option value="8">Ago</option>
+						<option value="9">Set</option>
+						<option value="10">Out</option>
+						<option value="11">Nov</option>
+						<option value="12">Dez</option>
+					</select>
+					<select id="ano2" title="Ano" name="ano2">
+						<option></option>
+						<option value="2000">2000</option>
+						<option value="2001">2001</option>
+						<option value="2002">2002</option>
+						<option value="2003">2003</option>
+						<option value="2004">2004</option>
+						<option value="2005">2005</option>
+						<option value="2006">2006</option>
+						<option value="2007">2007</option>
+						<option value="2008">2008</option>
+						<option value="2009">2009</option>
+						<option value="2010">2010</option>
+						<option value="2011">2011</option>
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+					</select>
+					<a id="picker2" href="#">abrir</a>
+				</div>
+				<p>Neste caso temos o componente a ser utilizado com recurso a link e com o formato default yyyy-mm-dd</p>
+				<div class="ink-form-wrapper">
+					<input id="data3" type="text" value="">
+					<a id="picker3" href="#">abrir</a>
+				</div>	
+			</fieldset>
+		</form>
 	</div>
 </div>
 

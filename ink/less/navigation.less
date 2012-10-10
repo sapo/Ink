@@ -19,7 +19,7 @@
 
 
 #topbar a.logoPlaceholder {
-	width:125px;
+	width:44px;
 	padding: 0;
 	text-indent:-5000px;
 	background:url(../demo/styles/imgs/logo_topbar.png);
@@ -107,7 +107,8 @@
 				#ink > #border-radius > .left (4px);				
 			}
 			&:last-child a {
-				border-right: 1px solid @grey-10;		
+			//	#ink > #border-radius > .right(4px);
+			//	border-right: 1px solid @grey-10;		
 			}
 	}
 
@@ -135,15 +136,25 @@
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
-	color:@black;	
-	#ink > #effects > .transition ();
+	color:@black;
+//	background: @white;
+//	border: 1px solid @grey-10;
+//	border-right: none;
+	#ink > #effects > .transition();
 }	
 
 
 .ink-h-nav a:hover {
-	background:darken(@h-nav-bgColor ,10%);
+	background:darken(@h-nav-bgColor ,3%);
 	text-decoration: none;
 	color:@black
+}
+
+.ink-h-nav li.active a {
+	background:darken(@h-nav-bgColor ,5%);
+	text-decoration: none;
+	color:@black;
+//	#ink > #shadows > .box-shadow (0,5px,2px,-2px,@grey-15,inset);
 }
 
 .ink-h-nav .submenu {
