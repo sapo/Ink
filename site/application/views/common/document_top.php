@@ -21,16 +21,16 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo assets_url('css') ?>ink.css" />
 
 	<!--[if IE 6]>
-	<link rel="stylesheet" href="<?php echo base_url() ?>../ink/css/ink-ie6-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie6-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="<?php echo base_url() ?>../ink/css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
 	
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo assets_url() ?>styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo assets_url() ?>styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
-	<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/ink.js"></script>
+	<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Selector/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tabs/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/Tooltip/1.1/"></script>
@@ -38,7 +38,7 @@
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>assets/js/ink.js"></script>
+	<script type="text/javascript" src="<?php echo assets_url('js') ?>ink.js"></script>
 	
 </head>
 <body>

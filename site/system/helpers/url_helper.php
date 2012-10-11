@@ -81,7 +81,7 @@ if ( ! function_exists('base_url'))
  */
 	if ( ! function_exists('assets_url'))
 	{
-		function assets_url($type)
+		function assets_url($type = false)
 		{
 			$CI =& get_instance();
 			
@@ -95,6 +95,8 @@ if ( ! function_exists('base_url'))
 				case 'imgs':
 					return $CI->config->item('assets_imgs');
 					break;
+				default: 
+					return $CI->config->item('assets_url');
 			}
 		}
 	}

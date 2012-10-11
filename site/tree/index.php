@@ -21,10 +21,6 @@
 
 $curr_path = getcwd();
 
-echo $curr_path;
-
-var_dump(strpos($curr_path, '/home/ink/inkdev/'));
-
 if( strpos($curr_path, '/home/ink/ink/') !== FALSE) 
 {
 	define('ENVIRONMENT', 'staging');		
