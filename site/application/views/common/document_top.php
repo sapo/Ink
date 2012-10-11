@@ -18,7 +18,7 @@
 	<link rel="apple-touch-startup-image" href="styles/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="styles/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/ink-min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>../ink/css/ink.css" />
 
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="<?php echo base_url() ?>../ink/css/ink-ie6-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
