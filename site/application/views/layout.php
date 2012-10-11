@@ -18,41 +18,43 @@
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->		
 
-<div class="ink-container">l
-	<div class="ink-space">
+<div class="ink-container">
+	<div class="ink-vspace">
 		<h2>Containers</h2>
 		<p>The <mark>.ink-container</mark> class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
 	</div>
-	<div class="ink-section gridExample">
-		<div class="ink-space box">
-			<div class="ink-l100 ink-m100"><p>100%</p></div>
-			<div class="ink-l90 ink-m100 ink-clear"><p>90%</p></div>
-			<div class="ink-l80 ink-m100 ink-clear"><p>80%</p></div>
-			<div class="ink-l75 ink-m100 ink-clear"><p>75%</p></div>
-			<div class="ink-l70 ink-m100 ink-clear"><p>70%</p></div>
-			<div class="ink-l66 ink-m100 ink-clear"><p>66%</p></div>
-			<div class="ink-l60 ink-m100 ink-clear"><p>60%</p></div>
-			<div class="ink-l50 ink-m100 ink-clear"><p>50%</p></div>
-			<div class="ink-l40 ink-m100 ink-clear"><p>40%</p></div>
-			<div class="ink-l33 ink-m100 ink-clear"><p>33%</p></div>
-			<div class="ink-l30 ink-m100 ink-clear"><p>30%</p></div>
-			<div class="ink-l25 ink-m100 ink-clear"><p>25%</p></div>
-			<div class="ink-l20 ink-m100 ink-clear"><p>20%</p></div>
-			<div class="ink-l10 ink-m100 ink-clear"><p>10%</p></div>
+	<div class="ink-section">
+		<div class="gridExample">
+			<div class="ink-vspace box">
+				<div class="ink-l100 ink-m100"><p>100%</p></div>
+				<div class="ink-l90 ink-m100 ink-clear"><p>90%</p></div>
+				<div class="ink-l80 ink-m100 ink-clear"><p>80%</p></div>
+				<div class="ink-l75 ink-m100 ink-clear"><p>75%</p></div>
+				<div class="ink-l70 ink-m100 ink-clear"><p>70%</p></div>
+				<div class="ink-l66 ink-m100 ink-clear"><p>66%</p></div>
+				<div class="ink-l60 ink-m100 ink-clear"><p>60%</p></div>
+				<div class="ink-l50 ink-m100 ink-clear"><p>50%</p></div>
+				<div class="ink-l40 ink-m100 ink-clear"><p>40%</p></div>
+				<div class="ink-l33 ink-m100 ink-clear"><p>33%</p></div>
+				<div class="ink-l30 ink-m100 ink-clear"><p>30%</p></div>
+				<div class="ink-l25 ink-m100 ink-clear"><p>25%</p></div>
+				<div class="ink-l20 ink-m100 ink-clear"><p>20%</p></div>
+				<div class="ink-l10 ink-m100 ink-clear"><p>10%</p></div>
+			</div>
+			
+			<div class="ink-vspace">
+				<h3>Markup</h3>
+				<p>Let's say you need your page container to always be 80% of your view port.</p>
+				<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-container"</span><span class="tag">&gt;</span></li></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l100"</span><span class="tag">&gt;</span></li><li><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+				<p>In conf.css, define:</p>
+				<pre class="prettyprint"><ol><li><span class="pun">.</span><span class="pln">ink-container </span><span class="pun">{</span></li><li><span class="pln">  </span><span class="kwd">width</span><span class="pun">:</span><span class="pln"> 80%</span><span class="pun">;</span></li><li><span class="pun">}</span></li></ol></pre>
+			</div>
 		</div>
-
-		<div class="ink-space">
-			<h3>Markup</h3>
-			<p>Let's say you need your page container to always be 80% of your view port.</p>
-			<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-container"</span><span class="tag">&gt;</span></li></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l100"</span><span class="tag">&gt;</span></li><li><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
-			<p>In conf.css, define:</p>
-			<pre class="prettyprint"><ol><li><span class="pun">.</span><span class="pln">ink-container </span><span class="pun">{</span></li><li><span class="pln">  </span><span class="kwd">width</span><span class="pun">:</span><span class="pln"> 80%</span><span class="pun">;</span></li><li><span class="pun">}</span></li></ol></pre>
-		</div>
-		</div>
+	</div>
 		
 		<div class="ink-section">
 			
-			<div class="ink-space">
+			<div class="ink-vspace">
 				<h2>Division</h2>
 				<p>Ink uses a percentage-based container logic which is flexible and promotes the use of fluid layouts.</p>
 				<p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
