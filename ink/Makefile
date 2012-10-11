@@ -1,10 +1,13 @@
-INK = ./css/ink.css
-INK_IE6 = ./css/ink-ie6.css
-INK_IE7 = ./css/ink-ie7.css
+INK_OUTPUT = ../site/tree/assets/css/
 
-INK_MIN = ./css/ink-min.css
-INK_IE6_MIN = ./css/ink-ie6-min.css
-INK_IE7_MIN = ./css/ink-ie7-min.css
+INK = "${INK_OUTPUT}ink.css"
+INK_IE6 = "${INK_OUTPUT}ink-ie6.css"
+INK_IE7 = "${INK_OUTPUT}ink-ie7.css"
+
+INK_MIN = "${INK_OUTPUT}ink-min.css"
+INK_IE6_MIN = "${INK_OUTPUT}ink-ie6-min.css"
+INK_IE7_MIN = "${INK_OUTPUT}ink-ie7-min.css"
+
 
 INK_LESS = ./less/ink.less
 INK_IE6_LESS = ./less/ink-ie6.less

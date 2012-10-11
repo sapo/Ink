@@ -27,8 +27,8 @@
 	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
 	
-	<link rel="stylesheet" href="<?php echo assets_url() ?>styles/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="<?php echo assets_url() ?>styles/css/prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo assets_url('css') ?>demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo assets_url('css') ?>prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
 	<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Selector/0.1/"></script>
