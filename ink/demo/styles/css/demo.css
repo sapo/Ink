@@ -51,7 +51,7 @@ mark {
   border-radius: 4px;
   background-color: #DEEDF1;
   margin: .2em;
-  padding: .75em 0;
+  padding: .75em;
   color: #7AA6B3;
   text-align: right;
 }
@@ -143,6 +143,7 @@ a.active {
 }
 .whatIs h2 {
   font-size: 3em;
+  letter-spacing: -0.02em;
   color: #131e24;
 }
 #download {

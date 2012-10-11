@@ -17,9 +17,8 @@
 	margin:@topbar-margin;
 }
 
-
 #topbar a.logoPlaceholder {
-	width:44px;
+	width:125px;
 	padding: 0;
 	text-indent:-5000px;
 	background:url(../demo/styles/imgs/logo_topbar.png);
@@ -32,9 +31,7 @@
 
 #topbar a {
 	padding: 0 1em;
-	background:@topbar-bgColor;
 	color:@topbar-color;
-	border: none;
 }
 
 #topbar ul li a:hover 	{ background:lighten(@topbar-bgColor,6%); color:@topbar-colorHover;}
@@ -97,31 +94,13 @@
 	vertical-align: top;
 	position:relative;
 	overflow: visible;
-	#ink > #border-radius > .all (4px);
-	// #ink > #shadows > .box-shadow (0,0,2px,0,darken(@white,30%));
-
-	li {
-			a {
-				border-right: 1px solid @grey-10;	
-			}
-			&:first-child a {
-				#ink > #border-radius > .left (4px);				
-			}
-			&:last-child a {
-			//	#ink > #border-radius > .right(4px);
-			//	border-right: 1px solid @grey-10;		
-			}
-	}
-
-	background: @white;
-	border: 1px solid @grey-10;
 }
 
 .ink-h-nav li {
-	font-size: @h-nav-fontSize;
-	display: inline-block;
-	vertical-align: baseline;
-	position:relative;
+	font-size: @h-nav-fontSize; 
+	display: inline-block; 
+	vertical-align: baseline; 
+	position:relative; 
 	margin:0;
 	zoom:1;
 	*display: inline;
@@ -137,25 +116,13 @@
 	padding: 0 1.5em;
 	display:block;
 	text-decoration: none;
-	color:@black;
-//	background: @white;
-//	border: 1px solid @grey-10;
-//	border-right: none;
-	#ink > #effects > .transition();
-}	
-
-
-.ink-h-nav a:hover {
-	background:darken(@h-nav-bgColor ,3%);
-	text-decoration: none;
 	color:@black
 }
 
-.ink-h-nav li.active a {
-	background:darken(@h-nav-bgColor ,5%);
+.ink-h-nav a:hover {
+	background:darken(@h-nav-bgColor ,10%);
 	text-decoration: none;
-	color:@black;
-//	#ink > #shadows > .box-shadow (0,5px,2px,-2px,@grey-15,inset);
+	color:@black
 }
 
 .ink-h-nav .submenu {
