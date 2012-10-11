@@ -20,6 +20,8 @@
  */
 
 	$curr_path = getcwd();
+
+	echo $curr_path;
 	
 	if( strrpos($curr_path, '/sites/ink/') ) 
 	{
