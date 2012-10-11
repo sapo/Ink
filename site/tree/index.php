@@ -23,10 +23,10 @@
 
 	echo $curr_path;
 	
-	if( strrpos($curr_path, '/sites/ink/') ) 
+	if( strrpos($curr_path, '/home/ink/ink/') ) 
 	{
 		define('ENVIRONMENT', 'staging');		
-	} elseif (strrpos($curr_path, '/sites/inkdev/')) 
+	} elseif (strrpos($curr_path, '/home/ink/inkdev/')) 
 	{
 		define('ENVIRONMENT', 'testing');		
 	} else {
