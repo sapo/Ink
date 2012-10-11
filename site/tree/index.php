@@ -18,7 +18,19 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+
+$curr_path = getcwd();
+
+if( strpos($curr_path, '/home/ink/ink/') !== FALSE) 
+{
+	define('ENVIRONMENT', 'staging');		
+} elseif (strpos($curr_path, '/home/ink/inkdev/') !== FALSE) 
+{
+	define('ENVIRONMENT', 'testing');		
+} else {
 	define('ENVIRONMENT', 'development');
+}
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -35,8 +47,10 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 			error_reporting(E_ALL);
 		break;
-	
+		case 'staging':
 		case 'testing':
+			error_reporting(E_ALL);
+		break;
 		case 'production':
 			error_reporting(0);
 		break;
@@ -56,7 +70,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = 'system';
+	$system_path = '../system';
 
 /*
  *---------------------------------------------------------------
@@ -72,7 +86,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application';
+	$application_folder = '../application';
 
 /*
  * --------------------------------------------------------------------

@@ -8,6 +8,7 @@ $config['build_path']	= '/home/pedro/work/ink/site/builds/';
 $config['latest_path']	= '/home/pedro/work/ink/ink/';
 $config['ink_version_number'] = '1.0';
 
+$config['assets_url'] = $base_url.'assets/';
 $config['assets_js'] = $base_url.'assets/js/';
 $config['assets_css'] = $base_url.'assets/css/';
 $config['assets_imgs'] = $base_url.'assets/imgs/';
