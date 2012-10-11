@@ -7,7 +7,7 @@
   text-shadow: none;
 }
 #ink #text .ink-font-stack {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 @font-face {
   font-family: 'MavenProBold';
@@ -42,14 +42,12 @@ h2 span {
   padding: 1em;
 }
 mark {
-  font-family: Monaco, Andale Mono, Courier New, monospace;
+  font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
   font-size: .9em;
   background: #deedf1;
   padding: 1px 3px;
 }
-.gridExemple .box p,
-.gridExemple2 div p,
-.gridExemple2 .level1 {
+.gridExample .box p, .gridExample2 div p, .gridExample2 .level1 {
   border-radius: 4px;
   background-color: #DEEDF1;
   margin: .2em;
@@ -57,27 +55,27 @@ mark {
   color: #7AA6B3;
   text-align: right;
 }
-.gridExemple2 .level1 {
+.gridExample2 .level1 {
   padding: .1em;
 }
-.gridExemple2 .level1 > p {
+.gridExample2 .level1 > p {
   padding: .75em 0;
   text-align: center;
 }
-.gridExemple2 .level2 p {
+.gridExample2 .level2 p {
   margin: 2px;
   text-align: center;
   background-color: #fff;
 }
-#spaceExemples .box {
+#spaceExamples .box {
   padding: 0px;
 }
-#spaceExemples .box div {
+#spaceExamples .box div {
   text-align: center;
   font-weight: bold;
   margin: 0px;
 }
-#spaceExemples .box div p {
+#spaceExamples .box div p {
   font-size: 1.75em;
   line-height: 200px;
   vertical-align: middle;
@@ -85,7 +83,7 @@ mark {
   color: #fff;
   margin: 0em;
 }
-#spaceExemples .box div:hover {
+#spaceExamples .box div:hover {
   background-color: #68b9cf;
   transition: all ease-in-out 300ms;
   -o-transition: all ease-in-out 300ms;
@@ -93,29 +91,27 @@ mark {
   -webkit-transition: all ease-in-out 300ms;
   border-radius: 4px;
 }
-#spaceExemples .box .ink-space {
+#spaceExamples .box .ink-space {
   padding: 1em;
 }
-#spaceExemples .box .ink-vspace {
+#spaceExamples .box .ink-vspace {
   padding: 1em 0;
 }
-#spaceExemples .box .ink-hspace {
+#spaceExamples .box .ink-hspace {
   padding: 0 1em;
 }
-#spaceExemples .box .ink-hspace p {
+#spaceExamples .box .ink-hspace p {
   padding: 13px 0;
 }
 /*..........................................  Typography  ...................................................*/
-#headingExemple h1,
-#headingExemple h2,
-#headingExemple h3,
-#headingExemple h4,
-#headingExemple h5 {
+#headingExample h1,
+#headingExample h2,
+#headingExample h3,
+#headingExample h4,
+#headingExample h5 {
   margin-bottom: 20px;
 }
-#listExemple ul,
-#listExemple ol,
-#listExemple dl {
+#listExample ul, #listExample ol, #listExample dl {
   margin-bottom: 1.5em;
 }
 a.visited {
@@ -129,17 +125,17 @@ a.active {
   color: #ff0000;
 }
 /*..........................................  Forms  ...................................................*/
-.exempleForm {
+.exampleForm {
   margin: 1em 0;
   padding: 1em 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eeeeee;
 }
-.exempleForm .e_wrap {
+.exampleForm .e_wrap {
   margin: 0px;
   padding: 0px;
 }
-#buttonsExemple .e_wrap {
+#buttonsExample .e_wrap {
   text-align: right;
 }
 .whatIs {
@@ -147,8 +143,7 @@ a.active {
 }
 .whatIs h2 {
   font-size: 3em;
-  font-family: 'MavenProMedium';
-  letter-spacing: -0.1em;
+  letter-spacing: -0.02em;
   color: #131e24;
 }
 #download {
@@ -334,6 +329,16 @@ a.active {
   -moz-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
+.ink-h-nav li.active a {
+  background: #b9b9b9;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b9b9b9', endColorstr='#a3a3a3');
+  background-image: -moz-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b9b9b9), color-stop(150%, #a3a3a3));
+  background-image: -webkit-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
+  background-image: -o-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
+  background-image: -ms-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
+  background-image: linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
+}
 .example_menu li:first-child a {
   border-radius: 4px 0 0 4px;
 }
@@ -382,9 +387,7 @@ footer ul.sociallinks li {
   *zoom: 1;
   *display: inline;
 }
-footer ul.sociallinks a.Fb_link,
-footer ul.sociallinks a.Twt_link,
-footer ul.sociallinks a.Gplus_link {
+footer ul.sociallinks a.Fb_link, footer ul.sociallinks a.Twt_link, footer ul.sociallinks a.Gplus_link {
   display: inline-block;
   height: 24px;
   width: 24px;

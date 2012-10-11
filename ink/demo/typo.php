@@ -38,7 +38,7 @@
 <div class="ink-container">
 
 	<div class="ink-section">
-		<div class="ink-l40" id="headingExemple">
+		<div class="ink-l40" id="headingExample">
 			<div class="ink-space">
 				<h1>&lt;h1&gt;Title 1&lt;/h1&gt;</h1>
 				<h2>&lt;h2&gt;Title 2&lt;/h2&gt;</h2>
