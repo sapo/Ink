@@ -18,7 +18,7 @@
 <div class="ink-l70">   
     <div class="ink-space">
 
-        <div class="ink-modal-source" id="src1">
+        <div class="ink-modal-source">
             <h1>this is the content of the modal</h1>
             <p>oh yeah baby</p>
         </div>
