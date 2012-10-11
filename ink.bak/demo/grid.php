@@ -37,7 +37,7 @@
 	<div class="space">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
-	<div class="section gridExemple clearfix">
+	<div class="section gridExample clearfix">
 		<div class="space box">
 			<div class="g100 clear"><p>100%</p></div>
 			<div class="g90 clear"><p>90%</p></div>
@@ -85,7 +85,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>
 			</div>
-			<div class="g50 gridExemple2">
+			<div class="g50 gridExample2">
 				<div class="space box">
 					<div class="g100 clearfix level1">
 						<p>100%</p>
@@ -108,7 +108,7 @@
   &lt;div class=&quot;g25&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
 			</div>
-			<div class="g50 gridExemple2">
+			<div class="g50 gridExample2">
 				<div class="space box">
 					<div class="g100 clearfix level1">
 						<div class="g50 level2">
@@ -143,7 +143,7 @@
 		</div>
 	
 	
-	<div class="section" id="spaceExemples">
+	<div class="section" id="spaceExamples">
 		<h2><span>Margens</span></h2>
 		<div class="g33">
 			<h4 class="space">Margens Verticais</h4>

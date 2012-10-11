@@ -40,7 +40,7 @@
 		<h2>Containers</h2>
 		<p>The <code>.ink-container</code> class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
 	</div>
-	<div class="ink-section gridExemple">
+	<div class="ink-section gridExample">
 		<div class="ink-space box">
 			<div class="ink-l100 ink-m100"><p>100%</p></div>
 			<div class="ink-l90 ink-m100 ink-clear"><p>90%</p></div>
@@ -75,7 +75,7 @@
 				<p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
 			</div>
 			
-			<div class="ink-l50 gridExemple2">
+			<div class="ink-l50 gridExample2">
 				<div class="ink-hspace box">
 					<div class="ink-l100 ink-m100 level1">
 						<p>100%</p>
@@ -90,7 +90,7 @@
 				</div>
 				<pre class="prettyprint ink-space"><ol><li><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l100"</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l50"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l20"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l10"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l20"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-l25"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
 			</div>
-			<div class="ink-l50 gridExemple2">
+			<div class="ink-l50 gridExample2">
 				<div class="ink-hspace box">
 					<div class="ink-l100 ink-m100 level1">
 						<div class="ink-l50 ink-m100 level2">
@@ -117,7 +117,7 @@
 		</div>
 	
 	
-		<div class="ink-section" id="spaceExemples">
+		<div class="ink-section" id="spaceExamples">
 		<div class="ink-space">
 			<h2>Spacer units</h2>
 			<p>Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. 

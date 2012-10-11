@@ -39,7 +39,7 @@
 	</div>
 	
 	<div class="section">
-		<div class="g30" id="headingExemple">
+		<div class="g30" id="headingExample">
 			<div class="space">
 				<h1>&lt;h1&gt; Título 1</h1>
 				<h2>&lt;h2&gt; Título 2</h2>
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="section" id="listExemple">
+	<div class="section" id="listExample">
 		<div class="g25 ">
 			<div class="space">
 				<h4>Lista</h4>
