@@ -16,7 +16,7 @@
 */builds/*
 */builds/!index.html
 # ignore dev CI config file
-*/config/development/config.php
+*/application/config/development/config.php
 # ignore OS generated files
 .DS_Store
 .DS_Store?
@@ -27,4 +27,3 @@ Icon?
 ehthumbs.db
 Thumbs.db
 *.zip
-site/application/config/development/config.php
