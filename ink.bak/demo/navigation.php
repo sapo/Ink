@@ -126,7 +126,7 @@
 	
 	<div class="g100 section">
 		<div class="v_space">
-			<div id="exempleBar">
+			<div id="exampleBar">
 				<div class="whiteMenu">
 					<a href="#" onClick="toogleNav()" id="toggleNavigation">Menu</a>
 					<nav>

@@ -116,7 +116,7 @@
 &lt;/form&gt;</pre><br><br>  
 				<div class="v_space">
 					<h4>Formulários em bloco</h4>
-					<form class="form_block exempleForm">
+					<form class="form_block exampleForm">
 						<label for="exField">Nome do Campo</label>
 						<input type="text" id="exField" style="width:100%"/>
 					</form>
@@ -126,7 +126,7 @@
 				<br><br>
 				<div class="v_space">
 					<h4>Erros e Avisos</h4>
-					<form class="form_block exempleForm"> 
+					<form class="form_block exampleForm"> 
 						<div class="e_wrap error">
 							<label for="inpuTypeTex"> Input com Erro</label>
 							<input id="inpuTypeTex" type="text"  style="width:100%">
@@ -162,7 +162,7 @@
 			<div class="space">
 				<h4>Inline Inputs</h4>
 				<p>Listas de checkbox são especialmente úteis para formulários que exigem a aceitação de vários dados.</p>
-				<form class="exempleForm">
+				<form class="exampleForm">
 					<label>Inline Inputs</label>
 					<input type="text" class="miniInput" placeholder="Ano"> de <input type="text" class="miniInput" placeholder="Mês">
 				</form>
@@ -177,7 +177,7 @@
 	</div>
 	
 	<!-- .................................  BOTÕES	.................................  -->
-	<div class="section" id="buttonsExemple">
+	<div class="section" id="buttonsExample">
 
 		<div class="g66">
 			<form class="space"> 

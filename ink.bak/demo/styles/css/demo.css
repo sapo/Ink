@@ -127,9 +127,9 @@ mark {
   padding: 1px 3px;
   font-size: .9em;
 }
-.gridExemple .box p,
-.gridExemple2 div p,
-.gridExemple2 .level1 {
+.gridExample .box p,
+.gridExample2 div p,
+.gridExample2 .level1 {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -139,14 +139,14 @@ mark {
   color: #7AA6B3;
   text-align: right;
 }
-.gridExemple2 .level1 {
+.gridExample2 .level1 {
   padding: .1em;
 }
-.gridExemple2 .level1 > p {
+.gridExample2 .level1 > p {
   padding: .75em 0;
   text-align: center;
 }
-.gridExemple2 .level2 p {
+.gridExample2 .level2 p {
   margin: 2px;
   text-align: center;
   background-color: #fff;
@@ -154,15 +154,15 @@ mark {
 .g50.level1 {
   width: 48.4%;
 }
-#spaceExemples .box {
+#spaceExamples .box {
   padding: 0px;
 }
-#spaceExemples .box div {
+#spaceExamples .box div {
   text-align: center;
   font-weight: bold;
   margin: 0px;
 }
-#spaceExemples .box div p {
+#spaceExamples .box div p {
   font-size: 3em;
   line-height: 200px;
   vertical-align: middle;
@@ -170,7 +170,7 @@ mark {
   color: #fff;
   margin-bottom: 0em;
 }
-#spaceExemples .box div:hover {
+#spaceExamples .box div:hover {
   background-color: #68b9cf;
   transition: all ease-in-out 300ms;
   -o-transition: all ease-in-out 300ms;
@@ -180,29 +180,29 @@ mark {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
-#spaceExemples .box .space {
+#spaceExamples .box .space {
   padding: 1em;
 }
-#spaceExemples .box .v_space {
+#spaceExamples .box .v_space {
   padding: 1em 0;
 }
-#spaceExemples .box .h_space {
+#spaceExamples .box .h_space {
   padding: 0 1em;
 }
-#spaceExemples .box .h_space p {
+#spaceExamples .box .h_space p {
   padding: 13px 0;
 }
 /*..........................................  Typography  ...................................................*/
-#headingExemple h1,
-#headingExemple h2,
-#headingExemple h3,
-#headingExemple h4,
-#headingExemple h5 {
+#headingExample h1,
+#headingExample h2,
+#headingExample h3,
+#headingExample h4,
+#headingExample h5 {
   margin-bottom: 20px;
 }
-#listExemple ul,
-#listExemple ol,
-#listExemple dl {
+#listExample ul,
+#listExample ol,
+#listExample dl {
   margin-bottom: 1.5em;
 }
 a.visited {
@@ -216,17 +216,17 @@ a.active {
   color: #ff0000;
 }
 /*..........................................  Forms  ...................................................*/
-.exempleForm {
+.exampleForm {
   margin: 1em 0;
   padding: 1em 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eeeeee;
 }
-.exempleForm .e_wrap {
+.exampleForm .e_wrap {
   margin: 0px;
   padding: 0px;
 }
-#buttonsExemple .e_wrap {
+#buttonsExample .e_wrap {
   text-align: right;
 }
 #whatIs {
