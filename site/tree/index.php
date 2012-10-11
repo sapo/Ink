@@ -19,19 +19,21 @@
  *
  */
 
-	$curr_path = getcwd();
+$curr_path = getcwd();
 
-	echo $curr_path;
-	
-	if( strrpos($curr_path, '/home/ink/ink/') ) 
-	{
-		define('ENVIRONMENT', 'staging');		
-	} elseif (strrpos($curr_path, '/home/ink/inkdev/')) 
-	{
-		define('ENVIRONMENT', 'testing');		
-	} else {
-		define('ENVIRONMENT', 'development');				
-	}
+echo $curr_path;
+
+var_dump(strpos($curr_path, '/home/ink/inkdev/'));
+
+if( strpos($curr_path, '/home/ink/ink/') !== FALSE) 
+{
+	define('ENVIRONMENT', 'staging');		
+} elseif (strpos($curr_path, '/home/ink/inkdev/') !== FALSE) 
+{
+	define('ENVIRONMENT', 'testing');		
+} else {
+	define('ENVIRONMENT', 'development');
+}
 
 /*
  *---------------------------------------------------------------
