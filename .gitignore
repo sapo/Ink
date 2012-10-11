@@ -15,8 +15,6 @@
 # ignore temp InK build files
 */builds/*
 */builds/!index.html
-# ignore dev CI config file
-*/config/development/config.php
 # ignore OS generated files
 .DS_Store
 .DS_Store?

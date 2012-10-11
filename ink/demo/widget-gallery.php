@@ -51,7 +51,7 @@
 <div class="ink-l70">   
     <div class="ink-space">
 
-<ul class="ink-gallery-source" id="src1">
+<ul class="ink-gallery-source">
 
     <li class="hentry hmedia">
         <a rel="enclosure" href="http://c3.quickcachr.fotos.sapo.pt/i/u21126828/13810303_Y4m1j.jpeg">
