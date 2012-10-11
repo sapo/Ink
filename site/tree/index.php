@@ -18,7 +18,19 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+
+	$curr_path = getcwd();
+	
+	if( strrpos($curr_path, '/sites/ink/') ) 
+	{
+		define('ENVIRONMENT', 'staging');		
+	} elseif (strrpos($curr_path, '/sites/inkdev/')) 
+	{
+		define('ENVIRONMENT', 'testing');		
+	} else {
+		define('ENVIRONMENT', 'development');				
+	}
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -35,8 +47,10 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 			error_reporting(E_ALL);
 		break;
-	
+		case 'staging':
 		case 'testing':
+			error_reporting(E_ALL);
+		break;
 		case 'production':
 			error_reporting(0);
 		break;

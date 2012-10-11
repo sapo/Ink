@@ -68,6 +68,37 @@ if ( ! function_exists('base_url'))
 	}
 }
 
+/**
+ * Base URL
+ * 
+ * Create a local URL based on your basepath.
+ * Segments can be passed in as a string or an array, same as site_url
+ * or a URL to a file can be passed in, e.g. to an image file.
+ *
+ * @access	public
+ * @param string
+ * @return	string
+ */
+	if ( ! function_exists('assets_url'))
+	{
+		function assets_url($type)
+		{
+			$CI =& get_instance();
+			
+			switch ($type) {
+				case 'js':
+					return $CI->config->item('assets_js');
+					break;
+				case 'css':
+					return $CI->config->item('assets_css');
+					break;
+				case 'imgs':
+					return $CI->config->item('assets_imgs');
+					break;
+			}
+		}
+	}
+
 // ------------------------------------------------------------------------
 
 /**
