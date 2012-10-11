@@ -56,32 +56,32 @@ h2 span {
 }
 
 mark {
-	font-family: Monaco, Andale Mono, Courier New, monospace; 
+	font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace; 
 	font-size: .9em;
 	background: @themeBackground; 
 	padding:1px 3px;
 }
 
-.gridExemple .box p, .gridExemple2 div p, .gridExemple2 .level1 {
+.gridExample .box p, .gridExample2 div p, .gridExample2 .level1 {
 	#ink > #border-radius > .all (4px);
 	background-color: #DEEDF1;
 	margin:.2em;
-	padding: .75em;
+	padding: .75em 0;
 	color: #7AA6B3;
 	text-align: right;
 }
 
-.gridExemple2 .level1 		{ padding: .1em; }
-.gridExemple2 .level1 > p	{ padding:.75em 0; text-align: center; }
-.gridExemple2 .level2 p		{ margin:2px; text-align: center; background-color: #fff;}
+.gridExample2 .level1 		{ padding: .1em; }
+.gridExample2 .level1 > p	{ padding:.75em 0; text-align: center; }
+.gridExample2 .level2 p		{ margin:2px; text-align: center; background-color: #fff;}
 
-#spaceExemples .box {padding:0px}
-#spaceExemples .box div {
+#spaceExamples .box {padding:0px}
+#spaceExamples .box div {
 	text-align: center;
 	font-weight: bold;
-	margin:0px
+	margin: 0px;
 }
-#spaceExemples .box div p {
+#spaceExamples .box div p {	
 	font-size: 1.75em;
 	line-height: 200px;
 	vertical-align: middle;
@@ -89,42 +89,42 @@ mark {
 	color: #fff;
 	margin: 0em;
 }
-#spaceExemples .box div:hover {
+#spaceExamples .box div:hover {
 	background-color: #68b9cf;
 	.animate(300ms);
 	#ink > #border-radius > .all (4px);
 }
 
-#spaceExemples .box .ink-space		{ padding:1em }
-#spaceExemples .box .ink-vspace 	{ padding:1em 0 }
-#spaceExemples .box .ink-hspace		{ padding:0 1em }
-#spaceExemples .box .ink-hspace p 	{ padding:13px 0 }
+#spaceExamples .box .ink-space		{ padding:1em }
+#spaceExamples .box .ink-vspace 	{ padding:1em 0 }
+#spaceExamples .box .ink-hspace		{ padding:0 1em }
+#spaceExamples .box .ink-hspace p 	{ padding:13px 0 }
 
 /*..........................................  Typography  ...................................................*/
-#headingExemple h1,
-#headingExemple h2,
-#headingExemple h3,
-#headingExemple h4,
-#headingExemple h5 {
+#headingExample h1,
+#headingExample h2,
+#headingExample h3,
+#headingExample h4,
+#headingExample h5 {
 	margin-bottom:20px;
 }
    
-#listExemple ul, #listExemple ol,#listExemple dl {margin-bottom: 1.5em;}
+#listExample ul, #listExample ol,#listExample dl {margin-bottom: 1.5em;}
  
 a.visited 	{color: @link-visited-color;}
-a.hover 	{color:@link-hover-color;  text-decoration: underline;}
-a.active 	{color:@link-active-color;}
+a.hover 	{color: @link-hover-color;  text-decoration: underline;}
+a.active 	{color: @link-active-color;}
 
 /*..........................................  Forms  ...................................................*/
-.exempleForm {margin:1em 0; padding:1em 0; border-top:1px solid #eee;  border-bottom:1px solid #eee}
-.exempleForm .e_wrap {margin:0px; padding:0px}     
-#buttonsExemple .e_wrap{text-align: right;}
+.exampleForm {margin:1em 0; padding:1em 0; border-top:1px solid #eee;  border-bottom:1px solid #eee}
+.exampleForm .e_wrap {margin:0px; padding:0px}     
+#buttonsExample .e_wrap{text-align: right;}
    
 .whatIs {font-size:1.25em}  
 .whatIs h2 {
 	font-size: 3em; 
-	font-family: 'MavenProMedium';
-	letter-spacing: -.1em;
+	// font-family: 'MavenProMedium';
+	// letter-spacing: -.1em;
 	color: @themeColor;
 }
 
@@ -268,7 +268,7 @@ a.active 	{color:@link-active-color;}
 }
 
 .ink-h-nav li.active a {
-	#ink > #gradients > .gradient (darken(#d2d2d2, 10%)), (darken (#bcbcbc, 10%), 150%);
+	#ink > #gradients > .gradient (darken(#d2d2d2, 10%), darken(#bcbcbc, 10%), 150%);
 }
 
 .example_menu li:first-child a {
