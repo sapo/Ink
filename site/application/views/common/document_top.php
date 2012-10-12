@@ -37,8 +37,11 @@
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
 	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"></script>
-	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script>
+	<script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/DatePicker/2.1/"></script> 
 	<script type="text/javascript" src="<?php echo assets_url('js') ?>ink.js"></script>
-	
+	<script type="text/javascript" src="<?php echo assets_url('js') ?>html5shiv.js"></script>
+	<script type="text/javascript" src="<?php echo assets_url('js') ?>html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="<?php echo assets_url('js') ?>respond.src.js"></script>
+	<script type="text/javascript" src="<?php echo assets_url('js') ?>prettify.js"></script>
 </head>
-<body>
+<body onload="prettyPrint()">

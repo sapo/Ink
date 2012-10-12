@@ -439,26 +439,6 @@ th {
   border-bottom: 1px solid #ccc;
 }
 
-.ink-space {
-  margin: 32px;
-  *overflow: hidden;
-  *clear: both;
-}
-
-.ink-vspace {
-  margin-top: 32px;
-  margin-bottom: 32px;
-}
-
-.ink-hspace {
-  margin-right: 32px;
-  margin-left: 32px;
-}
-
-.ink-gutter {
-  margin-left: 32px;
-}
-
 .ink-row {
   margin-left: -32px;
 }
@@ -707,21 +687,6 @@ th {
   html body .ink-m20:empty,
   html body .ink-m10:empty {
     clear: both;
-  }
-  html body .ink-space {
-    margin: 32px 0;
-  }
-  html body .ink-vspace {
-    margin: 32px 0;
-  }
-  html body .ink-hspace {
-    margin: 0;
-  }
-  html body .ink-rspace {
-    margin: 0;
-  }
-  html body .ink-lspace {
-    margin: 0;
   }
   html body .menu {
     display: none;

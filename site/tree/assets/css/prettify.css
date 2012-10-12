@@ -12,8 +12,8 @@ pre {
 	padding:9px;
 	color: #aaa;
 }
-pre ol {list-style: decimal; margin: 0 0 0 30px}
-pre ol li {line-height: 20px; white-ink-space: pre-wrap; word-wrap: break-word;}
+pre ol {list-style: decimal; margin: 0 0 0 20px}
+pre ol li {line-height: 15px; white-ink-space: pre-wrap; word-wrap: break-word;}
 pre .tag {color: #1E347B;}
 pre .hightlight {font-weight: bold; color: red;}
 

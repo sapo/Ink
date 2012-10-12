@@ -169,8 +169,9 @@
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-l50">
-			<div class="ink-space">
+		<div class="ink-row">
+			<div class="ink-l50">
+			<div class="ink-gutter">
 				<h4>Abbreviations</h4>
 				<p>
 					We can use the tag
@@ -181,7 +182,7 @@
 			</div>
 		</div>
 		<div class="ink-l25">
-			<div class="ink-space">
+			<div class="ink-gutter">
 				<h4>Address</h4>
 				<address>
 					<h6>Forum Telecom</h6>
@@ -192,7 +193,7 @@
 			</div>
 		</div>
 		<div class="ink-l25">
-			<div class="ink-space">
+			<div class="ink-gutter">
 				<h4>Contacts</h4>
 				<address>
 					<h6>John Doe</h6> <strong>Phone:</strong>
@@ -203,34 +204,37 @@
 				</address>
 			</div>
 		</div>
-	</div>
-	<div class="ink-section">
-		<div class="ink-l50">
-			<div class="ink-space">
-				<h4>Quotes</h4>
-				<blockquote>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					</p>
-					<small>Author's name</small>
-				</blockquote>
-			</div>
-		</div>
-		<div class="ink-l50">
-			<div class="ink-space">
-				<pre class="prettyprint">
-<span class="tag">&lt;blockquote&gt;</span>
-<span class="tag">  &lt;p&gt;
-    </span><span class="pln">O Texto deve ser dividido por parágrafos
-    Pode tambem ser quebrado por line-breaks</span><span class="tag">&lt;br&gt;</span>
-    <span class="tag">&lt;small&gt;</span><span class="pln">Nome do Autor</span><span class="tag">&lt;/small&gt;</span>
-  <span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/blockquote&gt;</span></pre>
-			</div>
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-space">
+		<div class="ink-row">
+			<div class="ink-l50">
+				<div class="ink-gutter">
+					<h4>Quotes</h4>
+					<blockquote>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+						<small>Author's name</small>
+					</blockquote>
+				</div>
+			</div>
+			<div class="ink-l50">
+				<div class="ink-gutter">
+					<pre class="prettyprint">
+			<span class="tag">&lt;blockquote&gt;</span>
+			<span class="tag">  &lt;p&gt;
+			    </span><span class="pln">O Texto deve ser dividido por parágrafos
+			    Pode tambem ser quebrado por line-breaks</span><span class="tag">&lt;br&gt;</span>
+			    <span class="tag">&lt;small&gt;</span><span class="pln">Nome do Autor</span><span class="tag">&lt;/small&gt;</span>
+			  <span class="tag">&lt;/p&gt;</span>
+			<span class="tag">&lt;/blockquote&gt;</span></pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ink-section">
+		<div class="ink-vspace">
 			<h4>Notes</h4>
 			<p class="note">
 				<strong>Note:</strong>

@@ -26,7 +26,7 @@
 		
 		<div class="ink-row">
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-adjust"></i> icon-adjust</li>
 					<li><i class="icon-asterisk"></i> icon-asterisk</li>
 					<li><i class="icon-ban-circle"></i> icon-ban-circle</li>
@@ -63,7 +63,7 @@
 				</ul>
   			</div>
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-exclamation-sign"></i> icon-exclamation-sign</li>
 					<li><i class="icon-external-link"></i> icon-external-link</li>
 					<li><i class="icon-eye-close"></i> icon-eye-close</li>
@@ -100,7 +100,7 @@
 				</ul>
 			</div>
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-money"></i> icon-money</li>
 					<li><i class="icon-move"></i> icon-move</li>
 					<li><i class="icon-music"></i> icon-music</li>
@@ -136,7 +136,7 @@
 				</ul>
 			</div>
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-signal"></i> icon-signal</li>
 					<li><i class="icon-signin"></i> icon-signin</li>
 					<li><i class="icon-signout"></i> icon-signout</li>
