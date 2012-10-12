@@ -139,11 +139,13 @@
       </div>
    
       <div class="ink-section">
-         <h2>Gutters</h2>
-         <p>To create gutters on you Ink based pages you need to wrap the elements that define column width in a <code>div</code> element with a <code>.ink-row</code> class, and add anoter <code>div</code> element inside the columns wrapping all of its content with a <code>.ink-gutter</code> class.</p>
-         <p>If you need to add vertical space between the layout rows, simply add the <code>.ink-vspace</code> class.</p>
-         <p>Gutter size changes proportionaly to the screen size, so there's no waste of space!</p>
-         <div class="gridExample2 ink-vspace">
+         <div class="ink-vspace">
+			 <h2>Gutters</h2>
+    	     <p>To create gutters on you Ink based pages you need to wrap the elements that define column width in a <code>div</code> element with a <code>.ink-row</code> class, and add anoter <code>div</code> element inside the columns wrapping all of its content with a <code>.ink-gutter</code> class.</p>
+        	 <p>If you need to add vertical space between the layout rows, simply add the <code>.ink-vspace</code> class.</p>
+        	 <p>Gutter size changes proportionaly to the screen size, so there's no waste of space!</p>
+         </div>
+		 <div class="gridExample2">
             <div class="box">
                <div class="level1">
                   <div class="ink-l100 level2">
@@ -203,7 +205,8 @@
                </div>
             </div>
          </div>
-         <p class="note"><strong>Note:</strong> The example below shows the markup necessary to produce the structure in the example.</p>
+         <div class="ink-vspace">
+			 <p class="note"><strong>Note:</strong> The example below shows the markup necessary to produce the structure in the example.</p>
 <pre class="prettyprint linenums ">
 <?php echo(htmlentities('<div class="ink-container">
    <div class="ink-l100">
@@ -211,14 +214,14 @@
    </div>
    <div class="ink-row ink-vspace"> <!-- div.ink-row is used to group several "columns" together. -->
       <div class="ink-l50 ink-m50">
-            <div class="ink-gutter"> <!-- div.ink-gutter is used to add the gutter to the column -->
-               <p>50%</p>
-            </div>
+         <div class="ink-gutter"> <!-- div.ink-gutter is used to add the gutter to the column -->
+            <p>50%</p>
+         </div>
       </div>
       <div class="ink-l50 ink-m50">
-            <div class="ink-gutter">
-               <p>50%</p>
-            </div>
+         <div class="ink-gutter">
+            <p>50%</p>
+         </div>
       </div>
    </div>
    <div class="ink-row ink-vspace">
@@ -261,16 +264,21 @@
       </div>
    </div>
 </div>')) ?></pre>
-      </div>
-   
-      <div class="ink-section" id="spaceExamples">
-         <h2>Spacer units</h2>
-         <p>Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. 
-         Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.</p>
-
-         <p>Ink uses seven kinds of spacer unit: a vertical spacer, an horizontal spacer, and all-around spacer and one for each side of your box (top, right, bottom, left). 
-         To use them, put a block-level element within your layout element with the corresponding spacer class.</p>
-      <div class="ink-row ink-vspace">
+      </div></div>
+	  
+	<div class="ink-section" id="spaceExamples">
+		<div class="ink-vspace">
+			<h2>Spacer units</h2>
+			<p>
+				Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. 
+				Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.
+			</p>
+			<p>
+				Ink uses seven kinds of spacer unit: a vertical spacer, an horizontal spacer, and all-around spacer and one for each side of your box (top, right, bottom, left). 
+				To use them, put a block-level element within your layout element with the corresponding spacer class.
+			</p>
+		</div>
+      <div class="ink-row">
          <div class="ink-l33">
             <div class="ink-gutter">
                <div class="box">

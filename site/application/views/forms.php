@@ -173,57 +173,55 @@
 	</div>
 	
 	<div class="ink-section">
-		<div class="ink-space">
+		<div class="ink-vspace">
 			<h3>Buttons</h3>
 			<p>Button styling can be applied to almost any html element by using the <code>.ink-button</code> class.</p>
 		</div>
-		<div class="ink-space">
-			<table class="ink-table ink-bordered">
-				<thead>
-					<tr>
-						<th>type</th>
-						<th>active state</th>
-						<th>disabled state</th>
-						<th>description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Default</td>
-						<td><button class="ink-button">Default</button></td>
-						<td><button class="ink-button" disabled>Default</button></td>
-						<td><code>&lt;button&gt;Default&lt;/button&gt;</code></td>
-					</tr>
-					<tr>
-						<td>Success</td>
-						<td><button class="ink-button success">Success</button></td>
-						<td><button class="ink-button success" disabled>Success</button>
-						</td>
-						<td>
-							<p><code>&lt;button class=&quot;ink-success&quot;&gt;Success&lt;/button&gt;</code></p>
-							<p><code>&lt;button type=&quot;button&quot; class=&quot;ink-success disabled&quot;&gt;Success&lt;/button&gt;</code></p>
-						</td>
-					</tr>
-					<tr>
-						<td>Warning</td>
-						<td><button class="ink-button warning">Warning</button></td>
-						<td><button class="ink-button warning" disabled>Warning</button></td>
-						<td><code>blah</code></td>
-					</tr>
-					<tr>
-						<td>Caution</td>
-						<td><button class="ink-button caution">Caution</button></td>
-						<td><button class="ink-button caution" disabled>Caution</button></td>
-						<td><code>blah</code></td>
-					</tr>
-					<tr>
-						<td>Info</td>
-						<td><button class="ink-button info">Info</button></td>
-						<td><button class="ink-button info" disabled>Info</button></td>
-						<td><code>blah</code></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<table class="ink-table ink-bordered">
+			<thead>
+				<tr>
+					<th>type</th>
+					<th>active state</th>
+					<th>disabled state</th>
+					<th>description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Default</td>
+					<td><button class="ink-button">Default</button></td>
+					<td><button class="ink-button" disabled>Default</button></td>
+					<td><code>&lt;button&gt;Default&lt;/button&gt;</code></td>
+				</tr>
+				<tr>
+					<td>Success</td>
+					<td><button class="ink-button success">Success</button></td>
+					<td><button class="ink-button success" disabled>Success</button>
+					</td>
+					<td>
+						<p><code>&lt;button class=&quot;ink-success&quot;&gt;Success&lt;/button&gt;</code></p>
+						<p><code>&lt;button type=&quot;button&quot; class=&quot;ink-success disabled&quot;&gt;Success&lt;/button&gt;</code></p>
+					</td>
+				</tr>
+				<tr>
+					<td>Warning</td>
+					<td><button class="ink-button warning">Warning</button></td>
+					<td><button class="ink-button warning" disabled>Warning</button></td>
+					<td><code>blah</code></td>
+				</tr>
+				<tr>
+					<td>Caution</td>
+					<td><button class="ink-button caution">Caution</button></td>
+					<td><button class="ink-button caution" disabled>Caution</button></td>
+					<td><code>blah</code></td>
+				</tr>
+				<tr>
+					<td>Info</td>
+					<td><button class="ink-button info">Info</button></td>
+					<td><button class="ink-button info" disabled>Info</button></td>
+					<td><code>blah</code></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
