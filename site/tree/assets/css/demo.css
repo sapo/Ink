@@ -59,6 +59,7 @@ mark {
 }
 .gridExample2 .level1 {
   padding: .1em;
+  overflow: hidden;
 }
 .gridExample2 .level1 > p {
   padding: .75em 0;
@@ -68,6 +69,10 @@ mark {
   margin: 2px;
   text-align: center;
   background-color: #fff;
+}
+.gridExample .ink-vspace,
+.gridExample2 .ink-vspace {
+  margin-bottom: 0;
 }
 #spaceExamples .box {
   padding: 0px;

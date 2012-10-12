@@ -71,9 +71,15 @@ mark {
 	text-align: right;
 }
 
-.gridExample2 .level1 		{ padding: .1em; }
+.gridExample2 .level1 		{ padding: .1em; overflow: hidden;}
 .gridExample2 .level1 > p	{ padding:.75em 0; text-align: center; }
 .gridExample2 .level2 p		{ margin:2px; text-align: center; background-color: #fff;}
+
+.gridExample, .gridExample2 {
+	.ink-vspace {
+		margin-bottom: 0;
+	}
+}
 
 #spaceExamples .box {padding:0px}
 #spaceExamples .box div {
@@ -346,3 +352,5 @@ code {
 	padding: 0 4px;
 	font-size: .85em;
 }
+
+.example2

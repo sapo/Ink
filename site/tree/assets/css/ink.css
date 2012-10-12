@@ -391,6 +391,8 @@ th {
 }
 .ink-gutter {
   margin-left: 32px;
+  overflow: hidden;
+  *zoom: 1;
 }
 .ink-row {
   margin-left: -32px;
@@ -631,21 +633,6 @@ th {
   html body .ink-m20:empty,
   html body .ink-m10:empty {
     clear: both;
-  }
-  html body .ink-space {
-    margin: 32px 0;
-  }
-  html body .ink-vspace {
-    margin: 32px 0;
-  }
-  html body .ink-hspace {
-    margin: 0;
-  }
-  html body .ink-rspace {
-    margin: 0;
-  }
-  html body .ink-lspace {
-    margin: 0;
   }
   html body .menu {
     display: none;
