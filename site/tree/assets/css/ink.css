@@ -376,24 +376,6 @@ th {
   *overflow: hidden;
   *clear: both;
 }
-.ink-space {
-  margin: 32px;
-  *overflow: hidden;
-  *clear: both;
-}
-.ink-vspace {
-  margin-top: 32px;
-  margin-bottom: 32px;
-}
-.ink-hspace {
-  margin-left: 32px;
-  margin-right: 32px;
-}
-.ink-gutter {
-  margin-left: 32px;
-  overflow: hidden;
-  *zoom: 1;
-}
 .ink-row {
   margin-left: -32px;
 }
