@@ -41,7 +41,7 @@
 	<script type="text/javascript" src="http://ink.dev.sapo.pt/assets/js/html5shiv.js"></script>
 	<script type="text/javascript" src="http://ink.dev.sapo.pt/assets/js/respond.src.js"></script>
 
-    <script type="text/javascript" src="http://js.dev.sapo.pt/Bundles/Ink.js"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 	
 </head>
 <body>
