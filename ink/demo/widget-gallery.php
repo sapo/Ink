@@ -42,6 +42,14 @@
                 transition: margin-left 500ms;
     }
 
+    .ink-gallery .thumbs > ul {
+             -o-transition: margin-left 250ms;
+            -ms-transition: margin-left 250ms;
+           -moz-transition: margin-left 250ms;
+        -webkit-transition: margin-left 250ms;
+                transition: margin-left 250ms;
+    }
+
     .ink-gallery .thumbs {
         overflow: hidden;
     }
