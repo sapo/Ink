@@ -47,7 +47,9 @@ mark {
   background: #deedf1;
   padding: 1px 3px;
 }
-.gridExample .box p, .gridExample2 div p, .gridExample2 .level1 {
+.gridExample .box p,
+.gridExample2 div p,
+.gridExample2 .level1 {
   border-radius: 4px;
   background-color: #DEEDF1;
   margin: .2em;
@@ -111,7 +113,9 @@ mark {
 #headingExample h5 {
   margin-bottom: 20px;
 }
-#listExample ul, #listExample ol, #listExample dl {
+#listExample ul,
+#listExample ol,
+#listExample dl {
   margin-bottom: 1.5em;
 }
 a.visited {
@@ -289,6 +293,7 @@ a.active {
 .menu a {
   padding: 0 .8em;
   font-size: 1.143em;
+  color: #000000;
 }
 .menu ul li {
   border-right: 1px solid #CACACA;
@@ -329,15 +334,8 @@ a.active {
   -moz-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
-.ink-h-nav li.active a {
-  background: #b9b9b9;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b9b9b9', endColorstr='#a3a3a3');
-  background-image: -moz-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b9b9b9), color-stop(150%, #a3a3a3));
-  background-image: -webkit-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
-  background-image: -o-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
-  background-image: -ms-linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
-  background-image: linear-gradient(top, #b9b9b9 0%, #a3a3a3 150%);
+.example_menu a {
+  color: #000000;
 }
 .example_menu li:first-child a {
   border-radius: 4px 0 0 4px;
@@ -387,7 +385,9 @@ footer ul.sociallinks li {
   *zoom: 1;
   *display: inline;
 }
-footer ul.sociallinks a.Fb_link, footer ul.sociallinks a.Twt_link, footer ul.sociallinks a.Gplus_link {
+footer ul.sociallinks a.Fb_link,
+footer ul.sociallinks a.Twt_link,
+footer ul.sociallinks a.Gplus_link {
   display: inline-block;
   height: 24px;
   width: 24px;

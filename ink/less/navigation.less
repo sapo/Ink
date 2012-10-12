@@ -1,4 +1,4 @@
-#topbar:after,
+.topbar:after,
 .ink-v-nav:after,
 .ink-h-nav:after {
 	content: ".";
@@ -9,7 +9,7 @@
 	zoom: 1;
 }
 
-#topbar {
+.topbar {
 	height:@topbar-height;
 	background:@topbar-bgColor;
 	font-size:@topbar-fontSize;
@@ -17,7 +17,7 @@
 	margin:@topbar-margin;
 }
 
-#topbar a.logoPlaceholder {
+.topbar a.logoPlaceholder {
 	width:44px;
 	padding: 0;
 	text-indent:-5000px;
@@ -25,19 +25,30 @@
 	margin:0 1em 0 0;
 }
 
-#topbar a.logoPlaceholder:hover {
+.topbar a.logoPlaceholder:hover {
 	background:url(../imgs/logo_topbar.png) 0 -40px;
 }
 
-#topbar a {
-	padding: 0 1em;
+.topbar ul li a {
 	color:@topbar-color;
 }
 
-#topbar ul li a:hover 	{ background:lighten(@topbar-bgColor,6%); color:@topbar-colorHover;}
-#topbar ul li.active a {
+.topbar ul li a:hover { 
+	background:lighten(@topbar-bgColor,6%); 
+	color:@topbar-colorHover;
+}
+
+.topbar ul li.active a {
 	#ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
 	#ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
+	color:@white;
+}
+
+.topbar .ink-h-nav .submenu li a {
+	color:@black;
+}
+
+.topbar .ink-h-nav .submenu li a:hover {
 	color:@white;
 }
 
@@ -65,25 +76,13 @@
 }
 
 .ink-v-nav .submenu {
-	display: none;
-	width:14em;
-	position:absolute; top:-1px; left:100%;
+	top:-1px; left:100%;
 	overflow: hidden;
 	padding-left: 0;
-	z-index: 8; 
-	background-color: @white;
-	border-top:1px solid #CACACA;
-	z-index: 1000;
 }
 
-.ink-v-nav .submenu li {
-	display: block;
-	border-right:1px solid #CACACA;
-	border-bottom:1px solid #CACACA;
-	border-left:1px solid #CACACA;
-}
-
-.ink-v-nav li:hover .submenu {
+.ink-v-nav li:hover .submenu, 
+.ink-h-nav li:hover .submenu {
 	display: block
 }
 
@@ -108,45 +107,45 @@
 
 .ink-h-nav li i {
 	margin-left:0.4em;
+	height: @h-nav-height;
 }
 
 .ink-h-nav a {
 	line-height: @h-nav-height;
-	height: @h-nav-height;
-	padding: 0 1.5em;
+	padding: 0 1.3em;
 	display:block;
 	text-decoration: none;
-	color:@black
 }
 
 .ink-h-nav a:hover {
 	background:darken(@h-nav-bgColor ,10%);
 	text-decoration: none;
-	color:@black
 }
 
 .ink-h-nav .submenu {
+	margin-left:-1px;
+}
+
+.ink-h-nav .submenu li a {
+	line-height:1.8em;
+	padding: .56em 1.5em;
+}
+
+.submenu {
 	display: none;
 	width:14em;
 	position:absolute;
-	overflow: hidden;
 	padding-left: 0;
-	margin-left:-1px;
-	z-index: 8; 
-	background-color: @white;
+	background-color: @submenu-bgColor;
 	border-top:1px solid #CACACA;
 	z-index: 1000;
 }
 
-.ink-h-nav .submenu li {
+.submenu li {
 	display: block;
 	border-right:1px solid #CACACA;
 	border-bottom:1px solid #CACACA;
 	border-left:1px solid #CACACA;
-}
-
-.ink-h-nav li:hover .submenu {
-	display: block
 }
 
 .ink-footer-nav {

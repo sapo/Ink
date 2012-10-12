@@ -14,7 +14,13 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://10.134.132.97/';
+$path = getcwd();
+
+if($path == 'I:\work\ink\site\tree') {
+	$config['base_url']	= 'http://localhost/ink/site/tree';
+} else {
+	$config['base_url']	= 'http://10.134.132.97/';
+}
 
 /*
 |--------------------------------------------------------------------------
