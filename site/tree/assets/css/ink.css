@@ -376,6 +376,24 @@ th {
   *overflow: hidden;
   *clear: both;
 }
+.ink-space {
+  margin: 32px;
+  *overflow: hidden;
+  *clear: both;
+}
+.ink-vspace {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.ink-hspace {
+  margin-left: 32px;
+  margin-right: 32px;
+}
+.ink-gutter {
+  margin-left: 32px;
+  overflow: hidden;
+  *zoom: 1;
+}
 .ink-row {
   margin-left: -32px;
 }
@@ -638,6 +656,16 @@ th {
   html body .topbar ul li {
     border-top: 1px solid #333333;
   }
+  html body .topbar .ink-button {
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
   .ink-for-s,
   .ink-for-l {
     visibility: hidden;
@@ -787,6 +815,16 @@ th {
   html .topbar ul li {
     border-top: 1px solid #333333;
   }
+  html .topbar .ink-button {
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
   .ink-for-m,
   .ink-for-l {
     visibility: hidden;
@@ -905,9 +943,10 @@ th {
 }
 .ink-h-nav li i {
   margin-left: 0.4em;
-  height: 40px;
+  height: auto;
 }
 .ink-h-nav a {
+  *height: 40px;
   line-height: 40px;
   padding: 0 1.3em;
   display: block;

@@ -1,6 +1,6 @@
 <nav class="topbar">
 	<ul class="ink-h-nav ink-container">
-		<li><a class="logoPlaceholder" href="<?php echo site_url() ?>" title="Site Title">InK</a></li>
+		<li><a class="logoPlaceholder" href="<?php echo site_url() ?>" title="Site Title">InK</a><button class="ink-for-s ink-for-m ink-button"><i class="icon-reorder"></i></button></li>
 		<?php foreach($pages as $page): ?>
 		<?php if(isset($page['submenu'])): ?>
 		<li <?php echo $menu_item_class ?>>
@@ -17,6 +17,5 @@
 		<li <?php echo $menu_item_class ?>><a href="<?php echo site_url() . '/' . $page['url'] ?>"><?php echo $page['text'] ?></a></li>
 		<?php endif;?>
 		<?php endforeach; ?>
-		<li><button class="ink-for-s ink-for-m">Toggle</button> </li>
 	</ul>
 </nav>
