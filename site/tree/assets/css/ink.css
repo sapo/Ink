@@ -391,7 +391,7 @@ th {
 }
 .ink-gutter {
   margin-left: 32px;
-  overflow: hidden;
+  *overflow: hidden;
   *zoom: 1;
 }
 .ink-row {
@@ -959,7 +959,7 @@ th {
 }
 .ink-h-nav li i {
   margin-left: 0.4em;
-  height: auto;
+  height: 40px;
 }
 .ink-h-nav a {
   *height: 40px;

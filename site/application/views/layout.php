@@ -328,7 +328,7 @@
       </div>
    </div>
    
-   <div class="ink-space">
+   <div class="ink-vspace">
       <h2>Available Classes</h2>
       <p>
       .ink-container <br>
