@@ -97,11 +97,20 @@
 		border-top:1px solid #333
 	}
 	
+	html body .topbar ul li a {
+		padding:0
+	}
+	
 	html body .topbar .ink-button {
 		background:none;
 		border:none;
+		padding:0;
+		margin:0;
 		#ink > #shadows > .no-box-shadow;
-		position:absolute; top:0; right:0;
+		#ink > #shadows > .text-shadow(0,0,0, rgba(0,0,0,0));
+		color: @topbar-color;
+		font-size:1.2em;
+		position:absolute; top:.6em; right:0;
 	}
 
 	.ink-for-s,  
