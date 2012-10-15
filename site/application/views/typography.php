@@ -23,32 +23,34 @@
 	<div class="ink-section">
 		<div class="ink-row">
 			<div class="ink-l40" id="headingExample">
-			<div class="ink-hspace">
-				<h1>&lt;h1&gt;Title 1&lt;/h1&gt;</h1>
-				<h2>&lt;h2&gt;Title 2&lt;/h2&gt;</h2>
-				<h3>&lt;h3&gt;Title 3&lt;/h3&gt;</h3>
-				<h4>&lt;h4&gt;Title 4&lt;/h4&gt;</h4>
-				<h5>&lt;h5&gt;Title 5&lt;/h5&gt;</h5>
-				<h6>&lt;h6&gt;Title 6&lt;/h6&gt;</h6>
+				<div class="ink-gutter ink-vspace">
+					<h1>&lt;h1&gt;Title 1&lt;/h1&gt;</h1>
+					<h2>&lt;h2&gt;Title 2&lt;/h2&gt;</h2>
+					<h3>&lt;h3&gt;Title 3&lt;/h3&gt;</h3>
+					<h4>&lt;h4&gt;Title 4&lt;/h4&gt;</h4>
+					<h5>&lt;h5&gt;Title 5&lt;/h5&gt;</h5>
+					<h6>&lt;h6&gt;Title 6&lt;/h6&gt;</h6>
+				</div>
 			</div>
-		</div>
-		<div class="ink-l60">
-			<div class="ink-space">
-				<h3>Text sample</h3>
-				<p>Ink's typography is designed to create a strong hierarchy with basic styles. The primary font is the die hard Helvetica Neue, but the font stack can be easily changed with just a few adjustments.</p>
+			<div class="ink-l60">
+				<div class="ink-gutter">
+					<div class="ink-vspace">
+						<h3>Text sample</h3>
+						<p>Ink's typography is designed to create a strong hierarchy with basic styles. The primary font is the die hard Helvetica Neue, but the font stack can be easily changed with just a few adjustments.</p>
+					</div>
+					<div class="ink-vspace">
+						<h4>Links</h4>
+						<ul class="unstyled">
+							<li>Links (or hyperlinks) are defined by the tag <code>&lt;a&gt;</code></li>
+							<li>There are 4 states for links:</li>
+							<li><a href="#">Normal</a></li>
+							<li><a href="#" class="visited">Visited</a></li>
+							<li><a href="#" class="active">Active</a></li>
+							<li><a href="#" class="hover">Hover</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<div class="ink-space">
-				<h4>Links</h4>
-				<ul class="unstyled">
-					<li>Links (or hyperlinks) are defined by the tag <code>&lt;a&gt;</code></li>
-					<li>There are 4 states for links:</li>
-					<li><a href="#">Normal</a></li>
-					<li><a href="#" class="visited">Visited</a></li>
-					<li><a href="#" class="active">Active</a></li>
-					<li><a href="#" class="hover">Hover</a></li>
-				</ul>
-			</div>
-		</div>
 		</div>
 	</div>
 	<div class="ink-section">
@@ -169,45 +171,45 @@
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-row">
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
-			<div class="ink-gutter">
-				<h4>Abbreviations</h4>
-				<p>
-					We can use the tag
-					<code>&lt;abbr&gt;</code>
-					to abbreviate the word <strong><abbr title="SAPO Interface Kit">InK</abbr></strong> 
-				</p>
-				<pre class="prettyprint"><span class="tag">&lt;abbr</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"SAPO Interface Kit"</span><span class="tag">&gt;</span><span class="pln">Ink</span><span class="tag">&lt;/abbr&gt;</span></pre>
+				<div class="ink-gutter">
+					<h4>Abbreviations</h4>
+					<p>
+						We can use the tag
+						<code>&lt;abbr&gt;</code>
+						to abbreviate the word <strong><abbr title="SAPO Interface Kit">InK</abbr></strong> 
+					</p>
+					<pre class="prettyprint"><span class="tag">&lt;abbr</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"SAPO Interface Kit"</span><span class="tag">&gt;</span><span class="pln">Ink</span><span class="tag">&lt;/abbr&gt;</span></pre>
+				</div>
 			</div>
-		</div>
-		<div class="ink-l25">
-			<div class="ink-gutter">
-				<h4>Address</h4>
-				<address>
-					<h6>Forum Telecom</h6>
-					Avenida Fontes Pereira de Melo 40
-					<br>
-					1050 Lisboa
-				</address>
+			<div class="ink-l25">
+				<div class="ink-gutter">
+					<h4>Address</h4>
+					<address>
+						<h6>Forum Telecom</h6>
+						Avenida Fontes Pereira de Melo 40
+						<br>
+						1050 Lisboa
+					</address>
+				</div>
 			</div>
-		</div>
-		<div class="ink-l25">
-			<div class="ink-gutter">
-				<h4>Contacts</h4>
-				<address>
-					<h6>John Doe</h6> <strong>Phone:</strong>
-					+351 111 222 333
-					<br>
-					<strong>Email:</strong>
-					<a href="mailto:john@doe.com">john@doe.com</a>
-				</address>
+			<div class="ink-l25">
+				<div class="ink-gutter">
+					<h4>Contacts</h4>
+					<address>
+						<h6>John Doe</h6> <strong>Phone:</strong>
+						+351 111 222 333
+						<br>
+						<strong>Email:</strong>
+						<a href="mailto:john@doe.com">john@doe.com</a>
+					</address>
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 	<div class="ink-section">
-		<div class="ink-row">
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
 				<div class="ink-gutter">
 					<h4>Quotes</h4>
@@ -222,14 +224,13 @@
 			<div class="ink-l50">
 				<div class="ink-gutter">
 					<pre class="prettyprint">
-			<span class="tag">&lt;blockquote&gt;</span>
-			<span class="tag">  &lt;p&gt;
-			    </span><span class="pln">O Texto deve ser dividido por parágrafos
-			    Pode tambem ser quebrado por line-breaks</span><span class="tag">&lt;br&gt;</span>
-			    <span class="tag">&lt;small&gt;</span><span class="pln">Nome do Autor</span><span class="tag">&lt;/small&gt;</span>
-			  <span class="tag">&lt;/p&gt;</span>
-			<span class="tag">&lt;/blockquote&gt;</span></pre>
-				</div>
+<span class="tag">&lt;blockquote&gt;</span>
+<span class="tag">   &lt;p&gt;
+</span><span class="pln">      O Texto deve ser dividido por parágrafos
+      Pode tambem ser quebrado por line-breaks</span><span class="tag">&lt;br&gt;</span>
+<span class="tag">      &lt;small&gt;</span><span class="pln">Nome do Autor</span><span class="tag">&lt;/small&gt;</span>
+<span class="tag">   &lt;/p&gt;</span>
+<span class="tag">&lt;/blockquote</span></pre></div>
 			</div>
 		</div>
 	</div>
@@ -246,9 +247,9 @@
 	</div>
 
 	<div class="ink-section">
-		<div class="ink-row">
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
-				<div class="ink-space">
+				<div class="ink-gutter">
 					<h4>Labels</h4>
 					<p>
 						Labels can be created by adding the <code>.ink-label</code> class to an element. When combined with the
@@ -281,7 +282,7 @@
 				</div>
 			</div>
 			<div class="ink-l50">
-				<div class="ink-space">
+				<div class="ink-gutter">
 					<h4>code <span class="label_new">HTML5</span></h4>
 					<p>The new <code>&lt;mark&gt;</code> tag present in the HTML5 spec is particularly useful to mark content in inline text.</p>
 				</div>

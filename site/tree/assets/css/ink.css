@@ -661,6 +661,7 @@ th {
   }
   html body .topbar .ink-button {
     background: none;
+    filter: none;
     border: none;
     padding: 0;
     margin: 0;
@@ -828,6 +829,7 @@ th {
   }
   html .topbar .ink-button {
     background: none;
+    filter: none;
     border: none;
     padding: 0;
     margin: 0;
