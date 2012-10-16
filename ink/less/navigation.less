@@ -71,7 +71,7 @@
 }
 
 .ink-v-nav a:hover {
-	background:darken(@v-nav-bgColor ,10%);
+	background: darken(@v-nav-bgColor ,10%);
 	text-decoration: none;
 }
 
@@ -161,4 +161,53 @@
 	*zoom:1;
 	*display: inline;
 	
+}
+
+ul {
+
+	&.pagination {
+
+		li {
+			a {
+				background: @white;
+				border-top: 1px @grey-15 solid;
+				border-bottom: 1px @grey-15 solid;
+				border-left: 1px @grey-15 solid;
+			}
+			&:first-child {
+				a {
+					#ink > #border-radius > .left(6px);
+				}
+			}
+
+			&:last-child {
+				a {
+					border-right: 1px @grey-15 solid;
+					#ink > #border-radius > .right(6px);
+				}
+			}
+
+			&.active {
+				a {
+					font-weight: 700;
+					background: darken(@white,10%);
+					&:hover {
+						cursor: default;
+					}
+				}
+			}
+
+			&.disabled {
+				a {
+					color: lighten(@black,70%);
+
+					&:hover {
+						background: @white;
+						cursor: default;						
+					}
+				}
+			}
+		}
+	}
+
 }

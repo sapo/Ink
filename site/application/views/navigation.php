@@ -109,4 +109,37 @@
 
 		</div>
 	</div>
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h3>Pagination</h3>
+			<p>
+				Paginations can be created by adding the <code>.pagination</code> class to a <code>.ink-h-nav</code> list. The <code>.active</code> and <code>.disabled</code> classes are available to diferentiate the current page and disabled links.
+			</p>
+			<div class="ink-vspace">
+				<ul class="ink-h-nav pagination">
+					<li class="disabled"><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li class="active"><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</div>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<ul class="ink-h-nav pagination">
+   <li class="disabled"><a href="#">&laquo;</a></li>
+   <li><a href="#">1</a></li>
+   <li><a href="#">2</a></li>
+   <li><a href="#">3</a></li>
+   <li class="active"><a href="#">4</a></li>
+   <li><a href="#">5</a></li>
+   <li><a href="#">6</a></li>
+   <li><a href="#">7</a></li>
+   <li><a href="#">&raquo;</a></li>
+</ul>')) ?></pre>
+		</div>
+	</div>
 </div>
