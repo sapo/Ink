@@ -1007,6 +1007,35 @@ th {
   *zoom: 1;
   *display: inline;
 }
+ul.pagination li a {
+  background: #ffffff;
+  border-top: 1px #d9d9d9 solid;
+  border-bottom: 1px #d9d9d9 solid;
+  border-left: 1px #d9d9d9 solid;
+}
+ul.pagination li:first-child a {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+ul.pagination li:last-child a {
+  border-right: 1px #d9d9d9 solid;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+ul.pagination li.active a {
+  font-weight: 700;
+  background: #e6e6e6;
+}
+ul.pagination li.active a:hover {
+  cursor: default;
+}
+ul.pagination li.disabled a {
+  color: #b3b3b3;
+}
+ul.pagination li.disabled a:hover {
+  background: #ffffff;
+  cursor: default;
+}
 body {
   color: #555555;
   font-family: Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
