@@ -2,18 +2,18 @@
 *.orig
 *.bak
 # ignore compiled css files
-*/css/*.css
-*/css/!prettify.css
+**/css/*.css
+**/css/!prettify.css
 */css/!demo.css
 # ignore CI log files
-*/logs/log-*.php
-*/logs/!index.html
+**/logs/log-*.php
+**/logs/!index.html
 # ignore CI cache files
-*/cache/*
-*/cache/!index.html
+**/cache/*
+**/cache/!index.html
 # ignore temp InK build files
-*/builds/*
-*/builds/!index.html
+**/builds/*
+**/builds/!index.html
 # ignore OS generated files
 .DS_Store
 .DS_Store?
