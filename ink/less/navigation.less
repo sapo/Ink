@@ -138,7 +138,7 @@
 }
 
 .ink-h-nav a:hover {
-	background:darken(@h-nav-bgColor ,10%);
+	background: fade(darken(@h-nav-bgColor,50%),50%);
 	text-decoration: none;
 }
 
@@ -188,6 +188,11 @@ ul {
 				border-bottom: 1px @grey-15 solid;
 				border-left: 1px @grey-15 solid;
 				#ink > #effects > .transition ();
+
+				&:hover {
+					background: darken(@white,10%);
+				}
+
 			}
 			&:first-child {
 				a {
