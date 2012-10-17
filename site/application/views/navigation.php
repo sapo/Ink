@@ -76,7 +76,11 @@
 						<li><a href="#">Ccommodo</a></li>
 						<li><a href="#">Egestas</a></li>
 						<li>
-							<a href="#">Submenu<i class="icon-caret-right"></i></a>
+							<a href="#">
+								Submenu
+								<i class="icon-caret-right ink-for-l"></i>
+								<i class="icon-caret-down ink-for-m ink-for-s"></i>
+							</a>
 							<ul class="submenu">
 								<li><a href="#">Item with a very big title</a></li>
 								<li><a href="#">Item</a></li>

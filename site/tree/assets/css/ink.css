@@ -369,13 +369,6 @@ th {
   visibility: hidden;
   zoom: 1;
 }
-.ink-section {
-  margin: 1em 0;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #ccc;
-  *overflow: hidden;
-  *clear: both;
-}
 .ink-space {
   margin: 32px;
   *overflow: hidden;
@@ -416,6 +409,12 @@ th {
 }
 .ink-clear-right {
   clear: right;
+}
+.ink-float-left {
+  float: left;
+}
+.ink-float-right {
+  float: right;
 }
 /* INK: LARGE SCREENS */
 @media screen and (min-width: 961px) {
@@ -643,6 +642,21 @@ th {
   html body .ink-h-nav li {
     display: block;
   }
+  html body .ink-h-nav li a {
+    padding: 0;
+  }
+  html body .ink-v-nav .submenu {
+    top: auto;
+    left: auto;
+    overflow: visible;
+    padding-left: 0;
+  }
+  html body .ink-v-nav .submenu li a {
+    padding: 0 42px;
+  }
+  html body .topbar .ink-h-nav .submenu li a {
+    color: #bbbbbb;
+  }
   html body .topbar {
     height: auto;
   }
@@ -656,24 +670,32 @@ th {
   html body .topbar ul li {
     border-top: 1px solid #333333;
   }
-  html body .topbar ul li a {
-    padding: 0;
-  }
-  html body .topbar .ink-button {
-    background: none;
-    filter: none;
-    border: none;
-    padding: 0;
+  html body .submenu {
+    display: block;
+    width: auto;
+    position: relative;
+    border-top: none;
+    z-index: 1000;
     margin: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    color: #bbbbbb;
-    font-size: 1.2em;
-    position: absolute;
-    top: .6em;
-    right: 0;
+    background: transparent;
+  }
+  html body .submenu li {
+    border: none;
+  }
+  html body .submenu li a {
+    padding: 0 21px;
+  }
+  html body .example_menu li a {
+    padding: 0 21px;
+  }
+  html body .example_menu .submenu li a {
+    padding: 0 42px;
+  }
+  html body .example_menu li:first-child a {
+    border-radius: 4px 4px 0 0;
+  }
+  html body .example_menu li:last-child a {
+    border-radius: 0 0 4px 4px;
   }
   .ink-for-s,
   .ink-for-l {
@@ -811,6 +833,21 @@ th {
   html .ink-h-nav li {
     display: block;
   }
+  html .ink-h-nav li a {
+    padding: 0;
+  }
+  html .ink-v-nav .submenu {
+    top: auto;
+    left: auto;
+    overflow: visible;
+    padding-left: 0;
+  }
+  html .ink-v-nav .submenu li a {
+    padding: 0 42px;
+  }
+  html .topbar .ink-h-nav .submenu li a {
+    color: #bbbbbb;
+  }
   html .topbar {
     height: auto;
   }
@@ -824,24 +861,32 @@ th {
   html .topbar ul li {
     border-top: 1px solid #333333;
   }
-  html body .topbar ul li a {
-    padding: 0;
-  }
-  html .topbar .ink-button {
-    background: none;
-    filter: none;
-    border: none;
-    padding: 0;
+  html .submenu {
+    display: block;
+    width: auto;
+    position: relative;
+    border-top: none;
+    z-index: 1000;
     margin: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    color: #bbbbbb;
-    font-size: 1.2em;
-    position: absolute;
-    top: .6em;
-    right: 0;
+    background: transparent;
+  }
+  html .submenu li {
+    border: none;
+  }
+  html .submenu li a {
+    padding: 0 21px;
+  }
+  html .example_menu li a {
+    padding: 0 21px;
+  }
+  html .example_menu .submenu li a {
+    padding: 0 42px;
+  }
+  html .example_menu li:first-child a {
+    border-radius: 4px 4px 0 0;
+  }
+  html .example_menu li:last-child a {
+    border-radius: 0 0 4px 4px;
   }
   .ink-for-m,
   .ink-for-l {
@@ -913,6 +958,22 @@ th {
 .topbar .ink-h-nav .submenu li a:hover {
   color: #ffffff;
 }
+html body .topbar .ink-button {
+  background: none;
+  filter: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  color: #bbbbbb;
+  font-size: 1.2em;
+  position: absolute;
+  top: .6em;
+  right: 0;
+}
 .ink-v-nav li {
   margin: 0;
   position: relative;
@@ -977,16 +1038,12 @@ th {
 .ink-h-nav .submenu {
   margin-left: -1px;
 }
-.ink-h-nav .submenu li a {
-  line-height: 1.8em;
-  padding: .56em 1.5em;
-}
 .submenu {
   display: none;
   width: 14em;
   position: absolute;
   padding-left: 0;
-  background-color: #ffffff;
+  background: #ffffff;
   border-top: 1px solid #CACACA;
   z-index: 1000;
 }

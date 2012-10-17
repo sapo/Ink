@@ -82,7 +82,26 @@
 	}
 
 	html .ink-h-nav li {
-		display:	block
+		display: block
+	}
+	
+	html .ink-h-nav li a {
+		padding:0
+	}
+	
+	html .ink-v-nav .submenu {
+		top: auto;
+		left: auto;
+		overflow: visible;
+		padding-left: 0;
+	}
+
+	html .ink-v-nav .submenu li a {
+		padding:0 @ink-grid-gutter-medium*2;
+	}
+	
+	html .topbar .ink-h-nav .submenu li a {
+		color:@topbar-color;
 	}
 
 	html .topbar {
@@ -99,21 +118,38 @@
 		border-top:1px solid #333
 	}
 	
-	html body .topbar ul li a {
-		padding:0
+	html .submenu {
+		display: block;
+		width:auto;
+		position:relative;
+		border-top:none;
+		z-index: 1000;
+		margin:0;
+		background:transparent;
 	}
 	
-	html .topbar .ink-button {
-		background:none;
-		filter:none;
-		border:none;
-		padding:0;
-		margin:0;
-		#ink > #shadows > .no-box-shadow;
-		#ink > #shadows > .text-shadow(0,0,0, rgba(0,0,0,0));
-		color: @topbar-color;
-		font-size:1.2em;
-		position:absolute; top:.6em; right:0;
+	html .submenu li {
+		border: none;	
+	}
+	
+	html .submenu li a {
+		padding:0 @ink-grid-gutter-medium;
+	}
+	
+	html .example_menu li a {
+		padding: 0 @ink-grid-gutter-medium;
+	}
+	
+	html .example_menu .submenu li a {
+		padding: 0 @ink-grid-gutter-medium*2;
+	}
+	
+	html .example_menu li:first-child a {
+		#ink > #border-radius > .all (4px, 4px, 0, 0);
+	}
+	
+	html .example_menu li:last-child a {
+		#ink > #border-radius > .all (0, 0, 4px, 4px);
 	}
 
 	.ink-for-m,  

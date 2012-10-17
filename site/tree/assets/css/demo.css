@@ -335,9 +335,9 @@ a.active {
   background-image: -o-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
   background-image: -ms-linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
   background-image: linear-gradient(top, #d2d2d2 0%, #bcbcbc 150%);
-  -webkit-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
-  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
 .example_menu a {
   color: #000000;
