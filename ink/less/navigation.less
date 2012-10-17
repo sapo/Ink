@@ -168,22 +168,24 @@ ul {
 	&.pagination {
 
 		li {
+
 			a {
 				background: @white;
-				border-top: 1px @grey-15 solid;
-				border-bottom: 1px @grey-15 solid;
-				border-left: 1px @grey-15 solid;
+				border-top: 1px @grey-10 solid;
+				border-bottom: 1px @grey-10 solid;
+				border-left: 1px @grey-10 solid;
 			}
+
 			&:first-child {
 				a {
-					#ink > #border-radius > .left(6px);
+					#ink > #border-radius > .left(8px);
 				}
 			}
 
 			&:last-child {
 				a {
-					border-right: 1px @grey-15 solid;
-					#ink > #border-radius > .right(6px);
+					border-right: 1px @grey-10 solid;
+					#ink > #border-radius > .right(8px);
 				}
 			}
 
@@ -206,6 +208,39 @@ ul {
 						cursor: default;						
 					}
 				}
+			}
+		}
+	}
+
+	&.pills {
+
+		li {
+
+			margin-right: 0.5em;
+
+			a {
+
+				#ink > #border-radius > .all (8px);
+				#ink > #shadows > .box-shadow (0,1px,1px,0,@grey-10);
+				// border: 1px @grey-10 solid;
+				background: @white;
+				line-height: 2.5;
+
+				&:hover {
+					background: darken(@white,10%);
+					color: @black;
+				}
+			}
+
+			&.active {
+				
+				a {
+
+					background: @link-color;
+					color: @white;
+					cursor: default;	
+				}
+
 			}
 		}
 	}
