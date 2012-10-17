@@ -1,8 +1,9 @@
 # ignore diff backups
 *.orig
 *.bak
-# ignore compiled css files
+# ignore css files ...
 *.css
+# ... except these
 !prettify.css
 !demo.css
 # ignore CI log files
