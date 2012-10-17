@@ -18,7 +18,7 @@
 }
 
 .topbar a.logoPlaceholder {
-	width:44px;
+	width: 44px;
 	padding: 0;
 	text-indent:-5000px;
 	background:url(../imgs/logo_topbar.png);
@@ -34,7 +34,7 @@
 }
 
 .topbar ul li a:hover { 
-	background:lighten(@topbar-bgColor,6%); 
+	background:lighten(@topbar-bgColor,6%);
 	color:@topbar-colorHover;
 }
 
@@ -174,6 +174,9 @@ ul {
 				border-top: 1px @grey-10 solid;
 				border-bottom: 1px @grey-10 solid;
 				border-left: 1px @grey-10 solid;
+				#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+				line-height: 2.5;
+				padding: 0 1.2em;
 			}
 
 			&:first-child {
@@ -221,7 +224,7 @@ ul {
 			a {
 
 				#ink > #border-radius > .all (8px);
-				#ink > #shadows > .box-shadow (0,1px,1px,0,@grey-10);
+				#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
 				// border: 1px @grey-10 solid;
 				background: @white;
 				line-height: 2.5;
