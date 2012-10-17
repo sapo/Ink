@@ -118,7 +118,7 @@
 		border-top:1px solid #333
 	}
 	
-	html .submenu {
+	html body .submenu {
 		display: block;
 		width:auto;
 		position:relative;
@@ -128,28 +128,28 @@
 		background:transparent;
 	}
 	
-	html .submenu li {
+	html body .submenu li {
 		border: none;	
 	}
 	
-	html .submenu li a {
+	html body .submenu li a {
 		padding:0 @ink-grid-gutter-medium;
 	}
 	
-	html .example_menu li a {
+	html body .example_menu li a {
 		padding: 0 @ink-grid-gutter-medium;
 	}
 	
-	html .example_menu .submenu li a {
+	html body .example_menu .submenu li a {
 		padding: 0 @ink-grid-gutter-medium*2;
 	}
 	
-	html .example_menu li:first-child a {
-		#ink > #border-radius > .all (4px, 4px, 0, 0);
+	html body .example_menu > li:first-child a {
+		#ink > #border-radius > .top (4px);
 	}
 	
-	html .example_menu li:last-child a {
-		#ink > #border-radius > .all (0, 0, 4px, 4px);
+	html body .example_menu .submenu:last-child li:last-child a {
+		#ink > #border-radius > .bottom (4px);
 	}
 
 	.ink-for-m,  
