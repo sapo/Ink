@@ -1,6 +1,8 @@
 Navigation:
 - Pills
 - Paging
+- Breadcrumbs
+-- Verificar/resolver como estas coisas funcionam nos ecrans mais pequenos (medium,small)
 
 Less variables:
 - Normalizar os nomes para caixa baixa e palavras separads com hífens (@form-input-text-color)
