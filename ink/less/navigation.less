@@ -216,6 +216,7 @@ ul {
 					color: lighten(@black,70%);
 
 					&:hover {
+						#ink > #effects > .transition ();
 						background: @white;
 						cursor: default;						
 					}
@@ -224,4 +225,89 @@ ul {
 		}
 	}
 
+	&.pills {
+
+		li {
+
+			margin-right: 0.5em;
+
+			a {
+
+				#ink > #effects > .transition ();
+				#ink > #border-radius > .all (8px);
+				#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+				background: @white;
+				line-height: 2.5;
+
+				&:hover {
+					background: darken(@white,10%);
+					color: @black;
+				}
+			}
+
+			&.active {
+				
+				a {
+
+					border: 1px @grey-10 solid;
+					background: @link-color;
+					color: @white;
+					cursor: default;	
+				}
+			}
+		}
+	}
+
+	&.breadcrumbs {
+
+		background: @white;
+		#ink > #border-radius > .all (8px);
+		#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+
+		li {
+
+			line-height: 2.5;
+
+			a {
+
+				display: inline;
+				padding: 0;
+
+				&:hover {
+					background: transparent;
+					color: @link-hover-color;
+					text-decoration: underline;
+				}
+			}
+
+			span {
+				&.separator {
+					margin: 0 1.2em;
+					color: @grey-30;
+				}
+			}
+
+			&.active {
+					a {
+						color: @grey-50;
+						cursor: default;
+						text-decoration: none;
+					}
+				}
+
+			&:first-child {
+				a {
+					padding-left: 1.2em;
+				}
+			}
+
+			&:last-child {
+				a {
+					&:after {
+						content: "";
+					}
+				}
+			}
+		}
+	}
 }

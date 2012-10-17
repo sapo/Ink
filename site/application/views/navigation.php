@@ -76,11 +76,7 @@
 						<li><a href="#">Ccommodo</a></li>
 						<li><a href="#">Egestas</a></li>
 						<li>
-							<a href="#">
-								Submenu
-								<i class="icon-caret-right ink-for-l"></i>
-								<i class="icon-caret-down ink-for-m ink-for-s"></i>
-							</a>
+							<a href="#">Submenu<i class="icon-caret-right"></i></a>
 							<ul class="submenu">
 								<li><a href="#">Item with a very big title</a></li>
 								<li><a href="#">Item</a></li>
@@ -145,5 +141,38 @@
    <li><a href="#">&raquo;</a></li>
 </ul>')) ?></pre>
 		</div>
+	</div>
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h3>Pills</h3>
+			<p>
+				Pills can be created by adding the <code>.pills</code> class to a <code>.ink-h-nav</code> list. The <code>.active</code> and <code>.disabled</code> classes are available.
+			</p>
+			<div class="ink-vspace">
+				<ul class="ink-h-nav pills">
+					<li><a href="#">Item</a></li>
+					<li class="active"><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+				</ul>
+			</div>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<ul class="ink-h-nav pills">
+   <li><a href="#">Item</a></li>
+   <li class="active"><a href="#">Item</a></li>
+   <li><a href="#">Item</a></li>
+   <li><a href="#">Item</a></li>
+</ul>')) ?></pre>
+		</div>
+	</div>
+	<div class="ink-section">
+		<h3>Breadcrumbs</h3>
+		<p>Breadcrumbs are made from bread!</p>
+		<ul class="ink-h-nav breadcrumbs">
+			<li><a href="#">Home</a><span class="separator">/</span></li>
+			<li><a href="#">Products</a><span class="separator">/</span></li>
+			<li><a href="#">Category</a><span class="separator">/</span></li>
+			<li class="active"><a href="#">Item</a></li>
+		</ul>
 	</div>
 </div>
