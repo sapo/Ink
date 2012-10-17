@@ -342,11 +342,11 @@ a.active {
 .example_menu a {
   color: #000000;
 }
-.example_menu li:first-child a {
-  border-radius: 4px 0 0 4px;
-}
-.example_menu .submenu li:first-child a {
-  border-radius: 0;
+.example_menu > li:first-child a {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 /*...................................................  Footer  ...................................................*/
 footer {

@@ -52,7 +52,7 @@
 	color:@white;
 }
 
-html body .topbar .ink-button {
+.topbar .ink-button {
 	background:none;
 	filter:none;
 	border:none;
@@ -63,6 +63,12 @@ html body .topbar .ink-button {
 	color: @topbar-color;
 	font-size:1.2em;
 	position:absolute; top:.6em; right:0;
+}
+
+.topbar .ink-button:hover {
+	color:@topbar-colorHover;
+	background:none;
+	
 }
 
 .ink-v-nav li {
@@ -138,11 +144,6 @@ html body .topbar .ink-button {
 
 .ink-h-nav .submenu {
 	margin-left:-1px;
-}
-
-.ink-h-nav .submenu li a {
-	//line-height:1.8em;
-	//padding: .56em 1.5em;
 }
 
 .submenu {
