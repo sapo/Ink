@@ -269,19 +269,15 @@ a.active 	{color: @link-active-color;}
 .example_menu {
 	#ink > #border-radius > .all (4px);
 	#ink > #gradients > .gradient (#d2d2d2, #bcbcbc, 150%);
-	#ink > #shadows > .box-shadow (1px, 1px, 2px, 0, rgba(0,0,0,0.4));
+	#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
 }
 
 .example_menu a {
 	color:@black
 }
 
-.example_menu li:first-child a {
-	#ink > #border-radius > .all (4px, 0, 0, 4px);
-}
-
-.example_menu .submenu li:first-child a {
-	#ink > #border-radius > .all (0);
+.example_menu > li:first-child a {
+	#ink > #border-radius > .left (4px);
 }
 
 /*...................................................  Footer  ...................................................*/

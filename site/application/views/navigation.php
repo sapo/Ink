@@ -49,16 +49,38 @@
 					<strong>Note: </strong>The menu can be built in many different ways, using  <code>&lt;a&gt;</code>, 
 					<code>&lt;ul&gt;</code> or the new <span class="label_new">HTML5</span> tag <code>&lt;nav&gt;</code>
 				</p>
-			
-				<pre class="prettyprint"><ol><li><span class="tag">&lt;nav</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-h-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/ul</span><span class="tag">&gt;</span></li><li><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<nav>
+  <ul class="ink-h-nav">
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+  </ul>
+</div>')) ?></pre>
 			</div>
 		
 			<div class="ink-vspace">
 				<h4>Submenu</h4>
 				<p><code>&lt;ul&gt;</code> (Unsorted Lists) based menus may have submenus respecting the following structure:</p>
-				
-<pre class="prettyprint"><ol><li><span class="tag">&lt;nav</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-h-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    &lt;li&gt;</span></li><li><span class="tag">      &lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;</span></li><li>      <span class="tag">&lt;ul</span> <span class="atn">class<span class="pun">=</span><span class="atv">"submenu"</span></span><span class="tag">&gt;</span></li><li>        <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">SubItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>        <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">SubItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>      <span class="tag">&lt;/ul&gt;</span></li><li><span class="tag">    &lt;/li&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/ul</span><span class="tag">&gt;</span></li><li><span class="tag">&lt;/nav&gt;</span></li></ol></pre>			
-</div>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<nav>
+  <ul class="ink-h-nav">
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li>
+      <a href="#">Item</a>
+      <ul class="submenu">
+        <li><a href="#">SubItem</a></li>
+        <li><a href="#">SubItem</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>')) ?></pre>
+		</div>
 		</div>
 	</div>
 	
@@ -91,7 +113,20 @@
 					<p>
 						Vertical menus are built exactly the same way as the horizontal ones, just replace the <code>&lt;ul&gt;</code> class with <code>.ink-v-nav</code>. The same goes for the submenus.
 					</p>
-	<pre class="prettyprint"><ol><li><span class="tag">&lt;nav</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-v-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>    <span class="com">...</span></li><li><span class="tag">    &lt;li&gt;</span></li><li><span class="tag">      &lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">Item</span><span class="tag">&lt;/a&gt;</span></li><li>      <span class="tag">&lt;ul</span> <span class="atn">class<span class="pun">=</span><span class="atv">"submenu"</span></span><span class="tag">&gt;</span></li><li>        <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">SubItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>        <span class="com">...</span><span class="tag"></span></li><li>      <span class="tag">&lt;/ul&gt;</span></li><li><span class="tag">    &lt;/li&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;/ul</span><span class="tag">&gt;</span></li><li><span class="tag">&lt;/nav&gt;</span></li></ol></pre>			
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<nav>
+  <ul class="ink-v-nav">
+    <li><a href="#">Item</a></li>
+    ...
+    <li>
+      <a href="#">Item</a>
+      <ul class="submenu">
+        <li><a href="#">SubItem</a></li>
+        ...
+      </ul>
+    </li>
+  </ul>
+</nav>')) ?></pre>			
 	
 				</div>
 			</div>
@@ -105,8 +140,91 @@
 				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 			</p>
-<pre class="prettyprint"><ol><li><span class="tag">&lt;footer</span><span class="tag">&gt;</span></li><li><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-footer-nav"</span><span class="tag">&gt;</span><span class="tag"></span></li><li><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;</span><span class="pln">footerItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li><span class="tag">    </span><span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href<span class="pun">=</span><span class="atv">"#"</span></span>&gt;<span class="pln">footerItem</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li>    <span class="com">...</span><span class="tag"></span></li><li>  <span class="tag">&lt;/ul&gt;</span></li><li><span class="tag">&lt;/footer&gt;</span></li></ol></pre>			
-
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<footer>
+  <ul class="ink-footer-nav">
+    <li><a href="#">footerItem</a></li>
+    <li><a href="#">footerItem</a></li>
+    ...
+  </ul>
+</footer>')) ?></pre>
+		</div>
+	</div>
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h3>Pagination</h3>
+			<p>
+				Paginations can be created by adding the <code>.pagination</code> class to a <code>.ink-h-nav</code> list. The <code>.active</code> and <code>.disabled</code> classes are available to diferentiate the current page and disabled links.
+			</p>
+			<div class="ink-vspace">
+				<ul class="ink-h-nav pagination">
+					<li class="disabled"><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li class="active"><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</div>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<ul class="ink-h-nav pagination">
+   <li class="disabled"><a href="#">&laquo;</a></li>
+   <li><a href="#">1</a></li>
+   <li><a href="#">2</a></li>
+   <li><a href="#">3</a></li>
+   <li class="active"><a href="#">4</a></li>
+   <li><a href="#">5</a></li>
+   <li><a href="#">6</a></li>
+   <li><a href="#">7</a></li>
+   <li><a href="#">&raquo;</a></li>
+</ul>')) ?></pre>
+		</div>
+	</div>
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h3>Pills</h3>
+			<p>
+				Pills can be created by adding the <code>.pills</code> class to a <code>.ink-h-nav</code> list. The <code>.active</code> and <code>.disabled</code> classes are available.
+			</p>
+			<div class="ink-vspace">
+				<ul class="ink-h-nav pills">
+					<li><a href="#">Item</a></li>
+					<li class="active"><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+				</ul>
+			</div>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<ul class="ink-h-nav pills">
+   <li><a href="#">Item</a></li>
+   <li class="active"><a href="#">Item</a></li>
+   <li><a href="#">Item</a></li>
+   <li><a href="#">Item</a></li>
+</ul>')) ?></pre>
+		</div>
+	</div>
+	<div class="ink-section">
+		<h3>Breadcrumbs</h3>
+		<p>
+				Breadcrumbs can be created by adding the <code>.breadcrumbs</code> class to a <code>.ink-h-nav</code> list. The <code>.active</code> and <code>.disabled</code> classes are available.
+			</p>
+		<div class="ink-vspace">
+			<ul class="ink-h-nav breadcrumbs">
+				<li><a href="#">Home</a><span class="separator">/</span></li>
+				<li><a href="#">Products</a><span class="separator">/</span></li>
+				<li><a href="#">Category</a><span class="separator">/</span></li>
+				<li class="active"><a href="#">Current item</a></li>
+			</ul>
+<pre class="prettyprint linenums">
+<?php echo(htmlentities('<ul class="ink-h-nav breadcrumbs">
+   <li><a href="#">Home</a><span class="separator">/</span></li>
+   <li><a href="#">Products</a><span class="separator">/</span></li>
+   <li><a href="#">Category</a><span class="separator">/</span></li>
+   <li class="active"><a href="#">Current item</a></li>
+</ul>')) ?></pre>
 		</div>
 	</div>
 </div>

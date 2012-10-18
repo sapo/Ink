@@ -2,9 +2,9 @@
 *.orig
 *.bak
 # ignore compiled css files
-*/css/*.css
-*/css/!prettify.css
-*/css/!demo.css
+*.css
+!prettify.css
+!demo.css
 # ignore CI log files
 */logs/log-*.php
 */logs/!index.html

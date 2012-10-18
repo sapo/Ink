@@ -82,7 +82,26 @@
 	}
 
 	html .ink-h-nav li {
-		display:	block
+		display: block
+	}
+	
+	html .ink-h-nav li a {
+		padding:0
+	}
+	
+	html .ink-v-nav .submenu {
+		top: auto;
+		left: auto;
+		overflow: visible;
+		padding-left: 0;
+	}
+
+	html .ink-v-nav .submenu li a {
+		padding:0 @ink-grid-gutter-medium*2;
+	}
+	
+	html .topbar .ink-h-nav .submenu li a {
+		color:@topbar-color;
 	}
 
 	html .topbar {
@@ -97,6 +116,40 @@
 
 	html .topbar ul li {
 		border-top:1px solid #333
+	}
+	
+	html body .submenu {
+		display: block;
+		width:auto;
+		position:relative;
+		border-top:none;
+		z-index: 1000;
+		margin:0;
+		background:transparent;
+	}
+	
+	html body .submenu li {
+		border: none;	
+	}
+	
+	html body .submenu li a {
+		padding:0 @ink-grid-gutter-medium;
+	}
+	
+	html body .example_menu li a {
+		padding: 0 @ink-grid-gutter-medium;
+	}
+	
+	html body .example_menu .submenu li a {
+		padding: 0 @ink-grid-gutter-medium*2;
+	}
+	
+	html body .example_menu > li:first-child a {
+		#ink > #border-radius > .top (4px);
+	}
+	
+	html body .example_menu .submenu:last-child li:last-child a {
+		#ink > #border-radius > .bottom (4px);
 	}
 
 	.ink-for-m,  

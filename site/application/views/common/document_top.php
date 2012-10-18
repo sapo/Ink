@@ -20,11 +20,8 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo assets_url('css') ?>ink.css" />
 
-	<!--[if IE 6]>
-	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie6-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<![endif]-->
-	<!--[if IE 7]>
-	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<!--[if IE ]>
+	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
 	
 	<link rel="stylesheet" href="<?php echo assets_url('css') ?>demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
