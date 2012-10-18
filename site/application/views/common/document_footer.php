@@ -4,7 +4,7 @@
 			<ul class="ink-footer-nav">
 				<li><a href="#">Changelog</a></li>
 				<li><a href="#">Showcase</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="<?php echo site_url() . '/about' ?>">About</a></li>
 			</ul>
 	
 			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
