@@ -1,7 +1,6 @@
 <div class="callToAction">
 	<img src="<?php echo assets_url('imgs') ?>logo_home.png" alt="Logo Home" class="logo_hp">
-	<div class="glow">
-		<img src="<?php echo assets_url('imgs') ?>glow1.png" alt="Glow1"></div>
+	<div class="glow"><img src="<?php echo assets_url('imgs') ?>glow1.png" alt="Glow1"></div>
 </div>
 
 <div class="ink-container">

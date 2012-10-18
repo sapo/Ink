@@ -9,16 +9,16 @@
 	<div class="ink-container">
 		<ul class="ink-h-nav">
 			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">What it is</a></li>
-			<li><a href="#">Why use Ink</a></li>
-			<li><a href="#">Who we are</a></li>
-			<li><a href="#">What's in store</a></li>
+			<li><a href="#what">What it is</a></li>
+			<li><a href="#why">Why use Ink</a></li>
+			<li><a href="#who">Who we are</a></li>
+			<li><a href="#store">What's in store</a></li>
 		</ul>
 	</div>
 </nav>
 
 <div class="ink-container">
-	<div class="ink-section">
+	<div class="ink-section" id="what">
 		<div class="ink-vspace">
 			<h3>What it is</h3>
 			<p>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-	<div class="ink-section">
+	<div class="ink-section" id="why">
 		<div class="ink-vspace">
 			<h3>Why use Ink</h3>
 			<p>
@@ -59,7 +59,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="ink-section">
+	<div class="ink-section" id="who">
 		<div class="ink-vspace">
 			<h3>Who we are</h3>
 			<p>
@@ -68,7 +68,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="ink-section">
+	<div class="ink-section" id="store">
 		<div class="ink-vspace">
 			<h3>What's in store</h3>
 			<p>
