@@ -232,59 +232,61 @@ a.active 	{color: @link-active-color;}
 }
 
 /*...................................................  Menus  ....................................................*/
-.menu {
+.menu-second-level {
 	border-top:1px solid #cacaca;
 	#ink > #shadows > .box-shadow(0, -1px, 2px, 0, rgba(0,0,0,0.1));
 }
 
-.menu a {
+.menu-second-level li a {
 	padding: 0 .8em;
 	font-size:1.143em;
 	color:@black
 }
 
-.menu ul li {
+.menu-second-level ul li {
 	border-right:1px solid #CACACA;
 }
 
-.menu ul li.active {
+.menu-second-level ul li.active {
 	border-right:none;
 	#ink > #gradients > .gradient(#2e2e2e, #222, 100%);
 }
 
-.menu ul .active a {
+.menu-second-level ul .active a {
 	color: #fff;
 }
 
-.menu ul li a.home {
+.menu-second-level ul li a.home {
 	width:1em;
 	text-indent:-5555px;
 	background:url(../imgs/home_Sprite.png) 0 0 no-repeat;
 }
 
-.menu ul li.active a.home {
+.menu-second-level ul li.active a.home {
 	background:url(../imgs/home_Sprite.png) 0 -43px no-repeat;
 }
 
-.example_menu {
-	#ink > #border-radius > .all (4px);
-	#ink > #gradients > .gradient (#d2d2d2, #bcbcbc, 150%);
-	#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
-}
+// .example_menu {
+// 	#ink > #border-radius > .all (4px);
+// 	#ink > #gradients > .gradient (#d2d2d2, #bcbcbc, 150%);
+// 	#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+// }
 
-.example_menu a {
-	color:@black
-}
+// .example_menu a {
+// 	color:@black
+// }
 
-.example_menu > li:first-child a {
-	#ink > #border-radius > .left (4px);
-}
+// .example_menu > li:first-child a {
+// 	#ink > #border-radius > .left (4px);
+// }
 
 /*...................................................  Footer  ...................................................*/
 footer {
+
 	border-top:1px solid #CCC;
 	background:@footer-bgColor;
 	overflow:hidden;
+
 }
 
 footer .SAPOlogo {
@@ -346,4 +348,20 @@ code {
 	background: #E9E9E9;
 	padding: 0 4px;
 	font-size: .85em;
+}
+
+.visual-example {	
+	border: 1px solid @grey-20;
+	#ink > #border-radius > .all(4px);
+	.example-container {
+		padding: 1.4em 1.2em;
+	}
+	h4 {
+		#ink > #border-radius > .top(4px);
+		background: @grey-20;
+		color: @white;
+		font-size: 1em;
+		padding: 0.5em;
+		margin: 0;
+	}
 }

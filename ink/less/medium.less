@@ -159,4 +159,41 @@
 		left: auto;
 	}
 
+
+	ul {
+
+		&.pagination {
+
+			li {
+
+				display: none;
+
+				a {
+					display: none;
+					
+				}
+
+				&:first-child, &:last-child {
+
+					a {
+						display: inline-block;
+						border: 1px @grey-15 solid;	
+						float: left;
+						padding: 0 1.2em;
+						#ink > #border-radius > .all (8px);
+					}
+
+				}
+
+				&:last-child {
+					a {
+						float: right;
+					}
+				}
+
+				}
+			}
+		}
+
+	
 }
