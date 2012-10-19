@@ -345,17 +345,24 @@ a.active {
           box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
-.menu-second-level li a {
+.menu-second-level .ink-container .ink-navigation ul {
+  background: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+.menu-second-level .ink-container .ink-navigation ul li a {
   padding: 0 .8em;
   font-size: 1.143em;
   color: #000000;
 }
 
-.menu-second-level ul li {
+.menu-second-level .ink-container .ink-navigation ul li {
   border-right: 1px solid #CACACA;
 }
 
-.menu-second-level ul li.active {
+.menu-second-level .ink-container .ink-navigation ul li.active {
   background: #2e2e2e;
   background-image: -moz-linear-gradient(top, #2e2e2e 0%, #222222 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2e2e), color-stop(100%, #222222));
@@ -367,17 +374,17 @@ a.active {
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#2e2e2e', endColorstr='#222222');
 }
 
-.menu-second-level ul .active a {
+.menu-second-level .ink-container .ink-navigation ul .active a {
   color: #fff;
 }
 
-.menu-second-level ul li a.home {
+.menu-second-level .ink-container .ink-navigation ul li a.home {
   width: 1em;
   text-indent: -5555px;
   background: url(../imgs/home_Sprite.png) 0 0 no-repeat;
 }
 
-.menu-second-level ul li.active a.home {
+.menu-second-level .ink-container .ink-navigation ul li.active a.home {
   background: url(../imgs/home_Sprite.png) 0 -43px no-repeat;
 }
 
@@ -475,4 +482,87 @@ code {
   background: #cccccc;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+}
+
+#topbar {
+  height: 40px;
+  margin: auto;
+  font-size: 0.875em;
+  background: #222222;
+  -webkit-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+     -moz-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+          box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+}
+
+#topbar .ink-navigation ul.menu.horizontal.black.flat {
+  background: #222222;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+#topbar a.logoPlaceholder {
+  width: 44px;
+  padding: 0;
+  margin: 0 1em 0 0;
+  text-indent: -5000px;
+  background: url(../imgs/logo_topbar.png);
+}
+
+#topbar a.logoPlaceholder:hover {
+  background: url(../imgs/logo_topbar.png) 0 -40px;
+}
+
+#topbar ul li a {
+  color: #bbbbbb;
+}
+
+#topbar ul li a:hover {
+  color: #ffffff;
+  background: #313131;
+}
+
+#topbar ul li.active a {
+  color: #ffffff;
+  background: #080808;
+  background-image: -moz-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #080808), color-stop(100%, #3c3c3c));
+  background-image: -webkit-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background-image: -o-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background-image: linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background-image: -ms-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#080808', endColorstr='#3c3c3c');
+  -webkit-box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.3);
+     -moz-box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.3);
+          box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+#topbar .ink-h-nav .submenu li a {
+  color: #000000;
+}
+
+#topbar .ink-h-nav .submenu li a:hover {
+  color: #ffffff;
+}
+
+#topbar .ink-button {
+  position: absolute;
+  top: .6em;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
+  color: #bbbbbb;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  background: none;
+  border: none;
+  filter: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+#topbar .ink-button:hover {
+  color: #ffffff;
+  background: none;
 }

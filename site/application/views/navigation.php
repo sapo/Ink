@@ -5,16 +5,18 @@
 	</div>
 </div>
 
-<nav class="menu-second-level">
-	<div class="ink-container">
-		<nav class="ink-navigation">
-			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Horizontal menu</a></li>
-				<li><a href="#">Vertical menu</a></li>
-				<li><a href="#">Simple footer menu</a></li>
-			</ul>
-		</nav>
+<nav class="">
+	<div class="menu-second-level">
+		<div class="ink-container">
+			<nav class="ink-navigation">
+				<ul class="menu horizontal">
+					<li class="active"><a class="home" href="#">Home</a></li>
+					<li><a href="#">Horizontal menu</a></li>
+					<li><a href="#">Vertical menu</a></li>
+					<li><a href="#">Simple footer menu</a></li>
+				</ul>
+			</nav>
+		</div>
 	</div>
 </nav>  
 
@@ -29,7 +31,7 @@
 		</div>
 		
 		<nav class="ink-navigation">
-			<ul class="menu horizontal grey separated">
+			<ul class="menu horizontal">
 				<li class="active"><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
@@ -46,7 +48,41 @@
 		</nav>
 
 		<nav class="ink-navigation ink-vspace">
-			<ul class="menu horizontal green separated">
+			<ul class="menu horizontal grey">
+				<li class="active"><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li>
+					<a href="#">Submenu<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+						<li><a href="#">Item with a very big title</a></li>
+						<li><a href="#">Item</a></li>
+						<li><a href="#">Item</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<nav class="ink-navigation ink-vspace">
+			<ul class="menu horizontal black">
+				<li class="active"><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li>
+					<a href="#">Submenu<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+						<li><a href="#">Item with a very big title</a></li>
+						<li><a href="#">Item</a></li>
+						<li><a href="#">Item</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<nav class="ink-navigation ink-vspace">
+			<ul class="menu horizontal green">
 				<li class="active"><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
@@ -113,22 +149,6 @@
 			</ul>
 		</nav>
 
-		<nav class="ink-navigation ink-vspace">
-			<ul class="menu horizontal black">
-				<li class="active"><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-				<li>
-					<a href="#">Submenu<i class="icon-caret-down"></i></a>
-					<ul class="submenu">
-						<li><a href="#">Item with a very big title</a></li>
-						<li><a href="#">Item</a></li>
-						<li><a href="#">Item</a></li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
 		
 		<div class="ink-l100">
 			<div class="ink-vspace">

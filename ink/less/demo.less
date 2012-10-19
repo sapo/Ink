@@ -237,32 +237,38 @@ a.active 	{color: @link-active-color;}
 	#ink > #shadows > .box-shadow(0, -1px, 2px, 0, rgba(0,0,0,0.1));
 }
 
-.menu-second-level li a {
-	padding: 0 .8em;
-	font-size:1.143em;
-	color:@black
+
+.menu-second-level .ink-container .ink-navigation ul {
+	background: none;
+	#ink > #shadows > .no-box-shadow();
 }
 
-.menu-second-level ul li {
+.menu-second-level .ink-container .ink-navigation ul li a {
+	padding: 0 .8em;
+	font-size: 1.143em;
+	color:@black;
+}
+
+.menu-second-level .ink-container .ink-navigation ul li {
 	border-right:1px solid #CACACA;
 }
 
-.menu-second-level ul li.active {
+.menu-second-level .ink-container .ink-navigation ul li.active {
 	border-right:none;
 	#ink > #gradients > .gradient(#2e2e2e, #222, 100%);
 }
 
-.menu-second-level ul .active a {
+.menu-second-level .ink-container .ink-navigation ul .active a {
 	color: #fff;
 }
 
-.menu-second-level ul li a.home {
+.menu-second-level .ink-container .ink-navigation ul li a.home {
 	width:1em;
 	text-indent:-5555px;
 	background:url(../imgs/home_Sprite.png) 0 0 no-repeat;
 }
 
-.menu-second-level ul li.active a.home {
+.menu-second-level .ink-container .ink-navigation ul li.active a.home {
 	background:url(../imgs/home_Sprite.png) 0 -43px no-repeat;
 }
 
@@ -364,4 +370,83 @@ code {
 		padding: 0.5em;
 		margin: 0;
 	}
+}
+
+#topbar {
+	height:@topbar-height;
+	background:@topbar-bgColor;
+	font-size:@topbar-fontSize;
+	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+	margin:@topbar-margin;
+}
+
+#topbar {
+	.ink-navigation {
+		ul {
+			&.menu {
+				&.horizontal {
+					&.black {
+						&.flat {
+							background:@topbar-bgColor;
+							#ink > #shadows > .no-box-shadow ();
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#topbar a.logoPlaceholder {
+	width:44px;
+	padding: 0;
+	text-indent:-5000px;
+	background:url(../imgs/logo_topbar.png);
+	margin:0 1em 0 0;
+}
+
+#topbar a.logoPlaceholder:hover {
+	background:url(../imgs/logo_topbar.png) 0 -40px;
+}
+
+#topbar ul li a {
+	color:@topbar-color;
+}
+
+#topbar ul li a:hover { 
+	background:lighten(@topbar-bgColor,6%); 
+	color:@topbar-colorHover;
+}
+
+#topbar ul li.active a {
+	#ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
+	#ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
+	color:@white;
+}
+
+#topbar .ink-h-nav .submenu li a {
+	color:@black;
+}
+
+#topbar .ink-h-nav .submenu li a:hover {
+	color:@white;
+}
+
+#topbar .ink-button {
+	background:none;
+	filter:none;
+	border:none;
+	padding:0;
+	margin:0;
+	#ink > #shadows > .no-box-shadow;
+	#ink > #shadows > .text-shadow(0,0,0, rgba(0,0,0,0));
+	color: @topbar-color;
+	font-size:1.2em;
+	position:absolute; top:.6em; right:0;
+}
+
+#topbar .ink-button:hover {
+	color:@topbar-colorHover;
+	background:none;
+	
 }
