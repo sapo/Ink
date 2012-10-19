@@ -27,9 +27,10 @@
 			<p>
 				To build a horizontal menu with ink start with a block-level element and use the <code>ink-navigation</code> class. We prefer to use a <code><?php echo htmlentities('<nav>') ?></code> tag to wrap our navigation items, but a <code><?php echo htmlentities('<div>') ?></code> will do just fine.
 			</p>
-			<p>The menu itself is built with a unordered list with the <code>menu</code> and <code>horizontal</code> classes. Adding color is as simple as adding a class to the menu list element. Available classes are <code>grey</code>, <code>green</code>, <code>blue</code>, <code>red</code>, <code>orange</code> and <code>black</code>!</p>
+			<p>The menu itself is built with a unordered list with the <code>menu</code> and <code>horizontal</code> classes. The default style is white but adding color is as simple as adding a class to the menu list element. Available classes are <code>grey</code>, <code>green</code>, <code>blue</code>, <code>red</code>, <code>orange</code> and <code>black</code>!</p>
 		</div>
 		
+
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a href="#">Item</a></li>
@@ -46,6 +47,8 @@
 				</li>
 			</ul>
 		</nav>
+
+		<p class="note"><strong>Note: </strong>This is the default horizontal menu style. Adding the <code>flat</code> class removes shading and rounded corners.</p>
 
 		<nav class="ink-navigation ink-vspace">
 			<ul class="menu horizontal grey">

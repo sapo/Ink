@@ -320,18 +320,17 @@
 			&.flat {
 				background: @white;
 				#ink > #border-radius > .all (0px);
+
+				li {
+
+					&:first-child a {
+						#ink > #border-radius > .all (0  px);
+					}
+
+				}
 			}
 
-			&.horizontal {
-
-				height: @h-nav-height;
-				display: block; 
-				font-size: 0em;
-				vertical-align: top;
-				position:relative;
-				overflow: visible;
-				
-				&.grey {
+			&.grey {
 
 					#ink > #border-radius > .all (4px);
 					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
@@ -343,9 +342,6 @@
 							color:@black;
 						}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
 
 					}
 
@@ -367,9 +363,6 @@
 							color:@white;
 						}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
 
 						ul {
 							&.submenu {
@@ -404,9 +397,6 @@
 							color:@white;
 						}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
 
 						ul {
 							&.submenu {
@@ -442,9 +432,6 @@
 							color:@white;
 						}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
 
 						ul {
 							&.submenu {
@@ -480,9 +467,6 @@
 							color:@white;
 						}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
 
 						ul {
 							&.submenu {
@@ -521,9 +505,6 @@
 							}
 						}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
 
 						ul {
 							&.submenu {
@@ -547,6 +528,16 @@
 					}
 				}
 
+			&.horizontal {
+
+				height: @h-nav-height;
+				display: block; 
+				font-size: 0em;
+				vertical-align: top;
+				position:relative;
+				overflow: visible;
+								
+
 				&:after {
 					content: ".";
 					display: block;
@@ -564,7 +555,7 @@
 					position:relative; 
 					margin:0;
 					zoom:1;
-					*display: inline;
+					*display: inline;					
 
 					a {
 
@@ -644,7 +635,6 @@
 						padding: 0 1.5em;
 						display:block;
 						text-decoration: none;
-						color:@black;
 
 						&:hover {
 
@@ -662,9 +652,29 @@
 					&:hover {
 
 						.submenu {
-							display: block
+
+							display: block;
+
+							li {
+								a {
+									#ink > #border-radius > .all(0);
+								}
+							}
 						}
 
+					}
+
+					&:first-child {
+						a {
+							#ink > #border-radius > .left (0);
+							#ink > #border-radius > .top (4px);
+						}
+					}
+
+					&:last-child {
+						a {
+							#ink > #border-radius > .bottom (4px);
+						}
 					}
 
 				}
@@ -692,34 +702,40 @@
 
 		&.pagination {
 
-		background: @white;	
+		// #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+		// #ink > #border-radius > .all (4px);
+		// #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
 
 		li {
 			a {
 				padding: 0.5em 1em;
 				display: block;
 				float: left;
-				background: @white;
+				// background: @white;
 				border-top: 1px @grey-15 solid;
 				border-bottom: 1px @grey-15 solid;
 				border-left: 1px @grey-15 solid;
 				#ink > #effects > .transition ();
 
+				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				// #ink > #border-radius > .all (4px);
+				#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
 				&:hover {
-					background: darken(@white,10%);
+					// background: darken(@white,10%);
 				}
 
 			}
 			&:first-child {
 				a {
-					#ink > #border-radius > .left (6px);
+					#ink > #border-radius > .left (4px);
 				}
 			}
 
 			&:last-child {
 				a {
 					border-right: 1px @grey-15 solid;
-					#ink > #border-radius > .right (6px);
+					#ink > #border-radius > .right (4px);
 				}
 			}
 
@@ -756,8 +772,11 @@
 			a {
 
 				#ink > #effects > .transition ();
-				#ink > #border-radius > .all (8px);
-				#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+				
+				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				#ink > #border-radius > .all (4px);
+				#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
 				background: @white;
 				padding: 0.5em 1em;
 				display: block;
@@ -785,9 +804,9 @@
 
 	&.breadcrumbs {
 
-		background: @white;
-		#ink > #border-radius > .all (8px);
-		#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+		#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				#ink > #border-radius > .all (4px);
+				#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
 
 		li {
 
