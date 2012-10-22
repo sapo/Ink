@@ -1,10 +1,11 @@
 <div class="whatIs">
    <div class="ink-container">>
 		<h2>Icons</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p>Ink uses <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a>, an icon webfont containing over 200 industry standard pictograms for use in your projects.</p>
 	</div>
 </div>
 
+<<<<<<< Updated upstream
 <div class="menu-second-level">
 	<div class="ink-container">
 		<nav class="ink-navigation">
@@ -17,6 +18,20 @@
 				<li><a href="#">Social Icons</a></li>
 			</ul>
 		</nav>
+=======
+<nav class="menu-second-level">
+	<div class="ink-container">
+		<nav class="ink-navigation">
+		<ul class="menu horizontal">
+			<li class="active"><a class="home" href="#">Home</a></li>
+			<li><a href="#">Web Application Icons</a></li>
+			<li><a href="#">Text Editor Icons</a></li>
+			<li><a href="#">Directional Icons</a></li>
+			<li><a href="#">Video Player Icons</a></li>
+			<li><a href="#">Social Icons</a></li>
+		</ul>
+	</nav>
+>>>>>>> Stashed changes
 	</div>
 </div>
 

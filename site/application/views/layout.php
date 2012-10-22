@@ -1,10 +1,11 @@
 <div class="whatIs">
    <div class="ink-container">
       <h2>Layout</h2>
-      <p>Build a true fluid layout. Ink doesn't care how many colums your layout has, you just need to put your taste to good use.</p>
+      <p>Layout is where Ink fundamentaly differs from most other popular frameworks out there. Ink's layout classes are truly fluid and extremly easy to implement and keep track of, even when your pages grow in complexity.</p>
    </div>
 </div>
 
+<<<<<<< Updated upstream
 <div class="menu-second-level">
 	<div class="ink-container">
 		<nav class="ink-navigation">
@@ -17,13 +18,31 @@
 		</nav>
 	</div>
 </div>  
+=======
+<nav>
+   <div class="menu-second-level">
+      <div class="ink-container">
+         <nav class="ink-navigation">
+            <ul class="menu horizontal">
+               <li class="active"><a class="home" href="#">Home</a></li>
+               <li><a href="#">Containers</a></li>
+               <li><a href="#">Spacer units</a></li>
+               <li><a href="#">Spacing</a></li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+</nav>  
+>>>>>>> Stashed changes
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
 
 <div class="ink-container">
    <div class="ink-vspace">
       <h2>Containers</h2>
-      <p>The <mark>.ink-container</mark> class is where you define the width of your layout. You should define either a static width, a relative width or a maximum width for this element and use it to contain your layout.</p>
+      <p>To start off your project, you should define a container block to wrap everything else. Use a <code>div</code> with the <code>.ink-container</code> class, which can be configured to be a fixed width, a relative width or a maximum width.</p>
+      <p>You can use this class as often as you want in your pages, which will allow you to mix fixed and elastic width blocks in a single page, or, if you prefer, simply use it to contain your layout.</p>
+      <p>This element can be configured in the <a href="custom">Ink Customizer</a>.</p>
    </div>
    <div class="ink-section">
       <div class="gridExample">
