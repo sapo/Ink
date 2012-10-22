@@ -1,22 +1,24 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>Typography & Icons</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	</div>
 </div>
 
-<nav class="menu">
+<div class="menu-second-level">
 	<div class="ink-container">
-		<ul class="ink-h-nav">
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">Headings</a></li>
-			<li><a href="#">Body & Hyper text</a></li>
-			<li><a href="#">Lists</a></li>
-			<li><a href="#">Special cases</a></li>
-			<li><a href="#">Icon Webfont</a></li>
-		</ul>
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#">Headings</a></li>
+				<li><a href="#">Body & Hyper text</a></li>
+				<li><a href="#">Lists</a></li>
+				<li><a href="#">Special cases</a></li>
+				<li><a href="#">Icon Webfont</a></li>
+			</ul>
+		</nav>
 	</div>
-</nav>
+</div>
 
 <div class="ink-container">
 

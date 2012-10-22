@@ -1,13 +1,14 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>About Ink</h2>
 		<p>What about it.</p>
 	</div>
 </div>
 
-<nav class="menu">
+<div class="menu-second-level">
 	<div class="ink-container">
-		<ul class="ink-h-nav">
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
 			<li class="active"><a class="home" href="#">Home</a></li>
 			<li><a href="#what">What it is</a></li>
 			<li><a href="#why">Why use Ink</a></li>
@@ -15,7 +16,7 @@
 			<li><a href="#store">What's in store</a></li>
 		</ul>
 	</div>
-</nav>
+</div>
 
 <div class="ink-container">
 	<div class="ink-section" id="what">

@@ -1,5 +1,5 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>Customize InK</h2>
 		<p>Select the InK components that you'll need for your project to get a customized package.</p>
 		<p>Package... hehehe... package...</p>
