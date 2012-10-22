@@ -1,5 +1,5 @@
-<div class="ink-container whatIs">
-   <div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
       <h2>Layout</h2>
       <p>Build a true fluid layout. Ink doesn't care how many colums your layout has, you just need to put your taste to good use.</p>
    </div>
