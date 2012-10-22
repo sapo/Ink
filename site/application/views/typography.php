@@ -1,5 +1,5 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>Typography</h2>
 		<p>Text is the most fundamental content type, Ink offers you a simple and elegant base style for text with a clear hierarchy and flexible, generic styling for all types of typographical composition you may need.</p>
 	</div>
@@ -7,17 +7,19 @@
 
 <div class="menu-second-level">
 	<div class="ink-container">
-		<ul class="ink-h-nav">
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#fonts">Fonts</a></li>
-			<li><a href="#headings">Headings</a></li>
-			<li><a href="#body">Body & Hypertext</a></li>
-			<li><a href="#lists">Lists</a></li>
-			<li><a href="#utilities">Utility Classes</a></li>
-			<li><a href="#additional">Additional Elements</a></li>
-		</ul>
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#fonts">Fonts</a></li>
+				<li><a href="#headings">Headings</a></li>
+				<li><a href="#body">Body & Hypertext</a></li>
+				<li><a href="#lists">Lists</a></li>
+				<li><a href="#utilities">Utility Classes</a></li>
+				<li><a href="#additional">Additional Elements</a></li>
+			</ul>
+		</nav>
 	</div>
-</nav>
+</div>
 <!--menu_end-->
 <div class="ink-container">
 	<!--fonts_start-->
