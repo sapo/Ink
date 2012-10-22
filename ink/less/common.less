@@ -31,7 +31,7 @@
 
 /* add .warning, .caution, .info, .success class styling to text elements */
 
-h1, h2, h3, h4 , h5, h6, p, mark, label {
+h1, h2, h3, h4 , h5, h6, p, mark, label, span {
 
 	&.warning {
 		padding: @padding / 1.5 @padding;
@@ -75,9 +75,12 @@ h1, h2, h3, h4 , h5, h6, p, mark, label {
 
 }
 
-label, mark, code {
-	&.warning, &.caution, &.info, &.success {
-		padding: @padding / 4 @padding / 2 ;
+
+label, mark, code, span {
+	&.ink-label {
+		&.warning, &.caution, &.info, &.success {
+			padding: @padding / 4 @padding / 2 ;
+		}
 	}
 }
 
