@@ -5,7 +5,6 @@
    </div>
 </div>
 
-<<<<<<< Updated upstream
 <div class="menu-second-level">
 	<div class="ink-container">
 		<nav class="ink-navigation">
@@ -18,22 +17,6 @@
 		</nav>
 	</div>
 </div>  
-=======
-<nav>
-   <div class="menu-second-level">
-      <div class="ink-container">
-         <nav class="ink-navigation">
-            <ul class="menu horizontal">
-               <li class="active"><a class="home" href="#">Home</a></li>
-               <li><a href="#">Containers</a></li>
-               <li><a href="#">Spacer units</a></li>
-               <li><a href="#">Spacing</a></li>
-            </ul>
-         </nav>
-      </div>
-   </div>
-</nav>  
->>>>>>> Stashed changes
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
 
