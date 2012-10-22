@@ -18,7 +18,13 @@ $path = getcwd();
 
 if($path == 'I:\work\ink\site\tree') {
 	$config['base_url']	= 'http://localhost/ink/site/tree';
-} else {
+} 
+elseif($path == '/home/pedro/work/ink/site/tree') 
+{
+	$config['base_url']	= 'http://10.134.132.97';
+}
+else 
+{
 	$config['base_url']	= 'http://localhost/Ink/site/tree';
 }
 
