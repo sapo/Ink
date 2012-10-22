@@ -1,7 +1,7 @@
 <div class="whatIs">
-   <div class="ink-container">>
+   <div class="ink-container">
 		<h2>Icons</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p>Ink uses <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a>, an icon webfont containing over 200 industry standard pictograms for use in your projects.</p>
 	</div>
 </div>
 
