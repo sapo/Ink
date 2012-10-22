@@ -1,20 +1,22 @@
-<div class="ink-container whatIs">
-   <div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
       <h2>Layout</h2>
       <p>Build a true fluid layout. Ink doesn't care how many colums your layout has, you just need to put your taste to good use.</p>
    </div>
 </div>
 
-<nav class="menu">
-   <div class="ink-container">
-      <ul class="ink-h-nav">
-         <li class="active"><a class="home" href="#">Home</a></li>
-         <li><a href="#">Containers</a></li>
-         <li><a href="#">Spacer units</a></li>
-         <li><a href="#">Spacing</a></li>
-      </ul>
-   </div>
-</nav>  
+<div class="menu-second-level">
+	<div class="ink-container">
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#">Containers</a></li>
+				<li><a href="#">Spacer units</a></li>
+				<li><a href="#">Spacing</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>  
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
 

@@ -20,4 +20,5 @@
 			<?php endforeach; ?>
 		</ul>
 	</nav>
+	<div class="border"></div>
 </div>

@@ -1,24 +1,24 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>Navigation</h2>
 		<p>Navigation is key in any website or web application.</p>
 	</div>
 </div>
 
-<nav class="">
-	<div class="menu-second-level">
-		<div class="ink-container">
-			<nav class="ink-navigation">
-				<ul class="menu horizontal">
-					<li class="active"><a class="home" href="#">Home</a></li>
-					<li><a href="#">Horizontal menu</a></li>
-					<li><a href="#">Vertical menu</a></li>
-					<li><a href="#">Simple footer menu</a></li>
-				</ul>
-			</nav>
-		</div>
+
+<div class="menu-second-level">
+	<div class="ink-container">
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#">Horizontal menu</a></li>
+				<li><a href="#">Vertical menu</a></li>
+				<li><a href="#">Simple footer menu</a></li>
+			</ul>
+		</nav>
 	</div>
-</nav>  
+</div>
+
 
 <div class="ink-container">
 	<div class="ink-section">

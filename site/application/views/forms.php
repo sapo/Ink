@@ -1,5 +1,5 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>Forms</h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -7,19 +7,21 @@
 		</p>
 	</div>
 </div>
-fdgfrgf
-<nav class="menu">
+
+<div class="menu-second-level">
 	<div class="ink-container">
-		<ul class="ink-h-nav">
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">Form building</a></li>
-			<li><a href="#">Text & Number entry</a></li>
-			<li><a href="#">Dropdowns and list boxes</a></li>
-			<li><a href="#">Buttons</a></li>
-			<li><a href="#">Alerts</a></li>
-		</ul>
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#">Form building</a></li>
+				<li><a href="#">Text & Number entry</a></li>
+				<li><a href="#">Dropdowns and list boxes</a></li>
+				<li><a href="#">Buttons</a></li>
+				<li><a href="#">Alerts</a></li>
+			</ul>
+		</nav>
 	</div>
-</nav>
+</div>
 
 <div class="ink-container">
 	<div class="ink-section">
