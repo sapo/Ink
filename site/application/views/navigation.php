@@ -5,22 +5,22 @@
 	</div>
 </div>
 
-<nav class="">
-	<div class="menu-second-level">
-		<div class="ink-container">
-			<nav class="ink-navigation">
-				<ul class="menu horizontal">
-					<li class="active"><a class="home" href="#">Home</a></li>
-					<li><a href="#">Horizontal menu</a></li>
-					<li><a href="#">Vertical menu</a></li>
-					<li><a href="#">Simple footer menu</a></li>
-				</ul>
-			</nav>
-		</div>
+<div class="menu-second-level">
+	<div class="ink-container">
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#horizontal-menu">Horizontal menu</a></li>
+				<li><a href="#">Vertical menu</a></li>
+				<li><a href="#">Simple footer menu</a></li>
+			</ul>
+		</nav>
 	</div>
-</nav>  
+</div>
+ 
 
 <div class="ink-container">
+	<a id="horizontal-menu"></a>
 	<div class="ink-section">
 		<div class="ink-vspace">
 			<h3>Horizontal menu</h3>
@@ -199,7 +199,7 @@
 			<div class="ink-l40">
 				<div class="ink-gutter">
 					<nav class="ink-navigation">
-						<ul class="menu vertical green">
+						<ul class="menu vertical">
 							<li><a href="#">Suspendisse</a></li>
 							<li><a href="#">Vivamus</a></li>
 							<li><a href="#">Condimentum</a></li>

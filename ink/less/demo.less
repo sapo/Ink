@@ -356,22 +356,6 @@ code {
 	font-size: .85em;
 }
 
-.visual-example {	
-	border: 1px solid @grey-20;
-	#ink > #border-radius > .all(4px);
-	.example-container {
-		padding: 1.4em 1.2em;
-	}
-	h4 {
-		#ink > #border-radius > .top(4px);
-		background: @grey-20;
-		color: @white;
-		font-size: 1em;
-		padding: 0.5em;
-		margin: 0;
-	}
-}
-
 #topbar {
 	height:@topbar-height;
 	background:@topbar-bgColor;
@@ -380,8 +364,9 @@ code {
 	margin:@topbar-margin;
 }
 
-#topbar {
+#topbar {	
 	.ink-navigation {
+		background: #222;
 		ul {
 			&.menu {
 				&.horizontal {
@@ -447,6 +432,59 @@ code {
 
 #topbar .ink-button:hover {
 	color:@topbar-colorHover;
-	background:none;
-	
+	background:none;	
+}
+
+
+div {
+
+	&.more-examples {
+
+		a {
+			&.show-me-more {
+				color: @grey-90;
+				font-size: 0.95em;
+				font-weight: 700;
+				display: block;
+				text-align: center;
+				padding-bottom: 4px;
+				background: @body-background;
+				#ink > #shadows > .text-shadow(0,2px,1px,@white);
+				#ink > #shadows > .box-shadow(0,2px,1px,0,@grey-20);
+			}
+		}
+
+		div {
+			&.examples {
+				// display: none;
+				padding-top: @padding;
+
+				.example-container {	
+					#ink > #border-radius > .all(6px);
+
+					.example {
+						padding: 1.4em 1.2em;
+						background: white;
+						// overflow: hidden;
+						#ink > #border-radius > .bottom(6px);
+						border-left: 1px solid @grey-30;
+						border-right: 1px solid @grey-30;
+						border-bottom: 1px solid @grey-30;
+					}
+
+					h4 {
+						border: 1px solid @grey-70;
+						#ink > #border-radius > .top(6px);
+						background: @grey-70;
+						color: @white;
+						font-size: 0.80em;
+						font-weight: 500;
+						padding: 0.5em;
+						margin: 0;
+					}
+				}
+
+			}
+		}
+	}
 }
