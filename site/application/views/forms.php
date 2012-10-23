@@ -1,10 +1,7 @@
 <div class="whatIs">
    <div class="ink-container">
 		<h2>Forms</h2>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-		</p>
+		<p>Form nightmare building made easy.</p>
 	</div>
 </div>
 
@@ -15,9 +12,8 @@
 				<li class="active"><a class="home" href="#">Home</a></li>
 				<li><a href="#">Form building</a></li>
 				<li><a href="#">Text & Number entry</a></li>
-				<li><a href="#">Dropdowns and list boxes</a></li>
+				<li><a href="#">Checkboxes & Radio buttons</a></li>
 				<li><a href="#">Buttons</a></li>
-				<li><a href="#">Alerts</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -27,10 +23,7 @@
 	<div class="ink-section">
 		<div class="ink-vspace">
 			<h3>Form building</h3>
-			<p>
-				Os campos dos formulários devem ser envolvidos por um elemento com a class <code>.ink-form-wrapper</code>. 
-				Esta class existe para separar os elementos do formulário bem como assistir na estilização de erros
-			</p>
+			<p>Form fields must be surrounded by an element with the class <code>ink-form-wrapper</code>. This class exists to separate the elements of the form as well as assist in styling errors.</p>
 <pre class="prettyprint linenums">
 <?php echo(htmlentities('<form class="ink-form-block">
   <div class="ink-form-wrapper">
@@ -40,14 +33,15 @@
 </form>')) ?></pre>
 		</div>
 	</div>
+	
 	<div class="ink-section">
 		<div class="ink-vspace">
 			<h3>Text & Number entry</h3>
 		</div>
 		<div class="ink-row">
 			<div class="ink-l50">
-				<div class="ink-gutter"
->					<form action="" class="ink-form-block">
+				<div class="ink-gutter">
+					<form action="" class="ink-form-block">
 						<fieldset>
 							<legend><h4>Fieldset legend</h4></legend>
 							<div class="ink-form-wrapper">
@@ -100,12 +94,23 @@
 			<div class="ink-l50">
 				<div class="ink-gutter">
 					<p>
-						Neste exemplo a <code>&lt;label&gt;</code> do respectivo campo do formulário encontra-se acima deste, em bloco
-						Para este efeito o <code>&lt;form&gt;</code> deverá ter a class <code>.ink-form-block</code>
+						In this example, the <code>&lt;label&gt;</code> of it's respective field is located above itself, in block.
+						To achieve this the <code>&lt;label&gt;</code> should have the <code>ink-form-block</code> class.
 					</p>
+					<p>If want the <code>&lt;label&gt;</code> to be positioned inline, you just need to use the <code>ink-form-inline</code> class in the <code>&lt;form&gt;</code>.</p>
+					<p><code>ink-form-validation</code> instructions should be added here...</p>
 					<p>
-						Caso se pretenda usar a <code>&lt;label&gt;</code> inline basta usar no <code>&lt;form&gt;</code> a class <code>.ink-form-inline</code>
+						To add error or warning feedback, <code>ink-warning-field</code> or <code>ink-required-field</code> classes should be added to the form field wrapper, 
+						followed by a <code>&lt;p&gt;</code> with the respective warning, like shown below.
 					</p>
+				<pre class="prettyprint linenums">
+<?php echo(htmlentities('<form class="ink-form-block">
+   <div class="ink-form-wrapper ink-warning-field">
+      <label for="inputId">Text input</label>
+      <input type="text" id="inputId">
+      <p class="ink-form-validation ink-warning">Warn about somthing</p>
+   </div>
+</form>')) ?></pre>
 				</div>
 			</div>
 		</div>

@@ -21,11 +21,9 @@
 </div>
 
 <div class="ink-container">
+
 	<div class="ink-section">
-		<div class="ink-vspace">
-			 <h3>Web Application Icons</h3>
-		</div>
-		
+		<h3>Web Application Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="ink-gutter unstyled">
@@ -175,10 +173,9 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="ink-section">
-		<div class="ink-vspace">
-			 <h3>Text Editor Icons</h3>
-		</div>
+		<h3>Text Editor Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
@@ -229,10 +226,9 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Directional Icons</h3>
-		</div>
+		<h3>Directional Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
@@ -272,10 +268,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Video Player Icons</h3>
-		</div>
+		<h3>Video Player Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
@@ -309,10 +304,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="ink-section">
-		<div class="ink-vspace">
-		    <h3>Social Icons</h3>
-		</div>
+	    <h3>Social Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
