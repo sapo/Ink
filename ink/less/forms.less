@@ -2,12 +2,10 @@ form {
 
 	fieldset {
 		border: none;
-		//width: 100%;
 		margin-bottom: 1.5em;
 		padding: 0;
 
 		legend {
-
 			margin: 1em 0;
 			text-shadow: 0 1px 0 white;
 			display: block;
@@ -18,7 +16,7 @@ form {
 	}	
 
 	label {
-		/*line-height: 1.5;*/
+		//line-height: 1.5;
 	}
 
 	.ink-form-validation {
@@ -32,7 +30,7 @@ form {
 		}
 
 	}
-
+	
 	input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
 		#ink > #border-radius > .all (@border-radius);
 		padding: @form-elements-padding;
@@ -167,20 +165,21 @@ form {
 			margin-left: 0.55em;
 			margin-top: -.3em;
 		}
+		
+		.ink-mini-input {
+			width:5em;
+			margin-right:.6em
+		}
 
 	}	
 
 	&.ink-form-inline {
 
 		label {
-			//font-weight: bold;
 			display: block;
-			// margin:@labelMargin;
-			margin-bottom: .5em;
+			margin: .5em;
 			vertical-align: top;
-			float: left;			
-			margin-top: 0.5em;
-			margin-right: 0.5em;
+			float: left;
 			line-height: 1;
 			min-width: 20%;
 			width: 20%;
@@ -191,7 +190,6 @@ form {
 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
 			min-width: 40%;
 			width: 78%;
-			// max-width: 75%;
 		}
 
 		textarea {
@@ -212,7 +210,12 @@ form {
 			margin-top: 0;
 			width: auto;
 			min-width: auto;
-		}		
+		}
+		
+		.ink-mini-input {
+			width:5em;
+			margin-right:.6em;
+		}
 
 		fieldset {
 
