@@ -16,7 +16,7 @@ SAPO.Dom.Event.observe(document, "dom:loaded", function(){
             var modal = new SAPO.Ink.Modal( undefined, {
                 'width': 300,
                 'height': 500,
-                'markup': '<div class="ink-space" style="text-align:center;"><div id="colorwheel" class="ib"></div><div class="ib" style="padding-left:20px"><p><label for="hexColor">hex color</label><input type="text" id="hexColor" value="#ff0000" /></p><p><label>sample</label><div id="sample" style="position:relaative;margin:0 auto;height:50px;width:50px;"></div></p></div><button class="ink-button success">Done</button><button class="ink-button">Cancel</button></div>'
+                'markup': '<div class="ink-space"><div id="colorwheel" style="width:218px;margin:0 auto;" class="ib"></div><div class="ib"><p><label for="hexColor">hex color</label><input type="text" id="hexColor" value="#ff0000" /></p><p><label>sample</label><div id="sample" style="position:relaative;margin:0 auto;height:50px;width:50px;"></div></p></div><div style="width:218px;margin;0 auto;text-align:center"><button class="ink-button success">Done</button><button class="ink-button">Cancel</button></div></div>'
             });
 
             SAPO.Dom.Event.observe( SAPO.Dom.Selector.select('.ink-modal .ink-button.success')[0], 'click', function(event){
