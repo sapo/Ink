@@ -16,6 +16,16 @@ class Download extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->library('session');
+		if( !$errors = $this->session->flashdata('errors') )
+		{
+			$errors = array();
+		}
+		else
+		{
+			$data['post'] = $this->session->flashdata('post');
+		}
+		$data['errors'] = $errors;
 		$data['pages'] = $this->config->item('site_pages');
 		$data['title'] = $this->config->item('site_title');
 		$data['modules'] = $this->config->item('ink_modules');
@@ -35,41 +45,246 @@ class Download extends CI_Controller {
 		$this->zip->download('ink-'.$this->ink_version_number.'.zip');
 	}
 
+	/**
+	 * Function to generate the custom download for InK
+	 * @author Ricardo Machado <ricardo-s-machado@telecom.pt>
+	 * @return void
+	 */
 	public function custom()
 	{
-		// create the build directory
-		$current_build_path = $this->_prepare_build_space();
 
-		// create a ink.less file including the chosen moduiles
-		$this->_generate_ink_config($current_build_path);
-
-		// create a makefile to setup compilation, minification and desencaralhation
-		$this->_generate_ink_makefile($current_build_path);
-
-		// Try to build and get the status code from the shell
-		$build_status = $this->_build_ink($current_build_path);
-
-		if(!$this->_include_common_files($current_build_path))
+		$post = $this->input->post(NULL,TRUE);
+		$errors = array();
+		if( $post ) # Has been posted anything?
 		{
-			// error something something
+
+			/**
+			 * Checks if the parameters posted were available in the options listed.
+			 */
+			if( !isset($post['modules']) || (!is_array($post['modules']) || ( array_intersect($post['modules'],array_keys($this->config->item('ink_modules')))!=$post['modules']  ) ) )
+			{
+				$errors['modules'] = "Please select one of the available modules.";
+			}
+
+			if( isset($post['options']) && (!is_array( $post['options'] ) || ( array_intersect($post['options'],array_keys($this->config->item('ink_options')))!=$post['options']  ) ) )
+			{
+				$errors['options'] = "Please select one of the options.";
+			}
+
+			$options = array();
+			foreach( $this->config->item('ink_config_vars') as $group => $vars)
+				$options += $vars;
+
+			if( isset($post['vars']) && ( !is_array( $post['vars']) || ( array_intersect(array_keys($post['vars']), array_keys($options) ) != array_keys($post['vars']) ) ) )
+			{
+				$errors['vars'] = "An error has occurred please check if you entered your data correctly.";
+			}
+			else
+			{
+				$errors['vars'] = array();
+				$this->load->library('form_validation');
+				foreach( $post['vars'] as $key => $value )
+				{
+					if( empty($value) && isset($options[$key]['required']) && ( $options[$key]['required'] === TRUE ) )
+					{
+						$errors['vars'][$key] = "This field is required.";
+						$errors['vars'][$key] = "Please fill in the field " . ( !empty($options[$key]['label']) ? $options[$key]['label'] : $key) . ".";
+						continue;
+					}
+					elseif( !empty($value) && isset($options[$key]['type']) )
+					{
+						switch( $options[$key]['type'] )
+						{
+							case 'color':
+								if( !$this->check_color( $value ) )
+								{
+									$errors['vars'][$key] = "Please select a valid color in the " . ( !empty($options[$key]['label']) ? $options[$key]['label'] : $key) . " field.";
+								}
+								break;
+							case 'measure':
+								if( !$this->check_measure( $value ) )
+								{
+									$errors['vars'][$key] = "Please insert a valid value in the " . ( !empty($options[$key]['label']) ? $options[$key]['label'] : $key) . " field.";
+								}
+								break;
+							case 'digit':
+							case 'decimal':
+							case 'alpha_dash':
+								if( $this->form_validation->{$options[$key]['type']}( $value ) === FALSE )
+								{
+									$errors['vars'][$key] = "Please insert a valid value in the " . ( !empty($options[$key]['label']) ? $options[$key]['label'] : $key) . " field.";
+								}
+							default:
+								/**
+								 * Ignore not defined rules
+								 */
+						}
+					}
+				}
+			}
+
+			# Clean empty values			
+			foreach($errors as $key => $value )
+			{
+				if( !$value )
+				{
+					unset($errors[$key]);
+				}
+			}
+
+			if( $errors )
+			{
+				# Load the session to make a flashdata to pass the errors
+				$this->load->library('session');
+				$this->session->set_flashdata('errors',$errors);
+				$this->session->set_flashdata('post',$post);
+
+				# Load the helper to redirect
+				$this->load->helper('url');
+				redirect('/download','location');
+				return;
+			}
 		}
 		
-		if($this->input->post('o-include-less') == 1) {
-			$this->_include_less($current_build_path);
+
+
+
+		if( in_array('grid',$post['modules']) ) {
+			$modules = array_merge( $post['modules'], array( "large","medium","small" ) );
 		}
 
-		// react to errors
-		if($build_status) {
-			// add the ink code to the zip archive object
-			$this->zip->read_dir($current_build_path."/ink/", FALSE);
-			// remove the build files
-			$this->_cleanup($current_build_path);
-			// send the archive to the browser
-			$this->zip->download('ink-custom-'.$this->ink_version_number.'.zip');
-		} else {
-			// show narly error and make stupid excuses
-		}		
-		
+
+		/**
+		 * Making a request to the NodeJS webserver (with the posts made)
+		 * for generating the ZIP file with all things in it
+		 */
+		$current_build_path = $this->_prepare_build_space();
+		if( $current_build_path && is_dir($current_build_path) && file_exists($current_build_path) )
+		{
+			# Generates the configuration in the build path
+			$this->_generate_ink_config( $current_build_path );
+
+			/**
+			 * Getting the normal css
+			 */
+			$qs = "";
+			foreach( $modules as $value ) 
+				$qs .= "modules[]=".$value."&";
+
+			$request = curl_init( $this->config->item('build_normal_css_url') );
+			curl_setopt( $request, CURLOPT_TIMEOUT, 5);
+			curl_setopt( $request, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt( $request, CURLOPT_FOLLOWLOCATION, TRUE);
+			curl_setopt( $request, CURLOPT_POST,TRUE);
+
+			#$qs = ("modules[]=" . implode("&modules[]=",$post['modules']));
+			curl_setopt( $request, CURLOPT_POSTFIELDS, substr($qs,0,strlen($qs)-1) );
+			$normalCSS = curl_exec($request);
+			$normalHttpStatus = curl_getinfo($request, CURLINFO_HTTP_CODE);
+			curl_close($request);
+			unset($request);
+
+
+			$options = $this->input->post('options',TRUE);
+
+			#var_dump($options);die();
+
+			if( isset($options) && in_array('minify_css',$options) )
+			{
+				/**
+				 * Getting the minimized css
+				 */
+				$request = curl_init( $this->config->item('build_minimized_css_url') );
+				curl_setopt( $request, CURLOPT_TIMEOUT, 5);
+				curl_setopt( $request, CURLOPT_RETURNTRANSFER, TRUE);
+				curl_setopt( $request, CURLOPT_FOLLOWLOCATION, TRUE);
+				curl_setopt( $request, CURLOPT_POST,TRUE);
+				curl_setopt( $request, CURLOPT_POSTFIELDS, substr($qs,0,strlen($qs)-1)."&compress=1" );
+				$minimizedCSS = curl_exec($request);
+				$minimizedHttpStatus = curl_getinfo($request, CURLINFO_HTTP_CODE);
+				curl_close($request);
+				unset($request);
+			}
+
+			if( ($normalHttpStatus == 200) && ( !isset($options) || !in_array('minify_css',$options) || ($minimizedHttpStatus == 200))	)
+			{
+				/**
+				 * Storing the CSS Files
+				 */
+				if( is_dir($current_build_path.'/ink/assets/css/') && file_exists($current_build_path.'/ink/assets/css/') && is_writable($current_build_path.'/ink/assets/css/'))
+				{
+					# Normal
+					$cssFile = fopen($current_build_path.'/ink/assets/css/ink.css','w+');
+					if( $cssFile )
+					{
+						fwrite($cssFile,$normalCSS);
+						fclose($cssFile);
+					}
+					else
+					{	
+						$errors['build'] = "Could not create the stylesheet (ERRNUM 6)";
+						$this->_errors( $errors, $post );
+					}
+
+
+					# Minimized
+					if( isset($options) && in_array('minify_css',$options) )
+					{
+						$cssFile = fopen($current_build_path.'/ink/assets/css/ink-min.css','w+');
+						if( $cssFile )
+						{
+							fwrite($cssFile,$minimizedCSS);
+							fclose($cssFile);
+						}
+						else
+						{
+							$errors['build'] = "Could not create the stylesheet (ERRNUM 5)";
+							$this->_errors( $errors, $post );
+						}
+					}
+
+					if( in_array('include_less',$post['options']) )
+					{
+						if( !$this->_include_less( $current_build_path ) )
+						{
+							$errors['build'] = "Could not create the configuration with the specified options (ERRNUM 7)";
+							$this->_errors( $errors, $post );
+						}
+					}
+
+
+					/**
+					 * Reads the directory and adds it to the zip to send
+					 * Removes the directory from the filesystem
+					 * Sends it to the user
+					 */
+					chmod($current_build_path."ink/", 0777);
+					$this->zip->read_dir($current_build_path."/ink/", FALSE);
+					#$this->_cleanup($current_build_path);
+					$this->zip->download('ink-custom-'.$this->ink_version_number.'.zip');
+				}
+				else
+				{
+					$errors['build'] = "Could not create the configuration (ERRNUM 4)";
+					$this->_errors( $errors, $post );
+				}
+			}
+			else
+			{
+				$errors['build'] = "Could not process the configuration (ERRNUM 3)";
+				$this->_errors( $errors, $post );
+			}
+		}
+		elseif( !$current_build_path || !is_dir($current_build_path) || !file_exists($current_build_path) )
+		{
+			$errors['build'] = "Could not create the configuration (ERRNUM 2)";
+			$this->_errors( $errors, $post );
+		}	
+		elseif( !is_writable($current_build_path) )
+		{
+			$errors['build'] = "Could not create the configuration (ERRNUM 1)";
+			$this->_errors( $errors, $post );
+		}
 	}
 
 
@@ -124,24 +339,20 @@ class Download extends CI_Controller {
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/lib.less\";\n");
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/common.less\";\n");
 
-		foreach($this->input->post() as $module_name => $module_value)
+		foreach($this->input->post('modules') as $module_value)
 		{
-			if($module_name != 'download' && !preg_match('/var-[\w-]+/i', $module_name)){
+			fwrite($new_ink_config, "@import \"".$this->paths->latest."less/".$module_value.".less\";\n");
 
-				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/".$module_name.".less\";\n");
-
-				if($module_name == 'grid') {
-					fwrite($new_ink_config, "@import \"".$this->paths->latest."less/large.less\";\n");
-					fwrite($new_ink_config, "@import \"".$this->paths->latest."less/medium.less\";\n");
-					fwrite($new_ink_config, "@import \"".$this->paths->latest."less/small.less\";\n");
-				}
-
-
-			} elseif(preg_match('/var-[\w-]+/i', $module_name) && $module_name != 'download' && !empty($module_value)){
-
-				fwrite($new_ink_config, str_replace('var-', '@', $module_name) . ': ' . $module_value . ";\n");
-
+			if($module_value == 'grid') {
+				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/large.less\";\n");
+				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/medium.less\";\n");
+				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/small.less\";\n");
 			}
+		}
+
+		foreach($this->input->post('vars') as $var_name => $var_value)
+		{
+			fwrite($new_ink_config, str_replace('var-', '@', $var_name) . ': ' . $var_value . ";\n");
 		}
 
 		fclose($new_ink_config);
@@ -151,6 +362,27 @@ class Download extends CI_Controller {
 	private function _generate_ink_makefile($build_site)
 	{
 
+		/**
+		 * Compiled but not minified
+		 */
+		shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/assets/css/ink.css') );
+		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie6.css') );
+		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie7.css') );
+
+
+		$options = $this->input->post('options');
+		if( isset($options) && is_array( $options ) && in_array('minify_css',$options ) )
+		{
+			/**
+			 * Compiled and minified
+			 */
+			shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/assets/css/ink-min.css') );
+			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie6-min.css') );
+			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie7-min.css') );
+		}
+
+
+		/*
 		$make_filename = 'Makefile';
 		$new_ink_makefile = fopen($build_site.'/'.$make_filename,'w+');
 		$build_path = $this->config->item('build_path');
@@ -186,6 +418,7 @@ class Download extends CI_Controller {
 		
 		// CLOSE THE MAKEFILE
 		fclose($new_ink_makefile);
+		 */
 	}
 
 	private function _build_ink($build_site)
@@ -210,6 +443,48 @@ class Download extends CI_Controller {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	/**
+	 * Validates if a string has a CSS color pattern (ex: #FFFFFF)
+	 * It forces the string to have a # in it. It must be an hexadecimal.
+	 * 
+	 * @param  	string 	$color 	Value to check
+	 * @return 	bool 			Returns true case it meets the css color pattern.
+	 * @author  Ricardo Machado	ricardo-s-machado@telecom.pt
+	 */
+	private function check_color( $color )
+	{
+		return preg_match('/^#+[0-9a-f]{3}(?:[0-9a-f]{3})?$/iD', $color);
+	}
+
+	/**
+	 * Validates if a string has a CSS measure pattern (ex: 10px)
+	 * 
+	 * @link 	http://demosthenes.info/blog/48/CSS-Measurement-Units
+	 * @param  	string 	$value 	Value to check
+	 * @return 	bool 			Returns true case it meets the css measure pattern.
+	 * @author  Ricardo Machado	ricardo-s-machado@telecom.pt
+	 */
+	private function check_measure( $value )
+	{
+		return preg_match('/^\d+(cm|ch|em|ex|gd|in|pc|pt|px|rem|vh|vm|\%)?$/iD', $value);
+	}
+
+	private function _errors( $errors, $post )
+	{
+		if( $errors )
+		{
+			# Load the session to make a flashdata to pass the errors
+			$this->load->library('session');
+			$this->session->set_flashdata('errors',$errors);
+			$this->session->set_flashdata('post',$post);
+
+			# Load the helper to redirect
+			$this->load->helper('url');
+			redirect('/download');
+			exit();
 		}
 	}
 
