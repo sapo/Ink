@@ -141,10 +141,10 @@
 					<h4>Unordered List</h4>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<ul>
-<li>Two fresh avocados</li>
-<li>Two ripe limes</li>
-<li>An onion</li>
-<li>Parsley</li>
+   <li>Two fresh avocados</li>
+   <li>Two ripe limes</li>
+   <li>An onion</li>
+   <li>Parsley</li>
 </ul>')) ?></pre>
 					<ul>
 						<li>Two fresh avocados</li>
@@ -160,10 +160,10 @@
 					<h4>Ordered list</h4>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<ol>
-<li>Grill the chicken</li>
-<li>Pour into tortilla</li>
-<li>Add guacamole, sour cream and cheese</li>
-<li>Roll tortilla and serve</li>
+   <li>Grill the chicken</li>
+   <li>Pour into tortilla</li>
+   <li>Add guacamole, sour cream and cheese</li>
+   <li>Roll tortilla and serve</li>
 </ol>')) ?></pre>
 					<ol>
 						<li>Grill the chicken</li>
@@ -180,10 +180,10 @@
 					<h4>Definition list</h4>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<dl>
-<dt>Avocado</dt>
-<dd>Pear-shaped fruit native to Central Mexico.</dd>
-<dt>Guacamole</dt>
-<dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
+   <dt>Avocado</dt>
+      <dd>Pear-shaped fruit native to Central Mexico.</dd>
+   <dt>Guacamole</dt>
+      <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
 </dl>')) ?></pre>
 					<dl>
 						<dt>Avocado</dt>
@@ -199,10 +199,10 @@
 					<h4>Unstyled list</h4>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<ul class="unstyled">
-<li>Carnitas</li>
-<li>Jalapeno peppers</li>
-<li>Sour cream</li>
-<li>Pico de gallo</li>
+   <li>Carnitas</li>
+   <li>Jalapeno peppers</li>
+   <li>Sour cream</li>
+   <li>Pico de gallo</li>
 </ul>')) ?></pre>
 					<ul class="unstyled">
 						<li>Carnitas</li>
