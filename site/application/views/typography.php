@@ -1,7 +1,7 @@
 <div class="whatIs">
    <div class="ink-container">
 		<h2>Typography</h2>
-		<p>Text is the most fundamental content type, Ink offers you a simple and elegant base style for text with a clear hierarchy and flexible, generic styling for all types of typographical composition you may need.</p>
+		<p>Text is the most fundamental content type.</p>
 	</div>
 </div>
 
