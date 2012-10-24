@@ -3,9 +3,11 @@
 $CI =& get_instance();
 $base_url = $CI->config->base_url();
 
-$config['base_path']	= '/home/pedro/work/ink/site/';
-$config['build_path']	= '/home/pedro/work/ink/site/builds/';
-$config['latest_path']	= '/home/pedro/work/ink/ink/';
+$config['base_path']	= '/var/www/ink/site/';
+$config['build_path']	= '/FASMOUNT/SAPO/VMNODE/';
+$config['latest_path']	= '/var/www/ink/ink/';
+$config['build_normal_css_url']	= 'http://1.135.7.199:8081/getcss';
+$config['build_minimized_css_url']	= 'http://1.135.7.199:8081/getcss';
 $config['ink_version_number'] = '1.0';
 
 $config['assets_url'] = $base_url.'assets/';
@@ -143,134 +145,205 @@ $config['ink_files'] = array(
 
 
 $config['ink_modules'] = array(
-	array(
+	'grid' => array(
 		'label' => array(
 			'text' => 'Layout',
-			'for' => 'grid'
+			'for' => 'modules_grid'
 		),
 		'attributes' => array(
-			'id' => 'grid',
-			'name' => 'grid',
-			'value' => '1',
+			'id' => 'modules_grid',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	),
-	array(
+	'navigation' => array(
 		'label' => array(
 			'text' => 'Navigation',
-			'for' => 'navigation'
+			'for' => 'modules_navigation'
 		),
 		'attributes' => array(
-			'id' => 'navigation',
-			'name' => 'navigation',
-			'value' => '1',
+			'id' => 'modules_navigation',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	),
-	array(
+	'typography' => array(
 		'label' => array(
 			'text' => 'Typography',
-			'for' => 'typography'
+			'for' => 'modules_typography'
 		),
 		'attributes' => array(
-			'id' => 'typography',
-			'name' => 'typography',
-			'value' => '1',
+			'id' => 'modules_typography',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	),
-	array(
+	'icons' => array(
 		'label' => array(
 			'text' => 'Icons',
-			'for' => 'icons'
+			'for' => 'modules_icons'
 		),
 		'attributes' => array(
-			'id' => 'icons',
-			'name' => 'icons',
-			'value' => '1',
+			'id' => 'modules_icons',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	),
-	array(
+	'forms' => array(
 		'label' => array(
 			'text' => 'Forms',
-			'for' => 'forms'
+			'for' => 'modules_forms'
 		),
 		'attributes' => array(
-			'id' => 'forms',
-			'name' => 'forms',
-			'value' => '1',
+			'id' => 'modules_forms',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	),
-	array(
+	'alerts' => array(
 		'label' => array(
 			'text' => 'Alerts',
-			'for' => 'alerts'
+			'for' => 'modules_alerts'
 		),
 		'attributes' => array(
-			'id' => 'alerts',
-			'name' => 'alerts',
-			'value' => '1',
+			'id' => 'modules_alerts',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	),
-	array(
+	'tables' => array(
 		'label' => array(
 			'text' => 'Tables',
-			'for' => 'tables'
+			'for' => 'modules_tables'
 		),
 		'attributes' => array(
-			'id' => 'tables',
-			'name' => 'tables',
-			'value' => '1',
+			'id' => 'modules_tables',
+			'name' => 'modules[]',
 			'checked' => 'checked'
 		)
 	)
 );
 
 $config['ink_options'] = array(
-	array(
+	'include_less' => array(
 		'label' => array(
 			'text' => 'Include LESS files?',
-			'for' => 'o-include-less'
+			'for' => 'include_less'
 		),
 		'attributes' => array(
-			'id' => 'o-include-less',
-			'name' => 'o-include-less',
-			'value' => '1'
+			'id' => 'include_less',
+			'value' => 'include_less',
+			'name' => 'options[]'
 		)
 	),
-	array(
+	'minify_css' => array(
 		'label' => array(
 			'text' => 'Minify css?',
-			'for' => 'o-minify'
+			'for' => 'minify_css'
 		),
 		'attributes' => array(
-			'id' => 'o-minify',
-			'name' => 'o-minify',
-			'value' => '1'
+			'id' => 'minify_css',
+			'name' => 'options[]',
+			'value' => 'minify_css',
 		)
 	),
 );
 
+
+/**
+ * Vars' configuration
+ *
+ * 	Currently there are 3 configuration groups: grid, font and color.
+ * 	Each group as an associative array where the index is the name of the field and points to a children's associative array
+ * with 2 required field and 2 optional: label, default_value (required), type and required (optional).
+ * 	The "label" and "default_value" indexes say it all...
+ * 	The "type" is a field that will help to validate the value sent by the user, correctly.
+ * 	It can have one of this values:
+ * 		-> color 		- This will indicate that the field must have an hexadecimal value.
+ * 		-> measure 		- This will indicate that the field must have an int or float value, followed by it's measure unit.
+ * 		-> text 		- This is the type by default, if not specified. Basically, the code will only validate if it's empty.
+ * 		-> digit 		- This will indicate that the field must have an integer as value.
+ * 		-> decimal 		- This will indicate that the field must have a float as value.
+ * 		-> alpha_dash	- This will indicate that the field must have a value that contains only  alpha-numeric characters,
+ * 		underscores or dashes.
+ *
+ * 	The "required" is a field that can either be true or false (TRUE or FALSE, is the same) and will indicate that a field
+ * 	has to be filled, or not.
+ */
+
 $config['ink_config_vars'] = array(
-	'grid shit' => array(
-		array('var-ink-grid-gutter' => '32px'),
-		array('var-site-width' => '')
+	'group_grid' => array(
+		'var-ink-grid-gutter' => array(
+			'label'				=> '',
+			'placeholder' 		=> '32px',
+			'default_value' 	=> '',
+			'type' 				=> 'measure',
+			'required' 			=> TRUE
+		),
+		'var-site-width' => array(
+			'label'				=> '',
+			'placeholder' 	=> '',
+			'default_value' 	=> '',
+			'type' 				=> 'measure',
+		)
 	),
-	'font-shit' => array(
-		array('var-font-family' => ''),
-		array('var-font-size' => '')
+	'group_font' => array(
+		'var-font-family' => array(
+			'label'				=> '',
+			'placeholder' 		=> '',
+			'default_value' 	=> '',
+			'type'				=> ''
+		),
+		'var-font-size' => array(
+			'label'				=> '',
+			'placeholder' 		=> '',
+			'default_value' 	=> '',
+			'type'				=> ''
+		)
 	),
-	'color-shit' => array(
-		array('var-body-background' => '#fff'),
-		array('var-text-color' => '#555'),
-		array('var-link-color' => '#0069D6'),
-		array('var-link-visited-color' => '#808080'),
-		array('var-link-active-color' => '#ff0000'),
-		array('var-link-hover-color' => '#007ED5'),
-		array('var-link-focus-color' => '#007ED5')
+	'group_color' => array(
+		'var-body-background' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#fff',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+		),
+		'var-text-color' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#555',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+		),
+		'var-link-color' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#0069D6',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+		),
+		'var-link-visited-color' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#808080',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+			),
+		'var-link-active-color' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#ff0000',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+		),
+		'var-link-hover-color' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#007ED5',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+		),
+		'var-link-focus-color' => array(
+			'label'				=> '',
+			'placeholder' 		=> '#007ED5',
+			'default_value' 	=> '',
+			'type'				=> 'color'
+		)
 	)
 );
 

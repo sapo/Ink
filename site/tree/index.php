@@ -24,10 +24,16 @@ $curr_path = getcwd();
 if( strpos($curr_path, '/home/ink/ink/') !== FALSE) 
 {
 	define('ENVIRONMENT', 'staging');		
-} elseif (strpos($curr_path, '/home/ink/inkdev/') !== FALSE) 
+} 
+elseif (strpos($curr_path, '/home/ink/inkdev/') !== FALSE) 
 {
 	define('ENVIRONMENT', 'testing');		
-} else {
+}
+elseif (strpos($curr_path, '/var/www/ink/site/tree') !== FALSE) 
+{
+	define('ENVIRONMENT', 'ricardosmachado');		
+}
+else {
 	define('ENVIRONMENT', 'development');
 }
 
@@ -45,6 +51,7 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
+		case 'ricardosmachado':
 			error_reporting(E_ALL);
 		break;
 		case 'staging':
