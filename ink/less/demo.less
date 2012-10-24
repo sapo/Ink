@@ -376,6 +376,7 @@ code {
 					&.black {
 						&.flat {
 							background:@topbar-bgColor;
+							filter:none;
 							#ink > #shadows > .no-box-shadow ();
 						}
 					}
@@ -390,7 +391,6 @@ code {
 	padding: 0;
 	text-indent:-5000px;
 	background:url(../imgs/logo_topbar.png);
-	margin:0 1em 0 0;
 }
 
 #topbar a.logoPlaceholder:hover {
@@ -398,6 +398,7 @@ code {
 }
 
 #topbar ul li a {
+	*height:auto;
 	color:@topbar-color;
 }
 

@@ -421,6 +421,7 @@ code {
 }
 #topbar .ink-navigation ul.menu.horizontal.black.flat {
   background: #222222;
+  filter: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -430,12 +431,12 @@ code {
   padding: 0;
   text-indent: -5000px;
   background: url(../imgs/logo_topbar.png);
-  margin: 0 1em 0 0;
 }
 #topbar a.logoPlaceholder:hover {
   background: url(../imgs/logo_topbar.png) 0 -40px;
 }
 #topbar ul li a {
+  *height: auto;
   color: #bbbbbb;
 }
 #topbar ul li a:hover {
