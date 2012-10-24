@@ -2,10 +2,6 @@
 
 $CI =& get_instance();
 $base_url = $CI->config->base_url();
-
-$config['base_path']	= '/var/www/ink/site/';
-$config['build_path']	= '/FASMOUNT/SAPO/VMNODE/';
-$config['latest_path']	= '/var/www/ink/ink/';
 $config['build_normal_css_url']	= 'http://10.135.7.199:8081/getcss';
 $config['build_minimized_css_url']	= 'http://10.135.7.199:8081/getcss';
 $config['ink_version_number'] = '1.0';

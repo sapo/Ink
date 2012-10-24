@@ -370,5 +370,18 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+/*
+|--------------------------------------------------------------------------
+| Folders to use for the custom download feature
+|--------------------------------------------------------------------------
+| Here you should configure the folders to be used as base path, build_path
+| and latest_path.
+|
+*/
+$config['base_path']	= '/var/www/ink/site/';
+$config['build_path']	= '/FASMOUNT/SAPO/VMNODE/';
+$config['latest_path']	= '/var/www/ink/ink/';
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
