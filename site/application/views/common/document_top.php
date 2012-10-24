@@ -60,12 +60,12 @@
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Dom/Event/0.1/"></script>
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Dom/Css/0.1/"></script>
     <!--<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Dom/Element/0.1/"></script>-->
-	<script type="text/javascript" src="http://js.rmlap/SAPO/Dom/Element/0.1/"></script>
+	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Dom/Element/0.1/"></script>
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Utility/Dimensions/0.1/"></script>
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/DatePicker/2.1/"></script> 
     <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Utility/Color/0.1/"></script>
     <!--<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>-->
-    <script type="text/javascript" src="http://js.rmlap/SAPO/Component/ColorWheel/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
     <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/0.1/"></script>
 
 	<script type="text/javascript" src="<?php echo assets_url('js') ?>html5shiv.js"></script>
