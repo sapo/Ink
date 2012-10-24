@@ -181,9 +181,9 @@
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<dl>
    <dt>Avocado</dt>
-      <dd>Pear-shaped fruit native to Central Mexico.</dd>
+   <dd>Pear-shaped fruit native to Central Mexico.</dd>
    <dt>Guacamole</dt>
-      <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
+   <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
 </dl>')) ?></pre>
 					<dl>
 						<dt>Avocado</dt>
@@ -329,8 +329,8 @@
 						<p>For block quotes, use the <code>blockquote</code> element, with an optional <code>cite</code> element to contain the source name, like so:</p>
 						<pre class="prettyprint linenums">
 <?php echo(htmlentities('<blockquote>
-<p>You can\'t always get what you want.</p>
-<p><cite>Jagger & Richards</cite>, 1969</p>
+   <p>You can\'t always get what you want.</p>
+   <p><cite>Jagger & Richards</cite>, 1969</p>
 </blockquote>')) ?></pre>
 						<blockquote>
 							<p>You can't always get what you want.</p>
@@ -344,8 +344,8 @@
 						<p>You can use the <code>&lt;address&gt;</code> element to contain address elements, such as a name, street, postal code. Use headings, paragraphs and line-breaks to compose your address.</p>
 						<pre class="prettyprint linenums">
 <?php echo(htmlentities('<address>
-<h6>SAPO</h6>
-<p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
+   <h6>SAPO</h6>
+   <p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
 </address>')) ?></pre>
 						<address>
 							<h6>SAPO</h6>
