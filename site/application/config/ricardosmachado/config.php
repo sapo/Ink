@@ -373,9 +373,9 @@ $config['proxy_ips'] = '';
 | and latest_path.
 |
 */
-$config['base_path']	= '/var/www/ink/site/';
+$config['base_path']    = BASEPATH . '../';
 $config['build_path']	= '/FASMOUNT/SAPO/VMNODE/';
-$config['latest_path']	= '/var/www/ink/ink/';
+$config['latest_path']  = BASEPATH . '../../ink/ink/';
 
 
 /* End of file config.php */
