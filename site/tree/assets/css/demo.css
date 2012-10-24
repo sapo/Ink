@@ -153,6 +153,9 @@ a.active {
   letter-spacing: -0.02em;
   color: #131e24;
 }
+.whatIs p {
+  margin: 0 0 0.5em 0;
+}
 #download {
   text-align: center;
 }
@@ -453,10 +456,10 @@ code {
   box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
-#topbar .ink-h-nav .submenu li a {
+#topbar .horizontal .submenu li a {
   color: #000000;
 }
-#topbar .ink-h-nav .submenu li a:hover {
+#topbar .horizontal .submenu li a:hover {
   color: #ffffff;
 }
 #topbar .ink-button {

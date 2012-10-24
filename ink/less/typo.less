@@ -18,9 +18,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {font-size: 2.5em;}
 h2 {font-size: 2em;}
-h3 {font-size: 1.8em;}
-h4 {font-size: 1.4em;}
-h5 {font-size: 1.2em;}
+h3 {font-size: 1.715em;}
+h4 {font-size: 1.438em;}
+h5 {font-size: 1.250em;}
 h6 {font-size: 1em;}      
 
 h3, h4, h5, h6 {
@@ -32,7 +32,7 @@ h1 small {font-size: .6em; color: #BFBFBF; font-weight: 100;}
 small {color: lighten(@text-color, 30%); font-size: .6em;}
 
 /* Paragraphs  */
-p {line-height: 1.5em; margin-bottom: .5em;}
+p {line-height: 1.5em; margin: .5em 0}
 
 input, textarea {font-family: "Helvetica Neue", Helvetica,Arial,sans-serif; color: #666;}
 
@@ -54,27 +54,23 @@ blockquote small {font-size: .9em;}
 blockquote small::before , blockquote small::after{
 content: ' — ';
 }
-ul, ol, dl{margin:0px; padding-left: 1.4em;}
-ul li, ol li,  dl dd {
-	margin:.5em 0; 
-	// color: lighten(@text-color, 10%);
-} 
-ul.unstyled { list-style:none; padding-left: 0em; }
-ul.unstyled ul {list-style:disc outside;  padding-left: 1.4em;}
-ol li {list-style: decimal outside;}
-dl {padding: 0em;}
-dl dt {font-weight: bold; margin-top: .7em;}  
-dl dd {padding-left: 1em;}
+
+ul, ol, dl		{ padding-left: 1.4em; margin:0; }
+ul.unstyled 	{ list-style:none; padding-left: 0em; }
+ul.unstyled ul	{ list-style:disc outside; padding-left: 1.4em; }
+ol li 			{ list-style: decimal outside; }
+dl 				{ padding: 0em; }
+dl dt 			{ font-weight: bold; margin-top: .7em; }
+dl dd 			{ padding-left: 1em; margin: .5em 0 }
 
 
 ul, ol {
 	line-height:1.4;
-	margin:0px; 
+	margin:0;
 	padding-left: 1.4em;
 
 	li {
 		margin:.5em 0; 
-		// color: lighten(@text-color, 10%);
 	}
 
 
@@ -108,14 +104,6 @@ ul, ol {
 .note {font-size: .9em; color: lighten(@text-color, 20%) }
 .note strong {color: @text-color;}
 
-// .label_new, .label_warning, .label_error, .label_info  {
-// 	padding:.2em .5em;
-// 	text-transform: uppercase;
-// 	font-weight: bold;
-// 	color: @white;
-// 	font-size: .85em;
-// 	.round-corners(2px)
-// }
 .label_new {background-color: @alertMsg-success-Bg;}
 .label_warning {background-color: @alertMsg-Warning-Bg;}
 .label_error {background-color: @alertMsg-Error-Bg;}

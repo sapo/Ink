@@ -26,21 +26,22 @@
 	<a name="fonts"></a>
 	<div class="ink-section">
 		<h2>Fonts</h2>
-		<div class="ink-row">
+		<p>Ink offers you a simple and elegant base style for text with a clear hierarchy and flexible, generic styling for all types of typographical composition you may need.</p>
+		<p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions and choose from three basic font stacks.</p>
+		<div class="ink-row ink-vspace">
 			<div class="ink-l60">
 				<div class="ink-gutter">
-					<p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions and choose from three basic font stacks.</p>
-					<h3>Ubuntu font stack</h3>
+					<h3>Ubuntu</h3>
 					<p>The default font stack starts with the Ubuntu webfont. Make sure you can serve up the font files from your server, they are free to use and redistribute.</p>
-					<h3>Sans serif font stack</h3>
+					<h3>Sans serif</h3>
 					<p>If you prefer a system font, sans serif, option, change the font-family option bla bla</p>
-					<h3>Serif font stack</h3>
+					<h3>Serif font</h3>
 					<p>For a serif option, we went with Georgia, which is readily availabe and quite versatile. Configure bla bla</p>
 				</div>
 			</div>
 			<div class="ink-l40">
 				<div class="ink-gutter">
-					<h4>Font stack examples</h4>
+					<h3>Examples</h3>
 					<h5>Ubuntu font stack</h5>
 					<ul>
 						<li>Ubuntu</li>
@@ -68,10 +69,10 @@
 	<!--headings_start-->
 	<a name="headings"></a>
 	<div class="ink-section">
-		<h2>Headings</h2>
 		<div class="ink-row">
-			<div class="ink-l60" id="headingExample">
+			<div class="ink-l60">
 				<div class="ink-gutter">
+					<h2>Headings</h2>
 					<p>Headings are essential for defining your blocks of text. Use your h1 for a site-wide identifier, such as the logo, use the h2 as page title, and try to keep it to a single h2 per page, and then build your hierarchy of blocks using h3-h6.</p>
 					<p>Ink defines default font-size, line-height and margins for each heading level to cleanly match the body text and maximize readability.</p>
 				</div>
@@ -94,7 +95,7 @@
 	<div class="ink-section">
 		<h2>Body & Hypertext</h2>
 		<p>Body text is the most basic unit of text you can define. Always use <code>&lt;p&gt;</code> for your paragraphs and Ink takes care of font-size, line-height and proper margins.</p>
-		<div class="ink-row">
+		<div class="ink-row ink-vspace">
 			<div class="ink-l75 ink-m75 ink-s100">
 				<div class="ink-gutter">
 					<h4>Emphasis</h4>
@@ -134,7 +135,7 @@
 		<h2>Lists</h2>
 		<p>There are four basic list styles defined in Ink, which correspond to the most widely used HTML list formats and also include an unstyled list format.</p>
 
-		<div class="ink-row">
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50 ink-m50 ink-s100">
 				<div class="ink-gutter">
 					<h4>Unordered List</h4>
@@ -173,7 +174,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="ink-row">
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50 ink-m50 ink-s100">
 				<div class="ink-gutter">
 					<h4>Definition list</h4>
@@ -220,6 +221,7 @@
 		<h2>Utility Classes</h2>
 		<p>You can use the InK utility classes <code>.info</code>, <code>.warning</code>, <code>.caution</code> and <code>.success</code> on html elements like headings, paragraphs, lists, mark, code, to quickly style those elements using a basic color code that can greatly aid in adding meaning to your content.</p>
 		<p>Use the classes to obtain a color background with white text or use the extra <code>.invert</code> class to write colored text on transparent background. You can tweak the colors used by each class in the <a href="conf">Ink Configurator</a>, your own CSS or the conf.less file.</p>
+		<div class="ink-vspace">
 		<div class="ink-row">
 			<div class="ink-l25 ink-m50">
 				<div class="ink-hspace">
@@ -264,10 +266,11 @@
 				</div>
 			</div>
 		</div>
-		<h3>Labels</h3>
+		</div>
 		<div class="ink-row">
 			<div class="ink-l75 ink-m75 ink-s100">
 				<div class="ink-gutter">
+					<h4>Labels</h4>
 					<p>You can easily use these utility classes to label sections of highlighted text. Simply create an inline level element with the class <code>.ink-label</code> and then add one of the utility classes to color code your inline label. This way, you can easily add a success message post a warning emphasize a particularly relevant information or display an error message.</p>
 					<p>We suggest you do not use punctuation before or after labels, but instead, precede and succeed with spaces.</p>
 				</div>
@@ -287,7 +290,7 @@
 		<div class="ink-row ink-vspace">
 			<div class="ink-l50 ink-m50 ink-s100">
 				<div class="ink-gutter">
-					<h3>Code example</h3>
+					<h4>Code example</h4>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<h6 class="warning">You are approaching your space quota</h6>
 <p>Your account offers 20 GB of storage space and you are now using <span class="ink-label info">19.8 GB</span>. Please remove some files or upgrade your account.</p>
@@ -296,7 +299,7 @@
 			</div>
 			<div class="ink-l50 ink-m50 ink-s100">
 				<div class="ink-gutter">
-					<h3>Result</h3>
+					<h4>Result</h4>
 					<h6 class="warning">You are approaching your space quota</h6>
 					<p>Your account offers 20 GB of storage space and you are now using <span class="ink-label info">19.8 GB</span>. Please remove some files or upgrade your account.</p>
 					<p class="caution invert">Please note, files over quota will not be stored.</p>
@@ -311,7 +314,7 @@
 		<h2>Additional elements</h2>
 		<p>These elements allow you to compose specific types of text, such as addresses or quotes. Use the example code for quick recipes that work.</p>
 			<div class="ink-row ink-vspace">
-				<div class="ink-l50">
+				<div class="ink-l33">
 					<div class="ink-gutter">
 						<h4>Abbreviations</h4>
 						<p>For abbreviations, simply use the HTML <code>abbr</code> tag, like so:</p>
@@ -320,9 +323,9 @@
 						<p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
 					</div>
 				</div>
-				<div class="ink-l50">
+				<div class="ink-l33">
 					<div class="ink-gutter">
-						<h5>Block quotes</h5>
+						<h4>Block quotes</h4>
 						<p>For block quotes, use the <code>blockquote</code> element, with an optional <code>cite</code> element to contain the source name, like so:</p>
 						<pre class="prettyprint linenums">
 <?php echo(htmlentities('<blockquote>
@@ -335,24 +338,15 @@
 						</blockquote>
 					</div>
 				</div>
-			</div>
-		</div>
-
-		<div class="ink-section">
-			<h4>Addresses</h4>
-			<div class="ink-row ink-vspace">
-				<div class="ink-l75">
+				<div class="ink-l33">
 					<div class="ink-gutter">
+						<h4>Addresses</h4>
 						<p>You can use the <code>&lt;address&gt;</code> element to contain address elements, such as a name, street, postal code. Use headings, paragraphs and line-breaks to compose your address.</p>
 						<pre class="prettyprint linenums">
 <?php echo(htmlentities('<address>
 <h6>SAPO</h6>
 <p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
 </address>')) ?></pre>
-					</div>
-				</div>
-				<div class="ink-l25">
-					<div class="ink-gutter">
 						<address>
 							<h6>SAPO</h6>
 							<p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
@@ -360,6 +354,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		<!--additionalelements_end-->
 	</div>
+</div>
