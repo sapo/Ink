@@ -260,7 +260,7 @@ class Download extends CI_Controller {
 					 */
 					chmod($current_build_path."ink/", 0777);
 					$this->zip->read_dir($current_build_path."/ink/", FALSE);
-					#$this->_cleanup($current_build_path);
+					$this->_cleanup($current_build_path);
 					$this->zip->download('ink-custom-'.$this->ink_version_number.'.zip');
 				}
 				else
