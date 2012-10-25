@@ -23,6 +23,10 @@ elseif($path == '/home/pedro/work/ink/site/tree')
 {
 	$config['base_url']	= 'http://10.134.132.97';
 }
+elseif($path == '/home/jdias/Remote/ink/site/tree') 
+{
+	$config['base_url']	= 'http://inkink.jdias-sapo.pt/';
+}
 else 
 {
 	$config['base_url']	= 'http://localhost/Ink/site/tree';
