@@ -12,7 +12,7 @@ pre {
 }
 
 pre ol						{ line-height:1.5; list-style: decimal ; margin: 0 0 0 1.6em; }
-pre ol li					{ word-wrap: break-word; border-left: 3px solid #CCC; margin:0; padding-left:1em}
+pre ol li					{ word-wrap: break-word; border-left: 3px solid #CCC; margin:0; padding: .2em 0 .2em 1em }
 pre ol li:nth-child(odd)	{ background:#f0f0f0 }
 
 pre .tag {color: #1E347B;}
