@@ -35,10 +35,8 @@
 	</div>
 	
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Text & Number entry</h3>
-		</div>
-		<div class="ink-row">
+		<h3>Text & Number entry</h3>
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
 				<div class="ink-gutter">
 					<form action="" class="ink-form-block">
@@ -115,12 +113,10 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Checkboxes and radio buttons</h3>
-		</div>
-		
-		<div class="ink-row">
+		<h3>Checkboxes and radio buttons</h3>
+		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
 				<form action="" class="ink-form-block ink-gutter">
 					<fieldset>
@@ -180,10 +176,9 @@
 	</div>
 	
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Buttons</h3>
-			<p>Button styling can be applied to almost any html element by using the <code>.ink-button</code> class.</p>
-		</div>
+		<h3>Buttons</h3>
+		<p>Button styling can be applied to almost any html element by using the <code>.ink-button</code> class.</p>
+		
 		<table class="ink-table ink-bordered">
 			<thead>
 				<tr>
@@ -193,6 +188,14 @@
 					<th>description</th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td>Info</td>
+					<td><button class="ink-button info">Info</button></td>
+					<td><button class="ink-button info" disabled>Info</button></td>
+					<td><code>blah</code></td>
+				</tr>
+			</tfoot>
 			<tbody>
 				<tr>
 					<td>Default</td>
@@ -222,13 +225,8 @@
 					<td><button class="ink-button caution" disabled>Caution</button></td>
 					<td><code>blah</code></td>
 				</tr>
-				<tr>
-					<td>Info</td>
-					<td><button class="ink-button info">Info</button></td>
-					<td><button class="ink-button info" disabled>Info</button></td>
-					<td><code>blah</code></td>
-				</tr>
 			</tbody>
+			
 		</table>
 	</div>
 </div>

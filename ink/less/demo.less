@@ -386,39 +386,42 @@ code {
 	}
 }
 
-#topbar a.logoPlaceholder {
+#topbar .horizontal a.logoPlaceholder {
 	width:44px;
 	padding: 0;
 	text-indent:-5000px;
 	background:url(../imgs/logo_topbar.png);
+	margin:0 1em 0 0;
 }
 
-#topbar a.logoPlaceholder:hover {
+#topbar .horizontal a.logoPlaceholder:hover {
 	background:url(../imgs/logo_topbar.png) 0 -40px;
 }
 
-#topbar ul li a {
+#topbar .horizontal li a {
 	*height:auto;
 	color:@topbar-color;
 }
 
-#topbar ul li a:hover { 
+#topbar .horizontal li a:hover { 
 	background:lighten(@topbar-bgColor,6%); 
 	color:@topbar-colorHover;
 }
 
-#topbar ul li.active a {
+#topbar .horizontal li.active a {
 	#ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
 	#ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
 	color:@white;
 }
 
-#topbar .horizontal .submenu li a {
+#topbar .horizontal .submenu li a, {
 	color:@black;
+	background:@white
 }
 
 #topbar .horizontal .submenu li a:hover {
-	color:@white;
+	background:lighten(@topbar-bgColor,6%); 
+	color:@topbar-colorHover;
 }
 
 #topbar .ink-button {
@@ -436,8 +439,7 @@ code {
 
 #topbar .ink-button:hover {
 	color:@topbar-colorHover;
-	background:none;
-	
+	background:none;	
 }
 
 #topbar .border {
