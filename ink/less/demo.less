@@ -55,6 +55,12 @@ h2 span {
 	padding: 1em;
 }
 
+mark {
+	font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace; 
+	font-size: .9em;
+	background: @themeBackground; 
+	padding:1px 3px;
+}
 .topbar {
 	//border-image:-webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57) 0 0 6 0 stretch;
 	-moz-border-image:url(../imgs/home_bkg.png) 0 0 6 0 stretch;
@@ -344,22 +350,6 @@ code {
 	padding: 0 4px;
 }
 
-.visual-example {	
-	border: 1px solid @grey-20;
-	#ink > #border-radius > .all(4px);
-	.example-container {
-		padding: 1.4em 1.2em;
-	}
-	h4 {
-		#ink > #border-radius > .top(4px);
-		background: @grey-20;
-		color: @white;
-		font-size: 1em;
-		padding: 0.5em;
-		margin: 0;
-	}
-}
-
 #topbar {
 	height:@topbar-height;
 	background:@topbar-bgColor;
@@ -368,8 +358,9 @@ code {
 	margin:@topbar-margin;
 }
 
-#topbar {
+#topbar {	
 	.ink-navigation {
+		background: #222;
 		ul {
 			&.menu {
 				&.horizontal {
@@ -442,12 +433,56 @@ code {
 	background:none;	
 }
 
-#topbar .border {
-	height:.3em;
-	background: url(../imgs/home_bkg.png) center;
-	background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-	background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-	background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-	background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-	background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+
+div {
+
+	&.more-examples {
+
+		a {
+			&.show-me-more {
+				color: @grey-90;
+				font-size: 0.95em;
+				font-weight: 700;
+				display: block;
+				text-align: center;
+				padding-bottom: 4px;
+				background: @body-background;
+				#ink > #shadows > .text-shadow(0,2px,1px,@white);
+				#ink > #shadows > .box-shadow(0,2px,1px,0,@grey-20);
+			}
+		}
+
+		div {
+			&.examples {
+				// display: none;
+				padding-top: @padding;
+
+				.example-container {	
+					#ink > #border-radius > .all(6px);
+
+					.example {
+						padding: 1.4em 1.2em;
+						background: white;
+						// overflow: hidden;
+						#ink > #border-radius > .bottom(6px);
+						border-left: 1px solid @grey-30;
+						border-right: 1px solid @grey-30;
+						border-bottom: 1px solid @grey-30;
+					}
+
+					h4 {
+						border: 1px solid @grey-70;
+						#ink > #border-radius > .top(6px);
+						background: @grey-70;
+						color: @white;
+						font-size: 0.80em;
+						font-weight: 500;
+						padding: 0.5em;
+						margin: 0;
+					}
+				}
+
+			}
+		}
+	}
 }
