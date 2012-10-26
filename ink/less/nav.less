@@ -28,26 +28,21 @@
 				text-decoration: none;
 			}
 
-			ul {
+			.submenu  {
 
-				&.submenu {
-					display: none;
-					width:14em;
-					position:absolute;
-					padding-left: 0;
-					background: @submenu-bgColor;
-					border-top:1px solid #CACACA;
-					z-index: 1000;l
+				display: none;
+				width:14em;
+				position:absolute;
+				padding-left: 0;
+				background: @submenu-bgColor;
+				border-top:1px solid #CACACA;
+				z-index: 1000;
 
-					li {
-						display: block;
-						border-right:1px solid #CACACA;
-						border-bottom:1px solid #CACACA;
-						border-left:1px solid #CACACA;
+				li {
+					display: block;
 
-						a {
-							color: @black;
-						}
+					a {
+						color: @black;
 					}
 				}			
 			}
@@ -70,10 +65,8 @@
 					#ink > #border-radius > .left (4px);
 				}
 
-				&.active {
-					a {
-						background: fade(@black,20%);
-					}
+				&.active a {
+					background: fade(@black,20%);
 				}
 
 			}
@@ -103,7 +96,7 @@
 
 				li {
 
-					font-size: @h-nav-fontSize; 
+					font-size: @h-nav-fontSize;
 					display: inline-block; 
 					vertical-align: baseline; 
 					position:relative; 
@@ -190,6 +183,7 @@
 						display:block;
 						text-decoration: none;
 						color:@black;
+						#ink > #border-radius > .all(0);
 
 						&:hover {
 
@@ -218,247 +212,247 @@
 
 			&.grey {
 
-					#ink > #border-radius > .all (4px);					
-					#ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+				#ink > #border-radius > .all (4px);					
+				#ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
 
-					li {
+				li {
 
-						a {
-							color:@black;
-						}
-
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
-
-						&.active {
-							a {
-								background: fade(@black,20%);
-							}
-						}
-
+					a {
+						color:@black;
 					}
 
-					&.flat {
-						background: #d2d2d2;
-						#ink > #border-radius > .all (0px);
+					&:first-child a {
+						#ink > #border-radius > .left (4px);
+					}
+
+					&.active {
+						a {
+							background: fade(@black,20%);
+						}
+					}
+
+				}
+
+				&.flat {
+					background: #d2d2d2;
+					#ink > #border-radius > .all (0px);
+				}
+			}
+
+			&.green {
+
+				#ink > #border-radius > .all (4px);
+				#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);					
+
+				li {
+
+					a {
+						color:@white;
+					}
+
+					&:first-child a {
+						#ink > #border-radius > .left (4px);
+					}
+
+					&.active {
+						a {
+							background: fade(@black,20%);
+						}
+					}
+
+					ul {
+						&.submenu {
+							li {
+								a {
+									color: @black;
+									&:hover {
+										background: darken(desaturate(@success-bg-color,10%),12%);
+										color: @white;
+									}
+								}
+							}
+						}
 					}
 				}
 
-				&.green {
+				&.flat {
+					background: desaturate(@success-bg-color,10%);
+					#ink > #border-radius > .all (0px);
+				}
+			}
 
-					#ink > #border-radius > .all (4px);
-					#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);					
+			&.blue {
 
-					li {
+				#ink > #border-radius > .all (4px);
+				#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);					
 
+				li {
+
+					a {
+						color:@white;
+					}
+
+					&:first-child a {
+						#ink > #border-radius > .left (4px);
+					}
+
+					&.active {
 						a {
-							color:@white;
+							background: fade(@black,20%);
 						}
+					}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
-
-						&.active {
-							a {
-								background: fade(@black,20%);
-							}
-						}
-
-						ul {
-							&.submenu {
-								li {
-									a {
-										color: @black;
-										&:hover {
-											background: darken(desaturate(@success-bg-color,10%),12%);
-											color: @white;
-										}
+					ul {
+						&.submenu {
+							li {
+								a {
+									color: @black;
+									&:hover {
+										background: darken(desaturate(@info-bg-color,10%),12%);
+										color: @white;
 									}
 								}
 							}
 						}
 					}
 
-					&.flat {
-						background: desaturate(@success-bg-color,10%);
-						#ink > #border-radius > .all (0px);
-					}
 				}
 
-				&.blue {
+				&.flat {
+					background: desaturate(@info-bg-color,10%);
+					#ink > #border-radius > .all (0px);
+				}
+			}
 
-					#ink > #border-radius > .all (4px);
-					#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);					
+			&.red {
 
-					li {
+				#ink > #border-radius > .all (4px);
+				#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);					
 
+				li {
+
+					a {
+						color:@white;
+					}
+
+					&:first-child a {
+						#ink > #border-radius > .left (4px);
+					}
+
+					&.active {
 						a {
-							color:@white;
+							background: fade(@black,20%);
 						}
+					}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
-
-						&.active {
-							a {
-								background: fade(@black,20%);
-							}
-						}
-
-						ul {
-							&.submenu {
-								li {
-									a {
-										color: @black;
-										&:hover {
-											background: darken(desaturate(@info-bg-color,10%),12%);
-											color: @white;
-										}
+					ul {
+						&.submenu {
+							li {
+								a {
+									color: @black;
+									&:hover {
+										background: darken(desaturate(@caution-bg-color,10%),12%);
+										color: @white;
 									}
 								}
 							}
 						}
-
 					}
 
-					&.flat {
-						background: desaturate(@info-bg-color,10%);
-						#ink > #border-radius > .all (0px);
-					}
 				}
 
-				&.red {
+				&.flat {
+					background: desaturate(@caution-bg-color,10%);
+					#ink > #border-radius > .all (0px);
+				}
+			}
 
-					#ink > #border-radius > .all (4px);
-					#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);					
+			&.orange {
 
-					li {
+				#ink > #border-radius > .all (4px);
+				#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);					
 
+				li {
+
+					a {
+						color:@white;
+					}
+
+					&:first-child a {
+						#ink > #border-radius > .left (4px);
+					}
+
+					&.active {
 						a {
-							color:@white;
+							background: fade(@black,20%);
 						}
+					}
 
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
-
-						&.active {
-							a {
-								background: fade(@black,20%);
-							}
-						}
-
-						ul {
-							&.submenu {
-								li {
-									a {
-										color: @black;
-										&:hover {
-											background: darken(desaturate(@caution-bg-color,10%),12%);
-											color: @white;
-										}
+					ul {
+						&.submenu {
+							li {
+								a {
+									color: @black;
+									&:hover {
+										background: darken(desaturate(@warning-bg-color,10%),12%);
+										color: @white;
 									}
 								}
 							}
 						}
-
 					}
 
-					&.flat {
-						background: desaturate(@caution-bg-color,10%);
-						#ink > #border-radius > .all (0px);
-					}
 				}
 
-				&.orange {
-
-					#ink > #border-radius > .all (4px);
-					#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);					
-
-					li {
-
-						a {
-							color:@white;
-						}
-
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
-
-						&.active {
-							a {
-								background: fade(@black,20%);
-							}
-						}
-
-						ul {
-							&.submenu {
-								li {
-									a {
-										color: @black;
-										&:hover {
-											background: darken(desaturate(@warning-bg-color,10%),12%);
-											color: @white;
-										}
-									}
-								}
-							}
-						}
-
-					}
-
-					&.flat {
-						background: desaturate(@warning-bg-color,10%);
-						#ink > #border-radius > .all (0px);
-					}
+				&.flat {
+					background: desaturate(@warning-bg-color,10%);
+					#ink > #border-radius > .all (0px);
 				}
+			}
 
-				&.black {
+			&.black {
 
-					#ink > #border-radius > .all (4px);
-					#ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);					
+				#ink > #border-radius > .all (4px);
+				#ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);					
 
-					li {
+				li {
 
-						a {
-							color:@white;
-							&:hover {
-								background: fade(@white,20%);
-							}
-						}
-
-						&:first-child a {
-							#ink > #border-radius > .left (4px);
-						}
-
-						&.active {
+					a {
+						color:@white;
+						&:hover {
 							background: fade(@white,20%);
 						}
+					}
 
-						ul {
-							&.submenu {
-								li {
-									a {
-										color: @black;
-										&:hover {
-											background: fade(@black,50%);
-											color: @white;
-										}
+					&:first-child a {
+						#ink > #border-radius > .left (4px);
+					}
+
+					&.active {
+						background: fade(@white,20%);
+					}
+
+					ul {
+						&.submenu {
+							li {
+								a {
+									color: @black;
+									&:hover {
+										background: fade(@black,50%);
+										color: @white;
 									}
 								}
 							}
 						}
-
 					}
 
-					&.flat {
-						background: @black;
-						#ink > #border-radius > .all (0px);
-					}
 				}
+
+				&.flat {
+					background: @black;
+					#ink > #border-radius > .all (0px);
+				}
+			}
 
 		}
 
@@ -478,63 +472,6 @@
 			}
 
 		}
-
-		&.pagination {
-
-		background: @white;	
-		#ink > #border-radius > .all (4px);		
-
-		li {
-			a {
-				padding: 0.5em 1em;
-				display: block;
-				float: left;
-				background: @white;
-				#ink > #effects > .transition ();
-				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
-				#ink > #shadows > .box-shadow (0,1px,2px,0,fade(@grey-50,50%));
-
-				&:hover {
-					background: darken(@white,10%);
-				}
-
-			}
-			&:first-child {
-				a {
-					#ink > #border-radius > .left (6px);
-				}
-			}
-
-			&:last-child {
-				a {
-					border-right: 1px @grey-15 solid;
-					#ink > #border-radius > .right (6px);
-				}
-			}
-
-			&.active {
-				a {
-					font-weight: 700;
-					background: darken(@white,10%);
-					&:hover {
-						cursor: default;
-					}
-				}
-			}
-
-			&.disabled {
-				a {
-					color: lighten(@black,70%);
-
-					&:hover {
-						#ink > #effects > .transition ();
-						#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
-						cursor: default;						
-					}
-				}
-			}
-		}
-	}
 
 	}
 
@@ -639,7 +576,7 @@ html body .ink-navigation {
 
 						a {
 
-							padding:0 @ink-grid-gutter-medium*2;
+							//padding:0 @ink-grid-gutter-medium*2;
 
 						}
 					}

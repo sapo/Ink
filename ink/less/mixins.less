@@ -105,14 +105,13 @@
 
 		.gradient (@start-color, @end-color, @end-color-stop) {
 			background: @start-color;
-			//zoom:1;
 			filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
-			background-image: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
-			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
-			background-image: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
-			background-image: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
-			background-image: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
-			background-image: linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
+			background: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
 		}
 
 	}

@@ -12,7 +12,10 @@
 				<li class="active"><a class="home" href="#">Home</a></li>
 				<li><a href="#horizontal-menu">Horizontal menu</a></li>
 				<li><a href="#">Vertical menu</a></li>
-				<li><a href="#">Simple footer menu</a></li>
+				<li><a href="#">Footer menu</a></li>
+				<li><a href="#">Pagination</a></li>
+				<li><a href="#">Pills</a></li>
+				<li><a href="#">Breadcrumbs</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -248,7 +251,7 @@
 
 		</div>
 
-		</div>
+	</div>
 
 	
 
@@ -269,7 +272,7 @@
 							<li><a href="#">Ccommodo</a></li>
 							<li><a href="#">Egestas</a></li>
 							<li>
-								<a href="#">Submenu<i class="icon-caret-right"></i></a>
+								<a href="#">Submenu<i class="icon-caret-right ink-for-l"></i><i class="icon-caret-down ink-for-s ink-for-m"></i></a>
 								<ul class="submenu">
 									<li><a href="#">Item with a very big title</a></li>
 									<li><a href="#">Item</a></li>
@@ -390,7 +393,7 @@
 	<div class="ink-section">
 
 		<h3>Breadcrumbs</h3>
-		<p>Breadcrumbs can be created by adding the <code>.breadcrumbs</code> class to a <code>.ink-h-nav</code> list. The <code>.active</code> and <code>.disabled</code> classes are available.</p>
+		<p>Breadcrumbs can be created by adding the <code>breadcrumbs</code> class to a <code>ink-navigation</code> list. The <code>active</code> and <code>disabled</code> classes are available.</p>
 
 		<nav class="ink-navigation">
 			<ul class="breadcrumbs">
