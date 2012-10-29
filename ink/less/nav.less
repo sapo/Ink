@@ -127,8 +127,15 @@
 
 					.submenu {
 						margin-left:-1px;
-						a {
-							margin: 0;
+						
+						li {
+							
+							border-bottom: 1px solid @grey-10;
+						
+							a {
+								#ink > #border-radius > .all (0px);
+								margin: 0;
+							}
 						}
 					}
 
@@ -174,7 +181,6 @@
 
 					margin: 0;
 					position:relative;
-					border-bottom:1px solid #CCC;
 
 					a {
 
@@ -435,6 +441,7 @@
 					ul {
 						&.submenu {
 							li {
+								
 								a {
 									color: @black;
 									&:hover {
