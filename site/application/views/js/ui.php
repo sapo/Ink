@@ -362,13 +362,15 @@
 			<div class="ink-l70">
 				<div class="ink-space">
 					<div class="ink-tabs">
-						<ul class="ink-tabs-nav ink-h-nav">
-							<li class="active"><a href="#home">Home</a></li>
-							<li><a href="#news">News</a></li>
-							<li><a href="#description">Description</a></li>
-							<li><a href="#stuff">Stuff</a></li>
-							<li><a href="#more_stuff">More stuff</a></li>
-						</ul>
+						<nav class="ink-navigation">
+							<ul class="ink-tabs-nav menu horizontal">
+								<li class="active"><a href="#home">Home</a></li>
+								<li><a href="#news">News</a></li>
+								<li><a href="#description">Description</a></li>
+								<li><a href="#stuff">Stuff</a></li>
+								<li><a href="#more_stuff">More stuff</a></li>
+							</ul>
+						</nav>
 						<div id="home" class="ink-tabs-container">
 							<p>
 								Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic organizm. Living tissue over endoskeleton. 
