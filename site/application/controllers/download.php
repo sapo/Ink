@@ -146,8 +146,12 @@ class Download extends CI_Controller {
 			}
 		}
 		
-
-
+		$configModules = $this->config->item('ink_modules');
+		foreach($this->input->post('modules') as $module){
+			if( isset($configModules[$module]['implicit_files']) && count($configModules[$module]['implicit_files']) ) {
+				$modules = array_merge( $post['modules'], $configModules[$module]['implicit_files'] );
+			}
+		}
 
 		if( in_array('grid',$post['modules']) ) {
 			$modules = array_merge( $post['modules'], array( "large","medium","small" ) );
@@ -161,6 +165,25 @@ class Download extends CI_Controller {
 		$current_build_path = $this->_prepare_build_space();
 		if( $current_build_path && is_dir($current_build_path) && file_exists($current_build_path) )
 		{
+			if( !$this->_include_less( $current_build_path ) )
+			{
+				$errors['build'] = "Could not create the configuration with the specified options (ERRNUM 7)";
+				$this->_errors( $errors, $post );
+			}
+
+
+			/**
+			 * Copies the default (ergo boilerplate) html file to the build folder, saving it as index.html
+			 */
+			$copy_boilerplate  = "cp -R " . $this->paths->latest . "my-page.html " . $current_build_path . "ink/index.html";
+
+			exec($copy_boilerplate,$result,$status_code);
+
+			if($status_code != 0){
+				$errors['build'] = "Could not create the configuration (ERRNUM 8)";
+				$this->_errors( $errors, $post );
+			}
+
 			# Generates the configuration in the build path
 			$this->_generate_ink_config( $current_build_path );
 
@@ -187,9 +210,7 @@ class Download extends CI_Controller {
 
 			$options = $this->input->post('options',TRUE);
 
-			#var_dump($options);die();
-
-			if( isset($options) && in_array('minify_css',$options) )
+			if( $options && in_array('minify_css',$options) )
 			{
 				/**
 				 * Getting the minimized css
@@ -206,7 +227,7 @@ class Download extends CI_Controller {
 				unset($request);
 			}
 
-			if( ($normalHttpStatus == 200) && ( !isset($options) || !in_array('minify_css',$options) || ($minimizedHttpStatus == 200))	)
+			if( ($normalHttpStatus == 200) && ( !$options || !in_array('minify_css',$options) || ($minimizedHttpStatus == 200))	)
 			{
 				/**
 				 * Storing the CSS Files
@@ -228,7 +249,7 @@ class Download extends CI_Controller {
 
 
 					# Minimized
-					if( isset($options) && in_array('minify_css',$options) )
+					if( $options && in_array('minify_css',$options) )
 					{
 						$cssFile = fopen($current_build_path.'/ink/assets/css/ink-min.css','w+');
 						if( $cssFile )
@@ -243,7 +264,7 @@ class Download extends CI_Controller {
 						}
 					}
 
-					if( in_array('include_less',$post['options']) )
+					if( $options && in_array('include_less',$options) )
 					{
 						if( !$this->_include_less( $current_build_path ) )
 						{
@@ -332,6 +353,8 @@ class Download extends CI_Controller {
 	private function _generate_ink_config($build_site)
 	{
 
+		$configModules = $this->config->item('ink_modules');
+
 		$new_ink_config = fopen($build_site.'/ink.less','w+');
 
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/normalize.less\";\n");
@@ -339,14 +362,15 @@ class Download extends CI_Controller {
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/lib.less\";\n");
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/common.less\";\n");
 
-		foreach($this->input->post('modules') as $module_value)
+		foreach($this->input->post('modules') as $moduleValue)
 		{
-			fwrite($new_ink_config, "@import \"".$this->paths->latest."less/".$module_value.".less\";\n");
+			fwrite($new_ink_config, "@import \"".$this->paths->latest."less/".$moduleValue.".less\";\n");
 
-			if($module_value == 'grid') {
-				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/large.less\";\n");
-				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/medium.less\";\n");
-				fwrite($new_ink_config, "@import \"".$this->paths->latest."less/small.less\";\n");
+			if( isset( $configModules[$moduleValue]) && isset($configModules[$moduleValue]['implicit_files']) && count($configModules[$moduleValue]['implicit_files']) ) {
+
+				foreach($configModules[$moduleValue]['implicit_files'] as $file){
+					fwrite($new_ink_config, "@import \"".$this->paths->latest.$file.";\n");
+				}
 			}
 		}
 

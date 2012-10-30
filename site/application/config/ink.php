@@ -141,6 +141,10 @@ $config['ink_files'] = array(
 
 
 $config['ink_modules'] = array(
+
+	/**
+	 * Grid Module Configuration
+	 */
 	'grid' => array(
 		'label' => array(
 			'text' => 'Layout',
@@ -150,7 +154,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_grid',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array( 'less/large.less', 'less/medium.less', 'less/small.less' )
 	),
 	'navigation' => array(
 		'label' => array(
@@ -161,7 +166,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_navigation',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array()
 	),
 	'typography' => array(
 		'label' => array(
@@ -172,7 +178,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_typography',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array()
 	),
 	'icons' => array(
 		'label' => array(
@@ -183,7 +190,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_icons',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array()
 	),
 	'forms' => array(
 		'label' => array(
@@ -194,7 +202,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_forms',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array()
 	),
 	'alerts' => array(
 		'label' => array(
@@ -205,7 +214,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_alerts',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array()
 	),
 	'tables' => array(
 		'label' => array(
@@ -216,7 +226,8 @@ $config['ink_modules'] = array(
 			'id' => 'modules_tables',
 			'name' => 'modules[]',
 			'checked' => 'checked'
-		)
+		),
+		'implicit_files' => array()
 	)
 );
 
@@ -268,6 +279,10 @@ $config['ink_options'] = array(
  */
 
 $config['ink_config_vars'] = array(
+
+	/**
+	 * Grid Variables
+	 */
 	'group_grid' => array(
 		'var-ink-grid-gutter' => array(
 			'label'				=> '',
@@ -283,6 +298,10 @@ $config['ink_config_vars'] = array(
 			'type' 				=> 'measure',
 		)
 	),
+
+	/**
+	 * Font Variables
+	 */
 	'group_font' => array(
 		'var-font-family' => array(
 			'label'				=> '',
@@ -297,6 +316,10 @@ $config['ink_config_vars'] = array(
 			'type'				=> ''
 		)
 	),
+
+	/**
+	 * Color Variables
+	 */
 	'group_color' => array(
 		'var-body-background' => array(
 			'label'				=> '',
