@@ -170,18 +170,40 @@
 					zoom: 1;
 				}
 
-				.submenu {
-					top:-1px; 
-					left:100%;
-					overflow: hidden;
-					padding-left: 0;
-				}
-
 				li {
 
 					margin: 0;
 					position:relative;
+					border-bottom: 1px solid @grey-10;
 
+					&:first-child {
+						a {
+							#ink > #border-radius > .top (4px);
+						}
+					}
+					
+					&:last-child {
+						border-bottom: none;
+						
+						a {
+							#ink > #border-radius > .bottom (4px);
+						}
+						
+					}
+					
+					.submenu {
+						top:-1px; 
+						left:100%;
+						overflow: hidden;
+						padding-left: 0;
+					
+						li {
+							a {
+								#ink > #border-radius > .all (0);
+							}
+						}
+					}
+					
 					a {
 
 						line-height: @v-nav-height; 
@@ -189,7 +211,6 @@
 						display:block;
 						text-decoration: none;
 						color:@black;
-						#ink > #border-radius > .all(0);
 
 						&:hover {
 
@@ -248,7 +269,7 @@
 			&.green {
 
 				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);					
+				#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);	
 
 				li {
 
@@ -290,7 +311,7 @@
 			&.blue {
 
 				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);					
+				#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);
 
 				li {
 
@@ -333,7 +354,7 @@
 			&.red {
 
 				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);					
+				#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);
 
 				li {
 
@@ -376,7 +397,7 @@
 			&.orange {
 
 				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);					
+				#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);
 
 				li {
 

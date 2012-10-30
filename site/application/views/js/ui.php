@@ -622,4 +622,38 @@
 			</fieldset>
 		</form>
 	</div>
+	<div class="ink-section">
+		<div class="ink-l70">
+			<div class="ink-space">	
+				<div class="ink-progress-bar progress-info">
+					<div class="bar grey" style="width: 80%">I am a grey progress bar</div>
+				</div>
+				<div class="ink-progress-bar progress-info">
+					<div class="bar green" style="width: 60%">I am a green progress bar</div>
+				</div>
+				<div class="ink-progress-bar progress-info">
+					<div class="bar blue" style="width: 50%">I am a blue progress bar</div>
+				</div>
+				<div class="ink-progress-bar progress-info">
+					<div class="bar red" style="width: 40%">I am a red progress bar</div>
+				</div>
+				<div class="ink-progress-bar progress-info">
+					<div class="bar orange" style="width: 30%">I am an orange progress bar</div>
+				</div>
+				<div class="ink-progress-bar progress-info">
+					<div class="bar black" style="width: 20%">I am a black progress bar</div>
+				</div>
+			</div>
+		</div>
+		<div class="ink-l30">
+			<div class="ink-space">	
+				<h3>Progress bars</h3>
+				<p>
+					Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
+					The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
+				</p>
+			</div>
+		</div>
+		
+	</div>
 </div>
