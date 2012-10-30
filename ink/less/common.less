@@ -28,7 +28,6 @@
 	font-size: 1.45em; 
 }
 
-
 /* add .warning, .caution, .info, .success class styling to text elements */
 
 h1, h2, h3, h4 , h5, h6, p, mark, label, span {
@@ -75,119 +74,12 @@ h1, h2, h3, h4 , h5, h6, p, mark, label, span {
 
 }
 
-
 label, mark, code, span {
 	&.ink-label {
 		&.warning, &.caution, &.info, &.success {
 			padding: @padding / 4 @padding / 2 ;
 		}
 	}
-}
-
-.ink-h-nav {
-
-		@hover-lighten-percent: 12%;
-		@border-darken-percent: 6%;
-
-		&.warning {
-
-			#ink > #shadows > .box-shadow (0,0,5px,0,darken(@warning-bg-color,20%));
-			#ink > #states > .warning ();
-			border-color: darken(@warning-bg-color,@border-darken-percent);
-
-			li {
-				a {
-					#ink > #states > .warning ();
-					&.invert {
-						#ink > #states > .warning (true);
-						padding: 0;
-					}
-					&:hover {
-						background: lighten(@warning-bg-color, @hover-lighten-percent);
-						color: #fff;
-					}				
-				}
-				&.active {
-					a {
-						background: lighten(@warning-bg-color, @hover-lighten-percent);
-					}
-				}
-			}
-		}
-
-		&.caution {
-
-			#ink > #shadows > .box-shadow (0,0,5px,0,@caution-bg-color);
-			#ink > #states > .caution ();
-
-			li {
-				a {
-					border-color: darken(@caution-bg-color,@border-darken-percent);
-					#ink > #states > .caution ();
-					&.invert {
-						#ink > #states > .caution (true);
-						padding: 0;
-					}
-					&:hover {
-						background: lighten(@caution-bg-color,@hover-lighten-percent);
-						color: #fff;
-					}
-				}
-				&.active {
-					a {
-						background: lighten(@caution-bg-color,@hover-lighten-percent);
-					}
-				}
-			}
-		}
-
-		&.info {
-
-			#ink > #shadows > .box-shadow (0,0,5px,0,darken(@info-bg-color,25%));
-			#ink > #states > .info ();
-			border-color: darken(@info-bg-color,@border-darken-percent);
-
-			li {
-				a {
-					#ink > #states > .info ();
-					&.invert {
-						#ink > #states > .info (true);
-						padding: 0;
-					}
-					&:hover {
-						background: lighten(@info-bg-color,@hover-lighten-percent);
-						color: #fff;
-					}
-				}
-				&.active {
-					a {
-						background: lighten(@info-bg-color,@hover-lighten-percent);						
-					}
-				}
-			}
-		}
-
-		&.success {
-			li {
-				a {
-					#ink > #states > .success ();
-					border-color: darken(@success-bg-color,@border-darken-percent);
-					&.invert {
-						#ink > #states > .success (true);
-						padding: 0;
-					}
-					&:hover {
-						background: lighten(@success-bg-color,@hover-lighten-percent);
-						color: #fff;
-					}
-				}
-				&.active {
-					a {
-						background: lighten(@success-bg-color,@hover-lighten-percent);						
-					}
-				}
-			}
-		}
 }
 
 .ink-shade {

@@ -314,11 +314,6 @@ a.active {
   background: url(../imgs/home_Sprite.png) 0 -43px no-repeat;
 }
 /*...................................................  Footer  ...................................................*/
-footer {
-  border-top: 1px solid #CCC;
-  background: #f0f0f0;
-  overflow: hidden;
-}
 footer .SAPOlogo {
   background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
   text-indent: -9999px;
@@ -334,9 +329,6 @@ footer .PTClogo {
   width: 41px;
   height: 43px;
   margin-right: 1em;
-}
-footer .copyright {
-  font-size: 0.875em;
 }
 footer h5 {
   font-size: 1em;
@@ -370,11 +362,6 @@ footer ul.sociallinks li a.Twt_link {
 }
 footer ul.sociallinks li a.Gplus_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
-}
-code {
-  border: 1px solid #E0E0E0;
-  background: #E9E9E9;
-  padding: 0 4px;
 }
 #topbar {
   height: 40px;
@@ -582,4 +569,9 @@ pre.prettyprint {
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   white-ink-space: pre-wrap;
+}
+code {
+  border: 1px solid #E0E0E0;
+  background: #E9E9E9;
+  padding: 0 4px;
 }
