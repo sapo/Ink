@@ -25,8 +25,7 @@
 	<![endif]-->
 	
 	<link rel="stylesheet" href="<?php echo assets_url('css') ?>demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="<?php echo assets_url('css') ?>prettify.css" type="text/css" media="screen" title="no title" charset="utf-8">
-
+	
 	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"/>
 
 	<!-- DEFINES TRANSITIONS: appear3d, slide, hover -->
