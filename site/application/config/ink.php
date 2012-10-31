@@ -280,90 +280,410 @@ $config['ink_options'] = array(
 
 $config['ink_config_vars'] = array(
 
-	/**
-	 * Grid Variables
-	 */
-	'group_grid' => array(
-		'var-ink-grid-gutter' => array(
-			'label'				=> '',
-			'placeholder' 		=> '32px',
-			'default_value' 	=> '',
-			'type' 				=> 'measure',
-			'required' 			=> TRUE
-		),
-		'var-site-width' => array(
-			'label'				=> '',
-			'placeholder' 	=> '',
-			'default_value' 	=> '',
-			'type' 				=> 'measure',
-		)
-	),
+    /* 
+    Scaffolding
+    @ink-site-width
+    @ink-grid-gutter
+    @body-background
+    @headings-color
+    @border-radius 
+    */
+    'Scaffolding' => array(
+        'ink-site-width' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'ink-grid-gutter' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'body-background' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'headings-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'border-radius' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+    ),
 
-	/**
-	 * Font Variables
-	 */
-	'group_font' => array(
-		'var-font-family' => array(
-			'label'				=> '',
-			'placeholder' 		=> '',
-			'default_value' 	=> '',
-			'type'				=> ''
-		),
-		'var-font-size' => array(
-			'label'				=> '',
-			'placeholder' 		=> '',
-			'default_value' 	=> '',
-			'type'				=> ''
-		)
-	),
+    /*
+    Typography
+    @headings-color
+    @text-color
+    @font-family
+    @font-condensed
+    @font-size
+    @headings-color             
+    @link-color
+    @link-visited-color
+    @link-active-color
+    @link-hover-color
+    @link-focus-color    
+    */
+    'Typography' => array(
+        'headings-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'text-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'font-family' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'text',
+            'required'          => TRUE
+        ),
+        'font-condensed' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'text',
+            'required'          => TRUE
+        ),
+        'font-size' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'headings-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'link-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'link-visited-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'link-active-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'link-hover-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'link-focus-color' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
 
-	/**
-	 * Color Variables
-	 */
-	'group_color' => array(
-		'var-body-background' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#fff',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-		),
-		'var-text-color' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#555',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-		),
-		'var-link-color' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#0069D6',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-		),
-		'var-link-visited-color' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#808080',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-			),
-		'var-link-active-color' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#ff0000',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-		),
-		'var-link-hover-color' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#007ED5',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-		),
-		'var-link-focus-color' => array(
-			'label'				=> '',
-			'placeholder' 		=> '#007ED5',
-			'default_value' 	=> '',
-			'type'				=> 'color'
-		)
-	)
+    /*
+    Forms
+    @form-field-fontSize
+    @form-field-borderColor
+    @form-field-bg
+    @focusColor                   // This value must be rbga
+    @disabledColor
+    @errorColor
+    @warningColor
+    */
+    'Typography' => array(
+        'form-field-fontSize' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'form-field-borderColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'form-field-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'focusColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'rgba',
+            'required'          => TRUE
+        ),
+        'disabledColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'errorColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'warningColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
+
+    
+    /*
+    Buttons
+    @btn-fontSize
+    @btn-bg
+    */
+    'Buttons' => array(
+        'btn-fontSize' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'btn-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
+
+
+    /*
+    Footer
+    @footer-min-height
+    @footer-bgColor
+    */
+    'Footer' => array(
+        'footer-min-height' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'measure',
+            'required'          => TRUE
+        ),
+        'footer-bgColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
+
+
+    /*
+    Alerts & Errors
+    @alertMsg-bg
+    @alertMsg-error-bg
+    @alertMsg-success-bg
+    @alertMsg-info-bg
+    @warning-bg
+    @caution-bg
+    @error-bg
+    @success-bg
+    @info-bg
+    */
+    'Alerts & Errors' => array(
+        'alertMsg-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'alertMsg-error-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'alertMsg-success-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'alertMsg-info-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'warning-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'caution-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'error-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'success-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'info-bg' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
+
+
+    /*
+    Tables
+    @table-cell-borderColor
+    @table-zebra-rowColor
+    @table-row-hoverColor
+    */
+    'Tables' => array(
+        'table-cell-borderColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'table-zebra-rowColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'table-row-hoverColor' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
+
+
+    /*
+    Basic Colors
+    @orange
+    @red
+    @green
+    @blue
+    @yellow
+    */
+    'Basic Colors' => array(
+        'orange' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'red' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'green' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'blue' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+        'yellow' => array(
+            'label'             => '',
+            'placeholder'       => '',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => TRUE
+        ),
+    ),
 );
 
 ?>

@@ -65,9 +65,10 @@
 	
 	<?php echo form_fieldset('<h4>Configuration</h4>') ?>
 		<div class="ink-row">
-		<?php foreach($config as $group => $vars): ?>	
+		<?php foreach($config as $group => $vars): ?>
 			<div class="ink-l33">
 				<div class="ink-gutter">
+				<h5><?php echo $group;?></h5>
 				<?php foreach($vars as $var_id => $var): ?>
 				<div class="ink-form-wrapper <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
 					<?php echo form_label($var_id,(!empty($var['label']) ? $var['label'] : $var_id));?>
