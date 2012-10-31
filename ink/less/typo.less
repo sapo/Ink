@@ -13,7 +13,7 @@ a:hover		{color: @link-hover-color; text-decoration: underline;}
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold; 
-	color: #404040; 
+	color: @headings-color; 
 	padding:.3em 0;
 }
 h1 {font-size: 2.5em;}
@@ -82,7 +82,7 @@ ul, ol {
 		}
 		
 		li:nth-child(odd) {
-			background-color: @table-zebra-row-color;
+			background-color: @table-zebra-rowColor;
 		}
 	}
 
@@ -93,7 +93,7 @@ ul, ol {
 			border-radius: @border-radius;
 
 			&:hover {
-				background: @table-row-hover-color;
+				background: @table-row-hoverColor;
 			}
 		}
 
@@ -104,10 +104,10 @@ ul, ol {
 .note {font-size: .9em; color: lighten(@text-color, 20%) }
 .note strong {color: @text-color;}
 
-.label_new {background-color: @alertMsg-success-Bg;}
-.label_warning {background-color: @alertMsg-Warning-Bg;}
-.label_error {background-color: @alertMsg-Error-Bg;}
-.label_info {background-color: @alertMsg-Info-Bg;}
+.label_new {background-color: @alertMsg-success-bg;}
+.label_warning {background-color: @alertMsg-warning-bg ;}
+.label_error {background-color: @alertMsg-error-bg;}
+.label_info {background-color: @alertMsg-Info-bg;}
 
 h1 .label_new, h1 .label_warning, h1 .label_error, h1 .label_info,
 h2 .label_new, h2 .label_warning, h2 .label_error, h2 .label_info,

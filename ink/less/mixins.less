@@ -262,44 +262,44 @@
 	#states {
 
 		.caution (@inv) when (@inv = true) {
-			color: @caution-bg-color;
+			color: @caution-bg;
 			background-color: transparent;
 		}
 
 		.caution () {
 			color: @white;
-			background-color: @caution-bg-color;
+			background-color: @caution-bg;
 		}
 
 
 		.warning (@inv) when (@inv = true) {
-			color: @warning-bg-color;
+			color: @warning-bg;
 			background-color: transparent;
 		}
 
 		.warning (){
-			background-color: @warning-bg-color;
+			background-color: @warning-bg;
 			color: @white;
 		}
 
 		.success (@inv) when (@inv = true) {
-			color: @success-bg-color;
+			color: @success-bg;
 			background-color: transparent;
 		}
 
 		.success () {
-			background-color: @success-bg-color;
+			background-color: @success-bg;
 			color: @white;
 		}
 
 		.info (@inv) when (@inv = true) {
-			color: @info-bg-color;
+			color: @info-bg;
 			background-color: transparent;
 		}
 
 		.info () {
 			color: @white;
-			background-color: @info-bg-color;
+			background-color: @info-bg;
 		}
 
 		.disabled (@color) when (lightness(@color) < 60%){

@@ -1,18 +1,18 @@
-// INK GRID
-// Container and gutters
+// SCAFFOLDING
+// Dimensions
+@ink-site-width             : 960px;
 @ink-container-margin       : 0 auto;
 @ink-grid-gutter            : 32px;
 @ink-grid-gutter-medium     : round(@ink-grid-gutter / 1.5);
-@ink-grid-gutter-small     :  round(@ink-grid-gutter / 3);
+@ink-grid-gutter-small      : round(@ink-grid-gutter / 3);
 @ink-container-padding      : @ink-grid-gutter;
 
-// Default dimensions
+// Offset
 @margin                     : 10px;  
 @padding                    : 15px;
-@site-width                 : 960px;
 @border-radius              : 4px;
 
-// Default Colors
+// Colors
 @body-background			: #f7f7f7;
 
 // TYPOGRAPHY
@@ -20,45 +20,36 @@
 @font-family                : Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 @font-condensed             : Ubuntu_condensed;
 @font-size                  : 0; // if this variable is set as a pixel value it gets inserted as the font-size property of the body element;
+@headings-color				: #404040;
 
 @link-color                 : #0069D6;
 @link-visited-color         : #808080;
 @link-active-color          : red;
-@link-hover-color           : #007ED5 ;
+@link-hover-color           : #007ED5;
 @link-focus-color           : @link-color;
 
 // FORMS
-// Size Variables
-@elementsWidth              : 300px;
-@labelWidth                 : 120px;
-@smallElementsWidth         : 100px;
-@miniElementsWidth          : 55px;
-@fontSize                   : 14px;
+// Size
+@form-field-fontSize 		: 14px;
 
-// Offset Variables
-@wraperPadding              : 10px 0;
-@form-elements-padding      : 6px;
-@elementsMargin             : 0 5px;
-@labelMargin                : 7px 5px;
+// Offset
+@form-field-padding     	: 6px;
+@form-field-margin      	: 0 5px;
+@form-label-margin      	: 7px 5px;
 
-// Color Variables
-@baseColor                  : inherit;
-@form-elements-border-color : #ddd;
-@form-elements-bg			: #FFF;
-@focusColor                 : rgba(153, 153, 153, 0.6); // Estes valores têm que ser em rbga
+// Color
+@form-field-borderColor 	: #ddd;
+@form-field-bg				: #FFF;
+@focusColor                 : rgba(153, 153, 153, 0.6); // This value must be rbga
 @focusBlurSize              : 10px;
 @disabledColor              : #eee;
 @errorColor                 : rgba(200, 10, 16, 0.5);
 @warningColor               : rgba(255, 156, 0, 0.6);
 
 // Buttons
-@btnPadding                 : 0.45em 0.8em;
-@btnColor                   : rgba(0,0,0,0.8); 
-@btnBg                      : #eee;
-@successBtnBg               : #9dce62; // SÓ EXISTE NO ie6.less
-@InfoBtnBg                  : #479cd8; // SÓ EXISTE NO ie6.less
-@DeleteBtnBg                : #eb6363; // SÓ EXISTE NO ie6.less
-@basicBoxShadow             : "inset 0 1px 5px #e5e5e5";
+@btn-fontSize				: 0.938em;
+@btn-padding                : 0.45em 0.8em;
+@btn-bg 					: #eee;
 
 // FOOTER
 @footer-min-height			: 8em;
@@ -100,31 +91,28 @@
 @footer-nav-fontSize      	: 14px;
 @footer-nav-margin        	: auto;
 
-// Tabs
-@tabs-border-radius         : @border-radius;
-
-// Alerts & Errors
+// ALERTS & ERRORS
 @alertMsg-border-radius		: @border-radius;
-@alertMsg-Bg				: #f9e0a4;
-@alertMsg-Warning-Bg        : #ff9c00;
-@alertMsg-Error-Bg			: #eb6363;
-@alertMsg-success-Bg		: #9dce62;
-@alertMsg-Info-Bg			: #479cd8;
+@alertMsg-bg				: #f9e0a4;
+@alertMsg-warning-bg 		: #ff9c00;
+@alertMsg-error-bg			: #eb6363;
+@alertMsg-success-bg		: #9dce62;
+@alertMsg-Info-bg			: #479cd8;
 @alertMsg-block-Bg			: #FEFBF3;
-@alertMsg-block-Border-color: #ddd;
+@alertMsg-block-borderColor : #ddd;
 
-@warning-bg-color           : @orange;
-@caution-bg-color           : @red;
-@error-bg-color             : @red;
-@success-bg-color           : @green;
-@info-bg-color              : @blue;
+@warning-bg           		: @orange;
+@caution-bg           		: @red;
+@error-bg					: @red;
+@success-bg					: @green;
+@info-bg					: @blue;
 
-// INK > TABLES
+// TABLES
 @table-cell-padding         : 5px 10px;
-@table-cell-border-color    : #ccc;
-@table-zebra-row-color      : #f9f9f9;
+@table-cell-borderColor     : #ccc;
+@table-zebra-rowColor       : #f9f9f9;
 @table-row-line-height      : 2;
-@table-row-hover-color      : #fefbd6;
+@table-row-hoverColor       : #fefbd6;
 
 // INK-JS
 // Tabs

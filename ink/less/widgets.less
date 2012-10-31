@@ -288,7 +288,7 @@ ul.ink-tree-view ul {
 
 /* Date picker */
 .sapo_component_datepicker {
-	#ink > #border-radius > .all (4px);
+	#ink > #border-radius > .all (@border-radius);
 	text-align: center;
 	padding:5px;
 	font-size: @datepicker-fontSize;
@@ -319,7 +319,7 @@ ul.ink-tree-view ul {
 .sapo_cal_top {
 	line-height: 2em;
 	background: @datepicker-header-bg;
-	#ink > #border-radius > .all (4px);
+	#ink > #border-radius > .all (@border-radius);
 }	
 
 .sapo_cal_top div {
@@ -369,7 +369,7 @@ ul.ink-tree-view ul {
 	line-height: 2em;
 	vertical-align: middle;
 	display: block;
-	#ink > #border-radius > .all (4px);
+	#ink > #border-radius > .all (@border-radius);
 }
 
 .sapo_cal_month .sapo_cal_header {
@@ -424,7 +424,7 @@ ul.ink-tree-view ul {
 	margin-bottom: 20px;
 	overflow: hidden;
 	background: @progress-bar-bg;
-	#ink > #border-radius > .all (4px);	
+	#ink > #border-radius > .all (@border-radius);	
 	#ink > #shadows > .box-shadow (inset, 0, 1px, 2px, rgba( 0, 0, 0, 0.1));
 	
 	.bar {
@@ -447,19 +447,19 @@ ul.ink-tree-view ul {
 		}
 		
 		&.green {
-			#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);	
+			#ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);	
 		}
 		
 		&.blue {
-			#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);
+			#ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
 		}
 		
 		&.red {
-			#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);
+			#ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
 		}
 		
 		&.orange {
-			#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);
+			#ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
 		}
 		
 		&.black {

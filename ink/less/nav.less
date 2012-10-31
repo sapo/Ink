@@ -52,7 +52,7 @@
 		&.menu {
 
 			#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
-			#ink > #border-radius > .all (4px);			
+			#ink > #border-radius > .all (@border-radius);			
 
 			li {
 
@@ -62,7 +62,7 @@
 				}
 
 				&:first-child a {
-					#ink > #border-radius > .left (4px);
+					#ink > #border-radius > .left (@border-radius);
 				}
 
 				&.active a {
@@ -178,7 +178,7 @@
 
 					&:first-child {
 						a {
-							#ink > #border-radius > .top (4px);
+							#ink > #border-radius > .top (@border-radius);
 						}
 					}
 					
@@ -186,7 +186,7 @@
 						border-bottom: none;
 						
 						a {
-							#ink > #border-radius > .bottom (4px);
+							#ink > #border-radius > .bottom (@border-radius);
 						}
 						
 					}
@@ -239,7 +239,7 @@
 
 			&.grey {
 
-				#ink > #border-radius > .all (4px);					
+				#ink > #border-radius > .all (@border-radius);					
 				#ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
 
 				li {
@@ -249,7 +249,7 @@
 					}
 
 					&:first-child a {
-						#ink > #border-radius > .left (4px);
+						#ink > #border-radius > .left (@border-radius);
 					}
 
 					&.active {
@@ -268,8 +268,8 @@
 
 			&.green {
 
-				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);	
+				#ink > #border-radius > .all (@border-radius);
+				#ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);	
 
 				li {
 
@@ -278,7 +278,7 @@
 					}
 
 					&:first-child a {
-						#ink > #border-radius > .left (4px);
+						#ink > #border-radius > .left (@border-radius);
 					}
 
 					&.active {
@@ -293,7 +293,7 @@
 								a {
 									color: @black;
 									&:hover {
-										background: darken(desaturate(@success-bg-color,10%),12%);
+										background: darken(desaturate(@success-bg,10%),12%);
 										color: @white;
 									}
 								}
@@ -303,15 +303,15 @@
 				}
 
 				&.flat {
-					background: desaturate(@success-bg-color,10%);
+					background: desaturate(@success-bg,10%);
 					#ink > #border-radius > .all (0px);
 				}
 			}
 
 			&.blue {
 
-				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);
+				#ink > #border-radius > .all (@border-radius);
+				#ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
 
 				li {
 
@@ -320,7 +320,7 @@
 					}
 
 					&:first-child a {
-						#ink > #border-radius > .left (4px);
+						#ink > #border-radius > .left (@border-radius);
 					}
 
 					&.active {
@@ -335,7 +335,7 @@
 								a {
 									color: @black;
 									&:hover {
-										background: darken(desaturate(@info-bg-color,10%),12%);
+										background: darken(desaturate(@info-bg,10%),12%);
 										color: @white;
 									}
 								}
@@ -346,15 +346,15 @@
 				}
 
 				&.flat {
-					background: desaturate(@info-bg-color,10%);
+					background: desaturate(@info-bg,10%);
 					#ink > #border-radius > .all (0px);
 				}
 			}
 
 			&.red {
 
-				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);
+				#ink > #border-radius > .all (@border-radius);
+				#ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
 
 				li {
 
@@ -363,7 +363,7 @@
 					}
 
 					&:first-child a {
-						#ink > #border-radius > .left (4px);
+						#ink > #border-radius > .left (@border-radius);
 					}
 
 					&.active {
@@ -378,7 +378,7 @@
 								a {
 									color: @black;
 									&:hover {
-										background: darken(desaturate(@caution-bg-color,10%),12%);
+										background: darken(desaturate(@caution-bg,10%),12%);
 										color: @white;
 									}
 								}
@@ -389,15 +389,15 @@
 				}
 
 				&.flat {
-					background: desaturate(@caution-bg-color,10%);
+					background: desaturate(@caution-bg,10%);
 					#ink > #border-radius > .all (0px);
 				}
 			}
 
 			&.orange {
 
-				#ink > #border-radius > .all (4px);
-				#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);
+				#ink > #border-radius > .all (@border-radius);
+				#ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
 
 				li {
 
@@ -406,7 +406,7 @@
 					}
 
 					&:first-child a {
-						#ink > #border-radius > .left (4px);
+						#ink > #border-radius > .left (@border-radius);
 					}
 
 					&.active {
@@ -421,7 +421,7 @@
 								a {
 									color: @black;
 									&:hover {
-										background: darken(desaturate(@warning-bg-color,10%),12%);
+										background: darken(desaturate(@warning-bg,10%),12%);
 										color: @white;
 									}
 								}
@@ -432,14 +432,14 @@
 				}
 
 				&.flat {
-					background: desaturate(@warning-bg-color,10%);
+					background: desaturate(@warning-bg,10%);
 					#ink > #border-radius > .all (0px);
 				}
 			}
 
 			&.black {
 
-				#ink > #border-radius > .all (4px);
+				#ink > #border-radius > .all (@border-radius);
 				#ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);					
 
 				li {
@@ -452,7 +452,7 @@
 					}
 
 					&:first-child a {
-						#ink > #border-radius > .left (4px);
+						#ink > #border-radius > .left (@border-radius);
 					}
 
 					&.active {
@@ -630,14 +630,14 @@ html body .ink-navigation {
 				}
 
 				&.green {
-					background: desaturate(@success-bg-color,10%);
+					background: desaturate(@success-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@success-bg-color,10%);
+						border-bottom: 1px solid darken(@success-bg,10%);
 						.submenu {
-							background: desaturate(@success-bg-color,10%);
+							background: desaturate(@success-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@success-bg-color,10%);
+								border-bottom: 1px solid darken(@success-bg,10%);
 								a {
 									color: @white;
 								}
@@ -645,7 +645,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@success-bg-color,10%);
+									border-top: 1px solid darken(@success-bg,10%);
 								}
 							}
 						}
@@ -653,14 +653,14 @@ html body .ink-navigation {
 				}
 
 				&.red {
-					background: desaturate(@caution-bg-color,10%);
+					background: desaturate(@caution-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@caution-bg-color,10%);
+						border-bottom: 1px solid darken(@caution-bg,10%);
 						.submenu {
-							background: desaturate(@caution-bg-color,10%);
+							background: desaturate(@caution-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@caution-bg-color,10%);
+								border-bottom: 1px solid darken(@caution-bg,10%);
 								a {
 									color: @white;
 								}
@@ -668,7 +668,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@caution-bg-color,10%);
+									border-top: 1px solid darken(@caution-bg,10%);
 								}
 							}
 						}
@@ -676,14 +676,14 @@ html body .ink-navigation {
 				}
 
 				&.orange {
-					background: desaturate(@warning-bg-color,10%);
+					background: desaturate(@warning-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@warning-bg-color,10%);
+						border-bottom: 1px solid darken(@warning-bg,10%);
 						.submenu {
-							background: desaturate(@warning-bg-color,10%);
+							background: desaturate(@warning-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@warning-bg-color,10%);
+								border-bottom: 1px solid darken(@warning-bg,10%);
 								a {
 									color: @white;
 								}
@@ -691,7 +691,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@warning-bg-color,10%);
+									border-top: 1px solid darken(@warning-bg,10%);
 								}
 							}
 						}
@@ -699,14 +699,14 @@ html body .ink-navigation {
 				}
 
 				&.blue {
-					background: desaturate(@info-bg-color,10%);
+					background: desaturate(@info-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@info-bg-color,10%);
+						border-bottom: 1px solid darken(@info-bg,10%);
 						.submenu {
-							background: desaturate(@info-bg-color,10%);
+							background: desaturate(@info-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@info-bg-color,10%);
+								border-bottom: 1px solid darken(@info-bg,10%);
 								a {
 									color: @white;
 								}
@@ -714,7 +714,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@info-bg-color,10%);
+									border-top: 1px solid darken(@info-bg,10%);
 								}
 							}
 						}
@@ -894,14 +894,14 @@ html body .ink-navigation {
 				}
 
 				&.green {
-					background: desaturate(@success-bg-color,10%);
+					background: desaturate(@success-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@success-bg-color,10%);
+						border-bottom: 1px solid darken(@success-bg,10%);
 						.submenu {
-							background: desaturate(@success-bg-color,10%);
+							background: desaturate(@success-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@success-bg-color,10%);
+								border-bottom: 1px solid darken(@success-bg,10%);
 								a {
 									color: @white;
 								}
@@ -909,7 +909,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@success-bg-color,10%);
+									border-top: 1px solid darken(@success-bg,10%);
 								}
 							}
 						}
@@ -917,14 +917,14 @@ html body .ink-navigation {
 				}
 
 				&.red {
-					background: desaturate(@caution-bg-color,10%);
+					background: desaturate(@caution-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@caution-bg-color,10%);
+						border-bottom: 1px solid darken(@caution-bg,10%);
 						.submenu {
-							background: desaturate(@caution-bg-color,10%);
+							background: desaturate(@caution-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@caution-bg-color,10%);
+								border-bottom: 1px solid darken(@caution-bg,10%);
 								a {
 									color: @white;
 								}
@@ -932,7 +932,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@caution-bg-color,10%);
+									border-top: 1px solid darken(@caution-bg,10%);
 								}
 							}
 						}
@@ -940,14 +940,14 @@ html body .ink-navigation {
 				}
 
 				&.orange {
-					background: desaturate(@warning-bg-color,10%);
+					background: desaturate(@warning-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@warning-bg-color,10%);
+						border-bottom: 1px solid darken(@warning-bg,10%);
 						.submenu {
-							background: desaturate(@warning-bg-color,10%);
+							background: desaturate(@warning-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@warning-bg-color,10%);
+								border-bottom: 1px solid darken(@warning-bg,10%);
 								a {
 									color: @white;
 								}
@@ -955,7 +955,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@warning-bg-color,10%);
+									border-top: 1px solid darken(@warning-bg,10%);
 								}
 							}
 						}
@@ -963,14 +963,14 @@ html body .ink-navigation {
 				}
 
 				&.blue {
-					background: desaturate(@info-bg-color,10%);
+					background: desaturate(@info-bg,10%);
 					#ink > #border-radius > .all (0px);
 					li {
-						border-bottom: 1px solid darken(@info-bg-color,10%);
+						border-bottom: 1px solid darken(@info-bg,10%);
 						.submenu {
-							background: desaturate(@info-bg-color,10%);
+							background: desaturate(@info-bg,10%);
 							li {
-								border-bottom: 1px solid darken(@info-bg-color,10%);
+								border-bottom: 1px solid darken(@info-bg,10%);
 								a {
 									color: @white;
 								}
@@ -978,7 +978,7 @@ html body .ink-navigation {
 										border-bottom: none;
 								}
 								&:first-child 	{
-									border-top: 1px solid darken(@info-bg-color,10%);
+									border-top: 1px solid darken(@info-bg,10%);
 								}
 							}
 						}

@@ -26,20 +26,20 @@ form {
 		&.ink-success, &.ink-caution, &.ink-warning {
 			font-size: 0.75em;
 			padding: 0.2em 0.4em;
-			#ink > #border-radius > .all (4px);
+			#ink > #border-radius > .all (@border-radius);
 		}
 
 	}
 	
 	input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
 		#ink > #border-radius > .all (@border-radius);
-		padding: @form-elements-padding;
-		border:1px solid @form-elements-border-color;
+		padding: @form-field-padding;
+		border:1px solid @form-field-borderColor;
 		resize: none;
 		line-height: 1.3em;
-		font-size: @fontSize;
+		font-size: @form-field-fontSize ;
 		.box-sizing(border-box);
-		background:@form-elements-bg;
+		background:@form-field-bg;
 	}
 	
 	input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, input[type=reset]:focus, input[type=number]:focus, input[type=range]:focus, input[type=search]:focus, input[type=email]:focus, textarea:focus, select:focus {
@@ -50,7 +50,7 @@ form {
 		
 		option {
 			line-height: 2;
-			padding: @form-elements-padding / 2;
+			padding: @form-field-padding / 2;
 		}
 	}
 
@@ -89,7 +89,7 @@ form {
 				
 				label:after {
 					content: "*";
-					color: @warning-bg-color;
+					color: @warning-bg;
 					font-size: 1.5em;
 					line-height: 1;
 					margin-left: 0.1em;
@@ -104,7 +104,7 @@ form {
 				
 				label:after {
 					content: "*";
-					color: @error-bg-color;
+					color: @error-bg;
 					font-size: 1.5em;
 					line-height: 1;
 					margin-left: 0.1em;
