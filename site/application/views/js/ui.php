@@ -50,7 +50,7 @@
 								</ul>
 							</nav>
 							<div class="slider">
-								<ul style="margin-left:-1400px">
+								<ul style="margin-left:-1200px">
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.1.png"></li>
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
@@ -82,7 +82,7 @@
 							</nav>
 							<div class="slider">
 								<ul>
-									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.png" alt="1"></li>
+									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.1.png" alt="1"></li>
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
@@ -189,7 +189,7 @@
 							</nav>
 							<div class="slider">
 								<ul class="unstyled">
-									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.png" alt="1"></li>
+									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.1.png" alt="1"></li>
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.2.png" alt="1"></li>
 									<li><img src="../../../tree/assets/imgs/ink-js-placeholders/1.3.png" alt="1"></li>
 								</ul>
