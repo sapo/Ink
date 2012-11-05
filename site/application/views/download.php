@@ -36,7 +36,7 @@
 		
 		<div class="ink-l50">
 			<div class="ink-gutter">
-				<?php echo form_fieldset('<h4>Modules</h4>',array('class'=>(($errors && in_array('modules',array_keys($errors))) ? 'error' : '') ) )?>
+				<?php echo form_fieldset('<h3>Modules</h3>',array('class'=>(($errors && in_array('modules',array_keys($errors))) ? 'error' : '') ) )?>
 				<div class="ink-form-wrapper">
 				<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
 				<?php foreach($modules as $value => $module): ?>		
@@ -50,7 +50,7 @@
 		
 		<div class="ink-l50">
 			<div class="ink-gutter">
-				<?php echo form_fieldset('<h4>Options</h4>') ?>
+				<?php echo form_fieldset('<h3>Options</h3>') ?>
 				<div class="ink-form-wrapper">
 				<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
 				<?php foreach($options as $option): ?>
@@ -63,7 +63,7 @@
 		</div>		
 	</div>
 	
-	<?php echo form_fieldset('<h4>Configuration</h4>') ?>
+	<?php echo form_fieldset('<h3>Configuration</h3>') ?>
 		<div class="ink-row">
 		<?php foreach($config as $group => $vars): ?>
 			<div class="ink-l33">
