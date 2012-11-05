@@ -634,9 +634,33 @@ $config['ink_config_vars'] = array(
             'required'          => FALSE
         ),
     ),
+);
 
-
-   
+$config['ui_components'] = array(
+    'table' => array(
+        'label'     => 'Table',
+        'view'      => 'js/ui/table',
+    ),
+    'gallery' => array(
+        'label'     => 'Gallery',
+        'view'      => 'js/ui/gallery',
+    ),
+    'tree_view' => array(
+        'label'     => 'Tree View',
+        'view'      => 'js/ui/tree_view',
+    ),
+    'sortable_list' => array(
+        'label'     => 'Sortable List',
+        'view'      => 'js/ui/sortable_list',
+    ),
+    'date_picker'   => array(
+        'label'     => 'Date Picker',
+        'view'      => 'js/ui/date_picker',
+    ),
+    'modal'         => array(
+        'label'     => 'Modal',
+        'view'      => 'js/ui/modal',
+    ),
 );
 
 ?>
