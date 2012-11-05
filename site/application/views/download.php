@@ -67,7 +67,7 @@
 		<div class="ink-row">
 		<?php foreach($config as $group => $vars): ?>
 			<div class="ink-l33">
-				<div class="ink-gutter">
+				<div class="ink-gutter ink-vspace">
 				<h5><?php echo $group;?></h5>
 				<?php foreach($vars as $var_id => $var): ?>
 				<div class="ink-form-wrapper <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
@@ -79,7 +79,9 @@
 			</div>
 		<?php endforeach ;?>
 		</div>
+		<div class="ink-vspace ink-download">
 		<?php echo form_submit(array('name' => 'download', 'value' => 'download', 'class' => 'ink-button info')); ?>
+		</div>
 	<?php echo form_fieldset_close() ?>
 	
 	</div>

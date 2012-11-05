@@ -24,7 +24,7 @@ h2 span {
 
 mark {
 	font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace; 
-	font-size: .9em;
+	font-size: .938em;
 	background: @themeBackground; 
 	padding:1px 3px;
 }
@@ -126,6 +126,14 @@ a.active 	{color: @link-active-color;}
 
 #download p {margin:1em;}
 
+.ink-download {
+	text-align:center
+}
+
+.ink-download input {
+	font-size:1.625em;
+}
+
 /*..........................................  Footer  ...................................................*/
 .callToAction{
 	position: relative;
@@ -210,37 +218,38 @@ a.active 	{color: @link-active-color;}
 }
 
 
-.menu-second-level .ink-container .ink-navigation ul {
+.menu-second-level .ink-container .ink-navigation ul.menu {
 	background: none;
+	filter:none;
 	#ink > #shadows > .no-box-shadow();
 }
 
-.menu-second-level .ink-container .ink-navigation ul li a {
+.menu-second-level .ink-container .ink-navigation ul.menu li a {
 	padding: 0 .8em;
 	font-size: 1.143em;
 	color:@black;
 }
 
-.menu-second-level .ink-container .ink-navigation ul li {
+.menu-second-level .ink-container .ink-navigation ul.menu li {
 	border-right:1px solid #CACACA;
 }
 
-.menu-second-level .ink-container .ink-navigation ul li.active {
+.menu-second-level .ink-container .ink-navigation ul.menu li.active {
 	border-right:none;
 	#ink > #gradients > .gradient(#2e2e2e, #222, 100%);
 }
 
-.menu-second-level .ink-container .ink-navigation ul .active a {
+.menu-second-level .ink-container .ink-navigation ul.menu .active a {
 	color: #fff;
 }
 
-.menu-second-level .ink-container .ink-navigation ul li a.home {
+.menu-second-level .ink-container .ink-navigation ul.menu li a.home {
 	width:1em;
 	text-indent:-5555px;
 	background:url(../imgs/home_Sprite.png) 0 0 no-repeat;
 }
 
-.menu-second-level .ink-container .ink-navigation ul li.active a.home {
+.menu-second-level .ink-container .ink-navigation ul.menu li.active a.home {
 	background:url(../imgs/home_Sprite.png) 0 -43px no-repeat;
 }
 
@@ -295,17 +304,16 @@ footer ul.sociallinks li a.Fb_link {background: url("../imgs/icon_Sprite.png") n
 footer ul.sociallinks li a.Twt_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px}
 footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px}
 
-#topbar {
+#topbar {	
 	height:@topbar-height;
 	background:@topbar-bgColor;
 	font-size:@topbar-fontSize;
 	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
-}
-
-#topbar {	
+	
 	.ink-navigation {
 		background:@topbar-bgColor;
+	
 		ul {
 			&.menu {
 				&.horizontal {

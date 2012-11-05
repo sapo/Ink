@@ -369,7 +369,18 @@ $config['ink_config_vars'] = array(
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@link-color' => array(
+    ),
+	
+	/* 
+    Scaffolding
+    @ink-site-width
+    @ink-grid-gutter
+    @body-background
+    @headings-color
+    @border-radius 
+    */
+	'Links' => array(
+	    '@link-color' => array(
             'label'             => '',
             'placeholder'       => '#0069D6',
             'default_value'     => '',
@@ -406,7 +417,87 @@ $config['ink_config_vars'] = array(
         ),
     ),
 
-    /*
+    
+	/*
+    Alerts & Errors
+    @alertMsg-bg
+    @alertMsg-error-bg
+    @alertMsg-success-bg
+    @alertMsg-info-bg
+    @warning-bg
+    @caution-bg
+    @error-bg
+    @success-bg
+    @info-bg
+    */
+    'Alerts & Errors' => array(
+        '@alertMsg-bg' => array(
+            'label'             => '',
+            'placeholder'       => '#f9e0a4',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@alertMsg-error-bg' => array(
+            'label'             => '',
+            'placeholder'       => '#eb6363',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@alertMsg-success-bg' => array(
+            'label'             => '',
+            'placeholder'       => '#9dce62',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@alertMsg-info-bg' => array(
+            'label'             => '',
+            'placeholder'       => '#479cd8',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@warning-bg' => array(
+            'label'             => '',
+            'placeholder'       => '@orange',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@caution-bg' => array(
+            'label'             => '',
+            'placeholder'       => '@red',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@error-bg' => array(
+            'label'             => '',
+            'placeholder'       => '@red',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@success-bg' => array(
+            'label'             => '',
+            'placeholder'       => '@green',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+        '@info-bg' => array(
+            'label'             => '',
+            'placeholder'       => '@blue',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
+        ),
+    ),
+	
+	
+	/*
     Forms
     @form-field-fontSize
     @form-field-borderColor
@@ -514,87 +605,7 @@ $config['ink_config_vars'] = array(
         ),
     ),
 
-
-    /*
-    Alerts & Errors
-    @alertMsg-bg
-    @alertMsg-error-bg
-    @alertMsg-success-bg
-    @alertMsg-info-bg
-    @warning-bg
-    @caution-bg
-    @error-bg
-    @success-bg
-    @info-bg
-    */
-    'Alerts & Errors' => array(
-        '@alertMsg-bg' => array(
-            'label'             => '',
-            'placeholder'       => '#f9e0a4',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@alertMsg-error-bg' => array(
-            'label'             => '',
-            'placeholder'       => '#eb6363',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@alertMsg-success-bg' => array(
-            'label'             => '',
-            'placeholder'       => '#9dce62',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@alertMsg-info-bg' => array(
-            'label'             => '',
-            'placeholder'       => '#479cd8',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@warning-bg' => array(
-            'label'             => '',
-            'placeholder'       => '@orange',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@caution-bg' => array(
-            'label'             => '',
-            'placeholder'       => '@red',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@error-bg' => array(
-            'label'             => '',
-            'placeholder'       => '@red',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@success-bg' => array(
-            'label'             => '',
-            'placeholder'       => '@green',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@info-bg' => array(
-            'label'             => '',
-            'placeholder'       => '@blue',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-    ),
-
-
-    /*
+	/*
     Tables
     @table-cell-borderColor
     @table-zebra-rowColor
@@ -625,51 +636,7 @@ $config['ink_config_vars'] = array(
     ),
 
 
-    /*
-    Basic Colors
-    @orange
-    @red
-    @green
-    @blue
-    @yellow
-    */
-    'Basic Colors' => array(
-        '@orange' => array(
-            'label'             => '',
-            'placeholder'       => '#ff9c00',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@red' => array(
-            'label'             => '',
-            'placeholder'       => '#cd0000',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@green' => array(
-            'label'             => '',
-            'placeholder'       => '#85bd11',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@blue' => array(
-            'label'             => '',
-            'placeholder'       => '#0f8bda',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-        '@yellow' => array(
-            'label'             => '',
-            'placeholder'       => 'yellow',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => FALSE
-        ),
-    ),
+   
 );
 
 ?>
