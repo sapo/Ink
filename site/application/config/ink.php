@@ -289,40 +289,33 @@ $config['ink_config_vars'] = array(
     @border-radius 
     */
     'Scaffolding' => array(
-        'ink-site-width' => array(
+        '@ink-site-width' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '960px',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'ink-grid-gutter' => array(
+        '@ink-grid-gutter' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '32px',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'body-background' => array(
+        '@body-background' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#f7f7f7',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'headings-color' => array(
+        '@border-radius' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '4px',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
-        ),
-        'border-radius' => array(
-            'label'             => '',
-            'placeholder'       => '',
-            'default_value'     => '',
-            'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 
@@ -341,82 +334,75 @@ $config['ink_config_vars'] = array(
     @link-focus-color    
     */
     'Typography' => array(
-        'headings-color' => array(
+		'@font-family' => array(
             'label'             => '',
-            'placeholder'       => '',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => TRUE
-        ),
-        'text-color' => array(
-            'label'             => '',
-            'placeholder'       => '',
-            'default_value'     => '',
-            'type'              => 'color',
-            'required'          => TRUE
-        ),
-        'font-family' => array(
-            'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => "Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif",
             'default_value'     => '',
             'type'              => 'text',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'font-condensed' => array(
+        '@font-condensed' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => 'Ubuntu_condensed',
             'default_value'     => '',
             'type'              => 'text',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'font-size' => array(
+        '@font-size' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '16px',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'headings-color' => array(
+		'@text-color' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#555',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'link-color' => array(
+		'@headings-color' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#404040',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'link-visited-color' => array(
+        '@link-color' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#0069D6',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'link-active-color' => array(
+        '@link-visited-color' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#808080',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'link-hover-color' => array(
+        '@link-active-color' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => 'red',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'link-focus-color' => array(
+        '@link-hover-color' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#007ED5',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
+        ),
+        '@link-focus-color' => array(
+            'label'             => '',
+            'placeholder'       => '@link-color',
+            'default_value'     => '',
+            'type'              => 'color',
+            'required'          => FALSE
         ),
     ),
 
@@ -430,55 +416,55 @@ $config['ink_config_vars'] = array(
     @errorColor
     @warningColor
     */
-    'Typography' => array(
-        'form-field-fontSize' => array(
+    'Forms' => array(
+        '@form-field-fontSize' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '14px',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'form-field-borderColor' => array(
+        '@form-field-borderColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#ddd',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'form-field-bg' => array(
+        '@form-field-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#fff',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'focusColor' => array(
+        '@focusColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => 'rgba(153, 153, 153, 0.6)',
             'default_value'     => '',
             'type'              => 'rgba',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'disabledColor' => array(
+        '@disabledColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#eee',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'errorColor' => array(
+        '@errorColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => 'rgba(200, 10, 16, 0.5)',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'warningColor' => array(
+        '@warningColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => 'rgba(255, 156, 0, 0.6)',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 
@@ -489,19 +475,19 @@ $config['ink_config_vars'] = array(
     @btn-bg
     */
     'Buttons' => array(
-        'btn-fontSize' => array(
+        '@btn-fontSize' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '0.938em',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'btn-bg' => array(
+        '@btn-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#eee',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 
@@ -512,19 +498,19 @@ $config['ink_config_vars'] = array(
     @footer-bgColor
     */
     'Footer' => array(
-        'footer-min-height' => array(
+        '@footer-min-height' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '8em',
             'default_value'     => '',
             'type'              => 'measure',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'footer-bgColor' => array(
+        '@footer-bgColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#f0f0f0',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 
@@ -542,68 +528,68 @@ $config['ink_config_vars'] = array(
     @info-bg
     */
     'Alerts & Errors' => array(
-        'alertMsg-bg' => array(
+        '@alertMsg-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#f9e0a4',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'alertMsg-error-bg' => array(
+        '@alertMsg-error-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#eb6363',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'alertMsg-success-bg' => array(
+        '@alertMsg-success-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#9dce62',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'alertMsg-info-bg' => array(
+        '@alertMsg-info-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#479cd8',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'warning-bg' => array(
+        '@warning-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '@orange',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'caution-bg' => array(
+        '@caution-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '@red',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'error-bg' => array(
+        '@error-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '@red',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'success-bg' => array(
+        '@success-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '@green',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'info-bg' => array(
+        '@info-bg' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '@blue',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 
@@ -615,26 +601,26 @@ $config['ink_config_vars'] = array(
     @table-row-hoverColor
     */
     'Tables' => array(
-        'table-cell-borderColor' => array(
+        '@table-cell-borderColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#ccc',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'table-zebra-rowColor' => array(
+        '@table-zebra-rowColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#f9f9f9',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'table-row-hoverColor' => array(
+        '@table-row-hoverColor' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#fefbd6',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 
@@ -648,40 +634,40 @@ $config['ink_config_vars'] = array(
     @yellow
     */
     'Basic Colors' => array(
-        'orange' => array(
+        '@orange' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#ff9c00',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'red' => array(
+        '@red' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#cd0000',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'green' => array(
+        '@green' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#85bd11',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'blue' => array(
+        '@blue' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => '#0f8bda',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
-        'yellow' => array(
+        '@yellow' => array(
             'label'             => '',
-            'placeholder'       => '',
+            'placeholder'       => 'yellow',
             'default_value'     => '',
             'type'              => 'color',
-            'required'          => TRUE
+            'required'          => FALSE
         ),
     ),
 );
