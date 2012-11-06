@@ -52,7 +52,6 @@ class Download extends CI_Controller {
 	 */
 	public function custom()
 	{
-
 		$post = $this->input->post(NULL,TRUE);
 		$errors = array();
 		if( $post ) # Has been posted anything?
@@ -149,13 +148,18 @@ class Download extends CI_Controller {
 		$configModules = $this->config->item('ink_modules');
 		foreach($this->input->post('modules') as $module){
 			if( isset($configModules[$module]['implicit_files']) && count($configModules[$module]['implicit_files']) ) {
-				$modules = array_merge( $post['modules'], $configModules[$module]['implicit_files'] );
+				$implicit = array();
+				foreach( $configModules[$module]['implicit_files'] as $file ){
+					$info = pathinfo($file);
+					$implicit[] = str_replace(".".$info['extension'],"",$info['basename']);
+				}
+				$modules = array_merge( $post['modules'], $implicit );
 			}
 		}
 
-		if( in_array('grid',$post['modules']) ) {
-			$modules = array_merge( $post['modules'], array( "large","medium","small" ) );
-		}
+		// if( in_array('grid',$post['modules']) ) {
+		// 	$modules = array_merge( $post['modules'], array( "large","medium","small" ) );
+		// }
 
 
 		/**
@@ -191,8 +195,16 @@ class Download extends CI_Controller {
 			 * Getting the normal css
 			 */
 			$qs = "";
-			foreach( $modules as $value ) 
+			foreach( $modules as $value ){
 				$qs .= "modules[]=".$value."&";
+			}
+
+			foreach( $this->input->post('vars') as $varName => $varValue ){
+				if( $varValue ){
+					$qs .= "vars[]=".rawurlencode("@".$varName." : " . $varValue)."&";
+				}
+			}
+			$qs = substr($qs,0,strlen($qs)-1);
 
 			$request = curl_init( $this->config->item('build_normal_css_url') );
 			curl_setopt( $request, CURLOPT_TIMEOUT, 5);
@@ -201,7 +213,7 @@ class Download extends CI_Controller {
 			curl_setopt( $request, CURLOPT_POST,TRUE);
 
 			#$qs = ("modules[]=" . implode("&modules[]=",$post['modules']));
-			curl_setopt( $request, CURLOPT_POSTFIELDS, substr($qs,0,strlen($qs)-1) );
+			curl_setopt( $request, CURLOPT_POSTFIELDS, $qs );
 			$normalCSS = curl_exec($request);
 			$normalHttpStatus = curl_getinfo($request, CURLINFO_HTTP_CODE);
 			curl_close($request);
@@ -220,7 +232,7 @@ class Download extends CI_Controller {
 				curl_setopt( $request, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt( $request, CURLOPT_FOLLOWLOCATION, TRUE);
 				curl_setopt( $request, CURLOPT_POST,TRUE);
-				curl_setopt( $request, CURLOPT_POSTFIELDS, substr($qs,0,strlen($qs)-1)."&compress=1" );
+				curl_setopt( $request, CURLOPT_POSTFIELDS, $qs."&compress=1" );
 				$minimizedCSS = curl_exec($request);
 				$minimizedHttpStatus = curl_getinfo($request, CURLINFO_HTTP_CODE);
 				curl_close($request);

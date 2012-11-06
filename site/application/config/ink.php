@@ -289,28 +289,28 @@ $config['ink_config_vars'] = array(
     @border-radius 
     */
     'Scaffolding' => array(
-        '@ink-site-width' => array(
+        'ink-site-width' => array(
             'label'             => '',
             'placeholder'       => '960px',
             'default_value'     => '',
             'type'              => 'measure',
             'required'          => FALSE
         ),
-        '@ink-grid-gutter' => array(
+        'ink-grid-gutter' => array(
             'label'             => '',
             'placeholder'       => '32px',
             'default_value'     => '',
             'type'              => 'measure',
             'required'          => FALSE
         ),
-        '@body-background' => array(
+        'body-background' => array(
             'label'             => '',
             'placeholder'       => '#f7f7f7',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@border-radius' => array(
+        'border-radius' => array(
             'label'             => '',
             'placeholder'       => '4px',
             'default_value'     => '',
@@ -334,35 +334,35 @@ $config['ink_config_vars'] = array(
     @link-focus-color    
     */
     'Typography' => array(
-		'@font-family' => array(
+		'font-family' => array(
             'label'             => '',
             'placeholder'       => "Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif",
             'default_value'     => '',
             'type'              => 'text',
             'required'          => FALSE
         ),
-        '@font-condensed' => array(
+        'font-condensed' => array(
             'label'             => '',
             'placeholder'       => 'Ubuntu_condensed',
             'default_value'     => '',
             'type'              => 'text',
             'required'          => FALSE
         ),
-        '@font-size' => array(
+        'font-size' => array(
             'label'             => '',
             'placeholder'       => '16px',
             'default_value'     => '',
             'type'              => 'measure',
             'required'          => FALSE
         ),
-		'@text-color' => array(
+		'text-color' => array(
             'label'             => '',
             'placeholder'       => '#555',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-		'@headings-color' => array(
+		'headings-color' => array(
             'label'             => '',
             'placeholder'       => '#404040',
             'default_value'     => '',
@@ -380,37 +380,37 @@ $config['ink_config_vars'] = array(
     @border-radius 
     */
 	'Links' => array(
-	    '@link-color' => array(
+	    'link-color' => array(
             'label'             => '',
             'placeholder'       => '#0069D6',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@link-visited-color' => array(
+        'link-visited-color' => array(
             'label'             => '',
             'placeholder'       => '#808080',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@link-active-color' => array(
+        'link-active-color' => array(
             'label'             => '',
             'placeholder'       => 'red',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@link-hover-color' => array(
+        'link-hover-color' => array(
             'label'             => '',
             'placeholder'       => '#007ED5',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@link-focus-color' => array(
+        'link-focus-color' => array(
             'label'             => '',
-            'placeholder'       => '@link-color',
+            'placeholder'       => 'link-color',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
@@ -431,65 +431,65 @@ $config['ink_config_vars'] = array(
     @info-bg
     */
     'Alerts & Errors' => array(
-        '@alertMsg-bg' => array(
+        'alertMsg-bg' => array(
             'label'             => '',
             'placeholder'       => '#f9e0a4',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@alertMsg-error-bg' => array(
+        'alertMsg-error-bg' => array(
             'label'             => '',
             'placeholder'       => '#eb6363',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@alertMsg-success-bg' => array(
+        'alertMsg-success-bg' => array(
             'label'             => '',
             'placeholder'       => '#9dce62',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@alertMsg-info-bg' => array(
+        'alertMsg-info-bg' => array(
             'label'             => '',
             'placeholder'       => '#479cd8',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@warning-bg' => array(
+        'warning-bg' => array(
             'label'             => '',
-            'placeholder'       => '@orange',
+            'placeholder'       => 'orange',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@caution-bg' => array(
+        'caution-bg' => array(
             'label'             => '',
-            'placeholder'       => '@red',
+            'placeholder'       => 'red',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@error-bg' => array(
+        'error-bg' => array(
             'label'             => '',
-            'placeholder'       => '@red',
+            'placeholder'       => 'red',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@success-bg' => array(
+        'success-bg' => array(
             'label'             => '',
-            'placeholder'       => '@green',
+            'placeholder'       => 'green',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@info-bg' => array(
+        'info-bg' => array(
             'label'             => '',
-            'placeholder'       => '@blue',
+            'placeholder'       => 'blue',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
@@ -508,49 +508,49 @@ $config['ink_config_vars'] = array(
     @warningColor
     */
     'Forms' => array(
-        '@form-field-fontSize' => array(
+        'form-field-fontSize' => array(
             'label'             => '',
             'placeholder'       => '14px',
             'default_value'     => '',
             'type'              => 'measure',
             'required'          => FALSE
         ),
-        '@form-field-borderColor' => array(
+        'form-field-borderColor' => array(
             'label'             => '',
             'placeholder'       => '#ddd',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@form-field-bg' => array(
+        'form-field-bg' => array(
             'label'             => '',
             'placeholder'       => '#fff',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@focusColor' => array(
+        'focusColor' => array(
             'label'             => '',
             'placeholder'       => 'rgba(153, 153, 153, 0.6)',
             'default_value'     => '',
             'type'              => 'rgba',
             'required'          => FALSE
         ),
-        '@disabledColor' => array(
+        'disabledColor' => array(
             'label'             => '',
             'placeholder'       => '#eee',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@errorColor' => array(
+        'errorColor' => array(
             'label'             => '',
             'placeholder'       => 'rgba(200, 10, 16, 0.5)',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@warningColor' => array(
+        'warningColor' => array(
             'label'             => '',
             'placeholder'       => 'rgba(255, 156, 0, 0.6)',
             'default_value'     => '',
@@ -566,14 +566,14 @@ $config['ink_config_vars'] = array(
     @btn-bg
     */
     'Buttons' => array(
-        '@btn-fontSize' => array(
+        'btn-fontSize' => array(
             'label'             => '',
             'placeholder'       => '0.938em',
             'default_value'     => '',
             'type'              => 'measure',
             'required'          => FALSE
         ),
-        '@btn-bg' => array(
+        'btn-bg' => array(
             'label'             => '',
             'placeholder'       => '#eee',
             'default_value'     => '',
@@ -589,14 +589,14 @@ $config['ink_config_vars'] = array(
     @footer-bgColor
     */
     'Footer' => array(
-        '@footer-min-height' => array(
+        'footer-min-height' => array(
             'label'             => '',
             'placeholder'       => '8em',
             'default_value'     => '',
             'type'              => 'measure',
             'required'          => FALSE
         ),
-        '@footer-bgColor' => array(
+        'footer-bgColor' => array(
             'label'             => '',
             'placeholder'       => '#f0f0f0',
             'default_value'     => '',
@@ -612,21 +612,21 @@ $config['ink_config_vars'] = array(
     @table-row-hoverColor
     */
     'Tables' => array(
-        '@table-cell-borderColor' => array(
+        'table-cell-borderColor' => array(
             'label'             => '',
             'placeholder'       => '#ccc',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@table-zebra-rowColor' => array(
+        'table-zebra-rowColor' => array(
             'label'             => '',
             'placeholder'       => '#f9f9f9',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        '@table-row-hoverColor' => array(
+        'table-row-hoverColor' => array(
             'label'             => '',
             'placeholder'       => '#fefbd6',
             'default_value'     => '',

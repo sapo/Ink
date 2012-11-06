@@ -53,8 +53,7 @@
 		<div class="ink-l50">
 			<div class="ink-gutter">
 				<?php echo form_fieldset('<h3>Options</h3>') ?>
-				<ul class="ink-form-wrapper unstyled">
-				<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
+				<ul class="ink-form-wrapper unstyled"><p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
 				<?php foreach($options as $option): ?>
 					<li>
 					<?php echo form_checkbox(( $option['attributes'] + array('checked'=>(isset($post['options']) && in_array($option['attributes']['value'],$post['options'])) ) ) ); ?>
@@ -67,7 +66,7 @@
 		</div>		
 	</div>
 	
-	<?php echo form_fieldset('<h3>Configuration</h3>') ?>
+	<?php echo form_fieldset('<h4>Configuration</h4>') ?>
 		<div class="ink-row">
 		<?php foreach($config as $group => $vars): ?>
 			<div class="ink-l33">
@@ -75,7 +74,7 @@
 				<h5><?php echo $group;?></h5>
 				<?php foreach($vars as $var_id => $var): ?>
 				<div class="ink-form-wrapper <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
-					<?php echo form_label($var_id,(!empty($var['label']) ? $var['label'] : $var_id));?>
+					<?php echo form_label('@'.(!empty($var['label']) ? $var['label'] : $var_id),$var_id);?>
 					<?php echo form_input(array('type' => 'text','id'=>$var_id,'name'=>'vars[' . $var_id . ']','placeholder'=>$var['placeholder'], 'value' => ( ( isset($post) && ( isset($post['vars']) && in_array($var_id,array_keys($post['vars'])) ) ) ? $post['vars'][$var_id] : $var['default_value']), 'class' => (($var['type']=='color') ? 'colorPicker' : '')   )); ?>
 				</div>
 				<?php endforeach; ?>
