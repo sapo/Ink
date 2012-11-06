@@ -151,7 +151,7 @@ class Download extends CI_Controller {
 				$implicit = array();
 				foreach( $configModules[$module]['implicit_files'] as $file ){
 					$info = pathinfo($file);
-					$implicit[] = str_replace(".".$file['extension'],"",$file['basename']);
+					$implicit[] = str_replace(".".$info['extension'],"",$info['basename']);
 				}
 				$modules = array_merge( $post['modules'], $implicit );
 			}
