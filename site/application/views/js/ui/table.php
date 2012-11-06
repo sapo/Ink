@@ -1,7 +1,7 @@
     <div class="ink-section">
-        <div class="ink-vspace">
+        <div class="ink-row ink-vspace">
             <div class="ink-l40">
-                <div class="ink-space"> 
+                <div class="ink-gutter"> 
                     <h3 id="table">Table</h3>
                     <p>
                         The <i>Table</i> component provides an easy way to list data in a tabular format.
@@ -11,11 +11,7 @@
             </div>
             <div class="ink-l60">
                 <div class="ink-gutter">
-                    <div class="ink-l100">
-                        <div class="ink-gutter">
-                            <table></table>
-                        </div>
-                    </div>
+					<table></table>
                 </div>
             </div>
         </div>

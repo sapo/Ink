@@ -1,7 +1,7 @@
     <div class="ink-section">
-        <div class="ink-vspace">
+        <div class="ink-row ink-vspace">
             <div class="ink-l40">
-                <div class="ink-space"> 
+                <div class="ink-gutter"> 
                     <h3 id="sortable_list">Sortable List</h3>
                     <p>
                         The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.
@@ -10,11 +10,9 @@
                 </div>
             </div>
             <div class="ink-l60">
-                <div class="ink-row ink-l100 ink-vspace">
-                    <div class="ink-gutter">
-                        <div id="slist"></div>
-                    </div>
-                </div>
+				<div class="ink-gutter">
+					<div id="slist"></div>
+				</div>
             </div>
         </div>
     </div>

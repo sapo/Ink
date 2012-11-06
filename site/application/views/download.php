@@ -66,7 +66,7 @@
 		</div>		
 	</div>
 	
-	<?php echo form_fieldset('<h4>Configuration</h4>') ?>
+	<?php echo form_fieldset('<h3>Configuration</h3>') ?>
 		<div class="ink-row">
 		<?php foreach($config as $group => $vars): ?>
 			<div class="ink-l33">

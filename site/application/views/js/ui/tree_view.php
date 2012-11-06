@@ -1,7 +1,7 @@
     <div class="ink-section">
-        <div class="ink-vspace">
+        <div class="ink-row ink-vspace">
             <div class="ink-l40">
-                <div class="ink-space"> 
+                <div class="ink-gutter"> 
                     <h3 id="tree_view">Tree View</h3>
                     <p>
                         The <i>Tree View</i> component allows you to show a list of items in a hierarchical format.
