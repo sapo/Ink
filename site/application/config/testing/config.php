@@ -368,7 +368,7 @@ $config['proxy_ips'] = '';
 */
 $config['base_path']    = BASEPATH . '../';
 $config['build_path']   = '/tmp/';
-$config['latest_path']  = BASEPATH . '../../ink/ink/';
+$config['latest_path']  = BASEPATH . '../../ink/';
 
 
 /* End of file config.php */
