@@ -10,16 +10,44 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#gallery">Gallery</a></li>
-				<li><a href="#modalbox">Modal box</a></li>
-				<li><a href="#tabs">Tabs</a></li>
+				<?php foreach( $components as $component => $configuration ){ ?>
+					<li><a href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
+				<?php } ?>
+				<!-- <li><a href="#modalbox">Modal box</a></li>
+				<li><a href="#tabs">Tabs</a></li> -->
 			</ul>
 		</nav>
 	</div>
 </div>
 
 <div class="ink-container">
-	<div class="ink-section">
+	<?php
+		foreach( $components as $component => $configuration ){
+			echo $configuration['view'];
+		}
+	?>
+	<!-- <div class="ink-section">
+		<div class="ink-vspace">
+			<div class="ink-l30">
+				<div class="ink-space">	
+					<h3 id="modalbox">Modal box</h3>
+					<p>
+						Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
+						The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
+					</p>
+				</div>
+			</div>
+			<div class="ink-l70">
+				<div class="ink-space">
+					<div class="ink-modal">
+						<a href="#" class="close">x</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="ink-section">
 		<div class="ink-vspace">
 			<h3 id="gallery">Gallery</h3>
 			<p>
@@ -338,27 +366,6 @@
 	
 	<div class="ink-section">
 		<div class="ink-vspace">
-			<div class="ink-l30">
-				<div class="ink-space">	
-					<h3 id="modalbox">Modal box</h3>
-					<p>
-						Chuck ipsum. A blind man once stepped on Chuck Norris' shoe. Chuck replied, "Don't you know who I am? I'm Chuck Norris!" 
-						The mere mention of his name cured this man blindness. Sadly the first, last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris.
-					</p>
-				</div>
-			</div>
-			<div class="ink-l70">
-				<div class="ink-space">
-					<div class="ink-modal">
-						<a href="#" class="close">x</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="ink-section">
-		<div class="ink-vspace">
 			<div class="ink-l70">
 				<div class="ink-space">
 					<div class="ink-tabs">
@@ -655,5 +662,5 @@
 			</div>
 		</div>
 		
-	</div>
+	</div> -->
 </div>

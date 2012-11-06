@@ -19,8 +19,13 @@ class Js extends CI_Controller {
 	 */
 	public function ui()
 	{
-		$data['pages'] = $this->config->item('site_pages');
-		$data['title'] = $this->config->item('site_title');
+		$data['pages'] 		= $this->config->item('site_pages');
+		$data['title'] 		= $this->config->item('site_title');
+		$data['components']	= $this->config->item('ui_components');
+
+		foreach( $data['components'] as $key => $value ){
+			$data['components'][$key]['view'] = $this->load->view($value['view'],array(),TRUE);
+		}
 
 		$this->load->view('common/document_top',$data);
 		$this->load->view('common/main_navigation',$data);
