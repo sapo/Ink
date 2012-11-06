@@ -36,7 +36,7 @@
 		
 		<div class="ink-l50">
 			<div class="ink-gutter">
-				<?php echo form_fieldset('<h3>Modules</h3>',array('class'=>(($errors && in_array('modules',array_keys($errors))) ? 'error' : '') ) )?>
+				<?php echo form_fieldset('<h4>Modules</h4>',array('class'=>(($errors && in_array('modules',array_keys($errors))) ? 'error' : '') ) )?>
 				<div class="ink-form-wrapper">
 				<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
 				<?php foreach($modules as $value => $module): ?>		
@@ -50,7 +50,7 @@
 		
 		<div class="ink-l50">
 			<div class="ink-gutter">
-				<?php echo form_fieldset('<h3>Options</h3>') ?>
+				<?php echo form_fieldset('<h4>Options</h4>') ?>
 				<div class="ink-form-wrapper">
 				<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
 				<?php foreach($options as $option): ?>
@@ -63,7 +63,7 @@
 		</div>		
 	</div>
 	
-	<?php echo form_fieldset('<h3>Configuration</h3>') ?>
+	<?php echo form_fieldset('<h4>Configuration</h4>') ?>
 		<div class="ink-row">
 		<?php foreach($config as $group => $vars): ?>
 			<div class="ink-l33">
@@ -71,7 +71,7 @@
 				<h5><?php echo $group;?></h5>
 				<?php foreach($vars as $var_id => $var): ?>
 				<div class="ink-form-wrapper <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
-					<?php echo form_label($var_id,(!empty($var['label']) ? $var['label'] : $var_id));?>
+					<?php echo form_label('@'.(!empty($var['label']) ? $var['label'] : $var_id),$var_id);?>
 					<?php echo form_input(array('type' => 'text','id'=>$var_id,'name'=>'vars[' . $var_id . ']','placeholder'=>$var['placeholder'], 'value' => ( ( isset($post) && ( isset($post['vars']) && in_array($var_id,array_keys($post['vars'])) ) ) ? $post['vars'][$var_id] : $var['default_value']), 'class' => (($var['type']=='color') ? 'colorPicker' : '')   )); ?>
 				</div>
 				<?php endforeach; ?>
