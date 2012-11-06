@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?php echo $title ?></title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
@@ -10,7 +11,7 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
-    <link rel="shortcut icon" href="<?php echo assets_url('imgs') ?>favicon.ico">
+    <link rel="shortcut icon" href="<?php echo assets_url('imgs') ?>ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="<?php echo assets_url('imgs') ?>touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo assets_url('imgs') ?>touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo assets_url('imgs') ?>touch-icon.114.png">
