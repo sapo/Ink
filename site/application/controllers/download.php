@@ -148,7 +148,12 @@ class Download extends CI_Controller {
 		$configModules = $this->config->item('ink_modules');
 		foreach($this->input->post('modules') as $module){
 			if( isset($configModules[$module]['implicit_files']) && count($configModules[$module]['implicit_files']) ) {
-				$modules = array_merge( $post['modules'], $configModules[$module]['implicit_files'] );
+				$implicit = array();
+				foreach( $configModules[$module]['implicit_files'] as $file ){
+					$info = pathinfo($file);
+					$implicit[] = str_replace(".".$file['extension'],"",$file['basename']);
+				}
+				$modules = array_merge( $post['modules'], $implicit );
 			}
 		}
 
