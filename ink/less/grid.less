@@ -30,13 +30,16 @@ caption, th { text-align:left; }
 }
 
 .ink-space 	{ margin: @ink-grid-gutter; *overflow:hidden; *clear:both}
-.ink-vspace { margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; }
-.ink-hspace { margin-left: @ink-grid-gutter; margin-right: @ink-grid-gutter; }
+.ink-vspace { margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; *zoom: 1;}
+.ink-hspace { margin-left: @ink-grid-gutter; margin-right: @ink-grid-gutter; *zoom: 1;}
 .ink-gutter { margin-left: @ink-grid-gutter; *overflow: hidden; *zoom: 1;}
 
-.ink-row { margin-left: -@ink-grid-gutter; }
+.ink-row { 
+	margin-left: -@ink-grid-gutter; 
+	*zoom: 1;
+}
 
-.ink-section 			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc; *overflow:hidden; *clear:both}
+.ink-section 			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc; *overflow:hidden; *clear:both;}
 .ink-section:last-child { border-bottom: none;}
 
 .ink-clear,
