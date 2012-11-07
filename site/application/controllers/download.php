@@ -43,7 +43,7 @@ class Download extends CI_Controller {
 	{
 
 		$this->load->helper('url');
-		redirect('http://css.ink.sapo.pt/v1/ink-v1.zip','location');
+		redirect($this->config->item('latest_zip_url'),'location');
 		//$this->zip->read_dir($this->paths->latest,false);
 		//$this->zip->download('ink-'.$this->ink_version_number.'.zip');
 	}
@@ -355,11 +355,11 @@ class Download extends CI_Controller {
 		
 		mkdir($this->paths->builds.$build_dir_name);
 		mkdir($this->paths->builds.$build_dir_name.'/ink');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/assets');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/assets/css');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/assets/js');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/assets/images');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/assets/fonts');
+		#mkdir($this->paths->builds.$build_dir_name.'/ink/assets');
+		mkdir($this->paths->builds.$build_dir_name.'/ink/css');
+		mkdir($this->paths->builds.$build_dir_name.'/ink/js');
+		mkdir($this->paths->builds.$build_dir_name.'/ink/images');
+		mkdir($this->paths->builds.$build_dir_name.'/ink/fonts');
 		mkdir($this->paths->builds.$build_dir_name.'/ink/less');
 
 		return $this->paths->builds.$build_dir_name.'/';
