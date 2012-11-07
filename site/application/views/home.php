@@ -1,6 +1,6 @@
 <div class="callToAction">
-	<img src="<?php echo assets_url('imgs') ?>logo_home.png" alt="Logo Home" class="logo_hp">
-	<div class="glow"><img src="<?php echo assets_url('imgs') ?>glow1.png" alt="Glow1"></div>
+	<img src="<?php echo specific_url('imgs') ?>logo_home.png" alt="Logo Home" class="logo_hp">
+	<div class="glow"><img src="<?php echo specific_url('imgs') ?>glow1.png" alt="Glow1"></div>
 </div>
 
 <div class="ink-container">
@@ -33,7 +33,7 @@
 			</div>
 			<div class="ink-l33">
 				<div class="ink-gutter">
-					<a href="#" >Github repo</a>
+					<a href="https://github.com/sapo/Ink" >Github repo</a>
 					<p>Download, fork, pull, comment or report bugs at InK's Github</p>
 				</div>
 			</div>
