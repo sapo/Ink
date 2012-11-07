@@ -248,10 +248,10 @@ class Download extends CI_Controller {
 				/**
 				 * Storing the CSS Files
 				 */
-				if( is_dir($current_build_path.'/ink/assets/css/') && file_exists($current_build_path.'/ink/assets/css/') && is_writable($current_build_path.'/ink/assets/css/'))
+				if( is_dir($current_build_path.'/ink/css/') && file_exists($current_build_path.'/ink/css/') && is_writable($current_build_path.'/ink/css/'))
 				{
 					# Normal
-					$cssFile = fopen($current_build_path.'/ink/assets/css/ink.css','w+');
+					$cssFile = fopen($current_build_path.'/ink/css/ink.css','w+');
 					if( $cssFile )
 					{
 						fwrite($cssFile,$normalCSS);
@@ -267,7 +267,7 @@ class Download extends CI_Controller {
 					# Minimized
 					if( $options && in_array('minify_css',$options) )
 					{
-						$cssFile = fopen($current_build_path.'/ink/assets/css/ink-min.css','w+');
+						$cssFile = fopen($current_build_path.'/ink/css/ink-min.css','w+');
 						if( $cssFile )
 						{
 							fwrite($cssFile,$minimizedCSS);
@@ -405,9 +405,9 @@ class Download extends CI_Controller {
 		/**
 		 * Compiled but not minified
 		 */
-		shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/assets/css/ink.css') );
-		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie6.css') );
-		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie7.css') );
+		shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/css/ink.css') );
+		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/css/ink-ie6.css') );
+		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/css/ink-ie7.css') );
 
 
 		$options = $this->input->post('options');
@@ -416,9 +416,9 @@ class Download extends CI_Controller {
 			/**
 			 * Compiled and minified
 			 */
-			shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/assets/css/ink-min.css') );
-			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie6-min.css') );
-			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/assets/css/ink-ie7-min.css') );
+			shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/css/ink-min.css') );
+			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/css/ink-ie6-min.css') );
+			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/css/ink-ie7-min.css') );
 		}
 
 
@@ -433,14 +433,14 @@ class Download extends CI_Controller {
 		fwrite($new_ink_makefile, "INK_IE7_LESS = ".$this->paths->latest."less/ie7.less\n\n");
 
 		// COMPILED CSS FILES
-		fwrite($new_ink_makefile, "INK = " . $build_site . "ink/assets/css/ink.css\n");
-		fwrite($new_ink_makefile, "INK_IE6 = " . $build_site . "ink/assets/css/ink-ie6.css\n");
-		fwrite($new_ink_makefile, "INK_IE7 = " . $build_site . "ink/assets/css/ink-ie7.css\n\n");
+		fwrite($new_ink_makefile, "INK = " . $build_site . "ink/css/ink.css\n");
+		fwrite($new_ink_makefile, "INK_IE6 = " . $build_site . "ink/css/ink-ie6.css\n");
+		fwrite($new_ink_makefile, "INK_IE7 = " . $build_site . "ink/css/ink-ie7.css\n\n");
 
 		// COMPILED AND MINIFIED CSS FILES
-		fwrite($new_ink_makefile, "INK_MIN = " . $build_site . "ink/assets/css/ink-min.css\n");
-		fwrite($new_ink_makefile, "INK_IE6_MIN = " . $build_site . "ink/assets/css/ink-ie6-min.css\n");
-		fwrite($new_ink_makefile, "INK_IE7_MIN = " . $build_site . "ink/assets/css/ink-ie7-min.css\n\n");
+		fwrite($new_ink_makefile, "INK_MIN = " . $build_site . "ink/css/ink-min.css\n");
+		fwrite($new_ink_makefile, "INK_IE6_MIN = " . $build_site . "ink/css/ink-ie6-min.css\n");
+		fwrite($new_ink_makefile, "INK_IE7_MIN = " . $build_site . "ink/css/ink-ie7-min.css\n\n");
 
 		// SOME VISUAL CRAP TO ENTERTAIN THE BUILDERS
 		fwrite($new_ink_makefile,"\nDATE=$(shell date +%I:%M%p)\n");
