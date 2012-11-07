@@ -173,18 +173,10 @@ class Download extends CI_Controller {
 		$current_build_path = $this->_prepare_build_space();
 		if( $current_build_path && is_dir($current_build_path) && file_exists($current_build_path) )
 		{
-			if( !$this->_include_less( $current_build_path ) )
-			{
-				$errors['build'] = "Could not create the configuration with the specified options (ERRNUM 7)";
-				$this->_errors( $errors, $post );
-			}
-
-
 			/**
 			 * Copies the default (ergo boilerplate) html file to the build folder, saving it as index.html
 			 */
-			$copy_boilerplate  = "cp -R " . $this->paths->latest . "my-page.html " . $current_build_path . "ink/index.html";
-
+			$copy_boilerplate  = "cp -R " . $this->paths->latest . "my-page.html " . $this->paths->latest . "imgs/ " . $this->paths->latest . "css/ " . $this->paths->latest . "font/ " . $current_build_path . "ink/";
 			exec($copy_boilerplate,$result,$status_code);
 
 			if($status_code != 0){
