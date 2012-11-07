@@ -14,18 +14,18 @@
 					<table></table>
                 </div>
             </div>
-        </div>
+			<script type="text/javascript">
+				var t = new SAPO.Ink.Table('table', {
+					fields: ['name', 'age'],
+					sortableFields: '*',
+					model: [
+						{name:'Jesus Christ',    age:33},
+						{name:'Kurt Cobain',     age:27},
+						{name:'Joni Mitchel',    age:27},
+						{name:'Michael Jackson', age:51}
+					],
+					pageSize: 2
+				});
+			</script>
+		</div>
     </div>
-    <script type="text/javascript">
-        var t = new SAPO.Ink.Table('table', {
-            fields: ['name', 'age'],
-            sortableFields: '*',
-            model: [
-                {name:'Jesus Christ',    age:33},
-                {name:'Kurt Cobain',     age:27},
-                {name:'Joni Mitchel',    age:27},
-                {name:'Michael Jackson', age:51}
-            ],
-            pageSize: 2
-        });
-    </script>

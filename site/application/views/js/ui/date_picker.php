@@ -1,6 +1,6 @@
     <div class="ink-section">
         <div class="ink-row ink-vspace">
-            <div class="ink-l40">
+   			<div class="ink-l40">
                 <div class="ink-gutter"> 
                     <h3 id="date_picker">Date Picker</h3>
                     <p>
@@ -9,7 +9,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ink-l60">
+   			<div class="ink-l60">
                 <div class="ink-gutter">
 					<form class="ink-form-block">
 						<div class="ink-row">
@@ -21,8 +21,9 @@
 					</form>
 				</div>
 			</div>
-        </div>
+   			<script type="text/javascript">
+				var picker = new SAPO.Ink.DatePicker('#dPicker');
+			</script>
+		</div>
     </div>
-    <script type="text/javascript">
-        var picker = new SAPO.Ink.DatePicker('#dPicker');
-    </script>
+   
