@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="<?php echo assets_url('css') ?>ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<![endif]-->
 	
-	<link rel="stylesheet" href="<?php echo assets_url('css') ?>demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="<?php echo specific_url('css') ?>demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
 	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"/>
 
@@ -48,9 +48,9 @@
     <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
     <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/0.1/"></script>
 
-	<script type="text/javascript" src="<?php echo assets_url('js') ?>html5shiv.js"></script>
-	<script type="text/javascript" src="<?php echo assets_url('js') ?>html5shiv-printshiv.js"></script>
-	<script type="text/javascript" src="<?php echo assets_url('js') ?>respond.src.js"></script>
-	<script type="text/javascript" src="<?php echo assets_url('js') ?>prettify.js"></script>
+	<script type="text/javascript" src="<?php echo specific_url('js') ?>html5shiv.js"></script>
+	<script type="text/javascript" src="<?php echo specific_url('js') ?>html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="<?php echo specific_url('js') ?>respond.src.js"></script>
+	<script type="text/javascript" src="<?php echo specific_url('js') ?>prettify.js"></script>
 </head>
 <body onload="prettyPrint()">
