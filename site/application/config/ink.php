@@ -2,15 +2,8 @@
 
 $CI =& get_instance();
 $base_url = $CI->config->base_url();
-$config['build_normal_css_url']	= 'http://10.135.7.199:8081/getcss';
-$config['build_minimized_css_url']	= 'http://10.135.7.199:8081/getcss';
 $config['ink_version_number'] = '1.0';
 $config['latest_zip_url'] = 'http://css.ink.sapo.pt/v1/ink-v1.zip';
-
-$config['assets_url'] = $base_url.'assets/';
-$config['assets_js'] = $base_url.'assets/js/';
-$config['assets_css'] = $base_url.'assets/css/';
-$config['assets_imgs'] = $base_url.'assets/imgs/';
 
 
 $config['site_title'] = 'InK - Interface Kit';

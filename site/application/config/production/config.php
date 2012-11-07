@@ -370,6 +370,13 @@ $config['base_path']    = BASEPATH . '../';
 $config['build_path']   = '/tmp/';
 $config['latest_path']  = BASEPATH . '../../ink/';
 
+$config['build_normal_css_url'] = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
+$config['build_minimized_css_url']  = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
 
+
+$config['assets_url'] = 'http://css.ink.sapo.pt/v1/';
+$config['assets_js'] = 'http://css.ink.sapo.pt/v1/js/';
+$config['assets_css'] = 'http://css.ink.sapo.pt/v1/css/';
+$config['assets_imgs'] = 'http://css.ink.sapo.pt/v1/imgs/';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
