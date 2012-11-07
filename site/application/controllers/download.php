@@ -146,7 +146,7 @@ class Download extends CI_Controller {
 		}
 		
 		$configModules = $this->config->item('ink_modules');
-		$modules = array_merge(array('normalize','conf','lib','common'),$post['modules']);
+		$modules = array_merge(array('normalize','conf','mixins','common'),$post['modules']);
 		foreach($this->input->post('modules') as $module){
 			if( isset($configModules[$module]['implicit_files']) && count($configModules[$module]['implicit_files']) ) {
 				$implicit = array();
