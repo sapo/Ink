@@ -41,8 +41,11 @@ class Download extends CI_Controller {
 
 	public function latest()
 	{
-		$this->zip->read_dir($this->paths->latest,false);
-		$this->zip->download('ink-'.$this->ink_version_number.'.zip');
+
+		$this->load->helper('url');
+		redirect('http://css.ink.sapo.pt/v1/ink-v1.zip','location');
+		//$this->zip->read_dir($this->paths->latest,false);
+		//$this->zip->download('ink-'.$this->ink_version_number.'.zip');
 	}
 
 	/**
