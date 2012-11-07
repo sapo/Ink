@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://ink.dev.sapo.pt/';
+#$config['base_url'] = 'http://ink.dev.sapo.pt/';
+$config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].'/';
 
 /*
 |--------------------------------------------------------------------------
