@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://10.134.132.97/';
+$config['base_url']	= 'http://ink.sapo.pt/';
 
 /*
 |--------------------------------------------------------------------------
@@ -367,7 +367,7 @@ $config['proxy_ips'] = '';
 |
 */
 $config['base_path']    = BASEPATH . '../';
-$config['build_path']   = '/tmp/';
+$config['build_path']   = '/fasmounts/sapo/VAR/ink/';
 $config['latest_path']  = BASEPATH . '../../ink/';
 
 $config['build_normal_css_url'] = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
