@@ -156,9 +156,9 @@ $config['ink_modules'] = array(
 			'name' => 'modules[]',
 			'checked' => 'checked'
 		),
-		'implicit_files' => array( 'less/large.less', 'less/medium.less', 'less/small.less' )
+		'implicit_files' => array( 'less/large.less', 'less/medium.less', 'less/small.less', 'less/footer.less' )
 	),
-	'navigation' => array(
+	'nav' => array(
 		'label' => array(
 			'text' => 'Navigation',
 			'for' => 'modules_navigation'
@@ -168,9 +168,9 @@ $config['ink_modules'] = array(
 			'name' => 'modules[]',
 			'checked' => 'checked'
 		),
-		'implicit_files' => array()
+        'implicit_files' => array( 'less/nav-pills.less', 'less/nav-breadcrumbs.less', 'less/nav-pagination.less' )
 	),
-	'typography' => array(
+	'typo' => array(
 		'label' => array(
 			'text' => 'Typography',
 			'for' => 'modules_typography'
@@ -180,7 +180,7 @@ $config['ink_modules'] = array(
 			'name' => 'modules[]',
 			'checked' => 'checked'
 		),
-		'implicit_files' => array()
+		'implicit_files' => array('less/webfont.less')
 	),
 	'icons' => array(
 		'label' => array(
@@ -216,7 +216,7 @@ $config['ink_modules'] = array(
 			'name' => 'modules[]',
 			'checked' => 'checked'
 		),
-		'implicit_files' => array()
+		'implicit_files' => array('less/buttons.less','less/buttons.less')
 	),
 	'tables' => array(
 		'label' => array(
@@ -397,7 +397,7 @@ $config['ink_config_vars'] = array(
         ),
         'link-active-color' => array(
             'label'             => '',
-            'placeholder'       => 'red',
+            'placeholder'       => '#FF0000',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
@@ -411,7 +411,7 @@ $config['ink_config_vars'] = array(
         ),
         'link-focus-color' => array(
             'label'             => '',
-            'placeholder'       => 'link-color',
+            'placeholder'       => '#0069D6',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
@@ -462,35 +462,35 @@ $config['ink_config_vars'] = array(
         ),
         'warning-bg' => array(
             'label'             => '',
-            'placeholder'       => 'orange',
+            'placeholder'       => '#FFA500',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
         'caution-bg' => array(
             'label'             => '',
-            'placeholder'       => 'red',
+            'placeholder'       => '#FF0000',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
         'error-bg' => array(
             'label'             => '',
-            'placeholder'       => 'red',
+            'placeholder'       => '#FF0000',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
         'success-bg' => array(
             'label'             => '',
-            'placeholder'       => 'green',
+            'placeholder'       => '#00FF00',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
         'info-bg' => array(
             'label'             => '',
-            'placeholder'       => 'blue',
+            'placeholder'       => '#0000FF',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE

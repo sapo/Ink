@@ -2,6 +2,9 @@
 
 class Download extends CI_Controller {
 
+	protected $browserColors = array(
+		"ALICEBLUE","ANTIQUEWHITE","AQUA","AQUAMARINE","AZURE","BEIGE","BISQUE","BLACK","BLANCHEDALMOND","BLUE","BLUEVIOLET","BROWN","BURLYWOOD","CADETBLUE","CHARTREUSE","CHOCOLATE","CORAL","CORNFLOWERBLUE","CORNSILK","CRIMSON","CYAN","DARKBLUE","DARKCYAN","DARKGOLDENROD","DARKGRAY","DARKGREY","DARKGREEN","DARKKHAKI","DARKMAGENTA","DARKOLIVEGREEN","DARKORANGE","DARKORCHID","DARKRED","DARKSALMON","DARKSEAGREEN","DARKSLATEBLUE","DARKSLATEGRAY","DARKSLATEGREY","DARKTURQUOISE","DARKVIOLET","DEEPPINK","DEEPSKYBLUE","DIMGRAY","DIMGREY","DODGERBLUE","FIREBRICK","FLORALWHITE","FORESTGREEN","FUCHSIA","GAINSBORO","GHOSTWHITE","GOLD","GOLDENROD","GRAY","GREY","GREEN","GREENYELLOW","HONEYDEW","HOTPINK","INDIANRED","INDIGO","IVORY","KHAKI","LAVENDER","LAVENDERBLUSH","LAWNGREEN","LEMONCHIFFON","LIGHTBLUE","LIGHTCORAL","LIGHTCYAN","LIGHTGOLDENRODYELLOW","LIGHTGRAY","LIGHTGREY","LIGHTGREEN","LIGHTPINK","LIGHTSALMON","LIGHTSEAGREEN","LIGHTSKYBLUE","LIGHTSLATEGRAY","LIGHTSLATEGREY","LIGHTSTEELBLUE","LIGHTYELLOW","LIME","LIMEGREEN","LINEN","MAGENTA","MAROON","MEDIUMAQUAMARINE","MEDIUMBLUE","MEDIUMORCHID","MEDIUMPURPLE","MEDIUMSEAGREEN","MEDIUMSLATEBLUE","MEDIUMSPRINGGREEN","MEDIUMTURQUOISE","MEDIUMVIOLETRED","MIDNIGHTBLUE","MINTCREAM","MISTYROSE","MOCCASIN","NAVAJOWHITE","NAVY","OLDLACE","OLIVE","OLIVEDRAB","ORANGE","ORANGERED","ORCHID","PALEGOLDENROD","PALEGREEN","PALETURQUOISE","PALEVIOLETRED","PAPAYAWHIP","PEACHPUFF","PERU","PINK","PLUM","POWDERBLUE","PURPLE","RED","ROSYBROWN","ROYALBLUE","SADDLEBROWN","SALMON","SANDYBROWN","SEAGREEN","SEASHELL","SIENNA","SILVER","SKYBLUE","SLATEBLUE","SLATEGRAY","SLATEGREY","SNOW","SPRINGGREEN","STEELBLUE","TAN","TEAL","THISTLE","TOMATO","TURQUOISE","VIOLET","WHEAT","WHITE","WHITESMOKE","YELLOW","YELLOWGREEN"
+	);
 
 	public function __construct()
     {
@@ -174,7 +177,7 @@ class Download extends CI_Controller {
 		if( $current_build_path && is_dir($current_build_path) && file_exists($current_build_path) )
 		{
 			/**
-			 * Copies the default (ergo boilerplate) html file to the build folder, saving it as index.html
+			 * Copies the default (ergo boilerplate) html file to the build folder
 			 */
 			$copy_boilerplate  = "cp -R " . $this->paths->latest . "my-page.html " . $this->paths->latest . "imgs/ " . $this->paths->latest . "css/ " . $this->paths->latest . "font/ " . $current_build_path . "ink/";
 			exec($copy_boilerplate,$result,$status_code);
@@ -488,7 +491,31 @@ class Download extends CI_Controller {
 	 */
 	private function check_color( $color )
 	{
-		return preg_match('/^#+[0-9a-f]{3}(?:[0-9a-f]{3})?$/iD', $color);
+		$color = str_replace(" ","", $color);
+		if( preg_match('/^#+[0-9a-f]{3}(?:[0-9a-f]{3})?$/iD', $color) ){
+			return true;
+		}
+		elseif( substr($color,0,3) === 'rgb' ){
+			$parts = explode(",",$color);
+			$parts[count($parts)-1] = substr($parts[count($parts)-1],0,strlen($parts[count($parts)-1])-1);
+			$parts[0] = str_replace( (( substr($color,0,4) === 'rgba' ) ? "rgba" : "rgb" )."(","",$parts[0]);
+
+			if(
+				ctype_digit($parts[0]) && ( ($parts[0]>=0) && ($parts[0]<=255) ) &&
+				ctype_digit($parts[1]) && ( ($parts[1]>=0) && ($parts[1]<=255) ) &&
+				ctype_digit($parts[2]) && ( ($parts[2]>=0) && ($parts[2]<=255) )
+			){
+				if( ( substr($color,0,4) === 'rgba' ) && (count($parts) === 4) && is_numeric($parts[3]) && ( ($parts[3]>=0) && ($parts[3]<=1) ) ){
+					return true;
+				}
+			}
+		}
+		elseif(ctype_alpha($color) && in_array(strtoupper($color), $this->browserColors)
+		){
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -501,7 +528,7 @@ class Download extends CI_Controller {
 	 */
 	private function check_measure( $value )
 	{
-		return preg_match('/^\d+(cm|ch|em|ex|gd|in|pc|pt|px|rem|vh|vm|\%)?$/iD', $value);
+		return preg_match('/^\d+(\.\d+)?(cm|ch|em|ex|gd|in|pc|pt|px|rem|vh|vm|\%)?$/iD', $value);
 	}
 
 	private function _errors( $errors, $post )

@@ -75,7 +75,7 @@
 				<?php foreach($vars as $var_id => $var): ?>
 				<div class="ink-form-wrapper <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
 					<?php echo form_label('@'.(!empty($var['label']) ? $var['label'] : $var_id),$var_id);?>
-					<?php echo form_input(array('type' => 'text','id'=>$var_id,'name'=>'vars[' . $var_id . ']','placeholder'=>$var['placeholder'], 'value' => ( ( isset($post) && ( isset($post['vars']) && in_array($var_id,array_keys($post['vars'])) ) ) ? $post['vars'][$var_id] : $var['default_value']), 'class' => (($var['type']=='color') ? 'colorPicker' : '')   )); ?>
+					<?php echo form_input(array('type' => 'text','id'=>$var_id,'name'=>'vars[' . $var_id . ']','placeholder'=>$var['placeholder'], 'value' => ( ( isset($post) && ( isset($post['vars']) && in_array($var_id,array_keys($post['vars'])) ) ) ? $post['vars'][$var_id] : ((isset($var['default_value']) && !empty($var['default_value'])) ? $var['default_value'] : $var['placeholder'])), 'class' => (($var['type']=='color') ? 'colorPicker' : '')   )); ?>
 				</div>
 				<?php endforeach; ?>
 				</div>
