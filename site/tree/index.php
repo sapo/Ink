@@ -33,6 +33,10 @@ elseif (strpos($curr_path, '/var/www/ink/site/tree') !== FALSE)
 {
 	define('ENVIRONMENT', 'ricardosmachado');		
 }
+elseif (strpos($curr_path, '/fasmounts/sapo/WEB/INK') !== FALSE) 
+{
+	define('ENVIRONMENT', 'production');		
+}
 else {
 	define('ENVIRONMENT', 'development');
 }
@@ -59,7 +63,7 @@ if (defined('ENVIRONMENT'))
 			error_reporting(E_ALL);
 		break;
 		case 'production':
-			error_reporting(0);
+			error_reporting(E_ALL);
 		break;
 
 		default:
