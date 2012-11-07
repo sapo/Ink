@@ -20,26 +20,26 @@
                     <div id="tview"></div>
                 </div>
             </div>
+			<script type="text/javascript">
+				var tree = new SAPO.Ink.TreeView('#tview', {
+					//selectable: true,
+					model:
+						['root', [
+							['child 1', [
+								['grandchild 1a'],
+								['grandchild 1b'],
+								['grandchild 1c']
+							], 1],
+							['child 2', [
+								['grandchild 2a'],
+								['grandchild 2b', [
+									['grandgrandchild 1bA'],
+									['grandgrandchild 1bB'],
+								]]
+							]],
+							['child 3']
+						]]
+				});
+			</script>
         </div>
     </div>
-    <script type="text/javascript">
-        var tree = new SAPO.Ink.TreeView('#tview', {
-            //selectable: true,
-            model:
-                ['root', [
-                    ['child 1', [
-                        ['grandchild 1a'],
-                        ['grandchild 1b'],
-                        ['grandchild 1c']
-                    ], 1],
-                    ['child 2', [
-                        ['grandchild 2a'],
-                        ['grandchild 2b', [
-                            ['grandgrandchild 1bA'],
-                            ['grandgrandchild 1bB'],
-                        ]]
-                    ]],
-                    ['child 3']
-                ]]
-        });
-    </script>

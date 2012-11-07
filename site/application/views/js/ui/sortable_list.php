@@ -1,6 +1,6 @@
     <div class="ink-section">
         <div class="ink-row ink-vspace">
-            <div class="ink-l40">
+        	<div class="ink-l40">
                 <div class="ink-gutter"> 
                     <h3 id="sortable_list">Sortable List</h3>
                     <p>
@@ -14,10 +14,10 @@
 					<div id="slist"></div>
 				</div>
             </div>
+			<script type="text/javascript">
+				var list = new SAPO.Ink.SortableList('#slist', {
+					model: ['primeiro', 'segundo', 'terceiro']
+				});
+			</script>
         </div>
     </div>
-    <script type="text/javascript">
-        var list = new SAPO.Ink.SortableList('#slist', {
-            model: ['primeiro', 'segundo', 'terceiro']
-        });
-    </script>

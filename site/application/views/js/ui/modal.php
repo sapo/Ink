@@ -21,13 +21,13 @@
 					<button class="ink-button" id="bModal">Open modal</button>
 				</div>
             </div>
+			 <script type="text/javascript">
+				SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
+					new SAPO.Ink.Modal('#modalContent', {
+						width:  500,
+						height: 250
+					});
+				});
+			</script>
         </div>
     </div>
-    <script type="text/javascript">
-        SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
-            new SAPO.Ink.Modal('#modalContent', {
-                width:  500,
-                height: 250
-            });
-        });
-    </script>
