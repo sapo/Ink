@@ -6,7 +6,13 @@
 			<?php foreach($pages as $page): ?>
 				<?php if(isset($page['submenu'])): ?>
 				
-				<?php $menu_item_class = ($page['url'] == uri_string()) ? 'class="active"' : ''; ?>
+				<?php 
+				if( !(($menu_item_class = ($page['url'] == uri_string()) ? 'class="active"' : '')) ){
+					foreach( $page['submenu'] as $submenu )
+						if( (($menu_item_class = ($submenu['url'] == uri_string()) ? 'class="active"' : '')) )
+							break;
+				}
+				?>
 				
 				<li <?php echo $menu_item_class ?>>
 					<a href="#"><?php echo $page['text'] ?><i class="icon-caret-down"></i></a>
