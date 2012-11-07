@@ -1,7 +1,7 @@
 <div class="whatIs">
    <div class="ink-container">
       <h2>Layout</h2>
-      <p>Layout is where Ink fundamentaly differs from most other popular frameworks out there. Ink's layout classes are truly fluid and extremly easy to implement and keep track of, even when your pages grow in complexity.</p>
+      <p>Ink's layout classes are truly fluid and extremly easy to implement.</p>
    </div>
 </div>
 
@@ -31,19 +31,19 @@
       <div class="gridExample">
          <div class="ink-vspace box">
             <div class="ink-l100 ink-m100"><p>100%</p></div>
-            <div class="ink-l90 ink-m100 ink-clear"><p>90%</p></div>
-            <div class="ink-l80 ink-m100 ink-clear"><p>80%</p></div>
-            <div class="ink-l75 ink-m100 ink-clear"><p>75%</p></div>
-            <div class="ink-l70 ink-m100 ink-clear"><p>70%</p></div>
-            <div class="ink-l66 ink-m100 ink-clear"><p>66%</p></div>
-            <div class="ink-l60 ink-m100 ink-clear"><p>60%</p></div>
-            <div class="ink-l50 ink-m100 ink-clear"><p>50%</p></div>
-            <div class="ink-l40 ink-m100 ink-clear"><p>40%</p></div>
-            <div class="ink-l33 ink-m100 ink-clear"><p>33%</p></div>
-            <div class="ink-l30 ink-m100 ink-clear"><p>30%</p></div>
-            <div class="ink-l25 ink-m100 ink-clear"><p>25%</p></div>
-            <div class="ink-l20 ink-m100 ink-clear"><p>20%</p></div>
-            <div class="ink-l10 ink-m100 ink-clear"><p>10%</p></div>
+            <div class="ink-l90 ink-clear"><p>90%</p></div>
+            <div class="ink-l80 ink-clear"><p>80%</p></div>
+            <div class="ink-l75 ink-clear"><p>75%</p></div>
+            <div class="ink-l70 ink-clear"><p>70%</p></div>
+            <div class="ink-l66 ink-clear"><p>66%</p></div>
+            <div class="ink-l60 ink-clear"><p>60%</p></div>
+            <div class="ink-l50 ink-clear"><p>50%</p></div>
+            <div class="ink-l40 ink-clear"><p>40%</p></div>
+            <div class="ink-l33 ink-clear"><p>33%</p></div>
+            <div class="ink-l30 ink-clear"><p>30%</p></div>
+            <div class="ink-l25 ink-clear"><p>25%</p></div>
+            <div class="ink-l20 ink-clear"><p>20%</p></div>
+            <div class="ink-l10 ink-clear"><p>10%</p></div>
          </div>
          
          <div class="ink-vspace">
@@ -74,7 +74,7 @@
                   <div class="gridExample2">
                      <div class="box">
                         <div class="ink-l100 ink-m100 level1">
-                           <div class="ink-l100 level2"><p>100%</p></div>
+                           <div class="ink-l100 ink-m100 level2"><p>100%</p></div>
                            <div class="ink-l50 ink-m100 level2"><p>50%</p></div>
                            <div class="ink-l50 ink-m100 level2"><p>50%</p></div>
                            <div class="ink-l25 ink-m100 level2"><p>25%</p></div>
@@ -86,14 +86,14 @@
                      </div>
                   </div>
                   <pre class="prettyprint linenums ink-vspace">
-<?php echo(htmlentities('<div class="ink-l100">
-   <div class="inkl50"></div>
-   <div class="inkl50"></div>
-   <div class="ink-l25"></div>
-   <div class="ink-l20"></div>
-   <div class="ink-l10"></div>
-   <div class="ink-l20"></div>
-   <div class="ink-l25"></div>
+<?php echo(htmlentities('<div class="ink-l100 ink-m100">
+   <div class="inkl50 ink-m100"></div>
+   <div class="inkl50 ink-m100"></div>
+   <div class="ink-l25 ink-m100"></div>
+   <div class="ink-l20 ink-m100"></div>
+   <div class="ink-l10 ink-m100"></div>
+   <div class="ink-l20 ink-m100"></div>
+   <div class="ink-l25 ink-m100"></div>
 </div>')) ?></pre>
                            </div>
                </div>
@@ -101,44 +101,53 @@
                <div class="ink-gutter">
                   <div class="gridExample2">
                      <div class="box">
-                        <div class="ink-l100 ink-m100 level1">
-                           <div class="ink-l50 ink-m100 level2">
-                              <div class="ink-l100 ink-m100 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 level2"><p>50%</p></div>
+                        <div class="ink-l100 ink-m100 ink-s100 level1">
+                           <div class="ink-l50 ink-m100 ink-s100 level2">
+                              <div class="ink-l100 ink-m100 ink-s100 level2"><p>50%</p></div>
+                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
+                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
                            </div>
-                           <div class="ink-l50 ink-m100 level2">
-                              <div class="ink-l100 ink-m100 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 level2"><p>50%</p></div>
+                           <div class="ink-l50 ink-m100 ink-s100 level2">
+                              <div class="ink-l100 ink-m100 ink-s100 level2"><p>50%</p></div>
+                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
+                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
                            </div>
-                           <div class="ink-l25 ink-m50 level2"><p>25%</p></div>
-                           <div class="ink-l25 ink-m50 level2"><p>25%</p></div>
-                           <div class="ink-l25 ink-m50 level2"><p>25%</p></div>
-                           <div class="ink-l25 ink-m50 level2"><p>25%</p></div>
+                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
+                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
+                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
+                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
                         </div>
                      </div>
                   </div>
                               <pre class="prettyprint linenums ink-vspace">
-<?php echo(htmlentities('<div class="ink-l100">
-   <div class="ink-l50">
-      <div class="ink-l50"></div>
-      <div class="ink-l50"></div>
+<?php echo(htmlentities('<div class="ink-l100 ink-m100 ink-s100">
+   <div class="ink-l50 ink-m100 ink-s100">
+      <div class="ink-l100 ink-m100 ink-s100"></div>
+      <div class="ink-l50 ink-m50 ink-s100"></div>
+      <div class="ink-l50 ink-m50 ink-s100"></div>
    </div>
-   <div class="ink-l50">
-      <div class="ink-l50"></div>
-      <div class="ink-l50"></div>
+   <div class="ink-l50 ink-m100 ink-s100">
+      <div class="ink-l100 ink-m100 ink-s100"></div>
+      <div class="ink-l50 ink-m50 ink-s100"></div>
+      <div class="ink-l50 ink-m50 ink-s100"></div>
    </div>
-   <div class="ink-l25"></div>
-   <div class="ink-l25"></div>
-   <div class="ink-l25"></div>
-   <div class="ink-l25"></div>
+   <div class="ink-l25 ink-m50 ink-s100"></div>
+   <div class="ink-l25 ink-m50 ink-s100"></div>
+   <div class="ink-l25 ink-m50 ink-s100"></div>
+   <div class="ink-l25 ink-m50 ink-s100"></div>
 </div>')) ?></pre>
                </div>
             </div>
          </div>
          <div class="ink-vpace">
-            <p>You should use the <strong>.ink-lxx, .ink-mxx and ink-sxx</strong> classes for layout only and add an additional semantic class for further costumization. In this case, you could then use your conf.css file to customize .maincontent, .sidebar, etc.</p>
+            <p>
+				You should use the <strong>.ink-lxx</strong>, <strong>.ink-mxx</strong> and <strong>.ink-sxx</strong> classes to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
+				The purpose of these classes should be layout only. 
+			</p>
+			<p>	
+				For further costumization add an additional semantic class. 
+				In this case, you could use your conf.css file to customize .maincontent, .sidebar, etc.
+			</p>
          </div>
       </div>
    
