@@ -202,7 +202,7 @@ class Download extends CI_Controller {
 
 			foreach( $this->input->post('vars') as $varName => $varValue ){
 				if( $varValue ){
-					$qs .= "vars[]=".rawurlencode("@".$varName." : " . $varValue)."&";
+					$qs .= "vars[]=".rawurlencode("@".$varName." : \"" . $varValue."\"")."&";
 				}
 			}
 			$qs = substr($qs,0,strlen($qs)-1);
