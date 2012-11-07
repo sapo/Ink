@@ -368,7 +368,7 @@ $config['proxy_ips'] = '';
 |
 */
 $config['base_path']    = BASEPATH . '../';
-$config['build_path']   = '/tmp/';
+$config['build_path']   = '/tmp/ink_build_path/';
 $config['latest_path']  = BASEPATH . '../../ink/';
 
 $config['build_normal_css_url'] = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
@@ -378,6 +378,12 @@ $config['assets_url'] = '/assets/';
 $config['assets_js'] = '/assets/js/';
 $config['assets_css'] = '/assets/css/';
 $config['assets_imgs'] = '/assets/imgs/';
+
+$config['specific_url_imgs'] = '/assets/imgs/';
+$config['specific_url_js'] = '/assets/js/';
+$config['specific_url_css'] = '/assets/css/';
+$config['specific_url'] = '/assets/';
+/* End of file config.php */
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

@@ -393,5 +393,10 @@ $config['assets_url'] = '/assets/';
 $config['assets_js'] = '/assets/js/';
 $config['assets_css'] = '/assets/css/';
 $config['assets_imgs'] = '/assets/imgs/';
+
+$config['specific_url_imgs'] = '/assets/imgs/';
+$config['specific_url_js'] = '/assets/js/';
+$config['specific_url_css'] = '/assets/css/';
+$config['specific_url'] = '/assets/';
 /* End of file config.php */
 /* Location: ./application/config/config.php */

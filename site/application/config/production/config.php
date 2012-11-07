@@ -367,7 +367,7 @@ $config['proxy_ips'] = '';
 |
 */
 $config['base_path']    = BASEPATH . '../';
-$config['build_path']   = '/fasmounts/sapo/VAR/ink/';
+$config['build_path']   = '/fasmounts/sapo/VAR/ink/build/';
 $config['latest_path']  = BASEPATH . '../../ink/';
 
 $config['build_normal_css_url'] = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
@@ -378,5 +378,10 @@ $config['assets_url'] = 'http://css.ink.sapo.pt/v1/';
 $config['assets_js'] = 'http://css.ink.sapo.pt/v1/js/';
 $config['assets_css'] = 'http://css.ink.sapo.pt/v1/css/';
 $config['assets_imgs'] = 'http://css.ink.sapo.pt/v1/imgs/';
+
+$config['specific_url_imgs'] = 'http://imgs.sapo.pt/ink/assets/imgs/';
+$config['specific_url_js'] = 'http://imgs.sapo.pt/ink/assets/js/';
+$config['specific_url_css'] = 'http://imgs.sapo.pt/ink/assets/css/';
+$config['specific_url'] = 'http://imgs.sapo.pt/ink/assets/';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
