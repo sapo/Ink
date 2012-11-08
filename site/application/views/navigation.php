@@ -269,8 +269,6 @@
 							<li><a href="#">Suspendisse</a></li>
 							<li><a href="#">Vivamus</a></li>
 							<li><a href="#">Condimentum</a></li>
-							<li><a href="#">Ccommodo</a></li>
-							<li><a href="#">Egestas</a></li>
 							<li>
 								<a href="#">Submenu<i class="icon-caret-right ink-for-l"></i><i class="icon-caret-down ink-for-s ink-for-m"></i></a>
 								<ul class="submenu">
@@ -279,6 +277,8 @@
 									<li><a href="#">Item</a></li>
 								</ul>
 							</li>
+							<li><a href="#">Ccommodo</a></li>
+							<li><a href="#">Egestas</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -373,6 +373,9 @@
 			<ul class="pills">
 				<li><a href="#">Item</a></li>
 				<li class="active"><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 			</ul>
