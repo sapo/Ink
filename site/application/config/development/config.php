@@ -389,14 +389,14 @@ $config['latest_path']	= BASEPATH . '../../ink/';
 $config['build_normal_css_url'] = 'http://10.135.7.199:8081/getcss';
 $config['build_minimized_css_url']  = 'http://10.135.7.199:8081/getcss';
 
-$config['assets_url'] = '/assets/';
-$config['assets_js'] = '/assets/js/';
-$config['assets_css'] = '/assets/css/';
-$config['assets_imgs'] = '/assets/imgs/';
+$config['assets_url'] = $config['base_url'].'/assets/';
+$config['assets_js'] = $config['base_url'].'/assets/js/';
+$config['assets_css'] = $config['base_url'].'/assets/css/';
+$config['assets_imgs'] = $config['base_url'].'/assets/imgs/';
 
-$config['specific_url_imgs'] = '/assets/imgs/';
-$config['specific_url_js'] = '/assets/js/';
-$config['specific_url_css'] = '/assets/css/';
-$config['specific_url'] = '/assets/';
+$config['specific_url_imgs'] = $config['base_url'].'/assets/imgs/';
+$config['specific_url_js'] = $config['base_url'].'/assets/js/';
+$config['specific_url_css'] = $config['base_url'].'/assets/css/';
+$config['specific_url'] = $config['base_url'].'/assets/';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
