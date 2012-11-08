@@ -1,0 +1,333 @@
+#ink {
+
+	#border-radius {
+
+		// set the same border radius to all corners
+		.all (@radius) {
+			border-radius: @radius;
+		}
+
+		// set individual border radius to the four corners
+		.all (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
+			border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+		}
+
+		// set the same border radius to both top corners
+		.top (@radius) {
+			border-top-right-radius: @radius;
+			border-top-left-radius: @radius;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		// set the same border radius to both bottom corners
+
+		.bottom (@radius) {
+			border-top-right-radius: 0;
+			border-top-left-radius: 0;
+			border-bottom-right-radius: @radius;
+			border-bottom-left-radius: @radius;
+		}
+
+		// set the same border radius to both left corners
+		.left (@radius) {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: @radius;
+			border-top-left-radius: @radius;
+		}
+
+		// set the same border radius to both right corners
+		.right (@radius) {
+			border-top-right-radius: @radius;
+			border-bottom-right-radius: @radius;
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 0;
+		}
+		
+	}
+
+	#forms {
+
+		.input_focus (@fb, @fc){
+			outline: none;
+			border-color: fadeIn(@fc, 30%);
+			-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+			-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+		}
+
+	}
+
+	#buttons {
+
+		.standard (@button-color, @text-color, @text-shadow-color, @shadow-above) when (@shadow-above = true) {
+
+			color: @text-color; 
+			border-color: darken(@button-color, 15%);
+			border-bottom-color: darken(@button-color, 25%);
+
+			#ink > #shadows > .text-shadow (0, .09em, .03em, @text-shadow-color);
+			#ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+			#ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+
+			&:hover {
+				#ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+				#ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+				color: @text-color; // force text color for anchor tags
+				text-decoration: none; // remove underline on anchr tags
+			}
+
+			&:active {
+				#ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+				#ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25),inset);
+			}
+		}
+
+		.standard (@button-color, @text-color, @text-shadow-color) {
+
+			color: @text-color; 
+			border-color: darken(@button-color, 15%);
+			border-bottom-color: darken(@button-color, 25%);
+
+			#ink > #shadows > .text-shadow (0, -.09em, .03em, @text-shadow-color);
+			#ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+			#ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+
+			&:hover {
+				#ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+				#ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+				color: @text-color; // force text color for anchor tags
+				text-decoration: none; // remove underline on anchr tags
+			}
+
+			&:active {
+				#ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+				#ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
+			}
+		}
+
+	}
+
+	#gradients {
+
+		.gradient (@start-color, @end-color, @end-color-stop) {
+			background: @start-color;
+			filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+			background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
+			background: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+			background: linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+		}
+
+	}
+
+
+	#shadows {
+
+		// creates a outset box shadow. takes 5 arguments x, y, blur, spread and color. 
+		.box-shadow (@x, @y, @blur, @spread, @color) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow: @arguments;
+			box-shadow: @arguments;
+		}	
+
+		// creates a box shadow. takes 5 arguments x, y, blur, spread and color. 
+		// If the 6th argument is used the shadow is inset.
+		.box-shadow (@x, @y, @blur, @spread, @color, @inset) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow: @arguments;
+			box-shadow: @arguments;
+		}
+
+		// if several box shadows are needed on the same element you can pass the declarations as a "string"
+		.box-shadows (@exp: "") {
+			-webkit-box-shadow: @exp;
+			-moz-box-shadow: @exp;
+			box-shadow: @exp;
+		}
+
+		// creates a text shadow
+		.text-shadow (@x, @y, @blur, @color){
+			text-shadow: @arguments;
+		}
+
+		// remove box-shadows
+		.no-box-shadow {
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
+
+		// remove box-shadows
+		.no-text-shadow {
+			text-shadow: none;
+		}
+	}
+
+
+	#text {
+
+		// hide text inside element
+		.hide-text (){
+			text-indent: -99999px;
+			color: transparent;
+		}
+
+		.body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
+			font-size: @font-size;
+		}
+
+		.body-font-size (@font-size){}
+
+		.ink-font-stack {
+			font-family: @font-family;
+		}
+
+	}
+
+	#effects {
+
+		.transition-delay (@delay) {
+			-webkit-transition-delay: @delay;
+			-moz-transition-delay: @delay;
+			-o-transition-delay: @delay;
+			-ms-transition-delay: @delay;
+			transition-delay: @delay;
+		}
+
+		.transition-property (@property) {
+			-webkit-transition-property: @property;
+			-moz-transition-property: @property;
+			-o-transition-property: @property;
+			-ms-transition-property: @property;
+			transition-property: @property;
+		}
+
+		.transition-timing-function (@function) {
+			-webkit-transition-timing-function: @function;
+			-moz-transition-timing-function: @function;
+			-o-transition-timing-function: @function;
+			-ms-transition-timing-function: @function;
+			transition-timing-function: @function;
+		}
+
+		.transition-duration (@duration) {
+			-webkit-transition-duration: @duration;
+			-moz-transition-duration: @duration;
+			-o-transition-duration: @duration;
+			-ms-transition-duration: @duration;
+			transition-duration: @duration;
+		}
+
+		.transition (@property: ~"background-color, color", @duration: 125ms, @function: ease-in-out, @delay: 0) {
+			-webkit-transition-property: @property;
+			-moz-transition-property: @property;
+			-o-transition-property: @property;
+			-ms-transition-property: @property;
+			transition-property: @property;
+			-webkit-transition-duration: @duration;
+			-moz-transition-duration: @duration;
+			-o-transition-duration: @duration;
+			-ms-transition-duration: @duration;
+			transition-duration: @duration;
+			-webkit-transition-timing-function: @function;
+			-moz-transition-timing-function: @function;
+			-o-transition-timing-function: @function;
+			-ms-transition-timing-function: @function;
+			transition-timing-function: @function;
+			-webkit-transition-delay: @delay;
+			-moz-transition-delay: @delay;
+			-o-transition-delay: @delay;
+			-ms-transition-delay: @delay;
+			transition-delay: @delay;
+		}
+
+		// set element opacity
+		.opacity (@op) {
+			@percent: @op * 100;
+			filter: alpha(opacity=@percent);
+			-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
+			opacity: @op;
+		}
+
+	}
+
+	#utils {
+		
+	}
+
+	#states {
+
+		.caution (@inv) when (@inv = true) {
+			color: @caution-bg;
+			background-color: transparent;
+		}
+
+		.caution () {
+			color: @white;
+			background-color: @caution-bg;
+		}
+
+
+		.warning (@inv) when (@inv = true) {
+			color: @warning-bg;
+			background-color: transparent;
+		}
+
+		.warning (){
+			background-color: @warning-bg;
+			color: @white;
+		}
+
+		.success (@inv) when (@inv = true) {
+			color: @success-bg;
+			background-color: transparent;
+		}
+
+		.success () {
+			background-color: @success-bg;
+			color: @white;
+		}
+
+		.info (@inv) when (@inv = true) {
+			color: @info-bg;
+			background-color: transparent;
+		}
+
+		.info () {
+			color: @white;
+			background-color: @info-bg;
+		}
+
+		.disabled (@color) when (lightness(@color) < 60%){
+			background: lighten(desaturate(@color,50%),25%);
+			box-shadow: none;
+			border: none;
+			&:hover {
+				background: lighten(desaturate(@color,50%),25%);
+				cursor: not-allowed;
+			}
+		}
+
+		.disabled (@color) when (lightness(@color) > 60%){
+			background: @color;
+			box-shadow: none;
+			border: none;
+			&:hover {
+				background: @color;
+				cursor: not-allowed;
+			}
+		}
+
+	}
+}
+
+.box-sizing (@bst) {
+	-webkit-box-sizing: @bst;
+	-moz-box-sizing: @bst;
+	-ms-box-sizing: @bst;
+	box-sizing: @bst;
+}
