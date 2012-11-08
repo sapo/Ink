@@ -33,7 +33,7 @@ cd $ink_css_dir;
 
 echo "Remove old CSS";
 
-#rm *.css
+rm *.css
 
 cd $ink_ink_dir;
 
@@ -100,6 +100,16 @@ for i in `echo "10.135.150.21 10.135.150.22 10.135.150.23"`; do
 done
 
 #rsync --recursive --links --delete --verbose ${ink_version} rsync://10.135.150.21/cssink
+
+cd $ink_less_dir
+echo 
+echo "Sync with VMs with node server"
+echo 
+for i in `echo "10.135.8.31 10.135.8.32"`; do
+    echo 
+    echo "Sending to $i";
+    rsync --recursive --links --delete --verbose . rsync://$i/inkcssless ;
+done
 
 echo 
 echo "Done..."
