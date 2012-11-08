@@ -73,10 +73,6 @@
 	html .ink-vspace 	{ margin-top: @ink-grid-gutter-small; margin-bottom: @ink-grid-gutter-small; }
 	html .ink-hspace	{ margin-left: @ink-grid-gutter-small; }
 
-	html .menu {
-		display:none
-	}
-
 	html .menu-second-level {
 		display:none;
 	}
@@ -145,42 +141,4 @@
 		top: auto;
 		left: auto;
 	}
-
-	ul {
-
-	&.pagination {
-
-		li {
-
-			display: none;
-
-			a {
-				display: none;
-				
-			}
-
-			&:first-child, &:last-child {
-
-				display: inline;
-
-				a {
-					display: inline-block;
-					border: 1px @grey-15 solid;	
-					float: left;
-					padding: 0 1.2em;
-					#ink > #border-radius > .all (8px);
-				}
-
-			}
-
-			&:last-child {
-				a {
-					float: right;
-				}
-			}
-
-			}
-		}
-	}
-
 }
