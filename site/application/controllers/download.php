@@ -179,12 +179,17 @@ class Download extends CI_Controller {
 			/**
 			 * Copies the default (ergo boilerplate) html file to the build folder
 			 */
-			$copy_boilerplate  = "cp -R " . $this->paths->latest . "my-page.html " . $this->paths->latest . "imgs/ " . $this->paths->latest . "css/ " . $this->paths->latest . "font/ " . $current_build_path . "ink/";
-			exec($copy_boilerplate,$result,$status_code);
-
-			if($status_code != 0){
+			
+			if( !$this->_recursive_copy($this->paths->latest,$current_build_path,'ink/') ){
+				die();
 				$errors['build'] = "Could not create the configuration (ERRNUM 8)";
 				$this->_errors( $errors, $post );
+			}else{
+				// Remove unnecessary folders and files:
+				$this->_recursive_delete( $current_build_path.'ink/less/' );
+				$this->_recursive_delete( $current_build_path.'ink/demo/' );
+				$this->_recursive_delete( $current_build_path.'ink/Makefile' );
+				$this->_recursive_delete( $current_build_path.'ink/my-cdn-page.html' );
 			}
 
 			# Generates the configuration in the build path
@@ -277,7 +282,8 @@ class Download extends CI_Controller {
 
 					if( $options && in_array('include_less',$options) )
 					{
-						if( !$this->_include_less( $current_build_path ) )
+						# Copying less....
+						if( !$this->_recursive_copy($this->paths->latest.'less',$current_build_path . 'ink/','less') )
 						{
 							$errors['build'] = "Could not create the configuration with the specified options (ERRNUM 7)";
 							$this->_errors( $errors, $post );
@@ -290,9 +296,9 @@ class Download extends CI_Controller {
 					 * Removes the directory from the filesystem
 					 * Sends it to the user
 					 */
-					chmod($current_build_path."ink/", 0777);
-					$this->zip->read_dir($current_build_path."/ink/", FALSE);
-					$this->_cleanup($current_build_path);
+					chmod($current_build_path."ink/", 0755);
+					$this->zip->read_dir($current_build_path."ink/", FALSE);
+					$this->_recursive_delete($current_build_path);
 					$this->zip->download('ink-custom-'.$this->ink_version_number.'.zip');
 				}
 				else
@@ -319,54 +325,18 @@ class Download extends CI_Controller {
 		}
 	}
 
-
-	private function _include_less($build_site) 
-	{
-		$copy_less  = "cp -R " . $this->paths->latest . "less " . $build_site . "ink/";
-
-		exec($copy_less,$result,$status_code);
-
-		if($status_code == 0){
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
-	private function _include_common_files($build_site)
-	{
-
-		$this->zip->read_dir($this->paths->latest . "demo/",false);
-		$this->zip->read_file($this->paths->latest . "my-page.html");
-		
-	}
-
-
 	private function _prepare_build_space()
 	{
-
 		$build_dir_name = md5(time().rand());
-		
 		mkdir($this->paths->builds.$build_dir_name);
-		mkdir($this->paths->builds.$build_dir_name.'/ink');
-		#mkdir($this->paths->builds.$build_dir_name.'/ink/assets');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/css');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/js');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/images');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/fonts');
-		mkdir($this->paths->builds.$build_dir_name.'/ink/less');
-
 		return $this->paths->builds.$build_dir_name.'/';
-
 	}
 
 	private function _generate_ink_config($build_site)
 	{
-
 		$configModules = $this->config->item('ink_modules');
 
-		$new_ink_config = fopen($build_site.'/ink.less','w+');
+		$new_ink_config = fopen($build_site.'/ink/ink.less','w+');
 
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/normalize.less\";\n");
 		fwrite($new_ink_config, "@import \"".$this->paths->latest."less/conf.less\";\n");
@@ -392,93 +362,6 @@ class Download extends CI_Controller {
 
 		fclose($new_ink_config);
 
-	}
-
-	private function _generate_ink_makefile($build_site)
-	{
-
-		/**
-		 * Compiled but not minified
-		 */
-		shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/css/ink.css') );
-		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/css/ink-ie6.css') );
-		shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile > ' . escapeshellarg($build_site . 'ink/css/ink-ie7.css') );
-
-
-		$options = $this->input->post('options');
-		if( isset($options) && is_array( $options ) && in_array('minify_css',$options ) )
-		{
-			/**
-			 * Compiled and minified
-			 */
-			shell_exec($this->parths->builds.'recess ' . escapeshellarg($build_site . 'ink.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/css/ink-min.css') );
-			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie6.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/css/ink-ie6-min.css') );
-			shell_exec($this->parths->builds.'recess ' . escapeshellarg($this->paths->latest.'less/ie7.less') . ' --compile --compress > ' . escapeshellarg($build_site . 'ink/css/ink-ie7-min.css') );
-		}
-
-
-		/*
-		$make_filename = 'Makefile';
-		$new_ink_makefile = fopen($build_site.'/'.$make_filename,'w+');
-		$build_path = $this->config->item('build_path');
-
-		// LESS FILES
-		fwrite($new_ink_makefile, "INK_LESS = " . $build_site . "ink.less\n");
-		fwrite($new_ink_makefile, "INK_IE6_LESS = ".$this->paths->latest."less/ie6.less\n");
-		fwrite($new_ink_makefile, "INK_IE7_LESS = ".$this->paths->latest."less/ie7.less\n\n");
-
-		// COMPILED CSS FILES
-		fwrite($new_ink_makefile, "INK = " . $build_site . "ink/css/ink.css\n");
-		fwrite($new_ink_makefile, "INK_IE6 = " . $build_site . "ink/css/ink-ie6.css\n");
-		fwrite($new_ink_makefile, "INK_IE7 = " . $build_site . "ink/css/ink-ie7.css\n\n");
-
-		// COMPILED AND MINIFIED CSS FILES
-		fwrite($new_ink_makefile, "INK_MIN = " . $build_site . "ink/css/ink-min.css\n");
-		fwrite($new_ink_makefile, "INK_IE6_MIN = " . $build_site . "ink/css/ink-ie6-min.css\n");
-		fwrite($new_ink_makefile, "INK_IE7_MIN = " . $build_site . "ink/css/ink-ie7-min.css\n\n");
-
-		// SOME VISUAL CRAP TO ENTERTAIN THE BUILDERS
-		fwrite($new_ink_makefile,"\nDATE=$(shell date +%I:%M%p)\n");
-		fwrite($new_ink_makefile,"CHECK=\\033[32m✔\\033[39m\n");
-		fwrite($new_ink_makefile,"HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\n\n");
-
-		// THE TARGETS
-		fwrite($new_ink_makefile, "all:\n");
-		fwrite($new_ink_makefile, "\t@recess \${INK_LESS} --compile > \${INK}\n");
-		fwrite($new_ink_makefile, "\t@recess \${INK_LESS} --compile --compress > \${INK_MIN}\n");
-		fwrite($new_ink_makefile, "\t@recess \${INK_IE6_LESS} --compile > \${INK_IE6}\n");
-		fwrite($new_ink_makefile, "\t@recess \${INK_IE6_LESS} --compile --compress > \${INK_IE6_MIN}\n");
-		fwrite($new_ink_makefile, "\t@recess \${INK_IE7_LESS} --compile > \${INK_IE7}\n");
-		fwrite($new_ink_makefile, "\t@recess \${INK_IE7_LESS} --compile --compress > \${INK_IE7_MIN}\n");
-		
-		// CLOSE THE MAKEFILE
-		fclose($new_ink_makefile);
-		 */
-	}
-
-	private function _build_ink($build_site)
-	{
-
-		$make_command = "make -f ".$build_site."/Makefile";
-
-		exec($make_command, $result, $status_code);
-
-		if($status_code == 0) {
-			return true;
-		} else {
-			return array($status_code,$result);
-		}
-	}
-
-	private function _cleanup($build_site) 
-	{
-		$command = "rm -rf " . $build_site;
-		exec($command,$return,$status_code);
-		if($status_code == 0){
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -546,6 +429,47 @@ class Download extends CI_Controller {
 			exit();
 		}
 	}
+
+	private function _recursive_copy($source, $dest, $diffDir = ''){ 
+		$returnValue = TRUE;
+	    $sourceHandle = opendir($source); 
+	    // if(!$diffDir) 
+	    //         $diffDir = $source; 
+	    
+	    mkdir($dest . '/' . $diffDir);
+	    
+	    while($res = readdir($sourceHandle)){ 
+	        if($res == '.' || $res == '..') 
+	            continue; 
+
+	        if(is_dir($source . '/' . $res)){ 
+	            $returnValue = $returnValue && $this->_recursive_copy($source . '/' . $res, $dest, $diffDir . '/' . $res); 
+	        } else { 
+	            $returnValue = $returnValue && @copy($source . '/' . $res, $dest . '/' . $diffDir . '/' . $res); 
+	            
+	        } 
+	    }
+
+	    return $returnValue;
+	}
+
+    /**
+     * Delete a file or recursively delete a directory
+     *
+     * @param string $str Path to file or directory
+     */
+    private function _recursive_delete($str){
+        if(is_file($str)){
+            return @unlink($str);
+        }
+        elseif(is_dir($str)){
+            $scan = glob(rtrim($str,'/').'/*');
+            foreach($scan as $index=>$path){
+                $this->_recursive_delete($path);
+            }
+            return @rmdir($str);
+        }
+    }
 
 
 }

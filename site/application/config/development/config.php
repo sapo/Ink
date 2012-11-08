@@ -384,7 +384,7 @@ $config['proxy_ips'] = '';
 */
 $config['base_path']	= BASEPATH . '../';
 $config['build_path']	= '/tmp/';
-$config['latest_path']	= BASEPATH . '../../ink/';
+$config['latest_path']  = BASEPATH . '../../ink/';
 
 $config['build_normal_css_url'] = 'http://10.135.7.199:8081/getcss';
 $config['build_minimized_css_url']  = 'http://10.135.7.199:8081/getcss';
