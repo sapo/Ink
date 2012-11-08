@@ -1,7 +1,7 @@
 <div class="whatIs">
    <div class="ink-container">
       <h2>Layout</h2>
-      <p>Ink's layout classes are truly fluid and extremly easy to implement.</p>
+      <p>Ink's layout classes are truly fluid and extremely easy to implement.</p>
    </div>
 </div>
 
