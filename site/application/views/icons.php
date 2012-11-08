@@ -1,32 +1,32 @@
-<div class="ink-container whatIs">
-	<div class="ink-vspace">
+<div class="whatIs">
+   <div class="ink-container">
 		<h2>Icons</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p>Ink uses <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a>, an icon webfont containing over 200 industry standard pictograms for use in your projects.</p>
 	</div>
 </div>
 
-<nav class="menu">
+<div class="menu-second-level">
 	<div class="ink-container">
-		<ul class="ink-h-nav">
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#">Web Application Icons</a></li>
-			<li><a href="#">Text Editor Icons</a></li>
-			<li><a href="#">Directional Icons</a></li>
-			<li><a href="#">Video Player Icons</a></li>
-			<li><a href="#">Social Icons</a></li>
-		</ul>
+		<nav class="ink-navigation">
+			<ul class="menu horizontal">
+				<li class="active"><a class="home" href="#">Home</a></li>
+				<li><a href="#">Web Application Icons</a></li>
+				<li><a href="#">Text Editor Icons</a></li>
+				<li><a href="#">Directional Icons</a></li>
+				<li><a href="#">Video Player Icons</a></li>
+				<li><a href="#">Social Icons</a></li>
+			</ul>
+		</nav>
 	</div>
-</nav>
+</div>
 
 <div class="ink-container">
+
 	<div class="ink-section">
-		<div class="ink-vspace">
-			 <h3>Web Application Icons</h3>
-		</div>
-		
+		<h3>Web Application Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-adjust"></i> icon-adjust</li>
 					<li><i class="icon-asterisk"></i> icon-asterisk</li>
 					<li><i class="icon-ban-circle"></i> icon-ban-circle</li>
@@ -63,7 +63,7 @@
 				</ul>
   			</div>
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-exclamation-sign"></i> icon-exclamation-sign</li>
 					<li><i class="icon-external-link"></i> icon-external-link</li>
 					<li><i class="icon-eye-close"></i> icon-eye-close</li>
@@ -100,7 +100,7 @@
 				</ul>
 			</div>
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-money"></i> icon-money</li>
 					<li><i class="icon-move"></i> icon-move</li>
 					<li><i class="icon-music"></i> icon-music</li>
@@ -136,7 +136,7 @@
 				</ul>
 			</div>
 			<div class="ink-l25">
-				<ul class="ink-hspace unstyled">
+				<ul class="ink-gutter unstyled">
 					<li><i class="icon-signal"></i> icon-signal</li>
 					<li><i class="icon-signin"></i> icon-signin</li>
 					<li><i class="icon-signout"></i> icon-signout</li>
@@ -173,10 +173,9 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="ink-section">
-		<div class="ink-vspace">
-			 <h3>Text Editor Icons</h3>
-		</div>
+		<h3>Text Editor Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
@@ -227,10 +226,9 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Directional Icons</h3>
-		</div>
+		<h3>Directional Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
@@ -270,10 +268,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="ink-section">
-		<div class="ink-vspace">
-			<h3>Video Player Icons</h3>
-		</div>
+		<h3>Video Player Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">
@@ -307,10 +304,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="ink-section">
-		<div class="ink-vspace">
-		    <h3>Social Icons</h3>
-		</div>
+	    <h3>Social Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
 				<ul class="unstyled ink-hspace">

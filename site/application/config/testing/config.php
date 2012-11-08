@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://ink.dev.sapo.pt/';
+#$config['base_url'] = 'http://ink.dev.sapo.pt/';
+$config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].'/';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +225,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = sha1('ptSAPOiNk@!!---2134567774567927*');
 
 /*
 |--------------------------------------------------------------------------
@@ -357,6 +358,32 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+
+/*
+|--------------------------------------------------------------------------
+| Folders to use for the custom download feature
+|--------------------------------------------------------------------------
+| Here you should configure the folders to be used as base path, build_path
+| and latest_path.
+|
+*/
+$config['base_path']    = BASEPATH . '../';
+$config['build_path']   = '/tmp/ink_build_path/';
+$config['latest_path']  = BASEPATH . '../../ink/';
+
+$config['build_normal_css_url'] = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
+$config['build_minimized_css_url']  = 'http://sgt-ink-be-vip.singletons.bk.sapo.pt:8081/getcss';
+
+$config['assets_url'] = '/assets/';
+$config['assets_js'] = '/assets/js/';
+$config['assets_css'] = '/assets/css/';
+$config['assets_imgs'] = '/assets/imgs/';
+
+$config['specific_url_imgs'] = '/assets/imgs/';
+$config['specific_url_js'] = '/assets/js/';
+$config['specific_url_css'] = '/assets/css/';
+$config['specific_url'] = '/assets/';
+/* End of file config.php */
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

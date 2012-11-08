@@ -14,7 +14,23 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://10.134.132.97/';
+$path = getcwd();
+
+if($path == 'I:\work\ink\site\tree') {
+	$config['base_url']	= 'http://localhost/ink/site/tree';
+} 
+elseif($path == '/home/pedro/work/ink/site/tree') 
+{
+	$config['base_url']	= 'http://10.134.132.97';
+}
+elseif($path == '/home/jdias/Remote/ink/site/tree') 
+{
+	$config['base_url']	= 'http://inkink.jdias-sapo.pt/';
+}
+else 
+{
+	$config['base_url']	= 'http://localhost/Ink/site/tree';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +240,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = sha1('ptSAPOiNk@!!---2134567774567927*');
 
 /*
 |--------------------------------------------------------------------------
@@ -358,5 +374,29 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+/*
+|--------------------------------------------------------------------------
+| Folders to use for the custom download feature
+|--------------------------------------------------------------------------
+| Here you should configure the folders to be used as base path, build_path
+| and latest_path.
+|
+*/
+$config['base_path']	= BASEPATH . '../';
+$config['build_path']	= '/tmp/';
+$config['latest_path']  = BASEPATH . '../../ink/';
+
+$config['build_normal_css_url'] = 'http://10.135.7.199:8081/getcss';
+$config['build_minimized_css_url']  = 'http://10.135.7.199:8081/getcss';
+
+$config['assets_url'] = $config['base_url'].'/assets/';
+$config['assets_js'] = $config['base_url'].'/assets/js/';
+$config['assets_css'] = $config['base_url'].'/assets/css/';
+$config['assets_imgs'] = $config['base_url'].'/assets/imgs/';
+
+$config['specific_url_imgs'] = $config['base_url'].'/assets/imgs/';
+$config['specific_url_js'] = $config['base_url'].'/assets/js/';
+$config['specific_url_css'] = $config['base_url'].'/assets/css/';
+$config['specific_url'] = $config['base_url'].'/assets/';
 /* End of file config.php */
 /* Location: ./application/config/config.php */

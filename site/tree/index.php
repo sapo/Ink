@@ -24,10 +24,20 @@ $curr_path = getcwd();
 if( strpos($curr_path, '/home/ink/ink/') !== FALSE) 
 {
 	define('ENVIRONMENT', 'staging');		
-} elseif (strpos($curr_path, '/home/ink/inkdev/') !== FALSE) 
+} 
+elseif (strpos($curr_path, '/home/ink/inkdev/') !== FALSE) 
 {
 	define('ENVIRONMENT', 'testing');		
-} else {
+}
+elseif (strpos($curr_path, '/var/www/ink/site/tree') !== FALSE) 
+{
+	define('ENVIRONMENT', 'ricardosmachado');		
+}
+elseif (strpos($curr_path, '/fasmounts/sapo/WEB/INK') !== FALSE) 
+{
+	define('ENVIRONMENT', 'production');		
+}
+else {
 	define('ENVIRONMENT', 'development');
 }
 
@@ -45,6 +55,7 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
+		case 'ricardosmachado':
 			error_reporting(E_ALL);
 		break;
 		case 'staging':
@@ -52,7 +63,7 @@ if (defined('ENVIRONMENT'))
 			error_reporting(E_ALL);
 		break;
 		case 'production':
-			error_reporting(0);
+			error_reporting(E_ALL);
 		break;
 
 		default:

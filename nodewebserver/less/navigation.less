@@ -1,0 +1,861 @@
+// .topbar:after,
+// .ink-v-nav:after,
+// .ink-h-nav:after {
+// 	content: ".";
+// 	display: block;
+// 	height: 0;
+// 	clear: both;
+// 	visibility: hidden;
+// 	zoom: 1;
+// }
+
+// .ink-v-nav li {
+// 	margin: 0;
+// 	position:relative;
+// 	border-bottom:1px solid #CCC;
+// }
+
+// .ink-v-nav li i {
+// 	float:right
+// }
+
+// .ink-v-nav a {
+// 	line-height: @v-nav-height; 
+// 	padding: 0 1.5em;
+// 	display:block;
+// 	text-decoration: none;
+// 	color:@black
+// }
+
+// .ink-v-nav a:hover {
+// 	background: darken(@v-nav-bgColor ,10%);
+// 	text-decoration: none;
+// }
+
+
+// .ink-h-nav {
+// 	height: @h-nav-height;
+// 	display: block; 
+// 	font-size: 0em;
+// 	vertical-align: top;
+// 	position:relative;
+// 	overflow: visible;
+// }
+
+// .ink-h-nav li {
+// 	font-size: @h-nav-fontSize; 
+// 	display: inline-block; 
+// 	vertical-align: baseline; 
+// 	position:relative; 
+// 	margin:0;
+// 	zoom:1;
+// 	*display: inline;
+// }
+
+// .ink-h-nav li i {
+// 	margin-left:0.4em;
+// 	height: @h-nav-height;
+// }
+
+// .ink-h-nav a {
+// 	*height:@h-nav-height;
+// 	line-height: @h-nav-height;
+// 	padding: 0 1.3em;
+// 	display:block;
+// 	text-decoration: none;
+// }
+
+// .ink-h-nav a:hover {
+// 	background: fade(darken(@h-nav-bgColor,50%),50%);
+// 	text-decoration: none;
+// }
+
+// .ink-v-nav .submenu {
+// 	top:-1px; left:100%;
+// 	overflow: hidden;
+// 	padding-left: 0;
+// }
+
+// .ink-v-nav li:hover .submenu, 
+// .ink-h-nav li:hover .submenu {
+// 	display: block
+// }
+
+// .ink-h-nav .submenu {
+// 	margin-left:-1px;
+// }
+
+// .submenu {
+// 	display: none;
+// 	width:14em;
+// 	position:absolute;
+// 	padding-left: 0;
+// 	background: @submenu-bgColor;
+// 	border-top:1px solid #CACACA;
+// 	z-index: 1000;
+// }
+
+// .submenu li {
+// 	display: block;
+// 	border-right:1px solid #CACACA;
+// 	border-bottom:1px solid #CACACA;
+// 	border-left:1px solid #CACACA;
+//}
+
+.ink-footer-nav {
+ 	padding:0;
+ 	margin:1em 0 2em;
+}
+
+.ink-footer-nav li {
+ 	display: inline-block;
+ 	font-size:0.875em;
+ 	margin:0 1em 0 0;
+ 	*zoom:1;
+ 	*display: inline;
+	
+}
+
+// ul {
+
+// 	&.pagination {		
+
+// 		li {
+// 			a {
+// 				background: @white;
+// 				border-top: 1px @grey-15 solid;
+// 				border-bottom: 1px @grey-15 solid;
+// 				border-left: 1px @grey-15 solid;
+// 				#ink > #effects > .transition ();
+
+// 				&:hover {
+// 					background: darken(@white,10%);
+// 				}
+
+// 			}
+// 			&:first-child {
+// 				a {
+// 					#ink > #border-radius > .left (6px);
+// 				}
+// 			}
+
+// 			&:last-child {
+// 				a {
+// 					border-right: 1px @grey-15 solid;
+// 					#ink > #border-radius > .right (6px);
+// 				}
+// 			}
+
+// 			&.active {
+// 				a {
+// 					font-weight: 700;
+// 					background: darken(@white,10%);
+// 					&:hover {
+// 						cursor: default;
+// 					}
+// 				}
+// 			}
+
+// 			&.disabled {
+// 				a {
+// 					color: lighten(@black,70%);
+
+// 					&:hover {
+// 						#ink > #effects > .transition ();
+// 						background: @white;
+// 						cursor: default;						
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	&.pills {
+
+// 		li {
+
+// 			margin-right: 0.5em;
+
+// 			a {
+
+// 				#ink > #effects > .transition ();
+// 				#ink > #border-radius > .all (8px);
+// 				#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+// 				background: @white;
+// 				line-height: 2.5;
+
+// 				&:hover {
+// 					background: darken(@white,10%);
+// 					color: @black;
+// 				}
+// 			}
+
+// 			&.active {
+				
+// 				a {
+
+// 					border: 1px @grey-10 solid;
+// 					background: @link-color;
+// 					color: @white;
+// 					cursor: default;	
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	&.breadcrumbs {
+
+// 		background: @white;
+// 		#ink > #border-radius > .all (8px);
+// 		#ink > #shadows > .box-shadow (0,1px,0px,0,fade(@grey-10,50%));
+
+// 		li {
+
+// 			line-height: 2.5;
+
+// 			a {
+
+// 				display: inline;
+// 				padding: 0;
+
+// 				&:hover {
+// 					background: transparent;
+// 					color: @link-hover-color;
+// 					text-decoration: underline;
+// 				}
+// 			}
+
+// 			span {
+// 				&.separator {
+// 					margin: 0 1em;
+// 					color: @grey-30;
+// 				}
+// 			}
+
+// 			&.active {
+// 					a {
+// 						color: @grey-50;
+// 						cursor: default;
+// 						text-decoration: none;
+// 					}
+// 				}
+
+// 			&:first-child {
+// 				a {
+// 					padding-left: 1.2em;
+// 				}
+// 			}
+
+// 			&:last-child {
+// 				a {
+// 					&:after {
+// 						content: "";
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+
+.ink-navigation {
+
+	font-size: @h-nav-fontSize;
+
+	ul {
+
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+
+		li {
+
+			a {
+				text-decoration: none;
+			}
+
+			ul {
+
+				&.submenu {
+					display: none;
+					width:14em;
+					position:absolute;
+					padding-left: 0;
+					background: @submenu-bgColor;
+					border-top:1px solid #CACACA;
+					z-index: 1000;
+
+					li {
+						display: block;
+						border-right:1px solid #CACACA;
+						border-bottom:1px solid #CACACA;
+						border-left:1px solid #CACACA;
+
+						a {
+							color: @black;
+						}
+					}
+				}			
+			}
+
+		}
+
+		&.menu {
+
+			#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+			#ink > #border-radius > .all (4px);
+			#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+			li {
+
+				a {
+					color: @black;
+				}
+
+				&:first-child a {
+					#ink > #border-radius > .left (4px);
+				}
+
+			}
+
+			&.flat {
+				background: @white;
+				#ink > #border-radius > .all (0px);
+
+				li {
+
+					&:first-child a {
+						#ink > #border-radius > .all (0  px);
+					}
+
+				}
+			}
+
+			&.grey {
+
+					#ink > #border-radius > .all (4px);
+					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+					#ink > #gradients > .gradient (#d2d2d2, #bcbcbc, 150%);
+
+					li {
+
+						a {
+							color:@black;
+						}
+
+
+					}
+
+					&.flat {
+						background: #d2d2d2;
+						#ink > #border-radius > .all (0px);
+					}
+				}
+
+				&.green {
+
+					#ink > #border-radius > .all (4px);
+					#ink > #gradients > .gradient (desaturate(@success-bg-color,10%), darken(desaturate(@success-bg-color,10%),10%), 150%);
+					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+					li {
+
+						a {
+							color:@white;
+						}
+
+
+						ul {
+							&.submenu {
+								li {
+									a {
+										color: @black;
+										&:hover {
+											background: darken(desaturate(@success-bg-color,10%),12%);
+											color: @white;
+										}
+									}
+								}
+							}
+						}
+					}
+
+					&.flat {
+						background: desaturate(@success-bg-color,10%);
+						#ink > #border-radius > .all (0px);
+					}
+				}
+
+				&.blue {
+
+					#ink > #border-radius > .all (4px);
+					#ink > #gradients > .gradient (desaturate(@info-bg-color,10%), darken(desaturate(@info-bg-color,10%),10%), 150%);
+					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+					li {
+
+						a {
+							color:@white;
+						}
+
+
+						ul {
+							&.submenu {
+								li {
+									a {
+										color: @black;
+										&:hover {
+											background: darken(desaturate(@info-bg-color,10%),12%);
+											color: @white;
+										}
+									}
+								}
+							}
+						}
+
+					}
+
+					&.flat {
+						background: desaturate(@info-bg-color,10%);
+						#ink > #border-radius > .all (0px);
+					}
+				}
+
+				&.red {
+
+					#ink > #border-radius > .all (4px);
+					#ink > #gradients > .gradient (desaturate(@caution-bg-color,10%), darken(desaturate(@caution-bg-color,10%),10%), 150%);
+					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+					li {
+
+						a {
+							color:@white;
+						}
+
+
+						ul {
+							&.submenu {
+								li {
+									a {
+										color: @black;
+										&:hover {
+											background: darken(desaturate(@caution-bg-color,10%),12%);
+											color: @white;
+										}
+									}
+								}
+							}
+						}
+
+					}
+
+					&.flat {
+						background: desaturate(@caution-bg-color,10%);
+						#ink > #border-radius > .all (0px);
+					}
+				}
+
+				&.orange {
+
+					#ink > #border-radius > .all (4px);
+					#ink > #gradients > .gradient (desaturate(@warning-bg-color,10%), darken(desaturate(@warning-bg-color,10%),10%), 150%);
+					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+					li {
+
+						a {
+							color:@white;
+						}
+
+
+						ul {
+							&.submenu {
+								li {
+									a {
+										color: @black;
+										&:hover {
+											background: darken(desaturate(@warning-bg-color,10%),12%);
+											color: @white;
+										}
+									}
+								}
+							}
+						}
+
+					}
+
+					&.flat {
+						background: desaturate(@warning-bg-color,10%);
+						#ink > #border-radius > .all (0px);
+					}
+				}
+
+				&.black {
+
+					#ink > #border-radius > .all (4px);
+					#ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+					#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+					li {
+
+						a {
+							color:@white;
+							&:hover {
+								background: fade(@white,25%);
+							}
+						}
+
+
+						ul {
+							&.submenu {
+								li {
+									a {
+										color: @black;
+										&:hover {
+											background: lighten(@black,30%);
+											color: @white;
+										}
+									}
+								}
+							}
+						}
+
+					}
+
+					&.flat {
+						background: @black;
+						#ink > #border-radius > .all (0px);
+					}
+				}
+
+			&.horizontal {
+
+				height: @h-nav-height;
+				display: block; 
+				font-size: 0em;
+				vertical-align: top;
+				position:relative;
+				overflow: visible;
+								
+
+				&:after {
+					content: ".";
+					display: block;
+					height: 0;
+					clear: both;
+					visibility: hidden;
+					zoom: 1;
+				}
+
+				li {
+
+					font-size: @h-nav-fontSize; 
+					display: inline-block; 
+					vertical-align: baseline; 
+					position:relative; 
+					margin:0;
+					zoom:1;
+					*display: inline;					
+
+					a {
+
+						*height:@h-nav-height;
+						line-height: @h-nav-height;
+						padding: 0 1em;
+						display:block;
+						text-decoration: none;
+						
+
+						&:hover {
+							background: fade(@black,27%);
+							text-decoration: none;
+						}
+
+					}
+
+					i {
+						margin-left:0.4em;
+						height: @h-nav-height;
+					}
+
+					.submenu {
+						margin-left:-1px;
+						a {
+							margin: 0;
+						}
+					}
+
+					&:hover {
+
+						.submenu {
+							display: block;
+							li {
+								display: block;
+								a {
+									&:hover {
+										#ink > #border-radius > .all (0px);
+									}
+								}
+							}
+						}
+
+					}
+
+				}
+
+			}
+
+			&.vertical {
+
+				&:after {
+					content: ".";
+					display: block;
+					height: 0;
+					clear: both;
+					visibility: hidden;
+					zoom: 1;
+				}
+
+				.submenu {
+					top:-1px; 
+					left:100%;
+					overflow: hidden;
+					padding-left: 0;
+				}
+
+				li {
+
+					margin: 0;
+					position:relative;
+					border-bottom:1px solid #CCC;
+
+					a {
+
+						line-height: @v-nav-height; 
+						padding: 0 1.5em;
+						display:block;
+						text-decoration: none;
+
+						&:hover {
+
+							background: fade(@black ,15%);
+							text-decoration: none;
+
+						}
+
+					}
+
+					i {
+						float:right;
+					}					
+
+					&:hover {
+
+						.submenu {
+
+							display: block;
+
+							li {
+								a {
+									#ink > #border-radius > .all(0);
+								}
+							}
+						}
+
+					}
+
+					&:first-child {
+						a {
+							#ink > #border-radius > .left (0);
+							#ink > #border-radius > .top (4px);
+						}
+					}
+
+					&:last-child {
+						a {
+							#ink > #border-radius > .bottom (4px);
+						}
+					}
+
+				}
+
+			}
+
+		}
+
+		&.footer {
+
+			padding:0;
+			margin:1em 0 2em;
+
+			li {
+
+				display: inline-block;
+				font-size:0.875em;
+				margin:0 1em 0 0;
+				*zoom:1;
+				*display: inline;
+
+			}
+
+		}
+
+		&.pagination {
+
+		// #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+		// #ink > #border-radius > .all (4px);
+		// #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+		li {
+			a {
+				padding: 0.5em 1em;
+				display: block;
+				float: left;
+				// background: @white;
+				border-top: 1px @grey-15 solid;
+				border-bottom: 1px @grey-15 solid;
+				border-left: 1px @grey-15 solid;
+				#ink > #effects > .transition ();
+
+				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				// #ink > #border-radius > .all (4px);
+				#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+				&:hover {
+					// background: darken(@white,10%);
+				}
+
+			}
+			&:first-child {
+				a {
+					#ink > #border-radius > .left (4px);
+				}
+			}
+
+			&:last-child {
+				a {
+					border-right: 1px @grey-15 solid;
+					#ink > #border-radius > .right (4px);
+				}
+			}
+
+			&.active {
+				a {
+					font-weight: 700;
+					background: darken(@white,10%);
+					&:hover {
+						cursor: default;
+					}
+				}
+			}
+
+			&.disabled {
+				a {
+					color: lighten(@black,70%);
+
+					&:hover {
+						#ink > #effects > .transition ();
+						background: @white;
+						cursor: default;						
+					}
+				}
+			}
+		}
+	}
+
+	&.pills {
+
+		li {
+
+			margin-right: 0.5em;
+
+			a {
+
+				#ink > #effects > .transition ();
+				
+				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				#ink > #border-radius > .all (4px);
+				#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+				background: @white;
+				padding: 0.5em 1em;
+				display: block;
+				float: left;
+				margin-right: 8px;
+
+				&:hover {
+					background: darken(@white,10%);
+					color: @black;
+				}
+			}
+
+			&.active {
+				
+				a {
+
+					border: 1px @grey-10 solid;
+					background: @link-color;
+					color: @white;
+					cursor: default;	
+				}
+			}
+		}
+	}
+
+	&.breadcrumbs {
+
+		#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				#ink > #border-radius > .all (4px);
+				#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+
+		li {
+
+			line-height: 2.5;
+			display: inline;
+
+			a {
+
+				display: inline;
+				padding: 0;
+
+				&:hover {
+					background: transparent;
+					color: @link-hover-color;
+					text-decoration: underline;
+				}
+			}
+
+			span {
+				&.separator {
+					margin: 0 1em;
+					color: @grey-30;
+				}
+			}
+
+			&.active {
+					a {
+						color: @grey-50;
+						cursor: default;
+						text-decoration: none;
+					}
+				}
+
+			&:first-child {
+				a {
+					padding-left: 1.2em;
+				}
+			}
+
+			&:last-child {
+				a {
+					&:after {
+						content: "";
+					}
+				}
+			}
+		}
+	}
+
+	}
+
+}
