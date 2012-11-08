@@ -307,7 +307,6 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 #topbar {	
 	height:@topbar-height;
 	background:@topbar-bgColor;
-	font-size:@topbar-fontSize;
 	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
 	
@@ -317,6 +316,9 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 		ul {
 			&.menu {
 				&.horizontal {
+					li {
+						font-size:@topbar-fontSize;
+					}
 					&.black {
 						&.flat {
 							background:@topbar-bgColor;

@@ -373,7 +373,6 @@ footer ul.sociallinks li a.Gplus_link {
 #topbar {
   height: 40px;
   background: #222222;
-  font-size: 0.875em;
   -webkit-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   -moz-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
@@ -381,6 +380,9 @@ footer ul.sociallinks li a.Gplus_link {
 }
 #topbar .ink-navigation {
   background: #222222;
+}
+#topbar .ink-navigation ul.menu.horizontal li {
+  font-size: 14px;
 }
 #topbar .ink-navigation ul.menu.horizontal.black.flat {
   background: #222222;
