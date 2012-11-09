@@ -57,3 +57,25 @@
 		}
 	}
 }
+
+@media screen and (max-width: 650px) {
+
+	html body .ink-navigation {
+		
+		.pagination {
+		
+			li {
+			
+				a {
+					display:none
+				}
+				
+				&:first-child, &:last-child {
+					a {
+						display:block;
+					}
+				}
+			}
+		}
+	}
+}

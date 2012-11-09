@@ -90,18 +90,6 @@ mark {
   padding: 13px 0;
 }
 /*..........................................  Typography  ...................................................*/
-#headingExample h1,
-#headingExample h2,
-#headingExample h3,
-#headingExample h4,
-#headingExample h5 {
-  margin-bottom: 20px;
-}
-#listExample ul,
-#listExample ol,
-#listExample dl {
-  margin-bottom: 1.5em;
-}
 a.visited {
   color: #808080;
 }
@@ -112,20 +100,7 @@ a.hover {
 a.active {
   color: #ff0000;
 }
-/*..........................................  Forms  ...................................................*/
-.exampleForm {
-  margin: 1em 0;
-  padding: 1em 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eeeeee;
-}
-.exampleForm .e_wrap {
-  margin: 0px;
-  padding: 0px;
-}
-#buttonsExample .e_wrap {
-  text-align: right;
-}
+/*............................................  Homepage  ...................................................*/
 .whatIs {
   padding: 0 0 .8em;
   font-size: 1.25em;
@@ -373,7 +348,6 @@ footer ul.sociallinks li a.Gplus_link {
 #topbar {
   height: 40px;
   background: #222222;
-  font-size: 0.875em;
   -webkit-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   -moz-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
@@ -381,6 +355,9 @@ footer ul.sociallinks li a.Gplus_link {
 }
 #topbar .ink-navigation {
   background: #222222;
+}
+#topbar .ink-navigation ul.menu.horizontal li {
+  font-size: 14px;
 }
 #topbar .ink-navigation ul.menu.horizontal.black.flat {
   background: #222222;
@@ -441,9 +418,6 @@ footer ul.sociallinks li a.Gplus_link {
   text-shadow: 0 0 0 rgba(0, 0, 0, 0);
   color: #bbbbbb;
   font-size: 1.2em;
-  position: absolute;
-  top: .6em;
-  right: 0;
 }
 #topbar .ink-button:hover {
   color: #ffffff;
