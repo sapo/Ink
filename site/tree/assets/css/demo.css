@@ -418,9 +418,6 @@ footer ul.sociallinks li a.Gplus_link {
   text-shadow: 0 0 0 rgba(0, 0, 0, 0);
   color: #bbbbbb;
   font-size: 1.2em;
-  position: absolute;
-  top: .6em;
-  right: 0;
 }
 #topbar .ink-button:hover {
   color: #ffffff;
