@@ -1,3 +1,29 @@
+<?php
+ $js = <<<JS
+<div id="tview"></div>
+<script type="text/javascript">
+    var tree = new SAPO.Ink.TreeView('#tview', {
+        //selectable: true,
+        model:
+            ['root', [
+                ['child 1', [
+                    ['grandchild 1a'],
+                    ['grandchild 1b'],
+                    ['grandchild 1c']
+                ], 1],
+                ['child 2', [
+                    ['grandchild 2a'],
+                    ['grandchild 2b', [
+                        ['grandgrandchild 1bA'],
+                        ['grandgrandchild 1bB'],
+                    ]]
+                ]],
+                ['child 3']
+            ]]
+    });
+</script>
+JS;
+?>
     <div class="ink-section">
         <div class="ink-row ink-vspace">
             <div class="ink-l40">
@@ -11,35 +37,17 @@
             </div>
             <div class="ink-l60">
                 <div class="ink-gutter">
-                    <div class="block-alert-msg info">
-                        <button class="close">×</button>
-                        <h4>Note:</h4>
-                        <p>Notice that child 1 node starts closed because its model has 1 in its 3rd position.</p>
-                    </div>
+                    <div class="ink-row box">
+                        <div class="block-alert-msg info">
+                            <button class="close">×</button>
+                            <h4>Note:</h4>
+                            <p>Notice that child 1 node starts closed because its model has 1 in its 3rd position.</p>
+                        </div>
 
-                    <div id="tview"></div>
+                        <?php echo $js;?>
+                        <pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
+                    </div>
                 </div>
             </div>
-			<script type="text/javascript">
-				var tree = new SAPO.Ink.TreeView('#tview', {
-					//selectable: true,
-					model:
-						['root', [
-							['child 1', [
-								['grandchild 1a'],
-								['grandchild 1b'],
-								['grandchild 1c']
-							], 1],
-							['child 2', [
-								['grandchild 2a'],
-								['grandchild 2b', [
-									['grandgrandchild 1bA'],
-									['grandgrandchild 1bB'],
-								]]
-							]],
-							['child 3']
-						]]
-				});
-			</script>
         </div>
     </div>

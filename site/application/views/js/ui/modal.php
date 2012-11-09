@@ -1,3 +1,21 @@
+<?php
+$js = <<<JS
+<div id="modalContent" style="display:none">
+    <h1>Some title</h1>
+    <p><em>Hello modal!</em></p>
+    <p>dismiss it pressing the close button or the escape key.</p>
+</div>
+<button class="ink-button" id="bModal">Open modal</button>
+<script type="text/javascript">
+    SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
+        new SAPO.Ink.Modal('#modalContent', {
+            width:  500,
+            height: 250
+        });
+    });
+</script>
+JS;
+?>
     <div class="ink-section">
         <div class="ink-row ink-vspace">
             <div class="ink-l40">
@@ -11,23 +29,11 @@
             </div>
             <div class="ink-l60">
 				<div class="ink-gutter">
-					<div id="modalContent" style="display:none">
-						<h1>Some title</h1>
-
-						<p><em>Hello modal!</em></p>
-
-						<p>dismiss it pressing the close button or the escape key.</p>
-					</div>
-					<button class="ink-button" id="bModal">Open modal</button>
+                    <div class="ink-row box">
+    					<?php echo $js;?>
+                        <pre class="ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
+                    </div>
 				</div>
             </div>
-			 <script type="text/javascript">
-				SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
-					new SAPO.Ink.Modal('#modalContent', {
-						width:  500,
-						height: 250
-					});
-				});
-			</script>
         </div>
     </div>
