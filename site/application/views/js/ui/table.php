@@ -1,3 +1,21 @@
+<?php
+$js = <<<JS
+<table></table>
+<script type="text/javascript">
+    var t = new SAPO.Ink.Table('table', {
+        fields: ['name', 'age'],
+        sortableFields: '*',
+        model: [
+            {name:'Jesus Christ',    age:33},
+            {name:'Kurt Cobain',     age:27},
+            {name:'Joni Mitchel',    age:27},
+            {name:'Michael Jackson', age:51}
+        ],
+        pageSize: 2
+    });
+</script>
+JS;
+?>
     <div class="ink-section">
         <div class="ink-row ink-vspace">
             <div class="ink-l40">
@@ -11,21 +29,11 @@
             </div>
             <div class="ink-l60">
                 <div class="ink-gutter">
-					<table></table>
+                    <div class="ink-row box">
+                        <?php echo $js;?>
+                        <pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
+                    </div>
                 </div>
             </div>
-			<script type="text/javascript">
-				var t = new SAPO.Ink.Table('table', {
-					fields: ['name', 'age'],
-					sortableFields: '*',
-					model: [
-						{name:'Jesus Christ',    age:33},
-						{name:'Kurt Cobain',     age:27},
-						{name:'Joni Mitchel',    age:27},
-						{name:'Michael Jackson', age:51}
-					],
-					pageSize: 2
-				});
-			</script>
 		</div>
     </div>

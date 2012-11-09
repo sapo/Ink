@@ -1,3 +1,12 @@
+<?php
+$js = <<<JS
+<label for="dPicker" class="ink-form-inline">A date field:</label>
+<input id="dPicker" type="text"></input>
+<script type="text/javascript">
+    var picker = new SAPO.Ink.DatePicker('#dPicker');
+</script>
+JS;
+?>
     <div class="ink-section">
         <div class="ink-row ink-vspace">
    			<div class="ink-l40">
@@ -11,19 +20,13 @@
             </div>
    			<div class="ink-l60">
                 <div class="ink-gutter">
-					<form class="ink-form-block">
-						<div class="ink-row">
-							<div class="ink-form-wrapper ink-gutter ink-l20">
-								<label for="dPicker" class="ink-form-inline ">Birthday</label>
-								<input id="dPicker" type="text"></input>
-							</div>
-						</div>
-					</form>
+                    <div class="ink-row box">
+    					<form>
+							<div class="ink-l100"><?php echo $js;?></div>
+                            <pre class="ink-vspace ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
+    					</form>
+                    </div>
 				</div>
 			</div>
-   			<script type="text/javascript">
-				var picker = new SAPO.Ink.DatePicker('#dPicker');
-			</script>
 		</div>
     </div>
-   

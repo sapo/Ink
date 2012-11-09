@@ -1,3 +1,13 @@
+<?php
+ $js = <<<JS
+<div id="slist"></div>
+<script type="text/javascript">
+    var list = new SAPO.Ink.SortableList('#slist', {
+        model: ['primeiro', 'segundo', 'terceiro']
+    });
+</script>
+JS;
+?>
     <div class="ink-section">
         <div class="ink-row ink-vspace">
         	<div class="ink-l40">
@@ -11,13 +21,11 @@
             </div>
             <div class="ink-l60">
 				<div class="ink-gutter">
-					<div id="slist"></div>
+                    <div class="ink-row box">
+    					<?php echo $js;?>
+                        <pre class="prettyprint linenums ink-space"><?php echo(htmlentities( $js )); ?></pre>
+                    </div>
 				</div>
             </div>
-			<script type="text/javascript">
-				var list = new SAPO.Ink.SortableList('#slist', {
-					model: ['primeiro', 'segundo', 'terceiro']
-				});
-			</script>
         </div>
     </div>
