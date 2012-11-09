@@ -1,7 +1,7 @@
 <div id="topbar">
 	<nav class="ink-navigation ink-container">
 		<ul class="menu horizontal flat black">
-			<li><a class="logoPlaceholder" href="<?php echo site_url() ?>" title="Site Title">InK</a><button class="ink-for-s ink-for-m ink-button"><i class="icon-reorder"></i></button></li>
+			<li><a class="logoPlaceholder" href="<?php echo site_url() ?>" title="Site Title">InK</a></li>
 			
 			<?php foreach($pages as $page): ?>
 				<?php if(isset($page['submenu'])): ?>
