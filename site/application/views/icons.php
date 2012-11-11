@@ -23,6 +23,12 @@
 <div class="ink-container">
 
 	<div class="ink-section">
+		<h2>How to use Font Awesome</h2>
+		<p>Due to Font Awesome's awesomeness and open licensing we opted to distribute it with Ink, instead of re-inventing the wheel. You'll find this webfont covers all your pictogram needs and then some.</p>
+		<p>To add any of the icons to your project (icon list below), simply create an <code>&lt;i&gt;</code> element with the appropriate class. For example, to add a mail icon next to your contact information like so: <i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>, simply use:</p>
+		<p><pre class="prettyprint linenums">
+<?php echo(htmlentities('<i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>')) ?></pre></p>
+		<p>If you want to see some more examples, you can hop over to <a href="http://fortawesome.github.com/Font-Awesome/#examples">Font Awesome's example page</a>.</p>
 		<h3>Web Application Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
