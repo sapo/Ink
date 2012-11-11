@@ -1,10 +1,7 @@
 <div class="whatIs">
    <div class="ink-container">
 		<h2>Alerts</h2>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-		</p>
+		<p>Although they're a way of diplaying text, alerts have their own specificity and functionality.</p>
 	</div>
 </div>
 
@@ -23,83 +20,89 @@
 <div class="ink-container">
 	<div class="ink-section">
 		<div class="ink-row ink-vspace">
-			<div class="ink-l30">
+			<div class="ink-l40">
 				<div class="ink-gutter">
-					<h3>Alertas Básicos</h3>
-					<p>Os alertas básicos são úteis para formulários ou notificações simples.</p>
-					<p>Para usar o estilo dos alertas básicos basta usar a class <code>.alert-msg</code>, podendo esta ser acompanhada das classes:</p>
+					<h3>Basic alerts</h3>
+					<p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
+					<p>To style some text as an alert, create a block element, such as a <code>div</code>, with the <code>alert-msg</code> class. This creates the outter shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:</p>
 					<ul class="unstyled">
-						<li><code>.error</code> - Para Mensagens de erro</li>
-						<li><code>.success</code> - Para Mensagens de successo</li>
-						<li><code>.info</code> - Para Mensagens Informativas</li>
+						<li><code>error</code> for error messages</li>
+						<li><code>success</code> for success messages</li>
+						<li><code>info</code> for informative messages</li>
 					</ul>
+					<p>Add a <code>&lt;button&gt;</code> element with the class <code>close</code> and an appropriate icon (Ink uses the <code>&amp;times&#59;</code> character), to add a simple dismiss action to your alerts.</p>
 				</div>
 			</div> 
-			<div class="ink-l70">
+			<div class="ink-l60">
 				<div class="ink-gutter">
 					<div class="alert-msg">
 						<button class="close">&times;</button>
-						<p><b>Aviso:</b> Aqui fica o texto da notificação</p>
+						<p><b>Warning:</b> There's a warning for you</p>
 					</div>
 	
 					<div class="alert-msg error">
 						<button class="close">&times;</button>
-						<p><b>Erro:</b> Mensagem de Erro</p>
+						<p><b>Error:</b> The system has failed</p>
 					</div>
 	
 					<div class="alert-msg success">
 						<button class="close">&times;</button>
-						<p><b>Concluído:</b> Mensagem de successo</p>
+						<p><b>Done:</b> Process completed successfully</p>
 					</div>
 	
 					<div class="alert-msg info">
 						<button class="close">&times;</button>
-						<p><b>Nota:</b> Mensagem de Informação</p>
+						<p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 					</div>
-					<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"alert-msg"</span>&gt;</span></li><li>  <span class="tag">&lt;button</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"close"</span><span class="tag">&gt;</span><span class="pln">x</span><span class="tag">&lt;/button&gt;</span></li><li>  <span class="tag">&lt;p&gt;</span><span class="pln">Texto da mensagem</span><span class="tag">&lt;/p&gt;</span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
+					<pre class="prettyprint linenums">
+<?php echo(htmlentities('<div class="alert-msg info">
+<button class="close">&times;</button>
+<p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
+</div>')) ?></pre>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="ink-section">
 		<div class="ink-row ink-vspace">
-			<div class="ink-l30">
+			<div class="ink-l40">
 				<div class="ink-gutter">
-					<h3>Alertas em Bloco</h3>
-					<p>Os alertas em bloco são úteis para formulários com explicação detalhada de erros, ou erros onde é necessário acção.</p>
-					<ul class="unstyled">
-						<li><code>.error</code> - Para Mensagens de erro</li>
-						<li><code>.success</code> - Para Mensagens de successo</li>
-						<li><code>.info</code> - Para Mensagens Informativas</li>
-					</ul>
+					<h3>Block Alerts</h3>
+					<p>Block alerts are ideal for messages that require further explanation, since they're comprised of a title, close button and description text. Implementation is similar to basic alerts, simply use the <code>block-alert-msg</code> class, instead of <code>alert-msg</code> and use an <code>&lt;h4&gt;</code> for the title and a <code>&lt;p&gt;</code> or a list for the description.</p>
+					<pre class="prettyprint linenums">
+<?php echo(htmlentities('<div class="block-alert-msg success">
+<button class="close">&times;</button>
+<h4>Thank you for buying!</h4>
+<p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+</div>')) ?></pre>
 				</div>
 			</div>
-			<div class="ink-l70">
+			<div class="ink-l60">
 				<div class="ink-gutter">
 					<div class="block-alert-msg">
 						<button class="close">&times;</button>
-						<h4>Isto é uma notificação</h4>
+						<h4>System maintenance scheduled</h4>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.
 						</p>
 					</div>
 	
 					<div class="block-alert-msg error">
 						<button class="close">&times;</button>
-						<h4>Ocurreram os seguintes erros:</h4>
+						<h4>System is down</h4>
 						<ul>
-							<li>Nome de Utilizador Inválido</li>
-							<li>Email Inválido</li>
+							<li>Do not panic</li>
+							<li>Do not call our service line</li>
+							<li>Breathe deep and wait an hour</li>
 						</ul>
 					</div>
 	
 					<div class="block-alert-msg success">
 						<button class="close">&times;</button>
-						<h4>Processo Concluído</h4>
-						<p>O seu formulário foi submetido e aguarda revisão.</p>
+						<h4>Thank you for buying!</h4>
+						<p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
 					</div>
-					<pre class="prettyprint"><ol><li><span class="tag">&lt;div</span><span class="tag"> <span class="pln"></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"block-alert-msg error"</span>&gt;</span></li><li><span class="tag">   &lt;button</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"close"</span><span class="tag">&gt;</span><span class="pln">x</span><span class="tag">&lt;/button&gt;</span></li><li><span class="tag">   &lt;h4</span><span class="pln"></span><span class="atv"></span><span class="tag">&gt;</span><span class="pln">Ocorreram os seguintes erros</span><span class="tag">&lt;/h4&gt;</span></li><li>   <span class="tag">&lt;ul</span><span class="tag">&gt;</span></li><li>      <span class="tag">&lt;li&gt;</span><span class="pln">Nome de utilizador inválido</span><span class="tag">&lt;/li&gt;</span><span class="tag"></span></li><li><span class="tag">      &lt;li&gt;</span><span class="pln">Nome de utilizador inválido</span><span class="tag">&lt;/li&gt;</span><span class="tag"></span></li><li><span class="tag">   &lt;/ul</span><span class="pln"></span><span class="tag">&gt;</span><span class="tag"></span><span class="tag"></span></li><li><span class="tag">&lt;/div&gt;</span><span class="tag"></span></li></ol></pre>
+
 				</div>
 			</div>
 		</div>	
