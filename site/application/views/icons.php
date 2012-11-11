@@ -28,6 +28,10 @@
 		<p>To add any of the icons to your project (icon list below), simply create an <code>&lt;i&gt;</code> element with the appropriate class. For example, to add a mail icon next to your contact information like so: <i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>, simply use:</p>
 		<p><pre class="prettyprint linenums">
 <?php echo(htmlentities('<i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>')) ?></pre></p>
+		<p>If you need a larger icon, add the <code>icon-large</code> class to your <code>&lt;i&gt;</code> element, along with the specific icon class. For example:</p>
+		<h4><i class="icon-heart icon-large"></i> We love Ink</h4>
+		<p><pre class="prettyprint linenums">
+<?php echo(htmlentities('<h4><i class="icon-heart icon-large"></i> We love Ink</h4>')) ?></pre></p>
 		<p>If you want to see some more examples, you can hop over to <a href="http://fortawesome.github.com/Font-Awesome/#examples">Font Awesome's example page</a>.</p>
 		<h3>Web Application Icons</h3>
 		<div class="ink-row">
@@ -347,4 +351,5 @@
 			</div>
 		</div>
 	</div>
+	<p>We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under CC BY 3.0, allowing projects like Ink to share its awesomeness. Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a>
 </div>
