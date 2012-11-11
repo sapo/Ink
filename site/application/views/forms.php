@@ -22,8 +22,10 @@
 <div class="ink-container">
 	<div class="ink-section">
 		<div class="ink-vspace">
-			<h3>Form building</h3>
-			<p>Form fields must be surrounded by an element with the class <code>ink-form-wrapper</code>. This class exists to separate the elements of the form as well as assist in styling errors.</p>
+			<h3>Form essentials</h3>
+			<p>There are three essential classes you need to know to work with forms in Ink: <code>ink-form-block</code>, <code>ink-form-inline</code> and <code>ink-form-wrapper</code>. The first two are mutually exclusive, use the first one in your <code>&lt;form&gt;</code> element if you want your labels stacked on your fields (block), or the second one, if you prefer labels on the left of your fields. We strongly advise you use block as it's easier to read.
+			<p>Finally, the third class needs to be applied to a <code>&lt;div&gt;</code> element, containing each of your label/field pairs. This helps separate and align elements in your form. If you're creating a set of checkboxes or radio buttons, then apply this class to the <code>&lt;ul&gt;</code> element, while also adding the <code>unstyled</code> class, to remove bullets.</p>
+			<p>You'll see examples to all this, below.</p>
 <pre class="prettyprint linenums">
 <?php echo(htmlentities('<form class="ink-form-block">
   <div class="ink-form-wrapper">
@@ -91,24 +93,34 @@
 			</div>
 			<div class="ink-l50">
 				<div class="ink-gutter">
+					<h4>Block form</h4>
 					<p>
-						In this example, the <code>&lt;label&gt;</code> of it's respective field is located above itself, in block.
-						To achieve this the <code>&lt;label&gt;</code> should have the <code>ink-form-block</code> class.
+						In this example, the <code>&lt;label&gt;</code> for each field is located above the field, in block.
+						To achieve this we used <code>ink-form-block</code> in the <code>&lt;form&gt;</code> element.
 					</p>
-					<p>If want the <code>&lt;label&gt;</code> to be positioned inline, you just need to use the <code>ink-form-inline</code> class in the <code>&lt;form&gt;</code>.</p>
+					<h4>Required fields and warnings</h4>
+					<p>If you have a required field, use the field wrapping element (<code>ink-form-wrapper</code>) to add a <code>ink-required-field</code> class.</p>
+					<p>If you need to print a warning or error message near your field, then add the <code>ink-warning-field</code> to the wrapper and follow the field with a paragraph containing the message.
+					</p>
+					<h4>Automated form validation</h4>
 					<p><code>ink-form-validation</code> instructions should be added here...</p>
-					<p>
-						To add error or warning feedback, <code>ink-warning-field</code> or <code>ink-required-field</code> classes should be added to the form field wrapper, 
-						followed by a <code>&lt;p&gt;</code> with the respective warning, like shown below.
-					</p>
+					<h5>Example</h5>
+					<p>Here's a simple form with a required field and a warning message:</p>
 				<pre class="prettyprint linenums">
 <?php echo(htmlentities('<form class="ink-form-block">
    <div class="ink-form-wrapper ink-warning-field">
       <label for="inputId">Text input</label>
       <input type="text" id="inputId">
-      <p class="ink-form-validation ink-warning">Warn about somthing</p>
+      <p class="ink-form-validation ink-warning">Warn about something</p>
    </div>
 </form>')) ?></pre>
+<form class="ink-form-block">
+   <div class="ink-form-wrapper ink-warning-field">
+      <label for="inputId">Text input</label>
+      <input type="text" id="inputId">
+      <p class="ink-form-validation ink-warning">Warn about something</p>
+   </div>
+</form>
 				</div>
 			</div>
 		</div>
