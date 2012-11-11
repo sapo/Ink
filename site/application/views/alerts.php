@@ -1,7 +1,7 @@
 <div class="whatIs">
    <div class="ink-container">
 		<h2>Alerts</h2>
-		<p>Although they're a way of diplaying text, alerts have their own specificity and functionality.</p>
+		<p>Although they're a way of displaying text, alerts have their own specificity and functionality.</p>
 	</div>
 </div>
 
