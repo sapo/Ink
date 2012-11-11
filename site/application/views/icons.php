@@ -28,7 +28,7 @@
 		<p>To add any of the icons to your project (icon list below), simply create an <code>&lt;i&gt;</code> element with the appropriate class. For example, to add a mail icon next to your contact information like so: <i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>, simply use:</p>
 		<p><pre class="prettyprint linenums">
 <?php echo(htmlentities('<i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>')) ?></pre></p>
-		<p>If you need a larger icon, add the <code>icon-large</code> class to your <code>&lt;i&gt;</code> element, along with the specific icon class. For example:</p>
+		<p>Because Font Awesome is a webfont, the icon size follows the font size ofr your parent element, but if you need a larger icon, add the <code>icon-large</code> class to your <code>&lt;i&gt;</code> element, along with the specific icon class. This will give you and icon that's 33% larger than the assigned font size. For example:</p>
 		<h4><i class="icon-heart icon-large"></i> We love Ink</h4>
 		<p><pre class="prettyprint linenums">
 <?php echo(htmlentities('<h4><i class="icon-heart icon-large"></i> We love Ink</h4>')) ?></pre></p>
