@@ -9,13 +9,13 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#fonts">Fonts</a></li>
-				<li><a href="#headings">Headings</a></li>
-				<li><a href="#body">Body & Hypertext</a></li>
-				<li><a href="#lists">Lists</a></li>
-				<li><a href="#utilities">Utility Classes</a></li>
-				<li><a href="#additional">Additional Elements</a></li>
+				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
+				<li><a class="scrollableLink" href="#fonts">Fonts</a></li>
+				<li><a class="scrollableLink" href="#headings">Headings</a></li>
+				<li><a class="scrollableLink" href="#body">Body & Hypertext</a></li>
+				<li><a class="scrollableLink" href="#lists">Lists</a></li>
+				<li><a class="scrollableLink" href="#utilities">Utility Classes</a></li>
+				<li><a class="scrollableLink" href="#additional">Additional Elements</a></li>
 			</ul>
 		</nav>
 	</div>

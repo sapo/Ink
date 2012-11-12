@@ -9,10 +9,10 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Simple</a></li>
-				<li><a href="#">Borderless</a></li>
-				<li><a href="#">Sortable</a></li>
+				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
+				<li><a class="scrollableLink" href="#">Simple</a></li>
+				<li><a class="scrollableLink" href="#">Borderless</a></li>
+				<li><a class="scrollableLink" href="#">Sortable</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -1,9 +1,11 @@
 <?php
 $js = <<<JS
 <div id="modalContent" style="display:none">
-    <h1>Some title</h1>
-    <p><em>Hello modal!</em></p>
-    <p>dismiss it pressing the close button or the escape key.</p>
+    <div class="ink-space">
+        <h1>Some title</h1>
+        <p><em>Hello modal!</em></p>
+        <p>dismiss it pressing the close button or the escape key.</p>
+    </div>
 </div>
 <button class="ink-button" id="bModal">Open modal</button>
 <script type="text/javascript">

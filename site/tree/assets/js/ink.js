@@ -71,8 +71,8 @@ Scroller = {
 
     // this method extracts all the anchors and validates then as # and attaches the events.
     render: function(){
-        return;
-        a = document.getElementsByTagName('a');
+        a = SAPO.Dom.Selector.select('a.scrollableLink');
+        //a = document.getElementsByTagName('a');
         Scroller.end(this);
         window.onscroll
         for (i=0;i<a.length;i++) {
@@ -82,13 +82,14 @@ Scroller = {
                 l.onclick = function(){
                     Scroller.end(this);
                     l=this.hash.substr(1);
-                     a = document.getElementsByTagName('a');
-                     for (i=0;i<a.length;i++) {
-                        if(a[i].name == l){
+                     a = SAPO.Dom.Selector.select('a[name="'+ l +'"],#' + l);
+                    //document.getElementsByTagName('a');
+                     // for (i=0;i<a.length;i++) {
+                     //    if(a[i].name == l){
                             clearInterval(Scroller.interval);
-                            Scroller.interval=setInterval('Scroller.scroll('+Scroller.gy(a[i])+')',10);
-                        }
-                    }
+                            Scroller.interval=setInterval('Scroller.scroll('+Scroller.gy(a[0])+')',10);
+                        // }
+                    // }
                 }
             }
         }

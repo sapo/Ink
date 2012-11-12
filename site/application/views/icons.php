@@ -9,12 +9,12 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#web">Web Application Icons</a></li>
-				<li><a href="#text">Text Editor Icons</a></li>
-				<li><a href="#directional">Directional Icons</a></li>
-				<li><a href="#video">Video Player Icons</a></li>
-				<li><a href="#social">Social Icons</a></li>
+				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
+				<li><a class="scrollableLink" href="#web">Web Application Icons</a></li>
+				<li><a class="scrollableLink" href="#text">Text Editor Icons</a></li>
+				<li><a class="scrollableLink" href="#directional">Directional Icons</a></li>
+				<li><a class="scrollableLink" href="#video">Video Player Icons</a></li>
+				<li><a class="scrollableLink" href="#social">Social Icons</a></li>
 			</ul>
 		</nav>
 	</div>
