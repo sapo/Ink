@@ -18,18 +18,20 @@ $path = getcwd();
 
 if($path == 'I:\work\ink\site\tree') {
 	$config['base_url']	= 'http://localhost/ink/site/tree';
-} 
-elseif($path == '/home/pedro/work/ink/site/tree') 
+}
+elseif($path == '/home/pedro/work/ink/site/tree')
 {
 	$config['base_url']	= 'http://10.134.132.97';
 }
-elseif($path == '/home/jdias/Remote/ink/site/tree') 
+elseif($path == '/home/jdias/Remote/ink/site/tree')
 {
 	$config['base_url']	= 'http://inkink.jdias-sapo.pt/';
 }
-else 
+else if($path == '/Users/jonatasmiguel/Development/Repos/ink/site/tree')
 {
-	$config['base_url']	= 'http://localhost/Ink/site/tree';
+    $config['base_url'] = 'http://ink.testing.pt/';
+} else {
+    $config['base_url'] = 'http://localhost/Ink/site/tree';
 }
 
 /*
