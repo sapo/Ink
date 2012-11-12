@@ -13,8 +13,8 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Basic alerts</a></li>
-				<li><a href="#">Block alerts</a></li>
+				<li><a href="#alerts">Alerts</a></li>
+				<li><a href="#block-alerts">Block alerts</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -25,6 +25,7 @@
 		<div class="ink-row ink-vspace">
 			<div class="ink-l30">
 				<div class="ink-gutter">
+					<a name="alerts"></a>
 					<h3>Alertas Básicos</h3>
 					<p>Os alertas básicos são úteis para formulários ou notificações simples.</p>
 					<p>Para usar o estilo dos alertas básicos basta usar a class <code>.alert-msg</code>, podendo esta ser acompanhada das classes:</p>
@@ -65,7 +66,8 @@
 		<div class="ink-row ink-vspace">
 			<div class="ink-l30">
 				<div class="ink-gutter">
-					<h3>Alertas em Bloco</h3>
+					<a name="block-alerts"></a>
+					<h2>Alertas em Bloco</h2>
 					<p>Os alertas em bloco são úteis para formulários com explicação detalhada de erros, ou erros onde é necessário acção.</p>
 					<ul class="unstyled">
 						<li><code>.error</code> - Para Mensagens de erro</li>

@@ -10,9 +10,11 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Containers</a></li>
-				<li><a href="#">Spacer units</a></li>
-				<li><a href="#">Spacing</a></li>
+				<li><a href="#containers">Containers</a></li>
+				<li><a href="#markup">Markup</a></li>
+				<li><a href="#columns">Columns</a></li>
+            <li><a href="#gutters">Gutters</a></li>l
+            <li><a href="#spacing">Spacing</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -22,6 +24,7 @@
 
 <div class="ink-container">
    <div class="ink-vspace">
+      <a name="containers"></a>
       <h2>Containers</h2>
       <p>To start off your project, you should define a container block to wrap everything else. Use a <code>div</code> with the <code>.ink-container</code> class, which can be configured to be a fixed width, a relative width or a maximum width.</p>
       <p>You can use this class as often as you want in your pages, which will allow you to mix fixed and elastic width blocks in a single page, or, if you prefer, simply use it to contain your layout.</p>
@@ -44,14 +47,14 @@
             <div class="ink-l25 ink-m100 ink-clear"><p>25%</p></div>
             <div class="ink-l20 ink-m100 ink-clear"><p>20%</p></div>
             <div class="ink-l10 ink-m100 ink-clear"><p>10%</p></div>
-         </div>
-         
+         </div>         
          <div class="ink-vspace">
+            <a name="markup"></a>
             <h3>Markup</h3>
             <p>Let's say you need your page container to always be 80% of your view port.</p>
             <pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-container">
-   <div class="ink-l100">
+   <div class="ink-l80">
      <p>Content</p>
    </div>
 </div>')) ?>
@@ -63,6 +66,7 @@
       <div class="ink-section">
          
          <div class="ink-vspace">
+            <a name="columns"></a>
             <h2>Columns</h2>
             <p>Ink uses a percentage-based container logic which is flexible and promotes the use of fluid layouts.</p>
             <p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
@@ -144,7 +148,8 @@
    
       <div class="ink-section">
          <div class="ink-vspace">
-			 <h2>Gutters</h2>
+            <a name="gutters"></a>
+			   <h2>Gutters</h2>
     	     <p>To create gutters on you Ink based pages you need to wrap the elements that define column width in a <code>div</code> element with a <code>.ink-row</code> class, and add anoter <code>div</code> element inside the columns wrapping all of its content with a <code>.ink-gutter</code> class.</p>
         	 <p>If you need to add vertical space between the layout rows, simply add the <code>.ink-vspace</code> class.</p>
         	 <p>Gutter size changes proportionaly to the screen size, so there's no waste of space!</p>
@@ -272,7 +277,8 @@
 	  
 	<div class="ink-section" id="spaceExamples">
 		<div class="ink-vspace">
-			<h2>Spacer units</h2>
+         <a name="spacing"></a>
+			<h2>Spacing</h2>
 			<p>
 				Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. 
 				Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.

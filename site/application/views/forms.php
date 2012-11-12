@@ -10,10 +10,10 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Form building</a></li>
-				<li><a href="#">Text & Number entry</a></li>
-				<li><a href="#">Checkboxes & Radio buttons</a></li>
-				<li><a href="#">Buttons</a></li>
+				<li><a href="#building">Form building</a></li>
+				<li><a href="#text-numbers">Text & Number entry</a></li>
+				<li><a href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
+				<li><a href="#buttons">Buttons</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -22,6 +22,7 @@
 <div class="ink-container">
 	<div class="ink-section">
 		<div class="ink-vspace">
+			<a name="building"></a>
 			<h3>Form building</h3>
 			<p>Form fields must be surrounded by an element with the class <code>ink-form-wrapper</code>. This class exists to separate the elements of the form as well as assist in styling errors.</p>
 <pre class="prettyprint linenums">
@@ -35,6 +36,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="text-numbers"></a>
 		<h3>Text & Number entry</h3>
 		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
@@ -115,6 +117,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="checkboxes-radios"></a>
 		<h3>Checkboxes and radio buttons</h3>
 		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
@@ -176,6 +179,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="buttons"></a>
 		<h3>Buttons</h3>
 		<p>Button styling can be applied to almost any html element by using the <code>.ink-button</code> class.</p>
 		

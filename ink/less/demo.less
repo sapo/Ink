@@ -94,7 +94,7 @@ a.active 	{color: @link-active-color;}
 #buttonsExample .e_wrap{text-align: right;}
    
 .whatIs {
-	padding:0 0 .8em;
+	padding: 2em 0 .8em;
 	font-size:1.25em;
 }
 
@@ -254,6 +254,7 @@ a.active 	{color: @link-active-color;}
 }
 
 /*...................................................  Footer  ...................................................*/
+
 footer .SAPOlogo {
 	background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
 	text-indent: -9999px;
@@ -305,11 +306,14 @@ footer ul.sociallinks li a.Twt_link {background: url("../imgs/icon_Sprite.png") 
 footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px}
 
 #topbar {	
+	position: fixed;
+	width: 100%;
 	height:@topbar-height;
 	background:@topbar-bgColor;
 	font-size:@topbar-fontSize;
 	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
+	z-index: 5000;
 	
 	.ink-navigation {
 		background:@topbar-bgColor;
