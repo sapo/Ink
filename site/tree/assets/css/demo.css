@@ -168,6 +168,8 @@ a.active {
   overflow: hidden;
 }
 .logo_hp {
+  width: 100%;
+  max-width: 736px;
   margin: auto;
   display: block;
   position: relative;
@@ -405,19 +407,6 @@ footer ul.sociallinks li a.Gplus_link {
 #topbar .horizontal .submenu li a:hover {
   background: #313131;
   color: #ffffff;
-}
-#topbar .ink-button {
-  background: none;
-  filter: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  color: #bbbbbb;
-  font-size: 1.2em;
 }
 #topbar .ink-button:hover {
   color: #ffffff;

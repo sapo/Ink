@@ -351,5 +351,10 @@
 			</div>
 		</div>
 	</div>
-	<p>We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under CC BY 3.0, allowing projects like Ink to share its awesomeness. Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a>
+	<div class="ink-section">
+		<p class="ink-vspace">
+			We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under CC BY 3.0, allowing projects like Ink to share its awesomeness. 
+			Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a>
+		</p>
+	</div>
 </div>
