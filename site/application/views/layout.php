@@ -114,9 +114,9 @@
             <p>Let's say you need your page container to always be 80% of your viewport (on large screens).</p>
             <pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-container">
-	<div class="ink-l80">
-		<p>Content</p>
-	</div>
+   <div class="ink-l80">
+      <p>Content</p>
+   </div>
 </div>')) ?>
 			</pre>
 		</div>
