@@ -9,9 +9,9 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#basic">Basic Alerts</a></li>
-				<li><a href="#block">Block alerts</a></li>
+				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
+				<li><a class="scrollableLink" href="#basic">Basic Alerts</a></li>
+				<li><a class="scrollableLink" href="#block">Block alerts</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -24,7 +24,7 @@
 				<div class="ink-gutter">
 					<h3>Basic alerts</h3>
 					<p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
-					<p>To style some text as an alert, create a block element, such as a <code>div</code>, with the <code>alert-msg</code> class. This creates the outter shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:</p>
+					<p>To style some text as an alert, create a block element, such as a <code>div</code>, with the <code>ink-alert</code> class. This creates the outter shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:</p>
 					<ul class="unstyled">
 						<li><code>error</code> for error messages</li>
 						<li><code>success</code> for success messages</li>
@@ -35,27 +35,27 @@
 			</div> 
 			<div class="ink-l60">
 				<div class="ink-gutter">
-					<div class="alert-msg">
+					<div class="ink-alert">
 						<button class="close">&times;</button>
 						<p><b>Warning:</b> There's a warning for you</p>
 					</div>
 	
-					<div class="alert-msg error">
+					<div class="ink-alert error">
 						<button class="close">&times;</button>
 						<p><b>Error:</b> The system has failed</p>
 					</div>
 	
-					<div class="alert-msg success">
+					<div class="ink-alert success">
 						<button class="close">&times;</button>
 						<p><b>Done:</b> Process completed successfully</p>
 					</div>
 	
-					<div class="alert-msg info">
+					<div class="ink-alert info">
 						<button class="close">&times;</button>
 						<p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 					</div>
 					<pre class="prettyprint linenums">
-<?php echo(htmlentities('<div class="alert-msg info">
+<?php echo(htmlentities('<div class="ink-alert info">
 <button class="close">&times;</button>
 <p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 </div>')) ?></pre>
@@ -68,9 +68,13 @@
 			<div class="ink-l40">
 				<div class="ink-gutter">
 					<h3>Block Alerts</h3>
-					<p>Block alerts are ideal for messages that require further explanation, since they're comprised of a title, close button and description text. Implementation is similar to basic alerts, simply use the <code>block-alert-msg</code> class, instead of <code>alert-msg</code> and use an <code>&lt;h4&gt;</code> for the title and a <code>&lt;p&gt;</code> or a list for the description.</p>
+					<p>
+						Block alerts are ideal for messages that require further explanation, since they're comprised of a title, close button and description text. 
+						Implementation is similar to basic alerts, simply use the <code>ink-alert-block</code> class, 
+						instead of <code>ink-alert</code> and use an <code>&lt;h4&gt;</code> for the title and a <code>&lt;p&gt;</code> or a list for the description.
+					</p>
 					<pre class="prettyprint linenums">
-<?php echo(htmlentities('<div class="block-alert-msg success">
+<?php echo(htmlentities('<div class="ink-alert-block success">
 <button class="close">&times;</button>
 <h4>Thank you for buying!</h4>
 <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
@@ -79,7 +83,7 @@
 			</div>
 			<div class="ink-l60">
 				<div class="ink-gutter">
-					<div class="block-alert-msg">
+					<div class="ink-alert-block">
 						<button class="close">&times;</button>
 						<h4>System maintenance scheduled</h4>
 						<p>
@@ -87,7 +91,7 @@
 						</p>
 					</div>
 	
-					<div class="block-alert-msg error">
+					<div class="ink-alert-block error">
 						<button class="close">&times;</button>
 						<h4>System is down</h4>
 						<ul>
@@ -97,7 +101,7 @@
 						</ul>
 					</div>
 	
-					<div class="block-alert-msg success">
+					<div class="ink-alert-block success">
 						<button class="close">&times;</button>
 						<h4>Thank you for buying!</h4>
 						<p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>

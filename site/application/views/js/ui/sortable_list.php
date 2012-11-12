@@ -23,7 +23,9 @@ JS;
 				<div class="ink-gutter">
                     <div class="ink-row box">
     					<?php echo $js;?>
-                        <pre class="prettyprint linenums ink-space"><?php echo(htmlentities( $js )); ?></pre>
+                        <br/>
+                        <a href="#" data-target="sortablelist_sourcecode" class="toggleTrigger">View Source Code</a>
+                        <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums ink-space"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
 				</div>
             </div>

@@ -1,33 +1,46 @@
 <?php
 $js = <<<JS
-<div id="gal"></div>
+<ul class="ink-gallery-source">
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb1.png">
+        </a>
+        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.1.png">
+            <span class="entry-title">s1</span>
+        </a>
+        <span class="entry-content"><p>hello world 1</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb2.png">
+        </a>
+        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.2.png">
+            <span class="entry-title">s2</span>
+        </a>
+        <span class="entry-content"><p>hello world 2</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb3.png">
+        </a>
+        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.3.png">
+            <span class="entry-title">s3</span>
+        </a>
+        <span class="entry-content"><p>hello world 3</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb4.png">
+        </a>
+        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.4.png">
+            <span class="entry-title">s4</span>
+        </a>
+        <span class="entry-content"><p>hello world 4</p></span>
+    </li>
+</ul>
+
 <script type="text/javascript">
-    var g = new SAPO.Ink.Gallery('#gal', {
-        layout: 0,
-        model:  [
-            {
-                image_full: "http://c3.quickcachr.fotos.sapo.pt/i/u21126828/13810303_Y4m1j.jpeg",
-                image_thumb: "http://c4.quickcachr.fotos.sapo.pt/i/M49118df9/13810303_oKcJ6.jpeg",
-                title_text: "Despedida",
-                title_link: "http://fotos.sapo.pt/gilreis/fotos/despedida/?uid=I6nrnIBgdyq3zP7oQfw5#grande",
-                description: "<p>1 asd asd asd</p>"
-            },
-            {
-                image_full: "http://c3.quickcachr.fotos.sapo.pt/i/uea122928/13789518_V3Fa2.jpeg",
-                image_thumb: "http://c6.quickcachr.fotos.sapo.pt/i/M7b119f3f/13789518_O12ou.jpeg",
-                title_text: "3",
-                title_link: "http://fotos.sapo.pt/smobile/fotos/?uid=bqZHVnimp8Q9KROvv6iv#grande",
-                description: "<p>2 asd asd asd</p>"
-            },
-            {
-                image_full: "http://c6.quickcachr.fotos.sapo.pt/i/uad11be32/13793402_Np0cB.jpeg",
-                image_thumb: "http://c5.quickcachr.fotos.sapo.pt/i/M3c128daf/13793402_hm3sI.jpeg",
-                title_text: "ferias_2012_gala_galé 165",
-                title_link: "http://fotos.sapo.pt/viriatodias/fotos/ferias-gala-gal/?uid=uYT5azVkQH5uZZVCP7zS#grande",
-                description: "<p>3 asd asd asd</p>"
-            }
-        ]
-    });
+    var gal = new SAPO.Ink.Gallery('.ink-gallery-source', {layout:2});
 </script>
 JS;
 ?>
@@ -48,7 +61,9 @@ JS;
                 <div class="ink-gutter">
                     <div class="ink-row box">
                         <div class="ink-gutter"><?php echo $js; ?></div>
-                        <pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
+                        <br/>
+                        <a href="#" data-target="gallery_sourcecode" class="toggleTrigger">View Source Code</a>
+                        <pre id="gallery_sourcecode" style="display:none" class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
                 </div> <!-- row -->
             </div>

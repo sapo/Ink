@@ -9,7 +9,7 @@
 	
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="<?php echo specific_url('imgs') ?>ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="<?php echo assets_url('imgs') ?>touch-icon.57.png">
