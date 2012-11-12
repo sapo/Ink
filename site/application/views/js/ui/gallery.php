@@ -48,7 +48,9 @@ JS;
                 <div class="ink-gutter">
                     <div class="ink-row box">
                         <div class="ink-gutter"><?php echo $js; ?></div>
-                        <pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
+                        <br/>
+                        <a href="#" data-target="gallery_sourcecode" class="toggleTrigger">View Source Code</a>
+                        <pre id="gallery_sourcecode" style="display:none" class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
                 </div> <!-- row -->
             </div>

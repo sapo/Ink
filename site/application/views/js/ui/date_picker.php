@@ -23,7 +23,9 @@ JS;
                     <div class="ink-row box">
     					<form>
 							<div class="ink-l100"><?php echo $js;?></div>
-                            <pre class="ink-vspace ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
+                        <br/>
+                        <a href="#" data-target="datepicker_sourcecode" class="toggleTrigger">View Source Code</a>
+                        <pre id="datepicker_sourcecode" style="display:none" class="ink-vspace ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
     					</form>
                     </div>
 				</div>
