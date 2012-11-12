@@ -9,9 +9,9 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#basic">Basic Alerts</a></li>
-				<li><a href="#block">Block alerts</a></li>
+				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
+				<li><a class="scrollableLink" href="#basic">Basic Alerts</a></li>
+				<li><a class="scrollableLink" href="#block">Block alerts</a></li>
 			</ul>
 		</nav>
 	</div>
