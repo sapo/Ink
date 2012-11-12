@@ -31,7 +31,24 @@ form {
 
 	}
 	
-	input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
+	input[type=file],
+	input[type=reset],
+	input[type="color"],
+	input[type="date"],
+	input[type="datetime"],
+	input[type="time"],
+	input[type="month"],
+	input[type="week"],
+	input[type="email"],
+	input[type="number"],
+	input[type="range"],
+	input[type="tel"],
+	input[type="url"],
+	input[type="text"],
+	input[type="search"],
+	input[type="password"],
+	textarea,
+	select {
 		#ink > #border-radius > .all (@border-radius);
 		padding: @form-field-padding;
 		border:1px solid @form-field-borderColor;
@@ -42,7 +59,24 @@ form {
 		background:@form-field-bg;
 	}
 	
-	input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, input[type=reset]:focus, input[type=number]:focus, input[type=range]:focus, input[type=search]:focus, input[type=email]:focus, textarea:focus, select:focus {
+	input[type=file]:focus,
+	input[type=reset]:focus,
+	input[type="color"]:focus,
+	input[type="date"]:focus,
+	input[type="datetime"]:focus,
+	input[type="time"]:focus,
+	input[type="month"]:focus,
+	input[type="week"]:focus,
+	input[type="email"]:focus,
+	input[type="number"]:focus,
+	input[type="range"]:focus,
+	input[type="tel"]:focus,
+	input[type="url"]:focus,
+	input[type="text"]:focus,
+	input[type="search"]:focus,
+	input[type="password"]:focus,
+	textarea:focus,
+	select:focus {
 		#ink > #forms > .input_focus (@focusBlurSize, @focusColor)
 	}
 
@@ -234,6 +268,304 @@ form {
 
 				}
 			}
+		}
+
+	}
+
+}
+
+
+form {
+
+	&.ink-form {
+
+		fieldset {
+
+			border: none;
+			margin-bottom: 1.5em;
+			padding: 0;
+
+			legend {
+
+				font-size: 1.438em;
+				font-weight: 700;
+				margin: 1em 0;
+				text-shadow: 0 1px 0 white;
+				display: block;
+				width: 100%;
+				border-bottom:1px solid #ddd;
+
+			}
+
+		}
+
+		input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
+			#ink > #border-radius > .all (@border-radius);
+			padding: @form-field-padding;
+			border:1px solid @form-field-borderColor;
+			resize: none;
+			// line-height: 1.3em;
+			font-size: @form-field-fontSize ;
+			.box-sizing(border-box);
+			background:@form-field-bg;
+		}
+
+
+
+		.control {			
+
+				clear: both;
+				line-height: 2.5;
+				// margin-bottom: 1em;
+				padding: 0.2em;
+				overflow: hidden;
+				
+				&.required {
+						label:after {
+						content: "\f069";
+						color: @error-bg;
+						font-size: 0.8em;
+						line-height: 1;
+						margin-left: 0.1em;
+						font-weight: 500;
+						font-family: FontAwesome;
+						display: inline-block;
+						width: 1.25em;
+						text-align: center;
+					}
+				}
+
+				&.inline {
+
+					label {
+						float: left;
+						text-align: right;
+					}
+
+					input[type="color"],
+					input[type="date"],
+					input[type="datetime"],
+					input[type="time"],
+					input[type="month"],
+					input[type="week"],
+					input[type="email"],
+					input[type="number"],
+					input[type="range"],
+					input[type="tel"],
+					input[type="url"],
+					input[type="text"],
+					input[type="search"],
+					input[type="password"], {
+						float: left;
+					}
+
+				}
+
+				&.block {
+
+					label {
+						width: 100%;
+						text-align: left;
+					}
+
+					input[type="color"],
+					input[type="date"],
+					input[type="datetime"],
+					input[type="time"],
+					input[type="month"],
+					input[type="week"],
+					input[type="email"],
+					input[type="number"],
+					input[type="range"],
+					input[type="tel"],
+					input[type="url"],
+					input[type="text"] {
+						width: 100%;
+					}
+				}
+
+				p.tip {
+					margin: 0;
+					line-height: 2.2;
+					font-size: 0.9em;
+					color: lighten(@text-color,35%);
+					position: relative;
+					margin-left: 0.1em;
+				}
+
+				&.validation {					
+
+					&.error {
+
+						input, textarea, select {
+							#ink > #forms > .input_focus (10px, @errorColor);
+						}
+
+						p {
+
+							&.tip {
+								color: darken(@errorColor,10%);
+							}
+						}
+					}
+
+					&.warning {
+						input, textarea, select {
+							#ink > #forms > .input_focus (10px, @warningColor);
+						}
+
+						p {
+
+							&.tip {
+								color: darken(@warningColor,10%);								
+							}
+						}
+					}
+				}			
+
+		}
+
+		&.inline {
+			p.tip {
+				&.space {
+								&.shorter { margin-left: 22% ;}
+								&.short { margin-left: 27% ;}
+								&.medium { margin-left: 32% ;}
+								&.wide { margin-left: 37% ;}
+								&.wider { margin-left: 42% ;}
+						}
+			}
+		}
+
+		label {
+			&.shorter { width: 20% ;}
+			&.short { width: 25% ;}
+			&.medium { width: 30% ;}
+			&.wide { width: 35% ;}
+			&.wider { width: 40% ;}
+		}
+
+		input, select, textarea {
+			&.shorter { width: 20% ;}
+			&.short { width: 40% ;}
+			&.medium { width: 60% ;}
+			&.wide { width: 78% ;}
+			&.wider { width: 100% ;}
+		}
+
+		
+
+		ul {
+
+			&.control-group {
+
+				li {
+					display: block;
+					overflow: hidden;
+					line-height: 1.5;
+
+					label, input {
+						line-height: inherit;						
+					}
+
+					input {
+						// margin: 0;
+					}
+				}
+			}
+
+		}
+
+
+		&.inline {
+
+			label {
+				display: block;
+				float: left;
+				margin-right: .5em;
+				line-height: inherit;
+				text-align: right;
+				vertical-align: top;
+			}
+
+			textarea {
+				min-height: 5em;
+			}
+
+			input[type="checkbox"], input[type="radio"] {
+				line-height: inherit;
+				margin-top: 0.35em;
+				float: left;
+			}
+
+			input[type="checkbox"] + label, input[type="radio"] + label {
+				line-height: inherit;
+				margin: 0 1.55em 0 0.55em;
+				margin-top: 0;
+				width: auto;
+				min-width: auto;
+			}
+			
+			.ink-mini-input {
+				width:5em;
+				margin-right:.6em;
+			}
+
+		}
+
+		&.block {
+
+			.control {
+				display: block;
+				margin-bottom: 0;
+				line-height: 2;
+
+				&.inline {
+
+					label {
+						float: left;
+					}
+
+					input {
+						float: left;
+					}
+
+				}
+			}
+
+			label {
+				margin: 0.5em 0 0 0.2em;
+			}
+
+			input[type=text], input[type=password], input[type=file], input[type=reset], select {
+				width: 100%;
+			}
+
+			textarea {
+				min-width: 100%;
+				max-width: 100%;
+				min-height: 5em;
+			}
+
+			input[type="checkbox"], input[type="radio"] {
+				line-height: 2;
+				margin-top: 0.55em;
+				float: left;
+				clear: left;
+			}
+
+			input[type="checkbox"] + label, input[type="radio"] + label {
+				float: left;
+				line-height: 2.5;
+				margin-left: 0.55em;
+				margin-top: -.3em;
+			}
+			
+			.ink-mini-input {
+				width:5em;
+				margin-right: 0.6em;
+			}
+
 		}
 
 	}
