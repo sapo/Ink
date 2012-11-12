@@ -415,10 +415,10 @@ $config['ink_config_vars'] = array(
     
 	/*
     Alerts & Errors
-    @alertMsg-bg
-    @alertMsg-error-bg
-    @alertMsg-success-bg
-    @alertMsg-info-bg
+    @ink-alert-bg
+    @ink-alert-error-bg
+    @ink-alert-success-bg
+    @ink-alert-info-bg
     @warning-bg
     @caution-bg
     @error-bg
@@ -426,28 +426,28 @@ $config['ink_config_vars'] = array(
     @info-bg
     */
     'Alerts & Errors' => array(
-        'alertMsg-bg' => array(
+        'ink-alert-bg' => array(
             'label'             => '',
             'placeholder'       => '#f9e0a4',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        'alertMsg-error-bg' => array(
+        'ink-alert-error-bg' => array(
             'label'             => '',
             'placeholder'       => '#eb6363',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        'alertMsg-success-bg' => array(
+        'ink-alert-success-bg' => array(
             'label'             => '',
             'placeholder'       => '#9dce62',
             'default_value'     => '',
             'type'              => 'color',
             'required'          => FALSE
         ),
-        'alertMsg-info-bg' => array(
+        'ink-alert-info-bg' => array(
             'label'             => '',
             'placeholder'       => '#479cd8',
             'default_value'     => '',

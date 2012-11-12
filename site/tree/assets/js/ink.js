@@ -71,6 +71,7 @@ Scroller = {
 
     // this method extracts all the anchors and validates then as # and attaches the events.
     render: function(){
+        return;
         a = document.getElementsByTagName('a');
         Scroller.end(this);
         window.onscroll

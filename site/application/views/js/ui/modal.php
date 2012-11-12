@@ -31,7 +31,9 @@ JS;
 				<div class="ink-gutter">
                     <div class="ink-row box">
     					<?php echo $js;?>
-                        <pre class="ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
+                        <br/>
+                        <a href="#" data-target="modal_sourcecode" class="toggleTrigger">View Source Code</a>
+                        <pre id="modal_sourcecode" style="display:none" class="ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
 				</div>
             </div>

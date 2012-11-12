@@ -45,7 +45,9 @@ JS;
                         </div>
 
                         <?php echo $js;?>
-                        <pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
+                        <br/>
+                        <a href="#" data-target="treeview_sourcecode" class="toggleTrigger">View Source Code</a>
+                        <pre id="treeview_sourcecode" style="display:none" class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
                 </div>
             </div>
