@@ -9,9 +9,9 @@
 	<div class="ink-container">
 		<nav class="ink-navigation" id="dockedMenu">
 			<ul class="menu horizontal blue ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="home" href="#">Home</a></li>
+				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
 				<?php foreach( $components as $component => $configuration ){ ?>
-					<li><a href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
+					<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
 				<?php } ?>
 				<!-- <li><a href="#modalbox">Modal box</a></li>
 				<li><a href="#tabs">Tabs</a></li> -->

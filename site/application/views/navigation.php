@@ -13,25 +13,25 @@
 		  <nav class="ink-navigation">
 				<ul class="menu horizontal">
 					 <li class="active">
-						  <a class="home" href="#">Home</a>
+						  <a class="scrollableLink home" href="#">Home</a>
 					 </li>
 					 <li>
-						  <a href="#horizontal">Horizontal menu</a>
+						  <a class="scrollableLink" href="#horizontal">Horizontal menu</a>
 					 </li>
 					 <li>
-						  <a href="#vertical">Vertical menu</a>
+						  <a class="scrollableLink" href="#vertical">Vertical menu</a>
 					 </li>
 					 <li>
-						  <a href="#footer">Footer menu</a>
+						  <a class="scrollableLink" href="#footer">Footer menu</a>
 					 </li>
 					 <li>
-						  <a href="#pagination">Pagination</a>
+						  <a class="scrollableLink" href="#pagination">Pagination</a>
 					 </li>
 					 <li>
-						  <a href="#pills">Pills</a>
+						  <a class="scrollableLink" href="#pills">Pills</a>
 					 </li>
 					 <li>
-						  <a href="#breadcrumbs">Breadcrumbs</a>
+						  <a class="scrollableLink" href="#breadcrumbs">Breadcrumbs</a>
 					 </li>
 				</ul>
 		  </nav>
