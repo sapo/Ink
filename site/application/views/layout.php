@@ -96,7 +96,7 @@
         <h3><code>.ink-container</code></h3>
         <p>This is the main container for your layout. Just wrap everything with a block-level element, such as a div, with the ink-container class and you're set. This container unit will carry the width of your layout, which can be a fixed value, such as 960px, a relative value, such as 95% or a relative value with a limit, ie, a maximum width.</p>
 
-        <p>Although, typically, you'll wrap entire layouts in an ink-container, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the ink-container before your <footer> element, and then use a 100% width class for it.</p>
+        <p>Although, typically, you'll wrap entire layouts in an ink-container, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the ink-container before your &lt;footer> element, and then use a 100% width class for it.</p>
 
 
         <h3><code>.ink-row</code></h3>
