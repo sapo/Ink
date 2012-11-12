@@ -26,10 +26,10 @@
 <div class="ink-container" id="multiple-layouts">
     <div class="ink-vspace">
         <h2>Multiple layouts</h2>
-        <p>We believe that no website/webapp is created equal&mdash;specially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
+        <p>We believe that no website/webapp is created equal&mdash;especially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
 
         <p>You can use special class names (see <a href="#columns">section columns</a> for details) to specify how wide you want your columns to be. But what happens when you need a layout switch and you need a <strong>breakpoint</strong>? We don't want you to be forced to fallback to a one-size-fits-all kind of solution.</p>
-        <p>With INK, you are given three layouts you can use to your hearts content.</p>
+        <p>With Ink, you are given three layouts you can use to your heart's content.</p>
         <ul>
             <li><strong>S</strong> which stands for <strong>small</strong></li>
             <li><strong>M</strong> which stands for <strong>medium</strong></li>
@@ -59,7 +59,7 @@
         </pre>
 
         <h3>Customizing size thresholds</h3>
-        <p>If your layouts require different breakpoints, no sweat. You can either use our <a href="<?php echo site_url() . '/download' ?>">INK Customizer</a> or just change the pixel measures on those media-queries by hand and you're set.</p>
+        <p>If your layouts require different breakpoints, no sweat. You can either use our <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a> or just change the pixel measurements on those media-queries by hand and you're set.</p>
         <pre class="prettyprint linenums">
 <?php echo(htmlentities('<head>
     <link rel="stylesheet" href="css/grids/small.css"
@@ -78,7 +78,7 @@
     <link rel="stylesheet" href="css/grids/large.css">
 ')) ?>
         </pre>
-        <p>Boom. Done. Now you only have to use the large classe names (see <a href="#columns">columns section</a>).</p>
+        <p>Boom. Done. Now you only have to use the large class names (see <a href="#columns">columns section</a>).</p>
         
 
     </div>
@@ -93,10 +93,10 @@
       <p>This element can be configured in the <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
 -->
 
-        <h3><code>.ink-container</code></h3>
-        <p>This is the main container for your layout. Just wrap everything with a block-level element, such as a div, with the ink-container class and you're set. This container unit will carry the width of your layout, which can be a fixed value, such as 960px, a relative value, such as 95% or a relative value with a limit, ie, a maximum width.</p>
+        <h3><code>ink-container</code></h3>
+        <p>This is the main container for your layout. Just wrap everything with a block-level element, such as a <code>div</code>, with the <code>ink-container</code> class and you're set. This container unit will carry the width of your layout, which can be a fixed value, such as 960px, a relative value, such as 95% or a relative value with a limit, ie, a maximum width.</p>
 
-        <p>Although, typically, you'll wrap entire layouts in an ink-container, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the ink-container before your &lt;footer> element, and then use a 100% width class for it.</p>
+        <p>Although, typically, you'll wrap entire layouts in an ink-container, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the ink-container before your <code>&lt;footer&gt;</code> element, and then use a 100% width class for it.</p>
 
 
         <h3><code>.ink-row</code></h3>
