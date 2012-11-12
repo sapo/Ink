@@ -102,7 +102,7 @@ a.active {
 }
 /*............................................  Homepage  ...................................................*/
 .whatIs {
-  padding: 0 0 .8em;
+  padding: 2em 0 .8em;
   font-size: 1.25em;
 }
 .whatIs h2 {
@@ -348,12 +348,15 @@ footer ul.sociallinks li a.Gplus_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
 }
 #topbar {
+  position: fixed;
+  width: 100%;
   height: 40px;
   background: #222222;
   -webkit-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   -moz-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   margin: auto;
+  z-index: 5000;
 }
 #topbar .ink-navigation {
   background: #222222;

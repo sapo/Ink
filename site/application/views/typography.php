@@ -309,8 +309,9 @@
 	</div>
 	<!--utilities_end-->
 	<!--additionalelements_start-->
-	<a name="additional"></a>
+	
 	<div class="ink-section">
+		<a name="additional"></a>
 		<h2>Additional elements</h2>
 		<p>These elements allow you to compose specific types of text, such as addresses or quotes. Use the example code for quick recipes that work.</p>
 			<div class="ink-row ink-vspace">

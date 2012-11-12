@@ -10,8 +10,8 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Basic alerts</a></li>
-				<li><a href="#">Block alerts</a></li>
+				<li><a href="#basic">Basic Alerts</a></li>
+				<li><a href="#block">Block alerts</a></li>
 			</ul>
 		</nav>
 	</div>
