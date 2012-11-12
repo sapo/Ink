@@ -9,11 +9,11 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#building">Form building</a></li>
-				<li><a href="#text-numbers">Text & Number entry</a></li>
-				<li><a href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
-				<li><a href="#buttons">Buttons</a></li>
+				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
+				<li><a class="scrollableLink" href="#building">Form building</a></li>
+				<li><a class="scrollableLink" href="#text-numbers">Text & Number entry</a></li>
+				<li><a class="scrollableLink" href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
+				<li><a class="scrollableLink" href="#buttons">Buttons</a></li>
 			</ul>
 		</nav>
 	</div>
