@@ -21,125 +21,189 @@
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
 
 <div class="ink-container">
-   <div class="ink-vspace">
-      <h2>Containers</h2>
-      <p>To start off your project, you should define a container block to wrap everything else. Use a <code>div</code> with the <code>.ink-container</code> class, which can be configured to be a fixed width, a relative width or a maximum width.</p>
-      <p>You can use this class as often as you want in your pages, which will allow you to mix fixed and elastic width blocks in a single page, or, if you prefer, simply use it to contain your layout.</p>
-      <p>This element can be configured in the <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
-   </div>
-   <div class="ink-section">
-      <div class="gridExample">
-         <div class="ink-vspace box">
-            <div class="ink-l100 ink-m100 ink-s100"><p>100%</p></div>
-            <div class="ink-l90 ink-m90 ink-s90 ink-clear"><p>90%</p></div>
-            <div class="ink-l80 ink-m80 ink-s80 ink-clear"><p>80%</p></div>
-            <div class="ink-l75 ink-m75 ink-s75 ink-clear"><p>75%</p></div>
-            <div class="ink-l70 ink-m70 ink-s70 ink-clear"><p>70%</p></div>
-            <div class="ink-l66 ink-m66 ink-s66 ink-clear"><p>66%</p></div>
-            <div class="ink-l60 ink-m60 ink-s60 ink-clear"><p>60%</p></div>
-            <div class="ink-l50 ink-m50 ink-s50 ink-clear"><p>50%</p></div>
-            <div class="ink-l40 ink-m40 ink-s40 ink-clear"><p>40%</p></div>
-            <div class="ink-l33 ink-m33 ink-s33 ink-clear"><p>33%</p></div>
-            <div class="ink-l30 ink-m30 ink-s30 ink-clear"><p>30%</p></div>
-            <div class="ink-l25 ink-m25 ink-s25 ink-clear"><p>25%</p></div>
-            <div class="ink-l20 ink-m20 ink-s20 ink-clear"><p>20%</p></div>
-            <div class="ink-l10 ink-m10 ink-s10 ink-clear"><p>10%</p></div>
-         </div>
-         
-         <div class="ink-vspace">
-            <h3>Markup</h3>
-            <p>Let's say you need your page container to always be 80% of your view port.</p>
-            <pre class="prettyprint linenums">
+	<div class="ink-vspace">
+    	<h2>Containers</h2>
+    	<p>To start off your project, you should define a container block to wrap everything else. Use a <code>div</code> with the <code>.ink-container</code> class, which can be configured to be a fixed width, a relative width or a maximum width.</p>
+    	<p>You can use this class as often as you want in your pages, which will allow you to mix fixed and elastic width blocks in a single page, or, if you prefer, simply use it to contain your layout.</p>
+    	<p>This element can be configured in the <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
+	</div>
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h3>Markup</h3>
+			<p>Let's say you need your page container to always be 80% of your view port.</p>
+			<pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-container">
-   <div class="ink-l100">
-     <p>Content</p>
+   <div class="ink-l80">
+      <p>Content</p>
    </div>
 </div>')) ?>
-            </pre>
-         </div>
-      </div>
-   </div>
+			</pre>
+		</div>
+    </div>
       
-      <div class="ink-section">
+	<div class="ink-section">
+        <div class="ink-vspace">
+			<h2>Columns</h2>
+			<p>Ink uses a percentage-based container logic which is flexible and promotes the use of fluid layouts.</p>
+			<p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
+		</div>
          
-         <div class="ink-vspace">
-            <h2>Columns</h2>
-            <p>Ink uses a percentage-based container logic which is flexible and promotes the use of fluid layouts.</p>
-            <p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
-         </div>
-         
-         <div class="ink-row">
-            <div class="ink-l50">
-               <div class="ink-gutter">
-                  <div class="gridExample2">
-                     <div class="box">
-                        <div class="ink-l100 ink-m100 ink-s100 level1">
-                           <div class="ink-l100 ink-m100 level2"><p>100%</p></div>
-                           <div class="ink-l50 ink-m100 level2"><p>50%</p></div>
-                           <div class="ink-l50 ink-m100 level2"><p>50%</p></div>
-                           <div class="ink-l25 ink-m100 level2"><p>25%</p></div>
-                           <div class="ink-l20 ink-m100 level2"><p>20%</p></div>
-                           <div class="ink-l10 ink-m100 level2"><p>10%</p></div>
-                           <div class="ink-l20 ink-m100 level2"><p>20%</p></div>
-                           <div class="ink-l25 ink-m100 level2"><p>25%</p></div>
-                        </div>
-                     </div>
-                  </div>
-                  <pre class="prettyprint linenums ink-vspace">
-<?php echo(htmlentities('<div class="ink-l100 ink-m100">
-   <div class="inkl50 ink-m100"></div>
-   <div class="inkl50 ink-m100"></div>
-   <div class="ink-l25 ink-m100"></div>
-   <div class="ink-l20 ink-m100"></div>
-   <div class="ink-l10 ink-m100"></div>
-   <div class="ink-l20 ink-m100"></div>
-   <div class="ink-l25 ink-m100"></div>
-</div>')) ?></pre>
-                           </div>
-               </div>
-            <div class="ink-l50">
-               <div class="ink-gutter">
-                  <div class="gridExample2">
-                     <div class="box">
-                        <div class="ink-l100 ink-m100 ink-s100 level1">
-                           <div class="ink-l50 ink-m100 ink-s100 level2">
-                              <div class="ink-l100 ink-m100 ink-s100 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
-                           </div>
-                           <div class="ink-l50 ink-m100 ink-s100 level2">
-                              <div class="ink-l100 ink-m100 ink-s100 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
-                              <div class="ink-l50 ink-m50 ink-s100 level2"><p>50%</p></div>
-                           </div>
-                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
-                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
-                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
-                           <div class="ink-l25 ink-m50 ink-s100 level2"><p>25%</p></div>
-                        </div>
-                     </div>
-                  </div>
-                              <pre class="prettyprint linenums ink-vspace">
+		<div class="ink-row">
+			<div class="ink-l50">
+				<div class="ink-gutter">
+					<div class="gridExample2">
+						<div class="box">
+							<div class="ink-l100 ink-m100 ink-s100 level1">
+							   <div class="ink-l100 ink-m100 ink-s100 level2"><p>100%</p></div>
+							   <div class="ink-l50 ink-m50 ink-s50 level2"><p>50%</p></div>
+							   <div class="ink-l50 ink-m50 ink-s50 level2"><p>50%</p></div>
+							   <div class="ink-l25 ink-m25 ink-s25 level2"><p>25%</p></div>
+							   <div class="ink-l20 ink-m20 ink-s20 level2"><p>20%</p></div>
+							   <div class="ink-l10 ink-m10 ink-s10 level2"><p>10%</p></div>
+							   <div class="ink-l20 ink-m20 ink-s20 level2"><p>20%</p></div>
+							   <div class="ink-l25 ink-m25 ink-s25 level2"><p>25%</p></div>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums ink-vspace">
 <?php echo(htmlentities('<div class="ink-l100 ink-m100 ink-s100">
-   <div class="ink-l50 ink-m100 ink-s100">
-      <div class="ink-l100 ink-m100 ink-s100"></div>
-      <div class="ink-l50 ink-m50 ink-s100"></div>
-      <div class="ink-l50 ink-m50 ink-s100"></div>
-   </div>
-   <div class="ink-l50 ink-m100 ink-s100">
-      <div class="ink-l100 ink-m100 ink-s100"></div>
-      <div class="ink-l50 ink-m50 ink-s100"></div>
-      <div class="ink-l50 ink-m50 ink-s100"></div>
-   </div>
-   <div class="ink-l25 ink-m50 ink-s100"></div>
-   <div class="ink-l25 ink-m50 ink-s100"></div>
-   <div class="ink-l25 ink-m50 ink-s100"></div>
-   <div class="ink-l25 ink-m50 ink-s100"></div>
+   <div class="inkl50 ink-m50 ink-s50"></div>
+   <div class="inkl50 ink-m50 ink-s50"></div>
+   <div class="ink-l25 ink-m25 ink-s25"></div>
+   <div class="ink-l20 ink-m20 ink-s20"></div>
+   <div class="ink-l10 ink-m10 ink-s10"></div>
+   <div class="ink-l20 ink-m20 ink-s20"></div>
+   <div class="ink-l25 ink-m25 ink-s25"></div>
 </div>')) ?></pre>
-               </div>
-            </div>
-         </div>
-         <div class="ink-vpace">
+				</div>
+			</div>
+			<div class="ink-l50 ink-for-l">
+				<div class="ink-gutter">
+					<div class="gridExample2">
+						<div class="box">
+							<div class="ink-l100 level1">
+								<div class="ink-l50 level2">
+									<div class="ink-l100 level2"><p>50%</p></div>
+									<div class="ink-l50 level2"><p>50%</p></div>
+									<div class="ink-l50 level2"><p>50%</p></div>
+								</div>
+								<div class="ink-l50 level2">
+									<div class="ink-l100 level2"><p>50%</p></div>
+									<div class="ink-l50 level2"><p>50%</p></div>
+									<div class="ink-l50 level2"><p>50%</p></div>
+								</div>
+								<div class="ink-l25 level2"><p>25%</p></div>
+									<div class="ink-l25 level2"><p>25%</p></div>
+									<div class="ink-l25 level2"><p>25%</p></div>
+									<div class="ink-l25 level2"><p>25%</p></div>
+								</div>
+							</div>
+						</div>
+						<pre class="prettyprint linenums ink-vspace">
+<?php echo(htmlentities('<div class="ink-l100">
+   <div class="ink-l50">
+      <div class="ink-l100"></div>
+      <div class="ink-l50"></div>
+      <div class="ink-l50"></div>
+   </div>
+   <div class="ink-l50">
+      <div class="ink-l100"></div>
+      <div class="ink-l50"></div>
+      <div class="ink-l50"></div>
+   </div>
+   <div class="ink-l25"></div>
+   <div class="ink-l25"></div>
+   <div class="ink-l25"></div>
+   <div class="ink-l25"></div>
+</div>')) ?></pre>
+				</div>
+			</div>
+			
+			<div class="ink-l50 ink-for-m">
+				<div class="ink-gutter">
+					<div class="gridExample2">
+						<div class="box">
+							<div class="ink-m100 level1">
+								<div class="ink-m100 level2">
+									<div class="ink-m100 level2"><p>100%</p></div>
+									<div class="ink-m50 level2"><p>50%</p></div>
+									<div class="ink-m50 level2"><p>50%</p></div>
+								</div>
+								<div class="ink-m100 level2">
+									<div class="ink-m100 level2"><p>100%</p></div>
+									<div class="ink-m50 level2"><p>50%</p></div>
+									<div class="ink-m50 level2"><p>50%</p></div>
+								</div>
+								<div class="ink-m50 level2"><p>50%</p></div>
+								<div class="ink-m50 level2"><p>50%</p></div>
+								<div class="ink-m50 level2"><p>50%</p></div>
+								<div class="ink-m50 level2"><p>50%</p></div>
+							</div>
+						</div>
+					</div>
+<pre class="prettyprint linenums ink-vspace">
+<?php echo(htmlentities('<div class="ink-m100">
+   <div class="ink-m100">
+      <div class="ink-m100"></div>
+      <div class="ink-m50"></div>
+      <div class="ink-m50"></div>
+   </div>
+   <div class="ink-m100">
+      <div class="ink-m100"></div>
+      <div class="ink-m50"></div>
+      <div class="ink-m50"></div>
+   </div>
+   <div class="ink-m50"></div>
+   <div class="ink-m50"></div>
+   <div class="ink-m50"></div>
+   <div class="ink-m50"></div>
+</div>')) ?></pre>
+				</div>
+			</div>
+			<div class="ink-l50 ink-for-s">
+				<div class="ink-gutter">
+					<div class="gridExample2">
+						<div class="box">
+							<div class="ink-s100 level1">
+								<div class="ink-s100 level2">
+									<div class="ink-s100 level2"><p>100%</p></div>
+									<div class="ink-s100 level2"><p>100%</p></div>
+									<div class="ink-s100 level2"><p>100%</p></div>
+								</div>
+								<div class="ink-s100 level2">
+									<div class="ink-s100 level2"><p>100%</p></div>
+									<div class="ink-s100 level2"><p>100%</p></div>
+									<div class="ink-s100 level2"><p>100%</p></div>
+								</div>
+								<div class="ink-s100 level2"><p>100%</p></div>
+								<div class="ink-s100 level2"><p>100%</p></div>
+								<div class="ink-s100 level2"><p>100%</p></div>
+								<div class="ink-s100 level2"><p>100%</p></div>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums ink-vspace">
+<?php echo(htmlentities('<div class="ink-s100">
+   <div class="ink-s100">
+      <div class="ink-s100"></div>
+      <div class="ink-s100"></div>
+      <div class="ink-s100"></div>
+   </div>
+   <div class="ink-s100">
+      <div class="ink-s100"></div>
+      <div class="ink-s100"></div>
+      <div class="ink-s100"></div>
+   </div>
+   <div class="ink-s100"></div>
+   <div class="ink-s100"></div>
+   <div class="ink-s100"></div>
+   <div class="ink-s100"></div>
+</div>')) ?></pre>
+				</div>
+			</div>
+		</div>
+            
+		<div class="ink-vpace">
             <p>
 				You should use the <strong>.ink-lxx</strong>, <strong>.ink-mxx</strong> and <strong>.ink-sxx</strong> classes to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
 				The purpose of these classes should be layout only. 
@@ -148,8 +212,8 @@
 				For further costumization add an additional semantic class. 
 				In this case, you could use your conf.css file to customize .maincontent, .sidebar, etc.
 			</p>
-         </div>
-      </div>
+		</div>
+	</div>
    
       <div class="ink-section">
          <div class="ink-vspace">
