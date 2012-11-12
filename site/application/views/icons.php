@@ -10,11 +10,11 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Web Application Icons</a></li>
-				<li><a href="#">Text Editor Icons</a></li>
-				<li><a href="#">Directional Icons</a></li>
-				<li><a href="#">Video Player Icons</a></li>
-				<li><a href="#">Social Icons</a></li>
+				<li><a href="#web">Web Application Icons</a></li>
+				<li><a href="#text">Text Editor Icons</a></li>
+				<li><a href="#directional">Directional Icons</a></li>
+				<li><a href="#video">Video Player Icons</a></li>
+				<li><a href="#social">Social Icons</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -185,6 +185,7 @@
 	</div>
 
 	<div class="ink-section">
+		<a name="text"></a>
 		<h3>Text Editor Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
@@ -238,6 +239,7 @@
 	</div>
 
 	<div class="ink-section">
+		<a name="directional"></a>
 		<h3>Directional Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
@@ -280,6 +282,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="video"></a>
 		<h3>Video Player Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">
@@ -316,6 +319,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="social"></a>
 	    <h3>Social Icons</h3>
 		<div class="ink-row">
 			<div class="ink-l25">

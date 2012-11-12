@@ -10,10 +10,10 @@
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
 				<li class="active"><a class="home" href="#">Home</a></li>
-				<li><a href="#">Form building</a></li>
-				<li><a href="#">Text & Number entry</a></li>
-				<li><a href="#">Checkboxes & Radio buttons</a></li>
-				<li><a href="#">Buttons</a></li>
+				<li><a href="#building">Form building</a></li>
+				<li><a href="#text-numbers">Text & Number entry</a></li>
+				<li><a href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
+				<li><a href="#buttons">Buttons</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -37,6 +37,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="text-numbers"></a>
 		<h3>Text & Number entry</h3>
 		<div class="ink-row ink-vspace">
 			<div class="ink-l50">
@@ -127,6 +128,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="checkboxes-radios"></a>
 		<h3>Checkboxes and radio buttons</h3>
 		<p>To create a list of checkboxes or radio buttons, use an unordered list element, <code>&lt;ul&gt;</code> as your wrapper (<code>ink-form-wrapper</code>) with the <code>unstyled</code> class, to eliminate bullets.</p>
 		<div class="ink-row ink-vspace">
@@ -189,6 +191,7 @@
 	</div>
 	
 	<div class="ink-section">
+		<a name="buttons"></a>
 		<h3>Buttons</h3>
 		<p>Your forms will need at least one button. You can crate a button with one of several markup elements, although <code>&lt;button&gt;</code> is most appropriate. Just add the <code>ink-button</code> class for the button layout and then use a utility class to give it a specific meaning. Available styling is shown below.</p>
 		

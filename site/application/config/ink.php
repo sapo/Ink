@@ -50,7 +50,8 @@ $config['site_pages'] = array(
 				'url' => 'js/core'
 			)
 		)
-	)
+	),
+    
 );
 
 
