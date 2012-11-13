@@ -300,12 +300,11 @@
             </div>
 		<div class="ink-vspace">
       <p>
-				You should use the <code>ink-lxx</code>, <code>ink-mxx</code> and <code>ink-sxx</code> classes to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
+				You should use the <code>ink-lxx</code>, <code>ink-mxx</code> and <code>ink-sxx</code> class names only to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
 				The purpose of these classes should be layout only. 
 			</p>
 			<p>	
-				For further costumization add an additional semantic class. 
-				In this case, you could use your conf.css file to customize <code>.maincontent</code>, <code>.sidebar</code>, etc.
+				For further customization add an additional semantic class. 
 			</p>
 		</div>
 	</div>
