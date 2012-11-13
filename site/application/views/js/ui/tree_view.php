@@ -38,7 +38,7 @@ JS;
             <div class="ink-l60">
                 <div class="ink-gutter">
                     <div class="ink-row box">
-                        <div class="block-alert-msg info">
+                        <div class="ink-alert-block info">
                             <button class="close">×</button>
                             <h4>Note:</h4>
                             <p>Notice that child 1 node starts closed because its model has 1 in its 3rd position.</p>
