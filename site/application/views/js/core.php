@@ -118,8 +118,8 @@ setTimeout(function(){
             a: 'potato'
         },
 
-        onSuccess: function(responseObject, responseData){
-            // handle the success like a boss
+        onComplete: function(responseObject, responseData){
+            // handle the completion like a boss
         },
 
         onFailure: function(responseObject, responseData){
@@ -136,12 +136,12 @@ setTimeout(function(){
 
     // Configure the request.
     {
-        onSuccess: function(responseObject, responseData){
-            // handle the success like a boss
+        onComplete: function(responseObject, responseData){
+            // handle the completion like a boss
         },
 
-        onFailure: function(responseObject, responseData){
-            // handle the failure gracefully
+        onTimeout: function(responseObject, responseData){
+            // handle the timeout like a sir
         }
     }
 );
