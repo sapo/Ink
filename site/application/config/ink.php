@@ -656,6 +656,10 @@ $config['ui_components'] = array(
         'label'     => 'Modal',
         'view'      => 'js/ui/modal',
     ),
+    'tabs'         => array(
+        'label'     => 'Tabs',
+        'view'      => 'js/ui/tabs',
+    ),
 );
 
 ?>
