@@ -632,13 +632,17 @@ $config['ink_config_vars'] = array(
 );
 
 $config['ui_components'] = array(
-    'table' => array(
-        'label'     => 'Table',
-        'view'      => 'js/ui/table',
-    ),
     'gallery' => array(
         'label'     => 'Gallery',
         'view'      => 'js/ui/gallery',
+    ),
+    'modal'         => array(
+        'label'     => 'Modal',
+        'view'      => 'js/ui/modal',
+    ),
+    'table' => array(
+        'label'     => 'Table',
+        'view'      => 'js/ui/table',
     ),
     'tree_view' => array(
         'label'     => 'Tree View',
@@ -651,10 +655,6 @@ $config['ui_components'] = array(
     'date_picker'   => array(
         'label'     => 'Date Picker',
         'view'      => 'js/ui/date_picker',
-    ),
-    'modal'         => array(
-        'label'     => 'Modal',
-        'view'      => 'js/ui/modal',
     ),
     'tabs'         => array(
         'label'     => 'Tabs',
