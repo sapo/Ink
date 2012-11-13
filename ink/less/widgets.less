@@ -1,7 +1,16 @@
 /* Geral */
 .ink-gallery {
-	width:600px;
+	max-width:600px;
+	width:100%;
 	position:relative;
+}
+
+.ink-gallery .thumbs {
+	overflow: hidden;
+}
+
+.ink-gallery .thumbs > ul {
+	#ink > #effects > .transition ("margin-left", 250ms);
 }
 
 .ink-gallery .pagination {
@@ -32,13 +41,14 @@
 	overflow:hidden
 }
 
-.ink-gallery .slider ul {
-	white-space:nowrap;
-	font-size:0
-}
-
 .ink-gallery .slider li {
 	display:inline-block;
+}
+
+.ink-gallery .slider > ul {
+	white-space:nowrap;
+	font-size:0;
+	#ink > #effects > .transition ("margin-left", 250ms);
 }
 
 /* Typography */

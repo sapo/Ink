@@ -1,10 +1,12 @@
 <?php
  $js = <<<JS
-<div id="slist"></div>
+<ul id="slist">
+    <li>primeiro</li>
+    <li>segundo</li>
+    <li>terceiro</li>
+</ul>
 <script type="text/javascript">
-    var list = new SAPO.Ink.SortableList('#slist', {
-        model: ['primeiro', 'segundo', 'terceiro']
-    });
+    var list = new SAPO.Ink.SortableList('#slist');
 </script>
 JS;
 ?>
@@ -21,12 +23,11 @@ JS;
             </div>
             <div class="ink-l60">
 				<div class="ink-gutter">
-                    <div class="ink-row box">
+                    <div class="box">
     					<?php echo $js;?>
-                        <br/>
-                        <a href="#" data-target="sortablelist_sourcecode" class="toggleTrigger">View Source Code</a>
-                        <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums ink-space"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
+					<a href="#" data-target="sortablelist_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+    	            <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
 				</div>
             </div>
         </div>

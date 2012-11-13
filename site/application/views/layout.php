@@ -9,13 +9,13 @@
 	<div class="ink-container">
 		<nav class="ink-navigation">
 			<ul class="menu horizontal">
-				<li class="active"><a class="home" href="#">Home</a></li>
-                <li><a href="#multiple-layouts">Multiple layouts</a></li>
-				<li><a href="#containers">Containers</a></li>
-				<li><a href="#markup">Markup</a></li>
-				<li><a href="#columns">Columns</a></li>
-            <li><a href="#gutters">Gutters</a></li>l
-            <li><a href="#spacing">Spacing</a></li>
+				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
+                <li><a class="scrollableLink" href="#multiple-layouts">Multiple layouts</a></li>
+				<li><a class="scrollableLink" href="#containers">Containers</a></li>
+				<li><a class="scrollableLink" href="#markup">Markup</a></li>
+				<li><a class="scrollableLink" href="#columns">Columns</a></li>
+            <li><a class="scrollableLink" href="#gutters">Gutters</a></li>l
+            <li><a class="scrollableLink" href="#spacing">Spacing</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -97,30 +97,19 @@
     </div>
 </div>
 
-<div class="ink-container" id="containers">
-   <div class="ink-vspace">
-      <h2>Containers</h2>
-<!--
-      <p>To start off your project, you should define a container block to wrap everything else. Use a <code>div</code> with the <code>.ink-container</code> class, which can be configured to be a fixed width, a relative width or a maximum width.</p>
-      <p>You can use this class as often as you want in your pages, which will allow you to mix fixed and elastic width blocks in a single page, or, if you prefer, simply use it to contain your layout.</p>
-      <p>This element can be configured in the <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
--->
-
-        <h3><code>.ink-container</code></h3>
-        <p>This is the main container for your layout. Just wrap everything with a block-level element, such as a div, with the ink-container class and you're set. This container unit will carry the width of your layout, which can be a fixed value, such as 960px, a relative value, such as 95% or a relative value with a limit, ie, a maximum width.</p>
-
-        <p>Although, typically, you'll wrap entire layouts in an ink-container, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the ink-container before your &lt;footer> element, and then use a 100% width class for it.</p>
-
-
-        <h3><code>.ink-row</code></h3>
-
-        <p>Everytime you need a set of side-by-side blocks, aka, columns, you'll need to wrap them in an ink-row block-level element. These will keep your columns together and work a little negative margin magic to make the gutters work as intended.</p>
-
-        <p>So, basically, if you're starting a layout, create a &lt;div class="ink-container">, followed by a &lt;div class="ink-row"> and then proceed to lay out your columns (see below for layout and spacer elements), close up your divs and you're done. Need more sections? Go ahead and create another block-level element with the ink-row class to hold it in place. You can even use &lt;section>.</p>
-
-
-   </div>
-   <div class="ink-section">
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h2>Containers</h2>
+			<h3><code>ink-container</code></h3>
+        	<p>This is the main container for your layout. Just wrap everything with a block-level element, such as a <code>div</code>, with the <code>ink-container</code> class and you're set. This container unit will carry the width of your layout, which can be a fixed value, such as 960px, a relative value, such as 95% or a relative value with a limit, ie, a maximum width.</p>
+			<p>Although, typically, you'll wrap entire layouts in an <code>ink-container</code>, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the <code>ink-container</code> before your <code>&lt;footer&gt;</code> element, and then use a 100% width class for it.</p>
+	        <h3><code>ink-row</code></h3>
+    	    <p>If you need a set of side-by-side blocks, aka, columns <strong>with gutters</strong>, you'll need to wrap them in an <code>ink-row</code> block-level element. These will keep your columns together and work a little negative margin magic to make the gutters work as intended.</p>
+        	<p>If, for some reason, you don't need space between your columns, then the <code>ink-row</code>is unnecessary and should not be used. A good example is if you need a single 100% column.</p>
+        	<p>So, basically, if you're starting a layout, create a <code>&lt;div class=&quot;ink-container&quot;&gt;</code>, followed by a <code>&lt;div class=&quot;ink-row&quot;&gt;</code> and then proceed to lay out your columns (see below for layout and spacer elements), close up your blocks and you're done. Need more sections? Go ahead and create another block-level element with the <code>ink-row</code> class to hold it in place. You can even use <code>&lt;section&gt;</code> and the <code>ink-section</code> utility class gives you a separation line.</p>
+		</div>
+	</div>
+	<div class="ink-section">
    		<div class="ink-vspace">
             <a name="markup"></a>
             <h3>Markup</h3>
@@ -135,20 +124,15 @@
 		</div>
     </div>
       
-      <div class="ink-section" id="columns">
-         
-         <div class="ink-vspace">
+	<div class="ink-section" id="columns">
+		<div class="ink-vspace">
             <h2>Columns</h2>
+			<p>Layout elements in Ink is where we mix things up a bit from what you may be used to in other frameworks you may have tried before. Instead of defining a grid with a certain number of columns and having you then declare how many columns you need your layout blocks to span, <strong>you simply use percentages</strong>.</p>
+			<p>If you need 3 columns, you use three 33% elements; if you need four, then use four 25% elements; it couldn't be simpler. But it's also extremely flexible and the built-in media-queries make building one layout for multiple screens a snap.</p>
+			<p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to Ink.</p>
+		</div>
 
-            <p>Layout elements in Ink is where we mix things up a bit from what you may be used to in other frameworks you may have tried before. Instead of defining a grid with a certain number of columns and having you then declare how many columns you need your layout blocks to span, <strong>you simply use percentages</strong>.</p>
-
-            <p>If you need 3 columns, you use three 33% elements; if you need four, then use four 25% elements; it couldn't be simpler. But it's also extremely flexible and the built-in media-queries make building one layout for multiple screens a snap.</p>
-
-            <p>You can setup 10, 20, 25, 30, 33, 40, 50, 66, 70, 75, 80, 90 and 100% width units and combinations therein and think in a simple, percentage-oriented, manner, leaving the calculations for each browser box model up to INK.</p>
-         </div>
-
-         
-		<div class="ink-row">
+        <div class="ink-row">
 			<div class="ink-l50">
 				<div class="ink-gutter">
 					<div class="gridExample2">
@@ -187,41 +171,36 @@
 					<div class="gridExample2">
 						<div class="box">
 							<div class="ink-l100 level1">
+								<div class="ink-l50 level2"><p>50%</p></div>
+								<div class="ink-l50 level2"><p>50%</p></div>
 								<div class="ink-l50 level2">
-                                    <p>50%</p>
-									<div class="ink-l100 level2"><p>100%</p></div>
-									<div class="ink-l50 level2"><p>50%</p></div>
-									<div class="ink-l50 level2"><p>50%</p></div>
+                                    <div class="ink-l100"><p>100%</p></div>
+									<div class="ink-l50"><p>50%</p></div>
+									<div class="ink-l50"><p>50%</p></div>
 								</div>
 								<div class="ink-l50 level2">
-                                    <p>50%</p>
-									<div class="ink-l100 level2"><p>100%</p></div>
-									<div class="ink-l50 level2"><p>50%</p></div>
-									<div class="ink-l50 level2"><p>50%</p></div>
+                                    <div class="ink-l100"><p>100%</p></div>
+									<div class="ink-l50"><p>50%</p></div>
+									<div class="ink-l50"><p>50%</p></div>
 								</div>
-                                <div class="ink-l25 level2">
-                                    <p>25%</p>
-								</div>
-                                <div class="ink-l25 level2">
-                                    <p>25%</p>
-								</div>
-                                <div class="ink-l25 level2">
-                                    <p>25%</p>
-								</div>
-                                <div class="ink-l25 level2">
-                                    <p>25%</p>
+                                <div class="ink-l100 level2">
+									<div class="ink-l25 level2"><p>25%</p></div>
+									<div class="ink-l25 level2"><p>25%</p></div>
+									<div class="ink-l25 level2"><p>25%</p></div>
+									<div class="ink-l25 level2"><p>25%</p></div>
 								</div>
 							</div>
 						</div>
 						<pre class="prettyprint linenums ink-vspace">
 <?php echo(htmlentities('<div class="ink-l100">
-    <div class="ink-l50 level2">
+    <div class="ink-l50"></div>
+    <div class="ink-l50"></div>
+    <div class="ink-l50">
         <div class="ink-l100"></div>
         <div class="ink-l50"></div>
         <div class="ink-l50"></div>
     </div>
     <div class="ink-l50">
-        <p>50%</p>
         <div class="ink-l100"></div>
         <div class="ink-l50"></div>
         <div class="ink-l50"></div>
@@ -231,9 +210,9 @@
     <div class="ink-l25"></div>
     <div class="ink-l25"></div>
 </div>')) ?></pre>
+					</div>
 				</div>
-			</div>
-			
+			</div>		
 			<div class="ink-l50 ink-for-m">
 				<div class="ink-gutter">
 					<div class="gridExample2">
@@ -316,16 +295,15 @@
 </div>')) ?></pre>
 				</div>
 			</div>
-		</div>
-            
-		<div class="ink-vpace">
-            <p>
-				You should use the <strong>.ink-lxx</strong>, <strong>.ink-mxx</strong> and <strong>.ink-sxx</strong> classes to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
+            </div>
+		<div class="ink-vspace">
+      <p>
+				You should use the <code>ink-lxx</code>, <code>ink-mxx</code> and <code>ink-sxx</code> classes to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
 				The purpose of these classes should be layout only. 
 			</p>
 			<p>	
 				For further costumization add an additional semantic class. 
-				In this case, you could use your conf.css file to customize .maincontent, .sidebar, etc.
+				In this case, you could use your conf.css file to customize <code>.maincontent</code>, <code>.sidebar</code>, etc.
 			</p>
 		</div>
 	</div>
@@ -333,11 +311,11 @@
       <div class="ink-section" id="gutters">
          <div class="ink-vspace">
 			   <h2>Gutters</h2>
-    	     <p>To create gutters on you Ink based pages you need to wrap the elements that define column width in a <code>div</code> element with a <code>.ink-row</code> class, and add anoter <code>div</code> element inside the columns wrapping all of its content with a <code>.ink-gutter</code> class.</p>
-        	 <p>If you need to add vertical space between the layout rows, simply add the <code>.ink-vspace</code> class.</p>
+    	     <p>To create gutters on you Ink based pages you need to wrap the elements that define column width in a <code>div</code> element with an <code>ink-row</code> class, and add anoter <code>div</code> element inside the columns wrapping all of its content with an <code>ink-gutter</code> class.</p>
+        	 <p>If you need to add vertical space between the layout rows, simply add the <code>.ink-vspace</code> class to the <code>ink-row</code> wrapper.</p>
         	 <p>Gutter size changes proportionaly to the screen size, so there's no waste of space!</p>
          </div>
-		 <div class="gridExample2">
+		    <div class="gridExample2">
             <div class="box">
                <div class="level1">
                   <div class="ink-l100 level2">
@@ -462,7 +440,6 @@
 	<div class="ink-section" id="hidenseek">
 		<div class="ink-vspace">
 			<h2>Showing &amp; Hiding</h2>
-
 			<p>Sometimes, re-arranging layouts is not enough. You'll need to make some elements appear or disappear. Feel free to use these class names to help you do just that.</p>
 
             <ul>
@@ -470,13 +447,10 @@
                 <li><code>.ink-for-m</code> only appears when Layout <strong>Medium</strong> is active</li>
                 <li><code>.ink-for-l</code> only appears when Layout <strong>Large</strong> is active</li>
             </ul>
-					<pre class="prettyprint linenums ink-vspace">
-<?php echo(htmlentities('
-        <p class="ink-for-s ink-for-m">Lorem ipsum.</p>
-        <p class="ink-for-l">Lorem ipsum dolor sit amet.</p>
-')) ?></pre>
-
-            <p>By using any of these classes, hides the element on all other layouts.</p>
+			<pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities('
+<p class="ink-for-s ink-for-m">I love mexican food.</p>
+<p class="ink-for-l">I love mexican food, such as pico de gallo.</p>')) ?></pre>
+			<p>By using any of these classes, hides the element on all other layouts.</p>
             <p class="note">Note: content hidden via these classes won't be read out loud by screenreaders.</p>
         </div>
     </div>
@@ -541,17 +515,6 @@
          
          </div>
       </div>
-   </div>
-   
-   <div class="ink-vspace">
-      <h2>Available Classes</h2>
-      <p>
-      .ink-container <br>
-      .ink-section<br>
-      .ink-space<br>
-      .ink-vspace<br>
-      .ink-hspace<br>
-      </p>
    </div>
    
 </div>
