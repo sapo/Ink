@@ -130,7 +130,7 @@ JS;
 				</div>
             </div>
         </div>
-			<script type="text/javascript">
+		<script type="text/javascript">
 			var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
 				disabled: ['#stuff', '#more_stuff'], 
 				active: '#news',
