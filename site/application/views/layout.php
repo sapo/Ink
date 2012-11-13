@@ -71,7 +71,7 @@
         <h4>Example: Using only two layouts (Large and Small)</h4>
 
         <pre class="prettyprint linenums">
-<?php echo(htmlentities('/* INK: LARGE SCREENS */
+<?php echo(htmlentities('/* INK: LARGE SCREENS - ENABLED */
 @media screen and (min-width: 767px) {
 (...)
 
@@ -79,7 +79,7 @@
 @media screen and (min-width: 0px) and (max-width: 0px) { 
 (...)
 
-/* INK: SMALL SCREENS */
+/* INK: SMALL SCREENS - ENABLED */
 @media screen and (max-width: 766px) {
 (...)')) ?>
         </pre>
@@ -87,14 +87,21 @@
 
 
         <h3>Even simpler...</h3>
-        <p>However useful it is to have control, if you want to simplify your markup and use the exact same layout in all sizes you can easily achieve this by simply not specifying a media-query.</p>
+        <p>However useful it is to have control, if you want to simplify your markup and use the exact same layout in all sizes you can easily achieve this by simply enabling one of the layouts.</p>
         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<head>
-    <link rel="stylesheet" href="css/grids/large.css">
-')) ?>
+<?php echo(htmlentities('/* INK: LARGE SCREENS - ENABLED */
+@media screen and (min-width: 0px) {
+(...)
+
+/* INK: MEDIUM SCREENS - DISABLED */
+@media screen and (min-width: 0px) and (max-width: 0px) { 
+(...)
+
+/* INK: SMALL SCREENS - DISABLED */
+@media screen and (max-width: 0px) {
+(...)')) ?>
         </pre>
         <p>Boom. Done. Now you only have to use the large classe names (see <a href="#columns">columns section</a>).</p>
-        
 
     </div>
 </div>
