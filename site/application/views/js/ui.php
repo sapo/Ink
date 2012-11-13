@@ -1,5 +1,5 @@
 <div class="whatIs">
-   <div class="ink-container">
+   <div class="ink-container" id="ui_home">
 		<h2>Ink-js</h2>
 		<p>Beautiful js components to go with your project.</p>
 	</div>
@@ -9,7 +9,7 @@
 	<div class="ink-container">
 		<nav class="ink-navigation" id="dockedMenu">
 			<ul class="menu horizontal blue ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
+				<li class="active"><a class="scrollableLink home" href="#ui_home">Home</a></li>
 				<?php foreach( $components as $component => $configuration ){ ?>
 					<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
 				<?php } ?>
