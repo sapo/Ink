@@ -15,6 +15,7 @@
 				<li><a class="scrollableLink" href="#markup">Markup</a></li>
 				<li><a class="scrollableLink" href="#columns">Columns</a></li>
             <li><a class="scrollableLink" href="#gutters">Gutters</a></li>l
+            <li><a class="scrollableLink" href="#hidenseek">Showing &amp; Hiding</a></li>l
             <li><a class="scrollableLink" href="#spacing">Spacing</a></li>
 			</ul>
 		</nav>
@@ -23,8 +24,9 @@
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
 
-<div class="ink-container" id="multiple-layouts">
-    <div class="ink-vspace">
+<div class="ink-container">
+    <div class="ink-section" id="multiple-layouts">
+        <div class="ink-vspace">
         <h2>Multiple layouts</h2>
         <p>We believe that no website/webapp is created equal&mdash;specially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
 
@@ -97,6 +99,7 @@
     </div>
 </div>
 
+<div class="ink-container">
 	<div class="ink-section">
 		<div class="ink-vspace">
 			<h2>Containers</h2>
@@ -109,9 +112,8 @@
         	<p>So, basically, if you're starting a layout, create a <code>&lt;div class=&quot;ink-container&quot;&gt;</code>, followed by a <code>&lt;div class=&quot;ink-row&quot;&gt;</code> and then proceed to lay out your columns (see below for layout and spacer elements), close up your blocks and you're done. Need more sections? Go ahead and create another block-level element with the <code>ink-row</code> class to hold it in place. You can even use <code>&lt;section&gt;</code> and the <code>ink-section</code> utility class gives you a separation line.</p>
 		</div>
 	</div>
-	<div class="ink-section">
+	<div class="ink-section" id="markup">
    		<div class="ink-vspace">
-            <a name="markup"></a>
             <h3>Markup</h3>
             <p>Let's say you need your page container to always be 80% of your viewport (on large screens).</p>
             <pre class="prettyprint linenums">
