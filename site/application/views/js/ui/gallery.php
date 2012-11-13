@@ -44,28 +44,27 @@ $js = <<<JS
 </script>
 JS;
 ?>
-    <div class="ink-section">
-        <div class="ink-row ink-vspace">
+<div class="ink-section">
+	<div class="ink-row ink-vspace">
 
-            <div class="ink-l30">
-                <div class="ink-gutter"> 
-                    <h3 id="gallery">Gallery</h3>
-                    <p>
-                        The <i>Gallery</i> component allows you to show images in a &quot;carousel&quot; format.
-                        Supports several <a href="#" class="modal">configurations</a> and touch events!
-                    </p>
-                </div>
-            </div>
+		<div class="ink-l40">
+			<div class="ink-gutter"> 
+				<h3 id="gallery">Gallery</h3>
+				<p>
+					The <i>Gallery</i> component allows you to show images in a &quot;carousel&quot; format.
+					Supports several <a href="#" class="modal">configurations</a> and touch events!
+				</p>
+			</div>
+		</div>
 
-            <div class="ink-l70">
-                <div class="ink-gutter">
-                    <div class="ink-row box">
-                        <div class="ink-gutter"><?php echo $js; ?></div>
-                        <br/>
-                        <a href="#" data-target="gallery_sourcecode" class="toggleTrigger">View Source Code</a>
-                        <pre id="gallery_sourcecode" style="display:none" class="prettyprint linenums ink-vspace"><?php echo(htmlentities( $js )); ?></pre>
-                    </div>
-                </div> <!-- row -->
-            </div>
-        </div>
-    </div>
+		<div class="ink-l60">
+			<div class="ink-gutter">
+				
+				<?php echo $js; ?>
+				<a href="#" data-target="gallery_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
+				<pre id="gallery_sourcecode" style="display:none" class="prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
+				
+			</div>
+		</div>
+	</div>
+</div>
