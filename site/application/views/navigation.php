@@ -463,7 +463,7 @@
 		  <pre class="prettyprint linenums ink-vspace">
 <?php echo(htmlentities('<nav class="ink-navigation">
    <ul class="pagination">
-      <li class="disabled"><a href="#">&laquo;</a></li>
+      <li class="disabled previous"><a href="#">Previous</a></li>
       <li><a href="#">1</a></li>
       <li><a href="#">2</a></li>
       <li><a href="#">3</a></li>
@@ -471,7 +471,7 @@
       <li><a href="#">5</a></li>
       <li><a href="#">6</a></li>
       <li><a href="#">7</a></li>
-      <li><a href="#">&raquo;</a></li>
+      <li class="next"><a href="#">Next</a></li>
    </ul>
 </nav>')) ?></pre>
 
@@ -513,13 +513,13 @@
 		  <nav class="ink-navigation">
 				<ul class="breadcrumbs">
 					 <li>
-						  <a href="#">Home</a><span class="separator">/</span>
+						  <a href="#">Home</a>
 					 </li>
 					 <li>
-						  <a href="#">Products</a><span class="separator">/</span>
+						  <a href="#">Products</a>
 					 </li>
 					 <li>
-						  <a href="#">Category</a><span class="separator">/</span>
+						  <a href="#">Category</a>
 					 </li>
 					 <li class="active">
 						  <a href="#">Current item</a>
@@ -528,13 +528,26 @@
 		  </nav>
 		  <pre class="prettyprint linenums ink-vspace">
 <?php echo(htmlentities('<nav class="ink-navigation">
-	<ul class="breadcrums">
-		<li><a href="#">Home</a><span class="separator">/</span></li>
-		<li><a href="#">Products</a><span class="separator">/</span></li>
-		<li><a href="#">Category</a><span class="separator">/</span></li>
+	<ul class="breadcrumbs">
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Category</a></li>
 		<li class="active"><a href="#">Current item</a></li>
 	</ul>
 </nav>')) ?>
 </pre>
+        <p class="ink-alert info"><strong>Info</strong> a separator is automatically added.</p>
+
+        <h4>Customizing the separator</h4>
+        <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
+		  <pre class="prettyprint linenums ink-vspace">
+<?php echo(htmlentities('
+.ink-navigation .breadcrumbs li:after {
+   content: \'*\';
+}')) ?>
+</pre>
+        <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
+        
+            
 	 </div>
 </div>
