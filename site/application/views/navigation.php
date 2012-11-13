@@ -513,13 +513,13 @@
 		  <nav class="ink-navigation">
 				<ul class="breadcrumbs">
 					 <li>
-						  <a href="#">Home</a><span class="separator">/</span>
+						  <a href="#">Home</a>
 					 </li>
 					 <li>
-						  <a href="#">Products</a><span class="separator">/</span>
+						  <a href="#">Products</a>
 					 </li>
 					 <li>
-						  <a href="#">Category</a><span class="separator">/</span>
+						  <a href="#">Category</a>
 					 </li>
 					 <li class="active">
 						  <a href="#">Current item</a>

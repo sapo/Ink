@@ -25,20 +25,13 @@
 				}
 			}
 
-			span {
-				&.separator {
-					margin: 0 1em;
-					color: @grey-30;
+			&.active {
+				a {
+					color: @grey-50;
+					cursor: default;
+					text-decoration: none;
 				}
 			}
-
-			&.active {
-					a {
-						color: @grey-50;
-						cursor: default;
-						text-decoration: none;
-					}
-				}
 
 			&:first-child {
 				a {
@@ -46,12 +39,16 @@
 				}
 			}
 
-			&:last-child {
-				a {
-					&:after {
-						content: "";
-					}
-				}
+			&:after {
+				content: '/';
+	            display: inline;
+	            margin: 0 1em;
+	            color: #b3b3b3;
+			}
+			
+			&:last-child:after {
+	            content: '';
+	            display: none;
 			}
 		}
 	}
