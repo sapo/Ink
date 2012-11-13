@@ -13,8 +13,6 @@
 				<?php foreach( $components as $component => $configuration ){ ?>
 					<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
 				<?php } ?>
-				<!-- <li><a href="#modalbox">Modal box</a></li>
-				<li><a href="#tabs">Tabs</a></li> -->
 			</ul>
 		</nav>
 	</div>
@@ -663,38 +661,39 @@
 		</div>
 		
 	</div> -->
+
 </div>
 <style>
 /* DOCKED TENTATIVE PROPOSAL */
-            #dockedMenu {
-                /*position:           absolute;*/
-            }
+	#dockedMenu {
+		/*position:           absolute;*/
+	}
 
-            .ink-docked {
-                position:           fixed !important;
-                opacity:            0.75;
-                z-index:            1000;
-            }
+	.ink-docked {
+		position:           fixed !important;
+		opacity:            0.75;
+		z-index:            1000;
+	}
 
-            .ink-docked:hover {
-                opacity:            1;
+	.ink-docked:hover {
+		opacity:            1;
             }
 </style>
 <script>
-new SAPO.Ink.Docked('#dockedMenu', {
-    fixedHeight: 50
-});
-// horizontal menu
-new SAPO.Ink.HorizontalMenu('#topbar > nav');
-new SAPO.Ink.HorizontalMenu('#dockedMenu');
-
-var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
-for(i=0;i<toggleTriggers.length;i+=1){
-	SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
-		var targetElm = s$(this.getAttribute('data-target'));
-		this.innerHTML = ( ( targetElm.style.display === 'none' ) ? 'Hide' : 'View' ) + ' Source Code';
-		SAPO.Dom.Css.toggle(targetElm);
-		SAPO.Dom.Event.stop(event);
+	new SAPO.Ink.Docked('#dockedMenu', {
+		fixedHeight: 50
 	});
-}
+	// horizontal menu
+	new SAPO.Ink.HorizontalMenu('#topbar > nav');
+	new SAPO.Ink.HorizontalMenu('#dockedMenu');
+	
+	var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
+	for(i=0;i<toggleTriggers.length;i+=1){
+		SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
+			var targetElm = s$(this.getAttribute('data-target'));
+			this.innerHTML = ( ( targetElm.style.display === 'none' ) ? 'Hide' : 'View' ) + ' Source Code';
+			SAPO.Dom.Css.toggle(targetElm);
+			SAPO.Dom.Event.stop(event);
+		});
+	}
 </script>
