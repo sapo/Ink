@@ -13,12 +13,12 @@ Ink was built from the ground up to be easy to use and easy on the eyes, but som
 <ul>
 <li><a href="http://js.sapo.pt/SAPO/0.1/">http://js.sapo.pt/SAPO/0.1/</a></li>
 <li><a href="http://js.sapo.pt/SAPO/Dom/Css/0.1/">http://js.sapo.pt/SAPO/Dom/Css/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Loaded/1.1">http://js.sapo.pt/SAPO/Dom/Loaded/1.1</a>/></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Element/0.">http://js.sapo.pt/SAPO/Dom/Element/0.</a>1/></li>
+<li><a href="http://js.sapo.pt/SAPO/Dom/Loaded/1.1/">http://js.sapo.pt/SAPO/Dom/Loaded/1.1/</a></li>
+<li><a href="http://js.sapo.pt/SAPO/Dom/Element/0.1/">http://js.sapo.pt/SAPO/Dom/Element/0.1/</a></li>
 <li><a href="http://js.sapo.pt/SAPO/Dom/Event/0.1/">http://js.sapo.pt/SAPO/Dom/Event/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Selector/1.1">http://js.sapo.pt/SAPO/Dom/Selector/1.1</a>/></li>
-<li><a href="http://js.sapo.pt/SAPO/Utility/Array/0.">http://js.sapo.pt/SAPO/Utility/Array/0.</a>1/></li>
-<li><a href="http://js.sapo.pt/SAPO/Utility/Swipe/0.">http://js.sapo.pt/SAPO/Utility/Swipe/0.</a>1/></li>
+<li><a href="http://js.sapo.pt/SAPO/Dom/Selector/1.1/">http://js.sapo.pt/SAPO/Dom/Selector/1.1/</a></li>
+<li><a href="http://js.sapo.pt/SAPO/Utility/Array/0.1/">http://js.sapo.pt/SAPO/Utility/Array/0.1/</a></li>
+<li><a href="http://js.sapo.pt/SAPO/Utility/Swipe/0.1/">http://js.sapo.pt/SAPO/Utility/Swipe/0.1/</a></li>
 <li><a href="http://js.sapo.pt/SAPO/Utility/Url/1.1/">http://js.sapo.pt/SAPO/Utility/Url/1.1/</a></li>
 <li><a href="http://js.sapo.pt/SAPO/Communication/Ajax/2.1/">http://js.sapo.pt/SAPO/Communication/Ajax/2.1/</a></li>
 </ul>
@@ -33,7 +33,7 @@ Ink was built from the ground up to be easy to use and easy on the eyes, but som
     // Load some LibSAPO.js utility classes.
     [
         'http://js.sapo.pt/SAPO/Utility/String/0.1/',
-        'http://js.sapo.pt/SAPO/Utility/Url/0.1/'
+        'http://js.sapo.pt/SAPO/Utility/Cache/0.1/'
     ],
 
     // This function is executed after the code has been loaded
@@ -43,7 +43,7 @@ Ink was built from the ground up to be easy to use and easy on the eyes, but som
 );
 </pre>
 
-<p><em>browser</em> - Is the user on Internet Explorer? What version? What model? Browser detection should be used sparingly, but when you need it, we've got you covered.</p>
+<p><em>Browser</em> - Is the user on Internet Explorer? What version? What model? Browser detection should be used sparingly, but when you need it, we've got you covered.</p>
 
 <pre class="prettyprint linenums">// Is the user on IE?
 if(SAPO.Browser.IE){
@@ -53,13 +53,14 @@ if(SAPO.Browser.IE){
 
 <p><em>namespace</em> - Sometimes it's convenient to extend the framework to fit your needs, maybe you want to add a new component, or maybe you want to create a new collection of classes. SAPO.namespace will return the object you asked for or create a new one if none was found.</p>
 
-<pre class="prettyprint linenums">// Create or fetch SAPO.Component.
+<pre class="prettyprint linenums">// Create namespace if it does not exist.
 SAPO.namespace('Component');
 
-// Add some crazy method to our namespace.
+// Let's add something new to our namespace.
 SAPO.Component.SUIT = {
     up: function() {
         setTimeout(console.log.bindObj(console, 'dary!'), 500);
+
         console.log('Legen... wait for it...');
     }
 }
@@ -67,7 +68,7 @@ SAPO.Component.SUIT = {
 
 <p><em>bindObj and bindObjEvent</em> - Binding functions is an important concept of JavaScript but not all browsers support it out of the box, but don't worry, LibSAPO.js gives you the tools you need to get the job done.</p>
 
-<pre class="prettyprint linenums">SAPO.Dom.Event.observe(myElement, 'click', function(e){
+<pre class="prettyprint linenums">SAPO.Dom.Event.observe(document.body, 'load', function(e){
     // Do some awesome event stuffs here.
 }.bindObjEvent(SAPO.Component.SUIT));
 
@@ -82,7 +83,7 @@ setTimeout(function(){
 
 <p>The DOM is a mess, you know it and we do too, that's why we've added specialized Dom methods to LibSAPO.js, it makes your life easier and that makes us happy.</p>
 
-<p><em>Css</em> - Give your document some style with our Css class.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Dom/Css/doc.html">Css</a></em> - Give your document some style with our Css class.</p>
 
 <pre class="prettyprint linenums">if(!SAPO.Dom.Css.hasClassName(myElement, 'selected')){
     SAPO.Dom.Css.addClassName(myElement, 'selected');
@@ -92,10 +93,10 @@ if(SAPO.Dom.Css.hasClassName(myElement, 'aria-hidden')){
     SAPO.Dom.Css.removeClassName(myElement, 'aria-hidden');
 }
 
-SAPO.Dom.Css.setStyle('margin', 'auto');
+SAPO.Dom.Css.setStyle(myElement, {"margin": 'auto'});
 </pre>
 
-<p><em>Element</em> - Not all browsers were created equal, and the DOM is where it shows the most. Get the document just the way you want it with Element.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Dom/Element/doc.html">Element</a></em> - Not all browsers were created equal, and the DOM is where it shows the most. Get the document just the way you want it with Element.</p>
 
 <pre class="prettyprint linenums">var divalicious = SAPO.Dom.Element.create('div', {
     className: 'some-class',
@@ -105,30 +106,18 @@ SAPO.Dom.Css.setStyle('margin', 'auto');
 SAPO.Dom.Element.insertAfter(divalicious, myElement);
 </pre>
 
-<p><em>Event</em> - Events are easy with LibSAPO.js, whether you're catching clicks or sniffing keys, get your events under control with LibSAPO.js.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Dom/Event/doc.html">Event</a></em> - Events are easy with LibSAPO.js, whether you're catching clicks or sniffing keys, get your events under control with LibSAPO.js.</p>
 
-<pre class="prettyprint linenums">SAPO.Dom.Event.observe(myElement, 'keydown', function(e){
-    var target = SAPO.Dom.Event.target(e);
+<pre class="prettyprint linenums">SAPO.Dom.Event.observe(myElement, 'click', function(e){
+    var target = SAPO.Dom.Event.element(e);
 
-    console.log('The element we typed on was: ', target);
-}.bindObjEvent(SAPO.Component.SUIT));
+    SAPO.Dom.Event.stop(e);
 
-SAPO.Dom.Event.observe(myElement, 'keyup', function(e){
-    if(e.keyCode === SAPO.Dom.Event.KEY_ESC){
-        SAPO.Dom.Event.stop(e);
-    } else {
-        this.up();
-    }
-}.bindObjEvent(SAPO.Component.SUIT));
-
-SAPO.Dom.Event.observe(myElement, 'keypress', function(e){
-    var char = SAPO.Dom.Event.getCharFromKeyboardEvent(e);
-
-    console.log('You typed the character: ', char);
+    console.log('The element we clicked was: ', target);
 }.bindObjEvent(SAPO.Component.SUIT));
 </pre>
 
-<p><em>Selector</em> - If you've ever worked with CSS then you know how to use our Selector engine, we've enlisted the help of Sizzle to bring you a simple and fast way to get the elements you need.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Dom/Selector/doc.html">Selector</a></em> - If you've ever worked with CSS then you know how to use our Selector engine, we've enlisted the help of Sizzle to bring you a simple and fast way to get the elements you need.</p>
 
 <pre class="prettyprint linenums">var elements = SAPO.Dom.Selector.select('p.my_class_name');
 var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
@@ -140,16 +129,13 @@ var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
 
 <p>LibSAPO.js offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX, JsonP and Syndication will get you up and running in no time.</p>
 
-<p><em>Ajax</em> - The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Utility/Ajax/doc.html">Ajax</a></em> - The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
 
 <pre class="prettyprint linenums">new SAPO.Communication.Ajax(
-    'http://www.cross-domain.com/post/data',
+    '/post/data',
 
     // Configure the request.
     {
-        // Activate the CORS mechanism.
-        cors: true,
-
         // Pass some data to the query portion of the url
         parameters: {
             a: 'potato'
@@ -166,7 +152,7 @@ var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
 );
 </pre>
 
-<p><em>JsonP</em> - Break out of your local domain chains and enjoy the freedom of cross domain requests, JsonP give you the tools you need to start getting data from any source you want.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Utility/JsonP/doc.html">JsonP</a></em> - Break out of your local domain chains and enjoy the freedom of cross domain requests, JsonP give you the tools you need to start getting data from any source you want.</p>
 
 <pre class="prettyprint linenums">new SAPO.Communication.JsonP(
     'http://sub.local-domain.com/get/data',
@@ -189,7 +175,7 @@ var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
 );
 </pre>
 
-<p><em>Syndication</em> - There are plenty of ways to do cross domain requests, and we do them all right, Syndication is another prime example of that fact.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Utility/Syndication/doc.html">Syndication</a></em> - There are plenty of ways to do cross domain requests, and we do them all right, Syndication is another prime example of that fact.</p>
 
 <pre class="prettyprint linenums">new SAPO.Communication.Syndication(
     'http://www.cross-domain.com/get/data',
