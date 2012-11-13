@@ -28,8 +28,8 @@
         <h2>Multiple layouts</h2>
         <p>We believe that no website/webapp is created equal&mdash;specially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
 
-        <p>You can use special class names (see <a href="#columns">section columns</a> for details) to specify how wide you want your columns to be. But what happens when you need a layout switch and you need a <strong>breakpoint</strong>? We don't want you to be forced to fallback to a one-size-fits-all kind of solution.</p>
-        <p>With INK, you are given three layouts you can use to your hearts content.</p>
+        <p>You can use special class names specify how wide your columns should be (see <a href="#columns">section columns</a> for details). But what happens when you need a layout switch and you need a <strong>breakpoint</strong>? We don't want you to be forced to fallback to a one-size-fits-all kind of solution.</p>
+        <p>With Ink, you are given three layouts you can use to your hearts content.</p>
         <ul>
             <li><strong>S</strong> which stands for <strong>small</strong></li>
             <li><strong>M</strong> which stands for <strong>medium</strong></li>
@@ -39,36 +39,49 @@
         <p>By default these correspond to the following screen size intervals (we'll show you how you can customize these in just a second):</p>
 
         <ul>
-            <li>Small: below 480 pixels wide</li>
-            <li>Medium: between 481 and 900 pixels wide</li>
-            <li>Large: above 901 pixels wide</li>
+            <li>Small: below 650 pixels wide</li>
+            <li>Medium: between 651 and 960 pixels wide</li>
+            <li>Large: above 961 pixels wide</li>
         </ul>
 
-        <p>These thresholds are specified as regular media-queries and can be customized.</p>
+        <p>These thresholds are specified as regular media-queries inside ink.css</code> and can be customized.</p>
+
         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<head>
-    <link rel="stylesheet" href="css/grids/small.css"
-        media="screen and (max-width: 480px)">
+<?php echo(htmlentities('/* INK: LARGE SCREENS */
+@media screen and (min-width: 961px) {
+(...)
 
-    <link rel="stylesheet" href="css/grids/medium.css" 
-        media="screen and (min-width: 481px) and (max-width: 900px)">
+/* INK: MEDIUM SCREENS */
+@media screen and (min-width: 651px) and (max-width: 960px) {
+(...)
 
-    <link rel="stylesheet" href="css/grids/large.css"
-        media="screen and (min-width: 901px)">
-')) ?>
+/* INK: SMALL SCREENS */
+@media screen and (max-width: 650px) {
+(...)')) ?>
         </pre>
+        <p class="ink-alert"><strong>Warning</strong> customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usualy advise you to keep your changes in a separate file, 
+          but in this case, you can't do that.</p>
 
-        <h3>Customizing size thresholds</h3>
-        <p>If your layouts require different breakpoints, no sweat. You can either use our <a href="<?php echo site_url() . '/download' ?>">INK Customizer</a> or just change the pixel measures on those media-queries by hand and you're set.</p>
+        <h3>Customizing breakpoints</h3>
+        <p>If you do decide to customize the breakpoints provided, you can do this by editing the <code>ink.css</code> by hand and changing the values on those media-queries. (A regular search in the file for " SCREENS" will get you there).</p>
+        <p>In the future, we'll allow you to do this using our <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
+
+        <h4>Example: Using only two layouts (Large and Small)</h4>
+
         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<head>
-    <link rel="stylesheet" href="css/grids/small.css"
-        media="screen and (max-width: 767px)">
+<?php echo(htmlentities('/* INK: LARGE SCREENS */
+@media screen and (min-width: 767px) {
+(...)
 
-    <link rel="stylesheet" href="css/grids/large.css"
-        media="screen and (min-width: 901px)">
-')) ?>
+/* INK: MEDIUM SCREENS - DISABLED */
+@media screen and (min-width: 0px) and (max-width: 0px) { 
+(...)
+
+/* INK: SMALL SCREENS */
+@media screen and (max-width: 766px) {
+(...)')) ?>
         </pre>
+        <p class="ink-alert info"><strong>Note</strong> you can just customize the values. In this example we show how robust and extensible this approach allows you to be. Just don't remove the entire media-query because you may change your mind later in the project. ;)</p>
 
 
         <h3>Even simpler...</h3>
