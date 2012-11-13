@@ -155,10 +155,11 @@ a.active {
   font-size: 1.625em;
 }
 /*..........................................  Footer  ...................................................*/
-.callToAction {
+.ink-hero {
   position: relative;
   width: 100%;
   height: 100%;
+  padding-top: 40px;
   background: url(../imgs/home_bkg.png) center;
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -187,6 +188,7 @@ a.active {
   position: absolute;
   top: 0px;
   width: 100%;
+  padding-top: 40px;
   text-align: center;
   -webkit-animation: glower 5s infinite;
   -moz-animation: glower 5s infinite;
