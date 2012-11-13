@@ -15,7 +15,7 @@
                     ['grandchild 2a'],
                     ['grandchild 2b', [
                         ['grandgrandchild 1bA'],
-                        ['grandgrandchild 1bB'],
+                        ['grandgrandchild 1bB']
                     ]]
                 ]],
                 ['child 3']
