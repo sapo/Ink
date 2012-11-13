@@ -8,6 +8,21 @@
 <p><div class="ink-container">
 Ink was built from the ground up to be easy to use and easy on the eyes, but some of the bricks were borrowed from one of our other premiere web frameworks, LibSAPO.js. Listed here are a few key classes and methods that you can take advantage of when building your applications.</p>
 
+<p>When including the Ink.js script you are including several classes from LibSAPO.js, namely:</p>
+
+<ul>
+<li>http://js.sapo.pt/SAPO/0.1/</li>
+<li>http://js.sapo.pt/SAPO/Dom/Css/0.1/</li>
+<li>http://js.sapo.pt/SAPO/Dom/Loaded/1.1/</li>
+<li>http://js.sapo.pt/SAPO/Dom/Element/0.1/</li>
+<li>http://js.sapo.pt/SAPO/Dom/Event/0.1/</li>
+<li>http://js.sapo.pt/SAPO/Dom/Selector/1.1/</li>
+<li>http://js.sapo.pt/SAPO/Utility/Array/0.1/</li>
+<li>http://js.sapo.pt/SAPO/Utility/Swipe/0.1/</li>
+<li>http://js.sapo.pt/SAPO/Utility/Url/1.1/</li>
+<li>http://js.sapo.pt/SAPO/Communication/Ajax/2.1/</li>
+</ul>
+
 <h2>SAPO</h2>
 
 <p>This is the core object which all other classes from LibSAPO.js will be placed.</p>
