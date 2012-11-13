@@ -129,7 +129,7 @@ var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
 
 <p>LibSAPO.js offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX, JsonP and Syndication will get you up and running in no time.</p>
 
-<p><em><a href="http://js.sapo.pt/SAPO/Utility/Ajax/doc.html">Ajax</a></em> - The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Communication/Ajax/doc.html">Ajax</a></em> - The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
 
 <pre class="prettyprint linenums">new SAPO.Communication.Ajax(
     '/post/data',
@@ -152,7 +152,7 @@ var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
 );
 </pre>
 
-<p><em><a href="http://js.sapo.pt/SAPO/Utility/JsonP/doc.html">JsonP</a></em> - Break out of your local domain chains and enjoy the freedom of cross domain requests, JsonP give you the tools you need to start getting data from any source you want.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Communication/JsonP/doc.html">JsonP</a></em> - Break out of your local domain chains and enjoy the freedom of cross domain requests, JsonP give you the tools you need to start getting data from any source you want.</p>
 
 <pre class="prettyprint linenums">new SAPO.Communication.JsonP(
     'http://sub.local-domain.com/get/data',
@@ -175,7 +175,7 @@ var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
 );
 </pre>
 
-<p><em><a href="http://js.sapo.pt/SAPO/Utility/Syndication/doc.html">Syndication</a></em> - There are plenty of ways to do cross domain requests, and we do them all right, Syndication is another prime example of that fact.</p>
+<p><em><a href="http://js.sapo.pt/SAPO/Communication/Syndication/doc.html">Syndication</a></em> - There are plenty of ways to do cross domain requests, and we do them all right, Syndication is another prime example of that fact.</p>
 
 <pre class="prettyprint linenums">new SAPO.Communication.Syndication(
     'http://www.cross-domain.com/get/data',
