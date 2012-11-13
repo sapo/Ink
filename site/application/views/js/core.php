@@ -16,8 +16,10 @@ Ink was built from the ground up to be easy to use and easy on the eyes, but som
 
 <pre><code>SAPO.require(
     // Load some LibSAPO.js utility classes.
-    ['SAPO.Utility.String', 'SAPO.Utility.Url'],
-
+    [
+        'http://js.sapo.pt/SAPO/Utility/String/0.1/', 
+        'http://js.sapo.pt/SAPO/Utility/Url/0.1/'
+    ],
     // This function is executed after the code has been loaded
     function(){
         // Do cool stuffs here.
@@ -36,13 +38,15 @@ if(SAPO.Browser.IE){
 <p><em>namespace</em> - Sometimes it's convenient to extend the framework to fit your needs, maybe you want to add a new component, or maybe you want to create a new collection of classes.</p>
 
 <pre><code>// Create or fetch SAPO.Component.UIThingy.
-var SUIT = SAPO.namespace('Component.UIThingy');
+SAPO.namespace('Component');
 
 // Add some crazy method to our namespace.
-SUIT.up = function(){
-    setTimeout(console.log.bindObj(console, 'dary!'), 500);
-    console.log('Legen... wait for it...');
-}
+SAPO.Component.UIThingy = {
+    up: function() {
+        setTimeout(console.log.bindObj(console, 'dary!'), 500);
+        console.log('Legen... wait for it...');
+    }
+};
 </code></pre>
 
 <p>SAPO.namespace will always return an object.</p>
