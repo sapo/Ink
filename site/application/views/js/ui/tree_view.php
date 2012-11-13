@@ -1,26 +1,32 @@
 <?php
  $js = <<<JS
-<div id="tview"></div>
+<ul id="tview">
+    <li>root
+        <ul>
+            <li>child 1
+                <ul>
+                    <li>c</li>
+                    <li>grandchild 1b</li>
+                    <li>grandchild 1c</li>
+                </ul>
+            </li>
+            <li>child 2
+                <ul>
+                    <li>grandchild 2a</li>
+                    <li>grandchild 2b
+                        <ul>
+                            <li>grandgrandchild 1bA</b>
+                            <li>grandgrandchild 1bB</b>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>child 3</li>
+        </ul>
+    </li>
+</ul>
 <script type="text/javascript">
-    var tree = new SAPO.Ink.TreeView('#tview', {
-        //selectable: true,
-        model:
-            ['root', [
-                ['child 1', [
-                    ['grandchild 1a'],
-                    ['grandchild 1b'],
-                    ['grandchild 1c']
-                ], 1],
-                ['child 2', [
-                    ['grandchild 2a'],
-                    ['grandchild 2b', [
-                        ['grandgrandchild 1bA'],
-                        ['grandgrandchild 1bB']
-                    ]]
-                ]],
-                ['child 3']
-            ]]
-    });
+    var tv1 = new SAPO.Ink.TreeView('#tview');
 </script>
 JS;
 ?>

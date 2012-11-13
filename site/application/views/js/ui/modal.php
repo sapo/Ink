@@ -22,8 +22,15 @@ JS;
 	<div class="ink-vspace">
 		<h3 id="modal">Modal</h3>
 		<p>
-			The <i>Modal</i> component was designed to replace the common, native, modal boxes that do not support HTML content, cannot be configured either on options/buttons available, themes, etc.<br/>
-			This component allows a set of <a href="#" class="modal">configurations</a> that will make the act of showing information on a modal box much more user-friendly.
+			The <i>Modal</i> component was designed to replace the common/native modal boxes that browser have, providing some features:
+            <ul>
+                <li>HTML formatted messages</li>
+                <li>Configuration of height and width of the modal</li>
+                <li>Remove the dismissing through the 'x'/close button. Particularly useful if you want to define another button to do the dismissing</li>
+            </ul> 
+        </p>
+        <p>
+            Other options available and a more detailed explanation of the above ones are available in the <a href="http://js.sapo.pt/SAPO/Ink/Modal/doc.html">technical documentation</a>.
 		</p>
 		<p><?php echo $js;?> to view the component working.</p>
 		<a href="#" data-target="modal_sourcecode" class="ink-button toggleTrigger">View Source Code</a>

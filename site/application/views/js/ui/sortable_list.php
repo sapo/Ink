@@ -1,10 +1,12 @@
 <?php
  $js = <<<JS
-<div id="slist"></div>
+<ul id="slist">
+    <li>primeiro</li>
+    <li>segundo</li>
+    <li>terceiro</li>
+</ul>
 <script type="text/javascript">
-    var list = new SAPO.Ink.SortableList('#slist', {
-        model: ['primeiro', 'segundo', 'terceiro']
-    });
+    var list = new SAPO.Ink.SortableList('#slist');
 </script>
 JS;
 ?>

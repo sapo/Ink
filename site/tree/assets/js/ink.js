@@ -1,7 +1,3 @@
-SAPO.Dom.Event.observe(document, "dom:loaded", function(){
-	console.log(SAPO.Dom.Selector.select('.topbar ul'));
-});
-
 (function(){
     
 }());
@@ -66,7 +62,8 @@ Scroller = {
     },
     // initializer that adds the renderer to the onload function of the window
     init: function(){
-        Scroller.add(window,'load', Scroller.render)
+        SAPO.Dom.Loaded.run(Scroller.render);
+        //Scroller.add(window,'load', )
     },
 
     // this method extracts all the anchors and validates then as # and attaches the events.
@@ -81,13 +78,30 @@ Scroller = {
             Scroller.add(l,'click',Scroller.end)
                 l.onclick = function(){
                     Scroller.end(this);
-                    l=this.hash.substr(1);
-                     a = SAPO.Dom.Selector.select('a[name="'+ l +'"],#' + l);
+                    var hash = this.hash.substr(1);
+                    var elm = SAPO.Dom.Selector.select('a[name="'+ hash +'"],#' + hash);
+
+                    if( typeof(elm[0]) !== 'undefined' ){
+
+                        if( this.parentNode.className.indexOf('active') === -1 ){
+                            var ul = this.parentNode.parentNode,
+                            li = ul.firstChild;
+                            do
+                            {
+                                if( (typeof(li.tagName) !== 'undefined') && ( li.tagName.toUpperCase() === 'LI') && ( li.className.indexOf('active')!==-1 ) ){
+                                    li.className = li.className.replace('active','');
+                                    break;
+                                }
+                            }while( (li = li.nextSibling)  );
+                            this.parentNode.className+=" active";
+                        }
+                        clearInterval(Scroller.interval);
+                        Scroller.interval=setInterval('Scroller.scroll('+Scroller.gy(elm[0])+')',10);
+
+                    }
                     //document.getElementsByTagName('a');
                      // for (i=0;i<a.length;i++) {
                      //    if(a[i].name == l){
-                            clearInterval(Scroller.interval);
-                            Scroller.interval=setInterval('Scroller.scroll('+Scroller.gy(a[0])+')',10);
                         // }
                     // }
                 }
