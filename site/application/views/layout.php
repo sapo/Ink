@@ -64,7 +64,7 @@
 
         <h3>Customizing breakpoints</h3>
         <p>If you do decide to customize the breakpoints provided, you can do this by editing the <code>ink.css</code> by hand and changing the values on those media-queries. (A regular search in the file for " SCREENS" will get you there).</p>
-        <p>In the future, we'll allow you to do this using our <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
+        <p><strong>Coming soon</strong>, we'll add breakpoint customization to your fantastic <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
 
         <h4>Example: Using only two layouts (Large and Small)</h4>
 
