@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<div class="ink-container">
+<p><div class="ink-container">
 Ink was built from the ground up to be easy to use and easy on the eyes, but some of the bricks were borrowed from one of our other premiere web frameworks, LibSAPO.js. Listed here are a few key classes and methods that you can take advantage of when building your applications.</p>
 
 <h2>SAPO</h2>
@@ -17,9 +17,10 @@ Ink was built from the ground up to be easy to use and easy on the eyes, but som
 <pre><code>SAPO.require(
     // Load some LibSAPO.js utility classes.
     [
-        'http://js.sapo.pt/SAPO/Utility/String/0.1/', 
+        'http://js.sapo.pt/SAPO/Utility/String/0.1/',
         'http://js.sapo.pt/SAPO/Utility/Url/0.1/'
     ],
+
     // This function is executed after the code has been loaded
     function(){
         // Do cool stuffs here.
@@ -35,31 +36,29 @@ if(SAPO.Browser.IE){
 }
 </code></pre>
 
-<p><em>namespace</em> - Sometimes it's convenient to extend the framework to fit your needs, maybe you want to add a new component, or maybe you want to create a new collection of classes.</p>
+<p><em>namespace</em> - Sometimes it's convenient to extend the framework to fit your needs, maybe you want to add a new component, or maybe you want to create a new collection of classes. SAPO.namespace will return the object you asked for or create a new one if none was found.</p>
 
-<pre><code>// Create or fetch SAPO.Component.UIThingy.
+<pre><code>// Create or fetch SAPO.Component.
 SAPO.namespace('Component');
 
 // Add some crazy method to our namespace.
-SAPO.Component.UIThingy = {
+SAPO.Component.SUIT = {
     up: function() {
         setTimeout(console.log.bindObj(console, 'dary!'), 500);
         console.log('Legen... wait for it...');
     }
-};
+}
 </code></pre>
 
-<p>SAPO.namespace will always return an object.</p>
-
-<p><em>bindObj and bindObjEvent</em> - Binding functions is an important concept of JavaScript but not all browsers support it, but don't worry, LibSAPO.js gives you the tools you need to get the job done.</p>
+<p><em>bindObj and bindObjEvent</em> - Binding functions is an important concept of JavaScript but not all browsers support it out of the box, but don't worry, LibSAPO.js gives you the tools you need to get the job done.</p>
 
 <pre><code>SAPO.Dom.Event.observe(myElement, 'click', function(e){
     // Do some awesome event stuffs here.
-}.bindObjEvent(SUIT));
+}.bindObjEvent(SAPO.Component.SUIT));
 
 setTimeout(function(){
     // Do some interesting async stuffs here.
-}.bindObj(SUIT), 500);
+}.bindObj(SAPO.Component.SUIT), 500);
 </code></pre>
 
 <p><a href="http://js.sapo.pt/SAPO/doc.html">API Link</a></p>
@@ -81,11 +80,72 @@ setTimeout(function(){
 
 <p>LibSAPO.js offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX, JsonP and Syndication will get you up and running in no time.</p>
 
-<ul>
-<li>Ajax</li>
-<li>JsonP</li>
-<li>Syndication</li>
-</ul>
+<p><em>Ajax</em> - The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
+
+<pre><code>new SAPO.Communication.Ajax(
+    'http://www.cross-domain.com/post/data',
+
+    // Configure the request.
+    {
+        // Activate the CORS mechanism.
+        cors: true,
+
+        // Pass some data to the query portion of the url
+        parameters: {
+            a: 'potato'
+        },
+
+        onSuccess: function(responseObject, responseData){
+            // handle the success like a boss
+        },
+
+        onFailure: function(responseObject, responseData){
+            // handle the failure gracefully
+        }
+    }
+);
+</code></pre>
+
+<p><em>JsonP</em> - Break out of your local domain chains and enjoy the freedom of cross domain requests, JsonP give you the tools you need to start getting data from any source you want.</p>
+
+<pre><code>new SAPO.Communication.JsonP(
+    'http://sub.local-domain.com/get/data',
+
+    // Configure the request.
+    {
+        // Pass some data to the query portion of the url
+        params: {
+            a: 'potato'
+        },
+
+        onSuccess: function(responseObject, responseData){
+            // handle the success like a boss
+        },
+
+        onFailure: function(responseObject, responseData){
+            // handle the failure gracefully
+        }
+    }
+);
+</code></pre>
+
+<p><em>Syndication</em> - There are plenty of ways to do cross domain requests, and we do them all right, Syndication is another prime example of that fact.</p>
+
+<pre><code>new SAPO.Communication.Syndication(
+    'http://www.cross-domain.com/get/data',
+
+    // Configure the request.
+    {
+        onSuccess: function(responseObject, responseData){
+            // handle the success like a boss
+        },
+
+        onFailure: function(responseObject, responseData){
+            // handle the failure gracefully
+        }
+    }
+);
+</code></pre>
 
 <p><a href="http://js.sapo.pt/SAPO/Communication/doc.html">API Link</a></p>
 
@@ -106,4 +166,4 @@ setTimeout(function(){
 <p>Need a styled select input? How about autocomplete text fields? Does uploading files with AJAX give you nightmares? Contrary to what a certain Jedi Master may tell you LibSAPO.js does have many of the UI components you are looking for.</p>
 
 <p><a href="http://js.sapo.pt/SAPO/Component/doc.html">API Link</a>
- </div>
+ </div></p>
