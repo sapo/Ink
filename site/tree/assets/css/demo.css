@@ -78,7 +78,7 @@ mark {
   border-radius: 4px;
 }
 #spacing .box div:hover p {
-  color: #68b9cf;
+  color: #555;
   transition: all ease-in-out 300ms;
   -o-transition: all ease-in-out 300ms;
   -moz-transition: all ease-in-out 300ms;
