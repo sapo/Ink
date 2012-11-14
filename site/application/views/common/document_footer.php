@@ -4,6 +4,7 @@
 			<nav class="ink-navigation">
 				<ul class="ink-footer-nav">
 					<li><a href="<?php echo site_url('about') ?>">About</a></li>
+					<li><a href="<?php echo site_url('changelog') ?>">Changelog</a></li>
 				</ul>
 			</nav>	
 			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
