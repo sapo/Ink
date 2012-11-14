@@ -92,10 +92,7 @@ JS;
                     Activate it by using the "ink-dockable" class. A working example of dockable is the submenu that keeps following your progress on this page.
                 </p>
                 <p>
-                    Want to know more?
-                </p>
-                <p>
-                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Dockable/doc.html">technical documentation</a>.</p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Dockable/doc.html">technical documentation</a> for more details.</p>
                 </p>
         </div>
 
@@ -108,10 +105,7 @@ JS;
                     Activate it by using the "ink-collapsible" class. A working example of collapsible is the top most menu.
                 </p>
                 <p>
-                    Want to know more?
-                </p>
-                <p>
-                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Collapsible/doc.html">technical documentation</a>.</p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Collapsible/doc.html">technical documentation</a> for more details.</p>
                 </p>
         </div>
 
@@ -124,10 +118,7 @@ JS;
                     Activate it by using the "ink-close" class inside of an element with one of the previously mentioned classes.
                 </p>
                 <p>
-                    Want to know more?
-                </p>
-                <p>
-                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/doc.html#Close">technical documentation</a>.</p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/doc.html#Close">technical documentation</a> for more details.</p>
                 </p>
         </div>
     </div>
