@@ -20,9 +20,9 @@
 		<div class="ink-l25">
 			<ul class="sociallinks">
 				<h5>Follow SAPO:</h5>
-				<li><a class="Fb_link" href="#"></a></li>
-				<li><a class="Twt_link" href="#"></a></li>
-				<li><a class="Gplus_link" href="#"></a></li>
+				<li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
+				<li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
+				<li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
 			</ul>
 		</div>
 	</div>
