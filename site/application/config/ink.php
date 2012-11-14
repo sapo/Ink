@@ -51,12 +51,12 @@ $config['site_pages'] = array(
 			)
 		)
 	),
-    
+
 );
 
 
 $config['ink_files'] = array(
-	
+
 	'required' 	=>	array(
 
 		'css' => array(
@@ -71,7 +71,7 @@ $config['ink_files'] = array(
 		)
 
 	),
-	
+
 	'modules' => array(
 
 		'layout' => array(
@@ -110,7 +110,7 @@ $config['ink_files'] = array(
 		'forms' => array(
 			'css' => 'forms',
 			'less' => 'forms'
-		), 
+		),
 
 		'alerts' => array(
 			'css' => 'alerts',
@@ -275,13 +275,13 @@ $config['ink_options'] = array(
 
 $config['ink_config_vars'] = array(
 
-    /* 
+    /*
     Scaffolding
     @ink-site-width
     @ink-grid-gutter
     @body-background
     @headings-color
-    @border-radius 
+    @border-radius
     */
     'Scaffolding' => array(
         'ink-site-width' => array(
@@ -321,12 +321,12 @@ $config['ink_config_vars'] = array(
     @font-family
     @font-condensed
     @font-size
-    @headings-color             
+    @headings-color
     @link-color
     @link-visited-color
     @link-active-color
     @link-hover-color
-    @link-focus-color    
+    @link-focus-color
     */
     'Typography' => array(
 		'font-family' => array(
@@ -365,14 +365,14 @@ $config['ink_config_vars'] = array(
             'required'          => FALSE
         ),
     ),
-	
-	/* 
+
+	/*
     Scaffolding
     @ink-site-width
     @ink-grid-gutter
     @body-background
     @headings-color
-    @border-radius 
+    @border-radius
     */
 	'Links' => array(
 	    'link-color' => array(
@@ -412,7 +412,7 @@ $config['ink_config_vars'] = array(
         ),
     ),
 
-    
+
 	/*
     Alerts & Errors
     @ink-alert-bg
@@ -490,8 +490,8 @@ $config['ink_config_vars'] = array(
             'required'          => FALSE
         ),
     ),
-	
-	
+
+
 	/*
     Forms
     @form-field-fontSize
@@ -554,7 +554,7 @@ $config['ink_config_vars'] = array(
         ),
     ),
 
-    
+
     /*
     Buttons
     @btn-fontSize
@@ -664,6 +664,10 @@ $config['ui_components'] = array(
         'label'     => 'Form Validator',
         'view'      => 'js/ui/formvalidator',
     ),
+    'behaviors'         => array(
+        'label'     => 'Behaviors',
+        'view'      => 'js/ui/behaviors',
+    )
 );
 
 ?>
