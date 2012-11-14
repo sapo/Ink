@@ -350,7 +350,7 @@
 
 
 
-	<div class="ink-section">
+	<div class="ink-section" id="nav-vertical">
 
 		<h3>Vertical menu</h3>
 		<div class="ink-row ink-vspace">
@@ -474,7 +474,7 @@
 
 	</div>
 
-	<div class="ink-section">
+	<div class="ink-section" id="nav-pills">
 		<h3>Pills</h3>
 		<p>Pills can be created by adding the <code>pagination</code> class to a list inside an <code>ink-navigation</code> parent. The <code>.active</code> and <code>.disabled</code> classes are available.</p>
 
