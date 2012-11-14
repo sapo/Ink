@@ -564,3 +564,8 @@ code {
   background: #E9E9E9;
   padding: 0 4px;
 }
+
+.steps li {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}

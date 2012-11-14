@@ -5,6 +5,8 @@
 				<ul class="ink-footer-nav">
 					<li><a href="<?php echo site_url('about') ?>">About</a></li>
 					<li><a href="<?php echo site_url('changelog') ?>">Changelog</a></li>
+                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    
 				</ul>
 			</nav>	
 			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
