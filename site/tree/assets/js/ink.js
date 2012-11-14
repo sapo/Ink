@@ -1,7 +1,3 @@
-(function(){
-    
-}());
-
 Scroller = {
     // control the speed of the scroller.
     // dont change it here directly, please use Scroller.speed=50;
@@ -50,18 +46,14 @@ Scroller = {
         h=document.body.scrollHeight;
         a = Scroller.scrollTop()
         if(d>a){
-            //if(h-d>i)
-                a+=Math.ceil((d-a)/Scroller.speed);
-            //else
-            //    a+=Math.ceil((d-a-(h-d))/Scroller.speed);
+            a+=Math.ceil((d-a)/Scroller.speed);
         }
         else{
             a = a+(d-a)/Scroller.speed;
-            //a+=Math.ceil(((d-a)-(h-d))/Scroller.speed);
         }
 
         window.scrollTo(0,a-20)
-        if(a==d || Scroller.offsetTop==a)clearInterval(Scroller.interval)
+        if((a-20)==d || Scroller.offsetTop==a)clearInterval(Scroller.interval)
         Scroller.offsetTop=a
     },
     // initializer that adds the renderer to the onload function of the window
