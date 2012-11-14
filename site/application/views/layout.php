@@ -8,7 +8,7 @@
 <div class="menu-second-level">
 	<div class="ink-container">
 		<nav class="ink-navigation">
-			<ul class="menu horizontal blue">
+			<ul class="menu horizontal">
 				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
                 <li><a class="scrollableLink" href="#multiple-layouts">Multiple layouts</a></li>
 				<li><a class="scrollableLink" href="#containers">Containers</a></li>
