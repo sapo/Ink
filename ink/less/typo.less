@@ -34,7 +34,10 @@ small {color: lighten(@text-color, 30%); font-size: .6em;}
 /* Paragraphs  */
 p {line-height: 1.5em; margin: .5em 0}
 
-input, textarea {font-family: "Helvetica Neue", Helvetica,Arial,sans-serif; color: #666;}
+input, textarea {
+	#ink > #text > .ink-font-stack();
+	color: #666;
+}
 
 h1 small, h2 small, h3 small, h4 small {
 	color: #bbb;

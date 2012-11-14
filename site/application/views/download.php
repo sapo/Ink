@@ -18,7 +18,7 @@
 	</div>
 </div>
 
-<?php echo form_open('download/custom',array('class'=>'ink-form-block ink-container')) ?>
+<?php echo form_open('download/custom',array('class'=>'ink-form block ink-container')) ?>
 
 	<div class="ink-row ink-vspace">
 		<?php
@@ -73,7 +73,7 @@
 				<div class="ink-gutter ink-vspace">
 				<h5><?php echo $group;?></h5>
 				<?php foreach($vars as $var_id => $var): ?>
-				<div class="ink-form-wrapper <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
+				<div class="control <?php if( isset($errors['vars'][$var_id]) || ( isset($var['required']) && ( $var['required'] === TRUE ) ) ) { ?>ink-required-field<?php }?>">
 					<?php echo form_label('@'.(!empty($var['label']) ? $var['label'] : $var_id),$var_id);?>
 					<?php echo form_input(array('type' => 'text','id'=>$var_id,'name'=>'vars[' . $var_id . ']','placeholder'=>$var['placeholder'], 'value' => ( ( isset($post) && ( isset($post['vars']) && in_array($var_id,array_keys($post['vars'])) ) ) ? $post['vars'][$var_id] : ((isset($var['default_value']) && !empty($var['default_value'])) ? $var['default_value'] : $var['placeholder'])), 'class' => (($var['type']=='color') ? 'colorPicker' : '')   )); ?>
 				</div>
