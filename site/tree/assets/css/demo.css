@@ -569,3 +569,7 @@ code {
     font-size: 1.3em;
     margin-bottom: 1em;
 }
+
+:target {
+    padding-top: 4em;
+}
