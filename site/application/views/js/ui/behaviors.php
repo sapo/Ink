@@ -102,7 +102,7 @@ JS;
         <div class="ink-l33">
                 <h4>Collapsible</h4>
                 <p>
-                    <i>Collapsible</i> makes your horizontal menus vertical and collapsible depending on the screen width.
+                    <i>Collapsible</i> turns your horizontal menus into vertical ones depending on the screen width. It gives you the possibility to collapse/expand your menus.
                 </p>
                 <p>
                     Activate it by using the "ink-collapsible" class. A working example of collapsible is the top most menu.
@@ -118,7 +118,7 @@ JS;
         <div class="ink-l33">
                 <h4>Close</h4>
                 <p>
-                    Use <i>Close</i> in conjunction with "ink-alert" or "ink-alert-block". Doing so will allow you to hide these elements from view.
+                    When clicking an element with the "ink-close" class, the first "ink-alert" or "ink-alert-block" ancestor is removed from the document.
                 </p>
                 <p>
                     Activate it by using the "ink-close" class inside of an element with one of the previously mentioned classes.
