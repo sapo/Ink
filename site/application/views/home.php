@@ -38,38 +38,41 @@
 		</div>
 	</div>
 
-    <div id="gettingstarted" class="ink-s100 ink-m66 ink-l66">
+    <div class="ink-row">
+        <div id="gettingstarted" class="ink-s100 ink-m66 ink-l66">
+            <div class="ink-gutter">
 
-        <h3>Getting started</h3>
-        <p>Let's get you started with Ink right away.</p>
-        <p>Here's what you need to know and do:</p>
+                <h3>Getting started</h3>
+                <p>Let's get you started with Ink right away.</p>
+                <p>Here's what you need to know and do:</p>
 
-        <ol class="steps">
-            <li><a href="<?php echo site_url() . '/download/latest' ?>">Download latest build</a>.</li>
-            <li>Open <code>my-page.html</code> if you want to serve Ink from your host or <code>my-page-cdn.html</code> if you want to serve Ink from our servers.</li>
-            <li>Check the template we provide and remove whatever you don't feel necessary for your project.</li>
-            <li>Make sure you have <code>ink.css</code>, <code>ink-ie.css</code> and <code>ink.js</code> included somewhere in the <code>&lt;head></code>.</li>
-            <li>Add your own stylesheets and scripts to carry all your project-specific changes.</li>
-            <li>Keep coming back to the documentation to help you along the way.</li>
-        </ol>
-        <p>That's it! You'll see how easy it is once you pick it up.</p>
+                <ol class="steps">
+                    <li><a href="<?php echo site_url() . '/download/latest' ?>">Download latest build</a>.</li>
+                    <li>Open <code>my-page.html</code> if you want to serve Ink from your host or <code>my-page-cdn.html</code> if you want to serve Ink from our servers.</li>
+                    <li>Check the template we provide and remove whatever you don't feel necessary for your project.</li>
+                    <li>Make sure you have <code>ink.css</code>, <code>ink-ie.css</code> and <code>ink.js</code> included somewhere in the <code>&lt;head></code>.</li>
+                    <li>Add your own stylesheets and scripts to carry all your project-specific changes.</li>
+                    <li>Keep coming back to the documentation to help you along the way.</li>
+                </ol>
+                <p>That's it! You'll see how easy it is once you pick it up.</p>
+            </div>
+        </div>
+        <div id="legal" class="ink-s100 ink-m33 ink-l33">
+            <div class="ink-gutter">
+                <h3>Legal stuff</h3>
 
-    </div>
-    <div id="legal" class="ink-s100 ink-m33 ink-l33">
-        <h3>Legal stuff</h3>
-        <p>Ink is available under the 
-
-        <p>We built Ink by standing on the shoulders of giants, by the opensource mantra. We acknowledge &amp; credit those giants here.</p>
-        
-        <p>Build with:</p>
-        <ul class="unstyled">
-            <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a> (under <a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a></li>
-            <li><a href="http://font.ubuntu.com/">Ubuntu Font</a> (under <a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a></li>
-            <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a> (under <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
-            <li><a href="https://github.com/scottjehl/Respond">respond.js</a> (under <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
-            <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a> (under <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize's license agreement</a></li>
-        </ul>
-    
+                <p>We built Ink by standing on the shoulders of giants, following the opensource mantra. We acknowledge &amp; credit those giants here.</p>
+                
+                <p><strong>Built with:</strong></p>
+                <ul class="unstyled">
+                    <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a> (under <a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a></li>
+                    <li><a href="http://font.ubuntu.com/">Ubuntu Font</a> (under <a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a></li>
+                    <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a> (under <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
+                    <li><a href="https://github.com/scottjehl/Respond">respond.js</a> (under <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
+                    <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a> (under <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize's license agreement</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </div>
