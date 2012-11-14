@@ -10,12 +10,12 @@
         <nav class="ink-navigation" id="dockedMenu">
             <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
                 <li class="active"><a class="scrollableLink home" href="#nav-home">Home</a></li>
-                <li class="active"><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
-                <li class="active"><a class="scrollableLink" href="#nav-dom">Dom</a></li>
-                <li class="active"><a class="scrollableLink" href="#nav-communication">Communication</a></li>
-                <li class="active"><a class="scrollableLink" href="#nav-utility">Utility</a></li>
-                <li class="active"><a class="scrollableLink" href="#nav-effects">Effects</a></li>
-                <li class="active"><a class="scrollableLink" href="#nav-component">Component</a></li>
+                <li><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
+                <li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
+                <li><a class="scrollableLink" href="#nav-communication">Communication</a></li>
+                <li><a class="scrollableLink" href="#nav-utility">Utility</a></li>
+                <li><a class="scrollableLink" href="#nav-effects">Effects</a></li>
+                <li><a class="scrollableLink" href="#nav-component">Component</a></li>
             </ul>
         </nav>
     </div>
