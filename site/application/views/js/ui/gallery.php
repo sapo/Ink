@@ -6,37 +6,37 @@
 $markup_for_tab = <<<HTML
 <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://ink.staging.sapo.pt/assets/imgs/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -47,19 +47,19 @@ HTML;
 $markup_for_sourcecode = <<<HTML
 <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="/images/1.1.png">
-            <img alt="s1" src="/images/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png">
         </a>
-        <a class="bookmark" href="/images/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="/images/1.2.png">
-            <img alt="s2" src="/images/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png">
         </a>
-        <a class="bookmark" href="/images/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
