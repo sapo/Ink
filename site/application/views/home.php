@@ -43,8 +43,7 @@
             <div class="ink-gutter">
 
                 <h3>Getting started</h3>
-                <p>Let's get you started with Ink right away.</p>
-                <p>Here's what you need to know and do:</p>
+                <p>Let's get you started with Ink right away. Here's what you need to know and do:</p>
 
                 <ol class="steps">
                     <li><a href="<?php echo site_url() . '/download/latest' ?>">Download latest build</a>.</li>
