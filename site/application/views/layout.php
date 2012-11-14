@@ -28,7 +28,8 @@
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
 
 <div class="ink-container">
-    <p class="ink-alert info"><strong>Tip</strong> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a> to try what you're reading as you go along.</p>
+    <p class="ink-vspace"><span class="ink-label info"><strong>Tip</strong></span> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a>
+        so you can try as you go along.</p>
 
     <div class="ink-section" id="nav-multiple-layouts">
         <div class="ink-vspace">
