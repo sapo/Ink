@@ -22,6 +22,10 @@
 </div>
 
 <div class="ink-container">
+	<div class="ink-section">
+		<p>To use these components in your application you need to include the Ink.js bundle. Just add this line somewhere in your document:</p>
+<pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink-v1.js"&gt;&lt;/script&gt;</pre>
+	</div>
 	<?php
 		foreach( $components as $component => $configuration ){
 			echo $configuration['view'];
