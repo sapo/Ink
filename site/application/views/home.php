@@ -65,11 +65,11 @@
                 
                 <p><strong>Built with:</strong></p>
                 <ul class="unstyled">
-                    <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a> (under <a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a></li>
-                    <li><a href="http://font.ubuntu.com/">Ubuntu Font</a> (under <a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a></li>
-                    <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a> (under <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
-                    <li><a href="https://github.com/scottjehl/Respond">respond.js</a> (under <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
-                    <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a> (under <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize's license agreement</a></li>
+                    <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a> <span class="note">(under <a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                    <li><a href="http://font.ubuntu.com/">Ubuntu Font</a> <span class="note">(under <a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+                    <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a> <span class="note">(under <a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                    <li><a href="https://github.com/scottjehl/Respond">respond.js</a> <span class="note">(under <a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                    <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a> <span class="note">(under <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize's license agreement</a>)</span></li>
                 </ul>
             </div>
         </div>
