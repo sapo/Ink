@@ -30,7 +30,7 @@ JS;
                     </ul>
 				</p>
                 <p>
-                    More examples and a list of all options supported on our <a href="http://js.staging.sapo.pt/SAPO/Ink/Table/doc.html">technical documentation</a>.
+                    More examples and a list of all options supported on our <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Table/doc.html">technical documentation</a>.
                 </p>
 			</div>
 		</div>

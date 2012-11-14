@@ -39,13 +39,15 @@ JS;
 				<p>
 					The <i>FormValidator</i> component provides an easy way to validate forms before submitting them.
 					It can: 
-				</p>
-                <ul>
-                    <li>Detect required fields</li>
-                    <li>Validate some field types</li>
-                    <li>Detect match with password and confirmation password</li>
-                    <li>Use custom field types</li>
-                </ul>
+                    <ul>
+                        <li>Detect required fields</li>
+                        <li>Validate some field types</li>
+                        <li>Detect match with password and confirmation password</li>
+                        <li>Use custom field types</li>
+                    </ul>
+                </p>
+                <br/>
+                <p>More examples and detailed configurations, in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
 			</div>
 		</div>
 		<div class="ink-l60">

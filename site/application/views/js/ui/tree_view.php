@@ -45,7 +45,7 @@ JS;
                 </p>
                 <br/>
                 <p>
-					Specifications and other examples, available in the <a target="_blank" href="http://js.staging.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.
+					Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.
 				</p>
 			</div>
 		</div>

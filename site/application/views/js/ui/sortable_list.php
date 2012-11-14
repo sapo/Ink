@@ -17,8 +17,12 @@ JS;
                     <h3 id="sortable_list">Sortable List</h3>
                     <p>
                         The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.
-                        By doing that, allows the user to sort the order of the list. Also allows other configurations, as you can see in these <a href="#" class="modal">examples</a>.
                     </p>
+                    <p>
+                        By doing that, allows the user to sort the order of the list.
+                    </p>
+                    <br/>
+                    <p>Also allows other configurations, as you can see in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
                 </div>
             </div>
             <div class="ink-l60">

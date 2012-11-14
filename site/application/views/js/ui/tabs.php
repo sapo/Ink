@@ -54,8 +54,11 @@ JS;
                 <div class="ink-gutter"> 
                     <h3 id="tabs">Tabs</h3>
                     <p>
-                        The <i>Tabs</i> component allows you to show images in a &quot;carousel&quot; format.
-                        Supports several <a href="#" class="modal">configurations</a> and touch events!
+                        The <i>Tabs</i> component allows you to implement a tabbed UI, where each container is displayed as it's related tabbed is selected.
+                    </p>
+                    <br/>
+                    <p>
+                        You can see several examples in <a target="_blank" href="http://js.staging.sapo.pt/SAPO/Ink/Tabs/doc.html">technical documentation</a>.
                     </p>
                 </div>
             </div>
