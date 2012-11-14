@@ -38,7 +38,7 @@
 		</div>
 	</div>
 
-    <div class="ink-row">
+    <div class="ink-row ink-vspace">
         <div id="gettingstarted" class="ink-s100 ink-m66 ink-l66">
             <div class="ink-gutter">
 
