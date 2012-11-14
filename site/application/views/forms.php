@@ -27,14 +27,17 @@
 			<p>Finally, the third class needs to be applied to a <code>&lt;div&gt;</code> element, containing each of your label/field pairs. This helps separate and align elements in your form. If you're creating a set of checkboxes or radio buttons, then apply this class to the <code>&lt;ul&gt;</code> element, while also adding the <code>unstyled</code> class, to remove bullets.</p> -->
 			<p>There are some essential classes you'll use to build forms with Ink: <code>ink-form</code>, <code>block</code>, <code>inline</code>, <code>control</code> and <code>control-group</code>.</p>
 			<p>To get started, add the <code>ink-form</code> and <code>block</code> or <code>inline</code> class to you form element.</p>
-			<p>To add labels and form fields use a <code>div</code> element with the <code>control</code> class to wrap each label/field pair.</p> 
+			<p>To add labels and form fields use a <code>div</code> element with the <code>control</code> class to wrap each label/field pair.</p>
+			<p>Don't forget to put your fields in a fieldset element!</p> 
 			<p>Check out the examples below.</p>
 <pre class="prettyprint linenums">
 <?php echo(htmlentities('<form class="ink-form block">
-  <div class="control">
-    <label for="inputId">Name</label>
-    <input type="text" id="inputId">
-  </div>
+  <fieldset>
+    <div class="control">
+      <label for="inputId">Name</label>
+      <input type="text" id="inputId">
+    </div>
+  <fieldset>
 </form>')) ?>
 </pre>
 					 </div>
