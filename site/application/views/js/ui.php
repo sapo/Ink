@@ -8,7 +8,7 @@
 <div class="menu-second-levelx">
 	<div class="ink-container">
 		<nav class="ink-navigation" id="dockedMenu">
-			<ul class="menu horizontal blue ink-l100 ink-m100 ink-s100">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
 				<li class="active"><a class="scrollableLink home" href="#ui_home">Home</a></li>
 				<?php foreach( $components as $component => $configuration ){ ?>
 					<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
