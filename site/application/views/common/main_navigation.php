@@ -1,5 +1,5 @@
 <div id="topbar">
-	<nav class="ink-navigation ink-container">
+	<nav class="ink-navigation ink-collapsible ink-container">
 		<ul class="menu horizontal flat black">
 			<li class="ink-title">
 				<a class="logoPlaceholder" href="<?php echo site_url() ?>" title="Site Title">InK</a>

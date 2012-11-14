@@ -1,13 +1,13 @@
 <div class="whatIs">
    <div class="ink-container" id="ui_home">
-		<h2>Ink-js</h2>
+		<h2>Ink JS UI</h2>
 		<p>Beautiful js components to go with your project.</p>
 	</div>
 </div>
 
 <div class="menu-second-levelx">
 	<div class="ink-container">
-		<nav class="ink-navigation" id="dockedMenu">
+		<nav class="ink-navigation ink-collapsible ink-dockable" id="dockedMenu">
 			<ul class="menu horizontal blue ink-l100 ink-m100 ink-s100">
 				<li class="active"><a class="scrollableLink home" href="#ui_home">Home</a></li>
 				<?php foreach( $components as $component => $configuration ){ ?>
@@ -42,13 +42,6 @@
             }
 </style>
 <script>
-	new SAPO.Ink.Docked('#dockedMenu', {
-		fixedHeight: 50
-	});
-	// horizontal menu
-	new SAPO.Ink.HorizontalMenu('#topbar > nav');
-	new SAPO.Ink.HorizontalMenu('#dockedMenu');
-	
 	var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
 	for(i=0;i<toggleTriggers.length;i+=1){
 		SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
