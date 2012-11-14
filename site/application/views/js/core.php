@@ -319,13 +319,6 @@
             }
 </style>
 <script>
-    new SAPO.Ink.Docked('#dockedMenu', {
-        fixedHeight: 50
-    });
-    // horizontal menu
-    new SAPO.Ink.HorizontalMenu('#topbar > nav');
-    new SAPO.Ink.HorizontalMenu('#dockedMenu');
-
     var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
     for(i=0;i<toggleTriggers.length;i+=1){
         SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
