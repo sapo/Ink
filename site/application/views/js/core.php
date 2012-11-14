@@ -9,7 +9,7 @@
     <div class="ink-container">
         <nav class="ink-navigation" id="dockedMenu">
             <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-                <li class="active"><a class="scrollableLink home" href="#nav-home">Home</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-home">Home</a></li>
                 <li><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
                 <li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
                 <li><a class="scrollableLink" href="#nav-communication">Communication</a></li>
@@ -85,13 +85,17 @@
     SAPO.namespace('Component');
 
     // Let's add something new to our namespace.
-    SAPO.Component.SUIT = {
-        up: function() {
-            setTimeout(console.log.bindObj(console, 'dary!'), 500);
+    SAPO.Component.SUIT = function(friendName){
+        this.friend = friendName;
+    };
 
-            console.log('Legen... wait for it...');
-        }
+    SAPO.Component.SUIT.prototype.up = function(){
+        setTimeout(console.log.bindObj(console, 'dary!'), 500);
+
+        console.log(this.friend + ", it\'s going to be Legen... wait for it...");
     }
+
+    var theSuit = new SAPO.Component.SUIT('Ted');
 &lt;/script&gt;
 </pre>
 
@@ -101,11 +105,11 @@
 &lt;script type="text/javascript"&gt;
     SAPO.Dom.Event.observe(document.body, 'load', function(e){
         // Do some awesome event stuffs here.
-    }.bindObjEvent(SAPO.Component.SUIT));
+    }.bindObjEvent(theSuit));
 
     setTimeout(function(){
         // Do some interesting async stuffs here.
-    }.bindObj(SAPO.Component.SUIT), 500);
+    }.bindObj(theSuit), 500);
 &lt;/script&gt;
 </pre>
 
@@ -158,7 +162,7 @@
         SAPO.Dom.Event.stop(e);
 
         console.log('The element we clicked was: ', target);
-    }.bindObjEvent(SAPO.Component.SUIT));
+    }.bindObjEvent(thSuit));
 &lt;/script&gt;
 </pre>
 
@@ -168,6 +172,16 @@
 &lt;script type="text/javascript"&gt;
     var elements = SAPO.Dom.Selector.select('p.my_class_name');
     var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
+&lt;/script&gt;
+</pre>
+
+<p><em><a href="http://js.sapo.pt/SAPO/Dom/Loaded/doc.html">Loaded</a></em> - Whether you're executing code when the document is ready or loaded we've got the tools you need to get your code running when you want.</p>
+
+<pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Loaded/1.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    SAPO.Dom.Loaded.run(function(){
+        // Your document is now ready for awesome
+    }.bindObj(theSuit));
 &lt;/script&gt;
 </pre>
 
@@ -288,3 +302,30 @@
 
 </div>
  </div>
+<style>
+/* DOCKED TENTATIVE PROPOSAL */
+    #dockedMenu {
+        /*position:           absolute;*/
+    }
+
+    .ink-docked {
+        position:           fixed !important;
+        opacity:            0.75;
+        z-index:            1000;
+    }
+
+    .ink-docked:hover {
+        opacity:            1;
+            }
+</style>
+<script>
+    var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
+    for(i=0;i<toggleTriggers.length;i+=1){
+        SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
+            var targetElm = s$(this.getAttribute('data-target'));
+            this.innerHTML = ( ( targetElm.style.display === 'none' ) ? 'Hide' : 'View' ) + ' Source Code';
+            SAPO.Dom.Css.toggle(targetElm);
+            SAPO.Dom.Event.stop(event);
+        });
+    }
+</script>
