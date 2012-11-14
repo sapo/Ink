@@ -16,7 +16,10 @@ JS;
 				<h3 id="date_picker">Date Picker</h3>
 				<p>
 					As the name says, the <i>Date Picker</i> transforms a textbox into an element that, when in use, shows a calendar to help selecting a specific date.
-					It allows several <a href="#" class="modal">configurations</a>.
+				</p>
+				<br/>
+				<p>
+					It allows several configurations, available on the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/DatePicker/doc.html">technical documentation</a>.</p>.
 				</p>
 			</div>
 		</div>

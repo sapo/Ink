@@ -315,7 +315,7 @@ class Download extends CI_Controller {
 		}
 		elseif( !$current_build_path || !is_dir($current_build_path) || !file_exists($current_build_path) )
 		{
-			$errors['build'] = "Could not create the configuration (ERRNUM 2) - " . $current_build_path;
+			$errors['build'] = "Could not create the configuration (ERRNUM 2)";
 			$this->_errors( $errors, $post );
 		}	
 		elseif( !is_writable($current_build_path) )
