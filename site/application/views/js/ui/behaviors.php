@@ -79,11 +79,13 @@ JS;
 ?>
 <div class="ink-section" id="behaviors">
     <div class="ink-row ink-vspace">
+        <div class="ink-l100">
             <div class="ink-gutter">
-        <div class="ink-l90">
                 <h3>Behaviors</h3>
+            </div>
         </div>
         <div class="ink-l33">
+            <div class="ink-gutter">
                 <h4>Dockable</h4>
                 <p>
                     <i>Dockable</i> keeps your menus visible while scrolling through the page.
@@ -94,9 +96,11 @@ JS;
                 <p>
                     Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Dockable/doc.html">technical documentation</a> for more details.</p>
                 </p>
+            </div>
         </div>
 
         <div class="ink-l33">
+            <div class="ink-gutter">
                 <h4>Collapsible</h4>
                 <p>
                     <i>Collapsible</i> turns your horizontal menus into vertical ones depending on the screen width. It gives you the possibility to collapse/expand your menus.
@@ -107,9 +111,11 @@ JS;
                 <p>
                     Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Collapsible/doc.html">technical documentation</a> for more details.</p>
                 </p>
+            </div>
         </div>
 
         <div class="ink-l33">
+            <div class="ink-gutter">
                 <h4>Close</h4>
                 <p>
                     When clicking an element with the "ink-close" class, the first "ink-alert" or "ink-alert-block" ancestor is removed from the document.
@@ -120,8 +126,7 @@ JS;
                 <p>
                     Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/doc.html#Close">technical documentation</a> for more details.</p>
                 </p>
+            </div>
         </div>
-    </div>
-
     </div>
 </div>
