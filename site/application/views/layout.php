@@ -25,12 +25,14 @@
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
 
 <div class="ink-container">
+    <p class="ink-alert info"><strong>Tip</strong> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a> to try what you're reading as you go along.</p>
+
     <div class="ink-section" id="multiple-layouts">
         <div class="ink-vspace">
         <h2>Multiple layouts</h2>
         <p>We believe that no website/webapp is created equal&mdash;specially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
 
-        <p>You can use special class names specify how wide your columns should be (see <a href="#columns">section columns</a> for details). But what happens when you need a layout switch and you need a <strong>breakpoint</strong>? We don't want you to be forced to fallback to a one-size-fits-all kind of solution.</p>
+        <p>You can use special class names to specify how wide your columns should be (see <a href="#columns">section columns</a> for details). But what happens when you need a layout switch and you need a <strong>breakpoint</strong>? We don't want you to be forced to fallback to a one-size-fits-all kind of solution.</p>
         <p>With Ink, you are given three layouts you can use to your hearts content.</p>
         <ul>
             <li><strong>S</strong> which stands for <strong>small</strong></li>
@@ -38,12 +40,12 @@
             <li><strong>L</strong> which stands for <strong>large</strong></li>
         </ul>
 
-        <p>By default these correspond to the following screen size intervals (we'll show you how you can customize these in just a second):</p>
+        <p>By default these correspond to the following screen size intervals (we'll show how you can customize these in just a second):</p>
 
         <ul>
-            <li>Small: below 650 pixels wide</li>
-            <li>Medium: between 651 and 960 pixels wide</li>
-            <li>Large: above 961 pixels wide</li>
+            <li>Small: <strong>below</strong> <span class="ink-label">650 pixels wide</li>
+            <li>Medium: <strong>between</strong> 651 and 960 pixels wide</li>
+            <li>Large: <strong>above</strong> 961 pixels wide</li>
         </ul>
 
         <p>These thresholds are specified as regular media-queries inside ink.css</code> and can be customized (see next section).</p>
