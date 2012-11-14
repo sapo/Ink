@@ -29,19 +29,23 @@
 <p>Ink was built from the ground up to be easy to use and easy on the eyes, but some of the bricks were borrowed from one of our other premiere web frameworks, LibSAPO.js. Listed here are a few key classes and methods that you can take advantage of when building your applications.</p>
 
 <p>When including the <a href="http://js.sapo.pt/Bundles/Ink.js">Ink.js</a> script you are including several classes from LibSAPO.js, namely:</p>
+<ul>
+    <li><a href="http://js.sapo.pt/SAPO/doc.html">SAPO</a></li>
+</ul>
 
 <ul>
-<li><a href="http://js.sapo.pt/SAPO/0.1/">http://js.sapo.pt/SAPO/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Css/0.1/">http://js.sapo.pt/SAPO/Dom/Css/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Loaded/1.1/">http://js.sapo.pt/SAPO/Dom/Loaded/1.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Element/0.1/">http://js.sapo.pt/SAPO/Dom/Element/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Event/0.1/">http://js.sapo.pt/SAPO/Dom/Event/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Dom/Selector/1.1/">http://js.sapo.pt/SAPO/Dom/Selector/1.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Utility/Array/0.1/">http://js.sapo.pt/SAPO/Utility/Array/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Utility/Swipe/0.1/">http://js.sapo.pt/SAPO/Utility/Swipe/0.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Utility/Url/1.1/">http://js.sapo.pt/SAPO/Utility/Url/1.1/</a></li>
-<li><a href="http://js.sapo.pt/SAPO/Communication/Ajax/2.1/">http://js.sapo.pt/SAPO/Communication/Ajax/2.1/</a></li>
+    <li><a href="http://js.sapo.pt/SAPO/Dom/Css/doc.html">SAPO.Dom.Css</a>,
+    <a href="http://js.sapo.pt/SAPO/Dom/Element/doc.html">SAPO.Dom.Element</a>,
+    <a href="http://js.sapo.pt/SAPO/Dom/Event/doc.html">SAPO.Dom.Event</a>,
+    <a href="http://js.sapo.pt/SAPO/Dom/Loaded/doc.html">SAPO.Dom.Loaded</a>,
+    <a href="http://js.sapo.pt/SAPO/Dom/Selector/doc.html">SAPO.Dom.Selector</a></li>
+    <li><a href="http://js.sapo.pt/SAPO/Utility/Array/doc.html">SAPO.Utility.Array</a>,
+    <a href="http://js.sapo.pt/SAPO/Utility/FormValidator/doc.html">SAPO.Utility.FormValidator</a>,
+    <a href="http://js.sapo.pt/SAPO/Utility/Swipe/doc.html">SAPO.Utility.Swipe</a>,
+    <a href="http://js.sapo.pt/SAPO/Utility/Url/doc.html">SAPO.Utility.Url</a></li>
+    <li><a href="http://js.sapo.pt/SAPO/Communication/Ajax/doc.html">SAPO.Communication.Ajax</a></li>
 </ul>
+
 
 </div>
 <div class="ink-section" id="nav-sapo">
