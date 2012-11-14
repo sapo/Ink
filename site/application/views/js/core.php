@@ -37,7 +37,7 @@
     <a href="http://js.sapo.pt/SAPO/Dom/Loaded/doc.html">SAPO.Dom.Loaded</a>,
     <a href="http://js.sapo.pt/SAPO/Dom/Selector/doc.html">SAPO.Dom.Selector</a></li>
     <li><a href="http://js.sapo.pt/SAPO/Utility/Array/doc.html">SAPO.Utility.Array</a>,
-    <a href="http://js.sapo.pt/SAPO/Utility/Validator/doc.html">SAPO.Utility.FormValidator</a>,
+    <a href="http://js.sapo.pt/SAPO/Utility/Validator/doc.html">SAPO.Utility.Validator</a>,
     <a href="http://js.sapo.pt/SAPO/Utility/Swipe/doc.html">SAPO.Utility.Swipe</a>,
     <a href="http://js.sapo.pt/SAPO/Utility/Url/doc.html">SAPO.Utility.Url</a></li>
     <li><a href="http://js.sapo.pt/SAPO/Communication/Ajax/doc.html">SAPO.Communication.Ajax</a></li>
