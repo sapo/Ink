@@ -32,7 +32,7 @@
 	<!-- DEFINES TRANSITIONS: appear3d, slide, hover -->
 	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css"/>
 
-    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
+    <!--<script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Dom/Selector/0.1/"></script>
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/Tabs/0.1/"></script>
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/Tooltip/1.1/"></script>
@@ -46,7 +46,14 @@
 	<script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/DatePicker/2.1/"></script> 
     <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Utility/Color/0.1/"></script>
     <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
-    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/0.1/"></script>-->
+
+    <script type="text/javascript" src="http://js.jdias-sapo.pt/Bundles/Ink.js"></script>
+    
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
 
 	<script type="text/javascript" src="<?php echo specific_url('js') ?>html5shiv.js"></script>
 	<script type="text/javascript" src="<?php echo specific_url('js') ?>html5shiv-printshiv.js"></script>

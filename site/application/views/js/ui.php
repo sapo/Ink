@@ -5,11 +5,14 @@
 	</div>
 </div>
 
-<div class="menu-second-levelx">
+<div>
 	<div class="ink-container">
-		<nav class="ink-navigation ink-collapsible ink-dockable" id="dockedMenu">
-			<ul class="menu horizontal blue ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#ui_home">Home</a></li>
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="#ui_home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
 				<?php foreach( $components as $component => $configuration ){ ?>
 					<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
 				<?php } ?>
@@ -26,22 +29,17 @@
 	?>
 </div>
 <style>
-/* DOCKED TENTATIVE PROPOSAL */
-	#dockedMenu {
-		/*position:           absolute;*/
-	}
-
-	.ink-docked {
+	/*.ink-docked {
 		position:           fixed !important;
 		opacity:            0.75;
 		z-index:            1000;
 	}
-
 	.ink-docked:hover {
 		opacity:            1;
-            }
+    }*/
 </style>
 <script>
+
 	var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
 	for(i=0;i<toggleTriggers.length;i+=1){
 		SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){

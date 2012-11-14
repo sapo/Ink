@@ -5,11 +5,14 @@
     </div>
 </div>
 
-<div class="menu-second-levelx">
+<div>
     <div class="ink-container">
-        <nav class="ink-navigation" id="dockedMenu">
+        <nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
             <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-                <li class="active"><a class="scrollableLink" href="#nav-home">Home</a></li>
+                <li class="active"><a class="scrollableLink home" href="#nav-home">
+                    <i class="icon-chevron-up ink-for-l"></i>
+                    <span class="ink-for-m ink-for-s">Back to Top</span>
+                </a></li>
                 <li><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
                 <li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
                 <li><a class="scrollableLink" href="#nav-communication">Communication</a></li>
@@ -302,30 +305,3 @@
 
 </div>
  </div>
-<style>
-/* DOCKED TENTATIVE PROPOSAL */
-    #dockedMenu {
-        /*position:           absolute;*/
-    }
-
-    .ink-docked {
-        position:           fixed !important;
-        opacity:            0.75;
-        z-index:            1000;
-    }
-
-    .ink-docked:hover {
-        opacity:            1;
-            }
-</style>
-<script>
-    var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
-    for(i=0;i<toggleTriggers.length;i+=1){
-        SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
-            var targetElm = s$(this.getAttribute('data-target'));
-            this.innerHTML = ( ( targetElm.style.display === 'none' ) ? 'Hide' : 'View' ) + ' Source Code';
-            SAPO.Dom.Css.toggle(targetElm);
-            SAPO.Dom.Event.stop(event);
-        });
-    }
-</script>
