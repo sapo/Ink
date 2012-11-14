@@ -27,10 +27,13 @@ elseif($path == '/home/jdias/Remote/ink/site/tree')
 {
     $config['base_url'] = 'http://inkink.jdias-sapo.pt/';
 }
-else if($path == '/Users/jonatasmiguel/Development/Repos/ink/site/tree')
-{
+else if($path == '/Users/jonatasmiguel/Development/Repos/ink/site/tree') {
     $config['base_url'] = 'http://ink.testing.pt/';
-} else {
+}
+elseif($path == '/home/jdias/Work/ink/site/tree') {
+	$config['base_url']	= 'http://ink.brushed-sapo.pt/';
+}
+else {
     $config['base_url'] = 'http://localhost/Ink/site/tree';
 }
 
