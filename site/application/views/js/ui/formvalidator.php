@@ -14,7 +14,7 @@ $js = <<<JS
         pageSize: 2
     });
 </script>-->
-<form id="myform" class="ink-form block" method="post" action="#" onsubmit="return SAPO.Ink.FormValidator(this);">
+<form id="myform" class="ink-form block" method="post" action="#" onsubmit="return SAPO.Ink.FormValidator.validate(this);">
     <fieldset>
         <div class="control required">
             <label for="nome_g">Name: </label>
