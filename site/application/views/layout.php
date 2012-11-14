@@ -106,7 +106,7 @@
     </div>
 </div>
 
-<div class="ink-container">
+
 	<div class="ink-section">
 		<div class="ink-vspace">
 			<h2>Containers</h2>
