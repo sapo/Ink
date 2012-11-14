@@ -1,4 +1,4 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
 	 <div class="ink-container">
 		  <h2>
 				Navigation
@@ -8,40 +8,39 @@
 		  </p>
 	 </div>
 </div>
-<div class="menu-second-level">
-	 <div class="ink-container">
-		  <nav class="ink-navigation">
-				<ul class="menu horizontal">
-					 <li class="active">
-						  <a class="scrollableLink home" href="#">Home</a>
+<div>
+	<div class="ink-container">
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
+					 <li>
+						  <a class="scrollableLink" href="#nav-horizontal">Horizontal menu</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#horizontal">Horizontal menu</a>
+						  <a class="scrollableLink" href="#nav-vertical">Vertical menu</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#vertical">Vertical menu</a>
+						  <a class="scrollableLink" href="#nav-footer">Footer menu</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#footer">Footer menu</a>
+						  <a class="scrollableLink" href="#nav-pagination">Pagination</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#pagination">Pagination</a>
+						  <a class="scrollableLink" href="#nav-pills">Pills</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#pills">Pills</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#breadcrumbs">Breadcrumbs</a>
+						  <a class="scrollableLink" href="#nav-breadcrumbs">Breadcrumbs</a>
 					 </li>
 				</ul>
 		  </nav>
 	 </div>
 </div>
 <div class="ink-container">
-	 <a id="horizontal-menu"></a>
-	 <div class="ink-section">
+	 <div class="ink-section" id="nav-horizontal">
 		  <div class="ink-vspace">
-		  		<a name="horizontal"></a>
 				<h3>
 					 Horizontal menu
 				</h3>
@@ -347,9 +346,9 @@
 
 	</div>
 
-	
 
-	
+
+
 
 	<div class="ink-section">
 
@@ -400,8 +399,7 @@
 				</div>
 		  </div>
 	 </div>
-	 <div class="ink-section">
-	 		<a name="footer"></a>
+	 <div class="ink-section" id="nav-footer">
 		  <h3>
 				Footer menu
 		  </h3>
@@ -418,8 +416,7 @@
 </footer>')) ?>
 </pre>
 	 </div>
-	 <div class="ink-section">
-	 	<a name="pagination"></a>
+	 <div class="ink-section" id="nav-pagination">
 		  <h3>
 				Pagination
 		  </h3>
@@ -502,8 +499,7 @@
 </nav>')) ?>
 </pre>
 	 </div>
-	 <div class="ink-section">
-	 	<a name="breadcrumbs"></a>
+	 <div class="ink-section" id="nav-breadcrumbs">
 		  <h3>
 				Breadcrumbs
 		  </h3>
@@ -547,7 +543,7 @@
 }')) ?>
 </pre>
         <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
-        
-            
+
+
 	 </div>
 </div>

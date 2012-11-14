@@ -1,21 +1,24 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
    <div class="ink-container">
 		<h2>Typography</h2>
 		<p>Text is the most fundamental content type.</p>
 	</div>
 </div>
 
-<div class="menu-second-level">
+<div>
 	<div class="ink-container">
-		<nav class="ink-navigation">
-			<ul class="menu horizontal">
-				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
-				<li><a class="scrollableLink" href="#fonts">Fonts</a></li>
-				<li><a class="scrollableLink" href="#headings">Headings</a></li>
-				<li><a class="scrollableLink" href="#body">Body & Hypertext</a></li>
-				<li><a class="scrollableLink" href="#lists">Lists</a></li>
-				<li><a class="scrollableLink" href="#utilities">Utility Classes</a></li>
-				<li><a class="scrollableLink" href="#additional">Additional Elements</a></li>
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
+				<li><a class="scrollableLink" href="#nav-fonts">Fonts</a></li>
+				<li><a class="scrollableLink" href="#nav-headings">Headings</a></li>
+				<li><a class="scrollableLink" href="#nav-body-hypertext">Body & Hypertext</a></li>
+				<li><a class="scrollableLink" href="#nav-lists">Lists</a></li>
+				<li><a class="scrollableLink" href="#nav-utilities">Utility Classes</a></li>
+				<li><a class="scrollableLink" href="#nav-additional">Additional Elements</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -23,8 +26,7 @@
 <!--menu_end-->
 <div class="ink-container">
 	<!--fonts_start-->
-	<a name="fonts"></a>
-	<div class="ink-section">
+	<div class="ink-section" id="nav-fonts">
 		<h2>Fonts</h2>
 		<p>Ink offers you a simple and elegant base style for text with a clear hierarchy and flexible, generic styling for all types of typographical composition you may need.</p>
 		<p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions and choose from three basic font stacks.</p>
@@ -67,8 +69,7 @@
 	</div>
 	<!--fonts_end-->
 	<!--headings_start-->
-	<a name="headings"></a>
-	<div class="ink-section">
+	<div class="ink-section" id="nav-headings">
 		<div class="ink-row">
 			<div class="ink-l60">
 				<div class="ink-gutter">
@@ -91,8 +92,7 @@
 	</div>
 	<!--headings_end-->
 	<!--body&hypertext_start-->
-	<a name="body"></a>
-	<div class="ink-section">
+	<div class="ink-section" id="nav-body-hypertext">
 		<h2>Body & Hypertext</h2>
 		<p>Body text is the most basic unit of text you can define. Always use <code>&lt;p&gt;</code> for your paragraphs and Ink takes care of font-size, line-height and proper margins.</p>
 		<div class="ink-row ink-vspace">
@@ -130,8 +130,7 @@
 	</div>
 	<!--body&hypertext_end-->
 	<!--lists_start-->
-	<a name="lists"></a>
-	<div class="ink-section">
+	<div class="ink-section" id="nav-lists">
 		<h2>Lists</h2>
 		<p>There are four basic list styles defined in Ink, which correspond to the most widely used HTML list formats and also include an unstyled list format.</p>
 
@@ -216,8 +215,7 @@
 	</div>
 	<!--lists_end-->
 	<!--utilities_start-->
-	<a name="utilities"></a>
-	<div class="ink-section">
+	<div class="ink-section" id="nav-utilities">
 		<h2>Utility Classes</h2>
 		<p>You can use the InK utility classes <code>.info</code>, <code>.warning</code>, <code>.caution</code> and <code>.success</code> on html elements like headings, paragraphs, lists, mark, code, to quickly style those elements using a basic color code that can greatly aid in adding meaning to your content.</p>
 		<p>Use the classes to obtain a color background with white text or use the extra <code>.invert</code> class to write colored text on transparent background. You can tweak the colors used by each class in the <a href="conf">Ink Configurator</a>, your own CSS or the conf.less file.</p>
@@ -309,9 +307,8 @@
 	</div>
 	<!--utilities_end-->
 	<!--additionalelements_start-->
-	
-	<div class="ink-section">
-		<a name="additional"></a>
+
+	<div class="ink-section" id="nav-additional">
 		<h2>Additional elements</h2>
 		<p>These elements allow you to compose specific types of text, such as addresses or quotes. Use the example code for quick recipes that work.</p>
 			<div class="ink-row ink-vspace">

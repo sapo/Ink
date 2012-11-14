@@ -1,33 +1,36 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
    <div class="ink-container">
       <h2>Layout</h2>
       <p>Ink's layout classes are truly fluid and extremely easy to implement.</p>
    </div>
 </div>
 
-<div class="menu-second-level">
-	<div class="ink-container">
-		<nav class="ink-navigation">
-			<ul class="menu horizontal">
-				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
-                <li><a class="scrollableLink" href="#multiple-layouts">Multiple layouts</a></li>
-				<li><a class="scrollableLink" href="#containers">Containers</a></li>
-				<li><a class="scrollableLink" href="#markup">Markup</a></li>
-				<li><a class="scrollableLink" href="#columns">Columns</a></li>
-            <li><a class="scrollableLink" href="#gutters">Gutters</a></li>l
-            <li><a class="scrollableLink" href="#hidenseek">Showing &amp; Hiding</a></li>l
-            <li><a class="scrollableLink" href="#spacing">Spacing</a></li>
+<div>
+    <div class="ink-container">
+        <nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+            <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+                <li class="active"><a class="scrollableLink home" href="#nav-home">
+                    <i class="icon-chevron-up ink-for-l"></i>
+                    <span class="ink-for-m ink-for-s">Back to Top</span>
+                </a></li>
+                <li><a class="scrollableLink" href="#nav-multiple-layouts">Multiple layouts</a></li>
+				<li><a class="scrollableLink" href="#nav-containers">Containers</a></li>
+				<li><a class="scrollableLink" href="#nav-markup">Markup</a></li>
+				<li><a class="scrollableLink" href="#nav-columns">Columns</a></li>
+                <li><a class="scrollableLink" href="#nav-gutters">Gutters</a></li>l
+                <li><a class="scrollableLink" href="#nav-hidenseek">Showing &amp; Hiding</a></li>l
+                <li><a class="scrollableLink" href="#nav-spacing">Spacing</a></li>
 			</ul>
 		</nav>
 	</div>
-</div>  
+</div>
 
-<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->     
+<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
 
 <div class="ink-container">
     <p class="ink-alert info"><strong>Tip</strong> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a> to try what you're reading as you go along.</p>
 
-    <div class="ink-section" id="multiple-layouts">
+    <div class="ink-section" id="nav-multiple-layouts">
         <div class="ink-vspace">
         <h2>Multiple layouts</h2>
         <p>We believe that no website/webapp is created equal&mdash;specially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
@@ -66,7 +69,7 @@
 
         <h3>Customizing breakpoints <span class="ink-label warning">caution is advised</span></h3>
 
-        <p class="ink-alert"><strong>Warning</strong> customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usualy advise you to keep your changes in a separate file, 
+        <p class="ink-alert"><strong>Warning</strong> customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usualy advise you to keep your changes in a separate file,
           but in this case, you can't do that.</p>
         <p>If you do decide to customize the breakpoints provided, you can do this by <strong>editing the <code>ink.css</code> by hand</strong> and changing the values on those media-queries. (A regular search in the file for " SCREENS" will get you there).</p>
         <p><strong>Coming soon</strong>, we'll add breakpoint customization to your fantastic <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
@@ -79,7 +82,7 @@
 (...)
 
 /* INK: MEDIUM SCREENS - DISABLED */
-@media screen and (min-width: 0px) and (max-width: 0px) { 
+@media screen and (min-width: 0px) and (max-width: 0px) {
 (...)
 
 /* INK: SMALL SCREENS - ENABLED */
@@ -97,7 +100,7 @@
 (...)
 
 /* INK: MEDIUM SCREENS - DISABLED */
-@media screen and (min-width: 0px) and (max-width: 0px) { 
+@media screen and (min-width: 0px) and (max-width: 0px) {
 (...)
 
 /* INK: SMALL SCREENS - DISABLED */
@@ -110,7 +113,7 @@
 </div>
 
 
-	<div class="ink-section" id="containers">
+	<div class="ink-section" id="nav-containers">
 		<div class="ink-vspace">
 			<h2>Containers</h2>
 			<h3><code>ink-container</code></h3>
@@ -122,7 +125,7 @@
         	<p>So, basically, if you're starting a layout, create a <code>&lt;div class=&quot;ink-container&quot;&gt;</code>, followed by a <code>&lt;div class=&quot;ink-row&quot;&gt;</code> and then proceed to lay out your columns (see below for layout and spacer elements), close up your blocks and you're done. Need more sections? Go ahead and create another block-level element with the <code>ink-row</code> class to hold it in place. You can even use <code>&lt;section&gt;</code> and the <code>ink-section</code> utility class gives you a separation line.</p>
 		</div>
 	</div>
-	<div class="ink-section" id="markup">
+	<div class="ink-section" id="nav-markup">
    		<div class="ink-vspace">
             <h3>Markup</h3>
             <p>Let's say you need your page container to always be 80% of your viewport (on large screens).</p>
@@ -135,8 +138,8 @@
 			</pre>
 		</div>
     </div>
-      
-	<div class="ink-section" id="columns">
+
+	<div class="ink-section" id="nav-columns">
 		<div class="ink-vspace">
             <h2>Columns</h2>
 			<p>Layout elements in Ink is where we mix things up a bit from what you may be used to in other frameworks you may have tried before. Instead of defining a grid with a certain number of columns and having you then declare how many columns you need your layout blocks to span, <strong>you simply use percentages</strong>.</p>
@@ -224,7 +227,7 @@
 </div>')) ?></pre>
 					</div>
 				</div>
-			</div>		
+			</div>
 			<div class="ink-l50 ink-for-m">
 				<div class="ink-gutter">
 					<div class="gridExample2">
@@ -310,16 +313,16 @@
             </div>
 		<div class="ink-vspace">
       <p>
-				You should use the <code>ink-lxx</code>, <code>ink-mxx</code> and <code>ink-sxx</code> class names only to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above. 
-				The purpose of these classes should be layout only. 
+				You should use the <code>ink-lxx</code>, <code>ink-mxx</code> and <code>ink-sxx</code> class names only to specify the container width in the various screen sizes (large, medium or small), as shown in the examples above.
+				The purpose of these classes should be layout only.
 			</p>
-			<p>	
-				For further customization add an additional semantic class. 
+			<p>
+				For further customization add an additional semantic class.
 			</p>
 		</div>
 	</div>
-   
-      <div class="ink-section" id="gutters">
+
+      <div class="ink-section" id="nav-gutters">
          <div class="ink-vspace">
 			   <h2>Gutters</h2>
     	     <p>To create gutters on you Ink based pages you need to wrap the elements that define column width in a <code>div</code> element with an <code>ink-row</code> class, and add anoter <code>div</code> element inside the columns wrapping all of its content with an <code>ink-gutter</code> class.</p>
@@ -448,7 +451,7 @@
       </div></div>
 
 
-	<div class="ink-section" id="hidenseek">
+	<div class="ink-section" id="nav-hidenseek">
 		<div class="ink-vspace">
 			<h2>Showing &amp; Hiding</h2>
 			<p>Sometimes, re-arranging layouts is not enough. You'll need to make some elements appear or disappear. Feel free to use these class names to help you do just that.</p>
@@ -465,16 +468,16 @@
             <p class="note">Note: content hidden via these classes won't be read out loud by screenreaders.</p>
         </div>
     </div>
-	  
-	<div class="ink-section" id="spacing">
+
+	<div class="ink-section" id="nav-spacing">
 		<div class="ink-vspace">
 			<h2>Spacing</h2>
 			<p>
-				Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise. 
+				Since Ink's approach to layout is not grid-based, but space division based, we needed to keep things simple spacing wise.
 				Despite meaning the need for extra markup elements, we feel the gained simplicity means you can build stuff faster and easier.
 			</p>
 			<p>
-				Ink uses seven kinds of spacer unit: a vertical spacer, an horizontal spacer, and all-around spacer and one for each side of your box (top, right, bottom, left). 
+				Ink uses seven kinds of spacer unit: a vertical spacer, an horizontal spacer, and all-around spacer and one for each side of your box (top, right, bottom, left).
 				To use them, put a block-level element within your layout element with the corresponding spacer class.
 			</p>
 		</div>
@@ -509,7 +512,7 @@
 </div>')) ?></pre>
          </div>
       </div>
-         <div class="ink-l33">            
+         <div class="ink-l33">
             <div class="ink-gutter">
                <div class="box">
                   <div class="ink-space"><p>.ink-space</p></div>
@@ -523,9 +526,9 @@
    </div>
 </div>')) ?></pre>
             </div>
-         
+
          </div>
       </div>
    </div>
-   
+
 </div>
