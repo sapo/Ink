@@ -3,8 +3,6 @@
 		<div class="ink-l75">
 			<nav class="ink-navigation">
 				<ul class="ink-footer-nav">
-					<li><a href="<?php echo site_url('changelog') ?>">Changelog</a></li>
-					<!-- <li><a href="#">Showcase</a></li> -->
 					<li><a href="<?php echo site_url('about') ?>">About</a></li>
 				</ul>
 			</nav>	
@@ -12,7 +10,7 @@
 			
 			<p class="ink-vspace copyright">
 				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
-				SAPO is a trademark and a search engine created at the <a href="">University of Aveiro</a>
+				SAPO is a trademark and a search engine created at the University of Aveiro.
 			</p>
 			
 		</div>
