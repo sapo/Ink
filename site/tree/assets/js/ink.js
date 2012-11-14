@@ -1,5 +1,5 @@
 (function(){
-
+    
 }());
 
 Scroller = {
@@ -9,12 +9,9 @@ Scroller = {
 
     // returns the Y position of the div
     gy: function (d) {
-        // gy = d.offsetTop
-        // if (d.offsetParent) while (d = d.offsetParent) gy += d.offsetTop
-        // return gy
-        var offs = SAPO.Dom.Element.offset2(d);
-
-        return offs[1];
+        gy = d.offsetTop
+        if (d.offsetParent) while (d = d.offsetParent) gy += d.offsetTop
+        return gy
     },
 
     // returns the current scroll position
@@ -46,21 +43,24 @@ Scroller = {
           e.stopPropagation()
         }
     },
-
+    
     // move the scroll bar to the particular div.
     scroll: function(d){
         i = window.innerHeight || document.documentElement.clientHeight;
         h=document.body.scrollHeight;
         a = Scroller.scrollTop()
-        if(d>a)
-            if(h-d>i)
-                a+=Math.ceil((d-a)/Scroller.speed)
-            else
-                a+=Math.ceil((d-a-(h-d))/Scroller.speed)
-        else
+        if(d>a){
+            //if(h-d>i)
+                a+=Math.ceil((d-a)/Scroller.speed);
+            //else
+            //    a+=Math.ceil((d-a-(h-d))/Scroller.speed);
+        }
+        else{
             a = a+(d-a)/Scroller.speed;
+        }
+
         window.scrollTo(0,a-5)
-        if(a==d || Scroller.offsetTop==a)clearInterval(Scroller.interval)
+        if(a>=d || Scroller.offsetTop==a)clearInterval(Scroller.interval)
         Scroller.offsetTop=a
     },
     // initializer that adds the renderer to the onload function of the window

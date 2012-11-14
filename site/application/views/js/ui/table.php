@@ -22,9 +22,16 @@ JS;
 			<div class="ink-gutter"> 
 				<h3 id="table">Table</h3>
 				<p>
-					The <i>Table</i> component provides an easy way to list data in a tabular format.
-					It supports sorting, pagination and getting data through <a href="#" class="modal">AJAX</a>.
+					The <i>Table</i> component ease the process of improving a regular table element with some features like:
+                    <ul>
+                        <li>Pagination</li>
+                        <li>Sorting</li>
+                        <li>Loading through AJAX (via an endpoint)</li>
+                    </ul>
 				</p>
+                <p>
+                    More examples and a list of all options supported on our <a href="http://js.staging.sapo.pt/SAPO/Ink/Table/doc.html">technical documentation</a>.
+                </p>
 			</div>
 		</div>
 		<div class="ink-l60">

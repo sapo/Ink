@@ -7,7 +7,7 @@ $js = <<<JS
         <p>dismiss it pressing the close button or the escape key.</p>
     </div>
 </div>
-<a id="bModal">Open modal</a>
+<a style="cursor:pointer;" id="bModal">Open modal</a>
 <script type="text/javascript">
     SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
         new SAPO.Ink.Modal('#modalContent', {
@@ -30,10 +30,11 @@ JS;
             </ul> 
         </p>
         <p>
-            Other options available and a more detailed explanation of the above ones are available in the <a href="http://js.sapo.pt/SAPO/Ink/Modal/doc.html">technical documentation</a>.
+            Other options available and a more detailed explanation of the above ones are available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Modal/doc.html">technical documentation</a>.
 		</p>
+        <br/>
 		<p><?php echo $js;?> to view the component working.</p>
-		<a href="#" data-target="modal_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+		<a data-target="modal_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
 		<pre id="modal_sourcecode" style="display:none" class="ink-l100 prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
 	</div>
 </div>

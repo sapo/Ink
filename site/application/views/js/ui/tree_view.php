@@ -36,10 +36,17 @@ JS;
 			<div class="ink-gutter"> 
 				<h3 id="tree_view">Tree View</h3>
 				<p>
-					The <i>Tree View</i> component allows you to show a list of items in a hierarchical format.
-					It allows multiple <a href="#" class="modal">configurations</a>, including nested sets and default states (open, closed).
+					The <i>Tree View</i> component allows you to create a hierarchical list in a tree format or transform an existing list.
+                    It supports:
+                    <ul>
+                        <li>Multi-node trees</li>
+                        <li>Custom state of the branches (open, closed)</li>
+                    </ul>
+                </p>
+                <br/>
+                <p>
+					Specifications and other examples, available in the <a target="_blank" href="http://js.staging.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.
 				</p>
-				<p>Notice that child 1 node starts closed because its model has 1 in its 3rd position.</p>
 			</div>
 		</div>
 		<div class="ink-l60">
