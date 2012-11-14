@@ -1,15 +1,18 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
    <div class="ink-container">
 		<h2>Alerts</h2>
 		<p>Although they're a way of displaying text, alerts have their own specificity and functionality.</p>
 	</div>
 </div>
 
-<div class="menu-second-level">
+<div>
 	<div class="ink-container">
-		<nav class="ink-navigation">
-			<ul class="menu horizontal">
-				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
 				<li><a class="scrollableLink" href="#basic">Basic Alerts</a></li>
 				<li><a class="scrollableLink" href="#block">Block alerts</a></li>
 			</ul>
@@ -17,7 +20,7 @@
 	</div>
 </div>
 
-<div class="ink-container">
+<div class="ink-container" id="basic">
 	<div class="ink-section">
 		<div class="ink-row ink-vspace">
 			<div class="ink-l40">
@@ -63,7 +66,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="ink-section">
+	<div class="ink-section" id="block">
 		<div class="ink-row ink-vspace">
 			<div class="ink-l40">
 				<div class="ink-gutter">
