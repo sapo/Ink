@@ -57,10 +57,11 @@ Scroller = {
         }
         else{
             a = a+(d-a)/Scroller.speed;
+            //a+=Math.ceil(((d-a)-(h-d))/Scroller.speed);
         }
 
-        window.scrollTo(0,a-5)
-        if(a>=d || Scroller.offsetTop==a)clearInterval(Scroller.interval)
+        window.scrollTo(0,a-20)
+        if(a==d || Scroller.offsetTop==a)clearInterval(Scroller.interval)
         Scroller.offsetTop=a
     },
     // initializer that adds the renderer to the onload function of the window
