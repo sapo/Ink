@@ -1,7 +1,23 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
    <div class="ink-container">
         <h2>Ink JS Core</h2>
         <p>The engine that drives the machine.</p>
+    </div>
+</div>
+
+<div class="menu-second-levelx">
+    <div class="ink-container">
+        <nav class="ink-navigation" id="dockedMenu">
+            <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+                <li class="active"><a class="scrollableLink home" href="#nav-home">Home</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-dom">Dom</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-communication">Communication</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-utility">Utility</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-effects">Effects</a></li>
+                <li class="active"><a class="scrollableLink" href="#nav-component">Component</a></li>
+            </ul>
+        </nav>
     </div>
 </div>
 
@@ -25,8 +41,7 @@
 </ul>
 
 </div>
-
-<div class="ink-section">
+<div class="ink-section" id="nav-sapo">
 
 <h2>SAPO</h2>
 
@@ -98,7 +113,7 @@
 
 </div>
 
-<div class="ink-section">
+<div class="ink-section" id="nav-dom">
 
 <h2>Dom</h2>
 
@@ -160,7 +175,7 @@
 
 </div>
 
-<div class="ink-section">
+<div class="ink-section" id="nav-communication">
 
 <h2>Communication</h2>
 
@@ -243,7 +258,7 @@
 
 </div>
 
-<div class="ink-section">
+<div class="ink-section" id="nav-utility">
 
 <h2>Utility</h2>
 
@@ -253,7 +268,7 @@
 
 </div>
 
-<div class="ink-section">
+<div class="ink-section" id="nav-effects">
 
 <h2>Effects</h2>
 
@@ -263,7 +278,7 @@
 
 </div>
 
-<div class="ink-section">
+<div class="ink-section" id="nav-component">
 
 <h2>Component</h2>
 
