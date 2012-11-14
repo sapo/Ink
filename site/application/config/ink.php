@@ -660,6 +660,10 @@ $config['ui_components'] = array(
         'label'     => 'Tabs',
         'view'      => 'js/ui/tabs',
     ),
+    'formvalidator'         => array(
+        'label'     => 'Form Validator',
+        'view'      => 'js/ui/formvalidator',
+    ),
 );
 
 ?>
