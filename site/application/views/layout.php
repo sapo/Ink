@@ -8,7 +8,7 @@
 <div class="menu-second-level">
 	<div class="ink-container">
 		<nav class="ink-navigation">
-			<ul class="menu horizontal">
+			<ul class="menu horizontal blue">
 				<li class="active"><a class="scrollableLink home" href="#">Home</a></li>
                 <li><a class="scrollableLink" href="#multiple-layouts">Multiple layouts</a></li>
 				<li><a class="scrollableLink" href="#containers">Containers</a></li>
@@ -46,7 +46,7 @@
             <li>Large: above 961 pixels wide</li>
         </ul>
 
-        <p>These thresholds are specified as regular media-queries inside ink.css</code> and can be customized.</p>
+        <p>These thresholds are specified as regular media-queries inside ink.css</code> and can be customized (see next section).</p>
 
         <pre class="prettyprint linenums">
 <?php echo(htmlentities('/* INK: LARGE SCREENS */
@@ -61,11 +61,12 @@
 @media screen and (max-width: 650px) {
 (...)')) ?>
         </pre>
+
+        <h3>Customizing breakpoints <span class="ink-label warning">caution is advised</span></h3>
+
         <p class="ink-alert"><strong>Warning</strong> customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usualy advise you to keep your changes in a separate file, 
           but in this case, you can't do that.</p>
-
-        <h3>Customizing breakpoints</h3>
-        <p>If you do decide to customize the breakpoints provided, you can do this by editing the <code>ink.css</code> by hand and changing the values on those media-queries. (A regular search in the file for " SCREENS" will get you there).</p>
+        <p>If you do decide to customize the breakpoints provided, you can do this by <strong>editing the <code>ink.css</code> by hand</strong> and changing the values on those media-queries. (A regular search in the file for " SCREENS" will get you there).</p>
         <p><strong>Coming soon</strong>, we'll add breakpoint customization to your fantastic <a href="<?php echo site_url() . '/download' ?>">Ink Customizer</a>.</p>
 
         <h4>Example: Using only two layouts (Large and Small)</h4>
@@ -114,7 +115,7 @@
         	<p>This is the main container for your layout. Just wrap everything with a block-level element, such as a <code>div</code>, with the <code>ink-container</code> class and you're set. This container unit will carry the width of your layout, which can be a fixed value, such as 960px, a relative value, such as 95% or a relative value with a limit, ie, a maximum width.</p>
 			<p>Although, typically, you'll wrap entire layouts in an <code>ink-container</code>, you can close and re-open the container to mix different width elements in your pages. Imagine you have a 960 px webpage, on which you want a 100% width footer. Just close the <code>ink-container</code> before your <code>&lt;footer&gt;</code> element, and then use a 100% width class for it.</p>
 	        <h3><code>ink-row</code> (optional)</h3>
-    	    <p>If you need a set of side-by-side blocks, aka, columns <strong>with gutters, you'll need to wrap them in an <code>ink-row</code></strong>> block-level element. These will keep your columns together and work a little negative margin magic to make the gutters work as intended.</p>
+    	    <p>If you need a set of side-by-side blocks, aka, columns <strong>with gutters, you'll need to wrap them in an <code>ink-row</code></strong> block-level element. These will keep your columns together and work a little negative margin magic to make the gutters work as intended.</p>
         	<p>If, for some reason, you don't need space between your columns, then the <code>ink-row</code>is unnecessary and should not be used. A good example is if you need a single 100% column.</p>
         	<p>So, basically, if you're starting a layout, create a <code>&lt;div class=&quot;ink-container&quot;&gt;</code>, followed by a <code>&lt;div class=&quot;ink-row&quot;&gt;</code> and then proceed to lay out your columns (see below for layout and spacer elements), close up your blocks and you're done. Need more sections? Go ahead and create another block-level element with the <code>ink-row</code> class to hold it in place. You can even use <code>&lt;section&gt;</code> and the <code>ink-section</code> utility class gives you a separation line.</p>
 		</div>
