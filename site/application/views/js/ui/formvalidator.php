@@ -1,36 +1,22 @@
 <?php
 $js = <<<JS
-<!--<table></table>
-<script type="text/javascript">
-    var t = new SAPO.Ink.Table('table', {
-        fields: ['name', 'age'],
-        sortableFields: '*',
-        model: [
-            {name:'Jesus Christ',    age:33},
-            {name:'Kurt Cobain',     age:27},
-            {name:'Joni Mitchel',    age:27},
-            {name:'Michael Jackson', age:51}
-        ],
-        pageSize: 2
-    });
-</script>-->
 <form id="myform" class="ink-form block" method="post" action="#" onsubmit="return SAPO.Ink.FormValidator.validate(this);">
     <fieldset>
         <div class="control required">
-            <label for="nome_g">Name: </label>
-            <input type="text" name="nome" id="nome_g" class="ink-fv-required" />
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="ink-fv-required" />
         </div>
         <div class="control required">
-            <label for="mail_g">email: </label>
-            <input type="text" name="mail" id="mail_g" class="ink-fv-required ink-fv-email" />
+            <label for="mail">Email:</label>
+            <input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" />
         </div>
         <div class="control required">
-            <label for="pass_g">password: </label>
-            <input type="password" name="pass" id="pass_g" class="ink-fv-required ink-fv-confirm" />
+            <label for="pass">Password: </label>
+            <input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" />
         </div>
         <div class="control required">
-            <label for="confpass_g">Conf. password: </label>
-            <input type="password" name="confpass" id="confpass_g" class="ink-fv-required ink-fv-confirm" />
+            <label for="confpass">Confirm Password:</label>
+            <input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" />
         </div>
         <ul class="control-group required">
             <li><p class="label">Radio test: </p></li>
@@ -38,7 +24,6 @@ $js = <<<JS
             <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
             <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
         </ul>
-
     </fieldset>
     <div>
         <input type="submit" name="sub" value="Submit" class="ink-button success" />
@@ -52,14 +37,14 @@ JS;
 			<div class="ink-gutter"> 
 				<h3 id="formvalidator">Form Validator</h3>
 				<p>
-					The <i>FormValidator</i> component provides an easy way to validate forms before submit them.
-					It supports: 
+					The <i>FormValidator</i> component provides an easy way to validate forms before submitting them.
+					It can: 
 				</p>
                 <ul>
                     <li>Detect required fields</li>
                     <li>Validate some field types</li>
                     <li>Detect match with password and confirmation password</li>
-                    <li>You can specify your kind of types</li>
+                    <li>Use custom field types</li>
                 </ul>
 			</div>
 		</div>
