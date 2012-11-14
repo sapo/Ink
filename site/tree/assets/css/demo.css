@@ -424,6 +424,9 @@ footer ul.sociallinks li a.Gplus_link {
   background: #313131;
   color: #ffffff;
 }
+#topbar .ink-button {
+  right: 0;
+}
 #topbar .ink-button:hover {
   color: #ffffff;
   background: none;
