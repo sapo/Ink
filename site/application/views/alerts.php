@@ -36,27 +36,27 @@
 			<div class="ink-l60">
 				<div class="ink-gutter">
 					<div class="ink-alert">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Warning:</b> There's a warning for you</p>
 					</div>
 	
 					<div class="ink-alert error">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Error:</b> The system has failed</p>
 					</div>
 	
 					<div class="ink-alert success">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Done:</b> Process completed successfully</p>
 					</div>
 	
 					<div class="ink-alert info">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 					</div>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-alert info">
-<button class="close">&times;</button>
+<button class="ink-close">&times;</button>
 <p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 </div>')) ?></pre>
 				</div>
@@ -75,7 +75,7 @@
 					</p>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-alert-block success">
-<button class="close">&times;</button>
+<button class="ink-close">&times;</button>
 <h4>Thank you for buying!</h4>
 <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
 </div>')) ?></pre>
@@ -84,7 +84,7 @@
 			<div class="ink-l60">
 				<div class="ink-gutter">
 					<div class="ink-alert-block">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<h4>System maintenance scheduled</h4>
 						<p>
 							Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.
@@ -92,7 +92,7 @@
 					</div>
 	
 					<div class="ink-alert-block error">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<h4>System is down</h4>
 						<ul>
 							<li>Do not panic</li>
@@ -102,7 +102,7 @@
 					</div>
 	
 					<div class="ink-alert-block success">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<h4>Thank you for buying!</h4>
 						<p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
 					</div>
