@@ -58,7 +58,7 @@ JS;
                     </p>
                     <br/>
                     <p>
-                        You can see several examples in <a target="_blank" href="http://js.staging.sapo.pt/SAPO/Ink/Tabs/doc.html">technical documentation</a>.
+                        You can see several examples in <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Tabs/doc.html">technical documentation</a>.
                     </p>
                 </div>
             </div>

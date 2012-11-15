@@ -34,11 +34,11 @@ JS;
 <div class="ink-section">
 	<div class="ink-row ink-vspace">
 		<div class="ink-l40">
-			<div class="ink-gutter"> 
+			<div class="ink-gutter">
 				<h3 id="formvalidator">Form Validator</h3>
 				<p>
 					The <i>FormValidator</i> component provides an easy way to validate forms before submitting them.
-					It can: 
+					It can:
                     <ul>
                         <li>Detect required fields</li>
                         <li>Validate some field types</li>
@@ -47,7 +47,7 @@ JS;
                     </ul>
                 </p>
                 <br/>
-                <p>More examples and detailed configurations, in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
+                <p>More examples and detailed configurations, in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/FormValidator/doc.html">technical documentation</a>.</p>
 			</div>
 		</div>
 		<div class="ink-l60">
