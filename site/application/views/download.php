@@ -27,7 +27,7 @@
 		<?php
 			if( $errors )
 			{
-				echo '<div class="block-alert-msg error"><button class="ink-close">x</button><h4>The following errors have occurred:</h4>';
+				echo '<div class="ink-alert-block error"><button class="ink-close">×</button><h4>The following errors have occurred:</h4>';
 				foreach( $errors as $group => $errors_group )
 				{
 					echo '<ul><li>'.(is_array($errors_group) ? implode("</li><li>",$errors_group) : $errors_group).'</li></ul>';
