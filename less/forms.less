@@ -1,0 +1,663 @@
+// form {
+
+// 	fieldset {
+// 		border: none;
+// 		margin-bottom: 1.5em;
+// 		padding: 0;
+
+// 		legend {
+// 			margin: 1em 0;
+// 			text-shadow: 0 1px 0 white;
+// 			display: block;
+// 			width: 100%;
+// 			border-bottom:1px solid #ddd;
+// 		}
+
+// 	}	
+
+// 	label {
+// 		//line-height: 1.5;
+// 	}
+
+// 	.ink-form-validation {
+
+// 		margin: 0.5em 0.2em;
+
+// 		&.ink-success, &.ink-caution, &.ink-warning {
+// 			font-size: 0.75em;
+// 			padding: 0.2em 0.4em;
+// 			#ink > #border-radius > .all (@border-radius);
+// 		}
+
+// 	}
+	
+// 	input[type=file],
+// 	input[type=reset],
+// 	input[type="color"],
+// 	input[type="date"],
+// 	input[type="datetime"],
+// 	input[type="time"],
+// 	input[type="month"],
+// 	input[type="week"],
+// 	input[type="email"],
+// 	input[type="number"],
+// 	input[type="range"],
+// 	input[type="tel"],
+// 	input[type="url"],
+// 	input[type="text"],
+// 	input[type="search"],
+// 	input[type="password"],
+// 	textarea,
+// 	select {
+// 		#ink > #border-radius > .all (@border-radius);
+// 		padding: @form-field-padding;
+// 		border:1px solid @form-field-borderColor;
+// 		resize: none;
+// 		line-height: 1.3em;
+// 		font-size: @form-field-fontSize ;
+// 		.box-sizing(border-box);
+// 		background:@form-field-bg;
+// 	}
+	
+// 	input[type=file]:focus,
+// 	input[type=reset]:focus,
+// 	input[type="color"]:focus,
+// 	input[type="date"]:focus,
+// 	input[type="datetime"]:focus,
+// 	input[type="time"]:focus,
+// 	input[type="month"]:focus,
+// 	input[type="week"]:focus,
+// 	input[type="email"]:focus,
+// 	input[type="number"]:focus,
+// 	input[type="range"]:focus,
+// 	input[type="tel"]:focus,
+// 	input[type="url"]:focus,
+// 	input[type="text"]:focus,
+// 	input[type="search"]:focus,
+// 	input[type="password"]:focus,
+// 	textarea:focus,
+// 	select:focus {
+// 		#ink > #forms > .input_focus (@focusBlurSize, @focusColor)
+// 	}
+
+// 	select[multiple] {
+		
+// 		option {
+// 			line-height: 2;
+// 			padding: @form-field-padding / 2;
+// 		}
+// 	}
+
+// 	.ink-form-validation {
+
+// 			&.ink-caution {
+// 				#ink > #states > .caution(true);
+// 				padding: 0;
+// 			}
+			
+// 			&.ink-warning {
+// 				#ink > #states > .warning (true);
+// 				padding: 0;
+// 			}
+
+// 			&.ink-success {
+// 				#ink > #states > .success(true);
+// 				padding: 0;
+// 			}
+
+// 		}
+
+
+// 	div, ul {
+
+// 		&.ink-form-wrapper {
+
+// 			display: block;
+// 			margin-bottom: 0.8em;
+// 			line-height: 2;
+
+// 			&.ink-warning-field {
+// 				input, textarea, select {
+// 					#ink > #forms > .input_focus (10px, @warningColor);
+// 				}
+				
+// 				label:after {
+// 					content: "*";
+// 					color: @warning-bg;
+// 					font-size: 1.5em;
+// 					line-height: 1;
+// 					margin-left: 0.1em;
+// 					font-weight: 500;
+// 				}
+// 			}
+			
+// 			&.ink-required-field {
+// 				input, textarea, select {
+// 					#ink > #forms > .input_focus (10px, @errorColor);
+// 				}
+				
+// 				label:after {
+// 					content: "*";
+// 					color: @error-bg;
+// 					font-size: 1.5em;
+// 					line-height: 1;
+// 					margin-left: 0.1em;
+// 					font-weight: 500;
+// 				}
+// 			}
+
+// 			p {
+
+// 				&.ink-field-tip {
+// 					margin: 0;
+// 					line-height: 2.2;
+// 					font-size: 0.8em;
+// 					color: lighten(@text-color,35%);
+// 					position: relative;
+// 					margin-left: 0.1em;
+// 				}
+// 			}
+
+// 			&:first-child {
+// 				margin-top: 0;
+// 			}
+
+// 			&:last-child {
+// 				margin-bottom: 0;
+// 			}
+
+// 		}
+
+// 	}
+
+// 	&.ink-form-block {
+
+// 		label {
+// 			margin: 0.5em 0 0 0.2em;
+// 		}
+
+// 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
+// 			width: 100%;
+// 		}
+
+// 		textarea {
+// 			min-width: 100%;
+// 			max-width: 100%;
+// 			min-height: 5em;
+// 		}
+
+// 		input[type="checkbox"], input[type="radio"] {
+// 			line-height: 2;
+// 			margin-top: 0.55em;
+// 			float: left;
+// 			clear: left;
+// 		}
+
+// 		input[type="checkbox"] + label, input[type="radio"] + label {
+// 			float: left;
+// 			line-height: 2.5;
+// 			margin-left: 0.55em;
+// 			margin-top: -.3em;
+// 		}
+		
+// 		.ink-mini-input {
+// 			width:5em;
+// 			margin-right:.6em
+// 		}
+
+// 	}	
+
+// 	&.ink-form-inline {
+
+// 		label {
+// 			display: block;
+// 			margin: .5em;
+// 			vertical-align: top;
+// 			float: left;
+// 			line-height: 1;
+// 			min-width: 20%;
+// 			width: 20%;
+// 			max-width: 20%;
+// 			text-align: right;
+// 		}
+
+// 		input[type=text], input[type=password], input[type=file], input[type=reset], select {
+// 			min-width: 40%;
+// 			width: 78%;
+// 		}
+
+// 		textarea {
+// 			min-width: 40%;
+// 			width: 78%;
+// 			min-height: 5em;
+// 		}
+
+// 		input[type="checkbox"], input[type="radio"] {
+// 			line-height: 2;
+// 			margin-top: 0.55em;
+// 			float: left;
+// 		}
+
+// 		input[type="checkbox"] + label, input[type="radio"] + label {
+// 			line-height: 2.5;
+// 			margin: 0 1.55em 0 0.55em;
+// 			margin-top: 0;
+// 			width: auto;
+// 			min-width: auto;
+// 		}
+		
+// 		.ink-mini-input {
+// 			width:5em;
+// 			margin-right:.6em;
+// 		}
+
+// 		fieldset {
+
+// 			div {
+
+// 				&.ink-form-wrapper {
+// 					margin-bottom: 1em;
+
+// 					& > input + p.ink-field-tip, & > select + p.ink-field-tip {
+// 						margin-left: 21%;
+// 					}
+
+// 					& > input + p.ink-form-validation, & > select + p.ink-form-validation {
+// 						margin-left: 21%;
+// 					}
+
+// 				}
+// 			}
+// 		}
+
+// 	}
+
+// }
+
+
+form {
+
+	&.ink-form {
+
+		fieldset {
+
+			border: none;
+			margin-bottom: 1.5em;
+			padding: 0;
+
+			legend {
+
+				font-size: 1.438em;
+				font-weight: 700;
+				margin: 1em 0;
+				text-shadow: 0 1px 0 white;
+				display: block;
+				width: 100%;
+				border-bottom:1px solid #ddd;
+
+			}
+
+		}
+
+		input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
+			#ink > #border-radius > .all (@border-radius);
+			padding: @form-field-padding;
+			border:1px solid @form-field-borderColor;
+			resize: none;
+			// line-height: 1.3em;
+			font-size: @form-field-fontSize ;
+			.box-sizing(border-box);
+			background:@form-field-bg;
+		}
+
+
+
+		.control {			
+
+				clear: both;
+				line-height: 2.5;
+				// margin-bottom: 1em;
+				padding: 0.2em;
+				overflow: hidden;
+				
+				&.required {
+						label:after {
+						content: "\f069";
+						color: @error-bg;
+						font-size: 0.8em;
+						line-height: 1;
+						margin-left: 0.1em;
+						font-weight: 500;
+						font-family: FontAwesome;
+						display: inline-block;
+						width: 1.25em;
+						text-align: center;
+					}
+				}
+
+				&.inline {
+
+					label {
+						float: left;
+						text-align: right;
+					}
+
+					input[type="color"],
+					input[type="date"],
+					input[type="datetime"],
+					input[type="time"],
+					input[type="month"],
+					input[type="week"],
+					input[type="email"],
+					input[type="number"],
+					input[type="range"],
+					input[type="tel"],
+					input[type="url"],
+					input[type="text"],
+					input[type="search"],
+					input[type="password"], {
+						float: left;
+					}
+
+				}
+
+				&.block {
+
+					label {
+						width: 100%;
+						text-align: left;
+					}
+
+					input[type="color"],
+					input[type="date"],
+					input[type="datetime"],
+					input[type="time"],
+					input[type="month"],
+					input[type="week"],
+					input[type="email"],
+					input[type="number"],
+					input[type="range"],
+					input[type="tel"],
+					input[type="url"],
+					input[type="text"] {
+						width: 100%;
+					}
+				}				
+							
+		}
+
+		.control {
+
+			&.required {
+						label:after {
+						content: "\f069";
+						color: @error-bg;
+						font-size: 0.8em;
+						line-height: 1;
+						margin-left: 0.1em;
+						font-weight: 500;
+						font-family: FontAwesome;
+						display: inline-block;
+						width: 1.25em;
+						text-align: center;
+					}
+				}
+
+			&.validation {					
+
+				&.error {
+
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @errorColor);
+					}
+
+					p {
+
+						&.tip {
+							color: darken(@errorColor,10%);
+						}
+					}
+				}
+
+				&.warning {
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @warningColor);
+					}
+
+					p {
+
+						&.tip {
+							color: darken(@warningColor,10%);								
+						}
+					}
+				}
+			}
+		}
+
+		.control-group {
+
+			p.label {
+
+			}
+
+			&.validation {					
+	
+				&.error {
+
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @errorColor);
+					}
+
+					&+p {
+
+						&.tip {
+							color: darken(@errorColor,10%);
+						}
+					}
+				}
+
+				&.warning {
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @warningColor);
+					}
+
+					&+p {
+
+						&.tip {
+							color: darken(@warningColor,10%);								
+						}
+					}
+				}
+			}
+
+
+			&.required {
+					p {
+						&.label {
+							color: @text-color;
+						}
+						&.label:after {
+							content: "\f069";
+							color: @error-bg;
+							font-size: 0.8em;
+							line-height: 1;
+							margin-left: 0.1em;
+							font-weight: 500;
+							font-family: FontAwesome;
+							display: inline-block;
+							width: 1.25em;
+							text-align: center;
+						}
+					}
+			}
+		
+		}		
+
+		.control, .control-group {
+			p.tip {
+				margin: 0;
+				line-height: 2.2;
+				font-size: 1em;
+				color: lighten(@text-color,35%);
+				position: relative;
+				margin-left: 0.1em;
+			}
+		}
+
+		&.inline {
+			p.tip {
+				&.space {
+								&.shorter { margin-left: 17% ;}
+								&.short { margin-left: 22% ;}
+								&.medium { margin-left: 27% ;}
+								&.wide { margin-left: 32% ;}
+								&.wider { margin-left: 37% ;}
+						}
+			}
+		}
+
+		label {
+			&.shorter { width: 15% ;}
+			&.short { width: 20% ;}
+			&.medium { width: 25% ;}
+			&.wide { width: 30% ;}
+			&.wider { width: 35% ;}
+		}
+
+		input, select, textarea {
+			&.shorter { width: 20% ;}
+			&.short { width: 40% ;}
+			&.medium { width: 60% ;}
+			&.wide { width: 78% ;}
+			&.wider { width: 90% ;}
+		}
+
+		.control {
+			margin-bottom: 0.5em;
+		}
+
+		ul {
+
+			&.control-group {
+
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+
+				li {
+					display: block;
+					overflow: hidden;
+					line-height: 1.5;
+					margin: 0;
+
+					label, input {
+						line-height: inherit;						
+					}
+
+					input {
+						// margin: 0;
+					}
+				}
+			}
+
+		}
+
+
+		&.inline {
+
+			label {
+				display: block;
+				float: left;
+				margin-right: .5em;
+				line-height: inherit;
+				text-align: right;
+				vertical-align: top;
+			}
+
+			textarea {
+				min-height: 5em;
+			}
+
+			input[type="checkbox"], input[type="radio"] {
+				line-height: inherit;
+				margin-top: 0.35em;
+				float: left;
+			}
+
+			input[type="checkbox"] + label, input[type="radio"] + label {
+				line-height: inherit;
+				margin: 0 1.55em 0 0.55em;
+				margin-top: 0;
+				width: auto;
+				min-width: auto;
+			}
+			
+			.ink-mini-input {
+				width:5em;
+				margin-right:.6em;
+			}
+
+			&.control {
+				line-height: inherit;
+			}
+
+		}
+
+		&.block {
+
+			.control {
+				display: block;
+				margin-bottom: 0;
+				line-height: 2;
+
+				&.inline {
+
+					label {
+						float: left;
+					}
+
+					input {
+						float: left;
+					}
+
+				}
+			}
+
+			label {
+				margin: 0.5em 0 0 0.2em;
+			}
+
+			input[type=text], input[type=password], input[type=file], input[type=reset], select {
+				width: 100%;
+			}
+
+			textarea {
+				min-width: 100%;
+				max-width: 100%;
+				min-height: 5em;
+			}
+
+			input[type="checkbox"], input[type="radio"] {
+				line-height: 2;
+				margin-top: 0.55em;
+				float: left;
+				clear: left;
+			}
+
+			input[type="checkbox"] + label, input[type="radio"] + label {
+				float: left;
+				line-height: 2.5;
+				margin-left: 0.55em;
+				margin-top: -.3em;
+			}
+			
+			.ink-mini-input {
+				width:5em;
+				margin-right: 0.6em;
+			}
+
+		}
+
+	}
+
+}

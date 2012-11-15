@@ -1,0 +1,81 @@
+.ink-navigation {
+	
+	.pagination {
+
+		background: @white;	
+		#ink > #border-radius > .all (@border-radius);		
+
+		li {
+			a {
+				padding: 0.5em 1em;
+				display: block;
+				float: left;
+				background: @white;
+				#ink > #effects > .transition ();
+				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+				#ink > #shadows > .box-shadow (0,1px,2px,0,fade(@grey-50,50%));
+
+				&:hover {
+					background: darken(@white,10%);
+				}
+
+			}
+			&:first-child {
+				a {
+					#ink > #border-radius > .left (6px);
+				}
+			}
+
+			&:last-child {
+				a {
+					border-right: 1px @grey-15 solid;
+					#ink > #border-radius > .right (6px);
+				}
+			}
+
+			&.active {
+				a {
+					font-weight: 700;
+					background: darken(@white,10%);
+					&:hover {
+						cursor: default;
+					}
+				}
+			}
+
+			&.disabled {
+				a {
+					color: lighten(@black,70%);
+
+					&:hover {
+						#ink > #effects > .transition ();
+						#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+						cursor: default;						
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 650px) {
+
+	html body .ink-navigation {
+		
+		.pagination {
+		
+			li {
+			
+				a {
+					display:none
+				}
+				
+				&:first-child, &:last-child {
+					a {
+						display:block;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,171 @@
+// SCAFFOLDING
+// Dimensions
+@ink-site-width             : 960px;
+@ink-container-margin       : 0 auto;
+@ink-grid-gutter            : 32px;
+@ink-grid-gutter-medium     : round(@ink-grid-gutter / 1.5);
+@ink-grid-gutter-small      : round(@ink-grid-gutter / 3);
+@ink-container-padding      : @ink-grid-gutter;
+
+// Offset
+@margin                     : 10px;  
+@padding                    : 15px;
+@border-radius              : 4px;
+
+// Colors
+@body-background			: #f7f7f7;
+
+// TYPOGRAPHY
+@text-color                 : #555;
+@font-family                : Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@font-condensed             : Ubuntu_condensed;
+@font-size                  : 0; // if this variable is set as a pixel value it gets inserted as the font-size property of the body element;
+@headings-color				: #404040;
+
+@link-color                 : #0069D6;
+@link-visited-color         : #808080;
+@link-active-color          : red;
+@link-hover-color           : #007ED5;
+@link-focus-color           : @link-color;
+
+// FORMS
+// Size
+@form-field-fontSize 		: 14px;
+
+// Offset
+@form-field-padding     	: 6px;
+@form-field-margin      	: 0 5px;
+@form-label-margin      	: 7px 5px;
+
+// Color
+@form-field-borderColor 	: #ddd;
+@form-field-bg				: #FFF;
+@focusColor                 : rgba(153, 153, 153, 0.6); // This value must be rbga
+@focusBlurSize              : 10px;
+@disabledColor              : #eee;
+@errorColor                 : rgba(200, 10, 16, 0.5);
+@warningColor               : rgba(255, 156, 0, 0.6);
+
+// Buttons
+@btn-fontSize				: 0.938em;
+@btn-padding                : 0.45em 0.8em;
+@btn-bg 					: #eee;
+
+// FOOTER
+@footer-min-height			: 8em;
+@footer-bgColor             : #F0F0F0;
+
+// NAVIGATION
+@topbar-height              : 40px;
+@topbar-bgColor             : #222;
+@topbar-color               : #BBB;
+@topbar-colorHover          : @white;
+@topbar-margin              : auto;
+@topbar-fontSize            : 14px;
+
+@v-nav-height        		: 40px;
+@v-nav-bgColor       		: @white;
+@v-nav-color         		: @black;
+@v-nav-color-active  		: @white;
+@v-nav-fontSize      		: 14px;
+@v-nav-margin        		: auto;
+
+@h-nav-height        		: 40px;
+@h-nav-bgColor       		: @white;
+@h-nav-color         		: @black;
+@h-nav-color-active  		: @white;
+@h-nav-fontSize      		: 14px;
+@h-nav-margin        		: auto;
+
+@submenu-height        		: 40px;
+@submenu-bgColor       		: @white;
+@submenu-color         		: @black;
+@submenu-color-active  		: @white;
+@submenu-fontSize      		: 14px;
+@submenu-margin        		: auto;
+
+@footer-nav-height        	: 40px;
+@footer-nav-bgColor       	: @white;
+@footer-nav-color         	: @black;
+@footer-nav-color-active  	: @white;
+@footer-nav-fontSize      	: 14px;
+@footer-nav-margin        	: auto;
+
+// ALERTS & ERRORS
+@ink-alert-border-radius	: @border-radius;
+@ink-alert-bg				: #f9e0a4;
+@ink-alert-warning-bg		: #ff9c00;
+@ink-alert-error-bg			: #eb6363;
+@ink-alert-success-bg		: #9dce62;
+@ink-alert-info-bg			: #479cd8;
+@ink-alert-block-bg			: #FEFBF3;
+@ink-alert-block-borderColor : #ddd;
+
+@warning-bg           		: @orange;
+@caution-bg           		: @red;
+@error-bg					: @red;
+@success-bg					: @green;
+@info-bg					: @blue;
+
+// TABLES
+@table-cell-padding         : 5px 10px;
+@table-cell-borderColor     : #ccc;
+@table-zebra-rowColor       : #f9f9f9;
+@table-row-line-height      : 2;
+@table-row-hoverColor       : #fefbd6;
+
+// INK-JS
+// Tabs
+@tabs-nav-height        	: 40px;
+@tabs-nav-bgColor       	: @white;
+@tabs-nav-color         	: @black;
+@tabs-nav-color-active  	: @white;
+@tabs-nav-fontSize      	: 14px;
+@tabs-nav-margin        	: auto;
+
+// Date picker
+@datepicker-bgColor			: @white;
+@datepicker-cell-color		: #444;
+@datepicker-header-bg		: @grey-5;
+@datepicker-cellHover		: @grey-10;
+@datepicker-active-bg		: #0069d6;
+@datepicker-active-color	: @white;
+@datepicker-fontSize		: 13px;
+
+// Sortable list
+@sortable-list-height       : 40px;
+
+// Progress bars
+@progress-bar-height        : 26px;
+@progress-bar-fontSize		: 12px;
+@progress-bar-color			: @white;
+@progress-bar-bg			: #f7f7f7;
+
+// BASIC COLORS
+@white						: #fff;
+@black						: #000;
+@orange						: #ff9c00;
+@red						: #cd0000;
+@green						: #85bd11;
+@blue						: #0f8bda;
+@yellow						: yellow;
+
+@grey-95					: lighten(@black, 5%);
+@grey-90					: lighten(@black, 10%);
+@grey-85					: lighten(@black, 15%);
+@grey-80					: lighten(@black, 20%);
+@grey-75					: lighten(@black, 25%);
+@grey-70					: lighten(@black, 30%);
+@grey-65					: lighten(@black, 35%);
+@grey-60					: lighten(@black, 40%);
+@grey-55					: lighten(@black, 45%);
+@grey-50					: lighten(@black, 50%);
+@grey-45					: lighten(@black, 55%);
+@grey-40					: lighten(@black, 60%);
+@grey-35					: lighten(@black, 65%);
+@grey-30					: lighten(@black, 70%);
+@grey-25					: lighten(@black, 75%);
+@grey-20					: lighten(@black, 80%);
+@grey-15					: lighten(@black, 85%);
+@grey-10					: lighten(@black, 90%);
+@grey-5						: lighten(@black, 95%);

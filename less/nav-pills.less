@@ -1,0 +1,36 @@
+.ink-navigation {
+	.pills {
+
+		li {
+
+			a {
+
+				#ink > #effects > .transition ();
+				#ink > #border-radius > .all (8px);
+				#ink > #shadows > .box-shadow (0,1px,2px,0,fade(@grey-50,50%));
+				#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+
+				background: @white;
+				padding: 0.5em 1em;
+				display: block;
+				float: left;
+				margin: .5em .5em 0 0;
+
+				&:hover {
+					background: darken(@white,10%);
+					color: @black;
+				}
+			}
+
+			&.active {
+				
+				a {
+
+					#ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+					color: @white;
+					cursor: default;	
+				}
+			}
+		}
+	}
+}

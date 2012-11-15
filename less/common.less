@@ -1,0 +1,97 @@
+.ink-warning () {
+	#ink > #states > .warning ();
+}
+
+.ink-caution {
+	#ink > #states > .caution ();
+}
+
+.ink-info {
+	#ink > #states > .info ();
+}
+
+.ink-success {
+	#ink > #states > .success ();
+}
+
+/* defines generic classes used to set size on several elements */
+
+.small { 
+	font-size: 0.75em; 
+}
+
+.large { 
+	font-size: 1.2em; 
+}
+
+.extralarge { 
+	font-size: 1.45em; 
+}
+
+/* add .warning, .caution, .info, .success class styling to text elements */
+
+h1, h2, h3, h4 , h5, h6, p, mark, label, span {
+
+	&.warning {
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .warning ();
+		#ink > #border-radius > .all(@border-radius);
+		&.invert {
+			#ink > #states > .warning (true);
+			padding: 0;
+		}
+	}
+
+	&.caution {
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .caution ();
+		#ink > #border-radius > .all(@border-radius);
+		&.invert {
+			#ink > #states > .caution (true);
+			padding: 0;
+		}
+	}
+
+	&.info {
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .info ();
+		#ink > #border-radius > .all(@border-radius);
+		&.invert {
+			#ink > #states > .info (true);
+			padding: 0;
+		}
+	}
+
+	&.success {
+		padding: @padding / 1.5 @padding;
+		#ink > #states > .success ();
+		#ink > #border-radius > .all(@border-radius);
+		&.invert {
+			#ink > #states > .success (true);
+			padding: 0;
+		}
+	}
+
+}
+
+label, mark, code, span {
+	&.ink-label {
+		&.warning, &.caution, &.info, &.success {
+			padding: @padding / 4 @padding / 2 ;
+		}
+	}
+}
+
+.ink-docked {
+	position: fixed !important;
+	opacity: 0.75;
+	z-index: 2000;
+	
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.ink-shade {
+	background: rgba(0, 0, 0, 0.25);
+}

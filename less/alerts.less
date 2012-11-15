@@ -1,0 +1,79 @@
+/**
+* Ink - Interface kit
+* Module: Alert messages and boxes
+*/
+
+.ink-alert, .ink-alert-block h4 {
+	padding:1em;
+	padding-top: 1.1em;
+	font-size: .9em;
+	color: #666;  
+	#ink > #gradients > .gradient (lighten(@ink-alert-bg, 5%), darken(@ink-alert-bg, 5%), 100%);
+	#ink > #shadows > .box-shadows ('0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8),  inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+	#ink > #border-radius > .all (@ink-alert-border-radius);
+}
+
+.ink-alert-block, .ink-alert { 
+	margin: 1em 0 ;
+	position:relative;
+}
+
+.ink-alert.success, .ink-alert-block.success h4 { 
+	#ink > #gradients > .gradient (lighten(@ink-alert-success-bg, 0%), darken(@ink-alert-success-bg, 10%), 100%); 
+	color: @white; 
+}
+.ink-alert.error, .ink-alert-block.error h4 { 
+	#ink > #gradients > .gradient (lighten(@ink-alert-error-bg, 0%), darken(@ink-alert-error-bg, 10%), 100%); 
+	color: @white; 
+}
+.ink-alert.info, .ink-alert-block.info h4 { 
+	#ink > #gradients > .gradient (lighten(@ink-alert-info-bg, 5%), darken(@ink-alert-info-bg, 10%), 100%); 
+	color: @white; 
+}
+.ink-alert p, .ink-alert-block p { 
+	margin: 0 20px 0 0;
+}
+
+.ink-alert .ink-close, 
+.ink-alert-block .ink-close {
+	position:absolute;
+	color: @black;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	line-height: 0.56em;
+	font-size: 1.8em;	
+	padding:5px;
+	border: none;
+	background:none;
+	#ink > #shadows > .text-shadow (0px, 1px, 0px, @white);
+	#ink > #effects > .opacity (0.2);
+}
+
+.ink-alert .ink-close		{ top:.6em; *top:.4em; right:.4em; }
+.ink-alert-block .ink-close { top:.5em; *top:.2em; right:.4em; }
+
+.ink-alert-block h4 {
+	font-size: 1em; margin:0; 
+	border-bottom: 1px solid darken(@ink-alert-bg, 10%);
+	#ink > #shadows > .box-shadow (0, 1px, 0, 0, rgba(255, 255, 255, 0.3), inset); 
+	#ink > #border-radius > .all (@ink-alert-border-radius, @ink-alert-border-radius, 0, 0); 
+}
+
+.ink-alert-block {
+	background: @ink-alert-block-bg;
+	border-bottom: 1px solid @ink-alert-block-borderColor;
+	font-size: .9em;
+	#ink > #border-radius > .all (@ink-alert-border-radius);
+	#ink > #shadows > .box-shadow (0, 1px, 2px, 0, rgba(0, 0, 0, 0.1));
+}
+
+.ink-alert-block p, l
+.ink-alert-block ul, 
+.ink-alert-block ol {
+	padding:1em;
+}
+
+.ink-alert-block ul 		{ list-style: inside ;}
+.ink-alert-block.success h4 { border-bottom: 1px solid darken(@ink-alert-success-bg, 10%); }
+.ink-alert-block.error h4	{ border-bottom: 1px solid darken(@ink-alert-error-bg, 10%); }
+.ink-alert-block.info h4	{ border-bottom: 1px solid darken(@ink-alert-info-bg, 10%); }
