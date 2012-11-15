@@ -1,10 +1,12 @@
 <?php
  $js = <<<JS
-<div id="slist"></div>
+<ul id="slist">
+    <li>primeiro</li>
+    <li>segundo</li>
+    <li>terceiro</li>
+</ul>
 <script type="text/javascript">
-    var list = new SAPO.Ink.SortableList('#slist', {
-        model: ['primeiro', 'segundo', 'terceiro']
-    });
+    var list = new SAPO.Ink.SortableList('#slist');
 </script>
 JS;
 ?>
@@ -15,18 +17,21 @@ JS;
                     <h3 id="sortable_list">Sortable List</h3>
                     <p>
                         The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.
-                        By doing that, allows the user to sort the order of the list. Also allows other configurations, as you can see in these <a href="#" class="modal">examples</a>.
                     </p>
+                    <p>
+                        By doing that, allows the user to sort the order of the list.
+                    </p>
+                    <br/>
+                    <p>Also allows other configurations, as you can see in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
                 </div>
             </div>
             <div class="ink-l60">
 				<div class="ink-gutter">
-                    <div class="ink-row box">
+                    <div class="box">
     					<?php echo $js;?>
-                        <br/>
-                        <a href="#" data-target="sortablelist_sourcecode" class="toggleTrigger">View Source Code</a>
-                        <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums ink-space"><?php echo(htmlentities( $js )); ?></pre>
                     </div>
+					<a href="#" data-target="sortablelist_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+    	            <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums"><?php echo(htmlentities( $js )); ?></pre>
 				</div>
             </div>
         </div>

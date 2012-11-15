@@ -37,6 +37,10 @@ elseif (strpos($curr_path, '/development/ink/site/tree') !== FALSE)
 {
 	define('ENVIRONMENT', 'apadez');		
 }
+elseif (strpos($curr_path, '/Users/pedro/Development/site/tree') !== FALSE)
+{
+	define('ENVIRONMENT','pcorreia');
+}
 elseif (strpos($curr_path, '/fasmounts/sapo/WEB/INK') !== FALSE) 
 {
 	define('ENVIRONMENT', 'production');		
@@ -61,6 +65,7 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 		case 'ricardosmachado':
 		case 'apadez':
+		case 'pcorreia':
 			error_reporting(E_ALL);
 		break;
 		case 'staging':

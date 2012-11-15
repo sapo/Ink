@@ -16,7 +16,7 @@
 		margin-left: -@ink-grid-gutter-small;
 	}
 
-	html .ink-s100	{ width: auto; clear:both }
+	html .ink-s100	{ width: 100%; clear:both }
 	html .ink-s90	{ width: 90%; }
 	html .ink-s80   { width: 80%; }
 	html .ink-s75	{ width: 75%; }
@@ -127,18 +127,24 @@
 		#ink > #border-radius > .bottom (@border-radius);
 	}
 
-	.ink-for-m,  
-	.ink-for-l {
+	html .ink-for-m,  
+	html .ink-for-l {
 		visibility: hidden;
 		position: absolute;
 		top: -99999px;
 		left: -99999px;
 	}
 
-	.ink-for-s {
+	html .ink-for-s {
 		visibility: visible;
 		position: relative;
 		top: auto;
 		left: auto;
+	}
+
+	html .ink-docked {
+		width:auto;
+		left: 10px;
+		right: 10px;
 	}
 }

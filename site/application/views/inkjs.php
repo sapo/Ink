@@ -350,7 +350,7 @@
 			<div class="ink-l70">
 				<div class="ink-space">
 					<div class="ink-modal">
-						<a href="#" class="close">x</a>
+						<a href="#" class="ink-close">x</a>
 					</div>
 				</div>
 			</div>

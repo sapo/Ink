@@ -53,15 +53,15 @@ mark {
 .gridExample2 .ink-vspace {
   margin-bottom: 0;
 }
-#spaceExamples .box {
+#spacing .box {
   padding: 0px;
 }
-#spaceExamples .box div {
+#spacing .box div {
   text-align: center;
   font-weight: bold;
   margin: 0px;
 }
-#spaceExamples .box div p {
+#spacing .box div p {
   font-size: 1.75em;
   line-height: 200px;
   vertical-align: middle;
@@ -69,7 +69,7 @@ mark {
   color: #fff;
   margin: 0em;
 }
-#spaceExamples .box div:hover {
+#spacing .box div:hover {
   background-color: #68b9cf;
   transition: all ease-in-out 300ms;
   -o-transition: all ease-in-out 300ms;
@@ -77,16 +77,23 @@ mark {
   -webkit-transition: all ease-in-out 300ms;
   border-radius: 4px;
 }
-#spaceExamples .box .ink-space {
+#spacing .box div:hover p {
+  color: #555;
+  transition: all ease-in-out 300ms;
+  -o-transition: all ease-in-out 300ms;
+  -moz-transition: all ease-in-out 300ms;
+  -webkit-transition: all ease-in-out 300ms;
+}
+#spacing .box .ink-space {
   padding: 1em;
 }
-#spaceExamples .box .ink-vspace {
+#spacing .box .ink-vspace {
   padding: 1em 0;
 }
-#spaceExamples .box .ink-hspace {
+#spacing .box .ink-hspace {
   padding: 0 1em;
 }
-#spaceExamples .box .ink-hspace p {
+#spacing .box .ink-hspace p {
   padding: 13px 0;
 }
 /*..........................................  Typography  ...................................................*/
@@ -154,11 +161,16 @@ a.active {
 .ink-download input {
   font-size: 1.625em;
 }
-/*..........................................  Footer  ...................................................*/
-.callToAction {
+/*..........................................  Ink-UI  ..........................................*/
+.ink-button.toggleTrigger {
+  margin: 1em 0 0 0;
+}
+/*..........................................  Footer  ..........................................*/
+.ink-hero {
   position: relative;
   width: 100%;
   height: 100%;
+  padding-top: 40px;
   background: url(../imgs/home_bkg.png) center;
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -187,6 +199,7 @@ a.active {
   position: absolute;
   top: 0px;
   width: 100%;
+  padding-top: 40px;
   text-align: center;
   -webkit-animation: glower 5s infinite;
   -moz-animation: glower 5s infinite;
@@ -411,6 +424,9 @@ footer ul.sociallinks li a.Gplus_link {
   background: #313131;
   color: #ffffff;
 }
+#topbar .ink-button {
+  right: 0;
+}
 #topbar .ink-button:hover {
   color: #ffffff;
   background: none;
@@ -547,4 +563,13 @@ code {
   border: 1px solid #E0E0E0;
   background: #E9E9E9;
   padding: 0 4px;
+}
+
+.steps li {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+:target {
+    padding-top: 4em;
 }

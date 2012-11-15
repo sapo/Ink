@@ -1,15 +1,18 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
    <div class="ink-container">
 		<h2>Alerts</h2>
 		<p>Although they're a way of displaying text, alerts have their own specificity and functionality.</p>
 	</div>
 </div>
 
-<div class="menu-second-level">
+<div>
 	<div class="ink-container">
-		<nav class="ink-navigation">
-			<ul class="menu horizontal">
-				<li class="active"><a  class="scrollableLink home" href="#">Home</a></li>
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
 				<li><a class="scrollableLink" href="#basic">Basic Alerts</a></li>
 				<li><a class="scrollableLink" href="#block">Block alerts</a></li>
 			</ul>
@@ -17,7 +20,7 @@
 	</div>
 </div>
 
-<div class="ink-container">
+<div class="ink-container" id="basic">
 	<div class="ink-section">
 		<div class="ink-row ink-vspace">
 			<div class="ink-l40">
@@ -36,34 +39,34 @@
 			<div class="ink-l60">
 				<div class="ink-gutter">
 					<div class="ink-alert">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Warning:</b> There's a warning for you</p>
 					</div>
 	
 					<div class="ink-alert error">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Error:</b> The system has failed</p>
 					</div>
 	
 					<div class="ink-alert success">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Done:</b> Process completed successfully</p>
 					</div>
 	
 					<div class="ink-alert info">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 					</div>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-alert info">
-<button class="close">&times;</button>
+<button class="ink-close">&times;</button>
 <p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
 </div>')) ?></pre>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="ink-section">
+	<div class="ink-section" id="block">
 		<div class="ink-row ink-vspace">
 			<div class="ink-l40">
 				<div class="ink-gutter">
@@ -75,7 +78,7 @@
 					</p>
 					<pre class="prettyprint linenums">
 <?php echo(htmlentities('<div class="ink-alert-block success">
-<button class="close">&times;</button>
+<button class="ink-close">&times;</button>
 <h4>Thank you for buying!</h4>
 <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
 </div>')) ?></pre>
@@ -84,7 +87,7 @@
 			<div class="ink-l60">
 				<div class="ink-gutter">
 					<div class="ink-alert-block">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<h4>System maintenance scheduled</h4>
 						<p>
 							Please note that, due to a platypus invasion on our datacenter early last morning, the servers will have to undergo a maintenance cleaning today at 23:00 GMT.
@@ -92,7 +95,7 @@
 					</div>
 	
 					<div class="ink-alert-block error">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<h4>System is down</h4>
 						<ul>
 							<li>Do not panic</li>
@@ -102,7 +105,7 @@
 					</div>
 	
 					<div class="ink-alert-block success">
-						<button class="close">&times;</button>
+						<button class="ink-close">&times;</button>
 						<h4>Thank you for buying!</h4>
 						<p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
 					</div>

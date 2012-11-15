@@ -1,4 +1,4 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
 	 <div class="ink-container">
 		  <h2>
 				Navigation
@@ -8,40 +8,39 @@
 		  </p>
 	 </div>
 </div>
-<div class="menu-second-level">
-	 <div class="ink-container">
-		  <nav class="ink-navigation">
-				<ul class="menu horizontal">
-					 <li class="active">
-						  <a class="scrollableLink home" href="#">Home</a>
+<div>
+	<div class="ink-container">
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
+					 <li>
+						  <a class="scrollableLink" href="#nav-horizontal">Horizontal menu</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#horizontal">Horizontal menu</a>
+						  <a class="scrollableLink" href="#nav-vertical">Vertical menu</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#vertical">Vertical menu</a>
+						  <a class="scrollableLink" href="#nav-footer">Footer menu</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#footer">Footer menu</a>
+						  <a class="scrollableLink" href="#nav-pagination">Pagination</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#pagination">Pagination</a>
+						  <a class="scrollableLink" href="#nav-pills">Pills</a>
 					 </li>
 					 <li>
-						  <a class="scrollableLink" href="#pills">Pills</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#breadcrumbs">Breadcrumbs</a>
+						  <a class="scrollableLink" href="#nav-breadcrumbs">Breadcrumbs</a>
 					 </li>
 				</ul>
 		  </nav>
 	 </div>
 </div>
 <div class="ink-container">
-	 <a id="horizontal-menu"></a>
-	 <div class="ink-section">
+	 <div class="ink-section" id="nav-horizontal">
 		  <div class="ink-vspace">
-		  		<a name="horizontal"></a>
 				<h3>
 					 Horizontal menu
 				</h3>
@@ -347,11 +346,11 @@
 
 	</div>
 
-	
 
-	
 
-	<div class="ink-section">
+
+
+	<div class="ink-section" id="nav-vertical">
 
 		<h3>Vertical menu</h3>
 		<div class="ink-row ink-vspace">
@@ -400,8 +399,7 @@
 				</div>
 		  </div>
 	 </div>
-	 <div class="ink-section">
-	 		<a name="footer"></a>
+	 <div class="ink-section" id="nav-footer">
 		  <h3>
 				Footer menu
 		  </h3>
@@ -418,8 +416,7 @@
 </footer>')) ?>
 </pre>
 	 </div>
-	 <div class="ink-section">
-	 	<a name="pagination"></a>
+	 <div class="ink-section" id="nav-pagination">
 		  <h3>
 				Pagination
 		  </h3>
@@ -463,7 +460,7 @@
 		  <pre class="prettyprint linenums ink-vspace">
 <?php echo(htmlentities('<nav class="ink-navigation">
    <ul class="pagination">
-      <li class="disabled"><a href="#">&laquo;</a></li>
+      <li class="disabled previous"><a href="#">Previous</a></li>
       <li><a href="#">1</a></li>
       <li><a href="#">2</a></li>
       <li><a href="#">3</a></li>
@@ -471,13 +468,13 @@
       <li><a href="#">5</a></li>
       <li><a href="#">6</a></li>
       <li><a href="#">7</a></li>
-      <li><a href="#">&raquo;</a></li>
+      <li class="next"><a href="#">Next</a></li>
    </ul>
 </nav>')) ?></pre>
 
 	</div>
 
-	<div class="ink-section">
+	<div class="ink-section" id="nav-pills">
 		<h3>Pills</h3>
 		<p>Pills can be created by adding the <code>pagination</code> class to a list inside an <code>ink-navigation</code> parent. The <code>.active</code> and <code>.disabled</code> classes are available.</p>
 
@@ -502,8 +499,7 @@
 </nav>')) ?>
 </pre>
 	 </div>
-	 <div class="ink-section">
-	 	<a name="breadcrumbs"></a>
+	 <div class="ink-section" id="nav-breadcrumbs">
 		  <h3>
 				Breadcrumbs
 		  </h3>
@@ -513,13 +509,13 @@
 		  <nav class="ink-navigation">
 				<ul class="breadcrumbs">
 					 <li>
-						  <a href="#">Home</a><span class="separator">/</span>
+						  <a href="#">Home</a>
 					 </li>
 					 <li>
-						  <a href="#">Products</a><span class="separator">/</span>
+						  <a href="#">Products</a>
 					 </li>
 					 <li>
-						  <a href="#">Category</a><span class="separator">/</span>
+						  <a href="#">Category</a>
 					 </li>
 					 <li class="active">
 						  <a href="#">Current item</a>
@@ -528,13 +524,26 @@
 		  </nav>
 		  <pre class="prettyprint linenums ink-vspace">
 <?php echo(htmlentities('<nav class="ink-navigation">
-	<ul class="breadcrums">
-		<li><a href="#">Home</a><span class="separator">/</span></li>
-		<li><a href="#">Products</a><span class="separator">/</span></li>
-		<li><a href="#">Category</a><span class="separator">/</span></li>
+	<ul class="breadcrumbs">
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Category</a></li>
 		<li class="active"><a href="#">Current item</a></li>
 	</ul>
 </nav>')) ?>
 </pre>
+        <p class="ink-alert info"><strong>Info</strong> a separator is automatically added.</p>
+
+        <h4>Customizing the separator</h4>
+        <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
+		  <pre class="prettyprint linenums ink-vspace">
+<?php echo(htmlentities('
+.ink-navigation .breadcrumbs li:after {
+   content: \'*\';
+}')) ?>
+</pre>
+        <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
+
+
 	 </div>
 </div>

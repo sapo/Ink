@@ -48,13 +48,13 @@ mark {
 	}
 }
 
-#spaceExamples .box {padding:0px}
-#spaceExamples .box div {
+#spacing .box {padding:0px}
+#spacing .box div {
 	text-align: center;
 	font-weight: bold;
 	margin: 0px;
 }
-#spaceExamples .box div p {	
+#spacing .box div p {	
 	font-size: 1.75em;
 	line-height: 200px;
 	vertical-align: middle;
@@ -62,16 +62,19 @@ mark {
 	color: #fff;
 	margin: 0em;
 }
-#spaceExamples .box div:hover {
+#spacing .box div:hover {
 	background-color: #68b9cf;
 	.animate(300ms);
 	#ink > #border-radius > .all (@border-radius);
 }
-
-#spaceExamples .box .ink-space		{ padding:1em }
-#spaceExamples .box .ink-vspace 	{ padding:1em 0 }
-#spaceExamples .box .ink-hspace		{ padding:0 1em }
-#spaceExamples .box .ink-hspace p 	{ padding:13px 0 }
+#spacing .box div:hover p {
+	color:#555;
+	.animate(300ms);
+}
+#spacing .box .ink-space	{ padding:1em }
+#spacing .box .ink-vspace 	{ padding:1em 0 }
+#spacing .box .ink-hspace	{ padding:0 1em }
+#spacing .box .ink-hspace p { padding:13px 0 }
 
 /*..........................................  Typography  ...................................................*/
 a.visited 	{color: @link-visited-color;}
@@ -120,11 +123,19 @@ a.active 	{color: @link-active-color;}
 	font-size:1.625em;
 }
 
-/*..........................................  Footer  ...................................................*/
-.callToAction{
+/*..........................................  Ink-UI  ..........................................*/
+.ink-button.toggleTrigger {
+	
+	margin:1em 0 0 0
+}
+
+
+/*..........................................  Footer  ..........................................*/
+.ink-hero {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	padding-top: 40px;
 	background: url(../imgs/home_bkg.png) center;
 	background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
 	background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -156,6 +167,7 @@ a.active 	{color: @link-active-color;}
 	position:absolute; 
 	top:0px; 
 	width: 100%; 
+	padding-top: 40px;
 	text-align: center;
 	-webkit-animation: glower 5s infinite;
 	-moz-animation: glower 5s infinite;
@@ -363,16 +375,7 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 }
 
 #topbar .ink-button {
-	// background:none;
-	// filter:none;
-	// border:none;
-	// padding:0;
-	// margin:0;
-	// #ink > #shadows > .no-box-shadow;
-	// #ink > #shadows > .text-shadow(0,0,0, rgba(0,0,0,0));
-	// color: @topbar-color;
-	// font-size:1.2em;
-	// position:absolute; top:.6em; right:0;
+	right:0;
 }
 
 #topbar .ink-button:hover {
