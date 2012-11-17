@@ -47,7 +47,7 @@
 
                 <ol class="steps">
                     <li><a href="<?php echo site_url() . '/download/latest' ?>">Download latest build</a>.</li>
-                    <li>Open <code>my-page.html</code> if you want to serve Ink from your host or <code>my-page-cdn.html</code> if you want to serve Ink from our servers.</li>
+                    <li>Open <code>my-page.html</code> if you want to serve Ink from your host or <code>my-cdn-page.html</code> if you want to serve Ink from our servers.</li>
                     <li>Check the template we provide and remove whatever you don't feel necessary for your project.</li>
                     <li>Make sure you have <code>ink.css</code>, <code>ink-ie.css</code> and <code>ink.js</code> included somewhere in the <code>&lt;head></code>.</li>
                     <li>Add your own stylesheets and scripts to carry all your project-specific changes.</li>
