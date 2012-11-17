@@ -20,8 +20,8 @@ We built Ink by standing on the shoulders of giants, following the opensource ma
 
 Built with:
 
-FontAwesome (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
-Ubuntu Font (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
-HTML5 shiv (under [MIT License](http://opensource.org/licenses/MIT))
-respond.js (under [MIT License](http://opensource.org/licenses/MIT))
-normalize.css (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
+* FontAwesome (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
+* Ubuntu Font (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
+* HTML5 shiv (under [MIT License](http://opensource.org/licenses/MIT))
+* respond.js (under [MIT License](http://opensource.org/licenses/MIT))
+* normalize.css (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
