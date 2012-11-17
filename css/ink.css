@@ -3984,20 +3984,26 @@ form.ink-form fieldset legend {
   border-bottom: 1px solid #ddd;
 }
 
-form.ink-form input[type=text],
-form.ink-form input[type=password],
-form.ink-form input[type=file],
-form.ink-form input[type=reset],
-form.ink-form input[type=number],
-form.ink-form input[type=range],
-form.ink-form input[type=search],
-form.ink-form input[type=email],
+form.ink-form input[type="color"],
+form.ink-form input[type="date"],
+form.ink-form input[type="datetime"],
+form.ink-form input[type="time"],
+form.ink-form input[type="month"],
+form.ink-form input[type="week"],
+form.ink-form input[type="email"],
+form.ink-form input[type="number"],
+form.ink-form input[type="range"],
+form.ink-form input[type="tel"],
+form.ink-form input[type="url"],
+form.ink-form input[type="text"],
+form.ink-form input[type="search"],
+form.ink-form input[type="password"],
 form.ink-form textarea,
 form.ink-form select {
   padding: 6px;
   font-size: 14px;
   background: #ffffff;
-  border: 1px solid #dddddd;
+  border: 1px solid #c4c4c4;
   border-radius: 4px;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -4064,7 +4070,8 @@ form.ink-form .control.block input[type="number"],
 form.ink-form .control.block input[type="range"],
 form.ink-form .control.block input[type="tel"],
 form.ink-form .control.block input[type="url"],
-form.ink-form .control.block input[type="text"] {
+form.ink-form .control.block input[type="text"],
+form.ink-form .control.block input[type="reset"] {
   width: 100%;
 }
 
@@ -4312,9 +4319,20 @@ form.ink-form.block label {
   margin: 0.5em 0 0 0.2em;
 }
 
-form.ink-form.block input[type=text],
-form.ink-form.block input[type=password],
-form.ink-form.block input[type=file],
+form.ink-form.block input[type="color"],
+form.ink-form.block input[type="date"],
+form.ink-form.block input[type="datetime"],
+form.ink-form.block input[type="time"],
+form.ink-form.block input[type="month"],
+form.ink-form.block input[type="week"],
+form.ink-form.block input[type="email"],
+form.ink-form.block input[type="number"],
+form.ink-form.block input[type="range"],
+form.ink-form.block input[type="tel"],
+form.ink-form.block input[type="url"],
+form.ink-form.block input[type="text"],
+form.ink-form.block input[type="search"],
+form.ink-form.block input[type="password"],
 form.ink-form.block input[type=reset],
 form.ink-form.block select {
   width: 100%;

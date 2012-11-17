@@ -299,12 +299,26 @@ form {
 
 		}
 
-		input[type=text], input[type=password], input[type=file], input[type=reset], input[type=number], input[type=range], input[type=search], input[type=email], textarea, select {
+		input[type="color"],
+		input[type="date"],
+		input[type="datetime"],
+		input[type="time"],
+		input[type="month"],
+		input[type="week"],
+		input[type="email"],
+		input[type="number"],
+		input[type="range"],
+		input[type="tel"],
+		input[type="url"],
+		input[type="text"],
+		input[type="search"],
+		input[type="password"],
+		textarea,
+		select {
 			#ink > #border-radius > .all (@border-radius);
 			padding: @form-field-padding;
-			border:1px solid @form-field-borderColor;
+			border:1px solid darken(@form-field-borderColor,10%);
 			resize: none;
-			// line-height: 1.3em;
 			font-size: @form-field-fontSize ;
 			.box-sizing(border-box);
 			background:@form-field-bg;
@@ -379,7 +393,8 @@ form {
 					input[type="range"],
 					input[type="tel"],
 					input[type="url"],
-					input[type="text"] {
+					input[type="text"],
+					input[type="reset"] {
 						width: 100%;
 					}
 				}				
@@ -627,7 +642,22 @@ form {
 				margin: 0.5em 0 0 0.2em;
 			}
 
-			input[type=text], input[type=password], input[type=file], input[type=reset], select {
+			input[type="color"],
+			input[type="date"],
+			input[type="datetime"],
+			input[type="time"],
+			input[type="month"],
+			input[type="week"],
+			input[type="email"],
+			input[type="number"],
+			input[type="range"],
+			input[type="tel"],
+			input[type="url"],
+			input[type="text"],
+			input[type="search"],
+			input[type="password"],
+			input[type=reset], 
+			select {
 				width: 100%;
 			}
 
