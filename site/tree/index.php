@@ -37,7 +37,7 @@ elseif (strpos($curr_path, '/development/ink/site/tree') !== FALSE)
 {
 	define('ENVIRONMENT', 'apadez');		
 }
-elseif (strpos($curr_path, '/Users/pedro/Development/site/tree') !== FALSE)
+elseif (strpos($curr_path, '/Users/pedro/Development/ink-sapo/site/tree') !== FALSE)
 {
 	define('ENVIRONMENT','pcorreia');
 }

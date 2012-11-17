@@ -379,10 +379,10 @@
 
 			<div class="ink-l60">
 				<div class="ink-gutter">
-					<p>Vertical menus are built exactly the same way as the horizontal ones, just replace the <code>&lt;ul&gt;</code> class with <code>.ink-v-nav</code>. The same goes for the submenus.</p>
+					<p>Vertical menus are built exactly the same way as the horizontal ones, just use the <code>&lt;ul&gt;</code>  with the <code>.vertical</code> class. The same goes for the submenus.</p>
 					<pre class="prettyprint linenums">
-<?php echo(htmlentities('<nav>
-	<ul class="ink-v-nav">
+<?php echo(htmlentities('<nav class="ink-navigation">
+	<ul class="menu vertical">
 	  <li><a href="#">Item</a></li>
 	  ...
 	  <li>
