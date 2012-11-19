@@ -8,38 +8,36 @@
 		  </p>
 	 </div>
 </div>
-<div>
-	<div class="ink-container">
-		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#nav-home">
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active">
+				<a class="scrollableLink home" href="#nav-home">
 					<i class="icon-chevron-up ink-for-l"></i>
 					<span class="ink-for-m ink-for-s">Back to Top</span>
-				</a></li>
-					 <li>
-						  <a class="scrollableLink" href="#nav-horizontal">Horizontal menu</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#nav-vertical">Vertical menu</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#nav-footer">Footer menu</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#nav-pagination">Pagination</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#nav-pills">Pills</a>
-					 </li>
-					 <li>
-						  <a class="scrollableLink" href="#nav-breadcrumbs">Breadcrumbs</a>
-					 </li>
-				</ul>
-		  </nav>
-	 </div>
-</div>
-<div class="ink-container">
-	 <div class="ink-section" id="nav-horizontal">
+				</a>
+				</li>
+				 <li>
+					  <a class="scrollableLink" href="#nav-horizontal">Horizontal menu</a>
+				 </li>
+				 <li>
+					  <a class="scrollableLink" href="#nav-vertical">Vertical menu</a>
+				 </li>
+				 <li>
+					  <a class="scrollableLink" href="#nav-footer">Footer menu</a>
+				 </li>
+				 <li>
+					  <a class="scrollableLink" href="#nav-pagination">Pagination</a>
+				 </li>
+				 <li>
+					  <a class="scrollableLink" href="#nav-pills">Pills</a>
+				 </li>
+				 <li>
+					  <a class="scrollableLink" href="#nav-breadcrumbs">Breadcrumbs</a>
+				 </li>
+			</ul>
+	  </nav>
+	  <div class="ink-section" id="nav-horizontal">
 		  <div class="ink-vspace">
 				<h3>
 					 Horizontal menu
@@ -404,15 +402,17 @@
 				Footer menu
 		  </h3>
 		  <p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+				Footer menus are built with the same logic as vertical and horizontal menus. Check the exmaple below to see how it's done.
 		  </p>
 		  <pre class="prettyprint linenums">
 <?php echo(htmlentities('<footer>
-	<ul class="ink-footer-nav">
-		<li><a href="#">footerItem</a></li>
-		<li><a href="#">footerItem</a></li>
-		...
-	</ul>
+	<nav class="ink-navigation">
+		<ul class="footer horizontal">
+			<li><a href="#">footerItem</a></li>
+			<li><a href="#">footerItem</a></li>
+			...
+		</ul>
+	</nav>
 </footer>')) ?>
 </pre>
 	 </div>
@@ -536,8 +536,7 @@
 
         <h4>Customizing the separator</h4>
         <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
-		  <pre class="prettyprint linenums ink-vspace">
-<?php echo(htmlentities('
+		  <pre class="prettyprint linenums ink-vspace"><?php echo(htmlentities('
 .ink-navigation .breadcrumbs li:after {
    content: \'*\';
 }')) ?>

@@ -91,7 +91,7 @@ JS;
                     <i>Dockable</i> keeps your menus visible while scrolling through the page.
                 </p>
                 <p>
-                    Activate it by using the "ink-dockable" class. A working example of dockable is the submenu that keeps following your progress on this page.
+                    Activate it by using the <code>ink-docked</code> class. A working example of dockable is the submenu that keeps following your progress on this page.
                 </p>
                 <p>
                     Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Dockable/doc.html">technical documentation</a> for more details.</p>
@@ -106,7 +106,7 @@ JS;
                     <i>Collapsible</i> turns your horizontal menus into vertical ones depending on the screen width. It gives you the possibility to collapse/expand your menus.
                 </p>
                 <p>
-                    Activate it by using the "ink-collapsible" class. A working example of collapsible is the top most menu.
+                    Activate it by using the <code>ink-collapsible</code> class. A working example of collapsible is the top most menu.
                 </p>
                 <p>
                     Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Collapsible/doc.html">technical documentation</a> for more details.</p>
@@ -118,10 +118,10 @@ JS;
             <div class="ink-gutter">
                 <h4>Close</h4>
                 <p>
-                    When clicking an element with the "ink-close" class, the first "ink-alert" or "ink-alert-block" ancestor is removed from the document.
+                    When clicking an element with the <code>ink-close</code> class, the first <code>ink-alert</code> or <code>ink-alert-block</code> ancestor is removed from the document.
                 </p>
                 <p>
-                    Activate it by using the "ink-close" class inside of an element with one of the previously mentioned classes.
+                    Activate it by using the <code>ink-close</code> class inside of an element with one of the previously mentioned classes.
                 </p>
                 <p>
                     Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/doc.html#Close">technical documentation</a> for more details.</p>

@@ -32,16 +32,7 @@
 		}
 	?>
 </div>
-<style>
-	/*.ink-docked {
-		position:           fixed !important;
-		opacity:            0.75;
-		z-index:            1000;
-	}
-	.ink-docked:hover {
-		opacity:            1;
-    }*/
-</style>
+
 <script>
 
 	var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');

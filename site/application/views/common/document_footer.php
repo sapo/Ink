@@ -2,7 +2,7 @@
 	<div class="ink-container">
 		<div class="ink-l75">
 			<nav class="ink-navigation">
-				<ul class="ink-footer-nav">
+				<ul class="horizontal footer">
 					<li><a href="<?php echo site_url('about') ?>">About</a></li>
 					<li><a href="<?php echo site_url('changelog') ?>">Changelog</a></li>
                     <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>

@@ -2,19 +2,6 @@
 
 	font-size: @h-nav-fontSize;
 	
-	.ink-footer-nav {
- 		padding:0;
-	 	margin:1em 0 2em;
-		#ink > #shadows > .no-box-shadow;
-		
-		li {
-			display: inline-block;
-			margin:0 1em 0 0;
-			*zoom:1;
-			*display: inline;
-		}
-	}
-
 	ul {
 
 		list-style-type: none;
@@ -47,6 +34,19 @@
 				}			
 			}
 
+		}
+		
+		&.footer {
+			padding:0;
+			margin:1em 0 2em;
+			#ink > #shadows > .no-box-shadow;
+			
+			li {
+				display: inline-block;
+				margin:0 1em 0 0;
+				*zoom:1;
+				*display: inline;
+			}
 		}
 
 		&.menu {
@@ -84,7 +84,7 @@
 				}
 
 			}
-
+					
 			&.flat {
 				background: @white;
 				#ink > #border-radius > .all (0px);
