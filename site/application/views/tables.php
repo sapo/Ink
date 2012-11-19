@@ -5,24 +5,24 @@
 	</div>
 </div>
 
-<div>
-	<div class="ink-container">
-		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#nav-home">
-					<i class="icon-chevron-up ink-for-l"></i>
-					<span class="ink-for-m ink-for-s">Back to Top</span>
-				</a></li>
-				<li><a class="scrollableLink" href="#default">Default</a></li>
-				<li><a class="scrollableLink" href="#alternated">Alternated</a></li>
-				<li><a class="scrollableLink" href="#highlight">Highlight</a></li>
-				<li><a class="scrollableLink" href="#fullBorders">Full borders</a></li>
-				<li><a class="scrollableLink" href="#combined">Combined</a></li>
-				<li><a class="scrollableLink" href="#special">Special</a></li>
-			</ul>
-		</nav>
-	</div>
+
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active"><a class="scrollableLink home" href="#nav-home">
+				<i class="icon-chevron-up ink-for-l"></i>
+				<span class="ink-for-m ink-for-s">Back to Top</span>
+			</a></li>
+			<li><a class="scrollableLink" href="#default">Default</a></li>
+			<li><a class="scrollableLink" href="#alternated">Alternated</a></li>
+			<li><a class="scrollableLink" href="#highlight">Highlight</a></li>
+			<li><a class="scrollableLink" href="#fullBorders">Full borders</a></li>
+			<li><a class="scrollableLink" href="#combined">Combined</a></li>
+			<li><a class="scrollableLink" href="#special">Special</a></li>
+		</ul>
+	</nav>
 </div>
+
 
 <div class="ink-container">
 	<div class="ink-l100 ink-vspace" id="default">

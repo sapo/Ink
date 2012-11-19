@@ -5,24 +5,23 @@
 	</div>
 </div>
 
-<div>
-	<div class="ink-container">
-		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#nav-home">
-					<i class="icon-chevron-up ink-for-l"></i>
-					<span class="ink-for-m ink-for-s">Back to Top</span>
-				</a></li>
-				<li><a class="scrollableLink" href="#nav-fonts">Fonts</a></li>
-				<li><a class="scrollableLink" href="#nav-headings">Headings</a></li>
-				<li><a class="scrollableLink" href="#nav-body-hypertext">Body & Hypertext</a></li>
-				<li><a class="scrollableLink" href="#nav-lists">Lists</a></li>
-				<li><a class="scrollableLink" href="#nav-utilities">Utility Classes</a></li>
-				<li><a class="scrollableLink" href="#nav-additional">Additional Elements</a></li>
-			</ul>
-		</nav>
-	</div>
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active"><a class="scrollableLink home" href="#nav-home">
+				<i class="icon-chevron-up ink-for-l"></i>
+				<span class="ink-for-m ink-for-s">Back to Top</span>
+			</a></li>
+			<li><a class="scrollableLink" href="#nav-fonts">Fonts</a></li>
+			<li><a class="scrollableLink" href="#nav-headings">Headings</a></li>
+			<li><a class="scrollableLink" href="#nav-body-hypertext">Body & Hypertext</a></li>
+			<li><a class="scrollableLink" href="#nav-lists">Lists</a></li>
+			<li><a class="scrollableLink" href="#nav-utilities">Utility Classes</a></li>
+			<li><a class="scrollableLink" href="#nav-additional">Additional Elements</a></li>
+		</ul>
+	</nav>
 </div>
+
 <!--menu_end-->
 <div class="ink-container">
 	<!--fonts_start-->

@@ -5,21 +5,19 @@
 	</div>
 </div>
 
-<div>
-	<div class="ink-container">
-		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#nav-home">
-					<i class="icon-chevron-up ink-for-l"></i>
-					<span class="ink-for-m ink-for-s">Back to Top</span>
-				</a></li>
-				<li><a class="scrollableLink" href="#building">Form building</a></li>
-				<li><a class="scrollableLink" href="#text-numbers">Text & Number entry</a></li>
-				<li><a class="scrollableLink" href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
-				<li><a class="scrollableLink" href="#buttons">Buttons</a></li>
-			</ul>
-		</nav>
-	</div>
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active"><a class="scrollableLink home" href="#nav-home">
+				<i class="icon-chevron-up ink-for-l"></i>
+				<span class="ink-for-m ink-for-s">Back to Top</span>
+			</a></li>
+			<li><a class="scrollableLink" href="#building">Form building</a></li>
+			<li><a class="scrollableLink" href="#text-numbers">Text & Number entry</a></li>
+			<li><a class="scrollableLink" href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
+			<li><a class="scrollableLink" href="#buttons">Buttons</a></li>
+		</ul>
+	</nav>
 </div>
 
 <div class="ink-container" id="building">

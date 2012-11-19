@@ -5,24 +5,23 @@
     </div>
 </div>
 
-<div>
-    <div class="ink-container">
-        <nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-            <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-                <li class="active"><a class="scrollableLink home" href="#nav-home">
-                    <i class="icon-chevron-up ink-for-l"></i>
-                    <span class="ink-for-m ink-for-s">Back to Top</span>
-                </a></li>
-                <li><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
-                <li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
-                <li><a class="scrollableLink" href="#nav-communication">Communication</a></li>
-                <li><a class="scrollableLink" href="#nav-utility">Utility</a></li>
-                <li><a class="scrollableLink" href="#nav-effects">Effects</a></li>
-                <li><a class="scrollableLink" href="#nav-component">Component</a></li>
-            </ul>
-        </nav>
-    </div>
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active"><a class="scrollableLink home" href="#nav-home">
+				<i class="icon-chevron-up ink-for-l"></i>
+				<span class="ink-for-m ink-for-s">Back to Top</span>
+			</a></li>
+			<li><a class="scrollableLink" href="#nav-sapo">SAPO</a></li>
+			<li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
+			<li><a class="scrollableLink" href="#nav-communication">Communication</a></li>
+			<li><a class="scrollableLink" href="#nav-utility">Utility</a></li>
+			<li><a class="scrollableLink" href="#nav-effects">Effects</a></li>
+			<li><a class="scrollableLink" href="#nav-component">Component</a></li>
+		</ul>
+	</nav>
 </div>
+
 
 <div class="ink-container">
  <div class="ink-section">

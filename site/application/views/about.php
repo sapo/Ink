@@ -1,21 +1,25 @@
-<div class="whatIs">
+<div class="whatIs" id="nav-home">
    <div class="ink-container">
 		<h2>About Ink</h2>
 		<p>What about it.</p>
 	</div>
 </div>
 
-<div class="menu-second-level">
-	<div class="ink-container">
-		<nav class="ink-navigation">
-			<ul class="menu horizontal">
-			<li class="active"><a class="home" href="#">Home</a></li>
-			<li><a href="#what">What it is</a></li>
-			<li><a href="#why">Why use Ink</a></li>
-			<li><a href="#who">Who we are</a></li>
-			<li><a href="#store">What's in store</a></li>
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active">
+				<a class="scrollableLink home" href="#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a>
+			</li>
+			<li><a class="scrollableLink" href="#what">What it is</a></li>
+			<li><a class="scrollableLink" href="#why">Why use Ink</a></li>
+			<li><a class="scrollableLink" href="#who">Who we are</a></li>
+			<li><a class="scrollableLink" href="#store">What's in store</a></li>
 		</ul>
-	</div>
+	</nav>
 </div>
 
 <div class="ink-container">

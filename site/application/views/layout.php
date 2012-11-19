@@ -5,25 +5,24 @@
    </div>
 </div>
 
-<div>
-    <div class="ink-container">
-        <nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-            <ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-                <li class="active"><a class="scrollableLink home" href="#nav-home">
-                    <i class="icon-chevron-up ink-for-l"></i>
-                    <span class="ink-for-m ink-for-s">Back to Top</span>
-                </a></li>
-                <li><a class="scrollableLink" href="#nav-multiple-layouts">Multiple layouts</a></li>
-				<li><a class="scrollableLink" href="#nav-containers">Containers</a></li>
-				<li><a class="scrollableLink" href="#nav-markup">Markup</a></li>
-				<li><a class="scrollableLink" href="#nav-columns">Columns</a></li>
-                <li><a class="scrollableLink" href="#nav-gutters">Gutters</a></li>l
-                <li><a class="scrollableLink" href="#nav-hidenseek">Showing &amp; Hiding</a></li>l
-                <li><a class="scrollableLink" href="#nav-spacing">Spacing</a></li>
-			</ul>
-		</nav>
-	</div>
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active"><a class="scrollableLink home" href="#nav-home">
+				<i class="icon-chevron-up ink-for-l"></i>
+				<span class="ink-for-m ink-for-s">Back to Top</span>
+			</a></li>
+			<li><a class="scrollableLink" href="#nav-multiple-layouts">Multiple layouts</a></li>
+			<li><a class="scrollableLink" href="#nav-containers">Containers</a></li>
+			<li><a class="scrollableLink" href="#nav-markup">Markup</a></li>
+			<li><a class="scrollableLink" href="#nav-columns">Columns</a></li>
+			<li><a class="scrollableLink" href="#nav-gutters">Gutters</a></li>l
+			<li><a class="scrollableLink" href="#nav-hidenseek">Showing &amp; Hiding</a></li>l
+			<li><a class="scrollableLink" href="#nav-spacing">Spacing</a></li>
+		</ul>
+	</nav>
 </div>
+
 
 <!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
 

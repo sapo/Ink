@@ -5,20 +5,19 @@
 	</div>
 </div>
 
-<div>
-	<div class="ink-container">
-		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
-			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
-				<li class="active"><a class="scrollableLink home" href="#ui_home">
-					<i class="icon-chevron-up ink-for-l"></i>
-					<span class="ink-for-m ink-for-s">Back to Top</span>
-				</a></li>
-				<?php foreach( $components as $component => $configuration ){ ?>
-					<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
-				<?php } ?>
-			</ul>
-		</nav>
-	</div>
+
+<div class="ink-container">
+	<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+		<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+			<li class="active"><a class="scrollableLink home" href="#ui_home">
+				<i class="icon-chevron-up ink-for-l"></i>
+				<span class="ink-for-m ink-for-s">Back to Top</span>
+			</a></li>
+			<?php foreach( $components as $component => $configuration ){ ?>
+				<li><a class="scrollableLink" href="#<?php echo $component;?>"><?php echo $configuration['label'];?></a></li>
+			<?php } ?>
+		</ul>
+	</nav>
 </div>
 
 <div class="ink-container">
