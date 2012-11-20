@@ -48,13 +48,13 @@ mark {
 	}
 }
 
-#spacing .box {padding:0px}
-#spacing .box div {
+#nav-spacing .box {padding:0px}
+#nav-spacing .box div {
 	text-align: center;
 	font-weight: bold;
 	margin: 0px;
 }
-#spacing .box div p {	
+#nav-spacing .box div p {	
 	font-size: 1.75em;
 	line-height: 200px;
 	vertical-align: middle;
@@ -62,19 +62,19 @@ mark {
 	color: #fff;
 	margin: 0em;
 }
-#spacing .box div:hover {
+#nav-spacing .box div:hover {
 	background-color: #68b9cf;
 	.animate(300ms);
 	#ink > #border-radius > .all (@border-radius);
 }
-#spacing .box div:hover p {
+#nav-spacing .box div:hover p {
 	color:#555;
 	.animate(300ms);
 }
-#spacing .box .ink-space	{ padding:1em }
-#spacing .box .ink-vspace 	{ padding:1em 0 }
-#spacing .box .ink-hspace	{ padding:0 1em }
-#spacing .box .ink-hspace p { padding:13px 0 }
+#nav-spacing .box .ink-space	{ padding:1em }
+#nav-spacing .box .ink-vspace 	{ padding:1em 0 }
+#nav-spacing .box .ink-hspace	{ padding:0 1em }
+#nav-spacing .box .ink-hspace p { padding:13px 0 }
 
 /*..........................................  Typography  ...................................................*/
 a.visited 	{color: @link-visited-color;}
@@ -125,17 +125,13 @@ a.active 	{color: @link-active-color;}
 
 /*..........................................  Ink-UI  ..........................................*/
 .ink-button.toggleTrigger {
-	
 	margin:1em 0 0 0
 }
 
 
 /*..........................................  Footer  ..........................................*/
 .ink-hero {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding-top: 40px;
+	margin-top: 40px;
 	background: url(../imgs/home_bkg.png) center;
 	background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
 	background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -147,11 +143,11 @@ a.active 	{color: @link-active-color;}
 
 .logo_hp {
 	width:100%;
+	height:100%;
 	max-width:736px;
-	margin:auto; 
-	display: block; 
-	position:relative; 
-	z-index: 9; 
+	max-height:330px;
+	margin:0 auto;
+	display: block;
 	opacity: 0.8;
 	-moz-opacity: 0.8;
 	filter:alpha(opacity=80);
@@ -161,97 +157,12 @@ a.active 	{color: @link-active-color;}
     -ms-transition: all 500ms ; 
      -o-transition: all 500ms ; 
         transition: all 500ms  /* custom */    
-}   
- 
-.glow {
-	position:absolute; 
-	top:0px; 
-	width: 100%; 
-	padding-top: 40px;
-	text-align: center;
-	-webkit-animation: glower 5s infinite;
-	-moz-animation: glower 5s infinite;
-	-ms-animation: glower 5s infinite;  
-	-o-animation: glower 5s infinite;  
-	z-index: 8;
-} 
+}
 
 .logo_hp:hover {
 	opacity: 1;
 	-moz-opacity: 1;
-}
-
-@keyframes glower {
-	from 	{ opacity: 0;}
-	50% 	{ opacity: 1;}
-	to 		{ opacity: 0;}
-}
-
-@-webkit-keyframes glower {
-	from 	{ opacity: 0;}
-	50% 	{ opacity: 1;}
-	to 		{ opacity: 0;}
-}
-
-@-moz-keyframes glower {
-    from	{ opacity: 0; }
-    50% 	{ opacity: 1; }
-	to   	{ opacity: 0; }
-}
-
-@-ms-keyframes glower {
-    from    { opacity: 0; }
-    50% 	{ opacity: 1; }
-	to   	{ opacity: 0; }
-}
-
-@-o-keyframes glower {
-    from    { opacity: 0; }
-    50% 	{ opacity: 1; }
-	to   	{ opacity: 0; }
-}
-
-/*...................................................  Menus  ....................................................*/
-.menu-second-level {
-	border-top:1px solid #cacaca;
-	#ink > #shadows > .box-shadow(0, -1px, 2px, 0, rgba(0,0,0,0.1));
-}
-
-
-.menu-second-level .ink-container .ink-navigation ul.menu {
-	background: none;
-	filter:none;
-	#ink > #shadows > .no-box-shadow();
-}
-
-.menu-second-level .ink-container .ink-navigation ul.menu li a {
-	padding: 0 .8em;
-	font-size: 1.143em;
-	color:@black;
-}
-
-.menu-second-level .ink-container .ink-navigation ul.menu li {
-	border-right:1px solid #CACACA;
-}
-
-.menu-second-level .ink-container .ink-navigation ul.menu li.active {
-	border-right:none;
-	#ink > #gradients > .gradient(#2e2e2e, #222, 100%);
-}
-
-.menu-second-level .ink-container .ink-navigation ul.menu .active a {
-	color: #fff;
-}
-
-.menu-second-level .ink-container .ink-navigation ul.menu li a.home {
-	width:1em;
-	text-indent:-5555px;
-	background:url(../imgs/home_Sprite.png) 0 0 no-repeat;
-}
-
-.menu-second-level .ink-container .ink-navigation ul.menu li.active a.home {
-	background:url(../imgs/home_Sprite.png) 0 -43px no-repeat;
-}
+}	
 
 /*...................................................  Footer  ...................................................*/
 
@@ -307,6 +218,7 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 
 #topbar {	
 	position: fixed;
+	top:0;
 	width: 100%;
 	height:@topbar-height;
 	background:@topbar-bgColor;
@@ -385,7 +297,7 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 
 #topbar .border {
 	height:.3em;
-	background: url(../imgs/home_bkg.png) center;
+	background: url(../imgs/home_bkg.png) center 0px;
 	background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
 	background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
 	background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
