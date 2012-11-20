@@ -15,10 +15,7 @@
 |
 */
 $path = getcwd();
-
-if($path == '/home/rmachado_at_sapo/projects/ink/site/tree') {
-    $config['base_url'] = 'http://ink.rmlap/';
-}
+$config['base_url'] = 'http://ink.rmlap/';
 // } else {
 //     $config['base_url'] = 'http://10.134.132.97/';
 // }
