@@ -306,14 +306,14 @@
 				</p>
 				<pre class="prettyprint linenums">
 <?php echo(htmlentities('<nav class="ink-navigation">
-	<ul class="menu horizontal grey">
-		<li><a href="#">Item</a></li>
-		<li><a href="#">Item</a></li>
-		<li><a href="#">Item</a></li>
-		<li><a href="#">Item</a></li>
-		<li><a href="#">Item</a></li>
-	</ul>
-</div>')) ?>
+   <ul class="menu horizontal grey">
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+   </ul>
+</nav>')) ?>
 </pre>
 		  </div>
 		  <div class="ink-vspace">

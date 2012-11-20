@@ -40,8 +40,7 @@
 		<div class="ink-l50">
 			<div class="ink-gutter">
 				<?php echo form_fieldset('<h3 id="modules">Modules</h3>',array('class'=>(($errors && in_array('modules',array_keys($errors))) ? 'error' : '') ) )?>
-				<ul class="ink-form-wrapper unstyled">
-				<p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
+				<ul class="control-group unstyled">
 				<?php foreach($modules as $value => $module): ?>		
 					<li>
 					<?php echo form_checkbox(array_merge($module['attributes'],array('value'=>$value,'checked'=>( ( isset($post) && ( isset($post['modules']) && in_array($value,$post['modules']) ) ) || (!isset($post) && $module['attributes']['checked']) )   ))); ?>
@@ -56,7 +55,7 @@
 		<div class="ink-l50">
 			<div class="ink-gutter">
 				<?php echo form_fieldset('<h3 id="options">Options</h3>') ?>
-				<ul class="ink-form-wrapper unstyled"><p class="ink-field-tip">lorem ipsum dolor sit amet...</p>
+				<ul class="control-group unstyled">
 				<?php foreach($options as $option): ?>
 					<li>
 					<?php echo form_checkbox(( $option['attributes'] + array('checked'=>(isset($post['options']) && in_array($option['attributes']['value'],$post['options'])) ) ) ); ?>
