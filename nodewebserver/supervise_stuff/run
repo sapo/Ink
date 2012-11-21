@@ -1,9 +1,0 @@
-#!/bin/sh
-
-exec 2>&1
-
-cd /servers/nodewebserver/
-
-# exec setuidgid nobody node /home/ink/nodewebserver/server.js 
-exec node server.js 
-
