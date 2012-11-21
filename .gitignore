@@ -2,7 +2,6 @@
 *.orig
 *.bak
 # ignore compiled css files
-*.css
 !prettify.css
 !demo.css
 # ignore CI log files
