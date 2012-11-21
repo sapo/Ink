@@ -31,7 +31,7 @@
         so you can try as you go along.</p>
 
     <div class="ink-section" id="nav-multiple-layouts">
-        <div class="ink-vspace">
+		<div class="ink-vspace">
         <h2>Multiple layouts</h2>
         <p>We believe that no website/webapp is created equal&mdash;specially in this day and age. That's why we want you to be able to easily control how your layout behaves on different screen sizes.</p>
 
@@ -46,7 +46,7 @@
         <p>By default these correspond to the following screen size intervals (we'll show how you can customize these in just a second):</p>
 
         <ul>
-            <li>Small: <strong>below</strong> <span class="ink-label">650 pixels wide</li>
+            <li>Small: <strong>below</strong> 650 pixels wide</li>
             <li>Medium: <strong>between</strong> 651 and 960 pixels wide</li>
             <li>Large: <strong>above</strong> 961 pixels wide</li>
         </ul>
