@@ -1,4 +1,3 @@
-#INK_OUTPUT = ../site/tree/assets/css/
 INK_OUTPUT = ./css/
 
 INK = "${INK_OUTPUT}ink.css"
