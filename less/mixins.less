@@ -252,6 +252,14 @@
 			transition-delay: @delay;
 		}
 
+		.none () {
+			-webkit-transition-property: none;
+			-moz-transition-property: none;
+			-o-transition-property: none;
+			-ms-transition-property: none;
+			transition-property: none;
+		}
+
 		// set element opacity
 		.opacity (@op) {
 			@percent: @op * 100;
