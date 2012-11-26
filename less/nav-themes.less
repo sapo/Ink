@@ -3,18 +3,63 @@
 
     ul {
 
+        li {
+            a { 
+                color: @text-color;
+                &:hover {
+                    background: fade(@black,25%);
+                }
+            }
+
+            &.active a {
+                background: fade(@black,25%);
+            }
+
+            ul.submenu { 
+                background: @white;
+                li {
+                    a {
+                        color: @text-color;
+                        border-bottom: 1px solid fade(@black,15%);
+                        &:hover {
+                            background: fade(@black,25%);
+                        }
+                        &:last-child a { border: none; }
+                    }
+                }
+            }
+        }
+
         // default white theme
         &.menu {
             #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
         }
+
         &.pagination {
+
             li {
                 #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
             }
         }
+
         &.pills {
+
             li {
-                    #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    a {
+                        #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                        color: @text-color;
+                        
+                        &:hover {
+                            background: none;
+                        }
+
+                    }
+
+                    &.active, 
+                    &:hover {
+                        #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                        a { color: @white; background: none; }
+                    }
             }
         }
 
@@ -26,53 +71,14 @@
             }
         }
 
-        li {
-            a { 
-                color: @text-color;
-                &:hover {
-                    background: fade(@black,20%);
-                }
-            }
-
-            &.active a {
-                background: fade(@black,20%);
-            }
-
-            ul.submenu { 
-                background: @white;
-                li {
-                    a {
-                        color: @text-color;
-                        border-bottom: 1px solid fade(@black,15%);
-                        &:hover {
-                            background: fade(@black,20%);
-                        }
-                        &:last-child a { border: none; }
-                    }
-                }
-            }
-        }
 
         // grey theme
         &.grey {
-            &.menu {
-                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
-            }
-            &.pagination {
-                li {
-                    #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
-                }
-            }
-            &.pills {
-                li {
-                        #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
-                }
-            }
             li {
                 a { 
                     color: @text-color;
                     &:hover {
-                    background: fade(@black,20%);
+                        background: fade(@black,25%);
                     }
                 }
 
@@ -87,28 +93,35 @@
                     }
                 }
             }
-        }
-
-        // black theme
-        &.black {
             &.menu {
-                #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
-            }  
+                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+            }
             &.pagination {
                 li {
-                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                    #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
                 }
             }
             &.pills {
                 li {
-                        #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                    a {
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (@grey-45, @grey-65, 150%);
+                    }
                 }
             }
+        }
+
+        // black theme
+        &.black {
             li {
                 a { 
                     color: @white; 
                     &:hover {
-                        background: fade(@black,20%);
+                        background: fade(@black,25%);
                     }
                 }
                 ul.submenu { 
@@ -125,28 +138,39 @@
                     }
                 }
             }
-        }
-
-        // orange theme
-        &.orange {
             &.menu {
-                #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
-            }
+                #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+            }  
             &.pagination {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
                 }
             }
             &.pills {
                 li {
-                        #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                    a {
+                        background: none;
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                        a { color: @text-color; }
+                    }
                 }
             }
+        }
+
+        // orange theme
+        &.orange {
+
             li {
                 a { 
                     color: @white; 
                     &:hover {
-                        background: fade(@black,20%);
+                        background: fade(@black,25%);
                     }
                 }
                 ul.submenu { 
@@ -163,28 +187,42 @@
                     }
                 }
             }
+
+            &.menu {
+                #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+            }
+
+            &.pagination {
+                li {
+                    #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                }
+            }
+
+            &.pills {
+                li {
+                    // #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    a {
+                        background: none;
+                        color: @text-color;
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                        a { color: @white; }
+                    }
+                }
+            }
         }
 
         // red theme
         &.blue {
-            &.menu {
-                #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
-            }
-            &.pagination {
-                li {
-                    #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
-                }
-            }
-            &.pills {
-                li {
-                        #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
-                }
-            }
             li {
                 a { 
                     color: @white; 
                     &:hover {
-                        background: fade(@black,20%);
+                        background: fade(@black,25%);
                     }
                 }
                 ul.submenu { 
@@ -201,28 +239,39 @@
                     }
                 }
             }
-        }
-
-        // green theme
-        &.green {
             &.menu {
-                #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
             }
             &.pagination {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
                 }
             }
             &.pills {
                 li {
-                        #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                    // #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    a {
+                        background: none;
+                        color: @text-color;
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+                        a { color: @white; }
+                    }
                 }
             }
+        }
+
+        // green theme
+        &.green {
             li {
                 a { 
                     color: @white; 
                     &:hover {
-                        background: fade(@black,20%);
+                        background: fade(@black,25%);
                     }
                 }
                 ul.submenu { 
@@ -239,28 +288,39 @@
                     }
                 }
             }
-        }
-
-        // red theme
-        &.red {
             &.menu {
-                #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
             }
             &.pagination {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
                 }
             }
             &.pills {
                 li {
-                        #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                    // #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    a {
+                        background: none;
+                        color: @text-color;
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                        a { color: @white; }
+                    }
                 }
             }
+        }
+
+        // red theme
+        &.red {
             li {
                 a { 
                     color: @white; 
                     &:hover {
-                        background: fade(@black,20%);
+                        background: fade(@black,25%);
                     }
                 }
                 ul.submenu { 
@@ -274,6 +334,30 @@
                             }
                         }
                         &:last-child a { border: none; }
+                    }
+                }
+            }
+            &.menu {
+                #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+            }
+            &.pagination {
+                li {
+                    #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                }
+            }
+            &.pills {
+                li {
+                    // #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    a {
+                        background: none;
+                        color: @text-color;
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                        a { color: @white; }
                     }
                 }
             }
@@ -421,7 +505,7 @@
 
             }
 
-            &.pagination {
+            &.pagination, &.pills {
 
                 li {
 
