@@ -37,4 +37,4 @@ We have two branches on our github repository:
 * The **master** branch contains the latest release as its HEAD and all previous releases as tags.
 * The **develop** branch contains our latest code that will eventually lead to a new release and tag on **master**
 
-To get a specific release clone the repository and use "git checkout <release_name>".
+To get a specific release clone the repository and use, e.g. "git checkout 1.0.0".
