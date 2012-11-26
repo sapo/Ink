@@ -1,0 +1,142 @@
+.ink-navigation {
+
+
+    
+    ul {
+
+        display: block;
+
+        &.menu {
+     
+            li {
+             
+                a { 
+                    #ink > #effects > .transition ('background',100ms);
+                    text-decoration: none;
+                }
+
+                &:hover {
+
+                    ul.submenu {
+                        display: block;
+                    }
+
+                }
+
+                ul.submenu {
+
+                    display: none;
+                    position: absolute;
+                    z-index: @layer-10;
+                    white-space: nowrap;
+
+                    li {
+
+                        display: list-item;
+                        background: inherit;
+                        width: auto;
+                        overflow: hidden;
+
+
+                        a {
+
+                            display: block;
+                            float: none;
+                            width: 100%;
+
+                        }
+
+                    }
+                }
+               
+            }
+
+            &:after {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+                zoom: 1;
+            }
+
+            // horizontal menus
+            &.horizontal {
+
+                 
+
+                li {
+
+                     float: left;
+                     line-height: @navigation-line-height;
+                     position: relative;
+
+                    a {
+
+                        float: left;
+                        padding: 0 1em;                        
+
+                    }
+
+                    ul {
+
+                        &.submenu {
+
+                            top: @navigation-line-height + 0em;
+
+                            li {
+                                padding: 0;
+                                line-height: @navigation-line-height;
+                                float: none;
+                                position: static;
+
+                                a {
+                                    padding: 0 1em;
+                                    float: none;
+                                    top: @navigation-line-height + 0em;
+                                    #ink > #border-radius > .none ();
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+            // vertical menus
+            &.vertical {
+
+                li {
+                    line-height: @navigation-line-height;
+                    position: relative;
+
+                    a {
+                        padding: 0 1em;
+                        display: block;
+                    }
+
+                    ul {
+                        &.submenu {
+                            top: 0;
+                            left:100%;
+                            li {
+                                padding: 0;
+                                line-height: @navigation-line-height;
+                                float: none;
+                                position: static;
+                                a {
+                                    display: block;
+                                    padding: 0 1em;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+}

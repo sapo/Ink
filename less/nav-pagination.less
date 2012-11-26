@@ -1,0 +1,85 @@
+.ink-navigation {
+	
+	ul {
+
+		&.pagination {
+
+			li {
+
+				float: left;
+
+				a {
+					padding: 0.5em 1em;
+					display: block;
+					float: left;
+					// background: @white;
+					#ink > #effects > .transition ();
+
+					// &:hover {
+					// 	background: darken(@white,10%);
+					// }
+
+					border-right: 1px fade(@black,20%) solid;
+
+				}
+
+				&:first-child {
+					a {
+						#ink > #border-radius > .left (6px);
+					}
+				}
+
+				&:last-child {
+					a {
+						border: none;
+					}
+				}
+
+				&.active {
+					a {
+						// font-weight: 700;
+						// // background: darken(@white,10%);
+						// &:hover {
+						// 	cursor: default;
+						// }
+					}
+				}
+
+				&.disabled {
+					a {
+						color: fade(@black,40%);
+
+						&:hover {
+							background: none;
+							cursor: default;
+							text-decoration: none;						
+						}
+					}
+				}
+			}
+		}
+
+	}
+}
+
+@media screen and (max-width: 650px) {
+
+	html body .ink-navigation {
+		
+		.pagination {
+		
+			li {
+			
+				a {
+					display:none
+				}
+				
+				&:first-child, &:last-child {
+					a {
+						display:block;
+					}
+				}
+			}
+		}
+	}
+}

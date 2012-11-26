@@ -1,0 +1,55 @@
+.ink-button {
+
+	-webkit-appearance: menuitem;
+	font-weight: bold;
+	font-size: @btn-fontSize;
+	line-height:1.3em;
+	padding: @btn-padding;
+	float:none;
+	border: 1px solid #ccc;
+	cursor:pointer;	
+	margin:5px;
+	text-decoration: none;
+	display: inline-block;
+
+	#ink > #border-radius > .all (@border-radius);
+	#ink > #buttons > .standard (@btn-bg , #333, @white, true);
+
+	&[disabled], 
+	.ink-disabled {
+		#ink > #states > .disabled (@btn-bg );
+	}
+
+	&.warning {
+		#ink > #buttons > .standard (@warning-bg,@white,darken(@warning-bg,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@warning-bg);
+		}
+	}
+
+  	&.caution {
+		#ink > #buttons > .standard (@caution-bg,@white,darken(@caution-bg,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@caution-bg);
+		}
+	}
+
+	&.success {
+		#ink > #buttons > .standard (@success-bg,@white,darken(@success-bg,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@success-bg);
+		}
+	}
+
+	&.info {
+		#ink > #buttons > .standard (@info-bg,@white,darken(@info-bg,25%));
+		&[disabled], 
+		.ink-disabled {
+			#ink > #states > .disabled (@info-bg);
+		}
+	}
+
+}
