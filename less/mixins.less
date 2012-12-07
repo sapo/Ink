@@ -1,5 +1,324 @@
 #ink {
 
+	#grid {
+
+		// only the minimum width was supplied
+        .breakpoint (@breakpoint-alias,@min-width,@max-width) when (isnumber(@min-width)) and (@min-width > 0) and (isnumber(@max-width)) and (@max-width = 0) {
+
+            @media screen and (min-width: ~"@{min-width}px") {
+
+            	// calculate the gutter with
+            	@gutter: floor(@min-width / 30);
+
+            	.ink-space  { margin: ~"@{gutter}px"; *overflow:hidden; *clear:both; }
+				.ink-vspace { margin-top: ~"@{gutter}px"; margin-bottom: ~"@{gutter}px"; }
+				.ink-hspace { margin-left: ~"@{gutter}px"; margin-right: ~"@{gutter}px"; }
+				.ink-gutter { margin-left: ~"@{gutter}px"; }
+
+            	// define the grid wrapper element rules
+            	.grid_wrapper () {
+            		(~".@{grid-class-prefix}-container"){
+            			width: @ink-site-width;
+            			*width: @ink-site-width;
+						padding: 0 ~"@{gutter}px";
+						margin: auto;
+            		}
+            	}
+
+            	.grid_gutter () {
+            		(~".@{grid-class-prefix}-gutter"){
+						margin-left: 0 ~"@{gutter}px";
+            		}
+            	}
+
+            	// define the grid row element rules
+            	.grid_row () {
+            		(~".@{grid-class-prefix}-row"){
+            			margin-left: ~"-@{gutter}px";
+						*zoom: 1;
+						*position: relative;
+						*z-index: @layer-10;
+            		}
+            	}
+            	
+            	// define the grid units rules
+                .grid_units (@index) when (@index > 0) and (@index = 100){
+                    (~".@{breakpoint-alias}@{index}") { 
+                        width: auto;
+                        max-width: 100%; 
+                        clear: both; 
+                        @index_ie: 100 - 0.0531914894;
+                        *width: ~"@{index_ie}%";
+                        *overflow:hidden;
+                    }
+                    .grid_units (@index - 10);
+                }
+                .grid_units (@index) when (@index > 0){
+                    (~".@{breakpoint-alias}@{index}") { 
+                        width: ~"@{index}%";
+                        @index_ie: @index - 0.0531914894;
+                        *width: ~"@{index_ie}%";
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    .grid_units (@index - 10);
+                }
+                // stop the recursion
+                .grid_units (0) {}
+
+                // define the odd (33,66,75) grid units ruls
+                .odd_grid_units () {
+                    (~".@{breakpoint-alias}33") { 
+                        width: 33%;
+                        width: 33-0.0531914894%;
+                        *margin-left:-1px;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    (~".@{breakpoint-alias}66") { 
+                        width: 66%;
+                        width: 66-0.0531914894%;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    (~".@{breakpoint-alias}75") { 
+                        width: 75%;
+                        width: 75-0.0531914894%;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                }
+
+                // define the rules for :empty grid units
+                .empty_grid_units (@index) when (@index > 0){
+                	(~".@{breakpoint-alias}@{index}:empty") { 
+                        clear: both;
+                    }
+                    .empty_grid_units (@index - 10);
+                }
+                .empty_grid_units (0) {}
+
+                // generate the grid wrapper element rules
+            	.grid_wrapper ();
+            	.grid_row ();
+            	.grid_gutter ();
+                .grid_units (100);
+                .odd_grid_units ();
+                .empty_grid_units (100);
+            }
+        }
+
+        // minimum and maximum width were supplied
+        .breakpoint (@breakpoint-alias,@min-width,@max-width) when (isnumber(@min-width)) and (@min-width > 0) and (isnumber(@max-width)) and (@max-width > 0) {
+            @media screen and (min-width: ~"@{min-width}px") and (max-width: ~"@{max-width}px")  {
+
+            	// calculate the gutter with
+            	@gutter: floor(@max-width / 30);
+
+            	// define the grid wrapper element rules
+            	.grid_wrapper () {
+            		(~".@{grid-class-prefix}-container"){
+            			width: auto;
+            			padding: 0 ~"@{gutter}px";
+            		}
+            	}
+
+            	.grid_gutter () {
+            		(~".@{grid-class-prefix}-gutter"){
+						margin-left: ~"@{gutter}px";
+            		}
+            	}
+
+            	// define the grid row element rules
+            	.grid_row () {
+            		(~".@{grid-class-prefix}-row"){
+            			margin-left: ~"-@{gutter}px";
+						*zoom: 1;
+						*position: relative;
+						*z-index: @layer-10;
+            		}
+            	}
+            	
+            	// define the grid units rules
+                .grid_units (@index) when (@index > 0) and (@index = 100){
+                    (~".@{breakpoint-alias}@{index}") { 
+                        width: auto;
+                        max-width: 100%; 
+                        clear: both; 
+                        @index_ie: 100 - 0.0531914894;
+                        *width: ~"@{index_ie}%";
+                        *overflow:hidden;
+                    }
+                    .grid_units (@index - 10);
+                }
+                .grid_units (@index) when (@index > 0){
+                    (~".@{breakpoint-alias}@{index}") { 
+                        width: ~"@{index}%";
+                        @index_ie: @index - 0.0531914894;
+                        *width: ~"@{index_ie}%";
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    .grid_units (@index - 10);
+                }
+                // stop the recursion
+                .grid_units (0) {}
+
+                // define the odd (33,66,75) grid units ruls
+                .odd_grid_units () {
+                    (~".@{breakpoint-alias}33") { 
+                        width: 33%;
+                        width: 33-0.0531914894%;
+                        *margin-left:-1px;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    (~".@{breakpoint-alias}66") { 
+                        width: 66%;
+                        width: 66-0.0531914894%;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    (~".@{breakpoint-alias}75") { 
+                        width: 75%;
+                        width: 75-0.0531914894%;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                }
+
+                // define the rules for :empty grid units
+                .empty_grid_units (@index) when (@index > 0){
+                	(~".@{breakpoint-alias}@{index}:empty") { 
+                        clear: both;
+                    }
+                    .empty_grid_units (@index - 10);
+                }
+                .empty_grid_units (0) {}
+
+                // generate the grid wrapper element rules
+            	.grid_wrapper ();
+            	.grid_row ();
+            	.grid_gutter ();
+                .grid_units (100);
+                .odd_grid_units ();
+                .empty_grid_units (100);
+            }
+        }
+
+        .breakpoint (@breakpoint-alias,@min-width,@max-width) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width > 0) {
+            // Only the min-width was supplied
+            @media screen and (max-width: ~"@{max-width}px") {
+
+                
+
+            	// calculate the gutter with
+            	@gutter: floor(@max-width / 30);
+
+            	// define the grid wrapper element rules
+            	.grid_wrapper () {
+            		(~".@{grid-class-prefix}-container"){
+            			width: auto;
+						padding: 0 ~"@{gutter}px";
+            		}
+            	}
+
+            	.grid_gutter () {
+            		(~".@{grid-class-prefix}-gutter"){
+						margin-left: 0;
+            		}
+            	}
+
+            	// define the grid row element rules
+            	.grid_row () {
+            		(~".@{grid-class-prefix}-row"){
+            			margin-left: 0;
+						// *zoom: 1;
+						// *position: relative;
+						// *z-index: @layer-10;
+            		}
+            	}
+            	
+            	// define the grid units rules
+                .grid_units (@index) when (@index > 0) and (@index = 100){
+                    (~".@{breakpoint-alias}@{index}") { 
+                        width: auto;
+                        max-width: 100%; 
+                        clear: both; 
+                        @index_ie: 100 - 0.0531914894;
+                        *width: ~"@{index_ie}%";
+                        *overflow:hidden;
+                    }
+                    .grid_units (@index - 10);
+                }
+                .grid_units (@index) when (@index > 0){
+                    (~".@{breakpoint-alias}@{index}") { 
+                        width: ~"@{index}%";
+                        @index_ie: @index - 0.0531914894;
+                        *width: ~"@{index_ie}%";
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    .grid_units (@index - 10);
+                }
+                // stop the recursion
+                .grid_units (0) {}
+
+                // define the odd (33,66,75) grid units ruls
+                .odd_grid_units () {
+                    (~".@{breakpoint-alias}33") { 
+                        width: 33%;
+                        width: 33-0.0531914894%;
+                        *margin-left:-1px;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    (~".@{breakpoint-alias}66") { 
+                        width: 66%;
+                        width: 66-0.0531914894%;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                    (~".@{breakpoint-alias}75") { 
+                        width: 75%;
+                        width: 75-0.0531914894%;
+                        float: left; 
+						*zoom: 1; 
+						*overflow:hidden;
+                    }
+                }
+
+                // define the rules for :empty grid units
+                .empty_grid_units (@index) when (@index > 0){
+                	(~".@{breakpoint-alias}@{index}:empty") { 
+                        clear: both;
+                    }
+                    .empty_grid_units (@index - 10);
+                }
+                .empty_grid_units (0) {}
+
+                // generate the grid wrapper element rules
+            	.grid_wrapper ();
+            	.grid_row ();
+            	.grid_gutter ();
+                .grid_units (100);
+                .odd_grid_units ();
+                .empty_grid_units (100);
+            }
+        }
+    }
+
 	#border-radius {
 
 		// set the same border radius to all corners
