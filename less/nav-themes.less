@@ -8,7 +8,8 @@
             a { 
                 color: @text-color;
                 &:hover {
-                    background: fade(@black,25%);
+                    background: fade(@black,20%);
+                    color: @white;
                 }
             }
         }
@@ -17,13 +18,15 @@
         &.menu {
 
             // default white theme
-            #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+            #ink > #gradients > .gradient (@white, darken(@white,7%), 150%);
 
             li {
 
                 &.active {
                     a {
-                        background: fade(@black,25%);
+                        background: fade(@black,30%);
+                        color: @white;
+                        #ink > #shadows > .text-shadow (0,1px,0,fade(@black,40%));
                     }
                 }
 
@@ -36,9 +39,9 @@
                             color: @text-color;
                             border-bottom: 1px solid fade(@black,15%);
                             &:hover {
-                                background: fade(@black,25%);
+                                background: fade(@black,30%);
+                                color: @white;
                             }
-                            &:last-child a { border: none; }
                         }
                     }
                 }
@@ -63,15 +66,15 @@
 
             // grey theme
             &.grey {
-                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+                #ink > #gradients > .gradient (@grey-45, @grey-65, 150%);
                 li {
                     ul.submenu { 
                         background: @white;
                         li {
-
                             a {
-                                color: @text-color;
-                                &:last-child a { border: none; }
+                                &:hover {
+                                    background: lighten(@black,40%); 
+                                }
                             }
                         }
                     }
@@ -88,11 +91,10 @@
                             a {
                                 color: @text-color;
                                 &:hover {
-                                    background: lighten(@black,30%);
+                                    background: lighten(@black,20%);
                                     color: @white;
                                 }
                             }      
-                            &:last-child a { border: none; }
                         }
                     }
                 }
@@ -112,7 +114,6 @@
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }                        
                         }
                     }
                 }
@@ -132,7 +133,6 @@
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }
                         }
                     }
                 }
@@ -152,7 +152,6 @@
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }
                         }
                     }
                 }
@@ -172,13 +171,12 @@
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }
                         }
                     }
                 }
             }
 
-            &.black, &.orange, &.blue, &.green, &.red {
+            &.grey, &.black, &.orange, &.blue, &.green, &.red {
                 li {
                     a {
                         color: @white;
@@ -338,7 +336,7 @@
             // grey theme
             &.grey {
                 li {
-                    #ink > #gradients > .gradient (@grey-15, @grey-35, 150%);
+                    #ink > #gradients > .gradient (@grey-45, @grey-65, 150%);
                     &.disabled {
                         a {
                             color: @grey-40;
@@ -517,7 +515,7 @@
 
             // grey theme
             &.grey {
-                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+                #ink > #gradients > .gradient (@grey-45, @grey-65, 150%);
                 li {
                     &:after {
                         color: @text-color;
@@ -789,8 +787,117 @@
                 }
             }
         }
+        // INK:NAVIGATION:PILLS
+        
+        // INK:NAVIGATION:TABS
+        &.tabs {
+
+            border-bottom: 1px solid @grey-15;
+
+            li {
+                &.active {
+                    a {
+                        #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                        border: 1px solid @grey-15;
+                        border-bottom: none;
+                    }
+                }
+                a {
+                    &:hover {
+                        background: @grey-10;
+                        color: @text-color;
+                    }
+                }
+            }
+
+            // grey theme
+            &.grey {
+                li {
+                    &.active {
+                        a {
+                            #ink > #gradients > .gradient (@grey-45, @grey-65, 150%);
+                            border-bottom: none;
+                            color: @white;
+                        }
+                    }
+                }
+            }
+
+            &.black {
+                li {
+                    &.active {
+                        a { 
+                            #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                            border-bottom: none;
+                            color: @white;
+                        }
+                    }
+                }
+            }
+
+            &.orange {
+                li {
+                    &.active {
+                        a {
+                            #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                            border-bottom: none;
+                            color: @white;
+                        }
+                    }
+                }
+            }
+
+            &.blue {
+                li {
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+                    }
+                }
+            }
+
+            &.green {
+                li {
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                    }
+                }
+            }
+
+            &.red {
+                li {
+                    &:hover, &.active {
+                        #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                    }
+                }
+            }
+
+            &.orange, &.blue, &.green, &.red {
+                li {
+                    &.active {
+                        
+                        a {
+                            color: @white;
+                        }
+                    }
+                }    
+            }
+
+            &.rounded {
+                li {
+                    a { #ink > #border-radius > .top (@nav-rounded-border-radius * 2); }
+                }
+            }
+
+            // add shadows
+            &.shadowed {
+                li {
+                    #ink > #shadows > .box-shadow (0px, 0px, 2px, 0, fade(@black,30%));
+                }
+            }
+        }
+        // INK:NAVIGATION:TABS
     }
-    // INK:NAVIGATION:PILLS
+
 
 }
 
