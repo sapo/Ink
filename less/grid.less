@@ -1,0 +1,33 @@
+.ink-grid (@width,@gutter) when (isnumber(@width)) and (@width > 0) {
+    (~".@{grid-class-name}") {
+        width: 
+        max-width: ~"@{width}px";
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0 ~"@{gutter}px";
+        box-sizing: content-box;
+    }
+}
+
+.ink-grid (@width) when (isnumber(@width)) and (@width = 0) {
+    (~".@{grid-class-name}") {
+        width: auto;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0 ~"@{gutter}px";
+        box-sizing: content-box;
+    }
+}
+
+.ink-grid (@site-width;);
+
+.center-column {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.column-group .column-group {
+  margin-bottom: 0;
+}
