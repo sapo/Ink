@@ -1,33 +1,40 @@
-.ink-grid (@width,@gutter) when (isnumber(@width)) and (@width > 0) {
-    (~".@{grid-class-name}") {
-        width: 
-        max-width: ~"@{width}px";
-        margin: 0 auto;
-        overflow: hidden;
-        padding: 0 ~"@{gutter}px";
-        box-sizing: content-box;
-    }
-}
+// grid-large.less
 
-.ink-grid (@width) when (isnumber(@width)) and (@width = 0) {
-    (~".@{grid-class-name}") {
-        width: auto;
-        max-width: 100%;
-        margin: 0 auto;
-        overflow: hidden;
-        padding: 0 ~"@{gutter}px";
-        box-sizing: content-box;
-    }
-}
+// This mixin takes up to five arguments to generate the css for media query breakpoints:
 
-.ink-grid (@site-width;);
+// 1. A breakpoint classname prefix to help identify the css classes.
+// 2. The media query screen min-width parameter wich can be 0 or greater integer .
+// 3. The media query screen max-width parameter wich can be 0 or greater integer.
+// 4. The breakpoint grid gutter size as a decimal value that converts to em units.
+// 5. A optional boolean parameter (TRUE) that will generate css for a default, non media query dependent breakpoint, usually the largest.
 
-.center-column {
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
-}
+// LARGE SCREENS ( width > 960px)
+#ink > #grid > .set-breakpoint (@large-class-prefix,@large-min-width,@large-max-width,@large-gutter-width,true);
 
-.column-group .column-group {
-  margin-bottom: 0;
-}
+// MEDIUM SCREENS ( width > 650px and < 959px)
+#ink > #grid > .set-breakpoint (@medium-class-prefix,@medium-min-width,@medium-max-width,@medium-gutter-width);
+
+// SMALL SCREENS ( width < 649px )
+#ink > #grid > .set-breakpoint (@small-class-prefix,@small-min-width,@small-max-width,@small-gutter-width);
+
+
+
+
+// @media screen and (min-width: @medium-min-width) and (max-width: @medium-max-width) {
+//     .medium-center {
+//         float: none;
+//         margin-left: auto;
+//         margin-right: auto;
+//     }
+//     .medium-right {
+//         float: none;
+//         margin-left: auto;
+//         margin-right: auto;
+//     }
+// }
+
+// .center-column {
+//     float: none;
+//     margin-left: auto;
+//     margin-right: auto;
+// }
