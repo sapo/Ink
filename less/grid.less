@@ -1,4 +1,25 @@
-// grid-large.less
+// grid.less
+
+// HELPER CLASSES
+
+.column-left {
+    float: left;
+}
+
+.column-center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.column-right {
+    float: right;
+}
+
+.content-left { text-align: left; }
+.content-center { text-align: center;}
+.content-right { text-align: right; }
+
 
 // This mixin takes up to five arguments to generate the css for media query breakpoints:
 
@@ -16,25 +37,3 @@
 
 // SMALL SCREENS ( width < 649px )
 #ink > #grid > .set-breakpoint (@small-class-prefix,@small-min-width,@small-max-width,@small-gutter-width);
-
-
-
-
-// @media screen and (min-width: @medium-min-width) and (max-width: @medium-max-width) {
-//     .medium-center {
-//         float: none;
-//         margin-left: auto;
-//         margin-right: auto;
-//     }
-//     .medium-right {
-//         float: none;
-//         margin-left: auto;
-//         margin-right: auto;
-//     }
-// }
-
-// .center-column {
-//     float: none;
-//     margin-left: auto;
-//     margin-right: auto;
-// }
