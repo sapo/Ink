@@ -1,9 +1,17 @@
 @import "__colors.less";
 @import "__grid.less";
-@import "__navigation.less";
 @import "__typography.less";
-@import "old/conf.less";
 @import "mixins.less";
+
+.animate(@speed) {
+	transition: all ease-in-out @speed;
+	-o-transition: all ease-in-out @speed;
+	-moz-transition: all ease-in-out @speed;
+	-webkit-transition: all ease-in-out @speed;
+}
+
+@themeColor					: #131e24 ;
+@themeBackground			: #DEEDF1;
 
 @topbar-height              : 40px;
 @topbar-bgColor             : #222;
@@ -11,23 +19,6 @@
 @topbar-colorHover          : @white;
 @topbar-margin              : auto;
 @topbar-fontSize            : 14px;
-
-@v-nav-height        		: 40px;
-@v-nav-bgColor       		: @white;
-@v-nav-color         		: @black;
-@v-nav-color-active  		: @white;
-@v-nav-fontSize      		: 14px;
-@v-nav-margin        		: auto;
-
-.animate(@speed){
-	transition: all ease-in-out @speed;
-	-o-transition: all ease-in-out @speed;
-	-moz-transition: all ease-in-out @speed;
-	-webkit-transition: all ease-in-out @speed;
-}
-
-@themeColor: #131e24 ;
-@themeBackground: #DEEDF1;
 
 h2 span {
 	padding-right: .5em;
@@ -101,37 +92,41 @@ a.active 	{color: @link-active-color;}
 
 /*............................................  Homepage  ...................................................*/
 .whatIs {
-	padding: 2em 0 .8em;
-	font-size:1.25em;
-}
-
-.whatIs h2 {
-	font-size: 3em; 
-	letter-spacing: -0.02em;
-	color: @themeColor;
-}
-
-.whatIs p {margin:0 0 .5em 0}
-
-#download {text-align:center}
-
-#download a {
-	font-weight: bold;
-	padding:.8em;
-	display: block;
-	#ink > #gradients > .gradient (#2e2e2e, #222, 100%);
-	#ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
-	#ink > #border-radius > .all (@border-radius);
-	color: #FFF;
-} 
-
-#download a:hover {
-	#ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
-	text-decoration: none;
+	margin-top: 3em;
+	margin-bottom: 2em;
+	font-size: 1.25em;
 	
-} 
+	h2 {
+		color: @themeColor;
+	}
 
-#download p {margin:1em;}
+	p {
+		margin:0 0 .5em 0
+	}
+}
+
+#download {
+	text-align:center;
+
+	a {
+		font-weight: bold;
+		padding:.8em;
+		display: block;
+		#ink > #gradients > .gradient (#2e2e2e, #222, 100%);
+		#ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
+		#ink > #border-radius > .all (@border-radius);
+		color: #FFF;
+	
+		&:hover {
+			#ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
+			text-decoration: none;
+		}
+	}
+
+	p {
+		margin: 1em;
+	}
+}
 
 .ink-download {
 	text-align:center
@@ -144,6 +139,19 @@ a.active 	{color: @link-active-color;}
 /*..........................................  Ink-UI  ..........................................*/
 .ink-button.toggleTrigger {
 	margin:1em 0 0 0
+}
+
+.ink-section { 
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #ccc; 
+	*overflow:hidden; *clear:both;
+
+	&:last-child { 
+		border-bottom: none;
+		margin-bottom: 0; 
+		padding-bottom: 0;
+	}
 }
 
 
@@ -183,6 +191,11 @@ a.active 	{color: @link-active-color;}
 }	
 
 /*...................................................  Footer  ...................................................*/
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
 
 footer .SAPOlogo {
 	background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
@@ -235,10 +248,9 @@ footer ul.sociallinks li a.Twt_link {background: url("../imgs/icon_Sprite.png") 
 footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px}
 
 #topbar {	
-	position: static;
+	position: fixed;
 	top:0;
 	width: 100%;
-	height:@topbar-height;
 	background:@topbar-bgColor;
 	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
 	margin:@topbar-margin;
@@ -268,7 +280,6 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 
 #topbar .horizontal a.logoPlaceholder {
 	width:44px;
-	padding: 0;
 	text-indent:-5000px;
 	background:url(../imgs/logo_topbar.png);
 	margin:0 1em 0 0;
@@ -335,7 +346,7 @@ div {
 				display: block;
 				text-align: center;
 				padding-bottom: 4px;
-				background: @body-background;
+				// background: @body-background;
 				#ink > #shadows > .text-shadow(0,2px,1px,@white);
 				#ink > #shadows > .box-shadow(0,2px,1px,0,@grey-20);
 			}
@@ -344,7 +355,7 @@ div {
 		div {
 			&.examples {
 				// display: none;
-				padding-top: @padding;
+				// padding-top: @padding;
 
 				.example-container {	
 					#ink > #border-radius > .all(6px);
@@ -416,7 +427,7 @@ pre.prettyprint {
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
 	box-shadow: 0 1px 2px rgba(0,0,0,.1);
-	white-ink-space: pre-wrap;
+	white-space: pre-wrap;
 }
 
 code {
