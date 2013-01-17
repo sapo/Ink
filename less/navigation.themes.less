@@ -3,16 +3,6 @@
 
     ul {
 
-        // defaults for all ink nav systems
-        li {
-            a { 
-                color: @text-color;
-                &:hover {
-                    background: fade(@black,25%);
-                }
-            }
-        }
-
         // INK:NAVIGATION:MENU
         &.menu {
 
@@ -43,13 +33,13 @@
                     }
                 }
 
+                a {
+                    &:hover {
+                        background: fade(@black,25%);
+                    }
+                }
+
             }
-
-            // // INK:NAVIGATION:MENU:HORIZONTAL
-            // &.horizontal {
-
-            // }
-            // // INK:NAVIGATION:MENU:HORIZONTAL
 
             // INK:NAVIGATION:MENU:VERTICAL
             &.vertical {
@@ -92,7 +82,9 @@
                                     color: @white;
                                 }
                             }      
-                            &:last-child a { border: none; }
+                            &:last-child a {
+                                border: none;
+                            }
                         }
                     }
                 }
@@ -100,7 +92,7 @@
 
             // orange theme
             &.orange {
-                #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
                 li {
                     ul.submenu { 
                         background: @white;
@@ -108,11 +100,13 @@
                             a {
                                 color: @text-color;
                                 &:hover {
-                                    background: darken(desaturate(@warning-bg,10%),5%);
+                                    background: darken(desaturate(@orange,10%),5%);
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }                        
+                            &:last-child a {
+                                border: none;
+                            }
                         }
                     }
                 }
