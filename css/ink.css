@@ -508,19 +508,52 @@ table {
   src: url('../font/ubuntumono-ri-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-ri-webfont.woff') format('woff'), url('../font/ubuntumono-ri-webfont.ttf') format('truetype'), url('../font/ubuntumono-ri-webfont.svg#ubuntu_monoitalic') format('svg');
 }
 
+.column-left {
+  float: left;
+}
+
+.column-center {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.column-right {
+  float: right;
+}
+
+.content-left {
+  text-align: left;
+}
+
+.content-center {
+  text-align: center;
+}
+
+.content-right {
+  text-align: right;
+}
+
 .ink-grid {
   width: auto;
   max-width: 1024px;
   padding: 0 2em;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .column-group {
   width: auto;
   margin-bottom: 2em;
-  overflow: hidden;
   clear: both;
+}
+
+.column-group:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: ".";
+  visibility: hidden;
+  zoom: 1;
 }
 
 .column-group.gutters {
@@ -673,6 +706,10 @@ table {
   clear: both;
 }
 
+.large-column-left {
+  float: left;
+}
+
 .large-column-center {
   float: none;
   margin-right: auto;
@@ -692,7 +729,7 @@ table {
 }
 
 .large-content-right {
-  text-align: right;
+  text-align: center;
 }
 
 @media screen and (min-width: 650px) and (max-width: 959px) {
@@ -701,13 +738,19 @@ table {
     max-width: 1024px;
     padding: 0 1.5em;
     margin: 0 auto;
-    overflow: hidden;
   }
   .column-group {
     width: auto;
     margin-bottom: 1.5em;
-    overflow: hidden;
     clear: both;
+  }
+  .column-group:after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: ".";
+    visibility: hidden;
+    zoom: 1;
   }
   .column-group.gutters {
     margin-left: -1.5em;
@@ -839,6 +882,9 @@ table {
   .medium-10:empty {
     clear: both;
   }
+  .medium-column-left {
+    float: left;
+  }
   .medium-column-center {
     float: none;
     margin-right: auto;
@@ -864,13 +910,19 @@ table {
     max-width: 1024px;
     padding: 0 1em;
     margin: 0 auto;
-    overflow: hidden;
   }
   .column-group {
     width: auto;
     margin-bottom: 1em;
-    overflow: hidden;
     clear: both;
+  }
+  .column-group:after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: ".";
+    visibility: hidden;
+    zoom: 1;
   }
   .column-group.gutters {
     margin-left: -1em;
@@ -1002,6 +1054,9 @@ table {
   .small-10:empty {
     clear: both;
   }
+  .small-column-left {
+    float: left;
+  }
   .small-column-center {
     float: none;
     margin-right: auto;
@@ -1119,11 +1174,86 @@ p + h3,
 p + h4,
 p + h5,
 p + h6 {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 p + p {
   margin-top: 1em;
+}
+
+h1 + div,
+h2 + div,
+h3 + div,
+h4 + div,
+h5 + div,
+h6 + div,
+p + div {
+  margin-top: 1em;
+}
+
+pre + h1,
+div + h1,
+ul + h1,
+ol + h1,
+dl + h1,
+pre + h2,
+div + h2,
+ul + h2,
+ol + h2,
+dl + h2,
+pre + h3,
+div + h3,
+ul + h3,
+ol + h3,
+dl + h3,
+pre + h4,
+div + h4,
+ul + h4,
+ol + h4,
+dl + h4,
+pre + h5,
+div + h5,
+ul + h5,
+ol + h5,
+dl + h5,
+pre + h6,
+div + h6,
+ul + h6,
+ol + h6,
+dl + h6 {
+  margin-bottom: 1.5em;
+}
+
+pre + p,
+div + p,
+ul + p,
+ol + p,
+dl + p {
+  margin-bottom: 1em;
+}
+
+p + ul,
+h1 + ul,
+h2 + ul,
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+p + ol,
+h1 + ol,
+h2 + ol,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol,
+p + dl,
+h1 + dl,
+h2 + dl,
+h3 + dl,
+h4 + dl,
+h5 + dl,
+h6 + dl {
+  margin-bottom: 1em;
 }
 
 input,
