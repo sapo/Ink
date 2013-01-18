@@ -2232,6 +2232,10 @@ ul.icons li .icon-large:before {
 .ink-navigation ul.pagination li a {
   color: #555555;
 }
+.ink-navigation ul.pagination li a:hover {
+  background: rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
 .ink-navigation ul.pagination.grey li {
   background: #d9d9d9;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9d9d9', endColorstr='#a6a6a6');
