@@ -47,6 +47,10 @@
                     a {
                         border-bottom: 1px solid fade(@black,15%);
                     }
+                    
+                    &:last-child a { 
+                        border: none; 
+                    }
                 }
             }
             // INK:NAVIGATION:MENU:VERTICAL
@@ -312,21 +316,26 @@
                     a {
                         color: @grey-40;
                         #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
-                    }
-                    a {
+
                         &:hover {
                             background: none;
-
                         }
                     }
                 }
+                
                 &.active {
                     a { 
                         background: fade(@black,20%);
                     }
                 }
 
-                a { color: @text-color; }
+                a { 
+                    color: @text-color; 
+                    &:hover {
+                        background: fade(@black,25%);
+                        text-decoration: none;
+                    }
+                }
             }
 
             // grey theme
