@@ -53,7 +53,6 @@
                     }
                 }
             }
-            // INK:NAVIGATION:MENU:VERTICAL
 
             // grey theme
             &.grey {
@@ -252,43 +251,117 @@
 
                     li {
                         
-                        &:first-child, 
+                        &:first-child {
+                            
+                            #ink > #border-radius > .top (@nav-rounded-border-radius);
+
+                            .submenu {
+                                &.dropdown {
+                                    
+                                    #ink > #border-radius > .none ();
+                                
+                                    li {
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                        &:first-child,
+                                        &:last-child {
+                                            #ink > #border-radius > .none ();
+                                            a {
+                                                #ink > #border-radius > .none ();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
                         &:first-child a {
                             #ink > #border-radius > .top (@nav-rounded-border-radius);
                         }
 
-                        &:last-child, 
+                        &:last-child {
+                            #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+
+                            .submenu {
+                                &.dropdown {
+                                    #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                
+                                    li {
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                        &:first-child {
+                                            #ink > #border-radius > .none ();
+                                            a {
+                                                #ink > #border-radius > .none ();
+                                            }
+                                        }
+                                        &:last-child {
+                                            #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                            a {
+                                                #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        }
+
                         &:last-child a {
                             #ink > #border-radius > .bottom (@nav-rounded-border-radius);
                         }
 
-                        ul {
-
-                            &.submenu {
-                                #ink > #border-radius > .all (0, @nav-rounded-border-radius, @nav-rounded-border-radius, @nav-rounded-border-radius);
+                        .submenu {
+                            
+                            &.dropdown {
+                                
+                                #ink > #border-radius > .none ();
+                            
                                 li {
+                                    #ink > #border-radius > .none ();
                                     a {
                                         #ink > #border-radius > .none ();
                                     }
                                     &:first-child {
-                                        #ink > #border-radius > .all (0, @nav-rounded-border-radius, 0, 0);
+                                        #ink > #border-radius > .none ();
                                         a {
-                                            #ink > #border-radius > .all (0, @nav-rounded-border-radius, 0, 0);
+                                            #ink > #border-radius > .none ();
                                         }
                                     }
                                     &:last-child {
-                                        #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                        #ink > #border-radius > .none ();
                                         a {
-                                            #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                            #ink > #border-radius > .none ();
                                         }
                                     }
                                 }
                             }
 
+                            #ink > #border-radius > .all (0, @nav-rounded-border-radius, @nav-rounded-border-radius, @nav-rounded-border-radius);
+                            
+                            li {
+                                a {
+                                    #ink > #border-radius > .none ();
+                                }
+                                
+                                &:first-child {
+                                    #ink > #border-radius > .all (0, @nav-rounded-border-radius, 0, 0);
+                                    a {
+                                        #ink > #border-radius > .all (0, @nav-rounded-border-radius, 0, 0);
+                                    }
+                                }
+                                
+                                &:last-child {
+                                    #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                    a {
+                                        #ink > #border-radius > .bottom (@nav-rounded-border-radius);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-
             }
 
             // adds shadows
