@@ -139,7 +139,18 @@
                               (~".@{breakpoint-alias}content-right") {
                                     text-align: right;
                               }
-                        }
+                              (~".space") {
+                                    margin: @gutter-width;
+                              }
+                              (~".vspace") {
+                                    margin-top: @gutter-width;
+                                    margin-bottom: @gutter-width;
+                              }
+                              (~".hspace") {
+                                    margin-left: @gutter-width;
+                                    margin-right: @gutter-width;
+                              }
+                        }                        
 
                         .grid-container (@site-width);
                         .grid-column-group ();
@@ -257,6 +268,17 @@
                   		(~".@{breakpoint-alias}100:empty, .@{breakpoint-alias}90:empty, .@{breakpoint-alias}80:empty, .@{breakpoint-alias}75:empty, .@{breakpoint-alias}70:empty, .@{breakpoint-alias}66:empty, .@{breakpoint-alias}60:empty, .@{breakpoint-alias}50:empty, .@{breakpoint-alias}40:empty, .@{breakpoint-alias}33:empty, .@{breakpoint-alias}30:empty, .@{breakpoint-alias}25:empty, .@{breakpoint-alias}20:empty, .@{breakpoint-alias}10:empty") {
                   			clear: both;
                   		}
+                              (~".space") {
+                                    margin: @gutter-width;
+                              }
+                              (~".vspace") {
+                                    margin-top: @gutter-width;
+                                    margin-bottom: @gutter-width;
+                              }
+                              (~".hspace") {
+                                    margin-left: @gutter-width;
+                                    margin-right: @gutter-width;
+                              }
 
                   	}
 
@@ -423,6 +445,17 @@
                               (~".@{breakpoint-alias}content-right") {
                                     text-align: right;
                               }
+                              (~".space") {
+                                    margin: @gutter-width;
+                              }
+                              (~".vspace") {
+                                    margin-top: @gutter-width;
+                                    margin-bottom: @gutter-width;
+                              }
+                              (~".hspace") {
+                                    margin-left: @gutter-width;
+                                    margin-right: @gutter-width;
+                              }
                         }
 
                         .grid-container (@site-width);
@@ -564,6 +597,17 @@
                         }
                         (~".@{breakpoint-alias}content-right") {
                               text-align: center;
+                        }
+                        (~".space") {
+                              margin: @gutter-width;
+                        }
+                        (~".vspace") {
+                              margin-top: @gutter-width;
+                              margin-bottom: @gutter-width;
+                        }
+                        (~".hspace") {
+                              margin-left: @gutter-width;
+                              margin-right: @gutter-width;
                         }
                   }
 
