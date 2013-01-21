@@ -39,46 +39,120 @@ h1 small {font-size: .6em; color: #BFBFBF; font-weight: 100;}
 small {color: lighten(@text-color, 30%); font-size: .6em;}
 
 /* Paragraphs  */
+
 p { 
     line-height: 1.5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    & + p {
-        margin-top: 1em;
-    }
-} 
+// VERTICAL SPACING
 
-p {
-    + h1, + h2, + h3, + h4, + h5, + h6 {
+h1, h2, h3, h4, h5, h6 {
+
+    /* headings after pararaphs */
+    p + & {
         margin-top: 1.5em;
     }
+
+    /* paragraphs after headings */
+    & + p {
+        margin-top: 1em;
+    }
+
+    /* headings after lists */
+    ol + &, 
+    ul + &, 
+    dl + & {
+        margin-top: 1.5em;
+    }
+
+    /* lists after headings */
+    & + ol, 
+    & + ul, 
+    & + dl {
+        margin-top: 1em;
+    }
+
+    /* headings after pre and code elements */
+    pre + &, 
+    code + & {
+        margin-top: 1.5em;
+    }
+
+    /* pre and code elements after headings */
+    & + pre, 
+    & + code {
+        margin-top: 1em;
+    }
+
 }
 
-p + p {
-    margin-top: 1em;
-}
+p {
+    /* paragraphs after lists */
+    ol + &, 
+    ul + &, 
+    dl + & {
+        margin-top: 1.5em;
+    }
 
-h1, h2, h3, h4, h5, h6, p {
-    & + div {
+    /* lists after paragraphs */
+    & + ol, 
+    & + ul, 
+    & + dl {
+        margin-top: 1.5em;
+    }
+
+    /* paragraphs after pre and code elements */
+    pre + &, 
+    code + & {
+        margin-top: 1.5em;
+    }
+
+    /* pre and code elements after paragraphs */
+    & + pre, 
+    & + code {
         margin-top: 1em;
     }
 }
 
-pre, div, ul, ol, dl {
-    & + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
-        margin-bottom: 1.5em;
-    }
-    & + p {
-        margin-bottom: 1em;
-    }
-}
+// VERTICAL SPACING 
 
-p, h1, h2, h3, h4, h5, h6 {
-    & + ul, & + ol, & + dl {
-        margin-bottom: 1em;
-    }
-}
+
+// h1, h2, h3, h4, h5, h6 {
+//     & + p {
+//         margin-top: 1em;
+//     }
+// } 
+
+// p {
+//     + h1, + h2, + h3, + h4, + h5, + h6 {
+//         margin-top: 1.5em;
+//     }
+// }
+
+// p + p {
+//     margin-top: 1em;
+// }
+
+// h1, h2, h3, h4, h5, h6, p {
+//     & + div {
+//         margin-top: 1em;
+//     }
+// }
+
+// pre, div, ul, ol, dl {
+//     & + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+//         margin-bottom: 1.5em;
+//     }
+//     & + p {
+//         margin-bottom: 1em;
+//     }
+// }
+
+// p, h1, h2, h3, h4, h5, h6 {
+//     & + ul, & + ol, & + dl {
+//         margin-bottom: 1em;
+//     }
+// }
 
 input, textarea {
     //#ink > #text > .ink-font-stack();
