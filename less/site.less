@@ -92,8 +92,11 @@ a.active 	{color: @link-active-color;}
 
 /*............................................  Homepage  ...................................................*/
 .whatIs {
-	margin-top: 3em;
-	margin-bottom: 2em;
+
+	// margin-top: 3em;
+	// margin-bottom: 2em;
+	
+	margin: 2em 0;
 	font-size: 1.25em;
 	
 	h2 {
@@ -101,7 +104,7 @@ a.active 	{color: @link-active-color;}
 	}
 
 	p {
-		margin:0 0 .5em 0
+		// margin:0 0 .5em 0
 	}
 }
 
@@ -141,18 +144,18 @@ a.active 	{color: @link-active-color;}
 	margin:1em 0 0 0
 }
 
-.ink-section { 
-	margin-bottom: 1em;
-	padding-bottom: 1em;
-	border-bottom: 1px solid #ccc; 
-	*overflow:hidden; *clear:both;
+// .ink-section { 
+// 	// margin-bottom: 1em;
+// 	// padding-bottom: 1em;
+// 	border-bottom: 1px solid #ccc; 
+// 	*overflow:hidden; *clear:both;
 
-	&:last-child { 
-		border-bottom: none;
-		margin-bottom: 0; 
-		padding-bottom: 0;
-	}
-}
+// 	&:last-child { 
+// 		border-bottom: none;
+// 		margin-bottom: 0; 
+// 		padding-bottom: 0;
+// 	}
+// }
 
 
 /*..........................................  Footer  ..........................................*/
@@ -248,12 +251,12 @@ footer ul.sociallinks li a.Twt_link {background: url("../imgs/icon_Sprite.png") 
 footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px}
 
 #topbar {	
-	position: fixed;
+	position: static;
 	top:0;
 	width: 100%;
 	background:@topbar-bgColor;
 	#ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
-	margin:@topbar-margin;
+	margin: @topbar-margin;
 	z-index: 5000;
 	
 	.ink-navigation {
@@ -333,6 +336,7 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 	background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
 	background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
 	background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+	margin: 0;
 }
 
 div {
@@ -408,6 +412,7 @@ pre {
 	border: 1px solid rgba(0,0,0,.2);
 	#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
 	white-space: pre-wrap;
+	margin: 2em 0;
 	}
 
 	ol	{ 
@@ -450,4 +455,18 @@ code {
 	border: 1px solid #E0E0E0;
 	background: #E9E9E9;
 	padding: 0 4px;
+}
+
+section {
+
+	padding-bottom: 1.5em;
+	border-bottom: 1px solid #ccc; 
+
+	&:first-child {
+		padding-top: 0;
+	}
+
+	&:last-child {
+		border: none;
+	}
 }
