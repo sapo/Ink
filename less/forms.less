@@ -1,0 +1,416 @@
+form {
+
+	&.ink-form {
+
+		fieldset {
+
+			border: none;
+			margin-bottom: 1.5em;
+			padding: 0;
+
+			legend {
+
+				font-size: 1.438em;
+				font-weight: 700;
+				margin: 1em 0;
+				text-shadow: 0 1px 0 white;
+				display: block;
+				width: 100%;
+				border-bottom:1px solid #ddd;
+
+			}
+
+		}
+
+		input[type="color"],
+		input[type="date"],
+		input[type="datetime"],
+		input[type="time"],
+		input[type="month"],
+		input[type="week"],
+		input[type="email"],
+		input[type="number"],
+		input[type="range"],
+		input[type="tel"],
+		input[type="url"],
+		input[type="text"],
+		input[type="search"],
+		input[type="password"],
+		textarea,
+		select {
+			#ink > #border-radius > .all (@border-radius);
+			padding: @form-field-padding;
+			border:1px solid darken(@form-field-borderColor,10%);
+			resize: none;
+			font-size: @form-field-fontSize ;
+			//.box-sizing(border-box);
+			background:@form-field-bg;
+		}
+
+
+
+		.control {			
+
+				clear: both;
+				line-height: 2.5;
+				// margin-bottom: 1em;
+				padding: 0.2em;
+				overflow: hidden;
+				
+				&.required {
+						label:after {
+						content: "\f069";
+						color: @error-bg;
+						font-size: 0.8em;
+						line-height: 1;
+						margin-left: 0.1em;
+						font-weight: 500;
+						font-family: FontAwesome;
+						display: inline-block;
+						width: 1.25em;
+						text-align: center;
+					}
+				}
+
+				&.inline {
+
+					label {
+						float: left;
+						text-align: right;
+					}
+
+					input[type="color"],
+					input[type="date"],
+					input[type="datetime"],
+					input[type="time"],
+					input[type="month"],
+					input[type="week"],
+					input[type="email"],
+					input[type="number"],
+					input[type="range"],
+					input[type="tel"],
+					input[type="url"],
+					input[type="text"],
+					input[type="search"],
+					input[type="password"], {
+						float: left;
+					}
+
+				}
+
+				&.block {
+
+					label {
+						width: 100%;
+						text-align: left;
+					}
+
+					input[type="color"],
+					input[type="date"],
+					input[type="datetime"],
+					input[type="time"],
+					input[type="month"],
+					input[type="week"],
+					input[type="email"],
+					input[type="number"],
+					input[type="range"],
+					input[type="tel"],
+					input[type="url"],
+					input[type="text"],
+					input[type="reset"] {
+						width: 100%;
+					}
+				}				
+							
+		}
+
+		.control {
+
+			&.required {
+						label:after {
+						content: "\f069";
+						color: @error-bg;
+						font-size: 0.8em;
+						line-height: 1;
+						margin-left: 0.1em;
+						font-weight: 500;
+						font-family: FontAwesome;
+						display: inline-block;
+						width: 1.25em;
+						text-align: center;
+					}
+				}
+
+			&.validation {					
+
+				&.error {
+
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @errorColor);
+					}
+
+					p {
+
+						&.tip {
+							color: darken(@errorColor,10%);
+						}
+					}
+				}
+
+				&.warning {
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @warningColor);
+					}
+
+					p {
+
+						&.tip {
+							color: darken(@warningColor,10%);								
+						}
+					}
+				}
+			}
+		}
+
+		.control-group {
+
+			p.label {
+				color: @text-color;
+			}
+
+			&.validation {					
+	
+				&.error {
+
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @errorColor);
+					}
+
+					&+p {
+
+						&.tip {
+							color: darken(@errorColor,10%);
+						}
+					}
+				}
+
+				&.warning {
+					input, textarea, select {
+						#ink > #forms > .input_focus (10px, @warningColor);
+					}
+
+					&+p {
+
+						&.tip {
+							color: darken(@warningColor,10%);								
+						}
+					}
+				}
+			}
+
+
+			&.required {
+					p {
+						&.label {
+							color: @text-color;
+						}
+						&.label:after {
+							content: "\f069";
+							color: @error-bg;
+							font-size: 0.8em;
+							line-height: 1;
+							margin-left: 0.1em;
+							font-weight: 500;
+							font-family: FontAwesome;
+							display: inline-block;
+							width: 1.25em;
+							text-align: center;
+						}
+					}
+			}
+		
+		}		
+
+		.control, .control-group {
+			p.tip {
+				margin: 0;
+				line-height: 2.2;
+				font-size: 1em;
+				color: lighten(@text-color,35%);
+				position: relative;
+				margin-left: 0.1em;
+			}
+		}
+
+		&.inline {
+			p.tip {
+				&.space {
+								&.shorter { margin-left: 17% ;}
+								&.short { margin-left: 22% ;}
+								&.medium { margin-left: 27% ;}
+								&.wide { margin-left: 32% ;}
+								&.wider { margin-left: 37% ;}
+						}
+			}
+		}
+
+		label {
+			&.shorter { width: 15% ;}
+			&.short { width: 20% ;}
+			&.medium { width: 25% ;}
+			&.wide { width: 30% ;}
+			&.wider { width: 35% ;}
+		}
+
+		input, select, textarea {
+			&.shorter { width: 20% ;}
+			&.short { width: 40% ;}
+			&.medium { width: 60% ;}
+			&.wide { width: 78% ;}
+			&.wider { width: 90% ;}
+		}
+
+		.control {
+			margin-bottom: 0.5em;
+		}
+
+		ul {
+
+			&.control-group {
+
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+
+				li {
+					display: block;
+					overflow: hidden;
+					line-height: 1.5;
+					margin: 0;
+
+					label, input {
+						line-height: inherit;						
+					}
+
+					input {
+						// margin: 0;
+					}
+				}
+			}
+
+		}
+
+
+		&.inline {
+
+			label {
+				display: block;
+				float: left;
+				margin-right: .5em;
+				line-height: inherit;
+				text-align: right;
+				vertical-align: top;
+			}
+
+			textarea {
+				min-height: 5em;
+			}
+
+			input[type="checkbox"], input[type="radio"] {
+				line-height: inherit;
+				margin-top: 0.35em;
+				float: left;
+			}
+
+			input[type="checkbox"] + label, input[type="radio"] + label {
+				line-height: inherit;
+				margin: 0 1.55em 0 0.55em;
+				margin-top: 0;
+				width: auto;
+				min-width: auto;
+			}
+			
+			.ink-mini-input {
+				width:5em;
+				margin-right:.6em;
+			}
+
+			&.control {
+				line-height: inherit;
+			}
+
+		}
+
+		&.block {
+
+			.control {
+				display: block;
+				margin-bottom: 0;
+				line-height: 2;
+
+				&.inline {
+
+					label {
+						float: left;
+					}
+
+					input {
+						float: left;
+					}
+
+				}
+			}
+
+			label {
+				margin: 0.5em 0 0 0.2em;
+			}
+
+			input[type="color"],
+			input[type="date"],
+			input[type="datetime"],
+			input[type="time"],
+			input[type="month"],
+			input[type="week"],
+			input[type="email"],
+			input[type="number"],
+			input[type="range"],
+			input[type="tel"],
+			input[type="url"],
+			input[type="text"],
+			input[type="search"],
+			input[type="password"],
+			input[type=reset], 
+			select {
+				width: 100%;
+			}
+
+			textarea {
+				min-width: 100%;
+				max-width: 100%;
+				min-height: 5em;
+			}
+
+			input[type="checkbox"], input[type="radio"] {
+				line-height: 2;
+				margin-top: 0.55em;
+				float: left;
+				clear: left;
+			}
+
+			input[type="checkbox"] + label, input[type="radio"] + label {
+				float: left;
+				line-height: 2.5;
+				margin-left: 0.55em;
+				margin-top: -.3em;
+			}
+			
+			.ink-mini-input {
+				width:5em;
+				margin-right: 0.6em;
+			}
+
+		}
+
+	}
+
+}
