@@ -94,13 +94,18 @@
                         &.submenu {
                             top: 0;
                             left:100%;
-                            width: 8em;
+                            min-width: 8em;
                         
                             li {
-                                
                                 line-height: @navigation-line-height;
                                 float: none;
                                 position: static;
+                            }
+
+                            &.dropdown {
+                                position: relative;
+                                top: auto;
+                                left: auto;
                             }
                         }
                     }

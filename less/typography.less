@@ -303,15 +303,21 @@ ul, ol {
     li {
         margin:.5em 0; 
     }
+
+    &.inline {
+        li {
+            float:left;
+        }
+    }
 }
 
 .note {font-size: .9em; color: lighten(@text-color, 20%) }
 .note strong {color: @text-color;}
 
-// .label_new {background-color: @ink-alert-success-bg;}
-// .label_warning {background-color: @ink-alert-warning-bg;}
-// .label_error {background-color: @ink-alert-error-bg;}
-// .label_info {background-color: @ink-alert-info-bg;}
+.label_new {background-color: @success-bg;}
+.label_warning {background-color: @warning-bg;}
+.label_error {background-color: @error-bg;}
+.label_info {background-color: @info-bg;}
 
 h1 .label_new, h1 .label_warning, h1 .label_error, h1 .label_info,
 h2 .label_new, h2 .label_warning, h2 .label_error, h2 .label_info,
