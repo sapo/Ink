@@ -1,0 +1,59 @@
+// .label_new {background-color: @ink-alert-success-bg;}
+// .label_warning {background-color: @ink-alert-warning-bg;}
+// .label_error {background-color: @ink-alert-error-bg;}
+// .label_info {background-color: @ink-alert-info-bg;}
+
+// h1 .label_new, h1 .label_warning, h1 .label_error, h1 .label_info,
+// h2 .label_new, h2 .label_warning, h2 .label_error, h2 .label_info,
+// h3 .label_new, h3 .label_warning, h3 .label_error, h3 .label_info,
+// h4 .label_new, h4 .label_warning, h4 .label_error, h4 .label_info {
+//     font-size: 0.55em;
+//     vertical-align: top;
+// } 
+
+// hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}  
+// .lead {font-size: 1.1em; font-weight: bold;}
+
+
+// .ink-label {
+//     #ink > #text > .ink-font-stack;
+//     padding: 0.2em 0.5em;
+//     text-transform: uppercase;
+//     font-weight: bold;
+//     font-size: 0.85em;
+//     #ink > #border-radius > .all (2px);
+// }
+
+// mark {
+//     padding: @padding / 4 @padding / 2;
+//     background: lighten(@yellow,25%);
+// }
+
+.label {
+    padding: 0.25em 0.5em 0.2em;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    color: white;
+    white-space: nowrap;
+    #ink > #border-radius > .all (2px);
+
+    &.new { 
+        background-color: @success-bg; 
+        #ink > #shadows > .text-shadow (0,1px,0,darken(@success-bg,16%)); 
+    }
+
+    &.warning { 
+        background-color: @warning-bg; 
+        #ink > #shadows > .text-shadow (0,1px,0,darken(@warning-bg,16%)); 
+    }
+
+    &.error { 
+        background-color: @error-bg; 
+        #ink > #shadows > .text-shadow (0,1px,0,darken(@error-bg,16%)); 
+    }
+    
+    &.info { 
+        background-color: @info-bg; 
+        #ink > #shadows > .text-shadow (0,1px,0,darken(@info-bg,16%)); 
+    }
+}
