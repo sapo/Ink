@@ -15,14 +15,22 @@ body {
     font-family: @serif-font-stack;
 }
 
-a           {color: @link-color; text-decoration: none;}
-a:hover     {color: @link-hover-color; text-decoration: underline;}
+a {
+    color: @link-color; 
+    text-decoration: none;
+}
+
+a:hover {
+    color: @link-hover-color; 
+    text-decoration: underline;
+}
 
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold; 
     color: @headings-color;
 }
+
 h1 {font-size: 2.5em;}
 h2 {font-size: 2em;}
 h3 {font-size: 1.715em;}
@@ -46,73 +54,173 @@ p {
 
 // VERTICAL SPACING
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, section {
 
-    /* headings after pararaphs */
-    p + & {
+    // // headings after pararaphs
+    // p + & {
+    //     margin-top: 1.5em;
+    // }
+
+    // // paragraphs after headings
+    // & + p {
+    //     margin-top: 1em;
+    // }
+
+    // // headings after lists
+    // ol + &, 
+    // ul + &, 
+    // dl + & {
+    //     margin-top: 1.5em;
+    // }
+
+    // // lists after headings
+    // & + ol, 
+    // & + ul, 
+    // & + dl {
+    //     margin-top: 1em;
+    // }
+
+    // // headings after pre and code elements
+    // pre + &, 
+    // code + & {
+    //     margin-top: 1.5em;
+    // }
+
+    // // pre and code elements after headings
+    // & + pre, 
+    // & + code {
+    //     margin-top: 1em;
+    // }
+
+    // & + & {
+    //     margin-top: 1em;
+    // }
+
+    address + &,
+    article + &,
+    aside + &,
+    audio + &,
+    blockquote + &,
+    canvas + &,
+    details + &,
+    dl + &,
+    figure + &,
+    footer + &,
+    header + &,
+    hr + &,
+    nav + &,
+    ol + &,
+    p + &,
+    pre + &,
+    table + &,
+    ul + &,
+    video + & {
         margin-top: 1.5em;
     }
 
-    /* paragraphs after headings */
-    & + p {
+    & + address,
+    & + article,
+    & + aside,
+    & + audio,
+    & + blockquote,
+    & + canvas,
+    & + details,
+    & + dl,
+    & + figure,
+    & + footer,
+    & + header,
+    & + hr,
+    & + nav,
+    & + ol,
+    & + p,
+    & + pre,
+    & + table,
+    & + ul,
+    & + video {
         margin-top: 1em;
     }
 
-    /* headings after lists */
-    ol + &, 
-    ul + &, 
-    dl + & {
+    div + & {
         margin-top: 1.5em;
     }
 
-    /* lists after headings */
-    & + ol, 
-    & + ul, 
-    & + dl {
-        margin-top: 1em;
-    }
-
-    /* headings after pre and code elements */
-    pre + &, 
-    code + & {
+    & + div {
         margin-top: 1.5em;
     }
 
-    /* pre and code elements after headings */
-    & + pre, 
-    & + code {
+    & + & {
         margin-top: 1em;
     }
 
 }
 
-p {
-    /* paragraphs after lists */
-    ol + &, 
-    ul + &, 
-    dl + & {
+address,
+article,
+aside,
+audio,
+blockquote,
+canvas,
+details,
+dl,
+figure,
+footer,
+header,
+hr,
+nav,
+ol,
+p,
+pre,
+table,
+ul,
+video {
+
+    div + & {
         margin-top: 1.5em;
     }
 
-    /* lists after paragraphs */
-    & + ol, 
-    & + ul, 
-    & + dl {
+    & + div {
         margin-top: 1.5em;
     }
 
-    /* paragraphs after pre and code elements */
-    pre + &, 
-    code + & {
-        margin-top: 1.5em;
-    }
-
-    /* pre and code elements after paragraphs */
-    & + pre, 
-    & + code {
+    & + & {
         margin-top: 1em;
     }
 }
+
+
+
+// p {
+//     // paragraphs after lists
+//     ol + &, 
+//     ul + &, 
+//     dl + & {
+//         margin-top: 1.5em;
+//     }
+
+//     // lists after paragraphs
+//     & + ol, 
+//     & + ul, 
+//     & + dl {
+//         margin-top: 1.5em;
+//     }
+
+//     // paragraphs after pre and code elements
+//     pre + &, 
+//     code + & {
+//         margin-top: 1.5em;
+//     }
+
+//     // pre and code elements after paragraphs
+//     & + pre, 
+//     & + code {
+//         margin-top: 1em;
+//     }
+
+//     & + & {
+//         margin-top: 1em;
+//         text-indent: 0;
+//     }
+// }
 
 // VERTICAL SPACING 
 

@@ -1,6 +1,6 @@
 # CSS output directory
 INK_OUTPUT = ./css/
-INK_SITE_OUTPUT = /Users/pedro/Development/Ink-docs/site/tree/assets/css/
+INK_SITE_OUTPUT = /Users/pedrocorreia/Development/Ink-docs/site/tree/assets/css/
 
 # LESS files directory
 LESS_DIR = ./less/
