@@ -38,22 +38,13 @@ mark {
 	padding:1px 3px;
 }
 
-.gridExample .box p, .gridExample2 div p, .gridExample2 .level1 {
-	#ink > #border-radius > .all (@border-radius);
-	background-color: #DEEDF1;
-	margin:.2em;
-	padding: .75em;
-	color: #7AA6B3;
-	text-align: right;
-}
+.gridExample {
 
-.gridExample2 .level1 		{ padding: .1em; overflow: hidden;}
-.gridExample2 .level1 > p	{ padding:.75em 0; text-align: center; }
-.gridExample2 .level2 p		{ margin:2px; text-align: center; background-color: #fff;}
-
-.gridExample, .gridExample2 {
-	.ink-vspace {
-		margin-bottom: 0;
+	p {
+		#ink > #border-radius > .all(4px);
+		padding: .8em;
+		text-align: center;
+		background: #DEEDF1;
 	}
 }
 
@@ -193,7 +184,7 @@ a.active 	{color: @link-active-color;}
 /*...................................................  Footer  ...................................................*/
 
 footer {
-	position: absolute;
+	//position: absolute;
 	bottom: 0;
 }
 
