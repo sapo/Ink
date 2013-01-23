@@ -237,6 +237,29 @@
 				}
 			}
 
+            .control-inline (@breakpoint-alias) {
+                .ink-form {
+                    .control {
+                        &.@{breakpoint-alias}100,
+                        &.@{breakpoint-alias}90,
+                        &.@{breakpoint-alias}80,
+                        &.@{breakpoint-alias}75,
+                        &.@{breakpoint-alias}70,
+                        &.@{breakpoint-alias}66,
+                        &.@{breakpoint-alias}60,
+                        &.@{breakpoint-alias}50,
+                        &.@{breakpoint-alias}40,
+                        &.@{breakpoint-alias}33,
+                        &.@{breakpoint-alias}30,
+                        &.@{breakpoint-alias}25,
+                        &.@{breakpoint-alias}20,
+                        &.@{breakpoint-alias}10 {
+                            clear:none;
+                        }
+                    }
+                }
+            }
+
 		}
 
     }
