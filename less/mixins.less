@@ -200,6 +200,28 @@
 							clear: both;
 				}
 
+                // generate the forms column-group grid element styling
+                .ink-form .column-group.gutters {
+                    margin-left: -@gutter-width / 2;
+                }
+
+                .ink-form .column-group.gutters > .@{breakpoint-alias}100,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}90,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}80,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}75,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}70,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}66,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}60,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}50,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}40,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}33,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}30,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}25,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}20,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}10 {
+                    padding-left: @gutter-width / 2;
+                }
+
 			}
 
 			// create the helper classes
@@ -236,29 +258,6 @@
 							margin-right: @gutter-width;
 				}
 			}
-
-            .control-inline (@breakpoint-alias) {
-                .ink-form {
-                    .control {
-                        &.@{breakpoint-alias}100,
-                        &.@{breakpoint-alias}90,
-                        &.@{breakpoint-alias}80,
-                        &.@{breakpoint-alias}75,
-                        &.@{breakpoint-alias}70,
-                        &.@{breakpoint-alias}66,
-                        &.@{breakpoint-alias}60,
-                        &.@{breakpoint-alias}50,
-                        &.@{breakpoint-alias}40,
-                        &.@{breakpoint-alias}33,
-                        &.@{breakpoint-alias}30,
-                        &.@{breakpoint-alias}25,
-                        &.@{breakpoint-alias}20,
-                        &.@{breakpoint-alias}10 {
-                            clear:none;
-                        }
-                    }
-                }
-            }
 
 		}
 
