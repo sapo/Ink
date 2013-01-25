@@ -8,10 +8,13 @@
         legend {
             font-size: 1.438em;
             font-weight: 700;
-            margin: 1em 0;
-            display: block;
             width: 100%;
             border-bottom:1px solid #ddd;
+
+            & + * {
+                -webkit-margin-top-collapse: separate; // webkit hack that makes the legend margins work like they should
+                margin: 2em 0;
+            }
         }
     }
 
@@ -20,15 +23,23 @@
     select {
         #ink > #border-radius > .all (@border-radius);
         padding: @form-field-padding;
-        border:1px solid darken(@form-field-borderColor,10%);
+        border: 1px solid darken(@form-field-borderColor,10%);
         resize: none;
         font-size: @form-field-fontSize;
-        background:@form-field-bg;
+        background: @form-field-bg;
 
         &:focus {
             #ink > #forms > .input_focus (@focusBlurSize, @focusColor);
             outline: 0 none;
         }
+    }
+
+    input[type="file"] {
+        //padding: 0
+    }
+
+    select {
+        line-height: 2;
     }
 
     textarea {
@@ -48,7 +59,7 @@
 
     .control {          
 
-        line-height: 2.5;
+        line-height: 2;
         margin-bottom: 0.5em;
 
         span {
@@ -105,9 +116,11 @@
         input[type="radio"],
         input[type="checkbox"] {
             line-height: 2;
+            padding: 0;
+            border: none;
             margin-top: 0.55em;
-            float: left;
             clear: left;
+            float: left;
 
             & + label,
             & + label {
@@ -122,7 +135,7 @@
             color: @text-color;
         }
 
-        &.validation {                  
+        &.validation {  
 
             &.error {
 
