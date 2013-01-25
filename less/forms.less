@@ -15,20 +15,7 @@
         }
     }
 
-    input[type="color"],
-    input[type="date"],
-    input[type="datetime"],
-    input[type="time"],
-    input[type="month"],
-    input[type="week"],
-    input[type="email"],
-    input[type="number"],
-    input[type="range"],
-    input[type="tel"],
-    input[type="url"],
-    input[type="text"],
-    input[type="search"],
-    input[type="password"],
+    input,
     textarea,
     select {
         #ink > #border-radius > .all (@border-radius);
@@ -39,13 +26,23 @@
         background:@form-field-bg;
 
         &:focus {
-            #ink > #forms > .input_focus (10px, @focusColor);
+            #ink > #forms > .input_focus (@focusBlurSize, @focusColor);
             outline: 0 none;
         }
     }
 
     textarea {
         min-height: 5em;
+    }
+
+    .control,
+    .control-group {
+        p.tip {
+            font-size: .875em;
+            color: lighten(@text-color,35%);
+            position: relative;
+            margin: .3em 0 0 0.1em;
+        }
     }
 
 
@@ -69,21 +66,17 @@
                 content: "\f069";
                 color: @error-bg;
                 font-size: 0.8em;
-                line-height: 1;
                 margin-left: .8em;
-                font-weight: 500;
                 font-family: FontAwesome;
-                // display: inline-block;
                 width: 1.25em;
-                text-align: center;
             }
         }
 
-        &.validation {                  
+        &.validation {
 
             &.error {
                 input, textarea, select {
-                    #ink > #forms > .input_focus (10px, @errorColor);
+                    #ink > #forms > .input_focus (@focusBlurSize, @errorColor);
                 }
 
                 p {
@@ -95,12 +88,12 @@
 
             &.warning {
                 input, textarea, select {
-                    #ink > #forms > .input_focus (10px, @warningColor);
+                    #ink > #forms > .input_focus (@focusBlurSize, @warningColor);
                 }
 
                 p {
                     &.tip {
-                        color: darken(@warningColor,10%);                               
+                        color: darken(@warningColor,10%);
                     }
                 }
             }
@@ -108,6 +101,22 @@
     }
 
     .control-group {
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            line-height: 2;
+            margin-top: 0.55em;
+            float: left;
+            clear: left;
+
+            & + label,
+            & + label {
+                float: left;
+                line-height: 2.5;
+                margin-left: 0.55em;
+                margin-top: -.4em;
+            }
+        }
 
         p.label {
             color: @text-color;
@@ -118,10 +127,10 @@
             &.error {
 
                 input, textarea, select {
-                    #ink > #forms > .input_focus (10px, @errorColor);
+                    #ink > #forms > .input_focus (@focusBlurSize, @errorColor);
                 }
 
-                &+p {
+                & + p {
 
                     &.tip {
                         color: darken(@errorColor,10%);
@@ -131,10 +140,10 @@
 
             &.warning {
                 input, textarea, select {
-                    #ink > #forms > .input_focus (10px, @warningColor);
+                    #ink > #forms > .input_focus (@focusBlurSize, @warningColor);
                 }
 
-                &+p {
+                & + p {
 
                     &.tip {
                         color: darken(@warningColor,10%);                               
@@ -143,72 +152,21 @@
             }
         }
 
-
         &.required {
+            
             p {
+ 
                 &.label {
                     color: @text-color;
+
+                    &:after {
+                        content: "\f069";
+                        color: @error-bg;
+                        margin-left: 0.8em;
+                        font-family: FontAwesome;
+                        width: 1.25em;
+                    }
                 }
-                &.label:after {
-                    content: "\f069";
-                    color: @error-bg;
-                    font-size: 0.8em;
-                    line-height: 1;
-                    margin-left: 0.1em;
-                    font-weight: 500;
-                    font-family: FontAwesome;
-                    display: inline-block;
-                    width: 1.25em;
-                    text-align: center;
-                }
-            }
-        }
-    }       
-
-    .control, 
-    .control-group {
-        p.tip {
-            font-size: .875em;
-            color: lighten(@text-color,35%);
-            position: relative;
-            margin: .3em 0 0 0.1em;
-        }
-    }
-
-    ul {
-
-        &.control-group {
-
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-
-            li {
-                display: block;
-                overflow: hidden;
-                line-height: 1.5;
-                margin: 0;
-
-                label, 
-                input {
-                    line-height: inherit;                       
-                }
-            }
-
-            input[type="radio"],
-            input[type="checkbox"] {
-                line-height: 2;
-                margin-top: 0.55em;
-                float: left;
-                clear: left;
-            }
-
-            input[type="radio"] + label,
-            input[type="checkbox"] + label {
-                float: left;
-                line-height: 2.5;
-                margin-left: 0.55em;
-                margin-top: -.3em;
             }
         }
     }
