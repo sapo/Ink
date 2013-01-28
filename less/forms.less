@@ -35,6 +35,22 @@
         }
     }
 
+    .input-file {
+        #ink > #border-radius > .all (@border-radius);
+        padding: @form-field-padding;
+        border: 1px solid darken(@form-field-borderColor,10%);
+        background: @form-field-bg;
+        vertical-align: middle;
+        line-height: 1.2;
+        
+        input[type="file"] {
+            #ink > #border-radius > .none ();    
+            border:none;
+            padding: 0;
+            background: none;
+        }
+    }
+
     button {
         margin: 0 5px;
     }
@@ -123,7 +139,6 @@
             clear: left;
             float: left;
 
-            & + label,
             & + label {
                 float: left;
                 line-height: 2.5;
@@ -134,6 +149,12 @@
 
         p.label {
             color: @text-color;
+        }
+
+        &.inline {
+            label {
+                margin-right: 1em;
+            }
         }
 
         &.validation {  
