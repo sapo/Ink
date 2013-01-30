@@ -17,6 +17,12 @@
                     }
                 }
 
+                a {
+                    &:hover {
+                        background: fade(@black,25%);
+                    }
+                }
+
                 ul.submenu { 
 
                     background: @white;
@@ -32,13 +38,6 @@
                         }
                     }
                 }
-
-                a {
-                    &:hover {
-                        background: fade(@black,25%);
-                    }
-                }
-
             }
 
             // INK:NAVIGATION:MENU:VERTICAL
@@ -117,7 +116,7 @@
 
             // blue theme
             &.blue {
-                #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
                 li {
                     ul.submenu { 
                         background: @white;
@@ -125,7 +124,7 @@
                             a {
                                 color: @text-color;
                                 &:hover {
-                                    background: darken(desaturate(@info-bg,10%),5%);
+                                    background: darken(desaturate(@blue,10%),5%);
                                     color: @white;
                                 }
                             }
@@ -137,7 +136,7 @@
 
             // green theme
             &.green {
-                #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
                 li {
                     ul.submenu { 
                         background: @white;
@@ -145,7 +144,7 @@
                             a {
                                 color: @text-color;
                                 &:hover {
-                                    background: darken(desaturate(@success-bg,10%),5%);
+                                    background: darken(desaturate(@green,10%),5%);
                                     color: @white;
                                 }
                             }
@@ -157,7 +156,7 @@
 
             // red  theme
             &.red {
-                #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
                 li {
                     ul.submenu { 
                         background: @white;
@@ -165,7 +164,7 @@
                             a {
                                 color: @text-color;
                                 &:hover {
-                                    background: darken(desaturate(@caution-bg,10%),5%);
+                                    background: darken(desaturate(@red,10%),5%);
                                     color: @white;
                                 }
                             }
@@ -191,19 +190,53 @@
                 &.grey { background: @grey-15; }
 
                 // black theme
-                &.black { background: @black; }
+                &.black { 
+                    background: @black; 
+                    li {
+
+                        &.active {
+                            a {
+                                background: lighten(@black,10%);
+                            }
+                        }
+
+                        a {
+                            border-bottom: 1px solid lighten(@black,15%);
+
+                            &:hover {
+                                background: lighten(@black,10%);
+                            }
+                        }
+                        
+                        ul.submenu { 
+                            background: @white;
+                            li {
+                                a {
+                                    color: @text-color;
+                                    &:hover {
+                                        background: lighten(@black,30%);
+                                        color: @white;
+                                    }
+                                }      
+                                &:last-child a {
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+                }
 
                 // blue theme
-                &.orange { background: desaturate(@warning-bg,10%); }
+                &.orange { background: desaturate(@orange,10%); }
 
                 // blue theme
-                &.blue { background: desaturate(@info-bg,10%); }
+                &.blue { background: desaturate(@blue,10%); }
 
                 // green theme
-                &.green { background: desaturate(@success-bg,10%); }
+                &.green { background: desaturate(@green,10%); }
 
                 // red theme
-                &.red { background: desaturate(@caution-bg,10%); }
+                &.red { background: desaturate(@red,10%); }
             }
 
             &.rounded {
@@ -451,15 +484,15 @@
             // orange theme
             &.orange {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
                     &.disabled {
                         a {
-                            color: darken(@warning-bg,20%); 
-                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@warning-bg,8%));
+                            color: darken(@orange,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
                         }
                     }
                     &.active {
-                        a { background: darken(@warning-bg,15%); }
+                        a { background: darken(@orange,15%); }
                     }
                 }
             }
@@ -467,15 +500,15 @@
             // blue theme
             &.blue {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
                     &.disabled {
                         a {
-                            color: darken(@info-bg,20%); 
-                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@info-bg,8%));
+                            color: darken(@blue,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
                         }
                     }
                     &.active {
-                        a { background: darken(@info-bg,15%); }
+                        a { background: darken(@blue,15%); }
                     }
                 }
             }
@@ -483,15 +516,15 @@
             // green theme
             &.green {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
                     &.disabled {
                         a {
-                            color: darken(@success-bg,20%); 
-                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@success-bg,6%));
+                            color: darken(@green,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
                         }
                     }
                     &.active {
-                        a { background: darken(@success-bg,15%); }
+                        a { background: darken(@green,15%); }
                     }
                 }
             }
@@ -499,15 +532,15 @@
             // red theme
             &.red {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                    #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
                     &.disabled {
                         a {
-                            color: darken(@caution-bg,25%); 
-                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@caution-bg,8%));
+                            color: darken(@red,25%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
                         }
                     }
                     &.active {
-                        a { background: darken(@caution-bg,15%); }
+                        a { background: darken(@red,15%); }
                     }
                 }
             }
@@ -532,16 +565,16 @@
                 &.black { li { background: @black; } }
 
                 // blue theme
-                &.orange { li { background: desaturate(@warning-bg,10%); } }
+                &.orange { li { background: desaturate(@orange,10%); } }
 
                 // blue theme
-                &.blue { li { background: desaturate(@info-bg,10%); } }
+                &.blue { li { background: desaturate(@blue,10%); } }
 
                 // green theme
-                &.green { li { background: desaturate(@success-bg,10%); } }
+                &.green { li { background: desaturate(@green,10%); } }
 
                 // red theme
-                &.red { li { background: desaturate(@caution-bg,10%); } }
+                &.red { li { background: desaturate(@red,10%); } }
             }
 
             // add rounded corners
@@ -616,37 +649,37 @@
 
             // orange them
             &.orange {
-                #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
                 li.active a { 
-                    color: darken(@warning-bg,20%); 
-                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@warning-bg,8%));
+                    color: darken(@orange,20%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
                 }
             }
 
             // blue theme
             &.blue {
-                #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
                 li.active a { 
-                    color: darken(@info-bg,20%); 
-                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@info-bg,8%));
+                    color: darken(@blue,20%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
                 }
             }
 
             // green theme
             &.green {
-                #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
                 li.active a { 
-                    color: darken(@success-bg,20%); 
-                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@success-bg,6%));
+                    color: darken(@green,20%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
                 }
             }
 
             // red theme
             &.red {
-                #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
                 li.active a { 
-                    color: darken(@caution-bg,25%); 
-                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@caution-bg,8%));
+                    color: darken(@red,25%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
                 }
             }
 
@@ -667,16 +700,16 @@
                 &.black { background: @black; }
 
                 // blue theme
-                &.orange { background: desaturate(@warning-bg,10%); }
+                &.orange { background: desaturate(@orange,10%); }
 
                 // blue theme
-                &.blue { background: desaturate(@info-bg,10%); }
+                &.blue { background: desaturate(@blue,10%); }
 
                 // green theme
-                &.green { background: desaturate(@success-bg,10%); }
+                &.green { background: desaturate(@green,10%); }
 
                 // red theme
-                &.red { background: desaturate(@caution-bg,10%); }
+                &.red { background: desaturate(@red,10%); }
             }
 
             // add rounded corners
@@ -745,7 +778,7 @@
             &.orange {
                 li {
                     &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+                        #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
                     }
                 }
             }
@@ -753,7 +786,7 @@
             &.blue {
                 li {
                     &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+                        #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
                     }
                 }
             }
@@ -761,7 +794,7 @@
             &.green {
                 li {
                     &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%);
+                        #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
                     }
                 }
             }
@@ -769,7 +802,7 @@
             &.red {
                 li {
                     &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+                        #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
                     }
                 }
             }
@@ -815,7 +848,7 @@
                 &.orange { 
                     li {
                         &.active, &:hover {
-                            background: desaturate(@warning-bg,10%);
+                            background: desaturate(@orange,10%);
                         }
                     } 
                 }
@@ -824,7 +857,7 @@
                 &.blue { 
                     li {
                         &.active, &:hover {
-                            background: desaturate(@info-bg,10%);
+                            background: desaturate(@blue,10%);
                         }
                     } 
                 }
@@ -833,7 +866,7 @@
                 &.green { 
                     li {
                         &.active, &:hover {
-                            background: desaturate(@success-bg,10%);
+                            background: desaturate(@green,10%);
                         }
                     } 
                 }
@@ -842,7 +875,7 @@
                 &.red { 
                     li {
                         &.active, &:hover {
-                            background: desaturate(@caution-bg,10%);
+                            background: desaturate(@red,10%);
                         }
                     } 
                 }
