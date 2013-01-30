@@ -12,7 +12,8 @@
                     #ink > #effects > .transition ('background',100ms);
                     text-decoration: none;
 
-                    & > i {
+                    & > [class^="icon-"],
+                    & > [class*=" icon-"] {
                         height: @navigation-line-height + 0em;
                     }
                 }
