@@ -36,10 +36,12 @@ a [class*=" icon-"] {
 .ink-button {
     
     [class^="icon-"],
-    [class*=" icon-"] {
+    [class*=" icon-"],
+    &[class^="icon-"]:before,
+    &[class*=" icon-"]:before, {
         
         /* keeps button heights with and without icons the same */
-        line-height: .9em;
+        line-height: .9;
     }
 }
 
