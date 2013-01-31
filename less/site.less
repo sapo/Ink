@@ -3,13 +3,6 @@
 @import "__typography.less";
 @import "mixins.less";
 
-.animate(@speed) {
-    transition: all ease-in-out @speed;
-    -o-transition: all ease-in-out @speed;
-    -moz-transition: all ease-in-out @speed;
-    -webkit-transition: all ease-in-out @speed;
-}
-
 @themeColor                 : #131e24 ;
 @themeBackground            : #DEEDF1;
 
@@ -51,34 +44,6 @@ mark {
         background: #DEEDF1;
     }
 }
-
-#nav-spacing .box {padding:0px}
-#nav-spacing .box div {
-    text-align: center;
-    font-weight: bold;
-    margin: 0px;
-}
-#nav-spacing .box div p {   
-    font-size: 1.75em;
-    line-height: 200px;
-    vertical-align: middle;
-    background-color:#DEEDF1;
-    color: #fff;
-    margin: 0em;
-}
-#nav-spacing .box div:hover {
-    background-color: #68b9cf;
-    .animate(300ms);
-    #ink > #border-radius > .all (@border-radius);
-}
-#nav-spacing .box div:hover p {
-    color:#555;
-    .animate(300ms);
-}
-#nav-spacing .box .ink-space    { padding:1em }
-#nav-spacing .box .ink-vspace   { padding:1em 0 }
-#nav-spacing .box .ink-hspace   { padding:0 1em }
-#nav-spacing .box .ink-hspace p { padding:13px 0 }
 
 /*..........................................  Typography  ...................................................*/
 a.visited   {color: @link-visited-color;}
@@ -163,13 +128,13 @@ a.active    {color: @link-active-color;}
    -moz-transition: all 500ms ; 
     -ms-transition: all 500ms ; 
      -o-transition: all 500ms ; 
-        transition: all 500ms  /* custom */    
+        transition: all 500ms ;/* custom */    
+    
+    &:hover {
+        opacity: 1;
+        -moz-opacity: 1;
+    }
 }
-
-.logo_hp:hover {
-    opacity: 1;
-    -moz-opacity: 1;
-}   
 
 /*...................................................  Footer  ...................................................*/
 
@@ -261,14 +226,15 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
 }
 
 #topbar .horizontal a.logoPlaceholder {
-    width:44px;
-    text-indent:-5000px;
-    background:url(../imgs/logo_topbar.png);
-    margin:0 1em 0 0;
-}
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.4;
+    padding: 0;
+    margin-right: .5em;
 
-#topbar .horizontal a.logoPlaceholder:hover {
-    background:url(../imgs/logo_topbar.png) 0 -40px;
+    &:hover {
+        background: none;
+    }
 }
 
 #topbar .horizontal li a {
@@ -317,59 +283,6 @@ footer ul.sociallinks li a.Gplus_link {background: url("../imgs/icon_Sprite.png"
     margin: 0;
 }
 
-div {
-
-    &.more-examples {
-
-        a {
-            &.show-me-more {
-                color: @grey-90;
-                font-size: 0.95em;
-                font-weight: 700;
-                display: block;
-                text-align: center;
-                padding-bottom: 4px;
-                // background: @body-background;
-                #ink > #shadows > .text-shadow(0,2px,1px,@white);
-                #ink > #shadows > .box-shadow(0,2px,1px,0,@grey-20);
-            }
-        }
-
-        div {
-            &.examples {
-                // display: none;
-                // padding-top: @padding;
-
-                .example-container {    
-                    #ink > #border-radius > .all(6px);
-
-                    .example {
-                        padding: 1.4em 1.2em 0;
-                        background: white;
-                        // overflow: hidden;
-                        #ink > #border-radius > .bottom(6px);
-                        border-left: 1px solid @grey-30;
-                        border-right: 1px solid @grey-30;
-                        border-bottom: 1px solid @grey-30;
-                    }
-
-                    h4 {
-                        border: 1px solid @grey-70;
-                        #ink > #border-radius > .top(6px);
-                        background: @grey-70;
-                        color: @white;
-                        font-size: 0.80em;
-                        font-weight: 500;
-                        padding: 0.5em;
-                        margin: 0;
-                    }
-                }
-
-            }
-        }
-    }
-}
-
 /* Prettyfier  */
 var {
     font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
@@ -387,10 +300,10 @@ pre {
     color: #aaa;
     
     &.prettyprint {
-    border: 1px solid rgba(0,0,0,.2);
-    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
-    white-space: pre-wrap;
-    margin: 2em 0;
+        border: 1px solid rgba(0,0,0,.2);
+        #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
+        white-space: pre-wrap;
+        margin: 2em 0;
     }
 
     ol  { 
