@@ -488,7 +488,7 @@
         &.pagination {
             //defaults
             li {
-                #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                //#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
                 
                 &.disabled {
                     a {
@@ -512,6 +512,25 @@
                     &:hover {
                         background: fade(@black,25%);
                         text-decoration: none;
+                    }
+                }
+            }
+
+            // white
+            &.white {
+                li {
+                    #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                        }
+                    }
+                    &.active {
+                        a { 
+                            background: fade(@black,30%);
+                            color: @white;
+                        }
                     }
                 }
             }
@@ -676,7 +695,7 @@
         &.breadcrumbs {
 
             // defaults
-            #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+            
             li {
                 &.active {
                     a { 
@@ -693,6 +712,20 @@
                         background: none;
                         text-decoration: underline;
                     }
+                }
+            }
+
+            // white theme
+            &.white {
+                #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                li {
+                    &:after {
+                        color: @text-color;
+                    }
+                }
+                li.active a { 
+                    color: @grey-40;
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
                 }
             }
 
@@ -752,6 +785,17 @@
                 li.active a { 
                     color: darken(@red,25%); 
                     #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
+                }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red, &.grey, &.white {
+                
+                li {
+                    &:first-child {
+                        a {
+                            padding-left: 1.2em;
+                        }
+                    }
                 }
             }
 
