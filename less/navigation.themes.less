@@ -488,11 +488,10 @@
         &.pagination {
             //defaults
             li {
-                //#ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
                 
                 &.disabled {
                     a {
-                        color: @grey-40;
+                        color: @grey-30;
                         #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
 
                         &:hover {
@@ -503,15 +502,7 @@
                 
                 &.active {
                     a { 
-                        background: fade(@black,20%);
-                    }
-                }
-
-                a { 
-                    color: @text-color; 
-                    &:hover {
-                        background: fade(@black,25%);
-                        text-decoration: none;
+                        text-decoration: underline;
                     }
                 }
             }
@@ -636,8 +627,46 @@
                 }
             }
 
+            &.grey, &.white {
+                a { color: @text-color; }
+            }
+
             &.black, &.orange, &.blue, &.green, &.red {
                 a { color: @white; }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red, &.grey, &.white {
+                
+                li {
+                    &:first-child {
+                        a {
+                            padding: @navigation-padding;
+                        }
+                    }
+
+                    a { 
+                        &:hover {
+                            background: fade(@black,25%);
+                            text-decoration: none;
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            &:hover { 
+                                background: fade(@black,0%);
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        a { 
+                            background: fade(@black,20%);
+                            text-decoration: none;
+                        }
+                    }
+                }
             }
 
             // remove gradients
@@ -700,7 +729,7 @@
                 &.active {
                     a { 
                         background: none;
-                        color: @grey-30; 
+                        color: @grey-40; 
                         &:hover {
                             cursor: default;
                             text-decoration: none;
