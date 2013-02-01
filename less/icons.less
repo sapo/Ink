@@ -27,39 +27,37 @@
 .border-radius(@radius) { -webkit-border-radius: @radius; -moz-border-radius: @radius; border-radius: @radius; }
 
 @font-face {
-  font-family: 'FontAwesome';
-  src: url('@{FontAwesomePath}/fontawesome-webfont.eot?v=3.0.1');
-  src: url('@{FontAwesomePath}/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    font-family: 'FontAwesome';
+    src: url('@{FontAwesomePath}/fontawesome-webfont.eot?v=3.0.1');
+    src: url('@{FontAwesomePath}/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
     url('@{FontAwesomePath}/fontawesome-webfont.woff?v=3.0.1') format('woff'),
     url('@{FontAwesomePath}/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
-//    url('@{FontAwesomePath}/fontawesome-webfont.svg#fontawesomeregular?v=3.0.1') format('svg');
-
-//  src: url('@{FontAwesomePath}/FontAwesome.otf') format('opentype');
-
-  font-weight: normal;
-  font-style: normal;
+    // url('@{FontAwesomePath}/fontawesome-webfont.svg#fontawesomeregular?v=3.0.1') format('svg');
+    // src: url('@{FontAwesomePath}/FontAwesome.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /*  Font Awesome styles
     ------------------------------------------------------- */
 [class^="icon-"],
 [class*=" icon-"] {
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  text-decoration: inherit;
-  -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
 
 /* sprites.less reset */
-  display: inline;
-  width: auto;
-  height: auto;
-  line-height: normal;
-  vertical-align: baseline;
-  background-image: none;
-  background-position: 0% 0%;
-  background-repeat: repeat;
-  margin-top: 0;
+    display: inline;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    vertical-align: baseline;
+    background-image: none;
+    background-position: 0% 0%;
+    background-repeat: repeat;
+    margin-top: 0;
 }
 
 /* more sprites.less reset */
@@ -76,113 +74,117 @@
 .dropdown-menu > .active > a > [class*=" icon-"],
 .dropdown-submenu:hover > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: none;
+    background-image: none;
 }
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  text-decoration: inherit;
-  display: inline-block;
-  speak: none;
+    text-decoration: inherit;
+    display: inline-block;
+    speak: none;
 }
 
 /* makes sure icons active on rollover in links */
 a {
-  [class^="icon-"],
-  [class*=" icon-"] {
-    display: inline-block;
-  }
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline-block;
+    }
 }
 
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
-  vertical-align: -10%;
-  font-size: 4/3em;
+    vertical-align: -10%;
+    font-size: 4/3em;
 }
 
 .btn, .nav, .ink-button {
-  [class^="icon-"],
-  [class*=" icon-"] {
-    display: inline;
-    /* keeps button heights with and without icons the same */
-    &.icon-large { line-height: .9em; }
-    &.icon-spin { display: inline-block; }
-  }
+    
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline;
+        /* keeps button heights with and without icons the same */
+        &.icon-large { line-height: .9em; }
+        &.icon-spin { display: inline-block; }
+    }
 }
 
 .nav-tabs, .nav-pills {
-  [class^="icon-"],
-  [class*=" icon-"] {
-  /* keeps button heights with and without icons the same */
-    &, &.icon-large { line-height: .9em; }
-  }
+    
+    [class^="icon-"],
+    [class*=" icon-"] {
+        /* keeps button heights with and without icons the same */
+        &, &.icon-large { line-height: .9em; }
+    }
 }
 
 li, .nav li {
-  [class^="icon-"],
-  [class*=" icon-"] {
-    display: inline-block;
-    width: 1.25em;
-    text-align: center;
-    &.icon-large {
-      /* increased font size for icon-large */
-      width: 1.25*1.25em;
+    
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline-block;
+        width: 1.25em;
+        text-align: center;
+        
+        &.icon-large {
+            /* increased font size for icon-large */
+            width: 1.25*1.25em;
+        }
     }
-  }
 }
 
 ul.icons {
-  list-style-type: none;
-  text-indent: -.75em;
-
-  li {
-    [class^="icon-"],
-    [class*=" icon-"] {
-      width: .75em;
+    list-style-type: none;
+    text-indent: -.75em;
+    
+    li {
+        [class^="icon-"],
+        [class*=" icon-"] {
+            width: .75em;
+        }
     }
-  }
 }
 
 .icon-muted {
-  color: @iconMuted;
+    color: @iconMuted;
 }
 
 // Icon Borders
-// -------------------------
 
 .icon-border {
-  border: solid 1px @borderColor;
-  padding: .2em .25em .15em;
-  .border-radius(3px);
+    border: solid 1px @borderColor;
+    padding: .2em .25em .15em;
+    .border-radius(3px);
 }
 
 // Icon Sizes
-// -------------------------
 
 .icon-2x {
-  font-size: 2em;
-  &.icon-border {
-    border-width: 2px;
-    .border-radius(4px);
-  }
+    font-size: 2em;
+    
+    &.icon-border {
+        border-width: 2px;
+        .border-radius(4px);
+    }
 }
 .icon-3x {
-  font-size: 3em;
-  &.icon-border {
-    border-width: 3px;
-    .border-radius(5px);
-  }
+    font-size: 3em;
+    
+    &.icon-border {
+        border-width: 3px;
+        .border-radius(5px);
+    }
 }
 .icon-4x {
-  font-size: 4em;
-  &.icon-border {
-    border-width: 4px;
-    .border-radius(6px);
-  }
+    font-size: 4em;
+    
+    &.icon-border {
+        border-width: 4px;
+        .border-radius(6px);
+    }
 }
 
 // Floats
-// -------------------------
 
 // Quick floats
 .pull-right { float: right; }
@@ -190,80 +192,107 @@ ul.icons {
 
 [class^="icon-"],
 [class*=" icon-"] {
-  &.pull-left {
-    margin-right: .3em;
-  }
-  &.pull-right {
-    margin-left: .3em;
-  }
+    
+    &.pull-left {
+        margin-right: .3em;
+    }
+    
+    &.pull-right {
+        margin-left: .3em;
+    }
 }
 
 .btn {
-  [class^="icon-"],
-  [class*=" icon-"] {
-    &.pull-left, &.pull-right {
-      &.icon-2x { margin-top: .18em; }
+    [class^="icon-"],
+    [class*=" icon-"] {
+        
+        &.pull-left, 
+        &.pull-right {
+        
+            &.icon-2x { 
+                margin-top: .18em; 
+            }
+        }
+        
+        &.icon-spin.icon-large { 
+            line-height: .8em; 
+        }
     }
-    &.icon-spin.icon-large { line-height: .8em; }
-  }
 }
 
 .btn.btn-small {
-  [class^="icon-"],
-  [class*=" icon-"] {
-    &.pull-left, &.pull-right {
-      &.icon-2x { margin-top: .25em; }
+    
+    [class^="icon-"],
+    [class*=" icon-"] {
+    
+        &.pull-left, 
+        &.pull-right {
+    
+            &.icon-2x { 
+                margin-top: .25em; 
+            }
+        }
     }
-  }
 }
 
 .btn.btn-large {
-  [class^="icon-"],
-  [class*=" icon-"] {
-    margin-top: 0; // overrides bootstrap default
-    &.pull-left, &.pull-right {
-      &.icon-2x { margin-top: .05em; }
+    
+    [class^="icon-"],
+    [class*=" icon-"] {
+        margin-top: 0; // overrides bootstrap default
+    
+        &.pull-left, 
+        &.pull-right {
+            &.icon-2x { 
+                margin-top: .05em; 
+            }
+        }
+    
+        &.pull-left.icon-2x { 
+            margin-right: .2em; 
+        }
+    
+        &.pull-right.icon-2x { 
+            margin-left: .2em; 
+        }
     }
-    &.pull-left.icon-2x { margin-right: .2em; }
-    &.pull-right.icon-2x { margin-left: .2em; }
-  }
 }
 
 
 .icon-spin {
-  display: inline-block;
-  -moz-animation: spin 2s infinite linear;
-  -o-animation: spin 2s infinite linear;
-  -webkit-animation: spin 2s infinite linear;
-  animation: spin 2s infinite linear;
+    display: inline-block;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
 }
 
 @-moz-keyframes spin {
-  0% { -moz-transform: rotate(0deg); }
-  100% { -moz-transform: rotate(359deg); }
+    0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(359deg); }
 }
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(359deg); }
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(359deg); }
 }
 @-o-keyframes spin {
-  0% { -o-transform: rotate(0deg); }
-  100% { -o-transform: rotate(359deg); }
+    0% { -o-transform: rotate(0deg); }
+    100% { -o-transform: rotate(359deg); }
 }
 @-ms-keyframes spin {
-  0% { -ms-transform: rotate(0deg); }
-  100% { -ms-transform: rotate(359deg); }
+    0% { -ms-transform: rotate(0deg); }
+    100% { -ms-transform: rotate(359deg); }
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(359deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
 }
 
 @-moz-document url-prefix() {
-  .icon-spin { height: .9em; }
-  .btn .icon-spin { height: auto; }
-  .icon-spin.icon-large { height: 1.25em; }
-  .btn .icon-spin.icon-large { height: .75em; }
+    .icon-spin { height: .9em; }
+    .btn .icon-spin { height: auto; }
+    .icon-spin.icon-large { height: 1.25em; }
+    .btn .icon-spin.icon-large { height: .75em; }
 }
 
 /*  Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
