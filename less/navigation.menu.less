@@ -10,7 +10,6 @@
              
                 a { 
                     #ink > #effects > .transition ('background',100ms);
-                    text-decoration: none;
                 }
 
                 &:hover {
@@ -58,8 +57,9 @@
                     position: relative;
 
                     a {
-                        float: left;
-                        padding: @navigation-padding;
+                        //float: left;
+                        padding: @navigation-v-padding @navigation-h-padding @navigation-v-padding 0;
+                        display: inline-block;
                     }
 
                     ul {

@@ -7,21 +7,7 @@
         &.menu {
 
             // default white theme
-            #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
-
             li {
-
-                &.active {
-                    a {
-                        background: fade(@black,25%);
-                    }
-                }
-
-                a {
-                    &:hover {
-                        background: fade(@black,25%);
-                    }
-                }
 
                 ul.submenu { 
 
@@ -29,11 +15,11 @@
 
                     li {
                         a {
-                            color: @text-color;
                             border-bottom: 1px solid fade(@black,15%);
-                            &:hover {
-                                background: fade(@black,25%);
-                            }
+                            padding: @navigation-padding;
+                            
+                            &:hover { background: fade(@black,10%); }
+
                             &:last-child a { border: none; }
                         }
                     }
@@ -41,11 +27,9 @@
                     &.dropdown {
                         li {
                             a {
-                                color: @text-color;
                                 border-bottom: 1px solid fade(@black,15%);
                             }
                         }
-
                     }
                 }
             }
@@ -60,20 +44,58 @@
                     &:last-child a { 
                         border: none; 
                     }
+
+                    .dropdown {
+                        background: none;
+                        
+                        li {
+                            a {
+                                border-bottom: 1px solid fade(@black,15%);
+                            }
+                        }
+                    }
+                    
+                    &:last-child {
+                        .dropdown {
+                            
+                            li:first-child {
+                                a {
+                                    border-top: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }                        
+                    }
                 }
             }
 
-            // grey theme
-            &.grey {
-                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+            // white theme
+            &.white {
+                #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
                 li {
+
                     ul.submenu { 
-                        background: @white;
+                        
                         li {
 
                             a {
                                 color: @text-color;
-                                &:last-child a { border: none; }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // grey theme
+            &.grey {
+                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+                li {
+
+                    ul.submenu { 
+                        
+                        li {
+
+                            a {
+                                color: @text-color;
                             }
                         }
                     }
@@ -84,18 +106,15 @@
             &.black {
                 #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
                 li {
+
                     ul.submenu { 
-                        background: @white;
+                        
                         li {
                             a {
-                                color: @text-color;
                                 &:hover {
                                     background: lighten(@black,30%);
                                     color: @white;
                                 }
-                            }      
-                            &:last-child a {
-                                border: none;
                             }
                         }
                     }
@@ -105,19 +124,17 @@
             // orange theme
             &.orange {
                 #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+                
                 li {
+
                     ul.submenu { 
-                        background: @white;
+                        
                         li {
                             a {
-                                color: @text-color;
                                 &:hover {
                                     background: darken(desaturate(@orange,10%),5%);
                                     color: @white;
                                 }
-                            }
-                            &:last-child a {
-                                border: none;
                             }
                         }
                     }
@@ -127,18 +144,17 @@
             // blue theme
             &.blue {
                 #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
+                
                 li {
                     ul.submenu { 
-                        background: @white;
+                        
                         li {
                             a {
-                                color: @text-color;
                                 &:hover {
                                     background: darken(desaturate(@blue,10%),5%);
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }
                         }
                     }
                 }
@@ -147,18 +163,17 @@
             // green theme
             &.green {
                 #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
+                
                 li {
                     ul.submenu { 
-                        background: @white;
+                        
                         li {
                             a {
-                                color: @text-color;
                                 &:hover {
                                     background: darken(desaturate(@green,10%),5%);
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }
                         }
                     }
                 }
@@ -167,19 +182,26 @@
             // red  theme
             &.red {
                 #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
+                
                 li {
                     ul.submenu { 
-                        background: @white;
+                        
                         li {
                             a {
-                                color: @text-color;
                                 &:hover {
                                     background: darken(desaturate(@red,10%),5%);
                                     color: @white;
                                 }
                             }
-                            &:last-child a { border: none; }
                         }
+                    }
+                }
+            }
+
+            &.grey, &.white {
+                li {
+                    a {
+                        color: @grey-80;
                     }
                 }
             }
@@ -188,6 +210,42 @@
                 li {
                     a {
                         color: @white;
+                    }
+                }
+            }
+
+            &.white, &.grey, &.black, &.orange, &.blue, &.green, &.red {
+                li {
+                    &.active {
+                        
+                        background: fade(@black,25%);
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: fade(@black,25%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -415,13 +473,16 @@
                     ul {
                         &.submenu {
                             #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                            &.dropdown {
+                                #ink > #shadows > .no-box-shadow ();    
+                            }
                         }
                     }
                 }
             }
 
         }
-        // INK:NAVIGATION:MENU        
+        
 
         // INK:NAVIGATION:PAGINATION
         &.pagination {
@@ -609,7 +670,7 @@
                 }
             }
         }
-        // INK:NAVIGATION:PAGINATION
+        
 
         // INK:NAVIGATION:BREADCRUMBS
         &.breadcrumbs {
@@ -733,7 +794,7 @@
                 #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
             }
         }
-        // INK:NAVIGATION:BREADCRUMBS
+        
         
         // INK:NAVIGATION:PILLS
         &.pills {
@@ -910,7 +971,4 @@
             }
         }
     }
-    // INK:NAVIGATION:PILLS
-
 }
-
