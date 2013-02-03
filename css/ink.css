@@ -510,107 +510,107 @@ th {
 /* INK: LARGE SCREENS */
 
 @media screen and (min-width: 961px) {
-  html body .ink-container {
+  .ink-container {
     width: 960px;
     padding: 0 32px;
     margin: auto;
   }
-  html body .ink-space {
+  .ink-space {
     margin: 32px;
     *overflow: hidden;
     *clear: both;
   }
-  html body .ink-vspace {
+  .ink-vspace {
     margin-top: 32px;
     margin-bottom: 32px;
   }
-  html body .ink-hspace {
+  .ink-hspace {
     margin-right: 32px;
     margin-left: 32px;
   }
-  html body .ink-gutter {
+  .ink-gutter {
     margin-left: 32px;
   }
-  html body .ink-row {
+  .ink-row {
     margin-left: -32px;
   }
-  html body .ink-container .ink-l100 {
+  .ink-container .ink-l100 {
     width: auto;
     max-width: 100%;
     *overflow: hidden;
     clear: both;
   }
-  html body .ink-container .ink-l90 {
+  .ink-container .ink-l90 {
     width: 90%;
   }
-  html body .ink-container .ink-l80 {
+  .ink-container .ink-l80 {
     width: 80%;
   }
-  html body .ink-container .ink-l75 {
+  .ink-container .ink-l75 {
     width: 75%;
   }
-  html body .ink-container .ink-l70 {
+  .ink-container .ink-l70 {
     width: 70%;
   }
-  html body .ink-container .ink-l66 {
+  .ink-container .ink-l66 {
     width: 66.66%;
   }
-  html body .ink-container .ink-l60 {
+  .ink-container .ink-l60 {
     width: 60%;
   }
-  html body .ink-container .ink-l50 {
+  .ink-container .ink-l50 {
     width: 50%;
   }
-  html body .ink-container .ink-l40 {
+  .ink-container .ink-l40 {
     width: 40%;
   }
-  html body .ink-container .ink-l33 {
+  .ink-container .ink-l33 {
     width: 33.33%;
     *margin-left: -1px;
   }
-  html body .ink-container .ink-l30 {
+  .ink-container .ink-l30 {
     width: 30%;
   }
-  html body .ink-container .ink-l25 {
+  .ink-container .ink-l25 {
     width: 25%;
   }
-  html body .ink-container .ink-l20 {
+  .ink-container .ink-l20 {
     width: 20%;
   }
-  html body .ink-container .ink-l10 {
+  .ink-container .ink-l10 {
     width: 10%;
   }
-  html body .ink-container .ink-l10,
-  html body .ink-container .ink-l20,
-  html body .ink-container .ink-l25,
-  html body .ink-container .ink-l30,
-  html body .ink-container .ink-l33,
-  html body .ink-container .ink-l40,
-  html body .ink-container .ink-l50,
-  html body .ink-container .ink-l60,
-  html body .ink-container .ink-l66,
-  html body .ink-container .ink-l70,
-  html body .ink-container .ink-l75,
-  html body .ink-container .ink-l80,
-  html body .ink-container .ink-l90 {
+  .ink-container .ink-l10,
+  .ink-container .ink-l20,
+  .ink-container .ink-l25,
+  .ink-container .ink-l30,
+  .ink-container .ink-l33,
+  .ink-container .ink-l40,
+  .ink-container .ink-l50,
+  .ink-container .ink-l60,
+  .ink-container .ink-l66,
+  .ink-container .ink-l70,
+  .ink-container .ink-l75,
+  .ink-container .ink-l80,
+  .ink-container .ink-l90 {
     float: left;
     *overflow: hidden;
     *zoom: 1;
   }
-  html body .ink-container .ink-l100:empty,
-  html body .ink-container .ink-l90:empty,
-  html body .ink-container .ink-l80:empty,
-  html body .ink-container .ink-l75:empty,
-  html body .ink-container .ink-l70:empty,
-  html body .ink-container .ink-l66:empty,
-  html body .ink-container .ink-l60:empty,
-  html body .ink-container .ink-l50:empty,
-  html body .ink-container .ink-l40:empty,
-  html body .ink-container .ink-l33:empty,
-  html body .ink-container .ink-l30:empty,
-  html body .ink-container .ink-l25:empty,
-  html body .ink-container .ink-l20:empty,
-  html body .ink-container .ink-l10:empty {
+  .ink-container .ink-l100:empty,
+  .ink-container .ink-l90:empty,
+  .ink-container .ink-l80:empty,
+  .ink-container .ink-l75:empty,
+  .ink-container .ink-l70:empty,
+  .ink-container .ink-l66:empty,
+  .ink-container .ink-l60:empty,
+  .ink-container .ink-l50:empty,
+  .ink-container .ink-l40:empty,
+  .ink-container .ink-l33:empty,
+  .ink-container .ink-l30:empty,
+  .ink-container .ink-l25:empty,
+  .ink-container .ink-l20:empty,
+  .ink-container .ink-l10:empty {
     clear: both;
   }
   .ink-for-s,
@@ -631,123 +631,123 @@ th {
 /* INK: MEDIUM SCREENS */
 
 @media screen and (min-width: 651px) and (max-width: 960px) {
-  html body .ink-container {
+  .ink-container {
     width: auto;
     padding: 0 21px;
   }
-  html body .ink-space {
+  .ink-space {
     margin: 21px;
     *overflow: hidden;
     *clear: both;
   }
-  html body .ink-vspace {
+  .ink-vspace {
     margin-top: 21px;
     margin-bottom: 21px;
   }
-  html body .ink-hspace {
+  .ink-hspace {
     margin-right: 21px;
     margin-left: 21px;
   }
-  html body .ink-gutter {
+  .ink-gutter {
     margin-left: 21px;
   }
   .ink-row {
     margin-left: -21px;
   }
-  html body .ink-m100 {
+  .ink-m100 {
     width: 100%;
     clear: both;
   }
-  html body .ink-m90 {
+  .ink-m90 {
     width: 90%;
   }
-  html body .ink-m80 {
+  .ink-m80 {
     width: 80%;
   }
-  html body .ink-m75 {
+  .ink-m75 {
     width: 75%;
   }
-  html body .ink-m70 {
+  .ink-m70 {
     width: 70%;
   }
-  html body .ink-m66 {
+  .ink-m66 {
     width: 66.66%;
   }
-  html body .ink-m60 {
+  .ink-m60 {
     width: 60%;
   }
-  html body .ink-m50 {
+  .ink-m50 {
     width: 50%;
   }
-  html body .ink-m40 {
+  .ink-m40 {
     width: 40%;
   }
-  html body .ink-m33 {
+  .ink-m33 {
     width: 33.33%;
   }
-  html body .ink-m30 {
+  .ink-m30 {
     width: 30%;
   }
-  html body .ink-m25 {
+  .ink-m25 {
     width: 25%;
   }
-  html body .ink-m20 {
+  .ink-m20 {
     width: 20%;
   }
-  html body .ink-m10 {
+  .ink-m10 {
     width: 10%;
   }
-  html body .ink-m10,
-  html body .ink-m20,
-  html body .ink-m25,
-  html body .ink-m30,
-  html body .ink-m33,
-  html body .ink-m40,
-  html body .ink-m50,
-  html body .ink-m60,
-  html body .ink-m66,
-  html body .ink-m70,
-  html body .ink-m75,
-  html body .ink-m80,
-  html body .ink-m90 {
+  .ink-m10,
+  .ink-m20,
+  .ink-m25,
+  .ink-m30,
+  .ink-m33,
+  .ink-m40,
+  .ink-m50,
+  .ink-m60,
+  .ink-m66,
+  .ink-m70,
+  .ink-m75,
+  .ink-m80,
+  .ink-m90 {
     float: left;
     zoom: 1;
   }
-  html body .ink-m100:empty,
-  html body .ink-m90:empty,
-  html body .ink-m80:empty,
-  html body .ink-m75:empty,
-  html body .ink-m70:empty,
-  html body .ink-m66:empty,
-  html body .ink-m60:empty,
-  html body .ink-m50:empty,
-  html body .ink-m40:empty,
-  html body .ink-m33:empty,
-  html body .ink-m30:empty,
-  html body .ink-m25:empty,
-  html body .ink-m20:empty,
-  html body .ink-m10:empty {
+  .ink-m100:empty,
+  .ink-m90:empty,
+  .ink-m80:empty,
+  .ink-m75:empty,
+  .ink-m70:empty,
+  .ink-m66:empty,
+  .ink-m60:empty,
+  .ink-m50:empty,
+  .ink-m40:empty,
+  .ink-m33:empty,
+  .ink-m30:empty,
+  .ink-m25:empty,
+  .ink-m20:empty,
+  .ink-m10:empty {
     clear: both;
   }
-  html body .menu-second-level {
+  .menu-second-level {
     display: none;
   }
-  html body #topbar {
+  #topbar {
     height: auto;
   }
-  html body #topbar .horizontal li.active a {
+  #topbar .horizontal li.active a {
     background: none;
     filter: none;
     -webkit-box-shadow: none;
        -moz-box-shadow: none;
             box-shadow: none;
   }
-  html body #topbar .horizontal .submenu li a {
+  #topbar .horizontal .submenu li a {
     padding: 0 21px;
     color: #bbbbbb;
     background: #222222;
   }
-  html body .submenu {
+  .submenu {
     position: relative;
     z-index: 1000;
     display: block;
@@ -756,26 +756,26 @@ th {
     background: transparent;
     border-top: none;
   }
-  html body .submenu li {
+  .submenu li {
     border: none;
   }
-  html body .submenu li a {
+  .submenu li a {
     padding: 0 21px;
   }
-  html body .ink-for-s,
-  html body .ink-for-l {
+  .ink-for-s,
+  .ink-for-l {
     position: absolute;
     top: -99999px;
     left: -99999px;
     visibility: hidden;
   }
-  html body .ink-for-m {
+  .ink-for-m {
     position: relative;
     top: auto;
     left: auto;
     visibility: visible;
   }
-  html body .ink-docked {
+  .ink-docked {
     right: 10px;
     left: 10px;
     width: auto;
@@ -914,7 +914,7 @@ th {
     color: #bbbbbb;
     background: #222222;
   }
-  html body .submenu {
+  .submenu {
     position: relative;
     z-index: 1000;
     display: block;
@@ -1845,11 +1845,11 @@ th {
 }
 
 @media screen and (max-width: 650px) {
-  html body .ink-navigation .pagination li a {
+  .ink-navigation .pagination li a {
     display: none;
   }
-  html body .ink-navigation .pagination li:first-child a,
-  html body .ink-navigation .pagination li:last-child a {
+  .ink-navigation .pagination li:first-child a,
+  .ink-navigation .pagination li:last-child a {
     display: block;
   }
 }
