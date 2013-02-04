@@ -53,3 +53,58 @@
     }
 
 }
+
+.button-group {
+
+    & > .ink-button {
+        float: left;
+        margin: 5px 0;
+        #ink > #border-radius > .none ();
+        border-left: none;
+
+        &:first-child {
+            border-bottom-left-radius: (@border-radius);
+            border-top-left-radius: (@border-radius);
+            border-left: 1px solid #ccc;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: (@border-radius);
+            border-top-right-radius: (@border-radius);
+        }
+    }
+
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        zoom: 1;
+    }
+}
+
+.button-toolbar {
+    
+    & > .button-group {
+        margin: 0 5px;
+        float: left;
+
+        &:first-child {
+            margin: 0 5px 0 0;
+        }
+
+        &:last-child {
+            margin: 0 0 0 5px
+        }
+    }
+
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        zoom: 1;
+    }
+}
