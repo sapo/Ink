@@ -24,8 +24,6 @@
             color: lighten(@text-color,35%);
             position: relative;
             margin: .3em 0 0 0.1em;
-            clear: both;
-            line-height: inherit;
         }
 
         &.label {
@@ -105,16 +103,16 @@
                 & > select,
                 & > textarea {
                     width: 100% - (@form-append-width);
-                    float: left;
+                    //padding-right: 2.2em;
                     
                     & + [class^="icon-"],
                     & + [class*=" icon-"] {
                         display: inline-block;
                         text-align: right;
+                        margin-left: .4em;
                         //position: absolute;
                         //right: .4em;
                         //top: .1em;
-                        width: @form-append-width;
                     }
                 }
             }
@@ -186,7 +184,6 @@
                     font-family: FontAwesome;
                     font-size: .75em;
                     width: 1.25em;
-                    vertical-align: super;
                 }
             }
         }

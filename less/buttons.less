@@ -3,12 +3,12 @@
     -webkit-appearance: menuitem;
     font-weight: bold;
     font-size: @btn-fontSize;
-    line-height:1.3em;
+    line-height: 1.3em;
     padding: @btn-padding;
-    float:none;
+    float: none;
     border: 1px solid #ccc;
     cursor:pointer; 
-    margin:5px;
+    margin: @btn-margin ;
     text-decoration: none;
     display: inline-block;
 
@@ -52,4 +52,51 @@
         }
     }
 
+}
+
+.button-group {
+
+    & > .ink-button {
+        float: left;
+        margin: @btn-margin 0;
+        #ink > #border-radius > .none ();
+        border-left: none;
+
+        &:first-child {
+            border-bottom-left-radius: (@border-radius);
+            border-top-left-radius: (@border-radius);
+            border-left: 1px solid #ccc;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: (@border-radius);
+            border-top-right-radius: (@border-radius);
+        }
+    }
+
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        zoom: 1;
+    }
+}
+
+.button-toolbar {
+    
+    & > .button-group {
+        margin-right: @btn-margin * 2;
+        float: left;
+    }
+
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        zoom: 1;
+    }
 }

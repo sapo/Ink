@@ -9,8 +9,7 @@
             li {
              
                 a { 
-                    #ink > #effects > .transition ('background',500ms);
-                    text-decoration: none;
+                    #ink > #effects > .transition ('background',100ms);
                 }
 
                 &:hover {
@@ -58,8 +57,9 @@
                     position: relative;
 
                     a {
-                        float: left;
-                        padding: @navigation-padding;
+                        //float: left;
+                        padding: @navigation-v-padding @navigation-h-padding @navigation-v-padding 0;
+                        display: inline-block;
                     }
 
                     ul {
