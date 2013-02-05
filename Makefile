@@ -36,7 +36,7 @@ PID_FILE = ./recess.pid
 PID = `cat $(PID_FILE)`
 
 
-all: ink minified
+all: ink minified site
 
 test: 
 	@echo "${HR}"
