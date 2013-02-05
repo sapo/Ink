@@ -51,6 +51,16 @@
 
         }
 
+        // IE7 gets a simplified version of the grid.
+        .ie7-grid (@breakpoint-alias,@gutter-width) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group-ie7 ();
+            #ink > #grid > #generators > .grid-divisions-ie7 ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+        }
+
         #generators {
 
             // if a width (site-width) is supplied and > 0, set the width property to its value
@@ -69,8 +79,7 @@
                 .@{grid-class-name} {
                     width: auto;
                     max-width: 100%;
-                    margin: 0 auto;
-                    // overflow: hidden;
+                    margin: 0 auto;            
                     padding: 0 @gutter-width;
                 }
             }
@@ -79,10 +88,33 @@
             .grid-column-group () {
 
                 .column-group {
-                    width: auto;
-                    // overflow: hidden;
+                    width: 100%;;
                     clear: both;
-                    // margin-bottom: @gutter-width;
+                    zoom: 1;
+                    &:after {
+                        content: "."; 
+                        display: block;
+                        height: 0; 
+                        clear: both; 
+                        visibility: hidden; 
+                        // zoom: 1;
+                    }
+                }
+
+                .column-group.gutters {
+                            margin-left: @gutter-width - (@gutter-width * 2);
+                }
+            }
+
+            // generate the column-group grid element styling
+            .grid-column-group-ie7 () {
+
+                .column-group {
+                    width: auto;
+                    clear: both;
+                    zoom: 1;
+                    margin-left: @gutter-width - (@gutter-width * 2);
+
                     &:after {
                         content: "."; 
                         display: block;
@@ -94,156 +126,395 @@
                 }
 
                 .column-group.gutters {
+                            padding-right: @gutter-width;
                             margin-left: @gutter-width - (@gutter-width * 2);
-                }
+                            overflow: visible;
+                }   
             }
 
             // Generate the grid column division classes
             .grid-divisions () {
 
-                .@{breakpoint-alias}100 {
+                .@{breakpoint-alias}-100 {
                     width: 100%;
                     clear: both;
                 }
-                .@{breakpoint-alias}90 {
+                .@{breakpoint-alias}-90 {
                     width: 90%;
                 }
-                .@{breakpoint-alias}80 {
+                .@{breakpoint-alias}-80 {
                     width: 80%;
                 }
-                .@{breakpoint-alias}75 {
+                .@{breakpoint-alias}-75 {
                     width: 75%;
                 }
-                .@{breakpoint-alias}70 {
+                .@{breakpoint-alias}-70 {
                     width: 70%;
                 }
-                .@{breakpoint-alias}66 {
+                .@{breakpoint-alias}-66 {
                     width: 66.66%;
                 }
-                .@{breakpoint-alias}60 {
+                .@{breakpoint-alias}-60 {
                     width: 60%;
                 }
-                .@{breakpoint-alias}50 {
+                .@{breakpoint-alias}-50 {
                     width: 50%;
                 }
-                .@{breakpoint-alias}40 {
+                .@{breakpoint-alias}-40 {
                     width: 40%;
                 }
-                .@{breakpoint-alias}33 {
+                .@{breakpoint-alias}-33 {
                     width: 33.33%;
                 }
-                .@{breakpoint-alias}30 {
+                .@{breakpoint-alias}-30 {
                     width: 30%;
                 }
-                .@{breakpoint-alias}25 {
+                .@{breakpoint-alias}-25 {
                     width: 25%;
                 }
-                .@{breakpoint-alias}20 {
+                .@{breakpoint-alias}-20 {
                     width: 20%;
                 }
-                .@{breakpoint-alias}10 {
+                .@{breakpoint-alias}-10 {
                     width: 10%;
                 }
 
-                .@{breakpoint-alias}100,
-                .@{breakpoint-alias}90,
-                .@{breakpoint-alias}80,
-                .@{breakpoint-alias}75,
-                .@{breakpoint-alias}70,
-                .@{breakpoint-alias}66,
-                .@{breakpoint-alias}60,
-                .@{breakpoint-alias}50,
-                .@{breakpoint-alias}40,
-                .@{breakpoint-alias}33,
-                .@{breakpoint-alias}30,
-                .@{breakpoint-alias}25,
-                .@{breakpoint-alias}20,
-                .@{breakpoint-alias}10 {
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
                     float: left;
                     margin-bottom: @gutter-width;
                     margin-top: 0;
+                    zoom: 1;                    
+                }
+
+                .animated .@{breakpoint-alias}-100,
+                .animated .@{breakpoint-alias}-90,
+                .animated .@{breakpoint-alias}-80,
+                .animated .@{breakpoint-alias}-75,
+                .animated .@{breakpoint-alias}-70,
+                .animated .@{breakpoint-alias}-66,
+                .animated .@{breakpoint-alias}-60,
+                .animated .@{breakpoint-alias}-50,
+                .animated .@{breakpoint-alias}-40,
+                .animated .@{breakpoint-alias}-33,
+                .animated .@{breakpoint-alias}-30,
+                .animated .@{breakpoint-alias}-25,
+                .animated .@{breakpoint-alias}-20,
+                .animated .@{breakpoint-alias}-10 {
+                    #ink > #effects > .transition ('width',250ms);                 
                 }
 
                 // set the padding to create the gutters
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}100,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}90,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}80,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}75,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}70,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}66,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}60,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}50,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}40,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}33,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}30,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}25,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}20,
-                .ink-grid .column-group.gutters > .@{breakpoint-alias}10 {
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-100,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-90,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-80,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-75,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-70,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-66,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-60,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-50,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-40,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-33,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-30,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-25,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-20,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-10 {
                     padding-left: @gutter-width;
                 }
 
                 // set styling to deal with empty grid elements
-                .@{breakpoint-alias}100:empty,
-                .@{breakpoint-alias}90:empty,
-                .@{breakpoint-alias}80:empty,
-                .@{breakpoint-alias}75:empty,
-                .@{breakpoint-alias}70:empty,
-                .@{breakpoint-alias}66:empty,
-                .@{breakpoint-alias}60:empty,
-                .@{breakpoint-alias}50:empty,
-                .@{breakpoint-alias}40:empty,
-                .@{breakpoint-alias}33:empty,
-                .@{breakpoint-alias}30:empty,
-                .@{breakpoint-alias}25:empty,
-                .@{breakpoint-alias}20:empty,
-                .@{breakpoint-alias}10:empty {
+                .@{breakpoint-alias}-100:empty,
+                .@{breakpoint-alias}-90:empty,
+                .@{breakpoint-alias}-80:empty,
+                .@{breakpoint-alias}-75:empty,
+                .@{breakpoint-alias}-70:empty,
+                .@{breakpoint-alias}-66:empty,
+                .@{breakpoint-alias}-60:empty,
+                .@{breakpoint-alias}-50:empty,
+                .@{breakpoint-alias}-40:empty,
+                .@{breakpoint-alias}-33:empty,
+                .@{breakpoint-alias}-30:empty,
+                .@{breakpoint-alias}-25:empty,
+                .@{breakpoint-alias}-20:empty,
+                .@{breakpoint-alias}-10:empty {
                     clear: both;
                 }
 
+				.@{breakpoint-alias}-100,
+				.@{breakpoint-alias}-90,
+				.@{breakpoint-alias}-80,
+				.@{breakpoint-alias}-75,
+				.@{breakpoint-alias}-70,
+				.@{breakpoint-alias}-66,
+				.@{breakpoint-alias}-60,
+				.@{breakpoint-alias}-50,
+				.@{breakpoint-alias}-40,
+				.@{breakpoint-alias}-33,
+				.@{breakpoint-alias}-30,
+				.@{breakpoint-alias}-25,
+				.@{breakpoint-alias}-20,
+				.@{breakpoint-alias}-10 {
+					& > & {
+						margin-left: 0;
+					}
+				}
+				
                 // generate the forms column-group grid element styling
                 .ink-form .column-group.gutters {
                     margin-left: -@gutter-width / 2;
                 }
 
-                .ink-form .column-group.gutters > .@{breakpoint-alias}100,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}90,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}80,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}75,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}70,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}66,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}60,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}50,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}40,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}33,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}30,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}25,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}20,
-                .ink-form .column-group.gutters > .@{breakpoint-alias}10 {
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-100,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-90,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-80,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-75,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-70,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-66,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-60,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-50,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-40,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-33,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-30,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-25,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-20,
+                .ink-form .column-group.gutters > .@{breakpoint-alias}-10 {
                     padding-left: @gutter-width / 2;
                 }
 
             }
 
+            // Generate the grid column division classes
+            .grid-divisions-ie7 () {                
+
+                .@{breakpoint-alias}-100 {
+                    width: 100% - @subpixel-rounding;
+                    clear: both;
+                }
+                .@{breakpoint-alias}-90 {
+                    width: 90%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-80 {
+                    width: 80%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-75 {
+                    width: 75%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-70 {
+                    width: 70%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-66 {
+                    width: 66.66%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-60 {
+                    width: 60%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-50 {
+                    width: 50%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-40 {
+                    width: 40%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-33 {
+                    width: 33.33%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-30 {
+                    width: 30%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-25 {
+                    width: 25%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-20 {
+                    width: 20%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-10 {
+                    width: 10%  - @subpixel-rounding;
+                }
+
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    float: left;
+                    margin-bottom: @gutter-width;
+                    margin-top: @gutter-width;
+                    overflow: hidden;
+                    zoom: 1;
+                }
+
+                // set the padding to create the gutters
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-100 {
+                    width: 100% - @subpixel-rounding;
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-90 {
+                    width: (90%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-80 {
+                    width: (80%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-75 {
+                    width: (75%  - @subpixel-rounding) - (@gutter-width / 1.5)                    
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-70 {
+                    width: (70% - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-66 {
+                    width: (66%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-60 {
+                    width: (60%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-50 {
+                    width: (50% - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-40 {
+                    width: (40%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-33 {
+                    width: (33% - @subpixel-rounding) - (@gutter-width / 1.5);
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-30 {
+                    width: (30%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-25 {
+                    width: (25%  - @subpixel-rounding) - (@gutter-width / 1.5)                    
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-20 {
+                    width: (20%  - @subpixel-rounding) - (@gutter-width / 1.25)
+                }
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-10 {
+                    width: (10%  - @subpixel-rounding) - (@gutter-width / 1.5)
+                }         
+
+                // set the padding to create the gutters
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-100,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-90,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-80,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-75,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-70,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-66,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-60,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-50,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-40,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-33,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-30,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-25,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-20,
+                .ink-grid .column-group.gutters > .@{breakpoint-alias}-10 {                    
+                    margin-left: @gutter-width;
+                    padding-left: 0;
+                }
+
+                // set styling to deal with empty grid elements
+                .@{breakpoint-alias}-100:empty,
+                .@{breakpoint-alias}-90:empty,
+                .@{breakpoint-alias}-80:empty,
+                .@{breakpoint-alias}-75:empty,
+                .@{breakpoint-alias}-70:empty,
+                .@{breakpoint-alias}-66:empty,
+                .@{breakpoint-alias}-60:empty,
+                .@{breakpoint-alias}-50:empty,
+                .@{breakpoint-alias}-40:empty,
+                .@{breakpoint-alias}-33:empty,
+                .@{breakpoint-alias}-30:empty,
+                .@{breakpoint-alias}-25:empty,
+                .@{breakpoint-alias}-20:empty,
+                .@{breakpoint-alias}-10:empty {
+                    clear: both;
+                }
+
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    & > & {
+                        margin-left: 0;
+                    }
+                }
+                
+                // generate the forms column-group grid element styling
+                .ink-form .column-group.gutters {
+                    margin-left: -@gutter-width;
+                }
+
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-100,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-90,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-80,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-75,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-70,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-66,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-60,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-50,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-40,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-33,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-30,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-25,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-20,
+                // .ink-form .column-group.gutters > .@{breakpoint-alias}-10 {
+                //     padding-left: @gutter-width / 2;
+                // }
+
+            }
+
             // create the helper classes
             .grid-helper-classes () {
-                .@{breakpoint-alias}column-left {
+
+                .hide-from-@{breakpoint-alias} {
+                    display: none;
+                }
+                .show-on-@{breakpoint-alias} {
+                    display: inherit !important;
+                }
+
+                .@{breakpoint-alias}-column-left {
                     float: left;
                 }
-                .@{breakpoint-alias}column-center {
+                .@{breakpoint-alias}-column-center {
                     float: none;
                     margin-left: auto;
                     margin-right: auto;
                 }
-                .@{breakpoint-alias}column-right {
+                .@{breakpoint-alias}-column-right {
                     float: right;
                 }
-                .@{breakpoint-alias}content-left {
+                .@{breakpoint-alias}-content-left {
                     text-align: left;
                 }
-                .@{breakpoint-alias}content-center {
+                .@{breakpoint-alias}-content-center {
                     text-align: center;
                 }
-                .@{breakpoint-alias}content-right {
+                .@{breakpoint-alias}-content-right {
                     text-align: right;
                 }
                 .space {
@@ -392,7 +663,29 @@
             background: linear-gradient(to bottom, @start-color 0%,@end-color @end-color-stop);
         }
 
-    }
+		.horizontal-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+			background: @start-color;
+			filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+			background: -moz-linear-gradient(left, @start-color @start-color-stop, @end-color @end-color-stop);
+			background: -webkit-gradient(linear, left top, right top, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+			background: -webkit-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+			background: -o-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+			background: -ms-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+			background: linear-gradient(to right, @start-color @start-color-stop,@end-color @end-color-stop);
+		}
+		
+
+		.vertical-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+			background: @start-color;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}');
+			background: -moz-linear-gradient(toptop, @start-color @start-color-stop, @end-color @end-color-stop);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+			background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+			background: -o-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+			background: -ms-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+			background: linear-gradient(to bottom, @start-color @start-color-stop,@end-color @end-color-stop);
+		}
+	}
 
 
     #shadows {
