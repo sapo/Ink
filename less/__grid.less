@@ -4,22 +4,25 @@
 @grid-class-name: ink-grid;
 
 // site width
-@site-width: 1024px ;
+@site-width: 1200px ;
+
+// subpixel rounding for IE
+@subpixel-rounding: 0.5 / @site-width;
 
 // grid for large screens
-@large-class-prefix: large-;
+@large-class-prefix: large;
 @large-min-width: 0px;
 @large-max-width: 0px;
 @large-gutter-width: 2em;
 
 // grid for medium screens
-@medium-class-prefix: medium-;
+@medium-class-prefix: medium;
 @medium-min-width: 650px;
 @medium-max-width: 959px;
 @medium-gutter-width: 1.5em;
 
 // grid for small screens
-@small-class-prefix: small-;
+@small-class-prefix: small;
 @small-min-width: 0px;
 @small-max-width: 649px;
 @small-gutter-width: 1em;
