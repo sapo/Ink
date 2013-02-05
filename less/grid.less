@@ -1,51 +1,41 @@
-body {
-	background: @body-background
+// grid.less
+
+
+
+// This mixin takes up to five arguments to generate the css for media query breakpoints:
+
+// 1. A breakpoint classname prefix to help identify the css classes.
+// 2. The media query screen min-width parameter wich can be 0 or greater integer .
+// 3. The media query screen max-width parameter wich can be 0 or greater integer.
+// 4. The breakpoint grid gutter size as a decimal value that converts to em units.
+// 5. A optional boolean parameter (TRUE) that will generate css for a default, non media query dependent breakpoint, usually the largest.
+
+// LARGE SCREENS ( width > 960px )
+#ink > #grid > .set-breakpoint (@large-class-prefix,@large-min-width,@large-max-width,@large-gutter-width,true);
+
+// MEDIUM SCREENS ( width > 650px and < 959px )
+#ink > #grid > .set-breakpoint (@medium-class-prefix,@medium-min-width,@medium-max-width,@medium-gutter-width);
+
+// SMALL SCREENS ( width < 649px )
+#ink > #grid > .set-breakpoint (@small-class-prefix,@small-min-width,@small-max-width,@small-gutter-width);
+
+
+// HELPER CLASSES
+
+.column-left {
+    float: left;
 }
 
-.ink-container {
-	width: @ink-site-width;
-	padding: 0 @ink-grid-gutter;
-	margin: @ink-container-margin;
-	overflow:visible;
+.column-center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-caption, th { text-align:left; } 
-
-.ink-row:after,
-.ink-clear:after,
-.ink-container:after,
-.ink-section:after,
-.ink-space:after,
-.ink-hspace:after,
-.ink-vspace:after,
-.ink-l100:after,
-.ink-m100:after,
-.ink-s100:after,
-.ink-navigation:after {
-	content: "."; 
-	display: block;
-	height: 0; 
-	clear: both; 
-	visibility: hidden; 
-	zoom: 1;
+.column-right {
+    float: right;
 }
 
-// .ink-space 	{ margin: @ink-grid-gutter; *overflow:hidden; *clear:both}
-// .ink-vspace { margin-top: @ink-grid-gutter; margin-bottom: @ink-grid-gutter; *zoom: 1;}
-// .ink-hspace { margin-left: @ink-grid-gutter; margin-right: @ink-grid-gutter; *zoom: 1;}
-// .ink-gutter { margin-left: @ink-grid-gutter; *overflow: hidden; *zoom: 1;}
-
-// .ink-row { 
-// 	margin-left: -@ink-grid-gutter; 
-// 	*zoom: 1;
-// }
-
-// .ink-section 			{ margin: 1em 0; padding-bottom: 1em; border-bottom: 1px solid #ccc; *overflow:hidden; *clear:both;}
-// .ink-section:last-child { border-bottom: none;}
-
-// .ink-clear,
-// .ink-section		{ clear: both; }
-// .ink-clear-left		{ clear: left; }
-// .ink-clear-right	{ clear: right; }
-// .ink-float-left		{ float:left; }
-// .ink-float-right	{ float:right; }
+.content-left { text-align: left; }
+.content-center { text-align: center;}
+.content-right { text-align: right; }

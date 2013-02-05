@@ -1,0 +1,39 @@
+.@{navigation-class-name} {
+	
+	.pills {
+
+		li {
+
+			overflow: hidden;
+			display: block;
+			float: left;
+			margin: 0 .5em .5em 0;
+			line-height: @navigation-line-height;
+			
+			a {
+				display: block;
+				padding: @navigation-padding;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+
+			&.active {
+				
+				a {
+					cursor: default;	
+				}
+			}
+		}
+
+		&:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+            zoom: 1;
+        }
+	}
+}

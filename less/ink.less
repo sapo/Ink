@@ -1,24 +1,65 @@
-@import "normalize.less";
-@import "conf.less";
+// ink.less
+
+// import the config files
+// config file names start with __ (double underscore).
+@import "__grid.less";
+@import "__colors.less";
+@import "__typography.less";
+@import "__navigation.less";
+@import "__forms.less";
+@import "__tables.less";
+@import "__widgets.less";
+
+// the mixins file
+// this file contains all the LESSCSS functions (mixins) that are used within INK
 @import "mixins.less";
+
+// the CSS reset file. 
+// thanks to Nicolas Gallagher and Jonathan Neal for normalize.css (http://necolas.github.com/normalize.css/)
+@import "reset.less";
+
+// import the webfont stuff
+@import "fonts.less";
+
+// the grid
 @import "grid.less";
-@import "large.less";
-@import "medium.less";
-@import "small.less";
-@import "nav.less";
-@import "nav-themes.less";
-@import "nav-pills.less";
-@import "nav-tabs.less";
-@import "nav-breadcrumbs.less";
-@import "nav-pagination.less";
-@import "nav-menu.less";
-@import "typo.less";
-@import "common.less";
-@import "alerts.less";
-@import "buttons.less";
-@import "icons.less";
-@import "forms.less";
-@import "tables.less";
-@import "widgets.less";
-@import "webfont.less";
+
+// typography
+@import "typography.less";
+
+// labels
+@import "labels.less";
+
+// labels
 @import "footer.less";
+
+// FontAwsome icons
+// thanks to Dave Gandy - http://fortawesome.github.com/Font-Awesome)
+@import "icons.less";
+
+// navigation
+@import "navigation.less";
+@import "navigation.menu.less"; // menus
+@import "navigation.breadcrumbs.less"; // breadcrumbs  
+@import "navigation.pagination.less"; // pagination
+@import "navigation.pills.less"; // pills ( )
+@import "navigation.themes.less"; // navigation color schemes (themes)
+
+// forms
+@import "forms.less";
+
+// buttons
+@import "buttons.less";
+
+// tables
+@import "tables.less";
+
+// widgets
+@import "widgets.less";
+
+// images
+@import "images.less";
+
+// labels
+@import "js.gallery.less";
+

@@ -1,0 +1,371 @@
+@import "__colors.less";
+@import "__grid.less";
+@import "__typography.less";
+@import "__navigation.less";
+@import "mixins.less";
+
+@themeColor                 : #131e24 ;
+@themeBackground            : #DEEDF1;
+
+@topbar-height              : 40px;
+@topbar-bgColor             : #222;
+@topbar-color               : #BBB;
+@topbar-colorHover          : @white;
+@topbar-margin              : auto;
+@topbar-fontSize            : 14px;
+
+body {
+    background: @body-background;
+}
+
+h2 span {
+    padding-right: .5em;
+}
+
+.box {
+    #ink > #border-radius > .all (@border-radius);
+    #ink > #shadows > .box-shadow (0, 1px, 3px, 0, #aaa);
+    background-color: #fff;
+    padding: 1em;
+}
+
+mark {
+    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace; 
+    font-size: .938em;
+    background: @themeBackground; 
+    padding:1px 3px;
+}
+
+.gridExample {
+
+    p {
+        #ink > #border-radius > .all(4px);
+        padding: .8em;
+        text-align: center;
+        background: #DEEDF1;
+    }
+}
+
+/*..........................................  Typography  ...................................................*/
+a.visited   {color: @link-visited-color;}
+a.hover     {color: @link-hover-color;  text-decoration: underline;}
+a.active    {color: @link-active-color;}
+
+/*............................................  Homepage  ...................................................*/
+.whatIs {
+    
+    margin: 1.6em 0 2em;
+    font-size: 1.25em;
+    
+    h2 {
+        color: @themeColor;
+    }
+
+    p {
+        margin-top:.5em;
+    }
+}
+
+#download {
+    text-align:center;
+
+    a {
+        font-weight: bold;
+        padding:.8em;
+        display: block;
+        #ink > #gradients > .gradient (#2e2e2e, #222, 100%);
+        #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
+        #ink > #border-radius > .all (@border-radius);
+        color: #FFF;
+    
+        &:hover {
+            #ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
+            text-decoration: none;
+        }
+    }
+
+    p {
+        margin: 1em;
+    }
+}
+
+.ink-download {
+    text-align:center
+}
+
+.ink-download input {
+    font-size:1.625em;
+}
+
+/*..........................................  Ink-UI  ..........................................*/
+.ink-button.toggleTrigger {
+    margin:1em 0 0 0
+}
+
+// .ink-section { 
+// 	// margin-bottom: 1em;
+// 	// padding-bottom: 1em;
+// 	border-bottom: 1px solid #ccc; 
+// 	*overflow:hidden; *clear:both;
+
+// 	&:last-child { 
+// 		border-bottom: none;
+// 		margin-bottom: 0; 
+// 		padding-bottom: 0;
+// 	}
+// }
+
+
+/*..........................................  Homepage  ..........................................*/
+.ink-hero {
+    background: url(../imgs/home_bkg.png) center;
+    background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    overflow: hidden; 
+}  
+
+.logo_hp {
+    width:100%;
+    height:100%;
+    max-width:736px;
+    max-height:330px;
+    margin:0 auto;
+    display: block;
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter:alpha(opacity=80);
+
+-webkit-transition: all 500ms ; 
+   -moz-transition: all 500ms ; 
+    -ms-transition: all 500ms ; 
+     -o-transition: all 500ms ; 
+        transition: all 500ms ;/* custom */    
+    
+    &:hover {
+        opacity: 1;
+        -moz-opacity: 1;
+    }
+}
+
+/*...................................................  Footer  ...................................................*/
+
+footer {
+    //position: absolute;
+    border-top: 1px solid #CCC;
+    background: #f0f0f0;
+    overflow: hidden;
+    bottom: 0;
+
+    .SAPOlogo {
+        background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+        text-indent: -9999px;
+        display: block;
+        width: 101px;
+        height: 30px;
+        margin-bottom: 1em;
+    }
+
+    .PTClogo {
+        font-size: .875em;
+
+        a {
+            background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
+            text-indent: -9999px;
+            display: block;
+            float: left;
+            width: 41px;
+            height: 43px;
+            margin-right:1em;
+        }
+    }
+}
+
+footer ul.sociallinks li {
+    margin-left: .6em;
+    *zoom:1;
+}
+
+footer ul.sociallinks a.Fb_link, 
+footer ul.sociallinks a.Twt_link, 
+footer ul.sociallinks a.Gplus_link {
+    display: block;
+    height: 24px;
+    width: 24px;
+}
+
+footer ul.sociallinks li a.Fb_link      {background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px}
+footer ul.sociallinks li a.Twt_link     {background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px}
+footer ul.sociallinks li a.Gplus_link   {background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px}
+
+#topbar {   
+    position: static;
+    top:0;
+    width: 100%;
+    background:@topbar-bgColor;
+    #ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+    margin: @topbar-margin;
+    z-index: 5000;
+    
+    .ink-navigation {
+        background:@topbar-bgColor;
+    
+        ul {
+            &.menu {
+                &.horizontal {
+                    li {
+                        font-size:@topbar-fontSize;
+                    }
+                    
+                    &.black {
+                        &.flat {
+                            background:@topbar-bgColor;
+                            filter:none;
+                            #ink > #shadows > .no-box-shadow ();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#topbar .horizontal a.logoPlaceholder {
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.4;
+    padding: 0;
+    margin-right: .5em;
+
+    &:hover {
+        background: none;
+    }
+}
+
+#topbar .horizontal li a {
+    *height:auto;
+    color:@topbar-color;
+}
+
+#topbar .horizontal li a:hover { 
+    background:lighten(@topbar-bgColor,6%); 
+    color:@topbar-colorHover;
+}
+
+#topbar .horizontal li.active a {
+    #ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
+    #ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
+    color:@white;
+}
+
+#topbar .horizontal .submenu li a, {
+    color:@black;
+    background:@white
+}
+
+#topbar .horizontal .submenu li a:hover {
+    background:lighten(@topbar-bgColor,6%); 
+    color:@topbar-colorHover;
+}
+
+#topbar .ink-button {
+    right:0;
+}
+
+#topbar .ink-button:hover {
+    color:@topbar-colorHover;
+    background:none;    
+}
+
+#topbar .border {
+    height:.3em;
+    background: url(../imgs/home_bkg.png) center 0px;
+    background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    margin: 0;
+}
+
+/* Prettyfier  */
+var {
+    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+    font-size: .9em;
+    background-color: #ecda83;  
+    padding:1px 3px;
+}
+
+pre {
+    background: #FEFBF3;
+    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
+    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    
+    &.prettyprint {
+        border: 1px solid rgba(0,0,0,.2);
+        #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
+        white-space: pre-wrap;
+        margin: 2em 0;
+    }
+
+    ol  { 
+        line-height:1.5; 
+        list-style: decimal ; 
+        margin: 0 0 0 1.6em; 
+
+        li {
+            word-wrap: break-word; 
+            border-left: 3px solid #CCC; 
+            margin:0; 
+            padding: .2em 0 .2em 1em;
+
+            &:nth-child(odd) { 
+                background:#f0f0f0
+            }
+        }
+    }
+
+    .tag {
+        color: #1E347B;
+    }
+
+    .hightlight {
+        font-weight: bold; 
+        color: red;
+    }
+}
+
+.com                    { color: #93a1a1; }
+.lit                    { color: #195f91; }
+.pun, .opn, .clo        { color: #93a1a1; }
+.fun                    { color: #dc322f; }
+.str, .atv              { color: #268bd2; }
+.kwd, .tag              { color: #195f91; }
+.typ, .atn, .dec, .var  { color: #CB4B16; }
+.pln 
+
+code {
+    border: 1px solid #E0E0E0;
+    background: #E9E9E9;
+    padding: 0 4px;
+}
+
+section {
+
+	padding-top: 1.5em;
+	padding-bottom: 3em;
+	border-bottom: 1px solid #ccc; 
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    &:last-child {
+        border: none;
+    }
+}
