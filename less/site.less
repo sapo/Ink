@@ -136,6 +136,19 @@ a.active    {color: @link-active-color;}
     margin:1em 0 0 0
 }
 
+// .ink-section { 
+// 	// margin-bottom: 1em;
+// 	// padding-bottom: 1em;
+// 	border-bottom: 1px solid #ccc; 
+// 	*overflow:hidden; *clear:both;
+
+// 	&:last-child { 
+// 		border-bottom: none;
+// 		margin-bottom: 0; 
+// 		padding-bottom: 0;
+// 	}
+// }
+
 
 /*..........................................  Footer  ..........................................*/
 .ink-hero {
@@ -379,19 +392,19 @@ var {
 }
 
 pre {
-    background: #FEFBF3;
-    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
-    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
-    display: block;
-    font-size: 14px;
-    color: #aaa;
-    
-    &.prettyprint {
-    border: 1px solid rgba(0,0,0,.2);
-    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
-    white-space: pre-wrap;
-    margin: 2em 0;
-    }
+	background: #FEFBF3;
+	#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
+	font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+	display: block;
+	font-size: 14px;
+	color: #aaa;
+	
+	&.prettyprint {
+	border: 1px solid rgba(0,0,0,.2);
+	#ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
+	white-space: pre-wrap;
+	// margin: 2em 0;
+	}
 
     ol  { 
         line-height:1.5; 
@@ -437,8 +450,9 @@ code {
 
 section {
 
-    padding-bottom: 1.5em;
-    border-bottom: 1px solid #ccc; 
+	padding-top: 1.5em;
+	padding-bottom: 3em;
+	border-bottom: 1px solid #ccc; 
 
     &:first-child {
         padding-top: 0;
