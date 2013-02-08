@@ -629,6 +629,15 @@
                 #ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
                 #ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
             }
+
+            &.flat {
+                
+                background: darken(@button-color,5%);
+
+                &:hover {
+                    background: darken(@button-color,10%);
+                }
+            }
         }
 
     }
@@ -772,27 +781,26 @@
             transition-duration: @duration;
         }
 
-        .transition (@property: ~"background-color, color", @duration: 100ms, @function: ease-in-out, @delay: 0) {
-            -webkit-transition-property: @property;
-            -moz-transition-property: @property;
-            -o-transition-property: @property;
-            -ms-transition-property: @property;
-            transition-property: @property;
-            -webkit-transition-duration: @duration;
-            -moz-transition-duration: @duration;
-            -o-transition-duration: @duration;
-            -ms-transition-duration: @duration;
-            transition-duration: @duration;
-            -webkit-transition-timing-function: @function;
-            -moz-transition-timing-function: @function;
-            -o-transition-timing-function: @function;
-            -ms-transition-timing-function: @function;
-            transition-timing-function: @function;
-            -webkit-transition-delay: @delay;
-            -moz-transition-delay: @delay;
-            -o-transition-delay: @delay;
-            -ms-transition-delay: @delay;
-            transition-delay: @delay;
+        .transition (@property: "background-color, color", @duration: 100ms, @timing-function: ease-in-out, @delay: 0) {
+            #ink > #effects > .transition-property (@property);
+            #ink > #effects > .transition-duration (@duration);
+            #ink > #effects > .transition-timing-function (@timing-function);
+            #ink > #effects > .transition-delay (@delay);
+            // -webkit-transition-duration: @duration;
+            // -moz-transition-duration: @duration;
+            // -o-transition-duration: @duration;
+            // -ms-transition-duration: @duration;
+            // transition-duration: @duration;
+            // -webkit-transition-timing-function: @function;
+            // -moz-transition-timing-function: @function;
+            // -o-transition-timing-function: @function;
+            // -ms-transition-timing-function: @function;
+            // transition-timing-function: @function;
+            // -webkit-transition-delay: @delay;
+            // -moz-transition-delay: @delay;
+            // -o-transition-delay: @delay;
+            // -ms-transition-delay: @delay;
+            // transition-delay: @delay;
         }
 
         .none () {

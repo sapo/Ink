@@ -50,6 +50,8 @@
         }
     }
 
+
+
     .input-file {
         #ink > #border-radius > .all (@border-radius);
         padding: 6px;
@@ -97,7 +99,7 @@
                 }
             }
 
-            &.append {
+            &.append-status {
                 
                 & > input,
                 & > select,
@@ -196,19 +198,23 @@
         color: transparent;
         display: block;
         float: right;
-        width: 20px;
-        height: 20px;
-        line-height: 30px;
+        width: 1.6em;
+        height: 1.6em;
+        line-height: 1.6em;
         font-family: FontAwesome;        
-        #ink > #border-radius > .all (100%);                        
         color: @white;
         margin: 0.4em 0em 0.4em 0.4em;
+        #ink > #border-radius > .all (100%);                     
 
         &.error {
 
-            content: "\f00d";
-            background: @red;            
-            
+            background: @red; 
+
+            &:after {
+                content: "\f00d";
+                #ink > #shadows > .text-shadow (0,-1px,0,darken(@red,10%));
+            }           
+                
             &:before {                
                 border-right: 10px solid @red;
                 border-top: 5px solid transparent;
@@ -219,6 +225,11 @@
 
         &.success {
             
+        &:after {
+            content: "\f00c";
+            #ink > #shadows > .text-shadow (0,-1px,0,darken(@green,5%));
+
+        }  
             background: @green;
 
             &:before {
@@ -229,6 +240,11 @@
         }
 
         &.success, &.error {
+            &:after {
+                display: block;
+                width: 104%;
+                text-align: center;
+            }
             &:before {
                 content: "";
                 width: 0;
@@ -236,23 +252,7 @@
                 // font-size: 0;
                 position: absolute;
                 left: -6px;
-                top: 5px;
+                top: 0.5em;
             }
-        }
-
-        
-
-        // &:after {
-        //     content: "";
-        //     width: 0;
-        //     height: 0;
-        //     border-left: 8px solid red;
-        //     border-top: 6px solid transparent;
-        //     border-bottom: 6px solid transparent;
-        //     font-size: 0;
-        //     position: absolute;
-        //     right: -3px;
-        //     top: 2px;
-        // }              
-    
+        }    
 }

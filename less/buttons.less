@@ -5,7 +5,7 @@
     font-size: @btn-fontSize;
     line-height: 1.3em;
     padding: @btn-padding;
-    float: none;
+    // float: none;
     border: 1px solid #ccc;
     cursor:pointer; 
     margin: @btn-margin ;
@@ -21,7 +21,7 @@
     }
 
     &.warning {
-        #ink > #buttons > .standard (@warning-bg,@white,darken(@warning-bg,25%));
+        #ink > #buttons > .standard (@orange,@white,darken(@warning-bg,25%));
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@warning-bg);
@@ -45,6 +45,14 @@
     }
 
     &.info {
+        #ink > #buttons > .standard (@info-bg,@white,darken(@info-bg,25%));
+        &[disabled], 
+        .ink-disabled {
+            #ink > #states > .disabled (@info-bg);
+        }
+    }
+
+    &.yellow {
         #ink > #buttons > .standard (@info-bg,@white,darken(@info-bg,25%));
         &[disabled], 
         .ink-disabled {

@@ -1,0 +1,405 @@
+/* line 17, /Users/pedrocorreia/Development/Ink/less/site.less */
+body {
+  background: #f7f7f7;
+}
+/* line 21, /Users/pedrocorreia/Development/Ink/less/site.less */
+h2 span {
+  padding-right: .5em;
+}
+/* line 25, /Users/pedrocorreia/Development/Ink/less/site.less */
+.box {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px 0 #aaaaaa;
+  -moz-box-shadow: 0 1px 3px 0 #aaaaaa;
+  box-shadow: 0 1px 3px 0 #aaaaaa;
+  background-color: #fff;
+  padding: 1em;
+}
+/* line 32, /Users/pedrocorreia/Development/Ink/less/site.less */
+mark {
+  font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+  font-size: .938em;
+  background: #deedf1;
+  padding: 1px 3px;
+}
+/* line 41, /Users/pedrocorreia/Development/Ink/less/site.less */
+.gridExample p {
+  border-radius: 4px;
+  padding: .8em;
+  text-align: center;
+  background: #DEEDF1;
+}
+/*..........................................  Typography  ...................................................*/
+/* line 50, /Users/pedrocorreia/Development/Ink/less/site.less */
+a.visited {
+  color: #808080;
+}
+/* line 51, /Users/pedrocorreia/Development/Ink/less/site.less */
+a.hover {
+  color: #007ed5;
+  text-decoration: underline;
+}
+/* line 52, /Users/pedrocorreia/Development/Ink/less/site.less */
+a.active {
+  color: #e60000;
+}
+/*............................................  Homepage  ...................................................*/
+/* line 55, /Users/pedrocorreia/Development/Ink/less/site.less */
+.whatIs {
+  margin: 1.6em 0 2em;
+  font-size: 1.25em;
+}
+/* line 60, /Users/pedrocorreia/Development/Ink/less/site.less */
+.whatIs h2 {
+  color: #131e24;
+}
+/* line 64, /Users/pedrocorreia/Development/Ink/less/site.less */
+.whatIs p {
+  margin-top: .5em;
+}
+/* line 69, /Users/pedrocorreia/Development/Ink/less/site.less */
+#download {
+  text-align: center;
+}
+/* line 72, /Users/pedrocorreia/Development/Ink/less/site.less */
+#download a {
+  font-weight: bold;
+  padding: .8em;
+  display: block;
+  background: #2e2e2e;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e2e2e', endColorstr='#222222');
+  background: -moz-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2e2e), color-stop(100%, #222222));
+  background: -webkit-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: -o-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: -ms-linear-gradient(top, #2e2e2e 0%, #222222 100%);
+  background: linear-gradient(to bottom, #2e2e2e 0%, #222222 100%);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  color: #FFF;
+}
+/* line 81, /Users/pedrocorreia/Development/Ink/less/site.less */
+#download a:hover {
+  background: #3c3c3c;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#2e2e2e');
+  background: -moz-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(100%, #2e2e2e));
+  background: -webkit-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background: -o-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background: -ms-linear-gradient(top, #3c3c3c 0%, #2e2e2e 100%);
+  background: linear-gradient(to bottom, #3c3c3c 0%, #2e2e2e 100%);
+  text-decoration: none;
+}
+/* line 87, /Users/pedrocorreia/Development/Ink/less/site.less */
+#download p {
+  margin: 1em;
+}
+/* line 92, /Users/pedrocorreia/Development/Ink/less/site.less */
+.ink-download {
+  text-align: center;
+}
+/* line 96, /Users/pedrocorreia/Development/Ink/less/site.less */
+.ink-download input {
+  font-size: 1.625em;
+}
+/*..........................................  Ink-UI  ..........................................*/
+/* line 101, /Users/pedrocorreia/Development/Ink/less/site.less */
+.ink-button.toggleTrigger {
+  margin: 1em 0 0 0;
+}
+/*..........................................  Homepage  ..........................................*/
+/* line 120, /Users/pedrocorreia/Development/Ink/less/site.less */
+.ink-hero {
+  background: url(../imgs/home_bkg.png) center;
+  background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  overflow: hidden;
+}
+/* line 130, /Users/pedrocorreia/Development/Ink/less/site.less */
+.logo_hp {
+  width: 100%;
+  height: 100%;
+  max-width: 736px;
+  max-height: 330px;
+  margin: 0 auto;
+  display: block;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter: alpha(opacity=80);
+  -webkit-transition: all 500ms ;
+  -moz-transition: all 500ms ;
+  -ms-transition: all 500ms ;
+  -o-transition: all 500ms ;
+  transition: all 500ms ;
+  /* custom */
+}
+/* line 147, /Users/pedrocorreia/Development/Ink/less/site.less */
+.logo_hp:hover {
+  opacity: 1;
+  -moz-opacity: 1;
+}
+/*...................................................  Footer  ...................................................*/
+/* line 155, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer {
+  border-top: 1px solid #CCC;
+  background: #f0f0f0;
+  overflow: hidden;
+  bottom: 0;
+}
+/* line 162, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer .SAPOlogo {
+  background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+  text-indent: -9999px;
+  display: block;
+  width: 101px;
+  height: 30px;
+  margin-bottom: 1em;
+}
+/* line 171, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer .PTClogo {
+  font-size: .875em;
+}
+/* line 174, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer .PTClogo a {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
+  text-indent: -9999px;
+  display: block;
+  float: left;
+  width: 41px;
+  height: 43px;
+  margin-right: 1em;
+}
+/* line 186, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer ul.sociallinks li {
+  margin-left: .6em;
+  *zoom: 1;
+}
+/* line 191, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer ul.sociallinks a.Fb_link,
+footer ul.sociallinks a.Twt_link,
+footer ul.sociallinks a.Gplus_link {
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+/* line 199, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer ul.sociallinks li a.Fb_link {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px;
+}
+/* line 200, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer ul.sociallinks li a.Twt_link {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px;
+}
+/* line 201, /Users/pedrocorreia/Development/Ink/less/site.less */
+footer ul.sociallinks li a.Gplus_link {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
+}
+/* line 203, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar {
+  position: static;
+  top: 0;
+  width: 100%;
+  background: #222222;
+  -webkit-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+  -moz-box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+  box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
+  margin: auto;
+  z-index: 5000;
+}
+/* line 212, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .ink-navigation {
+  background: #222222;
+}
+/* line 218, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .ink-navigation ul.menu.horizontal li {
+  font-size: 14px;
+}
+/* line 223, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .ink-navigation ul.menu.horizontal.black.flat {
+  background: #222222;
+  filter: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/* line 235, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal a.logoPlaceholder {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 0;
+  margin-right: .5em;
+}
+/* line 242, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal a.logoPlaceholder:hover {
+  background: none;
+}
+/* line 247, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal li a {
+  *height: auto;
+  color: #bbbbbb;
+}
+/* line 252, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal li a:hover {
+  background: #313131;
+  color: #ffffff;
+}
+/* line 257, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal li.active a {
+  background: #080808;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#080808', endColorstr='#3c3c3c');
+  background: -moz-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #080808), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background: -ms-linear-gradient(top, #080808 0%, #3c3c3c 100%);
+  background: linear-gradient(to bottom, #080808 0%, #3c3c3c 100%);
+  -webkit-box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+/* line 263, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal .submenu li a {
+  color: #000000;
+  background: #ffffff;
+}
+/* line 268, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .horizontal .submenu li a:hover {
+  background: #313131;
+  color: #ffffff;
+}
+/* line 273, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .ink-button {
+  right: 0;
+}
+/* line 277, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .ink-button:hover {
+  color: #ffffff;
+  background: none;
+}
+/* line 282, /Users/pedrocorreia/Development/Ink/less/site.less */
+#topbar .border {
+  height: .3em;
+  background: url(../imgs/home_bkg.png) center 0px;
+  background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  margin: 0;
+}
+/* Prettyfier  */
+/* line 294, /Users/pedrocorreia/Development/Ink/less/site.less */
+var {
+  font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+  font-size: .9em;
+  background-color: #ecda83;
+  padding: 1px 3px;
+}
+/* line 301, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre {
+  background: #FEFBF3;
+  -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+  display: block;
+  font-size: 14px;
+  color: #aaa;
+}
+/* line 309, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre.prettyprint {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  white-space: pre-wrap;
+  margin: 2em 0;
+}
+/* line 316, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre ol {
+  line-height: 1.5;
+  list-style: decimal ;
+  margin: 0 0 0 1.6em;
+}
+/* line 321, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre ol li {
+  word-wrap: break-word;
+  border-left: 3px solid #CCC;
+  margin: 0;
+  padding: .2em 0 .2em 1em;
+}
+/* line 327, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre ol li:nth-child(odd) {
+  background: #f0f0f0;
+}
+/* line 333, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre .tag {
+  color: #1E347B;
+}
+/* line 337, /Users/pedrocorreia/Development/Ink/less/site.less */
+pre .hightlight {
+  font-weight: bold;
+  color: red;
+}
+/* line 343, /Users/pedrocorreia/Development/Ink/less/site.less */
+.com {
+  color: #93a1a1;
+}
+/* line 344, /Users/pedrocorreia/Development/Ink/less/site.less */
+.lit {
+  color: #195f91;
+}
+/* line 345, /Users/pedrocorreia/Development/Ink/less/site.less */
+.pun,
+.opn,
+.clo {
+  color: #93a1a1;
+}
+/* line 346, /Users/pedrocorreia/Development/Ink/less/site.less */
+.fun {
+  color: #dc322f;
+}
+/* line 347, /Users/pedrocorreia/Development/Ink/less/site.less */
+.str,
+.atv {
+  color: #268bd2;
+}
+/* line 348, /Users/pedrocorreia/Development/Ink/less/site.less */
+.kwd,
+.tag {
+  color: #195f91;
+}
+/* line 349, /Users/pedrocorreia/Development/Ink/less/site.less */
+.typ,
+.atn,
+.dec,
+.var {
+  color: #CB4B16;
+}
+/* line 352, /Users/pedrocorreia/Development/Ink/less/site.less */
+code {
+  border: 1px solid #E0E0E0;
+  background: #E9E9E9;
+  padding: 0 4px;
+}
+/* line 358, /Users/pedrocorreia/Development/Ink/less/site.less */
+section {
+  padding-top: 1.5em;
+  padding-bottom: 3em;
+  border-bottom: 1px solid #ccc;
+}
+/* line 364, /Users/pedrocorreia/Development/Ink/less/site.less */
+section:first-child {
+  padding-top: 0;
+}
+/* line 368, /Users/pedrocorreia/Development/Ink/less/site.less */
+section:last-child {
+  border: none;
+}
