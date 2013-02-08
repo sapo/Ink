@@ -1503,6 +1503,7 @@ body.animated .large-10 {
 }
 body {
   color: #555555;
+  font-family: Ubuntu, Arial, sans-serif;
 }
 .sans {
   font-family: Ubuntu, Arial, sans-serif;
@@ -2569,6 +2570,7 @@ hr {
   font-weight: bold;
 }
 .ink-label {
+  font-family: Ubuntu, Arial, sans-serif;
   padding: 0.2em 0.5em;
   text-transform: uppercase;
   font-weight: bold;
@@ -3679,6 +3681,12 @@ ul.icons li [class*=" icon-"] {
 .ink-navigation ul.menu.horizontal li a {
   padding: 0.5em 1em 0.5em 0;
   display: inline-block;
+}
+.ink-navigation ul.menu.horizontal li .control {
+  margin-top: .3em;
+}
+.ink-navigation ul.menu.horizontal li.pull-right {
+  float: right;
 }
 .ink-navigation ul.menu.horizontal li ul.submenu {
   width: 8em;
@@ -5033,8 +5041,7 @@ ul.icons li [class*=" icon-"] {
   -webkit-appearance: menuitem;
   font-weight: bold;
   font-size: 0.938em;
-  line-height: 1.3em;
-  padding: 0.45em 0.8em;
+  padding: 0.46em 0.8em;
   border: 1px solid #ccc;
   cursor: pointer;
   margin: 5px;
