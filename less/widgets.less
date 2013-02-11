@@ -428,7 +428,7 @@ ul.ink-tree-view ul {
         color: @progress-bar-color;
         text-align: center;
         #ink > #shadows > .text-shadow (0, 1px, 0, rgba(0, 0, 0, 0.25));
-        #ink > #shadows > .box-shadow (0, 1px, 1px, 0, rgba(0, 0, 0, 0.15), inset);
+        #ink > #shadows > .box-shadow (0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset);
         #ink > #effects > .transition ("width", 0.6s, "ease");
         
         &.grey {
@@ -438,19 +438,19 @@ ul.ink-tree-view ul {
         }
         
         &.green {
-            #ink > #gradients > .gradient (desaturate(@success-bg,10%), darken(desaturate(@success-bg,10%),10%), 150%); 
+            #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@success-bg,10%),10%), 150%); 
         }
         
         &.blue {
-            #ink > #gradients > .gradient (desaturate(@info-bg,10%), darken(desaturate(@info-bg,10%),10%), 150%);
+            #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@info-bg,10%),10%), 150%);
         }
         
         &.red {
-            #ink > #gradients > .gradient (desaturate(@caution-bg,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
+            #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@caution-bg,10%),10%), 150%);
         }
         
         &.orange {
-            #ink > #gradients > .gradient (desaturate(@warning-bg,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
+            #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@warning-bg,10%),10%), 150%);
         }
         
         &.black {
