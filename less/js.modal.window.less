@@ -1,4 +1,4 @@
-@fade-duration: 150ms;
+@fade-duration: 300ms;
 
 .ink-shade {
 
@@ -14,115 +14,116 @@
     position: fixed;
     opacity: 0;
     z-index: 100;
-
-    &.fade {
-        #ink > #effects > .transition (opacity,@fade-duration);
-    }
-
-    &.visible {
-        opacity: 1;
-    }
-    
-}
-
-.ink-modal {
-
-    top: 50%;
-    left: 50%;
-
-    // width: 90%;
-    // height: 90%;
-    
-    background:@white;
-    z-index:9999;
-    position:absolute;
-    opacity: 0;
     // display: none;
-    border: 1px @grey-60 solid;
-    #ink > #shadows > .box-shadow (0,0,15px,0,rgba(0, 0, 0, 0.8));
-    #ink > #border-radius > .all (4px);
-    overflow: hidden;
 
-    &:after {
-        content: "."; 
-        display: block;
-        height: 0; 
-        clear: both; 
-        visibility: hidden; 
-    }
-
-    
     &.fade {
         #ink > #effects > .transition (opacity,@fade-duration);
     }
 
     &.visible {
-        // display: block;
         opacity: 1;
     }
+ 
+    .ink-modal {
 
+        top: 50%;
+        left: 50%;
 
-    > .modal-body {
-        padding: 1em;
-        overflow-y: auto;   
-        overflow-x: hidden;
-        height: auto;
-    }
+        width: 90%;
+        height: 90%;
+        
+        background:@white;
+        z-index:9999;
+        position:absolute;
+        opacity: 0;
 
-    > .modal-header {
-        border-bottom: 1px @grey-10 solid;
+        border: 1px @grey-60 solid;
+        #ink > #shadows > .box-shadow (0,0,15px,0,rgba(0, 0, 0, 0.8));
+        #ink > #border-radius > .all (4px);
         overflow: hidden;
-        #ink > #shadows > .box-shadow (0,1px,2px,0,rgba(175, 175, 175, 0.2));
 
-        > .modal-x-close {
-
-            padding-top: 2px;
-            text-align: center;
-            color: @white;
-            width: 1.5em;
-            height: 1.5em;
-            line-height: 1.2em;
-            font-size: 1em;
-            border: 0;
-            background: @grey-25;
-            
-            #ink > #border-radius > .all (50%);
-            #ink > #shadows > .text-shadow (0,-1px,0,rgba(0,0,0,0.6));
-            #ink > #effects > .opacity (0.6);
-            #ink > #effects > .transition (opacity,125ms);
-
-            &:after {
-                content: "\f00d";
-                font-family: FontAwesome;
-            };
-            
-
-            &:hover {
-                #ink > #effects > .opacity (1);
-            }
-
-            float: right;
-        }
-    }
-
-    > .modal-footer {
-        background: @grey-10;
-        margin-bottom: 0;
-        #ink > #shadows > .box-shadow (0,-1px,2px,0,rgba(175, 175, 175, 0.2));
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-
-    > .modal-header, > .modal-footer {
-        padding: 0.8em 1em 0.65em 1em;
-        &:before, &:after {
+        &:after {
             content: "."; 
             display: block;
             height: 0; 
             clear: both; 
             visibility: hidden; 
         }
-    }        
+
+        
+        &.fade {
+            #ink > #effects > .transition (opacity,@fade-duration);
+        }
+
+        &.visible {
+            display: block;
+            opacity: 1;
+        }
+
+
+        > .modal-body {
+            padding: 1em;
+            overflow-y: auto;   
+            overflow-x: hidden;
+            height: auto;
+        }
+
+        > .modal-header, > header {
+            border-bottom: 1px @grey-10 solid;
+            overflow: hidden;
+            #ink > #shadows > .box-shadow (0,1px,2px,0,rgba(175, 175, 175, 0.2));
+
+            > .modal-x-close {
+
+                padding-top: 2px;
+                text-align: center;
+                color: @white;
+                width: 1.5em;
+                height: 1.5em;
+                line-height: 1.2em;
+                font-size: 1em;
+                border: 0;
+                background: @grey-25;
+                
+                #ink > #border-radius > .all (50%);
+                #ink > #shadows > .text-shadow (0,-1px,0,rgba(0,0,0,0.6));
+                #ink > #effects > .opacity (0.6);
+                #ink > #effects > .transition (opacity,125ms);
+
+                &:after {
+                    content: "\f00d";
+                    font-family: FontAwesome;
+                };
+                
+
+                &:hover {
+                    #ink > #effects > .opacity (1);
+                }
+
+                float: right;
+            }
+        }
+
+        > .modal-footer, > footer {
+            background: @grey-10;
+            margin-bottom: 0;
+            #ink > #shadows > .box-shadow (0,-1px,2px,0,rgba(175, 175, 175, 0.2));
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        > .modal-header, > header, > .modal-footer, > footer {
+            padding: 0.8em 1em 0.65em 1em;
+            &:before, &:after {
+                content: "."; 
+                display: block;
+                height: 0; 
+                clear: both; 
+                visibility: hidden; 
+            }
+        }        
+
+    }
 
 }
