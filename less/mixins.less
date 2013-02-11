@@ -473,31 +473,31 @@
             // create the helper classes
             .grid-helper-classes () {
 
-                .hide-from-@{breakpoint-alias} {
+                .@{breakpoint-alias}-hidden {
                     display: none;
                 }
-                .show-on-@{breakpoint-alias} {
+                .@{breakpoint-alias}-visible {
                     display: inherit !important;
                 }
 
-                .@{breakpoint-alias}-column-left {
+                .@{breakpoint-alias}-push-left {
                     float: left;
                 }
-                .@{breakpoint-alias}-column-center {
+                .@{breakpoint-alias}-push-center {
                     float: none;
                     margin-left: auto;
                     margin-right: auto;
                 }
-                .@{breakpoint-alias}-column-right {
+                .@{breakpoint-alias}-push-right {
                     float: right;
                 }
-                .@{breakpoint-alias}-content-left {
+                .@{breakpoint-alias}-align-left {
                     text-align: left;
                 }
-                .@{breakpoint-alias}-content-center {
+                .@{breakpoint-alias}-align-center {
                     text-align: center;
                 }
-                .@{breakpoint-alias}-content-right {
+                .@{breakpoint-alias}-align-right {
                     text-align: right;
                 }
                 .space {
