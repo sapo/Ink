@@ -104,7 +104,7 @@
 
             // black theme
             &.black {
-                #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                #ink > #gradients > .gradient (lighten(@black,20%), @black, 150%);
                 li {
 
                     ul.submenu { 
@@ -269,8 +269,6 @@
                         }
 
                         a {
-                            border-bottom: 1px solid lighten(@black,15%);
-
                             &:hover {
                                 background: lighten(@black,10%);
                             }
@@ -290,6 +288,14 @@
                                 &:last-child a {
                                     border: none;
                                 }
+                            }
+                        }
+                    }
+
+                    &.vertical {
+                        li {
+                            a {
+                                border-bottom: 1px solid lighten(@black,15%);
                             }
                         }
                     }
