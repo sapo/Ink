@@ -3,16 +3,14 @@
 @import "__typography.less";
 @import "__navigation.less";
 @import "mixins.less";
+@import "utilities.less";
 
-@themeColor                 : #131e24 ;
 @themeBackground            : #DEEDF1;
 
-@topbar-height              : 40px;
+@topbar-fontSize            : 14px;      
 @topbar-bgColor             : #222;
 @topbar-color               : #BBB;
 @topbar-colorHover          : @white;
-@topbar-margin              : auto;
-@topbar-fontSize            : 14px;
 
 body {
     background: @body-background;
@@ -56,10 +54,6 @@ a.active    {color: @link-active-color;}
     
     margin: 1.6em 0 2em;
     font-size: 1.25em;
-    
-    h2 {
-        color: @themeColor;
-    }
 
     p {
         margin-top:.5em;
@@ -146,6 +140,10 @@ footer {
     overflow: hidden;
     bottom: 0;
 
+    .vspace {
+        margin: 1em 0;
+    }
+
     .SAPOlogo {
         background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
         text-indent: -9999px;
@@ -168,24 +166,25 @@ footer {
             margin-right:1em;
         }
     }
-}
 
-footer ul.sociallinks li {
-    margin-left: .6em;
-    *zoom:1;
-}
+    .sociallinks {
+        
+        li {
+            margin-left: .6em;
+            *zoom:1;
 
-footer ul.sociallinks a.Fb_link, 
-footer ul.sociallinks a.Twt_link, 
-footer ul.sociallinks a.Gplus_link {
-    display: block;
-    height: 24px;
-    width: 24px;
-}
+            a {
+                display: block;
+                height: 24px;
+                width: 24px;
 
-footer ul.sociallinks li a.Fb_link      {background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px}
-footer ul.sociallinks li a.Twt_link     {background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px}
-footer ul.sociallinks li a.Gplus_link   {background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px}
+                &.Fb_link       { background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px }
+                &.Twt_link      { background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px }
+                &.Gplus_link    { background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px }
+            }
+        }
+    }
+}
 
 #topbar {   
     position: static;
@@ -193,89 +192,81 @@ footer ul.sociallinks li a.Gplus_link   {background: url("../imgs/icon_Sprite.pn
     width: 100%;
     background:@topbar-bgColor;
     #ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
-    margin: @topbar-margin;
-    z-index: 5000;
+    z-index: @layer-100;
     
     .ink-navigation {
-        background:@topbar-bgColor;
     
         ul {
-            &.menu {
-                &.horizontal {
-                    li {
-                        font-size:@topbar-fontSize;
+            
+            &.horizontal {
+        
+                li {
+                    font-size: @topbar-fontSize;
+                    a {
+                        *height:auto;
+                        color:@topbar-color;
+
+                        &:hover {
+                            background:lighten(@topbar-bgColor,6%); 
+                            color:@topbar-colorHover;
+                        }
+
+                        &.logoPlaceholder {
+                            font-size: 2em;
+                            font-weight: bold;
+                            line-height: 1.4;
+                            padding: 0;
+                            margin-right: .5em;
+
+                            &:hover {
+                                background: none;
+                            }                            
+                        }
                     }
-                    
-                    &.black {
-                        &.flat {
-                            background:@topbar-bgColor;
-                            filter:none;
-                            #ink > #shadows > .no-box-shadow ();
+
+                    &.active {
+                        a {
+                            #ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
+                            #ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
+                            color:@white;
+                        }
+                    }
+
+                    .submenu li a {
+                        color:@black;
+                        background:@white;
+
+                        &:hover {
+                            background:lighten(@topbar-bgColor,6%); 
+                            color:@topbar-colorHover;
                         }
                     }
                 }
+                
+                &.black {
+                    &.flat {
+                        background:@topbar-bgColor;
+                        filter:none;
+                        #ink > #shadows > .no-box-shadow ();
+                    }
+                }
             }
+           
         }
     }
-}
 
-#topbar .horizontal a.logoPlaceholder {
-    font-size: 2em;
-    font-weight: bold;
-    line-height: 1.4;
-    padding: 0;
-    margin-right: .5em;
-
-    &:hover {
-        background: none;
+    .border {
+        height:.3em;
+        background: url(../imgs/home_bkg.png) center 0px;
+        background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        margin: 0;
     }
 }
 
-#topbar .horizontal li a {
-    *height:auto;
-    color:@topbar-color;
-}
-
-#topbar .horizontal li a:hover { 
-    background:lighten(@topbar-bgColor,6%); 
-    color:@topbar-colorHover;
-}
-
-#topbar .horizontal li.active a {
-    #ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
-    #ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
-    color:@white;
-}
-
-#topbar .horizontal .submenu li a, {
-    color:@black;
-    background:@white
-}
-
-#topbar .horizontal .submenu li a:hover {
-    background:lighten(@topbar-bgColor,6%); 
-    color:@topbar-colorHover;
-}
-
-#topbar .ink-button {
-    right:0;
-}
-
-#topbar .ink-button:hover {
-    color:@topbar-colorHover;
-    background:none;    
-}
-
-#topbar .border {
-    height:.3em;
-    background: url(../imgs/home_bkg.png) center 0px;
-    background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    margin: 0;
-}
 
 /* Prettyfier  */
 var {
