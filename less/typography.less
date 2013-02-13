@@ -223,32 +223,9 @@ ul, ol {
 .note {font-size: .9em; color: lighten(@text-color, 20%) }
 .note strong {color: @text-color;}
 
-.label_new {background-color: @success-bg;}
-.label_warning {background-color: @warning-bg;}
-.label_error {background-color: @error-bg;}
-.label_info {background-color: @info-bg;}
-
-h1 .label_new, h1 .label_warning, h1 .label_error, h1 .label_info,
-h2 .label_new, h2 .label_warning, h2 .label_error, h2 .label_info,
-h3 .label_new, h3 .label_warning, h3 .label_error, h3 .label_info,
-h4 .label_new, h4 .label_warning, h4 .label_error, h4 .label_info {
-    font-size: 0.55em;
-    vertical-align: top;
-} 
-
 hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
 
 .lead {font-size: 1.1em; font-weight: bold; }
-
-
-.ink-label {
-    #ink > #text > .ink-font-stack;
-    padding: 0.2em 0.5em;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.85em;
-    #ink > #border-radius > .all (2px);
-}
 
 mark {
     // padding: @padding / 4 @padding / 2;
@@ -260,7 +237,3 @@ mark {
     padding: 1em;
     border-radius: 0.5em;
 }
-
-
-.push-left { float: left; };
-.push-right { float: right; };

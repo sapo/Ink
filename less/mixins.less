@@ -827,14 +827,14 @@
 
     #states {
 
-        .caution (@inv) when (@inv = true) {
-            color: @caution-bg;
+        .error (@inv) when (@inv = true) {
+            color: @error-bg;
             background-color: transparent;
         }
 
-        .caution () {
+        .error () {
             color: @white;
-            background-color: @caution-bg;
+            background-color: @error-bg;
         }
 
 
