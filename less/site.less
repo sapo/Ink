@@ -84,7 +84,7 @@ a.active    {color: @link-active-color;}
 }
 
 .ink-download {
-    text-align:center
+    text-align:center;
 }
 
 .ink-download input {
@@ -128,6 +128,23 @@ a.active    {color: @link-active-color;}
     &:hover {
         opacity: 1;
         -moz-opacity: 1;
+    }
+}
+
+.showcase {
+    background:rgba(0,0,0,.1);
+    border-top:rgba(0,0,0,.4);
+    border-bottom:rgba(0,0,0,.4);
+
+    img {
+        #ink > #shadows > .box-shadow (0, 1px, 3px, 1px, rgba(0,0,0,.2));
+        &:hover {
+            position:relative;
+            bottom:4px;
+            #ink > #shadows > .box-shadow (0, 3px, 4px, 2px, rgba(0,0,0,.3));
+            #ink > #effects > .transition-property (all);
+            #ink > #effects > .transition-duration (120ms);
+        }
     }
 }
 
