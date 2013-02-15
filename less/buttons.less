@@ -15,13 +15,14 @@
     margin: @btn-margin;
     text-decoration: none;
     display: inline-block;
+    vertical-align: middle;
 
     #ink > #border-radius > .all (@border-radius);
     #ink > #buttons > .standard (@btn-bg , #333, @white, true);
 
     &[disabled], 
     .ink-disabled {
-        #ink > #states > .disabled (@btn-bg );
+        #ink > #states > .disabled (@btn-bg);
     }
 
     &.warning {
@@ -29,6 +30,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@warning-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -37,6 +39,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@caution-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -45,6 +48,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@success-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -53,6 +57,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@info-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -61,6 +66,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@info-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -86,14 +92,7 @@
         }
     }
 
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-        zoom: 1;
-    }
+    #ink > #utils > .clearfix ();
 }
 
 .button-toolbar {
@@ -103,12 +102,5 @@
         float: left;
     }
 
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-        zoom: 1;
-    }
+    #ink > #utils > .clearfix ();
 }
