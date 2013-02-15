@@ -18,16 +18,16 @@ body {
 a {
     color: @link-color; 
     text-decoration: none;
-}
-
-a:hover {
-    color: @link-hover-color; 
-    text-decoration: underline;
+    
+    &:hover {
+        color: @link-hover-color; 
+        text-decoration: underline;
+    }
 }
 
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold; 
+    //font-weight: bold; 
     color: @headings-color;
 }
 
@@ -182,17 +182,32 @@ h1 small, h2 small, h3 small, h4 small {
     font-weight: 100;
     line-height: 1;
 }
+
 address {
     color: lighten(@text-color, 20%);
     font-size: 1em;
     line-height: 1.4em;
-}
-address h6 {color: @text-color;}
+    
+    p { margin-top: 0 }
 
-blockquote {border-left: 4px solid #ddd; padding-left: 1em; margin:1em 0; font-weight: 200; font-size: 1.1em;}
-blockquote small {font-size: .9em;} 
-blockquote small::before , blockquote small::after{
-content: ' — ';
+    h6 { color: @text-color; }
+}
+
+blockquote {
+    border-left: 4px solid #ddd; 
+    padding-left: 1em; 
+    margin:1em 0; 
+    font-weight: 200; 
+    font-size: 1.1em;
+
+    small {
+        font-size: .9em;
+
+        &::before,
+        &::after {
+            content: ' — ';
+        }
+    } 
 }
 
 ul, ol, dl      { padding-left: 1.4em; margin:0; }
@@ -220,8 +235,12 @@ ul, ol {
     }
 }
 
-.note {font-size: .9em; color: lighten(@text-color, 20%) }
-.note strong {color: @text-color;}
+.note {
+    font-size: .9em; 
+    color: lighten(@text-color, 20%);
+
+    strong {color: @text-color;}
+}
 
 hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
 
