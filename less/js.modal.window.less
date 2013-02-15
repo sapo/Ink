@@ -1,7 +1,6 @@
 @fade-duration: 300ms;
 
 .ink-shade {
-
     background: rgba(0, 0, 0, 0.8);
     width: 100%;
     height: 100%;
@@ -9,46 +8,34 @@
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    margin-top: 0;
     position: fixed;
-    opacity: 0;
+    #ink > #effects > .opacity (0);
     z-index: 100;
-    // display: none;
+    display: none;
 
     &.fade {
         #ink > #effects > .transition (opacity,@fade-duration);
     }
 
     &.visible {
-        opacity: 1;
+        #ink > #effects > .opacity (1);
     }
  
     .ink-modal {
-
         top: 50%;
         left: 50%;
-
         width: 90%;
         height: 90%;
-        
         background:@white;
-        z-index:9999;
+        z-index:@layer-100;
         position:absolute;
-        opacity: 0;
-
         border: 1px @grey-60 solid;
+        #ink > #effects > .opacity (1);
         #ink > #shadows > .box-shadow (0,0,15px,0,rgba(0, 0, 0, 0.8));
         #ink > #border-radius > .all (4px);
         overflow: hidden;
-
-        &:after {
-            content: "."; 
-            display: block;
-            height: 0; 
-            clear: both; 
-            visibility: hidden; 
-        }
+        #ink > #utils > .clearfix ();
 
         
         &.fade {
@@ -58,6 +45,7 @@
         &.visible {
             display: block;
             opacity: 1;
+            filter: alpha(opacity=100);
         }
 
 
