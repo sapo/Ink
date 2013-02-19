@@ -4833,7 +4833,7 @@ ul.icons li [class*=" icon-"] {
   display: none;
   margin-left: 0px;
   padding: 0.35em 0;
-  font-size: 0.95em;
+  font-size: 0.85em;
 }
 .ink-dropdown ul.options.bottom {
   left: 0.3em;
@@ -4854,20 +4854,26 @@ ul.icons li [class*=" icon-"] {
   margin: 0;
   text-align: left;
   text-transform: none;
-  font-size: 1em;
   padding: 0;
   position: relative;
   list-style-type: none;
 }
-.ink-dropdown ul.options li.separator.above {
+.ink-dropdown ul.options li.separator-above {
   padding-top: 0.35em;
   margin-top: 0.35em;
   border-top: 1px solid #d9d9d9;
 }
-.ink-dropdown ul.options li.separator.below {
+.ink-dropdown ul.options li.separator-below {
   padding-bottom: 0.35em;
   margin-bottom: 0.35em;
   border-bottom: 1px solid #d9d9d9;
+}
+.ink-dropdown ul.options li.heading {
+  font-weight: 700;
+  padding-bottom: 0.35em;
+  margin-bottom: 0.35em;
+  padding: 0.5em 0.8em;
+  color: #333333;
 }
 .ink-dropdown ul.options li a {
   color: #444;
@@ -4903,6 +4909,7 @@ ul.icons li [class*=" icon-"] {
   text-decoration: none;
 }
 .ink-dropdown ul.options li.submenu > ul.options {
+  font-size: inherit;
   position: absolute;
   top: -0.35em;
   left: 100%;

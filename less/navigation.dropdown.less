@@ -17,8 +17,8 @@
                 padding: 0.3em 0;
                 display: none;
                 margin-left: 0px;
-                padding: 0.35em 0;
-                font-size: 0.95em;
+                padding: 0.35em 0;   
+                font-size: 0.85em;        
 
                 &.bottom {
                     left: 0.3em;
@@ -26,6 +26,7 @@
                 
 
                 li {
+                    
                     #ink > #shadows > .no-box-shadow ();
                     #ink > #border-radius > .none ();
                     width: auto;
@@ -35,24 +36,30 @@
                     float: none;
                     margin: 0;
                     text-align: left;
-                    text-transform: none;
-                    font-size: 1em;
+                    text-transform: none;                    
                     padding: 0;
                     position: relative;
                     list-style-type: none;
 
-                    &.separator {
+                    &.separator-above {
+                        padding-top: 0.35em;
+                        margin-top: 0.35em;
+                        border-top: 1px solid @grey-15;
+                    }
 
-                        &.above {
-                            padding-top: 0.35em;
-                            margin-top: 0.35em;
-                            border-top: 1px solid @grey-15;
-                        }
-                        &.below {
-                            padding-bottom: 0.35em;
-                            margin-bottom: 0.35em;
-                            border-bottom: 1px solid @grey-15;
-                        }
+                    &.separator-below {
+                        padding-bottom: 0.35em;
+                        margin-bottom: 0.35em;
+                        border-bottom: 1px solid @grey-15;
+                        
+                    }
+
+                    &.heading {
+                        font-weight: 700;
+                        padding-bottom: 0.35em;
+                        margin-bottom: 0.35em;
+                        padding: 0.5em 0.8em;
+                        color: @grey-80;
                     }
 
                     a {
@@ -84,7 +91,7 @@
                     }
 
                     &.submenu {
-                        
+
                         overflow: visible;
 
                         > a {
@@ -111,9 +118,10 @@
                         }
 
                         > ul.options {
+                            font-size: inherit;
                             position: absolute;
-                                top: -0.35em;
-                                left: 100%;
+                            top: -0.35em;
+                            left: 100%;
                         }
                     }
                 }
