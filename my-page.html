@@ -31,6 +31,8 @@
 
         <!-- Javascripts -->
         <!-- <script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink-v1.js"></script> -->
+        <script type="text/javascript" src="http://js.testing.pt/Bundles/Ink.js"></script>
+        <script type="text/javascript" src="http://js.testing.pt/SAPO/Ink/Toggle/0.1/"></script>
         
     </head>
     <body>
@@ -79,8 +81,37 @@
                 </div>
                 
             </div>
-            
-            
+
+            <nav class="ink-navigation large-50">
+                <ul class="menu vertical black rounded shadowed accordion">
+                    <li class="active"><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li class="toggle" data-target="#submenu1"><a href="#">Item</a>
+                        <ul class="submenu dropdown" id="submenu1" style="display:none">
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </li>
+                    <li class="toggle" data-target="#submenu2"><a href="#">Submenu</a>
+                        <ul class="submenu dropdown" id="submenu2" style="display:none">
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <script>
+                var
+                    toggles = SAPO.Dom.Selector.select('.toggle'),
+                    i
+                ;
+                for( i=0; i<toggles.length; i+=1 ){
+                    new SAPO.Ink.Toggle(toggles[i]);
+                }
+            </script>
+            <br clear="all"/>
             <h4>... thirds ...</h4>
             <div class="column-group gutters">
                 <div class="large-33 medium-33 small-100">
