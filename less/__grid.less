@@ -9,42 +9,29 @@
 // subpixel rounding for IE
 @subpixel-rounding: 0.5 / @site-width;
 
+// gutter width
+@gutter-width: 2em;
+
 // grid for large screens
 @large-class-prefix: large;
 @large-min-width: 0px;
 @large-max-width: 0px;
-@large-gutter-width: 2em;
+@large-gutter-width: @gutter-width;
 
 // grid for medium screens
 @medium-class-prefix: medium;
 @medium-min-width: 650px;
 @medium-max-width: 959px;
-@medium-gutter-width: 1.5em;
+@medium-gutter-width: @gutter-width * 0.75;
 
 // grid for small screens
 @small-class-prefix: small;
 @small-min-width: 0px;
 @small-max-width: 649px;
-@small-gutter-width: 1em;
+@small-gutter-width: @gutter-width * 0.5;
 
 // TYPOGRAPHY:LINKS;
 
 
 // STUFF
 @border-radius: 4px;
-
-// ########################################
-// INK:UTILITIES
-// ########################################
-
-@layer-0: 0;
-@layer-10: 10;
-@layer-20: 20;
-@layer-30: 30;
-@layer-40: 40;
-@layer-50: 50;
-@layer-60: 60;
-@layer-70: 70;
-@layer-80: 80;
-@layer-90: 90;
-@layer-100: 100;

@@ -88,7 +88,7 @@
             .grid-column-group () {
 
                 .column-group {
-                    width: 100%;;
+                    // width: 100%;
                     clear: both;
                     zoom: 1;
                     &:after {
@@ -252,25 +252,25 @@
                     clear: both;
                 }
 
-				.@{breakpoint-alias}-100,
-				.@{breakpoint-alias}-90,
-				.@{breakpoint-alias}-80,
-				.@{breakpoint-alias}-75,
-				.@{breakpoint-alias}-70,
-				.@{breakpoint-alias}-66,
-				.@{breakpoint-alias}-60,
-				.@{breakpoint-alias}-50,
-				.@{breakpoint-alias}-40,
-				.@{breakpoint-alias}-33,
-				.@{breakpoint-alias}-30,
-				.@{breakpoint-alias}-25,
-				.@{breakpoint-alias}-20,
-				.@{breakpoint-alias}-10 {
-					& > & {
-						margin-left: 0;
-					}
-				}
-				
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    & > & {
+                        margin-left: 0;
+                    }
+                }
+                
                 // generate the forms column-group grid element styling
                 .ink-form .column-group.gutters {
                     margin-left: -@gutter-width / 2;
@@ -473,31 +473,31 @@
             // create the helper classes
             .grid-helper-classes () {
 
-                .hide-from-@{breakpoint-alias} {
+                .@{breakpoint-alias}-hidden {
                     display: none;
                 }
-                .show-on-@{breakpoint-alias} {
+                .@{breakpoint-alias}-visible {
                     display: inherit !important;
                 }
 
-                .@{breakpoint-alias}-column-left {
+                .@{breakpoint-alias}-push-left {
                     float: left;
                 }
-                .@{breakpoint-alias}-column-center {
+                .@{breakpoint-alias}-push-center {
                     float: none;
                     margin-left: auto;
                     margin-right: auto;
                 }
-                .@{breakpoint-alias}-column-right {
+                .@{breakpoint-alias}-push-right {
                     float: right;
                 }
-                .@{breakpoint-alias}-content-left {
+                .@{breakpoint-alias}-align-left {
                     text-align: left;
                 }
-                .@{breakpoint-alias}-content-center {
+                .@{breakpoint-alias}-align-center {
                     text-align: center;
                 }
-                .@{breakpoint-alias}-content-right {
+                .@{breakpoint-alias}-align-right {
                     text-align: right;
                 }
                 .space {
@@ -629,6 +629,15 @@
                 #ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
                 #ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
             }
+
+            &.flat {
+                
+                background: darken(@button-color,5%);
+
+                &:hover {
+                    background: darken(@button-color,10%);
+                }
+            }
         }
 
     }
@@ -646,29 +655,28 @@
             background: linear-gradient(to bottom, @start-color 0%,@end-color @end-color-stop);
         }
 
-		.horizontal-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
-			background: @start-color;
-			filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
-			background: -moz-linear-gradient(left, @start-color @start-color-stop, @end-color @end-color-stop);
-			background: -webkit-gradient(linear, left top, right top, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
-			background: -webkit-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
-			background: -o-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
-			background: -ms-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
-			background: linear-gradient(to right, @start-color @start-color-stop,@end-color @end-color-stop);
-		}
-		
-
-		.vertical-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
-			background: @start-color;
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}');
-			background: -moz-linear-gradient(toptop, @start-color @start-color-stop, @end-color @end-color-stop);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
-			background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
-			background: -o-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
-			background: -ms-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
-			background: linear-gradient(to bottom, @start-color @start-color-stop,@end-color @end-color-stop);
-		}
-	}
+        .horizontal-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+            background: @start-color;
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+            background: -moz-linear-gradient(left, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, right top, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -o-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -ms-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: linear-gradient(to right, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+        
+        .vertical-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+            background: @start-color;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}');
+            background: -moz-linear-gradient(toptop, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -o-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -ms-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: linear-gradient(to bottom, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+    }
 
 
     #shadows {
@@ -772,27 +780,11 @@
             transition-duration: @duration;
         }
 
-        .transition (@property: ~"background-color, color", @duration: 100ms, @function: ease-in-out, @delay: 0) {
-            -webkit-transition-property: @property;
-            -moz-transition-property: @property;
-            -o-transition-property: @property;
-            -ms-transition-property: @property;
-            transition-property: @property;
-            -webkit-transition-duration: @duration;
-            -moz-transition-duration: @duration;
-            -o-transition-duration: @duration;
-            -ms-transition-duration: @duration;
-            transition-duration: @duration;
-            -webkit-transition-timing-function: @function;
-            -moz-transition-timing-function: @function;
-            -o-transition-timing-function: @function;
-            -ms-transition-timing-function: @function;
-            transition-timing-function: @function;
-            -webkit-transition-delay: @delay;
-            -moz-transition-delay: @delay;
-            -o-transition-delay: @delay;
-            -ms-transition-delay: @delay;
-            transition-delay: @delay;
+        .transition (@property: "background-color, color", @duration: 100ms, @timing-function: ease-in-out, @delay: 0) {
+            #ink > #effects > .transition-property (@property);
+            #ink > #effects > .transition-duration (@duration);
+            #ink > #effects > .transition-timing-function (@timing-function);
+            #ink > #effects > .transition-delay (@delay);
         }
 
         .none () {
@@ -806,7 +798,7 @@
         // set element opacity
         .opacity (@op) {
             @percent: @op * 100;
-            filter: alpha(opacity=@percent);
+            filter:alpha(opacity=@percent);
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
             opacity: @op;
         }
@@ -814,19 +806,28 @@
     }
 
     #utils {
-                
+
+        .clearfix () {
+            &:after {
+                content: "."; 
+                display: block;
+                height: 0; 
+                clear: both; 
+                visibility: hidden; 
+            }
+        }
     }
 
     #states {
 
-        .caution (@inv) when (@inv = true) {
-            color: @caution-bg;
+        .error (@inv) when (@inv = true) {
+            color: @error-bg;
             background-color: transparent;
         }
 
-        .caution () {
+        .error () {
             color: @white;
-            background-color: @caution-bg;
+            background-color: @error-bg;
         }
 
 
@@ -879,6 +880,5 @@
                 cursor: not-allowed;
             }
         }
-
     }
 }

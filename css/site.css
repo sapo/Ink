@@ -110,7 +110,7 @@ a.active {
   margin: 1em 0 0 0;
 }
 /*..........................................  Homepage  ..........................................*/
-/* line 120, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 107, /Users/pedrocorreia/Development/Ink/less/site.less */
 .ink-hero {
   background: url(../imgs/home_bkg.png) center;
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -120,7 +120,7 @@ a.active {
   background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   overflow: hidden;
 }
-/* line 130, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 117, /Users/pedrocorreia/Development/Ink/less/site.less */
 .logo_hp {
   width: 100%;
   height: 100%;
@@ -138,20 +138,20 @@ a.active {
   transition: all 500ms ;
   /* custom */
 }
-/* line 147, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 134, /Users/pedrocorreia/Development/Ink/less/site.less */
 .logo_hp:hover {
   opacity: 1;
   -moz-opacity: 1;
 }
 /*...................................................  Footer  ...................................................*/
-/* line 155, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 142, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer {
   border-top: 1px solid #CCC;
   background: #f0f0f0;
   overflow: hidden;
   bottom: 0;
 }
-/* line 162, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 149, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer .SAPOlogo {
   background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
   text-indent: -9999px;
@@ -160,11 +160,11 @@ footer .SAPOlogo {
   height: 30px;
   margin-bottom: 1em;
 }
-/* line 171, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 158, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer .PTClogo {
   font-size: .875em;
 }
-/* line 174, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 161, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer .PTClogo a {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
   text-indent: -9999px;
@@ -174,12 +174,12 @@ footer .PTClogo a {
   height: 43px;
   margin-right: 1em;
 }
-/* line 186, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 173, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer ul.sociallinks li {
   margin-left: .6em;
   *zoom: 1;
 }
-/* line 191, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 178, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer ul.sociallinks a.Fb_link,
 footer ul.sociallinks a.Twt_link,
 footer ul.sociallinks a.Gplus_link {
@@ -187,19 +187,19 @@ footer ul.sociallinks a.Gplus_link {
   height: 24px;
   width: 24px;
 }
-/* line 199, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 186, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer ul.sociallinks li a.Fb_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px;
 }
-/* line 200, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 187, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer ul.sociallinks li a.Twt_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px;
 }
-/* line 201, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 188, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer ul.sociallinks li a.Gplus_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
 }
-/* line 203, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 190, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar {
   position: static;
   top: 0;
@@ -211,15 +211,15 @@ footer ul.sociallinks li a.Gplus_link {
   margin: auto;
   z-index: 5000;
 }
-/* line 212, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 199, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation {
   background: #222222;
 }
-/* line 218, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 205, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.menu.horizontal li {
   font-size: 14px;
 }
-/* line 223, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 210, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.menu.horizontal.black.flat {
   background: #222222;
   filter: none;
@@ -227,7 +227,7 @@ footer ul.sociallinks li a.Gplus_link {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-/* line 235, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 222, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal a.logoPlaceholder {
   font-size: 2em;
   font-weight: bold;
@@ -235,21 +235,21 @@ footer ul.sociallinks li a.Gplus_link {
   padding: 0;
   margin-right: .5em;
 }
-/* line 242, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 229, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal a.logoPlaceholder:hover {
   background: none;
 }
-/* line 247, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 234, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal li a {
   *height: auto;
   color: #bbbbbb;
 }
-/* line 252, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 239, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal li a:hover {
   background: #313131;
   color: #ffffff;
 }
-/* line 257, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 244, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal li.active a {
   background: #080808;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#080808', endColorstr='#3c3c3c');
@@ -264,26 +264,26 @@ footer ul.sociallinks li a.Gplus_link {
   box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
-/* line 263, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 250, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal .submenu li a {
   color: #000000;
   background: #ffffff;
 }
-/* line 268, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 255, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .horizontal .submenu li a:hover {
   background: #313131;
   color: #ffffff;
 }
-/* line 273, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 260, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-button {
   right: 0;
 }
-/* line 277, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 264, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-button:hover {
   color: #ffffff;
   background: none;
 }
-/* line 282, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 269, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .border {
   height: .3em;
   background: url(../imgs/home_bkg.png) center 0px;
@@ -295,14 +295,14 @@ footer ul.sociallinks li a.Gplus_link {
   margin: 0;
 }
 /* Prettyfier  */
-/* line 294, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 281, /Users/pedrocorreia/Development/Ink/less/site.less */
 var {
   font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
   font-size: .9em;
   background-color: #ecda83;
   padding: 1px 3px;
 }
-/* line 301, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 288, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre {
   background: #FEFBF3;
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -313,93 +313,92 @@ pre {
   font-size: 14px;
   color: #aaa;
 }
-/* line 309, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 296, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre.prettyprint {
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
   white-space: pre-wrap;
-  margin: 2em 0;
 }
-/* line 316, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 303, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre ol {
   line-height: 1.5;
   list-style: decimal ;
   margin: 0 0 0 1.6em;
 }
-/* line 321, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 308, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre ol li {
   word-wrap: break-word;
   border-left: 3px solid #CCC;
   margin: 0;
   padding: .2em 0 .2em 1em;
 }
-/* line 327, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 314, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre ol li:nth-child(odd) {
   background: #f0f0f0;
 }
-/* line 333, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 320, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre .tag {
   color: #1E347B;
 }
-/* line 337, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 324, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre .hightlight {
   font-weight: bold;
   color: red;
 }
-/* line 343, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 330, /Users/pedrocorreia/Development/Ink/less/site.less */
 .com {
   color: #93a1a1;
 }
-/* line 344, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 331, /Users/pedrocorreia/Development/Ink/less/site.less */
 .lit {
   color: #195f91;
 }
-/* line 345, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 332, /Users/pedrocorreia/Development/Ink/less/site.less */
 .pun,
 .opn,
 .clo {
   color: #93a1a1;
 }
-/* line 346, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 333, /Users/pedrocorreia/Development/Ink/less/site.less */
 .fun {
   color: #dc322f;
 }
-/* line 347, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 334, /Users/pedrocorreia/Development/Ink/less/site.less */
 .str,
 .atv {
   color: #268bd2;
 }
-/* line 348, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 335, /Users/pedrocorreia/Development/Ink/less/site.less */
 .kwd,
 .tag {
   color: #195f91;
 }
-/* line 349, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 336, /Users/pedrocorreia/Development/Ink/less/site.less */
 .typ,
 .atn,
 .dec,
 .var {
   color: #CB4B16;
 }
-/* line 350, /Users/pedrocorreia/Development/Ink/less/site.less */
-.pln code {
+/* line 339, /Users/pedrocorreia/Development/Ink/less/site.less */
+code {
   border: 1px solid #E0E0E0;
   background: #E9E9E9;
   padding: 0 4px;
 }
-/* line 358, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 345, /Users/pedrocorreia/Development/Ink/less/site.less */
 section {
   padding-top: 1.5em;
   padding-bottom: 3em;
   border-bottom: 1px solid #ccc;
 }
-/* line 364, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 351, /Users/pedrocorreia/Development/Ink/less/site.less */
 section:first-child {
   padding-top: 0;
 }
-/* line 368, /Users/pedrocorreia/Development/Ink/less/site.less */
+/* line 355, /Users/pedrocorreia/Development/Ink/less/site.less */
 section:last-child {
   border: none;
 }

@@ -1,10 +1,10 @@
 html {
-    //#ink > #text > .body-font-size (@base-font-size);
+    #ink > #text > .body-font-size (@base-font-size);
 }
 
 body {
     color: @text-color;
-    //#ink > #text > .ink-font-stack();
+    #ink > #text > .ink-font-stack();
 }
 
 .sans {
@@ -18,16 +18,16 @@ body {
 a {
     color: @link-color; 
     text-decoration: none;
-}
-
-a:hover {
-    color: @link-hover-color; 
-    text-decoration: underline;
+    
+    &:hover {
+        color: @link-hover-color; 
+        text-decoration: underline;
+    }
 }
 
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold; 
+    //font-weight: bold; 
     color: @headings-color;
 }
 
@@ -182,17 +182,32 @@ h1 small, h2 small, h3 small, h4 small {
     font-weight: 100;
     line-height: 1;
 }
+
 address {
     color: lighten(@text-color, 20%);
     font-size: 1em;
     line-height: 1.4em;
-}
-address h6 {color: @text-color;}
+    
+    p { margin-top: 0 }
 
-blockquote {border-left: 4px solid #ddd; padding-left: 1em; margin:1em 0; font-weight: 200; font-size: 1.1em;}
-blockquote small {font-size: .9em;} 
-blockquote small::before , blockquote small::after{
-content: ' — ';
+    h6 { color: @text-color; }
+}
+
+blockquote {
+    border-left: 4px solid #ddd; 
+    padding-left: 1em; 
+    margin:1em 0; 
+    font-weight: 200; 
+    font-size: 1.1em;
+
+    small {
+        font-size: .9em;
+
+        &::before,
+        &::after {
+            content: ' — ';
+        }
+    } 
 }
 
 ul, ol, dl      { padding-left: 1.4em; margin:0; }
@@ -220,35 +235,20 @@ ul, ol {
     }
 }
 
-.note {font-size: .9em; color: lighten(@text-color, 20%) }
-.note strong {color: @text-color;}
+.note {
+    font-size: .9em; 
+    color: lighten(@text-color, 20%);
 
-.label_new {background-color: @success-bg;}
-.label_warning {background-color: @warning-bg;}
-.label_error {background-color: @error-bg;}
-.label_info {background-color: @info-bg;}
+    strong {color: @text-color;}
+}
 
-h1 .label_new, h1 .label_warning, h1 .label_error, h1 .label_info,
-h2 .label_new, h2 .label_warning, h2 .label_error, h2 .label_info,
-h3 .label_new, h3 .label_warning, h3 .label_error, h3 .label_info,
-h4 .label_new, h4 .label_warning, h4 .label_error, h4 .label_info {
-    font-size: 0.55em;
-    vertical-align: top;
-} 
+.small { font-size: 0.75em; }
+.large { font-size: 1.2em; }
+.extralarge { font-size: 1.45em; }
 
 hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
 
 .lead {font-size: 1.1em; font-weight: bold; }
-
-
-.ink-label {
-    //#ink > #text > .ink-font-stack;
-    padding: 0.2em 0.5em;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.85em;
-    #ink > #border-radius > .all (2px);
-}
 
 mark {
     // padding: @padding / 4 @padding / 2;

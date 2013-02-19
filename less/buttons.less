@@ -1,30 +1,36 @@
 .ink-button {
 
+    //&:last-child {
+    //    margin-bottom: 0.5em;
+    //}
+
     -webkit-appearance: menuitem;
     font-weight: bold;
     font-size: @btn-fontSize;
-    line-height: 1.3em;
+    //line-height: 1.3em;
     padding: @btn-padding;
-    float: none;
+    // float: none;
     border: 1px solid #ccc;
     cursor:pointer; 
-    margin: @btn-margin ;
+    margin: @btn-margin;
     text-decoration: none;
     display: inline-block;
+    vertical-align: middle;
 
     #ink > #border-radius > .all (@border-radius);
     #ink > #buttons > .standard (@btn-bg , #333, @white, true);
 
     &[disabled], 
     .ink-disabled {
-        #ink > #states > .disabled (@btn-bg );
+        #ink > #states > .disabled (@btn-bg);
     }
 
     &.warning {
-        #ink > #buttons > .standard (@warning-bg,@white,darken(@warning-bg,25%));
+        #ink > #buttons > .standard (@orange,@white,darken(@warning-bg,25%));
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@warning-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -33,6 +39,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@caution-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -41,6 +48,7 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@success-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -49,6 +57,16 @@
         &[disabled], 
         .ink-disabled {
             #ink > #states > .disabled (@info-bg);
+            #ink > #shadows > .no-text-shadow ();
+        }
+    }
+
+    &.yellow {
+        #ink > #buttons > .standard (@info-bg,@white,darken(@info-bg,25%));
+        &[disabled], 
+        .ink-disabled {
+            #ink > #states > .disabled (@info-bg);
+            #ink > #shadows > .no-text-shadow ();
         }
     }
 
@@ -74,14 +92,7 @@
         }
     }
 
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-        zoom: 1;
-    }
+    #ink > #utils > .clearfix ();
 }
 
 .button-toolbar {
@@ -91,12 +102,5 @@
         float: left;
     }
 
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-        zoom: 1;
-    }
+    #ink > #utils > .clearfix ();
 }

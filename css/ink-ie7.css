@@ -400,37 +400,37 @@
   margin-left: -3%;
 }
 /* line 476, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.hide-from-large {
+.large-hidden {
   display: none;
 }
 /* line 479, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.show-on-large {
+.large-visible {
   display: inherit !important;
 }
 /* line 483, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.large-column-left {
+.large-push-left {
   float: left;
 }
 /* line 486, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.large-column-center {
+.large-push-center {
   float: none;
   margin-left: auto;
   margin-right: auto;
 }
 /* line 491, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.large-column-right {
+.large-push-right {
   float: right;
 }
 /* line 494, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.large-content-left {
+.large-align-left {
   text-align: left;
 }
 /* line 497, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.large-content-center {
+.large-align-center {
   text-align: center;
 }
 /* line 500, /Users/pedrocorreia/Development/Ink/less/mixins.less */
-.large-content-right {
+.large-align-right {
   text-align: right;
 }
 /* line 503, /Users/pedrocorreia/Development/Ink/less/mixins.less */
