@@ -10,9 +10,9 @@
     left: 0;
     margin-top: 0;
     position: fixed;
-    #ink > #effects > .opacity (0);
     z-index: 100;
     display: none;
+    #ink > #effects > .opacity (0);
 
     &.fade {
         #ink > #effects > .transition (opacity,@fade-duration);
@@ -61,7 +61,7 @@
             overflow: hidden;
             #ink > #shadows > .box-shadow (0,1px,2px,0,rgba(175, 175, 175, 0.2));
 
-            > .modal-x-close {
+            > .modal-close {
 
                 padding-top: 2px;
                 text-align: center;
@@ -114,4 +114,8 @@
 
     }
 
+}
+
+.ink-modal-open {
+    overflow: hidden; 
 }

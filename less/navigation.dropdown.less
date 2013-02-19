@@ -1,21 +1,28 @@
 .ink-dropdown {
 
-            position: absolute;
-            background: @white;
-            z-index: @layer-30;
-            border: 1px solid @grey-20;
-            height: auto;
-            width: 14em;
-            #ink > #border-radius > .all (5px);
-            #ink > #shadows > .box-shadow (0,0,3px,0,rgba(100,100,100,0.3));
-            padding: 0.3em 0;
+            position: relative;
+            display: inline-block;
+            
+            ul.options {
 
-            ul {
-
-                display: block;
+                position: absolute;
+                background: @white;
+                z-index: @layer-30;
+                border: 1px solid @grey-15;
+                height: auto;
+                width: auto;
+                min-width: 10em;
+                #ink > #border-radius > .all (5px);
+                #ink > #shadows > .box-shadow (0,0,3px,0,rgba(100,100,100,0.3));
+                padding: 0.3em 0;
+                display: none;
                 margin-left: 0px;
-                overflow: hidden;
-                padding: 0;
+                padding: 0.35em 0;
+                font-size: 0.95em;
+
+                &.bottom {
+                    left: 0.3em;
+                }
                 
 
                 li {
@@ -31,18 +38,20 @@
                     text-transform: none;
                     font-size: 1em;
                     padding: 0;
+                    position: relative;
+                    list-style-type: none;
 
                     &.separator {
-                        
+
                         &.above {
-                            padding-top: .5em;
-                            margin-top: .5em;
-                            border-top: 1px solid @grey-20;
+                            padding-top: 0.35em;
+                            margin-top: 0.35em;
+                            border-top: 1px solid @grey-15;
                         }
                         &.below {
-                            padding-bottom: .5em;
-                            margin-bottom: .5em;
-                            border-bottom: 1px solid @grey-20;
+                            padding-bottom: 0.35em;
+                            margin-bottom: 0.35em;
+                            border-bottom: 1px solid @grey-15;
                         }
                     }
 
@@ -60,6 +69,51 @@
                         a {
                             background: @blue;
                             color: @white;
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            color: @grey-30;
+                            &:hover {
+                                background: transparent;
+                                cursor: default;
+
+                            }
+                        }
+                    }
+
+                    &.submenu {
+                        
+                        overflow: visible;
+
+                        > a {
+                            &:after {
+                                content: "\f0da";
+                                float: right;
+                                font-family: FontAwesome;
+                                color: @grey-30;
+                            }
+                        }
+
+                        &:hover {
+
+                            > a {
+                                    background: @grey-5;
+                                    text-decoration: none;
+                                
+                            }
+
+                            // > ul.options {
+                            //     display: block;
+                            //     
+                            // }
+                        }
+
+                        > ul.options {
+                            position: absolute;
+                                top: -0.35em;
+                                left: 100%;
                         }
                     }
                 }
