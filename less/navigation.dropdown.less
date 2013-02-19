@@ -1,0 +1,67 @@
+.ink-dropdown {
+
+            position: absolute;
+            background: @white;
+            z-index: @layer-30;
+            border: 1px solid @grey-20;
+            height: auto;
+            width: 14em;
+            #ink > #border-radius > .all (5px);
+            #ink > #shadows > .box-shadow (0,0,3px,0,rgba(100,100,100,0.3));
+            padding: 0.3em 0;
+
+            ul {
+
+                display: block;
+                margin-left: 0px;
+                overflow: hidden;
+                padding: 0;
+                
+
+                li {
+                    #ink > #shadows > .no-box-shadow ();
+                    #ink > #border-radius > .none ();
+                    width: auto;
+                    height: auto;
+                    min-height: auto;
+                    display: list-item;
+                    float: none;
+                    margin: 0;
+                    text-align: left;
+                    text-transform: none;
+                    font-size: 1em;
+                    padding: 0;
+
+                    &.separator {
+                        
+                        &.above {
+                            padding-top: .5em;
+                            margin-top: .5em;
+                            border-top: 1px solid @grey-20;
+                        }
+                        &.below {
+                            padding-bottom: .5em;
+                            margin-bottom: .5em;
+                            border-bottom: 1px solid @grey-20;
+                        }
+                    }
+
+                    a {
+                        color: #444;
+                        padding: 0.5em 0.8em;
+                        display: block;
+                        &:hover {
+                            background: @grey-5;
+                            text-decoration: none;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            background: @blue;
+                            color: @white;
+                        }
+                    }
+                }
+            }
+        }
