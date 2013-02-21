@@ -3,7 +3,7 @@
             position: relative;
             display: inline-block;
             
-            ul.options {
+            ul.dropdown-menu {
 
                 position: absolute;
                 background: @white;
@@ -13,7 +13,7 @@
                 width: auto;
                 min-width: 10em;
                 #ink > #border-radius > .all (5px);
-                #ink > #shadows > .box-shadow (0,0,3px,0,rgba(100,100,100,0.3));
+                #ink > #shadows > .box-shadow (0,0,1px,0,rgba(100,100,100,0.3));
                 padding: 0.3em 0;
                 display: none;
                 margin-left: 0px;
@@ -66,6 +66,8 @@
                         color: #444;
                         padding: 0.5em 0.8em;
                         display: block;
+                        clear: both;
+
                         &:hover {
                             background: @grey-5;
                             text-decoration: none;
@@ -95,11 +97,18 @@
                         overflow: visible;
 
                         > a {
+
+                            white-space: nowrap;
+
                             &:after {
                                 content: "\f0da";
                                 float: right;
+                                width: auto;
+                                margin-left: 0.8em;
                                 font-family: FontAwesome;
                                 color: @grey-30;
+                                clear: both;
+                                text-align: right;
                             }
                         }
 
@@ -111,17 +120,20 @@
                                 
                             }
 
-                            // > ul.options {
-                            //     display: block;
-                            //     
-                            // }
+                            &:hover {
+                                > ul.dropdown-menu {
+                                    display: block;
+                                }
+                            }
+
                         }
 
-                        > ul.options {
+                        > ul.dropdown-menu {
                             font-size: inherit;
                             position: absolute;
-                            top: -0.35em;
+                            top: -0.36em;
                             left: 100%;
+                            display: none;
                         }
                     }
                 }
