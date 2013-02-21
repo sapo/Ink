@@ -117,115 +117,49 @@
 	<div class="border"></div>
 </div><div class="ink-grid" id="nav-home">
    <div class="whatIs">
-      <h1>Alerts</h1>
-      <p>Although they're a way of displaying text, alerts have their own specificity and functionality.</p>
+      <h2>Changelog</h2>
+      <p>Ink's milestones.</p>
    </div>
 </div>
 
 <div class="ink-grid">
-    <div class="column-group gutters">
-        <nav class="ink-navigation large-25 medium-25 small-100">
-            <ul class="menu vertical black rounded">
-                <li class="active"><a class="scrollableLink home" href="#nav-home">
-                    <i class="icon-chevron-up ink-for-l"></i>
-                    <span class="ink-for-m ink-for-s">Back to Top</span>
-                </a></li>
-                <li><a class="scrollableLink" href="#nav-basic">Basic Alerts</a></li>
-                <li><a class="scrollableLink" href="#nav-block">Block alerts</a></li>
-            </ul>
-        </nav>
-        <div class="large-75 medium-75 small-100">
-            <section id="nav-basic">
-                <h2>Basic alerts</h2>
-                <p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
-                <p>
-                    To style some text as an alert, create a block element, such as a <code>div</code>, 
-                    with the <code>ink-alert</code> and <code>basic</code> classes. 
-                    This creates the outter shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:
-                </p>
-                <ul class="unstyled">
-                    <li><code>error</code> for error messages</li>
-                    <li><code>success</code> for success messages</li>
-                    <li><code>info</code> for informative messages</li>
-                </ul>
-                <p>Add a <code>&lt;button&gt;</code> element with the class <code>close</code> and an appropriate icon (Ink uses the <code>&amp;times&#59;</code> character), to add a simple dismiss action to your alerts.</p>
-                
-                <div class="ink-alert basic">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Warning:</b> There's a warning for you</p>
-                </div>
-                
-                <div class="ink-alert basic error">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Error:</b> The system has failed</p>
-                </div>
-                
-                <div class="ink-alert basic success">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Done:</b> Process completed successfully</p>
-                </div>
-
-                <div class="ink-alert basic info">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
-                </div>
-                
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;ink-alert basic info&quot;&gt;
-    &lt;button class=&quot;ink-close&quot;&gt;&amp;times;&lt;/button&gt;
-    &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; You have 5 minutes to leave, before self-destruction&lt;/p&gt;
-&lt;/div&gt;</pre>
-            </section>
-            
-            <section id="nav-block">
-                <h2>Block Alerts</h2>
-                <p>
-                    Block alerts are ideal for messages that require further explanation, since they're comprised of a title, close button and description text. 
-                    Implementation is similar to basic alerts, simply use the <code>ink-alert</code> and <code>block</code> classes, 
-                    instead of <code>basic</code> and use an <code>&lt;h4&gt;</code> for the title and a <code>&lt;p&gt;</code> or a list for the description.
-                </p>
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;ink-alert block success&quot;&gt;
-    &lt;button class=&quot;ink-close&quot;&gt;&amp;times;&lt;/button&gt;
-    &lt;h4&gt;Thank you for buying!&lt;/h4&gt;
-    &lt;p&gt;Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.&lt;/p&gt;
-&lt;/div&gt;</pre>
-                
-                <div class="vspace">
-                    <div class="ink-alert block">
-                        <button class="ink-close">&times;</button>
-                        <h4>System maintenance scheduled</h4>
-                        <p>
-                            Please note that, due to a platypus invasion on our datacenter early last morning, 
-                            the servers will have to undergo a maintenance cleaning today at 23:00 GMT.
-                        </p>
-                    </div>
-                    
-                    <div class="ink-alert block error">
-                        <button class="ink-close">&times;</button>
-                        <h4>System is down</h4>
-                        <ul>
-                            <li>Do not panic</li>
-                            <li>Do not call our service line</li>
-                            <li>Breathe deep and wait an hour</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="ink-alert block success">
-                        <button class="ink-close">&times;</button>
-                        <h4>Thank you for buying!</h4>
-                        <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
-                    </div>
-
-                    <div class="ink-alert block info">
-                        <button class="ink-close">&times;</button>
-                        <h4>Adicional info</h4>
-                        <p>A ring of weapons-grade 99.96% pure electrorefined plutonium is enough for one bomb core.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
+	<h3>Version 2.0</h3>
+	<h4>2013</h4>
+	<ul>
+		<li><span class="ink-label info">HTML/CSS</span> Layout component rewritten to use less markup and be easier to implement</li>
+		<li><span class="ink-label info">HTML/CSS</span> Extensive new typography rules for better looking typesetting with little effort</li>
+		<li><span class="ink-label info">HTML/CSS</span> Added more flexibility to forms</li>
+		<li><span class="ink-label info">website</span> Vastly improved documentation and better site layout</li>
+	</ul>
+	<h3>Version 1.0</h3>
+	<h4>15 - November - 2012</h4>
+	<ul>
+		<li>Ink launched at <a href="http://codebits.eu">Codebits</a>.</li>
+		<li>Truly fluid layout</li>
+		<li>Markup and CSS components for common web UI
+			<ul>
+				<li>Navigation</li>
+				<li>Typography</li>
+				<li>Icons</li>
+				<li>Forms</li>
+				<li>Alerts</li>
+				<li>Tables</li>
+			</ul>
+		</li>
+		<li>JS components:
+			<ul>
+				<li>Gallery</li>
+				<li>Modal</li>
+				<li>Table</li>
+				<li>Tree View</li>
+				<li>Sortable list</li>
+				<li>Date Picker</li>
+				<li>Tabs</li>
+				<li>Form Validator</li>
+				<li>Dockable, collapsible and close behaviours</li>
+			</ul>
+		</li>
+	</ul>
 </div><footer>
     <div class="ink-grid">
         <div class="large-75 medium-70 small-100">

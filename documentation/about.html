@@ -117,116 +117,91 @@
 	<div class="border"></div>
 </div><div class="ink-grid" id="nav-home">
    <div class="whatIs">
-      <h1>Alerts</h1>
-      <p>Although they're a way of displaying text, alerts have their own specificity and functionality.</p>
+      <h1>About Ink</h1>
+      <p>Some general knowledge about our awesome framework</p>
    </div>
 </div>
 
 <div class="ink-grid">
     <div class="column-group gutters">
         <nav class="ink-navigation large-25 medium-25 small-100">
-            <ul class="menu vertical black rounded">
-                <li class="active"><a class="scrollableLink home" href="#nav-home">
-                    <i class="icon-chevron-up ink-for-l"></i>
-                    <span class="ink-for-m ink-for-s">Back to Top</span>
-                </a></li>
-                <li><a class="scrollableLink" href="#nav-basic">Basic Alerts</a></li>
-                <li><a class="scrollableLink" href="#nav-block">Block alerts</a></li>
+            <ul class="menu vertical rounded black">
+                <li>
+                    <a class="scrollableLink home" href="#nav-home">
+                        <i class="icon-chevron-up ink-for-l"></i>
+                        <span class="ink-for-m ink-for-s">Back to Top</span>
+                    </a>
+                </li>
+                <li><a class="scrollableLink" href="#nav-what">What it is</a></li>
+                <li><a class="scrollableLink" href="#nav-why">Why use Ink</a></li>
+                <li><a class="scrollableLink" href="#nav-who">Who we are</a></li>
+                <li><a class="scrollableLink" href="#nav-store">What's in store</a></li>
             </ul>
         </nav>
         <div class="large-75 medium-75 small-100">
-            <section id="nav-basic">
-                <h2>Basic alerts</h2>
-                <p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
+            <section id="nav-what">
+                <h2>What it is</h2>
                 <p>
-                    To style some text as an alert, create a block element, such as a <code>div</code>, 
-                    with the <code>ink-alert</code> and <code>basic</code> classes. 
-                    This creates the outter shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:
+                    Ink is an interface kit for quick development of web interfaces, simple to use and expand on. 
                 </p>
-                <ul class="unstyled">
-                    <li><code>error</code> for error messages</li>
-                    <li><code>success</code> for success messages</li>
-                    <li><code>info</code> for informative messages</li>
+                <p>
+                    It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, 
+                    display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
+                </p>
+                <p>You have several options to use Ink</p>
+                <ul>
+                    <li>Download and use CSS and our boilerplate HTML as is</li>
+                    <li>Create your exceptions using CSS or Less</li>
+                    <li>Just get slices of markup and CSS off ou documentation to solve specific problems</li>
                 </ul>
-                <p>Add a <code>&lt;button&gt;</code> element with the class <code>close</code> and an appropriate icon (Ink uses the <code>&amp;times&#59;</code> character), to add a simple dismiss action to your alerts.</p>
-                
-                <div class="ink-alert basic">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Warning:</b> There's a warning for you</p>
-                </div>
-                
-                <div class="ink-alert basic error">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Error:</b> The system has failed</p>
-                </div>
-                
-                <div class="ink-alert basic success">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Done:</b> Process completed successfully</p>
-                </div>
-
-                <div class="ink-alert basic info">
-                    <button class="ink-close">&times;</button>
-                    <p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
-                </div>
-                
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;ink-alert basic info&quot;&gt;
-    &lt;button class=&quot;ink-close&quot;&gt;&amp;times;&lt;/button&gt;
-    &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; You have 5 minutes to leave, before self-destruction&lt;/p&gt;
-&lt;/div&gt;</pre>
             </section>
-            
-            <section id="nav-block">
-                <h2>Block Alerts</h2>
-                <p>
-                    Block alerts are ideal for messages that require further explanation, since they're comprised of a title, close button and description text. 
-                    Implementation is similar to basic alerts, simply use the <code>ink-alert</code> and <code>block</code> classes, 
-                    instead of <code>basic</code> and use an <code>&lt;h4&gt;</code> for the title and a <code>&lt;p&gt;</code> or a list for the description.
-                </p>
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;ink-alert block success&quot;&gt;
-    &lt;button class=&quot;ink-close&quot;&gt;&amp;times;&lt;/button&gt;
-    &lt;h4&gt;Thank you for buying!&lt;/h4&gt;
-    &lt;p&gt;Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.&lt;/p&gt;
-&lt;/div&gt;</pre>
-                
-                <div class="vspace">
-                    <div class="ink-alert block">
-                        <button class="ink-close">&times;</button>
-                        <h4>System maintenance scheduled</h4>
-                        <p>
-                            Please note that, due to a platypus invasion on our datacenter early last morning, 
-                            the servers will have to undergo a maintenance cleaning today at 23:00 GMT.
-                        </p>
-                    </div>
-                    
-                    <div class="ink-alert block error">
-                        <button class="ink-close">&times;</button>
-                        <h4>System is down</h4>
-                        <ul>
-                            <li>Do not panic</li>
-                            <li>Do not call our service line</li>
-                            <li>Breathe deep and wait an hour</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="ink-alert block success">
-                        <button class="ink-close">&times;</button>
-                        <h4>Thank you for buying!</h4>
-                        <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
-                    </div>
 
-                    <div class="ink-alert block info">
-                        <button class="ink-close">&times;</button>
-                        <h4>Adicional info</h4>
-                        <p>A ring of weapons-grade 99.96% pure electrorefined plutonium is enough for one bomb core.</p>
-                    </div>
-                </div>
+            <section id="nav-why">
+                <h2>Why use Ink</h2>
+                <p>
+                    Ink presents a unique vision of what a front end framework should be. 
+                    More than a ready made solution (although it can be that), we went for a builing block approach. 
+                    By offering generic components that you can use in different contexts to obtain consistent results, Ink is both flexible and powerful while remaining easy to use.
+                </p>
+                <p>
+                    Our grid system is different from any other currently out there as it offers you true flexibility to build your layouts. 
+                    Because it's all percentage-based, the grid is truly fluid and you don't have to count columns and rely on memorizing offsets and spans. 
+                    Just naturally divide up your space in 10 to 100% blocks, divided into the most common steps, such as halves, quarters, fifths, etc.
+                </p>
+                <p>
+                    As to styling, we offer generic styling classes which can be applied to many elements in different contexts to obtain a consistent result. 
+                    Say you want a zebra-stripe table but also a zebra-stripe list. 
+                    With Ink, you use the same class .ink-zebra and the CSS takes care of applying correct layout and styling according to what type of markup element you used it on.</p>
+                <p>
+                    This makes Ink very easy to learn and reuse over time, making your life easier. 
+                    And with a quick configurator, you can change the properties of any styiling class so that the default <code>.ink-warning</code> class is no longer red with white text, but becomes yellow with red text, for example. 
+                    You can then consistently use <code>.ink-warning</code> to get a red paragraph on a yellow background, or a yellow button with red text or even a yellow table row with red text in the table cells.
+                </p>
+            </section>
+
+            <section id="nav-who">
+                <h2>Who we are</h2>
+                <p>
+                    We are SAPO. You might mistake us for a small startup, because that's our spirit. 
+                    We are in fact Portugal's largest internet enterprise with businesses ranging from content and advertising to services and app development, all based on a solid, 17-year old web brand and integrated into a multinational telecomunitations company, Portugal Telecom.
+                </p>
+            </section>
+
+            <section id="nav-store">
+                <h2>What's in store</h2>
+                <p>
+                    We want to keep up with the times, while keeping Ink flexible and easy to use. 
+                    We'll be revising and updating the framework using a major-version scheme in order to keep previous versions solid and not force updates to anyone who doesn't want them.
+                </p>
+                <p>
+                    We'll also be expanding Ink to be a lot more than just a framework or a collection of Javascript components and code snippets. 
+                    We'll be adding design patterns and publishing a huge knowledge base of best practices in design, coding, usability, accessibility and more, making Ink your one-stop reference for web front-end development and design.
+                </p>
             </section>
         </div>
     </div>
-</div><footer>
+</div>  
+<footer>
     <div class="ink-grid">
         <div class="large-75 medium-70 small-100">
             <nav class="ink-navigation vspace">
