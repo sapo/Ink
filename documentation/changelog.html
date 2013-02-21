@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+    
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://ink.local//assets/imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ink.local//assets/imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ink.local//assets/imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+
+  	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="http://ink.local/assets/js/html5shiv.js"></script>
+		<script type="text/javascript" src="http://ink.local/assets/js/html5shiv-printshiv.js"></script>
+	<![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+	
+	<link rel="stylesheet" type="text/css" href="http://ink.local/assets/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css">
+
+	<!-- 
+    DEFINES TRANSITIONS: appear3d, slide, hover
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
+    -->
+
+    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
+
+    <!-- Currently in development -->
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/1.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Sticky/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Toggle/0.1/"></script>
+    <!-- End of modules in development -->
+    
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+
+
+	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<div id="topbar">
+	<nav class="ink-navigation ink-grid">
+		<ul class="menu horizontal rounded flat black shadowed">
+			<li>
+										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+						</li>
+			
+													<li >
+
+								<a href="layout.html">Layout</a>
+					
+			</li>
+																<li >
+
+								<a href="navigation.html">Navigation</a>
+					
+			</li>
+																<li >
+
+								<a href="typography.html">Typography</a>
+					
+			</li>
+																<li >
+
+								<a href="icons.html">Icons</a>
+					
+			</li>
+																<li >
+
+								<a href="forms.html">Forms</a>
+					
+			</li>
+																<li >
+
+								<a href="alerts.html">Alerts</a>
+					
+			</li>
+																<li >
+
+								<a href="tables.html">Tables</a>
+					
+			</li>
+														
+								<li >
+					<a href="#">InK JS<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+													<li>
+																<a href="./js-ui.html">UI</a>							
+							</li>
+													<li>
+																<a href="./js-core.html">Core</a>							
+							</li>
+											</ul>
+				</li>
+								</ul>
+	</nav>
+	<div class="border"></div>
+</div><div class="ink-grid" id="nav-home">
+   <div class="whatIs">
+      <h2>Changelog</h2>
+      <p>Ink's milestones.</p>
+   </div>
+</div>
+
+<div class="ink-grid">
+	<h3>Version 2.0</h3>
+	<h4>2013</h4>
+	<ul>
+		<li><span class="ink-label info">HTML/CSS</span> Layout component rewritten to use less markup and be easier to implement</li>
+		<li><span class="ink-label info">HTML/CSS</span> Extensive new typography rules for better looking typesetting with little effort</li>
+		<li><span class="ink-label info">HTML/CSS</span> Added more flexibility to forms</li>
+		<li><span class="ink-label info">website</span> Vastly improved documentation and better site layout</li>
+	</ul>
+	<h3>Version 1.0</h3>
+	<h4>15 - November - 2012</h4>
+	<ul>
+		<li>Ink launched at <a href="http://codebits.eu">Codebits</a>.</li>
+		<li>Truly fluid layout</li>
+		<li>Markup and CSS components for common web UI
+			<ul>
+				<li>Navigation</li>
+				<li>Typography</li>
+				<li>Icons</li>
+				<li>Forms</li>
+				<li>Alerts</li>
+				<li>Tables</li>
+			</ul>
+		</li>
+		<li>JS components:
+			<ul>
+				<li>Gallery</li>
+				<li>Modal</li>
+				<li>Table</li>
+				<li>Tree View</li>
+				<li>Sortable list</li>
+				<li>Date Picker</li>
+				<li>Tabs</li>
+				<li>Form Validator</li>
+				<li>Dockable, collapsible and close behaviours</li>
+			</ul>
+		</li>
+	</ul>
+</div><footer>
+    <div class="ink-grid">
+        <div class="large-75 medium-70 small-100">
+            <nav class="ink-navigation vspace">
+                <ul class="menu horizontal">
+
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                    
+
+                    
+                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+        
+        <div class="large-25 medium-30 small-100">
+            <ul class="sociallinks unstyled inline column-right vspace">
+                <li><strong>Follow SAPO:</strong></li>
+                <li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
+                <li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
+                <li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+    <!-- <script type="text/javascript" src="http://ink.local/assets/js/ink.js"></script> -->
+        </body>
+</html>

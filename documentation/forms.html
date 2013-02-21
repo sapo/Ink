@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+    
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://ink.local//assets/imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ink.local//assets/imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ink.local//assets/imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+
+  	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="http://ink.local/assets/js/html5shiv.js"></script>
+		<script type="text/javascript" src="http://ink.local/assets/js/html5shiv-printshiv.js"></script>
+	<![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+	
+	<link rel="stylesheet" type="text/css" href="http://ink.local/assets/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css">
+
+	<!-- 
+    DEFINES TRANSITIONS: appear3d, slide, hover
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
+    -->
+
+    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
+
+    <!-- Currently in development -->
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/1.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Sticky/0.1/"></script>
+    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Toggle/0.1/"></script>
+    <!-- End of modules in development -->
+    
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+
+
+	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<div id="topbar">
+	<nav class="ink-navigation ink-grid">
+		<ul class="menu horizontal rounded flat black shadowed">
+			<li>
+										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+						</li>
+			
+													<li >
+
+								<a href="layout.html">Layout</a>
+					
+			</li>
+																<li >
+
+								<a href="navigation.html">Navigation</a>
+					
+			</li>
+																<li >
+
+								<a href="typography.html">Typography</a>
+					
+			</li>
+																<li >
+
+								<a href="icons.html">Icons</a>
+					
+			</li>
+																<li >
+
+								<a href="forms.html">Forms</a>
+					
+			</li>
+																<li >
+
+								<a href="alerts.html">Alerts</a>
+					
+			</li>
+																<li >
+
+								<a href="tables.html">Tables</a>
+					
+			</li>
+														
+								<li >
+					<a href="#">InK JS<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+													<li>
+																<a href="./js-ui.html">UI</a>							
+							</li>
+													<li>
+																<a href="./js-core.html">Core</a>							
+							</li>
+											</ul>
+				</li>
+								</ul>
+	</nav>
+	<div class="border"></div>
+</div><div class="ink-grid" id="nav-home">
+    <div class="whatIs">
+        <h1>Forms</h1>
+        <p>Form building nightmare made easy.</p>
+    </div>
+</div>
+
+<div class="ink-grid">
+    <div class="column-group gutters">
+        <div class="large-25 medium-20 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu vertical black rounded">
+                    <li>
+                        <a class="scrollableLink home" href="#nav-home">
+                            <span class="icon-chevron-up ink-for-l"></span>
+                            <span class="ink-for-m ink-for-s">Back to Top</span>
+                        </a>
+                    </li>
+                    <li><a class="scrollableLink" href="#building">Form building</a></li>
+                    <li><a class="scrollableLink" href="#text-numbers">Text & Number entry</a></li>
+                    <li><a class="scrollableLink" href="#checkboxes-radios">Checkboxes & Radio buttons</a></li>
+                    <li><a class="scrollableLink" href="#buttons">Buttons</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="large-75 medium-70 small-100">
+
+            <form action="" class="ink-form">
+                <fieldset>
+                    <legend>Form block</legend>
+
+                    <div class="control-group">
+                        <label for="text-input">Text input</label> 
+                        <div class="control append">
+                            <input id="text-input" type="text" placeholder="Please input some text">
+                            <span class="icon-off"></span>
+                        </div>
+                        <p class="tip">You can add help text to fields</p>
+                    </div>
+
+                    <div class="control-group validation warning">
+                        <label for="text-input2">Text input</label> 
+                        <div class="control">
+                            <input id="text-input2" type="text" placeholder="Please input some text">
+                        </div>
+                        <p class="tip">Warn your user about some problem with the form.</p>
+                    </div>
+
+                    <div class="control-group required validation error">
+                        <label for="text-input3">Text input</label>
+                        <div class="control">
+                            <input id="text-input3" type="text" placeholder="Please input some text">
+                        </div>
+                        <p class="tip">This field is required.</p>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="select">Select</label>
+                        <div class="control">
+                            <select name="" id="select">
+                                <option value="">onions</option>
+                                <option value="">carrots</option>
+                                <option value="">potatoes</option>
+                                <option value="">beets</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="control-group">
+                        <label for="multiSelect">Multiple select</label>
+                        <div class="control">
+                            <select multiple="multiple" id="multiSelect">
+                                <option>onions</option>
+                                <option>carrots</option>
+                                <option>potatoes</option>
+                                <option>beets</option>
+                                <option>kale</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="textarea">Textarea</label> 
+                        <div class="control">
+                            <textarea name="" id="textarea" placeholder="Please enter some text"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="file-input">File input</label>
+                        <div class="input-file control">
+                            <input type="file" name="" id="file-input">
+                        </div>
+                    </div>
+                    
+                </fieldset>
+            </form>
+
+            <form action="#" class="ink-form">
+                <fieldset>
+                    <legend>Form inline</legend>
+
+                    <div class="control-group required validation error column-group gutters">
+                        <label for="name" class="large-20 content-right">Name</label>
+                        <div class="control large-80 append">
+                            <input type="text" id="name">
+                            <span class="icon-ok"></span>
+                            <p class="tip">This field is required.</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group column-group gutters">
+                        <label for="phone" class="large-20 content-right">Phone</label>
+                        <div class="control large-80">
+                            <input type="text" id="phone">
+                            <p class="tip">You can add help text to fields</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group column-group gutters">
+                        <label for="email" class="large-20 content-right">Email</label>
+                        <div class="control large-50">
+                            <input type="text" id="email">
+                        </div>
+                        <div class="large-30"><button class="ink-button"><span class="icon-off"></span></button></div>
+                    </div>
+
+                    <div class="control-group column-group gutters">
+                        <label for="options" class="large-20 content-right">Email</label>
+                        <div  class="control large-80">
+                            <select id="option">
+                                <option value="1">option 1</option>
+                                <option value="2">option 2</option>
+                                <option value="3">option 3</option>
+                                <option value="4">option 4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group column-group gutters">
+                        <label for="area" class="large-20 content-right">Description</label>
+                        <div  class="control large-80">
+                            <textarea id="area"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="control-group column-group gutters">
+                        <label for="options" class="large-20 content-right">Email</label>
+                        <div  class="control large-80">
+                            <select id="option" multiple="multiple">
+                                <option value="1">option 1</option>
+                                <option value="2">option 2</option>
+                                <option value="3">option 3</option>
+                                <option value="4">option 4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group column-group gutters">
+                        <label for="file-input" class="large-20 content-right">File input</label>
+                        <div  class="control large-80">
+                            <div class="input-file">
+                                <input type="file" name="" id="file-input">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <form action="#" class="ink-form">
+                <fieldset>
+                    <legend>Form inline - inline</legend>
+
+                    <div class="column-group gutters">
+                        <div class="control-group large-50 medium-50 small-100 required validation error">
+                            <div class="column-group gutters">
+                                <label for="name" class="large-20 content-right">Name</label>
+                                <div class="control large-80 append">
+                                    <input type="text" id="name">
+                                    <span class="icon-ok"></span>
+                                    <p class="tip">Here's a small text tip</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="control-group large-50 medium-50 small-100">
+                            <div class="column-group gutters">
+                                <label for="phone" class="large-20 content-right">Phone</label>
+                                <div class="control large-80">
+                                    <input type="text" id="phone">
+                                    <p class="tip">Please include the country code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <form action="#" class="ink-form">
+                <fieldset>
+                    <legend>Form inline - block</legend>
+                    <div class="column-group gutters">
+                        <div class="control-group large-33 medium-50 small-100 required validation error">
+                            <label for="name">Name</label>
+                            <div class="control append">
+                                <input type="text" id="name">
+                                <span class="icon-ok"></span>
+                                <p class="tip">Here's a small text tip</p>
+                            </div>
+                        </div>
+                        <div class="control-group large-33 medium-50 small-100">
+                            <label for="phone">Phone</label>
+                            <div class="control">
+                                <input type="text" id="phone">
+                                <p class="tip">Please include the country code</p>
+                            </div>
+                        </div>
+                        <div class="control-group large-33 medium-50 small-100">
+                            <label for="email">Email</label>
+                            <div class="control">
+                                <input type="text" id="email">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="column-group gutters">
+
+                <div class="large-50 medium-100 small-100">
+                    <form action="" class="ink-form">
+                        <fieldset>
+                            <legend>Group of checkboxes</legend>
+                            <div class="control-group required validation error">
+                                <p class="label">Please select one or more options</p>
+                                <ul class="control unstyled">
+                                    <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Option 1</label></li>
+                                    <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Option 2</label></li>
+                                    <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Option 3</label></li>
+                                    <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Option 4</label></li>
+                                </ul>
+                            </div>
+                        </fieldset>                     
+                    </form>
+                </div>
+
+                <div class="large-50 medium-100 small-100">
+                    <form action="" class="ink-form">
+                        <fieldset>
+                            <legend>Group of radio buttons</legend>
+                            <div class="control-group">
+                                <p class="label">Please select one of these options</p>
+                                <ul class="control unstyled">
+                                    <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Option 1</label></li>
+                                    <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Option 2</label></li>
+                                    <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Option 3</label></li>
+                                    <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">Option 4</label></li>
+                                </ul>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="column-group gutters">
+
+                <div class="large-50 medium-100 small-100">
+                    <form action="" class="ink-form">
+                        <fieldset>
+                            <legend>Group of checkboxes</legend>
+                            <div class="control-group required validation error">
+                                <p class="label">Please select one or more options</p>
+                                <ul class="control unstyled inline">
+                                    <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Option 1</label></li>
+                                    <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Option 2</label></li>
+                                    <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Option 3</label></li>
+                                </ul>
+                            </div>
+                        </fieldset>                     
+                    </form>
+                </div>
+
+                <div class="large-50 medium-100 small-100">
+                    <form action="" class="ink-form">
+                        <fieldset>
+                            <legend>Group of radio buttons</legend>
+                            <div class="control-group">
+                                <p class="label">Please select one of these options</p>
+                                <ul class="control unstyled inline">
+                                    <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Option 1</label></li>
+                                    <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Option 2</label></li>
+                                    <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Option 3</label></li>
+                                </ul>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+
+            <table class="ink-table ink-bordered">
+                
+                <thead>
+                    <tr>
+                        <th>type</th>
+                        <th>active state</th>
+                        <th>disabled state</th>
+                        <th>code</th>
+                    </tr>
+                </thead>
+                  
+                <tfoot>
+                    <tr>
+                        <td>Info</td>
+                        <td><button class="ink-button info">Info</button></td>
+                        <td><button class="ink-button info" disabled>Info</button></td>
+                        <td>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button info&quot;&gt;Info&lt;/button&gt;</pre>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button info&quot; disabled&gt;Info&lt;/button&gt;</pre>
+                        </td>
+                    </tr>
+                </tfoot>
+                  
+                <tbody>
+                    <tr>
+                        <td>Default</td>
+                        <td><button class="ink-button">Default</button></td>
+                        <td><button class="ink-button" disabled>Default</button></td>
+                        <td>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button&quot;&gt;Default&lt;/button&gt;</pre>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button&quot; disabled&gt;Default&lt;/button&gt;</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Success</td>
+                        <td><button class="ink-button success">Success</button></td>
+                        <td><button class="ink-button success" disabled>Success</button></td>
+                        <td>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button success&quot;&gt;Success&lt;/button&gt;</pre>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button success&quot; disabled&gt;Success&lt;/button&gt;</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Warning</td>
+                        <td><button class="ink-button warning">Warning</button></td>
+                        <td><button class="ink-button warning" disabled>Warning</button></td>
+                        <td>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button warning&quot;&gt;Warning&lt;/button&gt;</pre>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button warning&quot; disabled&gt;Warning&lt;/button&gt;</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Caution</td>
+                        <td><button class="ink-button caution">Caution</button></td>
+                        <td><button class="ink-button caution" disabled>Caution</button></td>
+                        <td>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button caution&quot;&gt;Caution&lt;/button&gt;</pre>
+                            <pre class="prettyprint linenums">&lt;button class=&quot;ink-button caution&quot; disabled&gt;Caution&lt;/button&gt;</pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="column-group">
+                <h3>Button groups</h3>
+                <h4>Single button group</h4>
+                
+                <div class="button-group">
+                    <button class="ink-button">cenas</button>
+                    <button class="ink-button">fixes</button>
+                </div>
+
+                <div class="button-group">
+                    <button class="ink-button">cenas</button>
+                    <button class="ink-button">fixes</button>
+                    <button class="ink-button">com</button>
+                    <button class="ink-button">botões</button>
+                </div>
+
+                
+                
+                <h4>Multiple button groups</h4>
+                <div class="button-toolbar">
+                    <div class="button-group">
+                        <button class="ink-button">grupos</button>
+                        <button class="ink-button">de</button>
+                        <button class="ink-button">botões</button>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="ink-button">com</button>
+                        <button class="ink-button">cenas</button>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="ink-button">FIXES</button>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="ink-button">à</button>
+                        <button class="ink-button">brava!</button>
+                    </div>
+                    <button class="ink-button">brava!</button>
+                    <button class="ink-button">cenas</button>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+</div><footer>
+    <div class="ink-grid">
+        <div class="large-75 medium-70 small-100">
+            <nav class="ink-navigation vspace">
+                <ul class="menu horizontal">
+
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                    
+
+                    
+                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+        
+        <div class="large-25 medium-30 small-100">
+            <ul class="sociallinks unstyled inline column-right vspace">
+                <li><strong>Follow SAPO:</strong></li>
+                <li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
+                <li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
+                <li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+    <!-- <script type="text/javascript" src="http://ink.local/assets/js/ink.js"></script> -->
+        </body>
+</html>

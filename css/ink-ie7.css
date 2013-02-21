@@ -111,55 +111,55 @@
 }
 /* line 370, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-90 {
-  width: 87.99958333333333%;
+  width: 88.49958333333333%;
 }
 /* line 373, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-80 {
-  width: 77.99958333333333%;
+  width: 78.49958333333333%;
 }
 /* line 376, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-75 {
-  width: 72.99958333333333%;
+  width: 73.70958333333333%;
 }
 /* line 379, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-70 {
-  width: 67.99958333333333%;
+  width: 68.49958333333333%;
 }
 /* line 382, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-66 {
-  width: 63.999583333333334%;
+  width: 65.54958333333333%;
 }
 /* line 385, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-60 {
-  width: 57.999583333333334%;
+  width: 58.499583333333334%;
 }
 /* line 388, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-50 {
-  width: 47.999583333333334%;
+  width: 48.349583333333335%;
 }
 /* line 391, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-40 {
-  width: 37.999583333333334%;
+  width: 38.499583333333334%;
 }
 /* line 394, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-33 {
-  width: 30.999583333333334%;
+  width: 31.199583333333333%;
 }
 /* line 397, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-30 {
-  width: 27.999583333333334%;
+  width: 28.499583333333334%;
 }
 /* line 400, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-25 {
-  width: 22.999583333333334%;
+  width: 22.599583333333335%;
 }
 /* line 403, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-20 {
-  width: 17.599583333333335%;
+  width: 18.499583333333334%;
 }
 /* line 406, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-10 {
-  width: 7.999583333333334%;
+  width: 8.499583333333334%;
 }
 /* line 411, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .ink-grid .column-group.gutters > .large-100,
@@ -405,7 +405,7 @@
 }
 /* line 479, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .large-visible {
-  display: inherit !important;
+  display: inherit;
 }
 /* line 483, /Users/pedrocorreia/Development/Ink/less/mixins.less */
 .large-push-left {
