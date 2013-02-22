@@ -11,6 +11,7 @@
                 #ink > #grid > #generators > .grid-column-group ();
                 #ink > #grid > #generators > .grid-divisions ();
                 #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
                         
             }
         }
@@ -24,6 +25,7 @@
                 #ink > #grid > #generators > .grid-column-group ();
                 #ink > #grid > #generators > .grid-divisions ();
                 #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
 
             }
         }
@@ -37,6 +39,7 @@
                 #ink > #grid > #generators > .grid-column-group ();
                 #ink > #grid > #generators > .grid-divisions ();
                 #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
 
             }
         }
@@ -48,6 +51,20 @@
             #ink > #grid > #generators > .grid-column-group ();
             #ink > #grid > #generators > .grid-divisions ();
             #ink > #grid > #generators > .grid-helper-classes ();
+
+        }
+
+        // If a supplied min-width is = 0 and max-width = 0 and default (the 5th argument) = true
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width,@default,@visibility) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width = 0) and (@default = true) and (isnumber(@visibility)) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group ();
+            #ink > #grid > #generators > .grid-divisions ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+            @media screen and (min-width: @visibility ) {
+                #ink > #grid > #generators > .grid-visibility ();
+            }
 
         }
 
@@ -470,19 +487,22 @@
 
             }
 
-            // create the helper classes
-            .grid-helper-classes () {
-
-                .@{breakpoint-alias}-hidden {
+            .grid-visibility () {
+                .hide-@{breakpoint-alias} {
                     display: none;
                 }
-                .@{breakpoint-alias}-visible {
+                .show-@{breakpoint-alias} {
                     display: inherit;
                 }
+            }
+
+            // create the helper classes
+            .grid-helper-classes () {                
 
                 .@{breakpoint-alias}-push-left {
                     float: left;
                 }
+
                 .@{breakpoint-alias}-push-center {
                     float: none;
                     margin-left: auto;
