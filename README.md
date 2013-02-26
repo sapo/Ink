@@ -33,6 +33,7 @@ We built Ink by standing on the shoulders of giants, following the opensource ma
 
 Built with:
 
+* {LESS} (under [under Apache License 2.0](https://github.com/cloudhead/less.js/blob/master/LICENSE))
 * FontAwesome (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
 * Ubuntu Font (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
 * HTML5 shiv (under [MIT License](http://opensource.org/licenses/MIT))
