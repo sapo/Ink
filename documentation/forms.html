@@ -9,10 +9,10 @@
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
+    <link rel="shortcut icon" href="../imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
 	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
@@ -45,6 +45,7 @@
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
     <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -55,7 +56,7 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+	<script type="text/javascript" src="../js/prettify.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -124,7 +125,7 @@
 <div class="ink-grid">
     <div class="column-group gutters">
         <div class="large-25 medium-20 small-100">
-            <nav class="ink-navigation">
+            <nav class="ink-navigation sticky" data-offset-top="30px" data-offset-bottom="216px">
                 <ul class="menu vertical black rounded">
                     <li>
                         <a class="scrollableLink home" href="#nav-home">

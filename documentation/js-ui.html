@@ -9,10 +9,10 @@
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
+    <link rel="shortcut icon" href="../imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
 	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
@@ -45,6 +45,7 @@
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
     <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -55,7 +56,7 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+	<script type="text/javascript" src="../js/prettify.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -694,67 +695,31 @@
     
     <div class="column-group gutters">
     
-        <div class="large-50 medium-50 small-100">
+        <div class="ink-tabs top large-50 medium-100 small-100">
+            
             <h3>With top navigation</h3>
-            <div class="ink-tabs">
+            
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
 
-                <ul class="tabs-nav horizontal top">
-                    <li class="active"><a href="#ui_tabs_home">Home</a></li>
-                    <li><a href="#ui_tabs_news">News</a></li>
-                    <li><a href="#ui_tabs_description">Description</a></li>
-                    <li><a href="#ui_tabs_stuff">Stuff</a></li>
-                </ul>
-
-                
-                <div id="ui_tabs_home" class="tabs-content">
-                    <h4>Home</h4>
-                    <p>
-                        Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
-                        organizm. Living tissue over endoskeleton. You're not going to have your
-                        mommies right behind you to wipe your little tushies. Blondes. Consider
-                        it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
-                        I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
-                        you. Get down or I'll put you down. You are not you you're me. Scumbag.
-                        Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
-                        You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
-                        hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
-                        My name is John Kimble and I love my car. I'll be back.
-                    </p>
-                </div>
-                <!--
-                <div id="ui_tabs_news" class="ink-tabs-container">
-                    <h4>News</h4>
-                    <p>
-                        Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
-                        When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. 
-                        When playing dead doesn't work, he plays zombie. Chuck Norris invented water.
-                        Shortly after the farm animal sprang back to life and a crowd had gathered, 
-                        Chuck Norris roundhouse kicked the animal, breaking its neck, to remind the crew once more that Chuck giveth, 
-                        and the good Chuck, he taketh away.
-                    </p>
-                </div>
-                <div id="ui_tabs_description" class="ink-tabs-container">
-                    <h4>Description</h4>
-                    <p>
-                        Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
-                        When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. When playing dead doesn't work,
-                        he plays zombie. Chuck Norris invented water. Chuck Norris eats transformer toys in vehicle mode and poos them out  
-                        transformed into a robot. Filming on location for Walker: 
-                        Texas Ranger, Chuck Norris brought a stillborn baby lamb back to life by giving it a prolonged beard rub.
-                    </p>
-                </div>
-                <div id="ui_tabs_stuff" class="ink-tabs-container">
-                    <h4>Stuff</h4>
-                    <p>
-                        They now play poker every second Wednesday of the month. Chuck Norris doesnt have AIDS but he gives it to people anyway.
-                        When you open a can of whoop-ass, Chuck Norris jumps out. If you have five dollars and Chuck Norris has five dollars,
-                        Chuck Norris has more money than you. A blind man once stepped on Chuck Norris' shoe. Chuck replied, 
-                        "Don't you know who I am? I'm Chuck Norris!" The mere mention of his name cured this man blindness. Sadly the first, 
-                        last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris. Helen Keller's favorite color                                       is Chuck Norris Chuck Norris
-                        invented water.
-                    </p>
-                </div>
-                -->
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
             </div>
 
             <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
@@ -801,70 +766,36 @@
         }
     });
 &lt;/script&gt;</pre>
+            
         </div>
 
-        <div class="large-50 medium-50 small-100">
+            
+        <div class="ink-tabs bottom large-50 medium-100 small-100">
+
             <h3>With bottom navigation</h3>
-            <div class="ink-tabs">
 
-                <div id="ui_tabs_home" class="tabs-content">
-                    <h4>Home</h4>
-                    <p>
-                        Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
-                        organizm. Living tissue over endoskeleton. You're not going to have your
-                        mommies right behind you to wipe your little tushies. Blondes. Consider
-                        it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
-                        I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
-                        you. Get down or I'll put you down. You are not you you're me. Scumbag.
-                        Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
-                        You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
-                        hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
-                        My name is John Kimble and I love my car. I'll be back.
-                    </p>
-                </div>
-                <!--
-                <div id="ui_tabs_news" class="ink-tabs-container">
-                    <h4>News</h4>
-                    <p>
-                        Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
-                        When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. 
-                        When playing dead doesn't work, he plays zombie. Chuck Norris invented water.
-                        Shortly after the farm animal sprang back to life and a crowd had gathered, 
-                        Chuck Norris roundhouse kicked the animal, breaking its neck, to remind the crew once more that Chuck giveth, 
-                        and the good Chuck, he taketh away.
-                    </p>
-                </div>
-                <div id="ui_tabs_description" class="ink-tabs-container">
-                    <h4>Description</h4>
-                    <p>
-                        Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
-                        When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. When playing dead doesn't work,
-                        he plays zombie. Chuck Norris invented water. Chuck Norris eats transformer toys in vehicle mode and poos them out  
-                        transformed into a robot. Filming on location for Walker: 
-                        Texas Ranger, Chuck Norris brought a stillborn baby lamb back to life by giving it a prolonged beard rub.
-                    </p>
-                </div>
-                <div id="ui_tabs_stuff" class="ink-tabs-container">
-                    <h4>Stuff</h4>
-                    <p>
-                        They now play poker every second Wednesday of the month. Chuck Norris doesnt have AIDS but he gives it to people anyway.
-                        When you open a can of whoop-ass, Chuck Norris jumps out. If you have five dollars and Chuck Norris has five dollars,
-                        Chuck Norris has more money than you. A blind man once stepped on Chuck Norris' shoe. Chuck replied, 
-                        "Don't you know who I am? I'm Chuck Norris!" The mere mention of his name cured this man blindness. Sadly the first, 
-                        last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris. Helen Keller's favorite color                                       is Chuck Norris Chuck Norris
-                        invented water.
-                    </p>
-                </div>
-                -->
-
-                <ul class="tabs-nav horizontal bottom">
-                    <li class="active"><a href="#ui_tabs_home">Home</a></li>
-                    <li><a href="#ui_tabs_news">News</a></li>
-                    <li><a href="#ui_tabs_description">Description</a></li>
-                    <li><a href="#ui_tabs_stuff">Stuff</a></li>
-                </ul>
-
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
             </div>
+            
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
             
             <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
             <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
@@ -910,19 +841,124 @@
         }
     });
 &lt;/script&gt;</pre>
-        </div>   
-        
-        <script type="text/javascript">
-            var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
-            disabled: ['#stuff', '#more_stuff'], 
-            active: '#ui_tabs_news',
-            onBeforeChange: function(tab){
-            }, 
-            onChange: function(tab){
-            }
-            });
-        </script>
+
+        </div>
+
+        <div class="ink-tabs left large-100 medium-100 small-100">
+
+            <h3>With left navigation</h3>
+
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
+
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
+            </div>
+
+            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
+            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+    &lt;nav class=&quot;ink-navigation&quot;&gt;
+        &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div id=&quot;home&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Home&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;news&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;News&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;description&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Description&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;more_stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;More Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+        disabled: ['#stuff', '#more_stuff'], 
+        active: '#news',
+        onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
+        }, 
+        onChange: function(tab){
+            console.log('Changed', tab);
+        }
+    });
+&lt;/script&gt;</pre>
+
+        </div>
+
+        <div class="ink-tabs right large-100 medium-100 small-100">
+
+            <h3>With right navigation</h3>
+            
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
+
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
+            </div>
+
+        </div>
+
     </div>
+
+    <script type="text/javascript">
+        // var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+        // disabled: ['#stuff', '#more_stuff'], 
+        // active: '#ui_tabs_news',
+        // onBeforeChange: function(tab){
+        // }, 
+        // onChange: function(tab){
+        // }
+        // });
+    </script>
 </section>
 <section id="formvalidator">
     <h3>Form Validator</h3>
@@ -995,27 +1031,78 @@
     &lt;/div&gt;
 &lt;/form&gt;</pre>
 </section>
-<section id="progress_bar">
-    <h2>Progress bar</h2>
-    <div class="ink-progress-bar grey">
-        <div class="bar grey" style="width: 80%">I am a grey progress bar</div>
+<section>
+    <h2 id="progress_bar">Progress bar</h2>
+        <div class="ink-progress-bar grey" data-start-value="70%">
+        <div class="bar grey"></div>
+        <div class="caption">I am a grey progress bar</div>
     </div>
-    <div class="ink-progress-bar green">
-        <div class="bar green" style="width: 60%">I am a green progress bar</div>
+    <div class="ink-progress-bar green" data-start-value="60%">
+        <div class="bar green"></div>
+        <div class="caption">I am a green progress bar</div>        
     </div>
-    <div class="ink-progress-bar blue">
-        <div class="bar blue" style="width: 50%">I am a blue progress bar</div>
+    <div class="ink-progress-bar blue" data-start-value="50%">
+        <div class="bar blue" style="width: 50%"></div>
+        <div class="caption">I am a blue progress bar</div>        
     </div>
-    <div class="ink-progress-bar red">
-        <div class="bar red" style="width: 40%">I am a red progress bar</div>
+    <div class="ink-progress-bar red" data-start-value="40%">
+        <div class="bar red"></div>
+        <div class="caption">I am a red progress bar</div>        
     </div>
-    <div class="ink-progress-bar orange">
-        <div class="bar orange" style="width: 30%">I am an orange progress bar</div>
+    <div class="ink-progress-bar orange" data-start-value="30%">
+        <div class="bar orange"></div>
+        <div class="caption">I am an orange progress bar</div>        
     </div>
-    <div class="ink-progress-bar black">
-        <div class="bar black" style="width: 20%">I am a black progress bar</div>
+    <div class="ink-progress-bar black" data-start-value="20%">
+        <div class="bar black"></div>
+        <div class="caption">I am a black progress bar</div>        
     </div>
-</section><!-- <section>
+    <script>
+        var 
+            progressBarsElms = SAPO.Dom.Selector.select('.ink-progress-bar'),
+            progressBars = [],
+            i
+        ;
+        for(i = 0; i < progressBarsElms.length; i += 1){
+            progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
+        }
+    </script>    <a data-target="progressbar_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+    <pre id="progressbar_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">    &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
+        &lt;div class=&quot;bar grey&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar green&quot; data-start-value=&quot;60%&quot;&gt;
+        &lt;div class=&quot;bar green&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a green progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar blue&quot; data-start-value=&quot;50%&quot;&gt;
+        &lt;div class=&quot;bar blue&quot; style=&quot;width: 50%&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a blue progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar red&quot; data-start-value=&quot;40%&quot;&gt;
+        &lt;div class=&quot;bar red&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a red progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar orange&quot; data-start-value=&quot;30%&quot;&gt;
+        &lt;div class=&quot;bar orange&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am an orange progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar black&quot; data-start-value=&quot;20%&quot;&gt;
+        &lt;div class=&quot;bar black&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a black progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;script&gt;
+        var 
+            progressBarsElms = SAPO.Dom.Selector.select('.ink-progress-bar'),
+            progressBars = [],
+            i
+        ;
+        for(i = 0; i &lt; progressBarsElms.length; i += 1){
+            progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
+        }
+    &lt;/script&gt;</pre>
+</section>
+<!-- <section>
     <div class="column-group gutters" id="behaviors">
         <div class="large-100"><h3>Behaviors</h3></div>
         <div class="large-33">
@@ -1055,10 +1142,7 @@
 
         </div>
     </div>
-</div>
-<script>
-    new SAPO.Ink.Sticky( '.sticky' );
-</script><footer>
+</div><footer>
     <div class="ink-grid">
         <div class="large-75 medium-70 small-100">
             <nav class="ink-navigation vspace">
