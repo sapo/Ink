@@ -15,9 +15,9 @@ INK_IE7_CSS = "${CSS_OUTPUT_DIR}/ink-ie7.css"
 SITE_CSS = "${CSS_OUTPUT_DIR}/site.css"
 
 # Minified CSS output files
-INK_MIN_CSS = "${CSS_OUTPUT_DIR}ink-min.css"
-INK_IE7_MIN_CSS = "${CSS_OUTPUT_DIR}ink-ie7-min.css"
-SITE_MIN_CSS = "${CSS_OUTPUT_DIR}ink-ltie9-min.css"
+INK_MIN_CSS = "${CSS_OUTPUT_DIR}/ink-min.css"
+INK_IE7_MIN_CSS = "${CSS_OUTPUT_DIR}/ink-ie7-min.css"
+SITE_MIN_CSS = "${CSS_OUTPUT_DIR}/ink-ltie9-min.css"
 
 # Check mark character
 CHECK = \033[32m✔\033[39m
