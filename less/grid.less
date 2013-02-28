@@ -21,11 +21,11 @@
 .content-right { text-align: right; }
 
 
-.visible {
+.show {
     display: inherit;
 }
 
-.hidden {
+.hide {
     display: none;
 }
 
@@ -38,7 +38,7 @@
 // 5. A optional boolean parameter (TRUE) that will generate css for a default, non media query dependent breakpoint, usually the largest.
 
 // LARGE SCREENS ( width > 960px )
-#ink > #grid > .set-breakpoint (@large-class-prefix,@large-min-width,@large-max-width,@large-gutter-width,true);
+#ink > #grid > .set-breakpoint (@large-class-prefix,@large-min-width,@large-max-width,@large-gutter-width,true,@medium-max-width+1);
 
 // MEDIUM SCREENS ( width > 650px and < 959px )
 #ink > #grid > .set-breakpoint (@medium-class-prefix,@medium-min-width,@medium-max-width,@medium-gutter-width);

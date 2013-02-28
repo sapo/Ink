@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
-    <meta name="description" content="">
+    <meta name="description" content="Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
-	
-    
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" href="../imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://ink.local//assets/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ink.local//assets/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ink.local//assets/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://ink.local//assets/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <!-- Load Inks' CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
+    <!-- Load Documentation sites' css -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
 
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
-
-  	<!--[if lt IE 9]>
-		<link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://ink.local/assets/js/html5shiv.js"></script>
-		<script type="text/javascript" src="http://ink.local/assets/js/html5shiv-printshiv.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
-	
-	<link rel="stylesheet" type="text/css" href="http://ink.local/assets/css/site.css">	
-	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css">
+    
+	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
 
 	<!-- 
     DEFINES TRANSITIONS: appear3d, slide, hover
 	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
     -->
 
-    <script type="text/javascript" src="http://js.staging.sapo.pt/Bundles/Ink.js"></script>
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Modal/1.1/"></script>
-    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Sticky/0.1/"></script>
-    <script type="text/javascript" src="http://js.staging.sapo.pt/SAPO/Ink/Toggle/0.1/"></script>
+    <script type="text/javascript" src="../js/Ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
     <!-- End of modules in development -->
     
+    <!-- 
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+    -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+	<script type="text/javascript" src="../js/prettify.js"></script>
 </head>
-<body onload="prettyPrint()">
+<body onload="prettyPrint()" class="animated">
 <div id="topbar">
 	<nav class="ink-navigation ink-grid">
 		<ul class="menu horizontal rounded flat black shadowed">
 			<li>
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
-						</li>
-			
+						</li>			
 													<li >
 
 								<a href="layout.html">Layout</a>
@@ -128,7 +128,7 @@
     <div class="column-group gutters">
         
         <div class="large-25 medium-25 small-100">
-            <nav class="ink-navigation sticky">
+            <nav class="ink-navigation sticky" data-offset-top="30px" data-offset-bottom="216px">
                 <ul class="menu vertical black rounded">
                     <li>
                         <a class="scrollableLink home" href="#ui_home">
@@ -156,8 +156,8 @@
             <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink-v1.js"&gt;&lt;/script&gt;</pre>
         
             
-<section>
-    <h3 id="gallery">Gallery</h3>
+<section id="gallery">
+    <h3>Gallery</h3>
     <p>The <i>Gallery</i> component provides you an easy way to show images in a &quot;carousel&quot; format.</p>
     <p>Besides being a responsive component, it also allows you to set other configurations such as:</p>
     <ul>
@@ -453,8 +453,8 @@
     </script>
 </section>
 
-<section>
-    <h2 id="modal">Modal window</h2>
+<section id="modal">
+    <h2>Modal window</h2>
     <p>
         The <i>Modal window</i> component was designed to replace the common/native modal boxes that browsers have, providing some aditional features:
         <ul>
@@ -528,8 +528,8 @@
 	new SAPO.Ink.Modal('#test');
 &lt;/script&gt;</pre>
 
-</section><section>    
-    <h3 id="table">Table</h3>
+</section><section id="table">    
+    <h3>Table</h3>
     <p>
         The <i>Table</i> component ease the process of improving a regular table element with some features like:
         <ul>
@@ -637,8 +637,8 @@
 &lt;script type=&quot;text/javascript&quot;&gt;
     var tv1 = new SAPO.Ink.TreeView('#tview');
 &lt;/script&gt;</pre>
-<section>
-    <h3 id="sortable_list">Sortable List</h3>
+<section id="sortable_list">
+    <h3>Sortable List</h3>
     <p>The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.</p>
     <p>By doing that, allows the user to sort the order of the list.</p>
     <p>Also allows other configurations, as you can see in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
@@ -661,8 +661,8 @@
     var list = new SAPO.Ink.SortableList('#slist');
 &lt;/script&gt;</pre>
 </section>
-<section>
-    <h3 id="date_picker">Date Picker</h3>
+<section id="date_picker">
+    <h3>Date Picker</h3>
     <p>As the name says, the <i>Date Picker</i> transforms a textbox into an element that, when in use, shows a calendar to help selecting a specific date.</p>
     <p>It allows several configurations, available on the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/DatePicker/doc.html">technical documentation</a>.</p>
     
@@ -687,21 +687,26 @@
 &lt;/script&gt;</pre>
 </section>
     
-<section>
-    <h3 id="tabs">Tabs</h3>
+<section id="tabs">
+    <h2>Tabs</h2>
     <p>The <i>Tabs</i> component allows you to implement a tabbed UI, where each container is displayed as it's related tabbed is selected.</p>
     <p>You can see several examples in <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Tabs/doc.html">technical documentation</a>.</p>
-    <div class="ink-tabs">
-        <nav class="ink-navigation">
-            <ul class="ink-tabs-nav menu horizontal">
-                <li><a href="#ui_tabs_home">Home</a></li>
+    
+    
+    <div class="column-group gutters">
+    
+        <div class="ink-tabs top large-50 medium-100 small-100">
+            
+            <h3>With top navigation</h3>
+            
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
                 <li><a href="#ui_tabs_news">News</a></li>
                 <li><a href="#ui_tabs_description">Description</a></li>
                 <li><a href="#ui_tabs_stuff">Stuff</a></li>
             </ul>
-        </nav>
-        <div class="ink-vspace">
-            <div id="ui_tabs_home" class="ink-tabs-container">
+
+            <div id="ui_tabs_home" class="tabs-content">
                 <h4>Home</h4>
                 <p>
                     Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
@@ -716,43 +721,9 @@
                     My name is John Kimble and I love my car. I'll be back.
                 </p>
             </div>
-            <div id="ui_tabs_news" class="ink-tabs-container">
-                <h4>News</h4>
-                <p>
-                    Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
-                    When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. 
-                    When playing dead doesn't work, he plays zombie. Chuck Norris invented water.
-                    Shortly after the farm animal sprang back to life and a crowd had gathered, 
-                    Chuck Norris roundhouse kicked the animal, breaking its neck, to remind the crew once more that Chuck giveth, 
-                    and the good Chuck, he taketh away.
-                </p>
-            </div>
-            <div id="ui_tabs_description" class="ink-tabs-container">
-                <h4>Description</h4>
-                <p>
-                    Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
-                    When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. When playing dead doesn't work,
-                    he plays zombie. Chuck Norris invented water. Chuck Norris eats transformer toys in vehicle mode and poos them out  
-                    transformed into a robot. Filming on location for Walker: 
-                    Texas Ranger, Chuck Norris brought a stillborn baby lamb back to life by giving it a prolonged beard rub.
-                </p>
-            </div>
-            <div id="ui_tabs_stuff" class="ink-tabs-container">
-                <h4>Stuff</h4>
-                <p>
-                    They now play poker every second Wednesday of the month. Chuck Norris doesnt have AIDS but he gives it to people anyway.
-                     When you open a can of whoop-ass, Chuck Norris jumps out. If you have five dollars and Chuck Norris has five dollars,
-                      Chuck Norris has more money than you. A blind man once stepped on Chuck Norris' shoe. Chuck replied, 
-                      "Don't you know who I am? I'm Chuck Norris!" The mere mention of his name cured this man blindness. Sadly the first, 
-                      last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris. Helen Keller's favorite color                                       is Chuck Norris Chuck Norris
-                       invented water.
-                </p>
-            </div>
-        </div>
-    </div>
-    
-    <a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
-    <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+
+            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
+            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
         &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
             &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -795,20 +766,202 @@
         }
     });
 &lt;/script&gt;</pre>
-    
-    <script type="text/javascript">
-        var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+            
+        </div>
+
+            
+        <div class="ink-tabs bottom large-50 medium-100 small-100">
+
+            <h3>With bottom navigation</h3>
+
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
+            </div>
+            
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
+            
+            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
+            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+    &lt;nav class=&quot;ink-navigation&quot;&gt;
+        &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div id=&quot;home&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Home&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;news&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;News&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;description&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Description&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;more_stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;More Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
         disabled: ['#stuff', '#more_stuff'], 
-        active: '#ui_tabs_news',
+        active: '#news',
         onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
         }, 
         onChange: function(tab){
+            console.log('Changed', tab);
         }
-        });
+    });
+&lt;/script&gt;</pre>
+
+        </div>
+
+        <div class="ink-tabs left large-100 medium-100 small-100">
+
+            <h3>With left navigation</h3>
+
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
+
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
+            </div>
+
+            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
+            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+    &lt;nav class=&quot;ink-navigation&quot;&gt;
+        &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div id=&quot;home&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Home&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;news&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;News&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;description&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Description&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;more_stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;More Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+        disabled: ['#stuff', '#more_stuff'], 
+        active: '#news',
+        onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
+        }, 
+        onChange: function(tab){
+            console.log('Changed', tab);
+        }
+    });
+&lt;/script&gt;</pre>
+
+        </div>
+
+        <div class="ink-tabs right large-100 medium-100 small-100">
+
+            <h3>With right navigation</h3>
+            
+            <ul class="tabs-nav">
+                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_news">News</a></li>
+                <li><a href="#ui_tabs_description">Description</a></li>
+                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+            </ul>
+
+            <div id="ui_tabs_home" class="tabs-content">
+                <h4>Home</h4>
+                <p>
+                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                    organizm. Living tissue over endoskeleton. You're not going to have your
+                    mommies right behind you to wipe your little tushies. Blondes. Consider
+                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                    My name is John Kimble and I love my car. I'll be back.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+        // disabled: ['#stuff', '#more_stuff'], 
+        // active: '#ui_tabs_news',
+        // onBeforeChange: function(tab){
+        // }, 
+        // onChange: function(tab){
+        // }
+        // });
     </script>
-    </section>
-<section>
-    <h3 id="formvalidator">Form Validator</h3>
+</section>
+<section id="formvalidator">
+    <h3>Form Validator</h3>
     <p>The <i>FormValidator</i> component provides an easy way to validate forms before submitting them. It can:
     <ul>
         <li>Detect required fields</li>
@@ -880,25 +1033,76 @@
 </section>
 <section>
     <h2 id="progress_bar">Progress bar</h2>
-    <div class="ink-progress-bar grey">
-        <div class="bar grey" style="width: 80%">I am a grey progress bar</div>
+        <div class="ink-progress-bar grey" data-start-value="70%">
+        <div class="bar grey"></div>
+        <div class="caption">I am a grey progress bar</div>
     </div>
-    <div class="ink-progress-bar green">
-        <div class="bar green" style="width: 60%">I am a green progress bar</div>
+    <div class="ink-progress-bar green" data-start-value="60%">
+        <div class="bar green"></div>
+        <div class="caption">I am a green progress bar</div>        
     </div>
-    <div class="ink-progress-bar blue">
-        <div class="bar blue" style="width: 50%">I am a blue progress bar</div>
+    <div class="ink-progress-bar blue" data-start-value="50%">
+        <div class="bar blue" style="width: 50%"></div>
+        <div class="caption">I am a blue progress bar</div>        
     </div>
-    <div class="ink-progress-bar red">
-        <div class="bar red" style="width: 40%">I am a red progress bar</div>
+    <div class="ink-progress-bar red" data-start-value="40%">
+        <div class="bar red"></div>
+        <div class="caption">I am a red progress bar</div>        
     </div>
-    <div class="ink-progress-bar orange">
-        <div class="bar orange" style="width: 30%">I am an orange progress bar</div>
+    <div class="ink-progress-bar orange" data-start-value="30%">
+        <div class="bar orange"></div>
+        <div class="caption">I am an orange progress bar</div>        
     </div>
-    <div class="ink-progress-bar black">
-        <div class="bar black" style="width: 20%">I am a black progress bar</div>
+    <div class="ink-progress-bar black" data-start-value="20%">
+        <div class="bar black"></div>
+        <div class="caption">I am a black progress bar</div>        
     </div>
-</section><!-- <section>
+    <script>
+        var 
+            progressBarsElms = SAPO.Dom.Selector.select('.ink-progress-bar'),
+            progressBars = [],
+            i
+        ;
+        for(i = 0; i < progressBarsElms.length; i += 1){
+            progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
+        }
+    </script>    <a data-target="progressbar_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+    <pre id="progressbar_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">    &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
+        &lt;div class=&quot;bar grey&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar green&quot; data-start-value=&quot;60%&quot;&gt;
+        &lt;div class=&quot;bar green&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a green progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar blue&quot; data-start-value=&quot;50%&quot;&gt;
+        &lt;div class=&quot;bar blue&quot; style=&quot;width: 50%&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a blue progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar red&quot; data-start-value=&quot;40%&quot;&gt;
+        &lt;div class=&quot;bar red&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a red progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar orange&quot; data-start-value=&quot;30%&quot;&gt;
+        &lt;div class=&quot;bar orange&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am an orange progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;div class=&quot;ink-progress-bar black&quot; data-start-value=&quot;20%&quot;&gt;
+        &lt;div class=&quot;bar black&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;caption&quot;&gt;I am a black progress bar&lt;/div&gt;        
+    &lt;/div&gt;
+    &lt;script&gt;
+        var 
+            progressBarsElms = SAPO.Dom.Selector.select('.ink-progress-bar'),
+            progressBars = [],
+            i
+        ;
+        for(i = 0; i &lt; progressBarsElms.length; i += 1){
+            progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
+        }
+    &lt;/script&gt;</pre>
+</section>
+<!-- <section>
     <div class="column-group gutters" id="behaviors">
         <div class="large-100"><h3>Behaviors</h3></div>
         <div class="large-33">
@@ -938,20 +1142,14 @@
 
         </div>
     </div>
-</div>
-<script>
-    new SAPO.Ink.Sticky( '.sticky' );
-</script><footer>
+</div><footer>
     <div class="ink-grid">
         <div class="large-75 medium-70 small-100">
             <nav class="ink-navigation vspace">
                 <ul class="menu horizontal">
-
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
-                    
-
-                    
+                                        
                     <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
                 </ul>
             </nav>  

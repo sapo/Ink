@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PAGES=(home/index layout/index navigation/index typography/index icons/index forms/index alerts/index tables/index js/ui js/core about/index changelog/index)
-URL='http://ink.local/'
+URL=$1
 LOCAL_PATH='./documentation/'
 DUMP_TRIGGER='_dump'
 SUFFIX='.html'
