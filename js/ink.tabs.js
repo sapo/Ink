@@ -190,11 +190,11 @@
             if(currentLayout === SAPO.Ink.Aux.Layouts.SMALL || currentLayout === SAPO.Ink.Aux.Layouts.MEDIUM){
                 Css.removeClassName(this._menu, 'menu');
                 Css.removeClassName(this._menu, 'horizontal');
-                Css.addClassName(this._menu, 'pills');
+                // Css.addClassName(this._menu, 'pills');
             } else {
                 Css.addClassName(this._menu, 'menu');
                 Css.addClassName(this._menu, 'horizontal');
-                Css.removeClassName(this._menu, 'pills');
+                // Css.removeClassName(this._menu, 'pills');
             }
             this._lastLayout = currentLayout;
         },
