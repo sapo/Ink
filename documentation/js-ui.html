@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="./">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
-    <meta name="description" content="Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.">
+    <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+    
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" href="../imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/ink.css">
+	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="../js/html5shiv.js"></script>
-        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -41,11 +45,14 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="../js/Ink.js"></script>
-    <script type="text/javascript" src="../js/ink.modal.js"></script>
-    <script type="text/javascript" src="../js/ink.sticky.js"></script>
-    <script type="text/javascript" src="../js/ink.toggle.js"></script>
-    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -56,7 +63,7 @@
     -->
 
 
-	<script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -171,7 +178,7 @@
     
     <div class="ink-tabs-gallery">
         <nav class="ink-navigation">
-            <ul class="menu horizontal ink-tabs-nav ">
+            <ul class="menu horizontal tabs-nav ">
                 <li><a href="#ui_gallery_layout0">Layout 0</a></li>
                 <li><a href="#ui_gallery_layout1">Layout 1</a></li>
                 <li><a href="#ui_gallery_layout2">Layout 2</a></li>
@@ -580,86 +587,132 @@
 </ul>
 <p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.</p>
 <div class="box">
-    <ul id="tview">
-    <li>root
-        <ul>
-            <li>child 1
-                <ul>
-                    <li>c</li>
-                    <li>grandchild 1b</li>
-                    <li>grandchild 1c</li>
-                </ul>
-            </li>
-            <li>child 2
-                <ul>
-                    <li>grandchild 2a</li>
-                    <li>grandchild 2b
-                        <ul>
-                            <li>grandgrandchild 1bA</b>
-                            <li>grandgrandchild 1bB</b>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>child 3</li>
-        </ul>
-    </li>
-</ul>
-<script type="text/javascript">
-    var tv1 = new SAPO.Ink.TreeView('#tview');
-</script></div>
+    <ul class="ink-tree-view" id="tview1">
+        <li>
+            <button class="icon-minus-sign"></button>
+            <a href="#">root</a>
+
+            <ul>
+                <li>
+                    <button class="icon-plus-sign"></button>
+                    <a href="#">child 1</a>
+                </li>
+                
+                <li>
+                    <button class="icon-minus-sign"></button>
+                    <a href="#">child 2</a>
+
+                    <ul>
+                        <li>grandchild 2a</li>
+                        <li>
+                            <button class="icon-minus-sign"></button>
+                            <a href="#">grandchild 2b</a>
+
+                            <ul>
+                                <li>grandgrandchild 1bA</li>
+                                <li>grandgrandchild 1bB</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>child 3</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="node hide" id="tview2" data-node=".node" data-child=".child">
+        <button class="icon-minus-sign"></button>
+        <a href="#">root</a>
+        <div class="child">
+            <div class="node">
+                <button class="icon-plus-sign"></button>
+                <a href="#">child 1</a>
+            </div>
+            <div class="node">
+                <button class="icon-minus-sign"></button>
+                <a href="#">child 2</a>
+                <div class="child">
+                    <div class="node">grandchild 2a</div>
+                    <div class="node">
+                        <button class="icon-minus-sign"></button>
+                        <a href="#">grandchild 2b</a>
+                        <div class="child">
+                            <div class="node">grandgrandchild 1bA</div>
+                            <div class="node">grandgrandchild 1bB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="node"></div>
+        </div>
+    </div>
+
+    
+    <script type="text/javascript">
+        var tv1 = new SAPO.Ink.TreeView('#tview1');
+        var tv2 = new SAPO.Ink.TreeView('#tview2');
+    </script>
+</div>
 <a href="#" data-target="treeview_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
-<pre id="treeview_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul id=&quot;tview&quot;&gt;
-    &lt;li&gt;root
+<pre id="treeview_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul class=&quot;ink-tree-view&quot;&gt;
+    &lt;li&gt;
+        &lt;button class=&quot;icon-minus-sign&quot;&gt;&lt;/button&gt;
+        &lt;a href=&quot;#&quot;&gt;root&lt;/a&gt;
+
         &lt;ul&gt;
-            &lt;li&gt;child 1
-                &lt;ul&gt;
-                    &lt;li&gt;c&lt;/li&gt;
-                    &lt;li&gt;grandchild 1b&lt;/li&gt;
-                    &lt;li&gt;grandchild 1c&lt;/li&gt;
-                &lt;/ul&gt;
+            &lt;li&gt;
+                &lt;button class=&quot;icon-plus-sign&quot;&gt;&lt;/button&gt;
+                &lt;a href=&quot;#&quot;&gt;child 1&lt;/a&gt;
             &lt;/li&gt;
-            &lt;li&gt;child 2
+            
+            &lt;li&gt;
+                &lt;button class=&quot;icon-minus-sign&quot;&gt;&lt;/button&gt;
+                &lt;a href=&quot;#&quot;&gt;child 2&lt;/a&gt;
+
                 &lt;ul&gt;
                     &lt;li&gt;grandchild 2a&lt;/li&gt;
-                    &lt;li&gt;grandchild 2b
+                    &lt;li&gt;
+                        &lt;button class=&quot;icon-minus-sign&quot;&gt;&lt;/button&gt;
+                        &lt;a href=&quot;#&quot;&gt;grandchild 2b&lt;/a&gt;
+
                         &lt;ul&gt;
-                            &lt;li&gt;grandgrandchild 1bA&lt;/b&gt;
-                            &lt;li&gt;grandgrandchild 1bB&lt;/b&gt;
+                            &lt;li&gt;grandgrandchild 1bA&lt;/li&gt;
+                            &lt;li&gt;grandgrandchild 1bB&lt;/li&gt;
                         &lt;/ul&gt;
                     &lt;/li&gt;
                 &lt;/ul&gt;
             &lt;/li&gt;
+            
             &lt;li&gt;child 3&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     var tv1 = new SAPO.Ink.TreeView('#tview');
-&lt;/script&gt;</pre>
-<section id="sortable_list">
-    <h3>Sortable List</h3>
+&lt;/script&gt;</pre><section id="sortable_list">
+    <h2>Sortable List</h2>
     <p>The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.</p>
     <p>By doing that, allows the user to sort the order of the list.</p>
     <p>Also allows other configurations, as you can see in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
     <div class="box">
-        <ul id="slist">
-    <li>primeiro</li>
-    <li>segundo</li>
-    <li>terceiro</li>
-</ul>
-<script type="text/javascript">
-    var list = new SAPO.Ink.SortableList('#slist');
-</script>    </div>
+        <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
+            <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
+            <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
+            <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
+        </ul>
+    </div>
     <a href="#" data-target="sortablelist_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul id=&quot;slist&quot;&gt;
-    &lt;li&gt;primeiro&lt;/li&gt;
-    &lt;li&gt;segundo&lt;/li&gt;
-    &lt;li&gt;terceiro&lt;/li&gt;
-&lt;/ul&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var list = new SAPO.Ink.SortableList('#slist');
-&lt;/script&gt;</pre>
+    <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums"><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined variable: js</p>
+<p>Filename: ui/sortable_list.php</p>
+<p>Line Number: 14</p>
+
+</div></pre>
 </section>
 <section id="date_picker">
     <h3>Date Picker</h3>
@@ -695,33 +748,61 @@
     
     <div class="column-group gutters">
     
-        <div class="ink-tabs top large-50 medium-100 small-100">
+        <div class="ink-tabs top large-50 medium-100 small-100" data-active="#ui_tabs_news">
             
             <h3>With top navigation</h3>
             
             <ul class="tabs-nav">
-                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_home">Home</a></li>
                 <li><a href="#ui_tabs_news">News</a></li>
                 <li><a href="#ui_tabs_description">Description</a></li>
                 <li><a href="#ui_tabs_stuff">Stuff</a></li>
             </ul>
 
-            <div id="ui_tabs_home" class="tabs-content">
+            
+            <div id="ui_tabs_home" class="tabs-content hide">
                 <h4>Home</h4>
                 <p>
-                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
-                    organizm. Living tissue over endoskeleton. You're not going to have your
-                    mommies right behind you to wipe your little tushies. Blondes. Consider
-                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
-                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
-                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
-                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
-                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
-                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
-                    My name is John Kimble and I love my car. I'll be back.
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
 
+            <div id="ui_tabs_news" class="tabs-content hide">
+                <h4>News</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description" class="tabs-content hide">
+                <h4>Description</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_stuff" class="tabs-content hide">
+                <h4>Stuff</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
             <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
             <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
@@ -770,28 +851,56 @@
         </div>
 
             
-        <div class="ink-tabs bottom large-50 medium-100 small-100">
+        <div class="ink-tabs bottom large-50 medium-100 small-100" data-active="#ui_tabs_home">
 
             <h3>With bottom navigation</h3>
 
-            <div id="ui_tabs_home" class="tabs-content">
+            
+            <div id="ui_tabs_home" class="tabs-content hide">
                 <h4>Home</h4>
                 <p>
-                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
-                    organizm. Living tissue over endoskeleton. You're not going to have your
-                    mommies right behind you to wipe your little tushies. Blondes. Consider
-                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
-                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
-                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
-                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
-                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
-                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
-                    My name is John Kimble and I love my car. I'll be back.
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
-            
+
+            <div id="ui_tabs_news" class="tabs-content hide">
+                <h4>News</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description" class="tabs-content hide">
+                <h4>Description</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_stuff" class="tabs-content hide">
+                <h4>Stuff</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>            
             <ul class="tabs-nav">
-                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_home">Home</a></li>
                 <li><a href="#ui_tabs_news">News</a></li>
                 <li><a href="#ui_tabs_description">Description</a></li>
                 <li><a href="#ui_tabs_stuff">Stuff</a></li>
@@ -844,33 +953,61 @@
 
         </div>
 
-        <div class="ink-tabs left large-100 medium-100 small-100">
+        <div class="ink-tabs left large-100 medium-100 small-100" data-active="#ui_tabs_stuff">
 
             <h3>With left navigation</h3>
 
             <ul class="tabs-nav">
-                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_home">Home</a></li>
                 <li><a href="#ui_tabs_news">News</a></li>
                 <li><a href="#ui_tabs_description">Description</a></li>
                 <li><a href="#ui_tabs_stuff">Stuff</a></li>
             </ul>
 
-            <div id="ui_tabs_home" class="tabs-content">
+            
+            <div id="ui_tabs_home" class="tabs-content hide">
                 <h4>Home</h4>
                 <p>
-                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
-                    organizm. Living tissue over endoskeleton. You're not going to have your
-                    mommies right behind you to wipe your little tushies. Blondes. Consider
-                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
-                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
-                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
-                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
-                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
-                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
-                    My name is John Kimble and I love my car. I'll be back.
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
 
+            <div id="ui_tabs_news" class="tabs-content hide">
+                <h4>News</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description" class="tabs-content hide">
+                <h4>Description</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_stuff" class="tabs-content hide">
+                <h4>Stuff</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
             <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
             <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
@@ -918,46 +1055,77 @@
 
         </div>
 
-        <div class="ink-tabs right large-100 medium-100 small-100">
+        <div class="ink-tabs right large-100 medium-100 small-100"  data-active="#ui_tabs_description">
 
             <h3>With right navigation</h3>
             
             <ul class="tabs-nav">
-                <li class="active"><a href="#ui_tabs_home">Home</a></li>
+                <li><a href="#ui_tabs_home">Home</a></li>
                 <li><a href="#ui_tabs_news">News</a></li>
                 <li><a href="#ui_tabs_description">Description</a></li>
                 <li><a href="#ui_tabs_stuff">Stuff</a></li>
             </ul>
 
-            <div id="ui_tabs_home" class="tabs-content">
+            
+            <div id="ui_tabs_home" class="tabs-content hide">
                 <h4>Home</h4>
                 <p>
-                    Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
-                    organizm. Living tissue over endoskeleton. You're not going to have your
-                    mommies right behind you to wipe your little tushies. Blondes. Consider
-                    it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
-                    I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
-                    you. Get down or I'll put you down. You are not you you're me. Scumbag.
-                    Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
-                    You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
-                    hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
-                    My name is John Kimble and I love my car. I'll be back.
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
 
+            <div id="ui_tabs_news" class="tabs-content hide">
+                <h4>News</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description" class="tabs-content hide">
+                <h4>Description</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
+
+            <div id="ui_tabs_stuff" class="tabs-content hide">
+                <h4>Stuff</h4>
+                <p>
+                    Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
+                    pork loin. Filet mignon turducken tongue fatback shank chuck corned beef meatball. Short loin bresaola beef ribs, ball 
+                    tip drumstick pork chuck beef shoulder pig venison tail pork belly jerky biltong. Bacon pork belly ham tenderloin filet 
+                    mignon doner venison corned beef kielbasa. Frankfurter capicola sirloin bacon meatball beef ribs doner strip steak pancetta. 
+                    Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
+                </p>
+            </div>
         </div>
 
     </div>
 
     <script type="text/javascript">
-        // var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
-        // disabled: ['#stuff', '#more_stuff'], 
-        // active: '#ui_tabs_news',
-        // onBeforeChange: function(tab){
-        // }, 
-        // onChange: function(tab){
-        // }
-        // });
+        var tabs = [];
+        SAPO.Dom.Selector.select('.ink-tabs').forEach(function(item){            
+            tabs.push(
+                new SAPO.Ink.Tabs(item, {
+                    onBeforeChange: function(tab){
+                    }, 
+                    onChange: function(tab){
+                    }
+                })
+            );
+        });
     </script>
 </section>
 <section id="formvalidator">
@@ -1034,28 +1202,28 @@
 <section>
     <h2 id="progress_bar">Progress bar</h2>
         <div class="ink-progress-bar grey" data-start-value="70%">
+        <span class="caption">I am a grey progress bar</span>
         <div class="bar grey"></div>
-        <div class="caption">I am a grey progress bar</div>
     </div>
     <div class="ink-progress-bar green" data-start-value="60%">
+        <span class="caption">I am a green progress bar</span>
         <div class="bar green"></div>
-        <div class="caption">I am a green progress bar</div>        
     </div>
     <div class="ink-progress-bar blue" data-start-value="50%">
+        <span class="caption">I am a blue progress bar</span>
         <div class="bar blue" style="width: 50%"></div>
-        <div class="caption">I am a blue progress bar</div>        
     </div>
     <div class="ink-progress-bar red" data-start-value="40%">
+        <span class="caption">I am a red progress bar</span>
         <div class="bar red"></div>
-        <div class="caption">I am a red progress bar</div>        
     </div>
     <div class="ink-progress-bar orange" data-start-value="30%">
+        <span class="caption">I am a orange progress bar</span>
         <div class="bar orange"></div>
-        <div class="caption">I am an orange progress bar</div>        
     </div>
     <div class="ink-progress-bar black" data-start-value="20%">
+        <span class="caption">I am a black progress bar</span>
         <div class="bar black"></div>
-        <div class="caption">I am a black progress bar</div>        
     </div>
     <script>
         var 
@@ -1068,28 +1236,28 @@
         }
     </script>    <a data-target="progressbar_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
     <pre id="progressbar_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">    &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
+        &lt;span class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/span&gt;
         &lt;div class=&quot;bar grey&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;ink-progress-bar green&quot; data-start-value=&quot;60%&quot;&gt;
+        &lt;span class=&quot;caption&quot;&gt;I am a green progress bar&lt;/span&gt;
         &lt;div class=&quot;bar green&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;caption&quot;&gt;I am a green progress bar&lt;/div&gt;        
     &lt;/div&gt;
     &lt;div class=&quot;ink-progress-bar blue&quot; data-start-value=&quot;50%&quot;&gt;
+        &lt;span class=&quot;caption&quot;&gt;I am a blue progress bar&lt;/span&gt;
         &lt;div class=&quot;bar blue&quot; style=&quot;width: 50%&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;caption&quot;&gt;I am a blue progress bar&lt;/div&gt;        
     &lt;/div&gt;
     &lt;div class=&quot;ink-progress-bar red&quot; data-start-value=&quot;40%&quot;&gt;
+        &lt;span class=&quot;caption&quot;&gt;I am a red progress bar&lt;/span&gt;
         &lt;div class=&quot;bar red&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;caption&quot;&gt;I am a red progress bar&lt;/div&gt;        
     &lt;/div&gt;
     &lt;div class=&quot;ink-progress-bar orange&quot; data-start-value=&quot;30%&quot;&gt;
+        &lt;span class=&quot;caption&quot;&gt;I am a orange progress bar&lt;/span&gt;
         &lt;div class=&quot;bar orange&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;caption&quot;&gt;I am an orange progress bar&lt;/div&gt;        
     &lt;/div&gt;
     &lt;div class=&quot;ink-progress-bar black&quot; data-start-value=&quot;20%&quot;&gt;
+        &lt;span class=&quot;caption&quot;&gt;I am a black progress bar&lt;/span&gt;
         &lt;div class=&quot;bar black&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;caption&quot;&gt;I am a black progress bar&lt;/div&gt;        
     &lt;/div&gt;
     &lt;script&gt;
         var 
@@ -1101,8 +1269,7 @@
             progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
         }
     &lt;/script&gt;</pre>
-</section>
-<!-- <section>
+</section><!-- <section>
     <div class="column-group gutters" id="behaviors">
         <div class="large-100"><h3>Behaviors</h3></div>
         <div class="large-33">
