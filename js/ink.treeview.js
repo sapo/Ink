@@ -63,14 +63,14 @@
             var tgtEl = SAPO.Dom.Event.element(event);
 
             if( this._options.node[0] === '.' ) {
-                if( !SAPO.Dom.Css.hasClassName(tgtEl,this._options.node) ){
-                    while( (!SAPO.Dom.Css.hasClassName(tgtEl,this._options.node)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                if( !SAPO.Dom.Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!SAPO.Dom.Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
                         tgtEl = tgtEl.parentNode;
                     }
                 }
             } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node ){
-                    while( (tgtEl.id !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
                         tgtEl = tgtEl.parentNode;
                     }
                 }
@@ -86,7 +86,6 @@
                 return;
 
             var child = SAPO.Dom.Selector.select(this._options.child,tgtEl);
-            console.log(child);
             if( child.length > 0 ){
                 SAPO.Dom.Event.stop(event);
                 child = child[0];
