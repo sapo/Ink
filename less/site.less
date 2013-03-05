@@ -46,7 +46,7 @@ mark {
 
 /*..........................................  Typography  ...................................................*/
 a.visited   {color: @link-visited-color;}
-a.hover     {color: @link-hover-color;  text-decoration: underline;}
+a.hover     {color: @link-hover-color; text-decoration: underline;}
 a.active    {color: @link-active-color;}
 
 /*............................................  Homepage  ...................................................*/
@@ -79,7 +79,7 @@ a.active    {color: @link-active-color;}
     }
 
     p {
-        margin: 1em;
+        margin: 1em 0 0 0;
     }
 }
 
@@ -115,19 +115,11 @@ a.active    {color: @link-active-color;}
     max-height:330px;
     margin:0 auto;
     display: block;
-    opacity: 0.8;
-    -moz-opacity: 0.8;
-    filter:alpha(opacity=80);
-
--webkit-transition: all 500ms ; 
-   -moz-transition: all 500ms ; 
-    -ms-transition: all 500ms ; 
-     -o-transition: all 500ms ; 
-        transition: all 500ms ;/* custom */    
+    #ink > #effects > .opacity (.8);
+    #ink > #effects > .transition (all, 500ms);
     
     &:hover {
-        opacity: 1;
-        -moz-opacity: 1;
+        #ink > #effects > .opacity (1);
     }
 }
 
@@ -339,7 +331,6 @@ pre {
 .str, .atv              { color: #268bd2; }
 .kwd, .tag              { color: #195f91; }
 .typ, .atn, .dec, .var  { color: #CB4B16; }
-// .pln 
 
 code {
     border: 1px solid #E0E0E0;
