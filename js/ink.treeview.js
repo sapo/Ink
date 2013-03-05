@@ -82,6 +82,9 @@
                 }
             }
 
+            if(tgtEl.nodeName.toLowerCase() === 'body')
+                return;
+
             var child = SAPO.Dom.Selector.select(this._options.child,tgtEl);
             console.log(child);
             if( child.length > 0 ){
