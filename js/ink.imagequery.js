@@ -44,12 +44,20 @@
         }
 
         this._options = SAPO.extendObj({
-            queries:[] 
+            queries:[],
+            allowFirstLoad: true
         },SAPO.Dom.Element.data(this._element));
 
         this._options = SAPO.extendObj(this._options, options || {});
 
-        this._filename = this._element.src.split('/').pop();
+
+        var pos;
+        if( (pos=this._element.src.lastIndexOf('?')) !== -1 ){
+            var search = this._element.src.substr(pos);
+            this._filename = this._element.src.replace(search,'').split('/').pop()+search;
+        } else {
+            this._filename = this._element.src.split('/').pop();
+        }
 
         this._init();
     };
@@ -62,18 +70,23 @@
             this._options.queries = SAPO.Utility.Array.sortMulti(this._options.queries,'width').reverse();
 
             this._handlers = {
-                resize: this._onResize.bindObjEvent(this)
+                resize: this._onResize.bindObjEvent(this),
+                load: this._onLoad.bindObjEvent(this)
             };
 
-            SAPO.Dom.Event.observe(window, 'resize', this._handlers.resize);
+            if( !this._options.allowFirstLoad ){
+                SAPO.Dom.Event.observe(this._element, 'onload', this._handlers.load);
+            }
 
+            SAPO.Dom.Event.observe(window, 'resize', this._handlers.resize);
             this._handlers.resize.call(this);
 
         },
 
         _onResize: function(){
 
-            if( timeout ) { return; }
+
+            clearTimeout(timeout);
 
             var timeout = setTimeout(function(){
 
@@ -81,10 +94,20 @@
                     return;
                 }
 
+                // calculate map height and width
+
                 var
-                    viewportWidth = document.documentElement.clientWidth,
-                    query, selected
+                    query, selected,
+                    viewportWidth
                 ;
+
+                if( typeof( window.innerWidth ) === 'number' ) {
+                   viewportWidth = window.innerWidth;
+                } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                   viewportWidth = document.documentElement.clientWidth;
+                } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                   viewportWidth = document.body.clientWidth;
+                }
 
                 for( query=0; query < this._options.queries.length; query+=1 ){
                     if (this._options.queries[query].width <= viewportWidth){
@@ -93,27 +116,34 @@
                     }
                 }
 
-                if( typeof selected === 'undefined' ){ selected = 1; }
+                if( typeof selected === 'undefined' ){ selected = this._options.queries.length-1; }
 
                 var src = this._options.queries[selected].src || this._options.src;
                 if ( ("devicePixelRatio" in window && window.devicePixelRatio>1) && ('retina' in this._options ) ) {
                     src = this._options.queries[selected].retina || this._options.retina;
                 }
 
-
                 this._options.queries[selected].file = this._filename;
+
+                if( typeof src === 'function' ){
+                    src = src.apply(this,[this._element,this._options.queries[selected]]);
+                }
+
+                    
                 var property;
                 for( property in this._options.queries[selected] ){
                     if( ( property === 'src' ) || ( property === 'retina' ) ){ continue; }
                     src = src.replace("{:" + property + "}",this._options.queries[selected][property]);
                 }
-
                 this._element.src = src;
-                console.log('Applied query is the: ' + this._options.queries[selected].name + ' : ' + viewportWidth + 'px');
 
                 timeout = undefined;
 
             }.bindObj(this),300);
+        },
+
+        _onLoad: function(){
+            this._options.onLoad.call(this);
         }
 
     };
