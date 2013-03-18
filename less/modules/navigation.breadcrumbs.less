@@ -1,0 +1,37 @@
+.@{navigation-class-name} {
+
+    .breadcrumbs {
+
+        li {
+            line-height: @navigation-line-height + (@navigation-v-padding * 2);
+            display: inline;
+
+            a {
+                display: inline;
+                padding: 0;
+
+                &:hover {
+                    background: transparent;
+                }
+            }
+
+            &.active {
+                a {
+                    cursor: default;
+                    text-decoration: none;
+                }
+            }
+
+            &:after {
+                content: '/';
+                display: inline;
+                margin: 0 0.7em;
+            }
+            
+            &:last-child:after {
+                content: '';
+                display: none;
+            }
+        }
+    }
+}

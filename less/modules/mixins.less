@@ -1,0 +1,905 @@
+#ink {
+
+    #grid {
+
+        // If a supplied min-width is > 0 and max-width = 0
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width) when (isnumber(@min-width)) and (@min-width > 0) and (isnumber(@max-width)) and (@max-width = 0) {
+
+            @media screen and (min-width: @min-width) {
+
+                #ink > #grid > #generators > .grid-container (@site-width);
+                #ink > #grid > #generators > .grid-column-group ();
+                #ink > #grid > #generators > .grid-divisions ();
+                #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
+                        
+            }
+        }
+
+        // If a supplied min-width is > 0 and max-width > 0
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width) when (isnumber(@min-width)) and (@min-width > 0) and (isnumber(@max-width)) and (@max-width > 0) {
+
+            @media screen and (min-width: @min-width) and (max-width: @max-width) {
+                                                            
+                #ink > #grid > #generators > .grid-container (@site-width);
+                #ink > #grid > #generators > .grid-column-group ();
+                #ink > #grid > #generators > .grid-divisions ();
+                #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
+
+            }
+        }
+
+        // If a supplied min-width is = 0 and max-width > 0
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width > 0) {
+
+            @media screen and (max-width: @max-width) {
+                                                                                                
+                #ink > #grid > #generators > .grid-container (@site-width);
+                #ink > #grid > #generators > .grid-column-group ();
+                #ink > #grid > #generators > .grid-divisions ();
+                #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
+
+            }
+        }
+
+        // If a supplied min-width is = 0 and max-width = 0 and default (the 5th argument) = true
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width,@default) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width = 0) and (@default = true) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group ();
+            #ink > #grid > #generators > .grid-divisions ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+        }
+
+        // If a supplied min-width is = 0 and max-width = 0 and default (the 5th argument) = true
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width,@default,@visibility) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width = 0) and (@default = true) and (isnumber(@visibility)) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group ();
+            #ink > #grid > #generators > .grid-divisions ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+            @media screen and (min-width: @visibility ) {
+                #ink > #grid > #generators > .grid-visibility ();
+            }
+
+        }
+
+        // IE7 gets a simplified version of the grid.
+        .ie7-grid (@breakpoint-alias,@gutter-width) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group-ie7 ();
+            #ink > #grid > #generators > .grid-divisions-ie7 ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+        }
+
+        #generators {
+
+            // if a width (site-width) is supplied and > 0, set the width property to its value
+            .grid-container (@width) when (isnumber(@width)) and (@width > 0) {
+                .@{grid-class-name} {
+                    width: auto;
+                    max-width: @width;
+                    margin: 0 auto;
+                    // overflow: hidden;
+                    padding: 0 @gutter-width;
+                }
+            }
+
+            // if a width (site-width) is supplied and > 0, set the width property to auto
+            .grid-container (@width) when (isnumber(@width)) and (@width = 0) {
+                .@{grid-class-name} {
+                    width: auto;
+                    max-width: 100%;
+                    margin: 0 auto;            
+                    padding: 0 @gutter-width;
+                }
+            }
+
+            // generate the column-group grid element styling
+            .grid-column-group () {
+
+                .@{grid-column-group-class-name} {
+                    // width: 100%;
+                    clear: both;
+                    zoom: 1;
+                    &:after {
+                        content: "."; 
+                        display: block;
+                        height: 0; 
+                        clear: both; 
+                        visibility: hidden; 
+                        // zoom: 1;
+                    }
+                }
+
+                .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                            margin-left: @gutter-width - (@gutter-width * 2);
+                }
+            }
+
+            // generate the column-group grid element styling
+            .grid-column-group-ie7 () {
+
+                .@{grid-column-group-class-name} {
+                    width: auto;
+                    clear: both;
+                    zoom: 1;
+                    margin-left: @gutter-width - (@gutter-width * 2);
+
+                    &:after {
+                        content: "."; 
+                        display: block;
+                        height: 0; 
+                        clear: both; 
+                        visibility: hidden; 
+                        zoom: 1;
+                    }
+                }
+
+                .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                            padding-right: @gutter-width;
+                            margin-left: @gutter-width - (@gutter-width * 2);
+                            overflow: visible;
+                }   
+            }
+
+            // Generate the grid column division classes
+            .grid-divisions () {
+
+                .@{breakpoint-alias}-100 {
+                    width: 100%;
+                    clear: both;
+                }
+                .@{breakpoint-alias}-90 {
+                    width: 90%;
+                }
+                .@{breakpoint-alias}-80 {
+                    width: 80%;
+                }
+                .@{breakpoint-alias}-75 {
+                    width: 75%;
+                }
+                .@{breakpoint-alias}-70 {
+                    width: 70%;
+                }
+                .@{breakpoint-alias}-66 {
+                    width: 66.66%;
+                }
+                .@{breakpoint-alias}-60 {
+                    width: 60%;
+                }
+                .@{breakpoint-alias}-50 {
+                    width: 50%;
+                }
+                .@{breakpoint-alias}-40 {
+                    width: 40%;
+                }
+                .@{breakpoint-alias}-33 {
+                    width: 33.33%;
+                }
+                .@{breakpoint-alias}-30 {
+                    width: 30%;
+                }
+                .@{breakpoint-alias}-25 {
+                    width: 25%;
+                }
+                .@{breakpoint-alias}-20 {
+                    width: 20%;
+                }
+                .@{breakpoint-alias}-10 {
+                    width: 10%;
+                }
+
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    float: left;
+                    margin-bottom: @gutter-width;
+                    margin-top: 0;
+                    zoom: 1;                    
+                }
+
+                body.animated .@{breakpoint-alias}-100,
+                body.animated .@{breakpoint-alias}-90,
+                body.animated .@{breakpoint-alias}-80,
+                body.animated .@{breakpoint-alias}-75,
+                body.animated .@{breakpoint-alias}-70,
+                body.animated .@{breakpoint-alias}-66,
+                body.animated .@{breakpoint-alias}-60,
+                body.animated .@{breakpoint-alias}-50,
+                body.animated .@{breakpoint-alias}-40,
+                body.animated .@{breakpoint-alias}-33,
+                body.animated .@{breakpoint-alias}-30,
+                body.animated .@{breakpoint-alias}-25,
+                body.animated .@{breakpoint-alias}-20,
+                body.animated .@{breakpoint-alias}-10 {
+                    #ink > #effects > .transition ('width',250ms);                 
+                }
+
+                // set the padding to create the gutters
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10 {
+                    padding-left: @gutter-width;
+                }
+
+                // set styling to deal with empty grid elements
+                .@{breakpoint-alias}-100:empty,
+                .@{breakpoint-alias}-90:empty,
+                .@{breakpoint-alias}-80:empty,
+                .@{breakpoint-alias}-75:empty,
+                .@{breakpoint-alias}-70:empty,
+                .@{breakpoint-alias}-66:empty,
+                .@{breakpoint-alias}-60:empty,
+                .@{breakpoint-alias}-50:empty,
+                .@{breakpoint-alias}-40:empty,
+                .@{breakpoint-alias}-33:empty,
+                .@{breakpoint-alias}-30:empty,
+                .@{breakpoint-alias}-25:empty,
+                .@{breakpoint-alias}-20:empty,
+                .@{breakpoint-alias}-10:empty {
+                    clear: both;
+                }
+
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    & > & {
+                        margin-left: 0;
+                    }
+                }
+                
+                // generate the forms column-group grid element styling
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                //     margin-left: -@gutter-width / 2;
+                // }
+
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                // .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10 {
+                //     padding-left: @gutter-width / 2;
+                // }
+
+            }
+
+            // Generate the grid column division classes for IE7
+            .grid-divisions-ie7 () {                
+
+                .@{breakpoint-alias}-100 {
+                    width: 100% - @subpixel-rounding;
+                    clear: both;
+                }
+                .@{breakpoint-alias}-90 {
+                    width: 90%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-80 {
+                    width: 80%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-75 {
+                    width: 75%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-70 {
+                    width: 70%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-66 {
+                    width: 66.66%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-60 {
+                    width: 60%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-50 {
+                    width: 50%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-40 {
+                    width: 40%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-33 {
+                    width: 33.33%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-30 {
+                    width: 30%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-25 {
+                    width: 25%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-20 {
+                    width: 20%  - @subpixel-rounding;
+                }
+                .@{breakpoint-alias}-10 {
+                    width: 10%  - @subpixel-rounding;
+                }
+
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    float: left;
+                    margin-bottom: @gutter-width;
+                    margin-top: @gutter-width;
+                    overflow: hidden;
+                    zoom: 1;
+                }
+
+                // set the padding to create the gutters
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100 {
+                    width: 100% - @subpixel-rounding;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90 {
+                    width: (90%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80 {
+                    width: (80%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75 {
+                    width: (75%  - @subpixel-rounding) - (@gutter-width * 0.43)                    
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70 {
+                    width: (70% - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66 {
+                    width: (66%  - @subpixel-rounding) - (@gutter-width * 0.15)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60 {
+                    width: (60%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50 {
+                    width: (50% - @subpixel-rounding) - (@gutter-width * 0.55)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40 {
+                    width: (40%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33 {
+                    width: (33% - @subpixel-rounding) - (@gutter-width * 0.60);
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30 {
+                    width: (30%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25 {
+                    width: (25%  - @subpixel-rounding) - (@gutter-width * 0.80)                    
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20 {
+                    width: (20%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10 {
+                    width: (10%  - @subpixel-rounding) - (@gutter-width * 0.50)
+                }         
+
+                // set the padding to create the gutters
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10 {                    
+                    margin-left: @gutter-width;
+                    padding-left: 0;
+                }
+
+                // set styling to deal with empty grid elements
+                .@{breakpoint-alias}-100:empty,
+                .@{breakpoint-alias}-90:empty,
+                .@{breakpoint-alias}-80:empty,
+                .@{breakpoint-alias}-75:empty,
+                .@{breakpoint-alias}-70:empty,
+                .@{breakpoint-alias}-66:empty,
+                .@{breakpoint-alias}-60:empty,
+                .@{breakpoint-alias}-50:empty,
+                .@{breakpoint-alias}-40:empty,
+                .@{breakpoint-alias}-33:empty,
+                .@{breakpoint-alias}-30:empty,
+                .@{breakpoint-alias}-25:empty,
+                .@{breakpoint-alias}-20:empty,
+                .@{breakpoint-alias}-10:empty {
+                    clear: both;
+                }
+
+                .@{breakpoint-alias}-100,
+                .@{breakpoint-alias}-90,
+                .@{breakpoint-alias}-80,
+                .@{breakpoint-alias}-75,
+                .@{breakpoint-alias}-70,
+                .@{breakpoint-alias}-66,
+                .@{breakpoint-alias}-60,
+                .@{breakpoint-alias}-50,
+                .@{breakpoint-alias}-40,
+                .@{breakpoint-alias}-33,
+                .@{breakpoint-alias}-30,
+                .@{breakpoint-alias}-25,
+                .@{breakpoint-alias}-20,
+                .@{breakpoint-alias}-10 {
+                    & > & {
+                        margin-left: 0;
+                    }
+                }
+                
+                // generate the forms column-group grid element styling
+                .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                    margin-left: -@gutter-width;
+                }
+
+            }
+
+            .grid-visibility () {
+                .hide-@{breakpoint-alias} {
+                    display: none;
+                }
+                .show-@{breakpoint-alias} {
+                    display: inherit;
+                }
+            }
+
+            // create the helper classes
+            .grid-helper-classes () {                
+
+                .@{breakpoint-alias}-push-left {
+                    float: left;
+                }
+
+                .@{breakpoint-alias}-push-center {
+                    float: none;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .@{breakpoint-alias}-push-right {
+                    float: right;
+                }
+                .@{breakpoint-alias}-align-left {
+                    text-align: left;
+                }
+                .@{breakpoint-alias}-align-center {
+                    text-align: center;
+                }
+                .@{breakpoint-alias}-align-right {
+                    text-align: right;
+                }
+                .space {
+                    margin: @gutter-width;
+                }
+                .vspace {
+                    margin-top: @gutter-width;
+                    margin-bottom: @gutter-width;
+                }
+                .hspace {
+                    margin-left: @gutter-width;
+                    margin-right: @gutter-width;
+                }
+            }
+
+        }
+
+    }
+
+    #border-radius {
+
+        // set the same border radius to all corners
+        .all (@radius) {
+            border-radius: @radius;
+        }
+
+        // set individual border radius to the four corners
+        .all (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
+            border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+        }
+
+        // set the same border radius to both top corners
+        .top (@radius) {
+            border-top-right-radius: @radius;
+            border-top-left-radius: @radius;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        // set the same border radius to both bottom corners
+
+        .bottom (@radius) {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: @radius;
+            border-bottom-left-radius: @radius;
+        }
+
+        // set the same border radius to both left corners
+        .left (@radius) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: @radius;
+            border-top-left-radius: @radius;
+        }
+
+        // set the same border radius to both right corners
+        .right (@radius) {
+            border-top-right-radius: @radius;
+            border-bottom-right-radius: @radius;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+        .none (){
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+                
+    }
+
+    #forms {
+
+        .input_focus (@fb, @fc){
+            outline: none;
+            border-color: fadeIn(@fc, 30%);
+            -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+            -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+        }
+
+    }
+
+    #buttons {
+
+        .standard (@button-color, @text-color, @text-shadow-color, @shadow-above) when (@shadow-above = true) {
+
+            color: @text-color; 
+            border-color: darken(@button-color, 15%);
+            border-bottom-color: darken(@button-color, 25%);
+
+            #ink > #shadows > .text-shadow (0, .09em, .03em, @text-shadow-color);
+            #ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+
+            &:hover {
+                #ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+                #ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+                color: @text-color; // force text color for anchor tags
+                text-decoration: none; // remove underline on anchr tags
+            }
+
+            &:active {
+                #ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+                #ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25),inset);
+            }
+        }
+
+        .standard (@button-color, @text-color, @text-shadow-color) {
+
+            color: @text-color; 
+            border-color: darken(@button-color, 15%);
+            border-bottom-color: darken(@button-color, 25%);
+
+            #ink > #shadows > .text-shadow (0, -.09em, .03em, @text-shadow-color);
+            #ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+
+            &:hover {
+                #ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+                #ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+                color: @text-color; // force text color for anchor tags
+                text-decoration: none; // remove underline on anchr tags
+            }
+
+            &:active {
+                #ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+                #ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
+            }
+
+            &.flat {
+                
+                background: darken(@button-color,5%);
+
+                &:hover {
+                    background: darken(@button-color,10%);
+                }
+            }
+        }
+
+    }
+
+    #gradients {
+
+        .gradient (@start-color, @end-color, @end-color-stop) {
+            background: @start-color;
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+            background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+            background: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+            background: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+            background: linear-gradient(to bottom, @start-color 0%,@end-color @end-color-stop);
+        }
+
+        .horizontal-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+            background: @start-color;
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+            background: -moz-linear-gradient(left, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, right top, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -o-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -ms-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: linear-gradient(to right, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+        
+        .vertical-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+            background: @start-color;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}');
+            background: -moz-linear-gradient(toptop, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -o-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -ms-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: linear-gradient(to bottom, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+    }
+
+
+    #shadows {
+
+        // creates a outset box shadow. takes 5 arguments x, y, blur, spread and color. 
+        .box-shadow (@x, @y, @blur, @spread, @color) {
+            -webkit-box-shadow: @arguments;
+            -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+        }     
+
+        // creates a box shadow. takes 5 arguments x, y, blur, spread and color. 
+        // If the 6th argument is used the shadow is inset.
+        .box-shadow (@x, @y, @blur, @spread, @color, @inset) {
+            -webkit-box-shadow: @arguments;
+            -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+        }
+
+        // if several box shadows are needed on the same element you can pass the declarations as a "string"
+        .box-shadows (@exp: "") {
+            -webkit-box-shadow: @exp;
+            -moz-box-shadow: @exp;
+            box-shadow: @exp;
+        }
+
+        // creates a text shadow
+        .text-shadow (@x, @y, @blur, @color){
+            text-shadow: @arguments;
+        }
+
+        // remove box-shadows
+        .no-box-shadow () {
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        // remove text-shadows
+        .no-text-shadow () {
+            text-shadow: none;
+        }
+    }
+
+
+    #text {
+
+        // hide text inside element
+        .hide-text (){
+            text-indent: -99999px;
+            color: transparent;
+        }
+
+        .body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
+            font-size: ~"@{font-size}px";
+        }
+
+        .body-font-size (@font-size){}
+
+        .ink-font-stack (@style: "sans") when (@style = "serif") {
+            font-family: @serif-font-stack;
+        }
+
+        .ink-font-stack (@style: "sans") when (@style = "sans") {
+            font-family: @sans-serif-font-stack;
+        }
+
+    }
+
+    #effects {
+
+        .transition-delay (@delay) {
+            -webkit-transition-delay: @delay;
+            -moz-transition-delay: @delay;
+            -o-transition-delay: @delay;
+            -ms-transition-delay: @delay;
+            transition-delay: @delay;
+        }
+
+        .transition-property (@property) {
+            -webkit-transition-property: @property;
+            -moz-transition-property: @property;
+            -o-transition-property: @property;
+            -ms-transition-property: @property;
+            transition-property: @property;
+        }
+
+        .transition-timing-function (@function) {
+            -webkit-transition-timing-function: @function;
+            -moz-transition-timing-function: @function;
+            -o-transition-timing-function: @function;
+            -ms-transition-timing-function: @function;
+            transition-timing-function: @function;
+        }
+
+        .transition-duration (@duration) {
+            -webkit-transition-duration: @duration;
+            -moz-transition-duration: @duration;
+            -o-transition-duration: @duration;
+            -ms-transition-duration: @duration;
+            transition-duration: @duration;
+        }
+
+        .transition (@property: "background-color, color", @duration: 100ms, @timing-function: ease-in-out, @delay: 0) {
+            #ink > #effects > .transition-property (@property);
+            #ink > #effects > .transition-duration (@duration);
+            #ink > #effects > .transition-timing-function (@timing-function);
+            #ink > #effects > .transition-delay (@delay);
+        }
+
+        .none () {
+            -webkit-transition-property: none;
+            -moz-transition-property: none;
+            -o-transition-property: none;
+            -ms-transition-property: none;
+            transition-property: none;
+        }
+
+        // set element opacity
+        .opacity (@op) {
+            @percent: @op * 100;
+            filter:alpha(opacity=@percent);
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
+            opacity: @op;
+        }
+
+    }
+
+    #utils {
+
+        .clearfix () {
+            &:after {
+                content: "."; 
+                display: block;
+                height: 0; 
+                clear: both; 
+                visibility: hidden;
+                zoom:1;
+            }
+        }
+    }
+
+    #states {
+
+        .error (@inv) when (@inv = true) {
+            color: @error-bg;
+            background-color: transparent;
+        }
+
+        .error () {
+            color: @white;
+            background-color: @error-bg;
+        }
+
+
+        .warning (@inv) when (@inv = true) {
+            color: @warning-bg;
+            background-color: transparent;
+        }
+
+        .warning (){
+            background-color: @warning-bg;
+            color: @white;
+        }
+
+        .success (@inv) when (@inv = true) {
+            color: @success-bg;
+            background-color: transparent;
+        }
+
+        .success () {
+            background-color: @success-bg;
+            color: @white;
+        }
+
+        .info (@inv) when (@inv = true) {
+            color: @info-bg;
+            background-color: transparent;
+        }
+
+        .info () {
+            color: @white;
+            background-color: @info-bg;
+        }
+
+        .disabled (@color) when (lightness(@color) < 60%){
+            background: lighten(desaturate(@color,50%),25%);
+            box-shadow: none;
+            border: none;
+            &:hover {
+                background: lighten(desaturate(@color,50%),25%);
+                cursor: not-allowed;
+            }
+        }
+
+        .disabled (@color) when (lightness(@color) > 60%){
+            background: @color;
+            box-shadow: none;
+            border: none;
+            &:hover {
+                background: @color;
+                cursor: not-allowed;
+            }
+        }
+    }
+}

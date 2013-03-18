@@ -106,48 +106,10 @@
             this._markupMode = false;
         }
 
-        // Data attributes
-        var dataset = {};
-        if( this._element ){
-            var
-                attributesElements = this._element.dataset || this._element.attributes || {},
-                prop
-            ;
-
-            var propName;
-            for( prop in attributesElements ){
-
-                if( typeof attributesElements[prop] === 'undefined' ){
-                    continue;
-                } else if( typeof attributesElements[prop] === 'object' ){
-                    prop = attributesElements[prop].name || prop;            
-                    if(
-                        ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
-                        !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
-                    ){
-                        continue;
-                    }
-                }
-                
-                propName = prop.replace('data-','');
-                if( propName.indexOf('-') !== -1 ){
-                    propName = propName.split("-");
-                    for( i=1; i<propName.length; i+=1 ){
-                        propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
-                    }
-                    propName = propName.join('');
-                }
-                dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
-                if( dataset[propName] === "true" || dataset[propName] === "false" ){
-                    dataset[propName] = ( dataset[propName] === 'true' );
-                }
-            }
-        }
-
         /**
          * First, will handle the least important: The dataset
          */
-        this._options = SAPO.extendObj(this._options,dataset);
+        this._options = SAPO.extendObj(this._options,SAPO.Dom.Element.data(this._element));
 
         /**
          * Now, the most important, the initialization options
@@ -171,7 +133,9 @@
 
     Modal.prototype = {
 
-        _init: function() {
+        _init: function(event) {
+
+            if( event ){ SAPO.Dom.Event.stop(event); }
 
             var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 

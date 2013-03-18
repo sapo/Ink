@@ -1,0 +1,95 @@
+.@{alert-class-name} {
+    
+    &.basic,
+    &.block {
+        font-size: .938em;
+        margin: 1em 0 ;
+        position:relative;
+        #ink > #border-radius > .all (@border-radius);
+    }
+
+    &.basic {
+        padding:1em;
+        #ink > #gradients > .gradient (lighten(@alert-bg, 5%), darken(@alert-bg, 5%), 100%);
+        #ink > #shadows > .box-shadow (0, 1px, 0, 0, rgba(255, 255, 255, 0.3), inset); 
+        #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0, 0, 0, 0.3));
+
+        &.success { 
+            #ink > #gradients > .gradient (lighten(@green, 5%), @green, 100%);
+            color: @white; 
+        }
+
+        &.error { 
+            #ink > #gradients > .gradient (lighten(@red, 15%), @red, 100%);
+            color: @white; 
+        }
+
+        &.info  { 
+            #ink > #gradients > .gradient (lighten(@blue, 10%), @blue, 100%);
+            color: @white; 
+        }
+
+        .ink-close {
+            top:.55em; *top:.2em;
+        }
+    }
+    
+    &.block {
+        background: @alert-block-bg;
+        #ink > #shadows > .box-shadow (0, 1px, 2px, 0, rgba(0, 0, 0, 0.3));
+        font-size: 1em;
+
+        h4 {
+            padding:1em;
+            font-size: .938em;
+            line-height: 1.5;
+            color: @text-color;
+            #ink > #gradients > .gradient (lighten(@alert-bg, 5%), darken(@alert-bg, 5%), 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 0, 0, rgba(255, 255, 255, 0.3), inset);
+            #ink > #border-radius > .top (@border-radius);
+            margin:0; 
+            border-bottom: 1px solid darken(@alert-bg, 10%);
+        }
+
+        p, ul, ol {
+            padding: 0 1em 1em;
+        }
+
+        ul {
+            list-style: inside ;
+        }
+
+        &.success h4 {
+            #ink > #gradients > .gradient (lighten(@green, 5%), @green, 100%);
+            border-bottom: 1px solid darken(@green, 3%);
+            color: @white; 
+        }
+
+        &.error h4 {
+            #ink > #gradients > .gradient (lighten(@red, 15%), @red, 100%);
+            border-bottom: 1px solid darken(@red, 3%);
+            color: @white; 
+        }
+
+        &.info  h4 {
+            #ink > #gradients > .gradient (lighten(@blue, 10%), @blue, 100%);
+            border-bottom: 1px solid darken(@blue, 5%);
+            color: @white; 
+        }
+    }
+
+    .ink-dismiss {
+        position: absolute;
+        color: @black;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        line-height: 0.56em;
+        font-size: 1.8em;
+        padding:5px;
+        border: none;
+        background:none;
+        #ink > #shadows > .text-shadow (0px, 1px, 0px, @white);
+        #ink > #effects > .opacity (0.2);
+        top:.5em; *top:.2em; right:.4em;
+    }
+}
