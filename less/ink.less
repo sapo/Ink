@@ -1,74 +1,74 @@
 // ink.less
 
-// import the config files
-// config file names start with __ (double underscore).
-@import "__grid.less";
-@import "__colors.less";
-@import "__typography.less";
-@import "__navigation.less";
-@import "__forms.less";
-@import "__alerts.less";
-@import "__labels.less";
-@import "__tables.less";
-@import "__widgets.less";
-@import "__footer.less";
+// imports the config files
+// config file names start with __ (double underscore) and are located in the config directory.
+@import "./config/__grid.less";
+@import "./config/__colors.less";
+@import "./config/__typography.less";
+@import "./config/__navigation.less";
+@import "./config/__forms.less";
+@import "./config/__alerts.less";
+@import "./config/__labels.less";
+@import "./config/__tables.less";
+@import "./config/__widgets.less";
+@import "./config/__footer.less";
 
 // the mixins file
-// this file contains all the LESSCSS functions (mixins) that are used within INK
-@import "mixins.less";
+// this file contains all the {LESS} functions (mixins) that are used within INK to make things a little easier
+@import "./modules/mixins.less";
 
 // the CSS reset file. 
 // thanks to Nicolas Gallagher and Jonathan Neal for normalize.css (http://necolas.github.com/normalize.css/)
-@import "reset.less";
+@import "./modules/reset.less";
 
 // import the webfont stuff
-@import "fonts.less";
+@import "./modules/fonts.less";
 
 // the grid
-@import "grid.less";
+@import "./modules/grid.less";
 
 // typography
-@import "typography.less";
+@import "./modules/typography.less";
 
 // labels
-@import "labels.less";
+@import "./modules/labels.less";
 
 // footer
-@import "footer.less";
+@import "./modules/footer.less";
 
 // FontAwsome icons
 // thanks to Dave Gandy - http://fortawesome.github.com/Font-Awesome)
-@import "icons.less";
+@import "./modules/icons.less";
 
 // navigation
-@import "navigation.less";
-@import "navigation.menu.less"; // menus
-@import "navigation.breadcrumbs.less"; // breadcrumbs  
-@import "navigation.pagination.less"; // pagination
-@import "navigation.pills.less"; // pills ( )
-@import "navigation.themes.less"; // navigation color schemes (themes)
-@import "navigation.dropdown.less"; // navigation color schemes (themes)  
+@import "./modules/navigation.less";
+@import "./modules/navigation.menu.less"; // menus
+@import "./modules/navigation.breadcrumbs.less"; // breadcrumbs  
+@import "./modules/navigation.pagination.less"; // pagination
+@import "./modules/navigation.pills.less"; // pills ( )
+@import "./modules/navigation.themes.less"; // navigation color schemes (themes)
+@import "./modules/navigation.dropdown.less"; // navigation color schemes (themes)  
 
 // forms
-@import "forms.less";
+@import "./modules/forms.less";
 
 // alerts
-@import "alerts.less";
+@import "./modules/alerts.less";
 
 // buttons
-@import "buttons.less";
+@import "./modules/buttons.less";
 
 // tables
-@import "tables.less";
+@import "./modules/tables.less";
 
 // widgets
-@import "widgets.less";
-@import "js.modal.window.less";
-@import "js.progress.bar.less";
-@import "js.tabs.less";
+@import "./modules/widgets.less";
+@import "./modules/js.modal.window.less";
+@import "./modules/js.progress.bar.less";
+@import "./modules/js.tabs.less";
 
 // images
-@import "images.less";
+@import "./modules/images.less";
 
 // utilities
-@import "utilities.less";
+@import "./modules/utilities.less";

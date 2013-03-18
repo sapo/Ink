@@ -1,9 +1,9 @@
-@import "__colors.less";
-@import "__grid.less";
-@import "__typography.less";
-@import "__navigation.less";
-@import "mixins.less";
-@import "utilities.less";
+@import "./config/__colors.less";
+@import "./config/__grid.less";
+@import "./config/__typography.less";
+@import "./config/__navigation.less";
+@import "./modules/mixins.less";
+@import "./modules/utilities.less";
 
 @themeBackground            : #DEEDF1;
 
@@ -150,26 +150,30 @@ footer {
         margin: 1em 0;
     }
 
-    .SAPOlogo {
-        background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
-        text-indent: -9999px;
-        display: block;
-        width: 101px;
-        height: 30px;
-        margin-bottom: 1em;
-    }
+    .copyright {
+        margin: 0;
 
-    .PTClogo {
-        font-size: .875em;
-
-        a {
-            background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
+        .SAPOlogo {
+            background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
             text-indent: -9999px;
             display: block;
-            float: left;
-            width: 41px;
-            height: 43px;
-            margin-right:1em;
+            width: 101px;
+            height: 30px;
+            margin-bottom: 1em;
+        }
+
+        .PTClogo {
+            font-size: .875em;
+
+            a {
+                background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
+                text-indent: -9999px;
+                display: block;
+                float: left;
+                width: 41px;
+                height: 43px;
+                margin-right:1em;
+            }
         }
     }
 
@@ -187,6 +191,16 @@ footer {
                 &.Fb_link       { background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px }
                 &.Twt_link      { background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px }
                 &.Gplus_link    { background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px }
+            }
+        }
+    }
+
+    .ink-navigation {
+        ul.menu.horizontal {
+            li {
+                a.license {
+                    padding: 0.5em 0 0.5em 0;
+                }
             }
         }
     }
@@ -294,7 +308,11 @@ pre {
         border: 1px solid rgba(0,0,0,.2);
         #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
         white-space: pre-wrap;
-        //margin: 2em 0;
+        padding: 1em;    
+    }
+
+    &.linenums {
+        padding: 0;
     }
 
     ol  { 
@@ -350,5 +368,44 @@ section {
 
     &:last-child {
         border: none;
+    }
+}
+
+table.ink-table.browser-support {
+    .icon-ok {
+        color: @green;
+    }
+    .icon-remove, .icon-minus {
+        color: @red;
+    }
+    
+    tr th {
+        line-height: 1.3;
+        padding: 0.5em 0;
+        background: lighten(@black,30%);
+        color: @white;
+        font-weight: 500;
+    }
+}
+.ink-package {
+    #ink > #shadows > .box-shadow (0, 1px, 5px, 0, rgba(100,100,100,.5),inset);
+    #ink > #border-radius > .all (4px);
+    background: @grey-5;
+    padding: 1em;
+    font-size: 1em;
+    line-height: 1.3;
+    color: @grey-70;
+
+    strong {
+        font-size: 1.0em;
+    }
+    span {
+        color: @grey-30;
+        font-family: Ubuntu_light;
+        font-size: 0.95em;
+    }
+    span.tree {
+        color: @grey-70;
+        font-size: 1.2em;
     }
 }

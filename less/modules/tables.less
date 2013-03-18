@@ -7,7 +7,6 @@ table {
 		border-spacing: 0;
 		background: none;
 		
-		thead {
 			tr {
 				th {
 					padding: @table-cell-padding;
@@ -17,9 +16,7 @@ table {
 					line-height: @table-row-line-height;
 				}
 			}
-		}
 
-		tbody {
 			tr {
 				td {
 					padding: @table-cell-padding;
@@ -28,9 +25,7 @@ table {
 					line-height: @table-row-line-height;
 				}
 			}
-		}
 
-		tfoot {
 			tr {
 				td {
 					padding: @table-cell-padding;
@@ -39,9 +34,8 @@ table {
 					line-height: @table-row-line-height;
 				}
 			}
-		}
 
-		&.ink-zebra {
+		&.alternating {
 
 				tbody {
 
@@ -53,7 +47,7 @@ table {
 
 		}
 
-		&.ink-hover {
+		&.hover {
 
 			tbody {
 
@@ -66,13 +60,12 @@ table {
 
 		}
 
-		&.ink-bordered {
+		&.bordered {
 
 			border-collapse: separate;
 			border: @table-cell-borderColor 1px solid;
-			#ink > #border-radius > .all (5px);
+			#ink > #border-radius > .all (4px);
 
-			thead {
 				tr {
 					th {
 						border-left: @table-cell-borderColor 1px solid;
@@ -81,9 +74,7 @@ table {
 						}
 					}
 				}
-			}
 
-			tfoot {
 				tr {
 
 					&:last-child {
@@ -99,9 +90,7 @@ table {
 						}
 					}
 				}
-			}
 
-			tbody {
 				tr {
 
 					&:last-child {
@@ -117,7 +106,6 @@ table {
 						}
 					}
 				}
-			}
 
 		}
 
