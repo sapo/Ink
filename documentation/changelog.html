@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-	<meta charset="utf-8">
+        <base href="./">
+    	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
@@ -14,26 +14,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -45,14 +45,16 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -63,7 +65,8 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -73,6 +76,11 @@
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
 						</li>			
 													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
 
 								<a href="layout.html">Layout</a>
 					
@@ -175,7 +183,10 @@
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
                                         
-                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
                 </ul>
             </nav>  
             

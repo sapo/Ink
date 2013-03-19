@@ -24,3 +24,5 @@ ehthumbs.db
 Thumbs.db
 *.zip
 ink_to_prod_dir
+
+/build-docs.sh

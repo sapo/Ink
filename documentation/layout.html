@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-	<meta charset="utf-8">
+        <base href="./">
+    	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
@@ -14,26 +14,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -45,14 +45,16 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -63,7 +65,8 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -73,6 +76,11 @@
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
 						</li>			
 													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
 
 								<a href="layout.html">Layout</a>
 					
@@ -136,24 +144,24 @@
         <div class="large-25 medium-30 small-100">
             <nav class="ink-navigation docs-section-nav" data-spy="affix" data-offset-top="200">
                 <ul class="menu vertical rounded black">
-                    <li><a href="#nav-home">
+                    <li><a href="./layout/index_dump#nav-home">
                         <i class="icon-chevron-up ink-for-l"></i>
                         <span>Back to Top</span>
                     </a></li>
-                    <li><a href="#nav-foundation">Foundation</a></li>
-                    <li><a href="#nav-usage">Practical Usage</a></li>
-                    <li><a href="#nav-space">Adding Space</a></li>
-                    <li><a href="#nav-screens">Multiple Screens</a></li>
-                    <li><a href="#nav-showhide">Showing &amp; Hiding</a></li>
-                    <li><a href="#nav-customization">Further Customization</a></li>
+                    <li><a href="./layout/index_dump#nav-foundation">Foundation</a></li>
+                    <li><a href="./layout/index_dump#nav-first-steps">Practical Usage</a></li>
+                    <li><a href="./layout/index_dump#nav-space">Adding Space</a></li>
+                    <li><a href="./layout/index_dump#nav-screens">Multiple Screens</a></li>
+                    <li><a href="./layout/index_dump#nav-showhide">Showing &amp; Hiding</a></li>
+                    <li><a href="./layout/index_dump#nav-customization">Further Customization</a></li>
                 </ul>
             </nav>
         </div>
-        <div class="large-75 medium-70 small-100">
-            <section id="nav-foundation">
-                <h2>Foundation</h2>
+        <div class="large-75 medium-70 small-100">            
+            <section id="nav-foundation">                
+                <h3>Foundation</h3>
                 <p>The way you build layouts in Ink is its prime differentiator from other available web UI frameworks and also one of its strongest suits. You'll find Ink's approach is very intuitive and will have anyone building layouts quickly and consistently.</p>
-                <p>So, let's get started with the basics, then we will expand upon that so that you can leave this page knowing, not only how to build a layout from scratch, but also how to simultaneously build for three screen sizes.</p>
+                <p>So, let's get started with the basics, then we will expand upon that so that you can leave this page knowing, not only how to build a layout from scratch, but also how to simultaneously build for three screen sizes.</p>                
                 <p class="ink-vspace"><span class="ink-label info">Tip</span> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a>
                 so you can try as you go along.</p>
                 <h3>The container</h3>
@@ -161,7 +169,7 @@
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;div class=&quot;ink-grid&quot;&gt;
-&lt;p&gt;Your content here&lt;/p&gt;
+    &lt;p&gt;Your content here&lt;/p&gt;
 &lt;/div&gt;                </pre>
                 <h3>The Column Groups</h3>
                 <p>If you want a single-column page, then you don't need anything else, just use your <code>ink-grid</code> and pour your content into it. However, if you want a more common column-based layout, then you're going to need to start thinking in rows of side-by-side columns, what we, in Ink, call <code>column-group</code>.</p>
@@ -214,8 +222,7 @@
                     <div class="large-25 medium-25 small-25"><p>25%</p></div>
                     <div class="large-25 medium-25 small-25"><p>25%</p></div>
                     <div class="large-25 medium-25 small-25"><p>25%</p></div>
-                    <div class="large-25 medium-25 small-25"><p>25%</p></div>
-                
+                    <div class="large-25 medium-25 small-25"><p>25%</p></div>                
                 </div>
                 <p>The previous grid shows only a few of the possible combinations you can make with the 14 available widths, we'll leave you to imagine the rest, and go on to our last, but not least, basic layout element.</p>
                 <h3>The gutters</h3>
@@ -238,7 +245,12 @@
             <section id="nav-usage">
                 <h2>Practical Usage</h2>
                 <h4>Simple layout </h4>
-                <p>By now, you've realized that Ink's approach is not a grid approach in which blocks fall neatly onto a predetermined grid of a fixed number of underlying columns, this really makes it flexible and easy to understand and keep track of code, but it can also mess with your OCD, you you're the "neatly aligned" kind of person.</p>
+                <p>
+                    By now, you've realized that Ink's approach is not a grid approach in which blocks fall neatly onto a predetermined 
+                    grid of a fixed number of underlying columns, 
+                    this really makes it flexible and easy to understand and keep track of code, but it can also mess with your OCD, 
+                    if you're the "neatly aligned" kind of person.
+                </p>
                 <p>However, you can easily bend Ink to your will, by staying within a certain divisor range in your layouts. If you opt for 20 as your base, use 60/40, 20/20/20/20/20 or 80/20 and build layouts that fall on a grid without the constriction of actually having one. If you prefer 25, then use 50 and 75, for example. It's easy and it lets you keep the flexibility of percentage-based layout.</p>
                 <p><span class="ink-label info">20%-based layout example</span></p>
                 
@@ -461,7 +473,10 @@
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
                                         
-                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
                 </ul>
             </nav>  
             
