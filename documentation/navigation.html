@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-	<meta charset="utf-8">
+        <base href="./">
+    	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
@@ -14,26 +14,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -45,14 +45,16 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -63,7 +65,8 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -73,6 +76,11 @@
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
 						</li>			
 													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
 
 								<a href="layout.html">Layout</a>
 					
@@ -134,20 +142,20 @@
         <nav class="ink-navigation large-25 medium-30 small-100">
             <ul class="menu vertical rounded black vspace sticky">
                 <li>
-                    <a class="scrollableLink home" href="#nav-home">
+                    <a class="scrollableLink home" href="./navigation/index_dump#nav-home">
                         <i class="icon-chevron-up ink-for-l"></i>
                         <span class="ink-for-m ink-for-s">Back to Top</span>
                     </a>
                 </li>
-                <li><a class="scrollableLink" href="#nav-basics">Navigation basics</a></li>
-                <li><a class="scrollableLink" href="#nav-sub">Submenus</a></li>
-                <li><a class="scrollableLink" href="#nav-styling">Navigation Styling</a></li>
-                <li><a class="scrollableLink" href="#nav-horizontal">Horizontal Menu</a></li>
-                <li><a class="scrollableLink" href="#nav-vertical">Vertical Menu</a></li>
-                <li><a class="scrollableLink" href="#nav-pagination">Pagination</a></li>
-                <li><a class="scrollableLink" href="#nav-pills">Pills</a></li>
-                <li><a class="scrollableLink" href="#nav-breadcrumbs">Breadcrumbs</a></li>
-                <li><a class="scrollableLink" href="#nav-footer">Footer</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-basics">Navigation basics</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-sub">Submenus</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-styling">Navigation Styling</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-horizontal">Horizontal Menu</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-vertical">Vertical Menu</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-pagination">Pagination</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-pills">Pills</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-breadcrumbs">Breadcrumbs</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-footer">Footer</a></li>
             </ul>
         </nav>
     <script>
@@ -164,7 +172,7 @@
                 <p>Menus need to be lists, as that's what they are anyway and it's considered the industry standard best practice. So, inside your wrapper block put an unsorted list <code>ul</code> and list your menu items within <code>li</code>.</p>
                 <p><span class="ink-label info">code</span></p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
    &lt;ul class=&quot;menu&quot;&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
@@ -176,7 +184,7 @@
                 <p>Making submenus is as simple as adding a new <code>ul</code> inside the <code>li</code> you want to control the sublist and giving it the <code>submenu</code> class.</p>
                 <p><span class="ink-label info">code</span></p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
    &lt;ul class=&quot;menu&quot;&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item with a submenu&lt;/a&gt;
@@ -222,7 +230,7 @@
                 <p>For the horizontal variant, we'll add the <code>horizontal</code> tag to the list element.</p>
                 <p><span class="ink-label info">code</span></p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
    &lt;ul class=&quot;menu horizontal&quot;&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
@@ -382,7 +390,7 @@
 
                 <p><span class="ink-label info">code</span> for a basic vertical menu.</p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
    &lt;ul class=&quot;menu vertical&quot;&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
@@ -395,7 +403,7 @@
                 <p>There are two special classes for navigation elements and those are the <code>previous</code> and <code>next</code> classes. Just add them to your first and last <code>li</code> element and make sure they contain links to navigate backward and forward in your page list.</p>
                 <p><span class="ink-label info">code</span> for a basic pagination element</p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
     &lt;ul class=&quot;pagination&quot;&gt;
         &lt;li class=&quot;previous&quot;&gt;&lt;a href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
@@ -433,7 +441,7 @@
                 </p>
                 <p><span class="ink-label info">code</span> for a basic pills element</p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
     &lt;ul class=&quot;pills&quot;&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Pill 1&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Pill 2&lt;/a&gt;&lt;/li&gt;
@@ -454,7 +462,7 @@
                 <p>A breadcrumb navigation can be useful if you have several levels of depth in your site and want to let your users know where they are and easily navigate to previous items in the tree. Breadcrumbs in Ink are created by adding the <code>breadcrumbs</code> class to the <code>ul</code> element.</p>
                 <p><span class="ink-label info">code</span> for a basic breadcrumb element</p>
                 
-<pre class="prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
     &lt;ul class=&quot;breadcrumbs&quot;&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Start&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
@@ -483,7 +491,7 @@
                 <h3>Customizing the separator</h3>
                 <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
                 
-<pre class="prettyprint linenums">.ink-navigation .breadcrumbs li:after {
+<pre class=" prettyprint linenums">.ink-navigation .breadcrumbs li:after {
    content: '*';
 }</pre>                
                 <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
@@ -494,7 +502,7 @@
                 <p><span class="ink-label info">tip</span> make sure your parent <code>ink-navigation</code> element is, itself, wrapped in a <code>footer</code> element.</p>
                 <p><span class="ink-label info toggle" data-target="#cenas">code</span> for an example horizontal footer menu.</p>
                 
-<pre class="prettyprint linenums">&lt;footer&gt;
+<pre class=" prettyprint linenums">&lt;footer&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
         &lt;ul class=&quot;menu horizontal&quot;&gt;
             &lt;li&gt;&lt;a href=&quot;#&quot;&gt;footerItem&lt;/a&gt;&lt;/li&gt;
@@ -506,7 +514,7 @@
             </section>
             <section id="dropdowns">
 
-<pre class="prettyprint linenums">&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;
+<pre class=" prettyprint linenums">&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;
     &lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;
     &lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;</pre>                <h2>Dropdowns</h2>
                 <p>Dropdowns do stuff with things‘</p>
@@ -606,7 +614,10 @@
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
                                         
-                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
                 </ul>
             </nav>  
             

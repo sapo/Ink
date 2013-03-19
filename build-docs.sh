@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PAGES=(home/index layout/index navigation/index typography/index icons/index forms/index alerts/index tables/index js/ui js/core about/index changelog/index)
+PAGES=(home/index layout/index navigation/index typography/index icons/index forms/index alerts/index tables/index js/ui js/core about/index changelog/index glossary/index)
 URL=$1
 LOCAL_PATH='./documentation/'
 DUMP_TRIGGER='_dump'

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-	<meta charset="utf-8">
+        <base href="./">
+    	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
@@ -14,26 +14,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -45,14 +45,16 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -63,7 +65,8 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -73,6 +76,11 @@
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
 						</li>			
 													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
 
 								<a href="layout.html">Layout</a>
 					
@@ -138,64 +146,48 @@
 	</div>
 	
     <!--download buttons-->
-    <div class="column-group gutters" id="download">
-		<div class="large-25 medium-50 small-100">
-			<a href="./download/latest" >Version 0.1.0</a>
-			<p>Download InK's current build.</p>
-		</div>
-		<div class="large-25 medium-50 small-100">
-			<a href="./download" >Custom</a>
-			<p>
-				Customize your basic layout - site width, gutters, colors and much more.
-			</p>
-		</div>
-		<div class="large-25 medium-50 small-100">
-			<a href="./download/github" >Github repo</a>
-			<p>Download, fork, pull, comment or report bugs at InK's Github.</p>
-		</div>
-        <div class="large-25 medium-50 small-100">
-            <a href="ols" >Previous versions</a>
-            <p>Do you miss one of our previous versions? Get it here.</p>
+    <section id="getink">
+        <div class="column-group gutters" id="download">
+            <div class="large-25 medium-50 small-100">
+                <a href="./download/latest" >Version 0.1.0</a>
+                <p>Download the current build.</p>
+            </div>
+            <div class="large-25 medium-50 small-100">
+                <a href="./download" >Custom</a>
+                <p>
+                    Customize Ink to better fit your needs.
+                </p>
+            </div>
+            <div class="large-25 medium-50 small-100">
+                <a href="./download/github" >Github repo</a>
+                <p>Download, fork, pull, comment or report bugs.</p>
+            </div>
+            <div class="large-25 medium-50 small-100">
+                <a href="ols" >Previous versions</a>
+                <p>Get earlier versions.</p>
+            </div>
         </div>
-	</div>
+    </section>
     <!--end download buttons-->
 
     <!--advantages-->
-            <h3>Why use Ink?</h3>
+    <h3>Why use Ink?</h3>
     <div class="column-group gutters">
         <div class="large-25 medium-50 small-100">
-            <h4>Truly fluid layout <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
+            <h4>Fluid <i class="icon-tint icon-large"></i></h4>
+            <p>This is undoubtedly one of Ink's biggest advantages. Your layouts will be truly fluid thanks to the way our grid works.</p>
         </div>
         <div class="large-25 medium-50 small-100">
-            <h4>Responsive <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
+            <h4>Responsive <i class="icon-resize-horizontal icon-large"></i></h4>
+            <p>Ink is responsive, using a very logical size progression which is dead simple to write into your markup from the get go.</p>
         </div>
         <div class="large-25 medium-50 small-100">
-            <h4>Simple, natural language classes <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
+            <h4>Simple <i class="icon-leaf icon-large"></i></h4>
+            <p>Ink tries to rely as much as possible on natural language which just makes sense, making it easy to learn and memorize.</p>
         </div>
         <div class="large-25 medium-50 small-100">
-            <h4>Advantage <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
-        </div>
-    </div>
-    <div class="column-group gutters">
-        <div class="large-25 medium-50 small-100">
-            <h4>Advantage <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
-        </div>
-        <div class="large-25 medium-50 small-100">
-            <h4>Advantage <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
-        </div>
-        <div class="large-25 medium-50 small-100">
-            <h4>Advantage <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
-        </div>
-        <div class="large-25 medium-50 small-100">
-            <h4>Advantage <i class="icon-heart icon-large"></i></h4>
-            <p>This is undoubtedly one of Ink's biggest advantages. Other frameworks only wish they had this, but they don't and we do.</p>
+            <h4>Growing <i class="icon-cogs icon-large"></i></h4>
+            <p>Ink is made with passion, expect improvements, new solutions and examples, new JS modules as our team keeps building up Ink.</p>
         </div>
     </div>
     <!--end advantages-->
@@ -207,19 +199,25 @@
                 <p>Nothing better to see how flexible and versatile Ink is than to take a look at some websites and apps made with the framework. We'll keep expanding this section to include the best projects around. If you've built something with Ink, <a href="mailto:who?">drop us a line</a> so we can consider including a shot of your product right here.</p>
         <div class="column-group gutters">
             <div class="large-25 medium-50 small-100">
-                <a href=""><img src="./assets/imgs/shot_meo.png"></a>
+                <a href="http://meo.pt"><img src="./assets/imgs/shot_meo.png"></a>
                 <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
             </div>
             <div class="large-25 medium-50 small-100">
-                <a href=""><img src="./assets/imgs/shot_meo.png"></a>
-                <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
+                <a href="http://musicbox.sapo.pt"><img src="./assets/imgs/shot_musicbox.png"></a>
+                <p class="vspace"><a href="http://musicbox.sapo.pt">Musicbox</a> is the leading music streaming service in Portugal, the new website was made with Ink.</p>
             </div><a href=""></a>
             <div class="large-25 medium-50 small-100">
-                <a href=""><img src="./assets/imgs/shot_meo.png"></a>
-                <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
+                <a href="http://sapo.pt"><img src="./assets/imgs/shot_intra.png"></a>
+                <p class="vspace"><a href="http://sapo.pt">SAPO</a> Intranet. Our internal project management and documentation network has been rebuilt using Ink.</p>
             </div>
             <div class="large-25 medium-50 small-100">
-                <a href=""><img src="./assets/imgs/shot_meo.png"></a>
+                <a href="http://ink.sapo.pt"><img src="./assets/imgs/shot_ink.png"></a>
+                <p class="vspace"><a href="http://ink.sapo.pt">Ink</a>. It may be very meta, but as you'd expect, this website is buit with Ink :)</p>
+            </div>
+        </div>
+        <div class="column-group gutters">
+            <div class="large-25 medium-50 small-100">
+                <a href="http://meo.pt"><img src="./assets/imgs/shot_livebots.png"></a>
                 <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
             </div>
         </div>
@@ -276,7 +274,10 @@
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
                                         
-                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
                 </ul>
             </nav>  
             
