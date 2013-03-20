@@ -48,7 +48,7 @@
          */
         if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[SAPO.Ink.TreeView] :: Invalid selector';
-        } else if( typeof 'selector' === 'string' ){
+        } else if( typeof selector === 'string' ){
             this._element = Selector.select( selector );
             if( this._element.length < 1 ){
                 throw '[SAPO.Ink.TreeView] :: Selector has returned no elements';
