@@ -44,9 +44,19 @@
             throw '[SAPO.Ink.Toggle] Target option not defined';
         }
 
-        this._childElement = SAPO.Dom.Selector.select( this._options.target );
-        if( this._childElement <= 0 ){
-            return;
+        this._childElement = SAPO.Dom.Selector.select( this._options.target, this._rootElement );
+        if( this._childElement.length <= 0 ){
+            if( this._childElement.length <= 0 ){
+                this._childElement = SAPO.Dom.Selector.select( this._options.target, this._rootElement.parentNode );
+            }
+
+            if( this._childElement.length <= 0 ){
+                this._childElement = SAPO.Dom.Selector.select( this._options.target );
+            }
+
+            if( this._childElement.length <= 0 ){
+                return;
+            }
         }
         this._childElement = this._childElement[0];
 
@@ -66,8 +76,6 @@
         _onTriggerEvent: function( event ){
             SAPO.Dom.Event.stop( event );
 
-            var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._childElement, null) : this._childElement.currentStyle;
-
             if( this._accordion ){
                 var elms, i, accordionElement;
                 if( SAPO.Dom.Css.hasClassName(this._childElement.parentNode,'accordion') ){
@@ -81,17 +89,18 @@
                         dataset = SAPO.Dom.Element.data( elms[i] ),
                         targetElm = SAPO.Dom.Selector.select( dataset.target,accordionElement )
                     ;
-                    if( (targetElm.length > 0) ){
-                        for( var j = 0; j<targetElm.length; j++ ){
-                            if( targetElm[j] !== this._childElement ){
-                                targetElm[j].style.display = 'none';
-                            }
-                        }
+                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
+                            targetElm[0].style.display = 'none';
                     }
                 }
             }
-            this._childElement.style.display = (computedStyle.display === 'none') ? 'block' : 'none';
-            SAPO.Dom.Css.toggleClassName(this._childElement,'visible');
+
+            console.log(this._childElement);
+
+            var finalClass = SAPO.Dom.Css.hasClassName(this._childElement,'visible') ? 'hide' : 'visible';
+            SAPO.Dom.Css.removeClassName(this._childElement,'visible');
+            SAPO.Dom.Css.removeClassName(this._childElement, 'hide');
+            SAPO.Dom.Css.addClassName(this._childElement, finalClass);
         }
     };
 
