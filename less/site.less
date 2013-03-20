@@ -52,7 +52,7 @@ mark {
     &.example {
 
         .dropdown-menu {
-            display: block;
+            
             position:relative;
             left: 0;
         }
@@ -232,62 +232,141 @@ footer {
     .ink-navigation {
     
         ul {
-            
-            &.horizontal {
         
-                li {
-                    font-size: @topbar-fontSize;
-                    a {
-                        *height:auto;
-                        color:@topbar-color;
+            li {
+                font-size: @topbar-fontSize;
+                a {
+                    *height:auto;
+                    color:@topbar-color;
 
-                        &:hover {
-                            color:@topbar-colorHover;
-                        }
-
-                        &.logoPlaceholder {
-                            font-size: 2em;
-                            font-weight: bold;
-                            line-height: 1.4;
-                            padding: 0;
-                            margin-right: .5em;
-
-                            &:hover {
-                                background: none;
-                            }                            
-                        }
+                    &:hover {
+                        color:@topbar-colorHover;
                     }
 
-                    &.active {
-                        a {
-                            #ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
-                            #ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
-                            color:@white;
-                        }
-                    }
-
-                    .submenu li a {
-                        color:@black;
-                        background:@white;
-                        filter:none; 
+                    &.logoPlaceholder {
+                        font-size: 2em;
+                        font-weight: bold;
+                        line-height: 1.4;
+                        padding: 0;
+                        margin-right: .5em;
 
                         &:hover {
-                            background:lighten(@topbar-bgColor,20%); 
-                            color:@topbar-colorHover;
-                        }
+                            background: none;
+                        }                            
                     }
                 }
-                
-                &.black {
-                    &.flat {
-                        background:@topbar-bgColor;
-                        filter:none;
-                        #ink > #shadows > .no-box-shadow ();
+
+                &.active {
+                    a {
+                        #ink > #gradients > .gradient (darken(@topbar-bgColor, 10%), lighten(@topbar-bgColor, 10%), 100%);
+                        #ink > #shadows > .box-shadow (0, 0px, 2px, 0, rgba( 255, 255, 255, 0.3));
+                        color:@white;
+                    }
+                }
+
+                .submenu {
+                    
+                    #ink > #border-radius > .bottom (4px);
+
+                    li {
+
+                        &:last-child {
+                            #ink > #border-radius > .bottom (4px);
+                        }
+
+                        a {
+                            color:@black;
+                            background:@white;
+                            filter:none; 
+
+                            &:hover {
+                                background:lighten(@topbar-bgColor,20%); 
+                                color:@topbar-colorHover;
+                            }
+                        }
                     }
                 }
             }
-           
+
+            &.vertical {
+
+                li {
+
+                    a {
+
+                        &.logoPlaceholder {
+                            margin-right: 0;
+                        }
+                    }
+
+                    button {
+                        background: none;
+                        border: none;
+                        outline: none;
+                        position: absolute;
+                        top: .6em;
+                        right: 0;
+                        padding: 0;
+                        color: @topbar-color;
+
+                        &:hover,
+                        &:focus {
+                            color: @white
+                        }
+
+                        span {
+                            
+                            font-size: 1.5em;
+                        }
+                    }
+                    
+                    &.active {
+                        a {
+                            background: darken(@topbar-bgColor, 6%);
+                            #ink > #shadows > .no-box-shadow ();
+                        }
+                    }
+
+                    &:first-child {
+                        #ink > #utils > .clearfix();
+                    }
+                    
+                    .submenu {
+                        width: auto;
+                        left: auto;
+                        display: block;
+                        position: relative;
+                        #ink > #border-radius > .none ();
+
+                        li {
+
+                            &:last-child {
+                                #ink > #border-radius > .none ();
+                            }
+
+                            a {
+                                color:@topbar-color;
+                                background:@topbar-bgColor;
+                                border-bottom: 1px solid lighten(@black,15%);
+                                &:hover {
+                                    background: lighten(@black,10%);
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &.black {
+                &.flat {
+                    background:@topbar-bgColor;
+                    filter:none;
+                    #ink > #shadows > .no-box-shadow ();
+                }
+            }
         }
+    
     }
 
     .border {
