@@ -5,7 +5,7 @@
      * Checking dependencies
      */
     var
-        dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'Aux'],
+        dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'SAPO.Ink.Aux'],
         dependency, i, j,
         checking
     ;

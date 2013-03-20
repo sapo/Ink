@@ -81,8 +81,12 @@
                         dataset = SAPO.Dom.Element.data( elms[i] ),
                         targetElm = SAPO.Dom.Selector.select( dataset.target,accordionElement )
                     ;
-                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
-                            targetElm[0].style.display = 'none';
+                    if( (targetElm.length > 0) ){
+                        for( var j = 0; j<targetElm.length; j++ ){
+                            if( targetElm[j] !== this._childElement ){
+                                targetElm[j].style.display = 'none';
+                            }
+                        }
                     }
                 }
             }
