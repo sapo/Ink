@@ -95,8 +95,6 @@
                 }
             }
 
-            console.log(this._childElement);
-
             var finalClass = SAPO.Dom.Css.hasClassName(this._childElement,'show') ? 'hide' : 'show';
             SAPO.Dom.Css.removeClassName(this._childElement,'show');
             SAPO.Dom.Css.removeClassName(this._childElement, 'hide');
