@@ -1,13 +1,14 @@
 (function(){
     'use strict';
 
-
+    /**
+     * Checking dependencies
+     */
     var
         dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'Aux'],
         dependency, i, j,
         checking
     ;
-
     for( i = 0; i < dependencies.length; i+=1 ){
         dependency = dependencies[i].split(".");
         checking = window;
@@ -20,6 +21,9 @@
         }
     }
 
+    /**
+     * Making variables to ease the porting to InkJS
+     */
     var
         Aux = SAPO.Ink.Aux,
         Selector = SAPO.Dom.Selector,
@@ -30,8 +34,18 @@
 
     SAPO.namespace('Ink');
 
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @param {string|DOMElement} selector CSS Selector or DOMElement
+     * @param {object} options  Options' object for configuring the instance. These options can also be set through
+     * data-attributes
+     */
     var TreeView = function(selector, options){
 
+        /**
+         * Gets the element
+         */
         if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[SAPO.Ink.TreeView] :: Invalid selector';
         } else if( typeof 'selector' === 'string' ){
@@ -44,6 +58,12 @@
             this._element = selector;
         }
 
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
         this._options = SAPO.extendObj({
             node:   'li',
             child:  'ul'
@@ -56,6 +76,10 @@
 
     TreeView.prototype = {
 
+        /**
+         * @function {void} ? Sets the necessary event handlers.
+         * @return {void}
+         */
         _init: function(){
 
             this._handlers = {
@@ -66,8 +90,19 @@
 
         },
 
+        /**
+         * @function {void} ? Handles the click event (as specified in the _init function)
+         * @return {void}
+         */
         _onClick: function(event){
 
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             * 
+             */
             var tgtEl = Event.element(event);
 
             if( this._options.node[0] === '.' ) {
