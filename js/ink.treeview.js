@@ -3,7 +3,7 @@
 
 
     var
-        dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'SAPO.Ink.Aux'],
+        dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'Aux'],
         dependency, i, j,
         checking
     ;
@@ -20,14 +20,22 @@
         }
     }
 
+    var
+        Aux = SAPO.Ink.Aux,
+        Selector = SAPO.Dom.Selector,
+        Element = SAPO.Dom.Element,
+        Event = SAPO.Dom.Event,
+        Css = SAPO.Dom.Css
+    ;
+
     SAPO.namespace('Ink');
 
     var TreeView = function(selector, options){
 
-        if( !SAPO.Ink.Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[SAPO.Ink.TreeView] :: Invalid selector';
         } else if( typeof 'selector' === 'string' ){
-            this._element = SAPO.Dom.Selector.select( selector );
+            this._element = Selector.select( selector );
             if( this._element.length < 1 ){
                 throw '[SAPO.Ink.TreeView] :: Selector has returned no elements';
             }
@@ -39,7 +47,7 @@
         this._options = SAPO.extendObj({
             node:   'li',
             child:  'ul'
-        },SAPO.Dom.Element.data(this._element));
+        },Element.data(this._element));
 
         this._options = SAPO.extendObj(this._options, options || {});
 
@@ -54,17 +62,17 @@
                 click: this._onClick.bindObjEvent(this)
             };
 
-            SAPO.Dom.Event.observe(this._element, 'click', this._handlers.click);
+            Event.observe(this._element, 'click', this._handlers.click);
 
         },
 
         _onClick: function(event){
 
-            var tgtEl = SAPO.Dom.Event.element(event);
+            var tgtEl = Event.element(event);
 
             if( this._options.node[0] === '.' ) {
-                if( !SAPO.Dom.Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!SAPO.Dom.Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
                         tgtEl = tgtEl.parentNode;
                     }
                 }
@@ -82,15 +90,14 @@
                 }
             }
 
-            if(tgtEl.nodeName.toLowerCase() === 'body')
-                return;
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
 
-            var child = SAPO.Dom.Selector.select(this._options.child,tgtEl);
+            var child = Selector.select(this._options.child,tgtEl);
             if( child.length > 0 ){
-                SAPO.Dom.Event.stop(event);
+                Event.stop(event);
                 child = child[0];
-                if( SAPO.Dom.Css.hasClassName(child,'hide') ){ SAPO.Dom.Css.removeClassName(child,'hide'); SAPO.Dom.Css.addClassName(tgtEl,'open'); }
-                else { SAPO.Dom.Css.addClassName(child,'hide'); SAPO.Dom.Css.removeClassName(tgtEl,'open'); }
+                if( Css.hasClassName(child,'hide') ){ Css.removeClassName(child,'hide'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
             }
 
         }
