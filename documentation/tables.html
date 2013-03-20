@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-	<meta charset="utf-8">
+        <base href="./">
+    	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
@@ -13,27 +13,27 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-
+    <link rel="shortcut icon" href="http://ink.local/assets/img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -45,14 +45,16 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -63,7 +65,8 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -73,6 +76,11 @@
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
 						</li>			
 													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
 
 								<a href="layout.html">Layout</a>
 					
@@ -134,16 +142,16 @@
     <div class="column-group gutters">
         <nav class="ink-navigation large-25 medium-30 small-100">
             <ul class="menu vertical black rounded">
-                <li><a class="scrollableLink home" href="#nav-home">
+                <li><a class="scrollableLink home" href="./tables/index_dump#nav-home">
                     <i class="icon-chevron-up ink-for-l"></i>
                     <span class="ink-for-m ink-for-s">Back to Top</span>
                 </a></li>
-                <li><a class="scrollableLink" href="#default">Table basics</a></li>
-                <li><a class="scrollableLink" href="#alternated">Alternated</a></li>
-                <li><a class="scrollableLink" href="#highlight">Highlight</a></li>
-                <li><a class="scrollableLink" href="#fullBorders">Full borders</a></li>
-                <li><a class="scrollableLink" href="#combined">Combined</a></li>
-                <li><a class="scrollableLink" href="#special">Special</a></li>
+                <li><a class="scrollableLink" href="./tables/index_dump#default">Table basics</a></li>
+                <li><a class="scrollableLink" href="./tables/index_dump#alternated">Alternated</a></li>
+                <li><a class="scrollableLink" href="./tables/index_dump#highlight">Highlight</a></li>
+                <li><a class="scrollableLink" href="./tables/index_dump#fullBorders">Full borders</a></li>
+                <li><a class="scrollableLink" href="./tables/index_dump#combined">Combined</a></li>
+                <li><a class="scrollableLink" href="./tables/index_dump#special">Special</a></li>
             </ul>
         </nav>
 
@@ -197,11 +205,11 @@
 
             <section id="alternated">
                 <h2>Alternating colored rows</h2>
-                <p>To better distinguish between consecutive rows, combine the <code>ink-table</code> class with the <code>ink-zebra</code> class to get an alternating background color effect.</p>
+                <p>To better distinguish between consecutive rows, combine the <code>ink-table</code> class with the <code>alternated</code> class to get an alternating background color effect.</p>
                 <pre class="prettyprint linenums">
 &lt;table class=&quot;ink-table ink-zebra&quot;&gt;
 </pre>
-                <table class="ink-table ink-zebra">
+                <table class="ink-table alternating">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -378,9 +386,9 @@
             <section id="special">
                 <h2>Special colored rows</h2>
                 <p>
-                    You can use the <a href="typography#utilities">Ink utility classes</a> to style rows that need special attention. 
-                    Use <code>ink-info</code>, <code>ink-warning</code>, 
-                    <code>ink-caution</code> or <code>ink-success</code> on any <code>&lt;tr&gt;</code> to paint the row in the corresponding background color.
+                    You can use the <a href="typography#nav-utilities">Ink utility classes</a> to style rows that need special attention. 
+                    Use the <code>ink-label</code> class with the <code>info</code>, <code>warning</code>, <code>error</code> or <code>success</code> class
+                    on any <code>&lt;tr&gt;</code> to paint the row in the corresponding background color.
                 </p>
                 <table class="ink-table ink-bordered">
                     <thead>
@@ -398,22 +406,22 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr class="ink-warning">
+                        <tr class="ink-label warning">
                             <td>24</td>
                             <td>Twin color basketball shoe</td>
                             <td>&euro;26,00</td>
                         </tr>
-                        <tr class="ink-success">
+                        <tr class="ink-label success">
                             <td>13</td>
                             <td>Cast iron waffle maker</td>
                             <td>&euro;158,00</td>
                         </tr>
                         <tr>
-                            <td class="ink-success">55</td>
+                            <td>55</td>
                             <td>Sports duffle bag</td>
                             <td>&euro;15,00</td>
                         </tr>
-                        <tr>
+                        <tr class="ink-label info">
                             <td>23</td>
                             <td>Some stuff </td>
                             <td>&euro;489,00</td>
@@ -431,7 +439,10 @@
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
                                         
-                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
                 </ul>
             </nav>  
             

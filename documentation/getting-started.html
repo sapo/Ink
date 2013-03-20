@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+    	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+    
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="http://ink.local/assets/img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
+    <!-- Load Documentation sites' css -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+    
+	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
+
+	<!-- 
+    DEFINES TRANSITIONS: appear3d, slide, hover
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
+    -->
+
+
+    <!-- Currently in development -->
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <!-- End of modules in development -->
+    
+    <!-- 
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+    -->
+
+
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
+</head>
+<body onload="prettyPrint()" class="animated">
+<div id="topbar">
+	<nav class="ink-navigation ink-grid">
+		<ul class="menu horizontal rounded flat black shadowed">
+			<li>
+										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+						</li>			
+													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
+
+								<a href="layout.html">Layout</a>
+					
+			</li>
+																<li >
+
+								<a href="navigation.html">Navigation</a>
+					
+			</li>
+																<li >
+
+								<a href="typography.html">Typography</a>
+					
+			</li>
+																<li >
+
+								<a href="icons.html">Icons</a>
+					
+			</li>
+																<li >
+
+								<a href="forms.html">Forms</a>
+					
+			</li>
+																<li >
+
+								<a href="alerts.html">Alerts</a>
+					
+			</li>
+																<li >
+
+								<a href="tables.html">Tables</a>
+					
+			</li>
+														
+								<li >
+					<a href="#">InK JS<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+													<li>
+																<a href="./js-ui.html">UI</a>							
+							</li>
+													<li>
+																<a href="./js-core.html">Core</a>							
+							</li>
+											</ul>
+				</li>
+								</ul>
+	</nav>
+	<div class="border"></div>
+</div><div class="ink-grid" id="nav-home">
+   <div class="whatIs">
+      <h1>Getting started</h1>
+      <p>So you want to start using Ink? You've come to the right place.</p>
+   </div>
+</div>
+
+<!-- |||||||||||||||||||||||||||||||||  Content  |||||||||||||||||||||||||||||||||  -->
+
+<div class="ink-grid">
+    <div class="column-group gutters">
+        <div class="large-25 medium-30 small-100">
+            <nav class="ink-navigation docs-section-nav" data-spy="affix" data-offset-top="200">
+                <ul class="menu vertical rounded black">
+                    <li><a href="./getting-started/index_dump#nav-home">
+                        <i class="icon-chevron-up ink-for-l"></i>
+                        <span>Back to Top</span>
+                    </a></li>
+                    <li><a href="./getting-started/index_dump#nav-introduction">Introduction</a></li>
+                    <li><a href="./getting-started/index_dump#nav-first-steps">First steps</a></li>
+                    <li><a href="./getting-started/index_dump#nav-usage">Practical Usage</a></li>
+                    <li><a href="./getting-started/index_dump#nav-space">Adding Space</a></li>
+                    <li><a href="./getting-started/index_dump#nav-screens">Multiple Screens</a></li>
+                    <li><a href="./getting-started/index_dump#nav-showhide">Showing &amp; Hiding</a></li>
+                    <li><a href="./getting-started/index_dump#nav-customization">Further Customization</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="large-75 medium-70 small-100">
+            <section id="nav-introduction">
+                <h2>Introduction</h2>
+                <p>Ink was made, as any framework, to relieve web developers and designers, from the tedious everyday tasks of handling diferent browsers and their particular quirks, provide commonly used UI elements and provide a simple default look and feel that can easily adapt to any screen size.</p>
+                <h3>{LESS}</h3>
+                <p>We chose <a href="http://lesscss.org">{LESS}</a> as the tool to help making the task of writting all the css a lot easier, and in the process have created a ton of helpful <a href="http://lesscss.org/#-mixins">mixins</a> that we use regularly, and hopefully will also help you getting your projects done a little easier.</p>
+                <p>Ink is highly customizable. You can change base colors, dimensions and even class names, however to tap into all this you'll need <a href="http://lesscss.org">{LESS}</a>, so we strongly encourage you to check out the <a href="http://lesscss.org">{LESS}</a> site and documentation.</p>
+                <h3>The grid</h3>
+                <p>We took into consideration, existing browsers css rendering capabilities and the fact that we felt that it's a lot more intuitive to divide space in percentages. Rather than having to count abstract base grid column units to get, let's say a 1/3 width column, you can simply say that you need a 33% width column. This also enabled us to come up with a completely fluid, screen size aware, grid system.</p>
+                <p>We also chose to use the "new" border-box box model to build our grid system. This helps to keep layouts flexible with less code and allows us to get optional gutters between grid divisions without the need for aditional markup.</p>
+                <p>To achieve this we've set 3 default screen sizes: <strong>large</strong> (for screens wider than 960px), <strong>medium</strong> (for screen widths between 960px and 650px) and <strong>small</strong> (for screen widths below 650px).</p>
+                <p>In order to make Ink compatible with as many browsers as possible we've taken the following approach: </p>
+                    <ul>
+                        <li>Modern browsers that can handle media queries and the <code>border-box</code> box model get the full fluid layouts and media query goodness.</li>
+                        <li>Older Browsers (IE8) that can't handle media queries only get the grid for large displays. This is the reason why the <strong>large</strong> breakpoint is not wrapped in an media query.</li>
+                        <li>Even older browsers (IE7) that can't handle media queries or the <code>border-box</code> box model, get a fixed widths grid in a specific css file. IE conditional comments are required to use it.</li>
+                    </ul>
+                <p>Here's the whole thing summed up in a nifty table:</p>
+
+                <table class="ink-table bordered alternating browser-support">
+                    <thead>
+                        <tr>
+                            <th class="support">Layout support</th>
+                            <th class="browser">IE7</th>
+                            <th class="browser">IE8</th>
+                            <th class="browser">IE9&gt;</th>
+                            <th class="browser">Firefox</th>
+                            <th class="browser">Chrome</th>
+                            <th class="browser">Safari</th>
+                            <th class="browser">Opera</th>
+                            <th class="browser">iOS<br>Safari</th>
+                            <th class="browser">Android<br>Browser</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td class="content-center support">Fixed width layouts</td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="content-center support">Flexible width layouts</td>
+                                <td class="content-center"><span class="icon-minus"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="content-center support">Multiple screen sizes</td>
+                                <td class="content-center"><span class="icon-minus"></span></td>
+                                <td class="content-center"><span class="icon-minus"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                                <td class="content-center"><span class="icon-ok"></span></td>
+                            </tr>
+                    </tbody>
+                </table>
+                <p>For a detailed explanation on Inks' grid checkout the <a href="./layout">layout</a> page.</p>
+            </section>
+            <section id="nav-first-steps">                
+                <h2>First steps</h2>
+                <h3>Download Ink</h3>
+                <p><a href="./download/latest">Download</a> a fresh copy of Inks latest version, you'll get a zip package containing all kinds of treats.</p>
+<pre class="ink-package">
+ <strong>ink/</strong>
+  ├── <strong>cookbook/</strong> <span>(recipes for common layout types using Ink)</span>
+  ├── <strong>css/</strong>
+  │   ├── ink-ie7-min.js <span>(minified css for IE7)</span>
+  │   ├── ink-ie7.js <span>(css for IE7)</span>
+  │   ├── ink-min.css <span>(main css, minified)</span>
+  │   ├── ink.css <span>(main css)</span>
+  │   └── your.css <span>(a simple template to help you getting started)</span>
+  ├── <strong>documentation/</strong> <span>(you guessed it. It's a copy of this site)</span>
+  ├── <strong>font/</strong> <span>(font files for Ubuntu fonts and FontAwesome)</span>
+  ├── <strong>js/</strong> <span>(Ink.js and some documentation helper JS files are in here)</span>
+  │   ├── ink.js <span>(Inks core js library)</span>
+  │   ├── &hellip;
+  │   └── ink.progressbar.js <span>(progress bar js pluging)</span>
+  └── <strong>less/</strong>
+      ├── <strong>config/</strong> <span>(configuration files for Ink modules)</span>
+      │   ├── __alerts.less
+      │   ├── &hellip;
+      │   └── __widgets.less
+      ├── <strong>modules/</strong> <span>(Ink modules styling)</span>
+      │   ├── alerts.less
+      │   ├── &hellip;
+      │   └── utilities.less
+      ├── ink-ie.less <span>(generates ink-ie7.css)</span>
+      ├── ink.less <span>(@imports all modules, config files and generates ink.css)</span>
+      └── site.less <span>(generates css for the documentation)</span>
+</pre>
+            </section>
+            
+        </div>
+    </div>
+</div><footer>
+    <div class="ink-grid">
+        <div class="large-75 medium-70 small-100">
+            <nav class="ink-navigation vspace">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+        
+        <div class="large-25 medium-30 small-100">
+            <ul class="sociallinks unstyled inline column-right vspace">
+                <li><strong>Follow SAPO:</strong></li>
+                <li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
+                <li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
+                <li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+    <!-- <script type="text/javascript" src="http://ink.local/assets/js/ink.js"></script> -->
+        </body>
+</html>

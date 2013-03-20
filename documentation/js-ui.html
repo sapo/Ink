@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-	<meta charset="utf-8">
+        <base href="./">
+    	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
@@ -13,27 +13,27 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.local/imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.local/imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.local/imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="http://cdn.ink.local/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-
+    <link rel="shortcut icon" href="http://ink.local/assets/img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/ink.css">
+	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="http://cdn.ink.local/css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/site.css">	
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.local/js/html5shiv-printshiv.js"></script>
+        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="http://cdn.ink.local/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
     
 	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
@@ -45,14 +45,16 @@
 
 
     <!-- Currently in development -->
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.modal.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.sticky.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.toggle.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.tabs.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="http://cdn.ink.local/js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -63,7 +65,8 @@
     -->
 
 
-	<script type="text/javascript" src="http://ink.local/assets/js/prettify.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
 <body onload="prettyPrint()" class="animated">
 <div id="topbar">
@@ -73,6 +76,11 @@
 										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
 						</li>			
 													<li >
+
+								<a href="getting-started.html">Getting started</a>
+					
+			</li>
+																<li >
 
 								<a href="layout.html">Layout</a>
 					
@@ -143,16 +151,17 @@
                             <span class="ink-for-m ink-for-s">Back to Top</span>
                         </a>
                     </li>
-                                            <li><a class="scrollableLink" href="#gallery">Gallery</a></li>
-                                            <li><a class="scrollableLink" href="#modal">Modal</a></li>
-                                            <li><a class="scrollableLink" href="#table">Table</a></li>
-                                            <li><a class="scrollableLink" href="#tree_view">Tree View</a></li>
-                                            <li><a class="scrollableLink" href="#sortable_list">Sortable List</a></li>
-                                            <li><a class="scrollableLink" href="#date_picker">Date Picker</a></li>
-                                            <li><a class="scrollableLink" href="#tabs">Tabs</a></li>
-                                            <li><a class="scrollableLink" href="#formvalidator">Form Validator</a></li>
-                                            <li><a class="scrollableLink" href="#progress_bar">Progress Bar</a></li>
-                                            <li><a class="scrollableLink" href="#behaviors">Behaviors</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#gallery">Gallery</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#modal">Modal</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#table">Table</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#tree_view">Tree View</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#sortable_list">Sortable List</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#date_picker">Date Picker</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#tabs">Tabs</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#formvalidator">Form Validator</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#progress_bar">Progress Bar</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#imagequery">Image Query</a></li>
+                                            <li><a class="scrollableLink" href="./js/ui_dump#behaviors">Behaviors</a></li>
                                     </ul>
             </nav>
         </div>
@@ -188,37 +197,37 @@
         <div id="ui_gallery_layout0" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -229,19 +238,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_0" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_0" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -254,37 +263,37 @@
         <div id="ui_gallery_layout1" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -295,19 +304,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_1" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_1" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -320,37 +329,37 @@
         <div id="ui_gallery_layout2" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -361,19 +370,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_2" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_2" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -386,37 +395,37 @@
         <div id="ui_gallery_layout3" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -427,19 +436,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_3" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_3" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -714,6 +723,12 @@
 
 </div></pre>
 </section>
+<script>
+var jsSL1 = new SAPO.Ink.SortableList(
+    s$('slist'),
+    {   previewClass:   'preview', dragIconClass: 'mexe'    }
+);
+</script>
 <section id="date_picker">
     <h3>Date Picker</h3>
     <p>As the name says, the <i>Date Picker</i> transforms a textbox into an element that, when in use, shows a calendar to help selecting a specific date.</p>
@@ -1139,60 +1154,88 @@
     </ul>
     <p>More examples and detailed configurations, in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/FormValidator/doc.html">technical documentation</a>.</p>
     <div class="box">
-        <form id="myform" class="ink-form block" method="post" action="#" onsubmit="return SAPO.Ink.FormValidator.validate(this);">
+        <form id="myform" class="ink-form" method="post" action="#" onsubmit="return SAPO.Ink.FormValidator.validate(this);">
     <fieldset>
-        <div class="control required">
+        <div class="control-group required">
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name" class="ink-fv-required" />
+            <div class="control">
+                <input type="text" name="name" id="name" class="ink-fv-required" />
+            </div>
         </div>
-        <div class="control required">
+        
+        <div class="control-group required">
             <label for="mail">Email:</label>
-            <input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" />
+            <div class="control">
+                <input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" />
+            </div>
         </div>
-        <div class="control required">
+        
+        <div class="control-group required">
             <label for="pass">Password: </label>
-            <input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" />
+            <div class="control">
+                <input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" />
+            </div>
         </div>
-        <div class="control required">
+        
+        <div class="control-group required">
             <label for="confpass">Confirm Password:</label>
-            <input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" />
+            <div class="control">
+                <input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" />
+            </div>
         </div>
-        <ul class="control-group required">
-            <li><p class="label">Radio test: </p></li>
-            <li><input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /> <label for="radio1_g">radio 1</label> </li>
-            <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
-            <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
-        </ul>
+        
+        <div class="control-group required">
+            <p class="label">Please select one option</p>
+            <ul class="control unstyled">
+                <li><input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /> <label for="radio1_g">radio 1</label> </li>
+                <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
+                <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
+            </ul>
+        </div>
     </fieldset>
     <div>
         <input type="submit" name="sub" value="Submit" class="ink-button success" />
     </div>
 </form>    </div>
     <a href="#" data-target="formvalidator_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="formvalidator_sourcecode" style="display:none" class="prettyprint linenums">&lt;form id=&quot;myform&quot; class=&quot;ink-form block&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return SAPO.Ink.FormValidator.validate(this);&quot;&gt;
+    <pre id="formvalidator_sourcecode" style="display:none" class="prettyprint linenums">&lt;form id=&quot;myform&quot; class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return SAPO.Ink.FormValidator.validate(this);&quot;&gt;
     &lt;fieldset&gt;
-        &lt;div class=&quot;control required&quot;&gt;
+        &lt;div class=&quot;control-group required&quot;&gt;
             &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
-            &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; class=&quot;ink-fv-required&quot; /&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; class=&quot;ink-fv-required&quot; /&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class=&quot;control required&quot;&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
             &lt;label for=&quot;mail&quot;&gt;Email:&lt;/label&gt;
-            &lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;mail&quot; class=&quot;ink-fv-required ink-fv-email&quot; /&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;mail&quot; class=&quot;ink-fv-required ink-fv-email&quot; /&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class=&quot;control required&quot;&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
             &lt;label for=&quot;pass&quot;&gt;Password: &lt;/label&gt;
-            &lt;input type=&quot;password&quot; name=&quot;pass&quot; id=&quot;pass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;password&quot; name=&quot;pass&quot; id=&quot;pass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class=&quot;control required&quot;&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
             &lt;label for=&quot;confpass&quot;&gt;Confirm Password:&lt;/label&gt;
-            &lt;input type=&quot;password&quot; name=&quot;confpass&quot; id=&quot;confpass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;password&quot; name=&quot;confpass&quot; id=&quot;confpass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;ul class=&quot;control-group required&quot;&gt;
-            &lt;li&gt;&lt;p class=&quot;label&quot;&gt;Radio test: &lt;/p&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio1_g&quot; value=&quot;1&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio1_g&quot;&gt;radio 1&lt;/label&gt; &lt;/li&gt;
-            &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio2_g&quot; value=&quot;2&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio2_g&quot;&gt;radio 2&lt;/label&gt; &lt;/li&gt;
-            &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio3_g&quot; value=&quot;3&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio3_g&quot;&gt;radio 3&lt;/label&gt; &lt;/li&gt;
-        &lt;/ul&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
+            &lt;p class=&quot;label&quot;&gt;Please select one option&lt;/p&gt;
+            &lt;ul class=&quot;control unstyled&quot;&gt;
+                &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio1_g&quot; value=&quot;1&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio1_g&quot;&gt;radio 1&lt;/label&gt; &lt;/li&gt;
+                &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio2_g&quot; value=&quot;2&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio2_g&quot;&gt;radio 2&lt;/label&gt; &lt;/li&gt;
+                &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio3_g&quot; value=&quot;3&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio3_g&quot;&gt;radio 3&lt;/label&gt; &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
     &lt;/fieldset&gt;
     &lt;div&gt;
         &lt;input type=&quot;submit&quot; name=&quot;sub&quot; value=&quot;Submit&quot; class=&quot;ink-button success&quot; /&gt;
@@ -1269,7 +1312,61 @@
             progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
         }
     &lt;/script&gt;</pre>
-</section><!-- <section>
+</section>
+<h3 id="imagequery">Image Query</h3>
+<p>The <i>Image QUery</i> component allows you to load different image sources, depending on the viewport width. It provides the following features:</p>
+<ul>
+    <li>Feature 1</li>
+    <li>Feature 2</li>
+    <li>Feature 3</li>
+    <li>Feature 4</li>
+    <li>Feature 5</li>
+</ul>
+<p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/ImageQuery/doc.html">technical documentation</a>.</p>
+<div class="imageQueryExample large-100 medium-100 small-100 content-center ink-clear">
+    <img src="/assets/img/imagequery/small/image.jpg" />
+</div>
+<script type="text/javascript">
+    var tv1 = new SAPO.Ink.ImageQuery('.imageQueryExample img',{
+        src: '/assets/img/imagequery/{:label}/{:file}',
+        queries: [
+            {
+                label: 'small',
+                width: 480
+            },
+            {
+                label: 'medium',
+                width: 640
+            },
+            {
+                label: 'large',
+                width: 1024
+            }
+        ]
+    });
+</script><a href="#" data-target="imagequery_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
+<pre id="imagequery_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;imageQueryExample large-100 medium-100 small-100 content-center ink-clear&quot;&gt;
+    &lt;img src=&quot;/assets/img/imagequery/small/image.jpg&quot; /&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tv1 = new SAPO.Ink.ImageQuery('.imageQueryExample img',{
+        src: '/assets/img/imagequery/{:label}/{:file}',
+        queries: [
+            {
+                label: 'small',
+                width: 480
+            },
+            {
+                label: 'medium',
+                width: 640
+            },
+            {
+                label: 'large',
+                width: 1024
+            }
+        ]
+    });
+&lt;/script&gt;</pre><!-- <section>
     <div class="column-group gutters" id="behaviors">
         <div class="large-100"><h3>Behaviors</h3></div>
         <div class="large-33">
@@ -1317,7 +1414,10 @@
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
                                         
-                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
                 </ul>
             </nav>  
             
