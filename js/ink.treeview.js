@@ -1,13 +1,14 @@
 (function(){
     'use strict';
 
-
+    /**
+     * Checking dependencies
+     */
     var
         dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'SAPO.Ink.Aux'],
         dependency, i, j,
         checking
     ;
-
     for( i = 0; i < dependencies.length; i+=1 ){
         dependency = dependencies[i].split(".");
         checking = window;
@@ -20,14 +21,35 @@
         }
     }
 
+    /**
+     * Making variables to ease the porting to InkJS
+     */
+    var
+        Aux = SAPO.Ink.Aux,
+        Selector = SAPO.Dom.Selector,
+        Element = SAPO.Dom.Element,
+        Event = SAPO.Dom.Event,
+        Css = SAPO.Dom.Css
+    ;
+
     SAPO.namespace('Ink');
 
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @param {string|DOMElement} selector CSS Selector or DOMElement
+     * @param {object} options  Options' object for configuring the instance. These options can also be set through
+     * data-attributes
+     */
     var TreeView = function(selector, options){
 
-        if( !SAPO.Ink.Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[SAPO.Ink.TreeView] :: Invalid selector';
-        } else if( typeof 'selector' === 'string' ){
-            this._element = SAPO.Dom.Selector.select( selector );
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
             if( this._element.length < 1 ){
                 throw '[SAPO.Ink.TreeView] :: Selector has returned no elements';
             }
@@ -36,10 +58,16 @@
             this._element = selector;
         }
 
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
         this._options = SAPO.extendObj({
             node:   'li',
             child:  'ul'
-        },SAPO.Dom.Element.data(this._element));
+        },Element.data(this._element));
 
         this._options = SAPO.extendObj(this._options, options || {});
 
@@ -48,23 +76,38 @@
 
     TreeView.prototype = {
 
+        /**
+         * @function {void} ? Sets the necessary event handlers.
+         * @return {void}
+         */
         _init: function(){
 
             this._handlers = {
                 click: this._onClick.bindObjEvent(this)
             };
 
-            SAPO.Dom.Event.observe(this._element, 'click', this._handlers.click);
+            Event.observe(this._element, 'click', this._handlers.click);
 
         },
 
+        /**
+         * @function {void} ? Handles the click event (as specified in the _init function)
+         * @return {void}
+         */
         _onClick: function(event){
 
-            var tgtEl = SAPO.Dom.Event.element(event);
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             * 
+             */
+            var tgtEl = Event.element(event);
 
             if( this._options.node[0] === '.' ) {
-                if( !SAPO.Dom.Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!SAPO.Dom.Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
                         tgtEl = tgtEl.parentNode;
                     }
                 }
@@ -82,15 +125,14 @@
                 }
             }
 
-            if(tgtEl.nodeName.toLowerCase() === 'body')
-                return;
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
 
-            var child = SAPO.Dom.Selector.select(this._options.child,tgtEl);
+            var child = Selector.select(this._options.child,tgtEl);
             if( child.length > 0 ){
-                SAPO.Dom.Event.stop(event);
+                Event.stop(event);
                 child = child[0];
-                if( SAPO.Dom.Css.hasClassName(child,'hide') ){ SAPO.Dom.Css.removeClassName(child,'hide'); SAPO.Dom.Css.addClassName(tgtEl,'open'); }
-                else { SAPO.Dom.Css.addClassName(child,'hide'); SAPO.Dom.Css.removeClassName(tgtEl,'open'); }
+                if( Css.hasClassName(child,'hide') ){ Css.removeClassName(child,'hide'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
             }
 
         }

@@ -23,6 +23,18 @@
         }
     }
 
+    /**
+     * Using variables for dependencies... Easier to change in the future
+     */
+    var
+        Aux = SAPO.Ink.Aux,
+        Selector = SAPO.Dom.Selector,
+        Element = SAPO.Dom.Element,
+        Util_Array = SAPO.Utility.Array,
+        Event = SAPO.Dom.Event
+    ;
+    
+
     SAPO.namespace('Ink');
 
     /**
@@ -38,10 +50,10 @@
         /**
          * Selector's type checking
          */
-        if( !SAPO.Ink.Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[SAPO.Ink.ImageQuery] :: Invalid selector';
         } else if( typeof selector === 'string' ){
-            this._element = SAPO.Dom.Selector.select( selector );
+            this._element = Selector.select( selector );
 
             if( this._element.length < 1 ){
                 throw '[SAPO.Ink.ImageQuery] :: Selector has returned no elements';
@@ -59,7 +71,7 @@
 
 
         /**
-         * Default options and their override based on data-attributes if any.
+         * Default options and they're overrided by data-attributes if any.
          * The parameters are:
          * @param {array} queries Array of objects that determine the label/name and its min-width to be applied.
          * @param {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
@@ -67,7 +79,7 @@
         this._options = SAPO.extendObj({
             queries:[],
             onLoad: null
-        },SAPO.Dom.Element.data(this._element));
+        },Element.data(this._element));
 
         this._options = SAPO.extendObj(this._options, options || {});
 
@@ -92,7 +104,7 @@
             /**
              * Sort queries by width, in descendant order.
              */
-            this._options.queries = SAPO.Utility.Array.sortMulti(this._options.queries,'width').reverse();
+            this._options.queries = Util_Array.sortMulti(this._options.queries,'width').reverse();
 
             /**
              * Declaring the event handlers, in this case, the window.resize and the (element) load.
@@ -104,10 +116,10 @@
             };
 
             if( typeof this._options.onLoad === 'function' ){
-                SAPO.Dom.Event.observe(this._element, 'onload', this._handlers.load);
+                Event.observe(this._element, 'onload', this._handlers.load);
             }
 
-            SAPO.Dom.Event.observe(window, 'resize', this._handlers.resize);
+            Event.observe(window, 'resize', this._handlers.resize);
 
             // Imediate call to apply the right images based on the current viewport
             this._handlers.resize.call(this);
@@ -227,26 +239,3 @@
     SAPO.Ink.ImageQuery = ImageQuery;
 
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
