@@ -5342,7 +5342,7 @@ ul.icons li [class*=" icon-"] {
   border-bottom: 1px solid #0d68c2;
   color: #ffffff;
 }
-.ink-alert .ink-close {
+.ink-alert .ink-dismiss {
   position: absolute;
   color: #000000;
   font-family: Arial, sans-serif;

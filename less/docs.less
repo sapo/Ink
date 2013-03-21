@@ -414,13 +414,28 @@ table.ink-table.browser-support {
     strong {
         font-size: 1.0em;
     }
+
     span {
         color: @grey-30;
         font-family: Ubuntu_light;
         font-size: 0.95em;
     }
+
     span.tree {
         color: @grey-70;
         font-size: 1.2em;
     }
 }
+
+.live-demo {
+    &:before {
+        
+    }
+    background: @grey-5;
+    padding: 1em;
+    #ink > #shadows > .box-shadow(0,1px,5px,0,rgba(100,100,100,0.5),inset);
+    #ink > #border-radius > .all (4px);
+    p + p {
+        margin: 0;
+    }
+} 
