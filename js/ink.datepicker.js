@@ -268,13 +268,18 @@
             if (!this._picker) {
                 Event.observe(this._dataField,'focus',function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
+                    var
+                        parentOffsetLeft = Element.offsetLeft(this._dataField.parentNode),
+                        parentOffsetTop = Element.offsetTop(this._dataField.parentNode)
+                    ;
+
                     if ( this._options.position == 'bottom' )
                     {
-                    	this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                    	this._containerObject.style.top = Element.elementHeight(this._dataField) + (Element.offsetTop(this._dataField)-parentOffsetTop) + 'px';
                     }
                     else
                     {
-                    	this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offsetLeft(this._dataField) + 'px';
+                    	this._containerObject.style.left = Element.elementWidth(this._dataField) + (Element.offsetLeft(this._dataField)-parentOffsetLeft) + 'px';
                     }
                     //dom.appendChild(this._containerObject);
                     this._updateDate();

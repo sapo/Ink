@@ -95,10 +95,12 @@
                 }
             }
 
-            var finalClass = SAPO.Dom.Css.hasClassName(this._childElement,'show') ? 'hide' : 'show';
+            var finalClass = ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ? 'show' : 'hide';
+            var finalDisplay = ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
             SAPO.Dom.Css.removeClassName(this._childElement,'show');
             SAPO.Dom.Css.removeClassName(this._childElement, 'hide');
             SAPO.Dom.Css.addClassName(this._childElement, finalClass);
+            this._childElement.style.display = finalDisplay;
         }
     };
 
