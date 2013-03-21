@@ -30,9 +30,9 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
             'DatePicker': '.ink-datepicker',
 
             /***************************
-             * Toggle - Default CSS selector is .ink-toggle
+             * Toggle - Default CSS selector is .toggle
              ***************************/
-            'Toggle': '.ink-toggle'
+            'Toggle': '.toggle'
 
 
 
