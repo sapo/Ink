@@ -5,29 +5,34 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
 
 
             /***************************
-             * Modal                   
+             * Modal - Default CSS selector is .ink-modal
              ***************************/
             'Modal': '.ink-modal',
 
             /***************************
-             * Table                   
+             * Table - Default CSS selector is .ink-table
              ***************************/
             // 'Table': '.ink-table'
 
             /***************************
-             * TreeView                   
+             * TreeView - Default CSS selector is .ink-tree-view
              ***************************/
             'TreeView': '.ink-tree-view',
 
             /***************************
-             * SortableList                   
+             * SortableList - Default CSS selector is .ink-sortable-list
              ***************************/
             'SortableList': '.ink-sortable-list',
 
             /***************************
-             * DatePicker                   
+             * DatePicker - Default CSS selector is .ink-datepicker
              ***************************/
-            'DatePicker': '.ink-datepicker'
+            'DatePicker': '.ink-datepicker',
+
+            /***************************
+             * Toggle - Default CSS selector is .ink-toggle
+             ***************************/
+            'Toggle': '.ink-toggle'
 
 
 
