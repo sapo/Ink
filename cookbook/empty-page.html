@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>
-            3 Boxes
+            Empty page
         </title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
@@ -28,10 +27,70 @@
             <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen"
             title="no title" charset="utf-8">
         <![endif]-->
+
+        <style>
+        .screen-size-helper {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          line-height: 1.6em;
+          font-size: 1em;
+          padding: 0.5333333333333333em 0.8em;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 100;
+        }
+        .screen-size-helper .title,
+        .screen-size-helper ul {
+          color: white;
+          text-shadow: 0 1px 0 #000000;
+        }
+        .screen-size-helper .title {
+          font-size: inherit;
+          line-height: inherit;
+          float: left;
+          text-transform: uppercase;
+          font-weight: 500;
+        }
+        .screen-size-helper ul {
+          float: right;
+          margin: 0;
+          padding: 0;
+          line-height: inherit !important;
+        }
+        .screen-size-helper ul li {
+          padding: 0;
+          margin: 0;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: inherit !important;
+        }
+        .screen-size-helper ul li.small {
+          color: #80c431;
+        }
+        .screen-size-helper ul li.medium {
+          color: #80c431;
+        }
+        .screen-size-helper ul li.large {
+          color: #80c431;
+        }
+        .screen-size-helper ul li.extra-large {
+          color: #80c431;
+        }
+        </style>
+
     </head>
     
-    <body>
+    <body>        
+        <div class="screen-size-helper">
+            <p class="title">Screen size:</h1>
+            <ul class="unstyled">
+                <li class="hide show-small small">SMALL</li>
+                <li class="hide show-medium medium">MEDIUM</li>
+                <li class="hide show-large large">LARGE</li>
+            </ul>
+        </div>
         
     </body>
-
 </html>
