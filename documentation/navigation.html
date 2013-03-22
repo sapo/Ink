@@ -13,18 +13,18 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
 	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/docs.css">	
 
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -55,6 +55,7 @@
     <script type="text/javascript" src="../js/ink.treeview.js"></script>
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -62,74 +63,141 @@
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
     -->
 
 
     <script type="text/javascript" src="../js/prettify.js"></script>
-	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
-<body onload="prettyPrint()" class="animated">
+<body onload="prettyPrint()">
 <div id="topbar">
-	<nav class="ink-navigation ink-grid">
-		<ul class="menu horizontal rounded flat black shadowed">
-			<li>
-										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
-						</li>			
-													<li >
+    <nav class="ink-navigation ink-grid hide show-large">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                        </li>           
+                                                    <li >
 
-								<a href="getting-started.html">Getting started</a>
-					
-			</li>
-																<li >
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="layout.html">Layout</a>
-					
-			</li>
-																<li >
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="navigation.html">Navigation</a>
-					
-			</li>
-																<li >
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="typography.html">Typography</a>
-					
-			</li>
-																<li >
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="icons.html">Icons</a>
-					
-			</li>
-																<li >
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="forms.html">Forms</a>
-					
-			</li>
-																<li >
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="alerts.html">Alerts</a>
-					
-			</li>
-																<li >
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="tables.html">Tables</a>
-					
-			</li>
-														
-								<li >
-					<a href="#">InK JS<i class="icon-caret-down"></i></a>
-					<ul class="submenu">
-													<li>
-																<a href="./js-ui.html">UI</a>							
-							</li>
-													<li>
-																<a href="./js-core.html">Core</a>							
-							</li>
-											</ul>
-				</li>
-								</ul>
-	</nav>
-	<div class="border"></div>
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li>
+            
+                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
 </div><div class="ink-grid" id="nav-home">
      <div class="whatIs">
           <h1>Navigation</h1>
@@ -156,6 +224,7 @@
                 <li><a class="scrollableLink" href="./navigation/index_dump#nav-pills">Pills</a></li>
                 <li><a class="scrollableLink" href="./navigation/index_dump#nav-breadcrumbs">Breadcrumbs</a></li>
                 <li><a class="scrollableLink" href="./navigation/index_dump#nav-footer">Footer</a></li>
+                <li><a class="scrollableLink" href="./navigation/index_dump#nav-dropdowns">Dropdowns</a></li>
             </ul>
         </nav>
     <script>
@@ -512,95 +581,101 @@
     &lt;/nav&gt;
 &lt;/footer&gt;</pre>                
             </section>
-            <section id="dropdowns">
-
-<pre class=" prettyprint linenums">&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;
-    &lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;
-    &lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;</pre>                <h2>Dropdowns</h2>
-                <p>Dropdowns do stuff with things‘</p>
-                <div class="ink-dropdown large-20 medium-20 small-100">
-                    <button class="ink-button toggle" data-target="#dropdown1">Dropdown <span class="icon-caret-down"></span> </button>
-                    <ul id="dropdown1" class="bottom dropdown-menu">
-                        <li class="heading">Heading</li>
-                        <li class="separator-above"><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-                        <li class="submenu">
-                            <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
-                            <ul id="submenu1" class="bottom dropdown-menu">
+            <section id="nav-dropdowns">
+                
+                <h2>Dropdowns</h2>
+                <div class="column-group gutters">
+                    
+                    <div class="large-30 medium-20 small-100">
+                        <div class="ink-dropdown example">
+                            <button class="ink-button toggle" data-target=".dropdown1">Dropdown <span class="icon-caret-down"></span></button>
+                            <ul id="" class="dropdown-menu dropdown1">
+                                <li class="heading">Heading</li>
+                                <li class="separator-above"><a href="#">Option</a></li>
+                                <li><a href="#">Option</a></li>
+                                <li class="separator-above disabled"><a href="#">Disabled option</a></li>
                                 <li class="submenu">
-                                    <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
-                                    <ul id="ultrasubmenu" class="bottom dropdown-menu">
+                                    <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
+                                    <ul id="submenu1" class="dropdown-menu">
+                                        <li class="submenu">
+                                            <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+                                            <ul id="ultrasubmenu" class="dropdown-menu">
+                                                <li><a href="#">Sub option</a></li>
+                                                <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+                                                <li><a href="#">Sub option</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="#">Sub option</a></li>
-                                        <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
                                         <li><a href="#">Sub option</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Sub option</a></li>
-                                <li><a href="#">Sub option</a></li>
+                                <li><a href="#">Option</a></li>
                             </ul>
-                        </li>
-                        <li><a href="#">Option</a></li>
-                    </ul>
+                        </div>
+                    </div>
+                
+                    <div class="large-70 medium-70 small-100">
+                        <p>
+                            Dropdown menus can be applied to virtually any element. 
+                            To get you started set a container element with the <code>.ink-dropdown</code> class. 
+                            In that container define a trigger element, which should (for the sake of semantics) be a <code>&lt;button&gt;</code> or an <code>&lt;a&gt;</code> with <code>.toggle</code> class
+                            and the <code>data-target</code> data-attribute defined with a selector for the element to be toggled, which should be something like this:
+                        </p>
+                        <p><code>&lt;button class="toggle" data-target="#dropdown"&gt;Dropdown&lt;/button&gt;</code></p>
+                        <p>
+                            Now you can start to build your dropdown menu. 
+                            To build a basic menu you need an <code>&lt;ul&gt;</code> with the <code>.dropdown-menu</code> class and the <code>&lt;li&gt;</code>'s will be your menu items.
+                        </p>
+                        <p>
+                            Should you need headings, separators or disabled items, we have that covered aswell.
+                        </p>
+                        <ul>
+                            <li><strong>Headings</strong> - add a <code>&lt;li&gt;</code> with the <code>.heading</code>;</li>
+                            <li><strong>Separators</strong> - add a <code>&lt;li&gt;</code> with the <code>.separator-above</code> or <code>.separator-below</code> class.</li>
+                            <li><strong>Disabled</strong> - add the <code>.disabled</code> class to <code>&lt;li&gt;</code> elements you want to appear as disabled.</li>
+                        </ul>
+                        <h3>What if i need a submenu?</h3>
+                        <p>
+                            As easy as adding the <code>.submenu</code> class to the <code>&lt;li&gt;</code> element that will contain your submenu. 
+                            Again, the first element should be the menu trigger: <code>&lt;a class="toggle" data-target="#mysubmenu"&gt;</code>.
+                        </p>
+                        <p>
+                            After that it's the same drill: <code>&lt;ul class="dropdown-menu" id="mysubmenu"&gt;</code> with your <code>&lt;li&gt;</code> items in it. 
+                            You can drill down as many levels as your want.
+                        </p>
+                    </div>
                 </div>
+                
+                <p>
+                    <span class="ink-label info toggle">code</span> 
+                    To help you get started we've prepared a functional code example covering all the topics explained above.
+                </p>
 
-                <div class="ink-dropdown large-20 medium-20 small-100">
-                    <button class="ink-button toggle info" data-target="#dropdown2">Dropdown <span class="icon-caret-down"></span> </button>
-                    <ul id="dropdown2" class="bottom dropdown-menu">
-                        <li class="active"><a href="#">Active</a></li>
-                        <li class="separator-above"><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                    </ul>
-                </div>
-
-                <div class="ink-dropdown large-20 medium-20 small-100">
-                    <button class="ink-button toggle warning" data-target="#dropdown3">Dropdown <span class="icon-caret-down"></span> </button>
-                    <ul id="dropdown3" class="bottom dropdown-menu">
-                        <li class="active"><a href="#">Active</a></li>
-                        <li class="separator-above"><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                    </ul>
-                </div>
-
-                <div class="ink-dropdown large-20 medium-20 small-100">
-                    <button class="ink-button toggle caution" data-target="#dropdown4">Dropdown <span class="icon-caret-down"></span> </button>
-                    <ul id="dropdown4" class="bottom dropdown-menu">
-                        <li class="active"><a href="#">Active</a></li>
-                        <li class="separator-above"><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                    </ul>
-                </div>
-
-                <div class="ink-dropdown large-20 medium-20 small-100">
-                    <button class="ink-button toggle success" data-target="#dropdown5">Dropdown <span class="icon-caret-down"></span> </button>
-                    <ul id="dropdown5" class="bottom dropdown-menu">
-                        <li class="active"><a href="#">Active</a></li>
-                        <li class="separator-above"><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-                        <li><a href="#">Option</a></li>
-                        <li><a href="#">Option</a></li>
-                    </ul>
-                </div>
-
-                <script>
-                    var
-                        toggles = SAPO.Dom.Selector.select('.toggle'),
-                        i
-                    ;
-                    for( i=0; i<toggles.length; i+=1 ){
-                        new SAPO.Ink.Toggle(toggles[i]);
-                    }
-                </script>
+<pre class=" prettyprint linenums">&lt;div class=&quot;ink-dropdown&quot;&gt;
+    &lt;button class=&quot;ink-button toggle&quot; data-target=&quot;#dropdown&quot;&gt;Dropdown &lt;span class=&quot;icon-caret-down&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;ul id=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+        &lt;li class=&quot;heading&quot;&gt;Heading&lt;/li&gt;
+        &lt;li class=&quot;separator-above&quot;&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;separator-above disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;submenu&quot;&gt;
+            &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#submenu1&quot;&gt;A longer option name&lt;/a&gt;
+            &lt;ul id=&quot;submenu1&quot; class=&quot;dropdown-menu&quot;&gt;
+                &lt;li class=&quot;submenu&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;
+                    &lt;ul id=&quot;ultrasubmenu&quot; class=&quot;dropdown-menu&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot; data-target=&quot;ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</pre>
             </section>
         </div>
     </div>
