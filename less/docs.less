@@ -52,7 +52,7 @@ mark {
     &.example {
 
         .dropdown-menu {
-            
+            display: block;
             position:relative;
             left: 0;
         }
@@ -288,8 +288,8 @@ footer {
                 }
             }
 
-            &.vertical {
-
+            &.vertical.menu {
+                
                 li {
 
                     a {
@@ -297,6 +297,15 @@ footer {
                         &.logoPlaceholder {
                             margin-right: 0;
                         }
+                    }
+
+                    &:hover,
+                    &:focus {
+
+                        ul.submenu {
+                            display: none;
+                        }
+
                     }
 
                     button {
@@ -334,7 +343,7 @@ footer {
                     .submenu {
                         width: auto;
                         left: auto;
-                        display: block;
+                        //display: block;
                         position: relative;
                         #ink > #border-radius > .none ();
 
