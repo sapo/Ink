@@ -121,7 +121,6 @@ a.active {
 }
 .logo_hp {
   width: 100%;
-  height: 100%;
   max-width: 736px;
   max-height: 330px;
   margin: 0 auto;
@@ -513,4 +512,7 @@ table.ink-table.browser-support tr th {
 }
 .live-demo p + p {
   margin: 0;
+}
+.clickable:hover {
+  cursor: pointer;
 }

@@ -3668,9 +3668,6 @@ ul.icons li [class*=" icon-"] {
 .ink-navigation ul li {
   margin: 0;
 }
-.ink-navigation ul {
-  display: block;
-}
 .ink-navigation ul.menu li a {
   -webkit-transition-property: 'background';
   -moz-transition-property: 'background';
