@@ -13,18 +13,18 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
 	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/docs.css">	
 
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -55,6 +55,7 @@
     <script type="text/javascript" src="../js/ink.treeview.js"></script>
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -62,74 +63,141 @@
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
     -->
 
 
     <script type="text/javascript" src="../js/prettify.js"></script>
-	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
-<body onload="prettyPrint()" class="animated">
+<body onload="prettyPrint()">
 <div id="topbar">
-	<nav class="ink-navigation ink-grid">
-		<ul class="menu horizontal rounded flat black shadowed">
-			<li>
-										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
-						</li>			
-													<li >
+    <nav class="ink-navigation ink-grid hide show-large">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                        </li>           
+                                                    <li >
 
-								<a href="getting-started.html">Getting started</a>
-					
-			</li>
-																<li >
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="layout.html">Layout</a>
-					
-			</li>
-																<li >
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="navigation.html">Navigation</a>
-					
-			</li>
-																<li >
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="typography.html">Typography</a>
-					
-			</li>
-																<li >
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="icons.html">Icons</a>
-					
-			</li>
-																<li >
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="forms.html">Forms</a>
-					
-			</li>
-																<li >
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="alerts.html">Alerts</a>
-					
-			</li>
-																<li >
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="tables.html">Tables</a>
-					
-			</li>
-														
-								<li >
-					<a href="#">InK JS<i class="icon-caret-down"></i></a>
-					<ul class="submenu">
-													<li>
-																<a href="./js-ui.html">UI</a>							
-							</li>
-													<li>
-																<a href="./js-core.html">Core</a>							
-							</li>
-											</ul>
-				</li>
-								</ul>
-	</nav>
-	<div class="border"></div>
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li>
+            
+                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
 </div><div class="ink-grid" id="nav-home">
    <div class="whatIs">
       <h1>Layout</h1>
@@ -144,10 +212,12 @@
         <div class="large-25 medium-30 small-100">
             <nav class="ink-navigation docs-section-nav" data-spy="affix" data-offset-top="200">
                 <ul class="menu vertical rounded black">
-                    <li><a href="./layout/index_dump#nav-home">
-                        <i class="icon-chevron-up ink-for-l"></i>
-                        <span>Back to Top</span>
-                    </a></li>
+                    <li>
+                        <a href="./layout/index_dump#nav-home">
+                            <i class="icon-chevron-up ink-for-l"></i>
+                            <span>Back to Top</span>
+                        </a>
+                    </li>
                     <li><a href="./layout/index_dump#nav-foundation">Foundation</a></li>
                     <li><a href="./layout/index_dump#nav-first-steps">Practical Usage</a></li>
                     <li><a href="./layout/index_dump#nav-space">Adding Space</a></li>
@@ -159,7 +229,7 @@
         </div>
         <div class="large-75 medium-70 small-100">            
             <section id="nav-foundation">                
-                <h3>Foundation</h3>
+                <h2>Foundation</h2>
                 <p>The way you build layouts in Ink is its prime differentiator from other available web UI frameworks and also one of its strongest suits. You'll find Ink's approach is very intuitive and will have anyone building layouts quickly and consistently.</p>
                 <p>So, let's get started with the basics, then we will expand upon that so that you can leave this page knowing, not only how to build a layout from scratch, but also how to simultaneously build for three screen sizes.</p>                
                 <p class="ink-vspace"><span class="ink-label info">Tip</span> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a>
@@ -244,7 +314,7 @@
             </section>
             <section id="nav-usage">
                 <h2>Practical Usage</h2>
-                <h4>Simple layout </h4>
+                <h3>Simple layout </h3>
                 <p>
                     By now, you've realized that Ink's approach is not a grid approach in which blocks fall neatly onto a predetermined 
                     grid of a fixed number of underlying columns, 
@@ -393,7 +463,7 @@
                     <li><strong>SMALL</strong> which catches everything below <strong>650 pixels</strong></li>
                     <li><strong>MEDIUM</strong> which works between <strong>651 and 960 pixels</strong></li>
                     <li><strong>LARGE</strong> which catches everything above <strong>961 pixels</strong></li>
-                 </ul>
+                </ul>
                 <h4>Customizing breakpoints </h4>
                 <p>You can find the media queries for the three breakpoints in the <code>ink.css</code> file.</p>
                 <p><span class="ink-label warning">Caution is advised</span> Customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usualy advise you to keep your changes in a separate file, but in this case, you can't do that.</p>
@@ -431,19 +501,34 @@
             <section id="nav-showhide">
                 <h2>Showing &amp; Hiding</h2>
                 <p>Building a truly flexible and responsive layout isn't just about offering different layouts or sizes for your blocks, sometimes you need to make decisions that involve only showing certain things in certain screens or even, duplicating blocks to show one version on large screens and a different one on smaller screens. All that is not only possible, but really simple with Ink.</p>
-                <p>Instead of saying what you want to hide, just say where you want things to show up, using three classes that match the three layout sizes:</p>
+                <p>You can either choose to declare what you want to hide or what you need to show. To do this we have several ways:</p>
                 <ul>
-                    <li><code>.ink-for-s</code> only appears when Layout <strong>Small</strong> is active</li>
-                    <li><code>.ink-for-m</code> only appears when Layout <strong>Medium</strong> is active</li>
-                    <li><code>.ink-for-l</code> only appears when Layout <strong>Large</strong> is active</li>
+                    <li><code>.hide</code> - hides the element, regardless of media queries</li>
+                    <li><code>.show</code> - hides the element, regardless of media queries</li>
                 </ul>
-                <p>So, again, if you build a block that has some information you only need to make available for people on smartphones, just add the <code>ink-for-s</code> class to the container and that block will only be made visible on small screens. Don't worry about document reflows, Ink uses a non-destructive method to hide stuff, so to speak.</p>
+                <p>To control visibility in a media query context we have:</p>
+                <ul>
+                    <li><code>.show-large</code> - shows previously hidden (display: none) elements in large layouts</li>
+                    <li><code>.show-medium</code> - shows previously hidden (display: none) elements in medium layouts</li>
+                    <li><code>.show-small</code> - shows previously hidden (display: none) elements in small layouts</li>
+                    <li><code>.hide-large</code> - hides (display: none) elements in large layouts</li>
+                    <li><code>.hide-medium</code> - hides (display: none) elements in medium layouts</li>
+                    <li><code>.hide-small</code> - hides (display: none) elements in small layouts</li>
+                </ul>
+                <p>So, if you need an element to be visible only in small screens, you'll need to add the <code>.hide</code> and <code>.show-small</code> classes.</p>
                 <p><span class="ink-label info">Note</span> that content hidden via these classes won't be read out loud by screenreaders.</p>
                 <p>Let's use some text for a really simple example. Say you have a sentence you want to make progressively longer in each screen width:</p>
                 <pre class="prettyprint linenums">
-&lt;p class=&quot;ink-for-s&quot;&gt;I love Mexican food.&lt;/p&gt;
-&lt;p class=&quot;ink-for-m&quot;&gt;I love Mexican food, such as guacamole.&lt;/p&gt;
-&lt;p class=&quot;ink-for-l&quot;&gt;I love Mexican food, such as guacamole and would eat it every day if I could.&lt;/p&gt;                </pre>
+&lt;p class=&quot;hide show-small&quot;&gt;I love Mexican food.&lt;/p&gt;
+&lt;p class=&quot;hide show-medium&quot;&gt;I love Mexican food, such as guacamole.&lt;/p&gt;
+&lt;p class=&quot;hide show-large&quot;&gt;I love Mexican food, such as guacamole and would eat it every day if I could.&lt;/p&gt;                </pre>
+
+                <div class="live-demo">
+                    <p class="hide show-small"><strong>I love Mexican food.</strong></p>
+                    <p class="hide show-medium"><strong>I love Mexican food, such as guacamole.</strong></p>
+                    <p class="hide show-large"><strong>I love Mexican food, such as guacamole and would eat it every day if I could.</strong></p>
+                </div>
+
                 <p>In the example above, smaller screens would only see the shorter sentence as the remaining two paragraphs would be hidden, on a medium screen the second, longer version would be visible and on a large screen, only the last, longest paragraph would be displayed.</p>
             </section>
             <section id="nav-customization">
@@ -461,7 +546,7 @@
                 <pre class="prettyprint linenums">
 &lt;link rel=&quot;stylesheet&quot; href=&quot;./css/ink.css&quot;&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;./css/custom.css&quot;&gt;                </pre>
-                <p><span class="ink-label caution">Remember!</span> don't go redefining what a <code>large-50</code> or <code>column-group</code> do, just add one more class to the block you need to alter and then, using the appropriate specificity, define it in your custom CSS.</p>
+                <p><span class="ink-label warning">Remember!</span> don't go redefining what a <code>large-50</code> or <code>column-group</code> do, just add one more class to the block you need to alter and then, using the appropriate specificity, define it in your custom CSS.</p>
             </section>
         </div>
     </div>

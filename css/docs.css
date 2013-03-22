@@ -1,12 +1,9 @@
-/* line 14, /Users/pedrocorreia/Development/Ink/less/modules/utilities.less */
 .push-left {
   float: left !important;
 }
-/* line 18, /Users/pedrocorreia/Development/Ink/less/modules/utilities.less */
 .push-right {
   float: right !important;
 }
-/* line 831, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .clearfix:after {
   content: ".";
   display: block;
@@ -15,15 +12,20 @@
   visibility: hidden;
   zoom: 1;
 }
-/* line 15, /Users/pedrocorreia/Development/Ink/less/site.less */
 body {
   background: #f7f7f7;
 }
+<<<<<<< HEAD:css/site.css
 /* line 19, /Users/pedrocorreia/Development/Ink/less/site.less */
 h2 span {
   padding-right: .5em;
 }
 /* line 23, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+h2 span {
+  padding-right: .5em;
+}
+>>>>>>> v2:css/docs.css
 .box {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 3px 0 #aaaaaa;
@@ -32,40 +34,66 @@ h2 span {
   background-color: #fff;
   padding: 1em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 30, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 mark {
   font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
   font-size: .938em;
   background: #deedf1;
   padding: 1px 3px;
 }
+<<<<<<< HEAD:css/site.css
 /* line 39, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .gridExample p {
   border-radius: 4px;
   padding: .8em;
   text-align: center;
   background: #DEEDF1;
 }
+.ink-dropdown .ink-button {
+  margin: 5px 0;
+}
+.ink-dropdown.example .dropdown-menu {
+  position: relative;
+  left: 0;
+}
 /*..........................................  Typography  ...................................................*/
+<<<<<<< HEAD:css/site.css
 /* line 48, /Users/pedrocorreia/Development/Ink/less/site.less */
 a.visited {
   color: #808080;
 }
 /* line 49, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+a.visited {
+  color: #808080;
+}
+>>>>>>> v2:css/docs.css
 a.hover {
   color: #007ed5;
   text-decoration: underline;
 }
+<<<<<<< HEAD:css/site.css
 /* line 50, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 a.active {
   color: #e60000;
 }
 /*............................................  Homepage  ...................................................*/
+<<<<<<< HEAD:css/site.css
 /* line 53, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .whatIs {
   margin: 1.6em 0 2em;
   font-size: 1.25em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 58, /Users/pedrocorreia/Development/Ink/less/site.less */
 .whatIs p {
   margin-top: .5em;
@@ -75,6 +103,14 @@ a.active {
   text-align: center;
 }
 /* line 66, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+.whatIs p {
+  margin-top: .5em;
+}
+#download {
+  text-align: center;
+}
+>>>>>>> v2:css/docs.css
 #download a {
   font-weight: bold;
   padding: .8em;
@@ -93,7 +129,10 @@ a.active {
   border-radius: 4px;
   color: #FFF;
 }
+<<<<<<< HEAD:css/site.css
 /* line 75, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 #download a:hover {
   background: #3c3c3c;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#2e2e2e');
@@ -105,6 +144,7 @@ a.active {
   background: linear-gradient(to bottom, #3c3c3c 0%, #2e2e2e 100%);
   text-decoration: none;
 }
+<<<<<<< HEAD:css/site.css
 /* line 81, /Users/pedrocorreia/Development/Ink/less/site.less */
 #download p {
   margin: 1em 0 0 0;
@@ -114,16 +154,30 @@ a.active {
   text-align: center;
 }
 /* line 90, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+#download p {
+  margin: 1em 0 0 0;
+}
+.ink-download {
+  text-align: center;
+}
+>>>>>>> v2:css/docs.css
 .ink-download input {
   font-size: 1.625em;
 }
 /*..........................................  Ink-UI  ..........................................*/
+<<<<<<< HEAD:css/site.css
 /* line 95, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .ink-button.toggleTrigger {
   margin: 1em 0 0 0;
 }
 /*..........................................  Homepage  ..........................................*/
+<<<<<<< HEAD:css/site.css
 /* line 101, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .ink-hero {
   background: url(../imgs/home_bkg.png) center;
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -133,10 +187,12 @@ a.active {
   background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   overflow: hidden;
 }
+<<<<<<< HEAD:css/site.css
 /* line 111, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .logo_hp {
   width: 100%;
-  height: 100%;
   max-width: 736px;
   max-height: 330px;
   margin: 0 auto;
@@ -165,13 +221,19 @@ a.active {
   -ms-transition-delay: 0;
   transition-delay: 0;
 }
+<<<<<<< HEAD:css/site.css
 /* line 121, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .logo_hp:hover {
   filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   opacity: 1;
 }
+<<<<<<< HEAD:css/site.css
 /* line 126, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .showcase {
   background: rgba(0, 0, 0, 0.1);
   border-top: rgba(0, 0, 0, 0.4);
@@ -179,13 +241,19 @@ a.active {
   padding: 2em 0;
   margin-bottom: 2em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 133, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .showcase img {
   -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
+<<<<<<< HEAD:css/site.css
 /* line 135, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .showcase img:hover {
   position: relative;
   bottom: 4px;
@@ -204,6 +272,7 @@ a.active {
   transition-duration: 120ms;
 }
 /*...................................................  Footer  ...................................................*/
+<<<<<<< HEAD:css/site.css
 /* line 149, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer .vspace {
   margin: 1em 0;
@@ -213,6 +282,14 @@ footer .copyright {
   margin: 0;
 }
 /* line 156, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+footer .vspace {
+  margin: 1em 0;
+}
+footer .copyright {
+  margin: 0;
+}
+>>>>>>> v2:css/docs.css
 footer .copyright .SAPOlogo {
   background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
   text-indent: -9999px;
@@ -221,11 +298,17 @@ footer .copyright .SAPOlogo {
   height: 30px;
   margin-bottom: 1em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 165, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer .copyright .PTClogo {
   font-size: .875em;
 }
 /* line 168, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+footer .copyright .PTClogo {
+  font-size: .875em;
+}
+>>>>>>> v2:css/docs.css
 footer .copyright .PTClogo a {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
   text-indent: -9999px;
@@ -235,17 +318,24 @@ footer .copyright .PTClogo a {
   height: 43px;
   margin-right: 1em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 182, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 footer .sociallinks li {
   margin-left: .6em;
   *zoom: 1;
 }
+<<<<<<< HEAD:css/site.css
 /* line 186, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 footer .sociallinks li a {
   display: block;
   height: 24px;
   width: 24px;
 }
+<<<<<<< HEAD:css/site.css
 /* line 191, /Users/pedrocorreia/Development/Ink/less/site.less */
 footer .sociallinks li a.Fb_link {
   background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px;
@@ -263,6 +353,20 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   padding: 0.5em 0 0.5em 0;
 }
 /* line 209, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+footer .sociallinks li a.Fb_link {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px;
+}
+footer .sociallinks li a.Twt_link {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px;
+}
+footer .sociallinks li a.Gplus_link {
+  background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
+}
+footer .ink-navigation ul.menu.horizontal li a.license {
+  padding: 0.5em 0 0.5em 0;
+}
+>>>>>>> v2:css/docs.css
 #topbar {
   position: static;
   top: 0;
@@ -273,6 +377,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   box-shadow: '0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)';
   z-index: 100;
 }
+<<<<<<< HEAD:css/site.css
 /* line 223, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal li {
   font-size: 14px;
@@ -288,18 +393,38 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 /* line 233, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal li a.logoPlaceholder {
+=======
+#topbar .ink-navigation ul li {
+  font-size: 14px;
+}
+#topbar .ink-navigation ul li a {
+  *height: auto;
+  color: #bbbbbb;
+}
+#topbar .ink-navigation ul li a:hover {
+  color: #ffffff;
+}
+#topbar .ink-navigation ul li a.logoPlaceholder {
+>>>>>>> v2:css/docs.css
   font-size: 2em;
   font-weight: bold;
   line-height: 1.4;
   padding: 0;
   margin-right: .5em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 240, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal li a.logoPlaceholder:hover {
   background: none;
 }
 /* line 247, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal li.active a {
+=======
+#topbar .ink-navigation ul li a.logoPlaceholder:hover {
+  background: none;
+}
+#topbar .ink-navigation ul li.active a {
+>>>>>>> v2:css/docs.css
   background: #080808;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#080808', endColorstr='#3c3c3c');
   background: -moz-linear-gradient(top, #080808 0%, #3c3c3c 100%);
@@ -313,12 +438,29 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
+<<<<<<< HEAD:css/site.css
 /* line 254, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal li .submenu li a {
+=======
+#topbar .ink-navigation ul li .submenu {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#topbar .ink-navigation ul li .submenu li:last-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#topbar .ink-navigation ul li .submenu li a {
+>>>>>>> v2:css/docs.css
   color: #000000;
   background: #ffffff;
   filter: none;
 }
+<<<<<<< HEAD:css/site.css
 /* line 259, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal li .submenu li a:hover {
   background: #555555;
@@ -326,13 +468,82 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 /* line 267, /Users/pedrocorreia/Development/Ink/less/site.less */
 #topbar .ink-navigation ul.horizontal.black.flat {
+=======
+#topbar .ink-navigation ul li .submenu li a:hover {
+  background: #555555;
+  color: #ffffff;
+}
+#topbar .ink-navigation ul.vertical li a.logoPlaceholder {
+  margin-right: 0;
+}
+#topbar .ink-navigation ul.vertical li button {
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: .6em;
+  right: 0;
+  padding: 0;
+  color: #bbbbbb;
+}
+#topbar .ink-navigation ul.vertical li button:hover,
+#topbar .ink-navigation ul.vertical li button:focus {
+  color: #ffffff;
+}
+#topbar .ink-navigation ul.vertical li button span {
+  font-size: 1.5em;
+}
+#topbar .ink-navigation ul.vertical li.active a {
+  background: #131313;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+#topbar .ink-navigation ul.vertical li:first-child:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  zoom: 1;
+}
+#topbar .ink-navigation ul.vertical li .submenu {
+  width: auto;
+  left: auto;
+  display: block;
+  position: relative;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#topbar .ink-navigation ul.vertical li .submenu li:last-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#topbar .ink-navigation ul.vertical li .submenu li a {
+  color: #bbbbbb;
+  background: #222222;
+  border-bottom: 1px solid #262626;
+}
+#topbar .ink-navigation ul.vertical li .submenu li a:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+#topbar .ink-navigation ul.black.flat {
+>>>>>>> v2:css/docs.css
   background: #222222;
   filter: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
+<<<<<<< HEAD:css/site.css
 /* line 278, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 #topbar .border {
   height: .3em;
   background: url(../imgs/home_bkg.png) center 0px;
@@ -344,14 +555,20 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   margin: 0;
 }
 /* Prettyfier  */
+<<<<<<< HEAD:css/site.css
 /* line 292, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 var {
   font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
   font-size: .9em;
   background-color: #ecda83;
   padding: 1px 3px;
 }
+<<<<<<< HEAD:css/site.css
 /* line 299, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 pre {
   background: #FEFBF3;
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -362,7 +579,10 @@ pre {
   font-size: 14px;
   color: #aaa;
 }
+<<<<<<< HEAD:css/site.css
 /* line 307, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 pre.prettyprint {
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -371,23 +591,33 @@ pre.prettyprint {
   white-space: pre-wrap;
   padding: 1em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 314, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre.linenums {
   padding: 0;
 }
 /* line 318, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+pre.linenums {
+  padding: 0;
+}
+>>>>>>> v2:css/docs.css
 pre ol {
   line-height: 1.5;
   list-style: decimal ;
   margin: 0 0 0 1.6em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 323, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 pre ol li {
   word-wrap: break-word;
   border-left: 3px solid #CCC;
   margin: 0;
   padding: .2em 0 .2em 1em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 329, /Users/pedrocorreia/Development/Ink/less/site.less */
 pre ol li:nth-child(odd) {
   background: #f0f0f0;
@@ -397,10 +627,19 @@ pre .tag {
   color: #1E347B;
 }
 /* line 339, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+pre ol li:nth-child(odd) {
+  background: #f0f0f0;
+}
+pre .tag {
+  color: #1E347B;
+}
+>>>>>>> v2:css/docs.css
 pre .hightlight {
   font-weight: bold;
   color: red;
 }
+<<<<<<< HEAD:css/site.css
 /* line 345, /Users/pedrocorreia/Development/Ink/less/site.less */
 .com {
   color: #93a1a1;
@@ -410,44 +649,71 @@ pre .hightlight {
   color: #195f91;
 }
 /* line 347, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+.com {
+  color: #93a1a1;
+}
+.lit {
+  color: #195f91;
+}
+>>>>>>> v2:css/docs.css
 .pun,
 .opn,
 .clo {
   color: #93a1a1;
 }
+<<<<<<< HEAD:css/site.css
 /* line 348, /Users/pedrocorreia/Development/Ink/less/site.less */
 .fun {
   color: #dc322f;
 }
 /* line 349, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+.fun {
+  color: #dc322f;
+}
+>>>>>>> v2:css/docs.css
 .str,
 .atv {
   color: #268bd2;
 }
+<<<<<<< HEAD:css/site.css
 /* line 350, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .kwd,
 .tag {
   color: #195f91;
 }
+<<<<<<< HEAD:css/site.css
 /* line 351, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .typ,
 .atn,
 .dec,
 .var {
   color: #CB4B16;
 }
+<<<<<<< HEAD:css/site.css
 /* line 353, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 code {
   border: 1px solid #E0E0E0;
   background: #E9E9E9;
   padding: 0 4px;
 }
+<<<<<<< HEAD:css/site.css
 /* line 359, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 section {
   padding-top: 1.5em;
   padding-bottom: 3em;
   border-bottom: 1px solid #ccc;
 }
+<<<<<<< HEAD:css/site.css
 /* line 365, /Users/pedrocorreia/Development/Ink/less/site.less */
 section:first-child {
   padding-top: 0;
@@ -461,11 +727,25 @@ table.ink-table.browser-support .icon-ok {
   color: #4a9b17;
 }
 /* line 378, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+section:first-child {
+  padding-top: 0;
+}
+section:last-child {
+  border: none;
+}
+table.ink-table.browser-support .icon-ok {
+  color: #4a9b17;
+}
+>>>>>>> v2:css/docs.css
 table.ink-table.browser-support .icon-remove,
 table.ink-table.browser-support .icon-minus {
   color: #c91111;
 }
+<<<<<<< HEAD:css/site.css
 /* line 382, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 table.ink-table.browser-support tr th {
   line-height: 1.3;
   padding: 0.5em 0;
@@ -473,7 +753,10 @@ table.ink-table.browser-support tr th {
   color: #ffffff;
   font-weight: 500;
 }
+<<<<<<< HEAD:css/site.css
 /* line 390, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .ink-package {
   -webkit-box-shadow: 0 1px 5px 0 rgba(100, 100, 100, 0.5) inset;
   -moz-box-shadow: 0 1px 5px 0 rgba(100, 100, 100, 0.5) inset;
@@ -485,18 +768,41 @@ table.ink-table.browser-support tr th {
   line-height: 1.3;
   color: #4d4d4d;
 }
+<<<<<<< HEAD:css/site.css
 /* line 399, /Users/pedrocorreia/Development/Ink/less/site.less */
 .ink-package strong {
   font-size: 1.0em;
 }
 /* line 402, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+.ink-package strong {
+  font-size: 1.0em;
+}
+>>>>>>> v2:css/docs.css
 .ink-package span {
   color: #b3b3b3;
   font-family: Ubuntu_light;
   font-size: 0.95em;
 }
+<<<<<<< HEAD:css/site.css
 /* line 407, /Users/pedrocorreia/Development/Ink/less/site.less */
+=======
+>>>>>>> v2:css/docs.css
 .ink-package span.tree {
   color: #4d4d4d;
   font-size: 1.2em;
+}
+.live-demo {
+  background: #f2f2f2;
+  padding: 1em;
+  -webkit-box-shadow: 0 1px 5px 0 rgba(100, 100, 100, 0.5) inset;
+  -moz-box-shadow: 0 1px 5px 0 rgba(100, 100, 100, 0.5) inset;
+  box-shadow: 0 1px 5px 0 rgba(100, 100, 100, 0.5) inset;
+  border-radius: 4px;
+}
+.live-demo p + p {
+  margin: 0;
+}
+.clickable:hover {
+  cursor: pointer;
 }

@@ -13,18 +13,18 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
 	<link rel="stylesheet" type="text/css" href="../css/ink.css">
     <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/site.css">	
+	<link rel="stylesheet" type="text/css" href="../css/docs.css">	
 
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -55,6 +55,7 @@
     <script type="text/javascript" src="../js/ink.treeview.js"></script>
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
     <!-- End of modules in development -->
     
     <!-- 
@@ -62,74 +63,141 @@
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
     <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+	<script type="text/javascript" src="../js/lang-css.js"></script>
     -->
 
 
     <script type="text/javascript" src="../js/prettify.js"></script>
-	<script type="text/javascript" src="../js/lang-css.js"></script>
 </head>
-<body onload="prettyPrint()" class="animated">
+<body onload="prettyPrint()">
 <div id="topbar">
-	<nav class="ink-navigation ink-grid">
-		<ul class="menu horizontal rounded flat black shadowed">
-			<li>
-										<a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
-						</li>			
-													<li >
+    <nav class="ink-navigation ink-grid hide show-large">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                        </li>           
+                                                    <li >
 
-								<a href="getting-started.html">Getting started</a>
-					
-			</li>
-																<li >
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="layout.html">Layout</a>
-					
-			</li>
-																<li >
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="navigation.html">Navigation</a>
-					
-			</li>
-																<li >
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="typography.html">Typography</a>
-					
-			</li>
-																<li >
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="icons.html">Icons</a>
-					
-			</li>
-																<li >
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="forms.html">Forms</a>
-					
-			</li>
-																<li >
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="alerts.html">Alerts</a>
-					
-			</li>
-																<li >
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
 
-								<a href="tables.html">Tables</a>
-					
-			</li>
-														
-								<li >
-					<a href="#">InK JS<i class="icon-caret-down"></i></a>
-					<ul class="submenu">
-													<li>
-																<a href="./js-ui.html">UI</a>							
-							</li>
-													<li>
-																<a href="./js-core.html">Core</a>							
-							</li>
-											</ul>
-				</li>
-								</ul>
-	</nav>
-	<div class="border"></div>
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li>
+            
+                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
 </div><div class="ink-grid" id="ui_home">
    <div class="whatIs">
         <h1>Ink JS UI</h1>
@@ -197,37 +265,37 @@
         <div id="ui_gallery_layout0" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -238,19 +306,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_0" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_0" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -263,37 +331,37 @@
         <div id="ui_gallery_layout1" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -304,19 +372,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_1" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_1" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -329,37 +397,37 @@
         <div id="ui_gallery_layout2" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -370,19 +438,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_2" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_2" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -395,37 +463,37 @@
         <div id="ui_gallery_layout3" class="ink-tabs-container">
             <ul class="ink-gallery-source">
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
-            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb1.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.1.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
             <span class="entry-title">s1</span>
         </a>
         <span class="entry-content"><p>hello world 1</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
-            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb2.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.2.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
             <span class="entry-title">s2</span>
         </a>
         <span class="entry-content"><p>hello world 2</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
-            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb3.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.3.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
             <span class="entry-title">s3</span>
         </a>
         <span class="entry-content"><p>hello world 3</p></span>
     </li>
     <li class="hentry hmedia">
-        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
-            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/thumb4.png">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
         </a>
-        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/img/ink-js-placeholders/1.4.png">
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
             <span class="entry-title">s4</span>
         </a>
         <span class="entry-content"><p>hello world 4</p></span>
@@ -436,19 +504,19 @@
 </script>            <a href="#" data-target="gallery_sourcecode_3" class="ink-button toggleTrigger">View Source Code</a>
             <pre id="gallery_sourcecode_3" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb1.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.1.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
     &lt;/li&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
-        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
-            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/img_gal/thumb2.png&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
         &lt;/a&gt;
-        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/img_gal/1.2.png&quot;&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
             &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
         &lt;/a&gt;
         &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
@@ -476,7 +544,6 @@
         <ul>
             <!-- <li>HTML formatted messages</li> -->
             <li>Configure the modal window maximum width and height</li>
-            <li>Use optional window header and footer</li>
             <li>Use optional window header and footer</li>
         </ul> 
     </p>
@@ -630,7 +697,7 @@
         </li>
     </ul>
 
-    <div class="node hide" id="tview2" data-node=".node" data-child=".child">
+    <div class="node ink-tree-view hide" id="tview2" data-node=".node" data-child=".child">
         <button class="icon-minus-sign"></button>
         <a href="#">root</a>
         <div class="child">
@@ -656,12 +723,6 @@
             <div class="node"></div>
         </div>
     </div>
-
-    
-    <script type="text/javascript">
-        var tv1 = new SAPO.Ink.TreeView('#tview1');
-        var tv2 = new SAPO.Ink.TreeView('#tview2');
-    </script>
 </div>
 <a href="#" data-target="treeview_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
 <pre id="treeview_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul class=&quot;ink-tree-view&quot;&gt;
@@ -696,10 +757,7 @@
             &lt;li&gt;child 3&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/li&gt;
-&lt;/ul&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var tv1 = new SAPO.Ink.TreeView('#tview');
-&lt;/script&gt;</pre><section id="sortable_list">
+&lt;/ul&gt;</pre><section id="sortable_list">
     <h2>Sortable List</h2>
     <p>The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.</p>
     <p>By doing that, allows the user to sort the order of the list.</p>
@@ -723,12 +781,6 @@
 
 </div></pre>
 </section>
-<script>
-var jsSL1 = new SAPO.Ink.SortableList(
-    s$('slist'),
-    {   previewClass:   'preview', dragIconClass: 'mexe'    }
-);
-</script>
 <section id="date_picker">
     <h3>Date Picker</h3>
     <p>As the name says, the <i>Date Picker</i> transforms a textbox into an element that, when in use, shows a calendar to help selecting a specific date.</p>
@@ -738,20 +790,20 @@ var jsSL1 = new SAPO.Ink.SortableList(
         <form class="ink-form inline">
             <div class="ink-l100"><div class="control">
     <label for="dPicker" class="ink-form-inline">A date field:</label>
-    <input id="dPicker" type="text"></input>
+    <input id="dPicker" class="ink-datepicker" type="text"></input>
 </div>
 <script type="text/javascript">
-    var picker = new SAPO.Ink.DatePicker('#dPicker');
+    //var picker = new SAPO.Ink.DatePicker('#dPicker');
 </script></div>
         </form>
     </div>
     <a href="#" data-target="datepicker_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
     <pre id="datepicker_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">&lt;div class=&quot;control&quot;&gt;
     &lt;label for=&quot;dPicker&quot; class=&quot;ink-form-inline&quot;&gt;A date field:&lt;/label&gt;
-    &lt;input id=&quot;dPicker&quot; type=&quot;text&quot;&gt;&lt;/input&gt;
+    &lt;input id=&quot;dPicker&quot; class=&quot;ink-datepicker&quot; type=&quot;text&quot;&gt;&lt;/input&gt;
 &lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-    var picker = new SAPO.Ink.DatePicker('#dPicker');
+    //var picker = new SAPO.Ink.DatePicker('#dPicker');
 &lt;/script&gt;</pre>
 </section>
     
@@ -1324,11 +1376,11 @@ var jsSL1 = new SAPO.Ink.SortableList(
 </ul>
 <p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/ImageQuery/doc.html">technical documentation</a>.</p>
 <div class="imageQueryExample large-100 medium-100 small-100 content-center ink-clear">
-    <img src="/assets/img/imagequery/small/image.jpg" />
+    <img src="/assets/imgs/imagequery/small/image.jpg" />
 </div>
 <script type="text/javascript">
     var tv1 = new SAPO.Ink.ImageQuery('.imageQueryExample img',{
-        src: '/assets/img/imagequery/{:label}/{:file}',
+        src: '/assets/imgs/imagequery/{:label}/{:file}',
         queries: [
             {
                 label: 'small',
@@ -1346,11 +1398,11 @@ var jsSL1 = new SAPO.Ink.SortableList(
     });
 </script><a href="#" data-target="imagequery_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
 <pre id="imagequery_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;imageQueryExample large-100 medium-100 small-100 content-center ink-clear&quot;&gt;
-    &lt;img src=&quot;/assets/img/imagequery/small/image.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/imgs/imagequery/small/image.jpg&quot; /&gt;
 &lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     var tv1 = new SAPO.Ink.ImageQuery('.imageQueryExample img',{
-        src: '/assets/img/imagequery/{:label}/{:file}',
+        src: '/assets/imgs/imagequery/{:label}/{:file}',
         queries: [
             {
                 label: 'small',
