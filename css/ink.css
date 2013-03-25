@@ -1909,13 +1909,6 @@ h4 p:last-child,
 h5 p:last-child,
 h6 p:last-child,
 section p:last-child,
-h1 pre:last-child,
-h2 pre:last-child,
-h3 pre:last-child,
-h4 pre:last-child,
-h5 pre:last-child,
-h6 pre:last-child,
-section pre:last-child,
 h1 table:last-child,
 h2 table:last-child,
 h3 table:last-child,
@@ -4929,7 +4922,7 @@ ul.icons li [class*=" icon-"] {
   text-decoration: none;
 }
 .ink-dropdown ul.dropdown-menu li.active a {
-  background: #0f75da;
+  background: #999999;
   color: #ffffff;
 }
 .ink-dropdown ul.dropdown-menu li.disabled a {
@@ -4968,6 +4961,26 @@ ul.icons li [class*=" icon-"] {
   top: -0.36em;
   left: 100%;
   display: none;
+}
+.ink-dropdown.red ul.dropdown-menu li.active a {
+  background: #c91111;
+  color: #ffffff;
+}
+.ink-dropdown.orange ul.dropdown-menu li.active a {
+  background: #ff9c00;
+  color: #ffffff;
+}
+.ink-dropdown.green ul.dropdown-menu li.active a {
+  background: #4a9b17;
+  color: #ffffff;
+}
+.ink-dropdown.blue ul.dropdown-menu li.active a {
+  background: #0f75da;
+  color: #ffffff;
+}
+.ink-dropdown.black ul.dropdown-menu li.active a {
+  background: #000000;
+  color: #ffffff;
 }
 .ink-form fieldset {
   border: none;
