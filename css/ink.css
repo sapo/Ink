@@ -2639,7 +2639,7 @@ ol.inline li {
   font-size: 1.2em;
 }
 .extralarge {
-  font-size: 1.45em;
+  font-size: 1.45em !important;
 }
 hr {
   border: 0;
