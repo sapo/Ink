@@ -70,6 +70,16 @@
     <script type="text/javascript" src="../js/prettify.js"></script>
 </head>
 <body onload="prettyPrint()">
+<div class="ink-grid">
+    <div class="screen-size-helper">
+        <p class="title">Screen size:</h1>
+        <ul class="unstyled">
+            <li class="hide show-small small">SMALL</li>
+            <li class="hide show-medium medium">MEDIUM</li>
+            <li class="hide show-large large">LARGE</li>
+        </ul>
+    </div>
+</div>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide show-large">
         <ul class="menu horizontal flat black shadowed">
@@ -132,7 +142,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide show-medium show-small">
+    <nav class="ink-navigation ink-grid hide-large">
         <ul class="menu vertical flat black">
             <li>
             
@@ -275,7 +285,7 @@
                 <h2>Alternating colored rows</h2>
                 <p>To better distinguish between consecutive rows, combine the <code>ink-table</code> class with the <code>alternated</code> class to get an alternating background color effect.</p>
                 <pre class="prettyprint linenums">
-&lt;table class=&quot;ink-table ink-zebra&quot;&gt;
+&lt;table class=&quot;ink-table alternating&quot;&gt;
 </pre>
                 <table class="ink-table alternating">
                     <thead>
@@ -319,9 +329,9 @@
                 <h2>Highlight rows on hover</h2>
                 <p>To highligh rows on mouse hover, add the <code>ink-hover</code> class.</p>
                 <pre class="prettyprint linenums">
-&lt;table class=&quot;ink-table ink-hover&quot;&gt;
+&lt;table class=&quot;ink-table hover&quot;&gt;
 </pre>
-                <table class="ink-table ink-hover">
+                <table class="ink-table hover">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -363,9 +373,9 @@
                 <h2>Full borders</h2>
                 <p>To get a more classic table with borders all around, use <code>ink-bordered</code>.</p>
                 <pre class="prettyprint linenums">
-&lt;table class=&quot;ink-table ink-bordered&quot;&gt;
+&lt;table class=&quot;ink-table bordered&quot;&gt;
 </pre>
-                <table class="ink-table ink-bordered">
+                <table class="ink-table bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -373,13 +383,6 @@
                             <th>Product price</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <td>24</td>
-                            <td>Twin color basketball shoe</td>
-                            <td>&euro;26,00</td>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <tr>
                             <td>24</td>
@@ -400,6 +403,11 @@
                             <td>23</td>
                             <td>Some stuff </td>
                             <td>&euro;489,00</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>Twin color basketball shoe</td>
+                            <td>&euro;26,00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -409,9 +417,9 @@
                 <h2>Combining several styles</h2>
                 <p>For great flexibility you can combine all of the above styles in the same table, obtaining a fully bordered table with alternating colored rows that light up on hover.</p>
                 <pre class="prettyprint linenums">
-&lt;table class=&quot;ink-table ink-bordered ink-zebra ink-hover&quot;&gt;
+&lt;table class=&quot;ink-table bordered alternating hover&quot;&gt;
 </pre>
-                <table class="ink-table ink-bordered ink-zebra ink-hover">
+                <table class="ink-table bordered alternating hover">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -419,13 +427,6 @@
                             <th>Product price</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <td>24</td>
-                            <td>Twin color basketball shoe</td>
-                            <td>&euro;26,00</td>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <tr>
                             <td>24</td>
@@ -446,6 +447,11 @@
                             <td>23</td>
                             <td>Some stuff </td>
                             <td>&euro;489,00</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>Twin color basketball shoe</td>
+                            <td>&euro;26,00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -458,7 +464,7 @@
                     Use the <code>ink-label</code> class with the <code>info</code>, <code>warning</code>, <code>error</code> or <code>success</code> class
                     on any <code>&lt;tr&gt;</code> to paint the row in the corresponding background color.
                 </p>
-                <table class="ink-table ink-bordered">
+                <table class="ink-table bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -466,13 +472,6 @@
                             <th>Product price</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <td>24</td>
-                            <td>Twin color basketball shoe</td>
-                            <td>&euro;26,00</td>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <tr class="ink-label warning">
                             <td>24</td>
@@ -493,6 +492,11 @@
                             <td>23</td>
                             <td>Some stuff </td>
                             <td>&euro;489,00</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>Twin color basketball shoe</td>
+                            <td>&euro;26,00</td>
                         </tr>
                     </tbody>
                 </table>

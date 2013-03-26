@@ -70,6 +70,16 @@
     <script type="text/javascript" src="../js/prettify.js"></script>
 </head>
 <body onload="prettyPrint()">
+<div class="ink-grid">
+    <div class="screen-size-helper">
+        <p class="title">Screen size:</h1>
+        <ul class="unstyled">
+            <li class="hide show-small small">SMALL</li>
+            <li class="hide show-medium medium">MEDIUM</li>
+            <li class="hide show-large large">LARGE</li>
+        </ul>
+    </div>
+</div>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide show-large">
         <ul class="menu horizontal flat black shadowed">
@@ -132,7 +142,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide show-medium show-small">
+    <nav class="ink-navigation ink-grid hide-large">
         <ul class="menu vertical flat black">
             <li>
             
@@ -737,7 +747,7 @@
                     Just add the <code>ink-button</code> class for the button layout and then use a utility class to give it a specific meaning. Available styling is shown below.
                 </p>
                 
-                <table class="ink-table ink-bordered">
+                <table class="ink-table bordered">
                     
                     <thead>
                         <tr>
@@ -747,18 +757,6 @@
                             <th>code</th>
                         </tr>
                     </thead>
-                      
-                    <tfoot>
-                        <tr>
-                            <td>Info</td>
-                            <td><button class="ink-button info">Info</button></td>
-                            <td><button class="ink-button info" disabled>Info</button></td>
-                            <td>
-                                <pre class="prettyprint linenums">&lt;button class=&quot;ink-button info&quot;&gt;Info&lt;/button&gt;</pre>
-                                <pre class="prettyprint linenums">&lt;button class=&quot;ink-button info&quot; disabled&gt;Info&lt;/button&gt;</pre>
-                            </td>
-                        </tr>
-                    </tfoot>
                       
                     <tbody>
                         <tr>
@@ -795,6 +793,15 @@
                             <td>
                                 <pre class="prettyprint linenums">&lt;button class=&quot;ink-button caution&quot;&gt;Caution&lt;/button&gt;</pre>
                                 <pre class="prettyprint linenums">&lt;button class=&quot;ink-button caution&quot; disabled&gt;Caution&lt;/button&gt;</pre>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Info</td>
+                            <td><button class="ink-button info">Info</button></td>
+                            <td><button class="ink-button info" disabled>Info</button></td>
+                            <td>
+                                <pre class="prettyprint linenums">&lt;button class=&quot;ink-button info&quot;&gt;Info&lt;/button&gt;</pre>
+                                <pre class="prettyprint linenums">&lt;button class=&quot;ink-button info&quot; disabled&gt;Info&lt;/button&gt;</pre>
                             </td>
                         </tr>
                     </tbody>

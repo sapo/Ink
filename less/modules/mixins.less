@@ -494,6 +494,25 @@
                 .show-@{breakpoint-alias} {
                     display: inherit;
                 }
+                table.show-@{breakpoint-alias} {
+                    display: table;
+                }
+                thead.show-@{breakpoint-alias} {
+                    display: table-header-group;
+                }
+                tbody.show-@{breakpoint-alias} {
+                    display: table-row-group;
+                }
+                tfoot.show-@{breakpoint-alias} {
+                    display: table-footer-group;
+                }
+                tr.show-@{breakpoint-alias} {
+                    display: table-row;
+                }
+                th.show-@{breakpoint-alias},
+                td.show-@{breakpoint-alias} {
+                    display: table-cell;
+                }
             }
 
             // create the helper classes
