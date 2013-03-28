@@ -2,32 +2,31 @@
 <html lang="en">
 <head>
         <base href="./">
-    	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
-	
     
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/ink.css">
-    <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/docs.css">	
+    <link rel="stylesheet" type="text/css" href="../css/ink.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script type="text/javascript" src="../js/html5shiv.js"></script>
         <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
@@ -35,16 +34,8 @@
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
-    
-	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
 
-	<!-- 
-    DEFINES TRANSITIONS: appear3d, slide, hover
-	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
-    -->
-
-
-    <!-- Currently in development -->
+    <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
@@ -56,32 +47,23 @@
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
-    <!-- End of modules in development -->
-    
-    <!-- 
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
-	<script type="text/javascript" src="../js/lang-css.js"></script>
-    -->
-
-
     <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
 </head>
 <body onload="prettyPrint()">
 <div class="ink-grid">
     <div class="screen-size-helper">
         <p class="title">Screen size:</h1>
         <ul class="unstyled">
-            <li class="hide show-small small">SMALL</li>
-            <li class="hide show-medium medium">MEDIUM</li>
-            <li class="hide show-large large">LARGE</li>
+            <li class="hide-all show-small small">SMALL</li>
+            <li class="hide-all show-medium medium">MEDIUM</li>
+            <li class="hide-all show-large large">LARGE</li>
         </ul>
     </div>
 </div>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide show-large">
+    <nav class="ink-navigation ink-grid hide-all show-large">
         <ul class="menu horizontal flat black shadowed">
             <li>
                                         <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
@@ -151,7 +133,7 @@
                         </li>           
         </ul>
 
-        <ul class="menu vertical flat black hide" id="topbar_menu">
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
                                                     <li >
 
                                 <a href="getting-started.html">Getting started</a>
@@ -237,7 +219,7 @@
         </div>
         <div class="large-75 medium-70 small-100">            
             <section id="nav-foundation">                
-                <h3>Foundation</h3>
+                <h2>Foundation</h2>
                 <p>The way you build layouts in Ink is its prime differentiator from other available web UI frameworks and also one of its strongest suits. You'll find Ink's approach is very intuitive and will have anyone building layouts quickly and consistently.</p>
                 <p>So, let's get started with the basics, then we will expand upon that so that you can leave this page knowing, not only how to build a layout from scratch, but also how to simultaneously build for three screen sizes.</p>                
                 <p class="ink-vspace"><span class="ink-label info">Tip</span> Before diving into the documentation, download the Ink package available on our <a href="./">homepage</a>
@@ -512,7 +494,7 @@
                 <p>You can either choose to declare what you want to hide or what you need to show. To do this we have several ways:</p>
                 <ul>
                     <li><code>.hide</code> - hides the element, regardless of media queries</li>
-                    <li><code>.show</code> - hides the element, regardless of media queries</li>
+                    <li><code>.show</code> - shows the element, regardless of media queries</li>
                 </ul>
                 <p>To control visibility in a media query context we have:</p>
                 <ul>
@@ -523,13 +505,29 @@
                     <li><code>.hide-medium</code> - hides (display: none) elements in medium layouts</li>
                     <li><code>.hide-small</code> - hides (display: none) elements in small layouts</li>
                 </ul>
-                <p>So, if you need an element to be visible only in small screens, you'll need to add the <code>.hide</code> and <code>.show-small</code> classes.</p>
+                <p>So, Ink's philosophy is that you should have the flexibility to either hide everything and then show what you need or do the reverse. This makes it easy to use less code and be clearer.</p>
+                <p>Here's how you should think about this whole hiding and showing thing: if you have an element that you want to only be visible in small screens, then add the <code>.hide</code> class to begin by hiding it from everyone, then, add the <code>.show-small</code> class to show the element in that screen size.</p>
+                <p>Now, say you need to show something in both small and medium screens, in that case, you're better off simply hiding it from the large view, by using the <code>.hide-large</code> class.</p>
+                <p>Since visibile is the default state of elements, in the second example, you don't really need to add the <code>.show</code> class to make sure the element is visible in all other screen sizes. However, you do have that class available, in case it may be useful.</p>
                 <p><span class="ink-label info">Note</span> that content hidden via these classes won't be read out loud by screenreaders.</p>
-                <p>Let's use some text for a really simple example. Say you have a sentence you want to make progressively longer in each screen width:</p>
+                <p>Here's a simple helper bar to let you know which screen size you're operating in, it uses the <code>hide</code> class to hide the words "small", "medium" and "large" by default and then the correct show classes to show each word in the corresponding screen size. You can see the code below.</p>
+                <div class="screen-size-helper example">
+                    <p class="title">Screen size:</h1>
+                    <ul class="unstyled">
+                        <li class="hide show-small small">SMALL</li>
+                        <li class="hide show-medium medium">MEDIUM</li>
+                        <li class="hide show-large large">LARGE</li>
+                    </ul>
+                </div>
                 <pre class="prettyprint linenums">
-&lt;p class=&quot;hide show-small&quot;&gt;I love Mexican food.&lt;/p&gt;
-&lt;p class=&quot;hide show-medium&quot;&gt;I love Mexican food, such as guacamole.&lt;/p&gt;
-&lt;p class=&quot;hide show-large&quot;&gt;I love Mexican food, such as guacamole and would eat it every day if I could.&lt;/p&gt;                </pre>
+&lt;div class=&quot;screen-size-helper example&quot;&gt;
+    &lt;p class=&quot;title&quot;&gt;Screen size:&lt;/h1&gt;
+    &lt;ul class=&quot;unstyled&quot;&gt;
+        &lt;li class=&quot;hide show-small small&quot;&gt;SMALL&lt;/li&gt;
+        &lt;li class=&quot;hide show-medium medium&quot;&gt;MEDIUM&lt;/li&gt;
+        &lt;li class=&quot;hide show-large large&quot;&gt;LARGE&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;                </pre>
 
                 <div class="example">
                     <p class="hide show-small"><strong>I love Mexican food.</strong></p>
