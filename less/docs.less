@@ -52,7 +52,7 @@ mark {
     &.example {
 
         .dropdown-menu {
-            
+            display: block;
             position:relative;
             left: 0;
         }
@@ -155,6 +155,13 @@ a.active    {color: @link-active-color;}
         }
     }
 }
+
+    #meo_screenshot,
+    #musicbox_screenshot,
+    #intra_screenshot,
+    #livebots_screenshot {
+        > .modal-body {padding: 0}
+    }
 
 /*...................................................  Footer  ...................................................*/
 
