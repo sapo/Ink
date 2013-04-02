@@ -2,32 +2,31 @@
 <html lang="en">
 <head>
         <base href="./">
-    	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
-	
     
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/ink.css">
-    <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/docs.css">	
+    <link rel="stylesheet" type="text/css" href="../css/ink.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script type="text/javascript" src="../js/html5shiv.js"></script>
         <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
@@ -35,16 +34,8 @@
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
-    
-	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
 
-	<!-- 
-    DEFINES TRANSITIONS: appear3d, slide, hover
-	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
-    -->
-
-
-    <!-- Currently in development -->
+    <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
@@ -56,22 +47,23 @@
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
-    <!-- End of modules in development -->
-    
-    <!-- 
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
-	<script type="text/javascript" src="../js/lang-css.js"></script>
-    -->
-
-
     <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
 </head>
 <body onload="prettyPrint()">
+<div class="ink-grid">
+    <div class="screen-size-helper">
+        <p class="title">Screen size:</h1>
+        <ul class="unstyled">
+            <li class="hide-all show-small small">SMALL</li>
+            <li class="hide-all show-medium medium">MEDIUM</li>
+            <li class="hide-all show-large large">LARGE</li>
+        </ul>
+    </div>
+</div>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide show-large">
+    <nav class="ink-navigation ink-grid hide-all show-large">
         <ul class="menu horizontal flat black shadowed">
             <li>
                                         <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
@@ -132,7 +124,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide show-medium show-small">
+    <nav class="ink-navigation ink-grid hide-large">
         <ul class="menu vertical flat black">
             <li>
             
@@ -141,7 +133,7 @@
                         </li>           
         </ul>
 
-        <ul class="menu vertical flat black hide" id="topbar_menu">
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
                                                     <li >
 
                                 <a href="getting-started.html">Getting started</a>
@@ -217,17 +209,15 @@
     <section id="getink">
         <div class="column-group gutters" id="download">
             <div class="large-25 medium-50 small-100">
-                <a href="./download/latest" >Version 0.1.0</a>
+                <a href="./download/latest">Version 0.1.0</a>
                 <p>Download the current build.</p>
             </div>
             <div class="large-25 medium-50 small-100">
-                <a href="./download" >Custom</a>
-                <p>
-                    Customize Ink to better fit your needs.
-                </p>
+                <a href="./download">Custom</a>
+                <p>Customize Ink to better fit your needs.</p>
             </div>
             <div class="large-25 medium-50 small-100">
-                <a href="./download/github" >Github repo</a>
+                <a href="./download/github">Github repo</a>
                 <p>Download, fork, pull, comment or report bugs.</p>
             </div>
             <div class="large-25 medium-50 small-100">
@@ -260,90 +250,93 @@
     </div>
     <!--end advantages-->
 </div>
-    <!--showcase area-->
+
+<!--showcase area-->
 <div class="showcase">
     <div class="ink-grid">
-                <h3>Made with Ink</h3>
-                <p>Nothing better to see how flexible and versatile Ink is than to take a look at some websites and apps made with the framework. We'll keep expanding this section to include the best projects around. If you've built something with Ink, <a href="mailto:who?">drop us a line</a> so we can consider including a shot of your product right here.</p>
+        <h3>Made with Ink</h3>
+        <p>Nothing better to see how flexible and versatile Ink is than to take a look at some websites and apps made with the framework. We'll keep expanding this section to include the best projects around. If you've built something with Ink, <a href="mailto:who?">drop us a line</a> so we can consider including a shot of your product right here.</p>
         <div class="column-group gutters">
-            <div class="large-25 medium-50 small-100">
+            <div class="large-20 medium-50 small-100">
                 <img src="./assets/imgs/shot_meo.png" id="meo" class="clickable">
                 <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
             </div>
-            <div class="large-25 medium-50 small-100">
+            <div class="large-20 medium-50 small-100">
                 <img src="./assets/imgs/shot_musicbox.png" class="clickable" id="musicbox">
                 <p class="vspace"><a href="http://musicbox.sapo.pt">Musicbox</a> is the leading music streaming service in Portugal, the new website was made with Ink.</p>
             </div><a href=""></a>
-            <div class="large-25 medium-50 small-100">
-                <img src="./assets/imgs/shot_intra.png" clss="clickable" id="intra">
+            <div class="large-20 medium-50 small-100">
+                <img src="./assets/imgs/shot_intra.png" class="clickable" id="intra">
                 <p class="vspace"><a href="http://sapo.pt">SAPO</a> Intranet. Our internal project management and documentation network has been rebuilt using Ink.</p>
             </div>
-            <div class="large-25 medium-50 small-100">
-                <img src="./assets/imgs/shot_ink.png" cla ss="clickable" id="">
+            <div class="large-20 medium-50 small-100">
+                <img src="./assets/imgs/shot_ink.png" class="clickable" id="">
                 <p class="vspace"><a href="http://ink.sapo.pt">Ink</a>. It may be very meta, but as you'd expect, this website is buit with Ink :)</p>
             </div>
-        </div>
-        <div class="column-group gutters">
-            <div class="large-25 medium-50 small-100">
+            <div class="large-20 medium-50 small-100">
                 <img src="./assets/imgs/shot_livebots.png" class="clickable" id="livebots">
-                <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
+                <p class="vspace"><a href="http://livebots.cc/">Live Bots</a> is a platform where people can interact with robots through the internet. They honored us by using Ink to build their website.</p>
             </div>
         </div>
     </div>
 </div>
-    <!--end showcase area-->
-    <div class="ink-shade fade">
-        <div class="ink-modal fade" data-trigger="#meo" data-width="600px" data-height="520px" id="meo_screenshot">
-            <div class="modal-header">
-                <button class="modal-close ink-dismiss"></button>
-                <h5>meo.pt</h5>
-            </div>
-            <div class="modal-body">
-                <img src="./assets/imgs/shot_meo.png">
-            </div>
-        </div>
-    </div>
-    <div class="ink-shade fade">
-        <div class="ink-modal fade" data-trigger="#musicbox" data-width="600px" data-height="520px" id="musicbox_screenshot">
-            <div class="modal-header">
-                <button class="modal-close ink-dismiss"></button>
-                <h5>meo.pt</h5>
-            </div>
-            <div class="modal-body">
-                <img src="./assets/imgs/shot_musicbox.png">
-            </div>
-        </div>
-    </div>
-    <div class="ink-shade fade">
-        <div class="ink-modal fade" data-trigger="#intra" data-width="600px" data-height="520px" id="intra_screenshot">
-            <div class="modal-header">
-                <button class="modal-close ink-dismiss"></button>
-                <h5>meo.pt</h5>
-            </div>
-            <div class="modal-body">
-                <img src="./assets/imgs/shot_intra.png">
-            </div>
-        </div>
-    </div>
-    <div class="ink-shade fade">
-        <div class="ink-modal fade" data-trigger="#livebots" data-width="600px" data-height="520px" id="livebots_screenshot">
-            <div class="modal-header">
-                <button class="modal-close ink-dismiss"></button>
-                <h5>meo.pt</h5>
-            </div>
-            <div class="modal-body">
-                <img src="./assets/imgs/shot_livebots.png">
-            </div>
-        </div>
-    </div>
 
+<!--end showcase area-->
+<div class="ink-shade fade">
+    <div class="ink-modal" data-trigger="#meo" data-width="600px" data-height="520px" id="meo_screenshot">
+        <div class="modal-header">
+            <button class="ink-dismiss modal-close"></button>
+            <h5>meo.pt</h5>
+        </div>
+        <div class="modal-body">
+            <img src="./assets/imgs/shot_meo.png">
+        </div>
+    </div>
+</div>
 
-            <script>
-                new SAPO.Ink.Modal('#meo_screenshot');
-                new SAPO.Ink.Modal('#musicbox_screenshot');
-                new SAPO.Ink.Modal('#intra_screenshot');
-                new SAPO.Ink.Modal('#livebots_screenshot');
-            </script>
+<div class="ink-shade fade">
+    <div class="ink-modal" data-trigger="#musicbox" data-width="600px" data-height="520px" id="musicbox_screenshot">
+        <div class="modal-header">
+            <button class="ink-dismiss modal-close"></button>
+            <h5>musicbox.sapo.pt</h5>
+        </div>
+        <div class="modal-body">
+            <img src="./assets/imgs/shot_musicbox.png">
+        </div>
+    </div>
+</div>
+
+<div class="ink-shade fade">
+    <div class="ink-modal" data-trigger="#intra" data-width="600px" data-height="520px" id="intra_screenshot">
+        <div class="modal-header">
+            <button class="ink-dismiss modal-close"></button>
+            <h5>sapo.pt</h5>
+        </div>
+        <div class="modal-body">
+            <img src="./assets/imgs/shot_intra.png">
+        </div>
+    </div>
+</div>
+
+<div class="ink-shade fade">
+    <div class="ink-modal" data-trigger="#livebots" data-width="600px" data-height="520px" id="livebots_screenshot">
+        <div class="modal-header">
+            <button class="ink-dismiss modal-close"></button>
+            <h5>livebots.cc</h5>
+        </div>
+        <div class="modal-body">
+            <img src="./assets/imgs/shot_livebots.png">
+        </div>
+    </div>
+</div>
+
+<script>
+    new SAPO.Ink.Modal('#meo_screenshot');
+    new SAPO.Ink.Modal('#musicbox_screenshot');
+    new SAPO.Ink.Modal('#intra_screenshot');
+    new SAPO.Ink.Modal('#livebots_screenshot');
+</script>
+
 <div class="ink-grid">
     <!--getting started & legal-->
     <div class="column-group gutters">
@@ -357,7 +350,7 @@
                 <li><a href="./download/latest">Download latest build</a>.</li>
                 <li>Open <code>my-page.html</code> if you want to serve Ink from your host or <code>my-cdn-page.html</code> if you want to serve Ink from our servers.</li>
                 <li>Check the template we provide and remove whatever you don't feel necessary for your project.</li>
-                <li>Make sure you have <code>ink.css</code>, <code>ink-ie.css</code> and <code>ink.js</code> included somewhere in the <code>&lt;head></code>.</li>
+                <li>Make sure you have <code>ink.css</code>, <code>ink-ie7.css</code> and <code>ink.js</code> included somewhere in the <code>&lt;head></code>.</li>
                 <li>Add your own stylesheets and scripts to carry all your project-specific changes.</li>
                 <li>Keep coming back to the documentation to help you along the way.</li>
             </ol>

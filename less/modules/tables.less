@@ -1,113 +1,80 @@
 table {
 
-	&.ink-table {
+    &.ink-table {
 
-		width: 100%;
-		border-collapse: collapse;
-		border-spacing: 0;
-		background: none;
-		
-			tr {
-				th {
-					padding: @table-cell-padding;
-					border-bottom: @table-cell-borderColor 1px solid;
-					background: none;
-					font-weight: 700;
-					line-height: @table-row-line-height;
-				}
-			}
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background: none;
+        
+        tr {
+            th {
+                padding: @table-cell-padding;
+                border-bottom: @table-cell-borderColor 1px solid;
+                background: none;
+                font-weight: 700;
+                line-height: @table-row-line-height;
+            }
 
-			tr {
-				td {
-					padding: @table-cell-padding;
-					border-bottom: @table-cell-borderColor 1px solid;
-					background: none;
-					line-height: @table-row-line-height;
-				}
-			}
+            td {
+                padding: @table-cell-padding;
+                border-bottom: @table-cell-borderColor 1px solid;
+                background: none;
+                line-height: @table-row-line-height;
+            }
+        }
 
-			tr {
-				td {
-					padding: @table-cell-padding;
-					border-bottom: @table-cell-borderColor 1px solid;
-					background: none;
-					line-height: @table-row-line-height;
-				}
-			}
+        &.alternating {
 
-		&.alternating {
+            tbody {
 
-				tbody {
+                tr:nth-child(odd) {
+                    background-color: @table-alternating-rowColor;
+                }
 
-					tr:nth-child(odd) {
-						background-color: darken(@body-background,3%);
-					}
+            }
+        }
 
-				}
+        &.hover {
 
-		}
+            tbody {
 
-		&.hover {
+                tr:hover {
+                    background: @table-row-hoverColor;
+                    cursor: pointer;
+                }
 
-			tbody {
+            }
+        }
 
-					tr:hover {
-						background: @table-row-hoverColor;
-						cursor: pointer;
-					}
+        &.bordered {
 
-				}
+            border-collapse: separate;
+            border: @table-cell-borderColor 1px solid;
+            #ink > #border-radius > .all (4px);
 
-		}
+            tr {
+                
+                th {
+                    border-left: @table-cell-borderColor 1px solid;
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
 
-		&.bordered {
+                &:last-child {
+                    td {
+                        border-bottom: none;
+                    }
+                }
 
-			border-collapse: separate;
-			border: @table-cell-borderColor 1px solid;
-			#ink > #border-radius > .all (4px);
-
-				tr {
-					th {
-						border-left: @table-cell-borderColor 1px solid;
-						&:first-child {
-							border-left: none;
-						}
-					}
-				}
-
-				tr {
-
-					&:last-child {
-						td {
-							border-bottom: none;
-						}
-					}
-
-					td {
-						border-left: @table-cell-borderColor 1px solid;
-						&:first-child {
-							border-left: none;
-						}
-					}
-				}
-
-				tr {
-
-					&:last-child {
-						td {
-							// border-bottom: none;
-						}
-					}
-
-					td {
-						border-left: @table-cell-borderColor 1px solid;
-						&:first-child {
-							border-left: none;
-						}
-					}
-				}
-
-		}
-
-	}
+                td {
+                    border-left: @table-cell-borderColor 1px solid;
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
 }

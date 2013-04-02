@@ -3,6 +3,10 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
     ( function(){
         var autoload = {
 
+            /***************************
+             * DatePicker - Default CSS selector is .ink-datepicker
+             ***************************/
+             'DatePicker': '.ink-datepicker',
 
             /***************************
              * Modal - Default CSS selector is .ink-modal
@@ -10,24 +14,24 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
              'Modal': '.ink-modal',
 
             /***************************
-             * Table - Default CSS selector is .ink-table
-             ***************************/
-             // 'Table': '.ink-table'
-
-            /***************************
-             * TreeView - Default CSS selector is .ink-tree-view
-             ***************************/
-             'TreeView': '.ink-tree-view',
-
-            /***************************
              * SortableList - Default CSS selector is .ink-sortable-list
              ***************************/
              'SortableList': '.ink-sortable-list',
 
             /***************************
-             * DatePicker - Default CSS selector is .ink-datepicker
+             * Table - Default CSS selector is .ink-table
              ***************************/
-             'DatePicker': '.ink-datepicker',
+             'Table': '.ink-table',
+
+            /***************************
+             * Tabs - Default CSS selector is .ink-tabs
+             ***************************/
+             'Tabs': '.ink-tabs',
+
+            /***************************
+             * TreeView - Default CSS selector is .ink-tree-view
+             ***************************/
+             'TreeView': '.ink-tree-view',
 
             /***************************
              * Toggle - Default CSS selector is .toggle
