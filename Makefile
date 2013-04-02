@@ -7,12 +7,12 @@ LESS_SOURCE_DIR = ./less
 # LESS FILES
 INK_LESS = ${LESS_SOURCE_DIR}/ink.less
 INK_IE7_LESS = ${LESS_SOURCE_DIR}/ink-ie7.less
-SITE_LESS = ${LESS_SOURCE_DIR}/site.less
+SITE_LESS = ${LESS_SOURCE_DIR}/docs.less
 
 # CSS output files
 INK_CSS = "${CSS_OUTPUT_DIR}/ink.css"
 INK_IE7_CSS = "${CSS_OUTPUT_DIR}/ink-ie7.css"
-SITE_CSS = "${CSS_OUTPUT_DIR}/site.css"
+SITE_CSS = "${CSS_OUTPUT_DIR}/docs.css"
 
 # Minified CSS output files
 INK_MIN_CSS = "${CSS_OUTPUT_DIR}/ink-min.css"
