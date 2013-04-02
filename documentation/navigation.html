@@ -2,32 +2,31 @@
 <html lang="en">
 <head>
         <base href="./">
-    	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
-	
     
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/ink.css">
-    <!-- Load Documentation sites' css -->
-	<link rel="stylesheet" type="text/css" href="../css/docs.css">	
+    <link rel="stylesheet" type="text/css" href="../css/ink.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="../css/ink-ltie9.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script type="text/javascript" src="../js/html5shiv.js"></script>
         <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
     <![endif]-->
@@ -35,16 +34,8 @@
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
-    
-	<!-- <link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"> -->
 
-	<!-- 
-    DEFINES TRANSITIONS: appear3d, slide, hover
-	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css">
-    -->
-
-
-    <!-- Currently in development -->
+    <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
@@ -56,32 +47,23 @@
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
-    <!-- End of modules in development -->
-    
-    <!-- 
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
-    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
-	<script type="text/javascript" src="../js/lang-css.js"></script>
-    -->
-
-
     <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
 </head>
 <body onload="prettyPrint()">
 <div class="ink-grid">
     <div class="screen-size-helper">
         <p class="title">Screen size:</h1>
         <ul class="unstyled">
-            <li class="hide show-small small">SMALL</li>
-            <li class="hide show-medium medium">MEDIUM</li>
-            <li class="hide show-large large">LARGE</li>
+            <li class="hide-all show-small small">SMALL</li>
+            <li class="hide-all show-medium medium">MEDIUM</li>
+            <li class="hide-all show-large large">LARGE</li>
         </ul>
     </div>
 </div>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide show-large">
+    <nav class="ink-navigation ink-grid hide-all show-large">
         <ul class="menu horizontal flat black shadowed">
             <li>
                                         <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
@@ -151,7 +133,7 @@
                         </li>           
         </ul>
 
-        <ul class="menu vertical flat black hide" id="topbar_menu">
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
                                                     <li >
 
                                 <a href="getting-started.html">Getting started</a>
@@ -492,7 +474,7 @@
     &lt;/ul&gt;
 &lt;/nav&gt;</pre>                
             
-                <nav class="ink-navigation vspace">
+                <nav class="ink-navigation">
                     <ul class="pagination">
                         <li class="previous disabled"><a href="#">Previous</a></li>
                         <li class="active"><a href="#">1</a></li>
@@ -502,7 +484,7 @@
                     </ul>
                 </nav>
 
-                <nav class="ink-navigation vspace">
+                <nav class="ink-navigation">
                     <ul class="pagination rounded shadowed blue">
                         <li class="previous disabled"><a href="#">Previous</a></li>
                         <li class="active"><a href="#">1</a></li>
@@ -528,7 +510,7 @@
     &lt;/ul&gt;
 &lt;/nav&gt;</pre>                
                 <p>With a little added styling, it looks like this:</p>
-                <nav class="ink-navigation vspace">
+                <nav class="ink-navigation">
                     <ul class="pills green shadowed rounded">
                         <li class="active"><a href="#">Pill 1</a></li>
                         <li><a href="#">Pill 2</a></li>
@@ -550,7 +532,7 @@
     &lt;/ul&gt;
 &lt;/nav&gt;</pre>                
                 <p>Here's how it can look with some styling:</p>
-                <nav class="ink-navigation vspace">
+                <nav class="ink-navigation">
                     <ul class="breadcrumbs">
                         <li><a href="#">Start</a></li>
                         <li><a href="#">Level 1</a></li>
@@ -558,7 +540,7 @@
                         <li class="active"><a href="#">Current item</a></li>
                     </ul>
                 </nav>
-                <nav class="ink-navigation vspace">
+                <nav class="ink-navigation">
                     <ul class="breadcrumbs orange flat rounded shadowed">
                         <li><a href="#">Start</a></li>
                         <li><a href="#">Level 1</a></li>
@@ -566,7 +548,7 @@
                         <li class="active"><a href="#">Current item</a></li>
                     </ul>
                 </nav>
-                <p><span class="ink-label info">note</span> a separator is automatically added.</p>
+                <p class="vspace"><span class="ink-label info">note</span> a separator is automatically added.</p>
                 <h3>Customizing the separator</h3>
                 <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
                 
@@ -594,6 +576,7 @@
             <section id="nav-dropdowns">
                 
                 <h2>Dropdowns</h2>
+                
                 <div class="column-group gutters">
                     
                     <div class="large-30 medium-20 small-100">
@@ -602,7 +585,7 @@
                             <ul id="" class="dropdown-menu dropdown1">
                                 <li class="heading">Heading</li>
                                 <li class="separator-above"><a href="#">Option</a></li>
-                                <li><a href="#">Option</a></li>
+                                <li class="active"><a href="#">Option</a></li>
                                 <li class="separator-above disabled"><a href="#">Disabled option</a></li>
                                 <li class="submenu">
                                     <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
@@ -637,24 +620,89 @@
                             To build a basic menu you need an <code>&lt;ul&gt;</code> with the <code>.dropdown-menu</code> class and the <code>&lt;li&gt;</code>'s will be your menu items.
                         </p>
                         <p>
-                            Should you need headings, separators or disabled items, we have that covered aswell.
+                            Should you need headings, separators and active or disabled items, we have that covered aswell.
                         </p>
                         <ul>
                             <li><strong>Headings</strong> - add a <code>&lt;li&gt;</code> with the <code>.heading</code>;</li>
                             <li><strong>Separators</strong> - add a <code>&lt;li&gt;</code> with the <code>.separator-above</code> or <code>.separator-below</code> class.</li>
+                            <li><strong>Active</strong> - add the <code>.active</code> class to <code>&lt;li&gt;</code> elements you want to appear as active.</li>
                             <li><strong>Disabled</strong> - add the <code>.disabled</code> class to <code>&lt;li&gt;</code> elements you want to appear as disabled.</li>
                         </ul>
-                        <h3>What if i need a submenu?</h3>
-                        <p>
-                            As easy as adding the <code>.submenu</code> class to the <code>&lt;li&gt;</code> element that will contain your submenu. 
-                            Again, the first element should be the menu trigger: <code>&lt;a class="toggle" data-target="#mysubmenu"&gt;</code>.
-                        </p>
-                        <p>
-                            After that it's the same drill: <code>&lt;ul class="dropdown-menu" id="mysubmenu"&gt;</code> with your <code>&lt;li&gt;</code> items in it. 
-                            You can drill down as many levels as your want.
-                        </p>
                     </div>
                 </div>
+
+                <h3>What if i need a submenu?</h3>
+                <p>
+                    As easy as adding the <code>.submenu</code> class to the <code>&lt;li&gt;</code> element that will contain your submenu. 
+                    Again, the first element should be the menu trigger: <code>&lt;a class="toggle" data-target="#mysubmenu"&gt;</code>.
+                </p>
+                <p>
+                    After that it's the same drill: <code>&lt;ul class="dropdown-menu" id="mysubmenu"&gt;</code> with your <code>&lt;li&gt;</code> items in it. 
+                    You can drill down as many levels as your want.
+                </p>
+                
+                <h3>Theming</h3>
+                <p>
+                    As many other Ink components you can add theming to your dropdown menus. 
+                    Its as simple as adding a class with he color of your choice to the <code>.ink-dropdown</code> element.
+                </p>
+                <p>Available classes are: <code>.black</code>, <code>.blue</code>, <code>.green</code>, <code>.orange</code> and <code>.red</code></p>
+
+                <div class="column-group gutters">
+                
+                    <div class="ink-dropdown black example large-20 medium-33 small-100">
+                        <button class="ink-button toggle" data-target=".dropdown1">Dropdown <span class="icon-caret-down"></span></button>
+                        <ul id="" class="dropdown-menu dropdown1">
+                            <li class="heading">Heading</li>
+                            <li class="separator-above"><a href="#">Option</a></li>
+                            <li class="active"><a href="#">Option</a></li>
+                            <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                            <li><a href="#">Option</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ink-dropdown blue example large-20 medium-33 small-100">
+                        <button class="ink-button toggle" data-target=".dropdown1">Dropdown <span class="icon-caret-down"></span></button>
+                        <ul id="" class="dropdown-menu dropdown1">
+                            <li class="heading">Heading</li>
+                            <li class="separator-above"><a href="#">Option</a></li>
+                            <li class="active"><a href="#">Option</a></li>
+                            <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                            <li><a href="#">Option</a></li>
+                        </ul>
+                    </div>
+                    <div class="ink-dropdown green example large-20 medium-33 small-100">
+                        <button class="ink-button toggle" data-target=".dropdown1">Dropdown <span class="icon-caret-down"></span></button>
+                        <ul id="" class="dropdown-menu dropdown1">
+                            <li class="heading">Heading</li>
+                            <li class="separator-above"><a href="#">Option</a></li>
+                            <li class="active"><a href="#">Option</a></li>
+                            <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                            <li><a href="#">Option</a></li>
+                        </ul>
+                    </div>
+                    <div class="ink-dropdown orange example large-20 medium-33 small-100">
+                        <button class="ink-button toggle" data-target=".dropdown1">Dropdown <span class="icon-caret-down"></span></button>
+                        <ul id="" class="dropdown-menu dropdown1">
+                            <li class="heading">Heading</li>
+                            <li class="separator-above"><a href="#">Option</a></li>
+                            <li class="active"><a href="#">Option</a></li>
+                            <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                            <li><a href="#">Option</a></li>
+                        </ul>
+                    </div>
+                    <div class="ink-dropdown red example large-20 medium-33 small-100">
+                        <button class="ink-button toggle" data-target=".dropdown1">Dropdown <span class="icon-caret-down"></span></button>
+                        <ul id="" class="dropdown-menu dropdown1">
+                            <li class="heading">Heading</li>
+                            <li class="separator-above"><a href="#">Option</a></li>
+                            <li class="active"><a href="#">Option</a></li>
+                            <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                            <li><a href="#">Option</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
                 
                 <p>
                     <span class="ink-label info toggle">code</span> 
