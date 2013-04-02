@@ -285,10 +285,10 @@ table {
 .content-right {
   text-align: right;
 }
-.show {
+.show-all {
   display: inherit;
 }
-.hide {
+.hide-all {
   display: none;
 }
 .ink-grid {
