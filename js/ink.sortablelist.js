@@ -51,7 +51,7 @@
         }
 
         this._options = SAPO.extendObj({
-            dragLabel: 'drag here'
+            dragObject: 'li'
         }, SAPO.Dom.Element.data(this._element));
 
         this._options = SAPO.extendObj( this._options, options || {});
@@ -75,6 +75,12 @@
         }
         else {
             throw new TypeError('You must pass a selector expression/DOM element as 1st option or provide a model on 2nd argument!');
+        }
+
+
+        this._dragTriggers = Selector.select( this._options.dragObject, this._element );
+        if( !this._dragTriggers ){
+            throw "[SAPO.Ink.SortableList] :: Drag object not found";
         }
 
         this._init();
@@ -185,6 +191,8 @@
 
             Aux.restoreIdAndClasses(this._element, this);
 
+            this._dragTriggers = Selector.select( this._options.dragObject, this._element );
+
             // subscribe events
             if (!skipObs) { this._observe(); }
         },
@@ -196,18 +204,30 @@
         _onDown: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (tgtEl.nodeName.toLowerCase() === 'i') {
-                tgtEl = tgtEl.parentNode;
+            // if (tgtEl.nodeName.toLowerCase() === 'i') {
+            //     tgtEl = tgtEl.parentNode;
+            // }
+            // if ((tgtEl.nodeName.toLowerCase() !== 'li' && ( tgtEl.nodeName.toLowerCase() !== 'span' || !Css.hasClassName(tgtEl, 'ink-label')) ) ) { return; }
+            
+            if( this._dragTriggers.indexOf(tgtEl) === -1 ){
+                while( (this._dragTriggers.indexOf(tgtEl) === -1) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                    tgtEl = tgtEl.parentNode;
+                }
+
+                if( tgtEl.nodeName.toLowerCase() === 'body' )
+                    return;
             }
-            if ((tgtEl.nodeName.toLowerCase() !== 'li' && ( tgtEl.nodeName.toLowerCase() !== 'span' || !Css.hasClassName(tgtEl, 'ink-label')) ) ) { return; }
+
             Event.stop(ev);
 
             var liEl;
             if( tgtEl.nodeName.toLowerCase() !== 'li' ){
-                liEl = tgtEl.parentNode;
-            } else {
-                liEl = tgtEl;
+                while( (tgtEl.nodeName.toLowerCase() !== 'li') && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                    tgtEl = tgtEl.parentNode;
+                }
             }
+            liEl = tgtEl;
+
             this._index = Aux.childIndex(liEl);
             this._height = liEl.offsetHeight;
             this._startY = this._getY(ev);
