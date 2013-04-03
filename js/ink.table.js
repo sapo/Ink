@@ -197,6 +197,10 @@
                 try {
                     label = thEl.innerHTML; // is innerText supported?
 
+                    if (label.match(/^\-?\d+\.?\d*$/)) {
+                        label = parseFloat(label);
+                    }
+
                     name = thEl.getAttribute('id');
                     if (name) {
                         if (name.indexOf('th_') === 0) {
