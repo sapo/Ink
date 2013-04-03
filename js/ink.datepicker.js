@@ -66,6 +66,11 @@
      *      @... {optional Object}   wDay             Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
      */
     SAPO.Ink.DatePicker = function(selector, options) {
+
+        if (selector) {
+            this._dataField = Aux.elOrSelector(selector, '1st argument');
+        }
+
         this._options = SAPO.extendObj({
             instance:        'scdp_' + Math.round(99999*Math.random()),
             format:          'yyyy-mm-dd',
@@ -109,15 +114,13 @@
                 5:'Sexta',
                 6:'S&aacute;bado'
             }
-        }, options || {});
+        }, Element.data(this._dataField) || {});
+
+        this._options = SAPO.extendObj(this._options, options || {});
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
         this._hoverPicker = false;
-
-        if (selector) {
-            this._dataField = Aux.elOrSelector(selector, '1st argument');
-        }
 
         this._picker = null;
         if (this._options.pickerField) {
@@ -262,8 +265,8 @@
                 }
             }
 
-            //dom.insertBefore(this._containerObject, dom.childNodes[0]);
-            this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
+            dom.insertBefore(this._containerObject, dom.childNodes[0]);
+            // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
 
             if (!this._picker) {
                 Event.observe(this._dataField,'focus',function(){
@@ -275,11 +278,12 @@
 
                     if ( this._options.position == 'bottom' )
                     {
-                    	this._containerObject.style.top = Element.elementHeight(this._dataField) + (Element.offsetTop(this._dataField)-parentOffsetTop) + 'px';
+                    	this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
                     }
                     else
                     {
-                    	this._containerObject.style.left = Element.elementWidth(this._dataField) + (Element.offsetLeft(this._dataField)-parentOffsetLeft) + 'px';
+                        this._containerObject.style.left = Element.elementWidth(this._dataField) + (Element.offsetLeft(this._dataField)-parentOffsetLeft) + 'px';
+                    	this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offsetLeft(this._dataField) +'px';
                     }
                     //dom.appendChild(this._containerObject);
                     this._updateDate();

@@ -42,6 +42,7 @@
 
 
         this._options = SAPO.extendObj({
+            preventUrlChange: false,
             active: undefined,
             disabled: [],
             onBeforeChange: undefined,
@@ -156,7 +157,11 @@
             if(target.nodeName.toLowerCase() !== 'a') {
                 return;
             }
-            window.location.hash = target.getAttribute('href');
+
+            if( this._options.preventUrlChange.toString() !== 'true'){
+                window.location.hash = target.getAttribute('href');
+            }
+
             if(target === this._activeMenuLink){
                 return;
             }
