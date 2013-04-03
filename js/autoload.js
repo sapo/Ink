@@ -19,6 +19,11 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
              'SortableList': '.ink-sortable-list',
 
             /***************************
+             * Sticky - Default CSS selector is .ink-navigation.sticky
+             ***************************/
+             'Sticky': '.ink-navigation.sticky',
+
+            /***************************
              * Table - Default CSS selector is .ink-table
              ***************************/
              'Table': '.ink-table',

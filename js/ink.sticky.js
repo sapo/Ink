@@ -87,8 +87,8 @@
             }
 
 
-            // if( !this._scrollTimeout ){
-            //     this._scrollTimeout = setTimeout(function(){
+            if( !this._scrollTimeout ){
+                this._scrollTimeout = setTimeout(function(){
 
                     var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
 
@@ -133,8 +133,8 @@
                     }
 
                     this._scrollTimeout = undefined;
-                // }.bindObj(this),250);
-            // }
+                }.bindObj(this),250);
+            }
         },
 
         _onResize: function(){
