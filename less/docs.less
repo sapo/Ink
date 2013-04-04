@@ -14,6 +14,8 @@
 
 body {
     background: @body-background;
+    //height:100%;
+    //overflow:auto;
 }
 
 h2 span {
@@ -223,11 +225,12 @@ footer {
 
 #topbar {   
     position: fixed;
-    top:0;
+    top: 0;
     width: 100%;
-    background:@topbar-bgColor;
+    background: @topbar-bgColor;
     #ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
     z-index: @layer-100;
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
     
     .ink-navigation {
     
@@ -535,6 +538,10 @@ table.ink-table.browser-support {
     &:hover {
         cursor: pointer;
     }
+}
+
+.sticky {
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
 }
 
 @media screen and (max-width: 649px) {
