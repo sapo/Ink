@@ -147,7 +147,11 @@
 
         this._render();
 
-        if ( this._options.startDate ) this.setDate( );
+        if ( !this._options.startDate ){
+            if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
+                this.setDate( _dataField.value );
+            }
+        }
 
         Aux.registerInstance(this, this._containerObject, 'datePicker');
     };
