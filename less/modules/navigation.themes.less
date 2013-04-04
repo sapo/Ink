@@ -18,7 +18,7 @@
                             border-bottom: 1px solid fade(@black,15%);
                             padding: @navigation-padding;
                             
-                            &:hover { background: fade(@black,10%); }
+                            &:hover { background: lighten(@black,90%); }
 
                             &:last-child a { border: none; }
                         }
@@ -104,7 +104,7 @@
 
             // black theme
             &.black {
-                #ink > #gradients > .gradient (lighten(@black,20%), @black, 150%);
+                #ink > #gradients > .gradient (lighten(@black,30%), lighten(@black,20%), 150%);
                 li {
 
                     ul.submenu { 
@@ -214,11 +214,59 @@
                 }
             }
 
-            &.white, &.grey, &.black, &.orange, &.blue, &.green, &.red {
+            &.white {
                 li {
                     &.active {
                         
-                        background: fade(@black,25%);
+                        // background: lighten(@black,75%);
+                        #ink > #gradients > .gradient (darken(@white,15%), darken(@white,25%), 150%);
+                        &:hover {
+                            a {
+                            #ink > #gradients > .gradient (darken(@white,25%), darken(@white,35%), 150%);                            
+                            }
+                        }
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {                            
+                            #ink > #gradients > .gradient (darken(@white,15%), darken(@white,25%), 150%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.grey {
+                li {
+                    &.active {
+                        
+                        #ink > #gradients > .gradient (lighten(@black,75%), lighten(@black,60%), 150%);
+
+                        &:hover {
+                            a {
+                                #ink > #gradients > .gradient (lighten(@black,65%), lighten(@black,50%), 150%);    
+                            }                                                    
+                        }
+
                     }
 
                     a {
@@ -226,7 +274,212 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: fade(@black,25%);
+                            #ink > #gradients > .gradient (lighten(@black,75%), lighten(@black,60%), 150%);                                                    
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.black {
+                li {
+                    &.active {
+                        
+                        #ink > #gradients > .gradient (lighten(@black,25%), lighten(@black,5%), 150%);                                            
+                        &:hover {
+                            a {
+                                #ink > #gradients > .gradient (lighten(@black,15%), lighten(@black,0%), 150%);
+                            }
+                        }
+
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            #ink > #gradients > .gradient (lighten(@black,25%), lighten(@black,5%), 150%);                                            
+
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: lighten(@black,90%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.orange {
+                li {
+                    &.active {
+                        
+                        #ink > #gradients > .gradient (darken(@orange,10%), darken(@orange,20%), 150%); 
+                        &:hover {
+                            a {
+                                #ink > #gradients > .gradient (darken(@orange,15%), darken(@orange,25%), 150%);
+                            }
+                        }                                          
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            #ink > #gradients > .gradient (darken(@orange,10%), darken(@orange,20%), 150%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.blue {
+                li {
+                    &.active {
+                        
+                        #ink > #gradients > .gradient (darken(@blue,10%), darken(@blue,20%), 150%); 
+                        &:hover {
+                            a {
+                                #ink > #gradients > .gradient (darken(@blue,15%), darken(@blue,25%), 150%);
+                            }
+                        } 
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            #ink > #gradients > .gradient (darken(@blue,10%), darken(@blue,20%), 150%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.green {
+                li {
+                    &.active {
+                        
+                        #ink > #gradients > .gradient (darken(@green,10%), darken(@green,20%), 150%); 
+                        &:hover {
+                            a {
+                                #ink > #gradients > .gradient (darken(@green,15%), darken(@green,25%), 150%);
+                            }
+                        } 
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            #ink > #gradients > .gradient (darken(@green,10%), darken(@green,20%), 150%);                             
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.red {
+                li {
+                    &.active {
+                        
+                        #ink > #gradients > .gradient (darken(@red,10%), darken(@red,20%), 150%); 
+                        &:hover {
+                            a {
+                                #ink > #gradients > .gradient (darken(@red,15%), darken(@red,25%), 150%);
+                            }
+                        }
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            #ink > #gradients > .gradient (darken(@red,10%), darken(@red,20%), 150%); 
                         }
                     }
 
