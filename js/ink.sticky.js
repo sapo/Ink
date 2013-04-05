@@ -60,6 +60,8 @@
          */
         this._options = SAPO.extendObj(this._options,options || {});
 
+        this._topScroll = 0;
+
         this._init();
     };
 
@@ -87,10 +89,10 @@
             }
 
 
-            if( this._scrollTimeout ){
-                clearTimeout(this._scrollTimeout);
-            }
-            this._scrollTimeout = setTimeout(function(){
+            // if( this._scrollTimeout ){
+            //     clearTimeout(this._scrollTimeout);
+            // }
+            // this._scrollTimeout = setTimeout(function(){
 
                 var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
 
@@ -115,10 +117,12 @@
 
                 } else if( ( window.scrollY <= this._options.originalTop ) ){
                     this._rootElement.style.top = this._options.originalTop + 'px';
-                    this._rootElement.style.position = this._options.originalPosition;
                     this._rootElement.style.width = this._options.originalWidth +'px';
-                    var topScroll = ((window.scrollY-39)>=0) ? (window.scrollY-39) : 0;
-                    window.scrollTo( topScroll );
+
+                    if( this._rootElement.style.position !== this._options.originalPosition ){
+                        this._rootElement.style.position = this._options.originalPosition;
+                        window.scrollTo( 0, window.scrollY-100 );
+                    }
 
                 } else if( ( window.scrollY+parseInt(computedStyle.height,10) ) >= (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ){
 
@@ -135,8 +139,8 @@
                     this._rootElement.style.bottom = 'auto';
                 }
 
-                this._scrollTimeout = undefined;
-            }.bindObj(this),250);
+                // this._scrollTimeout = undefined;
+            // }.bindObj(this),250);
         },
 
         _onResize: function(){
