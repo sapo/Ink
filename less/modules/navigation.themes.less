@@ -104,7 +104,7 @@
 
             // black theme
             &.black {
-                #ink > #gradients > .gradient (lighten(@black,30%), lighten(@black,20%), 150%);
+                #ink > #gradients > .gradient (lighten(@black,10%), lighten(@black,5%), 150%);
                 li {
 
                     ul.submenu { 
@@ -124,6 +124,7 @@
             // orange theme
             &.orange {
                 #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+
                 
                 li {
 
@@ -218,12 +219,10 @@
                 li {
                     &.active {
                         
-                        // background: lighten(@black,75%);
-                        #ink > #gradients > .gradient (darken(@white,15%), darken(@white,25%), 150%);
+                        background: lighten(@black,85%);
+
                         &:hover {
-                            a {
-                            #ink > #gradients > .gradient (darken(@white,25%), darken(@white,35%), 150%);                            
-                            }
+                            a { background: lighten(@black,75%); }
                         }
                     }
 
@@ -232,7 +231,7 @@
                         text-decoration: none;
 
                         &:hover {                            
-                            #ink > #gradients > .gradient (darken(@white,15%), darken(@white,25%), 150%);
+                            background: lighten(@black,85%);
                         }
                     }
 
@@ -259,11 +258,11 @@
                 li {
                     &.active {
                         
-                        #ink > #gradients > .gradient (lighten(@black,75%), lighten(@black,60%), 150%);
+                        background: lighten(@black,70%);
 
                         &:hover {
                             a {
-                                #ink > #gradients > .gradient (lighten(@black,65%), lighten(@black,50%), 150%);    
+                                background: lighten(@black,65%);   
                             }                                                    
                         }
 
@@ -274,7 +273,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            #ink > #gradients > .gradient (lighten(@black,75%), lighten(@black,60%), 150%);                                                    
+                            background: lighten(@black,70%);                                              
                         }
                     }
 
@@ -302,11 +301,10 @@
                 li {
                     &.active {
                         
-                        #ink > #gradients > .gradient (lighten(@black,25%), lighten(@black,5%), 150%);                                            
+                        background: lighten(@black,20%);
+
                         &:hover {
-                            a {
-                                #ink > #gradients > .gradient (lighten(@black,15%), lighten(@black,0%), 150%);
-                            }
+                            a { background: lighten(@black,25%); }
                         }
 
                     }
@@ -316,7 +314,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            #ink > #gradients > .gradient (lighten(@black,25%), lighten(@black,5%), 150%);                                            
+                            background: lighten(@black,20%);                                        
 
                         }
                     }
@@ -345,10 +343,10 @@
                 li {
                     &.active {
                         
-                        #ink > #gradients > .gradient (darken(@orange,10%), darken(@orange,20%), 150%); 
+                        background: darken(@orange,15%);
                         &:hover {
                             a {
-                                #ink > #gradients > .gradient (darken(@orange,15%), darken(@orange,25%), 150%);
+                                background: darken(@orange,20%);
                             }
                         }                                          
                     }
@@ -358,7 +356,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            #ink > #gradients > .gradient (darken(@orange,10%), darken(@orange,20%), 150%);
+                            background: darken(@orange,15%);
                         }
                     }
 
@@ -386,10 +384,10 @@
                 li {
                     &.active {
                         
-                        #ink > #gradients > .gradient (darken(@blue,10%), darken(@blue,20%), 150%); 
+                        background: darken(@blue,15%);
                         &:hover {
                             a {
-                                #ink > #gradients > .gradient (darken(@blue,15%), darken(@blue,25%), 150%);
+                                background: darken(@blue,20%);
                             }
                         } 
                     }
@@ -399,7 +397,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            #ink > #gradients > .gradient (darken(@blue,10%), darken(@blue,20%), 150%);
+                            background: darken(@blue,15%);
                         }
                     }
 
@@ -426,10 +424,11 @@
                 li {
                     &.active {
                         
-                        #ink > #gradients > .gradient (darken(@green,10%), darken(@green,20%), 150%); 
+                        background: darken(@green,15%);
                         &:hover {
                             a {
-                                #ink > #gradients > .gradient (darken(@green,15%), darken(@green,25%), 150%);
+                        background: darken(@green,20%);
+                                
                             }
                         } 
                     }
@@ -439,7 +438,8 @@
                         text-decoration: none;
 
                         &:hover {
-                            #ink > #gradients > .gradient (darken(@green,10%), darken(@green,20%), 150%);                             
+                        background: darken(@green,15%);
+                                                    
                         }
                     }
 
@@ -466,10 +466,11 @@
                 li {
                     &.active {
                         
-                        #ink > #gradients > .gradient (darken(@red,10%), darken(@red,20%), 150%); 
+                        background: darken(@red,15%);
                         &:hover {
                             a {
-                                #ink > #gradients > .gradient (darken(@red,15%), darken(@red,25%), 150%);
+                            background: darken(@red,25%);
+                                
                             }
                         }
                     }
@@ -479,7 +480,8 @@
                         text-decoration: none;
 
                         &:hover {
-                            #ink > #gradients > .gradient (darken(@red,10%), darken(@red,20%), 150%); 
+                        background: darken(@red,15%);
+                            
                         }
                     }
 
@@ -807,7 +809,8 @@
             // black theme
             &.black {
                 li {
-                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                    #ink > #gradients > .gradient (lighten(@black,10%), @black, 150%);
+
                     &.disabled {
                         a {
                             color: @grey-60; 
@@ -1033,7 +1036,7 @@
 
             // black theme
             &.black {
-                 #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                 #ink > #gradients > .gradient (lighten(@black,10%), @black, 150%);
                  li.active a { 
                     color: @grey-60; 
                     #ink > #shadows > .text-shadow (0, -1px, 0, lighten(@black,8%));
