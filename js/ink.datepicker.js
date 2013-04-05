@@ -149,7 +149,7 @@
 
         if ( !this._options.startDate ){
             if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
-                this.setDate( _dataField.value );
+                this.setDate( this._dataField.value );
             }
         }
 
