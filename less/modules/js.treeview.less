@@ -1,0 +1,32 @@
+ul.ink-tree-view {
+
+    li {
+    
+        list-style-type: none;
+        span {
+            &:before {
+                display: inline-block;
+                margin-right: .3em;
+                font-family: FontAwesome;
+                content: "\f055";
+                margin-left: -1.4em;
+            }
+        }
+
+        &.open {
+            span {
+                &:before {
+                    content: "\f056";    
+                }
+            }
+        }
+
+        &.closed {
+            span {
+                &:before {
+                    content: "\f055";
+                }
+            }
+        }
+    }
+}
