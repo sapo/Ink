@@ -77,35 +77,33 @@ a.active    {color: @link-active-color;}
     }
 }
 
-#download {
-    text-align:center;
-
-    a {
-        font-weight: bold;
-        padding:.8em;
-        display: block;
-        #ink > #gradients > .gradient (#2e2e2e, #222, 100%);
-        #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
-        #ink > #border-radius > .all (@border-radius);
-        color: #FFF;
+#getink {
     
-        &:hover {
-            #ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
-            text-decoration: none;
+    margin-top: 0;
+    padding: 0 0 1.5em;
+
+    #download {
+        text-align:center;
+
+        a {
+            font-weight: bold;
+            padding:.8em;
+            display: block;
+            #ink > #gradients > .gradient (#2e2e2e, #222, 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
+            #ink > #border-radius > .all (@border-radius);
+            color: #FFF;
+        
+            &:hover {
+                #ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
+                text-decoration: none;
+            }
+        }
+
+        p {
+            margin: 1em 0 0 0;
         }
     }
-
-    p {
-        margin: 1em 0 0 0;
-    }
-}
-
-.ink-download {
-    text-align:center;
-}
-
-.ink-download input {
-    font-size:1.625em;
 }
 
 /*..........................................  Ink-UI  ..........................................*/
@@ -480,7 +478,7 @@ section + section {
     }
 }
 
-table.ink-table.browser-support {
+.ink-table.browser-support {
     .icon-ok {
         color: @green;
     }
@@ -496,6 +494,7 @@ table.ink-table.browser-support {
         font-weight: 500;
     }
 }
+
 .ink-package {
     #ink > #shadows > .box-shadow (0, 1px, 5px, 0, rgba(100,100,100,.5),inset);
     #ink > #border-radius > .all (4px);
