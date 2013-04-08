@@ -84,7 +84,7 @@
             onDismiss:    undefined,
             closeOnClick: false,
             skipDismiss:  false,
-            resizable:    true,
+            responsive:    true,
             disableScroll: false
         };
         
@@ -244,7 +244,7 @@
             /**
              * Let's 'resize' it:
              */
-            if(this._options.resizable) {
+            if(this._options.responsive) {
                 this._onResize(true);
                 Event.observe( window,'resize',this._handlers.resize );
             } else {
@@ -429,7 +429,7 @@
                 SAPO.Dom.Event.stopObserving(document, 'touchmove', this._onScrollBinded);
             }
 
-            if( this._options.resizable ){
+            if( this._options.responsive ){
                 SAPO.Dom.Event.stopObserving(window, 'resize', this._handlers.resize);
             }
 
