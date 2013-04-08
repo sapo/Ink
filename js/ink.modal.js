@@ -83,7 +83,7 @@
             onDismiss:    undefined,
             closeOnClick: false,
             responsive:    true,
-            disableScroll: false
+            disableScroll: true
         };
         
 
