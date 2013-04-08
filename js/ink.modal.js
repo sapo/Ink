@@ -40,7 +40,6 @@
      * @... {optional Function} onShow         callback to call when the modal is shown
      * @... {optional Function} onDismiss      callback to call when the modal is dismissed
      * @... {optional Boolean}  closeOnClick   defaults to false. if trueish, a click anywhere dismissed the modal.
-     * @... {optional Boolean}  skipClose      defaults to false. if trueish, no X is displayed on the top right corner of the modal (escape still dismissed though)
      */
     var Modal = function(selector, options) {
 
@@ -83,7 +82,6 @@
             onShow:       undefined,
             onDismiss:    undefined,
             closeOnClick: false,
-            skipDismiss:  false,
             responsive:    true,
             disableScroll: false
         };
