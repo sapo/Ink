@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="shortcut icon" href="http://10.134.132.33/inksite/assets/imgs/ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
@@ -46,27 +47,20 @@
     <script type="text/javascript" src="../js/ink.treeview.js"></script>
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/ink.table.js"></script>
+    <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
 <body onload="prettyPrint()">
-<div class="ink-grid">
-    <div class="screen-size-helper">
-        <p class="title">Screen size:</h1>
-        <ul class="unstyled">
-            <li class="hide-all show-small small">SMALL</li>
-            <li class="hide-all show-medium medium">MEDIUM</li>
-            <li class="hide-all show-large large">LARGE</li>
-        </ul>
-    </div>
-</div>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-all show-large">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
                         </li>           
                                                     <li >
 
@@ -126,9 +120,9 @@
 
     <nav class="ink-navigation ink-grid hide-large">
         <ul class="menu vertical flat black">
-            <li>
+            <li class="title">
             
-                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -190,44 +184,47 @@
     </nav>
 
     <div class="border"></div>
-</div><div class="ink-grid" id="nav-home">
+</div><div class="ink-grid">
     <div class="whatIs">
         <h1>Forms</h1>
         <p>Form building nightmare made easy.</p>
     </div>
-</div>
-
-<div class="ink-grid">
+    
     <div class="column-group gutters">
-        <div class="large-25 medium-20 small-100">
-            <nav class="ink-navigation sticky" data-offset-top="30px" data-offset-bottom="216px">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
                 <ul class="menu vertical black rounded">
-                    <li>
-                        <a class="scrollableLink home" href="./forms/index_dump#nav-home">
-                            <span class="icon-chevron-up ink-for-l"></span>
-                            <span class="ink-for-m ink-for-s">Back to Top</span>
-                        </a>
-                    </li>
-                    <li><a class="scrollableLink" href="./forms/index_dump#building">Form building</a></li>
-                    <li><a class="scrollableLink" href="./forms/index_dump#inline">Inline form</a></li>
-                    <li><a class="scrollableLink" href="./forms/index_dump#required">Required fields & warnings</a></li>
-                    <li><a class="scrollableLink" href="./forms/index_dump#checkboxes-radios">Checkboxes & radio buttons</a></li>
-                    <li><a class="scrollableLink" href="./forms/index_dump#buttons">Buttons</a></li>
+                    <li><a href="./index.php/forms/index_dump#"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a href="./index.php/forms/index_dump#building">Form building</a></li>
+                    <li><a href="./index.php/forms/index_dump#inline">Inline form</a></li>
+                    <li><a href="./index.php/forms/index_dump#required">Required fields & warnings</a></li>
+                    <li><a href="./index.php/forms/index_dump#checkboxes-radios">Checkboxes & radio buttons</a></li>
+                    <li><a href="./index.php/forms/index_dump#buttons">Buttons</a></li>
                 </ul>
             </nav>
         </div>
 
-
-        <div class="large-75 medium-70 small-100">
+        <div class="large-80 medium-75 small-100">
             
             <section id="building">
         
                 <h2>Block forms</h2>
                 <p>Forms are a notoriously tough thing to implement, especially if you want to include them in a fluid layout, so we tried extra hard to make everything work as painlessly as possible while giving you mulitple layout choices as you build your forms.</p>
-                <p>A form in Ink starts with a <code>&lt;form&gt;</code> tag with the <code>ink-form</code> class. The default layout is what we call a block form, which means that your labels will come above your fields. You can change this, don't worry, just keep reading, or jump to <a class="scrollableLink" href="#inline">inline forms</a> now.</p>
-                <p>After your <code>&lt;form&gt;</code> tag is in place, you start adding what Ink calls control groups with form labels and controls within. In practice, this means that inside your <code>&lt;form&gt;</code> you'll create a <code>&lt;div&gt;</code> with the <code>control-group</code> class. This is the wrapper for the group comprised of your label, your form control (e.g. text field, checkbox, etc), eventual notes and other text elements.</p>
-                <p>Finally, you want to make sure that the actual form element is wrapped in a <code>&lt;div&gt;</code> with the class <code>control</code></p>
-                <p><span class="ink-label info">code</span></p>
+                <p>A form in Ink starts with a <code>&lt;form&gt;</code> tag with the <code>.ink-form</code> class. The default layout is what we call a block form, which means that your labels will come above your fields. You can change this, don't worry, just keep reading, or jump to <a class="scrollableLink" href="#inline">inline forms</a> now.</p>
+                <p>After your <code>&lt;form&gt;</code> tag is in place, you start adding what Ink calls control groups with form labels and controls within. In practice, this means that inside your <code>&lt;form&gt;</code> you'll create a <code>&lt;div&gt;</code> with the <code>.control-group</code> class. This is the wrapper for the group comprised of your label, your form control (e.g. text field, checkbox, etc), eventual notes and other text elements.</p>
+                <p>Finally, you want to make sure that the actual form element is wrapped in a <code>&lt;div&gt;</code> with the class <code>.control</code></p>
+                <p><span class="ink-label info">Example</span> Notice the placeholder text, which is created with the <code>placeholder="Your text here"</code> attribute of the <code>&lt;input&gt;</code> tag.</p>
+                <form class="ink-form">
+                    <fieldset>
+                        <div class="control-group">
+                            <label for="text-input">Text input</label> 
+                            <div class="control">
+                                <input id="text-input" type="text" placeholder="Please input some text">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;form class=&quot;ink-form&quot;&gt;
     &lt;fieldset&gt;
@@ -239,20 +236,9 @@
         &lt;/div&gt;
     &lt;/fieldset&gt;
 &lt;/form&gt;</pre>
-                <p><span class="ink-label info">result</span></p>
-                <form class="ink-form">
-                    <fieldset>
-                        <div class="control-group">
-                            <label for="text-input">Text input</label> 
-                            <div class="control">
-                                <input id="text-input" type="text" placeholder="Please input some text">
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
                 <h3>File input field exception</h3>
-                <p>If you need a file input field, to allow users to upload files, then you need a little extra code to make sure you maintain consistency across browsers. So, if you have an <code>&lt;input type="file"&gt;</code>, then add an extra <code>&lt;div&gt;</code> with the class <code>input-file</code> around it. That is besides your <code>&lt;div class="control"&gt;</code>, not instead of it.</p>
-
+                <p>If you need a file input field, to allow users to upload files, then you need a little extra code to make sure you maintain consistency across browsers. So, if you have an <code>&lt;input type="file"&gt;</code>, then add an extra <code>&lt;div&gt;</code> with the class <code>.input-file</code> around it. That is besides your <code>&lt;div class="control"&gt;</code>, not instead of it. It's a little extra markup, but it will solve your file input problems.</p>
+                <p><span class="ink-label info">Example</span></p>
                 <form class="ink-form">
                     <div class="control-group">
                         <label for="file-input">File input</label> 
@@ -261,8 +247,7 @@
                         </div>
                     </div>
                 </form>
-
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;div class=&quot;control-group&quot;&gt;
     &lt;label&gt;File input&lt;/label&gt; 
@@ -271,9 +256,9 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </pre>
-
                 <h3>Adding tips</h3>
-                <p>Adding tips to forms fields is easy. Just add the message by using a paragraph element with the <code>tip</code> class. Keep it inside your control group and you're home safe.</p>
+                <p>Adding tips to forms fields is easy. Just add the message by using a paragraph element with the <code>.tip</code> class. Keep it inside your control group and you're home safe.</p>
+                <p><span class="ink-label info">Example</span> A simple text input field with a small note.</p>
                 <form action="" class="ink-form">
                     <fieldset>
                         <div class="control-group">
@@ -281,12 +266,11 @@
                             <div class="control">
                                 <input id="text-input" type="text" placeholder="Please input some text">
                             </div>
-                            <p class="tip">You can add help text to fields</p>
+                            <p class="tip">You can add help text to fields.</p>
                         </div>
                     </fieldset>
                 </form>
-
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;div class=&quot;control-group&quot;&gt;
     &lt;label for=&quot;text-input&quot;&gt;Text input&lt;/label&gt; 
@@ -297,8 +281,8 @@
 &lt;/div&gt;
 </pre>
                 <h3>Block form with inline fields</h3>
-                <p>You're not always going to just need form fields which are vertically stacked, so Ink lets you use layout classes to build different form field layouts. For that, you can easily use a <code>&lt;fieldset&gt;</code> with the <code>column-group</code> and <code>gutters</code> classes, and then, apply the <code>large-xx</code> <code>medium-xx</code> <code>small-xx</code> classes to your control-group <code>&lt;div&gt;</code></p>
-                <p><span class="ink-label info">tip</span> if you haven't yet, read the <a href="/layout">layout</a> section of this documentation to have a better understanding of how you can eaily fit your forms into multiple fluid columns.</p>
+                <p>You're not always going to just need form fields which are vertically stacked, so Ink lets you use layout classes to build different form field layouts. For that, you can easily use a <code>&lt;fieldset&gt;</code> with the <code>.column-group</code> and <code>.gutters</code> classes, and then, apply the <code>.large-xx</code> <code>.medium-xx</code> and <code>.small-xx</code> classes to your control-group <code>&lt;div&gt;</code></p>
+                <p><span class="ink-label info">Tip</span> if you haven't yet, read the <a href="/layout">layout</a> section of this documentation to have a better understanding of how you can eaily fit your forms into multiple fluid columns.</p>
 
                 <p><span class="ink-label info">Example</span> As you can see, these form elements are in blocks (labels over field), but each control group is inline with the previous.</p>
                 <form action="#" class="ink-form">
@@ -324,7 +308,7 @@
                     </fieldset>
                 </form>
 
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;form action=&quot;#&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset class=&quot;column-group gutters&quot;&gt;
@@ -354,13 +338,11 @@
             <section id="inline">
                 
                 <h2>Inline form</h2>
-                <p>Inline forms follow the same structure as the block ones.</p>
-                <p>
-                    Only here we take advantage of Ink's grid system and add the <code>column-group</code> class to the <code>control-group</code> wrapper, 
-                    after that you just have to define the width of the label and control using the proper grid classes like shown in the code example. In essence, you're using the same technique shown above for block forms with inline fields, only you're applying layout classes to your labels to match your fields, adding up to 100.
-                </p>
-
-                <p><span class="ink-label info">example</span></p>
+                <p>Inline forms are the ones where the labels are next to the controls, instead of on top. The basic structure is the same as for block forms, so read above for the basics.</p>
+                <p>Building an inline form structure is as simple as using the <a href="/layout">Layout</a> classes and simply making space for your labels and your controls, using the appropriate large, medium and small width classes.</p>
+                <p>Each of your <code>.control-group</code> elements, will now also have the <code>.column-group</code> and <code>.gutters</code> classes, allowing you to then define the width in the <code>&lt;label&gt;</code> and <code>c.ontrol</code> items.</p>
+                <p>So, to make it really simple: build a form just like before, but now define a width for your labels and another for your fields, such as 20/80 or 30/70, or whatever better fits your layout.</p>
+                <p><span class="ink-label info">Example</span> Here we made a 20% column for the labels aligning their text to the right-hand side and then added an 80% column for the form controls. We used the utility class <code>.content-right</code> to flush the labels right. Read more about these utilities in the <a href="/layout">Layout</a> and <a href="typography">Typography</a> sections.</p>
                 <form action="" class="ink-form vspace">
                     <fieldset>
                         
@@ -397,14 +379,13 @@
 
                     </fieldset>
                 </form>
-                <p><span class="ink-label info">Note</span> how we used the utility class <code>content-right</code> to flush the labels right. Read more about these utilities in the <a href="/layout">layout</a> and <a href="typography">typography</a> sections.</p>
 
-                <p><span class="ink-label info">code</span></p>   
+                <p><span class="ink-label info">Code</span></p>   
                 <pre class="prettyprint linenums">
 &lt;form class=&quot;ink-form&quot;&gt;
     &lt;fieldset&gt;
         &lt;div class=&quot;control-group column-group gutters&quot;&gt;
-            &lt;label class=&quot;large-20 content-right&quot; for=&quot;phone&quot;&gt;Text input&lt;/label&gt; 
+            &lt;label class=&quot;large-20 content-right&quot; for=&quot;phone&quot;&gt;Phone:&lt;/label&gt; 
             &lt;div class=&quot;control large-80&quot;&gt;
                 &lt;input type=&quot;text&quot; id=&quot;phone&quot;&gt;
             &lt;/div&gt;
@@ -454,7 +435,7 @@
 
                 </form>
 
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;form action=&quot;#&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset class=&quot;column-group gutters&quot;&gt;
@@ -488,17 +469,18 @@
 
     &lt;/fieldset&gt;
 &lt;/form&gt;</pre>
-
+            <p>Yes, it gets a little complicated, but it's very powerful and flexible. If you indent your code and use empty lines to separate your blocks, like we did in the example above, you'll be fine.</p>
             </section>
             
             
             <section id="required">
                 <h2>Required fields and warnings</h2>
                 <p>
-                    Ink forms also have modifier classes to address and highlight warnings and required fields.
-                    So if you have a required field, use the field wrapping element <code>control-group</code> to add a <code>required</code> class. Generated content will be added to mark your field as required, so you don't need to do it manually.
+                    Ink forms also have utility classes to address and highlight warnings and required fields.
+                    So if you have a required field, use the field wrapping element <code>.control-group</code> to add a <code>.required</code> class. Generated content will be added to mark your field as required, so you don't need to do it manually.
                 </p>
 
+                <p><span class="ink-label info">Example</span> Notice the red asterisk denoting the text input field as mandatory. Don't forget to add a simple instruction letting your users know what the asterisks mean.</p>
                 <form action="#" class="ink-form">
                     <fieldset>
                         
@@ -513,7 +495,7 @@
                     </fieldset>
                 </form>
 
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;form action=&quot;#&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset class=&quot;column-group gutters&quot;&gt;
@@ -528,12 +510,10 @@
 &lt;/form&gt;</pre>
 
 
-                <p>
-                    If you need to print a warning or an error message near your field, 
-                    then add the validation class to the wrapper <code>control-group</code> and a <code>warning</code> or <code>error</code> class. 
-                    Also add a message using a paragraph element with the <code>tip</code>.
-                </p>
+                <p>If something doesn't quite validate or is completely filled out, you can warn users, using color coding and adding an error or warning message. Just add two more classes to the <code>.control-group</code> wrapper. Use the <code>.validation</code> class to mark the field for validation and either <code>.warning</code> or <code>.error</code> for the styling (yellow or red color codes, as defaults, respectively).</p>
+                <p>Add a tip just as explained above to explain what the error is.</p>
 
+                <p><span class="ink-label info">Example</span></p>
                 <form action="#" class="ink-form">
                     <fieldset class="column-group gutters">
                         <div class="control-group required validation warning large-50 medium-100 small-100">
@@ -553,7 +533,7 @@
                     </fieldset>
                 </form>
 
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;form action=&quot;#&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset class=&quot;column-group gutters&quot;&gt;
@@ -581,40 +561,38 @@
                 <h2>Checkboxes and radio buttons</h2>
                 <p>
                     Lists of checkboxes or radio buttons follow the same structure as the previous examples,
-                    only here your inputs should be wrapped by a <code>&lt;ul&gt;</code> with the <code>control</code> class, in place of the <code>&lt;div&gt;</code>
+                    only here your inputs should be wrapped by a <code>&lt;ul&gt;</code> with the <code>.control</code> class, in place of the <code>&lt;div&gt;</code>. Then, each of your checkbox/label pairs needs to be inside an <code>&lt;li&gt;</code>
                 </p>
 
                 <p>
                     If you need to add a label to the field group, add a <code>&lt;p&gt;</code> element with the <code>label</code> class. 
-                    This pseudo-label will also display an icon if the control group contains required fields.
+                    This pseudo-label will also display an icon if the control group contains required fields, so don't forget to add this, if your checkboxes are a required input.
                 </p>
+                <p>For your giving your checkbox group a title, use the <code>&lt;legend&gt;</code> tag.</p>
 
-                <div class="column-group gutters">
-
-                    <div class="large-40 medium-100 small-100">
+                    <h3>Group of Checkboxes</h3>
+                    <p><span class="ink-label info">Example</span></p>
                         <form action="" class="ink-form">
                             <fieldset>
-                                <legend>Group of checkboxes</legend>
+                                <legend>Rock Bands</legend>
                                 <div class="control-group">
                                     <p class="label">Please select one or more options</p>
                                     <ul class="control unstyled">
-                                        <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Option 1</label></li>
-                                        <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Option 2</label></li>
-                                        <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Option 3</label></li>
-                                        <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Option 4</label></li>
+                                        <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
+                                        <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
+                                        <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
+                                        <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
                                     </ul>
                                 </div>
                             </fieldset>                     
                         </form>
 
-                        <p class="note">
-                            <strong>Note:</strong> to remove any undesired paddings or list-style add the class <code>unstyled</code> to the <code>&lt;ul&gt;</code>, 
-                            like shown in the <a href="./typography#nav-lists">lists section</a>.
+                        <p>
+                            <span class="ink-label info">Note</span> To remove any undesired paddings or list-style add the class <code>.unstyled</code> to the <code>&lt;ul&gt;</code>, 
+                            like shown in the <a href="./index.php/typography#nav-lists">lists section</a>.
                         </p>
-                    </div>
 
-                    <div class="large-60 medium-100 small-100">
-                        <p><span class="ink-label info">code</span></p>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;form action=&quot;&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset&gt;
@@ -631,31 +609,25 @@
         &lt;/div&gt;
     &lt;/fieldset&gt;                     
 &lt;/form&gt;</pre>
-                    </div>
-
-                </div>
-
-                <div class="column-group gutters">
-
-                    <div class="large-40 medium-100 small-100">
+                        
+                        <h3>Group of Radio Buttons</h3>
+                        <p><span class="ink-label info">Example</span></p>
                         <form action="" class="ink-form">
                             <fieldset>
-                                <legend>Group of radio buttons</legend>
+                                <legend>Pick a card</legend>
                                 <div class="control-group">
                                     <p class="label">Please select one of these options</p>
                                     <ul class="control unstyled">
-                                        <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Option 1</label></li>
-                                        <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Option 2</label></li>
-                                        <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Option 3</label></li>
-                                        <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">Option 4</label></li>
+                                        <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
+                                        <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
+                                        <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
+                                        <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
                                     </ul>
                                 </div>
                             </fieldset>
                         </form>
-                    </div>
 
-                    <div class="large-60 medium-100 small-100">
-                        <p><span class="ink-label info">code</span></p>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;form action=&quot;&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset&gt;
@@ -672,14 +644,12 @@
         &lt;/div&gt;
     &lt;/fieldset&gt;                     
 &lt;/form&gt;</pre>
-                    </div>
-                    
-                </div>
 
 
-                <div class="column-group gutters">
+                        <h3>Inline Checkboxes &amp; Radio Buttons</h3>
+                        <p>If you prefer to have your checkboxes or radio buttons inline, just add the <code>.inline</code> class to the containing <code>&lt;ul&gt;</code>.</p>
+                        <p><span class="ink-label info">Example</span> with checkboxes.</p>
 
-                    <div class="large-40 medium-100 small-100">
                         <form action="" class="ink-form">
                             <fieldset>
                                 <legend>Group of inline checkboxes</legend>
@@ -693,12 +663,8 @@
                                 </div>
                             </fieldset>                     
                         </form>
-                        <p>To have the checkboxes and labels inline add the <code>inline</code> class to the <code>&lt;ul&gt;</code> aswell.</p>
-                        <p>The same goes for the radio buttons.</p>
-                    </div>
 
-                    <div class="large-60 medium-100 small-100">
-                        <p><span class="ink-label info">code</span></p>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;form action=&quot;&quot; class=&quot;ink-form&quot;&gt;
     &lt;fieldset&gt;
@@ -715,9 +681,6 @@
         &lt;/div&gt;
     &lt;/fieldset&gt;                     
 &lt;/form&gt;</pre>
-                    </div>
-
-                </div>
             
             </section>
             
@@ -725,8 +688,8 @@
             <section id="buttons">
                 <h2>Buttons</h2>
                 <p>
-                    Your forms will need at least one button. You can crate a button with one of several markup elements, although <code>button</code> is most appropriate. 
-                    Just add the <code>ink-button</code> class for the button layout and then use a utility class to give it a specific meaning. Available styling is shown below.
+                    Your forms will need at least one button. You can create a button with one of several markup elements, although <code>&lt;button&gt;</code> is most appropriate. 
+                    Just add the <code>.ink-button</code> class for the button layout and then use a utility class to give it a specific meaning. Available styling is shown below.
                 </p>
                 
                 <table class="ink-table bordered">
@@ -790,18 +753,19 @@
                 </table>
 
                 
-                <h3>Button groups</h3>
+                <h3>Button Groups</h3>
                 <p>
                     Need to group buttons? Ink has an easy solution for that. 
-                    Wrap your ink-buttons in a <code>&lt;div&gt;</code> with the <code>button-group</code> class, this will render your buttons neatly grouped with rounded left corners on the first button and rounded right corners on the last one.
+                    Wrap your <code>.ink-buttons</code> in a <code>&lt;div&gt;</code> with the <code>.button-group</code> class, this will render your buttons neatly grouped with rounded left corners on the first button and rounded right corners on the last one.
                 </p>
+                <p><span class="ink-label info">Example</span></p>
                 <div class="button-group">
-                    <button class="ink-button">left</button>
-                    <button class="ink-button">middle</button>
-                    <button class="ink-button">right</button>
+                    <button class="ink-button">Left</button>
+                    <button class="ink-button">Middle</button>
+                    <button class="ink-button">Right</button>
                 </div>
 
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;div class=&quot;button-group&quot;&gt;
     &lt;button class=&quot;ink-button&quot;&gt;left&lt;/button&gt;
@@ -811,8 +775,9 @@
 
                 <h3>Inline button groups</h4>
                 <p>
-                    To achieve a button toolbar look wrap your button groups in a div with the <code>button-toolbar</code> class. Just create the toolbar and then add as many button-groups within it as you need.
+                    To achieve a button toolbar look wrap your button groups in a <code>&lt;div&gt;</code> with the <code>.button-toolbar</code> class. Just create the toolbar and then add as many <code>&lt;button-groups%gt;</code> within it as you need.
                 </p>
+                <p><span class="ink-label info">Example</span></p>
                 <div class="button-toolbar">
                     <div class="button-group">
                         <button class="ink-button"><span class="icon-file"></span></button>
@@ -833,7 +798,7 @@
                     </div>
                 </div>
                 
-                <p><span class="ink-label info">code</span></p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;div class=&quot;button-toolbar&quot;&gt;
     &lt;div class=&quot;button-group&quot;&gt;
@@ -887,14 +852,13 @@
         
         <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
-                <li><strong>Follow SAPO:</strong></li>
-                <li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
-                <li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
-                <li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+                <li><strong>Follow Ink:</strong></li>
+                <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
+                <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
         </div>
     </div>
 </footer>
-    <!-- <script type="text/javascript" src="http://ink.local/assets/js/ink.js"></script> -->
+    <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->
         </body>
 </html>

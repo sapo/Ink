@@ -1625,7 +1625,7 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.3em;
+  line-height: 1.3;
 }
 h1 small {
   font-size: .6em;
@@ -1638,7 +1638,7 @@ small {
 }
 /* Paragraphs  */
 p {
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 address + h1,
 address + h2,
@@ -2631,7 +2631,7 @@ h4 small {
 address {
   color: #888888;
   font-size: 1em;
-  line-height: 1.4em;
+  line-height: 1.4;
 }
 address p {
   margin-top: 0;
@@ -4943,8 +4943,10 @@ ul.icons li [class*=" icon-"] {
 .ink-navigation ul.pills li a:hover {
   background: none;
 }
-.ink-navigation ul.pills li.active,
 .ink-navigation ul.pills li:hover {
+  background: #d9d9d9;
+}
+.ink-navigation ul.pills li.active {
   background: #e6e6e6;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#bfbfbf');
   background: -moz-linear-gradient(top, #e6e6e6 0%, #bfbfbf 150%);
@@ -4954,10 +4956,12 @@ ul.icons li [class*=" icon-"] {
   background: -ms-linear-gradient(top, #e6e6e6 0%, #bfbfbf 150%);
   background: linear-gradient(to bottom, #e6e6e6 0%, #bfbfbf 150%);
 }
-.ink-navigation ul.pills li.active a,
-.ink-navigation ul.pills li:hover a {
+.ink-navigation ul.pills li.active a {
   color: #000000;
   background: none;
+}
+.ink-navigation ul.pills li.active:hover {
+  background: #b3b3b3;
 }
 .ink-navigation ul.pills li.disabled {
   background: #ffffff;

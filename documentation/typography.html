@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="shortcut icon" href="http://10.134.132.33/inksite/assets/imgs/ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
@@ -46,27 +47,20 @@
     <script type="text/javascript" src="../js/ink.treeview.js"></script>
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/ink.table.js"></script>
+    <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
 <body onload="prettyPrint()">
-<div class="ink-grid">
-    <div class="screen-size-helper">
-        <p class="title">Screen size:</h1>
-        <ul class="unstyled">
-            <li class="hide-all show-small small">SMALL</li>
-            <li class="hide-all show-medium medium">MEDIUM</li>
-            <li class="hide-all show-large large">LARGE</li>
-        </ul>
-    </div>
-</div>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-all show-large">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
                         </li>           
                                                     <li >
 
@@ -126,9 +120,9 @@
 
     <nav class="ink-navigation ink-grid hide-large">
         <ul class="menu vertical flat black">
-            <li>
+            <li class="title">
             
-                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -190,32 +184,27 @@
     </nav>
 
     <div class="border"></div>
-</div><div class="ink-grid" id="nav-home">
-     <div class="whatIs">
-          <h1>Typography</h1>
-          <p>Text is the fundamental content type.</p>
-     </div>
-</div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Typography</h1>
+        <p>Text is the fundamental content type.</p>
+    </div>
 
-<div class="ink-grid">
     <div class="column-group gutters">
-        <nav class="ink-navigation large-25 medium-30 small-100">
-            <ul class="menu vertical rounded black ink-vspace">
-                <li>
-                    <a class="scrollableLink home" href="./typography/index_dump#nav-home">
-                        <i class="icon-chevron-up ink-for-l"></i>
-                        <span class="ink-for-m ink-for-s">Back to Top</span>
-                    </a>
-                </li>
-                <li><a class="scrollableLink" href="./typography/index_dump#nav-fonts">Fonts</a></li>
-                <li><a class="scrollableLink" href="./typography/index_dump#nav-headings">Headings</a></li>
-                <li><a class="scrollableLink" href="./typography/index_dump#nav-body-hypertext">Body & Hypertext</a></li>
-                <li><a class="scrollableLink" href="./typography/index_dump#nav-lists">Lists</a></li>
-                <li><a class="scrollableLink" href="./typography/index_dump#nav-utilities">Utility Classes</a></li>
-                <li><a class="scrollableLink" href="./typography/index_dump#nav-additional">Additional Elements</a></li>
-            </ul>
-        </nav>
-        <div class="large-75 medium-70 small-100">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
+                <ul class="menu vertical rounded black ink-vspace">
+                    <li><a href="./index.php/typography/index_dump#"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a href="./index.php/typography/index_dump#nav-fonts">Fonts</a></li>
+                    <li><a href="./index.php/typography/index_dump#nav-headings">Headings</a></li>
+                    <li><a href="./index.php/typography/index_dump#nav-body-hypertext">Body & Hypertext</a></li>
+                    <li><a href="./index.php/typography/index_dump#nav-lists">Lists</a></li>
+                    <li><a href="./index.php/typography/index_dump#nav-utilities">Utility Classes</a></li>
+                    <li><a href="./index.php/typography/index_dump#nav-additional">Additional Elements</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="large-80 medium-70 small-100">
             <!--fonts start-->
             <section id="nav-fonts">
                 <h2>Fonts</h2>
@@ -264,7 +253,7 @@
                     <li><a href="#" class="hover">Hover</a></li>
                 </ul>
                 <h3>Notes</h3>
-                <p>If you need to add side notes to your text, apply the utility class <code>note</code> to your paragraphs to get smaller, faded text as in the example below.</p>
+                <p>If you need to add side notes to your text, apply the utility class <code>.note</code> to your paragraphs to get smaller, faded text as in the example below.</p>
                 <p class="note">This is a note.</p>
             </section>
             <!--body&hypertext_end-->
@@ -368,18 +357,18 @@
             <!--utilities_start-->
                 <h2>Utility Classes</h2>
                 <h3>Text size</h3>
-                <p>Although Ink is built for out-of-the-box readability there are always situations in which you need to control text-size for a particular block. For that, Ink offers three simple classes, <code>small</code> <code>large</code> and <code>extralarge</code> that, when added to any element, will change the text-size (and only the text-size), as per the examples below.</p>
-                <p class="small"><code>small</code> will set your text to 0.75 em of the original size.</p>
-                <p class="large"><code>large</code> will set your text to 1.2 em of the original size.</p>
-                <p class="extralarge"><code>extralarge</code> will set your text to 1.45 em of the original size.</p>
-                <p>In case you're not familiar with em units, be aware that these are relative units, which means that 1.2 em is not a fixed size, but a size which is 1.2 "units" bigger than your original size. This means that if you apply <code>large</code> to a <code>&lt;p&gt;</code> or to an <code>&lt;h2&gt;</code> you will always get text that is 1.2 times larger than the default size for that element.</p>
+                <p>Although Ink is built for out-of-the-box readability there are always situations in which you need to control text-size for a particular block. For that, Ink offers three simple classes, <code>.small</code> <code>.large</code> and <code>.extralarge</code> that, when added to any element, will change the text-size (and only the text-size), as per the examples below.</p>
+                <p class="small"><code>.small</code> will set your text to 0.75 em of the original size.</p>
+                <p class="large"><code>.large</code> will set your text to 1.2 em of the original size.</p>
+                <p class="extralarge"><code>.extralarge</code> will set your text to 1.45 em of the original size.</p>
+                <p>In case you're not familiar with em units, be aware that these are relative units, which means that 1.2 em is not a fixed size, but a size which is 1.2 "units" bigger than your original size. This means that if you apply <code>.large</code> to a <code>&lt;p&gt;</code> or to an <code>&lt;h2&gt;</code> you will always get text that is 1.2 times larger than the default size for that element.</p>
                 <h3>Font family</h3>
                 <p>You can easily configure the adequate font-stack for your website, but in a pinch, you can use simple Ink classes to switch to a serif or sans-serif typeface in any specific block of text.</p>
-                <p>Simply add the <code>serif</code> or the <code>sans</code> classes to a block of text to quickly switch to either family. The font-stacks can, of course, be editted in the appropriate LESS file.</p>
+                <p>Simply add the <code>.serif</code> or the <code>.sans</code> classes to a block of text to quickly switch to either family. The font-stacks can, of course, be editted in the appropriate LESS file.</p>
                 <p><span class="ink-label info">Note</span> Typography is primordial to the success of your website as it is an essential part of getting your written content across to your readers, always make informed typography choices and only resort to 'hacking' your choice of font face in exceptional situations.</p>
                 <h3>Color coding</h3>
-                <p>You can use Ink's utility classes <code>info</code>, <code>warning</code>, <code>caution</code> and <code>success</code> on html elements like headings, paragraphs, lists, mark, code, etc., to quickly style those elements using a basic color code that can greatly aid in adding meaning to your content.</p>
-                <p>Use the classes to obtain a color background with white text or use the extra <code>invert</code> class to write colored text on transparent background. You can tweak the colors used by each class in the <a href="/download">Ink customizer</a>, your own CSS or the conf.less file.</p>
+                <p>You can use Ink's utility classes <code>.info</code>, <code>.warning</code>, <code>.caution</code> and <code>.success</code> on html elements like headings, paragraphs, lists, mark, code, etc., to quickly style those elements using a basic color code that can greatly aid in adding meaning to your content.</p>
+                <p>Use the classes to obtain a color background with white text or use the extra <code>.invert</code> class to write colored text on transparent background. You can tweak the colors used by each class in the <a href="/download">Ink customizer</a>, your own CSS or the conf.less file.</p>
                 <div class="column-group gutters">
                     <div class="large-25 medium-25 small-50">
                         <h4 class="ink-label info">.info</h4>
@@ -401,8 +390,8 @@
                 
                 <h3>Labels</h3>
                 <p>You can easily use these utility classes to label sections of highlighted text. Simply create an inline level element with the class <code>.ink-label</code> and then add one of the utility classes to color code your inline label. This way, you can easily add a success message post a warning emphasize a particularly relevant information or display an error message.</p>
-                <p>We suggest you do not use punctuation before or after labels, but instead, precede and succeed with spaces.</p>
-                <p><span class="ink-label info">tip</span> The tips you see throughout this site use ink labels with the <code>info</code> class.</p>
+                <p>We suggest you do not use punctuation before or after labels, but instead, precede and succeed with spaces, although your mileage may vary with the ammount of consecutive labels you use.</p>
+                <p><span class="ink-label info">tip</span> The tips you see throughout this site use ink labels with the <code>.info</code> class.</p>
             </section>
             <!--utilities_end-->
                 
@@ -411,12 +400,12 @@
                 <h2>Additional elements</h2>
                 <p>These elements allow you to compose specific types of text, such as addresses or quotes. Use the example code for quick recipes that work.</p>
                 <h3>Abbreviations</h3>
-                <p>For abbreviations, simply use the HTML <code>abbr</code> tag, like so:</p>
+                <p>For abbreviations, simply use the HTML <code>&lt;abbr&gt;</code> tag, like so:</p>
                 <pre class="prettyprint linenums">
 &lt;p&gt;Ink was entirely developed with text editors, no &lt;abbr title=&quot;What You See Is What You Get&quot;&gt;WYSIWYG&lt;/abbr&gt; software was harmed.&lt;/p&gt;</pre>
                 <p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
                 <h3>Block quotes</h3>
-                <p>For block quotes, use the <code>blockquote</code> element, with an optional <code>cite</code> element to contain the source name, like so:</p>
+                <p>For block quotes, use the <code>&lt;blockquote&gt;</code> element, with an optional <code>&lt;cite&gt;</code> element to contain the source name, like so:</p>
                 <pre class="prettyprint linenums">
 &lt;blockquote&gt;
 &lt;p&gt;You can't always get what you want.&lt;/p&gt;
@@ -468,14 +457,13 @@
         
         <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
-                <li><strong>Follow SAPO:</strong></li>
-                <li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
-                <li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
-                <li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+                <li><strong>Follow Ink:</strong></li>
+                <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
+                <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
         </div>
     </div>
 </footer>
-    <!-- <script type="text/javascript" src="http://ink.local/assets/js/ink.js"></script> -->
+    <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->
         </body>
 </html>

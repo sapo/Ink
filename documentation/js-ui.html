@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="http://ink.local/assets/imgs/ink-favicon.ico">
+    <link rel="shortcut icon" href="http://10.134.132.33/inksite/assets/imgs/ink-favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
@@ -46,27 +47,20 @@
     <script type="text/javascript" src="../js/ink.treeview.js"></script>
     <script type="text/javascript" src="../js/ink.imagequery.js"></script>
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/ink.table.js"></script>
+    <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
 <body onload="prettyPrint()">
-<div class="ink-grid">
-    <div class="screen-size-helper">
-        <p class="title">Screen size:</h1>
-        <ul class="unstyled">
-            <li class="hide-all show-small small">SMALL</li>
-            <li class="hide-all show-medium medium">MEDIUM</li>
-            <li class="hide-all show-large large">LARGE</li>
-        </ul>
-    </div>
-</div>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-all show-large">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
                         </li>           
                                                     <li >
 
@@ -126,9 +120,9 @@
 
     <nav class="ink-navigation ink-grid hide-large">
         <ul class="menu vertical flat black">
-            <li>
+            <li class="title">
             
-                                        <a class="logoPlaceholder" href="./index.html" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -190,47 +184,57 @@
     </nav>
 
     <div class="border"></div>
-</div><div class="ink-grid" id="ui_home">
-   <div class="whatIs">
+</div><div class="ink-grid">
+    <div class="whatIs">
         <h1>Ink JS UI</h1>
         <p>Beautiful js components to go with your project.</p>
     </div>
-</div>
-
-
-<div class="ink-grid">
     
     <div class="column-group gutters">
         
-        <div class="large-25 medium-25 small-100">
-            <nav class="ink-navigation sticky" data-offset-top="30px" data-offset-bottom="216px">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
                 <ul class="menu vertical black rounded">
-                    <li>
-                        <a class="scrollableLink home" href="#ui_home">
-                            <i class="icon-chevron-up ink-for-l"></i>
-                            <span class="ink-for-m ink-for-s">Back to Top</span>
-                        </a>
-                    </li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#gallery">Gallery</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#modal">Modal</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#table">Table</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#tree_view">Tree View</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#sortable_list">Sortable List</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#date_picker">Date Picker</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#tabs">Tabs</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#formvalidator">Form Validator</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#progress_bar">Progress Bar</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#imagequery">Image Query</a></li>
-                                            <li><a class="scrollableLink" href="./js/ui_dump#behaviors">Behaviors</a></li>
+                    <li><a href="./index.php/js/ui_dump#"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                                            <li><a href="./index.php/js/ui_dump#gallery">Gallery</a></li>
+                                            <li><a href="./index.php/js/ui_dump#modal">Modal</a></li>
+                                            <li><a href="./index.php/js/ui_dump#table">Table</a></li>
+                                            <li><a href="./index.php/js/ui_dump#tree_view">Tree View</a></li>
+                                            <li><a href="./index.php/js/ui_dump#sortable_list">Sortable List</a></li>
+                                            <li><a href="./index.php/js/ui_dump#date_picker">Date Picker</a></li>
+                                            <li><a href="./index.php/js/ui_dump#tabs">Tabs</a></li>
+                                            <li><a href="./index.php/js/ui_dump#formvalidator">Form Validator</a></li>
+                                            <li><a href="./index.php/js/ui_dump#progress_bar">Progress Bar</a></li>
+                                            <li><a href="./index.php/js/ui_dump#imagequery">Image Query</a></li>
+                                            <li><a href="./index.php/js/ui_dump#behaviors">Behaviors</a></li>
                                     </ul>
             </nav>
         </div>
 
-        <div class="large-75 medium-75 small-100">
+        <div class="large-80 medium-75 small-100">
     
-            <p>To use these components in your application you need to include the Ink.js bundle. Just add this line somewhere in your document:</p>
-            <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink-v1.js"&gt;&lt;/script&gt;</pre>
-        
+            <section>
+                <h2>Ink UI Javacscript components</h2>
+                <p>Ink offers a great set of Javascript components to enrich your user interface, which are easy to implement, powerful and responsive. We made these components thinking of people who don't know JS but still need to include certain features on their web pages without help from a programmer, but there is also a deep core of JS code to explore, if you're so inclined.</p>
+                <p>Next, we'll detail each component, explain it as simply as we can, provide you with all the configuration details and also provide you with links to the deeper technical docs, in case you are a developer, looking for more power under the hood.</p>
+                <p>To get started, you need to include certain scripts which will make your components work. We suggest you place these in your document's <code>&lt;head&gt;</code> and keep them all neatly organised. You will need to include:
+                    <ul>
+                        <li>ink.js which is the core code that makes everything else work</li>
+                        <li>the modules you need (eg. ink.modal.js, if you need a modal window)</li>
+                        <li>autoload.js, which initializes all modules, so you don't have to</li>
+                    </ul></p>
+                <p>You can load these components from Ink's CDN or from your local host, here's how you do it.</p>
+                <p><span class="ink-label info">Code for loading from CDN</span></p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://js.sapo.pt/js/ink.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://js.sapo.pt/js/ink.myModule.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://js.sapo.pt/js/autoload.js"&gt;&lt;/script&gt;</pre>
+<p><span class="ink-label info">Code for loading from your local host</span></p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="./js/ink.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="./js/ink.myModule.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="./js/autoload.js"&gt;&lt;/script&gt;</pre>
+                <p>We'll remind you to load the correct modules for each component, using the local host method, in the documentation below. Just replace the given local host examples with the CDN URL above, if you prefer it.</p>
+                <p>If you have a better grasp of JS and do not want all components intitialized off the bat, then do not inclue autoload.js, and, instead, initialize each component by hand. You can refer to the technical documentation to see how each initialization is made.</p>
+            </section>
             
 <section id="gallery">
     <h3>Gallery</h3>
@@ -295,8 +299,8 @@
 </ul>
 <script type="text/javascript">
     var gal0 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:0});
-</script>            <a href="#" data-target="gallery_sourcecode_0" class="ink-button toggleTrigger">View Source Code</a>
-            <pre id="gallery_sourcecode_0" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+</script>            <a href="#" data-target="#gallery_sourcecode_0" class="ink-button toggle">View Source Code</a>
+            <pre id="gallery_sourcecode_0" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
         &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
@@ -361,8 +365,8 @@
 </ul>
 <script type="text/javascript">
     var gal1 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:1});
-</script>            <a href="#" data-target="gallery_sourcecode_1" class="ink-button toggleTrigger">View Source Code</a>
-            <pre id="gallery_sourcecode_1" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+</script>            <a href="#" data-target="#gallery_sourcecode_1" class="ink-button toggle">View Source Code</a>
+            <pre id="gallery_sourcecode_1" style="display:none" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
         &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
@@ -427,8 +431,8 @@
 </ul>
 <script type="text/javascript">
     var gal2 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:2});
-</script>            <a href="#" data-target="gallery_sourcecode_2" class="ink-button toggleTrigger">View Source Code</a>
-            <pre id="gallery_sourcecode_2" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+</script>            <a href="#" data-target="#gallery_sourcecode_2" class="ink-button toggle">View Source Code</a>
+            <pre id="gallery_sourcecode_2" style="display:none" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
         &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
@@ -493,8 +497,8 @@
 </ul>
 <script type="text/javascript">
     var gal3 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:3});
-</script>            <a href="#" data-target="gallery_sourcecode_3" class="ink-button toggleTrigger">View Source Code</a>
-            <pre id="gallery_sourcecode_3" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+</script>            <a href="#" data-target="#gallery_sourcecode_3" class="ink-button toggle">View Source Code</a>
+            <pre id="gallery_sourcecode_3" style="display:none" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
     &lt;li class=&quot;hentry hmedia&quot;&gt;
         &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
             &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
@@ -519,285 +523,447 @@
 &lt;/script&gt;</pre>
         </div>
     </div>
-    <script type="text/javascript">
-        var gallery_tabs = new SAPO.Ink.Tabs('.ink-tabs-gallery', {
-            disabled: ['#stuff', '#more_stuff'],
-            active: '#ui_gallery_layout0',
-            onBeforeChange: function(tab){},
-            onChange: function(tab){}
-        });
-    </script>
 </section>
 
 <section id="modal">
-    <h2>Modal window</h2>
-    <p>
-        The <i>Modal window</i> component was designed to replace the common/native modal boxes that browsers have, providing some aditional features:
-        <ul>
-            <!-- <li>HTML formatted messages</li> -->
-            <li>Configure the modal window maximum width and height</li>
-            <li>Use optional window header and footer</li>
-            <li>Use optional window header and footer</li>
-        </ul> 
-    </p>
-    <p>
-        Other options available and a more detailed explanation of the above ones are available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Modal/doc.html">technical documentation</a>.
-    </p>
-    <br/>
-    <p><div class="ink-shade fade">
-	<div id="test" class="ink-modal" data-trigger="#bModal" data-width="800px" data-height="400px">
-		<div class="modal-header">
-            <button class="modal-close ink-dismiss"></button>
-			<h5>Modal windows can have headers</h5>
-		</div>
-		<div class="modal-body" id="modalContent">
-			<h3>Please confirm your previous choice</h3>
-			<p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
-			<p>
-				<img src="http://placehold.it/800x400" style="width: 100%;" alt="">
-			</p>
-			<p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
-			<p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
-		</div>
-		<div class="modal-footer">
-			<div class="push-right">
-				<button class="ink-button info">Confirm</button>
-				<button class="ink-button caution ink-dismiss">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<a href="#" id="bModal">Open modal</a>
-
-<script type="text/javascript">
-	// new SAPO.Ink.Modal('#test');
-</script> to view the component working.</p>
-    <a data-target="modal_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="modal_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">&lt;div class=&quot;ink-shade fade&quot;&gt;
-	&lt;div id=&quot;test&quot; class=&quot;ink-modal&quot; data-trigger=&quot;#bModal&quot; data-width=&quot;800px&quot; data-height=&quot;400px&quot;&gt;
-		&lt;div class=&quot;modal-header&quot;&gt;
-            &lt;button class=&quot;modal-close ink-dismiss&quot;&gt;&lt;/button&gt;
-			&lt;h5&gt;Modal windows can have headers&lt;/h5&gt;
-		&lt;/div&gt;
-		&lt;div class=&quot;modal-body&quot; id=&quot;modalContent&quot;&gt;
-			&lt;h3&gt;Please confirm your previous choice&lt;/h3&gt;
-			&lt;p&gt;&quot;No,&quot; said Peleg, &quot;and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face.&quot;&lt;/p&gt;
-			&lt;p&gt;
-				&lt;img src=&quot;http://placehold.it/800x400&quot; style=&quot;width: 100%;&quot; alt=&quot;&quot;&gt;
-			&lt;/p&gt;
-			&lt;p&gt;&quot;Do tell, now,&quot; cried Bildad, &quot;is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day.&quot;&lt;/p&gt;
-			&lt;p&gt;&quot;I don't know anything about Deacon Deuteronomy or his meeting,&quot; said I; &quot;all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is.&quot;&lt;/p&gt;
-		&lt;/div&gt;
-		&lt;div class=&quot;modal-footer&quot;&gt;
-			&lt;div class=&quot;push-right&quot;&gt;
-				&lt;button class=&quot;ink-button info&quot;&gt;Confirm&lt;/button&gt;
-				&lt;button class=&quot;ink-button caution ink-dismiss&quot;&gt;Cancel&lt;/button&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;a href=&quot;#&quot; id=&quot;bModal&quot;&gt;Open modal&lt;/a&gt;
-
+    <h2>Modal Window</h2>
+    <p class="note"><a href="#modalCode">Skip to the code</a></p>
+    <p>The Modal Window component allows you to place content in the form of a dialog window that takes center stage and fades out the rest of your content, allowing you to focus attention on that content and even require a certain action from your users to dismiss, or interact with that window.</p>
+    <p>Ink's Modal Window component is basically a bit of HTML and a Javascript instruction, so it's really easy to use and very flexible, allowing you to easily add text, images, videos, iframes, you name it.</p>       
+    <p>The Modal Window is also really easy to configure, like our other components, simply by using data-attributes. Let's see how to get started.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js and ink.modal.js.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/ink.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/ink.modal.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Modal component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <pre class="prettyprint linenums">
 &lt;script type=&quot;text/javascript&quot;&gt;
-	// new SAPO.Ink.Modal('#test');
+    new SAPO.Ink.Modal('#test');
 &lt;/script&gt;</pre>
-
+    <h3>Building the window</h3>
+    <p>First, you need to create two wrappers, by using two <code>&lt;div&gt;</code>. The first one must have the <code>.ink-shade</code> class, and takes care of darkening the background in order to make your modal window float above the rest of the page. The second one, inside the first, must have the <code>.ink-modal</code> class, to take care of setting up your window.</p>
+    <p>The <code>.ink-modal</code> wrapper is the configurable bit of the window, which you can change by using data-attributes. Let's look at just the most common one, for now, which allows you to fire up your window from another element, such as a link: <code>data-trigger="#myModal"</code>, this ID (in the example "myModal"), will be targetted by the Javascript instruction which will render the window onscreen; you can change the ID to whatever suits your particular case. If you don't use this attribute, the modal window will simply be created on page load, which is actually something you may want, so all our data-attributes are optional.</p>
+    <p>There's a lot more you can configure with data-attributes, but let's stay with the basic for now and we'll give you a list of all the parameters and their values further ahead.</p>
+    <p>So, up to now, you have this:</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-shade&gt;
+  &lt;div class=&quot;ink-modal&quot; data-trigger=&quot;#myModal&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p>That is the skelleton for the modal window. To add some content, you can create three <code>&lt;div&gt;</code>, one for each of the <code>.modal-header</code>, <code>.modal-body</code> and <code>.modal-footer</code> elements, inside the <code>.ink-modal</code> container. These are self-explanatory and you can add whatever you want inside them, such as headings, paragraphs, lists, images, videos, etc.</p>
+    <p>You'll need an interactive element to close your window, so Ink offers the <code>.ink-dismiss</code> class, which you can add to pretty much anything: an anchor, a button, a piece of text or an image which, when clicked by the user, will cause the modal window to be dismissed. There is also a <code>.modal-close</code> class which specifically renders a small "X" button in your modal window to keep up with the familiarity factor from general users. Add it to a button, together with the dismiss class, in your modal window's header element, for example.</p>
+    <p>Let's see what we have so far, then:</p>
+    <p><span class="ink-label info">Code</span></p>
+<pre class="prettyprint linenums">
+&lt;div class=&quot;ink-shade&quot;&gt;
+  &lt;div class=&quot;ink-modal&quot; data-trigger=&quot;#myModal&quot;&gt;
+    &lt;div class=&quot;ink-header&quot;&gt;&lt;/div&gt; &lt;!--Add a title and a close button here--&gt;
+    &lt;div class=&quot;ink-body&quot;&gt;&lt;/div&gt; &lt;!--Add some text and an image, or a form, here--&gt;
+    &lt;div class=&quot;ink-footer&quot;&gt;&lt;/div&gt; &lt;!--Add your submit button and a close button, here--&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p>Simple enough, right? Now you need a link or a button to fire up your modal window, just make sure it has the same ID as you defined before. In our case: "myModal"</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;button id=&quot;#myModal&quot;&gt;Open My Modal&lt;/button&gt;</pre>
+    <p><span class="ink-label info">Hint</span> We suggest you add the <code>.fade</code> class to both your <code>.ink-shade</code> and <code>.ink-modal</code> containers, to obtain a fade-in transition for your modal window.</p>
+    <p id="modalCode">So, without further ado, you can <a href="#" id="bModal">open the example window</a>, and then, check out the example code below, by hitting the view code button.</p>
+    <p><button data-target="#modal_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="modal_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-shade fade&quot;&gt;
+    &lt;div id=&quot;test&quot; class=&quot;ink-modal fade&quot; data-trigger=&quot;#bModal&quot; data-width=&quot;800px&quot; data-height=&quot;400px&quot;&gt;
+        &lt;div class=&quot;modal-header&quot;&gt;
+            &lt;button class=&quot;modal-close ink-dismiss&quot;&gt;&lt;/button&gt;
+            &lt;h5&gt;Modal windows can have headers&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-body&quot; id=&quot;modalContent&quot;&gt;
+            &lt;h3&gt;Please confirm your previous choice&lt;/h3&gt;
+            &lt;p&gt;&quot;No,&quot; said Peleg, &quot;and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face.&quot;&lt;/p&gt;
+            &lt;p&gt;
+                &lt;img src=&quot;http://placehold.it/800x400&quot; style=&quot;width: 100%;&quot; alt=&quot;&quot;&gt;
+            &lt;/p&gt;
+            &lt;p&gt;&quot;Do tell, now,&quot; cried Bildad, &quot;is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day.&quot;&lt;/p&gt;
+            &lt;p&gt;&quot;I don't know anything about Deacon Deuteronomy or his meeting,&quot; said I; &quot;all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is.&quot;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-footer&quot;&gt;
+            &lt;div class=&quot;push-right&quot;&gt;
+                &lt;button class=&quot;ink-button info&quot;&gt;Confirm&lt;/button&gt;
+                &lt;button class=&quot;ink-button caution ink-dismiss&quot;&gt;Cancel&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;a href=&quot;#&quot; id=&quot;bModal&quot;&gt;Open modal&lt;/a&gt;</pre>
+    <h3>Configurable data attributes</h3>
+    <p>As you can see in the example code above, there are several data-attributes you can use to configure your window. In our case, we defined a certain width and height, but there's more you can use, just check out the list below and remember that these are all optional.</p>
+    
+    <ul>
+        <!-- <li>HTML formatted messages</li> -->
+        <li>
+           <strong>data-width</strong> and <strong>data-height</strong> define the size of your window and must be a valid unit, such as <code>px</code>, <code>em</code> or <code>%</code>. Example: <code>data-width="300px"</code> <code>data-height="600px"</code>
+            
+        </li>
+        <li>
+            <strong>data-trigger</strong> allows you to specify one or more elements that will trigger you modal window, it must be a valid CSS selector. Example: <code>data-trigger="#button"</code>. If you don't use this property, the modal window will be rendered as soon as it's created.
+            
+        </li>
+        <li>
+            <strong>data-trigger-event</strong> lets you specify in what event will the window be triggered, must be used together with <code>data-trigger</code> and must be a valid Javascript event. Example: <code>data-trigger-event="mouseover"</code>.
+        </li>
+        <li>
+            <strong>data-responsive</strong> makes your window respond to changes in viewport width, must be "true" (default) or "false". Example: <code>data-responsive="false"</code></li>
+        <li>
+            <strong>data-close-on-click</strong> defines whether or not your modal window will close if you click anywhere in the viewport, outside said window. Must be "true" or "false" (default). Example: <code>data-close-on-click="true"</code>
+        </li>
+        <li>
+            <strong>data-disable-scroll</strong> allows you to disable scolling your page behind the modal window. Values are "true" (default) or "false". Example: <code>data-disable-scroll="false"</code>
+        </li>
+    </ul>
+    <p>
+        Other options, more directed for the Javascript implementation, and a more detailed explanation of the above ones are available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Modal/doc.html">technical documentation</a>.
+    </p>
+    <div class="ink-shade fade">
+        <div id="test" class="ink-modal fade" data-trigger="#bModal" data-disable-scroll="true" data-width="800px" data-height="600px">
+            <div class="modal-header">
+                <button class="modal-close ink-dismiss"></button>
+                <h5>Modal windows can have headers</h5>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <h3>Please confirm your previous choice</h3>
+                <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
+                <p>
+                    <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+                </p>
+                <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
+                <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
+            </div>
+            <div class="modal-footer">
+                <div class="push-right">
+                    <button class="ink-button info">Confirm</button>
+                    <button class="ink-button caution ink-dismiss">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section><section id="table">    
     <h3>Table</h3>
     <p>
-        The <i>Table</i> component ease the process of improving a regular table element with some features like:
-        <ul>
-            <li>Pagination</li>
-            <li>Sorting</li>
-            <li>Loading through AJAX (via an endpoint)</li>
-        </ul>
+        The <i>Table</i> component enhances the native element by providing some features
+        that are missing in it's original state.
     </p>
     <p>
-        More examples and a list of all options supported on our <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Table/doc.html">technical documentation</a>.
+        Either through data attributes (data-*) or Javascript configuration, by
+        setting the following properties, the element gets more features such as
+        Pagination or Sorting.
     </p>
-    <div class="box">
-        <table></table>
-<script type="text/javascript">
-    var t = new SAPO.Ink.Table('table', {
-        fields: ['name', 'age'],
-        sortableFields: '*',
-        model: [
-            {name:'Jesus Christ',    age:33},
-            {name:'Kurt Cobain',     age:27},
-            {name:'Joni Mitchel',    age:27},
-            {name:'Michael Jackson', age:51}
-        ],
-        pageSize: 2
-    });
-</script>    </div>
-    <a href="#" data-target="table_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="table_sourcecode" style="display:none" class="prettyprint linenums">&lt;table&gt;&lt;/table&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var t = new SAPO.Ink.Table('table', {
-        fields: ['name', 'age'],
-        sortableFields: '*',
-        model: [
-            {name:'Jesus Christ',    age:33},
-            {name:'Kurt Cobain',     age:27},
-            {name:'Joni Mitchel',    age:27},
-            {name:'Michael Jackson', age:51}
-        ],
-        pageSize: 2
-    });
-&lt;/script&gt;</pre>
-</section>
-<h3 id="tree_view">Tree View</h3>
-<p>The <i>Tree View</i> component allows you to create a hierarchical list in a tree format or transform an existing list. It supports:</p>
-<ul>
-    <li>Multi-node trees</li>
-    <li>Custom state of the branches (open, closed)</li>
-</ul>
-<p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.</p>
-<div class="box">
-    <ul class="ink-tree-view" id="tview1">
+    <ul>
         <li>
-            <button class="icon-minus-sign"></button>
-            <a href="#">root</a>
-
-            <ul>
-                <li>
-                    <button class="icon-plus-sign"></button>
-                    <a href="#">child 1</a>
-                </li>
-                
-                <li>
-                    <button class="icon-minus-sign"></button>
-                    <a href="#">child 2</a>
-
-                    <ul>
-                        <li>grandchild 2a</li>
-                        <li>
-                            <button class="icon-minus-sign"></button>
-                            <a href="#">grandchild 2b</a>
-
-                            <ul>
-                                <li>grandgrandchild 1bA</li>
-                                <li>grandgrandchild 1bB</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                
-                <li>child 3</li>
-            </ul>
+            <p>
+                <b>Page size</b> (data-page-size) - This property specifies how many rows per page
+                should the pagination display. Ex: data-page-size="2"
+            </p>
+        </li>
+        <li>
+            <p>
+                <b>Sortable Fields</b> (data-sortable-fields) - This property specifies the
+                fields/columns that can be sorted. If an "*" is provided, all of the fields
+                become sortable.
+            </p>
+            <p>
+                Notice that, in the markup, the headers have ids defined. Those ids are used
+                to identify the columns. If the id starts with "th_", that part is ignored,
+                so if a column has the id "th_column", the property should be
+                data-sortable-fields="column".
+            </p>
         </li>
     </ul>
-
-    <div class="node ink-tree-view hide" id="tview2" data-node=".node" data-child=".child">
-        <button class="icon-minus-sign"></button>
-        <a href="#">root</a>
-        <div class="child">
-            <div class="node">
-                <button class="icon-plus-sign"></button>
-                <a href="#">child 1</a>
-            </div>
-            <div class="node">
-                <button class="icon-minus-sign"></button>
-                <a href="#">child 2</a>
-                <div class="child">
-                    <div class="node">grandchild 2a</div>
-                    <div class="node">
-                        <button class="icon-minus-sign"></button>
-                        <a href="#">grandchild 2b</a>
-                        <div class="child">
-                            <div class="node">grandgrandchild 1bA</div>
-                            <div class="node">grandgrandchild 1bB</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="node"></div>
-        </div>
+    <p>
+        More examples, like loading remote data via AJAX, and a list of all options supported on our <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Table/doc.html">technical documentation</a>.
+    </p>
+    <div class="box">
+        <table class="ink-table" data-page-size="2" data-sortable-fields="*">
+            <thead>
+                <tr>
+                    <th id="th_name">name</th>
+                    <th id="th_age">age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td headers="th_name">Jesus Christ</td>
+                    <td headers="th_age">33</td>
+                </tr>
+                <tr>
+                    <td headers="th_name">Kurt Cobain</td>
+                    <td headers="th_age">27</td>
+                </tr>
+                <tr>
+                    <td headers="th_name">Joni Mitchel</td>
+                    <td headers="th_age">27</td>
+                </tr>
+                <tr>
+                    <td headers="th_name">Michael Jackson</td>
+                    <td headers="th_age">51</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-<a href="#" data-target="treeview_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
-<pre id="treeview_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul class=&quot;ink-tree-view&quot;&gt;
-    &lt;li&gt;
-        &lt;button class=&quot;icon-minus-sign&quot;&gt;&lt;/button&gt;
+    <a href="#" data-target="#table_sourcecode" class="ink-button toggle">View Source Code</a>
+    <pre id="table_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;table class=&quot;ink-table&quot; data-page-size=&quot;2&quot; data-sortable-fields=&quot;name,age&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th id=&quot;th_name&quot;&gt;name&lt;/th&gt;
+            &lt;th id=&quot;th_age&quot;&gt;age&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td headers=&quot;th_name&quot;&gt;Jesus Christ&lt;/td&gt;
+            &lt;td headers=&quot;th_age&quot;&gt;33&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td headers=&quot;th_name&quot;&gt;Kurt Cobain&lt;/td&gt;
+            &lt;td headers=&quot;th_age&quot;&gt;27&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td headers=&quot;th_name&quot;&gt;Joni Mitchel&lt;/td&gt;
+            &lt;td headers=&quot;th_age&quot;&gt;27&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td headers=&quot;th_name&quot;&gt;Michael Jackson&lt;/td&gt;
+            &lt;td headers=&quot;th_age&quot;&gt;51&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var t = new SAPO.Ink.Table('table');
+&lt;/script&gt;</pre>
+</section><section id="tree_view">
+    <h2>Tree View</h2>
+    <p>
+        The <i>Tree View</i> component transforms a structured tree of elements into a
+        hierarchical tree.
+    </p>
+    <p>
+        Although the recommended layouts for this type of structures are the
+        unordered and ordered lists, this component can be applied to any
+        structured group of DOM elements.
+    </p>
+    <p>
+        To support the different structures the component provides two properties
+        that can either be set through data attributes (data-*) or Javascript
+        configuration. Those properties are:
+    </p>
+    <ul>
+        <li>
+            <p>
+                <b>Node</b> (data-node) - This property's value is a CSS selector that identifies
+                the elements that are considered "node elements" and that will be responsible
+                for showing and hiding the "children elements" (when existing).
+            </p>
+            <p>
+                It's value by default is "li", but can be any valid CSS selector.
+                Ex: data-node=".nodeClass"
+            </p>
+        </li>
+        <li>
+            <p>
+                <b>Child</b> (data-child) - This component will use this property to identify the
+                children elements inside each "node element". It's also a CSS selector and it's default
+                value is "ul", however you can change it for a valid CSS selector of your choice.
+                Ex: data-child=".myChildClass"
+            </p>
+        </li>
+    </ul>
+    <p></p>
+    <p>The <i>Tree View</i> supports:</p>
+    <ul>
+        <li>Multi-node trees</li>
+        <li>Custom state of the branches (open, closed)</li>
+    </ul>
+    <p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.</p>
+    <div class="box">
+        <ul class="ink-tree-view" id="tview1">
+            <li class="open">
+                <span></span>
+                <a href="#">root</a>
+
+                <ul>
+                    <li>
+                        <a href="">child 1</a>
+                    </li>
+                    
+                    <li>
+                        <span></span>
+                        <a href="">child 2</a>
+
+                        <ul>
+                            <li><a href="">grandchild 2a</a></li>
+                            <li>
+                                <span></span>
+                                <a href="">grandchild 2b</a>
+
+                                <ul>
+                                    <li>
+                                        
+                                        <a href="">grandgrandchild 1bA</a>
+                                    </li>
+                                    <li>
+                                        
+                                        <a href="">grandgrandchild 1bB</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="">child 3</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <a href="#" data-target="#treeview_sourcecode" class="ink-button toggle">View Source Code</a>
+    <pre id="treeview_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;ink-tree-view&quot;&gt;
+    &lt;li class=&quot;open&quot;&gt;
+        &lt;span&gt;&lt;/span&gt;
         &lt;a href=&quot;#&quot;&gt;root&lt;/a&gt;
 
         &lt;ul&gt;
             &lt;li&gt;
-                &lt;button class=&quot;icon-plus-sign&quot;&gt;&lt;/button&gt;
-                &lt;a href=&quot;#&quot;&gt;child 1&lt;/a&gt;
+                &lt;a href=&quot;&quot;&gt;child 1&lt;/a&gt;
             &lt;/li&gt;
             
             &lt;li&gt;
-                &lt;button class=&quot;icon-minus-sign&quot;&gt;&lt;/button&gt;
-                &lt;a href=&quot;#&quot;&gt;child 2&lt;/a&gt;
+                &lt;span&gt;&lt;/span&gt;
+                &lt;a href=&quot;&quot;&gt;child 2&lt;/a&gt;
 
                 &lt;ul&gt;
-                    &lt;li&gt;grandchild 2a&lt;/li&gt;
+                    &lt;li&gt;&lt;a href=&quot;&quot;&gt;grandchild 2a&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;
-                        &lt;button class=&quot;icon-minus-sign&quot;&gt;&lt;/button&gt;
-                        &lt;a href=&quot;#&quot;&gt;grandchild 2b&lt;/a&gt;
+                        &lt;span&gt;&lt;/span&gt;
+                        &lt;a href=&quot;&quot;&gt;grandchild 2b&lt;/a&gt;
 
                         &lt;ul&gt;
-                            &lt;li&gt;grandgrandchild 1bA&lt;/li&gt;
-                            &lt;li&gt;grandgrandchild 1bB&lt;/li&gt;
+                            &lt;li&gt;
+                                
+                                &lt;a href=&quot;&quot;&gt;grandgrandchild 1bA&lt;/a&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;
+                                
+                                &lt;a href=&quot;&quot;&gt;grandgrandchild 1bB&lt;/a&gt;
+                            &lt;/li&gt;
                         &lt;/ul&gt;
                     &lt;/li&gt;
                 &lt;/ul&gt;
             &lt;/li&gt;
             
-            &lt;li&gt;child 3&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;child 3&lt;/a&gt;&lt;/li&gt;
+
         &lt;/ul&gt;
     &lt;/li&gt;
-&lt;/ul&gt;</pre><section id="sortable_list">
+&lt;/ul&gt;
+&lt;script&gt;
+    var treeView = new SAPO.Ink.TreeView('.ink-tree-view');
+&lt;/script&gt;</pre>
+</section>
+<section id="sortable_list">
     <h2>Sortable List</h2>
     <p>The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.</p>
     <p>By doing that, allows the user to sort the order of the list.</p>
     <p>Also allows other configurations, as you can see in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
     <div class="box">
-        <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
+        <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9" data-drag-object=".ink-label">
             <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
             <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
             <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
         </ul>
     </div>
-    <a href="#" data-target="sortablelist_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums"><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
-
-<h4>A PHP Error was encountered</h4>
-
-<p>Severity: Notice</p>
-<p>Message:  Undefined variable: js</p>
-<p>Filename: ui/sortable_list.php</p>
-<p>Line Number: 14</p>
-
-</div></pre>
+    <a href="#" data-target="#sortablelist_sourcecode" class="ink-button toggle">View Source Code</a>
+    <pre id="sortablelist_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;unstyled ink-sortable-list&quot; id=&quot;slist&quot; data-instance=&quot;sortableList9&quot;&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;primeiro&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;segundo&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;terceiro&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+    var sortableList = new SAPO.Ink.SortableList('#slist');
+&lt;/script&gt;</pre>
 </section>
 <section id="date_picker">
-    <h3>Date Picker</h3>
-    <p>As the name says, the <i>Date Picker</i> transforms a textbox into an element that, when in use, shows a calendar to help selecting a specific date.</p>
-    <p>It allows several configurations, available on the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/DatePicker/doc.html">technical documentation</a>.</p>
-    
-    <div class="box">
-        <form class="ink-form inline">
-            <div class="ink-l100"><div class="control">
-    <label for="dPicker" class="ink-form-inline">A date field:</label>
-    <input id="dPicker" class="ink-datepicker" type="text"></input>
-</div>
-<script type="text/javascript">
-    //var picker = new SAPO.Ink.DatePicker('#dPicker');
-</script></div>
-        </form>
-    </div>
-    <a href="#" data-target="datepicker_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
-    <pre id="datepicker_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">&lt;div class=&quot;control&quot;&gt;
+    <h2>Date Picker</h2>
+    <p class="note"><a href="#datepickerCode">Skip to the code</a></p>
+    <p>The date picker component adds a flyout calendar to a textbox, within a form, so your users can just click the box and pick a date, visually, instead of having to guess the date format or you having to print specific instructions to explain that format.</p>
+    <p>Using the date picker also guarantees that you get your dates in the format you need, without extra form validation.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.datepicker.js and autoload.js.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/ink.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/ink.datepicker.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <h3>Getting started</h3>
+    <p>Creating a date picker couldn't be easier. All you need is a text input in your form, tagged with the <code>.ink-datepicker</code> class. And that is all.</p>
+    <p>Like other Ink Javascript components, the date picker is configurable by using data-attributes, which we will detail below. For now, let's see what your code should look like. Remember, you are within a form, so go read up on Ink <a href="/forms">forms</a>, if you need to.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;input type=&quot;text&quot; id=&quot;date&quot; class=&quot;ink-datepicker&quot;&gt;</pre>
+    <p id="datepickerCode">That is the basic of basics for getting a date picker, but there is a more complete example below, grab the code by hitting the view code button. Then, you can read up on all the ways you can configure your date picker, using data-attributes.</p>
+    <form class="ink-form inline vspace">
+        <div class="ink-l100">
+            <div class="control">
+                <label for="dPicker" class="ink-form-inline">A date field:</label>
+                <input id="dPicker" data-format="dd-mm-yyyy" data-position="bottom" class="ink-datepicker" type="text"></input>
+            </div>
+        </div>
+    </form>
+    <p><button href="#" data-target="#datepicker_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="datepicker_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;control&quot;&gt;
     &lt;label for=&quot;dPicker&quot; class=&quot;ink-form-inline&quot;&gt;A date field:&lt;/label&gt;
     &lt;input id=&quot;dPicker&quot; class=&quot;ink-datepicker&quot; type=&quot;text&quot;&gt;&lt;/input&gt;
 &lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-    //var picker = new SAPO.Ink.DatePicker('#dPicker');
+    var picker = new SAPO.Ink.DatePicker('#dPicker');
 &lt;/script&gt;</pre>
+    <h3>Using the calendar</h3>
+    <p>The calendar has some really useful features you might want to be aware of. On the top left corner you have a link to clear the input box, in case you've entered a wrong date, and on the top right, you can click to close the calendar.</p>
+    <p>On the next line, you have navigation chevrons on either side, that will allow you to navigate by month and in the center, you can click either the month name to directly pick another month, or the year, to pick a different year, without having to navigate by hand to those dates. When you click a day, the date gets written into the input field. Just click the above example and try it out.</p>
+    <h3>Configurable data attributes</h3>
+    <p>To further configure your date picker, just add data-attributes to your text input field. Here's a comprehensive list of all the attributes you can use on the date picker.</p>
+    <ul>
+        <li>
+            <p><strong>data-format</strong> sets the date format which will be written into the text input and submitted with the form. The default value is <code>data-format="yyyy-mm-dd"</code> but there are many different options as you can see below:</p>
+            <ul>
+                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-04-09 (default)</li>
+                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/04/09</li>
+                <li><strong>yy-mm-dd</strong> Ex: 13-04-09</li>
+                <li><strong>yy/mm/dd</strong> Ex: 13/04/09</li>
+                <li><strong>dd-mm-yyyy</strong> - Ex: 09-04-2013</li>
+                <li><strong>dd/mm/yyyy</strong> - Ex: 09/04/2013</li>
+                <li><strong>dd-mm-yy</strong> Ex: 09-04-13</li>
+                <li><strong>dd/mm/yy</strong> Ex: 09/04/13</li>
+                <li><strong>mm-dd-yyyy</strong> - Ex: 04-09-2013</li>
+                <li><strong>mm/dd/yyyy</strong> - Ex: 04/09/2013</li>
+            </ul>
+            <p></p>
+        </li>
+        <li>
+            <p><strong>data-position</strong> specifies where the calendar will appear, relative to the input field. Example: <code>data-position="bottom"</code>. Possible values are:</p>
+            <ul>
+                <li><strong>bottom</strong></li>
+                <li><strong>left</strong></li>
+            </ul>
+            <p></p>
+        </li>
+        <li>
+            <p><strong>data-css-class</strong> sets a class for the calendar. The default value is <code>data-css-class="sapo_component_datepicker"</code>, but you can change it to any class you need to use in your project to style the calendar.
+        </li>
+        <li>
+            <p><strong>data-start-date</strong> sets a start date, that will be selected when you open the calendar. It must be defined in the following format: <code>yyyy-mm-dd</code>. Example: <code>data-start-date="2013-01-01"</code></p>
+        </li>
+    </ul>
+    <p>There are other configurations, some specific for Javascript, available on the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/DatePicker/doc.html">technical documentation</a>.</p>
 </section>
     
 <section id="tabs">
@@ -808,19 +974,19 @@
     
     <div class="column-group gutters">
     
-        <div class="ink-tabs top large-50 medium-100 small-100" data-active="#ui_tabs_news">
+        <div class="ink-tabs top large-50 medium-100 small-100" data-active="#ui_tabs_news_1" data-prevent-url-change="true">
             
             <h3>With top navigation</h3>
             
             <ul class="tabs-nav">
-                <li><a href="#ui_tabs_home">Home</a></li>
-                <li><a href="#ui_tabs_news">News</a></li>
-                <li><a href="#ui_tabs_description">Description</a></li>
-                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+                <li><a href="#ui_tabs_home_1">Home</a></li>
+                <li><a href="#ui_tabs_news_1">News</a></li>
+                <li><a href="#ui_tabs_description_1">Description</a></li>
+                <li><a href="#ui_tabs_stuff_1">Stuff</a></li>
             </ul>
 
             
-            <div id="ui_tabs_home" class="tabs-content hide">
+            <div id="ui_tabs_home_1" class="tabs-content hide-all">
                 <h4>Home</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -831,7 +997,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_news" class="tabs-content hide">
+            <div id="ui_tabs_news_1" class="tabs-content hide-all">
                 <h4>News</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -842,7 +1008,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_description" class="tabs-content hide">
+            <div id="ui_tabs_description_1" class="tabs-content hide-all">
                 <h4>Description</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -853,7 +1019,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_stuff" class="tabs-content hide">
+            <div id="ui_tabs_stuff_1" class="tabs-content hide-all">
                 <h4>Stuff</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -863,8 +1029,8 @@
                     Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
-            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
-            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+            <p><a href="#" data-target="#tabs_sourcecode_0" class="ink-button toggle">View Source Code</a></p>
+            <pre id="tabs_sourcecode_0" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
         &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
             &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -911,12 +1077,12 @@
         </div>
 
             
-        <div class="ink-tabs bottom large-50 medium-100 small-100" data-active="#ui_tabs_home">
+        <div class="ink-tabs bottom large-50 medium-100 small-100" data-active="#ui_tabs_home_2">
 
             <h3>With bottom navigation</h3>
 
             
-            <div id="ui_tabs_home" class="tabs-content hide">
+            <div id="ui_tabs_home_2" class="tabs-content hide-all">
                 <h4>Home</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -927,7 +1093,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_news" class="tabs-content hide">
+            <div id="ui_tabs_news_2" class="tabs-content hide-all">
                 <h4>News</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -938,7 +1104,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_description" class="tabs-content hide">
+            <div id="ui_tabs_description_2" class="tabs-content hide-all">
                 <h4>Description</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -949,7 +1115,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_stuff" class="tabs-content hide">
+            <div id="ui_tabs_stuff_2" class="tabs-content hide-all">
                 <h4>Stuff</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -960,14 +1126,14 @@
                 </p>
             </div>            
             <ul class="tabs-nav">
-                <li><a href="#ui_tabs_home">Home</a></li>
-                <li><a href="#ui_tabs_news">News</a></li>
-                <li><a href="#ui_tabs_description">Description</a></li>
-                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+                <li><a href="#ui_tabs_home_2">Home</a></li>
+                <li><a href="#ui_tabs_news_2">News</a></li>
+                <li><a href="#ui_tabs_description_2">Description</a></li>
+                <li><a href="#ui_tabs_stuff_2">Stuff</a></li>
             </ul>
             
-            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
-            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+            <p><a href="#" data-target="#tabs_sourcecode_1" class="ink-button toggle">View Source Code</a></p>
+            <pre id="tabs_sourcecode_1" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
         &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
             &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -1013,19 +1179,19 @@
 
         </div>
 
-        <div class="ink-tabs left large-100 medium-100 small-100" data-active="#ui_tabs_stuff">
+        <div class="ink-tabs left large-100 medium-100 small-100" data-active="#ui_tabs_stuff_3">
 
             <h3>With left navigation</h3>
 
             <ul class="tabs-nav">
-                <li><a href="#ui_tabs_home">Home</a></li>
-                <li><a href="#ui_tabs_news">News</a></li>
-                <li><a href="#ui_tabs_description">Description</a></li>
-                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+                <li><a href="#ui_tabs_home_3">Home</a></li>
+                <li><a href="#ui_tabs_news_3">News</a></li>
+                <li><a href="#ui_tabs_description_3">Description</a></li>
+                <li><a href="#ui_tabs_stuff_3">Stuff</a></li>
             </ul>
 
             
-            <div id="ui_tabs_home" class="tabs-content hide">
+            <div id="ui_tabs_home_3" class="tabs-content hide-all">
                 <h4>Home</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1036,7 +1202,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_news" class="tabs-content hide">
+            <div id="ui_tabs_news_3" class="tabs-content hide-all">
                 <h4>News</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1047,7 +1213,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_description" class="tabs-content hide">
+            <div id="ui_tabs_description_3" class="tabs-content hide-all">
                 <h4>Description</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1058,7 +1224,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_stuff" class="tabs-content hide">
+            <div id="ui_tabs_stuff_3" class="tabs-content hide-all">
                 <h4>Stuff</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1068,8 +1234,8 @@
                     Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
-            <p><a href="#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a></p>
-            <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+            <p><a href="#" data-target="#tabs_sourcecode_2" class="ink-button toggle">View Source Code</a></p>
+            <pre id="tabs_sourcecode_2" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
     &lt;nav class=&quot;ink-navigation&quot;&gt;
         &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
             &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -1115,19 +1281,19 @@
 
         </div>
 
-        <div class="ink-tabs right large-100 medium-100 small-100"  data-active="#ui_tabs_description">
+        <div class="ink-tabs right large-100 medium-100 small-100"  data-active="#ui_tabs_description_4">
 
             <h3>With right navigation</h3>
             
             <ul class="tabs-nav">
-                <li><a href="#ui_tabs_home">Home</a></li>
-                <li><a href="#ui_tabs_news">News</a></li>
-                <li><a href="#ui_tabs_description">Description</a></li>
-                <li><a href="#ui_tabs_stuff">Stuff</a></li>
+                <li><a href="#ui_tabs_home_4">Home</a></li>
+                <li><a href="#ui_tabs_news_4">News</a></li>
+                <li><a href="#ui_tabs_description_4">Description</a></li>
+                <li><a href="#ui_tabs_stuff_4">Stuff</a></li>
             </ul>
 
             
-            <div id="ui_tabs_home" class="tabs-content hide">
+            <div id="ui_tabs_home_4" class="tabs-content hide-all">
                 <h4>Home</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1138,7 +1304,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_news" class="tabs-content hide">
+            <div id="ui_tabs_news_4" class="tabs-content hide-all">
                 <h4>News</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1149,7 +1315,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_description" class="tabs-content hide">
+            <div id="ui_tabs_description_4" class="tabs-content hide-all">
                 <h4>Description</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1160,7 +1326,7 @@
                 </p>
             </div>
 
-            <div id="ui_tabs_stuff" class="tabs-content hide">
+            <div id="ui_tabs_stuff_4" class="tabs-content hide-all">
                 <h4>Stuff</h4>
                 <p>
                     Venison kielbasa ham andouille short ribs bacon, turkey jerky filet mignon sirloin pork drumstick strip steak biltong
@@ -1170,23 +1336,54 @@
                     Pig biltong beef ribs bacon, spare ribs shank corned beef pork belly prosciutto venison doner sirloin.
                 </p>
             </div>
+            <p><a href="#" data-target="#tabs_sourcecode_3" class="ink-button toggle">View Source Code</a></p>
+            <pre id="tabs_sourcecode_3" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+    &lt;nav class=&quot;ink-navigation&quot;&gt;
+        &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div id=&quot;home&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Home&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;news&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;News&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;description&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Description&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;more_stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;More Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+        disabled: ['#stuff', '#more_stuff'], 
+        active: '#news',
+        onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
+        }, 
+        onChange: function(tab){
+            console.log('Changed', tab);
+        }
+    });
+&lt;/script&gt;</pre>
+
         </div>
 
     </div>
-
-    <script type="text/javascript">
-        var tabs = [];
-        SAPO.Dom.Selector.select('.ink-tabs').forEach(function(item){            
-            tabs.push(
-                new SAPO.Ink.Tabs(item, {
-                    onBeforeChange: function(tab){
-                    }, 
-                    onChange: function(tab){
-                    }
-                })
-            );
-        });
-    </script>
 </section>
 <section id="formvalidator">
     <h3>Form Validator</h3>
@@ -1242,8 +1439,8 @@
         <input type="submit" name="sub" value="Submit" class="ink-button success" />
     </div>
 </form>    </div>
-    <a href="#" data-target="formvalidator_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="formvalidator_sourcecode" style="display:none" class="prettyprint linenums">&lt;form id=&quot;myform&quot; class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return SAPO.Ink.FormValidator.validate(this);&quot;&gt;
+    <a href="#" data-target="#formvalidator_sourcecode" class="ink-button toggle">View Source Code</a>
+    <pre id="formvalidator_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;form id=&quot;myform&quot; class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return SAPO.Ink.FormValidator.validate(this);&quot;&gt;
     &lt;fieldset&gt;
         &lt;div class=&quot;control-group required&quot;&gt;
             &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
@@ -1289,7 +1486,7 @@
 </section>
 <section>
     <h2 id="progress_bar">Progress bar</h2>
-        <div class="ink-progress-bar grey" data-start-value="70%">
+    <div class="ink-progress-bar grey" data-start-value="70%">
         <span class="caption">I am a grey progress bar</span>
         <div class="bar grey"></div>
     </div>
@@ -1313,17 +1510,8 @@
         <span class="caption">I am a black progress bar</span>
         <div class="bar black"></div>
     </div>
-    <script>
-        var 
-            progressBarsElms = SAPO.Dom.Selector.select('.ink-progress-bar'),
-            progressBars = [],
-            i
-        ;
-        for(i = 0; i < progressBarsElms.length; i += 1){
-            progressBars.push(new SAPO.Ink.ProgressBar( progressBarsElms[i] ));
-        }
-    </script>    <a data-target="progressbar_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
-    <pre id="progressbar_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">    &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
+    <a data-target="#progressbar_sourcecode" class="ink-button toggle">View Source Code</a>
+    <pre id="progressbar_sourcecode" class="ink-l100 hide-all prettyprint linenums">    &lt;div class=&quot;ink-progress-bar grey&quot; data-start-value=&quot;70%&quot;&gt;
         &lt;span class=&quot;caption&quot;&gt;I am a grey progress bar&lt;/span&gt;
         &lt;div class=&quot;bar grey&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
@@ -1358,7 +1546,8 @@
         }
     &lt;/script&gt;</pre>
 </section>
-<h3 id="imagequery">Image Query</h3>
+<section>
+<h2 id="imagequery">Image Query</h2>
 <p>The <i>Image QUery</i> component allows you to load different image sources, depending on the viewport width. It provides the following features:</p>
 <ul>
     <li>Feature 1</li>
@@ -1368,7 +1557,7 @@
     <li>Feature 5</li>
 </ul>
 <p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/ImageQuery/doc.html">technical documentation</a>.</p>
-<div class="imageQueryExample large-100 medium-100 small-100 content-center ink-clear">
+<div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
     <img src="/assets/imgs/imagequery/small/image.jpg" />
 </div>
 <script type="text/javascript">
@@ -1389,8 +1578,8 @@
             }
         ]
     });
-</script><a href="#" data-target="imagequery_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
-<pre id="imagequery_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;imageQueryExample large-100 medium-100 small-100 content-center ink-clear&quot;&gt;
+</script><a href="#" data-target="#imagequery_sourcecode" class="ink-button toggle">View Source Code</a>
+<pre id="imagequery_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace&quot;&gt;
     &lt;img src=&quot;/assets/imgs/imagequery/small/image.jpg&quot; /&gt;
 &lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
@@ -1411,43 +1600,32 @@
             }
         ]
     });
-&lt;/script&gt;</pre><!-- <section>
+&lt;/script&gt;</pre>
+</section><section>
+    <h2>Behaviors</h2>
     <div class="column-group gutters" id="behaviors">
-        <div class="large-100"><h3>Behaviors</h3></div>
-        <div class="large-33">
-            <h4>Dockable</h4>
+        <div class="large-33 medium-33 small-100">
+            <h3>Sticky</h3>
             <p><i>Dockable</i> keeps your menus visible while scrolling through the page.</p>
             <p>Activate it by using the <code>ink-docked</code> class. A working example of dockable is the submenu that keeps following your progress on this page.</p>
             <p>Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Dockable/doc.html">technical documentation</a> for more details.</p>
         </div>
     
-        <div class="large-33">
-            <h4>Collapsible</h4>
+        <div class="large-33 medium-33 small-100">
+            <h3>Toggle</h3>
             <p><i>Collapsible</i> turns your horizontal menus into vertical ones depending on the screen width. It gives you the possibility to collapse/expand your menus.</p>
             <p>Activate it by using the <code>ink-collapsible</code> class. A working example of collapsible is the top most menu.</p>
             <p>Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Collapsible/doc.html">technical documentation</a> for more details.</p></p>
         </div>
     
-        <div class="large-33">
-            <h4>Close</h4>
+        <div class="large-33 medium-33 small-100">
+            <h3>Dismiss</h3>
             <p>When clicking an element with the <code>ink-close</code> class, the first <code>ink-alert</code> or <code>ink-alert-block</code> ancestor is removed from the document.</p>
             <p>Activate it by using the <code>ink-close</code> class inside of an element with one of the previously mentioned classes.</p>
             <p>Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/doc.html#Close">technical documentation</a> for more details.</p>
         </div>
     </div>
-</section> -->
-
-            <script>
-                var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
-                for(i=0;i<toggleTriggers.length;i+=1){
-                    SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
-                        var targetElm = s$(this.getAttribute('data-target'));
-                        this.innerHTML = ( ( targetElm.style.display === 'none' ) ? 'Hide' : 'View' ) + ' Source Code';
-                        SAPO.Dom.Css.toggle(targetElm);
-                        SAPO.Dom.Event.stop(event);
-                    });
-                }
-            </script>
+</section>
 
         </div>
     </div>
@@ -1478,14 +1656,13 @@
         
         <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
-                <li><strong>Follow SAPO:</strong></li>
-                <li><a class="Fb_link" href="http://www.facebook.com/sapo"></a></li>
-                <li><a class="Twt_link" href="http://twitter.com/sapo"></a></li>
-                <li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+                <li><strong>Follow Ink:</strong></li>
+                <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
+                <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
         </div>
     </div>
 </footer>
-    <!-- <script type="text/javascript" src="http://ink.local/assets/js/ink.js"></script> -->
+    <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->
         </body>
 </html>

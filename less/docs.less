@@ -485,13 +485,19 @@ table.ink-table.browser-support {
     .icon-remove, .icon-minus {
         color: @red;
     }
+
+    font-size: 0.9;
     
     tr th {
         line-height: 1.3;
-        padding: 0.5em 0;
+        padding: 0.5em;
         background: lighten(@black,30%);
         color: @white;
         font-weight: 500;
+    }
+
+    th {
+        padding: 0.3em;
     }
 }
 .ink-package {
@@ -533,25 +539,11 @@ table.ink-table.browser-support {
 } 
 
 .clickable {
+
     &:hover {
         cursor: pointer;
     }
-}
 
-/* LARGE SCREENS */
-@media all and (min-width: 960px) {
-    font-size: 85%;
-}
-
-/* MEDIUM SCREENS */
-@media all and (min-width: 650px) and (max-width: 959px) {
-    font-size: 4%;
-    color: red;
-}
-
-/* SMALL SCREENS */
-@media all and (max-width: 649px) {
-    font-size: 100%;
 }
 
 .ink-hero {
@@ -559,4 +551,29 @@ table.ink-table.browser-support {
         *display: none;
     }
     *background: url(../)
+}
+
+/* LARGE SCREENS */
+@media screen and (min-width: 960px) {
+    body {
+        font-size: 100%; 
+        line-height: 1.5; 
+    }
+}
+
+/* MEDIUM SCREENS */
+@media screen and (min-width: 650px) and (max-width: 959px) {
+    
+    body {
+        font-size: 95%; 
+        line-height: 1.4;  
+    }
+}
+
+/* SMALL SCREENS */
+@media screen and (max-width: 649px) {
+    body {
+        font-size: 90%;  
+        line-height: 1.3; 
+    }
 }

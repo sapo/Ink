@@ -1150,13 +1150,22 @@
 
                 }
 
-                &.active, &:hover {
+                &:hover {
+                        background: @grey-15;
+                    } 
+
+                &.active {
                     #ink > #gradients > .gradient (lighten(@black,90%), lighten(@black,75%), 150%);
                     a { 
                         color: @black; 
                         background: none; 
                     }
-                }                
+                    &:hover {
+                        background: @grey-30;
+                    } 
+                }
+
+
 
                 &.disabled {
                             #ink > #navigation > #gradients > .white;
