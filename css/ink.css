@@ -7024,6 +7024,21 @@ ul.ink-tree-view ul {
 .ink-tabs.right .tabs-nav li.active a {
   border-left-color: transparent;
 }
+.ink-sortable-list li {
+  margin: 0;
+  border-bottom: 1px solid #cccccc;
+  line-height: ;
+  cursor: move;
+}
+.ink-sortable-list li:first-child {
+  border-top: 1px solid #cccccc;
+}
+.ink-sortable-list li:hover {
+  background: rgba(204, 204, 204, 0.2);
+}
+.ink-sortable-list .ink-label {
+  margin: 0 .8em;
+}
 img {
   width: auto;
   max-width: 100%;
