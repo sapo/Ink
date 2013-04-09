@@ -202,6 +202,7 @@
          * @param {Event} ev
          */
         _onDown: function(ev) {
+            if (this._isMoving) { return; }
             var tgtEl = Event.element(ev);
 
             // if (tgtEl.nodeName.toLowerCase() === 'i') {

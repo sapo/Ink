@@ -86,33 +86,33 @@
             yearRange:       false,
             dateRange:       false,
             startWeekDay:    1,
-            closeText:       'Fechar',
-            cleanText:       'Limpar',
+            closeText:       'Close',
+            cleanText:       'Clear',
             prevLinkText:    '«',
             nextLinkText:    '»',
             ofText:          '&nbsp;de&nbsp;',
             month: {
-                 1:'Janeiro',
-                 2:'Fevereiro',
-                 3:'Mar&ccedil;o',
-                 4:'Abril',
-                 5:'Maio',
-                 6:'Junho',
-                 7:'Julho',
-                 8:'Agosto',
-                 9:'Setembro',
-                10:'Outubro',
-                11:'Novembro',
-                12:'Dezembro'
+                 1:'January',
+                 2:'February',
+                 3:'March',
+                 4:'April',
+                 5:'May',
+                 6:'June',
+                 7:'July',
+                 8:'August',
+                 9:'September',
+                10:'October',
+                11:'November',
+                12:'December'
             },
             wDay: {
-                0:'Domingo',
-                1:'Segunda',
-                2:'Ter&ccedil;a',
-                3:'Quarta',
-                4:'Quinta',
-                5:'Sexta',
-                6:'S&aacute;bado'
+                0:'Sunday',
+                1:'Monday',
+                2:'Tuesday',
+                3:'Wednesday',
+                4:'Thursday',
+                5:'Friday',
+                6:'Saturday'
             }
         }, Element.data(this._dataField) || {});
 
@@ -147,7 +147,11 @@
 
         this._render();
 
-        if ( this._options.startDate ) this.setDate( );
+        if ( !this._options.startDate ){
+            if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
+                this.setDate( this._dataField.value );
+            }
+        }
 
         Aux.registerInstance(this, this._containerObject, 'datePicker');
     };

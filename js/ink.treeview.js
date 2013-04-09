@@ -88,6 +88,28 @@
 
             Event.observe(this._element, 'click', this._handlers.click);
 
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            nodes.forEach(function(item){
+                console.log(item);
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                children.forEach(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') )
+                        Css.addClassName(inner_item,'hide-all');
+                }.bindObj(this));
+            }.bindObj(this));
+
         },
 
         /**
