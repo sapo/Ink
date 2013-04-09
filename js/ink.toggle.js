@@ -95,10 +95,10 @@
                 }
             }
 
-            var finalClass = ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ? 'show' : 'hide';
+            var finalClass = ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ? 'show-all' : 'hide-all';
             var finalDisplay = ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
-            SAPO.Dom.Css.removeClassName(this._childElement,'show');
-            SAPO.Dom.Css.removeClassName(this._childElement, 'hide');
+            SAPO.Dom.Css.removeClassName(this._childElement,'show-all');
+            SAPO.Dom.Css.removeClassName(this._childElement, 'hide-all');
             SAPO.Dom.Css.addClassName(this._childElement, finalClass);
             this._childElement.style.display = finalDisplay;
         }

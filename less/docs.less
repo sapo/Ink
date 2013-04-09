@@ -14,6 +14,8 @@
 
 body {
     background: @body-background;
+    //height:100%;
+    //overflow:auto;
 }
 
 h2 span {
@@ -67,7 +69,7 @@ a.active    {color: @link-active-color;}
 /*............................................  Homepage  ...................................................*/
 .whatIs {
     
-    margin: 1.6em 0 2em;
+    margin: 3.6em 0 2em;
     font-size: 1.25em;
 
     p {
@@ -75,35 +77,33 @@ a.active    {color: @link-active-color;}
     }
 }
 
-#download {
-    text-align:center;
-
-    a {
-        font-weight: bold;
-        padding:.8em;
-        display: block;
-        #ink > #gradients > .gradient (#2e2e2e, #222, 100%);
-        #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
-        #ink > #border-radius > .all (@border-radius);
-        color: #FFF;
+#getink {
     
-        &:hover {
-            #ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
-            text-decoration: none;
+    margin-top: 0;
+    padding: 0 0 1.5em;
+
+    #download {
+        text-align:center;
+
+        a {
+            font-weight: bold;
+            padding:.8em;
+            display: block;
+            #ink > #gradients > .gradient (#2e2e2e, #222, 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
+            #ink > #border-radius > .all (@border-radius);
+            color: #FFF;
+        
+            &:hover {
+                #ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
+                text-decoration: none;
+            }
+        }
+
+        p {
+            margin: 1em 0 0 0;
         }
     }
-
-    p {
-        margin: 1em 0 0 0;
-    }
-}
-
-.ink-download {
-    text-align:center;
-}
-
-.ink-download input {
-    font-size:1.625em;
 }
 
 /*..........................................  Ink-UI  ..........................................*/
@@ -114,6 +114,7 @@ a.active    {color: @link-active-color;}
 
 /*..........................................  Homepage  ..........................................*/
 .ink-hero {
+    margin-top: 2.6em;
     background: url(../imgs/home_bkg.png) center;
     background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
     background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -155,13 +156,6 @@ a.active    {color: @link-active-color;}
         }
     }
 }
-
-    #meo_screenshot,
-    #musicbox_screenshot,
-    #intra_screenshot,
-    #livebots_screenshot {
-        > .modal-body {padding: 0}
-    }
 
 /*...................................................  Footer  ...................................................*/
 
@@ -228,12 +222,13 @@ footer {
 }
 
 #topbar {   
-    position: static;
-    top:0;
+    position: fixed;
+    top: 0;
     width: 100%;
-    background:@topbar-bgColor;
+    background: @topbar-bgColor;
     #ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
     z-index: @layer-100;
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
     
     .ink-navigation {
     
@@ -294,10 +289,6 @@ footer {
                 }
             }
 
-            &.show-medium, &.show-small {
-
-            }
-
             &.vertical {
 
                 li {
@@ -328,6 +319,11 @@ footer {
                             
                             font-size: 1.5em;
                         }
+                    }
+
+                    &.title {
+                        border-bottom: 1px solid lighten(@black,15%);
+                        a {border-bottom: none}
                     }
                     
                     &.active {
@@ -460,11 +456,18 @@ code {
     padding: 0 4px;
 }
 
-section {
+section,
+section + section {
 
-	padding-top: 1.5em;
+	padding-top: 3em;
 	padding-bottom: 3em;
 	border-bottom: 1px solid #ccc; 
+
+    border-top: 1em solid transparent;
+    margin: -1em 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
 
     &:first-child {
         padding-top: 0;
@@ -475,7 +478,7 @@ section {
     }
 }
 
-table.ink-table.browser-support {
+.ink-table.browser-support {
     .icon-ok {
         color: @green;
     }
@@ -491,6 +494,7 @@ table.ink-table.browser-support {
         font-weight: 500;
     }
 }
+
 .ink-package {
     #ink > #shadows > .box-shadow (0, 1px, 5px, 0, rgba(100,100,100,.5),inset);
     #ink > #border-radius > .all (4px);
@@ -533,4 +537,32 @@ table.ink-table.browser-support {
     &:hover {
         cursor: pointer;
     }
+}
+
+.sticky {
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+}
+
+@media screen and (max-width: 649px) {
+
+    #topbar {   
+        position: static;
+    }
+
+    .whatIs {
+        margin-top: 1.6em;
+    }
+
+}
+
+@media screen and (min-width: 650px) and (max-width: 959px) {
+
+    #topbar {   
+        position: static;
+    }
+
+    .whatIs {
+        margin-top: 1.6em;
+    }
+
 }

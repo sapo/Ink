@@ -88,6 +88,28 @@
 
             Event.observe(this._element, 'click', this._handlers.click);
 
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            nodes.forEach(function(item){
+                console.log(item);
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                children.forEach(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') )
+                        Css.addClassName(inner_item,'hide-all');
+                }.bindObj(this));
+            }.bindObj(this));
+
         },
 
         /**
@@ -131,8 +153,8 @@
             if( child.length > 0 ){
                 Event.stop(event);
                 child = child[0];
-                if( Css.hasClassName(child,'hide') ){ Css.removeClassName(child,'hide'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
             }
 
         }

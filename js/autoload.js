@@ -14,9 +14,19 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
              'Modal': '.ink-modal',
 
             /***************************
+             * ProgressBar - Default CSS selector is .ink-progress-bar
+             ***************************/
+             'ProgressBar': '.ink-progress-bar',
+
+            /***************************
              * SortableList - Default CSS selector is .ink-sortable-list
              ***************************/
              'SortableList': '.ink-sortable-list',
+
+            /***************************
+             * Sticky - Default CSS selector is .ink-navigation.sticky
+             ***************************/
+             'Sticky': '.ink-navigation.sticky',
 
             /***************************
              * Table - Default CSS selector is .ink-table
@@ -42,10 +52,12 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
 
         };
 
+        SAPO.Ink.siteInkInstances = {};
         SAPO.Dom.Loaded.run(function(){
             for( var module in autoload ){
                 if( autoload.hasOwnProperty(module) ){
-                    SAPO.Dom.Selector.select( autoload[module] ).forEach(function( element ){ new SAPO.Ink[module]( element ); });
+                    SAPO.Ink.siteInkInstances[module] = [];
+                    SAPO.Dom.Selector.select( autoload[module] ).forEach(function( element ){ SAPO.Ink.siteInkInstances[module].push( new SAPO.Ink[module]( element ) ); });
                 }
             }
         });

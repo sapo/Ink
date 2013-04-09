@@ -42,6 +42,7 @@
 
 
         this._options = SAPO.extendObj({
+            preventUrlChange: false,
             active: undefined,
             disabled: [],
             onBeforeChange: undefined,
@@ -113,16 +114,6 @@
                                      Selector.select('.ink-tabs-container', this._element)[0];
 
             this._activeMenuLink = this._findLinkByHref(this._activeContentTab.getAttribute('id'));
-
-            // if(Css.hasClassName(this._activeMenuLink, 'ink-disabled')){
-            //     for(var i = 0; i < this._menuTabs.length; i++){
-            //         var link = Selector.select('a', this._menuTabs[i])[0];
-            //         if(!Css.hasClassName(link, 'ink-disabled')){
-            //             this._activeMenuLink = link;
-            //             break;
-            //         }
-            //     }
-            // }
             this._activeMenuTab = this._activeMenuLink.parentNode;
         },
 
@@ -139,7 +130,7 @@
             var selector = link.getAttribute('href');
             Css.removeClassName(this._activeMenuTab, 'active');
             Css.removeClassName(this._activeContentTab, 'active');
-            Css.addClassName(this._activeContentTab, 'hide');
+            Css.addClassName(this._activeContentTab, 'hide-all');
             
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
@@ -147,7 +138,7 @@
 
             Css.addClassName(this._activeMenuTab, 'active');
             Css.addClassName(this._activeContentTab, 'active');
-            Css.removeClassName(this._activeContentTab, 'hide');
+            Css.removeClassName(this._activeContentTab, 'hide-all');
             Css.show(this._activeContentTab);
 
             if(runCallbacks && typeof(this._options.onChange) !== 'undefined'){
@@ -166,7 +157,11 @@
             if(target.nodeName.toLowerCase() !== 'a') {
                 return;
             }
-            window.location.hash = target.getAttribute('href');
+
+            if( this._options.preventUrlChange.toString() !== 'true'){
+                window.location.hash = target.getAttribute('href');
+            }
+
             if(target === this._activeMenuLink){
                 return;
             }

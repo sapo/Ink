@@ -60,6 +60,8 @@
          */
         this._options = SAPO.extendObj(this._options,options || {});
 
+        this._topScroll = 0;
+
         this._init();
     };
 
@@ -87,54 +89,58 @@
             }
 
 
-            // if( !this._scrollTimeout ){
-            //     this._scrollTimeout = setTimeout(function(){
+            // if( this._scrollTimeout ){
+            //     clearTimeout(this._scrollTimeout);
+            // }
+            // this._scrollTimeout = setTimeout(function(){
 
-                    var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
+                var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
 
-                    if( (this._rootElement.style.position !== 'fixed') && ( window.scrollY >= SAPO.Dom.Element.elementTop(this._rootElement) )  ){
-                        /**
-                         * Saving initial status
-                         */
-                        if( !isNaN(parseInt( computedStyle.top, 10 )) ){
-                            this._options.originalTop = parseInt( computedStyle.top, 10 ) || 'auto';
-                        } else {
-                            this._options.originalTop = this._rootElement.offsetTop;
-                        }
-                        this._options.originalPosition = computedStyle.position;
-                        this._options.originalWidth = parseInt(computedStyle.width,10);
+                if( (this._rootElement.style.position !== 'fixed') && ( window.scrollY >= SAPO.Dom.Element.elementTop(this._rootElement) )  ){
+                    /**
+                     * Saving initial status
+                     */
+                    if( !isNaN(parseInt( computedStyle.top, 10 )) ){
+                        this._options.originalTop = parseInt( computedStyle.top, 10 ) || 'auto';
+                    } else {
+                        this._options.originalTop = this._rootElement.offsetTop;
+                    }
+                    this._options.originalPosition = computedStyle.position;
+                    this._options.originalWidth = parseInt(computedStyle.width,10);
 
-                        /**
-                         * Setting new values
-                         */
-                        this._rootElement.style.width = computedStyle.width;
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.top = this._options.offsetTop;
+                    /**
+                     * Setting new values
+                     */
+                    this._rootElement.style.width = computedStyle.width;
+                    this._rootElement.style.position = 'fixed';
+                    this._rootElement.style.top = this._options.offsetTop;
 
-                    } else if( ( window.scrollY < this._options.originalTop ) ){
+                } else if( ( window.scrollY <= this._options.originalTop ) ){
+                    this._rootElement.style.top = this._options.originalTop + 'px';
+                    this._rootElement.style.width = this._options.originalWidth +'px';
 
-                        this._rootElement.style.top = this._options.originalTop + 'px';
+                    if( this._rootElement.style.position !== this._options.originalPosition ){
                         this._rootElement.style.position = this._options.originalPosition;
-                        this._rootElement.style.width = this._options.originalWidth +'px';
-
-                    } else if( ( window.scrollY+parseInt(computedStyle.height,10) ) >= (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ){
-
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.bottom = this._options.offsetBottom;
-                        // this._rootElement.style.position = this._options.originalPosition;
-                        // this._rootElement.style.width = this._options.originalWidth;
-
-                    } else if(
-                        ( ( window.scrollY+parseInt(computedStyle.height,10) ) < (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ) &&
-                        ( this._rootElement.style.bottom === this._options.offsetBottom )
-                    ){
-                        this._rootElement.style.top = this._options.offsetTop;
-                        this._rootElement.style.bottom = 'auto';
+                        window.scrollTo( 0, window.scrollY-100 );
                     }
 
-                    this._scrollTimeout = undefined;
-                // }.bindObj(this),250);
-            // }
+                } else if( ( window.scrollY+parseInt(computedStyle.height,10) ) >= (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ){
+
+                    this._rootElement.style.top = 'auto';
+                    this._rootElement.style.bottom = this._options.offsetBottom;
+                    // this._rootElement.style.position = this._options.originalPosition;
+                    // this._rootElement.style.width = this._options.originalWidth;
+
+                } else if(
+                    ( ( window.scrollY+parseInt(computedStyle.height,10) ) < (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ) &&
+                    ( this._rootElement.style.bottom === this._options.offsetBottom )
+                ){
+                    this._rootElement.style.top = this._options.offsetTop;
+                    this._rootElement.style.bottom = 'auto';
+                }
+
+                // this._scrollTimeout = undefined;
+            // }.bindObj(this),250);
         },
 
         _onResize: function(){
