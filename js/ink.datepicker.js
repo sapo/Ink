@@ -92,7 +92,7 @@
             nextLinkText:    '»',
             ofText:          '&nbsp;de&nbsp;',
             month: {
-                 1:'Januar',
+                 1:'January',
                  2:'February',
                  3:'March',
                  4:'April',
