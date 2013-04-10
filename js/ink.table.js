@@ -153,13 +153,14 @@
                         bValue = Selector.select('td',b)[index].innerText
                     ;
 
-                    if( !isNaN(aValue) && aValue.test(/\d/) ){
+                    var regex = new RegExp(/\d/g);
+                    if( !isNaN(aValue) && regex.test(aValue) ){
                         aValue = parseInt(aValue,10);
                     } else if( !isNaN(aValue) ){
                         aValue = parseFloat(aValue);
                     }
 
-                    if( !isNaN(bValue) && bValue.test(/\d/) ){
+                    if( !isNaN(bValue) && regex.test(bValue) ){
                         bValue = parseInt(bValue,10);
                     } else if( !isNaN(bValue) ){
                         bValue = parseFloat(bValue);
