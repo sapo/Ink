@@ -65,7 +65,7 @@
         _init: function() {
             this._menu = Selector.select('.tabs-nav', this._element)[0];
             this._menuTabs = this._getChildElements(this._menu);
-            this._contentTabs = Selector.select('.ink-tabs-container', this._element);
+            this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
             this._initializeDom();
@@ -111,7 +111,7 @@
             var hash = window.location.hash;
             this._activeContentTab = Selector.select(hash, this._element)[0] ||
                                      Selector.select(this._hashify(this._options.active), this._element)[0] ||
-                                     Selector.select('.ink-tabs-container', this._element)[0];
+                                     Selector.select('.tabs-content', this._element)[0];
 
             this._activeMenuLink = this._findLinkByHref(this._activeContentTab.getAttribute('id'));
             this._activeMenuTab = this._activeMenuLink.parentNode;
