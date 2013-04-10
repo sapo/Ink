@@ -152,6 +152,19 @@
                         aValue = Selector.select('td',a)[index].innerText,
                         bValue = Selector.select('td',b)[index].innerText
                     ;
+
+                    if( !isNaN(aValue) && aValue.test(/\d/) ){
+                        aValue = parseInt(aValue,10);
+                    } else if( !isNaN(aValue) ){
+                        aValue = parseFloat(aValue);
+                    }
+
+                    if( !isNaN(bValue) && bValue.test(/\d/) ){
+                        bValue = parseInt(bValue,10);
+                    } else if( !isNaN(bValue) ){
+                        bValue = parseFloat(bValue);
+                    }
+
                     if( aValue === bValue ){
                         return 0;
                     } else {
