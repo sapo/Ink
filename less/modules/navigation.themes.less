@@ -18,7 +18,7 @@
                             border-bottom: 1px solid fade(@black,15%);
                             padding: @navigation-padding;
                             
-                            &:hover { background: fade(@black,10%); }
+                            &:hover { background: lighten(@black,90%); }
 
                             &:last-child a { border: none; }
                         }
@@ -70,7 +70,7 @@
 
             // white theme
             &.white {
-                #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                #ink > #navigation > #gradients > .white;
                 li {
 
                     ul.submenu { 
@@ -87,7 +87,7 @@
             
             // grey theme
             &.grey {
-                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+                #ink > #navigation > #gradients > .grey;
                 li {
 
                     ul.submenu { 
@@ -104,7 +104,7 @@
 
             // black theme
             &.black {
-                #ink > #gradients > .gradient (lighten(@black,20%), @black, 150%);
+                #ink > #navigation > #gradients > .black;
                 li {
 
                     ul.submenu { 
@@ -123,7 +123,8 @@
 
             // orange theme
             &.orange {
-                #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+                #ink > #navigation > #gradients > .orange;
+
                 
                 li {
 
@@ -143,7 +144,7 @@
 
             // blue theme
             &.blue {
-                #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
+                #ink > #navigation > #gradients > .blue;
                 
                 li {
                     ul.submenu { 
@@ -162,7 +163,8 @@
 
             // green theme
             &.green {
-                #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
+
+                #ink > #navigation > #gradients > .green;
                 
                 li {
                     ul.submenu { 
@@ -181,7 +183,7 @@
 
             // red  theme
             &.red {
-                #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
+                #ink > #navigation > #gradients > .red;
                 
                 li {
                     ul.submenu { 
@@ -214,11 +216,57 @@
                 }
             }
 
-            &.white, &.grey, &.black, &.orange, &.blue, &.green, &.red {
+            &.white {
                 li {
                     &.active {
                         
-                        background: fade(@black,25%);
+                        background: lighten(@black,85%);
+
+                        &:hover {
+                            a { background: lighten(@black,75%); }
+                        }
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {                            
+                            background: lighten(@black,85%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.grey {
+                li {
+                    &.active {
+                        
+                        background: lighten(@black,70%);
+
+                        &:hover {
+                            a {
+                                background: lighten(@black,65%);   
+                            }                                                    
+                        }
+
                     }
 
                     a {
@@ -226,7 +274,215 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: fade(@black,25%);
+                            background: lighten(@black,70%);                                              
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.black {
+                li {
+                    &.active {
+                        
+                        background: lighten(@black,20%);
+
+                        &:hover {
+                            a { background: lighten(@black,25%); }
+                        }
+
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,20%);                                        
+
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: lighten(@black,90%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.orange {
+                li {
+                    &.active {
+                        
+                        background: darken(@orange,15%);
+                        &:hover {
+                            a {
+                                background: darken(@orange,20%);
+                            }
+                        }                                          
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@orange,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.blue {
+                li {
+                    &.active {
+                        
+                        background: darken(@blue,15%);
+                        &:hover {
+                            a {
+                                background: darken(@blue,20%);
+                            }
+                        } 
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@blue,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.green {
+                li {
+                    &.active {
+                        
+                        background: darken(@green,15%);
+                        &:hover {
+                            a {
+                        background: darken(@green,20%);
+                                
+                            }
+                        } 
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                        background: darken(@green,15%);
+                                                    
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.red {
+                li {
+                    &.active {
+                        
+                        background: darken(@red,15%);
+                        &:hover {
+                            a {
+                            background: darken(@red,25%);
+                                
+                            }
+                        }
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                        background: darken(@red,15%);
+                            
                         }
                     }
 
@@ -516,7 +772,7 @@
             // white
             &.white {
                 li {
-                    #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                    #ink > #navigation > #gradients > .white;
                     &.disabled {
                         a {
                             color: @grey-40;
@@ -535,7 +791,7 @@
             // grey theme
             &.grey {
                 li {
-                    #ink > #gradients > .gradient (@grey-15, @grey-35, 150%);
+                    #ink > #navigation > #gradients > .grey;
                     &.disabled {
                         a {
                             color: @grey-40;
@@ -554,7 +810,8 @@
             // black theme
             &.black {
                 li {
-                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                    #ink > #navigation > #gradients > .black;
+
                     &.disabled {
                         a {
                             color: @grey-60; 
@@ -572,7 +829,7 @@
             // orange theme
             &.orange {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .orange;
                     &.disabled {
                         a {
                             color: darken(@orange,20%); 
@@ -588,7 +845,7 @@
             // blue theme
             &.blue {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .blue;
                     &.disabled {
                         a {
                             color: darken(@blue,20%); 
@@ -604,7 +861,7 @@
             // green theme
             &.green {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .green;
                     &.disabled {
                         a {
                             color: darken(@green,20%); 
@@ -620,7 +877,7 @@
             // red theme
             &.red {
                 li {
-                    #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .red;
                     &.disabled {
                         a {
                             color: darken(@red,25%); 
@@ -752,7 +1009,7 @@
 
             // white theme
             &.white {
-                #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                #ink > #navigation > #gradients > .white;
                 li {
                     &:after {
                         color: @text-color;
@@ -766,7 +1023,7 @@
 
             // grey theme
             &.grey {
-                #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+                #ink > #navigation > #gradients > .grey;
                 li {
                     &:after {
                         color: @text-color;
@@ -780,7 +1037,7 @@
 
             // black theme
             &.black {
-                 #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                 #ink > #navigation > #gradients > .black;
                  li.active a { 
                     color: @grey-60; 
                     #ink > #shadows > .text-shadow (0, -1px, 0, lighten(@black,8%));
@@ -789,7 +1046,7 @@
 
             // orange them
             &.orange {
-                #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+                #ink > #navigation > #gradients > .orange;
                 li.active a { 
                     color: darken(@orange,20%); 
                     #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
@@ -798,7 +1055,7 @@
 
             // blue theme
             &.blue {
-                #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
+                #ink > #navigation > #gradients > .blue;
                 li.active a { 
                     color: darken(@blue,20%); 
                     #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
@@ -807,7 +1064,7 @@
 
             // green theme
             &.green {
-                #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
+                #ink > #navigation > #gradients > .green;
                 li.active a { 
                     color: darken(@green,20%); 
                     #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
@@ -816,7 +1073,7 @@
 
             // red theme
             &.red {
-                #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
+                #ink > #navigation > #gradients > .red;
                 li.active a { 
                     color: darken(@red,25%); 
                     #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
@@ -881,7 +1138,7 @@
             // defaults
             li {
 
-                #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
+                #ink > #navigation > #gradients > .white;
 
                 a {
                     color: @text-color;
@@ -893,78 +1150,192 @@
 
                 }
 
-                &.active, &:hover {
-                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+                &:hover {
+                        background: @grey-15;
+                    } 
+
+                &.active {
+                    #ink > #gradients > .gradient (lighten(@black,90%), lighten(@black,75%), 150%);
                     a { 
-                        color: @white; 
+                        color: @black; 
                         background: none; 
+                    }
+                    &:hover {
+                        background: @grey-30;
+                    } 
+                }
+
+
+
+                &.disabled {
+                            #ink > #navigation > #gradients > .white;
+                    a {
+                        color: lighten(@text-color,50%);
+                        text-shadow: 0 1px 0 lighten(@text-color,90%);
+                        &:hover {
+                            cursor: default;                           
+                        }
                     }
                 }
 
             }
+
+            &.green, &.red, &.blue, &.orange, &.black {
+                li {
+                    
+                        a {                            
+                            color: @white;
+                        }
+                    
+                    
+                }
+            }
+
 
 
             // grey theme
             &.grey {
                 li {
-                    &:hover, &.active {
-                        #ink > #gradients > .gradient (@grey-45, @grey-65, 150%);
+                    #ink > #navigation > #gradients > .grey;
+                    &:hover {
+                        background: darken(@grey-20,15%);                        
                     }
+                    &.active {
+                        background: darken(@grey-20,20%);                        
+                        &:hover {                            
+                            background: darken(@grey-20,30%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .grey;
+                        a {
+                            color: @grey-40;
+                        }
+                    }                    
                 }
             }
 
             &.black {
+
                 li {
-                    #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
-                    a {
-                        color: @white;
+                    #ink > #navigation > #gradients > .black;
+
+                    &:hover {
+                        background: lighten(@black,25%);                        
                     }
-                    &:hover, &.active {
-                        #ink > #gradients > .gradient (@white, darken(@white,5%), 150%);
-                        a { color: @text-color; }
+
+                    &.active {
+                        background: lighten(@black,25%);                        
+                        &:hover {                            
+                            background: lighten(@black,35%);                        
+                        }
+                    }
+
+                    &.disabled {
+                        #ink > #navigation > #gradients > .black;
+                        a {
+                            color: @grey-70;
+                            text-shadow: 0 1px 0 lighten(@black,40%);
+                        }
                     }
                 }
             }
 
             &.orange {
                 li {
-                    &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .orange;
+                    &:hover {
+                        background: darken(@orange,15%);                        
+                    }
+                    &.active {
+                        background: darken(@orange,15%);                        
+                        &:hover {                            
+                            background: darken(@orange,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .orange;
+                        a {
+                            color: darken(@orange,20%);
+                            text-shadow: 0 1px 0 lighten(@orange,20%);
+                        }
                     }
                 }
             }
 
             &.blue {
                 li {
-                    &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .blue;
+                    &:hover {
+                        background: darken(@blue,15%);                        
+                    }
+                    &.active {
+                        background: darken(@blue,15%);                        
+                        &:hover {                            
+                            background: darken(@blue,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .blue;
+                        a {
+                            color: darken(@blue,20%);
+                            text-shadow: 0 1px 0 lighten(@blue,20%);
+                        }
                     }
                 }
             }
 
             &.green {
                 li {
-                    &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .green;
+                    &:hover {
+                        background: darken(@green,15%);                        
+                    }
+                    &.active {
+                        background: darken(@green,15%);                        
+                        &:hover {                            
+                            background: darken(@green,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .green;
+                        a {
+                            color: darken(@green,15%);
+                            text-shadow: 0 1px 0 lighten(@green,5%);
+                        }
                     }
                 }
             }
 
             &.red {
                 li {
-                    &:hover, &.active {
-                        #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);
+                    #ink > #navigation > #gradients > .red;
+                    &:hover {
+                        background: darken(@red,15%);                        
+                    }
+                    &.active {
+                        background: darken(@red,15%);                        
+                        &:hover {                            
+                            background: darken(@red,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .red;
+                        a {
+                            color: darken(@red,20%);
+                            text-shadow: 0 1px 0 lighten(@red,10%);
+                        }
                     }
                 }
             }
 
-            &.orange, &.blue, &.green, &.red {
-                li {
-                    &:hover, &.active {
-                        color: @white;
-                    }
-                }    
-            }
+            // &.orange, &.blue, &.green, &.red {
+            //     li {
+            //         &:hover, &.active {
+            //             color: @white;
+            //         }
+            //     }    
+            // }            
 
             // use solid color backgrounds
             &.flat {
