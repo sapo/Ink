@@ -38,7 +38,7 @@ mark {
 
     p {
         #ink > #border-radius > .all(4px);
-        padding: .8em;
+        padding: .8em 0;
         text-align: center;
         background: #DEEDF1;
     }
@@ -230,6 +230,17 @@ footer {
 
 #topbar {   
     position: fixed;
+<<<<<<< HEAD
+    top: 0;
+    right: 0;
+    left: 0;
+    background: @topbar-bgColor;
+    #ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
+    z-index: @layer-100;
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+    *height: 40px;
+
+=======
     top:0;
     left: 0;
     width: 100%;
@@ -237,6 +248,7 @@ footer {
     #ink > #shadows > .box-shadows ('0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)');
     z-index: @layer-100;
     
+>>>>>>> refs/heads/develop
     .ink-navigation {
     
         ul {
@@ -397,13 +409,6 @@ footer {
 
 
 /* Prettyfier  */
-var {
-    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
-    font-size: .9em;
-    background-color: #ecda83;  
-    padding:1px 3px;
-}
-
 pre {
     background: #FEFBF3;
     #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));

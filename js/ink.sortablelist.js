@@ -12,7 +12,9 @@
         Css      = SAPO.Dom.Css,
         Element  = SAPO.Dom.Element,
         Event    = SAPO.Dom.Event,
-        Selector = SAPO.Dom.Selector;
+        Selector = SAPO.Dom.Selector,
+        Util_Array = SAPO.Utility.Array
+    ;
 
 
 
@@ -205,13 +207,8 @@
             if (this._isMoving) { return; }
             var tgtEl = Event.element(ev);
 
-            // if (tgtEl.nodeName.toLowerCase() === 'i') {
-            //     tgtEl = tgtEl.parentNode;
-            // }
-            // if ((tgtEl.nodeName.toLowerCase() !== 'li' && ( tgtEl.nodeName.toLowerCase() !== 'span' || !Css.hasClassName(tgtEl, 'ink-label')) ) ) { return; }
-            
-            if( this._dragTriggers.indexOf(tgtEl) === -1 ){
-                while( (this._dragTriggers.indexOf(tgtEl) === -1) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+            if( !Util_Array.inArray(tgtEl,this._dragTriggers) ){
+                while( !Util_Array.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
                     tgtEl = tgtEl.parentNode;
                 }
 
