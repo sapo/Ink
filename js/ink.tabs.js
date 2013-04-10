@@ -134,7 +134,7 @@
             
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
-            this._activeContentTab = Selector.select(selector, this._element)[0];
+            this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
 
             Css.addClassName(this._activeMenuTab, 'active');
             Css.addClassName(this._activeContentTab, 'active');
@@ -159,7 +159,7 @@
             }
 
             if( this._options.preventUrlChange.toString() !== 'true'){
-                window.location.hash = target.getAttribute('href');
+                window.location.hash = target.getAttribute('href').substr(target.getAttribute('href').indexOf('#'));
             }
 
             if(target === this._activeMenuLink){
@@ -218,10 +218,10 @@
             var ret;
             this._menuTabs.forEach(function(elem){
                 var link = Selector.select('a', elem)[0];
-                if(link.getAttribute('href') === href){
+                if( (link.getAttribute('href').indexOf('#') !== -1) && ( link.getAttribute('href').substr(link.getAttribute('href').indexOf('#')) === href ) ){
                     ret = link;
                 }
-            });
+            }.bindObj(this));
             return ret;
         },
 

@@ -60,8 +60,6 @@
          */
         this._options = SAPO.extendObj(this._options,options || {});
 
-        this._topScroll = 0;
-
         this._init();
     };
 
@@ -96,7 +94,11 @@
 
                 var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
 
-                if( (this._rootElement.style.position !== 'fixed') && ( window.scrollY >= SAPO.Dom.Element.elementTop(this._rootElement) )  ){
+                if( (this._rootElement.style.position !== 'fixed') &&
+                    (
+                        ( window.scrollY >= SAPO.Dom.Element.elementTop(this._rootElement) ) ||
+                        ( (SAPO.Dom.Element.elementTop(this._rootElement)-window.scrollY) <= 39 ) )
+                ){
                     /**
                      * Saving initial status
                      */
