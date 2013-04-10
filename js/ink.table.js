@@ -107,9 +107,6 @@
                 });
 
                 var pagination_ul = Selector.select('.pagination',this._pagination._element)[0];
-                Css.addClassName(pagination_ul,'rounded');
-                Css.addClassName(pagination_ul,'shadowed');
-                Css.addClassName(pagination_ul,'blue');
 
                 this._paginate(1);
             }
@@ -144,34 +141,22 @@
             {
                 this._headers[index].innerHTML = this._headers[index].innerText;
                 this._sortableFields['col_'+index] = 'none';
-                this._data = this._originalData.slice(0);
+
+                var found = false;
+                for(var prop in this._sortableFields ){
+                    if( this._sortableFields[prop] === 'asc' || this._sortableFields[prop] === 'desc' ){
+                        found = true;
+                        this._sort(prop.replace('col_',''));
+                        break;
+                    }
+                }
+
+                if( !found ){
+                    this._data = this._originalData.slice(0);
+                }
             } else {
 
-                this._data.sort(function(a,b){
-                    var
-                        aValue = Selector.select('td',a)[index].innerText,
-                        bValue = Selector.select('td',b)[index].innerText
-                    ;
-
-                    var regex = new RegExp(/\d/g);
-                    if( !isNaN(aValue) && regex.test(aValue) ){
-                        aValue = parseInt(aValue,10);
-                    } else if( !isNaN(aValue) ){
-                        aValue = parseFloat(aValue);
-                    }
-
-                    if( !isNaN(bValue) && regex.test(bValue) ){
-                        bValue = parseInt(bValue,10);
-                    } else if( !isNaN(bValue) ){
-                        bValue = parseFloat(bValue);
-                    }
-
-                    if( aValue === bValue ){
-                        return 0;
-                    } else {
-                        return ( ( aValue>bValue ) ? 1 : -1 );
-                    }
-                }.bindObj(this));
+                this._sort(index);
 
                 if( this._sortableFields['col_'+index] === 'asc' )
                 {
@@ -206,6 +191,34 @@
                     Css.removeClassName(item,'hide-all');
                 } else {
                     Css.addClassName(item,'hide-all');
+                }
+            }.bindObj(this));
+        },
+
+        _sort: function( index ){
+            this._data.sort(function(a,b){
+                var
+                    aValue = Selector.select('td',a)[index].innerText,
+                    bValue = Selector.select('td',b)[index].innerText
+                ;
+
+                var regex = new RegExp(/\d/g);
+                if( !isNaN(aValue) && regex.test(aValue) ){
+                    aValue = parseInt(aValue,10);
+                } else if( !isNaN(aValue) ){
+                    aValue = parseFloat(aValue);
+                }
+
+                if( !isNaN(bValue) && regex.test(bValue) ){
+                    bValue = parseInt(bValue,10);
+                } else if( !isNaN(bValue) ){
+                    bValue = parseFloat(bValue);
+                }
+
+                if( aValue === bValue ){
+                    return 0;
+                } else {
+                    return ( ( aValue>bValue ) ? 1 : -1 );
                 }
             }.bindObj(this));
         }
