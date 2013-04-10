@@ -1,18 +1,15 @@
-/* line 85, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid {
   width: auto;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 3%;
 }
-/* line 129, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .column-group {
   width: auto;
   clear: both;
   zoom: 1;
   margin-left: -3%;
 }
-/* line 135, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .column-group:after {
   content: ".";
   display: block;
@@ -21,147 +18,169 @@
   visibility: hidden;
   zoom: 1;
 }
-/* line 145, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .column-group.gutters {
   padding-right: 3%;
   margin-left: -3%;
   overflow: visible;
 }
-/* line 318, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-100 {
   width: 99.99958333333333%;
   clear: both;
 }
-/* line 322, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-95 {
+  width: 94.99958333333333%;
+}
 .large-90 {
   width: 89.99958333333333%;
 }
-/* line 325, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-85 {
+  width: 84.99958333333333%;
+}
 .large-80 {
   width: 79.99958333333333%;
 }
-/* line 328, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-75 {
   width: 74.99958333333333%;
 }
-/* line 331, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-70 {
   width: 69.99958333333333%;
 }
-/* line 334, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-66 {
   width: 66.65958333333333%;
 }
-/* line 337, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-65 {
+  width: 64.99958333333333%;
+}
 .large-60 {
   width: 59.999583333333334%;
 }
-/* line 340, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-55 {
+  width: 54.999583333333334%;
+}
 .large-50 {
   width: 49.999583333333334%;
 }
-/* line 343, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-45 {
+  width: 44.999583333333334%;
+}
 .large-40 {
   width: 39.999583333333334%;
 }
-/* line 346, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-33 {
   width: 33.32958333333333%;
 }
-/* line 349, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-35 {
+  width: 34.999583333333334%;
+}
 .large-30 {
   width: 29.999583333333334%;
 }
-/* line 352, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-25 {
   width: 24.999583333333334%;
 }
-/* line 355, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-20 {
   width: 19.999583333333334%;
 }
-/* line 358, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-15 {
+  width: 14.999583333333334%;
+}
 .large-10 {
   width: 9.999583333333334%;
 }
-/* line 362, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.large-5 {
+  width: 4.999583333333334%;
+}
 .large-100,
+.large-95,
 .large-90,
+.large-85,
 .large-80,
 .large-75,
 .large-70,
 .large-66,
+.large-65,
 .large-60,
+.large-55,
 .large-50,
+.large-45,
 .large-40,
+.large-35,
 .large-33,
 .large-30,
 .large-25,
 .large-20,
-.large-10 {
+.large-15,
+.large-10,
+.large-5 {
   float: left;
   margin-bottom: 3%;
   margin-top: 3%;
   overflow: hidden;
   zoom: 1;
 }
-/* line 384, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-100 {
   width: 99.99958333333333%;
 }
-/* line 387, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-95 {
+  width: 93.49958333333333%;
+}
 .ink-grid .column-group.gutters > .large-90 {
   width: 88.49958333333333%;
 }
-/* line 390, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-85 {
+  width: 83.49958333333333%;
+}
 .ink-grid .column-group.gutters > .large-80 {
   width: 78.49958333333333%;
 }
-/* line 393, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-75 {
   width: 73.70958333333333%;
 }
-/* line 396, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-70 {
   width: 68.49958333333333%;
 }
-/* line 399, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-66 {
   width: 65.54958333333333%;
 }
-/* line 402, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-65 {
+  width: 63.499583333333334%;
+}
 .ink-grid .column-group.gutters > .large-60 {
   width: 58.499583333333334%;
 }
-/* line 405, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-55 {
+  width: 53.349583333333335%;
+}
 .ink-grid .column-group.gutters > .large-50 {
   width: 48.349583333333335%;
 }
-/* line 408, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-45 {
+  width: 43.499583333333334%;
+}
 .ink-grid .column-group.gutters > .large-40 {
   width: 38.499583333333334%;
 }
-/* line 411, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-35 {
+  width: 33.19958333333334%;
+}
 .ink-grid .column-group.gutters > .large-33 {
   width: 31.199583333333333%;
 }
-/* line 414, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-30 {
   width: 28.499583333333334%;
 }
-/* line 417, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-25 {
   width: 22.599583333333335%;
 }
-/* line 420, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-20 {
   width: 18.499583333333334%;
 }
-/* line 423, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-grid .column-group.gutters > .large-10 {
   width: 8.499583333333334%;
 }
-/* line 428, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
+.ink-grid .column-group.gutters > .large-5 {
+  width: 3.4995833333333337%;
+}
 .ink-grid .column-group.gutters > .large-100,
 .ink-grid .column-group.gutters > .large-90,
 .ink-grid .column-group.gutters > .large-80,
@@ -179,267 +198,550 @@
   margin-left: 3%;
   padding-left: 0;
 }
-/* line 447, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-100:empty,
+.large-95:empty,
 .large-90:empty,
+.large-85:empty,
 .large-80:empty,
 .large-75:empty,
 .large-70:empty,
 .large-66:empty,
+.large-65:empty,
 .large-60:empty,
+.large-55:empty,
 .large-50:empty,
+.large-45:empty,
 .large-40:empty,
 .large-33:empty,
+.large-35:empty,
 .large-30:empty,
 .large-25:empty,
 .large-20:empty,
-.large-10:empty {
+.large-15:empty,
+.large-10:empty,
+.large-5:empty {
   clear: both;
 }
-/* line 478, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-100 > .large-100,
+.large-100 > .large-95,
 .large-100 > .large-90,
+.large-100 > .large-85,
 .large-100 > .large-80,
 .large-100 > .large-75,
 .large-100 > .large-70,
 .large-100 > .large-66,
+.large-100 > .large-65,
 .large-100 > .large-60,
+.large-100 > .large-55,
 .large-100 > .large-50,
+.large-100 > .large-45,
 .large-100 > .large-40,
 .large-100 > .large-33,
+.large-100 > .large-35,
 .large-100 > .large-30,
 .large-100 > .large-25,
 .large-100 > .large-20,
+.large-100 > .large-15,
 .large-100 > .large-10,
+.large-100 > .large-5,
+.large-95 > .large-100,
+.large-95 > .large-95,
+.large-95 > .large-90,
+.large-95 > .large-85,
+.large-95 > .large-80,
+.large-95 > .large-75,
+.large-95 > .large-70,
+.large-95 > .large-66,
+.large-95 > .large-65,
+.large-95 > .large-60,
+.large-95 > .large-55,
+.large-95 > .large-50,
+.large-95 > .large-45,
+.large-95 > .large-40,
+.large-95 > .large-33,
+.large-95 > .large-35,
+.large-95 > .large-30,
+.large-95 > .large-25,
+.large-95 > .large-20,
+.large-95 > .large-15,
+.large-95 > .large-10,
+.large-95 > .large-5,
 .large-90 > .large-100,
+.large-90 > .large-95,
 .large-90 > .large-90,
+.large-90 > .large-85,
 .large-90 > .large-80,
 .large-90 > .large-75,
 .large-90 > .large-70,
 .large-90 > .large-66,
+.large-90 > .large-65,
 .large-90 > .large-60,
+.large-90 > .large-55,
 .large-90 > .large-50,
+.large-90 > .large-45,
 .large-90 > .large-40,
 .large-90 > .large-33,
+.large-90 > .large-35,
 .large-90 > .large-30,
 .large-90 > .large-25,
 .large-90 > .large-20,
+.large-90 > .large-15,
 .large-90 > .large-10,
+.large-90 > .large-5,
+.large-85 > .large-100,
+.large-85 > .large-95,
+.large-85 > .large-90,
+.large-85 > .large-85,
+.large-85 > .large-80,
+.large-85 > .large-75,
+.large-85 > .large-70,
+.large-85 > .large-66,
+.large-85 > .large-65,
+.large-85 > .large-60,
+.large-85 > .large-55,
+.large-85 > .large-50,
+.large-85 > .large-45,
+.large-85 > .large-40,
+.large-85 > .large-33,
+.large-85 > .large-35,
+.large-85 > .large-30,
+.large-85 > .large-25,
+.large-85 > .large-20,
+.large-85 > .large-15,
+.large-85 > .large-10,
+.large-85 > .large-5,
 .large-80 > .large-100,
+.large-80 > .large-95,
 .large-80 > .large-90,
+.large-80 > .large-85,
 .large-80 > .large-80,
 .large-80 > .large-75,
 .large-80 > .large-70,
 .large-80 > .large-66,
+.large-80 > .large-65,
 .large-80 > .large-60,
+.large-80 > .large-55,
 .large-80 > .large-50,
+.large-80 > .large-45,
 .large-80 > .large-40,
 .large-80 > .large-33,
+.large-80 > .large-35,
 .large-80 > .large-30,
 .large-80 > .large-25,
 .large-80 > .large-20,
+.large-80 > .large-15,
 .large-80 > .large-10,
+.large-80 > .large-5,
 .large-75 > .large-100,
+.large-75 > .large-95,
 .large-75 > .large-90,
+.large-75 > .large-85,
 .large-75 > .large-80,
 .large-75 > .large-75,
 .large-75 > .large-70,
 .large-75 > .large-66,
+.large-75 > .large-65,
 .large-75 > .large-60,
+.large-75 > .large-55,
 .large-75 > .large-50,
+.large-75 > .large-45,
 .large-75 > .large-40,
 .large-75 > .large-33,
+.large-75 > .large-35,
 .large-75 > .large-30,
 .large-75 > .large-25,
 .large-75 > .large-20,
+.large-75 > .large-15,
 .large-75 > .large-10,
+.large-75 > .large-5,
 .large-70 > .large-100,
+.large-70 > .large-95,
 .large-70 > .large-90,
+.large-70 > .large-85,
 .large-70 > .large-80,
 .large-70 > .large-75,
 .large-70 > .large-70,
 .large-70 > .large-66,
+.large-70 > .large-65,
 .large-70 > .large-60,
+.large-70 > .large-55,
 .large-70 > .large-50,
+.large-70 > .large-45,
 .large-70 > .large-40,
 .large-70 > .large-33,
+.large-70 > .large-35,
 .large-70 > .large-30,
 .large-70 > .large-25,
 .large-70 > .large-20,
+.large-70 > .large-15,
 .large-70 > .large-10,
+.large-70 > .large-5,
 .large-66 > .large-100,
+.large-66 > .large-95,
 .large-66 > .large-90,
+.large-66 > .large-85,
 .large-66 > .large-80,
 .large-66 > .large-75,
 .large-66 > .large-70,
 .large-66 > .large-66,
+.large-66 > .large-65,
 .large-66 > .large-60,
+.large-66 > .large-55,
 .large-66 > .large-50,
+.large-66 > .large-45,
 .large-66 > .large-40,
 .large-66 > .large-33,
+.large-66 > .large-35,
 .large-66 > .large-30,
 .large-66 > .large-25,
 .large-66 > .large-20,
+.large-66 > .large-15,
 .large-66 > .large-10,
+.large-66 > .large-5,
+.large-65 > .large-100,
+.large-65 > .large-95,
+.large-65 > .large-90,
+.large-65 > .large-85,
+.large-65 > .large-80,
+.large-65 > .large-75,
+.large-65 > .large-70,
+.large-65 > .large-66,
+.large-65 > .large-65,
+.large-65 > .large-60,
+.large-65 > .large-55,
+.large-65 > .large-50,
+.large-65 > .large-45,
+.large-65 > .large-40,
+.large-65 > .large-33,
+.large-65 > .large-35,
+.large-65 > .large-30,
+.large-65 > .large-25,
+.large-65 > .large-20,
+.large-65 > .large-15,
+.large-65 > .large-10,
+.large-65 > .large-5,
 .large-60 > .large-100,
+.large-60 > .large-95,
 .large-60 > .large-90,
+.large-60 > .large-85,
 .large-60 > .large-80,
 .large-60 > .large-75,
 .large-60 > .large-70,
 .large-60 > .large-66,
+.large-60 > .large-65,
 .large-60 > .large-60,
+.large-60 > .large-55,
 .large-60 > .large-50,
+.large-60 > .large-45,
 .large-60 > .large-40,
 .large-60 > .large-33,
+.large-60 > .large-35,
 .large-60 > .large-30,
 .large-60 > .large-25,
 .large-60 > .large-20,
+.large-60 > .large-15,
 .large-60 > .large-10,
+.large-60 > .large-5,
+.large-55 > .large-100,
+.large-55 > .large-95,
+.large-55 > .large-90,
+.large-55 > .large-85,
+.large-55 > .large-80,
+.large-55 > .large-75,
+.large-55 > .large-70,
+.large-55 > .large-66,
+.large-55 > .large-65,
+.large-55 > .large-60,
+.large-55 > .large-55,
+.large-55 > .large-50,
+.large-55 > .large-45,
+.large-55 > .large-40,
+.large-55 > .large-33,
+.large-55 > .large-35,
+.large-55 > .large-30,
+.large-55 > .large-25,
+.large-55 > .large-20,
+.large-55 > .large-15,
+.large-55 > .large-10,
+.large-55 > .large-5,
 .large-50 > .large-100,
+.large-50 > .large-95,
 .large-50 > .large-90,
+.large-50 > .large-85,
 .large-50 > .large-80,
 .large-50 > .large-75,
 .large-50 > .large-70,
 .large-50 > .large-66,
+.large-50 > .large-65,
 .large-50 > .large-60,
+.large-50 > .large-55,
 .large-50 > .large-50,
+.large-50 > .large-45,
 .large-50 > .large-40,
 .large-50 > .large-33,
+.large-50 > .large-35,
 .large-50 > .large-30,
 .large-50 > .large-25,
 .large-50 > .large-20,
+.large-50 > .large-15,
 .large-50 > .large-10,
+.large-50 > .large-5,
+.large-45 > .large-100,
+.large-45 > .large-95,
+.large-45 > .large-90,
+.large-45 > .large-85,
+.large-45 > .large-80,
+.large-45 > .large-75,
+.large-45 > .large-70,
+.large-45 > .large-66,
+.large-45 > .large-65,
+.large-45 > .large-60,
+.large-45 > .large-55,
+.large-45 > .large-50,
+.large-45 > .large-45,
+.large-45 > .large-40,
+.large-45 > .large-33,
+.large-45 > .large-35,
+.large-45 > .large-30,
+.large-45 > .large-25,
+.large-45 > .large-20,
+.large-45 > .large-15,
+.large-45 > .large-10,
+.large-45 > .large-5,
 .large-40 > .large-100,
+.large-40 > .large-95,
 .large-40 > .large-90,
+.large-40 > .large-85,
 .large-40 > .large-80,
 .large-40 > .large-75,
 .large-40 > .large-70,
 .large-40 > .large-66,
+.large-40 > .large-65,
 .large-40 > .large-60,
+.large-40 > .large-55,
 .large-40 > .large-50,
+.large-40 > .large-45,
 .large-40 > .large-40,
 .large-40 > .large-33,
+.large-40 > .large-35,
 .large-40 > .large-30,
 .large-40 > .large-25,
 .large-40 > .large-20,
+.large-40 > .large-15,
 .large-40 > .large-10,
+.large-40 > .large-5,
 .large-33 > .large-100,
+.large-33 > .large-95,
 .large-33 > .large-90,
+.large-33 > .large-85,
 .large-33 > .large-80,
 .large-33 > .large-75,
 .large-33 > .large-70,
 .large-33 > .large-66,
+.large-33 > .large-65,
 .large-33 > .large-60,
+.large-33 > .large-55,
 .large-33 > .large-50,
+.large-33 > .large-45,
 .large-33 > .large-40,
 .large-33 > .large-33,
+.large-33 > .large-35,
 .large-33 > .large-30,
 .large-33 > .large-25,
 .large-33 > .large-20,
+.large-33 > .large-15,
 .large-33 > .large-10,
+.large-33 > .large-5,
+.large-35 > .large-100,
+.large-35 > .large-95,
+.large-35 > .large-90,
+.large-35 > .large-85,
+.large-35 > .large-80,
+.large-35 > .large-75,
+.large-35 > .large-70,
+.large-35 > .large-66,
+.large-35 > .large-65,
+.large-35 > .large-60,
+.large-35 > .large-55,
+.large-35 > .large-50,
+.large-35 > .large-45,
+.large-35 > .large-40,
+.large-35 > .large-33,
+.large-35 > .large-35,
+.large-35 > .large-30,
+.large-35 > .large-25,
+.large-35 > .large-20,
+.large-35 > .large-15,
+.large-35 > .large-10,
+.large-35 > .large-5,
 .large-30 > .large-100,
+.large-30 > .large-95,
 .large-30 > .large-90,
+.large-30 > .large-85,
 .large-30 > .large-80,
 .large-30 > .large-75,
 .large-30 > .large-70,
 .large-30 > .large-66,
+.large-30 > .large-65,
 .large-30 > .large-60,
+.large-30 > .large-55,
 .large-30 > .large-50,
+.large-30 > .large-45,
 .large-30 > .large-40,
 .large-30 > .large-33,
+.large-30 > .large-35,
 .large-30 > .large-30,
 .large-30 > .large-25,
 .large-30 > .large-20,
+.large-30 > .large-15,
 .large-30 > .large-10,
+.large-30 > .large-5,
 .large-25 > .large-100,
+.large-25 > .large-95,
 .large-25 > .large-90,
+.large-25 > .large-85,
 .large-25 > .large-80,
 .large-25 > .large-75,
 .large-25 > .large-70,
 .large-25 > .large-66,
+.large-25 > .large-65,
 .large-25 > .large-60,
+.large-25 > .large-55,
 .large-25 > .large-50,
+.large-25 > .large-45,
 .large-25 > .large-40,
 .large-25 > .large-33,
+.large-25 > .large-35,
 .large-25 > .large-30,
 .large-25 > .large-25,
 .large-25 > .large-20,
+.large-25 > .large-15,
 .large-25 > .large-10,
+.large-25 > .large-5,
 .large-20 > .large-100,
+.large-20 > .large-95,
 .large-20 > .large-90,
+.large-20 > .large-85,
 .large-20 > .large-80,
 .large-20 > .large-75,
 .large-20 > .large-70,
 .large-20 > .large-66,
+.large-20 > .large-65,
 .large-20 > .large-60,
+.large-20 > .large-55,
 .large-20 > .large-50,
+.large-20 > .large-45,
 .large-20 > .large-40,
 .large-20 > .large-33,
+.large-20 > .large-35,
 .large-20 > .large-30,
 .large-20 > .large-25,
 .large-20 > .large-20,
+.large-20 > .large-15,
 .large-20 > .large-10,
+.large-20 > .large-5,
+.large-15 > .large-100,
+.large-15 > .large-95,
+.large-15 > .large-90,
+.large-15 > .large-85,
+.large-15 > .large-80,
+.large-15 > .large-75,
+.large-15 > .large-70,
+.large-15 > .large-66,
+.large-15 > .large-65,
+.large-15 > .large-60,
+.large-15 > .large-55,
+.large-15 > .large-50,
+.large-15 > .large-45,
+.large-15 > .large-40,
+.large-15 > .large-33,
+.large-15 > .large-35,
+.large-15 > .large-30,
+.large-15 > .large-25,
+.large-15 > .large-20,
+.large-15 > .large-15,
+.large-15 > .large-10,
+.large-15 > .large-5,
 .large-10 > .large-100,
+.large-10 > .large-95,
 .large-10 > .large-90,
+.large-10 > .large-85,
 .large-10 > .large-80,
 .large-10 > .large-75,
 .large-10 > .large-70,
 .large-10 > .large-66,
+.large-10 > .large-65,
 .large-10 > .large-60,
+.large-10 > .large-55,
 .large-10 > .large-50,
+.large-10 > .large-45,
 .large-10 > .large-40,
 .large-10 > .large-33,
+.large-10 > .large-35,
 .large-10 > .large-30,
 .large-10 > .large-25,
 .large-10 > .large-20,
-.large-10 > .large-10 {
+.large-10 > .large-15,
+.large-10 > .large-10,
+.large-10 > .large-5,
+.large-5 > .large-100,
+.large-5 > .large-95,
+.large-5 > .large-90,
+.large-5 > .large-85,
+.large-5 > .large-80,
+.large-5 > .large-75,
+.large-5 > .large-70,
+.large-5 > .large-66,
+.large-5 > .large-65,
+.large-5 > .large-60,
+.large-5 > .large-55,
+.large-5 > .large-50,
+.large-5 > .large-45,
+.large-5 > .large-40,
+.large-5 > .large-33,
+.large-5 > .large-35,
+.large-5 > .large-30,
+.large-5 > .large-25,
+.large-5 > .large-20,
+.large-5 > .large-15,
+.large-5 > .large-10,
+.large-5 > .large-5 {
   margin-left: 0;
 }
-/* line 484, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .ink-form .column-group.gutters {
   margin-left: -3%;
 }
-/* line 521, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-push-left {
   float: left;
 }
-/* line 525, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-push-center {
   float: none;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 530, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-push-right {
   float: right;
 }
-/* line 533, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-align-left {
   text-align: left;
 }
-/* line 536, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-align-center {
   text-align: center;
 }
-/* line 539, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .large-align-right {
   text-align: right;
 }
-/* line 542, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .space {
   margin: 3%;
 }
-/* line 545, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .vspace {
   margin-top: 3%;
   margin-bottom: 3%;
 }
-/* line 549, /Users/pedrocorreia/Development/Ink/less/modules/mixins.less */
 .hspace {
   margin-left: 3%;
   margin-right: 3%;
 }
-/* line 20, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-large {
   font-size: 1.3333333333333333em;
   margin-top: -4px;
@@ -448,7 +750,6 @@
   padding-bottom: 3px;
   vertical-align: middle;
 }
-/* line 30, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .nav [class^="icon-"],
 .nav [class*=" icon-"] {
   vertical-align: inherit;
@@ -457,12 +758,10 @@
   margin-bottom: -4px;
   padding-bottom: 3px;
 }
-/* line 37, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .nav [class^="icon-"].icon-large,
 .nav [class*=" icon-"].icon-large {
   vertical-align: -25%;
 }
-/* line 46, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .nav-pills [class^="icon-"].icon-large,
 .nav-tabs [class^="icon-"].icon-large,
 .nav-pills [class*=" icon-"].icon-large,
@@ -473,1021 +772,768 @@
   margin-bottom: -5px;
   padding-bottom: 4px;
 }
-/* line 59, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .btn [class^="icon-"].pull-left,
 .btn [class*=" icon-"].pull-left,
 .btn [class^="icon-"].pull-right,
 .btn [class*=" icon-"].pull-right {
   vertical-align: inherit;
 }
-/* line 60, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .btn [class^="icon-"].icon-large,
 .btn [class*=" icon-"].icon-large {
   margin-top: -0.5em;
 }
-/* line 66, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 a [class^="icon-"],
 a [class*=" icon-"] {
   cursor: pointer;
 }
-/* line 71, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 ul.icons {
   text-indent: -1.5em;
   margin-left: 3em;
 }
-/* line 81, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-glass {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf000;');
 }
-/* line 82, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-music {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf001;');
 }
-/* line 83, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-search {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf002;');
 }
-/* line 84, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-envelope {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf003;');
 }
-/* line 85, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-heart {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf004;');
 }
-/* line 86, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-star {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf005;');
 }
-/* line 87, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-star-empty {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf006;');
 }
-/* line 88, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-user {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf007;');
 }
-/* line 89, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-film {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf008;');
 }
-/* line 90, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-th-large {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf009;');
 }
-/* line 91, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-th {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf00a;');
 }
-/* line 92, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-th-list {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf00b;');
 }
-/* line 93, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-ok {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf00c;');
 }
-/* line 94, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-remove {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf00d;');
 }
-/* line 95, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-zoom-in {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf00e;');
 }
-/* line 97, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-zoom-out {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf010;');
 }
-/* line 98, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-off {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf011;');
 }
-/* line 99, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-signal {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf012;');
 }
-/* line 100, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-cog {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf013;');
 }
-/* line 101, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-trash {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf014;');
 }
-/* line 102, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-home {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf015;');
 }
-/* line 103, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-file {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf016;');
 }
-/* line 104, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-time {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf017;');
 }
-/* line 105, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-road {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf018;');
 }
-/* line 106, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-download-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf019;');
 }
-/* line 107, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-download {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf01a;');
 }
-/* line 108, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-upload {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf01b;');
 }
-/* line 109, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-inbox {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf01c;');
 }
-/* line 110, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-play-circle {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf01d;');
 }
-/* line 111, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-repeat {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf01e;');
 }
-/* line 113, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-refresh {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf021;');
 }
-/* line 114, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-list-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf022;');
 }
-/* line 115, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-lock {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf023;');
 }
-/* line 116, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-flag {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf024;');
 }
-/* line 117, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-headphones {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf025;');
 }
-/* line 118, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-volume-off {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf026;');
 }
-/* line 119, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-volume-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf027;');
 }
-/* line 120, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-volume-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf028;');
 }
-/* line 121, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-qrcode {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf029;');
 }
-/* line 122, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-barcode {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf02a;');
 }
-/* line 123, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-tag {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf02b;');
 }
-/* line 124, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-tags {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf02c;');
 }
-/* line 125, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-book {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf02d;');
 }
-/* line 126, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bookmark {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf02e;');
 }
-/* line 127, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-print {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf02f;');
 }
-/* line 129, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-camera {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf030;');
 }
-/* line 130, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-font {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf031;');
 }
-/* line 131, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bold {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf032;');
 }
-/* line 132, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-italic {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf033;');
 }
-/* line 133, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-text-height {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf034;');
 }
-/* line 134, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-text-width {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf035;');
 }
-/* line 135, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-align-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf036;');
 }
-/* line 136, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-align-center {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf037;');
 }
-/* line 137, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-align-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf038;');
 }
-/* line 138, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-align-justify {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf039;');
 }
-/* line 139, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-list {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf03a;');
 }
-/* line 140, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-indent-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf03b;');
 }
-/* line 141, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-indent-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf03c;');
 }
-/* line 142, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-facetime-video {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf03d;');
 }
-/* line 143, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-picture {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf03e;');
 }
-/* line 145, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-pencil {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf040;');
 }
-/* line 146, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-map-marker {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf041;');
 }
-/* line 147, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-adjust {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf042;');
 }
-/* line 148, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-tint {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf043;');
 }
-/* line 149, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-edit {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf044;');
 }
-/* line 150, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-share {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf045;');
 }
-/* line 151, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-check {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf046;');
 }
-/* line 152, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-move {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf047;');
 }
-/* line 153, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-step-backward {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf048;');
 }
-/* line 154, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-fast-backward {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf049;');
 }
-/* line 155, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-backward {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf04a;');
 }
-/* line 156, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-play {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf04b;');
 }
-/* line 157, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-pause {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf04c;');
 }
-/* line 158, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-stop {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf04d;');
 }
-/* line 159, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-forward {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf04e;');
 }
-/* line 161, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-fast-forward {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf050;');
 }
-/* line 162, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-step-forward {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf051;');
 }
-/* line 163, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-eject {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf052;');
 }
-/* line 164, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-chevron-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf053;');
 }
-/* line 165, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-chevron-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf054;');
 }
-/* line 166, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-plus-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf055;');
 }
-/* line 167, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-minus-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf056;');
 }
-/* line 168, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-remove-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf057;');
 }
-/* line 169, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-ok-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf058;');
 }
-/* line 170, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-question-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf059;');
 }
-/* line 171, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-info-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf05a;');
 }
-/* line 172, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-screenshot {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf05b;');
 }
-/* line 173, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-remove-circle {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf05c;');
 }
-/* line 174, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-ok-circle {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf05d;');
 }
-/* line 175, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-ban-circle {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf05e;');
 }
-/* line 177, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-arrow-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf060;');
 }
-/* line 178, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-arrow-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf061;');
 }
-/* line 179, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-arrow-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf062;');
 }
-/* line 180, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-arrow-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf063;');
 }
-/* line 181, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-share-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf064;');
 }
-/* line 182, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-resize-full {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf065;');
 }
-/* line 183, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-resize-small {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf066;');
 }
-/* line 184, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-plus {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf067;');
 }
-/* line 185, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-minus {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf068;');
 }
-/* line 186, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-asterisk {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf069;');
 }
-/* line 187, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-exclamation-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf06a;');
 }
-/* line 188, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-gift {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf06b;');
 }
-/* line 189, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-leaf {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf06c;');
 }
-/* line 190, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-fire {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf06d;');
 }
-/* line 191, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-eye-open {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf06e;');
 }
-/* line 193, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-eye-close {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf070;');
 }
-/* line 194, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-warning-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf071;');
 }
-/* line 195, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-plane {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf072;');
 }
-/* line 196, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-calendar {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf073;');
 }
-/* line 197, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-random {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf074;');
 }
-/* line 198, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-comment {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf075;');
 }
-/* line 199, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-magnet {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf076;');
 }
-/* line 200, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-chevron-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf077;');
 }
-/* line 201, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-chevron-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf078;');
 }
-/* line 202, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-retweet {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf079;');
 }
-/* line 203, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-shopping-cart {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf07a;');
 }
-/* line 204, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-folder-close {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf07b;');
 }
-/* line 205, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-folder-open {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf07c;');
 }
-/* line 206, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-resize-vertical {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf07d;');
 }
-/* line 207, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-resize-horizontal {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf07e;');
 }
-/* line 209, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bar-chart {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf080;');
 }
-/* line 210, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-twitter-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf081;');
 }
-/* line 211, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-facebook-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf082;');
 }
-/* line 212, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-camera-retro {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf083;');
 }
-/* line 213, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-key {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf084;');
 }
-/* line 214, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-cogs {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf085;');
 }
-/* line 215, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-comments {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf086;');
 }
-/* line 216, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-thumbs-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf087;');
 }
-/* line 217, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-thumbs-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf088;');
 }
-/* line 218, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-star-half {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf089;');
 }
-/* line 219, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-heart-empty {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf08a;');
 }
-/* line 220, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-signout {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf08b;');
 }
-/* line 221, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-linkedin-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf08c;');
 }
-/* line 222, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-pushpin {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf08d;');
 }
-/* line 223, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-external-link {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf08e;');
 }
-/* line 225, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-signin {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf090;');
 }
-/* line 226, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-trophy {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf091;');
 }
-/* line 227, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-github-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf092;');
 }
-/* line 228, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-upload-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf093;');
 }
-/* line 229, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-lemon {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf094;');
 }
-/* line 230, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-phone {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf095;');
 }
-/* line 231, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-check-empty {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf096;');
 }
-/* line 232, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bookmark-empty {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf097;');
 }
-/* line 233, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-phone-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf098;');
 }
-/* line 234, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-twitter {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf099;');
 }
-/* line 235, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-facebook {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09a;');
 }
-/* line 236, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-github {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09b;');
 }
-/* line 237, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-unlock {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09c;');
 }
-/* line 238, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-credit-card {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09d;');
 }
-/* line 239, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-rss {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09e;');
 }
-/* line 241, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-hdd {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a0;');
 }
-/* line 242, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bullhorn {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a1;');
 }
-/* line 243, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bell {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a2;');
 }
-/* line 244, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-certificate {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a3;');
 }
-/* line 245, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-hand-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a4;');
 }
-/* line 246, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-hand-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a5;');
 }
-/* line 247, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-hand-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a6;');
 }
-/* line 248, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-hand-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a7;');
 }
-/* line 249, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-circle-arrow-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a8;');
 }
-/* line 250, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-circle-arrow-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0a9;');
 }
-/* line 251, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-circle-arrow-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0aa;');
 }
-/* line 252, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-circle-arrow-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ab;');
 }
-/* line 253, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-globe {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ac;');
 }
-/* line 254, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-wrench {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ad;');
 }
-/* line 255, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-tasks {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ae;');
 }
-/* line 257, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-filter {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0b0;');
 }
-/* line 258, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-briefcase {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0b1;');
 }
-/* line 259, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-fullscreen {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0b2;');
 }
-/* line 261, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-group {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c0;');
 }
-/* line 262, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-link {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c1;');
 }
-/* line 263, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-cloud {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c2;');
 }
-/* line 264, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-beaker {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c3;');
 }
-/* line 265, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-cut {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c4;');
 }
-/* line 266, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-copy {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c5;');
 }
-/* line 267, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-paper-clip {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c6;');
 }
-/* line 268, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-save {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c7;');
 }
-/* line 269, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-sign-blank {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c8;');
 }
-/* line 270, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-reorder {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c9;');
 }
-/* line 271, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-list-ul {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ca;');
 }
-/* line 272, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-list-ol {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0cb;');
 }
-/* line 273, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-strikethrough {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0cc;');
 }
-/* line 274, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-underline {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0cd;');
 }
-/* line 275, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-table {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ce;');
 }
-/* line 277, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-magic {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d0;');
 }
-/* line 278, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-truck {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d1;');
 }
-/* line 279, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-pinterest {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d2;');
 }
-/* line 280, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-pinterest-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d3;');
 }
-/* line 281, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-google-plus-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d4;');
 }
-/* line 282, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-google-plus {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d5;');
 }
-/* line 283, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-money {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d6;');
 }
-/* line 284, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-caret-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d7;');
 }
-/* line 285, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-caret-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d8;');
 }
-/* line 286, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-caret-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d9;');
 }
-/* line 287, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-caret-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0da;');
 }
-/* line 288, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-columns {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0db;');
 }
-/* line 289, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-sort {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0dc;');
 }
-/* line 290, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-sort-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0dd;');
 }
-/* line 291, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-sort-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0de;');
 }
-/* line 293, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-envelope-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e0;');
 }
-/* line 294, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-linkedin {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e1;');
 }
-/* line 295, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-undo {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e2;');
 }
-/* line 296, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-legal {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e3;');
 }
-/* line 297, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-dashboard {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e4;');
 }
-/* line 298, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-comment-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e5;');
 }
-/* line 299, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-comments-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e6;');
 }
-/* line 300, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bolt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e7;');
 }
-/* line 301, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-sitemap {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e8;');
 }
-/* line 302, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-umbrella {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e9;');
 }
-/* line 303, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-paste {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ea;');
 }
-/* line 304, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-lightbulb {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0eb;');
 }
-/* line 305, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-exchange {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ec;');
 }
-/* line 306, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-cloud-download {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ed;');
 }
-/* line 307, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-cloud-upload {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ee;');
 }
-/* line 309, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-user-md {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f0;');
 }
-/* line 310, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-stethoscope {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f1;');
 }
-/* line 311, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-suitcase {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f2;');
 }
-/* line 312, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-bell-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f3;');
 }
-/* line 313, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-coffee {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f4;');
 }
-/* line 314, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-food {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f5;');
 }
-/* line 315, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-file-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f6;');
 }
-/* line 316, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-building {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f7;');
 }
-/* line 317, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-hospital {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f8;');
 }
-/* line 318, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-ambulance {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f9;');
 }
-/* line 319, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-medkit {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0fa;');
 }
-/* line 320, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-fighter-jet {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0fb;');
 }
-/* line 321, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-beer {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0fc;');
 }
-/* line 322, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-h-sign {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0fd;');
 }
-/* line 323, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-plus-sign-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0fe;');
 }
-/* line 325, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-double-angle-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf100;');
 }
-/* line 326, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-double-angle-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf101;');
 }
-/* line 327, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-double-angle-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf102;');
 }
-/* line 328, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-double-angle-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf103;');
 }
-/* line 329, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-angle-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf104;');
 }
-/* line 330, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-angle-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf105;');
 }
-/* line 331, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-angle-up {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf106;');
 }
-/* line 332, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-angle-down {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf107;');
 }
-/* line 333, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-desktop {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf108;');
 }
-/* line 334, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-laptop {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf109;');
 }
-/* line 335, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-tablet {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10a;');
 }
-/* line 336, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-mobile-phone {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10b;');
 }
-/* line 337, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-circle-blank {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10c;');
 }
-/* line 338, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-quote-left {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10d;');
 }
-/* line 339, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-quote-right {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10e;');
 }
-/* line 341, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-spinner {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf110;');
 }
-/* line 342, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-circle {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf111;');
 }
-/* line 343, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-reply {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf112;');
 }
-/* line 344, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-github-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf113;');
 }
-/* line 345, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-folder-close-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf114;');
 }
-/* line 346, /Users/pedrocorreia/Development/Ink/less/modules/icons-ie7.less */
 .icon-folder-open-alt {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf115;');
 }

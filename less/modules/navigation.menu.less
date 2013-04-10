@@ -2,7 +2,7 @@
 
     ul {
 
-        // display: block;
+        *height: (@navigation-line-height + (@navigation-v-padding * 2));
 
         &.menu {
      
@@ -65,7 +65,9 @@
                         &.submenu {
 
                             width: 8em;
-                            top: @navigation-line-height + (@navigation-v-padding * 2);
+                            top: (@navigation-line-height + (@navigation-v-padding * 2));
+                            left: 0;
+                            z-index: @layer-50;
 
                             li {
                                 float: none;
