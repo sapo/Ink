@@ -164,7 +164,7 @@
          * receives the same parameters.
          */
         _init: function(){
-
+            SAPO.extendObj(this._options,this._lang || {});
         },
 
         _render: function() {
@@ -1057,6 +1057,10 @@
                     this._setActiveMonth(parent.childNodes[i]);
                 }
             }
+        },
+
+        lang: function( options ){
+            this._lang = options;
         }
     };
 

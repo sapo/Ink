@@ -93,7 +93,6 @@
                 children
             ;
             nodes.forEach(function(item){
-                console.log(item);
                 if( Css.hasClassName(item,'open') )
                 {
                     return;

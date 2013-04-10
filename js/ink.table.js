@@ -119,20 +119,30 @@
             Event.stop(event);
             var
                 tgtEl = Event.element(event),
-                dataset = Element.data(tgtEl)
+                dataset = Element.data(tgtEl),
+                index,i
             ;
             if( (tgtEl.nodeName.toLowerCase() !== 'th') || ( !("sortable" in dataset) || (dataset.sortable.toString() !== 'true') ) ){
                 return;
             }
 
-            var index = this._headers.indexOf(tgtEl);
+            index = -1;
+            if( Util_Array.inArray( tgtEl,this._headers ) ){
+                for( i=0; i<this._headers.length; i++ ){
+                    if( this._headers[i] === tgtEl ){
+                        index = i;
+                        break;
+                    }
+                }
+            }
+
             if( index === -1){
                 return;
             }
 
             if( this._sortableFields['col_'+index] === 'desc' )
             {
-                this._headers[index].innerHTML = this._headers[index].innerHTML.replace('<i class="icon-caret-down"></i>','');
+                this._headers[index].innerHTML = this._headers[index].innerText;
                 this._sortableFields['col_'+index] = 'none';
                 this._data = this._originalData.slice(0);
             } else {
@@ -153,17 +163,17 @@
                 {
                     this._data.reverse();
                     this._sortableFields['col_'+index] = 'desc';
-                    this._headers[index].innerHTML = this._headers[index].innerHTML.replace('<i class="icon-caret-up"></i>','<i class="icon-caret-down"></i>');
+                    this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-down"></i>';
                 } else {
                     this._sortableFields['col_'+index] = 'asc';
-                    this._headers[index].innerHTML += '<i class="icon-caret-up"></i>';
+                    this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-up"></i>';
 
                 }
             }
 
 
             var tbody = Selector.select('tbody',this._rootElement)[0];
-            tbody.innerHTML = '';
+            Aux.cleanChildren(tbody);
             this._data.forEach(function(item){
                 tbody.appendChild(item);
             });

@@ -85,7 +85,7 @@
             responsive:    true,
             disableScroll: true
         };
-        
+
 
         this._handlers = {
             click:   this._onClick.bindObjEvent(this),
