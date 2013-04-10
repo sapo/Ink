@@ -66,12 +66,13 @@
                 padding-top: 2px;
                 text-align: center;
                 color: @white;
-                width: 1.5em;
-                height: 1.5em;
+                width: 26px;
+                height: 26px;
                 line-height: 1.2em;
-                font-size: 1em;
                 border: 0;
                 background: @grey-25;
+                font-size: 0;
+                
                 
                 #ink > #border-radius > .all (50%);
                 #ink > #shadows > .text-shadow (0,-1px,0,rgba(0,0,0,0.6));
@@ -81,6 +82,8 @@
                 &:after {
                     content: "\f00d";
                     font-family: FontAwesome;
+                    font-size: medium;
+                    line-height: 22px;
                 };
                 
 

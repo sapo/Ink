@@ -1,0 +1,191 @@
+@media screen and (max-width: 650px) {
+  .grid {
+    width: auto;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+  }
+
+  .small-10 {
+    width: 10%;
+  }
+
+  .small-20 {
+    width: 20%;
+  }
+
+  .small-30 {
+    width: 30%;
+  }
+
+  .small-40 {
+    width: 40%;
+  }
+
+  .small-50 {
+    width: 50%;
+  }
+
+  .small-60 {
+    width: 60%;
+  }
+
+  .small-70 {
+    width: 70%;
+  }
+
+  .small-80 {
+    width: 80%;
+  }
+
+  .small-90 {
+    width: 90%;
+  }
+
+  .small-100 {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 651px) and (max-width: 959px) {
+  .grid {
+    width: auto;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.75em;
+  }
+
+  .medium-10 {
+    width: 10%;
+  }
+
+  .medium-20 {
+    width: 20%;
+  }
+
+  .medium-30 {
+    width: 30%;
+  }
+
+  .medium-40 {
+    width: 40%;
+  }
+
+  .medium-50 {
+    width: 50%;
+  }
+
+  .medium-60 {
+    width: 60%;
+  }
+
+  .medium-70 {
+    width: 70%;
+  }
+
+  .medium-80 {
+    width: 80%;
+  }
+
+  .medium-90 {
+    width: 90%;
+  }
+
+  .medium-100 {
+    width: 100%;
+  }
+}
+.grid {
+  width: auto;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+.large-10 {
+  width: 10%;
+}
+
+.large-20 {
+  width: 20%;
+}
+
+.large-30 {
+  width: 30%;
+}
+
+.large-40 {
+  width: 40%;
+}
+
+.large-50 {
+  width: 50%;
+}
+
+.large-60 {
+  width: 60%;
+}
+
+.large-70 {
+  width: 70%;
+}
+
+.large-80 {
+  width: 80%;
+}
+
+.large-90 {
+  width: 90%;
+}
+
+.large-100 {
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .grid {
+    width: auto;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2.25em;
+  }
+
+  .extra-large-10 {
+    width: 10%;
+  }
+
+  .extra-large-20 {
+    width: 20%;
+  }
+
+  .extra-large-30 {
+    width: 30%;
+  }
+
+  .extra-large-40 {
+    width: 40%;
+  }
+
+  .extra-large-50 {
+    width: 50%;
+  }
+
+  .extra-large-60 {
+    width: 60%;
+  }
+
+  .extra-large-70 {
+    width: 70%;
+  }
+
+  .extra-large-80 {
+    width: 80%;
+  }
+
+  .extra-large-90 {
+    width: 90%;
+  }
+
+  .extra-large-100 {
+    width: 100%;
+  }
+}
