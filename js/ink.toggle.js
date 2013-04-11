@@ -14,6 +14,10 @@
     if( typeof SAPO.Dom.Event === undefined ){
         throw '[SAPO.Ink.Toggle] Missing one dependency: SAPO.Dom.Event';
     }
+
+    if( typeof SAPO.Utility.Array === undefined ){
+        throw '[SAPO.Ink.Toggle] Missing one dependency: SAPO.Utility.Array';
+    }
     /* --------------------------------------------------- */
 
     var Toggle = function( selector, options ){
@@ -71,6 +75,7 @@
             this._accordion = ( SAPO.Dom.Css.hasClassName(this._rootElement.parentNode,'accordion') || SAPO.Dom.Css.hasClassName(this._childElement.parentNode,'accordion') );
 
             SAPO.Dom.Event.observe( this._rootElement, this._options.triggerEvent, this._onTriggerEvent.bindObjEvent(this) );
+            SAPO.Dom.Event.observe( document, 'click', this._onClick.bindObjEvent(this));
         },
 
         _onTriggerEvent: function( event ){
@@ -101,6 +106,25 @@
             SAPO.Dom.Css.removeClassName(this._childElement, 'hide-all');
             SAPO.Dom.Css.addClassName(this._childElement, finalClass);
             this._childElement.style.display = finalDisplay;
+        },
+
+        _onClick: function( event ){
+            var tgtEl = SAPO.Dom.Event.element(event);
+
+            if( SAPO.Dom.Element.isAncestorOf( this._rootElement, tgtEl ) ){
+                return;
+            }
+
+            this._dismiss( this._rootElement );
+        },
+
+        _dismiss: function( element ){
+            if( ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ){
+                return;
+            }
+            SAPO.Dom.Css.removeClassName(this._childElement, 'show-all');
+            SAPO.Dom.Css.addClassName(this._childElement, 'hide-all');
+            this._childElement.style.display = 'none';
         }
     };
 

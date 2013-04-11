@@ -75,18 +75,24 @@
 
     Spy.prototype = {
 
-
+        _elements: [],
         _init: function(){
             SAPO.Dom.Event.observe( document, 'scroll', this._onScroll.bindObjEvent(this) );
+            this._elements.push(this._rootElement);
         },
 
         _onScroll: function(){
 
             if(
-                (window.scrollY <= this._rootElement.offsetTop-parseInt(this._options.offset,10)) ||
-                (window.scrollY >= this._rootElement.offsetTop+parseInt(this._options.offset,10))
+                (window.scrollY <= this._rootElement.offsetTop)
             ){
                 return;
+            } else {
+                for( var i = 0; i < this._elements.length; i++ ){
+                    if( (this._elements[i].offsetTop <= window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
+                        return;
+                    }
+                }
             }
 
 
