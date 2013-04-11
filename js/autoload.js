@@ -24,6 +24,11 @@ if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
              'SortableList': '.ink-sortable-list',
 
             /***************************
+             * Spy - Default CSS selector is *[data-spy="true"]
+             ***************************/
+             'Spy': '*[data-spy="true"]',
+
+            /***************************
              * Sticky - Default CSS selector is .ink-navigation.sticky
              ***************************/
              'Sticky': '.ink-navigation.sticky',
