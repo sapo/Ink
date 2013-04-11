@@ -59,7 +59,7 @@
          */
         this._options = SAPO.extendObj({
             target: undefined,
-            offset: '0px'
+            offset: '20px'
         }, SAPO.Dom.Element.data( this._rootElement ) );
 
         /**
@@ -69,6 +69,7 @@
 
         this._options.target = Aux.elOrSelector( this._options.target, 'Target' );
 
+        this._scrollTimeout = null;
         this._init();
     };
 
@@ -88,36 +89,35 @@
                 return;
             }
 
-            console.log('here');
-            var targetAnchor = null;
-
-            UtilArray.each(
-                Selector.select(
-                    'a',
-                    this._options.target
-                ),function(item){
-
-                    var comparisonValue = ( ("href" in this._rootElement) && this._rootElement.href ?
-                        this._rootElement.href.substr(this._rootElement.href.indexOf('#') )
-                        : '#' + this._rootElement.id
-                    );
-
-                    if( item.href.substr(item.href.indexOf('#')) === comparisonValue ){
-                        Css.addClassName(Element.findUpwardsByTag(item,'li'),'active');
-                    } else {
-                        Css.removeClassName(Element.findUpwardsByTag(item,'li'),'active');
-                    }
-                }.bindObj(this)
-            );
-
 
             // if( this._scrollTimeout ){
             //     clearTimeout(this._scrollTimeout);
             // }
             // this._scrollTimeout = setTimeout(function(){
 
-                // this._scrollTimeout = undefined;
-            // }.bindObj(this),250);
+                var targetAnchor = null;
+
+                UtilArray.each(
+                    Selector.select(
+                        'a',
+                        this._options.target
+                    ),function(item){
+
+                        var comparisonValue = ( ("href" in this._rootElement) && this._rootElement.href ?
+                            this._rootElement.href.substr(this._rootElement.href.indexOf('#') )
+                            : '#' + this._rootElement.id
+                        );
+
+                        if( item.href.substr(item.href.indexOf('#')) === comparisonValue ){
+                            Css.addClassName(Element.findUpwardsByTag(item,'li'),'active');
+                        } else {
+                            Css.removeClassName(Element.findUpwardsByTag(item,'li'),'active');
+                        }
+                    }.bindObj(this)
+                );
+
+            //     this._scrollTimeout = undefined;
+            // }.bindObj(this),100);
         },
 
         _destroy: function(){
