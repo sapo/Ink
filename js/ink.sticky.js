@@ -151,23 +151,9 @@
             if( !this._resizeTimeout ){
                 this._resizeTimeout = setTimeout(function(){
                     if( (this._rootElement.style.position === 'fixed') ){
-                        this._rootElement.style.position = this._options.originalPosition;
-
-                        /**
-                         * Saving initial status
-                         */
-                        this._options.originalPosition = this._rootElement.style.position || 'static';
-                        this._options.originalTop = SAPO.Dom.Element.elementTop(this._rootElement);
-                        this._rootElement.style.width = 'auto';  
-                        // setTimeout(function(){
-                            this._options.originalWidth = this._rootElement.style.width || 'auto';  
-                            this._rootElement.style.width = SAPO.Dom.Element.elementWidth(this._rootElement)+'px';  
-                            this._rootElement.style.position = 'fixed';
-                            this._rootElement.style.top = '10px';
-                        // }.bindObj(this),100);
-
-                        this._onScroll();
+                        this._rootElement.removeAttribute('style');
                     }
+                    this._onScroll();
                     this._resizeTimeout = undefined;
                 }.bindObj(this),250);
             }
