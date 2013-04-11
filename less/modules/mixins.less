@@ -299,6 +299,32 @@
                     padding-left: @gutter-width;
                 }
 
+                // set the padding to create the gutters with half of the gutter width
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-100,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-95,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-90,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-85,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-80,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-75,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-70,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-66,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-65,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-60,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-55,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-50,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-45,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-40,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-33,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-35,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-30,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-25,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-20,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-15,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-10,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-5 {
+                    padding-left: @gutter-width / 2;
+                }
+
                 // set styling to deal with empty grid elements
                 .@{breakpoint-alias}-100:empty,
                 .@{breakpoint-alias}-95:empty,
