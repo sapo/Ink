@@ -118,13 +118,14 @@
                     this._rootElement.style.top = this._options.offsetTop;
 
                 } else if( ( window.scrollY <= this._options.originalTop ) ){
-                    this._rootElement.style.top = this._options.originalTop + 'px';
-                    this._rootElement.style.width = this._options.originalWidth +'px';
+                    // this._rootElement.style.top = this._options.originalTop + 'px';
+                    // this._rootElement.style.width = this._options.originalWidth +'px';
+                    this._rootElement.removeAttribute('style');
 
-                    if( this._rootElement.style.position !== this._options.originalPosition ){
-                        this._rootElement.style.position = this._options.originalPosition;
-                        window.scrollTo( 0, window.scrollY-100 );
-                    }
+                    // if( this._rootElement.style.position !== this._options.originalPosition ){
+                    //     this._rootElement.style.position = this._options.originalPosition;
+                    //     window.scrollTo( 0, window.scrollY-100 );
+                    // }
 
                 } else if( ( window.scrollY+parseInt(computedStyle.height,10) ) >= (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ){
 
