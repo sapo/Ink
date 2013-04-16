@@ -431,10 +431,12 @@
                             var month=className.substr(14,2);
                             if(Number(month)){
                                 this._month = month - 1;
-                                this._options.onMonthSelected(this, {
-                                    'year': this._year,
-                                    'month' : this._month
-                                });
+                                if( typeof this._options.onMonthSelected === 'function' ){
+                                    this._options.onMonthSelected(this, {
+                                        'year': this._year,
+                                        'month' : this._month
+                                    });
+                                }
                                 this._monthSelector.style.display = 'none';
                                 this._monthPrev.childNodes[0].className = 'change_month_prev';
                                 this._monthNext.childNodes[0].className = 'change_month_next';
@@ -453,9 +455,11 @@
                             var year=className.substr(13,4);
                             if(Number(year)){
                                 this._year = year;
-                                this._options.onYearSelected(this, {
-                                    'year': this._year
-                                });
+                                if( typeof this._options.onYearSelected === 'function' ){
+                                    this._options.onYearSelected(this, {
+                                        'year': this._year
+                                    });
+                                }
                                 this._monthPrev.childNodes[0].className = 'action_inactive';
                                 this._monthNext.childNodes[0].className = 'action_inactive';
                                 this._yearSelector.style.display='none';
