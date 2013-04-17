@@ -146,11 +146,11 @@
                 hasUlAlready = false
             ;
             if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
-                hasUlAlready = true;
                 ulEl = document.createElement('ul');
                 Css.addClassName(ulEl, 'pagination');
 
             } else {
+                hasUlAlready = true;
                 ulEl = ulEl[0];
             }
 
