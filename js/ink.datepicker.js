@@ -1076,6 +1076,10 @@
 
         lang: function( options ){
             this._lang = options;
+        },
+
+        showMonth: function(){
+            this._showMonth();
         }
     };
 
