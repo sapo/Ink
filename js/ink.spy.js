@@ -10,7 +10,6 @@
     /**
      * Dependencies
      */
-    
     if( typeof SAPO === 'undefined' ){
         throw '[Spy] :: Missing dependency "SAPO"';
     }
