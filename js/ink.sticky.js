@@ -117,11 +117,15 @@
                 if( SAPO.Dom.Element.hasAttribute(this._rootElement,'style') ){
                     if( window.scrollY<=this._options.offsetTop){
                         this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) <= this._options.offsetBottom) ){
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.bottom = this._options.offsetBottom + 'px';
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
+                    } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) < this._options.offsetBottom) ){
                         this._rootElement.style.position = 'fixed';
+                        this._rootElement.style.top = 'auto';
+                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+window.scrollY),10) ){
+                            this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
+                        } else {
+                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+window.scrollY),10) + 'px';
+                        }
+                        this._rootElement.style.width = this._options.originalWidth + 'px';
                     } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) >= this._options.offsetBottom) ){
                         this._rootElement.style.position = 'fixed';
                         this._rootElement.style.bottom = 'auto';
