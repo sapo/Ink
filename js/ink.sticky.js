@@ -69,10 +69,14 @@
 
         if( typeof( this._options.topElement ) !== 'undefined' ){
             this._options.topElement = SAPO.Ink.Aux.elOrSelector( this._options.topElement, 'Top Element');
+        } else {
+            this._options.topElement = SAPO.Ink.Aux.elOrSelector( 'body', 'Top Element');
         }
 
         if( typeof( this._options.bottomElement ) !== 'undefined' ){
             this._options.bottomElement = SAPO.Ink.Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
+        } else {
+            this._options.bottomElement = SAPO.Ink.Aux.elOrSelector( 'body', 'Top Element');
         }
 
         this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
@@ -168,12 +172,17 @@
              */
             if( typeof this._options.topElement !== 'undefined' ){
 
-                var
-                    topElementHeight = SAPO.Dom.Element.elementHeight( this._options.topElement ),
-                    topElementTop = SAPO.Dom.Element.elementTop( this._options.topElement )
-                ;
 
-                this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
+                if( this._options.topElement.nodeName.toLowerCase() !== 'body' ){
+                    var
+                        topElementHeight = SAPO.Dom.Element.elementHeight( this._options.topElement ),
+                        topElementTop = SAPO.Dom.Element.elementTop( this._options.topElement )
+                    ;
+
+                    this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
+                } else {
+                    this._options.offsetTop = parseInt(this._options.originalOffsetTop,10);
+                }
             }
 
             /**
@@ -181,10 +190,14 @@
              */
             if( typeof this._options.bottomElement !== 'undefined' ){
 
-                var
-                    bottomElementHeight = SAPO.Dom.Element.elementHeight(this._options.bottomElement)
-                ;
-                this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
+                if( this._options.bottomElement.nodeName.toLowerCase() !== 'body' ){
+                    var
+                        bottomElementHeight = SAPO.Dom.Element.elementHeight(this._options.bottomElement)
+                    ;
+                    this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
+                } else {
+                    this._options.offsetBottom = parseInt(this._options.originalOffsetBottom,10);
+                }
             }
 
             this._onScroll();
