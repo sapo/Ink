@@ -32,6 +32,10 @@
         throw '[Sticky] :: Missing dependency "SAPO.Dom.Event"';
     }
 
+    if( typeof SAPO.Ink.Aux === 'undefined' ){
+        throw '[Sticky] :: Missing dependency "SAPO.Ink.Aux"';
+    }
+
     var Sticky = function( selector, options ){
 
         if( typeof selector !== 'object' && typeof selector !== 'string'){
@@ -52,7 +56,10 @@
          * Setting default options and - if needed - overriding it with the data attributes
          */
         this._options = SAPO.extendObj({
-
+            offsetBottom: 0,
+            offsetTop: 0,
+            topElement: undefined,
+            bottomElement: undefined
         }, SAPO.Dom.Element.data( this._rootElement ) );
 
         /**
@@ -60,6 +67,15 @@
          */
         this._options = SAPO.extendObj(this._options,options || {});
 
+        if( typeof( this._options.topElement ) !== 'undefined' ){
+            this._options.topElement = SAPO.Ink.Aux.elOrSelector( this._options.topElement, 'Top Element');
+        }
+
+        if( typeof( this._options.bottomElement ) !== 'undefined' ){
+            this._options.bottomElement = SAPO.Ink.Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
+        }
+
+        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
         this._init();
     };
 
@@ -70,6 +86,13 @@
             SAPO.Dom.Event.observe( document, 'scroll', this._onScroll.bindObjEvent(this) );
             SAPO.Dom.Event.observe( window, 'resize', this._onResize.bindObjEvent(this) );
 
+            this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
+            this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
+            this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
+            this._options.originalWidth = parseInt(this._computedStyle.width,10);
+
+            this._calculateOffsets();
+
         },
 
         _onScroll: function(){
@@ -78,85 +101,89 @@
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
             if( ( (SAPO.Dom.Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ){
-                if( this._rootElement.style.position === 'fixed' ){
-                    this._rootElement.style.top = this._options.originalTop + 'px';
-                    this._rootElement.style.position = this._options.originalPosition;
-                    this._rootElement.style.width = this._options.originalWidth;
+                if( SAPO.Dom.Element.hasAttribute(this._rootElement,'style') ){
+                    this._rootElement.removeAttribute('style');
                 }
                 return;
             }
 
 
-            // if( this._scrollTimeout ){
-            //     clearTimeout(this._scrollTimeout);
-            // }
-            // this._scrollTimeout = setTimeout(function(){
+            if( this._scrollTimeout ){
+                clearTimeout(this._scrollTimeout);
+            }
 
-                var computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
+            this._scrollTimeout = setTimeout(function(){
 
-                if( (this._rootElement.style.position !== 'fixed') &&
-                    (
-                        ( window.scrollY >= SAPO.Dom.Element.elementTop(this._rootElement) ) ||
-                        ( (SAPO.Dom.Element.elementTop(this._rootElement)-window.scrollY) <= 39 ) )
-                ){
-                    /**
-                     * Saving initial status
-                     */
-                    if( !isNaN(parseInt( computedStyle.top, 10 )) ){
-                        this._options.originalTop = parseInt( computedStyle.top, 10 ) || 'auto';
-                    } else {
-                        this._options.originalTop = this._rootElement.offsetTop;
+                if( SAPO.Dom.Element.hasAttribute(this._rootElement,'style') ){
+                    if( window.scrollY<=this._options.offsetTop){
+                        this._rootElement.removeAttribute('style');
+                    } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) <= this._options.offsetBottom) ){
+                        this._rootElement.style.top = 'auto';
+                        this._rootElement.style.bottom = this._options.offsetBottom + 'px';
+                        this._rootElement.style.width = this._options.originalWidth + 'px';
+                        this._rootElement.style.position = 'fixed';
+                    } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) >= this._options.offsetBottom) ){
+                        this._rootElement.style.position = 'fixed';
+                        this._rootElement.style.bottom = 'auto';
+                        this._rootElement.style.top = this._options.originalOffsetTop + 'px';
+                        this._rootElement.style.width = this._options.originalWidth + 'px';
                     }
-                    this._options.originalPosition = computedStyle.position;
-                    this._options.originalWidth = parseInt(computedStyle.width,10);
+                } else {
+                    if( window.scrollY <= this._options.offsetTop ){
+                        return;
+                    }
 
-                    /**
-                     * Setting new values
-                     */
-                    this._rootElement.style.width = computedStyle.width;
                     this._rootElement.style.position = 'fixed';
-                    this._rootElement.style.top = this._options.offsetTop;
-
-                } else if( ( window.scrollY <= this._options.originalTop ) ){
-                    // this._rootElement.style.top = this._options.originalTop + 'px';
-                    // this._rootElement.style.width = this._options.originalWidth +'px';
-                    this._rootElement.removeAttribute('style');
-
-                    // if( this._rootElement.style.position !== this._options.originalPosition ){
-                    //     this._rootElement.style.position = this._options.originalPosition;
-                    //     window.scrollTo( 0, window.scrollY-100 );
-                    // }
-
-                } else if( ( window.scrollY+parseInt(computedStyle.height,10) ) >= (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ){
-
-                    this._rootElement.style.top = 'auto';
-                    this._rootElement.style.bottom = this._options.offsetBottom;
-                    // this._rootElement.style.position = this._options.originalPosition;
-                    // this._rootElement.style.width = this._options.originalWidth;
-
-                } else if(
-                    ( ( window.scrollY+parseInt(computedStyle.height,10) ) < (viewport.scrollHeight-parseInt(this._options.offsetBottom,10)) ) &&
-                    ( this._rootElement.style.bottom === this._options.offsetBottom )
-                ){
-                    this._rootElement.style.top = this._options.offsetTop;
                     this._rootElement.style.bottom = 'auto';
+                    this._rootElement.style.top = this._options.offsetTop + 'px';
+                    this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
 
-                // this._scrollTimeout = undefined;
-            // }.bindObj(this),250);
+                this._scrollTimeout = undefined;
+            }.bindObj(this),0);
         },
 
         _onResize: function(){
 
-            if( !this._resizeTimeout ){
-                this._resizeTimeout = setTimeout(function(){
-                    if( (this._rootElement.style.position === 'fixed') ){
-                        this._rootElement.removeAttribute('style');
-                    }
-                    this._onScroll();
-                    this._resizeTimeout = undefined;
-                }.bindObj(this),250);
+            if( this._resizeTimeout ){
+                clearTimeout(this._resizeTimeout);
             }
+
+            this._resizeTimeout = setTimeout(function(){
+
+                this._calculateOffsets();
+
+            }.bindObj(this),250);
+
+        },
+
+        _calculateOffsets: function(){
+
+            /**
+             * Calculating the offset top
+             */
+            if( typeof this._options.topElement !== 'undefined' ){
+
+                var
+                    topElementHeight = SAPO.Dom.Element.elementHeight( this._options.topElement ),
+                    topElementTop = SAPO.Dom.Element.elementTop( this._options.topElement )
+                ;
+
+                this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
+            }
+
+            /**
+             * Calculating the offset bottom
+             */
+            if( typeof this._options.bottomElement !== 'undefined' ){
+
+                var
+                    bottomElementHeight = SAPO.Dom.Element.elementHeight(this._options.bottomElement)
+                ;
+                this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
+            }
+
+            this._onScroll();
 
         },
 
@@ -168,29 +195,3 @@
 
     SAPO.Ink.Sticky = Sticky;
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
