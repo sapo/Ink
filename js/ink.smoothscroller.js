@@ -94,8 +94,8 @@
                 a = a + (d - a) / SAPO.Ink.SmoothScroller.speed;
             }
 
-            window.scrollTo(0, a+2.5);
-            if ((a+2.5) === d || SAPO.Ink.SmoothScroller.offsetTop === a)
+            window.scrollTo(0, a);
+            if ((a) === d || SAPO.Ink.SmoothScroller.offsetTop === a)
             {
                 clearInterval(SAPO.Ink.SmoothScroller.interval);
             }

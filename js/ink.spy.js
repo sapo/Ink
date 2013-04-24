@@ -83,12 +83,12 @@
         _onScroll: function(){
 
             if(
-                (window.scrollY <= this._rootElement.offsetTop)
+                (window.scrollY < this._rootElement.offsetTop)
             ){
                 return;
             } else {
                 for( var i = 0; i < this._elements.length; i++ ){
-                    if( (this._elements[i].offsetTop <= window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
+                    if( (this._elements[i].offsetTop === window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
                         return;
                     }
                 }
