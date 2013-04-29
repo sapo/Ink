@@ -143,7 +143,7 @@
             // this._year  = parsed[ 0 ];
             // this._month = parsed[ 1 ] - 1;
             // this._day   = parsed[ 2 ];
-            this.setDate( this._options.startDate );
+            this.setDate( this._options.startDate ).bindObj(this);
         }
 
         this._data = new Date( Date.UTC.apply( this , this._checkDateRange( this._year , this._month , this._day ) ) );
