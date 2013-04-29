@@ -139,10 +139,11 @@
 		this._setMinMax( this._options.dateRange || this._options.yearRange );
 
         if(this._options.startDate && typeof this._options.startDate === 'string' && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
-            var parsed  = this._options.startDate.split( "-" );
-            this._year  = parsed[ 0 ];
-            this._month = parsed[ 1 ] - 1;
-            this._day   = parsed[ 2 ];
+            // var parsed  = this._options.startDate.split( "-" );
+            // this._year  = parsed[ 0 ];
+            // this._month = parsed[ 1 ] - 1;
+            // this._day   = parsed[ 2 ];
+            this.setDate( this._options.startDate );
         }
 
         this._data = new Date( Date.UTC.apply( this , this._checkDateRange( this._year , this._month , this._day ) ) );
