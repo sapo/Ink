@@ -1,9 +1,0 @@
-// arguments are: min-width, max-width, use as default (no media query for older browsers), gutter-width (em), class name prefix
-$breakpoints: (
-    (null, 650px, false, 1.5em, 'small'),
-    (651px, 959px, false, 1.75em, 'medium'),
-    (1200px, null, false, 2.25em, 'extra-large'),
-    (960px, null, true, 2em, 'large')
-);
-
-@include generate-grid($breakpoints);
