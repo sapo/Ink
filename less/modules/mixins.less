@@ -119,7 +119,11 @@
                 }
 
                 .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
-                            margin-left: @gutter-width - (@gutter-width * 2);
+                    margin-left: -@gutter-width;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
+                    margin-left: -(@gutter-width / 2);
                 }
             }
 
@@ -143,10 +147,16 @@
                 }
 
                 .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
-                            padding-right: @gutter-width;
-                            margin-left: @gutter-width - (@gutter-width * 2);
-                            overflow: visible;
-                }   
+                    padding-right: @gutter-width;
+                    margin-left: -@gutter-width;
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
+                    padding-right: @gutter-width / 2;
+                    margin-left: -(@gutter-width / 2);
+                    overflow: visible;
+                }  
             }
 
             // Generate the grid column division classes
@@ -852,7 +862,7 @@
         
         .vertical-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
             background: @start-color;
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}');
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
             background: -moz-linear-gradient(toptop, @start-color @start-color-stop, @end-color @end-color-stop);
             background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
             background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
@@ -1079,10 +1089,5 @@
             .green { #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); }
             .red { #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%); }
         }
-
-        #states {
-            
-        }
-
     }
 }

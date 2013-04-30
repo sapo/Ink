@@ -25,47 +25,38 @@
         #ink > #states > .disabled (@btn-bg);
     }
 
-    &.warning {
-        #ink > #buttons > .standard (@orange,@white,darken(@warning-bg,25%));
+    &.orange {
+        #ink > #buttons > .standard (@orange,@white,darken(@orange,25%));
         &[disabled], 
         .ink-disabled {
-            #ink > #states > .disabled (@warning-bg);
+            #ink > #states > .disabled (@orange);
             #ink > #shadows > .no-text-shadow ();
         }
     }
 
-    &.caution {
-        #ink > #buttons > .standard (@caution-bg,@white,darken(@caution-bg,25%));
+    &.red {
+        #ink > #buttons > .standard (@red,@white,darken(@red,25%));
         &[disabled], 
         .ink-disabled {
-            #ink > #states > .disabled (@caution-bg);
+            #ink > #states > .disabled (@red);
             #ink > #shadows > .no-text-shadow ();
         }
     }
 
-    &.success {
-        #ink > #buttons > .standard (@success-bg,@white,darken(@success-bg,25%));
+    &.green {
+        #ink > #buttons > .standard (@green,@white,darken(@green,25%));
         &[disabled], 
         .ink-disabled {
-            #ink > #states > .disabled (@success-bg);
+            #ink > #states > .disabled (@green);
             #ink > #shadows > .no-text-shadow ();
         }
     }
 
-    &.info {
-        #ink > #buttons > .standard (@info-bg,@white,darken(@info-bg,25%));
+    &.blue {
+        #ink > #buttons > .standard (@blue,@white,darken(@blue,25%));
         &[disabled], 
         .ink-disabled {
-            #ink > #states > .disabled (@info-bg);
-            #ink > #shadows > .no-text-shadow ();
-        }
-    }
-
-    &.yellow {
-        #ink > #buttons > .standard (@info-bg,@white,darken(@info-bg,25%));
-        &[disabled], 
-        .ink-disabled {
-            #ink > #states > .disabled (@info-bg);
+            #ink > #states > .disabled (@blue);
             #ink > #shadows > .no-text-shadow ();
         }
     }

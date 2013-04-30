@@ -48,6 +48,8 @@
      *      @... {optional string}   cssClass         CSS class to be applied to the datepicker
      *      @... {optional string}   position         position the datepicker. Accept right or bottom, default is right
      *      @... {optional boolean}  onFocus          if the datepicker should open when the target element is focused
+     *      @... {optional function} onYearSelected   callback function to execute when the year is selected
+     *      @... {optional function} onMonthSelected  callback function to execute when the month is selected
      *      @... {optional function} validDayFn       callback function to execute when 'rendering' the day (in the month view)
      *      @... {optional String}   startDate        Date to define init month. Must be in yyyy-mm-dd format
      *      @... {optional function} onSetDate        callback to execute when set date
@@ -77,6 +79,8 @@
             cssClass:        'sapo_component_datepicker',
             position:        'right',
             onFocus:         true,
+            onYearSelected:  undefined,
+            onMonthSelected: undefined,
             validDayFn:      undefined,
             startDate:       false, // format yyyy-mm-dd
             onSetDate:       false,
@@ -132,16 +136,18 @@
         this._month = this._today.getMonth( );
         this._year  = this._today.getFullYear( );
 
-		this._setMinMax( this._options.dateRange || this._options.yearRange );
-
-        if(this._options.startDate && typeof this._options.startDate === 'string' && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
-            var parsed  = this._options.startDate.split( "-" );
-            this._year  = parsed[ 0 ];
-            this._month = parsed[ 1 ] - 1;
-            this._day   = parsed[ 2 ];
-        }
+        this._setMinMax( this._options.dateRange || this._options.yearRange );
 
         this._data = new Date( Date.UTC.apply( this , this._checkDateRange( this._year , this._month , this._day ) ) );
+
+        if(this._options.startDate && typeof this._options.startDate === 'string' && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
+            // var parsed  = this._options.startDate.split( "-" );
+            // this._year  = parsed[ 0 ];
+            // this._month = parsed[ 1 ] - 1;
+            // this._day   = parsed[ 2 ];
+            this.setDate( this._options.startDate );
+        }
+
 
         this._init();
 
@@ -427,6 +433,12 @@
                             var month=className.substr(14,2);
                             if(Number(month)){
                                 this._month = month - 1;
+                                if( typeof this._options.onMonthSelected === 'function' ){
+                                    this._options.onMonthSelected(this, {
+                                        'year': this._year,
+                                        'month' : this._month
+                                    });
+                                }
                                 this._monthSelector.style.display = 'none';
                                 this._monthPrev.childNodes[0].className = 'change_month_prev';
                                 this._monthNext.childNodes[0].className = 'change_month_next';
@@ -445,6 +457,11 @@
                             var year=className.substr(13,4);
                             if(Number(year)){
                                 this._year = year;
+                                if( typeof this._options.onYearSelected === 'function' ){
+                                    this._options.onYearSelected(this, {
+                                        'year': this._year
+                                    });
+                                }
                                 this._monthPrev.childNodes[0].className = 'action_inactive';
                                 this._monthNext.childNodes[0].className = 'action_inactive';
                                 this._yearSelector.style.display='none';
@@ -1061,6 +1078,10 @@
 
         lang: function( options ){
             this._lang = options;
+        },
+
+        showMonth: function(){
+            this._showMonth();
         }
     };
 
