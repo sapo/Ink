@@ -1,0 +1,9 @@
+// IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
+@import "config/grid.c.scss";
+
+// IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
+@import "mixins/grid.m.scss";
+
+// IMPORT MODULE DEFINITION FILES
+@import "modules/normalize.scss";
+@import "modules/grid.scss";
