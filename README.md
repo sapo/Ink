@@ -33,9 +33,9 @@ We built Ink by standing on the shoulders of giants, following the opensource ma
 
 Built with:
 
-* {LESS} (under [under Apache License 2.0](https://github.com/cloudhead/less.js/blob/master/LICENSE))
-* FontAwesome (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
-* Ubuntu Font (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
-* HTML5 shiv (under [MIT License](http://opensource.org/licenses/MIT))
-* respond.js (under [MIT License](http://opensource.org/licenses/MIT))
-* normalize.css (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
+* [{LESS}](http://lesscss.org/) (under [under Apache License 2.0](https://github.com/cloudhead/less.js/blob/master/LICENSE))
+* [FontAwesome](http://fortawesome.github.io/Font-Awesome/) (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
+* [Ubuntu Font](http://font.ubuntu.com/) (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
+* [html5shiv](https://code.google.com/p/html5shiv/) (under [MIT License](http://opensource.org/licenses/MIT))
+* [respond.js](https://github.com/scottjehl/Respond) (under [MIT License](http://opensource.org/licenses/MIT))
+* [normalize.css](http://necolas.github.io/normalize.css/) (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
