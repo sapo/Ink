@@ -11,7 +11,9 @@
     var Aux      = SAPO.Ink.Aux,
         Css      = SAPO.Dom.Css,
         Element  = SAPO.Dom.Element,
-        Event    = SAPO.Dom.Event;
+        Selector  = SAPO.Dom.Selector,
+        Event    = SAPO.Dom.Event,
+        InkArray = SAPO.Utility.Array;
 
 
 
@@ -34,20 +36,25 @@
      * @constructor SAPO.Ink.Modal.?
      * @param {String|DOMElement} selector
      * @param {Object}            options
-     * @... {optional Number}   width          modal width in pixels. defaults to 600
-     * @... {optional Number}   height         modal height in pixels. defaults to 400
-     * @... {optional Number}   markup         HTML markup string. if passed, populates the modal, otherwise the selector is used to fetch the content.
-     * @... {optional Function} onShow         callback to call when the modal is shown
-     * @... {optional Function} onDismiss      callback to call when the modal is dismissed
-     * @... {optional Boolean}  closeOnClick   defaults to false. if trueish, a click anywhere dismissed the modal.
+     * @... {optional Number}               width           modal width in pixels. defaults to 600
+     * @... {optional Number}               height          modal height in pixels. defaults to 400
+     * @... {optional String}               shadeClass      Classes to be added to the .ink-shade div
+     * @... {optional String}               shadeClass      Classes to be added to the .ink-modal div
+     * @... {optional String}               trigger         CSS selector that represents one or more elements that will trigger the display 
+     * @... {optional String}               triggerEvent    Event that will be observed on the trigger
+     * @... {optional Number}               markup          HTML markup string. if passed, populates the modal, otherwise the selector is used to fetch the content.
+     * @... {optional Function}             onShow          callback to call when the modal is shown
+     * @... {optional Function}             onDismiss       callback to call when the modal is dismissed
+     * @... {optional Boolean}              closeOnClick    defaults to false. if trueish, a click anywhere dismissed the modal.
+     * @... {optional Boolean}              disableScroll   defaults to true. if trueish, it will disable (or try to) the scroll of the rest of the page (not in the Modal).
      */
     var Modal = function(selector, options) {
 
-        if( (typeof selector !== 'string') && (typeof selector !== 'object') ){
+        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
             throw 'Invalid Modal selector';
         } else if(typeof selector === 'string'){
             if( selector !== '' ){
-                this._element = SAPO.Dom.Selector.select(selector);
+                this._element = Selector.select(selector);
                 if( this._element.length === 0 ){
                     /**
                      * From a developer's perspective this should be like it is...
@@ -68,6 +75,12 @@
              */
             width:        undefined,
             height:       undefined,
+
+            /**
+             * To add extra classes
+             */
+            shadeClass: undefined,
+            modalClass: undefined,
 
             /**
              * Optional trigger properties
@@ -99,28 +112,90 @@
          * Modal Markup
          */
         if( this._element ){
-            this._markupMode = SAPO.Dom.Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
+            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
         } else {
             this._markupMode = false;
         }
 
-        /**
-         * First, will handle the least important: The dataset
-         */
-        this._options = SAPO.extendObj(this._options,SAPO.Dom.Element.data(this._element));
+
+
+
+        if( !this._markupMode ){
+
+
+            this._modalShadow      = document.createElement('div');
+            this._modalShadowStyle = this._modalShadow.style;
+
+            this._modalDiv         = document.createElement('div');
+            this._modalDivStyle    = this._modalDiv.style;
+
+            if( !!this._element ){
+                this._options.markup = this._element.innerHTML;
+            }
+
+            /**
+             * Not in full markup mode, let's set the classes and css configurations
+             */
+            Css.addClassName( this._modalShadow,'ink-shade' );
+            Css.addClassName( this._modalDiv,'ink-modal' );
+            Css.addClassName( this._modalDiv,'ink-space' );
+
+            /**
+             * Applying the main css styles
+             */
+            // this._modalDivStyle.position = 'absolute';
+            this._modalShadow.appendChild( this._modalDiv);
+            document.body.appendChild( this._modalShadow );
+        } else {
+            this._modalDiv         = this._element;
+            this._modalDivStyle    = this._modalDiv.style;
+            this._modalShadow      = this._modalDiv.parentNode;
+            this._modalShadowStyle = this._modalShadow.style;
+
+            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+            if( !this._contentContainer.length ){
+                throw 'Missing div with class "modal-body"';
+            }
+
+            this._contentContainer = this._contentContainer[0];
+            this._options.markup = this._contentContainer.innerHTML;
+
+            /**
+             * First, will handle the least important: The dataset
+             */
+            this._options = SAPO.extendObj(this._options,Element.data(this._element));
+
+        }
 
         /**
          * Now, the most important, the initialization options
          */
         this._options = SAPO.extendObj(this._options,options || {});
 
+        if( !this._markupMode ){
+            this.setContentMarkup(this._options.markup);
+        }
+
+        if( typeof this._options.shadeClass === 'string' ){
+
+            InkArray.each( this._options.shadeClass.split(' '),function( item ){
+                Css.addClassName( this._modalShadow, item.trim() );
+            }.bindObj(this));
+        }
+
+        if( typeof this._options.modalClass === 'string' ){
+            InkArray.each( this._options.modalClass.split(' '),function( item ){
+                Css.addClassName( this._modalDiv, item.trim() );
+            }.bindObj(this));
+        }
+
         if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
             var triggerElement,i;
             if( typeof this._options.trigger === 'string' ){
-                triggerElement = SAPO.Dom.Selector.select( this._options.trigger );
+                triggerElement = Selector.select( this._options.trigger );
                 if( triggerElement.length > 0 ){
                     for( i=0; i<triggerElement.length; i++ ){
-                        SAPO.Dom.Event.observe( triggerElement[i], this._options.triggerEvent, this._init.bindObjEvent(this) );
+                        Event.observe( triggerElement[i], this._options.triggerEvent, this._init.bindObjEvent(this) );
                     }
                 }
             }
@@ -133,67 +208,17 @@
 
         _init: function(event) {
 
-            if( event ){ SAPO.Dom.Event.stop(event); }
+            if( event ){ Event.stop(event); }
 
             var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
             this._resizeTimeout    = null;
 
-
-            if( !this._markupMode ){
-
-
-                this._modalShadow      = document.createElement('div');
-                this._modalShadowStyle = this._modalShadow.style;
-
-                this._modalDiv         = document.createElement('div');
-                this._modalDivStyle    = this._modalDiv.style;
-
-                if( !!this._element ){
-                    this._options.markup = this._element.innerHTML;
-                }
-
-                /**
-                 * Not in full markup mode, let's set the classes and css configurations
-                 */
-                SAPO.Dom.Css.addClassName( this._modalShadow,'ink-shade' );
-                SAPO.Dom.Css.addClassName( this._modalDiv,'ink-modal' );
-                SAPO.Dom.Css.addClassName( this._modalDiv,'ink-space' );
-
-                /**
-                 * Applying the main css styles
-                 */
-                // this._modalDivStyle.position = 'absolute';
-
-
-                this._contentContainer = document.createElement('div');
-                this._contentContainer.className = 'ink-modal-content';
-                this._contentContainer.innerHTML = [(this._options.skipClose ? '' : '<a href="#" class="ink-close">×</a>'), this._options.markup].join('');
-                
-                this._modalDiv.appendChild( this._contentContainer );
-                this._modalShadow.appendChild( this._modalDiv);
-                document.body.appendChild( this._modalShadow );
-            } else {
-                this._modalDiv         = this._element;
-                this._modalDivStyle    = this._modalDiv.style;
-                this._modalShadow      = this._modalDiv.parentNode;
-                this._modalShadowStyle = this._modalShadow.style;
-
-                this._contentContainer = SAPO.Dom.Selector.select(".modal-body",this._modalDiv);
-                if( !this._contentContainer.length ){
-                    throw 'Missing div with class "modal-body"';
-                }
-
-                this._contentContainer = this._contentContainer[0];
-                this._options.markup = this._contentContainer.innerHTML;
-
-            }
-
-            SAPO.Dom.Css.addClassName( this._modalShadow,'ink-shade' );
+            Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
             setTimeout(function(){
-                SAPO.Dom.Css.addClassName( this._modalShadow,'visible' );
-                SAPO.Dom.Css.addClassName( this._modalDiv,'visible' );
+                Css.addClassName( this._modalShadow,'visible' );
+                Css.addClassName( this._modalDiv,'visible' );
             }.bindObj(this),100);
 
             /**
@@ -212,9 +237,9 @@
              */
             if( typeof this._options.width !== 'undefined' ){
                 this._modalDivStyle.width = this._options.width;
-                this._modalDivStyle.maxWidth = SAPO.Dom.Element.elementWidth(this._modalDiv) + 'px';
+                this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
             } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = SAPO.Dom.Element.elementWidth(this._modalDiv)+'px';
+                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
             }
 
             if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
@@ -223,9 +248,9 @@
 
             if( typeof this._options.height !== 'undefined' ){
                 this._modalDivStyle.height = this._options.height;
-                this._modalDivStyle.maxHeight = SAPO.Dom.Element.elementHeight(this._modalDiv) + 'px';
+                this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
             } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = SAPO.Dom.Element.elementHeight(this._modalDiv) + 'px';
+                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
             }
 
             if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
@@ -273,8 +298,8 @@
 
             this._modalDivStyle.top = this._modalDivStyle.left = '50%';
 
-            this._modalDivStyle.marginTop = '-' + ( ~~( SAPO.Dom.Element.elementHeight(this._modalDiv)/2) ) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( ~~( SAPO.Dom.Element.elementWidth(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
         },
 
         /**
@@ -303,7 +328,7 @@
                 currentViewportWidth = parseInt(elem.clientWidth,10)
             ;
 
-            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= SAPO.Dom.Element.elementWidth(this._modalDiv) )*/ ){
+            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
                 /**
                  * The viewport width has expanded
                  */
@@ -317,7 +342,7 @@
                 this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
             }
 
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= SAPO.Dom.Element.elementHeight(this._modalDiv) ) ){
+            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
 
                 /**
                  * The viewport height has expanded
@@ -367,23 +392,23 @@
         {
 
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
-            var containerHeight = SAPO.Dom.Element.elementHeight(this._modalDiv);
+            var containerHeight = Element.elementHeight(this._modalDiv);
 
-            this._modalHeader = SAPO.Dom.Selector.select('.modal-header',this._modalDiv);
+            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
             if( this._modalHeader.length>0 ){
                 this._modalHeader = this._modalHeader[0];
-                containerHeight -= SAPO.Dom.Element.elementHeight(this._modalHeader);
+                containerHeight -= Element.elementHeight(this._modalHeader);
             }
 
-            this._modalFooter = SAPO.Dom.Selector.select('.modal-footer',this._modalDiv);
+            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
             if( this._modalFooter.length>0 ){
                 this._modalFooter = this._modalFooter[0];
-                containerHeight -= SAPO.Dom.Element.elementHeight(this._modalFooter);
+                containerHeight -= Element.elementHeight(this._modalFooter);
             }
 
             this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== SAPO.Dom.Element.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (SAPO.Dom.Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
+            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
+                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
             }
 
             if( this._markupMode ){ return; }
@@ -395,17 +420,17 @@
 
         _disableScroll: function()
         {
-            this._oldScrollPos = SAPO.Dom.Element.scroll();
-            this._onScrollBinded = function(event) {
-                var tgtEl = SAPO.Dom.Event.element(event);
+            this._oldScrollPos = Element.scroll();
+            this._onScrollBinded =  function(event) {
+                var tgtEl = Event.element(event);
 
                 if( !Element.descendantOf(this._modalShadow, tgtEl) ){
-                    SAPO.Dom.Event.stop(event);
+                    Event.stop(event);
                     window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
                 }
             }.bindObjEvent(this);
-            SAPO.Dom.Event.observe(window, 'scroll', this._onScrollBinded);
-            SAPO.Dom.Event.observe(document, 'touchmove', this._onScrollBinded);
+            Event.observe(window, 'scroll', this._onScrollBinded);
+            Event.observe(document, 'touchmove', this._onScrollBinded);
         },
 
 
@@ -423,12 +448,12 @@
             }
 
             if(this._options.disableScroll) {
-                SAPO.Dom.Event.stopObserving(window, 'scroll', this._onScrollBinded);
-                SAPO.Dom.Event.stopObserving(document, 'touchmove', this._onScrollBinded);
+                Event.stopObserving(window, 'scroll', this._onScrollBinded);
+                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
             }
 
             if( this._options.responsive ){
-                SAPO.Dom.Event.stopObserving(window, 'resize', this._handlers.resize);
+                Event.stopObserving(window, 'resize', this._handlers.resize);
             }
 
             // this._modalShadow.parentNode.removeChild(this._modalShadow);
@@ -437,25 +462,25 @@
                 this._modalShadow.parentNode.removeChild(this._modalShadow);
                 this.destroy();
             } else {
-                SAPO.Dom.Css.removeClassName( this._modalDiv, 'visible' );
-                SAPO.Dom.Css.removeClassName( this._modalShadow, 'visible' );
+                Css.removeClassName( this._modalDiv, 'visible' );
+                Css.removeClassName( this._modalShadow, 'visible' );
 
                 var
                     dismissInterval,
                     transitionEndFn = function(){
                         if( !dismissInterval ){ return; }
                         this._modalShadowStyle.display = 'none';
-                        SAPO.Dom.Event.stopObserving(document,'transitionend',transitionEndFn);
-                        SAPO.Dom.Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
-                        SAPO.Dom.Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
+                        Event.stopObserving(document,'transitionend',transitionEndFn);
+                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
+                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
                         clearInterval(dismissInterval);
                         dismissInterval = undefined;
                     }.bindObjEvent(this)
                 ;
 
-                SAPO.Dom.Event.observe(document,'transitionend',transitionEndFn);
-                SAPO.Dom.Event.observe(document,'oTransitionEnd',transitionEndFn);
-                SAPO.Dom.Event.observe(document,'webkitTransitionEnd',transitionEndFn);
+                Event.observe(document,'transitionend',transitionEndFn);
+                Event.observe(document,'oTransitionEnd',transitionEndFn);
+                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
 
                 if( !dismissInterval ){
                     dismissInterval = setInterval(function(){
@@ -477,6 +502,7 @@
          */
         destroy: function() {
             Aux.unregisterInstance(this._instanceId);
+
         },
 
         /**
@@ -491,13 +517,17 @@
          * @param {String} contentMarkup
          */
         setContentMarkup: function(contentMarkup) {
-            if( this._markupMode ){
-                this._contentContainer.innerHTML = [contentMarkup].join('');
+            if( !this._markupMode ){
+                this._modalDiv.innerHTML = [contentMarkup].join('');
+                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                if( !this._contentContainer.length ){
+                    throw 'Missing div with class "modal-body"';
+                }
+                this._contentContainer = this._contentContainer[0];
             } else {
-                this._modalDiv.innerHTML = '';
-                this._modalDiv.appendChild(this._contentContainer);
-                this._contentContainer.innerHTML = [this._options.skipClose ? '' : '<a href="#" class="ink-close">×</a>', contentMarkup].join('');
+                this._contentContainer.innerHTML = [contentMarkup].join('');
             }
+            this._contentElement = this._modalDiv;
             this._resizeContainer();
         }
 
