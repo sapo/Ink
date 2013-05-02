@@ -119,6 +119,11 @@
   margin-left: -3%;
   overflow: visible;
 }
+.column-group.half-gutters {
+  padding-right: 1.5%;
+  margin-left: -1.5%;
+  overflow: visible;
+}
 .large-100 {
   width: 99.99958333333333% !important;
   clear: both;
@@ -212,6 +217,74 @@
   margin-bottom: 3%;
   overflow: hidden;
   zoom: 1;
+}
+table.large-100,
+th.large-100,
+td.large-100,
+table.large-95,
+th.large-95,
+td.large-95,
+table.large-90,
+th.large-90,
+td.large-90,
+table.large-85,
+th.large-85,
+td.large-85,
+table.large-80,
+th.large-80,
+td.large-80,
+table.large-75,
+th.large-75,
+td.large-75,
+table.large-70,
+th.large-70,
+td.large-70,
+table.large-66,
+th.large-66,
+td.large-66,
+table.large-65,
+th.large-65,
+td.large-65,
+table.large-60,
+th.large-60,
+td.large-60,
+table.large-55,
+th.large-55,
+td.large-55,
+table.large-50,
+th.large-50,
+td.large-50,
+table.large-45,
+th.large-45,
+td.large-45,
+table.large-40,
+th.large-40,
+td.large-40,
+table.large-35,
+th.large-35,
+td.large-35,
+table.large-33,
+th.large-33,
+td.large-33,
+table.large-30,
+th.large-30,
+td.large-30,
+table.large-25,
+th.large-25,
+td.large-25,
+table.large-20,
+th.large-20,
+td.large-20,
+table.large-15,
+th.large-15,
+td.large-15,
+table.large-10,
+th.large-10,
+td.large-10,
+table.large-5,
+th.large-5,
+td.large-5 {
+  float: none;
 }
 .ink-grid .column-group.gutters > .large-100 {
   width: 99.99958333333333%;
