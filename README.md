@@ -2,7 +2,7 @@
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
-## Current Version: 0.1.0
+## Current Version: 1.1
 
 Although most Ink components are in full working order, some still have a few bugs that are being fixed.
 
@@ -37,4 +37,4 @@ We have two branches on our github repository:
 * The **master** branch contains the latest release as its HEAD and all previous releases as tags.
 * The **develop** branch contains our latest code that will eventually lead to a new release and tag on **master**
 
-To get a specific release clone the repository and use, e.g. "git checkout 1.0.0".
+To get a specific release clone the repository and use, e.g. "git checkout 1.1".
