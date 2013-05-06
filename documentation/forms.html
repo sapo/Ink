@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Forms - InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="http://imgs.sapo.pt/ink/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+	<link rel="stylesheet" type="text/css" href="http://css.ink.sapo.pt/v1/css/ink.css" />
+
+	<!--[if IE ]>
+	<link rel="stylesheet" href="http://css.ink.sapo.pt/v1/css/ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<![endif]-->
+	
+	<link rel="stylesheet" href="http://imgs.sapo.pt/ink/assets/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"/>
+
+	<!-- DEFINES TRANSITIONS: appear3d, slide, hover -->
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css"/>
+
+    <script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink.js"></script>
+    
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/html5shiv.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/respond.src.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<div id="topbar">
+	<nav class="ink-navigation ink-collapsible ink-container">
+		<ul class="menu horizontal flat black">
+			<li class="ink-title">
+				<a class="logoPlaceholder" href="index.html" title="Site Title">InK</a>
+			</li>
+			
+													<li ><a href="layout.html">Layout</a></li>
+																<li ><a href="navigation.html">Navigation</a></li>
+																<li ><a href="typography.html">Typography</a></li>
+																<li ><a href="icons.html">Icons</a></li>
+																<li class="active"><a href="forms.html">Forms</a></li>
+																<li ><a href="alerts.html">Alerts</a></li>
+																<li ><a href="tables.html">Tables</a></li>
+														
+								
+				<li >
+					<a href="forms.html#">InK JS<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+													<li><a href="ui.html">UI</a></li>
+													<li><a href="core.html">Core</a></li>
+											</ul>
+				</li>
+								</ul>
+	</nav>
+	<div class="border"></div>
+</div><div class="whatIs" id="nav-home">
+   <div class="ink-container">
+		<h2>Forms</h2>
+		<p>Form nightmare building made easy.</p>
+	</div>
+</div>
+
+<div>
+	<div class="ink-container">
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="forms.html#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
+				<li><a class="scrollableLink" href="forms.html#building">Form building</a></li>
+				<li><a class="scrollableLink" href="forms.html#text-numbers">Text & Number entry</a></li>
+				<li><a class="scrollableLink" href="forms.html#checkboxes-radios">Checkboxes & Radio buttons</a></li>
+				<li><a class="scrollableLink" href="forms.html#buttons">Buttons</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<div class="ink-container" id="building">
+	<div class="ink-section">
+		<div class="ink-vspace">
+			<h3>Form essentials</h3>
+			<!-- <p>There are four essential classes you need to know to work with forms in Ink: <code>ink-form</code>, <code>ink-form-inline</code> and <code>ink-form-wrapper</code>. The first two are mutually exclusive, use the first one in your <code>&lt;form&gt;</code> element if you want your labels stacked on your fields (block), or the second one, if you prefer labels on the left of your fields. We strongly advise you use block as it's easier to read.
+			<p>Finally, the third class needs to be applied to a <code>&lt;div&gt;</code> element, containing each of your label/field pairs. This helps separate and align elements in your form. If you're creating a set of checkboxes or radio buttons, then apply this class to the <code>&lt;ul&gt;</code> element, while also adding the <code>unstyled</code> class, to remove bullets.</p> -->
+			<p>There are some essential classes you'll use to build forms with Ink: <code>ink-form</code>, <code>block</code>, <code>inline</code>, <code>control</code> and <code>control-group</code>.</p>
+			<p>To get started, add the <code>ink-form</code> and <code>block</code> or <code>inline</code> class to you form element.</p>
+			<p>To add labels and form fields use a <code>div</code> element with the <code>control</code> class to wrap each label/field pair.</p>
+			<p>Don't forget to put your fields in a fieldset element!</p> 
+			<p>Check out the examples below.</p>
+<pre class="prettyprint linenums">
+&lt;form class=&quot;ink-form block&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;div class=&quot;control&quot;&gt;
+      &lt;label for=&quot;inputId&quot;&gt;Name&lt;/label&gt;
+      &lt;input type=&quot;text&quot; id=&quot;inputId&quot;&gt;
+    &lt;/div&gt;
+  &lt;fieldset&gt;
+&lt;/form&gt;</pre>
+					 </div>
+				</div>
+				<div class="ink-section">
+					 <a name="text-numbers"></a>
+					 <h3>
+						  Text &amp; Number entry
+					 </h3>
+					 <div class="ink-row ink-vspace">
+						  <div class="ink-l50">
+								<div class="ink-gutter">
+									 <form action="forms.html" class="ink-form block">
+										  <fieldset>
+												<legend>Fieldset legend</legend>
+												<div class="control">
+													 <label for="text-input" class="short">Text input</label> 
+													 <input id="text-input" type="text" placeholder="Please input some text" class="medium">
+													 <p class="tip space short">
+														  You can add help text to fields
+													 </p>
+												</div>
+												<div class="control validation warning">
+													 <label for="text-input" class="short">Text input</label> 
+													 <input id="text-input2" type="text" placeholder="Please input some text" class="medium">
+													 <p class="tip space short">
+														  Warn your user about some problem with the form.
+													 </p>
+												</div>
+												<div class="control required validation error">
+													 <label for="text-input" class="short">Text input</label> <input id="text-input3" type="text" placeholder="Please input some text">
+													 <p class="tip space short">
+														  This field is required.
+													 </p>
+												</div>
+												<div class="control">
+													 <label for="select" class="short">Select</label> <select name="" id="select" class="medium">
+														  <option value="">
+																onions
+														  </option>
+														  <option value="">
+																carrots
+														  </option>
+														  <option value="">
+																potatoes
+														  </option>
+														  <option value="">
+																beets
+														  </option>
+													 </select>
+												</div>
+												<div class="control">
+													 <label for="multiSelect" class="short">Multiple select</label> <select multiple="multiple" id="multiSelect" class="medium">
+														  <option>
+																onions
+														  </option>
+														  <option>
+																carrots
+														  </option>
+														  <option>
+																potatoes
+														  </option>
+														  <option>
+																beets
+														  </option>
+														  <option>
+																kale
+														  </option>
+													 </select>
+												</div>
+												<div class="control">
+													 <label for="textarea" class="short">Textarea</label> 
+													 <textarea name="" id="textarea" placeholder="Please enter some text" class="medium">
+</textarea>
+												</div>
+												<div class="control">
+													 <label for="file-input" class="short">File input</label> <input type="file" name="" id="file-input" class="medium">
+												</div>
+										  </fieldset>
+									 </form>
+								</div>
+						  </div>
+						  <div class="ink-l50">
+								<div class="ink-gutter">
+									 <h4>
+										  Block form
+									 </h4>
+									 <p>
+										  In this example, the <code>&lt;label&gt;</code> for each field is located above the field, in block. To achieve this we used <code>block</code> in the <code>&lt;form&gt;</code> element.
+									 </p>
+									 <h4>
+										  Required fields and warnings
+									 </h4>
+									 <p>
+										  If you have a required field, use the field wrapping element (<code>control</code> or <code>control-group</code> ) to add a <code>required</code> class.
+									 </p>
+									 <p>
+										  If you need to print a warning or error message near your field, then add the <code>validation</code> class to the wrapper (<code>control</code> or <code>control-group</code>) and an <code>warning</code> or <code>error</code> class.
+									 </p>
+									 <p>Also add a message using a paragraph element with the <code>tip</code> class.</p>
+									 <!-- <h4>
+										  Automated form validation
+									 </h4>
+									 <p>
+										  <code>validation</code> instructions should be added here...
+									 </p> -->
+									 <h5>
+										  Example
+									 </h5>
+									 <p>
+										  Here's a simple form with a required field and a warning message:
+									 </p>
+									 <pre class="prettyprint linenums">
+&lt;form class=&quot;ink-form block&quot;&gt;
+  &lt;div class=&quot;control validation warning&quot;&gt;
+    &lt;label for=&quot;inputId&quot;&gt;Text input&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;inputId2&quot;&gt;
+    &lt;p class=&quot;tip&quot;&gt;Warn about something&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre>
+									 <form class="ink-form block">
+										  <div class="control validation warning">
+												<label for="inputId">Text input</label> <input type="text" id="inputId3">
+												<p class="tip">
+													 Warn about something
+												</p>
+										  </div>
+									 </form>
+								</div>
+						  </div>
+					 </div>
+					 <div class="ink-row">					 	
+					 	<div class="ink-l50">
+					 		<div class="ink-gutter">
+					 			<form action="forms.html#" class="ink-form inline">
+					 				<fieldset>
+					 					<legend>Fieldset</legend>
+					 					<div class="control required validation error">
+						 					<label for="name" class="short">Name</label>
+						 					<input type="text" id="name" class="wide">
+						 					<p class="tip space short">Here's a small text tip</p>
+						 				</div>
+						 				<div class="control">
+						 					<label for="phone" class="short">Phone</label>
+						 					<input type="text" id="phone" class="medium">
+						 					<p class="tip space short">Please include the country code</p>
+						 				</div>
+						 				<div class="control">
+						 					<label for="email" class="short">Email</label>
+						 					<input type="text" id="email" class="wide">
+						 				</div>
+						 				<div class="control">
+						 					<label for="options" class="short">Email</label>
+						 					<select id="option" class="medium">
+						 						<option value="1">option 1</option>
+						 						<option value="2">option 2</option>
+						 						<option value="3">option 3</option>
+						 						<option value="4">option 4</option>
+						 					</select>
+						 				</div>
+						 				<div class="control">
+						 					<label for="area" class="short">Description</label>
+						 					<textarea id="area" class="wide"></textarea>
+						 					<p class="tip space short">256 character limit.</p>
+						 				</div>
+						 				<div class="control">
+						 					<label for="options" class="short">Email</label>
+						 					<select id="option" multiple="multiple" class="short">
+						 						<option value="1">option 1</option>
+						 						<option value="2">option 2</option>
+						 						<option value="3">option 3</option>
+						 						<option value="4">option 4</option>
+						 					</select>
+						 				</div>
+					 				</fieldset>
+					 			</form>
+					 		</div>
+					 	</div>
+					 	<div class="ink-l50">
+					 		<div class="ink-gutter">
+					 			<h4>Inline Forms</h4>
+					 			<p>Ink provides a second layout for forms. To get it add the <code>inline</code> class to the form element or replace an existing <code>block</code> class.</p>
+					 			<p>Since this layout requires that labels and fields have a set width, we added some classes to help you getting things aligned in a breeze: <code>shorter</code>, <code>short</code>, <code>medium</code>, <code>wide</code>	and <code>wider</code>.</p>
+					 			<p>Combining these lets you deal with diferent widths of labels and fields. Also you can align tip text by adding a <code>space</code> class and one of the above. Matching the label width class aligns the tip text with the field.</p>
+
+<pre class="prettyprint linenums">
+&lt;form action=&quot;#&quot; class=&quot;ink-form inline&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Personal data&lt;/legend&gt;
+    &lt;div class=&quot;control required validation error&quot;&gt;
+      &lt;label for=&quot;name&quot; class=&quot;short&quot;&gt;Name&lt;/label&gt;
+      &lt;input type=&quot;text&quot; id=&quot;name&quot; class=&quot;wide&quot;&gt;
+      &lt;p class=&quot;tip space short&quot;&gt;Here's a small text tip&lt;/p&gt;
+    &lt;/div&gt;
+    ...
+  &lt;/fieldset&gt;
+&lt;/form&gt;</pre>
+					 		</div>
+					 	</div>
+					 </div>
+				</div>
+				<div class="ink-section">
+					 <div class="ink-vspace">
+					 	<a name="checkboxes-radios"></a>
+					 <h3>
+						  Checkboxes and radio buttons
+					 </h3>
+					 <p>
+						  To create a list of checkboxes or radio buttons, use an unordered list element, <code>&lt;ul&gt;</code> as your wrapper with the <code>control-group</code> class. If you need to add a label to the field group, add another <code>li</code> element and a <code>p.label</code>
+						  inside it. This pseudo-label will also display the icon if the control group contains required fields.
+					 </p>
+					 </div>
+					 <div class="ink-row">
+						  <div class="ink-l50">
+								<div class="ink-gutter">
+									<form action="forms.html" class="ink-form block">
+										 <fieldset>
+													<legend>Group of checkboxes</legend>
+											  <ul class="control-group required validation error">
+													<li>
+														 <p class="label">
+															  Please select one or more options
+														 </p>
+													</li>
+													<li>
+														 <input type="checkbox" id="cb1" name="cb1" value=""> <label for="cb1">Option 1</label>
+													</li>
+													<li>
+														 <input type="checkbox" id="cb2" name="cb2" value=""> <label for="cb2">Option 2</label>
+													</li>
+													<li>
+														 <input type="checkbox" id="cb3" name="cb3" value=""> <label for="cb3">Option 3</label>
+													</li>
+													<li>
+														 <input type="checkbox" id="cb4" name="cb4" value=""> <label for="cb4">Option 4</label>
+													</li>
+											  </ul>
+										 </fieldset>					 
+									</form>
+
+								</div>
+						  </div>
+						  <div class="ink-l50">
+								<div class="ink-gutter">
+									<form action="forms.html" class="ink-form block">
+										 <fieldset>
+													<legend>Group of radio buttons</legend>
+											  <ul class="control-group">
+													<li>
+														 <p class="label">
+															  Please select one of these options
+														 </p>
+													</li>
+													<li>
+														 <input type="radio" id="rb1" name="rb" value=""> <label for="rb1">Option 1</label>
+													</li>
+													<li>
+														 <input type="radio" id="rb2" name="rb" value=""> <label for="rb2">Option 2</label>
+													</li>
+													<li>
+														 <input type="radio" id="rb3" name="rb" value=""> <label for="rb3">Option 3</label>
+													</li>
+													<li>
+														 <input type="radio" id="rb4" name="rb" value=""> <label for="rb4">Option 4</label>
+													</li>
+											  </ul>
+										 </fieldset>
+									</form>
+								</div>
+						  </div>
+					 </div>
+					 <div class="ink-row">
+					 	<div class="ink-l50">
+					 		<div class="ink-gutter">
+					 			<pre class="prettyprint linenums">
+&lt;form action=&quot;&quot; class=&quot;ink-form block&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Group of checkboxes&lt;/legend&gt;
+    &lt;ul class=&quot;control-group required&quot;&gt;
+      &lt;li&gt;
+        &lt;p class=&quot;label&quot;&gt;Select one or more options&lt;/p&gt;
+      &lt;/li&gt;
+      ...
+      &lt;li&gt;
+          &lt;input type=&quot;checkbox&quot; id=&quot;cb4&quot; value=&quot;&quot;&gt;
+          &lt;label for=&quot;cb4&quot;&gt;Option 4&lt;/label&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</pre>
+					 		</div>
+					 	</div>
+					 	<div class="ink-l50">
+					 		<div class="ink-gutter">
+<pre class="prettyprint linenums">
+&lt;form action=&quot;&quot; class=&quot;ink-form block ink-gutter&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Group of radio buttons&lt;/legend&gt;
+      &lt;ul class=&quot;control-group&quot;&gt;
+        &lt;li&gt;
+          &lt;p class=&quot;label&quot;&gt;Please select one option.&lt;/p&gt;
+        &lt;/li&gt;
+          ...
+        &lt;li&gt;
+           &lt;input type=&quot;radio&quot; id=&quot;rb4&quot; value=&quot;rbOption&quot;&gt;
+           &lt;label for=&quot;rb4&quot;&gt;Option 4&lt;/label&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</pre>
+					 		</div>
+					 	</div>
+					 </div>
+				</div>
+				<div class="ink-section">
+					 <a name="buttons"></a>
+					 <h3>
+						  Buttons
+					 </h3>
+					 <p>
+						  Your forms will need at least one button. You can crate a button with one of several markup elements, although <code>&lt;button&gt;</code> is most appropriate. Just add the <code>ink-button</code> class for the button layout and then use a utility class to give it a specific meaning. Available styling is shown below.
+					 </p>
+					 <table class="ink-table ink-bordered">
+						  <thead>
+								<tr>
+									 <th>
+										  type
+									 </th>
+									 <th>
+										  active state
+									 </th>
+									 <th>
+										  disabled state
+									 </th>
+									 <th>
+										  code
+									 </th>
+								</tr>
+						  </thead>
+						  <tfoot>
+								<tr>
+									 <td>
+										  Info
+									 </td>
+									 <td>
+										  <button class="ink-button info">Info</button>
+									 </td>
+									 <td>
+										  <button class="ink-button info" disabled>Info</button>
+									 </td>
+									 <td>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button info&quot;&gt;Info&lt;/button&gt;</pre>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button info&quot; disabled&gt;Info&lt;/button&gt;</pre>
+									 </td>
+								</tr>
+						  </tfoot>
+						  <tbody>
+								<tr>
+									 <td>
+										  Default
+									 </td>
+									 <td>
+										  <button class="ink-button">Default</button>
+									 </td>
+									 <td>
+										  <button class="ink-button" disabled>Default</button>
+									 </td>
+									 <td>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button&quot;&gt;Default&lt;/button&gt;</pre>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button&quot; disabled&gt;Default&lt;/button&gt;</pre>
+									 </td>
+								</tr>
+								<tr>
+									 <td>
+										  Success
+									 </td>
+									 <td>
+										  <button class="ink-button success">Success</button>
+									 </td>
+									 <td>
+										  <button class="ink-button success" disabled>Success</button>
+									 </td>
+									 <td>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button success&quot;&gt;Success&lt;/button&gt;</pre>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button success&quot; disabled&gt;Success&lt;/button&gt;</pre>
+									 </td>
+								</tr>
+								<tr>
+									 <td>
+										  Warning
+									 </td>
+									 <td>
+										  <button class="ink-button warning">Warning</button>
+									 </td>
+									 <td>
+										  <button class="ink-button warning" disabled>Warning</button>
+									 </td>
+									 <td>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button warning&quot;&gt;Warning&lt;/button&gt;</pre>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button warning&quot; disabled&gt;Warning&lt;/button&gt;</pre>
+									 </td>
+								</tr>
+								<tr>
+									 <td>
+										  Caution
+									 </td>
+									 <td>
+										  <button class="ink-button caution">Caution</button>
+									 </td>
+									 <td>
+										  <button class="ink-button caution" disabled>Caution</button>
+									 </td>
+									 <td>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button caution&quot;&gt;Caution&lt;/button&gt;</pre>
+										  <pre class="prettyprint linenums">
+&lt;button class=&quot;ink-button caution&quot; disabled&gt;Caution&lt;/button&gt;</pre>									 </td>
+								</tr>
+						  </tbody>
+					 </table>
+				</div>
+		  </div>		  
+	 </body>
+</html>
+<footer>
+	<div class="ink-container">
+		<div class="ink-l75">
+			<nav class="ink-navigation">
+				<ul class="ink-footer-nav">
+					<li><a href="about.html">About</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    
+				</ul>
+			</nav>	
+			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
+			
+			<p class="ink-vspace copyright">
+				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+				SAPO is a trademark and a search engine created at the University of Aveiro.
+			</p>
+			
+		</div>
+		
+		<div class="ink-l25">
+			<ul class="sociallinks">
+				<h5>Follow SAPO:</h5>
+				<li><a class="Fb_link" href="http://www.facebook.com/inksapo"></a></li>
+				<li><a class="Twt_link" href="http://twitter.com/inksapo"></a></li>
+				<li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+    <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/ink.js"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script>
+</body>
+</html>

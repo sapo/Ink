@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Navigation - InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="http://imgs.sapo.pt/ink/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+	<link rel="stylesheet" type="text/css" href="http://css.ink.sapo.pt/v1/css/ink.css" />
+
+	<!--[if IE ]>
+	<link rel="stylesheet" href="http://css.ink.sapo.pt/v1/css/ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<![endif]-->
+	
+	<link rel="stylesheet" href="http://imgs.sapo.pt/ink/assets/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"/>
+
+	<!-- DEFINES TRANSITIONS: appear3d, slide, hover -->
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css"/>
+
+    <script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink.js"></script>
+    
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/html5shiv.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/respond.src.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<div id="topbar">
+	<nav class="ink-navigation ink-collapsible ink-container">
+		<ul class="menu horizontal flat black">
+			<li class="ink-title">
+				<a class="logoPlaceholder" href="index.html" title="Site Title">InK</a>
+			</li>
+			
+													<li ><a href="layout.html">Layout</a></li>
+																<li class="active"><a href="navigation.html">Navigation</a></li>
+																<li ><a href="typography.html">Typography</a></li>
+																<li ><a href="icons.html">Icons</a></li>
+																<li ><a href="forms.html">Forms</a></li>
+																<li ><a href="alerts.html">Alerts</a></li>
+																<li ><a href="tables.html">Tables</a></li>
+														
+								
+				<li >
+					<a href="navigation.html#">InK JS<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+													<li><a href="ui.html">UI</a></li>
+													<li><a href="core.html">Core</a></li>
+											</ul>
+				</li>
+								</ul>
+	</nav>
+	<div class="border"></div>
+</div><div class="whatIs" id="nav-home">
+	 <div class="ink-container">
+		  <h2>
+				Navigation
+		  </h2>
+		  <p>
+				Navigation is key in any website or web application.
+		  </p>
+	 </div>
+</div>
+<div>
+	<div class="ink-container">
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="navigation.html#nav-home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
+					 <li>
+						  <a class="scrollableLink" href="navigation.html#nav-horizontal">Horizontal menu</a>
+					 </li>
+					 <li>
+						  <a class="scrollableLink" href="navigation.html#nav-vertical">Vertical menu</a>
+					 </li>
+					 <!--<li>
+						  <a class="scrollableLink" href="#nav-footer">Footer menu</a>
+					 </li>-->
+					 <li>
+						  <a class="scrollableLink" href="navigation.html#nav-pagination">Pagination</a>
+					 </li>
+					 <li>
+						  <a class="scrollableLink" href="navigation.html#nav-pills">Pills</a>
+					 </li>
+					 <li>
+						  <a class="scrollableLink" href="navigation.html#nav-breadcrumbs">Breadcrumbs</a>
+					 </li>
+				</ul>
+		  </nav>
+	 </div>
+</div>
+<div class="ink-container">
+	 <div class="ink-section" id="nav-horizontal">
+		  <div class="ink-vspace">
+				<h3>
+					 Horizontal menu
+				</h3>
+				<p>
+					 To build a horizontal menu with ink start with a block-level element and use the <code>ink-navigation</code> class. We prefer to use a <code>&lt;nav&gt;</code> tag to wrap our navigation items, but a <code>&lt;div&gt;</code> will do just fine.
+				</p>
+				<p>
+					 The menu itself is built with a unordered list with the <code>menu</code> and <code>horizontal</code> classes. Adding color is as simple as adding a class to the menu list element. Available classes are <code>grey</code>, <code>green</code>, <code>blue</code>, <code>red</code>, <code>orange</code> and <code>black</code>!
+				</p>
+		  </div>
+		  <nav class="ink-navigation">
+				<ul class="menu horizontal">
+					 <li class="active">
+						  <a href="navigation.html#">Item</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">Item</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">Item</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">Item</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">Submenu</a>
+						  <ul class="submenu">
+								<li>
+									 <a href="navigation.html#">Item with a very big title</a>
+								</li>
+								<li>
+									 <a href="navigation.html#">Item</a>
+								</li>
+								<li>
+									 <a href="navigation.html#">Item</a>
+								</li>
+						  </ul>
+					 </li>
+				</ul>
+		  </nav>
+		  <div class="more-examples">
+				<div class="examples ink-vspace">
+					 <div class="example-container">
+						  <h4>
+								Using the color classes on ink menus
+						  </h4>
+						  <div class="example">
+								<div class="ink-row">
+									 <div class="ink-l50 ink-m50">
+										  <div class="ink-gutter">
+												<nav class="ink-navigation">
+													 <ul class="menu horizontal grey">
+														  <li class="active">
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Submenu</a>
+																<ul class="submenu">
+																	 <li>
+																		  <a href="navigation.html#">Item with a very big title</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																</ul>
+														  </li>
+													 </ul>
+												</nav>
+										  </div>
+									 </div>
+									 <div class="ink-l50 ink-m50">
+										  <div class="ink-gutter">
+												<nav class="ink-navigation">
+													 <ul class="menu horizontal black">
+														  <li class="active">
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Submenu</a>
+																<ul class="submenu">
+																	 <li>
+																		  <a href="navigation.html#">Item with a very big title</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																</ul>
+														  </li>
+													 </ul>
+												</nav>
+										  </div>
+									 </div>
+								</div>
+								<div class="ink-row ink-vspace">
+									 <div class="ink-l50 ink-m50">
+										  <div class="ink-gutter">
+												<nav class="ink-navigation">
+													 <ul class="menu horizontal green">
+														  <li class="active">
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Submenu</a>
+																<ul class="submenu">
+																	 <li>
+																		  <a href="navigation.html#">Item with a very big title</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																</ul>
+														  </li>
+													 </ul>
+												</nav>
+										  </div>
+									 </div>
+									 <div class="ink-l50 ink-m50">
+										  <div class="ink-gutter">
+												<nav class="ink-navigation">
+													 <ul class="menu horizontal blue">
+														  <li class="active">
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Submenu</a>
+																<ul class="submenu">
+																	 <li>
+																		  <a href="navigation.html#">Item with a very big title</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																</ul>
+														  </li>
+													 </ul>
+												</nav>
+										  </div>
+									 </div>
+								</div>
+								<div class="ink-row ink-vspace">
+									 <div class="ink-l50 ink-m50">
+										  <div class="ink-gutter">
+												<nav class="ink-navigation">
+													 <ul class="menu horizontal red">
+														  <li class="active">
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Submenu</a>
+																<ul class="submenu">
+																	 <li>
+																		  <a href="navigation.html#">Item with a very big title</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																</ul>
+														  </li>
+													 </ul>
+												</nav>
+										  </div>
+									 </div>
+									 <div class="ink-l50 ink-m50">
+										  <div class="ink-gutter">
+												<nav class="ink-navigation">
+													 <ul class="menu horizontal orange">
+														  <li class="active">
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Item</a>
+														  </li>
+														  <li>
+																<a href="navigation.html#">Submenu</a>
+																<ul class="submenu">
+																	 <li>
+																		  <a href="navigation.html#">Item with a very big title</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																	 <li>
+																		  <a href="navigation.html#">Item</a>
+																	 </li>
+																</ul>
+														  </li>
+													 </ul>
+												</nav>
+										  </div>
+									 </div>
+								</div>
+						  </div>
+					 </div>
+				</div>
+		  </div>
+		  <div class="ink-vspace">
+				<p class="note">
+					 <strong>Note:</strong> The menu can be built in many different ways, using <code>&lt;a&gt;</code>, <code>&lt;ul&gt;</code> or the new <span class="label_new">HTML5</span> tag <code>&lt;nav&gt;</code>
+				</p>
+				<pre class="prettyprint linenums">
+&lt;nav class=&quot;ink-navigation&quot;&gt;
+	&lt;ul class=&quot;menu horizontal grey&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</pre>
+		  </div>
+		  <div class="ink-vspace">
+				<h4>
+					 Submenu
+				</h4>
+				<p>
+					 <code>&lt;ul&gt;</code> (Unsorted Lists) based menus may have submenus respecting the following structure:
+				</p>
+				<pre class="prettyprint linenums">
+&lt;nav class=&quot;ink-navigation&quot;&gt;
+   &lt;ul class=&quot;menu horizontal grey&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;
+         &lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
+         &lt;ul class=&quot;submenu&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+      &lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+
+		</div>
+
+	</div>
+
+
+
+
+
+	<div class="ink-section" id="nav-vertical">
+
+		<h3>Vertical menu</h3>
+		<div class="ink-row ink-vspace">
+
+			<div class="ink-l40">
+				<div class="ink-gutter">
+					<nav class="ink-navigation">
+						<ul class="menu vertical">
+							<li><a href="navigation.html#">Suspendisse</a></li>
+							<li><a href="navigation.html#">Vivamus</a></li>
+							<li><a href="navigation.html#">Condimentum</a></li>
+							<li><a href="navigation.html#">Ccommodo</a></li>
+							<li><a href="navigation.html#">Egestas</a></li>
+							<li>
+								<a href="navigation.html#">Submenu<i class="icon-caret-right ink-for-l"></i><i class="icon-caret-down ink-for-s ink-for-m"></i></a>
+								<ul class="submenu">
+									<li><a href="navigation.html#">Item with a very big title</a></li>
+									<li><a href="navigation.html#">Item</a></li>
+									<li><a href="navigation.html#">Item</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+			<div class="ink-l60">
+				<div class="ink-gutter">
+					<p>Vertical menus are built exactly the same way as the horizontal ones, just use the <code>&lt;ul&gt;</code>  with the <code>.vertical</code> class. The same goes for the submenus.</p>
+					<pre class="prettyprint linenums">
+&lt;nav class=&quot;ink-navigation&quot;&gt;
+	&lt;ul class=&quot;menu vertical&quot;&gt;
+	  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+	  ...
+	  &lt;li&gt;
+		 &lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;
+		 &lt;ul class=&quot;submenu&quot;&gt;
+			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+			...
+		 &lt;/ul&gt;
+	  &lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;</pre>
+					 </div>
+				</div>
+		  </div>
+	 </div>
+	 <!--<div class="ink-section" id="nav-footer">
+		  <h3>
+				Footer menu
+		  </h3>
+		  <p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		  </p>
+		  <pre class="prettyprint linenums">
+&lt;footer&gt;
+	&lt;ul class=&quot;ink-footer-nav&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;footerItem&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;footerItem&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+&lt;/footer&gt;</pre>
+	 </div>-->
+	 <div class="ink-section" id="nav-pagination">
+		  <h3>
+				Pagination
+		  </h3>
+		  <p>
+				Paginations can be created by adding the <code>pagination</code> class to a list inside an <code>ink-navigation</code> parent. The <code>.active</code> and <code>.disabled</code> classes are available to diferentiate the current page and disabled links.
+		  </p>
+		  <h4>
+				Example
+		  </h4>
+		  <nav class="ink-navigation">
+				<ul class="pagination">
+					 <li class="disabled previous">
+						  <a href="navigation.html#">Previous</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">1</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">2</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">3</a>
+					 </li>
+					 <li class="active">
+						  <a href="navigation.html#">4</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">5</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">6</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">7</a>
+					 </li>
+					 <li class="next">
+						  <a href="navigation.html#">Next</a>
+					 </li>
+				</ul>
+		  </nav>
+		  <pre class="prettyprint linenums ink-vspace">
+&lt;nav class=&quot;ink-navigation&quot;&gt;
+   &lt;ul class=&quot;pagination&quot;&gt;
+      &lt;li class=&quot;disabled previous&quot;&gt;&lt;a href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;4&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;5&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;6&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;7&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+
+	</div>
+
+	<div class="ink-section" id="nav-pills">
+		<h3>Pills</h3>
+		<p>Pills can be created by adding the <code>pagination</code> class to a list inside an <code>ink-navigation</code> parent. The <code>.active</code> and <code>.disabled</code> classes are available.</p>
+
+		<h4>example</h4>
+		<nav class="ink-navigation">
+			<ul class="pills">
+				<li><a href="navigation.html#">Item</a></li>
+				<li class="active"><a href="navigation.html#">Item</a></li>
+				<li><a href="navigation.html#">Item</a></li>
+				<li><a href="navigation.html#">Item</a></li>
+			</ul>
+		</nav>
+
+<pre class="prettyprint linenums ink-vspace">
+&lt;nav class=&quot;ink-navigation&quot;&gt;
+	&lt;ul class=&quot;pills&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;</pre>
+	 </div>
+	 <div class="ink-section" id="nav-breadcrumbs">
+		  <h3>
+				Breadcrumbs
+		  </h3>
+		  <p>
+				Breadcrumbs can be created by adding the <code>breadcrumbs</code> class to a <code>ink-navigation</code> list. The <code>active</code> and <code>disabled</code> classes are available.
+		  </p>
+		  <nav class="ink-navigation">
+				<ul class="breadcrumbs">
+					 <li>
+						  <a href="navigation.html#">Home</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">Products</a>
+					 </li>
+					 <li>
+						  <a href="navigation.html#">Category</a>
+					 </li>
+					 <li class="active">
+						  <a href="navigation.html#">Current item</a>
+					 </li>
+				</ul>
+		  </nav>
+		  <pre class="prettyprint linenums ink-vspace">
+&lt;nav class=&quot;ink-navigation&quot;&gt;
+	&lt;ul class=&quot;breadcrumbs&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Category&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Current item&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;</pre>
+        <p class="ink-alert info"><strong>Info</strong> a separator is automatically added.</p>
+
+        <h4>Customizing the separator</h4>
+        <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
+		  <pre class="prettyprint linenums ink-vspace">
+
+.ink-navigation .breadcrumbs li:after {
+   content: '*';
+}</pre>
+        <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
+
+
+	 </div>
+</div>
+<footer>
+	<div class="ink-container">
+		<div class="ink-l75">
+			<nav class="ink-navigation">
+				<ul class="ink-footer-nav">
+					<li><a href="about.html">About</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    
+				</ul>
+			</nav>	
+			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
+			
+			<p class="ink-vspace copyright">
+				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+				SAPO is a trademark and a search engine created at the University of Aveiro.
+			</p>
+			
+		</div>
+		
+		<div class="ink-l25">
+			<ul class="sociallinks">
+				<h5>Follow SAPO:</h5>
+				<li><a class="Fb_link" href="http://www.facebook.com/inksapo"></a></li>
+				<li><a class="Twt_link" href="http://twitter.com/inksapo"></a></li>
+				<li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+    <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/ink.js"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script>
+</body>
+</html>
