@@ -2,9 +2,11 @@
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
-## Current Version: 1.0
+Checkout our demo and documentation site: [http://ink.sapo.pt](http://ink.sapo.pt)
 
-Although most Ink components are in full working order, some still have a few bugs that are being fixed.
+## Current Version: 2.0
+
+We've completely rewritten the grid system and JavaScript components, along with many other changes. Please read our [changelog](http://ink.sapo.pt/changelog) to find out about them.
 
 ## Repository branches
     
@@ -13,7 +15,7 @@ We have two branches on our github repository:
 * The **master** branch contains the latest release as its HEAD and all previous releases as tags.
 * The **develop** branch contains our latest code that will eventually lead to a new release and tag on **master**. This branch is likely to contain code that is not fully functional or documented. Use at your own risk.
 
-To get a specific release clone the repository and use, e.g. "git checkout 1.0.0".
+To get a specific release clone the repository and use, e.g. "git checkout 2.0.0".
 
 ## Getting started
 
@@ -37,5 +39,8 @@ Built with:
 * [FontAwesome](http://fortawesome.github.io/Font-Awesome/) (under [cc-by-3.0](http://creativecommons.org/licenses/by/3.0/))
 * [Ubuntu Font](http://font.ubuntu.com/) (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
 * [html5shiv](https://code.google.com/p/html5shiv/) (under [MIT License](http://opensource.org/licenses/MIT))
-* [respond.js](https://github.com/scottjehl/Respond) (under [MIT License](http://opensource.org/licenses/MIT))
 * [normalize.css](http://necolas.github.io/normalize.css/) (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
+
+## Previous versions
+
+* [Ink v1.1.0](https://github.com/sapo/Ink/archive/1.1.0.zip)
