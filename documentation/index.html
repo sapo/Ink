@@ -38,6 +38,8 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.spy.js"></script>
+    <script type="text/javascript" src="../js/ink.pagination.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
     <script type="text/javascript" src="../js/ink.toggle.js"></script>
@@ -49,6 +51,7 @@
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/ink.table.js"></script>
     <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
+    <script type="text/javascript" src="../js/ink.smoothscroller.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
@@ -56,11 +59,19 @@
 
 </head>
 <body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide-all show-large">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
@@ -118,7 +129,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide-large">
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
             
@@ -185,42 +196,68 @@
 
     <div class="border"></div>
 </div><div class="ink-hero">
-	<img src="http://10.134.132.33/inksite/assets/imgs/logo_home.png" alt="Logo Home" class="logo_hp">
+	<img src="../img/logo_home.png" alt="Logo Home" class="logo_hp">
 </div>
+<!--Get Now-->
+<div id="getnow">
+    <div class="ink-grid">
+        <div class="column-group gutters">
+            <div class="large-60 medium-60 small-100">
+                <p class="extralarge">Don't like wasting time? Get Ink now.</p>
+            </div>
+            <div class="large-20 medium-20 small-50">
+                <a href="./index.php/download/latest">Download</a>
+            </div>
+            <div class="large-20 medium-20 small-50">
+                <a href="https://github.com/sapo/ink">GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/end Get Now-->
 
 <div class="ink-grid">
 
-	<div class="whatIs">
-          <h3>Welcome to Ink</h3>
-          <p>
-              Ink is an interface kit for quick development of web interfaces, simple to use and expand on. 
-              It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, 
-              display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
-          </p>
-	</div>
-	
-    <!--download buttons-->
-    <section id="getink">
-        <div class="column-group gutters" id="download">
-            <div class="large-25 medium-50 small-100">
+    <!--about-->
+    <section>
+        <div class="column-group gutters">
+            <div class="large-60 medium-60 small-100">
+                <h1>Welcome to Ink</h1>
+                    <p class="extralarge">Ink is a set of tools for quick development of web interfaces.</p>
+                    <p class="large">It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important.</p>
+            </div>
+            <div class="large-40 medium-40 small-100">
+                <div class="box">
+                <h3>Ink is now V2!</h3>
+                <p class="">Since launch, we've been working hard to make Ink even better. We improved and simplified our grid, made our code easier to learn, made our JS components simpler to implement and rewrote our documentation from scratch.</p> <p>Check the <a href="/changelog">changelog</a> to learn all about what's new.</p>
+            </div>
+        </div>
+
+        
+
+        <!-- <div class="column-group gutters" id="download">
+            
+            <div class="large-33 medium-33 small-100">
                 <a href="./index.php/download/latest" >Version 0.1.0</a>
                 <p>Download the current build.</p>
             </div>
-            <div class="large-25 medium-50 small-100">
+            <div class="large-33 medium-33 small-100">
                 <a href="./index.php/download" >Custom</a>
                 <p>Customize Ink to better fit your needs.</p>
             </div>
-            <div class="large-25 medium-50 small-100">
+            <div class="large-33 medium-33 small-100">
                 <a href="./index.php/download/github" >Github repo</a>
                 <p>Download, fork, pull, comment or report bugs.</p>
             </div>
-            <div class="large-25 medium-50 small-100">
+             <div class="large-25 medium-50 small-100">
                 <a href="ols" >Previous versions</a>
                 <p>Get earlier versions.</p>
-            </div>
+            </div> 
+        </div> -->
         </div>
+        
     </section>
-    <!--end download buttons-->
+    <!--end about-->
 
     <!--advantages-->
     <h3>Why use Ink?</h3>
@@ -239,7 +276,7 @@
         </div>
         <div class="large-25 medium-50 small-100">
             <h4>Growing <i class="icon-cogs icon-large"></i></h4>
-            <p>Ink is made with passion, expect improvements, new solutions and examples, new JS modules as our team keeps building up Ink.</p>
+            <p>Ink is made with passion. Expect improvements, new solutions and examples, new JS modules as our team keeps building up Ink.</p>
         </div>
     </div>
     <!--end advantages-->
@@ -248,27 +285,27 @@
 <div class="showcase">
     <div class="ink-grid">
         <h3>Made with Ink</h3>
-        <p>Nothing better to see how flexible and versatile Ink is than to take a look at some websites and apps made with the framework. We'll keep expanding this section to include the best projects around. If you've built something with Ink, <a href="mailto:who?">drop us a line</a> so we can consider including a shot of your product right here.</p>
+        <p>Nothing better to see how flexible and versatile Ink is than to take a look at some websites and apps made with the framework. We'll keep expanding this section to include the best projects around. If you've built something with Ink, <a href="mailto:ink@sapo.pt">drop us a line</a> so we can consider including a shot of your product right here.</p>
         <div class="column-group gutters">
             <div class="large-20 medium-50 small-100">
-                <img src="./assets/imgs/shot_meo.png" id="meo" class="clickable">
-                <p class="vspace"><a href="http://meo.pt">MEO</a> is the leading 4-play provider in Portugal, their new website was entirely built using Ink.</p>
+                <img src="../img/shot_meo.png" id="meo" class="clickable">
+                <p><a href="http://meo.pt">MEO</a> the leading 4-play provider in Portugal.</p>
             </div>
             <div class="large-20 medium-50 small-100">
-                <img src="./assets/imgs/shot_musicbox.png" class="clickable" id="musicbox">
-                <p class="vspace"><a href="http://musicbox.sapo.pt">Musicbox</a> is the leading music streaming service in Portugal, the new website was made with Ink.</p>
+                <img src="../img/shot_musicbox.png" class="clickable" id="musicbox">
+                <p><a href="http://musicbox.sapo.pt">Musicbox</a> is the leading music streaming service in Portugal.</p>
             </div><a href=""></a>
             <div class="large-20 medium-50 small-100">
-                <img src="./assets/imgs/shot_intra.png" class="clickable" id="intra">
-                <p class="vspace"><a href="http://sapo.pt">SAPO</a> Intranet. Our internal project management and documentation network has been rebuilt using Ink.</p>
+                <img src="../img/shot_intra.png" class="clickable" id="intra">
+                <p><a href="http://sapo.pt">SAPO</a> Intranet. Our internal project management and documentation network.</p>
             </div>
             <div class="large-20 medium-50 small-100">
-                <img src="./assets/imgs/shot_ink.png" class="clickable" id="ink">
-                <p class="vspace"><a href="http://ink.sapo.pt">Ink</a>. It may be very meta, but as you'd expect, this website is buit with Ink :)</p>
+                <img src="../img/shot_ink.png" class="clickable" id="ink">
+                <p><a href="http://ink.sapo.pt">Ink</a>. It may be very meta, but as you'd expect, this website is buit with Ink :)</p>
             </div>
             <div class="large-20 medium-50 small-100">
-                <img src="./assets/imgs/shot_livebots.png" class="clickable" id="livebots">
-                <p class="vspace"><a href="http://livebots.cc/">Live Bots</a> is a platform where people can interact with robots through the internet. They honored us by using Ink to build their website.</p>
+                <img src="../img/shot_livebots.png" class="clickable" id="livebots">
+                <p><a href="http://livebots.cc/">Live Bots</a>. A platform where people can interact with robots through the web.</p>
             </div>
         </div>
     </div>
@@ -282,7 +319,7 @@
             <h5>meo.pt</h5>
         </div>
         <div class="modal-body">
-            <img src="./assets/imgs/shot_meo.png">
+            <img src="../img/shot_meo.png">
         </div>
     </div>
 </div>
@@ -294,7 +331,7 @@
             <h5>musicbox.sapo.pt</h5>
         </div>
         <div class="modal-body">
-            <img src="./assets/imgs/shot_musicbox.png">
+            <img src="../img/shot_musicbox.png">
         </div>
     </div>
 </div>
@@ -306,7 +343,7 @@
             <h5>SAPO Intranet</h5>
         </div>
         <div class="modal-body">
-            <img src="./assets/imgs/shot_intra.png">
+            <img src="../img/shot_intra.png">
         </div>
     </div>
 </div>
@@ -318,7 +355,7 @@
             <h5>sapo.pt</h5>
         </div>
         <div class="modal-body">
-            <img src="./assets/imgs/shot_ink.png">
+            <img src="../img/shot_ink.png">
         </div>
     </div>
 </div>
@@ -330,7 +367,7 @@
             <h5>livebots.cc</h5>
         </div>
         <div class="modal-body">
-            <img src="./assets/imgs/shot_livebots.png">
+            <img src="../img/shot_livebots.png">
         </div>
     </div>
 </div>
@@ -342,52 +379,27 @@
     new SAPO.Ink.Modal('#livebots_screenshot');
 </script>
 
-<div class="ink-grid">
-    <!--getting started & legal-->
-    <div class="column-group gutters">
-        
-        <div id="gettingstarted" class="large-66 medium-66 small-100">
-
-            <h3>Getting started</h3>
-            <p>Let's get you started with Ink right away. Here's what you need to know and do:</p>
-
-            <ol class="steps">
-                <li><a href="./index.php/download/latest">Download latest build</a>.</li>
-                <li>Open <code>my-page.html</code> if you want to serve Ink from your host or <code>my-cdn-page.html</code> if you want to serve Ink from our servers.</li>
-                <li>Check the template we provide and remove whatever you don't feel necessary for your project.</li>
-                <li>Make sure you have <code>ink.css</code>, <code>ink-ie7.css</code> and <code>ink.js</code> included somewhere in the <code>&lt;head></code>.</li>
-                <li>Add your own stylesheets and scripts to carry all your project-specific changes.</li>
-                <li>Keep coming back to the documentation to help you along the way.</li>
-            </ol>
-            
-            <p>That's it! You'll see how easy it is once you pick it up.</p>
-        
-        </div>
-        
-        <div id="legal" class="large-33 medium-33 small-100">
-            
-            <h3>Legal stuff</h3>
-            <p>We built Ink by standing on the shoulders of giants, following the opensource mantra. We acknowledge &amp; credit those giants here.</p>
-            
-            <p><strong>Built with:</strong></p>
-            <ul class="unstyled">
-                <li><a href="http://lesscss.org/">{LESS}</a> <span class="note">(under <a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
-                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a> <span class="note">(under <a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
-                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a> <span class="note">(under <a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
-                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a> <span class="note">(under <a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
-                <li><a href="https://github.com/scottjehl/Respond">respond.js</a> <span class="note">(under <a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
-                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a> <span class="note">(under <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize's license agreement</a>)</span></li>
-            </ul>
-        </div>
-
-    </div>
-    <!--end getting started & legal-->
-
-</div>
 <footer>
     <div class="ink-grid">
-        <div class="large-75 medium-70 small-100">
-            <nav class="ink-navigation vspace">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="column-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pedrocs">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="column-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like column-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
                 <ul class="menu horizontal">
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
@@ -402,20 +414,37 @@
             <div class="copyright">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
-                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
                     SAPO is a trademark and a search engine created at the University of Aveiro.
                 </p>
             </div>
             
         </div>
-        
-        <div class="large-25 medium-30 small-100">
+
+                    <p class="vspace"><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+               
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                 <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="https://github.com/scottjehl/Respond">respond.js</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+       <!--  <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
                 <li><strong>Follow Ink:</strong></li>
                 <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
                 <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </footer>
     <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->

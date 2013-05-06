@@ -237,7 +237,7 @@ a.active {
 /*..........................................  Homepage  ..........................................*/
 .ink-hero {
   margin-top: 2.6em;
-  background: url(../imgs/home_bkg.png) center;
+  background: url(../img/home_bkg.png) center;
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -340,7 +340,7 @@ footer .copyright {
   margin: 0;
 }
 footer .copyright .SAPOlogo {
-  background: url("../imgs/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 transparent;
   text-indent: -9999px;
   display: block;
   width: 101px;
@@ -351,7 +351,7 @@ footer .copyright .PTClogo {
   font-size: .875em;
 }
 footer .copyright .PTClogo a {
-  background: url("../imgs/icon_Sprite.png") no-repeat 0 top;
+  background: url("../img/icon_Sprite.png") no-repeat 0 top;
   text-indent: -9999px;
   display: block;
   float: left;
@@ -369,13 +369,13 @@ footer .sociallinks li a {
   width: 24px;
 }
 footer .sociallinks li a.Fb_link {
-  background: url("../imgs/icon_Sprite.png") no-repeat 0 -90px;
+  background: url("../img/icon_Sprite.png") no-repeat 0 -90px;
 }
 footer .sociallinks li a.Twt_link {
-  background: url("../imgs/icon_Sprite.png") no-repeat 0 -118px;
+  background: url("../img/icon_Sprite.png") no-repeat 0 -118px;
 }
 footer .sociallinks li a.Gplus_link {
-  background: url("../imgs/icon_Sprite.png") no-repeat 0 -146px;
+  background: url("../img/icon_Sprite.png") no-repeat 0 -146px;
 }
 footer .ink-navigation ul.menu.horizontal li a.license {
   padding: 0.5em 0 0.5em 0;
@@ -521,7 +521,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #topbar .border {
   height: .3em;
-  background: url(../imgs/home_bkg.png) center 0px;
+  background: url(../img/home_bkg.png) center 0px;
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);

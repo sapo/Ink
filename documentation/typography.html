@@ -38,6 +38,8 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.spy.js"></script>
+    <script type="text/javascript" src="../js/ink.pagination.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
     <script type="text/javascript" src="../js/ink.toggle.js"></script>
@@ -49,6 +51,7 @@
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/ink.table.js"></script>
     <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
+    <script type="text/javascript" src="../js/ink.smoothscroller.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
@@ -56,11 +59,19 @@
 
 </head>
 <body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide-all show-large">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
@@ -118,7 +129,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide-large">
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
             
@@ -192,24 +203,38 @@
 
     <div class="column-group gutters">
         <div class="large-20 medium-25 small-100">
-            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
-                <ul class="menu vertical rounded black ink-vspace">
-                    <li><a href="./index.php/typography/index_dump#"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a href="./index.php/typography/index_dump#nav-fonts">Fonts</a></li>
-                    <li><a href="./index.php/typography/index_dump#nav-headings">Headings</a></li>
-                    <li><a href="./index.php/typography/index_dump#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a href="./index.php/typography/index_dump#nav-lists">Lists</a></li>
-                    <li><a href="./index.php/typography/index_dump#nav-utilities">Utility Classes</a></li>
-                    <li><a href="./index.php/typography/index_dump#nav-additional">Additional Elements</a></li>
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="typo_menu">
+                <ul class="menu vertical rounded black ink-vspace">                    
+                                        <li><a class="scrollableLink" href="./typography.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-fonts">Fonts</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-headings">Headings</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-body-hypertext">Body & Hypertext</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-lists">Lists</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-utilities">Utility Classes</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-additional">Additional Elements</a></li>
+                     
                 </ul>
             </nav>
         </div>
         <div class="large-80 medium-70 small-100">
             <!--fonts start-->
-            <section id="nav-fonts">
+            <section id="nav-fonts" data-spy="true" data-target="#typo_menu">
                 <h2>Fonts</h2>
                 <p>Ink offers you a simple and elegant base style for text with a clear hierarchy and flexible, generic styling for all types of typographical composition you may need.</p>
-                <p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions and choose from three basic font stacks. Just head on to the <a href="\download">download</a> page and use the customizer to type in any font stack you prefer. We suggest one of the following.</p>
+                <p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions. Let's see how you can customize your font choice and we'll also throw in some advice on font stacks.</p>
+                <h3>Customizing typefaces</h3>
+                <p>Since typograhy is such an integral part of how you communicate with your audience, customizing font choice is paramount. Of course, you can use Ink as-is, with the Ubuntu font, but chances are, you'll want to change that.</p>
+                <p>To do that, you can add your custom CSS file, as explained in <a href="">Getting Started</a>, and add the following rule:</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+body {
+  font-family: font1, font2, font3; &lt;!--Your font stack here--&gt;
+}                </pre>
+                <p>If you want, you can also edit the __typography.less file in the ./less/config/ folder and alter these values:</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+// sans-serif font stack
+@sans-serif-font-stack: Ubuntu, Arial, sans-serif;                </pre>
                 <h3>Ubuntu</h3>
                 <p>Ink's default font stack starts with the Ubuntu webfont. Make sure you can serve up the font files from your server, they are free to use and redistribute. If you can't, it's ok, the stack will default to Arial, then Helvetica, and finally, the system's default sans-serif. The stack is:</p>
                 <p><code>font-family: Ubuntu, Arial, Helvetica, Sans-serif;</code></p>
@@ -217,54 +242,84 @@
                 <p>If you prefer a system font, sans-serif option, change the font-family option to <code>font-family: Sans-serif;</code></p>
                 <h3>Serif font</h3>
                 <p>For a serif option, we went with Georgia, which is readily availabe and quite versatile. We suggest you simply use <code>font-family: Georgia, Serif;</code></p>
-                <p><span class="ink-label info">tip</span> You may have noticed we went with very basic font-family declarations for the serif and sans-serif options, that just makes your life easier by defaulting to the user agent fonts and potentially serve up the most adequate font for the job in each system. Simplifying this will probably save you headaches down the road. Of course, if you have particular typography needs, feel free to experiment and configure the font-family as you see fit.</p>
+                <p><span class="ink-label info">Tip</span> You may have noticed we went with very basic font-family declarations for the serif and sans-serif options, that just makes your life easier by defaulting to the user agent fonts and potentially serve up the most adequate font for the job in each system. Simplifying this will probably save you headaches down the road. Of course, if you have particular typography needs, feel free to experiment and configure the font-family as you see fit.</p>
             </section>
             <!--fonts end-->
             
             <!--headings start-->
-            <section id="nav-headings">
+            <section id="nav-headings" data-spy="true" data-target="#typo_menu">
                 <h2>Headings</h2>
                 <p>
                     Headings are essential for defining your blocks of text. Use your <code>&lt;h1&gt;</code> for a site-wide identifier, 
                     such as the logo, use the <code>&lt;h2&gt;</code> as page title, and try to keep it to a single <code>&lt;h2&gt;</code> per page, 
                     and then build your hierarchy of blocks using <code>&lt;h3&gt;</code> - <code>&lt;h6&gt;</code>.
                 </p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <div class="column-group gutters">
+                        <div class="large-15 medium-15 small-15 content-center"><h1>h1</h1></div>
+                        <div class="large-15 medium-15 small-15 content-center"><h2>h2</h2></div>
+                        <div class="large-15 medium-15 small-15 content-center"><h3>h3</h3></div>
+                        <div class="large-15 medium-15 small-15 content-center"><h4>h4</h4></div>
+                        <div class="large-15 medium-15 small-15 content-center"><h5>h5</h5></div>
+                        <div class="large-15 medium-15 small-15 content-center"><h6>h6</h6></div>
+                    </div>
+                </div>
                 <p>Ink defines default font-size, line-height and margins for each heading level to cleanly match the body text and maximize readability.</p>
             </section>
             <!--headings_end-->
             
             <!--body&hypertext_start-->
-            <section id="nav-body-hypertext">
+            <section id="nav-body-hypertext" data-spy="true" data-target="#typo_menu">
                 <h2>Body &amp; Hypertext</h2>
                 <p>Body text is the most basic unit of text you can define. Always use <code>&lt;p&gt;</code> for your paragraphs and Ink takes care of font-size, line-height and proper margins.</p>
                 <h3>Emphasis</h3>
-                <p>For emphasis use either <code>&lt;em&gt;</code> or <code>&lt;i&gt;</code> to obtain <em>italicized</em> type and <code>&lt;strong&gt;</code> or <code>&lt;b&gt;</code> to obtain <strong>bold</strong> type. If you need further emphasis, the <code>&lt;mark&gt;</code> HTML5 tag renders a simple text highlight.</p>
-                <ul>
-                    <li><em>Italicized</em></li>
-                    <li><strong>Bold</strong></li>
-                    <li><mark>Highlighted</mark></li>
-                </ul>
+                <p>For emphasis use either <code>&lt;em&gt;</code> or <code>&lt;i&gt;</code> to obtain italicized type and <code>&lt;strong&gt;</code> or <code>&lt;b&gt;</code> to obtain bold type. If you need further emphasis, the <code>&lt;mark&gt;</code> HTML5 tag renders a simple text highlight.</p>
+                <p><span class="ink-label success">Examples</span></p>
+                <div class="box">
+                    <ul>
+                        <li><em>This is some italic text, using </em><code>&lt;em&gt;</code></li>
+                        <li><strong>This text is bold, using </strong><code>&lt;strong&gt;</code></li>
+                        <li><mark>This is some highlighted text, using</mark> <code>&lt;mark&gt;</code></li>
+                    </ul>
+                </div>
                 <h3>Hypertext</h3>
-                <p>Hypertext is the fundament of the web. Ink renders all four states of link text as can be seen on the example below. Simply use the anchor, <code>&lt;a&gt;</code> tag. You can customize link appearance in the <a href="/download">Ink customizer</a>, using your own custom CSS or, if you're a more advanced user, editting the conf.less file.</p>
-                <ul>
-                    <li><a href="#">Normal</a></li>
-                    <li><a href="#" class="visited">Visited</a></li>
-                    <li><a href="#" class="active">Active</a></li>
-                    <li><a href="#" class="hover">Hover</a></li>
-                </ul>
+                <p>Hypertext is the fundament of the web. Ink renders all four states of link text as can be seen on the example below. Simply use the anchor, <code>&lt;a&gt;</code> tag.</p>
+                <p><span class="ink-label success">Examples</span></p>
+                <div class="box">
+                    <ul>
+                        <li><a href="#">Normal</a></li>
+                        <li><a href="#" class="visited">Visited</a></li>
+                        <li><a href="#" class="active">Active</a></li>
+                        <li><a href="#" class="hover">Hover</a></li>
+                    </ul>
+                </div>
+                <p>To customize these colors to match your design, either set up your custom CSS or edit the appropriate __colors.less file in the ./less/config/ folder, and change these values:</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+// LINKS
+@link-color                 : #0069D6;
+@link-visited-color         : #808080;
+@link-active-color          : darken(red,5%);
+@link-hover-color           : #007ED5;
+@link-focus-color           : @link-color;                </pre>
                 <h3>Notes</h3>
                 <p>If you need to add side notes to your text, apply the utility class <code>.note</code> to your paragraphs to get smaller, faded text as in the example below.</p>
-                <p class="note">This is a note.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <p class="note">In case you haven't noticed, this is a small note.</p>
+                </div>
             </section>
             <!--body&hypertext_end-->
 
             <!--lists_start-->
-            <section id="nav-lists">
+            <section id="nav-lists" data-spy="true" data-target="#typo_menu">
                 <h2>Lists</h2>
                 <p>There are four basic list styles defined in Ink, which correspond to the most widely used HTML list formats and also include an unstyled list format.</p>
+                <h3>Unordered List</h3>
                 <div class="column-group gutters">
                     <div class="large-50 medium-50 small-100">
-                        <h3>Unordered List</h3>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;h4&gt;Ingredients&lt;/h4&gt;
 &lt;ul&gt;
@@ -275,18 +330,22 @@
 &lt;/ul&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
-                        <h3>Ingredients</h3>
-                        <ul class="vspace">
-                            <li>Two fresh avocados</li>
-                            <li>Two ripe limes</li>
-                            <li>An onion</li>
-                            <li>Parsley</li>
-                        </ul>
+                        <p><span class="ink-label success">Example</span></p>
+                        <div class="box">
+                            <h4>Ingredients</h4>
+                            <ul class="vspace">
+                                <li>Two fresh avocados</li>
+                                <li>Two ripe limes</li>
+                                <li>An onion</li>
+                                <li>Parsley</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                <h3>Ordered list</h3>
                 <div class="column-group gutters">
                     <div class="large-50 medium-50 small-100">
-                        <h3>Ordered list</h3>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;h4&gt;Instructions&lt;/h4&gt;
 &lt;ol&gt;
@@ -297,18 +356,22 @@
 &lt;/ol&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
-                        <h3>Instructions</h3>
-                        <ol class="vspace">
-                            <li>Grill the chicken</li>
-                            <li>Pour into tortilla</li>
-                            <li>Add guacamole, sour cream and cheese</li>
-                            <li>Roll tortilla and serve</li>
-                        </ol>
+                        <p><span class="ink-label success">Example</span></p>
+                        <div class="box">
+                            <h4>Instructions</h4>
+                            <ol class="vspace">
+                                <li>Grill the chicken</li>
+                                <li>Pour into tortilla</li>
+                                <li>Add guacamole, sour cream and cheese</li>
+                                <li>Roll tortilla and serve</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
+                <h3>Definition list</h3>
                 <div class="column-group gutters">
                     <div class="large-50 medium-50 small-100">
-                        <h3>Definition list</h3>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;h4&gt;Definitions&lt;/h4&gt;
 &lt;dl&gt;
@@ -319,18 +382,22 @@
 &lt;/dl&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
-                        <h3>Definitions</h3>
-                        <dl class="vspace">
-                            <dt>Avocado</dt>
-                            <dd>Pear-shaped fruit native to Central Mexico.</dd>
-                            <dt>Guacamole</dt>
-                            <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
-                        </dl>
+                        <p><span class="ink-label success">Example</span></p>
+                        <div class="box">
+                            <h4>Definitions</h4>
+                            <dl class="vspace">
+                                <dt>Avocado</dt>
+                                <dd>Pear-shaped fruit native to Central Mexico.</dd>
+                                <dt>Guacamole</dt>
+                                <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
+                <h3>Unstyled list</h3>
                 <div class="column-group gutters">
                     <div class="large-50 medium-50 small-100">
-                        <h3>Unstyled list</h3>
+                        <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
 &lt;h4&gt;Stuff&lt;/h4&gt;
 &lt;ul class=&quot;unstyled&quot;&gt;
@@ -341,26 +408,32 @@
 &lt;/ul&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
-                        <h3>Stuff</h3>
-                        <ul class="unstyled vspace">
-                            <li>Carnitas</li>
-                            <li>Jalapeño peppers</li>
-                            <li>Sour cream</li>
-                            <li>Pico de gallo</li>
-                        </ul>
+                        <p><span class="ink-label success">Example</span></p>
+                        <div class="box">
+                        <h4>Stuff</h4>
+                            <ul class="unstyled vspace">
+                                <li>Carnitas</li>
+                                <li>Jalapeño peppers</li>
+                                <li>Sour cream</li>
+                                <li>Pico de gallo</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
             <!--lists_end-->
             
-            <section id="nav-utilities">
+            <section id="nav-utilities" data-spy="true" data-target="#typo_menu">
             <!--utilities_start-->
                 <h2>Utility Classes</h2>
                 <h3>Text size</h3>
                 <p>Although Ink is built for out-of-the-box readability there are always situations in which you need to control text-size for a particular block. For that, Ink offers three simple classes, <code>.small</code> <code>.large</code> and <code>.extralarge</code> that, when added to any element, will change the text-size (and only the text-size), as per the examples below.</p>
-                <p class="small"><code>.small</code> will set your text to 0.75 em of the original size.</p>
-                <p class="large"><code>.large</code> will set your text to 1.2 em of the original size.</p>
-                <p class="extralarge"><code>.extralarge</code> will set your text to 1.45 em of the original size.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <p class="small"><code>.small</code> will set your text to 0.75 em of the original size.</p>
+                    <p class="large"><code>.large</code> will set your text to 1.2 em of the original size.</p>
+                    <p class="extralarge"><code>.extralarge</code> will set your text to 1.45 em of the original size.</p>
+                </div>
                 <p>In case you're not familiar with em units, be aware that these are relative units, which means that 1.2 em is not a fixed size, but a size which is 1.2 "units" bigger than your original size. This means that if you apply <code>.large</code> to a <code>&lt;p&gt;</code> or to an <code>&lt;h2&gt;</code> you will always get text that is 1.2 times larger than the default size for that element.</p>
                 <h3>Font family</h3>
                 <p>You can easily configure the adequate font-stack for your website, but in a pinch, you can use simple Ink classes to switch to a serif or sans-serif typeface in any specific block of text.</p>
@@ -368,72 +441,103 @@
                 <p><span class="ink-label info">Note</span> Typography is primordial to the success of your website as it is an essential part of getting your written content across to your readers, always make informed typography choices and only resort to 'hacking' your choice of font face in exceptional situations.</p>
                 <h3>Color coding</h3>
                 <p>You can use Ink's utility classes <code>.info</code>, <code>.warning</code>, <code>.caution</code> and <code>.success</code> on html elements like headings, paragraphs, lists, mark, code, etc., to quickly style those elements using a basic color code that can greatly aid in adding meaning to your content.</p>
-                <p>Use the classes to obtain a color background with white text or use the extra <code>.invert</code> class to write colored text on transparent background. You can tweak the colors used by each class in the <a href="/download">Ink customizer</a>, your own CSS or the conf.less file.</p>
-                <div class="column-group gutters">
-                    <div class="large-25 medium-25 small-50">
-                        <h4 class="ink-label info">.info</h4>
-                        <h4 class="ink-label info invert">.info.invert</h4>
-                    </div>
-                    <div class="large-25 medium-25 small-50">
-                        <h4 class="ink-label warning">.warning</h4>
-                        <h4 class="ink-label warning invert">.warning.invert</h4>
-                    </div>
-                    <div class="large-25 medium-25 small-50">
-                        <h4 class="ink-label error">.error</h4>
-                        <h4 class="ink-label error invert">.error.invert</h4>
-                    </div>
-                    <div class="large-25 medium-25 small-50">
-                        <h4 class="ink-label success">.success</h4>
-                        <h4 class="ink-label success invert">.info.success</h4>
+                <p>Use the classes to obtain a color background with white text or use the extra <code>.invert</code> class to write colored text on transparent background.</p>
+                <p><span class="ink-label success">Examples</span></p>
+                <div class="box">
+                    <div class="column-group gutters">
+                        <div class="large-25 medium-25 small-50">
+                            <h4 class="ink-label info">.info</h4>
+                            <h4 class="ink-label info invert">.info.invert</h4>
+                        </div>
+                        <div class="large-25 medium-25 small-50">
+                            <h4 class="ink-label warning">.warning</h4>
+                            <h4 class="ink-label warning invert">.warning.invert</h4>
+                        </div>
+                        <div class="large-25 medium-25 small-50">
+                            <h4 class="ink-label error">.error</h4>
+                            <h4 class="ink-label error invert">.error.invert</h4>
+                        </div>
+                        <div class="large-25 medium-25 small-50">
+                            <h4 class="ink-label success">.success</h4>
+                            <h4 class="ink-label success invert">.info.success</h4>
+                        </div>
                     </div>
                 </div>
-                
                 <h3>Labels</h3>
                 <p>You can easily use these utility classes to label sections of highlighted text. Simply create an inline level element with the class <code>.ink-label</code> and then add one of the utility classes to color code your inline label. This way, you can easily add a success message post a warning emphasize a particularly relevant information or display an error message.</p>
                 <p>We suggest you do not use punctuation before or after labels, but instead, precede and succeed with spaces, although your mileage may vary with the ammount of consecutive labels you use.</p>
-                <p><span class="ink-label info">tip</span> The tips you see throughout this site use ink labels with the <code>.info</code> class.</p>
+                <p><span class="ink-label info">Tip</span> The tips you see throughout this site use ink labels with the <code>.info</code> class, same goes for bits of code, whereas examples, use <code>.success</code>.</p>
             </section>
             <!--utilities_end-->
                 
             <!--additionalelements_start-->
-            <section id="nav-additional">
+            <section id="nav-additional" data-spy="true" data-target="#typo_menu">
                 <h2>Additional elements</h2>
                 <p>These elements allow you to compose specific types of text, such as addresses or quotes. Use the example code for quick recipes that work.</p>
                 <h3>Abbreviations</h3>
                 <p>For abbreviations, simply use the HTML <code>&lt;abbr&gt;</code> tag, like so:</p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;p&gt;Ink was entirely developed with text editors, no &lt;abbr title=&quot;What You See Is What You Get&quot;&gt;WYSIWYG&lt;/abbr&gt; software was harmed.&lt;/p&gt;</pre>
-                <p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
+                </div>
                 <h3>Block quotes</h3>
                 <p>For block quotes, use the <code>&lt;blockquote&gt;</code> element, with an optional <code>&lt;cite&gt;</code> element to contain the source name, like so:</p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;blockquote&gt;
 &lt;p&gt;You can't always get what you want.&lt;/p&gt;
 &lt;p&gt;&lt;cite&gt;Jagger &amp; Richards&lt;/cite&gt;, 1969&lt;/p&gt;
 &lt;/blockquote&gt;                </pre>
-                <blockquote>
-                    <p>You can't always get what you want.</p>
-                    <p><cite>Jagger & Richards</cite>, 1969</p>
-                </blockquote>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <blockquote>
+                        <p>You can't always get what you want.</p>
+                        <p><cite>Jagger & Richards</cite>, 1969</p>
+                    </blockquote>
+                </div>
                 <h3>Addresses</h3>
                 <p>You can use the <code>&lt;address&gt;</code> element to contain address elements, such as a name, street, postal code. Use headings, paragraphs and line-breaks to compose your address.</p>
+                <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
 &lt;address&gt;
 &lt;h6&gt;SAPO&lt;/h6&gt;
 &lt;p&gt;Av. Fontes Pereira de Melo, 40&lt;br&gt;1050 Lisboa&lt;/p&gt;
 &lt;/address&gt;</pre>
-                <address>
-                    <h6>SAPO</h6>
-                    <p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
-                </address>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <address>
+                        <h6>SAPO</h6>
+                        <p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
+                    </address>
+                </div>
             </section>
             <!--additionalelements_end-->
         </div>
     </div>
 </div><footer>
     <div class="ink-grid">
-        <div class="large-75 medium-70 small-100">
-            <nav class="ink-navigation vspace">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="column-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pedrocs">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="column-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like column-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
                 <ul class="menu horizontal">
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
@@ -448,20 +552,37 @@
             <div class="copyright">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
-                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
                     SAPO is a trademark and a search engine created at the University of Aveiro.
                 </p>
             </div>
             
         </div>
-        
-        <div class="large-25 medium-30 small-100">
+
+                    <p class="vspace"><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+               
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                 <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="https://github.com/scottjehl/Respond">respond.js</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+       <!--  <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
                 <li><strong>Follow Ink:</strong></li>
                 <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
                 <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </footer>
     <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->

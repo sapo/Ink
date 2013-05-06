@@ -38,6 +38,8 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.spy.js"></script>
+    <script type="text/javascript" src="../js/ink.pagination.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
     <script type="text/javascript" src="../js/ink.toggle.js"></script>
@@ -49,6 +51,7 @@
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/ink.table.js"></script>
     <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
+    <script type="text/javascript" src="../js/ink.smoothscroller.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
@@ -56,11 +59,19 @@
 
 </head>
 <body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide-all show-large">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
@@ -118,7 +129,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide-large">
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
             
@@ -192,19 +203,19 @@
 
     <div class="column-group gutters">
         <div class="large-20 medium-25 small-100">
-            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="about_menu">
                 <ul class="menu vertical rounded black">
-                    <li><a href="./index.php/about/index_dump#"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a href="./index.php/about/index_dump#nav-what">What it is</a></li>
-                    <li><a href="./index.php/about/index_dump#nav-why">Why use Ink</a></li>
-                    <li><a href="./index.php/about/index_dump#nav-who">Who we are</a></li>
-                    <li><a href="./index.php/about/index_dump#nav-store">What's in store</a></li>
-                </ul>
+                                        <li><a class="scrollableLink" href="./about.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./about.html#nav-what">What it is</a></li>
+                    <li><a class="scrollableLink" href="./about.html#nav-why">Why use Ink</a></li>
+                    <li><a class="scrollableLink" href="./about.html#nav-who">Who we are</a></li>
+                    <li><a class="scrollableLink" href="./about.html#nav-store">What's in store</a></li>
+                                    </ul>
             </nav>
         </div>
 
         <div class="large-80 medium-75 small-100">
-            <section id="nav-what">
+            <section id="nav-what" data-spy="true" data-target="#about_menu">
                 <h2>What it is</h2>
                 <p>
                     Ink is an interface kit for quick development of web interfaces, simple to use and expand on. 
@@ -221,7 +232,7 @@
                 </ul>
             </section>
 
-            <section id="nav-why">
+            <section id="nav-why" data-spy="true" data-target="#about_menu">
                 <h2>Why use Ink</h2>
                 <p>
                     Ink presents a unique vision of what a front end framework should be. 
@@ -244,7 +255,7 @@
                 </p>
             </section>
 
-            <section id="nav-who">
+            <section id="nav-who" data-spy="true" data-target="#about_menu">
                 <h2>Who we are</h2>
                 <p>
                     We are SAPO. You might mistake us for a small startup, because that's our spirit. 
@@ -252,7 +263,7 @@
                 </p>
             </section>
 
-            <section id="nav-store">
+            <section id="nav-store" data-spy="true" data-target="#about_menu">
                 <h2>What's in store</h2>
                 <p>
                     We want to keep up with the times, while keeping Ink flexible and easy to use. 
@@ -268,8 +279,25 @@
 </div>  
 <footer>
     <div class="ink-grid">
-        <div class="large-75 medium-70 small-100">
-            <nav class="ink-navigation vspace">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="column-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pedrocs">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="column-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like column-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
                 <ul class="menu horizontal">
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
@@ -284,20 +312,37 @@
             <div class="copyright">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
-                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
                     SAPO is a trademark and a search engine created at the University of Aveiro.
                 </p>
             </div>
             
         </div>
-        
-        <div class="large-25 medium-30 small-100">
+
+                    <p class="vspace"><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+               
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                 <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="https://github.com/scottjehl/Respond">respond.js</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+       <!--  <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
                 <li><strong>Follow Ink:</strong></li>
                 <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
                 <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </footer>
     <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->

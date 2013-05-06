@@ -38,6 +38,8 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.spy.js"></script>
+    <script type="text/javascript" src="../js/ink.pagination.js"></script>
     <script type="text/javascript" src="../js/ink.modal.js"></script>
     <script type="text/javascript" src="../js/ink.sticky.js"></script>
     <script type="text/javascript" src="../js/ink.toggle.js"></script>
@@ -49,6 +51,7 @@
     <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
     <script type="text/javascript" src="../js/ink.table.js"></script>
     <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
+    <script type="text/javascript" src="../js/ink.smoothscroller.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
@@ -56,11 +59,19 @@
 
 </head>
 <body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide-all show-large">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                                        <a class="logoPlaceholder" href="./index.php" title="Site Title">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
@@ -118,7 +129,7 @@
     </nav>
     
 
-    <nav class="ink-navigation ink-grid hide-large">
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
             
@@ -194,14 +205,14 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
                 <ul class="menu vertical rounded black">
-                    <li><a href="./index.php/icons/index_dump#"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a href="./index.php/icons/index_dump#nav-howto">How to use</a></li>
-                    <li><a href="./index.php/icons/index_dump#nav-web">Web Application Icons</a></li>
-                    <li><a href="./index.php/icons/index_dump#nav-textedit">Text Editor Icons</a></li>
-                    <li><a href="./index.php/icons/index_dump#nav-directional">Directional Icons</a></li>
-                    <li><a href="./index.php/icons/index_dump#nav-video">Video Player Icons</a></li>
-                    <li><a href="./index.php/icons/index_dump#nav-social">Social Icons</a></li>
-                </ul>
+                                        <li><a class="scrollableLink" href="./icons.html#"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./icons.html#nav-howto">How to use</a></li>
+                    <li><a class="scrollableLink" href="./icons.html#nav-web">Web Application Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons.html#nav-textedit">Text Editor Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons.html#nav-directional">Directional Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons.html#nav-video">Video Player Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons.html#nav-social">Social Icons</a></li>
+                                    </ul>
             </nav>
         </div>
 
@@ -217,10 +228,19 @@
                     For example, to add a mail icon next to your contact information like so:</br>
                     <i class="icon-envelope"></i> <a href="mailto:me@me.com">me@me.com</a>, simply use:
                 </p>
+                <p><span class="ink-label info">Code</span></p>
                 <p><pre class="prettyprint linenums">
 &lt;i class=&quot;icon-envelope&quot;&gt;&lt;/i&gt; &lt;a href=&quot;mailto:me@me.com&quot;&gt;me@me.com&lt;/a&gt;</pre></p>
-                <p>Because Font Awesome is a webfont, the icon size follows the font size of your parent element, but if you need a larger icon, add the <code>icon-large</code> class to your <code>&lt;i&gt;</code> element, along with the specific icon class. This will give you and icon that's 33% larger than the assigned font size. For example:</p>
-                <h3><i class="icon-heart icon-large"></i> We love Ink</h3>
+                <p>
+                    Because Font Awesome is a webfont, the icon size follows the font size of your parent element, 
+                    but if you need a larger icon, add the <code>.icon-large</code> class to your <code>&lt;i&gt;</code> element, 
+                    along with the specific icon class. This will give you an icon that's 33% larger than the assigned font size. For example:
+                </p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <h3><i class="icon-heart icon-large"></i> We love Ink</h3>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
                 <p><pre class="prettyprint linenums">
 &lt;h4&gt;&lt;i class=&quot;icon-heart icon-large&quot;&gt;&lt;/i&gt; We love Ink&lt;/h4&gt;</pre></p>
                 <p>If you want to see some more examples, you can hop over to <a href="http://fortawesome.github.com/Font-Awesome/#examples">Font Awesome's example page</a>.</p>
@@ -543,18 +563,34 @@
             
             <section>
                 <p>
-                    We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under CC BY 3.0, 
-                    allowing projects like Ink to share its awesomeness. 
-                    Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a>
-                </p>
+                    We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under the <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>, with code under <a href="http://opensource.org/licenses/mit-license.html">MIT</a>, and pictograms under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, allowing projects like Ink to share its awesomeness. </p>
+                    <p>Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a></p>
+                
             </section>
         
         </div>
     </div>
 </div><footer>
     <div class="ink-grid">
-        <div class="large-75 medium-70 small-100">
-            <nav class="ink-navigation vspace">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="column-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pedrocs">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="column-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like column-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
                 <ul class="menu horizontal">
                                         <li><a href="./about.html">About</a></li>
                     <li><a href="./changelog.html">Changelog</a></li>
@@ -569,20 +605,37 @@
             <div class="copyright">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
-                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reverved.<br />
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
                     SAPO is a trademark and a search engine created at the University of Aveiro.
                 </p>
             </div>
             
         </div>
-        
-        <div class="large-25 medium-30 small-100">
+
+                    <p class="vspace"><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+               
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                 <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="https://github.com/scottjehl/Respond">respond.js</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+       <!--  <div class="large-25 medium-30 small-100">
             <ul class="sociallinks unstyled inline column-right vspace">
                 <li><strong>Follow Ink:</strong></li>
                 <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
                 <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </footer>
     <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->
