@@ -108,9 +108,8 @@
                         this._options.target
                     ),function(item){
 
-                        var comparisonValue = ( ("href" in this._rootElement) && this._rootElement.href ?
-                            this._rootElement.href.substr(this._rootElement.href.indexOf('#') )
-                            : '#' + this._rootElement.id
+                        var comparisonValue = ( ("name" in this._rootElement) && this._rootElement.name ?
+                            '#' + this._rootElement.name : '#' + this._rootElement.id
                         );
 
                         if( item.href.substr(item.href.indexOf('#')) === comparisonValue ){
