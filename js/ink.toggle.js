@@ -111,7 +111,7 @@
         _onClick: function( event ){
             var tgtEl = SAPO.Dom.Event.element(event);
 
-            if( SAPO.Dom.Element.isAncestorOf( this._rootElement, tgtEl ) ){
+            if( SAPO.Dom.Element.isAncestorOf( this._rootElement, tgtEl ) || SAPO.Dom.Element.isAncestorOf( this._childElement, tgtEl ) ){
                 return;
             }
 
