@@ -370,9 +370,11 @@
             var tgtEl = Event.element(ev);
 
             if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
-                 (this._options.closeOnClick &&
-                  !Element.descendantOf(this._shadeElement, tgtEl)) ||
-                 (tgtEl === this._shadeElement)) {
+                (
+                    this._options.closeOnClick &&
+                    ( !Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement) )
+                )
+            ) {
                 Event.stop(ev);
                 this.dismiss();
             }
