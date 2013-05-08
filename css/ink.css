@@ -7409,6 +7409,16 @@ table.ink-table tr th {
   line-height: 2;
   text-align: left;
 }
+table.ink-table tr th[data-sortable="true"]:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+table.ink-table tr th[data-sortable="true"]:hover i {
+  text-decoration: none;
+}
+table.ink-table tr th[data-sortable="true"] i {
+  padding-left: 0.5em;
+}
 table.ink-table tr td {
   padding: 5px 10px;
   border-bottom: #bbbbbb 1px solid;

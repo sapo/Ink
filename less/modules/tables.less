@@ -15,6 +15,21 @@ table {
                 font-weight: 700;
                 line-height: @table-row-line-height;
                 text-align: left;
+                &[data-sortable="true"]{
+                
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        i {
+                            text-decoration: none;
+                        }
+                    }
+
+                    i {
+                        padding-left: 0.5em;
+                    }
+                    
+                }
             }
 
             td {
