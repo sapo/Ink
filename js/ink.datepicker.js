@@ -7,7 +7,10 @@
 
     var Aux      = SAPO.Ink.Aux,
         Element  = SAPO.Dom.Element,
-        Event    = SAPO.Dom.Event;
+        Event    = SAPO.Dom.Event,
+        Selector = SAPO.Dom.Selector,
+        Css      = SAPO.Dom.Css
+    ;
 
 
 
@@ -1088,6 +1091,12 @@
 
         showMonth: function(){
             this._showMonth();
+        },
+
+        isMonthRendered: function(){
+            var header = Selector.select('.sapo_cal_header',this._containerObject)[0];
+
+            return ( (Css.getStyle(header.parentNode,'display') !== 'none') && (Css.getStyle(header.parentNode.parentNode,'display') !== 'none') );
         }
     };
 
