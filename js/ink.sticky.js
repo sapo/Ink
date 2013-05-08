@@ -152,7 +152,7 @@
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
 
-                this._scrollTimeout = undefined;
+                // this._scrollTimeout = undefined;
             // }.bindObj(this),0);
         },
 
@@ -163,7 +163,8 @@
             // }
 
             // this._resizeTimeout = setTimeout(function(){
-
+                this._rootElement.removeAttribute('style');
+                this._calculateOriginalSizes();
                 this._calculateOffsets();
 
             // }.bindObj(this),250);
