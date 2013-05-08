@@ -158,7 +158,7 @@
             } else {
 
                 for( var prop in this._sortableFields ){
-                    if( prop != ('col_' + index) ){
+                    if( prop !== ('col_' + index) ){
                         this._sortableFields[prop] = 'none';
                         this._headers[prop.replace('col_','')].innerHTML = this._headers[prop.replace('col_','')].innerText;
                     }
@@ -190,10 +190,6 @@
         },
 
         _paginate: function( page ){
-            var
-                pagesVisible = Math.ceil(this._data.length/this._options.pageSize),
-                i
-            ;
             this._data.forEach(function(item, index){
                 if( (index >= ((page-1)*parseInt(this._options.pageSize,10))) && (index < (((page-1)*parseInt(this._options.pageSize,10))+parseInt(this._options.pageSize,10)) ) ){
                     Css.removeClassName(item,'hide-all');
