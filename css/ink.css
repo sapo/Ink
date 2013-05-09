@@ -7909,6 +7909,12 @@ table.ink-table.bordered tr td:first-child {
   overflow-x: hidden;
   height: auto;
 }
+.ink-shade .ink-modal > .modal-body .ink-grid {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  min-width: 100%;
+}
 .ink-shade .ink-modal > .modal-header,
 .ink-shade .ink-modal > header {
   border-bottom: 1px #e6e6e6 solid;
