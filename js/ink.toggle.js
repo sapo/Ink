@@ -39,7 +39,8 @@
 
         this._options = SAPO.extendObj({
             target : undefined,
-            triggerEvent: 'click'
+            triggerEvent: 'click',
+            closeOnClick: true
         },SAPO.Dom.Element.data(this._rootElement));
 
         this._options = SAPO.extendObj(this._options,options || {});
@@ -75,7 +76,9 @@
             this._accordion = ( SAPO.Dom.Css.hasClassName(this._rootElement.parentNode,'accordion') || SAPO.Dom.Css.hasClassName(this._childElement.parentNode,'accordion') );
 
             SAPO.Dom.Event.observe( this._rootElement, this._options.triggerEvent, this._onTriggerEvent.bindObjEvent(this) );
-            SAPO.Dom.Event.observe( document, 'click', this._onClick.bindObjEvent(this));
+            if( this._options.closeOnClick.toString() === 'true' ){
+                SAPO.Dom.Event.observe( document, 'click', this._onClick.bindObjEvent(this));
+            }
         },
 
         _onTriggerEvent: function( event ){
@@ -118,7 +121,7 @@
             this._dismiss( this._rootElement );
         },
 
-        _dismiss: function( element ){
+        _dismiss: function( ){
             if( ( SAPO.Dom.Css.getStyle(this._childElement,'display') === 'none') ){
                 return;
             }
@@ -131,35 +134,3 @@
     window.SAPO.Ink.Toggle = Toggle;
 
 })(window);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
