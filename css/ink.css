@@ -4022,6 +4022,9 @@ ol.inline li {
 .small {
   font-size: 0.75em;
 }
+.medium {
+  font-size: 0.85em;
+}
 .large {
   font-size: 1.2em;
 }
