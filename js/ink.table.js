@@ -45,6 +45,8 @@
         }
 
         this._options = SAPO.extendObj({
+            pageSize: undefined,
+            endpoint: undefined,
             allowResetSorting: false
         },Element.data(this._rootElement));
 
@@ -138,7 +140,7 @@
                 return;
             }
 
-            if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting.toString() === 'true') )
+            if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting && (this._options.allowResetSorting.toString() === 'true')) )
             {
                 this._headers[index].innerHTML = this._headers[index].innerText;
                 this._sortableFields['col_'+index] = 'none';
