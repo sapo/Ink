@@ -237,7 +237,9 @@
              */
             if( typeof this._options.width !== 'undefined' ){
                 this._modalDivStyle.width = this._options.width;
-                this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
+                if( this._options.width.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
+                }
             } else {
                 this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
             }
@@ -248,7 +250,9 @@
 
             if( typeof this._options.height !== 'undefined' ){
                 this._modalDivStyle.height = this._options.height;
-                this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                if( this._options.height.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                }
             } else {
                 this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
             }
