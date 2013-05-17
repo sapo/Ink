@@ -67,7 +67,6 @@
             (function(mod){
                 Ink.requireModules( ['Ink.UI.' + mod ], function( component ) {
                     InkArray.each( Selector.select( autoload[mod] ), function( element ){
-                        console.log(element);
                         siteInkInstances[mod].push( new component(element) );
                     });
                 });
