@@ -1,71 +1,77 @@
-if( !!SAPO && ("Dom" in SAPO) && ("Loaded" in SAPO.Dom) ){
+( function(){
+    var autoload = {
 
-    ( function(){
-        var autoload = {
+        /***************************
+         * DatePicker - Default CSS selector is .ink-datepicker
+         ***************************/
+         'DatePicker_1': '.ink-datepicker',
 
-            /***************************
-             * DatePicker - Default CSS selector is .ink-datepicker
-             ***************************/
-             'DatePicker': '.ink-datepicker',
+        /***************************
+         * Gallery - Default CSS selector is ul.ink-gallery-source
+         ***************************/
+         'Gallery_1': 'ul.ink-gallery-source',
 
-            /***************************
-             * Modal - Default CSS selector is .ink-modal
-             ***************************/
-             'Modal': '.ink-modal',
+        /***************************
+         * Modal - Default CSS selector is .ink-modal
+         ***************************/
+         'Modal_1': '.ink-modal',
 
-            /***************************
-             * ProgressBar - Default CSS selector is .ink-progress-bar
-             ***************************/
-             'ProgressBar': '.ink-progress-bar',
+        /***************************
+         * ProgressBar - Default CSS selector is .ink-progress-bar
+         ***************************/
+         'ProgressBar_1': '.ink-progress-bar',
 
-            /***************************
-             * SortableList - Default CSS selector is .ink-sortable-list
-             ***************************/
-             'SortableList': '.ink-sortable-list',
+        /***************************
+         * SortableList - Default CSS selector is .ink-sortable-list
+         ***************************/
+         'SortableList_1': '.ink-sortable-list',
 
-            /***************************
-             * Spy - Default CSS selector is *[data-spy="true"]
-             ***************************/
-             'Spy': '*[data-spy="true"]',
+        /***************************
+         * Spy - Default CSS selector is *[data-spy="true"]
+         ***************************/
+         'Spy_1': '*[data-spy="true"]',
 
-            /***************************
-             * Sticky - Default CSS selector is .ink-navigation.sticky
-             ***************************/
-             'Sticky': '.ink-navigation.sticky',
+        /***************************
+         * Sticky - Default CSS selector is .ink-navigation.sticky
+         ***************************/
+         'Sticky_1': '.ink-navigation.sticky',
 
-            /***************************
-             * Table - Default CSS selector is .ink-table
-             ***************************/
-             'Table': '.ink-table',
+        /***************************
+         * Table - Default CSS selector is .ink-table
+         ***************************/
+         'Table_1': '.ink-table',
 
-            /***************************
-             * Tabs - Default CSS selector is .ink-tabs
-             ***************************/
-             'Tabs': '.ink-tabs',
+        /***************************
+         * Tabs - Default CSS selector is .ink-tabs
+         ***************************/
+         'Tabs_1': '.ink-tabs',
 
-            /***************************
-             * TreeView - Default CSS selector is .ink-tree-view
-             ***************************/
-             'TreeView': '.ink-tree-view',
+        /***************************
+         * TreeView - Default CSS selector is .ink-tree-view
+         ***************************/
+         'TreeView_1': '.ink-tree-view',
 
-            /***************************
-             * Toggle - Default CSS selector is .toggle
-             ***************************/
-             'Toggle': '.toggle'
+        /***************************
+         * Toggle - Default CSS selector is .toggle
+         ***************************/
+         'Toggle_1': '.toggle'
 
 
 
-        };
+    };
 
-        SAPO.Ink.siteInkInstances = {};
-        SAPO.Dom.Loaded.run(function(){
-            for( var module in autoload ){
-                if( autoload.hasOwnProperty(module) ){
-                    SAPO.Ink.siteInkInstances[module] = [];
-                    SAPO.Dom.Selector.select( autoload[module] ).forEach(function( element ){ SAPO.Ink.siteInkInstances[module].push( new SAPO.Ink[module]( element ) ); });
-                }
-            }
-        });
-    })();
-
-}
+    window.siteInkInstances = {};
+    Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1'],function( Selector, Loaded, InkArray, Scroller ){
+        for( var module in autoload ){
+            siteInkInstances[module] = [];
+            (function(mod){
+                Ink.requireModules( ['Ink.UI.' + mod ], function( component ) {
+                    InkArray.each( Selector.select( autoload[mod] ), function( element ){
+                        siteInkInstances[mod].push( new component(element) );
+                    });
+                });
+            })(module);
+        }
+        Scroller.init();
+    });
+})();
