@@ -63,20 +63,16 @@
     window.siteInkInstances = {};
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1'],function( Selector, Loaded, InkArray, Scroller ){
         for( var module in autoload ){
+            siteInkInstances[module] = [];
             (function(mod){
                 Ink.requireModules( ['Ink.UI.' + mod ], function( component ) {
-                    siteInkInstances[mod.split('_')[0]] = [];
                     InkArray.each( Selector.select( autoload[mod] ), function( element ){
-                        Loaded.run(function(){
-                            siteInkInstances[mod.split('_')[0]].push( new component( element ) );
-                        });
+                        console.log(element);
+                        siteInkInstances[mod].push( new component(element) );
                     });
                 });
             })(module);
         }
-
-        Loaded.run(function(){
-            Scroller.init();
-        });
+        Scroller.init();
     });
 })();
