@@ -2436,6 +2436,9 @@ address p {
 address h6 {
   color: #555555;
 }
+abbr:hover {
+  cursor: help;
+}
 blockquote {
   border-left: 4px solid #ddd;
   padding-left: 1em;
