@@ -1,38 +1,61 @@
-(function(undefined) {
-
+/**
+ * @module Ink.UI.Tabs_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
-    SAPO.namespace('Ink');
-
-    // aliases
-    var Aux      = SAPO.Ink.Aux,
-        Css      = SAPO.Dom.Css,
-        Event    = SAPO.Dom.Event,
-        Selector = SAPO.Dom.Selector;
-
-
     /**
-     * @class SAPO.Ink.Tabs
-     *
-     * @since November 2012
-     * @author andre.padez AT co.sapo.pt
-     * @version 0.1
-     *
-     * Tabs component.
-     */
-
-    /**
-     * @constructor SAPO.Ink.Tabs.?
+     * Tabs component
+     * 
+     * @class Ink.UI.Tabs
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object}            options
-     * @... {optional: String}      active          ID of the tab to activate on creation
-     * @... {optional Array}        disabled        IDs of the tabs that will be disabled on creation
-     * @... {optional Function}     onBeforeChange  callback to be executed before changing tabs
-     * @... {optional Function}     onChange        callback to be executed after changing tabs
+     * @param {Object} [options] Options for the datepicker
+     *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
+     *     @param {String}       [options.active]                  ID of the tab to activate on creation
+     *     @param {Array}        [options.disabled]                IDs of the tabs that will be disabled on creation
+     *     @param {Function}     [options.onBeforeChange]          callback to be executed before changing tabs
+     *     @param {Function}     [options.onChange]                callback to be executed after changing tabs
+     * @example
+     *      <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
+     *          
+     *          <!-- put navigation first if using top, left or right positioning -->
+     *          <ul class="tabs-nav">
+     *              <li><a href="#home">Home</a></li>
+     *              <li><a href="#news">News</a></li>
+     *              <li><a href="#description">Description</a></li>
+     *              <li><a href="#stuff">Stuff</a></li>
+     *              <li><a href="#more_stuff">More stuff</a></li>
+     *          </ul>
+     *          
+     *          <!-- Put your content second if using top, left or right navigation -->
+     *          <div id="home" class="tabs-content"><p>Content</p></div>
+     *          <div id="news" class="tabs-content"><p>Content</p></div>
+     *          <div id="description" class="tabs-content"><p>Content</p></div>
+     *          <div id="stuff" class="tabs-content"><p>Content</p></div>
+     *          <div id="more_stuff" class="tabs-content"><p>Content</p></div>
+     *          <!-- If you're using bottom navigation, switch the nav block with the content blocks -->
+     *       
+     *      </div>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
+     *              var tabsElement = Ink.s('.ink-tabs');
+     *              var tabsObj = new Tabs( tabsElement );
+     *          });
+     *      </script>
      */
     var Tabs = function(selector, options) {
 
-        if (!SAPO.Ink.Aux.isDOMElement(selector)) {
+        if (!Aux.isDOMElement(selector)) {
             selector = Selector.select(selector);
             if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
             this._element = selector[0];
@@ -41,20 +64,20 @@
         }
 
 
-        this._options = SAPO.extendObj({
+        this._options = Ink.extendObj({
             preventUrlChange: false,
             active: undefined,
             disabled: [],
             onBeforeChange: undefined,
             onChange: undefined
-        }, SAPO.Dom.Element.data(selector));
+        }, Element.data(selector));
 
-        this._options = SAPO.extendObj(this._options,options || {});
+        this._options = Ink.extendObj(this._options,options || {});
 
         this._handlers = {
-            tabClicked: this._onTabClicked.bindObjEvent(this),
-            disabledTabClicked: this._onDisabledTabClicked.bindObjEvent(this),
-            resize: this._onResize.bindObjEvent(this)
+            tabClicked: Ink.bindEvent(this._onTabClicked,this),
+            disabledTabClicked: Ink.bindEvent(this._onDisabledTabClicked,this),
+            resize: Ink.bindEvent(this._onResize,this)
         };
 
         this._init();
@@ -62,6 +85,12 @@
 
     Tabs.prototype = {
 
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
         _init: function() {
             this._menu = Selector.select('.tabs-nav', this._element)[0];
             this._menuTabs = this._getChildElements(this._menu);
@@ -84,28 +113,43 @@
             Aux.registerInstance(this, this._element, 'tabs');
         },
 
+        /**
+         * Initialization of the tabs, hides all content before setting the active tab
+         * 
+         * @method _initializeDom
+         * @private
+         */
         _initializeDom: function(){
             for(var i = 0; i < this._contentTabs.length; i++){
                 Css.hide(this._contentTabs[i]);
             }
         },
 
+        /**
+         * Subscribe events
+         * 
+         * @method _observe
+         * @private
+         */
         _observe: function() {
-            this._menuTabs.forEach(function(elem){
+            InkArray.each(this._menuTabs,Ink.bind(function(elem){
                 var link = Selector.select('a', elem)[0];
-                if(SAPO.Utility.Array.inArray(link.getAttribute('href'), this._options.disabled)){
+                if(InkArray.inArray(link.getAttribute('href'), this._options.disabled)){
                     this.disable(link);
                 } else {
                     this.enable(link);
                 }
-            }.bindObj(this));
+            },this));
 
             Event.observe(window, 'resize', this._handlers.resize);
         },
 
         /**
-         * @function ? run at instantiation, to determine which is the first active tab
+         * Run at instantiation, to determine which is the first active tab
          * fallsback from window.location.href to options.active to the first not disabled tab
+         * 
+         * @method _setFirstActive
+         * @private
          */
         _setFirstActive: function() {
             var hash = window.location.hash;
@@ -118,9 +162,12 @@
         },
 
         /**
-         * @function ? changes to the desired tab
+         * Changes to the desired tab
+         * 
+         * @method _changeTab
          * @param {DOMElement} link             anchor linking to the content container
          * @param {boolean}    runCallbacks     defines if the callbacks should be run or not
+         * @private
          */
         _changeTab: function(link, runCallbacks){
             if(runCallbacks && typeof this._options.onBeforeChange !== 'undefined'){
@@ -131,7 +178,7 @@
             Css.removeClassName(this._activeMenuTab, 'active');
             Css.removeClassName(this._activeContentTab, 'active');
             Css.addClassName(this._activeContentTab, 'hide-all');
-            
+
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
             this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
@@ -147,12 +194,15 @@
         },
 
         /**
-         * @function ? tab clicked handler
+         * Tab clicked handler
+         * 
+         * @method _onTabClicked
          * @param {Event} ev
+         * @private
          */
         _onTabClicked: function(ev) {
             Event.stop(ev);
-            //var target = Event.element(ev);
+
             var target = Event.findElement(ev, 'A');
             if(target.nodeName.toLowerCase() !== 'a') {
                 return;
@@ -169,20 +219,29 @@
         },
 
         /**
-         * @function ? disabled tab clicked handler
+         * Disabled tab clicked handler
+         * 
+         * @method _onDisabledTabClicked
          * @param {Event} ev
+         * @private
          */
         _onDisabledTabClicked: function(ev) {
             Event.stop(ev);
         },
 
+        /**
+         * Resize handler
+         * 
+         * @method _onResize
+         * @private
+         */
         _onResize: function(){
-            var currentLayout = SAPO.Ink.Aux.currentLayout();
+            var currentLayout = Aux.currentLayout();
             if(currentLayout === this._lastLayout){
                 return;
             }
 
-            if(currentLayout === SAPO.Ink.Aux.Layouts.SMALL || currentLayout === SAPO.Ink.Aux.Layouts.MEDIUM){
+            if(currentLayout === Aux.Layouts.SMALL || currentLayout === Aux.Layouts.MEDIUM){
                 Css.removeClassName(this._menu, 'menu');
                 Css.removeClassName(this._menu, 'horizontal');
                 // Css.addClassName(this._menu, 'pills');
@@ -199,8 +258,12 @@
          *****************/
 
         /**
-         * @function ? allows the hash to be passed with or without the cardinal sign
+         * Allows the hash to be passed with or without the cardinal sign
+         * 
+         * @method _hashify
          * @param {String} hash     the string to be hashified
+         * @return {String} Resulting hash
+         * @private
          */
         _hashify: function(hash){
             if(!hash){
@@ -210,21 +273,33 @@
         },
 
         /**
-         * @function ? returns the anchor with the desired href
+         * Returns the anchor with the desired href
+         * 
+         * @method _findLinkBuHref
          * @param {String} href     the href to be found on the returned link
+         * @return {String|undefined} [description]
+         * @private
          */
         _findLinkByHref: function(href){
             href = this._hashify(href);
             var ret;
-            this._menuTabs.forEach(function(elem){
+            InkArray.each(this._menuTabs,Ink.bind(function(elem){
                 var link = Selector.select('a', elem)[0];
                 if( (link.getAttribute('href').indexOf('#') !== -1) && ( link.getAttribute('href').substr(link.getAttribute('href').indexOf('#')) === href ) ){
                     ret = link;
                 }
-            }.bindObj(this));
+            },this));
             return ret;
         },
 
+        /**
+         * Returns the child elements of a given parent element
+         * 
+         * @method _getChildElements
+         * @param {DOMElement} parent  DOMElement to fetch the child elements from.
+         * @return {Array}  Child elements of the given parent.
+         * @private
+         */
         _getChildElements: function(parent){
             var childNodes = [];
             var children = parent.children;
@@ -241,8 +316,11 @@
          **************/
 
         /**
-         * @function ? changes to the desired tag
+         * Changes to the desired tag
+         * 
+         * @method changeTab
          * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @public
          */
         changeTab: function(selector) {
             var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
@@ -253,8 +331,11 @@
         },
 
         /**
-         * @function ? disables the desired tag
+         * Disables the desired tag
+         * 
+         * @method disable
          * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @public
          */
         disable: function(selector){
             var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
@@ -267,8 +348,11 @@
         },
 
          /**
-         * @function ? enables the desired tag
+         * Enables the desired tag
+         * 
+         * @method enable
          * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
+         * @public
          */
         enable: function(selector){
             var element = (selector.nodeType === 1)? selector : this._findLinkByHref(this._hashify(selector));
@@ -284,35 +368,59 @@
          * Getters *
          ***********/
 
+        /**
+         * Returns the active tab id
+         * 
+         * @method activeTab
+         * @return {String} ID of the active tab.
+         * @public
+         */
         activeTab: function(){
             return this._activeContentTab.getAttribute('id');
         },
 
         /**
-         * @function ? returns the current active Menu LI
+         * Returns the current active Menu LI
+         * 
+         * @method activeMenuTab
+         * @return {DOMElement} Active menu LI.
+         * @public
          */
         activeMenuTab: function(){
             return this._activeMenuTab;
         },
+
         /**
-         * @function ? returns the current active Menu anchor
+         * Returns the current active Menu anchorChanges to the desired tag
+         * 
+         * @method activeMenuLink
+         * @return {DOMElement} Active menu link
+         * @public
          */
         activeMenuLink: function(){
             return this._activeMenuLink;
         },
+
         /**
-         * @function ? returns the current active Content Tab
+         * Returns the current active Content Tab
+         * 
+         * @method activeContentTab
+         * @return {DOMElement} Active Content Tab
+         * @public
          */
         activeContentTab: function(){
             return this._activeContentTab;
         },
 
         /**
-         * @function ? unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup from the DOM
+         * 
+         * @method destroy
+         * @public
          */
         destroy: Aux.destroyComponent
     };
 
-    SAPO.Ink.Tabs = Tabs;
+    return Tabs;
 
-})();
+});

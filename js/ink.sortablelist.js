@@ -1,50 +1,50 @@
-(function(window, undefined) {
-
+/**
+ * @module Ink.UI.SortableList_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
-
-    SAPO.namespace('Ink');
-
-
-
-    // aliases
-    var Aux      = SAPO.Ink.Aux,
-        Css      = SAPO.Dom.Css,
-        Element  = SAPO.Dom.Element,
-        Event    = SAPO.Dom.Event,
-        Selector = SAPO.Dom.Selector,
-        Util_Array = SAPO.Utility.Array
-    ;
-
-
-
     /**
-     * @class SAPO.Ink.SortableList
-     *
-     * @since October 2012
-     * @author jose.p.dias AT co.sapo.pt
-     * @version 0.1
-     *
      * Adds sortable behaviour to any list!
-     */
-
-    /**
-     * @constructor SAPO.Ink.SortableList.?
+     * 
+     * @class Ink.UI.SortableList
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object}        options
-     * @... {optional String} dragLabel what to display on the label. defaults to 'drag here'
+     * @param {Object} [options] Options for the datepicker
+     *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
+     * @example
+     *      <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
+     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
+     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
+     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
+     *              var sortableListElement = Ink.s('.ink-sortable-list');
+     *              var sortableListObj = new SortableList( sortableListElement );
+     *          });
+     *      </script>
      */
     var SortableList = function(selector, options) {
 
         this._element = Aux.elOrSelector(selector, '1st argument');
 
-        if( !SAPO.Ink.Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[SAPO.Ink.SortableList] :: Invalid selector';
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.SortableList] :: Invalid selector';
         } else if( typeof selector === 'string' ){
-            this._element = SAPO.Dom.Selector.select( selector );
+            this._element = Ink.Dom.Selector.select( selector );
 
             if( this._element.length < 1 ){
-                throw '[SAPO.Ink.SortableList] :: Selector has returned no elements';
+                throw '[Ink.UI.SortableList] :: Selector has returned no elements';
             }
             this._element = this._element[0];
 
@@ -52,16 +52,16 @@
             this._element = selector;
         }
 
-        this._options = SAPO.extendObj({
+        this._options = Ink.extendObj({
             dragObject: 'li'
-        }, SAPO.Dom.Element.data(this._element));
+        }, Ink.Dom.Element.data(this._element));
 
-        this._options = SAPO.extendObj( this._options, options || {});
+        this._options = Ink.extendObj( this._options, options || {});
 
         this._handlers = {
-            down: this._onDown.bindObjEvent(this),
-            move: this._onMove.bindObjEvent(this),
-            up:   this._onUp.bindObjEvent(this)
+            down: Ink.bindEvent(this._onDown,this),
+            move: Ink.bindEvent(this._onMove,this),
+            up:   Ink.bindEvent(this._onUp,this)
         };
 
         this._model = [];
@@ -82,7 +82,7 @@
 
         this._dragTriggers = Selector.select( this._options.dragObject, this._element );
         if( !this._dragTriggers ){
-            throw "[SAPO.Ink.SortableList] :: Drag object not found";
+            throw "[Ink.UI.SortableList] :: Drag object not found";
         }
 
         this._init();
@@ -90,6 +90,12 @@
 
     SortableList.prototype = {
 
+        /**
+         * Init function called by the constructor.
+         * 
+         * @method _init
+         * @private
+         */
         _init: function() {
             // extract model
             if (this._createdFrom === 'DOM') {
@@ -97,23 +103,7 @@
                 this._createdFrom = 'JSON';
             }
 
-            // // generate and apply DOM
-            // var el = this._generateMarkup();
-            // var parentEl = this._element.parentNode;
-
-            // if (!this._notFirstInit) {
-            //     Aux.storeIdAndClasses(this._element, this);
-            //     this._notFirstInit = true;
-            // }
-
-            // parentEl.insertBefore(el, this._element);
-            // parentEl.removeChild(this._element);
-            // this._element = el;
-
-            // Aux.restoreIdAndClasses(this._element, this);
-
             var isTouch = 'ontouchstart' in document.documentElement;
-            //var isTouch = true;
 
             this._down = isTouch ? 'touchstart': 'mousedown';
             this._move = isTouch ? 'touchmove' : 'mousemove';
@@ -128,12 +118,21 @@
             Aux.registerInstance(this, this._element, 'sortableList');
         },
 
+        /**
+         * Sets the event handlers.
+         * 
+         * @method _observe
+         * @private
+         */
         _observe: function() {
             Event.observe(this._element, this._down, this._handlers.down);
         },
 
         /**
-         * @function ? updates the model from the UL representation
+         * Updates the model from the UL representation
+         * 
+         * @method _extractModelFromDOM
+         * @private
          */
         _extractModelFromDOM: function() {
             this._model = [];
@@ -141,7 +140,7 @@
 
             var liEls = Selector.select('> li', this._element);
 
-            liEls.forEach(function(liEl) {
+            InkArray.each(liEls,function(liEl) {
                 //var t = Element.getChildrenText(liEl);
                 var t = liEl.innerHTML;
                 that._model.push(t);
@@ -149,14 +148,18 @@
         },
 
         /**
-         * @function {DOMElement} ? returns the top element for the gallery DOM representation
+         * Returns the top element for the gallery DOM representation
+         * 
+         * @method _generateMarkup
+         * @return {DOMElement}
+         * @private
          */
         _generateMarkup: function() {
             var el = document.createElement('ul');
             el.className = 'unstyled ink-sortable-list';
             var that = this;
 
-            this._model.forEach(function(label, idx) {
+            InkArray.each(this._model,function(label, idx) {
                 var liEl = document.createElement('li');
                 if (idx === that._index) {
                     liEl.className = 'drag';
@@ -172,8 +175,12 @@
         },
 
         /**
-         * @function {Number} ? extracts the Y coordinate of the mouse from the given MouseEvent
+         * Extracts the Y coordinate of the mouse from the given MouseEvent
+         * 
+         * @method _getY
          * @param  {Event} ev
+         * @return {Number}
+         * @private
          */
         _getY: function(ev) {
             if (ev.type.indexOf('touch') === 0) {
@@ -186,6 +193,13 @@
             return ev.clientY;
         },
 
+        /**
+         * Refreshes the markup.
+         * 
+         * @method _refresh
+         * @param {Boolean} skipObs True if needs to set the event handlers, false if not.
+         * @private
+         */
         _refresh: function(skipObs) {
             var el = this._generateMarkup();
             this._element.parentNode.replaceChild(el, this._element);
@@ -200,20 +214,25 @@
         },
 
         /**
-         * @function ? mouse down handler
+         * Mouse down handler
+         * 
+         * @method _onDown
          * @param {Event} ev
+         * @return {Boolean|undefined} [description]
+         * @private
          */
         _onDown: function(ev) {
             if (this._isMoving) { return; }
             var tgtEl = Event.element(ev);
 
-            if( !Util_Array.inArray(tgtEl,this._dragTriggers) ){
-                while( !Util_Array.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+            if( !InkArray.inArray(tgtEl,this._dragTriggers) ){
+                while( !InkArray.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
                     tgtEl = tgtEl.parentNode;
                 }
 
-                if( tgtEl.nodeName.toLowerCase() === 'body' )
+                if( tgtEl.nodeName.toLowerCase() === 'body' ){
                     return;
+                }
             }
 
             Event.stop(ev);
@@ -239,8 +258,11 @@
         },
 
         /**
-         * @function ? mouse move handler
+         * Mouse move handler
+         * 
+         * @method _onMove
          * @param {Event} ev
+         * @private
          */
         _onMove: function(ev) {
             if (!this._isMoving) { return; }
@@ -267,8 +289,11 @@
         },
 
         /**
-         * @function ? mouse up handler
+         * Mouse up handler
+         * 
+         * @method _onUp
          * @param {Event} ev
+         * @private
          */
         _onUp: function(ev) {
             if (!this._isMoving) { return; }
@@ -288,19 +313,26 @@
          **************/
 
         /**
-         * @function {String[]} ? returns a copy of the model
+         * Returns a copy of the model
+         * 
+         * @method getModel
+         * @return {Array} Copy of the model
+         * @public
          */
         getModel: function() {
             return this._model.slice();
         },
 
         /**
-         * @function ? unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup from the DOM
+         * 
+         * @method destroy
+         * @public
          */
         destroy: Aux.destroyComponent
 
     };
 
-    SAPO.Ink.SortableList = SortableList;
+    return SortableList;
 
-})(window);
+});

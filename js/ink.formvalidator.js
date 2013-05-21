@@ -1,36 +1,39 @@
-(function(undefined) {
-
+/**
+ * @module Ink.UI.FormValidator_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validator_1'], function( Css, InkValidator ) {
     'use strict';
 
-    SAPO.namespace('Ink');
-
-    /*
-
-        will return an array with error elements and flags
-
-        [
-            {elm: HTMLElement1, errors:['error_flag1', 'error_flag2', '...']},
-            {elm: HTMLElement2, errors:['error_flag1', 'error_flag2', '...']},
-            ...
-        ]
-
-    customFlag: [
-            {flag: 'custom-field1', callback: function(elm, errorMessage) { return true/false}, msg: 'error message'}
-        ]
-
-    */
-
     /**
-     * @class SAPO.Ink.FormValidator
-     *
-     * Utility class to validate forms
-     *
+     * @class Ink.UI.FormValidator
+     * @version 1
+     * @uses Ink.Dom.Css
+     * @uses Ink.Util.Validator
      */
-    SAPO.Ink.FormValidator = {
+    var FormValidator = {
 
-        version: '0.1',
+        /**
+         * Specifies the version of the component
+         *
+         * @property version
+         * @type {String}
+         * @readOnly
+         * @public
+         */
+        version: '1',
 
-        /* defines all flags to use in validation */
+        /**
+         * Available flags to use in the validation process.
+         * The keys are the 'rules', and their values are objects with the key 'msg', determining
+         * what is the error message.
+         *
+         * @property _flagMap
+         * @type {Object}
+         * @readOnly
+         * @private
+         */
         _flagMap: {
             //'ink-fv-required': {msg: 'Campo obrigat&oacute;rio'},
             'ink-fv-required': {msg: 'Required field'},
@@ -55,34 +58,84 @@
             'ink-fv-custom': {msg: ''}
         },
 
-        /* hold all form elements */
+        /**
+         * This property holds all form elements for later validation
+         *
+         * @property elements
+         * @type {Object}
+         * @public
+         */
         elements: {},
 
+        /**
+         * This property holds the objects needed to cross-check for the 'confirm' rule
+         *
+         * @property confirmElms
+         * @type {Object}
+         * @public
+         */
         confirmElms: {},
 
+        /**
+         * This property holds the previous elements in the confirmElms property, but with a
+         * true/false specifying if it has the class ink-fv-confirm.
+         *
+         * @property hasConfirm
+         * @type {Object}
+         */
         hasConfirm: {},
 
-        /* defined class name to use in error messages label */
+        /**
+         * Defined class name to use in error messages label
+         *
+         * @property _errorClassName
+         * @type {String}
+         * @readOnly
+         * @private
+         */
         _errorClassName: 'tip',
 
+        /**
+         * @property _errorValidationClassName
+         * @type {String}
+         * @readOnly
+         * @private
+         */
         _errorValidationClassName: 'validaton',
+
+        /**
+         * @property _errorTypeWarningClassName
+         * @type {String}
+         * @readOnly
+         * @private
+         */
         _errorTypeWarningClassName: 'warning',
+
+        /**
+         * @property _errorTypeErrorClassName
+         * @type {String}
+         * @readOnly
+         * @private
+         */
         _errorTypeErrorClassName: 'error',
 
         /**
-         * @function {Boolean} ? Check if a form is valid or not
-         * @param {DOMElement|String} elm - DOM form element or form id
+         * Check if a form is valid or not
+         * 
+         * @method validate
+         * @param {DOMElement|String} elm DOM form element or form id
          * @param {Object} options Options for
-         *      @... {optional Function} onSuccess - function to run when form is valid
-         *      @... {optional Function} onError - function to run when form is not valid
-         *      @... {optional Array} customFlag - custom flags to use to validate form fields
-         * @return true or false if the form is valid or not
+         *      @param {Function} [options.onSuccess] function to run when form is valid
+         *      @param {Function} [options.onError] function to run when form is not valid
+         *      @param {Array} [options.customFlag] custom flags to use to validate form fields
+         * @public
+         * @return {Boolean}
          */
         validate: function(elm, options)
         {
             this._free();
 
-            options = SAPO.extendObj({
+            options = Ink.extendObj({
                 onSuccess: false,
                 onError: false,
                 customFlag: false,
@@ -129,7 +182,10 @@
         },
 
         /**
-         * @function ? reset previously generated validation errors
+         * Reset previously generated validation errors
+         * 
+         * @method reset
+         * @public
          */
         reset: function()
         {
@@ -137,6 +193,12 @@
             this._clearCache();
         },
 
+        /**
+         * Cleans the object
+         * 
+         * @method _free
+         * @private
+         */
         _free: function()
         {
             this.element = null;
@@ -145,6 +207,12 @@
             this.confirmGroup = false;
         },
 
+        /**
+         * Cleans the properties responsible for caching
+         * 
+         * @method _clearCache
+         * @private
+         */
         _clearCache: function()
         {
             this.element = null;
@@ -153,6 +221,12 @@
             this.confirmGroup = false;
         },
 
+        /**
+         * Gets the form elements and stores them in the caching properties
+         * 
+         * @method _getElements
+         * @private
+         */
         _getElements: function()
         {
             //this.elements = [];
@@ -169,13 +243,13 @@
                 curElm = formElms[i];
 
                 if(curElm.getAttribute('type') !== null && curElm.getAttribute('type').toLowerCase() === 'radio') {
-                    if(this.elements[this.element.id].length === 0 || 
+                    if(this.elements[this.element.id].length === 0 ||
                             (
-                             curElm.getAttribute('type') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('type') && 
+                             curElm.getAttribute('type') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('type') &&
                             curElm.getAttribute('name') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('name')
                             )) {
                         for(var flag in this._flagMap) {
-                            if(SAPO.Dom.Css.hasClassName(curElm, flag)) {
+                            if(Css.hasClassName(curElm, flag)) {
                                 this.elements[this.element.id].push(curElm);
                                 break;
                             }
@@ -183,7 +257,7 @@
                     }
                 } else {
                     for(var flag2 in this._flagMap) {
-                        if(SAPO.Dom.Css.hasClassName(curElm, flag2) && flag2 !== 'ink-fv-confirm') {
+                        if(Css.hasClassName(curElm, flag2) && flag2 !== 'ink-fv-confirm') {
                             /*if(flag2 == 'ink-fv-confirm') {
                                 this.confirmElms[this.element.id].push(curElm);
                                 this.hasConfirm[this.element.id] = true;
@@ -193,7 +267,7 @@
                         }
                     }
 
-                    if(SAPO.Dom.Css.hasClassName(curElm, 'ink-fv-confirm')) {
+                    if(Css.hasClassName(curElm, 'ink-fv-confirm')) {
                         this.confirmElms[this.element.id].push(curElm);
                         this.hasConfirm[this.element.id] = true;
                     }
@@ -203,6 +277,12 @@
 
         },
 
+        /**
+         * Runs the validation for each element
+         * 
+         * @method _validateElements
+         * @private
+         */
         _validateElements: function()
         {
             var oGroups;
@@ -223,7 +303,7 @@
 
                 if(!curElm.disabled) {
                     for(var flag in this._flagMap) {
-                        if(SAPO.Dom.Css.hasClassName(curElm, flag)) {
+                        if(Css.hasClassName(curElm, flag)) {
 
                             if(flag !== 'ink-fv-custom' && flag !== 'ink-fv-confirm') {
                                 if(!this._isValid(curElm, flag)) {
@@ -247,10 +327,19 @@
                 }
             }
             errors = this._validateConfirmGroups(oGroups, errors);
-            //console.log(SAPO.Utility.Dumper.returnDump(errors));
+            //console.log(InkDumper.returnDump(errors));
             return errors;
         },
 
+        /**
+         * Runs the 'confirm' validation for each group of elements
+         * 
+         * @method _validateConfirmGroups
+         * @param {Array} oGroups Array/Object that contains the group of confirm objects
+         * @param {Array} errors Array that will store the errors
+         * @private
+         * @return {Array} Array of errors that was passed as 2nd parameter (either changed, or not, depending if errors were found).
+         */
         _validateConfirmGroups: function(oGroups, errors)
         {
             //console.log(oGroups);
@@ -266,6 +355,13 @@
             return errors;
         },
 
+        /**
+         * Creates the groups of 'confirm' objects
+         * 
+         * @method _makeConfirmGroups
+         * @private
+         * @return {Array|Boolean} Returns the array of confirm elements or false on error.
+         */
         _makeConfirmGroups: function()
         {
             var oGroups;
@@ -278,7 +374,7 @@
                     curElm = this.confirmElms[this.element.id][i];
                     for(var j=0, totalG=this.confirmGroup.length; j < totalG; j++) {
                         curGroup =  this.confirmGroup[j];
-                        if(SAPO.Dom.Css.hasClassName(curElm, curGroup)) {
+                        if(Css.hasClassName(curElm, curGroup)) {
                             if(typeof(oGroups[curGroup]) === 'undefined') {
                                 oGroups[curGroup] = [curElm];
                             } else {
@@ -302,13 +398,21 @@
             return false;
         },
 
+        /**
+         * Validates an element with a custom validation
+         * 
+         * @method _isCustomValid
+         * @param {DOMElemenmt} elm Element to be validated
+         * @private
+         * @return {Array} Array of errors. If no errors are found, results in an empty array.
+         */
         _isCustomValid: function(elm)
         {
             var customErrors = [];
             var curFlag = false;
             for(var i=0, tCustom = this.custom.length; i < tCustom; i++) {
                 curFlag = this.custom[i];
-                if(SAPO.Dom.Css.hasClassName(elm, curFlag.flag)) {
+                if(Css.hasClassName(elm, curFlag.flag)) {
                     if(!curFlag.callback(elm, curFlag.msg)) {
                         customErrors.push({flag: curFlag.flag, msg: curFlag.msg});
                     }
@@ -317,6 +421,15 @@
             return customErrors;
         },
 
+        /**
+         * Runs the normal validation functions for a specific element
+         * 
+         * @method :_isValid
+         * @param {DOMElement} elm DOMElement that will be validated
+         * @param {String} fieldType Rule to be validated. This must be one of the keys present in the _flagMap property.
+         * @private
+         * @return {Boolean} The result of the validation.
+         */
         _isValid: function(elm, fieldType)
         {
             /*jshint maxstatements:50, maxcomplexity:50 */
@@ -354,33 +467,33 @@
 
                 case 'ink-fv-email':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
                         }
                     } else {
-                        if(SAPO.Utility.Validator.mail(elm.value)) {
+                        if(InkValidator.mail(elm.value)) {
                             return true;
                         }
                     }
                     break;
                 case 'ink-fv-url':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
                         }
                     } else {
-                        if(SAPO.Utility.Validator.url(elm.value)) {
+                        if(InkValidator.url(elm.value)) {
                             return true;
                         }
                     }
                     break;
                 case 'ink-fv-number':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
@@ -393,52 +506,52 @@
                     break;
                 case 'ink-fv-phone_pt':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
                         }
                     } else {
-                        if(SAPO.Utility.Validator.isPTPhone(elm.value)) {
+                        if(InkValidator.isPTPhone(elm.value)) {
                             return true;
                         }
                     }
                     break;
                 case 'ink-fv-phone_cv':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
                         }
                     } else {
-                        if(SAPO.Utility.Validator.isCVPhone(elm.value)) {
+                        if(InkValidator.isCVPhone(elm.value)) {
                             return true;
                         }
                     }
                     break;
                 case 'ink-fv-phone_ao':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
                         }
                     } else {
-                        if(SAPO.Utility.Validator.isAOPhone(elm.value)) {
+                        if(InkValidator.isAOPhone(elm.value)) {
                             return true;
                         }
                     }
                     break;
                 case 'ink-fv-phone_mz':
                     if(this._trim(elm.value) === '') {
-                        if(SAPO.Dom.Css.hasClassName(elm, 'ink-fv-required')) {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
                             return false;
                         } else {
                             return true;
                         }
                     } else {
-                        if(SAPO.Utility.Validator.isMZPhone(elm.value)) {
+                        if(InkValidator.isMZPhone(elm.value)) {
                             return true;
                         }
                     }
@@ -452,7 +565,14 @@
             return false;
         },
 
-
+        /**
+         * Makes the necessary changes to the markup to show the errors of a given element
+         * 
+         * @method _showError
+         * @param {DOMElement} formElm The form element to be changed to show the errors
+         * @param {Array} aFail An array with the errors found.
+         * @private
+         */
         _showError: function(formElm, aFail)
         {
             this._clearError(formElm);
@@ -477,32 +597,39 @@
 
                     if(curElm.getAttribute('type') !== 'checkbox') {
                         curElm.nextSibling.parentNode.insertBefore(newLabel, curElm.nextSibling);
-                        if(SAPO.Dom.Css.hasClassName(curElm.parentNode, 'control')) {
-                            SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'validation');
+                        if(Css.hasClassName(curElm.parentNode, 'control')) {
+                            Css.addClassName(curElm.parentNode.parentNode, 'validation');
                             if(aFail[i].errors[0] === 'ink-fv-required') {
-                                SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'error');
+                                Css.addClassName(curElm.parentNode.parentNode, 'error');
                             } else {
-                                SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'warning');
+                                Css.addClassName(curElm.parentNode.parentNode, 'warning');
                             }
                         }
                     } else {
                         /* // TODO checkbox... does not work with this CSS
                         curElm.parentNode.appendChild(newLabel);
-                        if(SAPO.Dom.Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
-                            SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'control');
-                            SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                            SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'error');
+                        if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
+                            Css.addClassName(curElm.parentNode.parentNode, 'control');
+                            Css.addClassName(curElm.parentNode.parentNode, 'validation');
+                            Css.addClassName(curElm.parentNode.parentNode, 'error');
                         }*/
                     }
                 } else {
-                    if(SAPO.Dom.Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
-                        SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                        SAPO.Dom.Css.addClassName(curElm.parentNode.parentNode, 'error');
+                    if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
+                        Css.addClassName(curElm.parentNode.parentNode, 'validation');
+                        Css.addClassName(curElm.parentNode.parentNode, 'error');
                     }
                 }
             }
         },
 
+        /**
+         * Clears the error of a given element. Normally executed before any validation, for all elements, as a reset.
+         * 
+         * @method _clearErrors
+         * @param {DOMElement} formElm Form element to be cleared.
+         * @private
+         */
         _clearError: function(formElm)
         {
             //return;
@@ -511,11 +638,11 @@
             var curElm = false;
             for(var i = (aErrorLabel.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel[i];
-                if(SAPO.Dom.Css.hasClassName(curElm, this._errorClassName)) {
-                    if(SAPO.Dom.Css.hasClassName(curElm.parentNode, 'control')) {
-                        SAPO.Dom.Css.removeClassName(curElm.parentNode.parentNode, 'validation');
-                        SAPO.Dom.Css.removeClassName(curElm.parentNode.parentNode, 'error');
-                        SAPO.Dom.Css.removeClassName(curElm.parentNode.parentNode, 'warning');
+                if(Css.hasClassName(curElm, this._errorClassName)) {
+                    if(Css.hasClassName(curElm.parentNode, 'control')) {
+                        Css.removeClassName(curElm.parentNode.parentNode, 'validation');
+                        Css.removeClassName(curElm.parentNode.parentNode, 'error');
+                        Css.removeClassName(curElm.parentNode.parentNode, 'warning');
                     }
                     curElm.parentNode.removeChild(curElm);
                 }
@@ -524,13 +651,21 @@
             var aErrorLabel2 = formElm.getElementsByTagName('ul');
             for(i = (aErrorLabel2.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel2[i];
-                if(SAPO.Dom.Css.hasClassName(curElm, 'control-group')) {
-                    SAPO.Dom.Css.removeClassName(curElm, 'validation');
-                    SAPO.Dom.Css.removeClassName(curElm, 'error');
+                if(Css.hasClassName(curElm, 'control-group')) {
+                    Css.removeClassName(curElm, 'validation');
+                    Css.removeClassName(curElm, 'error');
                 }
             }
         },
 
+        /**
+         * Removes unnecessary spaces to the left or right of a string
+         * 
+         * @method _trim
+         * @param {String} stri String to be trimmed
+         * @private
+         * @return {String|undefined} String trimmed.
+         */
         _trim: function(str)
         {
             if(typeof(str) === 'string')
@@ -540,4 +675,6 @@
         }
     };
 
-})();
+    return FormValidator;
+
+});
