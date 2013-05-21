@@ -230,144 +230,168 @@
                     width: 5%;
                 }
 
-                .@{breakpoint-alias}-100,
-                .@{breakpoint-alias}-95,
-                .@{breakpoint-alias}-90,
-                .@{breakpoint-alias}-85,
-                .@{breakpoint-alias}-80,
-                .@{breakpoint-alias}-75,
-                .@{breakpoint-alias}-70,
-                .@{breakpoint-alias}-66,
-                .@{breakpoint-alias}-65,
-                .@{breakpoint-alias}-60,
-                .@{breakpoint-alias}-55,
-                .@{breakpoint-alias}-50,
-                .@{breakpoint-alias}-45,
-                .@{breakpoint-alias}-40,
-                .@{breakpoint-alias}-35,
-                .@{breakpoint-alias}-33,
-                .@{breakpoint-alias}-30,
-                .@{breakpoint-alias}-25,
-                .@{breakpoint-alias}-20,
-                .@{breakpoint-alias}-15,
-                .@{breakpoint-alias}-10, 
-                .@{breakpoint-alias}-5 {
+                //.@{breakpoint-alias}-100,
+                //.@{breakpoint-alias}-95,
+                //.@{breakpoint-alias}-90,
+                //.@{breakpoint-alias}-85,
+                //.@{breakpoint-alias}-80,
+                //.@{breakpoint-alias}-75,
+                //.@{breakpoint-alias}-70,
+                //.@{breakpoint-alias}-66,
+                //.@{breakpoint-alias}-65,
+                //.@{breakpoint-alias}-60,
+                //.@{breakpoint-alias}-55,
+                //.@{breakpoint-alias}-50,
+                //.@{breakpoint-alias}-45,
+                //.@{breakpoint-alias}-40,
+                //.@{breakpoint-alias}-35,
+                //.@{breakpoint-alias}-33,
+                //.@{breakpoint-alias}-30,
+                //.@{breakpoint-alias}-25,
+                //.@{breakpoint-alias}-20,
+                //.@{breakpoint-alias}-15,
+                //.@{breakpoint-alias}-10, 
+                //.@{breakpoint-alias}-5 {
+                //    float: left;
+                //    margin-top: 0;
+                //    zoom: 1;                    
+                //}
+
+                (~"[class*=@{breakpoint-alias}-]") {
                     float: left;
                     margin-top: 0;
-                    zoom: 1;                    
+                    zoom: 1; 
                 }
 
-                table, th, td {
-                    &.@{breakpoint-alias}-100,
-                    &.@{breakpoint-alias}-95,
-                    &.@{breakpoint-alias}-90,
-                    &.@{breakpoint-alias}-85,
-                    &.@{breakpoint-alias}-80,
-                    &.@{breakpoint-alias}-75,
-                    &.@{breakpoint-alias}-70,
-                    &.@{breakpoint-alias}-66,
-                    &.@{breakpoint-alias}-65,
-                    &.@{breakpoint-alias}-60,
-                    &.@{breakpoint-alias}-55,
-                    &.@{breakpoint-alias}-50,
-                    &.@{breakpoint-alias}-45,
-                    &.@{breakpoint-alias}-40,
-                    &.@{breakpoint-alias}-35,
-                    &.@{breakpoint-alias}-33,
-                    &.@{breakpoint-alias}-30,
-                    &.@{breakpoint-alias}-25,
-                    &.@{breakpoint-alias}-20,
-                    &.@{breakpoint-alias}-15,
-                    &.@{breakpoint-alias}-10, 
-                    &.@{breakpoint-alias}-5 {
-                        float: none;                   
-                    }
-                }
+                //table, th, td {
+                //    &.@{breakpoint-alias}-100,
+                //    &.@{breakpoint-alias}-95,
+                //    &.@{breakpoint-alias}-90,
+                //    &.@{breakpoint-alias}-85,
+                //    &.@{breakpoint-alias}-80,
+                //    &.@{breakpoint-alias}-75,
+                //    &.@{breakpoint-alias}-70,
+                //    &.@{breakpoint-alias}-66,
+                //    &.@{breakpoint-alias}-65,
+                //    &.@{breakpoint-alias}-60,
+                //    &.@{breakpoint-alias}-55,
+                //    &.@{breakpoint-alias}-50,
+                //    &.@{breakpoint-alias}-45,
+                //    &.@{breakpoint-alias}-40,
+                //    &.@{breakpoint-alias}-35,
+                //    &.@{breakpoint-alias}-33,
+                //    &.@{breakpoint-alias}-30,
+                //    &.@{breakpoint-alias}-25,
+                //    &.@{breakpoint-alias}-20,
+                //    &.@{breakpoint-alias}-15,
+                //    &.@{breakpoint-alias}-10, 
+                //    &.@{breakpoint-alias}-5 {
+                //        float: none;                   
+                //    }
+                //}
+
+                (~"table.[class*=@{breakpoint-alias}-]"),
+                (~"th.[class*=@{breakpoint-alias}-]"),
+                (~"td.[class*=@{breakpoint-alias}-]") {
+                    float: none;
+                }                
 
                 (~"body.animated *[class*=@{breakpoint-alias}-]") {
                     #ink > #effects > .transition (~"width, font-size, line-height",125ms);                 
                 }
 
                 // set the padding to create the gutters
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-15,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5 {
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-15,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5 {
+                //    padding-left: @gutter-width;
+                //    margin-bottom: @gutter-width;
+                //}
+
+                (~".@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*=@{breakpoint-alias}-]") {
                     padding-left: @gutter-width;
                     margin-bottom: @gutter-width;
-
                 }
 
                 // set the padding to create the gutters with half of the gutter width
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-100,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-95,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-90,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-85,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-80,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-75,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-70,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-66,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-65,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-60,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-55,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-50,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-45,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-40,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-33,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-35,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-30,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-25,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-20,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-15,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-10,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-5 {
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-100,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-95,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-90,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-85,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-80,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-75,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-70,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-66,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-65,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-60,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-55,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-50,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-45,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-40,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-33,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-35,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-30,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-25,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-20,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-15,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-10,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > .@{breakpoint-alias}-5 {
+                //    padding-left: @gutter-width / 2;
+                //    margin-bottom: @gutter-width / 2;
+                //}
+
+                (~".@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > [class*=@{breakpoint-alias}-]") {
                     padding-left: @gutter-width / 2;
                     margin-bottom: @gutter-width / 2;
-
                 }
 
                 // set styling to deal with empty grid elements
-                .@{breakpoint-alias}-100:empty,
-                .@{breakpoint-alias}-95:empty,
-                .@{breakpoint-alias}-90:empty,
-                .@{breakpoint-alias}-85:empty,
-                .@{breakpoint-alias}-80:empty,
-                .@{breakpoint-alias}-75:empty,
-                .@{breakpoint-alias}-70:empty,
-                .@{breakpoint-alias}-66:empty,
-                .@{breakpoint-alias}-65:empty,
-                .@{breakpoint-alias}-60:empty,
-                .@{breakpoint-alias}-55:empty,
-                .@{breakpoint-alias}-50:empty,
-                .@{breakpoint-alias}-45:empty,
-                .@{breakpoint-alias}-40:empty,
-                .@{breakpoint-alias}-33:empty,
-                .@{breakpoint-alias}-35:empty,
-                .@{breakpoint-alias}-30:empty,
-                .@{breakpoint-alias}-25:empty,
-                .@{breakpoint-alias}-20:empty,
-                .@{breakpoint-alias}-15:empty,
-                .@{breakpoint-alias}-10:empty, 
-                .@{breakpoint-alias}-5:empty {
-                    clear: both;
+                //.@{breakpoint-alias}-100:empty,
+                //.@{breakpoint-alias}-95:empty,
+                //.@{breakpoint-alias}-90:empty,
+                //.@{breakpoint-alias}-85:empty,
+                //.@{breakpoint-alias}-80:empty,
+                //.@{breakpoint-alias}-75:empty,
+                //.@{breakpoint-alias}-70:empty,
+                //.@{breakpoint-alias}-66:empty,
+                //.@{breakpoint-alias}-65:empty,
+                //.@{breakpoint-alias}-60:empty,
+                //.@{breakpoint-alias}-55:empty,
+                //.@{breakpoint-alias}-50:empty,
+                //.@{breakpoint-alias}-45:empty,
+                //.@{breakpoint-alias}-40:empty,
+                //.@{breakpoint-alias}-33:empty,
+                //.@{breakpoint-alias}-35:empty,
+                //.@{breakpoint-alias}-30:empty,
+                //.@{breakpoint-alias}-25:empty,
+                //.@{breakpoint-alias}-20:empty,
+                //.@{breakpoint-alias}-15:empty,
+                //.@{breakpoint-alias}-10:empty, 
+                //.@{breakpoint-alias}-5:empty {
+                //    clear: both;
+                //}
+
+                (~"[class*=@{breakpoint-alias}-]:empty") {
+                    clear:both; 
                 }
 
                 // .@{breakpoint-alias}-100,
@@ -474,60 +498,73 @@
                     width:(( 5%  - @subpixel-rounding) * 0.97) !important;
                 }
 
-                .@{breakpoint-alias}-100,
-                .@{breakpoint-alias}-95,
-                .@{breakpoint-alias}-90,
-                .@{breakpoint-alias}-85,
-                .@{breakpoint-alias}-80,
-                .@{breakpoint-alias}-75,
-                .@{breakpoint-alias}-70,
-                .@{breakpoint-alias}-66,
-                .@{breakpoint-alias}-65,
-                .@{breakpoint-alias}-60,
-                .@{breakpoint-alias}-55,
-                .@{breakpoint-alias}-50,
-                .@{breakpoint-alias}-45,
-                .@{breakpoint-alias}-40,
-                .@{breakpoint-alias}-35,
-                .@{breakpoint-alias}-33,
-                .@{breakpoint-alias}-30,
-                .@{breakpoint-alias}-25,
-                .@{breakpoint-alias}-20,
-                .@{breakpoint-alias}-15,
-                .@{breakpoint-alias}-10, 
-                .@{breakpoint-alias}-5, {
+                //.@{breakpoint-alias}-100,
+                //.@{breakpoint-alias}-95,
+                //.@{breakpoint-alias}-90,
+                //.@{breakpoint-alias}-85,
+                //.@{breakpoint-alias}-80,
+                //.@{breakpoint-alias}-75,
+                //.@{breakpoint-alias}-70,
+                //.@{breakpoint-alias}-66,
+                //.@{breakpoint-alias}-65,
+                //.@{breakpoint-alias}-60,
+                //.@{breakpoint-alias}-55,
+                //.@{breakpoint-alias}-50,
+                //.@{breakpoint-alias}-45,
+                //.@{breakpoint-alias}-40,
+                //.@{breakpoint-alias}-35,
+                //.@{breakpoint-alias}-33,
+                //.@{breakpoint-alias}-30,
+                //.@{breakpoint-alias}-25,
+                //.@{breakpoint-alias}-20,
+                //.@{breakpoint-alias}-15,
+                //.@{breakpoint-alias}-10, 
+                //.@{breakpoint-alias}-5, {
+                //    float: left;
+                //    margin-bottom: @gutter-width;
+                //    // margin-top: @gutter-width;
+                //    overflow: hidden;
+                //    zoom: 1;
+                //}
+
+                (~"[class*=@{breakpoint-alias}-]") {
                     float: left;
                     margin-bottom: @gutter-width;
-                    // margin-top: @gutter-width;
                     overflow: hidden;
                     zoom: 1;
                 }
 
-                table, th, td {
-                    &.@{breakpoint-alias}-100,
-                    &.@{breakpoint-alias}-95,
-                    &.@{breakpoint-alias}-90,
-                    &.@{breakpoint-alias}-85,
-                    &.@{breakpoint-alias}-80,
-                    &.@{breakpoint-alias}-75,
-                    &.@{breakpoint-alias}-70,
-                    &.@{breakpoint-alias}-66,
-                    &.@{breakpoint-alias}-65,
-                    &.@{breakpoint-alias}-60,
-                    &.@{breakpoint-alias}-55,
-                    &.@{breakpoint-alias}-50,
-                    &.@{breakpoint-alias}-45,
-                    &.@{breakpoint-alias}-40,
-                    &.@{breakpoint-alias}-35,
-                    &.@{breakpoint-alias}-33,
-                    &.@{breakpoint-alias}-30,
-                    &.@{breakpoint-alias}-25,
-                    &.@{breakpoint-alias}-20,
-                    &.@{breakpoint-alias}-15,
-                    &.@{breakpoint-alias}-10, 
-                    &.@{breakpoint-alias}-5 {
-                        float: none;                   
-                    }
+                //table, th, td {
+                //    &.@{breakpoint-alias}-100,
+                //    &.@{breakpoint-alias}-95,
+                //    &.@{breakpoint-alias}-90,
+                //    &.@{breakpoint-alias}-85,
+                //    &.@{breakpoint-alias}-80,
+                //    &.@{breakpoint-alias}-75,
+                //    &.@{breakpoint-alias}-70,
+                //    &.@{breakpoint-alias}-66,
+                //    &.@{breakpoint-alias}-65,
+                //    &.@{breakpoint-alias}-60,
+                //    &.@{breakpoint-alias}-55,
+                //    &.@{breakpoint-alias}-50,
+                //    &.@{breakpoint-alias}-45,
+                //    &.@{breakpoint-alias}-40,
+                //    &.@{breakpoint-alias}-35,
+                //    &.@{breakpoint-alias}-33,
+                //    &.@{breakpoint-alias}-30,
+                //    &.@{breakpoint-alias}-25,
+                //    &.@{breakpoint-alias}-20,
+                //    &.@{breakpoint-alias}-15,
+                //    &.@{breakpoint-alias}-10, 
+                //    &.@{breakpoint-alias}-5 {
+                //        float: none;
+                //    }
+                //}
+
+                (~"table.[class*=@{breakpoint-alias}-]"),
+                (~"th.[class*=@{breakpoint-alias}-]"),
+                (~"td.[class*=@{breakpoint-alias}-]") {
+                    float: none;
                 }
 
                 // set the padding to create the gutters
@@ -596,56 +633,65 @@
                 }         
 
                 // set the padding to create the gutters
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-15,                    
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10,                   
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5 {                    
-                    margin-left: @gutter-width - @subpixel-rounding;
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-15,                    
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10,                   
+                //.@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5 {                    
+                //    margin-left: @gutter-width - @subpixel-rounding;
+                //    padding-left: 0px !important;
+                //}
+
+                (~".@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*=@{breakpoint-alias}-]") {
+                   margin-left: @gutter-width - @subpixel-rounding;
                     padding-left: 0px !important;
                 }
 
                 // set styling to deal with empty grid elements
-                .@{breakpoint-alias}-100:empty,
-                .@{breakpoint-alias}-95:empty,
-                .@{breakpoint-alias}-90:empty,
-                .@{breakpoint-alias}-85:empty,
-                .@{breakpoint-alias}-80:empty,
-                .@{breakpoint-alias}-75:empty,
-                .@{breakpoint-alias}-70:empty,
-                .@{breakpoint-alias}-66:empty,
-                .@{breakpoint-alias}-65:empty,
-                .@{breakpoint-alias}-60:empty,
-                .@{breakpoint-alias}-55:empty,
-                .@{breakpoint-alias}-50:empty,
-                .@{breakpoint-alias}-45:empty,
-                .@{breakpoint-alias}-40:empty,
-                .@{breakpoint-alias}-33:empty,
-                .@{breakpoint-alias}-35:empty,
-                .@{breakpoint-alias}-30:empty,
-                .@{breakpoint-alias}-25:empty,
-                .@{breakpoint-alias}-20:empty,
-                .@{breakpoint-alias}-15:empty,
-                .@{breakpoint-alias}-10:empty, 
-                .@{breakpoint-alias}-5:empty {
-                    clear: both;
+                //.@{breakpoint-alias}-100:empty,
+                //.@{breakpoint-alias}-95:empty,
+                //.@{breakpoint-alias}-90:empty,
+                //.@{breakpoint-alias}-85:empty,
+                //.@{breakpoint-alias}-80:empty,
+                //.@{breakpoint-alias}-75:empty,
+                //.@{breakpoint-alias}-70:empty,
+                //.@{breakpoint-alias}-66:empty,
+                //.@{breakpoint-alias}-65:empty,
+                //.@{breakpoint-alias}-60:empty,
+                //.@{breakpoint-alias}-55:empty,
+                //.@{breakpoint-alias}-50:empty,
+                //.@{breakpoint-alias}-45:empty,
+                //.@{breakpoint-alias}-40:empty,
+                //.@{breakpoint-alias}-33:empty,
+                //.@{breakpoint-alias}-35:empty,
+                //.@{breakpoint-alias}-30:empty,
+                //.@{breakpoint-alias}-25:empty,
+                //.@{breakpoint-alias}-20:empty,
+                //.@{breakpoint-alias}-15:empty,
+                //.@{breakpoint-alias}-10:empty, 
+                //.@{breakpoint-alias}-5:empty {
+                //    clear: both;
+                //}
+
+                (~"[class*=@{breakpoint-alias}-]:empty") {
+                    clear:both; 
                 }
 
                 // .@{breakpoint-alias}-100,
