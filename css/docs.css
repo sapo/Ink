@@ -74,6 +74,11 @@
 .push-right {
   float: right !important;
 }
+.push-center {
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
+}
 .clearfix:after {
   content: ".";
   display: block;
