@@ -1,38 +1,96 @@
-(function(){
-    
-    /**
-     * Dependency check
-     */
-    var
-        dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'SAPO.Ink.Aux', 'SAPO.Utility.Array'],
-        dependency, i, j,
-        checking
-    ;
-
-    for( i = 0; i < dependencies.length; i+=1 ){
-        dependency = dependencies[i].split(".");
-        checking = window;
-        for( j = 0; j < dependency.length; j+=1 ){
-            if( !(dependency[j] in checking ) ){
-                throw '[SAPO.Ink.Table] :: Missing dependency - ' . dependency.join(".");
-            }
-
-            checking = checking[dependency[j]];
-        }
-    }
+/**
+ * @module Ink.UI.Table_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.UI.Pagination_1'], function(Ajax, Aux, Event, Css, Element, Selector, InkArray, Pagination ) {
+    'use strict';
 
     /**
-     * Using variables for dependencies... Easier to change in the future
+     * The Table component transforms the native/DOM table element into a
+     * sortable, paginated component.
+     * 
+     * @class Ink.UI.Table
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     * @uses Ink.UI.Pagination
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options for the datepicker
+     *     @param {Number}     options.pageSize       Number of rows per page.
+     *     @param {String}     options.endpoint       Endpoint to get the records via AJAX
+     * @example
+     *      <table class="ink-table alternating" data-page-size="6">
+     *          <thead>
+     *              <tr>
+     *                  <th data-sortable="true" width="75%">Pepper</th>
+     *                  <th data-sortable="true" width="25%">Scoville Rating</th>
+     *              </tr>
+     *          </thead>
+     *          <tbody>
+     *              <tr>
+     *                  <td>Trinidad Moruga Scorpion</td>
+     *                  <td>1500000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Bhut Jolokia</td>
+     *                  <td>1000000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Naga Viper</td>
+     *                  <td>1463700</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Red Savina Habanero</td>
+     *                  <td>580000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Habanero</td>
+     *                  <td>350000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Scotch Bonnet</td>
+     *                  <td>180000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Malagueta</td>
+     *                  <td>50000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Tabasco</td>
+     *                  <td>35000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Serrano Chili</td>
+     *                  <td>27000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Jalapeño</td>
+     *                  <td>8000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Poblano</td>
+     *                  <td>1500</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Peperoncino</td>
+     *                  <td>500</td>
+     *              </tr>
+     *          </tbody>
+     *      </table>
+     *      <nav class="ink-navigation"><ul class="pagination"></ul></nav>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
+     *              var tableElement = Ink.s('.ink-table');
+     *              var tableObj = new Table( tableElement );
+     *          });
+     *      </script>
      */
-    var
-        Aux = SAPO.Ink.Aux,
-        Selector = SAPO.Dom.Selector,
-        Element = SAPO.Dom.Element,
-        Util_Array = SAPO.Utility.Array,
-        Event = SAPO.Dom.Event,
-        Css = SAPO.Dom.Css
-    ;
-
     var Table = function( selector, options ){
 
         /**
@@ -41,22 +99,27 @@
         this._rootElement = Aux.elOrSelector(selector, '1st argument');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
-            throw '[SAPO.Ink.Table] :: The element is not a table';
+            throw '[Ink.UI.Table] :: The element is not a table';
         }
 
-        this._options = SAPO.extendObj({
+        this._options = Ink.extendObj({
             pageSize: undefined,
             endpoint: undefined,
             allowResetSorting: false
         },Element.data(this._rootElement));
 
-        this._options = SAPO.extendObj( this._options, options || {});
+        this._options = Ink.extendObj( this._options, options || {});
+
+        /**
+         * Checking if it's in markup mode or endpoint mode
+         */
+        this._markupMode = ( typeof this._options.endpoint === 'undefined' );
 
         /**
          * Initializing variables
          */
         this._handlers = {
-            click: this._onClick.bindObjEvent(this)
+            click: Ink.bindEvent(this._onClick,this)
         };
         this._sortableFields = {};
         this._originalData = this._data = [];
@@ -68,28 +131,43 @@
 
     Table.prototype = {
 
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
         _init: function(){
+
+            /**
+             * If not is in markup mode, we have to do the initial request
+             * to get the first data and the headers
+             */
+             if( !this._markupMode ){
+                this._getData( this._options.endpoint, true );
+             }
+
             /**
              * Setting the sortable columns and its event listeners
              */
             Event.observe(Selector.select('thead',this._rootElement)[0],'click',this._handlers.click);
             this._headers = Selector.select('thead tr th',this._rootElement);
-            this._headers.forEach(function(item, index){
+            InkArray.each(this._headers,Ink.bind(function(item, index){
                 var dataset = Element.data( item );
                 if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
                     this._sortableFields['col_' + index] = 'none';
                 }
-            }.bindObj(this));
+            },this));
 
             /**
              * Getting the table's data
              */
-            Selector.select('tbody tr',this._rootElement).forEach(function(tr){
+            InkArray.each(Selector.select('tbody tr',this._rootElement),Ink.bind(function(tr){
                 this._data.push(tr);
-            }.bindObj(this));
+            },this));
                 this._originalData = this._data.slice(0);
 
-            if( "pageSize" in this._options ){
+            if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
                 /**
                  * Applying the pagination
                  */
@@ -99,22 +177,27 @@
                 }
 
                 if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
-                    throw '[SAPO.Ink.Table] :: Missing the pagination markup or is mis-positioned';
+                    throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
                 }
 
-                this._pagination = new SAPO.Ink.Pagination( this._pagination, {
+                this._pagination = new Pagination( this._pagination, {
                     size: Math.ceil(this._data.length/this._options.pageSize),
-                    onChange: function( pagingObj ){
+                    onChange: Ink.bind(function( pagingObj ){
                         this._paginate( (pagingObj._current+1) );
-                    }.bindObj(this)
+                    },this)
                 });
-
-                var pagination_ul = Selector.select('.pagination',this._pagination._element)[0];
 
                 this._paginate(1);
             }
         },
 
+        /**
+         * Click handler. This will mainly handle the sorting (when you click in the headers)
+         * 
+         * @method _onClick
+         * @param {Event} event Event obj
+         * @private
+         */
         _onClick: function( event ){
             Event.stop(event);
             var
@@ -127,7 +210,7 @@
             }
 
             index = -1;
-            if( Util_Array.inArray( tgtEl,this._headers ) ){
+            if( InkArray.inArray( tgtEl,this._headers ) ){
                 for( i=0; i<this._headers.length; i++ ){
                     if( this._headers[i] === tgtEl ){
                         index = i;
@@ -183,7 +266,7 @@
 
             var tbody = Selector.select('tbody',this._rootElement)[0];
             Aux.cleanChildren(tbody);
-            this._data.forEach(function(item){
+            InkArray.each(this._data,function(item){
                 tbody.appendChild(item);
             });
 
@@ -191,18 +274,32 @@
             this._paginate(1);
         },
 
+        /**
+         * Applies and/or changes the CSS classes in order to show the right columns
+         * 
+         * @method _paginate
+         * @param {Number} page Current page
+         * @private
+         */
         _paginate: function( page ){
-            this._data.forEach(function(item, index){
+            InkArray.each(this._data,Ink.bind(function(item, index){
                 if( (index >= ((page-1)*parseInt(this._options.pageSize,10))) && (index < (((page-1)*parseInt(this._options.pageSize,10))+parseInt(this._options.pageSize,10)) ) ){
                     Css.removeClassName(item,'hide-all');
                 } else {
                     Css.addClassName(item,'hide-all');
                 }
-            }.bindObj(this));
+            },this));
         },
 
+        /**
+         * Sorts by a specific column.
+         * 
+         * @method _sort
+         * @param {Number} index Column number (starting at 0)
+         * @private
+         */
         _sort: function( index ){
-            this._data.sort(function(a,b){
+            this._data.sort(Ink.bind(function(a,b){
                 var
                     aValue = Selector.select('td',a)[index].innerText,
                     bValue = Selector.select('td',b)[index].innerText
@@ -226,9 +323,20 @@
                 } else {
                     return ( ( aValue>bValue ) ? 1 : -1 );
                 }
-            }.bindObj(this));
+            },this));
+        },
+
+        _getDataViaAjax: function( endpoint, firstRequest ){
+
+            
+
+            var req = new Ajax( endpoint, {
+                method: 'GET'
+            } );
+
         }
     };
 
-    SAPO.Ink.Table = Table;
-})();
+    return Table;
+
+});

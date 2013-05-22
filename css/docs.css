@@ -74,6 +74,11 @@
 .push-right {
   float: right !important;
 }
+.push-center {
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
+}
 .clearfix:after {
   content: ".";
   display: block;
@@ -308,7 +313,7 @@ a.active {
   -ms-transition-duration: 120ms;
   transition-duration: 120ms;
 }
-.socialplugins {
+div.socialplugins {
   border: 1px solid #afafaf;
   background: #eaeaea;
   padding: 0.6em 0 0.6em 0.6em;
@@ -319,17 +324,15 @@ a.active {
   -moz-box-shadow: 0 1px 2px 0 #ffffff;
   box-shadow: 0 1px 2px 0 #ffffff;
 }
-.socialplugins .large-40,
-.socialplugins .large-60,
-.socialplugins .medium-40,
-.socialplugins .medium-60,
-.socialplugins .small-100 {
-  margin: 0;
+div.socialplugins div[class*="large-"],
+div.socialplugins div[class*="medium-"],
+div.socialplugins div[class*="small-"] {
+  margin-bottom: 0 !important;
 }
-.socialplugins p {
+div.socialplugins p {
   line-height: 2;
 }
-.socialplugins .socialwidget {
+div.socialplugins .socialwidget {
   margin-right: 1em;
 }
 /*...................................................  Footer  ...................................................*/

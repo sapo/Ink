@@ -25,13 +25,6 @@ CHECK = \033[32m✔\033[39m
 # horizontal ruler
 HR = \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
 
-# Background recess PID file for the watch target
-PID_FILE = ./recess.pid
-
-# Background recess process(es) PID(s)
-PID = `cat $(PID_FILE)`
-
-
 all: ink minified site
 
 test: 
@@ -43,34 +36,20 @@ test:
 
 ink: test
 	@echo " Compiling InK                             ${CHECK} Done"
-	@recess ${INK_LESS} --compile > ${INK_CSS}
+	@lessc ${INK_LESS} > ${INK_CSS}
 	@echo " Compiling InK IE7 exceptions              ${CHECK} Done"
-	@recess ${INK_IE7_LESS} --compile > ${INK_IE7_CSS}
+	@lessc ${INK_IE7_LESS} > ${INK_IE7_CSS}
 	@echo "${HR}"
 
 site: test
 	@echo " Compiling documentation specific css      ${CHECK} Done"
-	@recess ${SITE_LESS} --compile > ${SITE_CSS}
+	@lessc ${SITE_LESS} > ${SITE_CSS}
 	@echo "${HR}"
 
 minified: test
 	@echo "${HR}"
 	@echo " Compiling minified InK                    ${CHECK} Done"
-	@recess ${INK_LESS} --compile --compress > ${INK_MIN_CSS}
+	@lessc ${INK_LESS} --yui-compress > ${INK_MIN_CSS}
 	@echo " Compiling minified InK IE7 exceptions     ${CHECK} Done"
-	@recess ${INK_IE7_LESS} --compile --compress > ${INK_IE7_MIN_CSS}
-	@echo "${HR}"
-
-watch: test
-	@echo "${HR}"
-	@echo " Watching ${LESS_SOURCE_DIR} for changes               ${CHECK} Done"
-	@echo " Use: \"make stop\" to stop watching ${LESS_SOURCE_DIR}"
-	@recess ${INK_LESS}:${INK_CSS} --watch ${LESS_SOURCE_DIR} & echo "$$!" > ${PID_FILE}
-	@echo "${HR}"
-
-stop:
-	@echo "${HR}"
-	@kill -9 ${PID}
-	@rm ${PID_FILE}
-	@echo " Stopped Watching ${LESS_SOURCE_DIR} for changes       ${CHECK} Done"
+	@lessc ${INK_IE7_LESS} --yui-compress > ${INK_IE7_MIN_CSS}
 	@echo "${HR}"

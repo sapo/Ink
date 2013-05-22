@@ -1,43 +1,40 @@
-(function(undefined) {
-
+/**
+ * @module Ink.UI.SmoothScroller_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded ) {
     'use strict';
 
-
-    SAPO.namespace('Ink');
-
-
-
-    // aliases
-    var Selector  = SAPO.Dom.Selector,
-        Event    = SAPO.Dom.Event,
-        Loaded = SAPO.Dom.Loaded
-    ;
-
-
-
     /**
-     * @class SAPO.Ink.SmoothScroller
-     *
-     * @since October 2012
-     * @author jose.p.dias AT co.sapo.pt
-     * @version 0.1
-     *
-     * <pre>
-     * </pre>
+     * @class Ink.UI.SmoothScroller
+     * @version 1
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Dom.Loaded
+     * @static
      */
+    var SmoothScroller = {
 
-    /**
-     * @constructor SAPO.Ink.SAPO.Ink.SmoothScroller.?
-     * @param {String|DOMElement} selector
-     * @param {Object}            options
-     * @... {optional Number}               speed           By default is 10. Determines the speed of the scroll
-     */
-    SAPO.Ink.SmoothScroller = {
-        // control the speed of the scroller.
-        // dont change it here directly, please use Scroller.speed=50;
+        /**
+         * Sets the speed of the scrolling
+         *
+         * @property
+         * @type {Number}
+         * @readOnly
+         * @static
+         */
         speed: 10,
 
-        // returns the Y position of the div
+        /**
+         * Returns the Y position of the div
+         *
+         * @method gy
+         * @param  {DOMElement} d DOMElement to get the Y position from
+         * @return {Number}   Y position of div 'd'
+         * @public
+         * @static
+         */
         gy: function(d) {
             var gy;
             gy = d.offsetTop;
@@ -49,7 +46,15 @@
             return gy;
         },
 
-        // returns the current scroll position
+
+        /**
+         * Returns the current scroll position
+         *
+         * @method scrollTop
+         * @return {Number}  Current scroll position
+         * @public
+         * @static
+         */
         scrollTop: function() {
             var
                 body = document.body,
@@ -68,13 +73,30 @@
             return 0;
         },
 
-        // attach an event for an element
-        // (element, type, function)
-        add: function(event, body, d) {
-            Event.observe(event,body,d);
+        /**
+         * Attaches an event for an element
+         *
+         * @method add
+         * @param  {DOMElement} el DOMElement to make the listening of the event
+         * @param  {String} event Event name to be listened
+         * @param  {DOMElement} fn Callback function to run when the event is triggered.
+         * @public
+         * @static
+         */
+        add: function(el, event, fn) {
+            Event.observe(el,event,fn);
             return;
         },
 
+
+        /**
+         * Kill an event of an element
+         *
+         * @method end
+         * @param  {String} e Event to be killed/stopped
+         * @public
+         * @static
+         */
         // kill an event of an element
         end: function(e) {
             if (window.event) {
@@ -85,44 +107,75 @@
             Event.stop(e);
         },
 
-        // move the scroll bar to the particular div.
+
+        /**
+         * Moves the scrollbar to the target element
+         *
+         * @method scroll
+         * @param  {Number} d Y coordinate value to stop
+         * @public
+         * @static
+         */
         scroll: function(d) {
-            var a = SAPO.Ink.SmoothScroller.scrollTop();
+            var a = Ink.UI.SmoothScroller.scrollTop();
             if (d > a) {
-                a += Math.ceil((d - a) / SAPO.Ink.SmoothScroller.speed);
+                a += Math.ceil((d - a) / Ink.UI.SmoothScroller.speed);
             } else {
-                a = a + (d - a) / SAPO.Ink.SmoothScroller.speed;
+                a = a + (d - a) / Ink.UI.SmoothScroller.speed;
             }
 
             window.scrollTo(0, a);
-            if ((a) === d || SAPO.Ink.SmoothScroller.offsetTop === a)
+            if ((a) === d || Ink.UI.SmoothScroller.offsetTop === a)
             {
-                clearInterval(SAPO.Ink.SmoothScroller.interval);
+                clearInterval(Ink.UI.SmoothScroller.interval);
             }
-            SAPO.Ink.SmoothScroller.offsetTop = a;
-        },
-        // initializer that adds the renderer to the onload function of the window
-        init: function() {
-            Loaded.run(SAPO.Ink.SmoothScroller.render);
+            Ink.UI.SmoothScroller.offsetTop = a;
         },
 
-        // this method extracts all the anchors and validates then as # and attaches the events.
+
+        /**
+         * Initializer that adds the rendered to run when the page is ready
+         *
+         * @method init
+         * @public
+         * @static
+         */
+        // initializer that adds the renderer to the onload function of the window
+        init: function() {
+            Loaded.run(Ink.UI.SmoothScroller.render);
+        },
+
+        /**
+         * This method extracts all the anchors and validates thenm as # and attaches the events
+         *
+         * @method render
+         * @public
+         * @static
+         */
         render: function() {
             var a = Selector.select('a.scrollableLink');
 
-            SAPO.Ink.SmoothScroller.end(this);
+            Ink.UI.SmoothScroller.end(this);
 
             for (var i = 0; i < a.length; i++) {
                 var l = a[i];
                 if (l.href && l.href.indexOf('#') !== -1 && ((l.pathname === location.pathname) || ('/' + l.pathname === location.pathname))) {
-                    SAPO.Ink.SmoothScroller.add(l, 'click', SAPO.Ink.SmoothScroller.end);
-                    Event.observe(l,'click',SAPO.Ink.SmoothScroller.clickScroll);
+                    Ink.UI.SmoothScroller.add(l, 'click', Ink.UI.SmoothScroller.end);
+                    Event.observe(l,'click',Ink.UI.SmoothScroller.clickScroll);
                 }
             }
         },
 
+
+        /**
+         * Click handler
+         *
+         * @method clickScroll
+         * @public
+         * @static
+         */
         clickScroll: function() {
-            SAPO.Ink.SmoothScroller.end(this);
+            Ink.UI.SmoothScroller.end(this);
             var hash = this.hash.substr(1);
             var elm = Selector.select('a[name="' + hash + '"],#' + hash);
 
@@ -139,17 +192,13 @@
                     } while ((li = li.nextSibling));
                     this.parentNode.className += " active";
                 }
-                clearInterval(SAPO.Ink.SmoothScroller.interval);
-                SAPO.Ink.SmoothScroller.interval = setInterval('SAPO.Ink.SmoothScroller.scroll(' + SAPO.Ink.SmoothScroller.gy(elm[0]) + ')', 10);
+                clearInterval(Ink.UI.SmoothScroller.interval);
+                Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
 
             }
-            //document.getElementsByTagName('a');
-            // for (i=0;i<a.length;i++) {
-            //    if(a[i].name == l){
-            // }
-            // }
         }
     };
-    SAPO.Ink.SmoothScroller.init();
 
-})();
+    return SmoothScroller;
+
+});

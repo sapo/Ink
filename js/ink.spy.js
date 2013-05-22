@@ -1,54 +1,38 @@
 /**
- * This is the Spy component. Allows users to set an element to spy a nav element, to highlight places
- * when the spy reaches the top of the viewport.
+ * @module Ink.UI.Spy_1
+ * @author inkdev AT sapo.pt
+ * @version 1
  */
-
-(function(undefined){
-
+Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * Dependencies
+     * Spy is a component that 'spies' an element (or a group of elements) and when they leave the viewport (through the top),
+     * highlight an option - related to that element being spied - that resides in a menu, initially identified as target.
+     * 
+     * @class Ink.UI.Spy
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options for the datepicker
+     *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
+     * @example
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
+     *              var menuElement = Ink.s('#menu');
+     *              var specialAnchorToSpy = Ink.s('#specialAnchor');
+     *              var spyObj = new Spy( specialAnchorToSpy, {
+     *                  target: menuElement
+     *              });
+     *          });
+     *      </script>
      */
-    if( typeof SAPO === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO"';
-    }
-
-    SAPO.namespace('Ink');
-
-    if( typeof SAPO.Dom.Selector === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO.Dom.Selector"';
-    }
-
-    if( typeof SAPO.Dom.Css === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO.Dom.Css"';
-    }
-
-    if( typeof SAPO.Dom.Element === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO.Dom.Element"';
-    }
-
-    if( typeof SAPO.Dom.Event === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO.Dom.Event"';
-    }
-
-    if( typeof SAPO.Ink.Aux === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO.Ink.Aux"';
-    }
-
-    if( typeof SAPO.Utility.Array === 'undefined' ){
-        throw '[Spy] :: Missing dependency "SAPO.Utility.Array"';
-    }
-
-    var
-        Selector = SAPO.Dom.Selector,
-        Css = SAPO.Dom.Css,
-        Element = SAPO.Dom.Element,
-        Event = SAPO.Dom.Event,
-        Aux = SAPO.Ink.Aux,
-        UtilArray = SAPO.Utility.Array
-    ;
-
     var Spy = function( selector, options ){
 
         this._rootElement = Aux.elOrSelector(selector,'1st argument');
@@ -56,15 +40,14 @@
         /**
          * Setting default options and - if needed - overriding it with the data attributes
          */
-        this._options = SAPO.extendObj({
-            target: undefined,
-            offset: '20px'
-        }, SAPO.Dom.Element.data( this._rootElement ) );
+        this._options = Ink.extendObj({
+            target: undefined
+        }, Element.data( this._rootElement ) );
 
         /**
          * In case options have been defined when creating the instance, they've precedence
          */
-        this._options = SAPO.extendObj(this._options,options || {});
+        this._options = Ink.extendObj(this._options,options || {});
 
         this._options.target = Aux.elOrSelector( this._options.target, 'Target' );
 
@@ -74,12 +57,33 @@
 
     Spy.prototype = {
 
+        /**
+         * Stores the spy elements
+         *
+         * @property _elements
+         * @type {Array}
+         * @readOnly
+         * 
+         */
         _elements: [],
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
         _init: function(){
-            SAPO.Dom.Event.observe( document, 'scroll', this._onScroll.bindObjEvent(this) );
+            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
             this._elements.push(this._rootElement);
         },
 
+        /**
+         * Scroll handler. Responsible for highlighting the right options of the target menu.
+         * 
+         * @method _onScroll
+         * @private
+         */
         _onScroll: function(){
 
             if(
@@ -88,73 +92,33 @@
                 return;
             } else {
                 for( var i = 0; i < this._elements.length; i++ ){
-                    if( (this._elements[i].offsetTop === window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
+                    if( (this._elements[i].offsetTop <= window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
                         return;
                     }
                 }
             }
 
+            InkArray.each(
+                Selector.select(
+                    'a',
+                    this._options.target
+                ),Ink.bind(function(item){
 
-            // if( this._scrollTimeout ){
-            //     clearTimeout(this._scrollTimeout);
-            // }
-            // this._scrollTimeout = setTimeout(function(){
+                    var comparisonValue = ( ("name" in this._rootElement) && this._rootElement.name ?
+                        '#' + this._rootElement.name : '#' + this._rootElement.id
+                    );
 
-                var targetAnchor = null;
-
-                UtilArray.each(
-                    Selector.select(
-                        'a',
-                        this._options.target
-                    ),function(item){
-
-                        var comparisonValue = ( ("name" in this._rootElement) && this._rootElement.name ?
-                            '#' + this._rootElement.name : '#' + this._rootElement.id
-                        );
-
-                        if( item.href.substr(item.href.indexOf('#')) === comparisonValue ){
-                            Css.addClassName(Element.findUpwardsByTag(item,'li'),'active');
-                        } else {
-                            Css.removeClassName(Element.findUpwardsByTag(item,'li'),'active');
-                        }
-                    }.bindObj(this)
-                );
-
-            //     this._scrollTimeout = undefined;
-            // }.bindObj(this),100);
-        },
-
-        _destroy: function(){
-
+                    if( item.href.substr(item.href.indexOf('#')) === comparisonValue ){
+                        Css.addClassName(Element.findUpwardsByTag(item,'li'),'active');
+                    } else {
+                        Css.removeClassName(Element.findUpwardsByTag(item,'li'),'active');
+                    }
+                },this)
+            );
         }
 
     };
 
-    SAPO.Ink.Spy = Spy;
-})();
+    return Spy;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});

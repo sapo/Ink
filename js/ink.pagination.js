@@ -1,21 +1,18 @@
-(function(undefined) {
-
+/**
+ * @module Ink.UI.Pagination_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
     'use strict';
 
-
-
-    SAPO.namespace('Ink');
-
-
-
-    // aliases
-    var Aux      = SAPO.Ink.Aux,
-        Css      = SAPO.Dom.Css,
-        Selector = SAPO.Dom.Selector,
-        Event    = SAPO.Dom.Event;
-
-
-
+    /**
+     * Function to create the pagination anchors
+     *
+     * @method genAel
+     * @param  {String} inner HTML to be placed inside the anchor.
+     * @return {DOMElement}  Anchor created
+     */
     var genAEl = function(inner) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
@@ -23,38 +20,33 @@
         return aEl;
     };
 
-
-
     /**
-     * @class SAPO.Ink.Pagination
-     *
-     * @since October 2012
-     * @author jose.p.dias AT co.sapo.pt
-     * @version 0.1
-     *
-     * Generic pagination component.
-     */
-
-    /**
-     * @constructor SAPO.Ink.Pagination.?
+     * @class Ink.UI.Pagination
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
-     * @param {Object}            options
-     * @... {Number}            size              number of pages
-     * @... {optional Number}   maxSize           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
-     * @... {optional Number}   start             start page. defaults to 1
-     * @... {optional String}   previousLabel     label to display on previous page button
-     * @... {optional String}   nextLabel         label to display on next page button
-     * @... {optional String}   previousPageLabel label to display on previous page button
-     * @... {optional String}   nextPageLabel     label to display on next page button
-     * @... {optional String}   firstLabel        label to display on previous page button
-     * @... {optional String}   lastLabel         label to display on next page button
-     * @... {optional Function} onChange          optional callback
-     * @... {optional Boolean}  setHash           if true, sets hashParameter on the location.hash. default is disabled
-     * @... {optional String}   hashParameter     parameter to use on setHash. by default uses 'page'
+     * @param {Object} options Options for the datepicker
+     * @param {Number}   options.size                number of pages
+     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {String}   [options.previousLabel]     label to display on previous page button
+     * @param {String}   [options.nextLabel]         label to display on next page button
+     * @param {String}   [options.previousPageLabel] label to display on previous page button
+     * @param {String}   [options.nextPageLabel]     label to display on next page button
+     * @param {String}   [options.firstLabel]        label to display on previous page button
+     * @param {String}   [options.lastLabel]         label to display on next page button
+     * @param {Function} [options.onChange]          optional callback
+     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
+     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
     var Pagination = function(selector, options) {
 
-        this._options = SAPO.extendObj({
+        this._options = Ink.extendObj({
             size:          undefined,
             start:         1,
             firstLabel:    'First',
@@ -76,7 +68,7 @@
 
 
         this._handlers = {
-            click: this._onClick.bindObjEvent(this)
+            click: Ink.bindEvent(this._onClick,this)
         };
 
         this._element = Aux.elOrSelector(selector, '1st argument');
@@ -109,6 +101,12 @@
 
     Pagination.prototype = {
 
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
         _init: function() {
             // generate and apply DOM
             this._generateMarkup(this._element);
@@ -120,10 +118,22 @@
             Aux.registerInstance(this, this._element, 'pagination');
         },
 
+        /**
+         * Responsible for setting listener in the 'click' event of the Pagination element.
+         * 
+         * @method _observe
+         * @private
+         */
         _observe: function() {
             Event.observe(this._element, 'click', this._handlers.click);
         },
 
+        /**
+         * Updates the markup everytime there's a change in the Pagination object.
+         * 
+         * @method _updateItems
+         * @private
+         */
         _updateItems: function() {
             var liEls = this._itemLiEls;
 
@@ -183,8 +193,11 @@
         },
 
         /**
-         * @function {DOMElement} ? returns the top element for the gallery DOM representation
+         * Returns the top element for the gallery DOM representation
+         * 
+         * @method _generateMarkup
          * @param {DOMElement} el
+         * @private
          */
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
@@ -249,8 +262,11 @@
         },
 
         /**
-         * @function ? click handler
+         * Click handler
+         * 
+         * @method _onClick
          * @param {Event} ev
+         * @private
          */
         _onClick: function(ev) {
             Event.stop(ev);
@@ -296,8 +312,11 @@
          **************/
 
         /**
-         * @function ? sets the number of pages
+         * Sets the number of pages
+         * 
+         * @method setSize
          * @param {Number} sz number of pages
+         * @public
          */
         setSize: function(sz) {
             if (!Aux.isInteger(sz)) {
@@ -310,9 +329,12 @@
         },
 
         /**
-         * @function ? sets the current page
+         * Sets the current page
+         * 
+         * @method setCurrent
          * @param {Number} nr sets the current page to given number
          * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
+         * @public
          */
         setCurrent: function(nr, isRelative) {
             if (!Aux.isInteger(nr)) {
@@ -342,67 +364,102 @@
         },
 
         /**
-         * @function {Number} ? returns the number of pages
+         * Returns the number of pages
+         * 
+         * @method getSize
+         * @return {Number} Number of pages
+         * @public
          */
         getSize: function() {
             return this._options.size;
         },
 
         /**
-         * @function {Number} ? returns current page
+         * Returns current page
+         * 
+         * @method getCurrent
+         * @return {Number} Current page
+         * @public
          */
         getCurrent: function() {
             return this._current;
         },
 
         /**
-         * @function {Boolean} ? returns true iif at first page
+         * Returns true iif at first page
+         * 
+         * @method isFirst
+         * @return {Boolean} True if at first page
+         * @public
          */
         isFirst: function() {
             return this._current === 0;
         },
 
         /**
-         * @function {Boolean} ? returns true iif at last page
+         * Returns true iif at last page
+         * 
+         * @method isLast
+         * @return {Boolean} True if at last page
+         * @public
          */
         isLast: function() {
             return this._current === this._options.size - 1;
         },
 
         /**
-         * @function {Boolean} ? returns true iif has prior page(s)
+         * Returns true iif has prior pages
+         * 
+         * @method hasPrevious
+         * @return {Boolean} True if has prior pages
+         * @public
          */
         hasPrevious: function() {
             return this._current > 0;
         },
 
         /**
-         * @function {Boolean} ? returns true iif has page(s) ahead
+         * Returns true iif has pages ahead
+         * 
+         * @method hasNext
+         * @return {Boolean} True if has pages ahead
+         * @public
          */
         hasNext: function() {
             return this._current < this._options.size - 1;
         },
 
         /**
-         * @function {Boolean} ? returns true iif has prior set of page(s)
+         * Returns true iif has prior set of page(s)
+         * 
+         * @method hasPreviousPage
+         * @return {Boolean} Returns true iif has prior set of page(s)
+         * @public
          */
         hasPreviousPage: function() {
             return this._options.maxSize && this._current > this._options.maxSize - 1;
         },
 
         /**
-         * @function {Boolean} ? returns true iif has set of page(s) ahead
+         * Returns true iif has set of page(s) ahead
+         * 
+         * @method hasNextPage
+         * @return {Boolean} Returns true iif has set of page(s) ahead
+         * @public
          */
         hasNextPage: function() {
             return this._options.maxSize && this._options.size - this._current >= this._options.maxSize + 1;
         },
 
         /**
-         * @function ? unregisters the component and removes its markup from the DOM
+         * Unregisters the component and removes its markup from the DOM
+         * 
+         * @method destroy
+         * @public
          */
         destroy: Aux.destroyComponent
     };
 
-    SAPO.Ink.Pagination = Pagination;
+    return Pagination;
 
-})();
+});

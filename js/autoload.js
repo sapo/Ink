@@ -4,6 +4,11 @@
         /***************************
          * DatePicker - Default CSS selector is .ink-datepicker
          ***************************/
+         'Close_1': '.ink-dismiss',
+
+        /***************************
+         * DatePicker - Default CSS selector is .ink-datepicker
+         ***************************/
          'DatePicker_1': '.ink-datepicker',
 
         /***************************
