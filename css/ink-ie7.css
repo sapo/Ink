@@ -309,6 +309,66 @@ td.[class*=large-] {
   margin-left: 3%;
   margin-right: 3%;
 }
+.vertical-space {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.half-vertical-space {
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+}
+.quarter-vertical-space {
+  margin-top: 0.75%;
+  margin-bottom: 0.75%;
+}
+.horizontal-space {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.half-horizontal-space {
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+}
+.quarter-horizontal-space {
+  margin-left: 0.75%;
+  margin-right: 0.75%;
+}
+.top-space {
+  margin-top: 3%;
+}
+.half-top-space {
+  margin-top: 1.5%;
+}
+.quarter-top-space {
+  margin-top: 0.75%;
+}
+.right-space {
+  margin-right: 3%;
+}
+.half-right-space {
+  margin-right: 1.5%;
+}
+.quarter-right-space {
+  margin-right: 0.75%;
+}
+.bottom-space {
+  margin-bottom: 3%;
+}
+.half-bottom-space {
+  margin-bottom: 1.5%;
+}
+.quarter-bottom-space {
+  margin-bottom: 0.75%;
+}
+.left-space {
+  margin-left: 3%;
+}
+.half-left-space {
+  margin-left: 1.5%;
+}
+.quarter-left-space {
+  margin-left: 0.75%;
+}
 .icon-large {
   font-size: 1.3333333333333333em;
   margin-top: -4px;

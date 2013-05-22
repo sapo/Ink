@@ -517,6 +517,66 @@ body.animated *[class*=large-] {
   margin-left: 2em;
   margin-right: 2em;
 }
+.vertical-space {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.half-vertical-space {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.quarter-vertical-space {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.horizontal-space {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+.half-horizontal-space {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.quarter-horizontal-space {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.top-space {
+  margin-top: 2em;
+}
+.half-top-space {
+  margin-top: 1em;
+}
+.quarter-top-space {
+  margin-top: 0.5em;
+}
+.right-space {
+  margin-right: 2em;
+}
+.half-right-space {
+  margin-right: 1em;
+}
+.quarter-right-space {
+  margin-right: 0.5em;
+}
+.bottom-space {
+  margin-bottom: 2em;
+}
+.half-bottom-space {
+  margin-bottom: 1em;
+}
+.quarter-bottom-space {
+  margin-bottom: 0.5em;
+}
+.left-space {
+  margin-left: 2em;
+}
+.half-left-space {
+  margin-left: 1em;
+}
+.quarter-left-space {
+  margin-left: 0.5em;
+}
 @media screen and (min-width: 960px) {
   .hide-large {
     display: none;
@@ -712,6 +772,66 @@ body.animated *[class*=large-] {
     margin-left: 1.5em;
     margin-right: 1.5em;
   }
+  .vertical-space {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  .half-vertical-space {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+  .quarter-vertical-space {
+    margin-top: 0.375em;
+    margin-bottom: 0.375em;
+  }
+  .horizontal-space {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
+  .half-horizontal-space {
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+  }
+  .quarter-horizontal-space {
+    margin-left: 0.375em;
+    margin-right: 0.375em;
+  }
+  .top-space {
+    margin-top: 1.5em;
+  }
+  .half-top-space {
+    margin-top: 0.75em;
+  }
+  .quarter-top-space {
+    margin-top: 0.375em;
+  }
+  .right-space {
+    margin-right: 1.5em;
+  }
+  .half-right-space {
+    margin-right: 0.75em;
+  }
+  .quarter-right-space {
+    margin-right: 0.375em;
+  }
+  .bottom-space {
+    margin-bottom: 1.5em;
+  }
+  .half-bottom-space {
+    margin-bottom: 0.75em;
+  }
+  .quarter-bottom-space {
+    margin-bottom: 0.375em;
+  }
+  .left-space {
+    margin-left: 1.5em;
+  }
+  .half-left-space {
+    margin-left: 0.75em;
+  }
+  .quarter-left-space {
+    margin-left: 0.375em;
+  }
   .hide-medium {
     display: none;
   }
@@ -905,6 +1025,66 @@ body.animated *[class*=large-] {
   .hspace {
     margin-left: 1em;
     margin-right: 1em;
+  }
+  .vertical-space {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .half-vertical-space {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .quarter-vertical-space {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  .horizontal-space {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  .half-horizontal-space {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  .quarter-horizontal-space {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
+  .top-space {
+    margin-top: 1em;
+  }
+  .half-top-space {
+    margin-top: 0.5em;
+  }
+  .quarter-top-space {
+    margin-top: 0.25em;
+  }
+  .right-space {
+    margin-right: 1em;
+  }
+  .half-right-space {
+    margin-right: 0.5em;
+  }
+  .quarter-right-space {
+    margin-right: 0.25em;
+  }
+  .bottom-space {
+    margin-bottom: 1em;
+  }
+  .half-bottom-space {
+    margin-bottom: 0.5em;
+  }
+  .quarter-bottom-space {
+    margin-bottom: 0.25em;
+  }
+  .left-space {
+    margin-left: 1em;
+  }
+  .half-left-space {
+    margin-left: 0.5em;
+  }
+  .quarter-left-space {
+    margin-left: 0.25em;
   }
   .hide-small {
     display: none;
