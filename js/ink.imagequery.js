@@ -1,49 +1,57 @@
-(function(){
+/**
+ * @module Ink.UI.ImageQuery_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
-
     /**
-     * Dependency check
-     */
-    var
-        dependencies = ['SAPO.Dom.Selector', 'SAPO.Dom.Event', 'SAPO.Dom.Element', 'SAPO.Dom.Css', 'SAPO.Ink.Aux', 'SAPO.Utility.Array'],
-        dependency, i, j,
-        checking
-    ;
-
-    for( i = 0; i < dependencies.length; i+=1 ){
-        dependency = dependencies[i].split(".");
-        checking = window;
-        for( j = 0; j < dependency.length; j+=1 ){
-            if( !(dependency[j] in checking ) ){
-                throw '[SAPO.Ink.ImageQuery] :: Missing dependency - ' . dependency.join(".");
-            }
-
-            checking = checking[dependency[j]];
-        }
-    }
-
-    /**
-     * Using variables for dependencies... Easier to change in the future
-     */
-    var
-        Aux = SAPO.Ink.Aux,
-        Selector = SAPO.Dom.Selector,
-        Element = SAPO.Dom.Element,
-        Util_Array = SAPO.Utility.Array,
-        Event = SAPO.Dom.Event
-    ;
-    
-
-    SAPO.namespace('Ink');
-
-    /**
-     * ImageQuery is an Ink's component responsible for loading images based on the viewport width.
-     * For that, the component accepts an array of (media) queries in the options.
-     * 
-     * @param {string|DOMElement} selector CSS Selector or DOMElement
-     * @param {object} options  Options' object for configuring the instance. These options can also be set through
-     * data-attributes
+     * @class Ink.UI.ImageQuery
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     *
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options for the datepicker
+     *      @param {String|Function}    [options.src]             String or Callback function (that returns a string) with the path to be used to get the images.
+     *      @param {String|Function}    [options.retina]          String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
+     *      @param {Array}              [options.queries]         Array of queries
+     *          @param {String}              [options.queries.label]         Label of the query. Ex. 'small'
+     *          @param {Number}              [options.queries.width]         Min-width to use this query
+     *      @param {Function}           [options.onLoad]          Date format string
+     *
+     * @example
+     *      <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
+     *          <img src="/assets/imgs/imagequery/small/image.jpg" />
+     *      </div>
+     *      <script type="text/javascript">
+     *      Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
+     *          var imageQueryElement = Ink.s('.imageQueryExample img');
+     *          var imageQueryObj = new ImageQuery('.imageQueryExample img',{
+     *              src: '/assets/imgs/imagequery/{:label}/{:file}',
+     *              queries: [
+     *                  {
+     *                      label: 'small',
+     *                      width: 480
+     *                  },
+     *                  {
+     *                      label: 'medium',
+     *                      width: 640
+     *                  },
+     *                  {
+     *                      label: 'large',
+     *                      width: 1024
+     *                  }   
+     *              ]
+     *          });
+     *      } );
+     *      </script>
      */
     var ImageQuery = function(selector, options){
 
@@ -51,16 +59,16 @@
          * Selector's type checking
          */
         if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[SAPO.Ink.ImageQuery] :: Invalid selector';
+            throw '[ImageQuery] :: Invalid selector';
         } else if( typeof selector === 'string' ){
             this._element = Selector.select( selector );
 
             if( this._element.length < 1 ){
-                throw '[SAPO.Ink.ImageQuery] :: Selector has returned no elements';
+                throw '[ImageQuery] :: Selector has returned no elements';
             } else if( this._element.length > 1 ){
                 var i;
                 for( i=1;i<this._element.length;i+=1 ){
-                    new SAPO.Ink.ImageQuery(this._element[i],options);
+                    new Ink.UI.ImageQuery(this._element[i],options);
                 }
             }
             this._element = this._element[0];
@@ -76,12 +84,12 @@
          * @param {array} queries Array of objects that determine the label/name and its min-width to be applied.
          * @param {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
          */
-        this._options = SAPO.extendObj({
+        this._options = Ink.extendObj({
             queries:[],
             onLoad: null
         },Element.data(this._element));
 
-        this._options = SAPO.extendObj(this._options, options || {});
+        this._options = Ink.extendObj(this._options, options || {});
 
         /**
          * Determining the original basename (with the querystring) of the file.
@@ -99,20 +107,26 @@
 
     ImageQuery.prototype = {
 
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
         _init: function(){
 
             /**
              * Sort queries by width, in descendant order.
              */
-            this._options.queries = Util_Array.sortMulti(this._options.queries,'width').reverse();
+            this._options.queries = InkArray.sortMulti(this._options.queries,'width').reverse();
 
             /**
              * Declaring the event handlers, in this case, the window.resize and the (element) load.
              * @type {Object}
              */
             this._handlers = {
-                resize: this._onResize.bindObjEvent(this),
-                load: this._onLoad.bindObjEvent(this)
+                resize: Ink.bindEvent(this._onResize,this),
+                load: Ink.bindEvent(this._onLoad,this)
             };
 
             if( typeof this._options.onLoad === 'function' ){
@@ -127,14 +141,16 @@
         },
 
         /**
-         * @function {void} ? Handles the resize event (as specified in the _init function)
-         * @return {void}
+         * Handles the resize event (as specified in the _init function)
+         *
+         * @method _onResize
+         * @private
          */
         _onResize: function(){
 
             clearTimeout(timeout);
 
-            var timeout = setTimeout(function(){
+            var timeout = setTimeout(Ink.bind(function(){
 
                 if( !this._options.queries || (this._options.queries === {}) ){
                     clearTimeout(timeout);
@@ -176,7 +192,7 @@
 
                 /**
                  * Choosing the right src. The rule is:
-                 * 
+                 *
                  *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
                  *
                  * The above rule applies to a retina src.
@@ -199,7 +215,7 @@
                 if( typeof src === 'function' ){
                     src = src.apply(this,[this._element,this._options.queries[selected]]);
                     if( typeof src !== 'string' ){
-                        throw '[SAPO.Ink.ImageQuery] :: "src" callback does not return a string';
+                        throw '[ImageQuery] :: "src" callback does not return a string';
                     }
                 }
 
@@ -219,12 +235,14 @@
 
                 timeout = undefined;
 
-            }.bindObj(this),300);
+            },this),300);
         },
 
         /**
-         * @function {void} ? Handles the element loading (img onload) event
-         * @return {void}
+         * Handles the element loading (img onload) event
+         *
+         * @method _onLoad
+         * @private
          */
         _onLoad: function(){
 
@@ -236,6 +254,6 @@
 
     };
 
-    SAPO.Ink.ImageQuery = ImageQuery;
+    return ImageQuery;
 
-})();
+});
