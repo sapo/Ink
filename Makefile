@@ -43,14 +43,14 @@ test:
 
 ink: test
 	@echo " Compiling InK                             ${CHECK} Done"
-	@recess ${INK_LESS} --compile > ${INK_CSS}
+	@lessc ${INK_LESS} > ${INK_CSS}
 	@echo " Compiling InK IE7 exceptions              ${CHECK} Done"
-	@recess ${INK_IE7_LESS} --compile > ${INK_IE7_CSS}
+	@lessc ${INK_IE7_LESS} > ${INK_IE7_CSS}
 	@echo "${HR}"
 
 site: test
 	@echo " Compiling documentation specific css      ${CHECK} Done"
-	@recess ${SITE_LESS} --compile > ${SITE_CSS}
+	@lessc ${SITE_LESS} > ${SITE_CSS}
 	@echo "${HR}"
 
 minified: test
