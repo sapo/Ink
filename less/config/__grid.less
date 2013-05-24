@@ -14,7 +14,9 @@
 @site-width: 1200px ;
 
 // subpixel rounding for IE
-@subpixel-rounding: 0.5 / @site-width;
+@subpixel-rounding: (0.5 / (@site-width * 100 * 1%));
+
+// @correction: 0.5 / @min-width * 100 * 1%;
 
 // gutter width
 @gutter-width: 2em;
