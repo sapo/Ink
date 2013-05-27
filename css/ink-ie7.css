@@ -281,7 +281,7 @@ td.[class*=large-] {
 .ink-form [class*=large-] input,
 .ink-form [class*=large-] textarea {
   width: 98.5% !important;
-  margin-left: -3%;
+  margin-left: -2.999995833333333%;
   padding-left: 0;
   padding-right: 0;
 }

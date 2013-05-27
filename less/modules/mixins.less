@@ -733,7 +733,7 @@
                 (~".@{form-class-name} [class*=@{breakpoint-alias}-]") {
                     input, textarea {
                       width: 98.5% !important;
-                      margin-left: -@gutter-width;
+                      margin-left: (-@gutter-width + @subpixel-rounding);
                       padding-left: 0;
                       padding-right: 0;
                     }
