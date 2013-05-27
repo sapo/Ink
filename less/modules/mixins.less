@@ -730,6 +730,15 @@
                     margin-left: -@gutter-width;
                 }
 
+                (~".@{form-class-name} [class*=@{breakpoint-alias}-]") {
+                    input, textarea {
+                      width: 98.5% !important;
+                      margin-left: -@gutter-width;
+                      padding-left: 0;
+                      padding-right: 0;
+                    }
+                }
+
             }
 
             .grid-visibility () {

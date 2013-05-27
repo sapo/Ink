@@ -685,6 +685,9 @@ table.ink-table.browser-support td {
 .sticky {
   -webkit-transform: scale3d(1, 1, 1);
 }
+#ink-layout-detector {
+  margin: 0;
+}
 @media screen and (max-width: 649px) {
   body {
     font-size: 90%;
