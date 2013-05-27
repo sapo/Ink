@@ -105,7 +105,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
         this._options = Ink.extendObj({
             pageSize: undefined,
             endpoint: undefined,
-            allowResetSorting: false
+            loadMode: 'full',
+            allowResetSorting: false,
+            visibleFields: undefined
         },Element.data(this._rootElement));
 
         this._options = Ink.extendObj( this._options, options || {});
@@ -115,16 +117,22 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
          */
         this._markupMode = ( typeof this._options.endpoint === 'undefined' );
 
+        if( !!this._options.visibleFields ){
+            this._options.visibleFields = this._options.visibleFields.split(',');
+        }
+
         /**
          * Initializing variables
          */
         this._handlers = {
             click: Ink.bindEvent(this._onClick,this)
         };
+        this._originalFields = [];
         this._sortableFields = {};
         this._originalData = this._data = [];
         this._headers = [];
         this._pagination = null;
+        this._totalRows = 0;
 
         this._init();
     };
@@ -145,50 +153,46 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
              */
              if( !this._markupMode ){
                 this._getData( this._options.endpoint, true );
-             }
+             } else{
+                this._setHeadersHandlers();
 
-            /**
-             * Setting the sortable columns and its event listeners
-             */
-            Event.observe(Selector.select('thead',this._rootElement)[0],'click',this._handlers.click);
-            this._headers = Selector.select('thead tr th',this._rootElement);
-            InkArray.each(this._headers,Ink.bind(function(item, index){
-                var dataset = Element.data( item );
-                if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
-                    this._sortableFields['col_' + index] = 'none';
-                }
-            },this));
-
-            /**
-             * Getting the table's data
-             */
-            InkArray.each(Selector.select('tbody tr',this._rootElement),Ink.bind(function(tr){
-                this._data.push(tr);
-            },this));
+                /**
+                 * Getting the table's data
+                 */
+                InkArray.each(Selector.select('tbody tr',this._rootElement),Ink.bind(function(tr){
+                    this._data.push(tr);
+                },this));
                 this._originalData = this._data.slice(0);
 
-            if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
+                this._totalRows = this._data.length;
+
                 /**
-                 * Applying the pagination
+                 * Set pagination if defined
                  */
-                this._pagination = this._rootElement.nextSibling;
-                while(this._pagination.nodeType !== 1){
-                    this._pagination = this._pagination.nextSibling;
+                if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
+                    /**
+                     * Applying the pagination
+                     */
+                    this._pagination = this._rootElement.nextSibling;
+                    while(this._pagination.nodeType !== 1){
+                        this._pagination = this._pagination.nextSibling;
+                    }
+
+                    if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
+                        throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
+                    }
+
+                    this._pagination = new Pagination( this._pagination, {
+                        size: Math.ceil(this._totalRows/this._options.pageSize),
+                        onChange: Ink.bind(function( pagingObj ){
+                            this._paginate( (pagingObj._current+1) );
+                        },this)
+                    });
+
+                    this._paginate(1);
                 }
+             }
 
-                if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
-                    throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
-                }
-
-                this._pagination = new Pagination( this._pagination, {
-                    size: Math.ceil(this._data.length/this._options.pageSize),
-                    onChange: Ink.bind(function( pagingObj ){
-                        this._paginate( (pagingObj._current+1) );
-                    },this)
-                });
-
-                this._paginate(1);
-            }
         },
 
         /**
@@ -203,7 +207,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
             var
                 tgtEl = Event.element(event),
                 dataset = Element.data(tgtEl),
-                index,i
+                index,i,
+                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') )
             ;
             if( (tgtEl.nodeName.toLowerCase() !== 'th') || ( !("sortable" in dataset) || (dataset.sortable.toString() !== 'true') ) ){
                 return;
@@ -219,28 +224,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                 }
             }
 
-            if( index === -1){
-                return;
-            }
-
-            if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting && (this._options.allowResetSorting.toString() === 'true')) )
-            {
-                this._headers[index].innerHTML = this._headers[index].innerText;
-                this._sortableFields['col_'+index] = 'none';
-
-                // var found = false;
-                // for(var prop in this._sortableFields ){
-                //     if( this._sortableFields[prop] === 'asc' || this._sortableFields[prop] === 'desc' ){
-                //         found = true;
-                //         this._sort(prop.replace('col_',''));
-                //         break;
-                //     }
-                // }
-
-                // if( !found ){
-                    this._data = this._originalData.slice(0);
-                // }
-            } else {
+            if( !this._markupMode && paginated ){
 
                 for( var prop in this._sortableFields ){
                     if( prop !== ('col_' + index) ){
@@ -249,11 +233,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     }
                 }
 
-                this._sort(index);
-
                 if( this._sortableFields['col_'+index] === 'asc' )
                 {
-                    this._data.reverse();
                     this._sortableFields['col_'+index] = 'desc';
                     this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-down"></i>';
                 } else {
@@ -261,17 +242,65 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-up"></i>';
 
                 }
+
+                this._pagination.setCurrent(this._pagination._current);
+
+            } else {
+
+                if( index === -1){
+                    return;
+                }
+
+                if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting && (this._options.allowResetSorting.toString() === 'true')) )
+                {
+                    this._headers[index].innerHTML = this._headers[index].innerText;
+                    this._sortableFields['col_'+index] = 'none';
+
+                    // var found = false;
+                    // for(var prop in this._sortableFields ){
+                    //     if( this._sortableFields[prop] === 'asc' || this._sortableFields[prop] === 'desc' ){
+                    //         found = true;
+                    //         this._sort(prop.replace('col_',''));
+                    //         break;
+                    //     }
+                    // }
+
+                    // if( !found ){
+                        this._data = this._originalData.slice(0);
+                    // }
+                } else {
+
+                    for( var prop in this._sortableFields ){
+                        if( prop !== ('col_' + index) ){
+                            this._sortableFields[prop] = 'none';
+                            this._headers[prop.replace('col_','')].innerHTML = this._headers[prop.replace('col_','')].innerText;
+                        }
+                    }
+
+                    this._sort(index);
+
+                    if( this._sortableFields['col_'+index] === 'asc' )
+                    {
+                        this._data.reverse();
+                        this._sortableFields['col_'+index] = 'desc';
+                        this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-down"></i>';
+                    } else {
+                        this._sortableFields['col_'+index] = 'asc';
+                        this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-up"></i>';
+
+                    }
+                }
+
+
+                var tbody = Selector.select('tbody',this._rootElement)[0];
+                Aux.cleanChildren(tbody);
+                InkArray.each(this._data,function(item){
+                    tbody.appendChild(item);
+                });
+
+                this._pagination.setCurrent(0);
+                this._paginate(1);
             }
-
-
-            var tbody = Selector.select('tbody',this._rootElement)[0];
-            Aux.cleanChildren(tbody);
-            InkArray.each(this._data,function(item){
-                tbody.appendChild(item);
-            });
-
-            this._pagination.setCurrent(0);
-            this._paginate(1);
         },
 
         /**
@@ -326,14 +355,268 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
             },this));
         },
 
-        _getDataViaAjax: function( endpoint, firstRequest ){
+        /**
+         * Assembles the headers markup
+         *
+         * @method _setHeaders
+         * @param  {Object} headers Key-value object that contains the fields as keys, their configuration (label and sorting ability) as value
+         * @private
+         */
+        _setHeaders: function( headers, rows ){
+            var
+                field, header,
+                thead, tr, th,
+                index = 0
+            ;
 
-            
+            if( (thead = Selector.select('thead',this._rootElement)).length === 0 ){
+                thead = this._rootElement.createTHead();
+                tr = thead.insertRow(0);
 
-            var req = new Ajax( endpoint, {
-                method: 'GET'
+                for( field in headers ){
+
+                    if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
+                        continue;
+                    }
+
+                    // th = tr.insertCell(index++);
+                    th = document.createElement('th');
+                    header = headers[field];
+
+                    if( ("sortable" in header) && (header.sortable.toString() === 'true') ){
+                        th.setAttribute('data-sortable','true');
+                    }
+
+                    if( ("label" in header) ){
+                        th.innerText = header.label;
+                    }
+
+                    this._originalFields.push(field);
+                    tr.appendChild(th);
+                }
+            } else {
+                var firstLine = rows[0];
+
+                for( field in firstLine ){
+                    if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
+                        continue;
+                    }
+
+                    this._originalFields.push(field);
+                }
+            }
+        },
+
+        /**
+         * Method that sets the handlers for the headers
+         *
+         * @method _setHeadersHandlers
+         * @private
+         */
+        _setHeadersHandlers: function(){
+
+            /**
+             * Setting the sortable columns and its event listeners
+             */
+            Event.observe(Selector.select('thead',this._rootElement)[0],'click',this._handlers.click);
+            this._headers = Selector.select('thead tr th',this._rootElement);
+            InkArray.each(this._headers,Ink.bind(function(item, index){
+                var dataset = Element.data( item );
+                if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
+                    this._sortableFields['col_' + index] = 'none';
+                }
+            },this));
+
+        },
+
+        /**
+         * This method gets the rows from AJAX and places them as <tr> and <td>
+         *
+         * @method _setData
+         * @param  {Object} rows Array of objects with the data to be showed
+         * @private
+         */
+        _setData: function( rows ){
+
+            var
+                field,
+                tbody, tr, td,
+                trIndex,
+                tdIndex
+            ;
+
+            tbody = Selector.select('tbody',this._rootElement);
+            if( tbody.length === 0){
+                tbody = document.createElement('tbody');
+                this._rootElement.appendChild( tbody );
+            } else {
+                tbody = tbody[0];
+                tbody.innerHTML = '';
+            }
+
+            this._data = [];
+
+
+            for( trIndex in rows ){
+                tr = document.createElement('tr');
+                tbody.appendChild( tr );
+                tdIndex = 0;
+                for( field in rows[trIndex] ){
+
+                    if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
+                        continue;
+                    }
+
+                    td = tr.insertCell(tdIndex++);
+                    td.innerHTML = rows[trIndex][field];
+                }
+                this._data.push(tr);
+            }
+
+            this._originalData = this._data.slice(0);
+        },
+
+        /**
+         * Sets the endpoint. Useful for changing the endpoint in runtime.
+         *
+         * @method _setEndpoint
+         * @param {String} endpoint New endpoint
+         */
+        setEndpoint: function( endpoint, currentPage ){
+            if( !this._markupMode ){
+                this._options.endpoint = endpoint;
+                this._pagination.setCurrent( (!!currentPage) ? parseInt(currentPage,10) : 0 );
+            }
+        },
+
+        /**
+         * Checks if it needs the pagination and creates the necessary markup to have pagination
+         *
+         * @method _setPagination
+         * @private
+         */
+        _setPagination: function(){
+            var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
+            /**
+             * Set pagination if defined
+             */
+            if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
+                /**
+                 * Applying the pagination
+                 */
+                if( !this._pagination ){
+                    this._pagination = document.createElement('nav');
+                    this._pagination.className = 'ink-navigation';
+                    this._rootElement.parentNode.insertBefore(this._pagination,this._rootElement.nextSibling);
+                    this._pagination.appendChild( document.createElement('ul') ).className = 'pagination';
+                    this._pagination = new Pagination( this._pagination, {
+                        size: Math.ceil(this._totalRows/this._options.pageSize),
+                        onChange: Ink.bind(function( pagingObj ){
+                            this._getData( this._options.endpoint );
+                            // this._paginate( (pagingObj._current+1) );
+                        },this)
+                    }); 
+                }
+            }
+        },
+
+        /**
+         * Method to choose which is the best way to get the data based on the endpoint:
+         *     - AJAX
+         *     - JSONP
+         *
+         * @method _getData
+         * @param  {String} endpoint     Valid endpoint
+         * @param  {Boolean} [firstRequest] If true, will make the request set the headers onSuccess
+         * @private
+         */
+        _getData: function( endpoint ){
+
+            Ink.requireModules(['Ink.Util.Url_1'],Ink.bind(function( InkURL ){
+
+                var
+                    parsedURL = InkURL.parseUrl( endpoint ),
+                    paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
+                    pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1)
+                ;
+
+                if( parsedURL.query ){
+                    parsedURL.query = parsedURL.query.split("&");
+                } else {
+                    parsedURL.query = [];
+                }
+
+                if( !paginated ){            
+                    this._getDataViaAjax( endpoint );
+                } else {
+
+                    parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
+                    parsedURL.query.push( 'page=' + pageNum );
+
+                    var sortStr = '';
+                    for( var index in this._sortableFields ){
+                        if( this._sortableFields[index] !== 'none' ){
+                            parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
+                            parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
+                            break;
+                        }
+                    }
+
+                    this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
+                }
+
+            },this));
+
+        },
+
+        /**
+         * Gets the data via AJAX and triggers the changes in the 
+         * 
+         * @param  {[type]} endpoint     [description]
+         * @param  {[type]} firstRequest [description]
+         * @return {[type]}              [description]
+         */
+        _getDataViaAjax: function( endpoint ){
+
+            var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
+
+            new Ajax( endpoint, {
+                method: 'GET',
+                contentType: 'application/json',
+                sanitizeJSON: true,
+                onSuccess: Ink.bind(function( response ){
+                    if( response.status === 200 ){
+
+                        var jsonResponse = JSON.parse( response.responseText );
+
+                        if( this._headers.length === 0 ){
+                            this._setHeaders( jsonResponse.headers, jsonResponse.rows );
+                            this._setHeadersHandlers();
+                        }
+
+                        this._setData( jsonResponse.rows );
+
+                        if( paginated ){
+                            if( !!this._totalRows && (parseInt(jsonResponse.totalRows,10) !== parseInt(this._totalRows,10)) ){ 
+                                this._totalRows = jsonResponse.totalRows;
+                                this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
+                            } else {
+                                this._totalRows = jsonResponse.totalRows;
+                            }
+                        } else {
+                            if( !!this._totalRows && (jsonResponse.rows.length !== parseInt(this._totalRows,10)) ){ 
+                                this._totalRows = jsonResponse.rows.length;
+                                this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
+                            } else {
+                                this._totalRows = jsonResponse.rows.length;
+                            }
+                        }
+
+                        this._setPagination( );
+                    }
+
+                },this)
             } );
-
         }
     };
 
