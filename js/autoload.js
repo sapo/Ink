@@ -67,16 +67,23 @@
 
     window.siteInkInstances = {};
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1'],function( Selector, Loaded, InkArray, Scroller ){
-        for( var module in autoload ){
-            siteInkInstances[module] = [];
-            (function(mod){
-                Ink.requireModules( ['Ink.UI.' + mod ], function( component ) {
-                    InkArray.each( Selector.select( autoload[mod] ), function( element ){
-                        siteInkInstances[mod].push( new component(element) );
-                    });
-                });
-            })(module);
-        }
-        Scroller.init();
+        Loaded.run(function(){
+            for( var module in autoload ){
+                siteInkInstances[module] = [];
+                (function(mod){
+                    var elements = Selector.select( autoload[mod] );
+                    if( elements.length ){
+                        try{
+                            Ink.requireModules( ['Ink.UI.' + mod ], function( component ) {
+                                InkArray.each(elements, function( element ){
+                                    siteInkInstances[mod].push( new component(element) );
+                                });
+                            });
+                        } catch( e ){}
+                    }
+                })(module);
+            }
+            Scroller.init();
+        })
     });
 })();
