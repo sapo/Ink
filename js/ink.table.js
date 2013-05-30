@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.UI.Pagination_1'], function(Ajax, Aux, Event, Css, Element, Selector, InkArray, Pagination ) {
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Ajax, Aux, Event, Css, Element, Selector, InkArray, InkString ) {
     'use strict';
 
     /**
@@ -21,7 +21,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
      * @uses Ink.Util.Array
      * @uses Ink.UI.Pagination
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {Number}     options.pageSize       Number of rows per page.
      *     @param {String}     options.endpoint       Endpoint to get the records via AJAX
      * @example
@@ -168,6 +168,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
                 /**
                  * Set pagination if defined
+                 * 
                  */
                 if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
                     /**
@@ -181,6 +182,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
                         throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
                     }
+
+                    var Pagination = Ink.getModule('Ink.UI.Pagination',1);
 
                     this._pagination = new Pagination( this._pagination, {
                         size: Math.ceil(this._totalRows/this._options.pageSize),
@@ -229,17 +232,17 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                 for( var prop in this._sortableFields ){
                     if( prop !== ('col_' + index) ){
                         this._sortableFields[prop] = 'none';
-                        this._headers[prop.replace('col_','')].innerHTML = this._headers[prop.replace('col_','')].innerText;
+                        this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
                     }
                 }
 
                 if( this._sortableFields['col_'+index] === 'asc' )
                 {
                     this._sortableFields['col_'+index] = 'desc';
-                    this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-down"></i>';
+                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
                 } else {
                     this._sortableFields['col_'+index] = 'asc';
-                    this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-up"></i>';
+                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
 
                 }
 
@@ -253,17 +256,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
                 if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting && (this._options.allowResetSorting.toString() === 'true')) )
                 {
-                    this._headers[index].innerHTML = this._headers[index].innerText;
+                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML);
                     this._sortableFields['col_'+index] = 'none';
-
-                    // var found = false;
-                    // for(var prop in this._sortableFields ){
-                    //     if( this._sortableFields[prop] === 'asc' || this._sortableFields[prop] === 'desc' ){
-                    //         found = true;
-                    //         this._sort(prop.replace('col_',''));
-                    //         break;
-                    //     }
-                    // }
 
                     // if( !found ){
                         this._data = this._originalData.slice(0);
@@ -273,7 +267,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     for( var prop in this._sortableFields ){
                         if( prop !== ('col_' + index) ){
                             this._sortableFields[prop] = 'none';
-                            this._headers[prop.replace('col_','')].innerHTML = this._headers[prop.replace('col_','')].innerText;
+                            this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
                         }
                     }
 
@@ -283,10 +277,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     {
                         this._data.reverse();
                         this._sortableFields['col_'+index] = 'desc';
-                        this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-down"></i>';
+                        this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
                     } else {
                         this._sortableFields['col_'+index] = 'asc';
-                        this._headers[index].innerHTML = this._headers[index].innerText + '<i class="icon-caret-up"></i>';
+                        this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
 
                     }
                 }
@@ -509,11 +503,13 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     this._pagination.className = 'ink-navigation';
                     this._rootElement.parentNode.insertBefore(this._pagination,this._rootElement.nextSibling);
                     this._pagination.appendChild( document.createElement('ul') ).className = 'pagination';
+
+                    var Pagination = Ink.getModule('Ink.UI.Pagination',1);
+
                     this._pagination = new Pagination( this._pagination, {
                         size: Math.ceil(this._totalRows/this._options.pageSize),
-                        onChange: Ink.bind(function( pagingObj ){
+                        onChange: Ink.bind(function( ){
                             this._getData( this._options.endpoint );
-                            // this._paginate( (pagingObj._current+1) );
                         },this)
                     }); 
                 }
