@@ -19,7 +19,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @uses Ink.Util.Date
      *
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *      @param {String}   [options.instance]         unique id for the datepicker
      *      @param {String}   [options.format]           Date format string
      *      @param {String}   [options.cssClass]         CSS class to be applied to the datepicker
@@ -274,10 +274,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     if ( this._options.position === 'bottom' )
                     {
                         this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                        this._containerObject.style.left = Element.offset2(this._dataField)[0] +'px';
                     }
                     else
                     {
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offsetLeft(this._dataField) +'px';
+                        this._containerObject.style.top = Element.offset2(this._dataField)[1] +'px';
+                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset2(this._dataField)[0] +'px';
                     }
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
