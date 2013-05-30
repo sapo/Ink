@@ -1,0 +1,1372 @@
+// Defines color schemes for ink navigation systems
+.@{navigation-class-name} {
+
+    ul {
+
+        // INK:NAVIGATION:MENU
+        &.menu {
+
+            // default white theme
+            li {
+
+                ul.submenu { 
+
+                    background: @white;
+
+                    li {
+                        a {
+                            border-bottom: 1px solid fade(@black,15%);
+                            padding: @navigation-padding;
+                            
+                            &:hover { background: lighten(@black,90%); }
+
+                            &:last-child a { border: none; }
+                        }
+                    }
+
+                    &.dropdown {
+                        li {
+                            a {
+                                border-bottom: 1px solid fade(@black,15%);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // INK:NAVIGATION:MENU:VERTICAL
+            &.vertical {
+                li {
+                    a {
+                        border-bottom: 1px solid fade(@black,15%);
+                    }
+                    
+                    &:last-child a { 
+                        border: none; 
+                    }
+
+                    .dropdown {
+                        background: none;
+                        
+                        li {
+                            a {
+                                border-bottom: 1px solid fade(@black,15%);
+                            }
+                        }
+                    }
+                    
+                    &:last-child {
+                        .dropdown {
+                            
+                            li:first-child {
+                                a {
+                                    border-top: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }                        
+                    }
+                }
+            }
+
+            // white theme
+            &.white {
+                #ink > #navigation > #gradients > .white;
+                li {
+
+                    ul.submenu { 
+                        
+                        li {
+
+                            a {
+                                color: @text-color;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // grey theme
+            &.grey {
+                #ink > #navigation > #gradients > .grey;
+                li {
+
+                    ul.submenu { 
+                        
+                        li {
+
+                            a {
+                                color: @text-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // black theme
+            &.black {
+                #ink > #navigation > #gradients > .black;
+                li {
+
+                    ul.submenu { 
+                        
+                        li {
+                            a {
+                                &:hover {
+                                    background: lighten(@black,30%);
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // orange theme
+            &.orange {
+                #ink > #navigation > #gradients > .orange;
+
+                
+                li {
+
+                    ul.submenu { 
+                        
+                        li {
+                            a {
+                                &:hover {
+                                    background: darken(desaturate(@orange,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // blue theme
+            &.blue {
+                #ink > #navigation > #gradients > .blue;
+                
+                li {
+                    ul.submenu { 
+                        
+                        li {
+                            a {
+                                &:hover {
+                                    background: darken(desaturate(@blue,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // green theme
+            &.green {
+
+                #ink > #navigation > #gradients > .green;
+                
+                li {
+                    ul.submenu { 
+                        
+                        li {
+                            a {
+                                &:hover {
+                                    background: darken(desaturate(@green,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // red  theme
+            &.red {
+                #ink > #navigation > #gradients > .red;
+                
+                li {
+                    ul.submenu { 
+                        
+                        li {
+                            a {
+                                &:hover {
+                                    background: darken(desaturate(@red,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.grey, &.white {
+                li {
+                    a {
+                        color: @grey-80;
+                    }
+                }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red {
+                li {
+                    a {
+                        color: @white;
+                    }
+                }
+            }
+
+            &.white {
+                li {
+                    &.active {
+                        
+                        background: lighten(@black,85%);
+
+                        &:hover {
+                            a { background: lighten(@black,75%); }
+                        }
+                    }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {                            
+                            background: lighten(@black,85%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.grey {
+                li {
+                    &.active { background: lighten(@black,70%); }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,70%);                                              
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.black {
+                li {
+                    &.active { background: lighten(@black,20%); }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,20%);                                        
+
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: lighten(@black,90%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.orange {
+                li {
+                    &.active { background: darken(@orange,15%); }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@orange,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.blue {
+                li {
+                    &.active { background: darken(@blue,15%); }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@blue,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.green {
+                li {
+                    &.active { background: darken(@green,15%); }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                        background: darken(@green,15%);
+                                                    
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.red {
+                li {
+                    &.active { background: darken(@red,15%); }
+
+                    a {
+                        padding: @navigation-padding;
+                        text-decoration: none;
+
+                        &:hover {
+                        background: darken(@red,15%);
+                            
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.flat {
+                // default white theme
+                background: @white;
+
+                // grey theme
+                &.grey { background: @grey-15; }
+
+                // black theme
+                &.black { 
+                    background: @black; 
+                    li {
+
+                        &.active {
+                            a {
+                                background: lighten(@black,10%);
+                            }
+                        }
+
+                        a {
+                            &:hover {
+                                background: lighten(@black,10%);
+                            }
+                        }
+                        
+                        ul.submenu { 
+                            background: @white;
+                            li {
+                                a {
+                                    color: @text-color;
+                                    border-bottom: 1px solid fade(@black,15%);
+                                    &:hover {
+                                        background: lighten(@black,30%);
+                                        color: @white;
+                                    }
+                                }      
+                                &:last-child a {
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+
+                    &.vertical {
+                        li {
+                            a {
+                                border-bottom: 1px solid lighten(@black,15%);
+                            }
+                        }
+                    }
+                }
+
+                // blue theme
+                &.orange { background: desaturate(@orange,10%); }
+
+                // blue theme
+                &.blue { background: desaturate(@blue,10%); }
+
+                // green theme
+                &.green { background: desaturate(@green,10%); }
+
+                // red theme
+                &.red { background: desaturate(@red,10%); }
+            }
+
+            &.rounded {
+
+                &.horizontal {
+                    #ink > #border-radius > .all (@navigation-border-radius);
+
+                    li {
+
+                        &:first-child {
+
+                            #ink > #border-radius > .left (@navigation-border-radius);
+
+                            a { #ink > #border-radius > .left (@navigation-border-radius); }
+                        }
+
+                        ul {
+
+                            &.submenu {
+
+                                #ink > #border-radius > .bottom (@navigation-border-radius);
+
+                                li {
+
+                                    &:last-child {
+
+                                        #ink > #border-radius > .bottom (@navigation-border-radius);
+                                    }
+
+                                    #ink > #border-radius > .none ();
+
+                                    a {
+
+                                        #ink > #border-radius > .none ();
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+               
+                &.vertical {
+                    #ink > #border-radius > .all (@navigation-border-radius);
+
+                    li {
+                        
+                        &:first-child {
+                            
+                            #ink > #border-radius > .top (@navigation-border-radius);
+
+                            .submenu {
+                                &.dropdown {
+                                    
+                                    #ink > #border-radius > .none ();
+                                
+                                    li {
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                        &:first-child,
+                                        &:last-child {
+                                            #ink > #border-radius > .none ();
+                                            a {
+                                                #ink > #border-radius > .none ();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        &:first-child a {
+                            #ink > #border-radius > .top (@navigation-border-radius);
+                        }
+
+                        &:last-child {
+                            #ink > #border-radius > .bottom (@navigation-border-radius);
+
+                            .submenu {
+                                &.dropdown {
+                                    #ink > #border-radius > .bottom (@navigation-border-radius);
+                                
+                                    li {
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                        &:first-child {
+                                            #ink > #border-radius > .none ();
+                                            a {
+                                                #ink > #border-radius > .none ();
+                                            }
+                                        }
+                                        &:last-child {
+                                            #ink > #border-radius > .bottom (@navigation-border-radius);
+                                            a {
+                                                #ink > #border-radius > .bottom (@navigation-border-radius);
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        }
+
+                        &:last-child a {
+                            #ink > #border-radius > .bottom (@navigation-border-radius);
+                        }
+
+                        .submenu {
+                            
+                            &.dropdown {
+                                
+                                #ink > #border-radius > .none ();
+                            
+                                li {
+                                    #ink > #border-radius > .none ();
+                                    a {
+                                        #ink > #border-radius > .none ();
+                                    }
+                                    &:first-child {
+                                        #ink > #border-radius > .none ();
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                    }
+                                    &:last-child {
+                                        #ink > #border-radius > .none ();
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                    }
+                                }
+                            }
+
+                            #ink > #border-radius > .all (0, @navigation-border-radius, @navigation-border-radius, @navigation-border-radius);
+                            
+                            li {
+                                a {
+                                    #ink > #border-radius > .none ();
+                                }
+                                
+                                &:first-child {
+                                    #ink > #border-radius > .all (0, @navigation-border-radius, 0, 0);
+                                    a {
+                                        #ink > #border-radius > .all (0, @navigation-border-radius, 0, 0);
+                                    }
+                                }
+                                
+                                &:last-child {
+                                    #ink > #border-radius > .bottom (@navigation-border-radius);
+                                    a {
+                                        #ink > #border-radius > .bottom (@navigation-border-radius);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // adds shadows
+            &.shadowed {
+                #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                li {
+                    ul {
+                        &.submenu {
+                            #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                            &.dropdown {
+                                #ink > #shadows > .no-box-shadow ();    
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        
+
+        // INK:NAVIGATION:PAGINATION
+        &.pagination {
+            //defaults
+            li {
+                
+                &.disabled {
+                    a {
+                        color: @grey-30;
+                        #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                }
+                
+                &.active {
+                    a { 
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            // white
+            &.white {
+                li {
+                    #ink > #navigation > #gradients > .white;
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                        }
+                    }
+                    &.active {
+                        a { 
+                            background: fade(@black,30%);
+                            color: @white;
+                        }
+                    }
+                }
+            }
+
+            // grey theme
+            &.grey {
+                li {
+                    #ink > #navigation > #gradients > .grey;
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                        }
+                    }
+                    &.active {
+                        a { 
+                            background: fade(@black,30%);
+                            color: @white;
+                        }
+                    }
+                }
+            }
+
+            // black theme
+            &.black {
+                li {
+                    #ink > #navigation > #gradients > .black;
+
+                    &.disabled {
+                        a {
+                            color: @grey-60; 
+                            #ink > #shadows > .text-shadow (0, -1px, 0, lighten(@black,8%));
+                        }
+                    }
+                    &.active {
+                        a { 
+                            background: fade(@black,50%);
+                        }
+                    }
+                }
+            }
+
+            // orange theme
+            &.orange {
+                li {
+                    #ink > #navigation > #gradients > .orange;
+                    &.disabled {
+                        a {
+                            color: darken(@orange,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
+                        }
+                    }
+                    &.active {
+                        a { background: darken(@orange,15%); }
+                    }
+                }
+            }
+
+            // blue theme
+            &.blue {
+                li {
+                    #ink > #navigation > #gradients > .blue;
+                    &.disabled {
+                        a {
+                            color: darken(@blue,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
+                        }
+                    }
+                    &.active {
+                        a { background: darken(@blue,15%); }
+                    }
+                }
+            }
+
+            // green theme
+            &.green {
+                li {
+                    #ink > #navigation > #gradients > .green;
+                    &.disabled {
+                        a {
+                            color: darken(@green,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
+                        }
+                    }
+                    &.active {
+                        a { background: darken(@green,15%); }
+                    }
+                }
+            }
+
+            // red theme
+            &.red {
+                li {
+                    #ink > #navigation > #gradients > .red;
+                    &.disabled {
+                        a {
+                            color: darken(@red,25%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
+                        }
+                    }
+                    &.active {
+                        a { background: darken(@red,15%); }
+                    }
+                }
+            }
+
+            &.grey, &.white {
+                a { color: @text-color; }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red {
+                a { color: @white; }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red, &.grey, &.white {
+                
+                li {
+                    &:first-child {
+                        a {
+                            padding: @navigation-padding;
+                        }
+                    }
+
+                    a { 
+                        &:hover {
+                            background: fade(@black,25%);
+                            text-decoration: none;
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            &:hover { 
+                                background: fade(@black,0%);
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        a { 
+                            background: fade(@black,20%);
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+
+            // remove gradients
+            &.flat {
+                li {
+
+                    // default white theme
+                    background: @white; 
+
+                }
+
+                // grey theme
+                &.grey { li { background: @grey-15; } }
+
+                // black theme
+                &.black { li { background: @black; } }
+
+                // blue theme
+                &.orange { li { background: desaturate(@orange,10%); } }
+
+                // blue theme
+                &.blue { li { background: desaturate(@blue,10%); } }
+
+                // green theme
+                &.green { li { background: desaturate(@green,10%); } }
+
+                // red theme
+                &.red { li { background: desaturate(@red,10%); } }
+            }
+
+            // add rounded corners
+            &.rounded {
+                li {
+                    &:first-child,
+                    &:first-child a {
+                        #ink > #border-radius > .left (@navigation-border-radius * 2);
+                    }
+                    &:last-child, 
+                    &:last-child a {
+                        #ink > #border-radius > .right (@navigation-border-radius * 2);
+                    }
+                }
+            }
+
+            // add shadow
+            &.shadowed {
+                li {
+                    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                }
+            }
+        }
+        
+
+        // INK:NAVIGATION:BREADCRUMBS
+        &.breadcrumbs {
+
+            // defaults
+            
+            li {
+                &.active {
+                    a { 
+                        background: none;
+                        color: @grey-40; 
+                        &:hover {
+                            cursor: default;
+                            text-decoration: none;
+                        }
+                    }
+                }
+                a {
+                    &:hover {
+                        background: none;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            // white theme
+            &.white {
+                #ink > #navigation > #gradients > .white;
+                li {
+                    &:after {
+                        color: @text-color;
+                    }
+                }
+                li.active a { 
+                    color: @grey-40;
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                }
+            }
+
+            // grey theme
+            &.grey {
+                #ink > #navigation > #gradients > .grey;
+                li {
+                    &:after {
+                        color: @text-color;
+                    }
+                }
+                li.active a { 
+                    color: @grey-40;
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                }
+            }
+
+            // black theme
+            &.black {
+                 #ink > #navigation > #gradients > .black;
+                 li.active a { 
+                    color: @grey-60; 
+                    #ink > #shadows > .text-shadow (0, -1px, 0, lighten(@black,8%));
+                }
+            }
+
+            // orange them
+            &.orange {
+                #ink > #navigation > #gradients > .orange;
+                li.active a { 
+                    color: darken(@orange,20%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
+                }
+            }
+
+            // blue theme
+            &.blue {
+                #ink > #navigation > #gradients > .blue;
+                li.active a { 
+                    color: darken(@blue,20%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
+                }
+            }
+
+            // green theme
+            &.green {
+                #ink > #navigation > #gradients > .green;
+                li.active a { 
+                    color: darken(@green,20%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
+                }
+            }
+
+            // red theme
+            &.red {
+                #ink > #navigation > #gradients > .red;
+                li.active a { 
+                    color: darken(@red,25%); 
+                    #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
+                }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red, &.grey, &.white {
+                
+                li {
+                    &:first-child {
+                        a {
+                            padding-left: 1.2em;
+                        }
+                    }
+                }
+            }
+
+            &.black, &.orange, &.blue, &.green, &.red {
+                li:after { color: @white; }
+                li a { color: @white; }
+            }
+
+            // remove gradients
+            &.flat {
+                // default white theme
+                background: @white;
+
+                // grey theme
+                &.grey { background: @grey-15; }
+
+                // black theme
+                &.black { background: @black; }
+
+                // blue theme
+                &.orange { background: desaturate(@orange,10%); }
+
+                // blue theme
+                &.blue { background: desaturate(@blue,10%); }
+
+                // green theme
+                &.green { background: desaturate(@green,10%); }
+
+                // red theme
+                &.red { background: desaturate(@red,10%); }
+            }
+
+            // add rounded corners
+            &.rounded {
+                #ink > #border-radius > .all (@navigation-border-radius * 2);
+            }
+
+            // add shadow
+            &.shadowed {
+                #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+            }
+        }
+        
+        
+        // INK:NAVIGATION:PILLS
+        &.pills {
+
+            // defaults
+            li {
+
+                #ink > #navigation > #gradients > .white;
+
+                a {
+                    color: @text-color;
+                    background: none;
+                    
+                    &:hover {
+                        background: none;
+                    }
+
+                }
+
+                &:hover {
+                        background: @grey-15;
+                    } 
+
+                &.active {
+                    #ink > #gradients > .gradient (lighten(@black,90%), lighten(@black,75%), 150%);
+                    a { 
+                        color: @black; 
+                        background: none; 
+                    }
+                    &:hover {
+                        background: @grey-30;
+                    } 
+                }
+
+
+
+                &.disabled {
+                            #ink > #navigation > #gradients > .white;
+                    a {
+                        color: lighten(@text-color,50%);
+                        text-shadow: 0 1px 0 lighten(@text-color,90%);
+                        &:hover {
+                            cursor: default;                           
+                        }
+                    }
+                }
+
+            }
+
+            &.green, &.red, &.blue, &.orange, &.black {
+                li {
+                    
+                        a {                            
+                            color: @white;
+                        }
+                    
+                    
+                }
+            }
+
+
+
+            // grey theme
+            &.grey {
+                li {
+                    #ink > #navigation > #gradients > .grey;
+                    &:hover {
+                        background: darken(@grey-20,15%);                        
+                    }
+                    &.active {
+                        background: darken(@grey-20,20%);                        
+                        &:hover {                            
+                            background: darken(@grey-20,30%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .grey;
+                        a {
+                            color: @grey-40;
+                        }
+                    }                    
+                }
+            }
+
+            &.black {
+
+                li {
+                    #ink > #navigation > #gradients > .black;
+
+                    &:hover {
+                        background: lighten(@black,25%);                        
+                    }
+
+                    &.active {
+                        background: lighten(@black,25%);                        
+                        &:hover {                            
+                            background: lighten(@black,35%);                        
+                        }
+                    }
+
+                    &.disabled {
+                        #ink > #navigation > #gradients > .black;
+                        a {
+                            color: @grey-70;
+                            text-shadow: 0 1px 0 lighten(@black,40%);
+                        }
+                    }
+                }
+            }
+
+            &.orange {
+                li {
+                    #ink > #navigation > #gradients > .orange;
+                    &:hover {
+                        background: darken(@orange,15%);                        
+                    }
+                    &.active {
+                        background: darken(@orange,15%);                        
+                        &:hover {                            
+                            background: darken(@orange,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .orange;
+                        a {
+                            color: darken(@orange,20%);
+                            text-shadow: 0 1px 0 lighten(@orange,20%);
+                        }
+                    }
+                }
+            }
+
+            &.blue {
+                li {
+                    #ink > #navigation > #gradients > .blue;
+                    &:hover {
+                        background: darken(@blue,15%);                        
+                    }
+                    &.active {
+                        background: darken(@blue,15%);                        
+                        &:hover {                            
+                            background: darken(@blue,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .blue;
+                        a {
+                            color: darken(@blue,20%);
+                            text-shadow: 0 1px 0 lighten(@blue,20%);
+                        }
+                    }
+                }
+            }
+
+            &.green {
+                li {
+                    #ink > #navigation > #gradients > .green;
+                    &:hover {
+                        background: darken(@green,15%);                        
+                    }
+                    &.active {
+                        background: darken(@green,15%);                        
+                        &:hover {                            
+                            background: darken(@green,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .green;
+                        a {
+                            color: darken(@green,15%);
+                            text-shadow: 0 1px 0 lighten(@green,5%);
+                        }
+                    }
+                }
+            }
+
+            &.red {
+                li {
+                    #ink > #navigation > #gradients > .red;
+                    &:hover {
+                        background: darken(@red,15%);                        
+                    }
+                    &.active {
+                        background: darken(@red,15%);                        
+                        &:hover {                            
+                            background: darken(@red,25%);                        
+                        }
+                    }
+                    &.disabled {
+                        #ink > #navigation > #gradients > .red;
+                        a {
+                            color: darken(@red,20%);
+                            text-shadow: 0 1px 0 lighten(@red,10%);
+                        }
+                    }
+                }
+            }
+
+            // &.orange, &.blue, &.green, &.red {
+            //     li {
+            //         &:hover, &.active {
+            //             color: @white;
+            //         }
+            //     }    
+            // }            
+
+            // use solid color backgrounds
+            &.flat {
+
+                // default white theme
+                li { 
+                    background: @white;
+                    &.active, &:hover {
+                        background: @black;
+                    }
+                }
+
+                // grey theme
+                &.grey { 
+                    li {
+                        &.active, &:hover {
+                            background: @grey-15;
+                        }
+                    } 
+                }
+
+                // black theme
+                &.black { 
+                    li {
+                        &.active, &:hover {
+                            background: @black;
+                        }
+                    } 
+                }
+
+                // blue theme
+                &.orange { 
+                    li {
+                        &.active, &:hover {
+                            background: desaturate(@orange,10%);
+                        }
+                    } 
+                }
+
+                // blue theme
+                &.blue { 
+                    li {
+                        &.active, &:hover {
+                            background: desaturate(@blue,10%);
+                        }
+                    } 
+                }
+
+                // green theme
+                &.green { 
+                    li {
+                        &.active, &:hover {
+                            background: desaturate(@green,10%);
+                        }
+                    } 
+                }
+
+                // red theme
+                &.red { 
+                    li {
+                        &.active, &:hover {
+                            background: desaturate(@red,10%);
+                        }
+                    } 
+                }
+            }
+
+            // add rounded corners
+            &.rounded {
+                li {
+                    #ink > #border-radius > .all (@navigation-border-radius * 2);
+                    a {
+                        #ink > #border-radius > .all (@navigation-border-radius * 2);
+                    }
+                }
+            }
+
+            // add shadows
+            &.shadowed {
+                li {
+                    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+// utilities.less
+@layer-0: 0;
+@layer-10: 10;
+@layer-20: 20;
+@layer-30: 30;
+@layer-40: 40;
+@layer-50: 50;
+@layer-60: 60;
+@layer-70: 70;
+@layer-80: 80;
+@layer-90: 90;
+@layer-100: 100;
+
+.push-left  { float: left !important; }
+.push-right { float: right !important; }
+.push-center {
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.clearfix   { #ink > #utils > .clearfix (); }
+.no-margin  { margin: 0 !important; }
+
+.screen-size-helper {
+    height:2.5em;
+    line-height:1.6em;
+    font-size:1em;
+    padding:0.5333333333333333em 0.8em;
+    background:rgba(0,0,0,0.85);
+    z-index: @layer-100;
+    
+    .title {
+        color:white;
+        text-shadow:0 1px 0 #000000;
+        font-size:inherit;
+        line-height:inherit;
+        float:left;
+        text-transform:uppercase;
+        font-weight:500;
+    }
+
+    ul {
+        color:white;
+        text-shadow:0 1px 0 #000000;
+        float:right;
+        margin:0;
+        padding:0;
+        line-height:inherit !important;
+        
+        li {
+            padding:0;
+            margin:0;
+            text-transform:uppercase;
+            font-weight:bold;
+            font-size:inherit !important;
+
+            &.small  { color:@green; }
+            &.medium { color:@orange; }
+            &.large  { color:@red; }
+        }
+    }
+}

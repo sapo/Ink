@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.js"></script>
+    <script type="text/javascript" src="../js/ink.spy.js"></script>
+    <script type="text/javascript" src="../js/ink.pagination.js"></script>
+    <script type="text/javascript" src="../js/ink.modal.js"></script>
+    <script type="text/javascript" src="../js/ink.sticky.js"></script>
+    <script type="text/javascript" src="../js/ink.toggle.js"></script>
+    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
+    <script type="text/javascript" src="../js/ink.tabs.js"></script>
+    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
+    <script type="text/javascript" src="../js/ink.treeview.js"></script>
+    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
+    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
+    <script type="text/javascript" src="../js/ink.table.js"></script>
+    <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
+    <script type="text/javascript" src="../js/ink.smoothscroller.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/site.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting-started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Ink JS Core</h1>
+        <p>The engine that drives the machine.</p>
+    </div>
+    
+    <div class="column-group gutters">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="core_menu">
+                <ul class="menu vertical black rounded">
+                                        <li><a class="scrollableLink" href="./js-core.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-sapo">SAPO</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-dom">Dom</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-communication">Communication</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-utility">Utility</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-effects">Effects</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-component">Component</a></li>
+                                        
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="large-80 medium-75 small-100">
+            
+            <section>
+                <p>
+                    Ink was built from the ground up to be easy to use and easy on the eyes, 
+                    but some of the bricks were borrowed from one of our other premiere web frameworks, 
+                    LibSAPO.js. Listed here are a few key classes and methods that you can take advantage of when building your applications.
+                </p>
+
+                <p>When including the <a href="http://js.sapo.pt/Bundles/Ink-v1.js">Ink.js</a> script you are including several classes from LibSAPO.js, namely:</p>
+                
+                <ul>
+                    <li><a href="http://js.sapo.pt/SAPO/doc.html">SAPO</a></li>
+                    <li>
+                        <a href="http://js.sapo.pt/SAPO/Dom/Css/doc.html">SAPO.Dom.Css</a>,
+                        <a href="http://js.sapo.pt/SAPO/Dom/Element/doc.html">SAPO.Dom.Element</a>,
+                        <a href="http://js.sapo.pt/SAPO/Dom/Event/doc.html">SAPO.Dom.Event</a>,
+                        <a href="http://js.sapo.pt/SAPO/Dom/Loaded/doc.html">SAPO.Dom.Loaded</a>,
+                        <a href="http://js.sapo.pt/SAPO/Dom/Selector/doc.html">SAPO.Dom.Selector</a>
+                    </li>
+                    <li>
+                        <a href="http://js.sapo.pt/SAPO/Utility/Array/doc.html">SAPO.Utility.Array</a>,
+                        <a href="http://js.sapo.pt/SAPO/Utility/Validator/doc.html">SAPO.Utility.Validator</a>,
+                        <a href="http://js.sapo.pt/SAPO/Utility/Swipe/doc.html">SAPO.Utility.Swipe</a>,
+                        <a href="http://js.sapo.pt/SAPO/Utility/Url/doc.html">SAPO.Utility.Url</a>
+                    </li>
+                    <li><a href="http://js.sapo.pt/SAPO/Communication/Ajax/doc.html">SAPO.Communication.Ajax</a></li>
+                </ul>
+            </section>
+
+            <section id="nav-sapo" data-spy="true" data-target="#core_menu">
+                <h2>SAPO</h2>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/doc.html">API Link</a></p>
+                <p>This is the core object which all other classes from LibSAPO.js will be placed.</p>
+                <h3>require</h3>
+                <p>
+                    Load only the JavaScript that you need when you want. 
+                    You can mix and match any JavaScript available on the web, but be careful, and learn from Dr. Frankenstein's mistake, 
+                    lest you create a monster!
+                </p>
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    SAPO.require(
+        // Load some LibSAPO.js utility classes.
+        [
+            'http://js.sapo.pt/SAPO/Utility/String/0.1/',
+            'http://js.sapo.pt/SAPO/Utility/Cache/0.1/'
+        ],
+
+        // This function is executed after the code has been loaded
+        function(){
+            // Do cool stuffs here.
+        }
+    );
+&lt;/script&gt;</pre>
+
+                <h3>Browser</h3>
+                <p>
+                    Is the user on Internet Explorer? What version? What model? 
+                    Browser detection should be used sparingly, but when you need it, we've got you covered.
+                </p>
+
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    // Is the user on IE?
+    if(SAPO.Browser.IE){
+        // If so, do strange stuffs here.
+    }
+&lt;/script&gt;</pre>
+
+                <h3>namespace</h3>
+                <p>
+                    Sometimes it's convenient to extend the framework to fit your needs, 
+                    maybe you want to add a new component, or maybe you want to create a new collection of classes. 
+                    SAPO.namespace will return the object you asked for or create a new one if none was found.
+                </p>
+
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    // Create namespace if it does not exist.
+    SAPO.namespace('Component');
+
+    // Let's add something new to our namespace.
+    SAPO.Component.SUIT = function(friendName){
+        this.friend = friendName;
+    };
+
+    SAPO.Component.SUIT.prototype.up = function(){
+        setTimeout(console.log.bindObj(console, 'dary!'), 500);
+
+        console.log(this.friend + ", it\'s going to be Legen... wait for it...");
+    }
+
+    var theSuit = new SAPO.Component.SUIT('Ted');
+&lt;/script&gt;</pre>
+                
+                <h3>bindObj and bindObjEvent</h3>
+                <p>Binding functions is an important concept of JavaScript but not all browsers support it out of the box, but don't worry, LibSAPO.js gives you the tools you need to get the job done.</p>
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    SAPO.Dom.Event.observe(document.body, 'load', function(e){
+        // Do some awesome event stuffs here.
+    }.bindObjEvent(theSuit));
+
+    setTimeout(function(){
+        // Do some interesting async stuffs here.
+    }.bindObj(theSuit), 500);
+&lt;/script&gt;</pre>
+                
+            </section>
+
+            <section id="nav-dom" data-spy="true" data-target="#core_menu">
+                <h2>Dom</h2>
+                <p>The DOM is a mess, you know it and we do too, that's why we've added specialized Dom methods to LibSAPO.js, it makes your life easier and that makes us happy.</p>
+                <h3>Css</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Dom/Css/doc.html">API Link</a></p>
+                <p>Give your document some style with our Css class.</p>
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Css/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    if(!SAPO.Dom.Css.hasClassName(myElement, 'selected')){
+        SAPO.Dom.Css.addClassName(myElement, 'selected');
+    }
+
+    if(SAPO.Dom.Css.hasClassName(myElement, 'aria-hidden')){
+        SAPO.Dom.Css.removeClassName(myElement, 'aria-hidden');
+    }
+
+    SAPO.Dom.Css.setStyle(myElement, {"margin": 'auto'});
+&lt;/script&gt;</pre>
+
+                <h3>Element</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Dom/Element/doc.html">API Link</a></p>
+                <p>Not all browsers were created equal, and the DOM is where it shows the most. Get the document just the way you want it with Element.</p>
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Element/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    var divalicious = SAPO.Dom.Element.create('div', {
+        className: 'some-class',
+        innerHTML: '&lt;a href="http://www.sapo.pt"&gt;SAPO&lt;/a&gt;'
+    });
+
+    SAPO.Dom.Element.insertAfter(divalicious, myElement);
+&lt;/script&gt;</pre>
+
+                <h3>Event</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Dom/Event/doc.html">API Link</a></p>
+                <p>Events are easy with LibSAPO.js, whether you're catching clicks or sniffing keys, get your events under control with LibSAPO.js.</p>
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Event/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    SAPO.Dom.Event.observe(myElement, 'click', function(e){
+        var target = SAPO.Dom.Event.element(e);
+
+        SAPO.Dom.Event.stop(e);
+
+        console.log('The element we clicked was: ', target);
+    }.bindObjEvent(thSuit));
+&lt;/script&gt;</pre>
+                
+                <h3>Selector</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Dom/Selector/doc.html">API Link</a></p>
+                <p>If you've ever worked with CSS then you know how to use our Selector engine, we've enlisted the help of Sizzle to bring you a simple and fast way to get the elements you need.</p>
+
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Selector/1.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    var elements = SAPO.Dom.Selector.select('p.my_class_name');
+    var filteredElements = SAPO.Dom.Selector.match('p &gt; ul', elements);
+&lt;/script&gt;</pre>
+
+                
+                <h3>Loaded</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Dom/Loaded/doc.html">API Link</a></p>
+                <p>Whether you're executing code when the document is ready or loaded we've got the tools you need to get your code running when you want.</p>
+
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Dom/Loaded/1.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    SAPO.Dom.Loaded.run(function(){
+        // Your document is now ready for awesome
+    }.bindObj(theSuit));
+&lt;/script&gt;</pre>
+
+            </section>
+
+            <section id="nav-communication" data-spy="true" data-target="#core_menu">
+                <h2>Communication</h2>
+                <p>LibSAPO.js offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX, JsonP and Syndication will get you up and running in no time.</p>
+                
+                <h3>Ajax</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Communication/Ajax/doc.html">API Link</a></p>
+                <p>The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
+
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Communication/Ajax/2.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    new SAPO.Communication.Ajax(
+        '/post/data',
+
+        // Configure the request.
+        {
+            // Pass some data to the query portion of the url
+            parameters: {
+                a: 'potato'
+            },
+
+            onSuccess: function(responseObject, responseData){
+                // handle the success like a boss
+            },
+
+            onFailure: function(responseObject, responseData){
+                // handle the failure gracefully
+            }
+        }
+    );
+&lt;/script&gt;</pre>
+                
+                <h3>JsonP</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Communication/JsonP/doc.html">API Link</a></p>
+                <p>
+                    Break out of your local domain chains and enjoy the freedom of cross domain requests, 
+                    JsonP give you the tools you need to start getting data from any source you want.
+                </p>
+
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Communication/JsonP/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    new SAPO.Communication.JsonP(
+        'http://sub.local-domain.com/get/data',
+
+        // Configure the request.
+        {
+            // Pass some data to the query portion of the url
+            params: {
+                a: 'potato'
+            },
+
+            onComplete: function(responseObject, responseData){
+                // handle the completion like a boss
+            },
+
+            onFailure: function(responseObject, responseData){
+                // handle the failure gracefully
+            }
+        }
+    );
+&lt;/script&gt;</pre>
+                
+                <h3>Syndication</h3>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Communication/Syndication/doc.html">API Link</a></p>
+                <p>There are plenty of ways to do cross domain requests, and we do them all right, Syndication is another prime example of that fact.</p>
+                <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="http://js.sapo.pt/SAPO/Communication/Syndication/0.1/"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    new SAPO.Communication.Syndication(
+        'http://www.cross-domain.com/get/data',
+
+        // Configure the request.
+        {
+            onComplete: function(responseObject, responseData){
+                // handle the completion like a boss
+            },
+
+            onTimeout: function(responseObject, responseData){
+                // handle the timeout like a sir
+            }
+        }
+    );
+&lt;/script&gt;</pre>
+                
+            </section>
+
+            <section id="nav-utility" data-spy="true" data-target="#core_menu">
+                <h2>Utility</h2>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Utility/doc.html">API Link</a></p>
+                <p>Even certain bat suit wearing ninjas need to use utilities every one in a while, and what are JavaScript developers if not ninjas without the bat suit? LibSAPO.js offers those who possess the script-fu ways to take their skills to the next level.</p>
+            </section>
+
+            <section id="nav-effects" data-spy="true" data-target="#core_menu">
+                <h2>Effects</h2>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Effects/doc.html">API Link</a></p>
+                <p>We can't all be magicians, but anyone can use Effects to bring a web page to life. Fades and tweens, we've got it all. Why not give it a whirl?</p>
+            </section>
+
+            <section id="nav-component" data-spy="true" data-target="#core_menu">
+                <h2>Component</h2>
+                <p class="note"><a href="http://js.sapo.pt/SAPO/Component/doc.html">API Link</a></p>
+                <p>Need a styled select input? How about autocomplete text fields? Does uploading files with AJAX give you nightmares? Contrary to what a certain Jedi Master may tell you LibSAPO.js does have many of the UI components you are looking for.</p>
+            </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pedrocs">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+                    <p class="vspace"><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+               
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                 <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="https://github.com/scottjehl/Respond">respond.js</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+       <!--  <div class="large-25 medium-30 small-100">
+            <ul class="sociallinks unstyled inline column-right vspace">
+                <li><strong>Follow Ink:</strong></li>
+                <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
+                <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
+            </ul>
+        </div> -->
+    </div>
+</footer>
+    <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->
+        </body>
+</html>

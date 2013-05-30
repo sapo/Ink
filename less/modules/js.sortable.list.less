@@ -1,0 +1,25 @@
+.ink-sortable-list {
+    
+    li {
+        margin:0;
+        border-bottom:1px solid #ccc;
+        line-height: @sortable-list-height;
+        cursor:move;
+
+        &.drag {
+            #ink > #shadows > .box-shadow (0, 0px, 10px, 0, rgba( 0, 0, 0, 0.3));
+        }
+
+        &:first-child {
+            border-top:1px solid #ccc;
+        }
+        
+        &:hover {
+            background:rgba(204,204,204,0.2);
+        }
+        
+        .ink-label {
+            margin:0 .8em;
+        }
+    }
+}

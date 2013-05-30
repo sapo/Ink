@@ -1,0 +1,72 @@
+.@{navigation-class-name} {
+	
+	ul {
+
+		&.pagination {
+
+			li {
+				line-height: @navigation-line-height;
+				float: left;
+
+
+				a {
+					padding: @navigation-padding;
+					display: block;
+					float: left;
+				}
+
+				&:first-child {
+					a {
+						padding: @navigation-v-padding @navigation-h-padding @navigation-v-padding 0;
+					}
+				}
+
+				&:last-child {
+					a {
+						border: none;
+					}
+				}
+
+				&.disabled {
+					a {
+						&:hover {
+							cursor: default;
+							text-decoration: none;					
+						}
+					}
+				}
+			}
+
+			&:after {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+                zoom: 1;
+            }
+		}
+	}
+}
+
+@media screen and (max-width: 650px) {
+
+	html body .ink-navigation {
+		
+		.pagination {
+		
+			li {
+			
+				a {
+					display:none
+				}
+				
+				&:first-child, &:last-child {
+					a {
+						display:block;
+					}
+				}
+			}
+		}
+	}
+}

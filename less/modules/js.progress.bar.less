@@ -1,0 +1,54 @@
+/* Progess bars */
+.ink-progress-bar {
+    margin-bottom: 1em;
+    overflow: hidden;
+    background: @progress-bar-bg;
+    position: relative;
+    #ink > #border-radius > .all (@border-radius);  
+    #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba( 0, 0, 0, 0.2), inset);
+
+    .caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        line-height: 1.7;
+        text-align: center;
+        color: @progress-bar-color;
+        font-size: @progress-bar-fontSize;
+        z-index: @layer-10;
+    }
+    
+    .bar {
+        height: 1.3em;
+        #ink > #shadows > .text-shadow (0, 1px, 0, rgba(0, 0, 0, 0.25));
+        #ink > #shadows > .box-shadow (0, 1px, 1px, 0, rgba(0, 0, 0, 0.1), inset);
+        #ink > #effects > .transition ("width", 0.6s, "ease");
+
+        &.grey {
+            #ink > #shadows > .text-shadow (0, -1px, 0, rgba(255, 255, 255, 0.25));
+            #ink > #gradients > .gradient (@grey-10, @grey-20, 150%);
+        }
+        
+        &.green {
+            #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); 
+        }
+        
+        &.blue {
+            #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%);                
+        }
+        
+        &.red {
+            #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%);                
+        }
+        
+        &.orange {
+            #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%);
+        }
+        
+        &.black {
+            #ink > #gradients > .gradient (lighten(@black,30%), @black, 150%);
+        }
+    }
+}

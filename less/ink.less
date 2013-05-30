@@ -1,23 +1,77 @@
-@import "normalize.less";
-@import "conf.less";
-@import "mixins.less";
-@import "grid.less";
-@import "large.less";
-@import "medium.less";
-@import "small.less";
-@import "nav.less";
-@import "nav-themes.less";
-@import "nav-pills.less";
-@import "nav-breadcrumbs.less";
-@import "nav-pagination.less";
-@import "nav-menu.less";
-@import "typo.less";
-@import "common.less";
-@import "alerts.less";
-@import "buttons.less";
-@import "icons.less";
-@import "forms.less";
-@import "tables.less";
-@import "widgets.less";
-@import "webfont.less";
-@import "footer.less";
+// ink.less
+
+// imports the config files
+// config file names start with __ (double underscore) and are located in the config directory.
+@import "./config/__grid.less";
+@import "./config/__colors.less";
+@import "./config/__typography.less";
+@import "./config/__navigation.less";
+@import "./config/__forms.less";
+@import "./config/__alerts.less";
+@import "./config/__labels.less";
+@import "./config/__tables.less";
+@import "./config/__widgets.less";
+@import "./config/__footer.less";
+
+// the mixins file
+// this file contains all the {LESS} functions (mixins) that are used within INK to make things a little easier
+@import "./modules/mixins.less";
+
+// the CSS reset file. 
+// thanks to Nicolas Gallagher and Jonathan Neal for normalize.css (http://necolas.github.com/normalize.css/)
+@import "./modules/reset.less";
+
+// import the webfont stuff
+@import "./modules/fonts.less";
+
+// the grid
+@import "./modules/grid.less";
+
+// typography
+@import "./modules/typography.less";
+
+// labels
+@import "./modules/labels.less";
+
+// footer
+@import "./modules/footer.less";
+
+// FontAwsome icons
+// thanks to Dave Gandy - http://fortawesome.github.com/Font-Awesome)
+@import "./modules/icons.less";
+
+// navigation
+@import "./modules/navigation.less";
+@import "./modules/navigation.menu.less"; // menus
+@import "./modules/navigation.breadcrumbs.less"; // breadcrumbs  
+@import "./modules/navigation.pagination.less"; // pagination
+@import "./modules/navigation.pills.less"; // pills ( )
+@import "./modules/navigation.themes.less"; // navigation color schemes (themes)
+@import "./modules/navigation.dropdown.less"; // navigation color schemes (themes)  
+
+// forms
+@import "./modules/forms.less";
+
+// alerts
+@import "./modules/alerts.less";
+
+// buttons
+@import "./modules/buttons.less";
+
+// tables
+@import "./modules/tables.less";
+
+// widgets
+@import "./modules/js.gallery.less";
+@import "./modules/js.datepicker.less";
+@import "./modules/js.modal.window.less";
+@import "./modules/js.progress.bar.less";
+@import "./modules/js.tabs.less";
+@import "./modules/js.sortable.list.less";
+@import "./modules/js.treeview.less";
+
+// images
+@import "./modules/images.less";
+
+// utilities
+@import "./modules/utilities.less";

@@ -1,0 +1,215 @@
+.ink-dropdown {
+
+    position: relative;
+    display: inline-block;
+    
+    ul.dropdown-menu {
+
+        position: absolute;
+        background: @white;
+        z-index: @layer-30;
+        border: 1px solid @grey-15;
+        height: auto;
+        width: auto;
+        min-width: 10em;
+        #ink > #border-radius > .all (5px);
+        #ink > #shadows > .box-shadow (0,0,1px,0,rgba(100,100,100,0.3));
+        padding: 0.3em 0;
+        display: none;
+        margin-left: 0px;
+        padding: 0.35em 0;   
+        font-size: 0.85em;
+
+        li {
+            
+            #ink > #shadows > .no-box-shadow ();
+            #ink > #border-radius > .none ();
+            width: auto;
+            height: auto;
+            min-height: auto;
+            display: list-item;
+            float: none;
+            margin: 0;
+            text-align: left;
+            text-transform: none;                    
+            padding: 0;
+            position: relative;
+            list-style-type: none;
+
+            &.separator-above {
+                padding-top: 0.35em;
+                margin-top: 0.35em;
+                border-top: 1px solid @grey-15;
+            }
+
+            &.separator-below {
+                padding-bottom: 0.35em;
+                margin-bottom: 0.35em;
+                border-bottom: 1px solid @grey-15;
+                
+            }
+
+            &.heading {
+                font-weight: 700;
+                padding-bottom: 0.35em;
+                margin-bottom: 0.35em;
+                padding: 0.5em 0.8em;
+                color: @grey-80;
+            }
+
+            a {
+                color: #444;
+                padding: 0.5em 0.8em;
+                display: block;
+                clear: both;
+
+                &:hover {
+                    background: @grey-5;
+                    text-decoration: none;
+                }
+            }
+
+            &.active {
+                a {
+                    background: @grey-40;
+                    color: @white;
+                }
+            }
+
+            &.disabled {
+                a {
+                    color: @grey-30;
+                    &:hover {
+                        background: transparent;
+                        cursor: default;
+
+                    }
+                }
+            }
+
+            &.submenu {
+
+                overflow: visible;
+
+                > a {
+
+                    white-space: nowrap;
+
+                    &:after {
+                        content: "\f0da";
+                        float: right;
+                        width: auto;
+                        margin-left: 0.8em;
+                        font-family: FontAwesome;
+                        color: @grey-30;
+                        clear: both;
+                        text-align: right;
+                    }
+                }
+
+                &:hover {
+
+                    > a {
+                            background: @grey-5;
+                            text-decoration: none;
+                        
+                    }
+
+                    &:hover {
+                        > ul.dropdown-menu {
+                            display: block;
+                        }
+                    }
+
+                }
+
+                > ul.dropdown-menu {
+                    font-size: inherit;
+                    position: absolute;
+                    top: -0.36em;
+                    left: 100%;
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.red {
+
+        ul.dropdown-menu {
+
+            li {
+                &.active {
+                    a {
+                        background: @red;
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }
+
+    &.orange {
+
+        ul.dropdown-menu {
+
+            li {
+                &.active {
+                    a {
+                        background: @orange;
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }
+
+    &.green {
+
+        ul.dropdown-menu {
+
+            li {
+                &.active {
+                    a {
+                        background: @green;
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }
+
+    &.blue {
+
+        ul.dropdown-menu {
+
+            li {
+                &.active {
+                    a {
+                        background: @blue;
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }
+
+    &.black {
+
+        ul.dropdown-menu {
+
+            li {
+                &.active {
+                    a {
+                        background: @black;
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }   
+}
+
+
+
+

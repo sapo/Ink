@@ -1,0 +1,117 @@
+.@{navigation-class-name} {
+
+    ul {
+
+        *height: 100%;
+
+        &.menu {
+     
+            li {
+                *height: 100%;
+             
+                a { 
+                    #ink > #effects > .transition ('background',100ms);
+                }
+
+                &:hover {
+
+                    ul.submenu {
+                        display: block;
+                    }
+
+                }
+
+                ul.submenu {
+
+                    display: none;
+                    position: absolute;
+                    z-index: @layer-10;
+
+                    li {
+
+                        overflow: hidden;
+
+                        a {
+                            display: block;
+                            float: none;
+                        }
+                    }
+                }
+            }
+
+            #ink > #utils > .clearfix ();
+
+            // horizontal menus
+            &.horizontal {
+
+                li {
+
+                    float: left;
+                    line-height: @navigation-line-height;
+                    position: relative;
+
+                    a {
+                        //float: left;
+                        padding: @navigation-v-padding @navigation-h-padding @navigation-v-padding 0;
+                        display: inline-block;
+                    }
+
+                    .control {
+                        //line-height: @navigation-line-height * 1.45;
+                        margin-top: .3em;
+                    }
+                    
+                    ul {
+
+                        &.submenu {
+
+                            width: 8em;
+                            top: (@navigation-line-height + (@navigation-v-padding * 2));
+                            left: 0;
+                            z-index: @layer-50;
+
+                            li {
+                                float: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            // vertical menus
+            &.vertical {
+
+                li {
+                    line-height: @navigation-line-height;
+                    position: relative;
+
+                    a {
+                        padding: @navigation-padding;
+                        display: block;
+                    }
+
+                    ul {
+                        &.submenu {
+                            top: 0;
+                            left:100%;
+                            min-width: 8em;
+                        
+                            li {
+                                line-height: @navigation-line-height;
+                                float: none;
+                                position: static;
+                            }
+
+                            &.dropdown {
+                                position: relative;
+                                top: auto;
+                                left: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

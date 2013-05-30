@@ -1,0 +1,110 @@
+.sapo_component_datepicker {
+    #ink > #border-radius > .all (@border-radius);
+    text-align: center;
+    padding: 5px;
+    font-size: @datepicker-fontSize;
+    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
+    background: @datepicker-bgColor;
+    position: absolute;
+    display: none;
+    z-index:1
+
+    a {
+        text-decoration: none;
+    }
+    
+    li {
+        list-style: none inside;
+    }
+
+}
+
+.sapo_cal_top_options {
+    padding: 5px; 
+    font-size: .813em;
+    cursor: pointer;
+    
+    .clean { float:left; }
+    .close { float:right; }
+}
+    
+.sapo_cal_top {
+    line-height: 2em;
+    background: @datepicker-header-bg;
+    #ink > #border-radius > .all (@border-radius);
+
+    div { float:left; }
+
+    .sapo_cal_prev,
+    .sapo_cal_next {
+        width: 10%
+    }
+
+    .sapo_cal_month_desc {
+        width: 80%
+    }
+}   
+
+.sapo_cal_month,
+.sapo_cal_year_selector,
+.sapo_cal_month_selector {
+    margin-top: .5em;
+    padding-left: 0;
+
+    li {
+        a {
+            margin: 0px;
+            line-height: 2em;
+            vertical-align: middle;
+            display: block;
+            #ink > #border-radius > .all (@border-radius);
+            color: @datepicker-cell-color;
+
+            &:hover { background: @datepicker-cellHover; }
+
+            &.sapo_cal_on, 
+            &.sapo_cal_on:hover {
+                background: @datepicker-active-bg;
+                color: @datepicker-active-color;
+            }
+        } 
+    }
+
+    ul {
+        clear: both; 
+        padding-left:0;
+
+        li {
+            width: 2.4em; 
+            float: left; 
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+.sapo_cal_year_selector ul li { width: 4em; }
+.sapo_cal_month_selector ul li { width: 3.4em; }
+
+.sapo_cal_year_selector,
+.sapo_cal_month_selector { 
+    display: none; 
+}
+
+
+.sapo_cal_month .sapo_cal_header {
+    border-bottom: 1px solid rgba(0,0,0,.1); 
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+    color: #aaa;
+}
+
+.sapo_cal_top,
+.sapo_cal_middle,
+.sapo_cal_top_options,
+.sapo_component_datepicker,
+.sapo_cal_month .sapo_cal_header,
+.sapo_cal_month .sapo_cal_middle ul {
+    #ink > #utils > .clearfix ();
+}

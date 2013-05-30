@@ -1,0 +1,130 @@
+@fade-duration: 300ms;
+
+.ink-shade {
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    position: fixed;
+    z-index: 100;
+    display: none;
+    #ink > #effects > .opacity (0);
+
+    &.fade {
+        #ink > #effects > .transition (opacity,@fade-duration);
+    }
+
+    &.visible {
+        #ink > #effects > .opacity (1);
+    }
+ 
+    .ink-modal {
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        height: 90%;
+        background:@white;
+        z-index:@layer-100;
+        position:absolute;
+        border: 1px @grey-60 solid;
+        #ink > #effects > .opacity (1);
+        #ink > #shadows > .box-shadow (0,0,15px,0,rgba(0, 0, 0, 0.8));
+        #ink > #border-radius > .all (4px);
+        overflow: hidden;
+        #ink > #utils > .clearfix ();
+
+        
+        &.fade {
+            #ink > #effects > .transition (opacity,@fade-duration);
+        }
+
+        &.visible {
+            display: block;
+            #ink > #effects > .opacity (1);
+        }
+
+
+        > .modal-body {
+            padding: 1em;
+            overflow-y: auto;   
+            overflow-x: hidden;
+            height: auto;
+
+            .ink-grid {
+                padding-left: 0;
+                padding-right: 0;
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+
+        > .modal-header, > header {
+            border-bottom: 1px @grey-10 solid;
+            overflow: hidden;
+            #ink > #shadows > .box-shadow (0,1px,2px,0,rgba(175, 175, 175, 0.2));
+
+            > .modal-close {
+
+                padding-top: 2px;
+                text-align: center;
+                color: @white;
+                width: 26px;
+                height: 26px;
+                line-height: 1.2em;
+                border: 0;
+                background: @grey-25;
+                font-size: 0;
+                
+                
+                #ink > #border-radius > .all (50%);
+                #ink > #shadows > .text-shadow (0,-1px,0,rgba(0,0,0,0.6));
+                #ink > #effects > .opacity (0.6);
+                #ink > #effects > .transition (opacity,125ms);
+
+                &:after {
+                    content: "\f00d";
+                    font-family: FontAwesome;
+                    font-size: medium;
+                    line-height: 22px;
+                };
+                
+
+                &:hover {
+                    #ink > #effects > .opacity (1);
+                }
+
+                float: right;
+            }
+        }
+
+        > .modal-footer, > footer {
+            background: @grey-10;
+            margin-bottom: 0;
+            #ink > #shadows > .box-shadow (0,-1px,2px,0,rgba(175, 175, 175, 0.2));
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        > .modal-header, > header, > .modal-footer, > footer {
+            padding: 0.8em 1em 0.65em 1em;
+            &:before, &:after {
+                content: "."; 
+                display: block;
+                height: 0; 
+                clear: both; 
+                visibility: hidden; 
+            }
+        }        
+
+    }
+
+}
+
+.ink-modal-open {
+    overflow: hidden; 
+}
