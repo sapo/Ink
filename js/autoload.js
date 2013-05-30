@@ -69,8 +69,6 @@
         Loaded.run(function(){
             for( var mod in autoload ){
                 var elements = Selector.select( autoload[mod] );
-                console.log(mod);
-                console.log(elements.length);
                 if( elements.length ){
                     Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
                         InkArray.each(elements, function( element ){
