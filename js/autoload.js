@@ -71,13 +71,11 @@
                 (function(mod){
                     var elements = Selector.select( autoload[mod] );
                     if( elements.length ){
-                        try{
-                            Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
-                                InkArray.each(elements, function( element ){
-                                    new Component(element);
-                                });
+                        Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
+                            InkArray.each(elements, function( element ){
+                                new Component(element);
                             });
-                        } catch( e ){}
+                        });
                     }
                 })(module);
             }
