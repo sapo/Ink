@@ -4215,6 +4215,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
                 for (var i = 0; i < this._cbQueue.length; ++i) {
                     this._cbQueue[i].call(this._win);
                 }
+                this._cbQueue = [];
             }
         }
     };
@@ -8793,7 +8794,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @example
          *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
          *         var expireDate = new Date( 2014,00,01, 0,0,0);
-         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate );
+         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
          *     });
          */
         set: function(name, value, expires, path, domain, secure)
@@ -15954,10 +15955,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     if ( this._options.position === 'bottom' )
                     {
                         this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                        this._containerObject.style.left = Element.offset2(this._dataField)[0] +'px';
                     }
                     else
                     {
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offsetLeft(this._dataField) +'px';
+                        this._containerObject.style.top = Element.offset2(this._dataField)[1] +'px';
+                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset2(this._dataField)[0] +'px';
                     }
                     //dom.appendChild(this._containerObject);
                     this._updateDate();

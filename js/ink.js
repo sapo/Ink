@@ -4215,6 +4215,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
                 for (var i = 0; i < this._cbQueue.length; ++i) {
                     this._cbQueue[i].call(this._win);
                 }
+                this._cbQueue = [];
             }
         }
     };
@@ -8793,7 +8794,7 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
          * @example
          *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
          *         var expireDate = new Date( 2014,00,01, 0,0,0);
-         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate );
+         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
          *     });
          */
         set: function(name, value, expires, path, domain, secure)
