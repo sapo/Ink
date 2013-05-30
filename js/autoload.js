@@ -66,20 +66,20 @@
     };
 
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1'],function( Selector, Loaded, InkArray, Scroller ){
-        Loaded.run(function(){
             for( var module in autoload ){
                 (function(mod){
-                    var elements = Selector.select( autoload[mod] );
-                    if( elements.length ){
-                        Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
-                            InkArray.each(elements, function( element ){
-                                new Component(element);
+                    Loaded.run(function(){
+                        var elements = Selector.select( autoload[mod] );
+                        if( elements.length ){
+                            Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
+                                InkArray.each(elements, function( element ){
+                                        new Component(element);
+                                });
                             });
-                        });
-                    }
+                        }
+                    });
                 })(module);
             }
             Scroller.init();
-        });
     });
 })();
