@@ -3460,29 +3460,31 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
             var propName,i;
             for( prop in attributesElements ){
-                if( typeof attributesElements[prop] === 'undefined' ){
-                    continue;
-                } else if( typeof attributesElements[prop] === 'object' ){
-                    prop = attributesElements[prop].name || prop;
-                    if(
-                        ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
-                        !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
-                    ){
+                if(attributesElements.hasOwnProperty(prop)) {
+                    if( typeof attributesElements[prop] === 'undefined' ){
                         continue;
+                    } else if( typeof attributesElements[prop] === 'object' ){
+                        prop = attributesElements[prop].name || prop;
+                        if(
+                                ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
+                                !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
+                          ){
+                            continue;
+                        }
                     }
-                }
 
-                propName = prop.replace('data-','');
-                if( propName.indexOf('-') !== -1 ){
-                    propName = propName.split("-");
-                    for( i=1; i<propName.length; i+=1 ){
-                        propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
+                    propName = prop.replace('data-','');
+                    if( propName.indexOf('-') !== -1 ){
+                        propName = propName.split("-");
+                        for( i=1; i<propName.length; i+=1 ){
+                            propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
+                        }
+                        propName = propName.join('');
                     }
-                    propName = propName.join('');
-                }
-                dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
-                if( dataset[propName] === "true" || dataset[propName] === "false" ){
-                    dataset[propName] = ( dataset[propName] === 'true' );
+                    dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
+                    if( dataset[propName] === "true" || dataset[propName] === "false" ){
+                        dataset[propName] = ( dataset[propName] === 'true' );
+                    }
                 }
             }
 
