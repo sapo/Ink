@@ -105,30 +105,6 @@ a.active    {color: @link-active-color;}
     p {line-height:2em;}
 } 
 
-// #download {
-//     text-align:center;
-//     margin-top: 3em;
-
-//     a {
-//         font-weight: bold;
-//         padding:.8em;
-//         display: block;
-//         #ink > #gradients > .gradient (#2e2e2e, #222, 100%);
-//         #ink > #shadows > .box-shadow (0, 1px, 3px, 0, rgba(0,0,0,.5));
-//         #ink > #border-radius > .all (@border-radius);
-//         color: #FFF;
-    
-//         &:hover {
-//             #ink > #gradients > .gradient (#3c3c3c, #2e2e2e, 100%);
-//             text-decoration: none;
-//         }
-//     }
-
-//     p {
-//         margin: 1em 0 0 0;
-//     }
-// }
-
 /*..........................................  Ink-UI  ..........................................*/
 .ink-button.toggleTrigger {
     margin:1em 0 0 0
@@ -139,11 +115,7 @@ a.active    {color: @link-active-color;}
 .ink-hero {
     margin-top: 2.6em;
     background: url(../img/home_bkg.png) center;
-    background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-    background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+    #ink > #gradients > .multiple-stops (~'left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57');
     overflow: hidden; 
 }  
 
@@ -423,11 +395,7 @@ footer {
     .border {
         height:.3em;
         background: url(../img/home_bkg.png) center 0px;
-        background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-        background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-        background: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-        background: -ms-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-        background: linear-gradient(to right, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+        #ink > #gradients > .multiple-stops (~'left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57');
         margin: 0;
     }
 }
