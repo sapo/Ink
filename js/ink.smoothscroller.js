@@ -198,9 +198,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
 
             }
             */
-
             Ink.UI.SmoothScroller.end(_elm);
-            if(_elm === null || _elm.getAttribute('href') === null) {
+            if(_elm !== null && _elm.getAttribute('href') !== null) {
                 var hashIndex = _elm.href.indexOf('#');
                 if(hashIndex === -1) {
                     return;
