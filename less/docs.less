@@ -177,6 +177,10 @@ div.socialplugins {
 
 footer {
 
+    div + & {
+        margin-top: 0;
+    }
+
     .vspace {
         margin: 1em 0;
     }
@@ -520,11 +524,11 @@ table.ink-table.browser-support {
         color: @grey-30;
         font-family: Ubuntu_light;
         font-size: 0.95em;
-    }
-
-    span.tree {
-        color: @grey-70;
-        font-size: 1.2em;
+    
+        &.tree {
+            color: @grey-70;
+            font-size: 1.2em;
+        }
     }
 }
 
