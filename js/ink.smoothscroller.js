@@ -158,10 +158,10 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
             Ink.UI.SmoothScroller.end(this);
 
             for (var i = 0; i < a.length; i++) {
-                var l = a[i];
-                if (l.href && l.href.indexOf('#') !== -1 && ((l.pathname === location.pathname) || ('/' + l.pathname === location.pathname))) {
-                    Ink.UI.SmoothScroller.add(l, 'click', Ink.UI.SmoothScroller.end);
-                    Event.observe(l,'click',Ink.UI.SmoothScroller.clickScroll);
+                var _elm = a[i];
+                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
+                    Ink.UI.SmoothScroller.add(_elm, 'click', Ink.UI.SmoothScroller.end);
+                    Event.observe(_elm,'click', Ink.bindEvent(Ink.UI.SmoothScroller.clickScroll, this, _elm));
                 }
             }
         },
@@ -174,7 +174,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @public
          * @static
          */
-        clickScroll: function() {
+        clickScroll: function(event, _elm) {
+            /*
             Ink.UI.SmoothScroller.end(this);
             var hash = this.hash.substr(1);
             var elm = Selector.select('a[name="' + hash + '"],#' + hash);
@@ -196,6 +197,36 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
                 Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
 
             }
+            */
+
+            Ink.UI.SmoothScroller.end(_elm);
+            if(_elm === null || _elm.getAttribute('href') === null) {
+                var hashIndex = _elm.href.indexOf('#');
+                if(hashIndex === -1) {
+                    return;
+                }
+                var hash = _elm.href.substr((hashIndex + 1));
+                var elm = Selector.select('a[name="' + hash + '"],#' + hash);
+
+                if (typeof(elm[0]) !== 'undefined') {
+
+                    if (_elm.parentNode.className.indexOf('active') === -1) {
+                        var ul = _elm.parentNode.parentNode,
+                            li = ul.firstChild;
+                        do {
+                            if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
+                                li.className = li.className.replace('active', '');
+                                break;
+                            }
+                        } while ((li = li.nextSibling));
+                        _elm.parentNode.className += " active";
+                    }
+                    clearInterval(Ink.UI.SmoothScroller.interval);
+                    Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
+
+                }
+            }
+
         }
     };
 
