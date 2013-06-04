@@ -731,7 +731,7 @@
             background: linear-gradient(to bottom, @start-color 0%,@end-color @end-color-stop);
         }
 
-        .horizontal-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+        .horizontal-two-stops (@start-color, @start-color-stop, @end-color, @end-color-stop) {
             background: @start-color;
             filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
             background: -moz-linear-gradient(left, @start-color @start-color-stop, @end-color @end-color-stop);
@@ -742,15 +742,24 @@
             background: linear-gradient(to right, @start-color @start-color-stop,@end-color @end-color-stop);
         }
         
-        .vertical-two-stops (@start-color,@start-color-stop,@end-color,@end-color-stop) {
+        .vertical-two-stops (@start-color, @start-color-stop, @end-color, @end-color-stop) {
             background: @start-color;
             filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
-            background: -moz-linear-gradient(toptop, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -moz-linear-gradient(top, @start-color @start-color-stop, @end-color @end-color-stop);
             background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
             background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
             background: -o-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
             background: -ms-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
             background: linear-gradient(to bottom, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+
+        .multiple-stops (@exp) {
+            background: -moz-linear-gradient(@arguments);
+            background: -webkit-gradient(@arguments);
+            background: -webkit-linear-gradient(@arguments);
+            background: -o-linear-gradient(@arguments);
+            background: -ms-linear-gradient(@arguments);
+            background: linear-gradient(@arguments);
         }
     }
 

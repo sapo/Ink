@@ -452,11 +452,12 @@
                 }
             }
             return destination;
-        },
+        }
 
         /**
          * TODO EH?!
          */
+        /*
         Browser: {
             IE: true,
             GECKO: true,
@@ -468,13 +469,15 @@
             version: '',
             userAgent: ''
         }
+        */
 
 
     };
 
 
 
-    // TODO TEMP - to detect pending stuff
+    // TODO for debug - to detect pending stuff
+    /*
     var failCount = {};   // fail count per module name
     var maxFails = 3;     // times
     var checkDelta = 0.5; //seconds
@@ -502,6 +505,7 @@
             clearInterval(tmpTmr);
         }
     }, checkDelta*1000);
+    */
 
 })();
 
@@ -2798,8 +2802,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} the element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
+            /*
             cloneTo.style.top = this.offsetTop(cloneFrom) + 'px';
             cloneTo.style.left = this.offsetLeft(cloneFrom) + 'px';
+            */
+            var pos = this.offset2(cloneFrom);
+            cloneTo.style.left = pos[0]+'px';
+            cloneTo.style.top = pos[1]+'px';
 
             return cloneTo;
         },
@@ -3426,6 +3435,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             return this.htmlToFragment.call(this, html);
         },
 
+        _camelCase: function(str) 
+        {
+            return str ? str.replace(/-(\w)/g, function (_, $1){
+                    return $1.toUpperCase(); 
+            }) : str;
+        },
+
         /**
          * Gets all of the data attributes from an element
          *
@@ -3439,52 +3455,71 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             if( typeof selector === 'object' ){
-                this._element = selector;
+                //this._element = selector;
+                var _element = selector;
             } else {
                 var InkDomSelector = Ink.getModule('Ink.Dom.Selector', 1);
                 if(!InkDomSelector) {
                     throw "[Ink.Dom.Element.data] :: This method requires Ink.Dom.Selector - v1";
                 }
-                this._element = InkDomSelector.select( selector );
-                if( this._element.length <= 0) {
+                //this._element = InkDomSelector.select( selector );
+                var _element = InkDomSelector.select( selector );
+                if( _element.length <= 0) {
                     throw "[Ink.Dom.Element.data] :: Can't find any element with the specified selector";
                 }
-                this._element = this._element[0];
+                //this._element = this._element[0];
+                _element = _element[0];
             }
 
             var dataset = {};
-            var
-                attributesElements = this._element.dataset || this._element.attributes || {},
-                prop
-            ;
+            var attributesElements = _element.dataset || _element.attributes || {}; 
+            var prop ;
 
-            var propName,i;
-            for( prop in attributesElements ){
-                if(attributesElements.hasOwnProperty(prop)) {
-                    if( typeof attributesElements[prop] === 'undefined' ){
-                        continue;
-                    } else if( typeof attributesElements[prop] === 'object' ){
-                        prop = attributesElements[prop].name || prop;
-                        if(
-                                ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
-                                !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
-                          ){
-                            continue;
+            var curAttr;
+            if(_element.dataset) {
+                for( prop in attributesElements ){
+                    if(attributesElements.hasOwnProperty && attributesElements.hasOwnProperty(prop)) {
+                        //if(typeof(attributesElements[prop]) === 'object') {
+                        dataset[prop] = attributesElements[prop];
+                        //}
+                    }
+                }
+            } else {
+                for( prop in attributesElements ){
+                    curAttr = _element.getAttribute(prop);
+                    if(curAttr !== null) {
+                        if(prop.indexOf('data-') === 0) {
+                            dataset[this._camelCase(prop.replace('data-', ''))] = curAttr;
                         }
                     }
+                    /*
+                       if(attributesElements.hasOwnProperty && attributesElements.hasOwnProperty(prop)) {
+                       if( typeof attributesElements[prop] === 'undefined' ){
+                       continue;
+                       } else if( typeof attributesElements[prop] === 'object' ){
+                       prop = attributesElements[prop].name || prop;
+                       if(
+                       ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
+                       !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
+                       ){
+                       continue;
+                       }
+                       }
 
-                    propName = prop.replace('data-','');
-                    if( propName.indexOf('-') !== -1 ){
-                        propName = propName.split("-");
-                        for( i=1; i<propName.length; i+=1 ){
-                            propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
-                        }
-                        propName = propName.join('');
-                    }
-                    dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
-                    if( dataset[propName] === "true" || dataset[propName] === "false" ){
-                        dataset[propName] = ( dataset[propName] === 'true' );
-                    }
+                       propName = prop.replace('data-','');
+                       if( propName.indexOf('-') !== -1 ){
+                       propName = propName.split("-");
+                       for( i=1; i<propName.length; i+=1 ){
+                       propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
+                       }
+                       propName = propName.join('');
+                       }
+                       dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
+                       if( dataset[propName] === "true" || dataset[propName] === "false" ){
+                       dataset[propName] = ( dataset[propName] === 'true' );
+                       }
+                       }
+                     */
                 }
             }
 
