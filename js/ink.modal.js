@@ -17,7 +17,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
      * @uses Ink.Dom.Selector
      * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
      *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
      *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
