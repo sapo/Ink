@@ -18,7 +18,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
      * @uses Ink.Dom.Element
      * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
      *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
      *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
@@ -131,7 +131,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _onTriggerEvent: function( event ){
-            Event.stop( event );
 
             if( this._accordion ){
                 var elms, i, accordionElement;
@@ -170,10 +169,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         _onClick: function( event ){
             var tgtEl = Event.element(event);
 
-            if( Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
+            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
                 return;
             }
-
+            
             this._dismiss( this._rootElement );
         },
 

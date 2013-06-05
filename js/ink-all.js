@@ -452,11 +452,12 @@
                 }
             }
             return destination;
-        },
+        }
 
         /**
          * TODO EH?!
          */
+        /*
         Browser: {
             IE: true,
             GECKO: true,
@@ -468,13 +469,15 @@
             version: '',
             userAgent: ''
         }
+        */
 
 
     };
 
 
 
-    // TODO TEMP - to detect pending stuff
+    // TODO for debug - to detect pending stuff
+    /*
     var failCount = {};   // fail count per module name
     var maxFails = 3;     // times
     var checkDelta = 0.5; //seconds
@@ -502,6 +505,7 @@
             clearInterval(tmpTmr);
         }
     }, checkDelta*1000);
+    */
 
 })();
 
@@ -2798,8 +2802,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} the element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
+            /*
             cloneTo.style.top = this.offsetTop(cloneFrom) + 'px';
             cloneTo.style.left = this.offsetLeft(cloneFrom) + 'px';
+            */
+            var pos = this.offset2(cloneFrom);
+            cloneTo.style.left = pos[0]+'px';
+            cloneTo.style.top = pos[1]+'px';
 
             return cloneTo;
         },
@@ -3426,6 +3435,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             return this.htmlToFragment.call(this, html);
         },
 
+        _camelCase: function(str) 
+        {
+            return str ? str.replace(/-(\w)/g, function (_, $1){
+                    return $1.toUpperCase(); 
+            }) : str;
+        },
+
         /**
          * Gets all of the data attributes from an element
          *
@@ -3439,52 +3455,72 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             if( typeof selector === 'object' ){
-                this._element = selector;
+                //this._element = selector;
+                var _element = selector;
             } else {
                 var InkDomSelector = Ink.getModule('Ink.Dom.Selector', 1);
                 if(!InkDomSelector) {
                     throw "[Ink.Dom.Element.data] :: This method requires Ink.Dom.Selector - v1";
                 }
-                this._element = InkDomSelector.select( selector );
-                if( this._element.length <= 0) {
+                //this._element = InkDomSelector.select( selector );
+                var _element = InkDomSelector.select( selector );
+                if( _element.length <= 0) {
                     throw "[Ink.Dom.Element.data] :: Can't find any element with the specified selector";
                 }
-                this._element = this._element[0];
+                //this._element = this._element[0];
+                _element = _element[0];
             }
 
             var dataset = {};
-            var
-                attributesElements = this._element.dataset || this._element.attributes || {},
-                prop
-            ;
+            // var attributesElements = _element.dataset || _element.attributes || {}; 
+            var attributesElements = _element.attributes || []; 
+            var prop ;
 
-            var propName,i;
-            for( prop in attributesElements ){
-                if(attributesElements.hasOwnProperty(prop)) {
-                    if( typeof attributesElements[prop] === 'undefined' ){
-                        continue;
-                    } else if( typeof attributesElements[prop] === 'object' ){
-                        prop = attributesElements[prop].name || prop;
-                        if(
-                                ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
-                                !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
-                          ){
-                            continue;
-                        }
+            var curAttr, curAttrName, curAttrValue;
+            // if(_element.dataset) {
+            //     for( prop in attributesElements ){
+            //         if(attributesElements.hasOwnProperty && attributesElements.hasOwnProperty(prop)) {
+            //             //if(typeof(attributesElements[prop]) === 'object') {
+            //             dataset[prop] = attributesElements[prop];
+            //             //}
+            //         }
+            //     }
+            // } else {
+            if( attributesElements ){
+                for(var i=0, total=attributesElements.length; i < total; i++){
+                    curAttrName = attributesElements[i].name;
+                    curAttrValue = attributesElements[i].value;
+                    if(curAttrName && curAttrName.indexOf('data-') === 0) {
+                        dataset[this._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
                     }
+                    /*
+                       if(attributesElements.hasOwnProperty && attributesElements.hasOwnProperty(prop)) {
+                       if( typeof attributesElements[prop] === 'undefined' ){
+                       continue;
+                       } else if( typeof attributesElements[prop] === 'object' ){
+                       prop = attributesElements[prop].name || prop;
+                       if(
+                       ( ( attributesElements[prop].name || attributesElements[prop].nodeValue ) && ( prop.indexOf('data-') !== 0 ) ) ||
+                       !( attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop] )
+                       ){
+                       continue;
+                       }
+                       }
 
-                    propName = prop.replace('data-','');
-                    if( propName.indexOf('-') !== -1 ){
-                        propName = propName.split("-");
-                        for( i=1; i<propName.length; i+=1 ){
-                            propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
-                        }
-                        propName = propName.join('');
-                    }
-                    dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
-                    if( dataset[propName] === "true" || dataset[propName] === "false" ){
-                        dataset[propName] = ( dataset[propName] === 'true' );
-                    }
+                       propName = prop.replace('data-','');
+                       if( propName.indexOf('-') !== -1 ){
+                       propName = propName.split("-");
+                       for( i=1; i<propName.length; i+=1 ){
+                       propName[i] = propName[i].substr(0,1).toUpperCase() + propName[i].substr(1);
+                       }
+                       propName = propName.join('');
+                       }
+                       dataset[propName] = attributesElements[prop].nodeValue || attributesElements[prop].value || attributesElements[prop];
+                       if( dataset[propName] === "true" || dataset[propName] === "false" ){
+                       dataset[propName] = ( dataset[propName] === 'true' );
+                       }
+                       }
+                     */
                 }
             }
 
@@ -13100,7 +13136,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _onTriggerEvent: function( event ){
-            Event.stop( event );
 
             if( this._accordion ){
                 var elms, i, accordionElement;
@@ -13139,10 +13174,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         _onClick: function( event ){
             var tgtEl = Event.element(event);
 
-            if( Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
+            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
                 return;
             }
-
+            
             this._dismiss( this._rootElement );
         },
 
@@ -13326,10 +13361,10 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
             Ink.UI.SmoothScroller.end(this);
 
             for (var i = 0; i < a.length; i++) {
-                var l = a[i];
-                if (l.href && l.href.indexOf('#') !== -1 && ((l.pathname === location.pathname) || ('/' + l.pathname === location.pathname))) {
-                    Ink.UI.SmoothScroller.add(l, 'click', Ink.UI.SmoothScroller.end);
-                    Event.observe(l,'click',Ink.UI.SmoothScroller.clickScroll);
+                var _elm = a[i];
+                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
+                    Ink.UI.SmoothScroller.add(_elm, 'click', Ink.UI.SmoothScroller.end);
+                    Event.observe(_elm,'click', Ink.bindEvent(Ink.UI.SmoothScroller.clickScroll, this, _elm));
                 }
             }
         },
@@ -13342,7 +13377,8 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @public
          * @static
          */
-        clickScroll: function() {
+        clickScroll: function(event, _elm) {
+            /*
             Ink.UI.SmoothScroller.end(this);
             var hash = this.hash.substr(1);
             var elm = Selector.select('a[name="' + hash + '"],#' + hash);
@@ -13364,6 +13400,35 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
                 Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
 
             }
+            */
+            Ink.UI.SmoothScroller.end(_elm);
+            if(_elm !== null && _elm.getAttribute('href') !== null) {
+                var hashIndex = _elm.href.indexOf('#');
+                if(hashIndex === -1) {
+                    return;
+                }
+                var hash = _elm.href.substr((hashIndex + 1));
+                var elm = Selector.select('a[name="' + hash + '"],#' + hash);
+
+                if (typeof(elm[0]) !== 'undefined') {
+
+                    if (_elm.parentNode.className.indexOf('active') === -1) {
+                        var ul = _elm.parentNode.parentNode,
+                            li = ul.firstChild;
+                        do {
+                            if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
+                                li.className = li.className.replace('active', '');
+                                break;
+                            }
+                        } while ((li = li.nextSibling));
+                        _elm.parentNode.className += " active";
+                    }
+                    clearInterval(Ink.UI.SmoothScroller.interval);
+                    Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
+
+                }
+            }
+
         }
     };
 
