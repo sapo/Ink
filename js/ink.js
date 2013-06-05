@@ -123,7 +123,10 @@
                 document.write( scriptEl.outerHTML );
             }
             else {*/
-                document.head.appendChild(scriptEl);
+                var aHead = document.getElementsByTagName('head');
+                if(aHead.length > 0) {
+                    aHead[0].appendChild(scriptEl);
+                }
             //}
         },
 

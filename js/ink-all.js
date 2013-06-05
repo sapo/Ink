@@ -123,7 +123,10 @@
                 document.write( scriptEl.outerHTML );
             }
             else {*/
-                document.head.appendChild(scriptEl);
+                var aHead = document.getElementsByTagName('head');
+                if(aHead.length > 0) {
+                    aHead[0].appendChild(scriptEl);
+                }
             //}
         },
 
@@ -11673,13 +11676,12 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
          */
         _onScroll: function(){
 
-            if(
-                (window.scrollY < this._rootElement.offsetTop)
-            ){
+            var scrollHeight = Element.scrollHeight(); 
+            if( (scrollHeight < this._rootElement.offsetTop) ){
                 return;
             } else {
-                for( var i = 0; i < this._elements.length; i++ ){
-                    if( (this._elements[i].offsetTop <= window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
+                for( var i = 0, total = this._elements.length; i < total; i++ ){
+                    if( (this._elements[i].offsetTop <= scrollHeight) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
                         return;
                     }
                 }
@@ -11689,7 +11691,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
                 Selector.select(
                     'a',
                     this._options.target
-                ),Ink.bind(function(item){
+                ), Ink.bind(function(item){
 
                     var comparisonValue = ( ("name" in this._rootElement) && this._rootElement.name ?
                         '#' + this._rootElement.name : '#' + this._rootElement.id
@@ -11788,6 +11790,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         }
 
         this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
+        this._dims = {
+            height: this._computedStyle.height,
+            width: this._computedStyle.width
+        };
         this._init();
     };
 
@@ -11828,32 +11834,34 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             }
 
 
-            // if( this._scrollTimeout ){
-            //     clearTimeout(this._scrollTimeout);
-            // }
+            if( this._scrollTimeout ){
+                clearTimeout(this._scrollTimeout);
+            }
 
-            // this._scrollTimeout = setTimeout(Ink.bind(function(){
+            this._scrollTimeout = setTimeout(Ink.bind(function(){
+                    
+                var scrollHeight = Element.scrollHeight();
 
                 if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( window.scrollY<=this._options.offsetTop){
+                    if( scrollHeight <= this._options.offsetTop){
                         this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) < this._options.offsetBottom) ){
+                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
                         this._rootElement.style.position = 'fixed';
                         this._rootElement.style.top = 'auto';
-                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+window.scrollY),10) ){
+                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
                             this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
                         } else {
-                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+window.scrollY),10) + 'px';
+                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
                         }
                         this._rootElement.style.width = this._options.originalWidth + 'px';
-                    } else if( ((document.body.scrollHeight-(window.scrollY+parseInt(this._computedStyle.height,10))) >= this._options.offsetBottom) ){
+                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
                         this._rootElement.style.position = 'fixed';
                         this._rootElement.style.bottom = 'auto';
                         this._rootElement.style.top = this._options.originalOffsetTop + 'px';
                         this._rootElement.style.width = this._options.originalWidth + 'px';
                     }
                 } else {
-                    if( window.scrollY <= this._options.offsetTop ){
+                    if(scrollHeight <= this._options.offsetTop ){
                         return;
                     }
 
@@ -11863,8 +11871,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
 
-            //     this._scrollTimeout = undefined;
-            // },this),0);
+                this._scrollTimeout = undefined;
+            },this), 100);
         },
 
         /**
@@ -11875,16 +11883,16 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          */
         _onResize: function(){
 
-            // if( this._resizeTimeout ){
-            //     clearTimeout(this._resizeTimeout);
-            // }
+            if( this._resizeTimeout ){
+                clearTimeout(this._resizeTimeout);
+            }
 
-            // this._resizeTimeout = setTimeout(Ink.bind(function(){
+            this._resizeTimeout = setTimeout(Ink.bind(function(){
                 this._rootElement.removeAttribute('style');
                 this._calculateOriginalSizes();
                 this._calculateOffsets();
 
-            // },this),250);
+            }, this),250);
 
         },
 
@@ -11945,7 +11953,11 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
             this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            this._options.originalWidth = parseInt(this._computedStyle.width,10);
+            //if(isNaN(this._options.originalWidth = parseInt(this._computedStyle.width,10))) {
+            if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
+                this._options.originalWidth = 0;
+            }
+            //this._options.originalWidth = parseInt(this._computedStyle.width,10);
         }
 
     };
