@@ -1,5 +1,5 @@
 /**
- * @module Ink.UI.Toggle_1
+00 * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
@@ -157,6 +157,12 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             Css.removeClassName(this._childElement, 'hide-all');
             Css.addClassName(this._childElement, finalClass);
             this._childElement.style.display = finalDisplay;
+
+            if( finalClass === 'show-all' ){
+                Css.addClassName(this._rootElement,'active');
+            } else {
+                Css.removeClassName(this._rootElement,'active');
+            }
         },
 
         /**
