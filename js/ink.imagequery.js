@@ -18,7 +18,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @uses Ink.Util.Array
      *
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *      @param {String|Function}    [options.src]             String or Callback function (that returns a string) with the path to be used to get the images.
      *      @param {String|Function}    [options.retina]          String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
      *      @param {Array}              [options.queries]         Array of queries
