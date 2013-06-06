@@ -1,25 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <base href="./">
-        <meta charset="utf-8">
+    <base href="./">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
-    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
-    
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">    
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-    <link rel="shortcut icon" href="../imgs/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../imgs/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../imgs/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../imgs/touch-icon.114.png">
-    <link rel="apple-touch-startup-image" href="../imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
     <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
@@ -37,23 +34,9 @@
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink.js"></script>
-    <script type="text/javascript" src="../js/ink.spy.js"></script>
-    <script type="text/javascript" src="../js/ink.pagination.js"></script>
-    <script type="text/javascript" src="../js/ink.modal.js"></script>
-    <script type="text/javascript" src="../js/ink.sticky.js"></script>
-    <script type="text/javascript" src="../js/ink.toggle.js"></script>
-    <script type="text/javascript" src="../js/ink.progressbar.js"></script>
-    <script type="text/javascript" src="../js/ink.tabs.js"></script>
-    <script type="text/javascript" src="../js/ink.datepicker.js"></script>
-    <script type="text/javascript" src="../js/ink.treeview.js"></script>
-    <script type="text/javascript" src="../js/ink.imagequery.js"></script>
-    <script type="text/javascript" src="../js/ink.sortablelist.js"></script>
-    <script type="text/javascript" src="../js/ink.table.js"></script>
-    <script type="text/javascript" src="../js/ink.formvalidator.js"></script>
-    <script type="text/javascript" src="../js/ink.smoothscroller.js"></script>
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
-    <script type="text/javascript" src="../js/site.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
 
@@ -133,7 +116,7 @@
         <ul class="menu vertical flat black">
             <li class="title">
             
-                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                                        <a class="logoPlaceholder push-left" href="./index.html" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -202,22 +185,24 @@
     </div>
 
     <div class="column-group gutters">
+        
         <div class="large-20 medium-25 small-100">
-            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="226px">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="icon_menu">
                 <ul class="menu vertical rounded black">
-                                        <li><a class="scrollableLink" href="./icons.html#"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="./icons.html#nav-howto">How to use</a></li>
-                    <li><a class="scrollableLink" href="./icons.html#nav-web">Web Application Icons</a></li>
-                    <li><a class="scrollableLink" href="./icons.html#nav-textedit">Text Editor Icons</a></li>
-                    <li><a class="scrollableLink" href="./icons.html#nav-directional">Directional Icons</a></li>
-                    <li><a class="scrollableLink" href="./icons.html#nav-video">Video Player Icons</a></li>
-                    <li><a class="scrollableLink" href="./icons.html#nav-social">Social Icons</a></li>
-                                    </ul>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-howto">How to use</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-web">Web Application Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-textedit">Text Editor Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-directional">Directional Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-video">Video Player Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-brand">Social Icons</a></li>
+                    <li><a class="scrollableLink" href="./icons/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-medical">Medical Icons</a></li>
+                </ul>
             </nav>
         </div>
 
         <div class="large-80 medium-75 small-100">
-            <section id="nav-howto">
+            <section id="nav-howto" data-spy="true" data-target="#icon_menu">
                 <h2>How to use Font Awesome</h2>
                 <p>
                     Due to Font Awesome's awesomeness and open licensing we opted to distribute it with Ink, instead of re-inventing the wheel. 
@@ -246,57 +231,72 @@
                 <p>If you want to see some more examples, you can hop over to <a href="http://fortawesome.github.com/Font-Awesome/#examples">Font Awesome's example page</a>.</p>
             </section>
             
-            <section id="nav-web">
+            <section id="nav-web" data-spy="true" data-target="#icon_menu">
                 <h2>Web Application Icons</h2>
                 <div class="column-group gutters">
                     <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-adjust"></i> icon-adjust</li>
+                        <li><i class="icon-anchor"></i> icon-anchor</li>
                         <li><i class="icon-asterisk"></i> icon-asterisk</li>
                         <li><i class="icon-ban-circle"></i> icon-ban-circle</li>
                         <li><i class="icon-bar-chart"></i> icon-bar-chart</li>
                         <li><i class="icon-barcode"></i> icon-barcode</li>
                         <li><i class="icon-beaker"></i> icon-beaker</li>
                         <li><i class="icon-beer"></i> icon-beer</li>
-                        <li><i class="icon-bell"></i> icon-bell</li>
                         <li><i class="icon-bell-alt"></i> icon-bell-alt</li>
+                        <li><i class="icon-bell"></i> icon-bell</li>
                         <li><i class="icon-bolt"></i> icon-bolt</li>
                         <li><i class="icon-book"></i> icon-book</li>
-                        <li><i class="icon-bookmark"></i> icon-bookmark</li>
                         <li><i class="icon-bookmark-empty"></i> icon-bookmark-empty</li>
+                        <li><i class="icon-bookmark"></i> icon-bookmark</li>
                         <li><i class="icon-briefcase"></i> icon-briefcase</li>
                         <li><i class="icon-bullhorn"></i> icon-bullhorn</li>
+                        <li><i class="icon-bullseye"></i> icon-bullseye</li>
+                        <li><i class="icon-calendar-empty"></i> icon-calendar-empty</li>
                         <li><i class="icon-calendar"></i> icon-calendar</li>
-                        <li><i class="icon-camera"></i> icon-camera</li>
                         <li><i class="icon-camera-retro"></i> icon-camera-retro</li>
+                        <li><i class="icon-camera"></i> icon-camera</li>
                         <li><i class="icon-certificate"></i> icon-certificate</li>
-                        <li><i class="icon-check"></i> icon-check</li>
                         <li><i class="icon-check-empty"></i> icon-check-empty</li>
-                        <li><i class="icon-circle"></i> icon-circle</li>
+                        <li><i class="icon-check-minus"></i> icon-check-minus</li>
+                        <li><i class="icon-check-sign"></i> icon-check-sign</li>
+                        <li><i class="icon-check"></i> icon-check</li>
                         <li><i class="icon-circle-blank"></i> icon-circle-blank</li>
-                        <li><i class="icon-cloud"></i> icon-cloud</li>
+                        <li><i class="icon-circle"></i> icon-circle</li>
                         <li><i class="icon-cloud-download"></i> icon-cloud-download</li>
                         <li><i class="icon-cloud-upload"></i> icon-cloud-upload</li>
+                        <li><i class="icon-cloud"></i> icon-cloud</li>
+                        <li><i class="icon-code-fork"></i> icon-code-fork</li>
+                        <li><i class="icon-code"></i> icon-code</li>
                         <li><i class="icon-coffee"></i> icon-coffee</li>
                         <li><i class="icon-cog"></i> icon-cog</li>
                         <li><i class="icon-cogs"></i> icon-cogs</li>
-                        <li><i class="icon-comment"></i> icon-comment</li>
+                        <li><i class="icon-collapse-alt"></i> icon-collapse-alt</li>
                         <li><i class="icon-comment-alt"></i> icon-comment-alt</li>
-                        <li><i class="icon-comments"></i> icon-comments</li>
+                        <li><i class="icon-comment"></i> icon-comment</li>
                         <li><i class="icon-comments-alt"></i> icon-comments-alt</li>
+                        <li><i class="icon-comments"></i> icon-comments</li>
                         <li><i class="icon-credit-card"></i> icon-credit-card</li>
+                        <li><i class="icon-crop"></i> icon-crop</li>
                         <li><i class="icon-dashboard"></i> icon-dashboard</li>
                         <li><i class="icon-desktop"></i> icon-desktop</li>
-                        <li><i class="icon-download"></i> icon-download</li>
                         <li><i class="icon-download-alt"></i> icon-download-alt</li>
+                        <li><i class="icon-download"></i> icon-download</li>
+                        <li><i class="icon-edit-sign"></i> icon-edit-sign</li>
+                        <li><i class="icon-edit"></i> icon-edit</li>
+                        <li><i class="icon-ellipsis-horizontal"></i> icon-ellipsis-horizontal</li>
+                        <li><i class="icon-ellipsis-vertical"></i> icon-ellipsis-vertical</li>
                     </ul>
                     
-                   
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-edit"></i> icon-edit</li>
-                        <li><i class="icon-envelope"></i> icon-envelope</li>
                         <li><i class="icon-envelope-alt"></i> icon-envelope-alt</li>
+                        <li><i class="icon-envelope"></i> icon-envelope</li>
+                        <li><i class="icon-eraser"></i> icon-eraser</li>
                         <li><i class="icon-exchange"></i> icon-exchange</li>
                         <li><i class="icon-exclamation-sign"></i> icon-exclamation-sign</li>
+                        <li><i class="icon-exclamation"></i> icon-exclamation</li>
+                        <li><i class="icon-expand-alt"></i> icon-expand-alt</li>
+                        <li><i class="icon-external-link-sign"></i> icon-external-link-sign</li>
                         <li><i class="icon-external-link"></i> icon-external-link</li>
                         <li><i class="icon-eye-close"></i> icon-eye-close</li>
                         <li><i class="icon-eye-open"></i> icon-eye-open</li>
@@ -304,116 +304,151 @@
                         <li><i class="icon-fighter-jet"></i> icon-fighter-jet</li>
                         <li><i class="icon-film"></i> icon-film</li>
                         <li><i class="icon-filter"></i> icon-filter</li>
+                        <li><i class="icon-fire-extinguisher"></i> icon-fire-extinguisher</li>
                         <li><i class="icon-fire"></i> icon-fire</li>
+                        <li><i class="icon-flag-alt"></i> icon-flag-alt</li>
+                        <li><i class="icon-flag-checkered"></i> icon-flag-checkered</li>
                         <li><i class="icon-flag"></i> icon-flag</li>
-                        <li><i class="icon-folder-close"></i> icon-folder-close</li>
-                        <li><i class="icon-folder-open"></i> icon-folder-open</li>
                         <li><i class="icon-folder-close-alt"></i> icon-folder-close-alt</li>
+                        <li><i class="icon-folder-close"></i> icon-folder-close</li>
                         <li><i class="icon-folder-open-alt"></i> icon-folder-open-alt</li>
+                        <li><i class="icon-folder-open"></i> icon-folder-open</li>
                         <li><i class="icon-food"></i> icon-food</li>
+                        <li><i class="icon-frown"></i> icon-frown</li>
+                        <li><i class="icon-gamepad"></i> icon-gamepad</li>
                         <li><i class="icon-gift"></i> icon-gift</li>
                         <li><i class="icon-glass"></i> icon-glass</li>
                         <li><i class="icon-globe"></i> icon-globe</li>
                         <li><i class="icon-group"></i> icon-group</li>
                         <li><i class="icon-hdd"></i> icon-hdd</li>
                         <li><i class="icon-headphones"></i> icon-headphones</li>
-                        <li><i class="icon-heart"></i> icon-heart</li>
                         <li><i class="icon-heart-empty"></i> icon-heart-empty</li>
+                        <li><i class="icon-heart"></i> icon-heart</li>
                         <li><i class="icon-home"></i> icon-home</li>
                         <li><i class="icon-inbox"></i> icon-inbox</li>
                         <li><i class="icon-info-sign"></i> icon-info-sign</li>
+                        <li><i class="icon-info"></i> icon-info</li>
                         <li><i class="icon-key"></i> icon-key</li>
-                        <li><i class="icon-leaf"></i> icon-leaf</li>
+                        <li><i class="icon-keyboard"></i> icon-keyboard</li>
                         <li><i class="icon-laptop"></i> icon-laptop</li>
+                        <li><i class="icon-leaf"></i> icon-leaf</li>
                         <li><i class="icon-legal"></i> icon-legal</li>
                         <li><i class="icon-lemon"></i> icon-lemon</li>
+                        <li><i class="icon-level-down"></i> icon-level-down</li>
+                        <li><i class="icon-level-up"></i> icon-level-up</li>
                         <li><i class="icon-lightbulb"></i> icon-lightbulb</li>
+                        <li><i class="icon-location-arrow"></i> icon-location-arrow</li>
                         <li><i class="icon-lock"></i> icon-lock</li>
-                        <li><i class="icon-unlock"></i> icon-unlock</li>
+                        <li><i class="icon-magic"></i> icon-magic</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-magic"></i> icon-magic</li>
                         <li><i class="icon-magnet"></i> icon-magnet</li>
+                        <li><i class="icon-mail-forward"></i> icon-mail-forward <span class="muted">(alias)</span></li>
+                        <li><i class="icon-mail-reply"></i> icon-mail-reply <span class="muted">(alias)</span></li>
+                        <li><i class="icon-mail-reply-all"></i> icon-mail-reply-all <span class="muted">(alias)</span></li>
                         <li><i class="icon-map-marker"></i> icon-map-marker</li>
-                        <li><i class="icon-minus"></i> icon-minus</li>
+                        <li><i class="icon-meh"></i> icon-meh</li>
+                        <li><i class="icon-microphone-off"></i> icon-microphone-off</li>
+                        <li><i class="icon-microphone"></i> icon-microphone</li>
+                        <li><i class="icon-minus-sign-alt"></i> icon-minus-sign-alt</li>
                         <li><i class="icon-minus-sign"></i> icon-minus-sign</li>
+                        <li><i class="icon-minus"></i> icon-minus</li>
                         <li><i class="icon-mobile-phone"></i> icon-mobile-phone</li>
                         <li><i class="icon-money"></i> icon-money</li>
                         <li><i class="icon-move"></i> icon-move</li>
                         <li><i class="icon-music"></i> icon-music</li>
                         <li><i class="icon-off"></i> icon-off</li>
-                        <li><i class="icon-ok"></i> icon-ok</li>
                         <li><i class="icon-ok-circle"></i> icon-ok-circle</li>
                         <li><i class="icon-ok-sign"></i> icon-ok-sign</li>
+                        <li><i class="icon-ok"></i> icon-ok</li>
                         <li><i class="icon-pencil"></i> icon-pencil</li>
+                        <li><i class="icon-phone-sign"></i> icon-phone-sign</li>
+                        <li><i class="icon-phone"></i> icon-phone</li>
                         <li><i class="icon-picture"></i> icon-picture</li>
                         <li><i class="icon-plane"></i> icon-plane</li>
-                        <li><i class="icon-plus"></i> icon-plus</li>
                         <li><i class="icon-plus-sign"></i> icon-plus-sign</li>
+                        <li><i class="icon-plus"></i> icon-plus</li>
                         <li><i class="icon-print"></i> icon-print</li>
                         <li><i class="icon-pushpin"></i> icon-pushpin</li>
+                        <li><i class="icon-puzzle-piece"></i> icon-puzzle-piece</li>
                         <li><i class="icon-qrcode"></i> icon-qrcode</li>
                         <li><i class="icon-question-sign"></i> icon-question-sign</li>
+                        <li><i class="icon-question"></i> icon-question</li>
                         <li><i class="icon-quote-left"></i> icon-quote-left</li>
                         <li><i class="icon-quote-right"></i> icon-quote-right</li>
                         <li><i class="icon-random"></i> icon-random</li>
                         <li><i class="icon-refresh"></i> icon-refresh</li>
-                        <li><i class="icon-remove"></i> icon-remove</li>
                         <li><i class="icon-remove-circle"></i> icon-remove-circle</li>
                         <li><i class="icon-remove-sign"></i> icon-remove-sign</li>
+                        <li><i class="icon-remove"></i> icon-remove</li>
                         <li><i class="icon-reorder"></i> icon-reorder</li>
+                        <li><i class="icon-reply-all"></i> icon-reply-all</li>
                         <li><i class="icon-reply"></i> icon-reply</li>
                         <li><i class="icon-resize-horizontal"></i> icon-resize-horizontal</li>
                         <li><i class="icon-resize-vertical"></i> icon-resize-vertical</li>
                         <li><i class="icon-retweet"></i> icon-retweet</li>
                         <li><i class="icon-road"></i> icon-road</li>
+                        <li><i class="icon-rocket"></i> icon-rocket</li>
+                        <li><i class="icon-rotate-left"></i> icon-rotate-left <span class="muted">(alias)</span></li>
+                        <li><i class="icon-rotate-right"></i> icon-rotate-right <span class="muted">(alias)</span></li>
+                        <li><i class="icon-rss-sign"></i> icon-rss-sign</li>
+                    </ul>
+                    <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-rss"></i> icon-rss</li>
                         <li><i class="icon-screenshot"></i> icon-screenshot</li>
                         <li><i class="icon-search"></i> icon-search</li>
-                    </ul>
-                    <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-share"></i> icon-share</li>
                         <li><i class="icon-share-alt"></i> icon-share-alt</li>
+                        <li><i class="icon-share-sign"></i> icon-share-sign</li>
+                        <li><i class="icon-share"></i> icon-share</li>
+                        <li><i class="icon-shield"></i> icon-shield</li>
                         <li><i class="icon-shopping-cart"></i> icon-shopping-cart</li>
+                        <li><i class="icon-sign-blank"></i> icon-sign-blank</li>
                         <li><i class="icon-signal"></i> icon-signal</li>
                         <li><i class="icon-signin"></i> icon-signin</li>
                         <li><i class="icon-signout"></i> icon-signout</li>
                         <li><i class="icon-sitemap"></i> icon-sitemap</li>
-                        <li><i class="icon-sort"></i> icon-sort</li>
+                        <li><i class="icon-smile"></i> icon-smile</li>
                         <li><i class="icon-sort-down"></i> icon-sort-down</li>
                         <li><i class="icon-sort-up"></i> icon-sort-up</li>
+                        <li><i class="icon-sort"></i> icon-sort</li>
                         <li><i class="icon-spinner"></i> icon-spinner</li>
-                        <li><i class="icon-star"></i> icon-star</li>
                         <li><i class="icon-star-empty"></i> icon-star-empty</li>
+                        <li><i class="icon-star-half-full"></i> icon-star-half-full <span class="muted">(alias)</span></li>
+                        <li><i class="icon-star-half-empty"></i> icon-star-half-empty</li>
                         <li><i class="icon-star-half"></i> icon-star-half</li>
+                        <li><i class="icon-star"></i> icon-star</li>
                         <li><i class="icon-tablet"></i> icon-tablet</li>
                         <li><i class="icon-tag"></i> icon-tag</li>
                         <li><i class="icon-tags"></i> icon-tags</li>
                         <li><i class="icon-tasks"></i> icon-tasks</li>
+                        <li><i class="icon-terminal"></i> icon-terminal</li>
                         <li><i class="icon-thumbs-down"></i> icon-thumbs-down</li>
                         <li><i class="icon-thumbs-up"></i> icon-thumbs-up</li>
+                        <li><i class="icon-ticket"></i> icon-ticket</li>
                         <li><i class="icon-time"></i> icon-time</li>
                         <li><i class="icon-tint"></i> icon-tint</li>
                         <li><i class="icon-trash"></i> icon-trash</li>
                         <li><i class="icon-trophy"></i> icon-trophy</li>
                         <li><i class="icon-truck"></i> icon-truck</li>
                         <li><i class="icon-umbrella"></i> icon-umbrella</li>
-                        <li><i class="icon-upload"></i> icon-upload</li>
+                        <li><i class="icon-unlock-alt"></i> icon-unlock-alt</li>
+                        <li><i class="icon-unlock"></i> icon-unlock</li>
                         <li><i class="icon-upload-alt"></i> icon-upload-alt</li>
-                        <li><i class="icon-user"></i> icon-user</li>
+                        <li><i class="icon-upload"></i> icon-upload</li>
                         <li><i class="icon-user-md"></i> icon-user-md</li>
-                        <li><i class="icon-volume-off"></i> icon-volume-off</li>
+                        <li><i class="icon-user"></i> icon-user</li>
                         <li><i class="icon-volume-down"></i> icon-volume-down</li>
+                        <li><i class="icon-volume-off"></i> icon-volume-off</li>
                         <li><i class="icon-volume-up"></i> icon-volume-up</li>
                         <li><i class="icon-warning-sign"></i> icon-warning-sign</li>
                         <li><i class="icon-wrench"></i> icon-wrench</li>
                         <li><i class="icon-zoom-in"></i> icon-zoom-in</li>
                         <li><i class="icon-zoom-out"></i> icon-zoom-out</li>
-                     </ul>
+                    </ul>
                 </div>
             </section>
 
-            <section id="nav-textedit">
+            <section id="nav-textedit" data-spy="true" data-target="#icon_menu">
                 <h2>Text Editor Icons</h2>
                 <div class="column-group gutters">
                     <ul class="unstyled large-25 medium-50 small-100">
@@ -425,9 +460,9 @@
                         <li><i class="icon-save"></i> icon-save</li>
                         <li><i class="icon-undo"></i> icon-undo</li>
                         <li><i class="icon-repeat"></i> icon-repeat</li>
+                        <li><i class="icon-text-height"></i> icon-text-height</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-text-height"></i> icon-text-height</li>
                         <li><i class="icon-text-width"></i> icon-text-width</li>
                         <li><i class="icon-align-left"></i> icon-align-left</li>
                         <li><i class="icon-align-center"></i> icon-align-center</li>
@@ -435,18 +470,22 @@
                         <li><i class="icon-align-justify"></i> icon-align-justify</li>
                         <li><i class="icon-indent-left"></i> icon-indent-left</li>
                         <li><i class="icon-indent-right"></i> icon-indent-right</li>
-                    </ul>
-                    <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-font"></i> icon-font</li>
                         <li><i class="icon-bold"></i> icon-bold</li>
+                    </ul>
+                    <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-italic"></i> icon-italic</li>
                         <li><i class="icon-strikethrough"></i> icon-strikethrough</li>
                         <li><i class="icon-underline"></i> icon-underline</li>
+                        <li><i class="icon-superscript"></i> icon-superscript</li>
+                        <li><i class="icon-subscript"></i> icon-subscript</li>
                         <li><i class="icon-link"></i> icon-link</li>
+                        <li><i class="icon-unlink"></i> icon-unlink</li>
                         <li><i class="icon-paper-clip"></i> icon-paper-clip</li>
-                        <li><i class="icon-columns"></i> icon-columns</li>
+                        <li><i class="icon-eraser"></i> icon-eraser</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-columns"></i> icon-columns</li>
                         <li><i class="icon-table"></i> icon-table</li>
                         <li><i class="icon-th-large"></i> icon-th-large</li>
                         <li><i class="icon-th"></i> icon-th</li>
@@ -459,7 +498,7 @@
                 </div>
             </section>
 
-            <section id="nav-directional">
+            <section id="nav-directional" data-spy="true" data-target="#icon_menu">
                 <h2>Directional Icons</h2>
                 <div class="column-group gutters">
                     <ul class="unstyled large-25 medium-50 small-100">
@@ -483,45 +522,48 @@
                         <li><i class="icon-chevron-up"></i> icon-chevron-up</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-chevron-sign-left"></i> icon-chevron-sign-left</li>
+                        <li><i class="icon-chevron-sign-right"></i> icon-chevron-sign-right</li>
+                        <li><i class="icon-chevron-sign-up"></i> icon-chevron-sign-up</li>
+                        <li><i class="icon-chevron-sign-down"></i> icon-chevron-sign-down</li>
                         <li><i class="icon-circle-arrow-down"></i> icon-circle-arrow-down</li>
                         <li><i class="icon-circle-arrow-left"></i> icon-circle-arrow-left</li>
                         <li><i class="icon-circle-arrow-right"></i> icon-circle-arrow-right</li>
                         <li><i class="icon-circle-arrow-up"></i> icon-circle-arrow-up</li>
+                    </ul>
+                    <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-double-angle-left"></i> icon-double-angle-left</li>
                         <li><i class="icon-double-angle-right"></i> icon-double-angle-right</li>
                         <li><i class="icon-double-angle-up"></i> icon-double-angle-up</li>
                         <li><i class="icon-double-angle-down"></i> icon-double-angle-down</li>
-                    </ul>
-                    <ul class="unstyled large-25 medium-50 small-100">
-                      <li><i class="icon-hand-down"></i> icon-hand-down</li>
+                        <li><i class="icon-hand-down"></i> icon-hand-down</li>
                         <li><i class="icon-hand-left"></i> icon-hand-left</li>
                         <li><i class="icon-hand-right"></i> icon-hand-right</li>
                         <li><i class="icon-hand-up"></i> icon-hand-up</li>
-                        <li><i class="icon-circle"></i> icon-circle</li>
-                        <li><i class="icon-circle-blank"></i> icon-circle-blank</li>
                     </ul>
                 </div>
             </section>
 
-            <section id="nav-video">
+            <section id="nav-video" data-spy="true" data-target="#icon_menu">
                 <h2>Video Player Icons</h2>
                 <div class="column-group gutters">
                     <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-play-circle"></i> icon-play-circle</li>
+                        <li><i class="icon-play-sign"></i> icon-play-sign</li>
                         <li><i class="icon-play"></i> icon-play</li>
                         <li><i class="icon-pause"></i> icon-pause</li>
-                        <li><i class="icon-stop"></i> icon-stop</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-step-backward"></i> icon-step-backward</li>
-                        <li><i class="icon-fast-backward"></i> icon-fast-backward</li>
+                        <li><i class="icon-stop"></i> icon-stop</li>
+                        <li><i class="icon-eject"></i> icon-eject</li>
                         <li><i class="icon-backward"></i> icon-backward</li>
                         <li><i class="icon-forward"></i> icon-forward</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-fast-backward"></i> icon-fast-backward</li>
                         <li><i class="icon-fast-forward"></i> icon-fast-forward</li>
+                        <li><i class="icon-step-backward"></i> icon-step-backward</li>
                         <li><i class="icon-step-forward"></i> icon-step-forward</li>
-                        <li><i class="icon-eject"></i> icon-eject</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-fullscreen"></i> icon-fullscreen</li>
@@ -531,41 +573,63 @@
                 </div>
             </section>
 
-            <section id="nav-social">
-                <h2>Social Icons</h2>
+            <section id="nav-brand" data-spy="true" data-target="#icon_menu">
+                <h2>Brand Icons</h2>
                 <div class="column-group gutters">
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-phone"></i> icon-phone</li>
-                        <li><i class="icon-phone-sign"></i> icon-phone-sign</li>
+                        <li><i class="icon-css3"></i> icon-css3</li>
                         <li><i class="icon-facebook"></i> icon-facebook</li>
                         <li><i class="icon-facebook-sign"></i> icon-facebook-sign</li>
+                        <li><i class="icon-twitter"></i> icon-twitter</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-twitter"></i> icon-twitter</li>
                         <li><i class="icon-twitter-sign"></i> icon-twitter-sign</li>
                         <li><i class="icon-github"></i> icon-github</li>
-                        <li><i class="icon-github-sign"></i> icon-github-alt</li>
+                        <li><i class="icon-github-sign"></i> icon-github-sign</li>
+                        <li><i class="icon-html5"></i> icon-html5</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
-                        <li><i class="icon-github-sign"></i> icon-github-sign</li>
                         <li><i class="icon-linkedin"></i> icon-linkedin</li>
                         <li><i class="icon-linkedin-sign"></i> icon-linkedin-sign</li>
+                        <li><i class="icon-maxcdn"></i> icon-maxcdn</li>
                         <li><i class="icon-pinterest"></i> icon-pinterest</li>
                     </ul>
                     <ul class="unstyled large-25 medium-50 small-100">
                         <li><i class="icon-pinterest-sign"></i> icon-pinterest-sign</li>
                         <li><i class="icon-google-plus"></i> icon-google-plus</li>
                         <li><i class="icon-google-plus-sign"></i> icon-google-plus-sign</li>
-                        <li><i class="icon-sign-blank"></i> icon-sign-blank</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="nav-medical" data-spy="true" data-target="#icon_menu">
+                <h2>Medical Icons</h2>
+                <div class="column-group gutters">
+                    <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-ambulance"></i> icon-ambulance</li>
+                        <li><i class="icon-beaker"></i> icon-beaker</li>
+                    </ul>
+                    <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-h-sign"></i> icon-h-sign</li>
+                        <li><i class="icon-hospital"></i> icon-hospital</li>
+                    </ul>
+                    <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-medkit"></i> icon-medkit</li>
+                        <li><i class="icon-plus-sign-alt"></i> icon-plus-sign-alt</li>
+                    </ul>
+                    <ul class="unstyled large-25 medium-50 small-100">
+                        <li><i class="icon-stethoscope"></i> icon-stethoscope</li>
+                        <li><i class="icon-user-md"></i> icon-user-md</li>
                     </ul>
                 </div>
             </section>
             
             <section>
                 <p>
-                    We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under the <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>, with code under <a href="http://opensource.org/licenses/mit-license.html">MIT</a>, and pictograms under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, allowing projects like Ink to share its awesomeness. </p>
-                    <p>Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a></p>
-                
+                    We'd like to leave a special thanks to the guys who made Font Awesome and decided to make it available under the <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>, 
+                    with code under <a href="http://opensource.org/licenses/mit-license.html">MIT</a>, and pictograms under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, allowing projects like Ink to share its awesomeness. 
+                </p>
+                <p>Check out their web site at <a href="http://fortawesome.github.com/Font-Awesome">http://fortawesome.github.com/Font-Awesome</a></p>
             </section>
         
         </div>
@@ -580,7 +644,7 @@
                 
                
                 <div class="large-60 medium-60 small-100">
-                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="pedrocs">Tweet</a>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
                     <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
@@ -612,32 +676,22 @@
             
         </div>
 
-                    <p class="vspace"><strong>Built with:</strong></p>
+        <p class="vspace"><strong>Built with:</strong></p>
 
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
                 <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
                 <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
                 <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
-               
             </ul>
         </div>
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
-                 <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
-                <li><a href="https://github.com/scottjehl/Respond">respond.js</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
                 <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
             </ul>
         </div>
-       <!--  <div class="large-25 medium-30 small-100">
-            <ul class="sociallinks unstyled inline column-right vspace">
-                <li><strong>Follow Ink:</strong></li>
-                <li><a class="Fb_link" href="https://www.facebook.com/inksapo"></a></li>
-                <li><a class="Twt_link" href="https://twitter.com/inksapo"></a></li>
-            </ul>
-        </div> -->
     </div>
 </footer>
-    <!-- <script type="text/javascript" src="http://10.134.132.33/inksite/assets/js/ink.js"></script> -->
         </body>
 </html>
