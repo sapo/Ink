@@ -20,7 +20,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
      * @uses Ink.Dom.Selector
      * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
      * @example
      *      <script>
@@ -86,13 +86,12 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
          */
         _onScroll: function(){
 
-            if(
-                (window.scrollY < this._rootElement.offsetTop)
-            ){
+            var scrollHeight = Element.scrollHeight(); 
+            if( (scrollHeight < this._rootElement.offsetTop) ){
                 return;
             } else {
-                for( var i = 0; i < this._elements.length; i++ ){
-                    if( (this._elements[i].offsetTop <= window.scrollY) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
+                for( var i = 0, total = this._elements.length; i < total; i++ ){
+                    if( (this._elements[i].offsetTop <= scrollHeight) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
                         return;
                     }
                 }
@@ -102,7 +101,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
                 Selector.select(
                     'a',
                     this._options.target
-                ),Ink.bind(function(item){
+                ), Ink.bind(function(item){
 
                     var comparisonValue = ( ("name" in this._rootElement) && this._rootElement.name ?
                         '#' + this._rootElement.name : '#' + this._rootElement.id
