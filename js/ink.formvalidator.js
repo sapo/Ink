@@ -556,8 +556,35 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         }
                     }
                     break;
-                //case 'date':
-                //    break;
+                case 'ink-fv-date':
+                    if(this._trim(elm.value) === '') {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        var Element = Ink.getModule('Ink.Dom.Element',1);
+                        var dataset = Element.data( elm );
+                        var validFormat = 'yyyy-mm-dd';
+
+                        if( Css.hasClassName(elm, 'ink-datepicker') && ("format" in dataset) ){
+                            validFormat = dataset.format;
+                        } else if( ("validFormat" in dataset) ){
+                            validFormat = dataset.validFormat;
+                        }
+
+                        if( !(validFormat in InkValidator._dateParsers ) ){
+                            var validValues = [];
+                            for( val in InkValidator._dateParsers ){
+                                validValues.push(val);
+                            }
+                            throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
+                        }
+                        
+                        return InkValidator.isDate( validFormat, elm.value );
+                    }
+                    break;
                 case 'ink-fv-custom':
                     break;
             }
