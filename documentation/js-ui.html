@@ -1,99 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-    <meta charset="utf-8">
+        <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
-    <meta name="author" content="SAPO WEB & MEDIA DESIGN">    
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" href="../img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+    <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/2.0.0/img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.0.0/css/ink-min.css">
     
     <!-- Load Documentation sites' CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.0.0/css/docs.css">  
 
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="../js/html5shiv.js"></script>
-        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/html5shiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.0.0/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink.min.js"></script>
-    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
-    <script type="text/javascript" src="../js/autoload.js"></script>
-    <script type="text/javascript" src="../js/prettify.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/autoload.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                            <a class="logoPlaceholder" href="http://ink.sapo.pt/" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
-                                <a href="getting-started.html">Getting started</a>
+                                <a href="http://ink.sapo.pt/getting-started">Getting started</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="layout.html">Layout</a>
+                                <a href="http://ink.sapo.pt/layout">Layout</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="navigation.html">Navigation</a>
+                                <a href="http://ink.sapo.pt/navigation">Navigation</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="typography.html">Typography</a>
+                                <a href="http://ink.sapo.pt/typography">Typography</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="icons.html">Icons</a>
+                                <a href="http://ink.sapo.pt/icons">Icons</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="forms.html">Forms</a>
+                                <a href="http://ink.sapo.pt/forms">Forms</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="alerts.html">Alerts</a>
+                                <a href="http://ink.sapo.pt/alerts">Alerts</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="tables.html">Tables</a>
+                                <a href="http://ink.sapo.pt/tables">Tables</a>
                     
             </li>
                                                         
@@ -101,10 +103,10 @@
                     <a href="#">InK JS<i class="icon-caret-down"></i></a>
                     <ul class="submenu">
                                                     <li>
-                                                                <a href="./js-ui.html">UI</a>                           
+                                                                <a href="http://ink.sapo.pt/js/ui">UI</a>                           
                             </li>
                                                     <li>
-                                                                <a href="./js-core.html">Core</a>                           
+                                                                <a href="http://ink.sapo.pt/js/core">Core</a>                           
                             </li>
                                             </ul>
                 </li>
@@ -116,7 +118,7 @@
         <ul class="menu vertical flat black">
             <li class="title">
             
-                                        <a class="logoPlaceholder push-left" href="./index.html" title="Site Title">InK</a>
+                            <a class="logoPlaceholder push-left" href="http://ink.sapo.pt/" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -124,42 +126,42 @@
         <ul class="menu vertical flat black hide-all" id="topbar_menu">
                                                     <li >
 
-                                <a href="getting-started.html">Getting started</a>
+                                <a href="http://ink.sapo.pt/getting-started">Getting started</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="layout.html">Layout</a>
+                                <a href="http://ink.sapo.pt/layout">Layout</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="navigation.html">Navigation</a>
+                                <a href="http://ink.sapo.pt/navigation">Navigation</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="typography.html">Typography</a>
+                                <a href="http://ink.sapo.pt/typography">Typography</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="icons.html">Icons</a>
+                                <a href="http://ink.sapo.pt/icons">Icons</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="forms.html">Forms</a>
+                                <a href="http://ink.sapo.pt/forms">Forms</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="alerts.html">Alerts</a>
+                                <a href="http://ink.sapo.pt/alerts">Alerts</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="tables.html">Tables</a>
+                                <a href="http://ink.sapo.pt/tables">Tables</a>
                     
             </li>
                                                         
@@ -167,10 +169,10 @@
                     <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
                     <ul class="submenu hide">
                                                     <li>
-                                                                <a href="./js-ui.html">UI</a>                           
+                                                                <a href="http://ink.sapo.pt/js/ui">UI</a>                           
                             </li>
                                                     <li>
-                                                                <a href="./js-core.html">Core</a>                           
+                                                                <a href="http://ink.sapo.pt/js/core">Core</a>                           
                             </li>
                                             </ul>
                 </li>
@@ -189,17 +191,17 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="ui_menu">
                 <ul class="menu vertical black rounded">
-                    <li><a class="scrollableLink" href="./js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                                                            <li><a class="scrollableLink" href="js-ui.html#modal">Modal</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#table">Table</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#tree_view">Tree View</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#sortable_list">Sortable List</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#date_picker">Date Picker</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#tabs">Tabs</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#formvalidator">Form Validator</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#progress_bar">Progress Bar</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#imagequery">Image Query</a></li>
-                                                                                <li><a class="scrollableLink" href="js-ui.html#behaviors">Behaviors</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                                                            <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#modal">Modal</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#table">Table</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#tree_view">Tree View</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#sortable_list">Sortable List</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#date_picker">Date Picker</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#tabs">Tabs</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#formvalidator">Form Validator</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#progress_bar">Progress Bar</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#imagequery">Image Query</a></li>
+                                                                                <li><a class="scrollableLink" href="http://ink.sapo.pt/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#behaviors">Behaviors</a></li>
                                                         </ul>
             </nav>
         </div>
@@ -221,16 +223,16 @@
                 <p><span class="ink-label info">Loading from the CDN</span></p>
 
                 <p>You can load Ink's Javascript Core and its UI Components in just one minified file (the complete bundle):</p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink-all.min.js"&gt;&lt;/script&gt;</pre>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink-all.min.js"&gt;&lt;/script&gt;</pre>
                 <br>
                 <p>You can load Ink's Javascript Core Bundle and its UI Components Bundle separately, still minified:</p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="../js/ink-ui.min.js"&gt;&lt;/script&gt;</pre>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink-ui.min.js"&gt;&lt;/script&gt;</pre>
                 <br>
                 <p>You can load Ink's Javascript Core Bundle and each UI Component separately (one line per UI Component):</p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="../js/ink.someComponent.min.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="../js/ink.anotherComponent.min.js"&gt;&lt;/script&gt;</pre>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.someComponent.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.anotherComponent.min.js"&gt;&lt;/script&gt;</pre>
                 <p>Don't forget to replace the <i>someComponent</i> and the <i>anotherComponent</i> parts of the example for the real names of the components, like <i>modal</i> or <i>progressbar</i>.</p>
                 <br>
                 <br>
@@ -368,7 +370,7 @@
         </li>
     </ul>
     <p>
-        Other options, more directed for the Javascript implementation, and a more detailed explanation of the above ones are available in the <a target="_blank" href="Ink.UI.Modal.html">technical documentation</a>.
+        Other options, more directed for the Javascript implementation, and a more detailed explanation of the above ones are available in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Modal.html">technical documentation</a>.
     </p>
     <div class="ink-shade fade">
         <div id="test" class="ink-modal fade" data-trigger="#bModal" data-disable-scroll="true" data-width="800px" data-height="600px">
@@ -585,7 +587,7 @@
         </li>
     </ul>
     <p>
-        For more examples, like remote data loading via AJAX, and a list of all supported options, check our <a target="_blank" href="Ink.UI.Table.html">technical documentation</a>.
+        For more examples, like remote data loading via AJAX, and a list of all supported options, check our <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Table.html">technical documentation</a>.
     </p>
 </section><section id="tree_view" data-spy='true' data-target="#ui_menu">
     <h2>Tree View</h2>
@@ -699,7 +701,7 @@
         <li><strong>data-child</strong> Identifies which of your elements are condidered children elements within your structure. value must be a valid CSS selector. The default value is <code>ul</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myChild"</code></li>
     </ul>
     <p><span class="ink-label info">Note</span> If you need to build a tree view with elements other than lists, then you will not benefit from Ink's defaul styling for this component and you'll have to add your own style.</p>
-    <p>Specifications and other examples, available in the <a target="_blank" href="Ink.UI.TreeView.html">technical documentation</a>.</p>
+    <p>Specifications and other examples, available in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.TreeView.html">technical documentation</a>.</p>
 </section>
 <section id="sortable_list" data-spy="true" data-target="#ui_menu">
     <h2>Sortable List</h2>
@@ -757,7 +759,7 @@
         <li><strong>data-drag-object</strong> Allows you to set which element is draggable. Default is <code>&lt;li&gt;</code>, can be set to any CSS selector. Example: <code>data-drag-object=".myClass"</code>.</li>
     </ul>
     <p>If you check the example code above, you'll see we created a "drag here" label and made that the draggable element with <code>data-drag-object=".ink-label"</code></p>
-    <p>Check our <a target="_blank" href="Ink.UI.SortableList.html">technical documentation</a> for further configuration.</p>
+    <p>Check our <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.SortableList.html">technical documentation</a> for further configuration.</p>
 </section>
 <section id="date_picker" data-spy="true" data-target="#ui_menu">
     <h2>Date Picker</h2>
@@ -826,16 +828,16 @@
         <li>
             <p><strong>data-format</strong> sets the date format which will be written into the text input and submitted with the form. The default value is <code>data-format="yyyy-mm-dd"</code> but there are many different options as you can see below:</p>
             <ul>
-                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-06-06 (default)</li>
-                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/06/06</li>
-                <li><strong>yy-mm-dd</strong> Ex: 13-06-06</li>
-                <li><strong>yy/mm/dd</strong> Ex: 13/06/06</li>
-                <li><strong>dd-mm-yyyy</strong> - Ex: 06-06-2013</li>
-                <li><strong>dd/mm/yyyy</strong> - Ex: 06/06/2013</li>
-                <li><strong>dd-mm-yy</strong> Ex: 06-06-13</li>
-                <li><strong>dd/mm/yy</strong> Ex: 06/06/13</li>
-                <li><strong>mm-dd-yyyy</strong> - Ex: 06-06-2013</li>
-                <li><strong>mm/dd/yyyy</strong> - Ex: 06/06/2013</li>
+                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-06-12 (default)</li>
+                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/06/12</li>
+                <li><strong>yy-mm-dd</strong> Ex: 13-06-12</li>
+                <li><strong>yy/mm/dd</strong> Ex: 13/06/12</li>
+                <li><strong>dd-mm-yyyy</strong> - Ex: 12-06-2013</li>
+                <li><strong>dd/mm/yyyy</strong> - Ex: 12/06/2013</li>
+                <li><strong>dd-mm-yy</strong> Ex: 12-06-13</li>
+                <li><strong>dd/mm/yy</strong> Ex: 12/06/13</li>
+                <li><strong>mm-dd-yyyy</strong> - Ex: 06-12-2013</li>
+                <li><strong>mm/dd/yyyy</strong> - Ex: 06/12/2013</li>
             </ul>
             <p></p>
         </li>
@@ -854,7 +856,7 @@
             <p><strong>data-start-date</strong> sets a start date, that will be selected when you open the calendar. It must be defined in the following format: <code>yyyy-mm-dd</code>. Example: <code>data-start-date="2013-01-01"</code></p>
         </li>
     </ul>
-    <p>There are other configurations, some specific for Javascript, available on the <a target="_blank" href="Ink.UI.DatePicker.html">technical documentation</a>.</p>
+    <p>There are other configurations, some specific for Javascript, available on the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.DatePicker.html">technical documentation</a>.</p>
 </section>
     
 <section id="tabs" data-spy="true" data-target="#ui_menu">
@@ -1317,7 +1319,7 @@
         <li><strong>data-prevent-url-change</strong> Prevents the URL from being changed when navigating between tabs. Value must be boolean, "true" (default) or "false". Example: <code>data-prevent-url-change="false"</code></li>
         <li><strong>data-active</strong> Allows specifying which of the tabs is open by default. Value must be an ID present in the markup structure of the tabs. Example: <code>data-active="#secondItem"</code></li>
     </ul>
-    <p>You can see several examples in the <a target="_blank" href="Ink.UI.Tabs.html">technical documentation</a>.</p>
+    <p>You can see several examples in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Tabs.html">technical documentation</a>.</p>
     
 </section>
 <section id="formvalidator" data-spy="true" data-target="#ui_menu">
@@ -1339,7 +1341,7 @@
     <p>Notice that, contrary to other modules, you don't really need to initialize the Form Validator, as the validation request is made on form submission.</p>
     <h3>Validating</h3>
     <p>There are two components that you need to use in order to validate a form using Ink. You'll have to request validation on form submission and you'll have to tag the input elements with certain classes to tell Ink what to validate.</p>
-    <p>So, start by building your form (make sure you read the sction on <a href="./forms">Forms</a>), and add the bit of Javascript that tells Ink to do the validation in your <code>&lt;form&gt;</code>, like this:</p>
+    <p>So, start by building your form (make sure you read the sction on <a href="http://ink.sapo.pt/forms">Forms</a>), and add the bit of Javascript that tells Ink to do the validation in your <code>&lt;form&gt;</code>, like this:</p>
     <pre class="prettyprint linenums">
 &lt;form class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return Ink.UI.FormValidator.validate(this);&quot;&gt;</pre>
     <p>Once you have the <code>onsubmit</code> attribute set, you need to 'tag' each of your input elements (text, radio buttons, select boxes, etc), with one or more validation classes. Refer to the following list to see what they do:</p>
@@ -1356,7 +1358,7 @@
         <li><strong>.ink-fv-confirm</strong> - A pair of form fields with this class will be checked to make sure the inputed values match.</li>
         <li><strong>.ink-fv-custom</strong> - Allows custom Javascript validation.</li>
     </ul>
-    <p>More examples and detailed configurations, in the <a target="_blank" href="Ink.UI.FormValidator.html">technical documentation</a>.</p>
+    <p>More examples and detailed configurations, in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.FormValidator.html">technical documentation</a>.</p>
     <div class="box" id="formvalidatorCode">
         <form id="myform" class="ink-form" method="post" action="#" onsubmit="return Ink.UI.FormValidator.validate(this);">
     <fieldset>
@@ -1505,7 +1507,7 @@
     });
 &lt;/script&gt;</pre>
     <p>
-        For more examples and a list of all supported options, check our <a target="_blank" href="Ink.UI.ProgressBar.html">technical documentation</a>.
+        For more examples and a list of all supported options, check our <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.ProgressBar.html">technical documentation</a>.
     </p>
 </section>
 <section id="imagequery" data-spy="true" data-target="#ui_menu">
@@ -1534,7 +1536,7 @@
     <pre class="prettyprint linenums">
 &lt;script type=&quot;text/javascript&quot;&gt;
     var imagequery = new Ink.UI.ImageQuery('.imagequery',{        </pre>
-        <p>Then, setup the template that will give ImageQuery the correct path for each image. <code>{:label}</code> will read whatever value you give label afterwards, <code>{:file}</code> will read the origina filename and look for the same filename in each of the referenced directories.</p>
+        <p>Then, setup the template that will give ImageQuery the correct path for each image. <code>{:label}</code> will read whatever value you give label afterwards, <code>{:file}</code> will read the original filename and look for the same filename in each of the referenced directories.</p>
         <p>In the example, ImageQuery will look in the <code>./imgs/</code> directory for a <code>{:label}</code> sub-directory, containing an <code>image.png</code> file.</p>
         <pre class="prettyprint linenums">
 src: './imgs/{:label}/{:file}',</pre>
@@ -1559,17 +1561,17 @@ queries: [
         <p>If you're using images for Retina Displays, then add an extra line, after the <code>src:</code> declaration, with a <code>retina:</code> declaration, indicating the path of that particular asset, for example:</p>
         <pre class="prettyprint linenums">
 src: './imgs/{:label}/{:file}', &lt;!-- The original src declaration --&gt;
-retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
+retina: './imgs/retina/{:label}/{:file}', &lt;!-- The retina declaration --&gt;</pre>
         <p>This works independent of screen size, because we detect whether or not you have a retina display.</p>
         <p id="imgqueryCode"><span class="ink-label success">Example</span></p>
         <p>Below, you can see how different images are being loaded according to your screen width. Hit the Show Source Code button to get the fully functional example.</p>
-        <img src="/assets/imgs/imagequery/small/image.jpg" class="large-100 medium-100 small-100 vspace imagequery"/>
+        <img src="http://imgs.sapo.pt/ink/assets/imgs/imagequery/small/image.jpg" class="large-100 medium-100 small-100 vspace imagequery"/>
 
 <script type="text/javascript">
     Ink.requireModules( ['Ink.UI.ImageQuery_1'], function( ImageQuery ){
         var tv1 = new Ink.UI.ImageQuery('.imagequery',{
-            src: '/assets/imgs/imagequery/{:label}/{:file}',
-            retina: '/assets/imgs/imagequery/retina/{:file}',
+            src: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/{:label}/{:file}',
+            retina: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/retina/{:file}',
             queries: [
                 {
                     label: 'small',
@@ -1587,13 +1589,13 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
         });
     });
 </script>        <button href="#" data-target="#imagequery_sourcecode" class="ink-button toggle">View Source Code</button>
-        <pre id="imagequery_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;img src=&quot;/assets/imgs/imagequery/small/image.jpg&quot; class=&quot;large-100 medium-100 small-100 vspace imagequery&quot;/&gt;
+        <pre id="imagequery_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;img src=&quot;http://imgs.sapo.pt/ink/assets/imgs/imagequery/small/image.jpg&quot; class=&quot;large-100 medium-100 small-100 vspace imagequery&quot;/&gt;
 
 &lt;script type=&quot;text/javascript&quot;&gt;
     Ink.requireModules( ['Ink.UI.ImageQuery_1'], function( ImageQuery ){
         var tv1 = new Ink.UI.ImageQuery('.imagequery',{
-            src: '/assets/imgs/imagequery/{:label}/{:file}',
-            retina: '/assets/imgs/imagequery/retina/{:file}',
+            src: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/{:label}/{:file}',
+            retina: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/retina/{:file}',
             queries: [
                 {
                     label: 'small',
@@ -1611,12 +1613,13 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
         });
     });
 &lt;/script&gt;</pre>
-        <p>More specifications and other examples, available in the <a target="_blank" href="Ink.UI.ImageQuery.html">technical documentation</a>.</p>
-</section><section id="behaviors" data-spy="true" data-target="#ui_menu">
+        <p>More specifications and other examples, available in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.ImageQuery.html">technical documentation</a>.</p>
+</section>
+<section id="behaviors" data-spy="true" data-target="#ui_menu">
     <h2>Behaviors</h2>
     
     <h3>Dismiss</h3>
-    <p>This behavior allows you to dismiss an element from your markup by using a class in a child element. It's used for closing <a href="./js/ui#modal">Modal Windows</a> as well as <a href="./alerts">Alerts</a> in Ink, but you can use it to remove any parent container from your document.</p>
+    <p>This behavior allows you to dismiss an element from your markup by using a class in a child element. It's used for closing <a href="http://ink.sapo.pt/js/ui#modal">Modal Windows</a> as well as <a href="http://ink.sapo.pt/alerts">Alerts</a> in Ink, but you can use it to remove any parent container from your document.</p>
     <h4>Necessary JS modules</h4>
     <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you only need ink.js for the dismiss behavior and there is no intialization needed.</p>
     <p><span class="ink-label info">Code</span></p>
@@ -1638,7 +1641,7 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
     &lt;button class=&quot;ink-dismiss&quot;&gt;&amp;times;&lt;/button&gt;
     &lt;p&gt;This is a simple notification&lt;/p&gt;
 &lt;/div&gt;</pre>
-    <p>Check the <a target="_blank" href="Ink.UI.Close.html">technical documentation</a> for more details, and read the <a href="./alerts">Alerts</a> section to see more examples like the one above.</p>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Close.html">technical documentation</a> for more details, and read the <a href="http://ink.sapo.pt/alerts">Alerts</a> section to see more examples like the one above.</p>
 
     <h3>Spy</h3>
     <p>The Spy behavior looks for a specified element to see if it's visible in the viewport and changes a second element to an active state. You can see this working in the side menu in medium and large screens: as you scroll past each section, its corresponding link in the menu becomes highlighted.</p>
@@ -1656,7 +1659,7 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
   var spyObj = new Ink.UI.Spy('#mySpy');
 &lt;/script&gt;</pre>
     <h4>Using Spy</h4>
-    <p>Spy is used in long pages with anchors linked from a menu. So you'll begin by building your menu, with each item pointing to a specific id down the page. To learn how to build menus with Ink, read the <a href="./navigation">Navigation</a>  section, for the sake of example, we'll use an ultra-simplified model.</p>
+    <p>Spy is used in long pages with anchors linked from a menu. So you'll begin by building your menu, with each item pointing to a specific id down the page. To learn how to build menus with Ink, read the <a href="http://ink.sapo.pt/navigation">Navigation</a>  section, for the sake of example, we'll use an ultra-simplified model.</p>
     <p>You jsut need to build your menu, using and use a unique ID, such as <code>#myMenu</code> in the example below.</p>
     <p><span class="ink-label info">Code</span></p>
     <pre class="prettyprint linenums">
@@ -1683,7 +1686,7 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
 </pre>
 
     
-    <p>Check the <a target="_blank" href="Ink.UI.Spy.html">technical documentation</a> for more details.</p>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Spy.html">technical documentation</a> for more details.</p>
     <p><button data-target="#spy_sourcecode" class="ink-button toggle">View Source Code</button></p>
     <pre id="spy_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot; id=&quot;myMenu&quot;&gt;
    &lt;ul class=&quot;menu&quot;&gt;
@@ -1723,14 +1726,14 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
         <li><strong>data-offset-top</strong> - Defines an offset, in pixels, that the sticky object must respect, relative to the <code>data-top-element</code>. Must be a number and unit combination. Example: <code>data-offset-top="50px"</code></li>
         <li><strong>data-offset-bottom</strong> - Defines an offset, in pixels, that the sticky object must respect, relative to the <code>data-bottom-element</code>. Must be a number and unit combination. Example: <code>data-offset-bottom="50px"</code></li>
     </ul>
-    <p>Check the <a target="_blank" href="Ink.UI.Sticky.html">technical documentation</a> for more details.</p>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Sticky.html">technical documentation</a> for more details.</p>
     <p><button data-target="#sticky_sourcecode" class="ink-button toggle">View Source Code</button></p>
     <pre id="sticky_sourcecode" class="ink-l100 hide-all prettyprint linenums">div id=&quot;myDiv&quot; data-offset-top=&quot;20px&quot; data-offset-bottom=&quot;20px&quot; class=&quot;sticky&quot;&gt;
     &lt;p&gt;Your content here&lt;/p&gt;
 &lt;/div&gt;</pre>
 
     <h3>Toggle</h3>
-    <p>The Toggle behavior allows to easily show and hide elements using another element as trigger. It's used and explained in-depth in the <a href="./navigation#nav-dropdowns">Navigation > Dropdowns</a> section and a good example is the View Source Button in this page, that shows/hides the full code examples.</p>
+    <p>The Toggle behavior allows to easily show and hide elements using another element as trigger. It's used and explained in-depth in the <a href="http://ink.sapo.pt/navigation#nav-dropdowns">Navigation > Dropdowns</a> section and a good example is the View Source Button in this page, that shows/hides the full code examples.</p>
     <h4>Necessary Javascript Modules</h4>
     <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.toggle.js and autoload.js to initialize the module automatically.</p>
     <p><span class="ink-label info">Code</span></p>
@@ -1778,7 +1781,7 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
         </li>
         <li><strong>data-close-on-click</strong> - Defines whether or not the togglable element changes state when the user clicks anywhere outside the trigger element. Must be a boolean value (true or false), default is true. Example: <code>data-close-on-click="false"</code></li>
     </ul>
-    <p>Check the <a target="_blank" href="Ink.UI.Toggle.html">technical documentation</a> for more details.</p></p>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Toggle.html">technical documentation</a> for more details.</p></p>
 </section>
         </div>
     </div>
@@ -1801,11 +1804,13 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
                 
             </div>
         </div>
+        
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                                        <li><a href="./about.html">About</a></li>
-                    <li><a href="./changelog.html">Changelog</a></li>
+                                        <li><a href="http://ink.sapo.pt/about">About</a></li>
+                    <li><a href="http://ink.sapo.pt/changelog">Changelog</a></li>
+                    <li><a href="http://ink.sapo.pt/glossary">Glossary</a></li>
                                         
                     <li>
                         Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
@@ -1814,7 +1819,7 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
                 </ul>
             </nav>  
             
-            <div class="copyright">
+            <div class="copyright vspace">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
                     <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
@@ -1824,7 +1829,7 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
             
         </div>
 
-        <p class="vspace"><strong>Built with:</strong></p>
+        <p><strong>Built with:</strong></p>
 
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
@@ -1841,5 +1846,16 @@ retina: './imgs/retina/{:file}', &lt;!-- The retina declaration --&gt;</pre>
         </div>
     </div>
 </footer>
-        </body>
+            <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
 </html>
