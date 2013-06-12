@@ -37,6 +37,10 @@ We built Ink by standing on the shoulders of giants, following the opensource ma
 * [html5shiv](https://code.google.com/p/html5shiv/) (under [MIT License](http://opensource.org/licenses/MIT))
 * [normalize.css](http://necolas.github.io/normalize.css/) (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
 
+## Contributing
+
+If you wish to contribute with your own code, please submit your pull requests to the **[develop](https://github.com/sapo/Ink/tree/develop)** branch.
+
 ## Previous versions
 
 * [Ink v1.1.0](https://github.com/sapo/Ink/archive/1.1.0.zip)
