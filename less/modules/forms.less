@@ -33,9 +33,22 @@
         }
     }
 
-    input,
+    select,
     textarea,
-    select {
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"], {
         #ink > #border-radius > .all (@border-radius);
         padding: @form-field-padding;
         border: 1px solid darken(@form-field-borderColor,10%);
@@ -69,7 +82,7 @@
         }
     }
 
-    button {
+    .ink-button {
         margin: 0 5px;
     }
 
