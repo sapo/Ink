@@ -4,12 +4,12 @@
         /***************************
          * DatePicker - Default CSS selector is .ink-datepicker
          ***************************/
-         'DatePicker_1': '.ink-datepicker',
+        'DatePicker_1': '.ink-datepicker',
 
         /***************************
          * Gallery - Default CSS selector is ul.ink-gallery-source
          ***************************/
-         'Gallery_1': 'ul.ink-gallery-source',
+        'Gallery_1': 'ul.ink-gallery-source',
 
         /***************************
          * Modal - Default CSS selector is .ink-modal
@@ -70,6 +70,9 @@
 
         Loaded.run(function(){
             for( var mod in autoload ){
+                if( !autoload.hasOwnProperty(mod) ){
+                    continue;
+                }
                 elements = Selector.select( autoload[mod] );
                 if( elements.length ){
                     Ink.requireModules( ['Ink.UI.' + mod ], fn);
