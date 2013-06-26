@@ -59,16 +59,20 @@
     };
 
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'],
-        function( Selector, Loaded, InkArray, Scroller ){
+        function( Selector, Loaded, InkArray, Scroller, Close ){
+
+        var elements;
+        var fn = function( Component ) {
+            InkArray.each(elements, function( element ){
+                new Component(element);
+            });
+        };
+
         Loaded.run(function(){
             for( var mod in autoload ){
-                var elements = Selector.select( autoload[mod] );
+                elements = Selector.select( autoload[mod] );
                 if( elements.length ){
-                    Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
-                        InkArray.each(elements, function( element ){
-                            new Component(element);
-                        });
-                    });
+                    Ink.requireModules( ['Ink.UI.' + mod ], fn);
                 }
             }
             Scroller.init();
