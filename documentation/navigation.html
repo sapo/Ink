@@ -1,99 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-    <meta charset="utf-8">
+        <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
-    <meta name="author" content="SAPO WEB & MEDIA DESIGN">    
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" href="../img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+    <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/2.0.0/img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.0.0/css/ink-min.css">
     
     <!-- Load Documentation sites' CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.0.0/css/docs.css">  
 
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="../js/html5shiv.js"></script>
-        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/html5shiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.0.0/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink.min.js"></script>
-    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
-    <script type="text/javascript" src="../js/autoload.js"></script>
-    <script type="text/javascript" src="../js/prettify.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/autoload.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                            <a class="logoPlaceholder" href="http://ink.sapo.pt/" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
-                                <a href="getting-started.html">Getting started</a>
+                                <a href="http://ink.sapo.pt/getting-started">Getting started</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="layout.html">Layout</a>
+                                <a href="http://ink.sapo.pt/layout">Layout</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="navigation.html">Navigation</a>
+                                <a href="http://ink.sapo.pt/navigation">Navigation</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="typography.html">Typography</a>
+                                <a href="http://ink.sapo.pt/typography">Typography</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="icons.html">Icons</a>
+                                <a href="http://ink.sapo.pt/icons">Icons</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="forms.html">Forms</a>
+                                <a href="http://ink.sapo.pt/forms">Forms</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="alerts.html">Alerts</a>
+                                <a href="http://ink.sapo.pt/alerts">Alerts</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="tables.html">Tables</a>
+                                <a href="http://ink.sapo.pt/tables">Tables</a>
                     
             </li>
                                                         
@@ -101,10 +103,10 @@
                     <a href="#">InK JS<i class="icon-caret-down"></i></a>
                     <ul class="submenu">
                                                     <li>
-                                                                <a href="./js-ui.html">UI</a>                           
+                                                                <a href="http://ink.sapo.pt/js/ui">UI</a>                           
                             </li>
                                                     <li>
-                                                                <a href="./js-core.html">Core</a>                           
+                                                                <a href="http://ink.sapo.pt/js/core">Core</a>                           
                             </li>
                                             </ul>
                 </li>
@@ -116,7 +118,7 @@
         <ul class="menu vertical flat black">
             <li class="title">
             
-                                        <a class="logoPlaceholder push-left" href="./index.html" title="Site Title">InK</a>
+                            <a class="logoPlaceholder push-left" href="http://ink.sapo.pt/" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -124,42 +126,42 @@
         <ul class="menu vertical flat black hide-all" id="topbar_menu">
                                                     <li >
 
-                                <a href="getting-started.html">Getting started</a>
+                                <a href="http://ink.sapo.pt/getting-started">Getting started</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="layout.html">Layout</a>
+                                <a href="http://ink.sapo.pt/layout">Layout</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="navigation.html">Navigation</a>
+                                <a href="http://ink.sapo.pt/navigation">Navigation</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="typography.html">Typography</a>
+                                <a href="http://ink.sapo.pt/typography">Typography</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="icons.html">Icons</a>
+                                <a href="http://ink.sapo.pt/icons">Icons</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="forms.html">Forms</a>
+                                <a href="http://ink.sapo.pt/forms">Forms</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="alerts.html">Alerts</a>
+                                <a href="http://ink.sapo.pt/alerts">Alerts</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="tables.html">Tables</a>
+                                <a href="http://ink.sapo.pt/tables">Tables</a>
                     
             </li>
                                                         
@@ -167,10 +169,10 @@
                     <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
                     <ul class="submenu hide">
                                                     <li>
-                                                                <a href="./js-ui.html">UI</a>                           
+                                                                <a href="http://ink.sapo.pt/js/ui">UI</a>                           
                             </li>
                                                     <li>
-                                                                <a href="./js-core.html">Core</a>                           
+                                                                <a href="http://ink.sapo.pt/js/core">Core</a>                           
                             </li>
                                             </ul>
                 </li>
@@ -189,17 +191,17 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="nav_menu">
                 <ul class="menu vertical rounded black">                    
-                                        <li><a class="scrollableLink" href="navigation.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-basics">Navigation basics</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-sub">Submenus</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-styling">Navigation Styling</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-horizontal">Horizontal Menu</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-vertical">Vertical Menu</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-pagination">Pagination</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-pills">Pills</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-breadcrumbs">Breadcrumbs</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-footer">Footer</a></li>
-                    <li><a class="scrollableLink" href="navigation.html#nav-dropdowns">Dropdowns</a></li>
+                                        <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-basics">Navigation basics</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-sub">Submenus</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-styling">Navigation Styling</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-horizontal">Horizontal Menu</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-vertical">Vertical Menu</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-pagination">Pagination</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-pills">Pills</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-breadcrumbs">Breadcrumbs</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-footer">Footer</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/navigation/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-dropdowns">Dropdowns</a></li>
                       
                 </ul>
             </nav>
@@ -743,11 +745,13 @@
                 
             </div>
         </div>
+        
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                                        <li><a href="./about.html">About</a></li>
-                    <li><a href="./changelog.html">Changelog</a></li>
+                                        <li><a href="http://ink.sapo.pt/about">About</a></li>
+                    <li><a href="http://ink.sapo.pt/changelog">Changelog</a></li>
+                    <li><a href="http://ink.sapo.pt/glossary">Glossary</a></li>
                                         
                     <li>
                         Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
@@ -756,7 +760,7 @@
                 </ul>
             </nav>  
             
-            <div class="copyright">
+            <div class="copyright vspace">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
                     <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
@@ -766,7 +770,7 @@
             
         </div>
 
-        <p class="vspace"><strong>Built with:</strong></p>
+        <p><strong>Built with:</strong></p>
 
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
@@ -783,5 +787,16 @@
         </div>
     </div>
 </footer>
-        </body>
+            <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
 </html>

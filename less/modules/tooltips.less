@@ -1,0 +1,125 @@
+.ink-tooltip {
+
+	display: inline-block;
+	position: relative;
+
+	
+	
+	
+
+	& > .content {
+		background: @tooltip-background-color;
+		padding: @tooltip-padding;
+		#ink > #border-radius > .all (@tooltip-border-radius);
+		font-size: @tooltip-font-size;
+		color: @tooltip-text-color;
+	}
+
+	& > .arrow {
+
+		position: absolute;
+
+		&.up, &.down, &.left, &.right {
+			width: 0; 
+			height: 0;
+		}
+
+		&.up {			 
+			border-left: @tooltip-arrow-size solid transparent;
+			border-right: @tooltip-arrow-size solid transparent;
+			border-bottom: @tooltip-arrow-size solid @tooltip-background-color;
+			top: -@tooltip-arrow-size;
+			left: 50%;
+			margin-left: -(@tooltip-arrow-size / 2);
+		}
+
+		&.down {			 
+			border-left: @tooltip-arrow-size solid transparent;
+			border-right: @tooltip-arrow-size solid transparent;
+			border-top: @tooltip-arrow-size solid @tooltip-background-color;
+			bottom: -(@tooltip-arrow-size/1.1);
+			left: 50%;
+			margin-left: -(@tooltip-arrow-size / 2);
+		}
+
+		&.right {			 
+			border-top: @tooltip-arrow-size solid transparent;
+			border-bottom: @tooltip-arrow-size solid transparent;
+			border-left: @tooltip-arrow-size solid @tooltip-background-color;
+			top: 50%;
+			right: -(@tooltip-arrow-size/1.1);
+			margin-top: -(@tooltip-arrow-size);
+		}
+
+		&.left {			 
+			border-top: @tooltip-arrow-size solid transparent;
+			border-bottom: @tooltip-arrow-size solid transparent; 
+			border-right:@tooltip-arrow-size solid @tooltip-background-color; 
+			top: 50%;
+			left: -(@tooltip-arrow-size/1.1);
+			margin-top: -(@tooltip-arrow-size);
+		}
+	}
+	
+	&.blue { 
+		& > .content { 
+			background: @blue;
+			color: @white;
+		}
+		& > .arrow {
+			&.up { border-bottom-color: @blue; }
+			&.down { border-top-color: @blue; }
+			&.left { border-right-color: @blue; }
+			&.right { border-left-color: @blue; }
+		}
+	}
+	&.red { 
+		& > .content { 
+			background: @red;
+			color: @white;
+		}
+		& > .arrow {
+			&.up { border-bottom-color: @red; }
+			&.down { border-top-color: @red; }
+			&.left { border-right-color: @red; }
+			&.right { border-left-color: @red; }
+		}
+	}
+	&.orange { 
+		& > .content { 
+			background: @orange;
+			color: @white;
+		}
+		& > .arrow {
+			&.up { border-bottom-color: @orange; }
+			&.down { border-top-color: @orange; }
+			&.left { border-right-color: @orange; }
+			&.right { border-left-color: @orange; }
+		}
+	}
+	&.green { 
+		& > .content { 
+			background: @green;
+			color: @white;
+		}
+		& > .arrow {
+			&.up { border-bottom-color: @green; }
+			&.down { border-top-color: @green; }
+			&.left { border-right-color: @green; }
+			&.right { border-left-color: @green; }
+		}
+	}
+	&.black { 
+		& > .content { 
+			background: @black;
+			color: @white;
+		}
+		& > .arrow {
+			&.up { border-bottom-color: @black; }
+			&.down { border-top-color: @black; }
+			&.left { border-right-color: @black; }
+			&.right { border-left-color: @black; }
+		}
+	}
+
+}

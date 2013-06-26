@@ -1,99 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="./">
-    <meta charset="utf-8">
+        <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>InK - Interface Kit</title>
     <meta name="description" content="">
-    <meta name="author" content="SAPO WEB & MEDIA DESIGN">    
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" href="../img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
-    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+    <link rel="shortcut icon" href="http://cdn.ink.sapo.pt/2.0.0/img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://cdn.ink.sapo.pt/2.0.0/img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/2.0.0/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.0.0/css/ink-min.css">
     
     <!-- Load Documentation sites' CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.0.0/css/docs.css">  
 
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="../js/html5shiv.js"></script>
-        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/html5shiv.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.0.0/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink.min.js"></script>
-    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
-    <script type="text/javascript" src="../js/autoload.js"></script>
-    <script type="text/javascript" src="../js/prettify.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/autoload.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                            <a class="logoPlaceholder" href="http://ink.sapo.pt/" title="Ink - Interface Kit">InK</a>
                         </li>           
                                                     <li >
 
-                                <a href="getting-started.html">Getting started</a>
+                                <a href="http://ink.sapo.pt/getting-started">Getting started</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="layout.html">Layout</a>
+                                <a href="http://ink.sapo.pt/layout">Layout</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="navigation.html">Navigation</a>
+                                <a href="http://ink.sapo.pt/navigation">Navigation</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="typography.html">Typography</a>
+                                <a href="http://ink.sapo.pt/typography">Typography</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="icons.html">Icons</a>
+                                <a href="http://ink.sapo.pt/icons">Icons</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="forms.html">Forms</a>
+                                <a href="http://ink.sapo.pt/forms">Forms</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="alerts.html">Alerts</a>
+                                <a href="http://ink.sapo.pt/alerts">Alerts</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="tables.html">Tables</a>
+                                <a href="http://ink.sapo.pt/tables">Tables</a>
                     
             </li>
                                                         
@@ -101,10 +103,10 @@
                     <a href="#">InK JS<i class="icon-caret-down"></i></a>
                     <ul class="submenu">
                                                     <li>
-                                                                <a href="./js-ui.html">UI</a>                           
+                                                                <a href="http://ink.sapo.pt/js/ui">UI</a>                           
                             </li>
                                                     <li>
-                                                                <a href="./js-core.html">Core</a>                           
+                                                                <a href="http://ink.sapo.pt/js/core">Core</a>                           
                             </li>
                                             </ul>
                 </li>
@@ -116,7 +118,7 @@
         <ul class="menu vertical flat black">
             <li class="title">
             
-                                        <a class="logoPlaceholder push-left" href="./index.html" title="Site Title">InK</a>
+                            <a class="logoPlaceholder push-left" href="http://ink.sapo.pt/" title="Site Title">InK</a>
                 <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
                         </li>           
         </ul>
@@ -124,42 +126,42 @@
         <ul class="menu vertical flat black hide-all" id="topbar_menu">
                                                     <li >
 
-                                <a href="getting-started.html">Getting started</a>
+                                <a href="http://ink.sapo.pt/getting-started">Getting started</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="layout.html">Layout</a>
+                                <a href="http://ink.sapo.pt/layout">Layout</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="navigation.html">Navigation</a>
+                                <a href="http://ink.sapo.pt/navigation">Navigation</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="typography.html">Typography</a>
+                                <a href="http://ink.sapo.pt/typography">Typography</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="icons.html">Icons</a>
+                                <a href="http://ink.sapo.pt/icons">Icons</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="forms.html">Forms</a>
+                                <a href="http://ink.sapo.pt/forms">Forms</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="alerts.html">Alerts</a>
+                                <a href="http://ink.sapo.pt/alerts">Alerts</a>
                     
             </li>
                                                                 <li >
 
-                                <a href="tables.html">Tables</a>
+                                <a href="http://ink.sapo.pt/tables">Tables</a>
                     
             </li>
                                                         
@@ -167,10 +169,10 @@
                     <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
                     <ul class="submenu hide">
                                                     <li>
-                                                                <a href="./js-ui.html">UI</a>                           
+                                                                <a href="http://ink.sapo.pt/js/ui">UI</a>                           
                             </li>
                                                     <li>
-                                                                <a href="./js-core.html">Core</a>                           
+                                                                <a href="http://ink.sapo.pt/js/core">Core</a>                           
                             </li>
                                             </ul>
                 </li>
@@ -188,12 +190,12 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="core_menu">
                 <ul class="menu vertical black rounded">
-                    <li><a class="scrollableLink" href="./js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="./js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-ink">Ink</a></li>
-                    <li><a class="scrollableLink" href="./js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-dom">Dom</a></li>
-                    <li><a class="scrollableLink" href="./js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-communication">Communication</a></li>
-                    <li><a class="scrollableLink" href="./js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-utility">Utility</a></li>
-                    <li><a class="scrollableLink" href="./js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-custom-components">Custom components</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-ink">Ink</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-dom">Dom</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-net">Net</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-util">Util</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-custom-components">Custom components</a></li>
                 </ul>
             </nav>
         </div>
@@ -202,7 +204,7 @@
             
             <section>
                 <p>
-                    Ink includes a group of <a href="./js/ui/">UI components</a> out of the box.<br>
+                    Ink includes a group of <a href="http://ink.sapo.pt/js/ui/">UI components</a> out of the box.<br>
                     Those components depend on Ink's Javascript core, which provides a set of methods and modules that help developers extending the features of this framework.
                 </p>
 
@@ -210,7 +212,7 @@
                     The Javascript core can be loaded in one of the following forms:<br>
 
                     <p><span class="ink-label info">Loading Ink's Javascript core Bundle from CDN</span></p>
-                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;</pre>
                     <br>
                     <span class="ink-label info">Loading Ink's Javascript core Bundle from your localhost</span>
                     <pre class="prettyprint linenums">&lt;script type="text/javascript" src="/js/ink.min.js"&gt;&lt;/script&gt;</pre>
@@ -221,13 +223,13 @@
                 </p>
                 <ul>
                     <li>
-                        <b><a href="Ink.html">Ink</a></b> - Ink's Javascript <i>ecosystem</i>. Provides the necessary methods to create and load the different Ink's Javascript modules:
+                        <b><a href="http://js.ink.sapo.pt/docs/classes/Ink.html">Ink</a></b> - Ink's Javascript <i>ecosystem</i>. Provides the necessary methods to create and load the different Ink's Javascript modules:
                         <ul>
                             <li><b>Ink.bind</b> - This method is a cross-browser Object.bind alternative. Allows the developer to define in which context a function is called.</li>
 
                             <li><b>Ink.bindEvent</b> - Like <i>Ink.bind</i> this method is a cross-browser Object.bind alternative. The difference is that it maintains the <i>window.event</i> object as first argument in the function's call.</li>
 
-                            <li><b>Ink.createModule</b> - This method is used for creating the several Ink's Javascript components. Want to create a custom component? <a title="Custom Components" href="http://siteink.local/js/core#nav-custom-components">Check here</a>.
+                            <li><b>Ink.createModule</b> - This method is used to create several of Ink's Javascript components. Want to create a custom component? <a title="Custom Components" href="http://ink.sapo.pt/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-custom-components">Check here</a>.
                             </li>
 
                             <li><b>Ink.extendObj</b> - This method enriches the destination object with values from source object whenever the key is missing in destination.</li>
@@ -253,47 +255,47 @@
                     <li>
                         <b>Ink.Dom</b> - Set of modules that helps the developer navigate and manipulate the DOM:
                         <ul>
-                            <li><b><a href="Ink.Dom.Browser.html">Ink.Dom.Browser</a></b> - This module provides informations about the users' browsers.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Browser.html">Ink.Dom.Browser</a></b> - This module provides informations about the users' browsers.</li>
 
-                            <li><b><a href="Ink.Dom.Css.html">Ink.Dom.Css</a></b> - This module provides a method for getting, manipulating the CSS features of DOM Elements.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Css.html">Ink.Dom.Css</a></b> - This module provides a method for getting, manipulating the CSS features of DOM Elements.</li>
 
-                            <li><b><a href="Ink.Dom.Element.html">Ink.Dom.Element</a></b> - This module provides methods to manipulate the DOM, get and set attributes of DOM elements, amongst others.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Element.html">Ink.Dom.Element</a></b> - This module provides methods to manipulate the DOM, get and set attributes of DOM elements, amongst others.</li>
 
-                            <li><b><a href="Ink.Dom.Event.html">Ink.Dom.Event</a></b> - This module provides methods for adding and removing event listeners, as well as stopping the propagation ( also known as <i>bubbling</i>) and preventing the default behavior of events.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Event.html">Ink.Dom.Event</a></b> - This module provides methods for adding and removing event listeners, as well as stopping the propagation ( also known as <i>bubbling</i>) and preventing the default behavior of events.</li>
 
-                            <li><b><a href="Ink.Dom.Loaded.html">Ink.Dom.Loaded</a></b> - This module provides a method for running functions when the page is loaded ( <i>document.ready</i> ).</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Loaded.html">Ink.Dom.Loaded</a></b> - This module provides a method for running functions when the page is loaded ( <i>document.ready</i> ).</li>
 
-                            <li><b><a href="Ink.Dom.Selector.html">Ink.Dom.Selector</a></b> - This module provides methods for selecting elements in the DOM.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Selector.html">Ink.Dom.Selector</a></b> - This module provides methods for selecting elements in the DOM.</li>
                         </ul>
                         <br>
                     </li>
                     <li>
                         <b>Ink.Net</b> - Set of modules related with communication and external requests:
                         <ul>
-                            <li><b><a href="Ink.Net.Ajax.html">Ink.Net.Ajax</a></b> - Cross-browser module that has functions to do AJAX requests.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Net.Ajax.html">Ink.Net.Ajax</a></b> - Cross-browser module that has functions to do AJAX requests.</li>
 
-                            <li><b><a href="Ink.Net.JsonP.html">Ink.Net.JsonP</a></b> - This module provides functions to make JSONP requests.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Net.JsonP.html">Ink.Net.JsonP</a></b> - This module provides functions to make JSONP requests.</li>
                         </ul>
                         <br>
                     </li>
                     <li>
                         <b>Ink.Util</b> - Set of utility modules to assist the developer (and the Javascript components) in some more common tasks:
                         <ul>
-                            <li><b><a href="Ink.Util.Array.html">Ink.Util.Array</a></b> - This module provides cross-browser methods to manipulate arrays.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Array.html">Ink.Util.Array</a></b> - This module provides cross-browser methods to manipulate arrays.</li>
 
-                            <li><b><a href="Ink.Util.Cookie.html">Ink.Util.Cookie</a></b> - This module provides cross-browser methods for setting, reading and removing cookies with Javascript.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Cookie.html">Ink.Util.Cookie</a></b> - This module provides cross-browser methods for setting, reading and removing cookies with Javascript.</li>
 
-                            <li><b><a href="Ink.Util.Date.html">Ink.Util.Date</a></b> - This module provide several utility functions to manipulate dates.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Date.html">Ink.Util.Date</a></b> - This module provide several utility functions to manipulate dates.</li>
 
-                            <li><b><a href="Ink.Util.Dumper.html">Ink.Util.Dumper</a></b> - This module provides methods to assist the developer to dump/profile code.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Dumper.html">Ink.Util.Dumper</a></b> - This module provides methods to assist the developer to dump/profile code.</li>
 
-                            <li><b><a href="Ink.Util.String.html">Ink.Util.String</a></b> - This module contains string handling and manipulation functions.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.String.html">Ink.Util.String</a></b> - This module contains string handling and manipulation functions.</li>
 
-                            <li><b><a href="Ink.Util.Swipe.html">Ink.Util.Swipe</a></b> - This module provides a set of cross-browser, cross-device functions to detect swiping. That includes direction, velocity, coordinates.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Swipe.html">Ink.Util.Swipe</a></b> - This module provides a set of cross-browser, cross-device functions to detect swiping. That includes direction, velocity, coordinates.</li>
 
-                            <li><b><a href="Ink.Util.Url.html">Ink.Util.Url</a></b> - This module provides methods to handle and manipulate URLs.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Url.html">Ink.Util.Url</a></b> - This module provides methods to handle and manipulate URLs.</li>
 
-                            <li><b><a href="Ink.Util.Validator.html">Ink.Util.Validator</a></b> - This module provides methods to help the developer in validation processes.</li>
+                            <li><b><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Validator.html">Ink.Util.Validator</a></b> - This module provides methods to help the developer in validation processes.</li>
                         </ul>
                         <br>
                     </li>
@@ -305,16 +307,16 @@
                 <p><span class="ink-label info">Loading Javascript components from CDN</span></p>
                 <p>
                     This file is required and should <u>always</u> be loaded first:
-                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;</pre>
                     <br>
                     And then the different components... Example:
-                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.modal.js"&gt;&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.modal.js"&gt;&lt;/script&gt;</pre>
                 </p>
             </section>
 
             <section id="nav-ink" data-spy="true" data-target="#core_menu">
                 <h2>Ink</h2>
-                <p class="note"><a href="Ink.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.html">API Link</a></p>
                 <p>This is the starting point of the Ink's Javascript core. It provides the necessary methods for loading the different modules, extensibility (creation of modules), scope/context manipulation, namespace creation, amongst other things.</p>
 
                 <h3><i>requireModules</i></h3>
@@ -322,7 +324,7 @@
                     This method provides an easy way to load any Ink's javascript module.<br>
                     It receives an array with the modules to be loaded as 1st parameter and a callback function - to be called when all modules from the array are loaded - as 2nd parameter.
                 </p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
     Ink.requireModules(
         ['Ink.Dom.Loaded_1','Ink.Dom.Selector_1'],  // Modules to be loaded
@@ -345,7 +347,7 @@
                     Let's say you want to create your own namespace, to extend Ink's Javascript core or control other objects.<br>
                     This method allows you to make sure that the specified namespace exists... In case it doesn't, it'll create it!
                 </p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
     Ink.namespace('MyNamespace');
     Ink.MyNamespace.myCustomFunction = function( name ){
@@ -362,7 +364,7 @@
                     Ink's javascript core has two methods to ease the pain of setting the context (and its arguments) in a function.<br>
                     While Ink.bindEvent is more directed to functions that handle events - because it sets the context of the function and passes the event object as first parameter - on the other hand, Ink.bind is related to the more common function that you need to set the context and still maintain its arguments as it is.
                 </p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://cdn.ink.sapo.pt/2.0.0/js/ink.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
     // An object
     var myObj = {
@@ -392,7 +394,7 @@
                 <p>The DOM is a mess, you know it and we do too, that's why we've added specialized DOM methods to Ink, it makes your life easier and that makes us happy.</p>
 
                 <h3>Browser</h3>
-                <p class="note"><a href="Ink.Dom.Browser.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Browser.html">API Link</a></p>
                 <p>Want to know something about the user's browser? Here's how...</p>
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
     Ink.requireModules(['Ink.Dom.Browser_1'],function(Browser){
@@ -403,7 +405,7 @@
 &lt;/script&gt;</pre>
 
                 <h3>Css</h3>
-                <p class="note"><a href="Ink.Dom.Css.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Css.html">API Link</a></p>
                 <p>Give your document some style with our Css class.</p>
                 <pre class="prettyprint linenums">&lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -417,7 +419,7 @@
 &lt;/script&gt;</pre>
 
                 <h3>Element</h3>
-                <p class="note"><a href="Ink.Dom.Element.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Element.html">API Link</a></p>
                 <p>Not all browsers were created equal, and the DOM is where it shows the most. Get the document just the way you want it with Element.</p>
                 <pre class="prettyprint linenums">&lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -439,7 +441,7 @@
 &lt;/script&gt;</pre>
 
                 <h3>Event</h3>
-                <p class="note"><a href="Ink.Dom.Event.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Event.html">API Link</a></p>
                 <p>Event handling is easy with Ink, using our Event class.</p>
                 <pre class="prettyprint linenums">&lt;button id=&quot;myButton&quot;&gt;Click me!&lt;/button&gt;
 &lt;script type="text/javascript"&gt;
@@ -454,7 +456,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Selector</h3>
-                <p class="note"><a href="Ink.Dom.Selector.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Selector.html">API Link</a></p>
                 <p>If you've ever worked with CSS then you know how to use our Selector engine, we've enlisted the help of Sizzle to bring you a simple and fast way to get the elements you need.</p>
 
                 <pre class="prettyprint linenums">&lt;div class="myClass" id="myDiv1"&gt;myDiv 1&lt;/div&gt;
@@ -482,7 +484,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Loaded</h3>
-                <p class="note"><a href="Ink.Dom.Loaded.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Dom.Loaded.html">API Link</a></p>
                 <p>Whether you're executing code when the document is ready or loaded we've got the tools you need to get your code running when you want.</p>
 
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
@@ -495,12 +497,12 @@
 
             </section>
 
-            <section id="nav-communication" data-spy="true" data-target="#core_menu">
-                <h2>Communication</h2>
+            <section id="nav-net" data-spy="true" data-target="#core_menu">
+                <h2>Net</h2>
                 <p>Ink's Javascript engine offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX and JsonP will get you up and running in no time.</p>
                 
                 <h3>Ajax</h3>
-                <p class="note"><a href="Ink.Net.Ajax.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Net.Ajax.html">API Link</a></p>
                 <p>The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
 
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
@@ -522,7 +524,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>JsonP</h3>
-                <p class="note"><a href="Ink.Net.JsonP.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Net.JsonP.html">API Link</a></p>
                 <p>
                     Break out of your local domain chains and enjoy the freedom of cross domain requests, 
                     JsonP give you the tools you need to start getting data from any source you want.
@@ -541,12 +543,12 @@
                 
             </section>
 
-            <section id="nav-utility" data-spy="true" data-target="#core_menu">
-                <h2>Utility</h2>
+            <section id="nav-util" data-spy="true" data-target="#core_menu">
+                <h2>Util</h2>
                 <p>Even certain bat suit wearing ninjas need to use utilities every one in a while, and what are JavaScript developers if not ninjas without the bat suit? Ink offers those who possess the script-fu ways to take their skills to the next level.</p>
                 
                 <h3>Array</h3>
-                <p class="note"><a href="Ink.Util.Array.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Array.html">API Link</a></p>
                 <p>
                     Utility functions for Array manipulation.
                 </p>
@@ -606,7 +608,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Cookie</h3>
-                <p class="note"><a href="Ink.Util.Array.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Array.html">API Link</a></p>
                 <p>
                     Utility functions for Cookie creating, reading and deleting.
                 </p>
@@ -629,7 +631,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Date</h3>
-                <p class="note"><a href="Ink.Util.Date.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Date.html">API Link</a></p>
                 <p>
                     Utility functions for Date handling.
                 </p>
@@ -644,13 +646,13 @@
         console.log( dateObj_2 );
 
         // Making a Date Object based in string and its format:
-        console.log( InkDate.set('Y-m-d', '2013-06-06') );
+        console.log( InkDate.set('Y-m-d', '2013-06-12') );
         console.log( InkDate.set('d/m/Y', '01/01/2013') );
     });
 &lt;/script&gt;</pre>
                 
                 <h3>Dumper</h3>
-                <p class="note"><a href="Ink.Util.Dumper.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Dumper.html">API Link</a></p>
                 <p>
                     Utility functions for Dumping/Profiling.
                 </p>
@@ -676,7 +678,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>String</h3>
-                <p class="note"><a href="Ink.Util.String.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.String.html">API Link</a></p>
                 <p>
                     Examples of some String manipulation functions.
                 </p>
@@ -716,7 +718,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Swipe</h3>
-                <p class="note"><a href="Ink.Util.Swipe.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Swipe.html">API Link</a></p>
                 <p>
                     Usage of the Swipe utility component, to detect swiping on touch-enabled devices.
                 </p>
@@ -737,7 +739,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Url</h3>
-                <p class="note"><a href="Ink.Util.Url.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Url.html">API Link</a></p>
                 <p>
                     Usage of some of the Url utility component functions, to parse and generate URLs.
                 </p>
@@ -759,7 +761,7 @@
 &lt;/script&gt;</pre>
                 
                 <h3>Validator</h3>
-                <p class="note"><a href="Ink.Util.Validator.html">API Link</a></p>
+                <p class="note"><a href="http://js.ink.sapo.pt/docs/classes/Ink.Util.Validator.html">API Link</a></p>
                 <p>
                     Usage of some of the Validator utility component functions.
                 </p>
@@ -993,11 +995,13 @@
                 
             </div>
         </div>
+        
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                                        <li><a href="./about.html">About</a></li>
-                    <li><a href="./changelog.html">Changelog</a></li>
+                                        <li><a href="http://ink.sapo.pt/about">About</a></li>
+                    <li><a href="http://ink.sapo.pt/changelog">Changelog</a></li>
+                    <li><a href="http://ink.sapo.pt/glossary">Glossary</a></li>
                                         
                     <li>
                         Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
@@ -1006,7 +1010,7 @@
                 </ul>
             </nav>  
             
-            <div class="copyright">
+            <div class="copyright vspace">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
                     <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
@@ -1016,7 +1020,7 @@
             
         </div>
 
-        <p class="vspace"><strong>Built with:</strong></p>
+        <p><strong>Built with:</strong></p>
 
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
@@ -1033,5 +1037,16 @@
         </div>
     </div>
 </footer>
-        </body>
+            <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
 </html>
