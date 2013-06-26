@@ -230,10 +230,6 @@
                     width: 5%;
                 }
 
-//(~'[class*="@{grid_col_class}"]') {
-//@new_syntax: ~'[class*="@{grid_col_class}"]'; //escaped value interpolation
-//@{new_syntax} {
-
                 @breakpoint-alias-left: ~"[class*=@{breakpoint-alias}-]";
                 @{breakpoint-alias-left} {
                     float: left;
