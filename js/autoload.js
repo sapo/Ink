@@ -4,11 +4,6 @@
         /***************************
          * DatePicker - Default CSS selector is .ink-datepicker
          ***************************/
-         'Close_1': '.ink-dismiss',
-
-        /***************************
-         * DatePicker - Default CSS selector is .ink-datepicker
-         ***************************/
          'DatePicker_1': '.ink-datepicker',
 
         /***************************
@@ -61,11 +56,10 @@
          ***************************/
          'Toggle_1': '.toggle'
 
-
-
     };
 
-    Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1'],function( Selector, Loaded, InkArray, Scroller ){
+    Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'],
+        function( Selector, Loaded, InkArray, Scroller ){
         Loaded.run(function(){
             for( var mod in autoload ){
                 var elements = Selector.select( autoload[mod] );
@@ -78,6 +72,7 @@
                 }
             }
             Scroller.init();
+            new Close();
         });
     });
 })();
