@@ -5097,9 +5097,22 @@ ul.icons-ul > li .icon-li {
   padding: 0;
   white-space: normal;
 }
-.ink-form input,
+.ink-form select,
 .ink-form textarea,
-.ink-form select {
+.ink-form input[type="text"],
+.ink-form input[type="password"],
+.ink-form input[type="datetime"],
+.ink-form input[type="datetime-local"],
+.ink-form input[type="date"],
+.ink-form input[type="month"],
+.ink-form input[type="time"],
+.ink-form input[type="week"],
+.ink-form input[type="number"],
+.ink-form input[type="email"],
+.ink-form input[type="url"],
+.ink-form input[type="search"],
+.ink-form input[type="tel"],
+.ink-form input[type="color"] {
   border-radius: 4px;
   padding: 8px 6px;
   border: 1px solid #c4c4c4;
@@ -5108,11 +5121,24 @@ ul.icons-ul > li .icon-li {
   background: #ffffff;
   vertical-align: middle;
 }
-.ink-form input:focus,
+.ink-form select:focus,
 .ink-form textarea:focus,
-.ink-form select:focus {
+.ink-form input[type="text"]:focus,
+.ink-form input[type="password"]:focus,
+.ink-form input[type="datetime"]:focus,
+.ink-form input[type="datetime-local"]:focus,
+.ink-form input[type="date"]:focus,
+.ink-form input[type="month"]:focus,
+.ink-form input[type="time"]:focus,
+.ink-form input[type="week"]:focus,
+.ink-form input[type="number"]:focus,
+.ink-form input[type="email"]:focus,
+.ink-form input[type="url"]:focus,
+.ink-form input[type="search"]:focus,
+.ink-form input[type="tel"]:focus,
+.ink-form input[type="color"]:focus {
   outline: none;
-  border-color: fadeIn(rgba(153, 153, 153, 0.6), 30%);
+  border-color: rgba(153, 153, 153, 0.8999999999999999);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
@@ -5136,7 +5162,7 @@ ul.icons-ul > li .icon-li {
   background: none;
   width: 100%;
 }
-.ink-form button {
+.ink-form .ink-button {
   margin: 0 5px;
 }
 .ink-form label {
@@ -5224,7 +5250,7 @@ ul.icons-ul > li .icon-li {
 .ink-form .control-group.validation.error textarea,
 .ink-form .control-group.validation.error select {
   outline: none;
-  border-color: fadeIn(rgba(200, 10, 16, 0.5), 30%);
+  border-color: rgba(200, 10, 16, 0.8);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(200, 10, 16, 0.5);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(200, 10, 16, 0.5);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(200, 10, 16, 0.5);
@@ -5237,7 +5263,7 @@ ul.icons-ul > li .icon-li {
 .ink-form .control-group.validation.warning textarea,
 .ink-form .control-group.validation.warning select {
   outline: none;
-  border-color: fadeIn(rgba(255, 156, 0, 0.6), 30%);
+  border-color: rgba(255, 156, 0, 0.8999999999999999);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
@@ -5463,6 +5489,33 @@ ul.icons-ul > li .icon-li {
   top: .5em;
   *top: .2em;
   right: .4em;
+}
+.ink-badge {
+  height: 1em;
+  border-radius: 0.8em;
+  padding: .2em .6em;
+  color: #ffffff;
+  font-size: .875em;
+  margin-left: .6em;
+}
+.ink-badge.orange {
+  background: #ff9c00;
+}
+.ink-badge.red {
+  background: #c91111;
+}
+.ink-badge.green {
+  background: #4a9b17;
+}
+.ink-badge.blue {
+  background: #0f75da;
+}
+.ink-badge.white {
+  background: #ffffff;
+  color: #555555;
+}
+.ink-badge.black {
+  background: #000000;
 }
 .ink-tooltip {
   display: inline-block;
