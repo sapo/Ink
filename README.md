@@ -15,16 +15,23 @@ We have two branches on our github repository:
 * The **[master](https://github.com/sapo/Ink/tree/master)** branch contains the latest release as its HEAD and all previous releases as tags.
 * The **[develop](https://github.com/sapo/Ink/tree/develop)** branch contains our latest code that will eventually lead to a new release and tag on **[master](https://github.com/sapo/Ink/tree/master)**. This branch is likely to contain code that is not fully functional or documented. Use at your own risk.
 
-To get a specific release clone the repository and use, e.g. "git checkout 1.0.0".
+To get a specific release clone the repository and use, e.g. `git checkout 1.0.0`.
+
+To get the JavaScript modules, do:
+
+    git submodule init
+    git submodule update
+    
+...or head on over to our [sister repo](https://github.com/sapo/Ink.js).
 
 ## Getting started
 
 Let's get you started with Ink right away. Here's what you need to know and do:
 
 1. Download latest build.
-2. Open my-page.html if you want to serve Ink from your host or my-cdn-page.html if you want to serve Ink from our servers.
+2. Open `my-page.html` if you want to serve Ink from your host or `my-cdn-page.html` if you want to serve Ink from our servers.
 3. Check the template we provide and remove whatever you don't feel necessary for your project.
-4. Make sure you have ink.css, ink-ie.css and ink.js included somewhere in the `<head>`.
+4. Make sure you have `ink.css`, `ink-ie.css` and `ink.js` included somewhere in the `<head>`.
 5. Add your own stylesheets and scripts to carry all your project-specific changes.
 6. Keep coming back to the documentation to help you along the way.
 7. That's it! You'll see how easy it is once you pick it up.
