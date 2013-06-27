@@ -38,9 +38,7 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 
 ## LESS Compiler
 
-The latest version of Ink was built with **LESS 1.3.3**.
-You may get some **compilation errors** with the new **LESS 1.4** version.
-We're currently working on updating our less code to comply with the syntax changes introduced with LESS 1.4.
+Our LESS code is compatible with the LESS compiler version 1.3.1 and above.
 
 ## Legal stuff
 
