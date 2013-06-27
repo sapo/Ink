@@ -2,6 +2,8 @@
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
+Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt)
+
 ## Current Version: 2.0
 
 We've completely rewritten the grid system and JavaScript components, along with many other changes. Please read our [changelog](http://ink.sapo.pt/changelog) to find out about them.
@@ -27,6 +29,12 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 6. Keep coming back to the documentation to help you along the way.
 7. That's it! You'll see how easy it is once you pick it up.
 
+## LESS Compiler
+
+The latest version of Ink was built with **LESS 1.3.3**.
+You may get some **compilation errors** with the new **LESS 1.4** version.
+We're currently working on updating our less code to comply with the syntax changes introduced with LESS 1.4.
+
 ## Legal stuff
 
 We built Ink by standing on the shoulders of giants, following the opensource mantra. We acknowledge & credit those giants here.
@@ -36,6 +44,7 @@ We built Ink by standing on the shoulders of giants, following the opensource ma
 * [Ubuntu Font](http://font.ubuntu.com/) (under [Ubuntu Font License](http://font.ubuntu.com/licence/))
 * [html5shiv](https://code.google.com/p/html5shiv/) (under [MIT License](http://opensource.org/licenses/MIT))
 * [normalize.css](http://necolas.github.io/normalize.css/) (under [normalizes license agreement](https://github.com/necolas/normalize.css/blob/master/LICENSE.md))
+
 
 ## Contributing
 
