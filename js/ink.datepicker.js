@@ -519,7 +519,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                             this._dayMin = 1;
                         }
 
-                        if ( 1 < this._monthMin && this._monthMin > this._daysInMonth( this._yearMin , this._monthMin ) )
+                        if ( 1 < this._dayMin && this._dayMin > this._daysInMonth( this._yearMin , this._monthMin ) )
                         {
                             this._dayMin = 1;
                         }
@@ -555,7 +555,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                         }
 
                         var MDay = this._daysInMonth( this._yearMax , this._monthMax );
-                        if ( 1 < this._monthMax && this._monthMax > MDay )
+                        if ( 1 < this._dayMax && this._dayMax > MDay )
                         {
                             this._dayMax = MDay;
                         }
@@ -564,11 +564,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     {
                         this._yearMax   = Number.MAX_VALUE;
                         this._monthMax  = 12;
-                        this._dayMaXx   = 31;
+                        this._dayMax   = 31;
                     }
                 }
 
-                if ( !( this._yearMax >= this._yearMin && this._monthMax >= this._monthMin && this._dayMax >= this._dayMin ) )
+                if ( !( this._yearMax >= this._yearMin && (this._monthMax > this._monthMin || ( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) ) ) )
                 {
                     this._yearMin   = Number.MIN_VALUE;
                     this._monthMin  = 1;
@@ -587,7 +587,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
                 this._yearMax   = Number.MAX_VALUE;
                 this._monthMax  = 12;
-                this._dayMaXx   = 31;
+                this._dayMax   = 31;
             }
         },
 
