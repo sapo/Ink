@@ -6121,7 +6121,6 @@ table.ink-table tr th {
   background: none;
   font-weight: 700;
   line-height: 2;
-  text-align: left;
 }
 table.ink-table tr th[data-sortable="true"]:hover {
   cursor: pointer;

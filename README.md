@@ -38,7 +38,7 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 
 ## LESS Compiler
 
-Our LESS code is compatible with the LESS compiler version 1.3.1 and above.
+Ink requires the 1.4.0 LESS compiler version.
 
 ## Legal stuff
 
