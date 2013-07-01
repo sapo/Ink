@@ -272,7 +272,14 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
             Event.stop(ev);
 
             var tgtEl = Event.element(ev);
-            if (tgtEl.nodeName.toLowerCase() !== 'a') { return; }
+            // Keep going to the parentNode until the a tag is found
+            // or we reach this._element
+            while (tgtEl.nodeName.toLowerCase() !== 'a') {
+                if (tgtEl == this._element) {
+                    return;
+                }
+                tgtEl = tgtEl.parentNode;
+            }
 
             var liEl = tgtEl.parentNode;
             if (liEl.nodeName.toLowerCase() !== 'li') { return; }
