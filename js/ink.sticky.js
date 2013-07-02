@@ -161,7 +161,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 }
 
                 this._scrollTimeout = undefined;
-            },this), 100);
+            },this), 0);
         },
 
         /**
@@ -178,11 +178,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
             this._resizeTimeout = setTimeout(Ink.bind(function(){
                 this._rootElement.removeAttribute('style');
-                setTimeout(Ink.bind(function(){
-                    this._calculateOriginalSizes();
-                    this._calculateOffsets();
-                },this),50);
-            }, this),250);
+                this._calculateOriginalSizes();
+                this._calculateOffsets();
+            }, this),0);
 
         },
 
