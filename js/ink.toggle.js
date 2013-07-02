@@ -174,10 +174,23 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _onClick: function( event ){
-            var tgtEl = Event.element(event);
+            var
+                tgtEl = Event.element(event),
+                shades
+            ;
 
             if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
                 return;
+            } else if( (shades = Ink.ss('.ink-shade')).length ) {
+                var
+                    shadesLength = shades.length
+                ;
+
+                for( var i = 0; i < shadesLength; i++ ){
+                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
+                        return;
+                    }
+                }
             }
             
             this._dismiss( this._rootElement );
@@ -194,6 +207,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 return;
             }
             Css.removeClassName(this._childElement, 'show-all');
+            Css.removeClassName(this._rootElement,'active');
             Css.addClassName(this._childElement, 'hide-all');
             this._childElement.style.display = 'none';
         }
