@@ -112,7 +112,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            if( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ){
+            if( 
+                ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
+                ( viewport.clientWidth<=649 )
+            ){
                 if( Element.hasAttribute(this._rootElement,'style') ){
                     this._rootElement.removeAttribute('style');
                 }
@@ -158,7 +161,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 }
 
                 this._scrollTimeout = undefined;
-            },this), 100);
+            },this), 0);
         },
 
         /**
@@ -177,8 +180,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 this._rootElement.removeAttribute('style');
                 this._calculateOriginalSizes();
                 this._calculateOffsets();
-
-            }, this),250);
+            }, this),0);
 
         },
 
@@ -239,11 +241,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
             this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            //if(isNaN(this._options.originalWidth = parseInt(this._computedStyle.width,10))) {
             if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
                 this._options.originalWidth = 0;
             }
-            //this._options.originalWidth = parseInt(this._computedStyle.width,10);
+            this._options.originalWidth = parseInt(this._computedStyle.width,10);
         }
 
     };
