@@ -206,73 +206,40 @@
             // Generate the grid column division classes
             .grid-divisions () {
 
-                .@{breakpoint-alias}-100 {
-                    width: 100%;
-                    clear: both;
+
+                // Our sincere thanks the the guys @ twitter bootstrap for the loop hack
+
+                .loop (@index) when (@index >= 5) and (@index =< 95) {
+
+                    .@{breakpoint-alias}-@{index} {
+                        width: (@index * 1%);
+                    }
+
+                    // next iteration
+                    .loop(@index - 5);
                 }
-                .@{breakpoint-alias}-95 {
-                    width: 95%;
+
+                .loop (@index) when (@index =< 70) and (@index > 65) {
+                    .@{breakpoint-alias}-66 {
+                        width: 66.66%;
+                    }
                 }
-                .@{breakpoint-alias}-90 {
-                    width: 90%;
+
+                .loop (@index) when (@index =< 35) and (@index > 30) {
+                    .@{breakpoint-alias}-33 {
+                        width: 33.33%;
+                    }
                 }
-                .@{breakpoint-alias}-85 {
-                    width: 85%;
+
+                .loop (@index) when (@index = 95) {
+                    .@{breakpoint-alias}-100 {
+                        width: 100%;
+                        clear: both;
+                    }
                 }
-                .@{breakpoint-alias}-80 {
-                    width: 80%;
-                }
-                .@{breakpoint-alias}-75 {
-                    width: 75%;
-                }
-                .@{breakpoint-alias}-70 {
-                    width: 70%;
-                }
-                .@{breakpoint-alias}-66 {
-                    width: 66.66%;
-                }
-                .@{breakpoint-alias}-65 {
-                    width: 65%;
-                }
-                .@{breakpoint-alias}-60 {
-                    width: 60%;
-                }
-                .@{breakpoint-alias}-55 {
-                    width: 55%;
-                }
-                .@{breakpoint-alias}-50 {
-                    width: 50%;
-                }
-                .@{breakpoint-alias}-45 {
-                    width: 45%;
-                }
-                .@{breakpoint-alias}-40 {
-                    width: 40%;
-                }
-                .@{breakpoint-alias}-35 {
-                    width: 35%;
-                }
-                .@{breakpoint-alias}-33 {
-                    width: 33.33%;
-                }
-                .@{breakpoint-alias}-30 {
-                    width: 30%;
-                }
-                .@{breakpoint-alias}-25 {
-                    width: 25%;
-                }
-                .@{breakpoint-alias}-20 {
-                    width: 20%;
-                }
-                .@{breakpoint-alias}-15 {
-                    width: 15%;
-                }
-                .@{breakpoint-alias}-10 {
-                    width: 10%;
-                }
-                .@{breakpoint-alias}-5 {
-                    width: 5%;
-                }
+
+                .loop (0) {}
+                .loop (95);
 
                 [class*="@{breakpoint-alias}-"] {
                     float: left;
