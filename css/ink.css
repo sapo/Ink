@@ -385,10 +385,6 @@ table {
 .column-group.quarter-horizontal-gutters {
   margin-left: -0.5em;
 }
-.large-100 {
-  width: 100%;
-  clear: both;
-}
 .large-95 {
   width: 95%;
 }
@@ -406,9 +402,6 @@ table {
 }
 .large-70 {
   width: 70%;
-}
-.large-66 {
-  width: 66.66%;
 }
 .large-65 {
   width: 65%;
@@ -431,9 +424,6 @@ table {
 .large-35 {
   width: 35%;
 }
-.large-33 {
-  width: 33.33%;
-}
 .large-30 {
   width: 30%;
 }
@@ -451,6 +441,16 @@ table {
 }
 .large-5 {
   width: 5%;
+}
+.large-33 {
+  width: 33.33%;
+}
+.large-66 {
+  width: 66.66%;
+}
+.large-100 {
+  width: 100%;
+  clear: both;
 }
 [class*="large-"] {
   float: left;
@@ -680,10 +680,6 @@ body.animated *[class*="large-"] {
   .column-group.quarter-horizontal-gutters {
     margin-left: -0.375em;
   }
-  .medium-100 {
-    width: 100%;
-    clear: both;
-  }
   .medium-95 {
     width: 95%;
   }
@@ -701,9 +697,6 @@ body.animated *[class*="large-"] {
   }
   .medium-70 {
     width: 70%;
-  }
-  .medium-66 {
-    width: 66.66%;
   }
   .medium-65 {
     width: 65%;
@@ -726,9 +719,6 @@ body.animated *[class*="large-"] {
   .medium-35 {
     width: 35%;
   }
-  .medium-33 {
-    width: 33.33%;
-  }
   .medium-30 {
     width: 30%;
   }
@@ -746,6 +736,16 @@ body.animated *[class*="large-"] {
   }
   .medium-5 {
     width: 5%;
+  }
+  .medium-33 {
+    width: 33.33%;
+  }
+  .medium-66 {
+    width: 66.66%;
+  }
+  .medium-100 {
+    width: 100%;
+    clear: both;
   }
   [class*="medium-"] {
     float: left;
@@ -974,10 +974,6 @@ body.animated *[class*="large-"] {
   .column-group.quarter-horizontal-gutters {
     margin-left: -0.25em;
   }
-  .small-100 {
-    width: 100%;
-    clear: both;
-  }
   .small-95 {
     width: 95%;
   }
@@ -995,9 +991,6 @@ body.animated *[class*="large-"] {
   }
   .small-70 {
     width: 70%;
-  }
-  .small-66 {
-    width: 66.66%;
   }
   .small-65 {
     width: 65%;
@@ -1020,9 +1013,6 @@ body.animated *[class*="large-"] {
   .small-35 {
     width: 35%;
   }
-  .small-33 {
-    width: 33.33%;
-  }
   .small-30 {
     width: 30%;
   }
@@ -1040,6 +1030,16 @@ body.animated *[class*="large-"] {
   }
   .small-5 {
     width: 5%;
+  }
+  .small-33 {
+    width: 33.33%;
+  }
+  .small-66 {
+    width: 66.66%;
+  }
+  .small-100 {
+    width: 100%;
+    clear: both;
   }
   [class*="small-"] {
     float: left;
