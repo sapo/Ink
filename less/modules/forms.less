@@ -63,8 +63,6 @@
         }
     }
 
-
-
     .input-file {
         #ink > #border-radius > .all (@border-radius);
         padding: 6px;
@@ -118,24 +116,92 @@
                     display: none;
                 }
             }
-
-            &.append-status {
+            
+            &.append-button,
+            &.append-symbol,
+            &.prepend-button,
+            &.prepend-symbol {
                 
-                & > input,
-                & > select,
-                & > textarea {
-                    width: 100% - (@form-append-width);
-                    //padding-right: 2.2em;
-                    
-                    & + [class^="icon-"],
-                    & + [class*=" icon-"] {
-                        display: inline-block;
-                        text-align: right;
-                        margin-left: .4em;
-                        //position: absolute;
-                        //right: .4em;
-                        //top: .1em;
+                display: table;
+
+                span {
+                    display: table-cell;
+                    width: 100%;
+                    position: relative;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        width: 100%;
                     }
+                }
+
+                & > input[type="submit"],
+                & > input[type="button"],
+                & > input[type="reset"] {
+                    width: auto;
+                }
+            }
+
+            &.append-button {
+
+                span > input,
+                span > select,
+                span > textarea {
+                    #ink > #border-radius > .left (@border-radius);
+                }
+                
+                .ink-button {
+                    margin: 0;
+                    #ink > #border-radius > .right (@border-radius);
+                    border-left: none;
+                }
+            }
+
+            &.prepend-button {
+
+                span > input,
+                span > select,
+                span > textarea {
+                    #ink > #border-radius > .right (@border-radius);
+                }
+                
+                .ink-button {
+                    margin: 0;
+                    #ink > #border-radius > .left (@border-radius);
+                    border-right: none;
+                }
+            }
+
+            &.append-symbol {
+
+                span > input,
+                span > select,
+                span > textarea {
+                    padding-right: @form-append-width;
+                }
+
+                & > [class^="icon-"],
+                & > [class*=" icon-"] {
+                    position: absolute;
+                    right: 1em;
+                    top: .15em;
+                }
+            }
+
+            &.prepend-symbol {
+                
+                span > input,
+                span > select,
+                span > textarea {
+                    padding-left: @form-append-width;
+                }
+                
+                & > [class^="icon-"],
+                & > [class*=" icon-"] {
+                    position: absolute;
+                    left: 2.7em;
+                    top: .15em;
                 }
             }
         }
@@ -215,65 +281,69 @@
 
 .status-indicator {
 
-        position: relative;                        
-        color: transparent;
-        display: block;
-        float: right;
-        width: 1.6em;
-        height: 1.6em;
-        line-height: 1.6em;
-        font-family: FontAwesome;        
-        color: @white;
-        margin: 0.4em 0em 0.4em 0.4em;
-        #ink > #border-radius > .all (100%);                     
+    position: relative;                        
+    color: transparent;
+    display: block;
+    float: right;
+    width: 1.6em;
+    height: 1.6em;
+    line-height: 1.6em;
+    font-family: FontAwesome;        
+    color: @white;
+    margin: 0.4em 0em 0.4em 0.4em;
+    #ink > #border-radius > .all (100%);                     
 
-        &.error {
+    &.error {
 
-            background: @red; 
+        background: @red; 
 
-            &:after {
-                content: "\f00d";
-                #ink > #shadows > .text-shadow (0,-1px,0,darken(@red,10%));
-            }           
-                
-            &:before {                
-                border-right: 10px solid @red;
-                border-top: 5px solid transparent;
-                border-bottom: 5px solid transparent;
-                
-            }
-        }
-
-        &.success {
+        &:after {
+            content: "\f00d";
+            #ink > #shadows > .text-shadow (0,-1px,0,darken(@red,10%));
+        }           
             
+        &:before {                
+            border-right: 10px solid @red;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            
+        }
+    }
+
+    &.success {
+        
+        background: @green;
+
         &:after {
             content: "\f00c";
             #ink > #shadows > .text-shadow (0,-1px,0,darken(@green,5%));
 
         }  
-            background: @green;
-
-            &:before {
-                border-right: 10px solid @green;
-                border-top: 5px solid transparent;
-                border-bottom: 5px solid transparent;
-            }
+        
+        &:before {
+            border-right: 10px solid @green;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
         }
+    }
 
-        &.success, &.error {
-            &:after {
-                display: block;
-                width: 104%;
-                text-align: center;
-            }
-            &:before {
-                content: "";
-                width: 0;
-                height: 0;
-                // font-size: 0;
-                position: absolute;
-                left: -6px;
-                top: 0.5em;
-            }
-        }    
+    &.success, 
+    &.error {
+    
+        &:after {
+            display: block;
+            width: 104%;
+            text-align: center;
+        }
+    
+        &:before {
+            content: "";
+            width: 0;
+            height: 0;
+            // font-size: 0;
+            position: absolute;
+            left: -6px;
+            top: 0.5em;
+        }
+    }    
 }
