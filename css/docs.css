@@ -242,7 +242,7 @@ a.active {
 /*..........................................  Homepage  ..........................................*/
 .ink-hero {
   margin-top: 2.6em;
-  background: url(../img/home_bkg.png) center;
+  background: url(@{img-path}home_bkg.png) center;
   background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -webkit-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -525,7 +525,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
 }
 #topbar .border {
   height: .3em;
-  background: url(../img/home_bkg.png) center 0px;
+  background: url(@{img-path}home_bkg.png) center 0px;
   background: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -webkit-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);

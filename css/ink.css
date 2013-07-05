@@ -2461,8 +2461,8 @@ footer {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../font/fontawesome-webfont.eot?v=3.2.1');
-  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  src: url('../font//fontawesome-webfont.eot?v=3.2.1');
+  src: url('../font//fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font//fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font//fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font//fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -5519,20 +5519,101 @@ a .icon-flip-vertical:before {
 .ink-form .control-group .control > textarea + [class*=" icon-"] {
   display: none;
 }
-.ink-form .control-group .control.append-status > input,
-.ink-form .control-group .control.append-status > select,
-.ink-form .control-group .control.append-status > textarea {
-  width: 90%;
+.ink-form .control-group .control.append-button,
+.ink-form .control-group .control.append-symbol,
+.ink-form .control-group .control.prepend-button,
+.ink-form .control-group .control.prepend-symbol {
+  display: table;
 }
-.ink-form .control-group .control.append-status > input + [class^="icon-"],
-.ink-form .control-group .control.append-status > select + [class^="icon-"],
-.ink-form .control-group .control.append-status > textarea + [class^="icon-"],
-.ink-form .control-group .control.append-status > input + [class*=" icon-"],
-.ink-form .control-group .control.append-status > select + [class*=" icon-"],
-.ink-form .control-group .control.append-status > textarea + [class*=" icon-"] {
-  display: inline-block;
-  text-align: right;
-  margin-left: .4em;
+.ink-form .control-group .control.append-button span,
+.ink-form .control-group .control.append-symbol span,
+.ink-form .control-group .control.prepend-button span,
+.ink-form .control-group .control.prepend-symbol span {
+  display: table-cell;
+  width: 100%;
+  position: relative;
+}
+.ink-form .control-group .control.append-button span > input,
+.ink-form .control-group .control.append-symbol span > input,
+.ink-form .control-group .control.prepend-button span > input,
+.ink-form .control-group .control.prepend-symbol span > input,
+.ink-form .control-group .control.append-button span > select,
+.ink-form .control-group .control.append-symbol span > select,
+.ink-form .control-group .control.prepend-button span > select,
+.ink-form .control-group .control.prepend-symbol span > select,
+.ink-form .control-group .control.append-button span > textarea,
+.ink-form .control-group .control.append-symbol span > textarea,
+.ink-form .control-group .control.prepend-button span > textarea,
+.ink-form .control-group .control.prepend-symbol span > textarea {
+  width: 100%;
+}
+.ink-form .control-group .control.append-button > input[type="submit"],
+.ink-form .control-group .control.append-symbol > input[type="submit"],
+.ink-form .control-group .control.prepend-button > input[type="submit"],
+.ink-form .control-group .control.prepend-symbol > input[type="submit"],
+.ink-form .control-group .control.append-button > input[type="button"],
+.ink-form .control-group .control.append-symbol > input[type="button"],
+.ink-form .control-group .control.prepend-button > input[type="button"],
+.ink-form .control-group .control.prepend-symbol > input[type="button"],
+.ink-form .control-group .control.append-button > input[type="reset"],
+.ink-form .control-group .control.append-symbol > input[type="reset"],
+.ink-form .control-group .control.prepend-button > input[type="reset"],
+.ink-form .control-group .control.prepend-symbol > input[type="reset"] {
+  width: auto;
+}
+.ink-form .control-group .control.append-button span > input,
+.ink-form .control-group .control.append-button span > select,
+.ink-form .control-group .control.append-button span > textarea {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.ink-form .control-group .control.append-button .ink-button {
+  margin: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: none;
+}
+.ink-form .control-group .control.prepend-button span > input,
+.ink-form .control-group .control.prepend-button span > select,
+.ink-form .control-group .control.prepend-button span > textarea {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.ink-form .control-group .control.prepend-button .ink-button {
+  margin: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-right: none;
+}
+.ink-form .control-group .control.append-symbol span > input,
+.ink-form .control-group .control.append-symbol span > select,
+.ink-form .control-group .control.append-symbol span > textarea {
+  padding-right: 2.5em;
+}
+.ink-form .control-group .control.append-symbol > [class^="icon-"],
+.ink-form .control-group .control.append-symbol > [class*=" icon-"] {
+  position: absolute;
+  right: 1em;
+  top: .15em;
+}
+.ink-form .control-group .control.prepend-symbol span > input,
+.ink-form .control-group .control.prepend-symbol span > select,
+.ink-form .control-group .control.prepend-symbol span > textarea {
+  padding-left: 2.5em;
+}
+.ink-form .control-group .control.prepend-symbol > [class^="icon-"],
+.ink-form .control-group .control.prepend-symbol > [class*=" icon-"] {
+  position: absolute;
+  left: 2.7em;
+  top: .15em;
 }
 .ink-form .control-group input[type="radio"],
 .ink-form .control-group input[type="checkbox"] {
@@ -5969,6 +6050,7 @@ a .icon-flip-vertical:before {
   text-decoration: none;
   display: inline-block;
   vertical-align: middle;
+  white-space: nowrap;
   border-radius: 4px;
   color: #333333;
   border-color: #c8c8c8;
