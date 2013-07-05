@@ -507,29 +507,15 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 });
 
 /**
- * @module Ink.UI.Pagination_1
+ * @module Ink.UI.Modal_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * Function to create the pagination anchors
-     *
-     * @method genAel
-     * @param  {String} inner HTML to be placed inside the anchor.
-     * @return {DOMElement}  Anchor created
-     */
-    var genAEl = function(inner) {
-        var aEl = document.createElement('a');
-        aEl.setAttribute('href', '#');
-        aEl.innerHTML = inner;
-        return aEl;
-    };
-
-    /**
-     * @class Ink.UI.Pagination
+     * @class Ink.UI.Modal
      * @constructor
      * @version 1
      * @uses Ink.UI.Aux
@@ -537,438 +523,850 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @uses Ink.Dom.Css
      * @uses Ink.Dom.Element
      * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object} options Options
-     * @param {Number}   options.size                number of pages
-     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
-     * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {String}   [options.previousLabel]     label to display on previous page button
-     * @param {String}   [options.nextLabel]         label to display on next page button
-     * @param {String}   [options.previousPageLabel] label to display on previous page button
-     * @param {String}   [options.nextPageLabel]     label to display on next page button
-     * @param {String}   [options.firstLabel]        label to display on previous page button
-     * @param {String}   [options.lastLabel]         label to display on next page button
-     * @param {Function} [options.onChange]          optional callback
-     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
-     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
+     * @param {Object} [options] Options
+     *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
+     *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
+     *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
+     *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
+     *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
+     *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
+     *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
+     *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
+     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed.
+     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
+     *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
+     *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
+     *
+     * @example
+     *      <div class="ink-shade fade">
+     *          <div id="test" class="ink-modal fade" data-trigger="#bModal" data-width="800px" data-height="400px">
+     *              <div class="modal-header">
+     *                  <button class="modal-close ink-dismiss"></button>
+     *                  <h5>Modal windows can have headers</h5>
+     *              </div>
+     *              <div class="modal-body" id="modalContent">
+     *                  <h3>Please confirm your previous choice</h3>
+     *                  <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
+     *                  <p>
+     *                      <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+     *                  </p>
+     *                  <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
+     *                  <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
+     *              </div>
+     *              <div class="modal-footer">
+     *                  <div class="push-right">
+     *                      <button class="ink-button info">Confirm</button>
+     *                      <button class="ink-button caution ink-dismiss">Cancel</button>
+     *                  </div>
+     *              </div>
+     *          </div>
+     *      </div>
+     *      <a href="#" id="bModal">Open modal</a>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
+     *              var modalElement = Ink.s('#test');
+     *              var modalObj = new Modal( modalElement );
+     *          });
+     *      </script>
      */
-    var Pagination = function(selector, options) {
+    var Modal = function(selector, options) {
 
-        this._options = Ink.extendObj({
-            size:          undefined,
-            start:         1,
-            firstLabel:    'First',
-            lastLabel:     'Last',
-            previousLabel: 'Previous',
-            nextLabel:     'Next',
-            onChange:      undefined,
-            setHash:       false,
-            hashParameter: 'page'
-        }, options || {});
-
-        if (!this._options.previousPageLabel) {
-            this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
+        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
+            throw 'Invalid Modal selector';
+        } else if(typeof selector === 'string'){
+            if( selector !== '' ){
+                this._element = Selector.select(selector);
+                if( this._element.length === 0 ){
+                    /**
+                     * From a developer's perspective this should be like it is...
+                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
+                     */
+                    throw 'The Modal selector has not returned any elements';
+                } else {
+                    this._element = this._element[0];
+                }
+            }
+        } else if( !!selector ){
+            this._element = selector;
         }
 
-        if (!this._options.nextPageLabel) {
-            this._options.nextPageLabel = 'Next ' + this._options.maxSize;
-        }
+        this._options = {
+            /**
+             * Width, height and markup really optional, as they can be obtained by the element
+             */
+            width:        undefined,
+            height:       undefined,
+
+            /**
+             * To add extra classes
+             */
+            shadeClass: undefined,
+            modalClass: undefined,
+
+            /**
+             * Optional trigger properties
+             */
+            trigger:      undefined,
+            triggerEvent: 'click',
+
+            /**
+             * Remaining options
+             */
+            markup:       undefined,
+            onShow:       undefined,
+            onDismiss:    undefined,
+            closeOnClick: false,
+            responsive:    true,
+            disableScroll: true
+        };
 
 
         this._handlers = {
-            click: Ink.bindEvent(this._onClick,this)
+            click:   Ink.bindEvent(this._onClick, this),
+            keyDown: Ink.bindEvent(this._onKeyDown, this),
+            resize:  Ink.bindEvent(this._onResize, this)
         };
 
-        this._element = Aux.elOrSelector(selector, '1st argument');
+        this._wasDismissed = false;
 
-        if (!Aux.isInteger(this._options.size)) {
-            throw new TypeError('size option is a required integer!');
+        /**
+         * Modal Markup
+         */
+        if( this._element ){
+            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
+        } else {
+            this._markupMode = false;
         }
 
-        if (!Aux.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
-            throw new TypeError('start option is a required integer between 1 and size!');
+
+
+
+        if( !this._markupMode ){
+
+
+            this._modalShadow      = document.createElement('div');
+            this._modalShadowStyle = this._modalShadow.style;
+
+            this._modalDiv         = document.createElement('div');
+            this._modalDivStyle    = this._modalDiv.style;
+
+            if( !!this._element ){
+                this._options.markup = this._element.innerHTML;
+            }
+
+            /**
+             * Not in full markup mode, let's set the classes and css configurations
+             */
+            Css.addClassName( this._modalShadow,'ink-shade' );
+            Css.addClassName( this._modalDiv,'ink-modal' );
+            Css.addClassName( this._modalDiv,'ink-space' );
+
+            /**
+             * Applying the main css styles
+             */
+            // this._modalDivStyle.position = 'absolute';
+            this._modalShadow.appendChild( this._modalDiv);
+            document.body.appendChild( this._modalShadow );
+        } else {
+            this._modalDiv         = this._element;
+            this._modalDivStyle    = this._modalDiv.style;
+            this._modalShadow      = this._modalDiv.parentNode;
+            this._modalShadowStyle = this._modalShadow.style;
+
+            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+            if( !this._contentContainer.length ){
+                throw 'Missing div with class "modal-body"';
+            }
+
+            this._contentContainer = this._contentContainer[0];
+            this._options.markup = this._contentContainer.innerHTML;
+
+            /**
+             * First, will handle the least important: The dataset
+             */
+            this._options = Ink.extendObj(this._options,Element.data(this._element));
+
         }
 
-        if (this._options.maxSize && !Aux.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
-            throw new TypeError('maxSize option is a positive integer!');
+        /**
+         * Now, the most important, the initialization options
+         */
+        this._options = Ink.extendObj(this._options,options || {});
+
+        if( !this._markupMode ){
+            this.setContentMarkup(this._options.markup);
         }
 
-        else if (this._options.size < 0) {
-            throw new RangeError('size option must be equal or more than 0!');
+        if( typeof this._options.shadeClass === 'string' ){
+
+            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
+                Css.addClassName( this._modalShadow, item.trim() );
+            }, this));
         }
 
-        if (this._options.onChange !== undefined && typeof this._options.onChange !== 'function') {
-            throw new TypeError('onChange option must be a function!');
+        if( typeof this._options.modalClass === 'string' ){
+            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
+                Css.addClassName( this._modalDiv, item.trim() );
+            }, this));
         }
 
-        this._current = this._options.start - 1;
-        this._itemLiEls = [];
-
-        this._init();
+        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
+            var triggerElement,i;
+            if( typeof this._options.trigger === 'string' ){
+                triggerElement = Selector.select( this._options.trigger );
+                if( triggerElement.length > 0 ){
+                    for( i=0; i<triggerElement.length; i++ ){
+                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this._init, this) );
+                    }
+                }
+            }
+        } else {
+            this._init();
+        }
     };
 
-    Pagination.prototype = {
+    Modal.prototype = {
 
         /**
          * Init function called by the constructor
          * 
          * @method _init
+         * @param {Event} [event] In case its fired by the trigger.
          * @private
          */
-        _init: function() {
-            // generate and apply DOM
-            this._generateMarkup(this._element);
-            this._updateItems();
+        _init: function(event) {
+
+            if( event ){ Event.stop(event); }
+
+            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+
+            this._resizeTimeout    = null;
+
+            Css.addClassName( this._modalShadow,'ink-shade' );
+            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
+            setTimeout(Ink.bind(function(){
+                Css.addClassName( this._modalShadow,'visible' );
+                Css.addClassName( this._modalDiv,'visible' );
+            }, this),100);
+
+            /**
+             * Fallback to the old one
+             */
+            this._contentElement = this._modalDiv;
+            this._shadeElement   = this._modalShadow;
+
+            /**
+             * Setting the content of the modal
+             */
+            this.setContentMarkup( this._options.markup );
+
+            /**
+             * If any size has been user-defined, let's set them as max-width and max-height
+             */
+            if( typeof this._options.width !== 'undefined' ){
+                this._modalDivStyle.width = this._options.width;
+                if( this._options.width.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
+                }
+            } else {
+                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
+            }
+
+            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
+                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
+            }
+
+            if( typeof this._options.height !== 'undefined' ){
+                this._modalDivStyle.height = this._options.height;
+                if( this._options.height.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                }
+            } else {
+                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
+            }
+
+            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
+                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
+            }
+
+            this.originalStatus = {
+                viewportHeight:     parseInt(elem.clientHeight,10),
+                viewportWidth:      parseInt(elem.clientWidth,10),
+                width:              parseInt(this._modalDivStyle.maxWidth,10),
+                height:             parseInt(this._modalDivStyle.maxHeight,10)
+            };
+
+            /**
+             * Let's 'resize' it:
+             */
+            if(this._options.responsive) {
+                this._onResize(true);
+                Event.observe( window,'resize',this._handlers.resize );
+            } else {
+                this._resizeContainer();
+                this._reposition();
+            }
+
+            if (this._options.onShow) {
+                this._options.onShow(this);
+            }
+
+            if(this._options.disableScroll) {
+                this._disableScroll();
+            }
 
             // subscribe events
-            this._observe();
+            Event.observe(this._shadeElement, 'click',   this._handlers.click);
+            Event.observe(document,           'keydown', this._handlers.keyDown);
 
-            Aux.registerInstance(this, this._element, 'pagination');
+            Aux.registerInstance(this, this._shadeElement, 'modal');
         },
 
         /**
-         * Responsible for setting listener in the 'click' event of the Pagination element.
+         * Responsible for repositioning the modal
          * 
-         * @method _observe
+         * @method _reposition
          * @private
          */
-        _observe: function() {
-            Event.observe(this._element, 'click', this._handlers.click);
+        _reposition: function(){
+
+            this._modalDivStyle.top = this._modalDivStyle.left = '50%';
+
+            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
         },
 
         /**
-         * Updates the markup everytime there's a change in the Pagination object.
+         * Responsible for resizing the modal
          * 
-         * @method _updateItems
+         * @method _onResize
+         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
          * @private
          */
-        _updateItems: function() {
-            var liEls = this._itemLiEls;
+        _onResize: function( runNow ){
 
-            var isSimpleToggle = this._options.size === liEls.length;
-
-            var i, f, liEl;
-
-            if (isSimpleToggle) {
-                // just toggle active class
-                for (i = 0, f = this._options.size; i < f; ++i) {
-                    Css.setClassName(liEls[i], 'active', i === this._current);
-                }
+            if( typeof runNow === 'boolean' ){
+                this._timeoutResizeFunction.call(this);
+            } else if( !this._resizeTimeout && (typeof runNow === 'object') ){
+                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
             }
-            else {
-                // remove old items
-                for (i = liEls.length - 1; i >= 0; --i) {
-                    this._ulEl.removeChild(liEls[i]);
-                }
-
-                // add new items
-                liEls = [];
-                for (i = 0, f = this._options.size; i < f; ++i) {
-                    liEl = document.createElement('li');
-                    liEl.appendChild( genAEl( i + 1 ) );
-                    Css.setClassName(liEl, 'active', i === this._current);
-                    this._ulEl.insertBefore(liEl, this._nextEl);
-                    liEls.push(liEl);
-                }
-                this._itemLiEls = liEls;
-            }
-
-            if (this._options.maxSize) {
-                // toggle visible items
-                var page = Math.floor( this._current / this._options.maxSize );
-                var pi = this._options.maxSize * page;
-                var pf = pi + this._options.maxSize - 1;
-
-                for (i = 0, f = this._options.size; i < f; ++i) {
-                    liEl = liEls[i];
-                    Css.setClassName(liEl, 'hide-all', i < pi || i > pf);
-                }
-
-                this._pageStart = pi;
-                this._pageEnd = pf;
-                this._page = page;
-
-                Css.setClassName(this._prevPageEl, 'disabled', !this.hasPreviousPage());
-                Css.setClassName(this._nextPageEl, 'disabled', !this.hasNextPage());
-
-                Css.setClassName(this._firstEl, 'disabled', this.isFirst());
-                Css.setClassName(this._lastEl, 'disabled', this.isLast());
-            }
-
-            // update prev and next
-            Css.setClassName(this._prevEl, 'disabled', !this.hasPrevious());
-            Css.setClassName(this._nextEl, 'disabled', !this.hasNext());
         },
 
         /**
-         * Returns the top element for the gallery DOM representation
+         * Timeout Resize Function
          * 
-         * @method _generateMarkup
-         * @param {DOMElement} el
+         * @method _timeoutResizeFunction
          * @private
          */
-        _generateMarkup: function(el) {
-            Css.addClassName(el, 'ink-navigation');
-
+        _timeoutResizeFunction: function(){
+            /**
+             * Getting the current viewport size
+             */
             var
-                ulEl,liEl,
-                hasUlAlready = false
+                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
+                currentViewportHeight = parseInt(elem.clientHeight,10),
+                currentViewportWidth = parseInt(elem.clientWidth,10)
             ;
-            if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
-                ulEl = document.createElement('ul');
-                Css.addClassName(ulEl, 'pagination');
+
+            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
+                /**
+                 * The viewport width has expanded
+                 */
+                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
+
             } else {
-                hasUlAlready = true;
-                ulEl = ulEl[0];
+                /**
+                 * The viewport width has not changed or reduced
+                 */
+                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
+                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
             }
 
-            if (this._options.maxSize) {
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.firstLabel) );
-                this._firstEl = liEl;
-                Css.addClassName(liEl, 'first');
-                ulEl.appendChild(liEl);
+            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
 
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.previousPageLabel) );
-                this._prevPageEl = liEl;
-                Css.addClassName(liEl, 'previousPage');
-                ulEl.appendChild(liEl);
+                /**
+                 * The viewport height has expanded
+                 */
+                //this._modalDivStyle.maxHeight =
+                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
+
+            } else {
+                /**
+                 * The viewport height has not changed, or reduced
+                 */
+                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
             }
 
-            liEl = document.createElement('li');
-            liEl.appendChild( genAEl(this._options.previousLabel) );
-            this._prevEl = liEl;
-            Css.addClassName(liEl, 'previous');
-            ulEl.appendChild(liEl);
-
-            liEl = document.createElement('li');
-            liEl.appendChild( genAEl(this._options.nextLabel) );
-            this._nextEl = liEl;
-            Css.addClassName(liEl, 'next');
-            ulEl.appendChild(liEl);
-
-            if (this._options.maxSize) {
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.nextPageLabel) );
-                this._nextPageEl = liEl;
-                Css.addClassName(liEl, 'nextPage');
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.lastLabel) );
-                this._lastEl = liEl;
-                Css.addClassName(liEl, 'last');
-                ulEl.appendChild(liEl);
-            }
-
-            if( !hasUlAlready ){
-                el.appendChild(ulEl);
-            }
-
-            this._ulEl = ulEl;
+            this._resizeContainer();
+            this._reposition();
+            this._resizeTimeout = undefined;
         },
 
         /**
-         * Click handler
+         * Navigation click handler
          * 
          * @method _onClick
          * @param {Event} ev
          * @private
          */
         _onClick: function(ev) {
-            Event.stop(ev);
-
             var tgtEl = Event.element(ev);
-            if (tgtEl.nodeName.toLowerCase() !== 'a') { return; }
 
-            var liEl = tgtEl.parentNode;
-            if (liEl.nodeName.toLowerCase() !== 'li') { return; }
+            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
+                (
+                    this._options.closeOnClick &&
+                    (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
+                )
+            ) {
+                var 
+                    alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
+                    alertsLength = alertsInTheModal.length
+                ;
+                for( var i = 0; i < alertsLength; i++ ){
+                    if( Element.descendantOf(alertsInTheModal[i], tgtEl) ){
+                        return;
+                    }
+                }
 
-            if ( Css.hasClassName(liEl, 'active') ||
-                 Css.hasClassName(liEl, 'disabled') ) { return; }
-
-            var isPrev = Css.hasClassName(liEl, 'previous');
-            var isNext = Css.hasClassName(liEl, 'next');
-            var isPrevPage = Css.hasClassName(liEl, 'previousPage');
-            var isNextPage = Css.hasClassName(liEl, 'nextPage');
-            var isFirst = Css.hasClassName(liEl, 'first');
-            var isLast = Css.hasClassName(liEl, 'last');
-
-            if (isFirst) {
-                this.setCurrent(0);
-            }
-            else if (isLast) {
-                this.setCurrent(this._options.size - 1);
-            }
-            else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
-            }
-            else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true);
-            }
-            else {
-                var nr = parseInt( tgtEl.innerHTML, 10) - 1;
-                this.setCurrent(nr);
+                Event.stop(ev);
+                this.dismiss();
             }
         },
 
+        /**
+         * Responsible for handling the escape key pressing.
+         *
+         * @method _onKeyDown
+         * @param  {Event} ev
+         * @private
+         */
+        _onKeyDown: function(ev) {
+            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
+            this.dismiss();
+        },
 
+        /**
+         * Responsible for setting the size of the modal (and position) based on the viewport.
+         * 
+         * @method _resizeContainer
+         * @private
+         */
+        _resizeContainer: function()
+        {
+
+            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
+            var containerHeight = Element.elementHeight(this._modalDiv);
+
+            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
+            if( this._modalHeader.length>0 ){
+                this._modalHeader = this._modalHeader[0];
+                containerHeight -= Element.elementHeight(this._modalHeader);
+            }
+
+            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
+            if( this._modalFooter.length>0 ){
+                this._modalFooter = this._modalFooter[0];
+                containerHeight -= Element.elementHeight(this._modalFooter);
+            }
+
+            this._contentContainer.style.height = containerHeight + 'px';
+            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
+                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
+            }
+
+            if( this._markupMode ){ return; }
+
+            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
+            this._contentContainer.style.overflowY = 'auto';
+            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
+        },
+
+        /**
+         * Responsible for 'disabling' the page scroll
+         * 
+         * @method _disableScroll
+         * @private
+         */
+        _disableScroll: function()
+        {
+            this._oldScrollPos = Element.scroll();
+            this._onScrollBinded = Ink.bindEvent(function(event) {
+                var tgtEl = Event.element(event);
+
+                if( !Element.descendantOf(this._modalShadow, tgtEl) ){
+                    Event.stop(event);
+                    window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
+                }
+            },this);
+            Event.observe(window, 'scroll', this._onScrollBinded);
+            Event.observe(document, 'touchmove', this._onScrollBinded);
+        },
 
         /**************
          * PUBLIC API *
          **************/
 
         /**
-         * Sets the number of pages
+         * Dismisses the modal
          * 
-         * @method setSize
-         * @param {Number} sz number of pages
+         * @method dismiss
          * @public
          */
-        setSize: function(sz) {
-            if (!Aux.isInteger(sz)) {
-                throw new TypeError('1st argument must be an integer number!');
+        dismiss: function() {
+            if (this._options.onDismiss) {
+                this._options.onDismiss(this);
             }
 
-            this._options.size = sz;
-            this._updateItems();
-            this._current = 0;
-        },
-
-        /**
-         * Sets the current page
-         * 
-         * @method setCurrent
-         * @param {Number} nr sets the current page to given number
-         * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
-         * @public
-         */
-        setCurrent: function(nr, isRelative) {
-            if (!Aux.isInteger(nr)) {
-                throw new TypeError('1st argument must be an integer number!');
+            if(this._options.disableScroll) {
+                Event.stopObserving(window, 'scroll', this._onScrollBinded);
+                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
             }
 
-            if (isRelative) {
-                nr += this._current;
+            if( this._options.responsive ){
+                Event.stopObserving(window, 'resize', this._handlers.resize);
             }
 
-            if (nr < 0) {
-                nr = 0;
+            // this._modalShadow.parentNode.removeChild(this._modalShadow);
+
+            if( !this._markupMode ){
+                this._modalShadow.parentNode.removeChild(this._modalShadow);
+                this.destroy();
+            } else {
+                Css.removeClassName( this._modalDiv, 'visible' );
+                Css.removeClassName( this._modalShadow, 'visible' );
+
+                var
+                    dismissInterval,
+                    transitionEndFn = Ink.bindEvent(function(){
+                        if( !dismissInterval ){ return; }
+                        this._modalShadowStyle.display = 'none';
+                        Event.stopObserving(document,'transitionend',transitionEndFn);
+                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
+                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
+                        clearInterval(dismissInterval);
+                        dismissInterval = undefined;
+                    }, this)
+                ;
+
+                Event.observe(document,'transitionend',transitionEndFn);
+                Event.observe(document,'oTransitionEnd',transitionEndFn);
+                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
+
+                if( !dismissInterval ){
+                    dismissInterval = setInterval(Ink.bind(function(){
+                        if( this._modalShadowStyle.opacity > 0 ){
+                            return;
+                        } else {
+                            this._modalShadowStyle.display = 'none';
+                            clearInterval(dismissInterval);
+                            dismissInterval = undefined;
+                        }
+
+                    }, this),500);
+                }
             }
-            else if (nr > this._options.size - 1) {
-                nr = this._options.size - 1;
-            }
-            this._current = nr;
-            this._updateItems();
-
-            /*if (this._options.setHash) {
-                var o = {};
-                o[this._options.hashParameter] = nr;
-                Aux.setHash(o);
-            }*/
-
-            if (this._options.onChange) { this._options.onChange(this); }
         },
 
         /**
-         * Returns the number of pages
-         * 
-         * @method getSize
-         * @return {Number} Number of pages
-         * @public
-         */
-        getSize: function() {
-            return this._options.size;
-        },
-
-        /**
-         * Returns current page
-         * 
-         * @method getCurrent
-         * @return {Number} Current page
-         * @public
-         */
-        getCurrent: function() {
-            return this._current;
-        },
-
-        /**
-         * Returns true iif at first page
-         * 
-         * @method isFirst
-         * @return {Boolean} True if at first page
-         * @public
-         */
-        isFirst: function() {
-            return this._current === 0;
-        },
-
-        /**
-         * Returns true iif at last page
-         * 
-         * @method isLast
-         * @return {Boolean} True if at last page
-         * @public
-         */
-        isLast: function() {
-            return this._current === this._options.size - 1;
-        },
-
-        /**
-         * Returns true iif has prior pages
-         * 
-         * @method hasPrevious
-         * @return {Boolean} True if has prior pages
-         * @public
-         */
-        hasPrevious: function() {
-            return this._current > 0;
-        },
-
-        /**
-         * Returns true iif has pages ahead
-         * 
-         * @method hasNext
-         * @return {Boolean} True if has pages ahead
-         * @public
-         */
-        hasNext: function() {
-            return this._current < this._options.size - 1;
-        },
-
-        /**
-         * Returns true iif has prior set of page(s)
-         * 
-         * @method hasPreviousPage
-         * @return {Boolean} Returns true iif has prior set of page(s)
-         * @public
-         */
-        hasPreviousPage: function() {
-            return this._options.maxSize && this._current > this._options.maxSize - 1;
-        },
-
-        /**
-         * Returns true iif has set of page(s) ahead
-         * 
-         * @method hasNextPage
-         * @return {Boolean} Returns true iif has set of page(s) ahead
-         * @public
-         */
-        hasNextPage: function() {
-            return this._options.maxSize && this._options.size - this._current >= this._options.maxSize + 1;
-        },
-
-        /**
-         * Unregisters the component and removes its markup from the DOM
+         * Removes the modal from the DOM
          * 
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: function() {
+            Aux.unregisterInstance(this._instanceId);
+
+        },
+
+        /**
+         * Returns the content DOM element
+         * 
+         * @method getContentElement
+         * @return {DOMElement} Modal main cointainer.
+         * @public
+         */
+        getContentElement: function() {
+            return this._contentContainer;
+        },
+
+        /**
+         * Replaces the content markup
+         * 
+         * @method setContentMarkup
+         * @param {String} contentMarkup
+         * @public
+         */
+        setContentMarkup: function(contentMarkup) {
+            if( !this._markupMode ){
+                this._modalDiv.innerHTML = [contentMarkup].join('');
+                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                if( !this._contentContainer.length ){
+                    // throw 'Missing div with class "modal-body"';
+                    var tempHeader = Selector.select(".modal-header",this._modalDiv);
+                    var tempFooter = Selector.select(".modal-footer",this._modalDiv);
+
+                    InkArray.each(tempHeader,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+                    InkArray.each(tempFooter,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+
+                    var body = document.createElement('div');
+                    Css.addClassName(body,'modal-body');
+                    body.innerHTML = this._modalDiv.innerHTML;
+                    this._modalDiv.innerHTML = '';
+
+                    InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    this._modalDiv.appendChild(body);
+                    InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    
+                    this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                }
+                this._contentContainer = this._contentContainer[0];
+            } else {
+                this._contentContainer.innerHTML = [contentMarkup].join('');
+            }
+            this._contentElement = this._modalDiv;
+            this._resizeContainer();
+        }
+
     };
 
-    return Pagination;
+    return Modal;
+
+});
+
+/**
+ * @module Ink.UI.SmoothScroller_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded ) {
+    'use strict';
+
+    /**
+     * @class Ink.UI.SmoothScroller
+     * @version 1
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Dom.Loaded
+     * @static
+     */
+    var SmoothScroller = {
+
+        /**
+         * Sets the speed of the scrolling
+         *
+         * @property
+         * @type {Number}
+         * @readOnly
+         * @static
+         */
+        speed: 10,
+
+        /**
+         * Returns the Y position of the div
+         *
+         * @method gy
+         * @param  {DOMElement} d DOMElement to get the Y position from
+         * @return {Number}   Y position of div 'd'
+         * @public
+         * @static
+         */
+        gy: function(d) {
+            var gy;
+            gy = d.offsetTop;
+            if (d.offsetParent){
+                while ( (d = d.offsetParent) ){
+                    gy += d.offsetTop;
+                }
+            }
+            return gy;
+        },
+
+
+        /**
+         * Returns the current scroll position
+         *
+         * @method scrollTop
+         * @return {Number}  Current scroll position
+         * @public
+         * @static
+         */
+        scrollTop: function() {
+            var
+                body = document.body,
+                d = document.documentElement
+            ;
+            if (body && body.scrollTop){
+                return body.scrollTop;
+            }
+            if (d && d.scrollTop){
+                return d.scrollTop;
+            }
+            if (window.pageYOffset)
+            {
+                return window.pageYOffset;
+            }
+            return 0;
+        },
+
+        /**
+         * Attaches an event for an element
+         *
+         * @method add
+         * @param  {DOMElement} el DOMElement to make the listening of the event
+         * @param  {String} event Event name to be listened
+         * @param  {DOMElement} fn Callback function to run when the event is triggered.
+         * @public
+         * @static
+         */
+        add: function(el, event, fn) {
+            Event.observe(el,event,fn);
+            return;
+        },
+
+
+        /**
+         * Kill an event of an element
+         *
+         * @method end
+         * @param  {String} e Event to be killed/stopped
+         * @public
+         * @static
+         */
+        // kill an event of an element
+        end: function(e) {
+            if (window.event) {
+                window.event.cancelBubble = true;
+                window.event.returnValue = false;
+                return;
+            }
+            Event.stop(e);
+        },
+
+
+        /**
+         * Moves the scrollbar to the target element
+         *
+         * @method scroll
+         * @param  {Number} d Y coordinate value to stop
+         * @public
+         * @static
+         */
+        scroll: function(d) {
+            var a = Ink.UI.SmoothScroller.scrollTop();
+            if (d > a) {
+                a += Math.ceil((d - a) / Ink.UI.SmoothScroller.speed);
+            } else {
+                a = a + (d - a) / Ink.UI.SmoothScroller.speed;
+            }
+
+            window.scrollTo(0, a);
+            if ((a) === d || Ink.UI.SmoothScroller.offsetTop === a)
+            {
+                clearInterval(Ink.UI.SmoothScroller.interval);
+            }
+            Ink.UI.SmoothScroller.offsetTop = a;
+        },
+
+
+        /**
+         * Initializer that adds the rendered to run when the page is ready
+         *
+         * @method init
+         * @public
+         * @static
+         */
+        // initializer that adds the renderer to the onload function of the window
+        init: function() {
+            Loaded.run(Ink.UI.SmoothScroller.render);
+        },
+
+        /**
+         * This method extracts all the anchors and validates thenm as # and attaches the events
+         *
+         * @method render
+         * @public
+         * @static
+         */
+        render: function() {
+            var a = Selector.select('a.scrollableLink');
+
+            Ink.UI.SmoothScroller.end(this);
+
+            for (var i = 0; i < a.length; i++) {
+                var _elm = a[i];
+                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
+                    Ink.UI.SmoothScroller.add(_elm, 'click', Ink.UI.SmoothScroller.end);
+                    Event.observe(_elm,'click', Ink.bindEvent(Ink.UI.SmoothScroller.clickScroll, this, _elm));
+                }
+            }
+        },
+
+
+        /**
+         * Click handler
+         *
+         * @method clickScroll
+         * @public
+         * @static
+         */
+        clickScroll: function(event, _elm) {
+            /*
+            Ink.UI.SmoothScroller.end(this);
+            var hash = this.hash.substr(1);
+            var elm = Selector.select('a[name="' + hash + '"],#' + hash);
+
+            if (typeof(elm[0]) !== 'undefined') {
+
+                if (this.parentNode.className.indexOf('active') === -1) {
+                    var ul = this.parentNode.parentNode,
+                        li = ul.firstChild;
+                    do {
+                        if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
+                            li.className = li.className.replace('active', '');
+                            break;
+                        }
+                    } while ((li = li.nextSibling));
+                    this.parentNode.className += " active";
+                }
+                clearInterval(Ink.UI.SmoothScroller.interval);
+                Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
+
+            }
+            */
+            Ink.UI.SmoothScroller.end(_elm);
+            if(_elm !== null && _elm.getAttribute('href') !== null) {
+                var hashIndex = _elm.href.indexOf('#');
+                if(hashIndex === -1) {
+                    return;
+                }
+                var hash = _elm.href.substr((hashIndex + 1));
+                var elm = Selector.select('a[name="' + hash + '"],#' + hash);
+
+                if (typeof(elm[0]) !== 'undefined') {
+
+                    if (_elm.parentNode.className.indexOf('active') === -1) {
+                        var ul = _elm.parentNode.parentNode,
+                            li = ul.firstChild;
+                        do {
+                            if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
+                                li.className = li.className.replace('active', '');
+                                break;
+                            }
+                        } while ((li = li.nextSibling));
+                        _elm.parentNode.className += " active";
+                    }
+                    clearInterval(Ink.UI.SmoothScroller.interval);
+                    Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
+
+                }
+            }
+
+        }
+    };
+
+    return SmoothScroller;
 
 });
 
@@ -1549,7 +1947,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            if( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ){
+            if( 
+                ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
+                ( viewport.clientWidth<=649 )
+            ){
                 if( Element.hasAttribute(this._rootElement,'style') ){
                     this._rootElement.removeAttribute('style');
                 }
@@ -1595,7 +1996,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 }
 
                 this._scrollTimeout = undefined;
-            },this), 100);
+            },this), 0);
         },
 
         /**
@@ -1614,8 +2015,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 this._rootElement.removeAttribute('style');
                 this._calculateOriginalSizes();
                 this._calculateOffsets();
-
-            }, this),250);
+            }, this),0);
 
         },
 
@@ -1676,11 +2076,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
             this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            //if(isNaN(this._options.originalWidth = parseInt(this._computedStyle.width,10))) {
             if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
                 this._options.originalWidth = 0;
             }
-            //this._options.originalWidth = parseInt(this._computedStyle.width,10);
+            this._options.originalWidth = parseInt(this._computedStyle.width,10);
         }
 
     };
@@ -2739,7 +3138,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 });
 
 /**
- * @module Ink.UI.Toggle_1
+00 * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
@@ -2824,21 +3223,22 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             throw '[Ink.UI.Toggle] Target option not defined';
         }
 
-        this._childElement = Selector.select( this._options.target, this._rootElement );
-        if( this._childElement.length <= 0 ){
-            if( this._childElement.length <= 0 ){
-                this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
-            }
+        this._childElement = Aux.elOrSelector( this._options.target, 'Target' );
+        // this._childElement = Selector.select( this._options.target, this._rootElement );
+        // if( this._childElement.length <= 0 ){
+        //     if( this._childElement.length <= 0 ){
+        //         this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
+        //     }
 
-            if( this._childElement.length <= 0 ){
-                this._childElement = Selector.select( this._options.target );
-            }
+        //     if( this._childElement.length <= 0 ){
+        //         this._childElement = Selector.select( this._options.target );
+        //     }
 
-            if( this._childElement.length <= 0 ){
-                return;
-            }
-        }
-        this._childElement = this._childElement[0];
+        //     if( this._childElement.length <= 0 ){
+        //         return;
+        //     }
+        // }
+        // this._childElement = this._childElement[0];
 
         this._init();
 
@@ -2897,6 +3297,12 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             Css.removeClassName(this._childElement, 'hide-all');
             Css.addClassName(this._childElement, finalClass);
             this._childElement.style.display = finalDisplay;
+
+            if( finalClass === 'show-all' ){
+                Css.addClassName(this._rootElement,'active');
+            } else {
+                Css.removeClassName(this._rootElement,'active');
+            }
         },
 
         /**
@@ -2907,10 +3313,23 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _onClick: function( event ){
-            var tgtEl = Event.element(event);
+            var
+                tgtEl = Event.element(event),
+                shades
+            ;
 
             if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
                 return;
+            } else if( (shades = Ink.ss('.ink-shade')).length ) {
+                var
+                    shadesLength = shades.length
+                ;
+
+                for( var i = 0; i < shadesLength; i++ ){
+                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
+                        return;
+                    }
+                }
             }
             
             this._dismiss( this._rootElement );
@@ -2927,6 +3346,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 return;
             }
             Css.removeClassName(this._childElement, 'show-all');
+            Css.removeClassName(this._rootElement,'active');
             Css.addClassName(this._childElement, 'hide-all');
             this._childElement.style.display = 'none';
         }
@@ -2937,840 +3357,113 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 });
 
 /**
- * @module Ink.UI.SmoothScroller_1
+ * @module Ink.UI.ProgressBar_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded ) {
+Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
     'use strict';
 
     /**
-     * @class Ink.UI.SmoothScroller
-     * @version 1
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Loaded
-     * @static
-     */
-    var SmoothScroller = {
-
-        /**
-         * Sets the speed of the scrolling
-         *
-         * @property
-         * @type {Number}
-         * @readOnly
-         * @static
-         */
-        speed: 10,
-
-        /**
-         * Returns the Y position of the div
-         *
-         * @method gy
-         * @param  {DOMElement} d DOMElement to get the Y position from
-         * @return {Number}   Y position of div 'd'
-         * @public
-         * @static
-         */
-        gy: function(d) {
-            var gy;
-            gy = d.offsetTop;
-            if (d.offsetParent){
-                while ( (d = d.offsetParent) ){
-                    gy += d.offsetTop;
-                }
-            }
-            return gy;
-        },
-
-
-        /**
-         * Returns the current scroll position
-         *
-         * @method scrollTop
-         * @return {Number}  Current scroll position
-         * @public
-         * @static
-         */
-        scrollTop: function() {
-            var
-                body = document.body,
-                d = document.documentElement
-            ;
-            if (body && body.scrollTop){
-                return body.scrollTop;
-            }
-            if (d && d.scrollTop){
-                return d.scrollTop;
-            }
-            if (window.pageYOffset)
-            {
-                return window.pageYOffset;
-            }
-            return 0;
-        },
-
-        /**
-         * Attaches an event for an element
-         *
-         * @method add
-         * @param  {DOMElement} el DOMElement to make the listening of the event
-         * @param  {String} event Event name to be listened
-         * @param  {DOMElement} fn Callback function to run when the event is triggered.
-         * @public
-         * @static
-         */
-        add: function(el, event, fn) {
-            Event.observe(el,event,fn);
-            return;
-        },
-
-
-        /**
-         * Kill an event of an element
-         *
-         * @method end
-         * @param  {String} e Event to be killed/stopped
-         * @public
-         * @static
-         */
-        // kill an event of an element
-        end: function(e) {
-            if (window.event) {
-                window.event.cancelBubble = true;
-                window.event.returnValue = false;
-                return;
-            }
-            Event.stop(e);
-        },
-
-
-        /**
-         * Moves the scrollbar to the target element
-         *
-         * @method scroll
-         * @param  {Number} d Y coordinate value to stop
-         * @public
-         * @static
-         */
-        scroll: function(d) {
-            var a = Ink.UI.SmoothScroller.scrollTop();
-            if (d > a) {
-                a += Math.ceil((d - a) / Ink.UI.SmoothScroller.speed);
-            } else {
-                a = a + (d - a) / Ink.UI.SmoothScroller.speed;
-            }
-
-            window.scrollTo(0, a);
-            if ((a) === d || Ink.UI.SmoothScroller.offsetTop === a)
-            {
-                clearInterval(Ink.UI.SmoothScroller.interval);
-            }
-            Ink.UI.SmoothScroller.offsetTop = a;
-        },
-
-
-        /**
-         * Initializer that adds the rendered to run when the page is ready
-         *
-         * @method init
-         * @public
-         * @static
-         */
-        // initializer that adds the renderer to the onload function of the window
-        init: function() {
-            Loaded.run(Ink.UI.SmoothScroller.render);
-        },
-
-        /**
-         * This method extracts all the anchors and validates thenm as # and attaches the events
-         *
-         * @method render
-         * @public
-         * @static
-         */
-        render: function() {
-            var a = Selector.select('a.scrollableLink');
-
-            Ink.UI.SmoothScroller.end(this);
-
-            for (var i = 0; i < a.length; i++) {
-                var _elm = a[i];
-                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
-                    Ink.UI.SmoothScroller.add(_elm, 'click', Ink.UI.SmoothScroller.end);
-                    Event.observe(_elm,'click', Ink.bindEvent(Ink.UI.SmoothScroller.clickScroll, this, _elm));
-                }
-            }
-        },
-
-
-        /**
-         * Click handler
-         *
-         * @method clickScroll
-         * @public
-         * @static
-         */
-        clickScroll: function(event, _elm) {
-            /*
-            Ink.UI.SmoothScroller.end(this);
-            var hash = this.hash.substr(1);
-            var elm = Selector.select('a[name="' + hash + '"],#' + hash);
-
-            if (typeof(elm[0]) !== 'undefined') {
-
-                if (this.parentNode.className.indexOf('active') === -1) {
-                    var ul = this.parentNode.parentNode,
-                        li = ul.firstChild;
-                    do {
-                        if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
-                            li.className = li.className.replace('active', '');
-                            break;
-                        }
-                    } while ((li = li.nextSibling));
-                    this.parentNode.className += " active";
-                }
-                clearInterval(Ink.UI.SmoothScroller.interval);
-                Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
-
-            }
-            */
-            Ink.UI.SmoothScroller.end(_elm);
-            if(_elm !== null && _elm.getAttribute('href') !== null) {
-                var hashIndex = _elm.href.indexOf('#');
-                if(hashIndex === -1) {
-                    return;
-                }
-                var hash = _elm.href.substr((hashIndex + 1));
-                var elm = Selector.select('a[name="' + hash + '"],#' + hash);
-
-                if (typeof(elm[0]) !== 'undefined') {
-
-                    if (_elm.parentNode.className.indexOf('active') === -1) {
-                        var ul = _elm.parentNode.parentNode,
-                            li = ul.firstChild;
-                        do {
-                            if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
-                                li.className = li.className.replace('active', '');
-                                break;
-                            }
-                        } while ((li = li.nextSibling));
-                        _elm.parentNode.className += " active";
-                    }
-                    clearInterval(Ink.UI.SmoothScroller.interval);
-                    Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
-
-                }
-            }
-
-        }
-    };
-
-    return SmoothScroller;
-
-});
-
-/**
- * @module Ink.UI.Modal_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * @class Ink.UI.Modal
+     * Associated to a .ink-progress-bar element, it provides the necessary
+     * method - setValue() - for the user to change the element's value.
+     * 
+     * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
      * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
+     * @uses Ink.Dom.Element
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
-     *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
-     *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
-     *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
-     *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
-     *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
-     *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
-     *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
-     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed.
-     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
-     *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
-     *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
+     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
+     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
+     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
      *
      * @example
-     *      <div class="ink-shade fade">
-     *          <div id="test" class="ink-modal fade" data-trigger="bModal" data-width="800px" data-height="400px">
-     *              <div class="modal-header">
-     *                  <button class="modal-close ink-dismiss"></button>
-     *                  <h5>Modal windows can have headers</h5>
-     *              </div>
-     *              <div class="modal-body" id="modalContent">
-     *                  <h3>Please confirm your previous choice</h3>
-     *                  <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
-     *                  <p>
-     *                      <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
-     *                  </p>
-     *                  <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
-     *                  <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
-     *              </div>
-     *              <div class="modal-footer">
-     *                  <div class="push-right">
-     *                      <button class="ink-button info">Confirm</button>
-     *                      <button class="ink-button caution ink-dismiss">Cancel</button>
-     *                  </div>
-     *              </div>
-     *          </div>
+     *      <div class="ink-progress-bar grey" data-start-value="70%">
+     *          <span class="caption">I am a grey progress bar</span>
+     *          <div class="bar grey"></div>
      *      </div>
-     *      <a href="#" id="bModal">Open modal</a>
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
-     *              var modalElement = Ink.s('#bModal');
-     *              var modalObj = new Modal( modalElement );
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+     *              var progressBarElement = Ink.s('.ink-progress-bar');
+     *              var progressBarObj = new ProgressBar( progressBarElement );
      *          });
      *      </script>
      */
-    var Modal = function(selector, options) {
+    var ProgressBar = function( selector, options ){
 
-        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
-            throw 'Invalid Modal selector';
-        } else if(typeof selector === 'string'){
-            if( selector !== '' ){
+        if( typeof selector !== 'object' ){
+            if( typeof selector !== 'string' ){
+                throw '[Ink.UI.ProgressBar] :: Invalid selector';
+            } else {
                 this._element = Selector.select(selector);
-                if( this._element.length === 0 ){
-                    /**
-                     * From a developer's perspective this should be like it is...
-                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
-                     */
-                    throw 'The Modal selector has not returned any elements';
-                } else {
-                    this._element = this._element[0];
+                if( this._element.length < 1 ){
+                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
                 }
+                this._element = this._element[0];
             }
-        } else if( !!selector ){
+        } else {
             this._element = selector;
         }
 
-        this._options = {
-            /**
-             * Width, height and markup really optional, as they can be obtained by the element
-             */
-            width:        undefined,
-            height:       undefined,
 
-            /**
-             * To add extra classes
-             */
-            shadeClass: undefined,
-            modalClass: undefined,
+        this._options = Ink.extendObj({
+            'startValue': 0,
+            'onStart': function(){},
+            'onEnd': function(){}
+        },Element.data(this._element));
 
-            /**
-             * Optional trigger properties
-             */
-            trigger:      undefined,
-            triggerEvent: 'click',
+        this._options = Ink.extendObj( this._options, options || {});
+        this._value = this._options.startValue;
 
-            /**
-             * Remaining options
-             */
-            markup:       undefined,
-            onShow:       undefined,
-            onDismiss:    undefined,
-            closeOnClick: false,
-            responsive:    true,
-            disableScroll: true
-        };
-
-
-        this._handlers = {
-            click:   Ink.bindEvent(this._onClick, this),
-            keyDown: Ink.bindEvent(this._onKeyDown, this),
-            resize:  Ink.bindEvent(this._onResize, this)
-        };
-
-        this._wasDismissed = false;
-
-        /**
-         * Modal Markup
-         */
-        if( this._element ){
-            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
-        } else {
-            this._markupMode = false;
-        }
-
-
-
-
-        if( !this._markupMode ){
-
-
-            this._modalShadow      = document.createElement('div');
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._modalDiv         = document.createElement('div');
-            this._modalDivStyle    = this._modalDiv.style;
-
-            if( !!this._element ){
-                this._options.markup = this._element.innerHTML;
-            }
-
-            /**
-             * Not in full markup mode, let's set the classes and css configurations
-             */
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal' );
-            Css.addClassName( this._modalDiv,'ink-space' );
-
-            /**
-             * Applying the main css styles
-             */
-            // this._modalDivStyle.position = 'absolute';
-            this._modalShadow.appendChild( this._modalDiv);
-            document.body.appendChild( this._modalShadow );
-        } else {
-            this._modalDiv         = this._element;
-            this._modalDivStyle    = this._modalDiv.style;
-            this._modalShadow      = this._modalDiv.parentNode;
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-            if( !this._contentContainer.length ){
-                throw 'Missing div with class "modal-body"';
-            }
-
-            this._contentContainer = this._contentContainer[0];
-            this._options.markup = this._contentContainer.innerHTML;
-
-            /**
-             * First, will handle the least important: The dataset
-             */
-            this._options = Ink.extendObj(this._options,Element.data(this._element));
-
-        }
-
-        /**
-         * Now, the most important, the initialization options
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( !this._markupMode ){
-            this.setContentMarkup(this._options.markup);
-        }
-
-        if( typeof this._options.shadeClass === 'string' ){
-
-            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalShadow, item.trim() );
-            }, this));
-        }
-
-        if( typeof this._options.modalClass === 'string' ){
-            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalDiv, item.trim() );
-            }, this));
-        }
-
-        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
-            var triggerElement,i;
-            if( typeof this._options.trigger === 'string' ){
-                triggerElement = Selector.select( this._options.trigger );
-                if( triggerElement.length > 0 ){
-                    for( i=0; i<triggerElement.length; i++ ){
-                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this._init, this) );
-                    }
-                }
-            }
-        } else {
-            this._init();
-        }
+        this._init();
     };
 
-    Modal.prototype = {
+    ProgressBar.prototype = {
 
         /**
          * Init function called by the constructor
          * 
          * @method _init
-         * @param {Event} [event] In case its fired by the trigger.
          * @private
          */
-        _init: function(event) {
-
-            if( event ){ Event.stop(event); }
-
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
-
-            this._resizeTimeout    = null;
-
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
-            setTimeout(Ink.bind(function(){
-                Css.addClassName( this._modalShadow,'visible' );
-                Css.addClassName( this._modalDiv,'visible' );
-            }, this),100);
-
-            /**
-             * Fallback to the old one
-             */
-            this._contentElement = this._modalDiv;
-            this._shadeElement   = this._modalShadow;
-
-            /**
-             * Setting the content of the modal
-             */
-            this.setContentMarkup( this._options.markup );
-
-            /**
-             * If any size has been user-defined, let's set them as max-width and max-height
-             */
-            if( typeof this._options.width !== 'undefined' ){
-                this._modalDivStyle.width = this._options.width;
-                if( this._options.width.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
+        _init: function(){
+            this._elementBar = Selector.select('.bar',this._element);
+            if( this._elementBar.length < 1 ){
+                throw '[Ink.UI.ProgressBar] :: Bar element not found';
             }
+            this._elementBar = this._elementBar[0];
 
-            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
-                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
-            }
-
-            if( typeof this._options.height !== 'undefined' ){
-                this._modalDivStyle.height = this._options.height;
-                if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
-            }
-
-            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
-                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
-            }
-
-            this.originalStatus = {
-                viewportHeight:     parseInt(elem.clientHeight,10),
-                viewportWidth:      parseInt(elem.clientWidth,10),
-                width:              parseInt(this._modalDivStyle.maxWidth,10),
-                height:             parseInt(this._modalDivStyle.maxHeight,10)
-            };
-
-            /**
-             * Let's 'resize' it:
-             */
-            if(this._options.responsive) {
-                this._onResize(true);
-                Event.observe( window,'resize',this._handlers.resize );
-            } else {
-                this._resizeContainer();
-                this._reposition();
-            }
-
-            if (this._options.onShow) {
-                this._options.onShow(this);
-            }
-
-            if(this._options.disableScroll) {
-                this._disableScroll();
-            }
-
-            // subscribe events
-            Event.observe(this._shadeElement, 'click',   this._handlers.click);
-            Event.observe(document,           'keydown', this._handlers.keyDown);
-
-            Aux.registerInstance(this, this._shadeElement, 'modal');
+            this._options.onStart = Ink.bind(this._options.onStart,this);
+            this._options.onEnd = Ink.bind(this._options.onEnd,this);
+            this.setValue( this._options.startValue );
         },
 
         /**
-         * Responsible for repositioning the modal
+         * Sets the value of the Progressbar
          * 
-         * @method _reposition
-         * @private
-         */
-        _reposition: function(){
-
-            this._modalDivStyle.top = this._modalDivStyle.left = '50%';
-
-            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
-        },
-
-        /**
-         * Responsible for resizing the modal
-         * 
-         * @method _onResize
-         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
-         * @private
-         */
-        _onResize: function( runNow ){
-
-            if( typeof runNow === 'boolean' ){
-                this._timeoutResizeFunction.call(this);
-            } else if( !this._resizeTimeout && (typeof runNow === 'object') ){
-                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
-            }
-        },
-
-        /**
-         * Timeout Resize Function
-         * 
-         * @method _timeoutResizeFunction
-         * @private
-         */
-        _timeoutResizeFunction: function(){
-            /**
-             * Getting the current viewport size
-             */
-            var
-                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
-                currentViewportHeight = parseInt(elem.clientHeight,10),
-                currentViewportWidth = parseInt(elem.clientWidth,10)
-            ;
-
-            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
-                /**
-                 * The viewport width has expanded
-                 */
-                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
-
-            } else {
-                /**
-                 * The viewport width has not changed or reduced
-                 */
-                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
-                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
-            }
-
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
-
-                /**
-                 * The viewport height has expanded
-                 */
-                //this._modalDivStyle.maxHeight =
-                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
-
-            } else {
-                /**
-                 * The viewport height has not changed, or reduced
-                 */
-                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
-            }
-
-            this._resizeContainer();
-            this._reposition();
-            this._resizeTimeout = undefined;
-        },
-
-        /**
-         * Navigation click handler
-         * 
-         * @method _onClick
-         * @param {Event} ev
-         * @private
-         */
-        _onClick: function(ev) {
-            var tgtEl = Event.element(ev);
-
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
-                (
-                    this._options.closeOnClick &&
-                    (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
-                )
-            ) {
-                Event.stop(ev);
-                this.dismiss();
-            }
-        },
-
-        /**
-         * Responsible for handling the escape key pressing.
-         *
-         * @method _onKeyDown
-         * @param  {Event} ev
-         * @private
-         */
-        _onKeyDown: function(ev) {
-            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            this.dismiss();
-        },
-
-        /**
-         * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
-         * @method _resizeContainer
-         * @private
-         */
-        _resizeContainer: function()
-        {
-
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
-            var containerHeight = Element.elementHeight(this._modalDiv);
-
-            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
-            if( this._modalHeader.length>0 ){
-                this._modalHeader = this._modalHeader[0];
-                containerHeight -= Element.elementHeight(this._modalHeader);
-            }
-
-            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
-            if( this._modalFooter.length>0 ){
-                this._modalFooter = this._modalFooter[0];
-                containerHeight -= Element.elementHeight(this._modalFooter);
-            }
-
-            this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
-            }
-
-            if( this._markupMode ){ return; }
-
-            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
-            this._contentContainer.style.overflowY = 'auto';
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
-        },
-
-        /**
-         * Responsible for 'disabling' the page scroll
-         * 
-         * @method _disableScroll
-         * @private
-         */
-        _disableScroll: function()
-        {
-            this._oldScrollPos = Element.scroll();
-            this._onScrollBinded = Ink.bindEvent(function(event) {
-                var tgtEl = Event.element(event);
-
-                if( !Element.descendantOf(this._modalShadow, tgtEl) ){
-                    Event.stop(event);
-                    window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
-                }
-            },this);
-            Event.observe(window, 'scroll', this._onScrollBinded);
-            Event.observe(document, 'touchmove', this._onScrollBinded);
-        },
-
-        /**************
-         * PUBLIC API *
-         **************/
-
-        /**
-         * Dismisses the modal
-         * 
-         * @method dismiss
+         * @method setValue
+         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
          * @public
          */
-        dismiss: function() {
-            if (this._options.onDismiss) {
-                this._options.onDismiss(this);
+        setValue: function( newValue ){
+            this._options.onStart( this._value);
+
+            newValue = parseInt(newValue,10);
+            if( isNaN(newValue) || (newValue < 0) ){
+                newValue = 0;
+            } else if( newValue>100 ){
+                newValue = 100;
             }
+            this._value = newValue;
+            this._elementBar.style.width =  this._value + '%';
 
-            if(this._options.disableScroll) {
-                Event.stopObserving(window, 'scroll', this._onScrollBinded);
-                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
-            }
-
-            if( this._options.responsive ){
-                Event.stopObserving(window, 'resize', this._handlers.resize);
-            }
-
-            // this._modalShadow.parentNode.removeChild(this._modalShadow);
-
-            if( !this._markupMode ){
-                this._modalShadow.parentNode.removeChild(this._modalShadow);
-                this.destroy();
-            } else {
-                Css.removeClassName( this._modalDiv, 'visible' );
-                Css.removeClassName( this._modalShadow, 'visible' );
-
-                var
-                    dismissInterval,
-                    transitionEndFn = Ink.bindEvent(function(){
-                        if( !dismissInterval ){ return; }
-                        this._modalShadowStyle.display = 'none';
-                        Event.stopObserving(document,'transitionend',transitionEndFn);
-                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
-                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
-                        clearInterval(dismissInterval);
-                        dismissInterval = undefined;
-                    }, this)
-                ;
-
-                Event.observe(document,'transitionend',transitionEndFn);
-                Event.observe(document,'oTransitionEnd',transitionEndFn);
-                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
-
-                if( !dismissInterval ){
-                    dismissInterval = setInterval(Ink.bind(function(){
-                        if( this._modalShadowStyle.opacity > 0 ){
-                            return;
-                        } else {
-                            this._modalShadowStyle.display = 'none';
-                            clearInterval(dismissInterval);
-                            dismissInterval = undefined;
-                        }
-
-                    }, this),500);
-                }
-            }
-        },
-
-        /**
-         * Removes the modal from the DOM
-         * 
-         * @method destroy
-         * @public
-         */
-        destroy: function() {
-            Aux.unregisterInstance(this._instanceId);
-
-        },
-
-        /**
-         * Returns the content DOM element
-         * 
-         * @method getContentElement
-         * @return {DOMElement} Modal main cointainer.
-         * @public
-         */
-        getContentElement: function() {
-            return this._contentContainer;
-        },
-
-        /**
-         * Replaces the content markup
-         * 
-         * @method setContentMarkup
-         * @param {String} contentMarkup
-         * @public
-         */
-        setContentMarkup: function(contentMarkup) {
-            if( !this._markupMode ){
-                this._modalDiv.innerHTML = [contentMarkup].join('');
-                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-                if( !this._contentContainer.length ){
-                    throw 'Missing div with class "modal-body"';
-                }
-                this._contentContainer = this._contentContainer[0];
-            } else {
-                this._contentContainer.innerHTML = [contentMarkup].join('');
-            }
-            this._contentElement = this._modalDiv;
-            this._resizeContainer();
+            this._options.onEnd( this._value );
         }
-
     };
 
-    return Modal;
+    return ProgressBar;
 
 });
 
@@ -5024,13 +4717,14 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
         _getElements: function()
         {
             //this.elements = [];
-            if(typeof(this.elements[this.element.id]) !== 'undefined') {
-                return;
-            }
+            // if(typeof(this.elements[this.element.id]) !== 'undefined') {
+            //     return;
+            // }
 
             this.elements[this.element.id] = [];
             this.confirmElms[this.element.id] = [];
-
+            console.log(this.element);
+            console.log(this.element.elements);
             var formElms = this.element.elements;
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
@@ -5068,7 +4762,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                 }
             }
-
+            debugger;
         },
 
         /**
@@ -5350,8 +5044,35 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         }
                     }
                     break;
-                //case 'date':
-                //    break;
+                case 'ink-fv-date':
+                    if(this._trim(elm.value) === '') {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        var Element = Ink.getModule('Ink.Dom.Element',1);
+                        var dataset = Element.data( elm );
+                        var validFormat = 'yyyy-mm-dd';
+
+                        if( Css.hasClassName(elm, 'ink-datepicker') && ("format" in dataset) ){
+                            validFormat = dataset.format;
+                        } else if( ("validFormat" in dataset) ){
+                            validFormat = dataset.validFormat;
+                        }
+
+                        if( !(validFormat in InkValidator._dateParsers ) ){
+                            var validValues = [];
+                            for( val in InkValidator._dateParsers ){
+                                validValues.push(val);
+                            }
+                            throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
+                        }
+                        
+                        return InkValidator.isDate( validFormat, elm.value );
+                    }
+                    break;
                 case 'ink-fv-custom':
                     break;
             }
@@ -5383,6 +5104,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                     var newLabel = document.createElement('p');
                     //newLabel.setAttribute('for',curElm.id);
                     newLabel.className = this._errorClassName;
+                    newLabel.className += ' ' . this._errorTypeErrorClassName;
                     if(aFail[i].errors[0] !== 'ink-fv-custom') {
                         newLabel.innerHTML = this._flagMap[aFail[i].errors[0]].msg;
                     } else {
@@ -5438,7 +5160,10 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         Css.removeClassName(curElm.parentNode.parentNode, 'error');
                         Css.removeClassName(curElm.parentNode.parentNode, 'warning');
                     }
-                    curElm.parentNode.removeChild(curElm);
+
+                    if(Css.hasClassName(curElm,'tip') && Css.hasClassName(curElm,'error')){
+                        curElm.parentNode.removeChild(curElm);
+                    }
                 }
             }
 
@@ -5470,6 +5195,638 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
     };
 
     return FormValidator;
+
+});
+
+/**
+ * @module Ink.UI.Droppable_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1"], function( Element, Event, Css) {
+
+    /**
+     * @class Ink.UI.Droppable
+     * @version 1
+     * @static
+     */
+	var Droppable = {
+		/**
+		 * Flag that determines if it's in debug mode or not
+		 *
+		 * @property debug
+		 * @type {Boolean}
+		 * @private
+		 */
+		debug: false,
+
+        /**
+         * Associative array with the elements that are droppable
+         * 
+         * @property _elements
+         * @type {Object}
+         * @private
+         */
+		_elements: {}, // indexed by id
+
+        /**
+		 * Makes an element droppable and adds it to the stack of droppable elements.
+		 * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
+         * 
+         * @method add
+		 * @param {String|DOMElement}       element    - target element
+		 * @param {optional Object}         options    - options object
+		 *     @param {String}       [options.hoverclass] - Classname applied when an acceptable draggable element is hovering the element
+		 *     @param {Array|String} [options.accept]     - Array or comma separated string of classnames for elements that can be accepted by this droppable
+		 *     @param {Function}     [options.onHover]    - callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
+		 *     @param {Function}     [options.onDrop]     - callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameterse.
+         * @public
+         */
+		add: function(element, options) {
+			var opt = Ink.extendObj( {
+				hoverclass:		false,
+				accept:			false,
+				onHover:		false,
+				onDrop:			false,
+				onDropOut:		false				
+			}, options || {});
+
+			element = Ink.i(element);
+
+			if (opt.accept && opt.accept.constructor === Array) {
+				opt.accept = opt.accept.join();
+			}
+
+			this._elements[element.id] = {options: opt};
+			this.update(element.id);
+		},
+
+        /**
+		 * Invoke every time a drag starts
+         * 
+         * @method updateAll
+         * @public
+         */
+		/**
+		 */
+		updateAll: function() {
+			for (var id in this._elements) {
+				if (!this._elements.hasOwnProperty(id)) {	continue;	}
+				this.update(Ink.i(id));
+			}
+		},
+
+        /**
+		 * Updates location and size of droppable element
+         * 
+         * @method update
+		 * @param {String|DOMElement} element - target element
+         * @public
+         */
+		update: function(element) {
+			element = Ink.i(element);
+			var data = this._elements[element.id];
+			if (!data) {
+				return; /*throw 'Data about element with id="' + element.id + '" was not found!';*/
+			}
+
+			data.left	= Element.offsetLeft(element);
+			data.top	= Element.offsetTop( element);
+			data.right	= data.left + Element.elementWidth( element);
+			data.bottom	= data.top  + Element.elementHeight(element);
+
+			// if (this.debug) {
+			// 	// for debugging purposes
+			// 	if (!data.rt) {		data.rt = SAPO.Utility.Debug.addRect(document.body,	[data.left, data.top], [data.right-data.left+1, data.bottom-data.top+1]);	}
+			// 	else {				SAPO.Utility.Debug.updateRect(data.rt,				[data.left, data.top], [data.right-data.left+1, data.bottom-data.top+1]);	}
+			// }
+		},
+
+        /**
+		 * Removes an element from the droppable stack and removes the droppable behavior
+		 * 
+         * @method remove
+		 * @param {String|DOMElement} el - target element
+         * @public
+         */
+		remove: function(el) {
+			el = Ink.i(el);
+			delete this._elements[el.id];
+		},
+
+        /**
+		 * Method called by a draggable to execute an action on a droppable
+         * 
+         * @method action
+		 * @param {Object} coords    - coordinates where the action happened
+		 * @param {String} type      - type of action. drag or drop.
+		 * @param {Object} ev        - Event object
+		 * @param {Object} draggable - draggable element
+         * @public
+         */
+		action: function(coords, type, ev, draggable) {
+			var opt, classnames, accept, el, element;
+
+			// check all droppable elements
+			for (var elId in this._elements) {
+				if (!this._elements.hasOwnProperty(elId)) {	continue;	}
+				el = this._elements[elId];
+				opt = el.options;
+				accept = false;
+				element = Ink.i(elId);
+
+				// check if our draggable is over our droppable
+				if (coords.x >= el.left && coords.x <= el.right && coords.y >= el.top && coords.y <= el.bottom) {
+
+					// INSIDE
+
+					// check if the droppable accepts the draggable
+					if (opt.accept) {
+						classnames = draggable.className.split(' ');
+						for ( var j = 0, lj = classnames.length; j < lj; j++) {
+							if (opt.accept.search(classnames[j]) >= 0 && draggable !== element) {
+								accept = true;
+							}
+						}
+					}
+					else {
+						accept = true;
+					}
+
+					if (accept) {
+						if (type === 'drag') {
+							if (opt.hoverclass) {
+								Css.addClassName(element, opt.hoverclass);
+							}
+							if (opt.onHover) {
+								opt.onHover(draggable, element);
+							}
+						}
+						else {
+							if (type === 'drop' && opt.onDrop) {
+								if (opt.hoverclass) {
+									Css.removeClassName(element, opt.hoverclass);
+								}
+								if (opt.onDrop) {
+									opt.onDrop(draggable, element, ev);
+								}
+							}
+                        }
+					}
+				}
+				else {
+					// OUTSIDE
+					if (type === 'drag' && opt.hoverclass) {
+						Css.removeClassName(element, opt.hoverclass);
+					}
+					if(type === 'drop'){
+						if(opt.onDropOut){
+							opt.onDropOut(draggable, element, ev);
+						}
+					}
+				}
+			}
+		}
+	};
+
+	return Droppable;
+});
+
+/**
+ * @module Ink.UI.Draggable_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1"],function( Element, Event, Css, Browser, Droppable) {
+
+    /**
+     * @class Ink.UI.Draggable
+     * @version 1
+     * @constructor
+     * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
+     * @param {Object} [opptions] Optional object for configuring the component
+	 *     @param {String}            [options.constraint]     - Movement constraint. None by default. Can be either vertical or horizontal.
+	 *     @param {Number}            [options.top]            - top limit for the draggable area
+	 *     @param {Number}            [options.right]          - right limit for the draggable area
+	 *     @param {Number}            [options.bottom]         - bottom limit for the draggable area
+	 *     @param {Number}            [options.left]           - left limit for the draggable area
+	 *     @param {String|DOMElement} [options.handler]        - if specified, only this element will be used for dragging instead of the whole target element
+	 *     @param {Boolean}           [options.revert]         - if true, reverts the draggable to the original position when dragging stops
+	 *     @param {String}            [options.cursor]         - cursor type used over the draggable object
+	 *     @param {Number}            [options.zindex]         - zindex applied to the draggable element while dragged
+	 *     @param {Number}            [options.fps]            - if defined, on drag will run every n frames per second only
+	 *     @param {DomElement}        [options.droppableProxy] - if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
+	 *     @param {String}            [options.mouseAnchor]    - defaults to mouse cursor. can be 'left|center|right top|center|bottom'
+	 *     @param {Function}          [options.onStart]        - callback called when dragging starts
+	 *     @param {Function}          [options.onEnd]          - callback called when dragging stops
+	 *     @param {Function}          [options.onDrag]         - callback called while dragging, prior to position updates
+	 *     @param {Function}          [options.onChange]       - callback called while dragging, after position updates
+     * @example
+     *     Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){
+     *         new Draggable( 'myElementId' );
+     *     });
+     */
+	var Draggable = function(element, options) {
+		this.init(element, options);
+	};
+
+	Draggable.prototype = {
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @param {String|DOMElement} element ID of the element or DOM Element.
+         * @param {Object} [options] Options object for configuration of the module.
+         * @private
+         */
+		init: function(element, options) {
+			var o = Ink.extendObj( {
+				constraint:			false,
+				top:				0,
+				right:				Element.pageWidth(),
+				bottom:				Element.pageHeight(),
+				left:				0,
+				handler:			false,
+				revert:				false,
+				cursor:				'move',
+				zindex:				9999,
+				onStart:			false,
+				onEnd:				false,
+				onDrag:				false,
+				onChange:			false,
+				droppableProxy:		false,
+				mouseAnchor:		undefined,
+				skipChildren:		true,
+				debug:				false
+			}, options || {});
+
+			this.options = o;
+			this.element = Ink.i(element);
+
+			this.handle				= false;
+			this.elmStartPosition	= false;
+			this.active				= false;
+			this.dragged			= false;
+			this.prevCoords			= false;
+			this.placeholder		= false;
+
+			this.position			= false;
+			this.zindex				= false;
+			this.firstDrag			= true;
+
+			if (o.fps) {
+				this.deltaMs = 1000 / o.fps;
+				this.lastRanAt = 0;
+			}
+
+			this.handlers = {};
+			this.handlers.start			= Ink.bindEvent(this._onStart,this);
+			this.handlers.dragFacade	= Ink.bindEvent(this._onDragFacade,this);
+			this.handlers.drag			= Ink.bindEvent(this._onDrag,this);
+			this.handlers.end			= Ink.bindEvent(this._onEnd,this);
+			this.handlers.selectStart	= function(event) {	Event.stop(event);	return false;	};
+
+			// set handler
+			this.handle = (this.options.handler) ? Ink.i(this.options.handler) : this.element;
+			this.handle.style.cursor = o.cursor;
+
+			if (o.right  !== false) {	this.options.right	= o.right  - Element.elementWidth( element);	}
+			if (o.bottom !== false) {	this.options.bottom	= o.bottom - Element.elementHeight(element);	}
+
+			Event.observe(this.handle, 'touchstart', this.handlers.start);
+			Event.observe(this.handle, 'mousedown', this.handlers.start);
+
+			if (Browser.IE) {
+				Event.observe(this.element, 'selectstart', this.handlers.selectStart);
+			}
+		},
+
+        /**
+		 * Removes the ability of the element of being dragged
+         * 
+         * @method destroy
+         * @public
+         */
+		destroy: function() {
+			Event.stopObserving(this.handle, 'touchstart', this.handlers.start);
+			Event.stopObserving(this.handle, 'mousedown', this.handlers.start);
+
+			if (Browser.IE) {
+				Event.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
+			}
+		},
+
+        /**
+		 * Browser-independant implementation of page scroll
+         * 
+         * @method _getPageScroll
+         * @return {Array} Array where the first position is the scrollLeft and the second position is the scrollTop
+         * @private
+         */
+		_getPageScroll: function() {
+
+			if (typeof self.pageXOffset !== "undefined") {
+				return [ self.pageXOffset, self.pageYOffset ];
+			}
+			if (typeof document.documentElement !== "undefined" && typeof document.documentElement.scrollLeft !== "undefined") {
+				return [ document.documentElement.scrollLeft, document.documentElement.scrollTop ];
+			}
+			return [ document.body.scrollLeft, document.body.scrollTop ];
+		},
+
+        /**
+		 * Gets coordinates for a given event (with added page scroll)
+         * 
+         * @method _getCoords
+         * @param {Object} e window.event object.
+         * @return {Array} Array where the first position is the x coordinate, the second is the y coordinate
+         * @private
+         */
+		_getCoords: function(e) {
+			var ps = this._getPageScroll();
+			return {
+				x: (e.touches ? e.touches[0].clientX : e.clientX) + ps[0],
+				y: (e.touches ? e.touches[0].clientY : e.clientY) + ps[1]
+			};
+		},
+
+        /**
+		 * Clones src element's relevant properties to dst
+         * 
+         * @method _cloneStyle
+         * @param {DOMElement} src Element from where we're getting the styles
+         * @param {DOMElement} dst Element where we're placing the styles.
+         * @private
+         */
+		_cloneStyle: function(src, dst) {
+			dst.className = src.className;
+			dst.style.borderWidth	= '0';
+			dst.style.padding		= '0';
+			dst.style.position		= 'absolute';
+			dst.style.width			= Element.elementWidth(src)		+ 'px';
+			dst.style.height		= Element.elementHeight(src)	+ 'px';
+			dst.style.left			= Element.elementLeft(src)		+ 'px';
+			dst.style.top			= Element.elementTop(src)		+ 'px';
+			dst.style.cssFloat		= Css.getStyle(src, 'float');
+			dst.style.display		= Css.getStyle(src, 'display');
+		},
+
+        /**
+         * onStart event handler
+         * 
+         * @method _onStart
+         * @param {Object} e window.event object
+         * @return {Boolean|void} In some cases return false. Otherwise is void
+         * @private
+         */
+		_onStart: function(e) {
+			if (!this.active && Event.isLeftClick(e) || typeof e.button === 'undefined') {
+
+				var tgtEl = e.target || e.srcElement;
+				if (this.options.skipChildren && tgtEl !== this.element) {	return;	}
+
+				Event.stop(e);
+
+				this.elmStartPosition = [
+					Element.elementLeft(this.element),
+					Element.elementTop( this.element)
+				];
+
+				var pos = [
+					parseInt(Css.getStyle(this.element, 'left'), 10),
+					parseInt(Css.getStyle(this.element, 'top'),  10)
+				];
+
+				var dims = [
+					Element.elementWidth( this.element),
+					Element.elementHeight(this.element)
+				];
+
+				this.originalPosition = [ pos[0] ? pos[0]: null, pos[1] ? pos[1] : null ];
+				this.delta = this._getCoords(e); // mouse coords at beginning of drag
+
+				this.active = true;
+				this.position = Css.getStyle(this.element, 'position');
+				this.zindex = Css.getStyle(this.element, 'zIndex');
+
+				var div = document.createElement('div');
+				div.style.position		= this.position;
+				div.style.width			= dims[0] + 'px';
+				div.style.height		= dims[1] + 'px';
+				div.style.marginTop		= Css.getStyle(this.element, 'margin-top');
+				div.style.marginBottom	= Css.getStyle(this.element, 'margin-bottom');
+				div.style.marginLeft	= Css.getStyle(this.element, 'margin-left');
+				div.style.marginRight	= Css.getStyle(this.element, 'margin-right');
+				div.style.borderWidth	= '0';
+				div.style.padding		= '0';
+				div.style.cssFloat		= Css.getStyle(this.element, 'float');
+				div.style.display		= Css.getStyle(this.element, 'display');
+				div.style.visibility	= 'hidden';
+
+				this.delta2 = [ this.delta.x - this.elmStartPosition[0], this.delta.y - this.elmStartPosition[1] ]; // diff between top-left corner of obj and mouse
+				if (this.options.mouseAnchor) {
+					var parts = this.options.mouseAnchor.split(' ');
+					var ad = [dims[0], dims[1]];	// starts with 'right bottom'
+					if (parts[0] === 'left') {	ad[0] = 0;	} else if(parts[0] === 'center') {	ad[0] = parseInt(ad[0]/2, 10);	}
+					if (parts[1] === 'top') {	ad[1] = 0;	} else if(parts[1] === 'center') {	ad[1] = parseInt(ad[1]/2, 10);	}
+					this.applyDelta = [this.delta2[0] - ad[0], this.delta2[1] - ad[1]];
+				}
+
+				this.placeholder = div;
+
+				if (this.options.onStart) {		this.options.onStart(this.element, e);		}
+
+				if (this.options.droppableProxy) {	// create new transparent div to optimize DOM traversal during drag
+					this.proxy = document.createElement('div');
+					dims = [
+						window.innerWidth	|| document.documentElement.clientWidth		|| document.body.clientWidth,
+						window.innerHeight	|| document.documentElement.clientHeight	|| document.body.clientHeight
+					];
+					var fs = this.proxy.style;
+					fs.width			= dims[0] + 'px';
+					fs.height			= dims[1] + 'px';
+					fs.position			= 'fixed';
+					fs.left				= '0';
+					fs.top				= '0';
+					fs.zIndex			= this.options.zindex + 1;
+					fs.backgroundColor	= '#FF0000';
+					Css.setOpacity(this.proxy, 0);
+
+					var firstEl = document.body.firstChild;
+					while (firstEl && firstEl.nodeType !== 1) {	firstEl = firstEl.nextSibling;	}
+					document.body.insertBefore(this.proxy, firstEl);
+
+					Event.observe(this.proxy, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+					Event.observe(this.proxy, 'touchmove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+				}
+				else {
+					Event.observe(document, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+				}
+
+				this.element.style.position = 'absolute';
+				this.element.style.zIndex = this.options.zindex;
+				this.element.parentNode.insertBefore(this.placeholder, this.element);
+
+				this._onDrag(e);
+
+				Event.observe(document, 'mouseup',	this.handlers.end);
+				Event.observe(document, 'touchend',	this.handlers.end);
+
+				return false;
+			}
+		},
+
+        /**
+         * Function that gets the timestamp of the current run from time to time. (FPS)
+         * 
+         * @method _onDragFacade
+         * @param {Object} window.event object.
+         * @private
+         */
+		_onDragFacade: function(e) {
+			var now = new Date().getTime();
+			if (!this.lastRanAt || now > this.lastRanAt + this.deltaMs) {
+				this.lastRanAt = now;
+				this._onDrag(e);
+			}
+		},
+
+        /**
+         * Function that handles the dragging movement
+         * 
+         * @method _onDrag
+         * @param {Object} window.event object.
+         * @private
+         */
+		_onDrag: function(e) {
+			if (this.active) {
+				Event.stop(e);
+				this.dragged = true;
+				var mouseCoords	= this._getCoords(e),
+					mPosX		= mouseCoords.x,
+					mPosY		= mouseCoords.y,
+					o			= this.options,
+					newX		= false,
+					newY		= false;
+
+				if (!this.prevCoords) {		this.prevCoords = {x: 0, y: 0};		}
+
+				if (mPosX !== this.prevCoords.x || mPosY !== this.prevCoords.y) {
+					if (o.onDrag) {		o.onDrag(this.element, e);		}
+					this.prevCoords = mouseCoords;
+
+					newX = this.elmStartPosition[0] + mPosX - this.delta.x;
+					newY = this.elmStartPosition[1] + mPosY - this.delta.y;
+
+					if (o.constraint === 'horizontal' || o.constraint === 'both') {
+						if (o.right !== false && newX > o.right) {		newX = o.right;		}
+						if (o.left  !== false && newX < o.left) {		newX = o.left;		}
+					}
+					if (o.constraint === 'vertical' || o.constraint === 'both') {
+						if (o.bottom !== false && newY > o.bottom) {	newY = o.bottom;	}
+						if (o.top    !== false && newY < o.top) {		newY = o.top;		}
+					}
+
+					if (this.firstDrag) {
+						if (Droppable) {	Droppable.updateAll();	}
+						/*this.element.style.position = 'absolute';
+						this.element.style.zIndex = this.options.zindex;
+						this.element.parentNode.insertBefore(this.placeholder, this.element);*/
+						this.firstDrag = false;
+					}
+
+					if (newX) {		this.element.style.left = newX + 'px';		}
+					if (newY) {		this.element.style.top  = newY + 'px';		}
+
+					if (Droppable) {
+						// apply applyDelta defined on drag init
+						var mouseCoords2 = this.options.mouseAnchor ? {x: mPosX - this.applyDelta[0], y: mPosY - this.applyDelta[1]} : mouseCoords;
+
+						// for debugging purposes
+						// if (this.options.debug) {
+						// 	if (!this.pt) {
+						// 		this.pt = Debug.addPoint(document.body, [mouseCoords2.x, mouseCoords2.y], '#0FF', 9);
+						// 		this.pt.style.zIndex = this.options.zindex + 1;
+						// 	}
+						// 	else {
+						// 		Debug.movePoint(this.pt, [mouseCoords2.x, mouseCoords2.y]);
+						// 	}
+						// }
+
+						Droppable.action(mouseCoords2, 'drag', e, this.element);
+					}
+					if (o.onChange) {	o.onChange(this);	}
+				}
+			}
+		},
+
+        /**
+         * Function that handles the end of the dragging process
+         * 
+         * @method _onEnd
+         * @param {Object} window.event object.
+         * @private
+         */
+		_onEnd: function(e) {
+			Event.stopObserving(document, 'mousemove', this.handlers.drag);
+			Event.stopObserving(document, 'touchmove', this.handlers.drag);
+
+			if (this.options.fps) {
+				this._onDrag(e);
+			}
+
+			if (this.active && this.dragged) {
+
+				if (this.options.droppableProxy) {	// remove transparent div...
+					document.body.removeChild(this.proxy);
+				}
+
+				if (this.pt) {	// remove debugging element...
+					this.pt.parentNode.removeChild(this.pt);
+					this.pt = undefined;
+				}
+
+	            /*if (this.options.revert) {
+					this.placeholder.parentNode.removeChild(this.placeholder);
+				}*/
+
+	            if(this.placeholder) {
+	                this.placeholder.parentNode.removeChild(this.placeholder);
+	            }
+
+				if (this.options.revert) {
+					this.element.style.position = this.position;
+					if (this.zindex !== null) {
+						this.element.style.zIndex = this.zindex;
+					}
+					else {
+						this.element.style.zIndex = 'auto';
+					} // restore default zindex of it had none
+
+					this.element.style.left = (this.originalPosition[0]) ? this.originalPosition[0] + 'px' : '';
+					this.element.style.top  = (this.originalPosition[1]) ? this.originalPosition[1] + 'px' : '';
+				}
+
+				if (this.options.onEnd) {
+					this.options.onEnd(this.element, e);
+				}
+
+				if (Droppable) {
+					Droppable.action(this._getCoords(e), 'drop', e, this.element);
+				}
+
+				this.position	= false;
+				this.zindex		= false;
+				this.firstDrag	= true;
+			}
+
+			this.active			= false;
+			this.dragged		= false;
+		}
+	};
+
+	return Draggable;
 
 });
 
@@ -5994,7 +6351,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                             this._dayMin = 1;
                         }
 
-                        if ( 1 < this._monthMin && this._monthMin > this._daysInMonth( this._yearMin , this._monthMin ) )
+                        if ( 1 < this._dayMin && this._dayMin > this._daysInMonth( this._yearMin , this._monthMin ) )
                         {
                             this._dayMin = 1;
                         }
@@ -6030,7 +6387,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                         }
 
                         var MDay = this._daysInMonth( this._yearMax , this._monthMax );
-                        if ( 1 < this._monthMax && this._monthMax > MDay )
+                        if ( 1 < this._dayMax && this._dayMax > MDay )
                         {
                             this._dayMax = MDay;
                         }
@@ -6039,11 +6396,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     {
                         this._yearMax   = Number.MAX_VALUE;
                         this._monthMax  = 12;
-                        this._dayMaXx   = 31;
+                        this._dayMax   = 31;
                     }
                 }
 
-                if ( !( this._yearMax >= this._yearMin && this._monthMax >= this._monthMin && this._dayMax >= this._dayMin ) )
+                if ( !( this._yearMax >= this._yearMin && (this._monthMax > this._monthMin || ( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) ) ) )
                 {
                     this._yearMin   = Number.MIN_VALUE;
                     this._monthMin  = 1;
@@ -6062,7 +6419,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
                 this._yearMax   = Number.MAX_VALUE;
                 this._monthMax  = 12;
-                this._dayMaXx   = 31;
+                this._dayMax   = 31;
             }
         },
 
@@ -6678,7 +7035,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Ut
 
     /**
      * Subscribes clicks on the document.body. If and only if you clicked on an element
-     * having class "ink-close", will go up the DOM hierarchy looking for an element with any
+     * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
      * of the following classes: "ink-alert", "ink-alert-block".
      * If it is found, it is removed from the DOM.
      * 
@@ -6904,70 +7261,107 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
 });
 
 /**
- * @module Ink.UI.ProgressBar_1
+ * @module Ink.UI.Pagination_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
+Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
-     * Associated to a .ink-progress-bar element, it provides the necessary
-     * method - setValue() - for the user to change the element's value.
-     * 
-     * @class Ink.UI.ProgressBar
+     * Function to create the pagination anchors
+     *
+     * @method genAel
+     * @param  {String} inner HTML to be placed inside the anchor.
+     * @return {DOMElement}  Anchor created
+     */
+    var genAEl = function(inner) {
+        var aEl = document.createElement('a');
+        aEl.setAttribute('href', '#');
+        aEl.innerHTML = inner;
+        return aEl;
+    };
+
+    /**
+     * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @uses Ink.Dom.Selector
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
      * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
-     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
-     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
-     *
-     * @example
-     *      <div class="ink-progress-bar grey" data-start-value="70%">
-     *          <span class="caption">I am a grey progress bar</span>
-     *          <div class="bar grey"></div>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-     *              var progressBarElement = Ink.s('.ink-progress-bar');
-     *              var progressBarObj = new ProgressBar( progressBarElement );
-     *          });
-     *      </script>
+     * @param {Object} options Options
+     * @param {Number}   options.size                number of pages
+     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {String}   [options.previousLabel]     label to display on previous page button
+     * @param {String}   [options.nextLabel]         label to display on next page button
+     * @param {String}   [options.previousPageLabel] label to display on previous page button
+     * @param {String}   [options.nextPageLabel]     label to display on next page button
+     * @param {String}   [options.firstLabel]        label to display on previous page button
+     * @param {String}   [options.lastLabel]         label to display on next page button
+     * @param {Function} [options.onChange]          optional callback
+     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
+     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
-    var ProgressBar = function( selector, options ){
+    var Pagination = function(selector, options) {
 
-        if( typeof selector !== 'object' ){
-            if( typeof selector !== 'string' ){
-                throw '[Ink.UI.ProgressBar] :: Invalid selector';
-            } else {
-                this._element = Selector.select(selector);
-                if( this._element.length < 1 ){
-                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
-                }
-                this._element = this._element[0];
-            }
-        } else {
-            this._element = selector;
+        this._options = Ink.extendObj({
+            size:          undefined,
+            start:         1,
+            firstLabel:    'First',
+            lastLabel:     'Last',
+            previousLabel: 'Previous',
+            nextLabel:     'Next',
+            onChange:      undefined,
+            setHash:       false,
+            hashParameter: 'page'
+        }, options || {});
+
+        if (!this._options.previousPageLabel) {
+            this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
+        }
+
+        if (!this._options.nextPageLabel) {
+            this._options.nextPageLabel = 'Next ' + this._options.maxSize;
         }
 
 
-        this._options = Ink.extendObj({
-            'startValue': 0,
-            'onStart': function(){},
-            'onEnd': function(){}
-        },Element.data(this._element));
+        this._handlers = {
+            click: Ink.bindEvent(this._onClick,this)
+        };
 
-        this._options = Ink.extendObj( this._options, options || {});
-        this._value = this._options.startValue;
+        this._element = Aux.elOrSelector(selector, '1st argument');
+
+        if (!Aux.isInteger(this._options.size)) {
+            throw new TypeError('size option is a required integer!');
+        }
+
+        if (!Aux.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
+            throw new TypeError('start option is a required integer between 1 and size!');
+        }
+
+        if (this._options.maxSize && !Aux.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
+            throw new TypeError('maxSize option is a positive integer!');
+        }
+
+        else if (this._options.size < 0) {
+            throw new RangeError('size option must be equal or more than 0!');
+        }
+
+        if (this._options.onChange !== undefined && typeof this._options.onChange !== 'function') {
+            throw new TypeError('onChange option must be a function!');
+        }
+
+        this._current = this._options.start - 1;
+        this._itemLiEls = [];
 
         this._init();
     };
 
-    ProgressBar.prototype = {
+    Pagination.prototype = {
 
         /**
          * Init function called by the constructor
@@ -6975,41 +7369,367 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
          * @method _init
          * @private
          */
-        _init: function(){
-            this._elementBar = Selector.select('.bar',this._element);
-            if( this._elementBar.length < 1 ){
-                throw '[Ink.UI.ProgressBar] :: Bar element not found';
-            }
-            this._elementBar = this._elementBar[0];
+        _init: function() {
+            // generate and apply DOM
+            this._generateMarkup(this._element);
+            this._updateItems();
 
-            this._options.onStart = Ink.bind(this._options.onStart,this);
-            this._options.onEnd = Ink.bind(this._options.onEnd,this);
-            this.setValue( this._options.startValue );
+            // subscribe events
+            this._observe();
+
+            Aux.registerInstance(this, this._element, 'pagination');
         },
 
         /**
-         * Sets the value of the Progressbar
+         * Responsible for setting listener in the 'click' event of the Pagination element.
          * 
-         * @method setValue
-         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
+         * @method _observe
+         * @private
+         */
+        _observe: function() {
+            Event.observe(this._element, 'click', this._handlers.click);
+        },
+
+        /**
+         * Updates the markup everytime there's a change in the Pagination object.
+         * 
+         * @method _updateItems
+         * @private
+         */
+        _updateItems: function() {
+            var liEls = this._itemLiEls;
+
+            var isSimpleToggle = this._options.size === liEls.length;
+
+            var i, f, liEl;
+
+            if (isSimpleToggle) {
+                // just toggle active class
+                for (i = 0, f = this._options.size; i < f; ++i) {
+                    Css.setClassName(liEls[i], 'active', i === this._current);
+                }
+            }
+            else {
+                // remove old items
+                for (i = liEls.length - 1; i >= 0; --i) {
+                    this._ulEl.removeChild(liEls[i]);
+                }
+
+                // add new items
+                liEls = [];
+                for (i = 0, f = this._options.size; i < f; ++i) {
+                    liEl = document.createElement('li');
+                    liEl.appendChild( genAEl( i + 1 ) );
+                    Css.setClassName(liEl, 'active', i === this._current);
+                    this._ulEl.insertBefore(liEl, this._nextEl);
+                    liEls.push(liEl);
+                }
+                this._itemLiEls = liEls;
+            }
+
+            if (this._options.maxSize) {
+                // toggle visible items
+                var page = Math.floor( this._current / this._options.maxSize );
+                var pi = this._options.maxSize * page;
+                var pf = pi + this._options.maxSize - 1;
+
+                for (i = 0, f = this._options.size; i < f; ++i) {
+                    liEl = liEls[i];
+                    Css.setClassName(liEl, 'hide-all', i < pi || i > pf);
+                }
+
+                this._pageStart = pi;
+                this._pageEnd = pf;
+                this._page = page;
+
+                Css.setClassName(this._prevPageEl, 'disabled', !this.hasPreviousPage());
+                Css.setClassName(this._nextPageEl, 'disabled', !this.hasNextPage());
+
+                Css.setClassName(this._firstEl, 'disabled', this.isFirst());
+                Css.setClassName(this._lastEl, 'disabled', this.isLast());
+            }
+
+            // update prev and next
+            Css.setClassName(this._prevEl, 'disabled', !this.hasPrevious());
+            Css.setClassName(this._nextEl, 'disabled', !this.hasNext());
+        },
+
+        /**
+         * Returns the top element for the gallery DOM representation
+         * 
+         * @method _generateMarkup
+         * @param {DOMElement} el
+         * @private
+         */
+        _generateMarkup: function(el) {
+            Css.addClassName(el, 'ink-navigation');
+
+            var
+                ulEl,liEl,
+                hasUlAlready = false
+            ;
+            if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
+                ulEl = document.createElement('ul');
+                Css.addClassName(ulEl, 'pagination');
+            } else {
+                hasUlAlready = true;
+                ulEl = ulEl[0];
+            }
+
+            if (this._options.maxSize) {
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.firstLabel) );
+                this._firstEl = liEl;
+                Css.addClassName(liEl, 'first');
+                ulEl.appendChild(liEl);
+
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.previousPageLabel) );
+                this._prevPageEl = liEl;
+                Css.addClassName(liEl, 'previousPage');
+                ulEl.appendChild(liEl);
+            }
+
+            liEl = document.createElement('li');
+            liEl.appendChild( genAEl(this._options.previousLabel) );
+            this._prevEl = liEl;
+            Css.addClassName(liEl, 'previous');
+            ulEl.appendChild(liEl);
+
+            liEl = document.createElement('li');
+            liEl.appendChild( genAEl(this._options.nextLabel) );
+            this._nextEl = liEl;
+            Css.addClassName(liEl, 'next');
+            ulEl.appendChild(liEl);
+
+            if (this._options.maxSize) {
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.nextPageLabel) );
+                this._nextPageEl = liEl;
+                Css.addClassName(liEl, 'nextPage');
+                ulEl.appendChild(liEl);
+
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.lastLabel) );
+                this._lastEl = liEl;
+                Css.addClassName(liEl, 'last');
+                ulEl.appendChild(liEl);
+            }
+
+            if( !hasUlAlready ){
+                el.appendChild(ulEl);
+            }
+
+            this._ulEl = ulEl;
+        },
+
+        /**
+         * Click handler
+         * 
+         * @method _onClick
+         * @param {Event} ev
+         * @private
+         */
+        _onClick: function(ev) {
+            Event.stop(ev);
+
+            var tgtEl = Event.element(ev);
+            if (tgtEl.nodeName.toLowerCase() !== 'a') {
+                do{
+                    tgtEl = tgtEl.parentNode;
+                }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
+                
+                if( tgtEl === this._element){
+                    return;
+                }
+            }
+
+            var liEl = tgtEl.parentNode;
+            if (liEl.nodeName.toLowerCase() !== 'li') { return; }
+
+            if ( Css.hasClassName(liEl, 'active') ||
+                 Css.hasClassName(liEl, 'disabled') ) { return; }
+
+            var isPrev = Css.hasClassName(liEl, 'previous');
+            var isNext = Css.hasClassName(liEl, 'next');
+            var isPrevPage = Css.hasClassName(liEl, 'previousPage');
+            var isNextPage = Css.hasClassName(liEl, 'nextPage');
+            var isFirst = Css.hasClassName(liEl, 'first');
+            var isLast = Css.hasClassName(liEl, 'last');
+
+            if (isFirst) {
+                this.setCurrent(0);
+            }
+            else if (isLast) {
+                this.setCurrent(this._options.size - 1);
+            }
+            else if (isPrevPage || isNextPage) {
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
+            }
+            else if (isPrev || isNext) {
+                this.setCurrent(isPrev ? -1 : 1, true);
+            }
+            else {
+                var nr = parseInt( tgtEl.innerHTML, 10) - 1;
+                this.setCurrent(nr);
+            }
+        },
+
+
+
+        /**************
+         * PUBLIC API *
+         **************/
+
+        /**
+         * Sets the number of pages
+         * 
+         * @method setSize
+         * @param {Number} sz number of pages
          * @public
          */
-        setValue: function( newValue ){
-            this._options.onStart( this._value);
-
-            newValue = parseInt(newValue,10);
-            if( isNaN(newValue) || (newValue < 0) ){
-                newValue = 0;
-            } else if( newValue>100 ){
-                newValue = 100;
+        setSize: function(sz) {
+            if (!Aux.isInteger(sz)) {
+                throw new TypeError('1st argument must be an integer number!');
             }
-            this._value = newValue;
-            this._elementBar.style.width =  this._value + '%';
 
-            this._options.onEnd( this._value );
-        }
+            this._options.size = sz;
+            this._updateItems();
+            this._current = 0;
+        },
+
+        /**
+         * Sets the current page
+         * 
+         * @method setCurrent
+         * @param {Number} nr sets the current page to given number
+         * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
+         * @public
+         */
+        setCurrent: function(nr, isRelative) {
+            if (!Aux.isInteger(nr)) {
+                throw new TypeError('1st argument must be an integer number!');
+            }
+
+            if (isRelative) {
+                nr += this._current;
+            }
+
+            if (nr < 0) {
+                nr = 0;
+            }
+            else if (nr > this._options.size - 1) {
+                nr = this._options.size - 1;
+            }
+            this._current = nr;
+            this._updateItems();
+
+            /*if (this._options.setHash) {
+                var o = {};
+                o[this._options.hashParameter] = nr;
+                Aux.setHash(o);
+            }*/
+
+            if (this._options.onChange) { this._options.onChange(this); }
+        },
+
+        /**
+         * Returns the number of pages
+         * 
+         * @method getSize
+         * @return {Number} Number of pages
+         * @public
+         */
+        getSize: function() {
+            return this._options.size;
+        },
+
+        /**
+         * Returns current page
+         * 
+         * @method getCurrent
+         * @return {Number} Current page
+         * @public
+         */
+        getCurrent: function() {
+            return this._current;
+        },
+
+        /**
+         * Returns true iif at first page
+         * 
+         * @method isFirst
+         * @return {Boolean} True if at first page
+         * @public
+         */
+        isFirst: function() {
+            return this._current === 0;
+        },
+
+        /**
+         * Returns true iif at last page
+         * 
+         * @method isLast
+         * @return {Boolean} True if at last page
+         * @public
+         */
+        isLast: function() {
+            return this._current === this._options.size - 1;
+        },
+
+        /**
+         * Returns true iif has prior pages
+         * 
+         * @method hasPrevious
+         * @return {Boolean} True if has prior pages
+         * @public
+         */
+        hasPrevious: function() {
+            return this._current > 0;
+        },
+
+        /**
+         * Returns true iif has pages ahead
+         * 
+         * @method hasNext
+         * @return {Boolean} True if has pages ahead
+         * @public
+         */
+        hasNext: function() {
+            return this._current < this._options.size - 1;
+        },
+
+        /**
+         * Returns true iif has prior set of page(s)
+         * 
+         * @method hasPreviousPage
+         * @return {Boolean} Returns true iif has prior set of page(s)
+         * @public
+         */
+        hasPreviousPage: function() {
+            return this._options.maxSize && this._current > this._options.maxSize - 1;
+        },
+
+        /**
+         * Returns true iif has set of page(s) ahead
+         * 
+         * @method hasNextPage
+         * @return {Boolean} Returns true iif has set of page(s) ahead
+         * @public
+         */
+        hasNextPage: function() {
+            return this._options.maxSize && this._options.size - this._current >= this._options.maxSize + 1;
+        },
+
+        /**
+         * Unregisters the component and removes its markup from the DOM
+         * 
+         * @method destroy
+         * @public
+         */
+        destroy: Aux.destroyComponent
     };
 
-    return ProgressBar;
+    return Pagination;
 
 });
