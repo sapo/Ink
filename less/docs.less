@@ -10,6 +10,7 @@
 @topbar-bgColor             : #222;
 @topbar-color               : #BBB;
 @topbar-colorHover          : @white;
+@img-path                   : "../img/";
 
 body {
     background: @body-background;
@@ -114,7 +115,7 @@ a.active    {color: @link-active-color;}
 /*..........................................  Homepage  ..........................................*/
 .ink-hero {
     margin-top: 2.6em;
-    background: url(../img/home_bkg.png) center;
+    background: url(@{img-path}home_bkg.png) center;
     #ink > #gradients > .multiple-stops (~'left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57');
     overflow: hidden; 
 }  
@@ -189,7 +190,7 @@ footer {
         //margin: 0;
 
         .SAPOlogo {
-            background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+            background: url("@{img-path}SAPOlogo.png") no-repeat scroll 0 0 transparent;
             text-indent: -9999px;
             display: block;
             width: 101px;
@@ -201,7 +202,7 @@ footer {
             font-size: .875em;
 
             a {
-                background: url("../img/icon_Sprite.png") no-repeat 0 top;
+                background: url("@{img-path}icon_Sprite.png") no-repeat 0 top;
                 text-indent: -9999px;
                 display: block;
                 float: left;
@@ -223,9 +224,9 @@ footer {
                 height: 24px;
                 width: 24px;
 
-                &.Fb_link       { background: url("../img/icon_Sprite.png") no-repeat 0 -90px }
-                &.Twt_link      { background: url("../img/icon_Sprite.png") no-repeat 0 -118px }
-                &.Gplus_link    { background: url("../img/icon_Sprite.png") no-repeat 0 -146px }
+                &.Fb_link       { background: url("@{img-path}icon_Sprite.png") no-repeat 0 -90px }
+                &.Twt_link      { background: url("@{img-path}icon_Sprite.png") no-repeat 0 -118px }
+                &.Gplus_link    { background: url("@{img-path}icon_Sprite.png") no-repeat 0 -146px }
             }
         }
     }
@@ -398,7 +399,7 @@ footer {
 
     .border {
         height:.3em;
-        background: url(../img/home_bkg.png) center 0px;
+        background: url(@{img-path}home_bkg.png) center 0px;
         #ink > #gradients > .multiple-stops (~'left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57');
         margin: 0;
     }
