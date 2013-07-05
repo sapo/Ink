@@ -196,6 +196,7 @@
                     <li><a class="scrollableLink" href="http://ink.sapo.pt/forms/index/4cc555ce5b2d4d3ba338d60ff224c6fa#required">Required fields & warnings</a></li>
                     <li><a class="scrollableLink" href="http://ink.sapo.pt/forms/index/4cc555ce5b2d4d3ba338d60ff224c6fa#checkboxes-radios">Checkboxes & radio buttons</a></li>
                     <li><a class="scrollableLink" href="http://ink.sapo.pt/forms/index/4cc555ce5b2d4d3ba338d60ff224c6fa#buttons">Buttons</a></li>
+                    <li><a class="scrollableLink" href="http://ink.sapo.pt/forms/index/4cc555ce5b2d4d3ba338d60ff224c6fa#append-prepend">Prepended and appended inputs</a></li>
                                     </ul>
             </nav>
         </div>
@@ -205,7 +206,7 @@
             <section id="building" data-spy="true" data-target="#forms_menu">
         
                 <h2>Block forms</h2>
-                <p>Forms are a notoriously tough thing to implement, especially if you want to include them in a fluid layout, so we tried extra hard to make everything work as painlessly as possible while giving you mulitple layout choices as you build your forms.</p>
+                <p>Forms are a notoriously tough thing to implement, especially if you want to include them in a fluid layout, so we tried extra hard to make everything work as painlessly as possible while giving you multiple layout choices as you build your forms.</p>
                 <p>A form in Ink starts with a <code>&lt;form&gt;</code> tag with the <code>.ink-form</code> class. The default layout is what we call a block form, which means that your labels will come above your fields. You can change this, don't worry, just keep reading, or jump to <a class="scrollableLink" href="#inline">inline forms</a> now.</p>
                 <p>After your <code>&lt;form&gt;</code> tag is in place, you start adding what Ink calls control groups with form labels and controls within. In practice, this means that inside your <code>&lt;form&gt;</code> you'll create a <code>&lt;div&gt;</code> with the <code>.control-group</code> class. This is the wrapper for the group comprised of your label, your form control (e.g. text field, checkbox, etc), eventual notes and other text elements.</p>
                 <p>Finally, you want to make sure that the actual form element is wrapped in a <code>&lt;div&gt;</code> with the class <code>.control</code></p>
@@ -284,7 +285,7 @@
 </pre>
                 <h3>Block form with inline fields</h3>
                 <p>You're not always going to just need form fields which are vertically stacked, so Ink lets you use layout classes to build different form field layouts. For that, you can easily use a <code>&lt;fieldset&gt;</code> with the <code>.column-group</code> and <code>.gutters</code> classes, and then, apply the <code>.large-xx</code> <code>.medium-xx</code> and <code>.small-xx</code> classes to your control-group <code>&lt;div&gt;</code></p>
-                <p><span class="ink-label info">Tip</span> if you haven't yet, read the <a href="/layout">layout</a> section of this documentation to have a better understanding of how you can eaily fit your forms into multiple fluid columns.</p>
+                <p><span class="ink-label info">Tip</span> if you haven't yet, read the <a href="/layout">layout</a> section of this documentation to have a better understanding of how you can easily fit your forms into multiple fluid columns.</p>
 
                 <p><span class="ink-label success">Example</span> As you can see, these form elements are in blocks (labels over field), but each control group is inline with the previous.</p>
                 <div class="box">
@@ -757,7 +758,7 @@
 
                 <h3>Inline button groups</h4>
                 <p>
-                    To achieve a button toolbar look wrap your button groups in a <code>&lt;div&gt;</code> with the <code>.button-toolbar</code> class. Just create the toolbar and then add as many <code>&lt;button-groups%gt;</code> within it as you need.
+                    To achieve a button toolbar look wrap your button groups in a <code>&lt;div&gt;</code> with the <code>.button-toolbar</code> class. Just create the toolbar and then add as many <code>.button-group</code> within it as you need.
                 </p>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
@@ -804,6 +805,126 @@
     &lt;/div&gt;
 &lt;/div&gt;</pre>
 
+            </section>
+
+            <section id="append-prepend" data-spy="true" data-target="#forms_menu">
+                <h2>Prepended and appended inputs</h2>
+                <p>
+                    Case you need to append or prepend buttons or symbols to your form input, Ink has got that covered aswell. 
+                    To achieve that just add the class <code>.append-button</code>, <code>.prepend-button</code>, <code>.append-symbol</code> or
+                    <code>.prepend-symbol</code> to the <code>.control</code> element. After that, wrap your <code>&lt;input&gt;</code> in a <code>&lt;span&gt;</code>
+                    and you're good to go.
+                </p>
+
+                <h3>Buttons</h3>
+                <p>So to append or prepend buttons follow these examples.</p>
+                <form action="#" class="ink-form">
+                    
+                    <p><span class="ink-label success">Example</span></p>
+                    <div class="box">
+                        <fieldset class="column-group gutters vspace">
+                            
+                            <div class="control-group large-50 medium-50 small-100">
+                                <div class="column-group horizontal-gutters">
+                                    <label for="name" class="large-20 content-right">Label</label>
+                                    <div class="control large-80 append-button">
+                                        <span><input type="text" id="name"></span>
+                                        <button class="ink-button"><i class="icon-search"></i> Search</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="control-group large-50 medium-50 small-100">
+                                <div class="column-group horizontal-gutters">
+                                    <label for="phone" class="large-20 content-right">Label</label>
+                                    <div class="control large-80 prepend-button">
+                                        <input type="submit" value="Search" class="ink-button">
+                                        <span><input type="text" id="phone"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <p><span class="ink-label info">Code</span></p>
+                    <pre class="prettyprint linenums">
+&lt;!-- Append button --&gt;
+&lt;div class=&quot;control-group&quot;&gt;
+    &lt;div class=&quot;column-group gutters&quot;&gt;
+        &lt;label for=&quot;name&quot; class=&quot;large-20 content-right&quot;&gt;Label&lt;/label&gt;
+        &lt;div class=&quot;control large-80 append-button&quot;&gt;
+            &lt;span&gt;&lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;&lt;/span&gt;
+            &lt;button class=&quot;ink-button&quot;&gt;&lt;i class=&quot;icon-search&quot;&gt;&lt;/i&gt; Search&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Prepend button --&gt;
+&lt;div class=&quot;control-group&quot;&gt;
+    &lt;div class=&quot;column-group gutters&quot;&gt;
+        &lt;label for=&quot;phone&quot; class=&quot;large-20 content-right&quot;&gt;Label&lt;/label&gt;
+        &lt;div class=&quot;control large-80 prepend-button&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;ink-button&quot;&gt;
+            &lt;span&gt;&lt;input type=&quot;text&quot; id=&quot;phone&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                    <h3>Symbols</h3>
+                    <p>
+                        And exactly the same drill for symbols. 
+                        Choose an <a href="/icons">symbol</a> and place it after the <code>&lt;span&gt;</code> element.
+                    </p>
+                    <p><span class="ink-label success">Example</span></p>
+                    <div class="box">
+                        <fieldset class="column-group gutters vspace">
+
+                            <div class="control-group large-50 medium-50 small-100">
+                                <div class="column-group horizontal-gutters">
+                                    <label for="email" class="large-20 content-right">Email</label>
+                                    <div class="control large-80 append-symbol">
+                                        <span><input type="text" id="email"></span>
+                                        <i class="icon-envelope-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group large-50 medium-50 small-100">
+                                <div class="column-group horizontal-gutters">
+                                    <label for="email" class="large-20 content-right">Email</label>
+                                    <div class="control large-80 prepend-symbol">
+                                        <span><input type="text" id="email"></span>
+                                        <i class="icon-envelope-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <p><span class="ink-label info">Code</span></p>
+                    <pre class="prettyprint linenums">
+&lt;!-- Append Symbol --&gt;
+&lt;div class=&quot;control-group&quot;&gt;
+    &lt;div class=&quot;column-group gutters&quot;&gt;
+        &lt;label for=&quot;email&quot; class=&quot;large-20 content-right&quot;&gt;Email&lt;/label&gt;
+        &lt;div class=&quot;control large-80 append-symbol&quot;&gt;
+            &lt;span&gt;&lt;input type=&quot;text&quot; id=&quot;email&quot;&gt;&lt;/span&gt;
+            &lt;i class=&quot;icon-envelope-alt&quot;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Prepend Symbol --&gt;
+&lt;div class=&quot;control-group&quot;&gt;
+    &lt;div class=&quot;column-group gutters&quot;&gt;
+        &lt;label for=&quot;email&quot; class=&quot;large-20 content-right&quot;&gt;Email&lt;/label&gt;
+        &lt;div class=&quot;control large-80 prepend-symbol&quot;&gt;
+            &lt;span&gt;&lt;input type=&quot;text&quot; id=&quot;email&quot;&gt;&lt;/span&gt;
+            &lt;i class=&quot;icon-envelope-alt&quot;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                </form>
             </section>
 
         </div>
@@ -871,7 +992,10 @@
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];

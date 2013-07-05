@@ -203,7 +203,7 @@
                 <p>
                     To style some text as an alert, create a block element, such as a <code>&lt;div&gt;</code>, 
                     with the <code>.ink-alert</code> and <code>.basic</code> classes. 
-                    This creates the outter shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:
+                    This creates the outer shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:
                 </p>
                 <ul>
                     <li><code>.error</code> for error messages</li>
@@ -279,7 +279,7 @@
 
                     <div class="ink-alert block info">
                         <button class="ink-dismiss">&times;</button>
-                        <h4>Aditional info</h4>
+                        <h4>Additional info</h4>
                         <p>A ring of weapons-grade 99.96% pure electrorefined plutonium is enough for one bomb core.</p>
                     </div>
                 </div>
@@ -355,7 +355,10 @@
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];

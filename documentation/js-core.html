@@ -508,13 +508,13 @@
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
     Ink.requireModules(['Ink.Net.Ajax_1'],function(Ajax){
         // Here iss a quick way to do a simple GET request:
-        Ajax.load( 'http://siteink.local/', function( response ){
+        Ajax.load( 'http://cdn.ink.sapo.pt/2.0.0/js/example.json', function( response ){
             console.log( response );        // This will log the HTML of the homepage
         });
 
         // Now a POST request:
-        new Ajax('http://siteink.local/',{
-            async: true,
+        new Ajax('http://cdn.ink.sapo.pt/2.0.0/js/example.json',{
+            asynchronous: true,
             method: 'POST',
             onSuccess: function( response ){
                 console.log( response.responseText );
@@ -646,7 +646,7 @@
         console.log( dateObj_2 );
 
         // Making a Date Object based in string and its format:
-        console.log( InkDate.set('Y-m-d', '2013-06-12') );
+        console.log( InkDate.set('Y-m-d', '2013-07-05') );
         console.log( InkDate.set('d/m/Y', '01/01/2013') );
     });
 &lt;/script&gt;</pre>
@@ -1038,7 +1038,10 @@
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];

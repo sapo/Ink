@@ -303,7 +303,7 @@
 
             <section id="highlight" data-spy="true" data-target="#tables_menu">
                 <h2>Highlight rows on hover</h2>
-                <p>To highligh rows on mouse hover, add the <code>.ink-hover</code> class.</p>
+                <p>To highlight rows on mouse hover, add the <code>.ink-hover</code> class.</p>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <table class="ink-table hover">
@@ -557,7 +557,10 @@
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];

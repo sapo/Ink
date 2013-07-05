@@ -828,16 +828,16 @@
         <li>
             <p><strong>data-format</strong> sets the date format which will be written into the text input and submitted with the form. The default value is <code>data-format="yyyy-mm-dd"</code> but there are many different options as you can see below:</p>
             <ul>
-                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-06-12 (default)</li>
-                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/06/12</li>
-                <li><strong>yy-mm-dd</strong> Ex: 13-06-12</li>
-                <li><strong>yy/mm/dd</strong> Ex: 13/06/12</li>
-                <li><strong>dd-mm-yyyy</strong> - Ex: 12-06-2013</li>
-                <li><strong>dd/mm/yyyy</strong> - Ex: 12/06/2013</li>
-                <li><strong>dd-mm-yy</strong> Ex: 12-06-13</li>
-                <li><strong>dd/mm/yy</strong> Ex: 12/06/13</li>
-                <li><strong>mm-dd-yyyy</strong> - Ex: 06-12-2013</li>
-                <li><strong>mm/dd/yyyy</strong> - Ex: 06/12/2013</li>
+                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-07-05 (default)</li>
+                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/07/05</li>
+                <li><strong>yy-mm-dd</strong> Ex: 13-07-05</li>
+                <li><strong>yy/mm/dd</strong> Ex: 13/07/05</li>
+                <li><strong>dd-mm-yyyy</strong> - Ex: 05-07-2013</li>
+                <li><strong>dd/mm/yyyy</strong> - Ex: 05/07/2013</li>
+                <li><strong>dd-mm-yy</strong> Ex: 05-07-13</li>
+                <li><strong>dd/mm/yy</strong> Ex: 05/07/13</li>
+                <li><strong>mm-dd-yyyy</strong> - Ex: 07-05-2013</li>
+                <li><strong>mm/dd/yyyy</strong> - Ex: 07/05/2013</li>
             </ul>
             <p></p>
         </li>
@@ -1847,7 +1847,10 @@ retina: './imgs/retina/{:label}/{:file}', &lt;!-- The retina declaration --&gt;<
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];
