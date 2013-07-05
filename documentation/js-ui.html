@@ -225,7 +225,7 @@
         <div class="large-80 medium-75 small-100">
     
             <section id="top" data-spy="true" data-target="#ui_menu">
-                <h2>Ink UI Javacscript components</h2>
+                <h2>Ink UI JavaScript components</h2>
                 <p>Ink offers a great set of Javascript components to enrich your user interface, which are easy to implement, powerful and responsive. We made these components thinking of people who don't know JS but still need to include certain features on their web pages without help from a programmer, but there is also a deep core of JS code to explore, if you're so inclined.</p>
                 <p>Next, we'll detail each component, explain it as simply as we can, provide you with all the configuration details and also provide you with links to the deeper technical docs, in case you are a developer, looking for more power under the hood.</p>
                 <p>To get started, you need to include certain scripts which will make your components work. We suggest you place these in your document's <code>&lt;head&gt;</code> and keep them all neatly organised. You will need to include:</p>
@@ -244,7 +244,7 @@
 &lt;script type="text/javascript" src="./js/ink.myModule.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="./js/autoload.js"&gt;&lt;/script&gt;</pre>
                 <p>We'll remind you to load the correct modules for each component, using the local host method, in the documentation below. Just replace the given local host examples with the CDN URL above, if you prefer it.</p>
-                <p>If you have a better grasp of JS and do not want all components intitialized off the bat, then do not inclue autoload.js, and, instead, initialize each component by hand. You can refer to the technical documentation to see how each initialization is made.</p>
+                <p>If you have a better grasp of JS and do not want all components initialized off the bat, then do not include autoload.js, and, instead, initialize each component by hand. You can refer to the technical documentation to see how each initialization is made.</p>
             </section>
             
 <section id="gallery" data-spy="true" data-target="#ui_menu">
@@ -557,7 +557,7 @@
 &lt;/script&gt;</pre>
     <h3>Building the window</h3>
     <p>First, you need to create two wrappers, by using two <code>&lt;div&gt;</code>. The first one must have the <code>.ink-shade</code> class, and takes care of darkening the background in order to make your modal window float above the rest of the page. The second one, inside the first, must have the <code>.ink-modal</code> class, to take care of setting up your window.</p>
-    <p>The <code>.ink-modal</code> wrapper is the configurable bit of the window, which you can change by using data-attributes. Let's look at just the most common one, for now, which allows you to fire up your window from another element, such as a link: <code>data-trigger="#myModal"</code>, this ID (in the example "myModal"), will be targetted by the Javascript instruction which will render the window onscreen; you can change the ID to whatever suits your particular case. If you don't use this attribute, the modal window will simply be created on page load, which is actually something you may want, so all our data-attributes are optional.</p>
+    <p>The <code>.ink-modal</code> wrapper is the configurable bit of the window, which you can change by using data-attributes. Let's look at just the most common one, for now, which allows you to fire up your window from another element, such as a link: <code>data-trigger="#myModal"</code>, this ID (in the example "myModal"), will be targeted by the Javascript instruction which will render the window onscreen; you can change the ID to whatever suits your particular case. If you don't use this attribute, the modal window will simply be created on page load, which is actually something you may want, so all our data-attributes are optional.</p>
     <p>There's a lot more you can configure with data-attributes, but let's stay with the basic for now and we'll give you a list of all the parameters and their values further ahead.</p>
     <p>So, up to now, you have this:</p>
     <p><span class="ink-label info">Code</span></p>
@@ -565,7 +565,7 @@
 &lt;div class=&quot;ink-shade&gt;
   &lt;div class=&quot;ink-modal&quot; data-trigger=&quot;#myModal&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
-    <p>That is the skelleton for the modal window. To add some content, you can create three <code>&lt;div&gt;</code>, one for each of the <code>.modal-header</code>, <code>.modal-body</code> and <code>.modal-footer</code> elements, inside the <code>.ink-modal</code> container. These are self-explanatory and you can add whatever you want inside them, such as headings, paragraphs, lists, images, videos, etc.</p>
+    <p>That is the skeleton for the modal window. To add some content, you can create three <code>&lt;div&gt;</code>, one for each of the <code>.modal-header</code>, <code>.modal-body</code> and <code>.modal-footer</code> elements, inside the <code>.ink-modal</code> container. These are self-explanatory and you can add whatever you want inside them, such as headings, paragraphs, lists, images, videos, etc.</p>
     <p>You'll need an interactive element to close your window, so Ink offers the <code>.ink-dismiss</code> class, which you can add to pretty much anything: an anchor, a button, a piece of text or an image which, when clicked by the user, will cause the modal window to be dismissed. There is also a <code>.modal-close</code> class which specifically renders a small "X" button in your modal window to keep up with the familiarity factor from general users. Add it to a button, together with the dismiss class, in your modal window's header element, for example.</p>
     <p>Let's see what we have so far, then:</p>
     <p><span class="ink-label info">Code</span></p>
@@ -630,7 +630,7 @@
             <strong>data-close-on-click</strong> defines whether or not your modal window will close if you click anywhere in the viewport, outside said window. Must be "true" or "false" (default). Example: <code>data-close-on-click="true"</code>
         </li>
         <li>
-            <strong>data-disable-scroll</strong> allows you to disable scolling your page behind the modal window. Values are "true" (default) or "false". Example: <code>data-disable-scroll="false"</code>
+            <strong>data-disable-scroll</strong> allows you to disable scrolling your page behind the modal window. Values are "true" (default) or "false". Example: <code>data-disable-scroll="false"</code>
         </li>
     </ul>
     <p>
@@ -691,7 +691,7 @@
 &lt;/thead&gt;</pre>
     <h3>Setting up pagination</h3>
     <p>Sometimes, your tables are just too long and you need to split them up by pages, without forcing your user to skip to a different page and load an entirely new table. With Ink, all you need is to specify how many rows per page you want your table to have. If your table grows to more than the specified number of rows, then it will create a new page within the table, which you can access via a pagination-style menu. Check out the Navigation section, under <a href="/navigation#nav-pagination">pagination menus</a> to see how they work.</p>
-    <p>To have pagination, you also need to provide an empty <code>&lt;nav&gt;</code> with an empty <code>&lt;ul&gt;</code> element for Ink to write the page navigation into. They need the <code>.ink-navigation</code> and <code>.pagination</code> classes, respectivelly. Furthermore, you can configure said pagination by adding classes to the <code>&lt;ul&gt;</code> just as detailed in the Navigation section linked above. So, you'll need this:</p>
+    <p>To have pagination, you also need to provide an empty <code>&lt;nav&gt;</code> with an empty <code>&lt;ul&gt;</code> element for Ink to write the page navigation into. They need the <code>.ink-navigation</code> and <code>.pagination</code> classes, respectively. Furthermore, you can configure said pagination by adding classes to the <code>&lt;ul&gt;</code> just as detailed in the Navigation section linked above. So, you'll need this:</p>
     <p><span class="ink-label info">Code</span></p>
     <pre class="prettyprint linenums">
 &lt;table data-page-size=&quot;10&quot;&gt; &lt;!--tells your table to break at every 10 rows--&gt;
@@ -861,7 +861,7 @@
     <p>To add a small state icon, indicating if a node is opened or closed, you need to add an empty <code>&lt;span&gt;</code> in the corresponding list element. The Javascript will write the correct icon into that <code>&lt;span&gt;</code> as required.</p>
     <p>To make your lists expand and collapse, make sure you envelop each interactive node in and anchor element with an empty href, like so: <code>&lt;a href=""&gt;</code>.</p>
     <p>Finally, you can indicate whether each node starts out closed, which is the default, or open, for which you need to simply add the <code>.open</code> class in the corresponding <code>&lt;li&gt;</code>.</p>
-    <p>If you check the example below, you'll see how the lists are nested, with the first branch being open by defult, then, hit the view source code button to get it. Keep reading below for more details and configurations.</p>
+    <p>If you check the example below, you'll see how the lists are nested, with the first branch being open by default, then, hit the view source code button to get it. Keep reading below for more details and configurations.</p>
     <p id="treeviewCode"><span class="ink-label success">Example</span></p>
     <div class="box">
         <ul class="ink-tree-view" id="tview1">
@@ -928,9 +928,9 @@
     <p>If by any chance you need the functionality of a tree view, with expandable and collapsible branches, but can't use a list, you can still create a functioning structure by using two data-attributes that will define which are the trigger elements and which are the interactive children.</p>
     <ul>
         <li><strong>data-node</strong> Identifies which of your elements are considered nodes, that can be expanded and collapsed. Value must be a valid CSS selector. The default value is <code>li</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myNode"</code></li>
-        <li><strong>data-child</strong> Identifies which of your elements are condidered children elements within your structure. value must be a valid CSS selector. The default value is <code>ul</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myChild"</code></li>
+        <li><strong>data-child</strong> Identifies which of your elements are considered children elements within your structure. value must be a valid CSS selector. The default value is <code>ul</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myChild"</code></li>
     </ul>
-    <p><span class="ink-label info">Note</span> If you need to build a tree view with elements other than lists, then you will not benefit from Ink's defaul styling for this component and you'll have to add your own style.</p>
+    <p><span class="ink-label info">Note</span> If you need to build a tree view with elements other than lists, then you will not benefit from Ink's default styling for this component and you'll have to add your own style.</p>
     <p>Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.</p>
 </section>
 <section id="sortable_list" data-spy="true" data-target="#ui_menu">
@@ -963,9 +963,9 @@
     </div>
     <p><button data-target="#sortablelist_sourcecode" class="ink-button toggle">View Source Code</button></p>
     <pre id="sortablelist_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;unstyled ink-sortable-list&quot; id=&quot;slist&quot; data-instance=&quot;sortableList9&quot;&gt;
-    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;primeiro&lt;/li&gt;
-    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;segundo&lt;/li&gt;
-    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;terceiro&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;first&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;second&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;third&lt;/li&gt;
 &lt;/ul&gt;
 </pre>
     <h3>Configurable data attributes</h3>
@@ -1128,7 +1128,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
                 <h4>Nailgun</h4>
                 <p>
                     The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
-                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and disappear after 6 seconds if they haven't hit anything.</p>
                 <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
                 </p>
             </div>
@@ -1144,7 +1144,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
             <div id="ui_tabs_stuff_1" class="tabs-content hide-all">
                 <h4>Lightning Gun</h4>
                 <p>
-                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damageable objects in that 600u range per hit.</p>
                 <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
                 <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
                 </p>
@@ -1166,7 +1166,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
                 <h4>Nailgun</h4>
                 <p>
                     The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
-                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and disappear after 6 seconds if they haven't hit anything.</p>
                 <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
                 </p>
             </div>
@@ -1182,7 +1182,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
             <div id="ui_tabs_stuff_2" class="tabs-content hide-all">
                 <h4>Lightning Gun</h4>
                 <p>
-                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damageable objects in that 600u range per hit.</p>
                 <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
                 <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
                 </p>
@@ -1216,7 +1216,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
                 <h4>Nailgun</h4>
                 <p>
                     The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
-                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and disappear after 6 seconds if they haven't hit anything.</p>
                 <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
                 </p>
             </div>
@@ -1232,7 +1232,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
             <div id="ui_tabs_stuff_3" class="tabs-content hide-all">
                 <h4>Lightning Gun</h4>
                 <p>
-                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damageable objects in that 600u range per hit.</p>
                 <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
                 <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
                 </p>
@@ -1260,7 +1260,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
                 <h4>Nailgun</h4>
                 <p>
                     The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
-                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and disappear after 6 seconds if they haven't hit anything.</p>
                 <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
                 </p>
             </div>
@@ -1276,7 +1276,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
             <div id="ui_tabs_stuff_4" class="tabs-content hide-all">
                 <h4>Lightning Gun</h4>
                 <p>
-                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damageable objects in that 600u range per hit.</p>
                 <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
                 <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
                 </p>
@@ -1333,7 +1333,7 @@ var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
     <p>Notice that, contrary to other modules, you don't really need to initialize the Form Validator, as the validation request is made on form submission.</p>
     <h3>Validating</h3>
     <p>There are two components that you need to use in order to validate a form using Ink. You'll have to request validation on form submission and you'll have to tag the input elements with certain classes to tell Ink what to validate.</p>
-    <p>So, start by building your form (make sure you read the sction on <a href="/forms">forms</a>), and add the bit of Javascript that tells Ink to do the validation in your <code>&lt;form&gt;</code>, like this:</p>
+    <p>So, start by building your form (make sure you read the section on <a href="/forms">forms</a>), and add the bit of Javascript that tells Ink to do the validation in your <code>&lt;form&gt;</code>, like this:</p>
     <pre class="prettyprint linenums">
 &lt;form class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return SAPO.Ink.FormValidator.validate(this);&quot;&gt;</pre>
     <p>Once you have the <code>onsubmit</code> attribute set, you need to 'tag' each of your input elements (text, radio buttons, select boxes, etc), with one or more validation classes. Refer to the following list to see what they do:</p>

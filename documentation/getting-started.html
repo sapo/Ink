@@ -218,13 +218,13 @@
         <div class="large-80 medium-75 small-100">
             <section id="nav-introduction" data-spy="true" data-target="#start_menu">
                 <h2>Introduction</h2>
-                <p>Ink was made, as any framework, to relieve web developers and designers, from the tedious everyday tasks of handling diferent browsers and their particular quirks, provide commonly used UI elements and provide a simple default look and feel that can easily adapt to any screen size.</p>
+                <p>Ink was made, as any framework, to relieve web developers and designers, from the tedious everyday tasks of handling different browsers and their particular quirks, provide commonly used UI elements and provide a simple default look and feel that can easily adapt to any screen size.</p>
                 <p>Another objective was to create a solid HTML/CSS/JS codebase, that would cover most common user interface needs, and make it easy enough to use so that anyone on our teams, and hopefully yours, can switch between projects without doing lots of markup and CSS archaeology.</p>                           
             </section>
             <section id="nav-the-grid" data-spy="true" data-target="#start_menu">
               <h2>The grid</h2>
                 <p>We took into consideration existing browsers CSS rendering capabilities and the fact that we felt that it's a lot more intuitive to divide space in percentages, rather than pre-defined columns. Instead of having to count abstract base grid column units to get, let's say a 1/3 width column, you can simply say that you need a 33% width column. This also enabled us to come up with a completely fluid, screen size aware, grid system.</p>
-                <p>We also chose to use the "new" <code>border-box</code> box model to build our grid system. This enables us to keep layouts flexible with less code and allowing for optional gutters between grid divisions without the need for aditional markup.</p>
+                <p>We also chose to use the "new" <code>border-box</code> box model to build our grid system. This enables us to keep layouts flexible with less code and allowing for optional gutters between grid divisions without the need for additional markup.</p>
                 <p>To achieve this we've set 3 default screen sizes: <strong>large</strong> (for screens wider than 960px), <strong>medium</strong> (for screen widths between 960px and 650px) and <strong>small</strong> (for screen widths below 650px).</p>
                 <p>In order to make Ink compatible with as many browsers as possible we've taken the following approach: </p>
                     <ul>
@@ -313,7 +313,7 @@
   ├── <strong>js/</strong> <span>(Ink.js and some documentation helper JS files are in here)</span>
   │   ├── ink.js <span>(Inks core js library)</span>
   │   ├── &hellip;
-  │   └── ink.progressbar.js <span>(progress bar js pluging)</span>
+  │   └── ink.progressbar.js <span>(progress bar js plugin)</span>
   └── <strong>less/</strong>
       ├── <strong>config/</strong> <span>(configuration files for Ink modules)</span>
       │   ├── __alerts.less
@@ -380,7 +380,7 @@
 body#mySite div.ink-grid {
   width: 95%;
 }              </pre>
-              <p><span class="ink-label info">Tip</span> Try to keep your CSS specificity high, to make sure you avoid colisions.</p>
+              <p><span class="ink-label info">Tip</span> Try to keep your CSS specificity high, to make sure you avoid collisions.</p>
               <p>Both methods described above will allow you to build your own customizations in a separate CSS file, while keeping Ink CSS 'clean'.</p>
               <p>We provide you with the <mark>quick-start.css</mark> file (in the <mark>./css/</mark> folder), which is media-query ready, so just use that (evidently, you can rename it to whatever you like), and link it in the <code>&lt;head&gt;</code> of your document.</p>
               <p>So, if you're using the templates included with Ink (we suggest you at least start with <mark>empty-page.html</mark>, in the <mark>./cookbook/</mark> folder), look for the following line:</p>
@@ -398,10 +398,10 @@ body#mySite div.ink-grid {
             <section id="nav-getting-technical" data-spy="true" data-target="#start_menu">
               <h2>Getting technical</h2>
               <h3>{LESS}</h3>
-                <p>We chose <a href="http://lesscss.org">{LESS}</a> as the tool to help making the task of writting all the css a lot easier, and in the process have created a ton of helpful <a href="http://lesscss.org/#-mixins">mixins</a> that we use regularly, and hopefully will also help you getting your projects done a little easier.</p>
+                <p>We chose <a href="http://lesscss.org">{LESS}</a> as the tool to help making the task of writing all the css a lot easier, and in the process have created a ton of helpful <a href="http://lesscss.org/#-mixins">mixins</a> that we use regularly, and hopefully will also help you getting your projects done a little easier.</p>
                 <p>Ink is highly customizable. You can change base colors, dimensions and even class names, however to tap into all this you'll need <a href="http://lesscss.org">{LESS}</a>, so we strongly encourage you to check out the <a href="http://lesscss.org">{LESS}</a> site and documentation.</p>
                 <h3>CSS Class names</h3>
-                <p>In order to make Ink as easy to use as possible we've opted to make our CSS class names as similar as possible to a human language, in our case, english. Class names describe component types and visual/behaviour characteristics. This can be a bit verbose but we feel that it makes the code highly readable and easy to learn and rememeber.</p>
+                <p>In order to make Ink as easy to use as possible we've opted to make our CSS class names as similar as possible to a human language, in our case, English. Class names describe component types and visual/behaviour characteristics. This can be a bit verbose but we feel that it makes the code highly readable and easy to learn and remember.</p>
                 <p>To avoid name collisions and get higher css specificity, all components have a "root" class, on which children classes depend like <code>.ink-navigation</code> or <code>.ink-form</code>.</p>
                 <p><span class="ink-label info">Code</span></p>
 <pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
