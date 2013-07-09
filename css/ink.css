@@ -2326,7 +2326,7 @@ ul.unstyled ul {
   list-style: disc outside;
   padding-left: 1.4em;
 }
-ol li {
+ol > li {
   list-style: decimal outside;
 }
 dl {
@@ -2338,7 +2338,7 @@ dl dt {
 }
 dl dd {
   padding-left: 1em;
-  margin: 0.5em 0;
+  margin: .5em 0;
 }
 ul,
 ol {
