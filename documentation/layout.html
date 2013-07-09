@@ -508,7 +508,7 @@
                  </ul>
                 <h4>Customizing breakpoints </h4>
                 <p>You can find the media queries for the three breakpoints in the <code>ink.css</code> file.</p>
-                <p><span class="ink-label warning">Caution is advised</span> Customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usualy advise you to keep your changes in a separate file, but in this case, you can't do that.</p>
+                <p><span class="ink-label warning">Caution is advised</span> Customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usually advise you to keep your changes in a separate file, but in this case, you can't do that.</p>
                 <p>Meanwhile, if you do decide to customize the breakpoints provided, you can do this by <strong>editing the <mark>ink.css</mark> by hand</strong> and changing the values on those media-queries. (A regular search in the file for "@media" will get you there).</p>
                 <p><span class="ink-label info">Example Code</span> Using only two layouts (large and small)</p>
                 <pre class="prettyprint linenums">
@@ -560,7 +560,7 @@
                 <p>So, Ink's philosophy is that you should have the flexibility to either hide everything and then show what you need or do the reverse. This makes it easy to use less code and be clearer.</p>
                 <p>Here's how you should think about this whole hiding and showing thing: if you have an element that you want to only be visible in small screens, then add the <code>.hide</code> class to begin by hiding it from everyone, then, add the <code>.show-small</code> class to show the element in that screen size.</p>
                 <p>Now, say you need to show something in both small and medium screens, in that case, you're better off simply hiding it from the large view, by using the <code>.hide-large</code> class.</p>
-                <p>Since visibile is the default state of elements, in the second example, you don't really need to add the <code>.show</code> class to make sure the element is visible in all other screen sizes. However, you do have that class available, in case it may be useful.</p>
+                <p>Since visible is the default state of elements, in the second example, you don't really need to add the <code>.show</code> class to make sure the element is visible in all other screen sizes. However, you do have that class available, in case it may be useful.</p>
                 <p><span class="ink-label info">Note</span> Content hidden via these classes won't be read out loud by screenreaders.</p>
                 <p>Here's a simple helper bar to let you know which screen size you're operating in, it uses the <code>.hide</code> class to hide the words "small", "medium" and "large" by default and then the correct <code>.show-%</code> classes to show each word in the corresponding screen size. You can see the code below.</p>
                 <p><span class="ink-label success">Example</span> The bar below will display different values and colors depending on whether you view it on a large, medium or small screen.</p>
@@ -650,7 +650,10 @@
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];

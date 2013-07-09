@@ -266,8 +266,8 @@
                 <p><a href="http://ink.sapo.pt">Ink</a>. It may be very meta, but as you'd expect, this website is built with Ink :)</p>
             </div>
             <div class="large-20 medium-50 small-100">
-                <img src="http://cdn.ink.sapo.pt/2.0.0/img/shot_livebots.png" class="clickable" id="livebots">
-                <p><a href="http://livebots.cc/">Live Bots</a>. A platform where people can interact with robots through the web.</p>
+                <img src="http://cdn.ink.sapo.pt/2.0.0/img/shot_pessoa.png" class="clickable" id="pessoa">
+                <p><a href="http://fernandopessoa.labs.sapo.pt/">O Mundo em Pessoa</a>. A collection of Fernando Pessoa quotes from social networks.</p>
             </div>
         </div>
     </div>
@@ -323,13 +323,13 @@
 </div>
 
 <div class="ink-shade fade">
-    <div class="ink-modal" data-trigger="#livebots" data-width="610px" data-height="530px" id="livebots_screenshot">
+    <div class="ink-modal" data-trigger="#pessoa" data-width="610px" data-height="530px" id="pessoa_screenshot">
         <div class="modal-header">
             <button class="ink-dismiss modal-close"></button>
-            <h5>livebots.cc</h5>
+            <h5>O Mundo em Pessoa</h5>
         </div>
         <div class="modal-body">
-            <img src="http://cdn.ink.sapo.pt/2.0.0/img/shot_livebots.png">
+            <img src="http://cdn.ink.sapo.pt/2.0.0/img/shot_pessoa.png">
         </div>
     </div>
 </div>
@@ -411,7 +411,10 @@ InkSite = {
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];

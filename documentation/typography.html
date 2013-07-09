@@ -208,7 +208,7 @@
                 <p>Ink offers you a simple and elegant base style for text with a clear hierarchy and flexible, generic styling for all types of typographical composition you may need.</p>
                 <p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions. Let's see how you can customize your font choice and we'll also throw in some advice on font stacks.</p>
                 <h3>Customizing typefaces</h3>
-                <p>Since typograhy is such an integral part of how you communicate with your audience, customizing font choice is paramount. Of course, you can use Ink as-is, with the Ubuntu font, but chances are, you'll want to change that.</p>
+                <p>Since typography is such an integral part of how you communicate with your audience, customizing font choice is paramount. Of course, you can use Ink as-is, with the Ubuntu font, but chances are, you'll want to change that.</p>
                 <p>To do that, you can add your custom CSS file, as explained in <a href="">Getting Started</a>, and add the following rule:</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
@@ -226,7 +226,7 @@ body {
                 <h3>Sans-serif</h3>
                 <p>If you prefer a system font, sans-serif option, change the font-family option to <code>font-family: Sans-serif;</code></p>
                 <h3>Serif font</h3>
-                <p>For a serif option, we went with Georgia, which is readily availabe and quite versatile. We suggest you simply use <code>font-family: Georgia, Serif;</code></p>
+                <p>For a serif option, we went with Georgia, which is readily available and quite versatile. We suggest you simply use <code>font-family: Georgia, Serif;</code></p>
                 <p><span class="ink-label info">Tip</span> You may have noticed we went with very basic font-family declarations for the serif and sans-serif options, that just makes your life easier by defaulting to the user agent fonts and potentially serve up the most adequate font for the job in each system. Simplifying this will probably save you headaches down the road. Of course, if you have particular typography needs, feel free to experiment and configure the font-family as you see fit.</p>
             </section>
             <!--fonts end-->
@@ -444,13 +444,13 @@ body {
                         </div>
                         <div class="large-25 medium-25 small-50">
                             <h4 class="ink-label success">.success</h4>
-                            <h4 class="ink-label success invert">.info.success</h4>
+                            <h4 class="ink-label success invert">.success.invert</h4>
                         </div>
                     </div>
                 </div>
                 <h3>Labels</h3>
                 <p>You can easily use these utility classes to label sections of highlighted text. Simply create an inline level element with the class <code>.ink-label</code> and then add one of the utility classes to color code your inline label. This way, you can easily add a success message post a warning emphasize a particularly relevant information or display an error message.</p>
-                <p>We suggest you do not use punctuation before or after labels, but instead, precede and succeed with spaces, although your mileage may vary with the ammount of consecutive labels you use.</p>
+                <p>We suggest you do not use punctuation before or after labels, but instead, precede and succeed with spaces, although your mileage may vary with the amount of consecutive labels you use.</p>
                 <p><span class="ink-label info">Tip</span> The tips you see throughout this site use ink labels with the <code>.info</code> class, same goes for bits of code, whereas examples, use <code>.success</code>.</p>
             </section>
             <!--utilities_end-->
@@ -564,7 +564,10 @@ body {
     </div>
 </footer>
             <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
-    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script> 
+    <script> 
+    SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); 
+    SAPO.WebAnalytics.registerClick();
+    </script> 
     <script>
 (function(d, s, id) {
  var js, fjs = d.getElementsByTagName(s)[0];
