@@ -1136,6 +1136,117 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 });
 
 /**
+ * @module Ink.UI.ProgressBar_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
+    'use strict';
+
+    /**
+     * Associated to a .ink-progress-bar element, it provides the necessary
+     * method - setValue() - for the user to change the element's value.
+     * 
+     * @class Ink.UI.ProgressBar
+     * @constructor
+     * @version 1
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Dom.Element
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
+     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
+     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
+     *
+     * @example
+     *      <div class="ink-progress-bar grey" data-start-value="70%">
+     *          <span class="caption">I am a grey progress bar</span>
+     *          <div class="bar grey"></div>
+     *      </div>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+     *              var progressBarElement = Ink.s('.ink-progress-bar');
+     *              var progressBarObj = new ProgressBar( progressBarElement );
+     *          });
+     *      </script>
+     */
+    var ProgressBar = function( selector, options ){
+
+        if( typeof selector !== 'object' ){
+            if( typeof selector !== 'string' ){
+                throw '[Ink.UI.ProgressBar] :: Invalid selector';
+            } else {
+                this._element = Selector.select(selector);
+                if( this._element.length < 1 ){
+                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
+                }
+                this._element = this._element[0];
+            }
+        } else {
+            this._element = selector;
+        }
+
+
+        this._options = Ink.extendObj({
+            'startValue': 0,
+            'onStart': function(){},
+            'onEnd': function(){}
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj( this._options, options || {});
+        this._value = this._options.startValue;
+
+        this._init();
+    };
+
+    ProgressBar.prototype = {
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+            this._elementBar = Selector.select('.bar',this._element);
+            if( this._elementBar.length < 1 ){
+                throw '[Ink.UI.ProgressBar] :: Bar element not found';
+            }
+            this._elementBar = this._elementBar[0];
+
+            this._options.onStart = Ink.bind(this._options.onStart,this);
+            this._options.onEnd = Ink.bind(this._options.onEnd,this);
+            this.setValue( this._options.startValue );
+        },
+
+        /**
+         * Sets the value of the Progressbar
+         * 
+         * @method setValue
+         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
+         * @public
+         */
+        setValue: function( newValue ){
+            this._options.onStart( this._value);
+
+            newValue = parseInt(newValue,10);
+            if( isNaN(newValue) || (newValue < 0) ){
+                newValue = 0;
+            } else if( newValue>100 ){
+                newValue = 100;
+            }
+            this._value = newValue;
+            this._elementBar.style.width =  this._value + '%';
+
+            this._options.onEnd( this._value );
+        }
+    };
+
+    return ProgressBar;
+
+});
+
+/**
  * @module Ink.UI.SmoothScroller_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -3138,336 +3249,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 });
 
 /**
-00 * @module Ink.UI.Toggle_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
-    'use strict';
-
-    /**
-     * Toggle component
-     * 
-     * @class Ink.UI.Toggle
-     * @constructor
-     * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
-     *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
-     *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
-     * @example
-     *      <div class="ink-dropdown">
-     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
-     *          <ul id="dropdown" class="dropdown-menu">
-     *              <li class="heading">Heading</li>
-     *              <li class="separator-above"><a href="#">Option</a></li>
-     *              <li><a href="#">Option</a></li>
-     *              <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-     *              <li class="submenu">
-     *                  <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
-     *                  <ul id="submenu1" class="dropdown-menu">
-     *                      <li class="submenu">
-     *                          <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
-     *                          <ul id="ultrasubmenu" class="dropdown-menu">
-     *                              <li><a href="#">Sub option</a></li>
-     *                              <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
-     *                              <li><a href="#">Sub option</a></li>
-     *                          </ul>
-     *                      </li>
-     *                      <li><a href="#">Sub option</a></li>
-     *                      <li><a href="#">Sub option</a></li>
-     *                  </ul>
-     *              </li>
-     *              <li><a href="#">Option</a></li>
-     *          </ul>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Toggle_1'], function( Selector, Toggle ){
-     *              var toggleElement = Ink.s('.toggle');
-     *              var toggleObj = new Toggle( toggleElement );
-     *          });
-     *      </script>
-     */
-    var Toggle = function( selector, options ){
-
-        if( typeof selector !== 'string' && typeof selector !== 'object' ){
-            throw '[Ink.UI.Toggle] Invalid CSS selector to determine the root element';
-        }
-
-        if( typeof selector === 'string' ){
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0 ){
-                throw '[Ink.UI.Toggle] Root element not found';
-            }
-
-            this._rootElement = this._rootElement[0];
-        } else {
-            this._rootElement = selector;
-        }
-
-        this._options = Ink.extendObj({
-            target : undefined,
-            triggerEvent: 'click',
-            closeOnClick: true
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( typeof this._options.target === 'undefined' ){
-            throw '[Ink.UI.Toggle] Target option not defined';
-        }
-
-        this._childElement = Aux.elOrSelector( this._options.target, 'Target' );
-        // this._childElement = Selector.select( this._options.target, this._rootElement );
-        // if( this._childElement.length <= 0 ){
-        //     if( this._childElement.length <= 0 ){
-        //         this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
-        //     }
-
-        //     if( this._childElement.length <= 0 ){
-        //         this._childElement = Selector.select( this._options.target );
-        //     }
-
-        //     if( this._childElement.length <= 0 ){
-        //         return;
-        //     }
-        // }
-        // this._childElement = this._childElement[0];
-
-        this._init();
-
-    };
-
-    Toggle.prototype = {
-
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._childElement.parentNode,'accordion') );
-
-            Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
-            if( this._options.closeOnClick.toString() === 'true' ){
-                Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
-            }
-        },
-
-        /**
-         * Event handler. It's responsible for handling the <triggerEvent> defined in the options.
-         * This will trigger the toggle.
-         * 
-         * @method _onTriggerEvent
-         * @param {Event} event
-         * @private
-         */
-        _onTriggerEvent: function( event ){
-
-            if( this._accordion ){
-                var elms, i, accordionElement;
-                if( Css.hasClassName(this._childElement.parentNode,'accordion') ){
-                    accordionElement = this._childElement.parentNode;
-                } else {
-                    accordionElement = this._childElement.parentNode.parentNode;
-                }
-                elms = Selector.select('.toggle',accordionElement);
-                for( i=0; i<elms.length; i+=1 ){
-                    var
-                        dataset = Element.data( elms[i] ),
-                        targetElm = Selector.select( dataset.target,accordionElement )
-                    ;
-                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
-                            targetElm[0].style.display = 'none';
-                    }
-                }
-            }
-
-            var finalClass = ( Css.getStyle(this._childElement,'display') === 'none') ? 'show-all' : 'hide-all';
-            var finalDisplay = ( Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
-            Css.removeClassName(this._childElement,'show-all');
-            Css.removeClassName(this._childElement, 'hide-all');
-            Css.addClassName(this._childElement, finalClass);
-            this._childElement.style.display = finalDisplay;
-
-            if( finalClass === 'show-all' ){
-                Css.addClassName(this._rootElement,'active');
-            } else {
-                Css.removeClassName(this._rootElement,'active');
-            }
-        },
-
-        /**
-         * Click handler. Will handle clicks outside the toggle component.
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function( event ){
-            var
-                tgtEl = Event.element(event),
-                shades
-            ;
-
-            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
-                return;
-            } else if( (shades = Ink.ss('.ink-shade')).length ) {
-                var
-                    shadesLength = shades.length
-                ;
-
-                for( var i = 0; i < shadesLength; i++ ){
-                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
-                        return;
-                    }
-                }
-            }
-            
-            this._dismiss( this._rootElement );
-        },
-
-        /**
-         * Dismisses the toggling.
-         * 
-         * @method _dismiss
-         * @private
-         */
-        _dismiss: function( ){
-            if( ( Css.getStyle(this._childElement,'display') === 'none') ){
-                return;
-            }
-            Css.removeClassName(this._childElement, 'show-all');
-            Css.removeClassName(this._rootElement,'active');
-            Css.addClassName(this._childElement, 'hide-all');
-            this._childElement.style.display = 'none';
-        }
-    };
-
-    return Toggle;
-
-});
-
-/**
- * @module Ink.UI.ProgressBar_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
-    'use strict';
-
-    /**
-     * Associated to a .ink-progress-bar element, it provides the necessary
-     * method - setValue() - for the user to change the element's value.
-     * 
-     * @class Ink.UI.ProgressBar
-     * @constructor
-     * @version 1
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Element
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
-     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
-     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
-     *
-     * @example
-     *      <div class="ink-progress-bar grey" data-start-value="70%">
-     *          <span class="caption">I am a grey progress bar</span>
-     *          <div class="bar grey"></div>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-     *              var progressBarElement = Ink.s('.ink-progress-bar');
-     *              var progressBarObj = new ProgressBar( progressBarElement );
-     *          });
-     *      </script>
-     */
-    var ProgressBar = function( selector, options ){
-
-        if( typeof selector !== 'object' ){
-            if( typeof selector !== 'string' ){
-                throw '[Ink.UI.ProgressBar] :: Invalid selector';
-            } else {
-                this._element = Selector.select(selector);
-                if( this._element.length < 1 ){
-                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
-                }
-                this._element = this._element[0];
-            }
-        } else {
-            this._element = selector;
-        }
-
-
-        this._options = Ink.extendObj({
-            'startValue': 0,
-            'onStart': function(){},
-            'onEnd': function(){}
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj( this._options, options || {});
-        this._value = this._options.startValue;
-
-        this._init();
-    };
-
-    ProgressBar.prototype = {
-
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-            this._elementBar = Selector.select('.bar',this._element);
-            if( this._elementBar.length < 1 ){
-                throw '[Ink.UI.ProgressBar] :: Bar element not found';
-            }
-            this._elementBar = this._elementBar[0];
-
-            this._options.onStart = Ink.bind(this._options.onStart,this);
-            this._options.onEnd = Ink.bind(this._options.onEnd,this);
-            this.setValue( this._options.startValue );
-        },
-
-        /**
-         * Sets the value of the Progressbar
-         * 
-         * @method setValue
-         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
-         * @public
-         */
-        setValue: function( newValue ){
-            this._options.onStart( this._value);
-
-            newValue = parseInt(newValue,10);
-            if( isNaN(newValue) || (newValue < 0) ){
-                newValue = 0;
-            } else if( newValue>100 ){
-                newValue = 100;
-            }
-            this._value = newValue;
-            this._elementBar.style.width =  this._value + '%';
-
-            this._options.onEnd( this._value );
-        }
-    };
-
-    return ProgressBar;
-
-});
-
-/**
  * @module Ink.UI.ImageQuery_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -3724,6 +3505,186 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
     };
 
     return ImageQuery;
+
+});
+
+/**
+ * @module Ink.UI.TreeView_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @class Ink.UI.TreeView
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @example
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
+     *          });
+     *      </script>
+     */
+    var TreeView = function(selector, options){
+
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+        } else {
+            this._element = selector;
+        }
+
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul'
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj(this._options, options || {});
+
+        this._init();
+    };
+
+    TreeView.prototype = {
+
+        /**
+         * Init function called by the constructor. Sets the necessary event handlers.
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
+
+            Event.observe(this._element, 'click', this._handlers.click);
+
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            InkArray.each(nodes,Ink.bind(function(item){
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                InkArray.each(children,Ink.bind(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') ){
+                        Css.addClassName(inner_item,'hide-all');
+                    }
+                },this));
+            },this));
+
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
+
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
+             */
+            var tgtEl = Event.element(event);
+
+            if( this._options.node[0] === '.' ) {
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else if( this._options.node[0] === '#' ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else {
+                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
+                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            }
+
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+
+            var child = Selector.select(this._options.child,tgtEl);
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+            }
+
+        }
+
+    };
+
+    return TreeView;
 
 });
 
@@ -7081,17 +7042,17 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Ut
 });
 
 /**
- * @module Ink.UI.TreeView_1
+00 * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * Toggle component
      * 
-     * @class Ink.UI.TreeView
+     * @class Ink.UI.Toggle
      * @constructor
      * @version 1
      * @uses Ink.UI.Aux
@@ -7099,164 +7060,203 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
      * @uses Ink.Dom.Css
      * @uses Ink.Dom.Element
      * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
+     *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
+     *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
      * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *      <div class="ink-dropdown">
+     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+     *          <ul id="dropdown" class="dropdown-menu">
+     *              <li class="heading">Heading</li>
+     *              <li class="separator-above"><a href="#">Option</a></li>
+     *              <li><a href="#">Option</a></li>
+     *              <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+     *              <li class="submenu">
+     *                  <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
+     *                  <ul id="submenu1" class="dropdown-menu">
+     *                      <li class="submenu">
+     *                          <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+     *                          <ul id="ultrasubmenu" class="dropdown-menu">
+     *                              <li><a href="#">Sub option</a></li>
+     *                              <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+     *                              <li><a href="#">Sub option</a></li>
+     *                          </ul>
+     *                      </li>
+     *                      <li><a href="#">Sub option</a></li>
+     *                      <li><a href="#">Sub option</a></li>
      *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
+     *              </li>
+     *              <li><a href="#">Option</a></li>
      *          </ul>
-     *        </li>
-     *      </ul>
+     *      </div>
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Toggle_1'], function( Selector, Toggle ){
+     *              var toggleElement = Ink.s('.toggle');
+     *              var toggleObj = new Toggle( toggleElement );
      *          });
      *      </script>
      */
-    var TreeView = function(selector, options){
+    var Toggle = function( selector, options ){
 
-        /**
-         * Gets the element
-         */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-        } else {
-            this._element = selector;
+        if( typeof selector !== 'string' && typeof selector !== 'object' ){
+            throw '[Ink.UI.Toggle] Invalid CSS selector to determine the root element';
         }
 
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul'
-        },Element.data(this._element));
+        if( typeof selector === 'string' ){
+            this._rootElement = Selector.select( selector );
+            if( this._rootElement.length <= 0 ){
+                throw '[Ink.UI.Toggle] Root element not found';
+            }
 
-        this._options = Ink.extendObj(this._options, options || {});
+            this._rootElement = this._rootElement[0];
+        } else {
+            this._rootElement = selector;
+        }
+
+        this._options = Ink.extendObj({
+            target : undefined,
+            triggerEvent: 'click',
+            closeOnClick: true
+        },Element.data(this._rootElement));
+
+        this._options = Ink.extendObj(this._options,options || {});
+
+        if( typeof this._options.target === 'undefined' ){
+            throw '[Ink.UI.Toggle] Target option not defined';
+        }
+
+        this._childElement = Aux.elOrSelector( this._options.target, 'Target' );
+        // this._childElement = Selector.select( this._options.target, this._rootElement );
+        // if( this._childElement.length <= 0 ){
+        //     if( this._childElement.length <= 0 ){
+        //         this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
+        //     }
+
+        //     if( this._childElement.length <= 0 ){
+        //         this._childElement = Selector.select( this._options.target );
+        //     }
+
+        //     if( this._childElement.length <= 0 ){
+        //         return;
+        //     }
+        // }
+        // this._childElement = this._childElement[0];
 
         this._init();
+
     };
 
-    TreeView.prototype = {
+    Toggle.prototype = {
 
         /**
-         * Init function called by the constructor. Sets the necessary event handlers.
+         * Init function called by the constructor
          * 
          * @method _init
          * @private
          */
         _init: function(){
 
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
+            this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._childElement.parentNode,'accordion') );
 
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                children
-            ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
-
-                children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
-
+            Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
+            if( this._options.closeOnClick.toString() === 'true' ){
+                Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
+            }
         },
 
         /**
-         * Handles the click event (as specified in the _init function).
+         * Event handler. It's responsible for handling the <triggerEvent> defined in the options.
+         * This will trigger the toggle.
+         * 
+         * @method _onTriggerEvent
+         * @param {Event} event
+         * @private
+         */
+        _onTriggerEvent: function( event ){
+
+            if( this._accordion ){
+                var elms, i, accordionElement;
+                if( Css.hasClassName(this._childElement.parentNode,'accordion') ){
+                    accordionElement = this._childElement.parentNode;
+                } else {
+                    accordionElement = this._childElement.parentNode.parentNode;
+                }
+                elms = Selector.select('.toggle',accordionElement);
+                for( i=0; i<elms.length; i+=1 ){
+                    var
+                        dataset = Element.data( elms[i] ),
+                        targetElm = Selector.select( dataset.target,accordionElement )
+                    ;
+                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
+                            targetElm[0].style.display = 'none';
+                    }
+                }
+            }
+
+            var finalClass = ( Css.getStyle(this._childElement,'display') === 'none') ? 'show-all' : 'hide-all';
+            var finalDisplay = ( Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
+            Css.removeClassName(this._childElement,'show-all');
+            Css.removeClassName(this._childElement, 'hide-all');
+            Css.addClassName(this._childElement, finalClass);
+            this._childElement.style.display = finalDisplay;
+
+            if( finalClass === 'show-all' ){
+                Css.addClassName(this._rootElement,'active');
+            } else {
+                Css.removeClassName(this._rootElement,'active');
+            }
+        },
+
+        /**
+         * Click handler. Will handle clicks outside the toggle component.
          * 
          * @method _onClick
          * @param {Event} event
          * @private
          */
-        _onClick: function(event){
+        _onClick: function( event ){
+            var
+                tgtEl = Event.element(event),
+                shades
+            ;
 
-            /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
-             */
-            var tgtEl = Event.element(event);
+            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
+                return;
+            } else if( (shades = Ink.ss('.ink-shade')).length ) {
+                var
+                    shadesLength = shades.length
+                ;
 
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
+                for( var i = 0; i < shadesLength; i++ ){
+                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
+                        return;
                     }
                 }
             }
+            
+            this._dismiss( this._rootElement );
+        },
 
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
-
-            var child = Selector.select(this._options.child,tgtEl);
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+        /**
+         * Dismisses the toggling.
+         * 
+         * @method _dismiss
+         * @private
+         */
+        _dismiss: function( ){
+            if( ( Css.getStyle(this._childElement,'display') === 'none') ){
+                return;
             }
-
+            Css.removeClassName(this._childElement, 'show-all');
+            Css.removeClassName(this._rootElement,'active');
+            Css.addClassName(this._childElement, 'hide-all');
+            this._childElement.style.display = 'none';
         }
-
     };
 
-    return TreeView;
+    return Toggle;
 
 });
 
