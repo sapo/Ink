@@ -175,33 +175,39 @@
 
             &.append-symbol {
 
-                span > input,
-                span > select,
-                span > textarea {
-                    padding-right: @form-append-width;
-                }
+                span {
 
-                & > [class^="icon-"],
-                & > [class*=" icon-"] {
-                    position: absolute;
-                    right: 1em;
-                    top: .15em;
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        padding-right: @form-append-width;
+                    }
+
+                    & > [class^="icon-"],
+                    & > [class*=" icon-"] {
+                        position: absolute;
+                        right: 1em;
+                        top: .15em;
+                    }
                 }
             }
 
             &.prepend-symbol {
                 
-                span > input,
-                span > select,
-                span > textarea {
-                    padding-left: @form-append-width;
-                }
-                
-                & > [class^="icon-"],
-                & > [class*=" icon-"] {
-                    position: absolute;
-                    left: 2.7em;
-                    top: .15em;
+                span {
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        padding-left: @form-append-width;
+                    }
+                    
+                    & > [class^="icon-"],
+                    & > [class*=" icon-"] {
+                        position: absolute;
+                        left: 1em;
+                        top: .15em;
+                    }
                 }
             }
         }
