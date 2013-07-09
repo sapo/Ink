@@ -213,6 +213,7 @@
 
                     .@{breakpoint-alias}-@{index} {
                         width: (@index * 1%);
+                        float: left;
                     }
 
                     // next iteration
@@ -222,12 +223,14 @@
                 .loop (@index) when (@index =< 70) and (@index > 65) {
                     .@{breakpoint-alias}-66 {
                         width: 66.66%;
+                        float: left;
                     }
                 }
 
                 .loop (@index) when (@index =< 35) and (@index > 30) {
                     .@{breakpoint-alias}-33 {
                         width: 33.33%;
+                        float: left;
                     }
                 }
 
@@ -235,6 +238,7 @@
                     .@{breakpoint-alias}-100 {
                         width: 100%;
                         clear: both;
+                        float: none;
                     }
                 }
 
@@ -242,7 +246,6 @@
                 .loop (95);
 
                 [class*="@{breakpoint-alias}-"] {
-                    float: left;
                     margin-top: 0;
                     zoom: 1; 
                 }
