@@ -14962,8 +14962,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
             this.elements[this.element.id] = [];
             this.confirmElms[this.element.id] = [];
-            //console.log(this.element);
-            //console.log(this.element.elements);
+            console.log(this.element);
+            console.log(this.element.elements);
             var formElms = this.element.elements;
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
@@ -15001,7 +15001,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                 }
             }
-            //debugger;
+            debugger;
         },
 
         /**
@@ -15303,7 +15303,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                         if( !(validFormat in InkValidator._dateParsers ) ){
                             var validValues = [];
-                            for( var val in InkValidator._dateParsers ){
+                            for( val in InkValidator._dateParsers ){
                                 validValues.push(val);
                             }
                             throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
@@ -15342,10 +15342,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                     var newLabel = document.createElement('p');
                     //newLabel.setAttribute('for',curElm.id);
-                    //newLabel.className = this._errorClassName;
-                    //newLabel.className += ' ' + this._errorTypeErrorClassName;
-                    Css.addClassName(newLabel, this._errorClassName);
-                    Css.addClassName(newLabel, this._errorTypeErrorClassName);
+                    newLabel.className = this._errorClassName;
+                    newLabel.className += ' ' . this._errorTypeErrorClassName;
                     if(aFail[i].errors[0] !== 'ink-fv-custom') {
                         newLabel.innerHTML = this._flagMap[aFail[i].errors[0]].msg;
                     } else {
