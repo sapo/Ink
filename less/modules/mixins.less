@@ -118,13 +118,33 @@
                     }
                 }
 
+                // pulls the grid columns left to correct for gutter horizontal spacing                
                 .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
                     margin-left: -@gutter-width;
                 }
-
+                    // pulls the grid columns left to correct for gutter horizontal spacing
                 .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
                     margin-left: -(@gutter-width / 2);
                 }
+                // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} {
+                    margin-left: -(@gutter-width / 4);
+                }
+
+                // pulls the grid columns left to correct for gutter horizontal spacing                
+                .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} {
+                    margin-left: -@gutter-width;
+                }
+                    // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} {
+                    margin-left: -(@gutter-width / 2);
+                }
+                // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} {
+                    margin-left: -(@gutter-width / 4);
+                }
+
+
             }
 
             // generate the column-group grid element styling
@@ -153,114 +173,151 @@
                 }
 
                 .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
-                    padding-right: @gutter-width / 2;
+                    padding-right: (@gutter-width / 2);
                     margin-left: -(@gutter-width / 2);
                     overflow: visible;
-                }  
+                }
+
+                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} {
+                    padding-right: (@gutter-width / 4);
+                    margin-left: -(@gutter-width / 4);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} {
+                    padding-right: @gutter-width;
+                    margin-left: -@gutter-width;
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width / 2);
+                    margin-left: -(@gutter-width / 2);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width / 4);
+                    margin-left: -(@gutter-width / 4);
+                    overflow: visible;
+                } 
             }
 
             // Generate the grid column division classes
             .grid-divisions () {
 
-                .@{breakpoint-alias}-100 {
-                    width: 100%;
-                    clear: both;
-                }
-                .@{breakpoint-alias}-95 {
-                    width: 95%;
-                }
-                .@{breakpoint-alias}-90 {
-                    width: 90%;
-                }
-                .@{breakpoint-alias}-85 {
-                    width: 85%;
-                }
-                .@{breakpoint-alias}-80 {
-                    width: 80%;
-                }
-                .@{breakpoint-alias}-75 {
-                    width: 75%;
-                }
-                .@{breakpoint-alias}-70 {
-                    width: 70%;
-                }
-                .@{breakpoint-alias}-66 {
-                    width: 66.66%;
-                }
-                .@{breakpoint-alias}-65 {
-                    width: 65%;
-                }
-                .@{breakpoint-alias}-60 {
-                    width: 60%;
-                }
-                .@{breakpoint-alias}-55 {
-                    width: 55%;
-                }
-                .@{breakpoint-alias}-50 {
-                    width: 50%;
-                }
-                .@{breakpoint-alias}-45 {
-                    width: 45%;
-                }
-                .@{breakpoint-alias}-40 {
-                    width: 40%;
-                }
-                .@{breakpoint-alias}-35 {
-                    width: 35%;
-                }
-                .@{breakpoint-alias}-33 {
-                    width: 33.33%;
-                }
-                .@{breakpoint-alias}-30 {
-                    width: 30%;
-                }
-                .@{breakpoint-alias}-25 {
-                    width: 25%;
-                }
-                .@{breakpoint-alias}-20 {
-                    width: 20%;
-                }
-                .@{breakpoint-alias}-15 {
-                    width: 15%;
-                }
-                .@{breakpoint-alias}-10 {
-                    width: 10%;
-                }
-                .@{breakpoint-alias}-5 {
-                    width: 5%;
+
+                // Our sincere thanks the the guys @ twitter bootstrap for the loop hack
+
+                .loop (@index) when (@index >= 5) and (@index =< 95) {
+
+                    .@{breakpoint-alias}-@{index} {
+                        width: (@index * 1%);
+                        float: left;
+                    }
+
+                    // next iteration
+                    .loop(@index - 5);
                 }
 
-                (~"[class*=@{breakpoint-alias}-]") {
-                    float: left;
+                .loop (@index) when (@index =< 70) and (@index > 65) {
+                    .@{breakpoint-alias}-66 {
+                        width: 66.66%;
+                        float: left;
+                    }
+                }
+
+                .loop (@index) when (@index =< 35) and (@index > 30) {
+                    .@{breakpoint-alias}-33 {
+                        width: 33.33%;
+                        float: left;
+                    }
+                }
+
+                .loop (@index) when (@index = 95) {
+                    .@{breakpoint-alias}-100 {
+                        width: 100%;
+                        clear: both;
+                        float: none;
+                    }
+                }
+
+                .loop (0) {}
+                .loop (95);
+
+                [class*="@{breakpoint-alias}-"] {
                     margin-top: 0;
                     zoom: 1; 
                 }
 
-                (~"table.[class*=@{breakpoint-alias}-]"),
-                (~"th.[class*=@{breakpoint-alias}-]"),
-                (~"td.[class*=@{breakpoint-alias}-]") {
+                table[class*="@{breakpoint-alias}-"],
+                th[class*="@{breakpoint-alias}-"],
+                td[class*="@{breakpoint-alias}-"] {
                     float: none;
                 }                
 
-                (~"body.animated *[class*=@{breakpoint-alias}-]") {
-                    #ink > #effects > .transition (~"width, font-size, line-height",125ms);                 
+                body.animated *[class*="@{breakpoint-alias}-"] {
+                    #ink > #effects > .transition (width, font-size, line-height,125ms);                 
                 }
 
-                (~".@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*=@{breakpoint-alias}-]") {
+                // creates horizontal and vertical gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
                     padding-left: @gutter-width;
                     margin-bottom: @gutter-width;
                 }
 
-                (~".@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > [class*=@{breakpoint-alias}-]") {
-                    padding-left: @gutter-width / 2;
-                    margin-bottom: @gutter-width / 2;
+                // creates horizontal and vertical half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 2);
+                    margin-bottom: (@gutter-width / 2);
                 }
 
-                (~"[class*=@{breakpoint-alias}-]:empty") {
-                    clear:both; 
+                // creates horizontal and vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 4);
+                    margin-bottom: (@gutter-width / 4);
                 }
 
-                (~"*[class*=@{breakpoint-alias}-] > *[class*=@{breakpoint-alias}-]") {
+                // creates horizontal gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: @gutter-width;
+                }
+
+                // creates horizontal half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 2);
+                }
+
+                // creates horizontal quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 4);
+                }
+
+                // creates vertical gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: @gutter-width;
+                }
+
+                // creates vertical half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 2);
+                }
+
+                // creates vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 4);
+                }
+
+
+                [class*="@{breakpoint-alias}-"]:empty {
+                    // clear:both; 
+                }
+
+                [class*="@{breakpoint-alias}-"]:empty:after {
+                    content: "\00a0";
+                }
+
+                *[class*="@{breakpoint-alias}-"] > *[class*="@{breakpoint-alias}-"] {
                     margin-left: 0;
                 }
                 
@@ -337,94 +394,157 @@
                     width:(( 5%  - @subpixel-rounding) * 0.97) !important;
                 }
 
-                (~"[class*=@{breakpoint-alias}-]") {
-                    float: left;
-                    margin-bottom: @gutter-width;
+                [class*="@{breakpoint-alias}-"] {
+                    float: left;                    
                     overflow: hidden;
                     zoom: 1;
                 }
 
-                (~"table.[class*=@{breakpoint-alias}-]"),
-                (~"th.[class*=@{breakpoint-alias}-]"),
-                (~"td.[class*=@{breakpoint-alias}-]") {
+                table[class*="@{breakpoint-alias}-"],
+                th[class*="@{breakpoint-alias}-"],
+                td[class*="@{breakpoint-alias}-"] {
                     float: none;
                 }
 
                 // set the padding to create the gutters
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-100 {
                     width: (100% - @subpixel-rounding) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-95 {
                     width: ((95% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-90 {
                     width: ((90% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-85 {
                     width: ((85% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-80 {
                     width: ((80% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-75 {
                     width: ((75% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important; 
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-70 {
                     width: ((70% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-66 {
                     width: ((66% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-65 {
                     width: ((65% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-60 {
                     width: ((60% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-55 {
                     width: ((55% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-50 {
                     width: ((50% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-45 {
                     width: ((45% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-40 {
                     width: ((40% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-35 {
                     width: ((35% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-33 {
                     width: ((33% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-30 {
                     width: ((30% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-25 {
                     width: ((25% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important; 
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-20 {
                     width: ((20% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-10 {
                     width: ((10% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
-                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5 {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-5 {
                     width: ((5% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
                 }
 
-                (~".@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*=@{breakpoint-alias}-]") {
-                   margin-left: @gutter-width - @subpixel-rounding;
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: @gutter-width - @subpixel-rounding;
+                    margin-bottom: @gutter-width;
                     padding-left: 0px !important;
                 }
 
-                (~"[class*=@{breakpoint-alias}-]:empty") {
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 2);
+                    margin-bottom: (@gutter-width / 2);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 4);
+                    margin-bottom: (@gutter-width / 4);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: @gutter-width - @subpixel-rounding;
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 2);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 4);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: @gutter-width;
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 2);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 4);
+                    padding-left: 0px !important;
+                }
+
+                [class*="@{breakpoint-alias}-"]:empty {
                     clear:both; 
                 }
 
-                (~"*[class*=@{breakpoint-alias}-] > *[class*=@{breakpoint-alias}-]") {
+                *[class*="@{breakpoint-alias}-"] > *[class*="@{breakpoint-alias}-"] {
                     margin-left: 0;
                 }
                 
@@ -433,7 +553,7 @@
                     margin-left: -@gutter-width;
                 }
 
-                (~".@{form-class-name} [class*=@{breakpoint-alias}-]") {
+                .@{form-class-name} [class*="@{breakpoint-alias}-"] {
                     input, textarea {
                       width: 98.5% !important;
                       margin-left: (-@gutter-width + @subpixel-rounding);
@@ -496,9 +616,19 @@
                 .@{breakpoint-alias}-align-right {
                     text-align: right;
                 }
+                
                 .space {
                     margin: @gutter-width;
                 }
+
+                .half-space {
+                    margin: (@gutter-width/2);
+                }
+
+                .quarter-space {
+                    margin: (@gutter-width/4);
+                }
+
                 .vspace {
                     margin-top: @gutter-width;
                     margin-bottom: @gutter-width;

@@ -230,13 +230,14 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
         _getElements: function()
         {
             //this.elements = [];
-            if(typeof(this.elements[this.element.id]) !== 'undefined') {
-                return;
-            }
+            // if(typeof(this.elements[this.element.id]) !== 'undefined') {
+            //     return;
+            // }
 
             this.elements[this.element.id] = [];
             this.confirmElms[this.element.id] = [];
-
+            console.log(this.element);
+            console.log(this.element.elements);
             var formElms = this.element.elements;
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
@@ -274,7 +275,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                 }
             }
-
+            debugger;
         },
 
         /**
@@ -556,8 +557,35 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         }
                     }
                     break;
-                //case 'date':
-                //    break;
+                case 'ink-fv-date':
+                    if(this._trim(elm.value) === '') {
+                        if(Css.hasClassName(elm, 'ink-fv-required')) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        var Element = Ink.getModule('Ink.Dom.Element',1);
+                        var dataset = Element.data( elm );
+                        var validFormat = 'yyyy-mm-dd';
+
+                        if( Css.hasClassName(elm, 'ink-datepicker') && ("format" in dataset) ){
+                            validFormat = dataset.format;
+                        } else if( ("validFormat" in dataset) ){
+                            validFormat = dataset.validFormat;
+                        }
+
+                        if( !(validFormat in InkValidator._dateParsers ) ){
+                            var validValues = [];
+                            for( val in InkValidator._dateParsers ){
+                                validValues.push(val);
+                            }
+                            throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
+                        }
+                        
+                        return InkValidator.isDate( validFormat, elm.value );
+                    }
+                    break;
                 case 'ink-fv-custom':
                     break;
             }
@@ -589,6 +617,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                     var newLabel = document.createElement('p');
                     //newLabel.setAttribute('for',curElm.id);
                     newLabel.className = this._errorClassName;
+                    newLabel.className += ' ' . this._errorTypeErrorClassName;
                     if(aFail[i].errors[0] !== 'ink-fv-custom') {
                         newLabel.innerHTML = this._flagMap[aFail[i].errors[0]].msg;
                     } else {
@@ -644,7 +673,10 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         Css.removeClassName(curElm.parentNode.parentNode, 'error');
                         Css.removeClassName(curElm.parentNode.parentNode, 'warning');
                     }
-                    curElm.parentNode.removeChild(curElm);
+
+                    if(Css.hasClassName(curElm,'tip') && Css.hasClassName(curElm,'error')){
+                        curElm.parentNode.removeChild(curElm);
+                    }
                 }
             }
 

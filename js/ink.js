@@ -25,7 +25,7 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {
-        Ink: 'http://js.ink.sapo.pt/Ink/' // TODO as soon as a production site exists, replace this default!
+        Ink: window.location.protocol + '//js.ink.sapo.pt/Ink/' // TODO as soon as a production site exists, replace this default!
 	//Ink: ( ('INK_PATH' in window) ? window.INK_PATH :'http://inkjs.gamblap/Ink/' )
     };
     var modules = {};
@@ -339,7 +339,7 @@
         },
 
         /**
-         * Object.bind alternative
+         * Function.prototype.bind alternative
          *
          * @function bind
          * @param {Function}  fn
@@ -357,7 +357,7 @@
         },
 
         /**
-         * Object.bind alternative
+         * Function.prototype.bind alternative
          * same as bind but keeps first argument of the call the original event
          *
          * @function bindEvent
@@ -2551,6 +2551,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @function setTextContent
          * @param {DOMNode} node from which to retreive text from. Can be any node type.
+         * @param {String}  text to be appended to the node.
          */
         setTextContent: function(node, text){
             node = Ink.i(node);
@@ -4152,7 +4153,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @public
          * @example
          *     Ink.requireModules(['Ink.Dom.Loaded_1'],function(Loaded){
-         *         new Loaded.run(function(){
+         *         Loaded.run(function(){
          *             console.log('This will run when the page/document is ready/loaded');
          *         });
          *     });
