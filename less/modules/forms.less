@@ -122,10 +122,7 @@
             &.prepend-button,
             &.prepend-symbol {
                 
-                display: table;
-
                 span {
-                    display: table-cell;
                     width: 100%;
                     position: relative;
 
@@ -145,10 +142,17 @@
 
             &.append-button {
 
-                span > input,
-                span > select,
-                span > textarea {
-                    #ink > #border-radius > .left (@border-radius);
+                display: table;
+
+                span {
+                    
+                    display: table-cell;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        #ink > #border-radius > .left (@border-radius);
+                    }
                 }
                 
                 .ink-button {
@@ -160,10 +164,17 @@
 
             &.prepend-button {
 
-                span > input,
-                span > select,
-                span > textarea {
-                    #ink > #border-radius > .right (@border-radius);
+                display: table;
+
+                span {
+                    
+                    display: table-cell;
+                
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        #ink > #border-radius > .right (@border-radius);
+                    }
                 }
                 
                 .ink-button {
@@ -176,6 +187,8 @@
             &.append-symbol {
 
                 span {
+
+                    display: block;
 
                     & > input,
                     & > select,
@@ -195,6 +208,8 @@
             &.prepend-symbol {
                 
                 span {
+
+                    display: block;
 
                     & > input,
                     & > select,
