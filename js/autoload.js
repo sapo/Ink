@@ -54,8 +54,12 @@
         /***************************
          * Toggle - Default CSS selector is .toggle
          ***************************/
-         'Toggle_1': '.toggle'
+         'Toggle_1': '.toggle',
 
+        /***************************
+         * Tooltip - Default CSS selector is .tooltip
+         ***************************/
+         'Tooltip_1': '.tooltip'
     };
 
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'],
