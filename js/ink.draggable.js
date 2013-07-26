@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1"],function( Element, Event, Css, Browser, Droppable) {
+Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1"],function( InkElement, InkEvent, Css, Browser, Droppable) {
 
     /**
      * @class Ink.UI.Draggable
@@ -23,6 +23,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      *     @param {Number}            [options.fps]            - if defined, on drag will run every n frames per second only
      *     @param {DomElement}        [options.droppableProxy] - if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
      *     @param {String}            [options.mouseAnchor]    - defaults to mouse cursor. can be 'left|center|right top|center|bottom'
+     *     @param {String}            [options.dragClass='drag'] - class to add when the draggable is being dragged.
      *     @param {Function}          [options.onStart]        - callback called when dragging starts
      *     @param {Function}          [options.onEnd]          - callback called when dragging stops
      *     @param {Function}          [options.onDrag]         - callback called while dragging, prior to position updates
@@ -50,13 +51,14 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             var o = Ink.extendObj( {
                 constraint:         false,
                 top:                0,
-                right:              Element.pageWidth(),
-                bottom:             Element.pageHeight(),
+                right:              InkElement.pageWidth(),
+                bottom:             InkElement.pageHeight(),
                 left:               0,
                 handler:            false,
                 revert:             false,
                 cursor:             'move',
                 zindex:             9999,
+                dragClass:          'drag',
                 onStart:            false,
                 onEnd:              false,
                 onDrag:             false,
@@ -91,20 +93,20 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             this.handlers.dragFacade    = Ink.bindEvent(this._onDragFacade,this);
             this.handlers.drag          = Ink.bindEvent(this._onDrag,this);
             this.handlers.end           = Ink.bindEvent(this._onEnd,this);
-            this.handlers.selectStart   = function(event) {    Event.stop(event);    return false;    };
+            this.handlers.selectStart   = function(event) {    InkEvent.stop(event);    return false;    };
 
             // set handler
             this.handle = (this.options.handler) ? Ink.i(this.options.handler) : this.element;
             this.handle.style.cursor = o.cursor;
 
-            if (o.right  !== false) {   this.options.right    = o.right  - Element.elementWidth( element);    }
-            if (o.bottom !== false) {   this.options.bottom   = o.bottom - Element.elementHeight(element);    }
+            if (o.right  !== false) {   this.options.right    = o.right  - InkElement.elementWidth( element);    }
+            if (o.bottom !== false) {   this.options.bottom   = o.bottom - InkElement.elementHeight(element);    }
 
-            Event.observe(this.handle, 'touchstart', this.handlers.start);
-            Event.observe(this.handle, 'mousedown', this.handlers.start);
+            InkEvent.observe(this.handle, 'touchstart', this.handlers.start);
+            InkEvent.observe(this.handle, 'mousedown', this.handlers.start);
 
             if (Browser.IE) {
-                Event.observe(this.element, 'selectstart', this.handlers.selectStart);
+                InkEvent.observe(this.element, 'selectstart', this.handlers.selectStart);
             }
         },
 
@@ -115,11 +117,11 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @public
          */
         destroy: function() {
-            Event.stopObserving(this.handle, 'touchstart', this.handlers.start);
-            Event.stopObserving(this.handle, 'mousedown', this.handlers.start);
+            InkEvent.stopObserving(this.handle, 'touchstart', this.handlers.start);
+            InkEvent.stopObserving(this.handle, 'mousedown', this.handlers.start);
 
             if (Browser.IE) {
-                Event.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
+                InkEvent.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
             }
         },
 
@@ -170,10 +172,10 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             dst.style.borderWidth   = '0';
             dst.style.padding       = '0';
             dst.style.position      = 'absolute';
-            dst.style.width         = Element.elementWidth(src)        + 'px';
-            dst.style.height        = Element.elementHeight(src)    + 'px';
-            dst.style.left          = Element.elementLeft(src)        + 'px';
-            dst.style.top           = Element.elementTop(src)        + 'px';
+            dst.style.width         = InkElement.elementWidth(src)        + 'px';
+            dst.style.height        = InkElement.elementHeight(src)    + 'px';
+            dst.style.left          = InkElement.elementLeft(src)        + 'px';
+            dst.style.top           = InkElement.elementTop(src)        + 'px';
             dst.style.cssFloat      = Css.getStyle(src, 'float');
             dst.style.display       = Css.getStyle(src, 'display');
         },
@@ -187,16 +189,18 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @private
          */
         _onStart: function(e) {
-            if (!this.active && Event.isLeftClick(e) || typeof e.button === 'undefined') {
+            if (!this.active && InkEvent.isLeftClick(e) || typeof e.button === 'undefined') {
 
-                var tgtEl = e.target || e.srcElement;
+                var tgtEl = InkEvent.element(e);
                 if (this.options.skipChildren && tgtEl !== this.element) {    return;    }
 
-                Event.stop(e);
+                InkEvent.stop(e);
+
+                Css.addClassName(this.element, this.options.dragClass);
 
                 this.elmStartPosition = [
-                    Element.elementLeft(this.element),
-                    Element.elementTop( this.element)
+                    InkElement.elementLeft(this.element),
+                    InkElement.elementTop( this.element)
                 ];
 
                 var pos = [
@@ -205,8 +209,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 ];
 
                 var dims = [
-                    Element.elementWidth( this.element),
-                    Element.elementHeight(this.element)
+                    InkElement.elementWidth( this.element),
+                    InkElement.elementHeight(this.element)
                 ];
 
                 this.originalPosition = [ pos[0] ? pos[0]: null, pos[1] ? pos[1] : null ];
@@ -263,11 +267,11 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                     while (firstEl && firstEl.nodeType !== 1) {    firstEl = firstEl.nextSibling;    }
                     document.body.insertBefore(this.proxy, firstEl);
 
-                    Event.observe(this.proxy, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
-                    Event.observe(this.proxy, 'touchmove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+                    InkEvent.observe(this.proxy, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+                    InkEvent.observe(this.proxy, 'touchmove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
                 }
                 else {
-                    Event.observe(document, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+                    InkEvent.observe(document, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
                 }
 
                 this.element.style.position = 'absolute';
@@ -276,8 +280,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
                 this._onDrag(e);
 
-                Event.observe(document, 'mouseup',      this.handlers.end);
-                Event.observe(document, 'touchend',     this.handlers.end);
+                InkEvent.observe(document, 'mouseup',      this.handlers.end);
+                InkEvent.observe(document, 'touchend',     this.handlers.end);
 
                 return false;
             }
@@ -307,7 +311,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          */
         _onDrag: function(e) {
             if (this.active) {
-                Event.stop(e);
+                InkEvent.stop(e);
                 this.dragged = true;
                 var mouseCoords = this._getCoords(e),
                     mPosX       = mouseCoords.x,
@@ -375,12 +379,14 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @private
          */
         _onEnd: function(e) {
-            Event.stopObserving(document, 'mousemove', this.handlers.drag);
-            Event.stopObserving(document, 'touchmove', this.handlers.drag);
+            InkEvent.stopObserving(document, 'mousemove', this.handlers.drag);
+            InkEvent.stopObserving(document, 'touchmove', this.handlers.drag);
 
             if (this.options.fps) {
                 this._onDrag(e);
             }
+
+            Css.removeClassName(this.element, this.options.dragClass);
 
             if (this.active && this.dragged) {
 
@@ -389,7 +395,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 }
 
                 if (this.pt) {    // remove debugging element...
-                    this.pt.parentNode.removeChild(this.pt);
+                    InkElement.remove(this.pt);
                     this.pt = undefined;
                 }
 
@@ -398,7 +404,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 }*/
 
                 if(this.placeholder) {
-                    this.placeholder.parentNode.removeChild(this.placeholder);
+                    InkElement.remove(this.placeholder);
                 }
 
                 if (this.options.revert) {
