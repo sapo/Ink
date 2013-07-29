@@ -25,8 +25,7 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {
-        Ink: window.location.protocol + '//js.ink.sapo.pt/Ink/' // TODO as soon as a production site exists, replace this default!
-	//Ink: ( ('INK_PATH' in window) ? window.INK_PATH :'http://inkjs.gamblap/Ink/' )
+	    Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
     };
     var modules = {};
     var modulesLoadOrder = [];
@@ -651,7 +650,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!this.isHTTP || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 this.isCrossDomain = false;
             } else {
-                this.isCrossDomain = location.protocol !== urlLocation.protocol || location.host !== urlLocation.host.split(':')[0];
+                this.isCrossDomain = location.protocol !== urlLocation.protocol || location.host !== urlLocation.host;
             }
             if(this.options.cors) {
                 this.isCrossDomain = false;
@@ -1206,7 +1205,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     /**
      * Loads content from a given url through a XMLHttpRequest.
      * Shortcut function for simple AJAX use cases.
-     * 
+     *
      * @function ping
      * @param {String}   url       request url
      * @param {Function} callback  callback to be executed if the request is successful
@@ -1241,21 +1240,38 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      */
 
     /**
+     * This class takes care of the nitty-gritty details of doing jsonp requests: Storing
+     * a callback in a globally accessible manner, waiting for the timeout or completion
+     * of the request, and passing extra GET parameters to the server, is not so complicated
+     * but it's boring and repetitive to code and tricky to get right.
+     *
      * @class Ink.Net.JsonP
      * @constructor
      * @param {String} uri
      * @param {Object} options
-     * @param {Function}  [options.onComplete]        success callback
-     * @param {Function}  [options.onFailure]         failure callback
-     * @param {Object}    [options.failureObj]        object to be passed as argument to failure callback
-     * @param {Number}    [options.timeout]           timeout for request fail, in seconds. defaults to 10
-     * @param {Object}    [options.params]            object with the parameters and respective values to unfold
-     * @param {String}    [options.callbackParam]     parameter to use as callback. defaults to 'jsoncallback'
-     * @param {String}    [options.internalCallback]  x
+     * @param {Function}  options.onSuccess         success callback
+     * @param {Function}  [options.onFailure]       failure callback
+     * @param {Object}    [options.failureObj]      object to be passed as argument to failure callback
+     * @param {Number}    [options.timeout]         timeout for request fail, in seconds. defaults to 10
+     * @param {Object}    [options.params]          object with the parameters and respective values to unfold
+     * @param {String}    [options.callbackParam]   parameter to use as callback. defaults to 'jsoncallback'
+     * @param {String}    [options.internalCallback] *Advanced*: name of the callback function stored in the Ink.Net.JsonP object.
+     *
+     * @example
+     *      Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
+     *          var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
+     *              // When the JSONP response arrives, this callback is called:
+     *              onSuccess: function (gameData) {
+     *                  game.startGame(gameData);
+     *              },
+     *              // after options.timeout seconds, this callback gets called:
+     *              onFailure: function () {
+     *                  game.error('Could not load game data!');
+     *              },
+     *              timeout: 5
+     *          });
+     *      });
      */
-
-
-
     var JsonP = function(uri, options) {
         this.init(uri, options);
     };
@@ -1338,7 +1354,6 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
             this.options.params[this.options.callbackParam] = 'Ink.Net.JsonP.' + this.options.internalCallback;
             this.options.params.rnd_seed = this.randVar;
             this.uri = this._addParamsToGet(this.uri, this.options.params);
-
             // create script tag
             var scriptEl = document.createElement('script');
             scriptEl.type = 'text/javascript';
@@ -1359,9 +1374,11 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
         _removeScriptTag: function() {
             var scriptEl;
             var scriptEls = document.getElementsByTagName('script');
+            var scriptUri;
             for (var i = 0, f = scriptEls.length; i < f; ++i) {
                 scriptEl = scriptEls[i];
-                if (scriptEl.src === this.uri) {
+                scriptUri = scriptEl.getAttribute('src') || scriptEl.src;
+                if (scriptUri !== null && scriptUri === this.uri) {
                     scriptEl.parentNode.removeChild(scriptEl);
                     return;
                 }
@@ -1397,8 +1414,14 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @function addRemoveClassName
          * @param {DOMElement|string}   elm          DOM element or element id
-         * @param {string}              className    class name
-         * @param {boolean}             addRemState  which method to apply
+         * @param {string}              className    class name to add or remove.
+         * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
+         *
+         * @example
+         *      Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
+         *          Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
+         *          Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
+         *      });
          */
         addRemoveClassName: function(elm, className, addRemState) {
             if (addRemState) {
@@ -1647,11 +1670,26 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
 
         /**
-         * Sets the value for an element's style attribute
+         * Adds CSS rules to an element's style attribute.
          *
          * @function setStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to set
+         *
+         * @example
+         *     <a href="#" class="change-color">Change his color</a>
+         *     <p class="him">"He" is me</p>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Css, InkEvent, Selector) {
+         *             var btn = Selector.select('.change-color')[0];
+         *             var other = Selector.select('.him')[0];
+         *             InkEvent.observe(btn, 'click', function () {
+         *                 Css.setStyle(other, 'background-color: black');
+         *                 Css.setStyle(other, 'color: white');
+         *             });
+         *         });
+         *     </script>
+         *
          */
         setStyle: function(elm, style) {
             elm = Ink.i(elm);
@@ -1719,8 +1757,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * shows or hides according to param show
          *
          * @function showHide
-         * @param {DOMElement|String}  elm   DOM element or element id
-         * @param {boolean}            show
+         * @param {DOMElement|String}  elm          DOM element or element id
+         * @param {boolean}            [show=false] Whether to show or hide `elm`.
          */
         showHide: function(elm, show) {
             elm = Ink.i(elm);
@@ -1828,9 +1866,9 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @function appendStylesheet
          * @param {String}  path     File path
          * @param {Object}  options  Options for the tag
-         *    @param {String}   [options.media]  media type
-         *    @param {String}   [options.type]   file type
-         *    @param {Boolean}  [options.force]  if true, tag will be appended to end of head
+         *    @param {String}   [options.media='screen']    media type
+         *    @param {String}   [options.type='text/css']   file type
+         *    @param {Boolean}  [options.force=false]       if true, tag will be appended to end of head
          */
         appendStylesheet: function(path, options){
             options = Ink.extendObj({
@@ -2207,12 +2245,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     var Element = {
 
-        /** 
-         * Shortcut for document.getElementById
+        /**
+         * Shortcut for `document.getElementById`
          *
          * @function get
-         * @param {String|Array} elm  Receives either an id or an Array of ids
-         * @return Either the DOM element for the given id or an array of elements for the given ids
+         * @param {String|DOMElement} elm   Either an ID of an element, or an element.
+         * @return {DOMElement|null} The DOM element with the given id or null when it was not found
          */
         get: function(elm) {
             if(typeof elm !== 'undefined') {
@@ -2246,10 +2284,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Removes DOM Element from DOM
+         * Removes a DOM Element from the DOM
          *
          * @function remove
-         * @param  {DOMElement} el
+         * @param {DOMElement} elm  The element to remove
          */
         remove: function(el) {
             var parEl;
@@ -2259,7 +2297,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Scrolls to an element
+         * Scrolls the window to an element
          *
          * @function scrollTo
          * @param {DOMElement|String} elm  Element where to scroll
@@ -2290,57 +2328,32 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Gets the top cumulative offset for an element
          *
+         * Requires Ink.Dom.Browser
+         *
          * @function offsetTop
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the top of the document
          */
         offsetTop: function(elm) {
-            elm = this.get(elm);
-
-            var offset = elm.offsetTop;
-
-            while(elm.offsetParent){
-                if(elm.offsetParent.tagName.toLowerCase() !== "body"){
-                    elm = elm.offsetParent;
-                    offset += elm.offsetTop;
-                } else {
-                    break;
-                }
-            }
-
-            return offset;
+            return this.offset(elm)[1];
         },
 
         /**
          * Gets the left cumulative offset for an element
+         *
+         * Requires Ink.Dom.Browser
          *
          * @function offsetLeft
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the left of the document
          */
         offsetLeft: function(elm) {
-            /*
-                elm = this.get(elm);
-
-                var offset = elm.offsetLeft;
-
-                while(elm.offsetParent){
-                    if(elm.offsetParent.tagName.toLowerCase() !== "body"){
-                        elm = elm.offsetParent;
-                        offset += elm.offsetLeft;
-                    } else {
-                        break;
-                    }
-                }
-
-                return offset;
-            */
-           return this.offset2( elm );
+            return this.offset(elm)[0];
         },
 
         /**
         * Gets the element offset relative to its closest positioned ancestor
-        * 
+        *
         * @function positionedOffset
         * @param {DOMElement|String} elm  target element
         * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
@@ -2372,15 +2385,51 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Gets the cumulative offset for an element
          *
+         * Returns the top left position of the element on the page
+         *
+         * Requires Ink.Dom.Browser
+         *
          * @function offset
-         * @param {DOMElement|String} elm  target element
-         * @return {Array} Array with offset from the target element to the top/left of the document
+         * @param {DOMElement|String}   elm     Target element
+         * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
          */
-        offset: function(elm) {
-            return [
-                this.offsetLeft(elm),
-                this.offsetTop(elm)
-            ];
+        offset: function(el) {
+            /*jshint boss:true */
+            el = Ink.i(el);
+            var bProp = ['border-left-width', 'border-top-width'];
+            var res = [0, 0];
+            var dRes, bRes, parent, cs;
+            var getPropPx = this._getPropPx;
+
+            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
+
+            do {
+                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
+                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
+
+                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
+                if( InkBrowser.OPERA ){
+                    res[0] += dRes[0];
+                    res[1] += dRes[1];
+                } else {
+                    res[0] += dRes[0] + bRes[0];
+                    res[1] += dRes[1] + bRes[1];
+                }
+                parent = el.offsetParent;
+            } while (el = parent);
+
+            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
+
+            if (InkBrowser.GECKO) {
+                res[0] += bRes[0];
+                res[1] += bRes[1];
+            }
+            else if( !InkBrowser.OPERA ) {
+                res[0] -= bRes[0];
+                res[1] -= bRes[1];
+            }
+
+            return res;
         },
 
         /**
@@ -2416,54 +2465,19 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the top left position of the element on the page
+         * Alias for offset()
          *
          * @function offset2
-         * @param {String|DOMElement} el
-         * @return {Number[2]}
+         * @deprecated Kept for historic reasons. Use offset() instead.
          */
         offset2: function(el) {
-            /*jshint boss:true */
-            el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
-            var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = this._getPropPx;
-
-            var InkBrowser = Ink.getModule('Ink.Dom.Browser',1);
-
-            do {
-                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                if( InkBrowser.OPERA ){
-                    res[0] += dRes[0];
-                    res[1] += dRes[1];
-                } else {
-                    res[0] += dRes[0] + bRes[0];
-                    res[1] += dRes[1] + bRes[1];
-                }
-                parent = el.offsetParent;
-            } while (el = parent);
-
-            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-            if (InkBrowser.GECKO) {
-                res[0] += bRes[0];
-                res[1] += bRes[1];
-            }
-            else if( !InkBrowser.OPERA ) {
-                res[0] -= bRes[0];
-                res[1] -= bRes[1];
-            }
-            
-            return res;
+            return this.offset(el);
         },
 
         /**
          * Verifies the existence of an attribute
          *
-         * @function hasAttribute 
+         * @function hasAttribute
          * @param {Object} elm   target element
          * @param {String} attr  attribute name
          * @return {Boolean} Boolean based on existance of attribute
@@ -2492,7 +2506,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
          */
-        insertTop: function(newElm,targetElm) {
+        insertTop: function(newElm,targetElm) {  // TODO check first child exists
             /*jshint boss:true */
             if (targetElm = this.get(targetElm)) {
                 targetElm.insertBefore(newElm, targetElm.firstChild);
@@ -2550,8 +2564,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Removes all nodes children and adds the text
          *
          * @function setTextContent
-         * @param {DOMNode} node from which to retreive text from. Can be any node type.
-         * @param {String}  text to be appended to the node.
+         * @param {DOMNode} node    node to add the text to. Can be any node type.
+         * @param {String}  text    text to be appended to the node.
          */
         setTextContent: function(node, text){
             node = Ink.i(node);
@@ -2590,7 +2604,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Tells if element is a clickable link
          *
          * @function isLink
-         * @param {DOMNode} node to check if it's link
+         * @param {DOMNode} node    node to check if it's link
          * @return {Boolean}
          */
         isLink: function(element){
@@ -2638,7 +2652,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Get first child in document order of node type 1
          * @function firstElementChild
-         * @param {DOMNode} parent node
+         * @param {DOMNode} elm parent node
          * @return {DOMNode} the element child
          */
         firstElementChild: function(elm){
@@ -2658,7 +2672,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Get last child in document order of node type 1
          * @function lastElementChild
-         * @param {DOMNode} parent node
+         * @param {DOMNode} elm parent node
          * @return {DOMNode} the element child
          */
         lastElementChild: function(elm){
@@ -2677,7 +2691,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Get the first element sibling after the node
-         * 
+         *
          * @function nextElementSibling
          * @param {DOMNode} node  current node
          * @return {DOMNode|Null} the first element sibling after node or null if none is found
@@ -2806,11 +2820,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} the element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
-            /*
-            cloneTo.style.top = this.offsetTop(cloneFrom) + 'px';
-            cloneTo.style.left = this.offsetLeft(cloneFrom) + 'px';
-            */
-            var pos = this.offset2(cloneFrom);
+            var pos = this.offset(cloneFrom);
             cloneTo.style.left = pos[0]+'px';
             cloneTo.style.top = pos[1]+'px';
 
@@ -2835,7 +2845,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Searches up the DOM tree for an element of specified class name
+         * Searches up the DOM tree for an element of specified class name.
+         *
+         * If the target `element` already has the required `className`, it is returned.
          *
          * @function findUpwardsByClass
          * @param {DOMElement}  element
@@ -3029,7 +3041,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Select element on steroids - allows the creation of new values
-         * 
+         *
          * @function fillSelect2
          * @param {DomElement|String} ctn select element which will get filled
          * @param {Object} opts
@@ -3377,12 +3389,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-        * parses and prepends an html string to a container, not destroying its contents
-        *
-        * @function prependHTML
-        * @param {String|DomElement} elm   element
-        * @param {String}            html  markup string
-        */
+         * parses and prepends an html string to a container, not destroying its contents
+         *
+         * @function prependHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
         prependHTML: function(elm, html){
             var temp = document.createElement('div');
             temp.innerHTML = html;
@@ -3391,6 +3403,26 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             for (var i = tempChildren.length - 1; i >= 0; i--){
                 elm.insertBefore(tempChildren[i], first);
                 first = elm.firstChild;
+            }
+        },
+
+        /**
+         * Removes direct children on type text.
+         * Useful to remove nasty layout gaps generated by whitespace on the markup.
+         *
+         * @function removeTextNodeChildren
+         * @param  {DOMElement} el
+         */
+        removeTextNodeChildren: function(el) {
+            var prevEl, toRemove, parent = el;
+            el = el.firstChild;
+            while (el) {
+                toRemove = (el.nodeType === 3);
+                prevEl = el;
+                el = el.nextSibling;
+                if (toRemove) {
+                    parent.removeChild(prevEl);
+                }
             }
         },
 
@@ -3439,10 +3471,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             return this.htmlToFragment.call(this, html);
         },
 
-        _camelCase: function(str) 
+        _camelCase: function(str)
         {
             return str ? str.replace(/-(\w)/g, function (_, $1){
-                    return $1.toUpperCase(); 
+                    return $1.toUpperCase();
             }) : str;
         },
 
@@ -3451,7 +3483,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @function data
          * @param {String|DomElement} selector Element or CSS selector
-         * @return {Object} Object with the data-* properties or empty if none found.
+         * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
         */
         data: function( selector ){
             if( typeof selector !== 'object' && typeof selector !== 'string'){
@@ -3476,8 +3508,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             var dataset = {};
-            // var attributesElements = _element.dataset || _element.attributes || {}; 
-            var attributesElements = _element.attributes || []; 
+            // var attributesElements = _element.dataset || _element.attributes || {};
+            var attributesElements = _element.attributes || [];
             var prop ;
 
             var curAttr, curAttrName, curAttrValue;
@@ -3750,10 +3782,14 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
+     * Navigate up the DOM tree, looking for a tag with the name `elmTagName`.
+     *
+     * If such tag is not found, `document` is returned.
+     *
      * @function findElement
-     * @param {Object}  ev          event object
-     * @param {String}  elmTagName  tag name to find
-     * @param {Boolean} [force]     force the return of the wanted type of tag, or false otherwise
+     * @param {Object}  ev              event object
+     * @param {String}  elmTagName      tag name to find
+     * @param {Boolean} [force=false]   If this is true, never return `document`, and returns `false` instead.
      * @return {DOMElement} the first element which matches given tag name or the document element if the wanted tag is not found
      */
     findElement: function(ev, elmTagName, force)
@@ -3982,6 +4018,21 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
+     * Stops event propagation
+     *
+     * @function stopPropagation
+     * @param {Object} event  event handle
+     */
+    stopPropagation: function(event) {
+        if(event.cancelBubble !== null) {
+            event.cancelBubble = true;
+        }
+        if(event.stopPropagation) {
+            event.stopPropagation();
+        }
+    },
+
+    /**
      * Stops event default behaviour
      *
      * @function stopDefault
@@ -4036,7 +4087,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * @function isLeftClick
      * @param {Object} ev  event object
-     * @return {Boolea} True if there is a left click on the event
+     * @return {Boolean} True if the event is a left mouse click
      */
     isLeftClick: function(ev) {
         if (window.addEventListener) {
@@ -4115,6 +4166,222 @@ return Event;
 });
 
 /**
+ * @module Ink.Dom.FormSerialize
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
+    'use strict';
+    /**
+     * Supports serialization of form data to/from javascript Objects.
+     *
+     * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
+     *
+     * @class Ink.Dom.FormSerialize
+     *
+     */
+    var FormSerialize = {
+
+        /**
+         * Serializes a form into an object, turning field names into keys, and field values into values.
+         *
+         * note: Multi-select and checkboxes with multiple values will yield arrays
+         *
+         * @method serialize
+         * @return {Object} map of fieldName -> String|String[]|Boolean
+         * @param {DomElement|String}   form    form element from which the extraction is to occur
+         *
+         * @example
+         *     <form id="frm">
+         *         <input type="text" name="field1">
+         *         <button type="submit">Submit</button>
+         *     </form>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
+         *             InkEvent.observe('frm', 'submit', function (event) {
+         *                 var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
+         *                 InkEvent.stop(event);
+         *             });
+         *         });
+         *     </script>
+         */
+        serialize: function(form) {
+            form = Ink.i(form);
+            var map = this._getFieldNameInputsMap(form);
+
+            var map2 = {};
+            for (var k in map) if (map.hasOwnProperty(k)) {
+                if(k !== null) {
+                    var tmpK = k.replace(/\[\]$/, '');
+                    map2[tmpK] = this._getValuesOfField( map[k] );
+                } else {
+                    map2[k] = this._getValuesOfField( map[k] );
+                }
+            }
+
+            delete map2['null'];    // this can occur. if so, delete it...
+            return map2;
+        },
+
+
+
+
+        /**
+         * Sets form elements's values with values given from object
+         *
+         * One cannot restore the values of an input with `type="file"` (browser prohibits it)
+         *
+         * @method fillIn 
+         * @param {DomElement|String}   form    form element which is to be populated
+         * @param {Object}              map2    map of fieldName -> String|String[]|Boolean
+         * @example
+         *     <form id="frm">
+         *         <input type="text" name="field1">
+         *         <button type="submit">Submit</button>
+         *     </form>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+         *             var values = {field1: 'CTHULHU'};
+         *             FormSerialize.fillIn('frm', values);
+         *             // At this point the form is pre-filled with the values above.
+         *         });
+         *     </script>
+         */
+        fillIn: function(form, map2) {
+            form = Ink.i(form);
+            var map = this._getFieldNameInputsMap(form);
+            delete map['null']; // this can occur. if so, delete it...
+
+            for (var k in map2) if (map2.hasOwnProperty(k)) {
+                this._setValuesOfField( map[k], map2[k] );
+            }
+        },
+
+
+
+        _getFieldNameInputsMap: function(formEl) {
+            var name, nodeName, el, map = {};
+            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
+                el = formEl.elements[i];
+                name = el.getAttribute('name');
+                nodeName = el.nodeName.toLowerCase();
+                if (nodeName === 'fieldset') {
+                    continue;
+                } else if (map[name] === undefined) {
+                    map[name] = [el];
+                } else {
+                    map[name].push(el);
+                }
+            }
+            return map;
+        },
+
+
+
+        _getValuesOfField: function(fieldInputs) {
+            var nodeName = fieldInputs[0].nodeName.toLowerCase();
+            var type = fieldInputs[0].getAttribute('type');
+            var value = fieldInputs[0].value;
+            var i, f, el, res = [];
+
+            switch(nodeName) {
+                case 'select':
+                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
+                        el = fieldInputs[0].options[i];
+                        if (el.selected) {
+                            res.push(    el.value    );
+                        }
+                    }
+                    return ( (fieldInputs[0].getAttribute('multiple')) ?  res : res[0] );
+
+                case 'textarea':
+                case 'input':
+                    if (type === 'checkbox' || type === 'radio') {
+                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                            el = fieldInputs[i];
+                            if (el.checked) {
+                                res.push(    el.value    );
+                            }
+                        }
+                        if (type === 'checkbox') {
+                            return (fieldInputs.length > 1) ? res : !!(res.length);
+                        }
+                        return (fieldInputs.length > 1) ? res[0] : !!(res.length);    // on radios only 1 option is selected at most
+                    }
+                    else {
+                        //if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if(fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) {
+                            var tmpValues = [];
+                            for(i=0, f = fieldInputs.length; i < f; ++i) {
+                                tmpValues.push(fieldInputs[i].value);
+                            }
+                            return tmpValues;
+                        } else {
+                            return value;
+                        }
+                    }
+                    break;    // to keep JSHint happy...  (reply to this comment by gamboa: - ROTFL)
+
+                default:
+                    //throw 'Unsupported element: "' + nodeName + '"!';
+                    return undefined;
+            }
+        },
+
+
+
+        _valInArray: function(val, arr) {
+            for (var i = 0, f = arr.length; i < f; ++i) {
+                if (arr[i] === val) {    return true;    }
+            }
+            return false;
+        },
+
+
+
+        _setValuesOfField: function(fieldInputs, fieldValues) {
+            if (!fieldInputs) {    return;    }
+            var nodeName = fieldInputs[0].nodeName.toLowerCase();
+            var type = fieldInputs[0].getAttribute('type');
+            var i, f, el;
+
+            switch(nodeName) {
+                case 'select':
+                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
+                        el = fieldInputs[0].options[i];
+                        el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
+                    }
+                    break;
+
+                case 'textarea':
+                case 'input':
+                    if (type === 'checkbox' || type === 'radio') {
+                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                            el = fieldInputs[i];
+                            //el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
+                            el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : (fieldInputs.length > 1 ? el.value === fieldValues : !!fieldValues);
+                        }
+                    }
+                    else {
+                        if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if (type !== 'file') {
+                            fieldInputs[0].value = fieldValues;
+                        }
+                    }
+                    break;
+
+                default:
+                    throw 'Unsupported element: "' + nodeName + '"!';
+            }
+        }
+    };
+
+    return FormSerialize;
+});
+
+/**
  * @module Ink.Dom.Loaded_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -4134,25 +4401,25 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
     var Loaded = {
 
         /**
-         * Functions queue.
+         * Callbacks and their contexts. Array of 2-arrays.
          *
-         * @property _cbQueue
-         * @type {Array}
+         * []
+         *
+         * @attribute _contexts Array
          * @private
-         * @static
-         * @readOnly
+         * 
          */
-        _cbQueue: [], // Callbacks' queue
+        _contexts: [], // Callbacks' queue
 
         /**
          * Adds a new function that will be invoked once the document is ready
          *
          * @method run
-         * @param {Object}   [win] Window object to attach/add the event
-         * @param {Function} fn  Callback function to be run after the page is loaded
+         * @param {Object}   [win=window]   Window object to attach/add the event
+         * @param {Function} fn             Callback function to be run after the page is loaded
          * @public
          * @example
-         *     Ink.requireModules(['Ink.Dom.Loaded_1'],function(Loaded){
+         *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
          *         Loaded.run(function(){
          *             console.log('This will run when the page/document is ready/loaded');
          *         });
@@ -4164,46 +4431,65 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
                 win = window;
             }
 
-            this._win  = win;
-            this._doc  = win.document;
-            this._root = this._doc.documentElement;
-            this._done = false;
-            this._top  = true;
+            var context;
 
-            this._handlers = {
-                checkState: Ink.bindEvent(this._checkState, this),
-                poll:       Ink.bind(this._poll, this)
-            };
-
-            var   ael = this._doc.addEventListener;
-            this._add = ael ? 'addEventListener' : 'attachEvent';
-            this._rem = ael ? 'removeEventListener' : 'detachEvent';
-            this._pre = ael ? '' : 'on';
-            this._det = ael ? 'DOMContentLoaded' : 'onreadystatechange';
-            this._wet = this._pre + 'load';
-
-            var csf = this._handlers.checkState;
-
-            if (this._doc.readyState === 'complete'){
-                fn.call(this._win, 'lazy');
+            for (var i = 0, len = this._contexts.length; i < len; i++) {
+                if (this._contexts[i][0] === win) {
+                    context = this._contexts[i][1];
+                    break;
+                }
             }
-            else {
-                this._cbQueue.push(fn);
+            if (!context) {
+                context = {
+                    cbQueue: [],
+                    win: win,
+                    doc: win.document,
+                    root: win.document.documentElement,
+                    done: false,
+                    top: true
+                };
+                context.handlers = {
+                    checkState: Ink.bindEvent(this._checkState, this, context),
+                    poll: Ink.bind(this._poll, this, context)
+                };
+                this._contexts.push(
+                    [win, context]  // Javascript Objects cannot map different windows to
+                                    // different values.
+                );
+            }
 
-                this._doc[this._add]( this._det , csf );
-                this._win[this._add]( this._wet , csf );
+            var   ael = context.doc.addEventListener;
+            context.add = ael ? 'addEventListener' : 'attachEvent';
+            context.rem = ael ? 'removeEventListener' : 'detachEvent';
+            context.pre = ael ? '' : 'on';
+            context.det = ael ? 'DOMContentLoaded' : 'onreadystatechange';
+            context.wet = context.pre + 'load';
+
+            var csf = context.handlers.checkState;
+            var alreadyLoaded = (
+                context.doc.readyState === 'complete' &&
+                context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
+
+            if (alreadyLoaded){
+                setTimeout(Ink.bind(function () {
+                    fn.call(context.win, 'lazy');
+                }, this), 0);
+            } else {
+                context.cbQueue.push(fn);
+
+                context.doc[context.add]( context.det , csf );
+                context.win[context.add]( context.wet , csf );
 
                 var frameElement = 1;
                 try{
-                    frameElement = this._win.frameElement;
+                    frameElement = context.win.frameElement;
                 } catch(e) {}
-
-                if ( !ael && this._root.doScroll ) { // IE HACK
+                if ( !ael && context.root && context.root.doScroll ) { // IE HACK
                     try {
-                        this._top = !frameElement;
+                        context.top = !frameElement;
                     } catch(e) { }
-                    if (this._top) {
-                        this._poll();
+                    if (context.top) {
+                        this._poll(context);
                     }
                 }
             }
@@ -4216,13 +4502,13 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @param {Event} event Triggered event
          * @private
          */
-        _checkState: function(event) {
-            if ( !event || (event.type === 'readystatechange' && this._doc.readyState !== 'complete')) {
+        _checkState: function(event, context) {
+            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
                 return;
             }
-            var where = (event.type === 'load') ? this._win : this._doc;
-            where[this._rem](this._pre+event.type, this._handlers.checkState, false);
-            this._ready();
+            var where = (event.type === 'load') ? context.win : context.doc;
+            where[context.rem](context.pre+event.type, context.handlers.checkState, false);
+            this._ready(context);
         },
 
         /**
@@ -4236,13 +4522,13 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          *
          * function _poll
          */
-        _poll: function() {
+        _poll: function(context) {
             try {
-                this._root.doScroll('left');
+                context.root.doScroll('left');
             } catch(e) {
-                return setTimeout(this._handlers.poll, 50);
+                return setTimeout(context.handlers.poll, 50);
             }
-            this._ready();
+            this._ready(context);
         },
 
         /**
@@ -4251,13 +4537,13 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @method _ready
          * @private
          */
-        _ready: function() {
-            if (!this._done) {
-                this._done = true;
-                for (var i = 0; i < this._cbQueue.length; ++i) {
-                    this._cbQueue[i].call(this._win);
+        _ready: function(context) {
+            if (!context.done) {
+                context.done = true;
+                for (var i = 0; i < context.cbQueue.length; ++i) {
+                    context.cbQueue[i].call(context.win);
                 }
-                this._cbQueue = [];
+                context.cbQueue = [];
             }
         }
     };
@@ -6188,23 +6474,23 @@ support.detectDuplicates = hasDuplicate;
 // EXPOSE
 
 /**
- * Alias for the Sizzle search engine
+ * Alias for the Sizzle selector engine
  *
  * @method select
  * @param {String} selector CSS selector to search for elements
  * @param {DOMElement} [context] By default the search is done in the document element. However, you can specify an element as search context
  * @param {Array} [results] By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
  * @param {Object} [seed]
- * @return {Array} Array of DOM Elements as results
+ * @return {Array} Array of resulting DOM Elements
  */
 
 /**
- * Retorna elementos que façam match com o 2º argumento da função
+ * Returns elements which match with the second argument to the function.
  *
  * @method matches
  * @param {String} selector CSS selector to search for elements
  * @param {Array} matches Elements to be 'matched' with
- * @result {Array} Elements that matched
+ * @return {Array} Elements that matched
  */
 
 return {
@@ -6299,7 +6585,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         CHROME: false,
 
         /**
-         * The specific browser model. False if it is unable to get it.
+         * The specific browser model. False if it is unavailable.
          *
          * @property model
          * @type {Boolean|String}
@@ -6309,7 +6595,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         model: false,
 
         /**
-         * The browser version. False if it is unable to get it.
+         * The browser version. False if it is unavailable.
          *
          * @property version
          * @type {Boolean|String}
@@ -6319,7 +6605,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         version: false,
 
         /**
-         * The user agent string. False if it is unable to get it.
+         * The user agent string. False if it is unavailable.
          *
          * @property userAgent
          * @type {Boolean|String}
@@ -6329,7 +6615,9 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         userAgent: false,
 
         /**
-         * Initialization function for the Browser object
+         * Initialization function for the Browser object.
+         *
+         * Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.
          *
          * @method init
          * @public
@@ -6342,7 +6630,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Stores window dimensions
+         * Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.
          *
          * @method setDimensions
          * @public
@@ -6367,7 +6655,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Stores the referrer
+         * Stores the referrer. Called automatically when this module is loaded.
          *
          * @method setReferrer
          * @public
@@ -6378,7 +6666,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Detects the browser and stores the found properties
+         * Detects the browser and stores the found properties. Called automatically when this module is loaded.
          *
          * @method detectBrowser
          * @public
@@ -6455,10 +6743,27 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Debug function to help checking values.
+         * Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.
          *
          * @method debug
          * @public
+         *
+         * @example
+         *  
+         *  The following code
+         *
+         *      Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
+         *          Browser.debug();
+         *      });
+         *
+         *  Alerts (On Firefox 22):
+         *
+         *      known browsers: (ie, gecko, opera, safari, konqueror) 
+         *      false,true,false,false,false
+         *      model -> firefox
+         *      version -> 22.0
+         *      
+         *      original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
          */
         debug: function()
         {
@@ -6478,6 +6783,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 
     return Browser;
 });
+
 /**
  * @module Ink.Util.Url_1
  * @author inkdev AT sapo.pt
@@ -7054,7 +7360,7 @@ Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
         _onUp: function(ev) {
             if (!this._isOn || event.changedTouches.length !== 1) { return; }
 
-            if( this._options.stopEvents === true ){
+            if (this._options.stopEvents) {
                 Event.stop(ev);
             }
             ev = ev.changedTouches[0];   // TODO SHOULD CHECK IT IS THE SAME TOUCH
@@ -7078,6 +7384,7 @@ Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
             if (o.forceAxis   && axis !== o.forceAxis) {   return; }
 
             var O = {
+                upEvent:   ev,
                 elementId: this._element.id,
                 duration:  dt,
                 dr:        dr,
@@ -7773,6 +8080,365 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
     return InkUtilString;
 
+});
+
+/**
+ * @module Ink.Util.I18n_1
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Util.I18n', '1', [], function () {
+    'use strict';
+
+    /**
+     * Creates a new internationalization helper object
+     *
+     * @class Ink.Util.I18n
+     * @constructor
+     *
+     * @param {Object} langObject object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
+     *     @param {Object} langObject.(dictionaries...) 
+     * @param {String} [langCode='pt_PT'] language code of the target language
+     * @param {Boolean} [translationStringsInRoot=false] indicates whether translation strings are in the root of langObject. This is turned off by default.
+     *
+     * @example
+     *      var dictionaries = {    // This could come from a JSONP request from your server
+     *          'pt_PT': {
+     *              'hello': 'olá',
+     *              'me': 'eu',
+     *              'i have a {%s} for you': 'tenho um {%s} para ti'
+     *          },
+     *          'pt_BR': {
+     *              'hello': 'oi',
+     *              'me': 'eu',
+     *              'i have a {%s} for you': 'tenho um {%s} para você'
+     *          }
+     *      };
+     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
+     *          var i18n = new I18n(dictionaries, 'pt_PT');
+     *          i18n.text('hello');  // returns 'olá'
+     *          i18n.text('i have a {%s} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
+     *          
+     *          i18n.setLang('pt_BR');  // Changes language. pt_BR dictionary is loaded
+     *          i18n.text('hello');  // returns 'oi'
+     *
+     *          i18n.setLang('en_US');  // Missing language.
+     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
+     *      });
+     */
+    function I18n (langObject, langCode, translationStringsInRoot) {
+        this._init(langObject, langCode, translationStringsInRoot);
+    }
+
+    function makeObj (key, val) { // To make an object from an arbitrary key and a value
+        var ret = {};
+        ret[key] = val;
+        return ret;
+    }
+
+    I18n.prototype = {
+        _init: function (langObject, langCode, translationStringsInRoot) {
+            this._testMode = false;
+            this._lang = langCode || 'pt_PT';
+            this._strings = {};
+            this._otherDicts = [];
+            this.append(langObject || {}, translationStringsInRoot);  // Add the translation strings
+        },
+        /**
+         * Adds translation strings for this helper to use.
+         *
+         * @method append
+         * @param {Object} baseLangObject object containing language objects identified by their language code
+         * @param {Boolean} [translationStringsInRoot=false] indicates whether translation strings are in the root of langObject. This is turned off by default.
+         *
+         * @example
+         *     var i18n = new I18n({}, 'pt_PT');
+         *     i18n.append({'pt_PT': {
+         *         'sfraggles': 'braggles'
+         *     }});
+         *     equal(i18n.text('sfraggles'), 'braggles');
+         */
+        append: function (langObject, translationStringsInRoot) {
+            if (translationStringsInRoot) {
+                langObject = makeObj(this._lang, langObject);
+            }
+            this._otherDicts.push(langObject);
+            Ink.extendObj(this._strings, langObject[this._lang]);
+        },
+        /**
+         * Get the language code
+         *
+         * @returns {String} the language code for this instance
+         * @method {String} getLang
+         */
+        getLang: function () {return this._lang;},
+        /**
+         * Set the language. If there are more dictionaries available in cache, they will be loaded.
+         *
+         * @method  setLang
+         * @param   lang    {String} Language code to set this instance to.
+         */
+        setLang: function (lang) {
+            if (this._lang === lang) {
+                return;
+            }
+            this._lang = lang;
+            this._strings = {};
+            for (var i = 0, len = this._otherDicts.length; i < len; i++) {
+                Ink.extendObj(this._strings,
+                    this._otherDicts[i][lang] || {});
+            }
+        },
+        /**
+         * Sets or unsets test mode. In test mode, unknown strings are wrapped
+         * in `[ ... ]`. This is useful for debugging your application and
+         * making sure all your translation keys are in place.
+         *
+         * @method testMode
+         * @param {Boolean} toggle boolean value to set the test mode to.
+         */
+        testMode: function (toggle) {
+            this._testMode = toggle || false;
+        },
+        /**
+         * Returns an alias to `text()`, for convenience. The resulting function is
+         * traditionally assigned to "_".
+         *
+         * @method alias
+         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         'pt_PT': {
+         *             'hi': 'olá',
+         *             '{%s} day': '{%s} dia',
+         *             '{%s} days': '{%s} dias',
+         *             '_ordinals': {
+         *                 'default': 'º'
+         *             }
+         *         }
+         *     }, 'pt_PT');
+         *     var _ = i18n.alias();
+         *     equal(_('hi'), 'olá');
+         *     equal(_('{%s} days', 3), '3 dias');
+         *     equal(_.ntext('{%s} day', '{%s} days', 2), '2 dias');
+         *     equal(_.ntext('{%s} day', '{%s} days', 1), '1 dia');
+         *     equal(_.ordinal(3), 'º');
+         */
+        alias: function () {
+            var ret = Ink.bind(I18n.prototype.text, this);
+            ret.ntext = Ink.bind(I18n.prototype.ntext, this);
+            ret.append = Ink.bind(I18n.prototype.append, this);
+            ret.ordinal = Ink.bind(I18n.prototype.ordinal, this);
+            ret.testMode = Ink.bind(I18n.prototype.testMode, this);
+            return ret;
+        },
+        /**
+         * Given a translation key, return a translated string, with replaced parameters.
+         * When a translated string is not available, the original string is returned unchanged.
+         *
+         * @method {String} text
+         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
+         * @param {optional String} arg1 replacement #1 (replaces first {%s} and all {%s:1})
+         * @param {optional String} arg2 replacement #2 (replaces second {%s} and all {%s:2})
+         * @param {optional String} argn... replacement #n (replaces nth {%s} and all {%s:n})
+         *
+         * @example
+         *     _('Gosto muito de {%s} e o céu é {%s}.', 'carros', 'azul');
+         *     // returns 'Gosto muito de carros e o céu é azul.'
+         *
+         * @example
+         *     _('O {%s:1} é {%s:2} como {%s:2} é a cor do {%s:3}.', 'carro', 'azul', 'FCP');
+         *     // returns 'O carro é azul como azul é o FCP.'
+         */
+        text: function (str /*, replacements...*/) {
+            if (typeof str !== 'string') {return;} // Backwards-compat
+
+            var original, res;
+            if (!this._strings) {
+                original = str;
+            }
+            else {
+                res = this._strings[str];
+                original = (typeof res === 'undefined') ? (this._testMode ? '[' + str + ']' : str) : res;
+            }
+
+            var re = false,
+                i,
+                l = arguments.length;
+
+            if (l > 1) {
+                for (i = 1; i < l; ++i) {
+                    if (typeof arguments[i] !== 'undefined') {
+                        re = new RegExp('{%s:' + i + '}', '');
+                        if (re.test(original)) {
+                            original = original.replace(re, arguments[i]);
+                        }
+                        else {
+                            original = original.replace(/\{%s\}/, arguments[i]);
+                        }
+                        re = null;
+                        re = false;
+                    }
+                }
+            }
+            original = original.replace(/\{%s(\:\d*)?\}/ig, '');
+
+            return original;
+        },
+        /**
+         * Given a singular string, a plural string, and a number, translates
+         * either the singular or plural string.
+         *
+         * @method ntext
+         * @return {String}
+         *
+         * @param {String} strSin   word to use when count is 1
+         * @param {String} strPlur  word to use otherwise
+         * @param {Number} count    number which defines which word to use
+         * @param [...]             extra arguments, to be passed to `text()`
+         *
+         * @example
+         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
+         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
+         * 
+         * @example
+         *     // Extra arguments are passed to text()
+         *     i18n.ntext('{%s} platypus', '{%s} platypuses', 1, 1); // returns '1 ornitorrinco'
+         *     i18n.ntext('{%s} platypus', '{%s} platypuses', 2, 2); // returns '2 ornitorrincos'
+         */
+        ntext: function(strSin, strPlur, count) {
+            var argsForText = [].slice.call(arguments, 2);
+            if (count === 1) {
+                return this.text.apply(this, [strSin].concat(argsForText));
+            } else {
+                return this.text.apply(this, [strPlur].concat(argsForText));
+            }
+        },
+        /**
+         * Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
+         *
+         * This works by using transforms (in the form of Objects or Functions) passed into the
+         * function or found in the special key `_ordinals` in the active language dictionary.
+         *
+         * @method ordinal
+         *
+         * @param {Number}          num             Input number
+         * 
+         * @param {Object}          [options={}]
+         *
+         *    Maps for translating. Each of these options' fallback is found in the current
+         *    language's dictionary. The lookup order is the following:
+         *   
+         *        1. `exceptions`
+         *        2. `byLastDigit`
+         *        3. `default`
+         *   
+         *    Each of these may be either an `Object` or a `Function`. If it's a function, it
+         *    is called, and if the function returns a string, that is used. If it's an object,
+         *    the property is looked up using `[...]`. If what is found is a string, it is used.
+         *
+         * @param {Object|Function} [options.byLastDigit={}]
+         *    If the language requires the last digit to be considered, mappings of last digits
+         *    to ordinal suffixes can be created here.
+         *
+         * @param {Object|Function} [options.exceptions={}]
+         *    Map unique, special cases to their ordinal suffixes.
+         *
+         * @returns {String}        Ordinal suffix for `num`.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         fr: {  // 1er, 2e, 3e, 4e, ...
+         *             _ordinal: {  // The _ordinals key is special.
+         *                 'default': "e", // Usually the suffix is "e" in french...
+         *                 exceptions: {
+         *                     1: "er"   // ... Except for the number one.
+         *                 }
+         *             }
+         *         },
+         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
+         *             _ordinal: {
+         *                 'default': "th",// Usually the digit is "th" in english...
+         *                 byLastDigit: {
+         *                     1: "st",  // When the last digit is 1, use "th"...
+         *                     2: "nd",  // When the last digit is 2, use "nd"...
+         *                     3: "rd"   // When the last digit is 3, use "rd"...
+         *                 },
+         *                 exceptions: { // But these numbers are special
+         *                     0: "",
+         *                     11: "th",
+         *                     12: "th",
+         *                     13: "th"
+         *                 }
+         *             }
+         *         }
+         *     });
+         *
+         *     i18n.setLang('fr');
+         *     i18n.ordinal(1);    // return 'er'
+         *     i18n.ordinal(2);    // return 'e'
+         *     i18n.ordinal(11);   // return 'e'
+         *
+         *     i18n.setLang('en');
+         *     i18n.ordinal(1);    // returns 'st'
+         *     i18n.ordinal(2);    // returns 'nd'
+         *     i18n.ordinal(12);   // returns 'th'
+         *     i18n.ordinal(22);   // returns 'nd'
+         *     i18n.ordinal(3);    // returns 'rd'
+         *     i18n.ordinal(4);    // returns 'th'
+         *     i18n.ordinal(5);    // returns 'th'
+         *      
+         *     // Examples of passing in the options directly
+         *     var ptOrdinals = {
+         *         'default': 'º'
+         *     }
+         *     var i18n2 = new I18n();
+         *     i18n2.ordinal(1, ptOrdinals); // Returns 'º'
+         *     i18n2.ordinal(4, ptOrdinals); // Returns 'º'
+         *
+         **/
+        ordinal: function (num, options) {
+            if (typeof num === 'undefined') {
+                return '';
+            }
+            var numStr = num.toString();
+            options = options || {};
+            var fromDict = this._strings._ordinals || {};
+
+            var inCaseOptionsIsAFunction = v(options, num) || v(fromDict, num);
+            if (inCaseOptionsIsAFunction) {
+                return inCaseOptionsIsAFunction;
+            }
+
+            function v(val, number) {
+                number = typeof number === 'undefined' ? num : number;
+                if (typeof val === 'undefined') {
+                    return;
+                } else if (typeof val === 'function') {
+                    try {
+                        var ret = val(number);
+                        return typeof ret === 'string' ? ret : null;
+                    } catch(e) {}
+                } else if (typeof val === 'object') {
+                    return val[number];
+                } else if (typeof val === 'string') {
+                    // Useful for the default option, or to define a global _ordinals rule for languages which don't need it.
+                    return val;
+                }
+            }
+            function lookup (obj) {
+                return (
+                    v(obj.exceptions, num) ||
+                    v(obj.byLastDigit, +(numStr[numStr.length - 1])) ||
+                    v(obj.default, num) ||
+                    null);
+            }
+            return lookup(options) || lookup(fromDict) || '';
+        }
+    };
+    
+    return I18n;
 });
 
 /**
@@ -8936,6 +9602,320 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 });
 
 /**
+ * @module Ink.Util.BinPack_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Util.BinPack', '1', [], function() {
+
+    'use strict';
+
+    /*jshint boss:true */
+
+    // https://github.com/jakesgordon/bin-packing/
+
+    /*
+        Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+    */
+
+
+
+    var Packer = function(w, h) {
+        this.init(w, h);
+    };
+
+    Packer.prototype = {
+
+        init: function(w, h) {
+            this.root = { x: 0, y: 0, w: w, h: h };
+        },
+
+        fit: function(blocks) {
+            var n, node, block;
+            for (n = 0; n < blocks.length; ++n) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
+                }
+            }
+        },
+
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
+            }
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        },
+
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        }
+
+    };
+
+
+
+    var GrowingPacker = function() {};
+
+    GrowingPacker.prototype = {
+
+        fit: function(blocks) {
+            var n, node, block, len = blocks.length;
+            var w = len > 0 ? blocks[0].w : 0;
+            var h = len > 0 ? blocks[0].h : 0;
+            this.root = { x: 0, y: 0, w: w, h: h };
+            for (n = 0; n < len ; n++) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
+                }
+                else {
+                    block.fit = this.growNode(block.w, block.h);
+                }
+            }
+        },
+
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
+            }
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        },
+
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        },
+
+        growNode: function(w, h) {
+            var canGrowDown  = (w <= this.root.w);
+            var canGrowRight = (h <= this.root.h);
+
+            var shouldGrowRight = canGrowRight && (this.root.h >= (this.root.w + w)); // attempt to keep square-ish by growing right when height is much greater than width
+            var shouldGrowDown  = canGrowDown  && (this.root.w >= (this.root.h + h)); // attempt to keep square-ish by growing down  when width  is much greater than height
+
+            if (shouldGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (shouldGrowDown) {
+                return this.growDown(w, h);
+            }
+            else if (canGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (canGrowDown) {
+                return this.growDown(w, h);
+            }
+            else {
+                return null; // need to ensure sensible root starting size to avoid this happening
+            }
+        },
+
+        growRight: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w + w,
+                h: this.root.h,
+                down: this.root,
+                right: { x: this.root.w, y: 0, w: w, h: this.root.h }
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        },
+
+        growDown: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w,
+                h: this.root.h + h,
+                down:  { x: 0, y: this.root.h, w: this.root.w, h: h },
+                right: this.root
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        }
+
+    };
+
+
+
+    var sorts = {
+        random:  function() { return Math.random() - 0.5; },
+        w:       function(a, b) { return b.w - a.w; },
+        h:       function(a, b) { return b.h - a.h; },
+        a:       function(a, b) { return b.area - a.area; },
+        max:     function(a, b) { return Math.max(b.w, b.h) - Math.max(a.w, a.h); },
+        min:     function(a, b) { return Math.min(b.w, b.h) - Math.min(a.w, a.h); },
+        height:  function(a, b) { return sorts.msort(a, b, ['h', 'w']);               },
+        width:   function(a, b) { return sorts.msort(a, b, ['w', 'h']);               },
+        area:    function(a, b) { return sorts.msort(a, b, ['a', 'h', 'w']);          },
+        maxside: function(a, b) { return sorts.msort(a, b, ['max', 'min', 'h', 'w']); },
+        msort:   function(a, b, criteria) { /* sort by multiple criteria */
+            var diff, n;
+            for (n = 0; n < criteria.length; ++n) {
+                diff = sorts[ criteria[n] ](a, b);
+                if (diff !== 0) {
+                    return diff;
+                }
+            }
+            return 0;
+        }
+    };
+
+
+
+    // end of Jake's code
+
+
+
+    // aux, used to display blocks in unfitted property
+    var toString = function() {
+      return [this.w, ' x ', this.h].join('');
+    };
+
+
+
+    /**
+     * Binary Packing algorithm implementation
+     *
+     * Based on the work of Jake Gordon
+     *
+     * see https://github.com/jakesgordon/bin-packing/
+     *
+     * @class Ink.Util.BinPack
+     * @version 1
+     * @static
+     */
+    var BinPack = {
+
+        /**
+        * @function binPack
+        * @param {Object}      o              options
+        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
+        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
+        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
+        * @return {Object}
+        *     * {Number[2]} dimensions - resulted container size,
+        *     * {Number}    filled     - filled ratio,
+        *     * {Object[]}  fitted,
+        *     * {Object[]}  unfitted,
+        *     * {Object[]}  blocks
+        * @static
+        */
+        binPack: function(o) {
+            var i, f, bl;
+
+
+
+            // calculate area if not there already
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (! ('area' in bl) ) {
+                    bl.area = bl.w * bl.h;
+                }
+            }
+
+
+
+            // apply algorithm
+            var packer = o.dimensions ? new Packer(o.dimensions[0], o.dimensions[1]) : new GrowingPacker();
+
+            if (!o.sorter) { o.sorter = 'maxside'; }
+
+            o.blocks.sort( sorts[ o.sorter ] );
+
+            packer.fit(o.blocks);
+
+            var dims2 = [packer.root.w, packer.root.h];
+
+
+
+            // layout is done here, generating report data...
+            var fitted   = [];
+            var unfitted = [];
+
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (bl.fit) {
+                    fitted.push(bl);
+                }
+                else {
+                    bl.toString = toString; // TO AID SERIALIZATION
+                    unfitted.push(bl);
+                }
+            }
+
+            var area = dims2[0] * dims2[1];
+            var fit = 0;
+            for (i = 0, f = fitted.length; i < f; ++i) {
+                bl = fitted[i];
+                fit += bl.area;
+            }
+
+            return {
+                dimensions: dims2,
+                filled:     fit / area,
+                blocks:     o.blocks,
+                fitted:     fitted,
+                unfitted:   unfitted
+            };
+        }
+    };
+
+
+
+    return BinPack;
+
+});
+
+/**
  * @module Ink.Util.Array_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -9081,7 +10061,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Runs a functions through each of the elements of an array
+         * Runs a function through each of the elements of an array
          *
          * @method each
          * @param {Array} arr Array to be cycled/iterated
@@ -9215,7 +10195,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          *         testArray.myMethod = function(){
          *             console.log('stuff');
          *         }
-         *         
+         *
          *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
          *     });
          */
@@ -10785,746 +11765,6 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 });
 
 /**
- * @module Ink.UI.Modal_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * @class Ink.UI.Modal
-     * @constructor
-     * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
-     *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
-     *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
-     *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
-     *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
-     *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
-     *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
-     *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
-     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed.
-     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
-     *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
-     *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
-     *
-     * @example
-     *      <div class="ink-shade fade">
-     *          <div id="test" class="ink-modal fade" data-trigger="#bModal" data-width="800px" data-height="400px">
-     *              <div class="modal-header">
-     *                  <button class="modal-close ink-dismiss"></button>
-     *                  <h5>Modal windows can have headers</h5>
-     *              </div>
-     *              <div class="modal-body" id="modalContent">
-     *                  <h3>Please confirm your previous choice</h3>
-     *                  <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
-     *                  <p>
-     *                      <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
-     *                  </p>
-     *                  <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
-     *                  <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
-     *              </div>
-     *              <div class="modal-footer">
-     *                  <div class="push-right">
-     *                      <button class="ink-button info">Confirm</button>
-     *                      <button class="ink-button caution ink-dismiss">Cancel</button>
-     *                  </div>
-     *              </div>
-     *          </div>
-     *      </div>
-     *      <a href="#" id="bModal">Open modal</a>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
-     *              var modalElement = Ink.s('#test');
-     *              var modalObj = new Modal( modalElement );
-     *          });
-     *      </script>
-     */
-    var Modal = function(selector, options) {
-
-        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
-            throw 'Invalid Modal selector';
-        } else if(typeof selector === 'string'){
-            if( selector !== '' ){
-                this._element = Selector.select(selector);
-                if( this._element.length === 0 ){
-                    /**
-                     * From a developer's perspective this should be like it is...
-                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
-                     */
-                    throw 'The Modal selector has not returned any elements';
-                } else {
-                    this._element = this._element[0];
-                }
-            }
-        } else if( !!selector ){
-            this._element = selector;
-        }
-
-        this._options = {
-            /**
-             * Width, height and markup really optional, as they can be obtained by the element
-             */
-            width:        undefined,
-            height:       undefined,
-
-            /**
-             * To add extra classes
-             */
-            shadeClass: undefined,
-            modalClass: undefined,
-
-            /**
-             * Optional trigger properties
-             */
-            trigger:      undefined,
-            triggerEvent: 'click',
-
-            /**
-             * Remaining options
-             */
-            markup:       undefined,
-            onShow:       undefined,
-            onDismiss:    undefined,
-            closeOnClick: false,
-            responsive:    true,
-            disableScroll: true
-        };
-
-
-        this._handlers = {
-            click:   Ink.bindEvent(this._onClick, this),
-            keyDown: Ink.bindEvent(this._onKeyDown, this),
-            resize:  Ink.bindEvent(this._onResize, this)
-        };
-
-        this._wasDismissed = false;
-
-        /**
-         * Modal Markup
-         */
-        if( this._element ){
-            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
-        } else {
-            this._markupMode = false;
-        }
-
-
-
-
-        if( !this._markupMode ){
-
-
-            this._modalShadow      = document.createElement('div');
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._modalDiv         = document.createElement('div');
-            this._modalDivStyle    = this._modalDiv.style;
-
-            if( !!this._element ){
-                this._options.markup = this._element.innerHTML;
-            }
-
-            /**
-             * Not in full markup mode, let's set the classes and css configurations
-             */
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal' );
-            Css.addClassName( this._modalDiv,'ink-space' );
-
-            /**
-             * Applying the main css styles
-             */
-            // this._modalDivStyle.position = 'absolute';
-            this._modalShadow.appendChild( this._modalDiv);
-            document.body.appendChild( this._modalShadow );
-        } else {
-            this._modalDiv         = this._element;
-            this._modalDivStyle    = this._modalDiv.style;
-            this._modalShadow      = this._modalDiv.parentNode;
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-            if( !this._contentContainer.length ){
-                throw 'Missing div with class "modal-body"';
-            }
-
-            this._contentContainer = this._contentContainer[0];
-            this._options.markup = this._contentContainer.innerHTML;
-
-            /**
-             * First, will handle the least important: The dataset
-             */
-            this._options = Ink.extendObj(this._options,Element.data(this._element));
-
-        }
-
-        /**
-         * Now, the most important, the initialization options
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( !this._markupMode ){
-            this.setContentMarkup(this._options.markup);
-        }
-
-        if( typeof this._options.shadeClass === 'string' ){
-
-            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalShadow, item.trim() );
-            }, this));
-        }
-
-        if( typeof this._options.modalClass === 'string' ){
-            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalDiv, item.trim() );
-            }, this));
-        }
-
-        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
-            var triggerElement,i;
-            if( typeof this._options.trigger === 'string' ){
-                triggerElement = Selector.select( this._options.trigger );
-                if( triggerElement.length > 0 ){
-                    for( i=0; i<triggerElement.length; i++ ){
-                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this._init, this) );
-                    }
-                }
-            }
-        } else {
-            this._init();
-        }
-    };
-
-    Modal.prototype = {
-
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @param {Event} [event] In case its fired by the trigger.
-         * @private
-         */
-        _init: function(event) {
-
-            if( event ){ Event.stop(event); }
-
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
-
-            this._resizeTimeout    = null;
-
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
-            setTimeout(Ink.bind(function(){
-                Css.addClassName( this._modalShadow,'visible' );
-                Css.addClassName( this._modalDiv,'visible' );
-            }, this),100);
-
-            /**
-             * Fallback to the old one
-             */
-            this._contentElement = this._modalDiv;
-            this._shadeElement   = this._modalShadow;
-
-            /**
-             * Setting the content of the modal
-             */
-            this.setContentMarkup( this._options.markup );
-
-            /**
-             * If any size has been user-defined, let's set them as max-width and max-height
-             */
-            if( typeof this._options.width !== 'undefined' ){
-                this._modalDivStyle.width = this._options.width;
-                if( this._options.width.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
-            }
-
-            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
-                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
-            }
-
-            if( typeof this._options.height !== 'undefined' ){
-                this._modalDivStyle.height = this._options.height;
-                if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
-            }
-
-            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
-                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
-            }
-
-            this.originalStatus = {
-                viewportHeight:     parseInt(elem.clientHeight,10),
-                viewportWidth:      parseInt(elem.clientWidth,10),
-                width:              parseInt(this._modalDivStyle.maxWidth,10),
-                height:             parseInt(this._modalDivStyle.maxHeight,10)
-            };
-
-            /**
-             * Let's 'resize' it:
-             */
-            if(this._options.responsive) {
-                this._onResize(true);
-                Event.observe( window,'resize',this._handlers.resize );
-            } else {
-                this._resizeContainer();
-                this._reposition();
-            }
-
-            if (this._options.onShow) {
-                this._options.onShow(this);
-            }
-
-            if(this._options.disableScroll) {
-                this._disableScroll();
-            }
-
-            // subscribe events
-            Event.observe(this._shadeElement, 'click',   this._handlers.click);
-            Event.observe(document,           'keydown', this._handlers.keyDown);
-
-            Aux.registerInstance(this, this._shadeElement, 'modal');
-        },
-
-        /**
-         * Responsible for repositioning the modal
-         * 
-         * @method _reposition
-         * @private
-         */
-        _reposition: function(){
-
-            this._modalDivStyle.top = this._modalDivStyle.left = '50%';
-
-            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
-        },
-
-        /**
-         * Responsible for resizing the modal
-         * 
-         * @method _onResize
-         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
-         * @private
-         */
-        _onResize: function( runNow ){
-
-            if( typeof runNow === 'boolean' ){
-                this._timeoutResizeFunction.call(this);
-            } else if( !this._resizeTimeout && (typeof runNow === 'object') ){
-                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
-            }
-        },
-
-        /**
-         * Timeout Resize Function
-         * 
-         * @method _timeoutResizeFunction
-         * @private
-         */
-        _timeoutResizeFunction: function(){
-            /**
-             * Getting the current viewport size
-             */
-            var
-                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
-                currentViewportHeight = parseInt(elem.clientHeight,10),
-                currentViewportWidth = parseInt(elem.clientWidth,10)
-            ;
-
-            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
-                /**
-                 * The viewport width has expanded
-                 */
-                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
-
-            } else {
-                /**
-                 * The viewport width has not changed or reduced
-                 */
-                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
-                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
-            }
-
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
-
-                /**
-                 * The viewport height has expanded
-                 */
-                //this._modalDivStyle.maxHeight =
-                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
-
-            } else {
-                /**
-                 * The viewport height has not changed, or reduced
-                 */
-                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
-            }
-
-            this._resizeContainer();
-            this._reposition();
-            this._resizeTimeout = undefined;
-        },
-
-        /**
-         * Navigation click handler
-         * 
-         * @method _onClick
-         * @param {Event} ev
-         * @private
-         */
-        _onClick: function(ev) {
-            var tgtEl = Event.element(ev);
-
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
-                (
-                    this._options.closeOnClick &&
-                    (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
-                )
-            ) {
-                var 
-                    alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
-                    alertsLength = alertsInTheModal.length
-                ;
-                for( var i = 0; i < alertsLength; i++ ){
-                    if( Element.descendantOf(alertsInTheModal[i], tgtEl) ){
-                        return;
-                    }
-                }
-
-                Event.stop(ev);
-                this.dismiss();
-            }
-        },
-
-        /**
-         * Responsible for handling the escape key pressing.
-         *
-         * @method _onKeyDown
-         * @param  {Event} ev
-         * @private
-         */
-        _onKeyDown: function(ev) {
-            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            this.dismiss();
-        },
-
-        /**
-         * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
-         * @method _resizeContainer
-         * @private
-         */
-        _resizeContainer: function()
-        {
-
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
-            var containerHeight = Element.elementHeight(this._modalDiv);
-
-            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
-            if( this._modalHeader.length>0 ){
-                this._modalHeader = this._modalHeader[0];
-                containerHeight -= Element.elementHeight(this._modalHeader);
-            }
-
-            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
-            if( this._modalFooter.length>0 ){
-                this._modalFooter = this._modalFooter[0];
-                containerHeight -= Element.elementHeight(this._modalFooter);
-            }
-
-            this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
-            }
-
-            if( this._markupMode ){ return; }
-
-            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
-            this._contentContainer.style.overflowY = 'auto';
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
-        },
-
-        /**
-         * Responsible for 'disabling' the page scroll
-         * 
-         * @method _disableScroll
-         * @private
-         */
-        _disableScroll: function()
-        {
-            this._oldScrollPos = Element.scroll();
-            this._onScrollBinded = Ink.bindEvent(function(event) {
-                var tgtEl = Event.element(event);
-
-                if( !Element.descendantOf(this._modalShadow, tgtEl) ){
-                    Event.stop(event);
-                    window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
-                }
-            },this);
-            Event.observe(window, 'scroll', this._onScrollBinded);
-            Event.observe(document, 'touchmove', this._onScrollBinded);
-        },
-
-        /**************
-         * PUBLIC API *
-         **************/
-
-        /**
-         * Dismisses the modal
-         * 
-         * @method dismiss
-         * @public
-         */
-        dismiss: function() {
-            if (this._options.onDismiss) {
-                this._options.onDismiss(this);
-            }
-
-            if(this._options.disableScroll) {
-                Event.stopObserving(window, 'scroll', this._onScrollBinded);
-                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
-            }
-
-            if( this._options.responsive ){
-                Event.stopObserving(window, 'resize', this._handlers.resize);
-            }
-
-            // this._modalShadow.parentNode.removeChild(this._modalShadow);
-
-            if( !this._markupMode ){
-                this._modalShadow.parentNode.removeChild(this._modalShadow);
-                this.destroy();
-            } else {
-                Css.removeClassName( this._modalDiv, 'visible' );
-                Css.removeClassName( this._modalShadow, 'visible' );
-
-                var
-                    dismissInterval,
-                    transitionEndFn = Ink.bindEvent(function(){
-                        if( !dismissInterval ){ return; }
-                        this._modalShadowStyle.display = 'none';
-                        Event.stopObserving(document,'transitionend',transitionEndFn);
-                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
-                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
-                        clearInterval(dismissInterval);
-                        dismissInterval = undefined;
-                    }, this)
-                ;
-
-                Event.observe(document,'transitionend',transitionEndFn);
-                Event.observe(document,'oTransitionEnd',transitionEndFn);
-                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
-
-                if( !dismissInterval ){
-                    dismissInterval = setInterval(Ink.bind(function(){
-                        if( this._modalShadowStyle.opacity > 0 ){
-                            return;
-                        } else {
-                            this._modalShadowStyle.display = 'none';
-                            clearInterval(dismissInterval);
-                            dismissInterval = undefined;
-                        }
-
-                    }, this),500);
-                }
-            }
-        },
-
-        /**
-         * Removes the modal from the DOM
-         * 
-         * @method destroy
-         * @public
-         */
-        destroy: function() {
-            Aux.unregisterInstance(this._instanceId);
-
-        },
-
-        /**
-         * Returns the content DOM element
-         * 
-         * @method getContentElement
-         * @return {DOMElement} Modal main cointainer.
-         * @public
-         */
-        getContentElement: function() {
-            return this._contentContainer;
-        },
-
-        /**
-         * Replaces the content markup
-         * 
-         * @method setContentMarkup
-         * @param {String} contentMarkup
-         * @public
-         */
-        setContentMarkup: function(contentMarkup) {
-            if( !this._markupMode ){
-                this._modalDiv.innerHTML = [contentMarkup].join('');
-                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-                if( !this._contentContainer.length ){
-                    // throw 'Missing div with class "modal-body"';
-                    var tempHeader = Selector.select(".modal-header",this._modalDiv);
-                    var tempFooter = Selector.select(".modal-footer",this._modalDiv);
-
-                    InkArray.each(tempHeader,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
-                    InkArray.each(tempFooter,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
-
-                    var body = document.createElement('div');
-                    Css.addClassName(body,'modal-body');
-                    body.innerHTML = this._modalDiv.innerHTML;
-                    this._modalDiv.innerHTML = '';
-
-                    InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    this._modalDiv.appendChild(body);
-                    InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    
-                    this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-                }
-                this._contentContainer = this._contentContainer[0];
-            } else {
-                this._contentContainer.innerHTML = [contentMarkup].join('');
-            }
-            this._contentElement = this._modalDiv;
-            this._resizeContainer();
-        }
-
-    };
-
-    return Modal;
-
-});
-
-/**
- * @module Ink.UI.ProgressBar_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
-    'use strict';
-
-    /**
-     * Associated to a .ink-progress-bar element, it provides the necessary
-     * method - setValue() - for the user to change the element's value.
-     * 
-     * @class Ink.UI.ProgressBar
-     * @constructor
-     * @version 1
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Element
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
-     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
-     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
-     *
-     * @example
-     *      <div class="ink-progress-bar grey" data-start-value="70%">
-     *          <span class="caption">I am a grey progress bar</span>
-     *          <div class="bar grey"></div>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-     *              var progressBarElement = Ink.s('.ink-progress-bar');
-     *              var progressBarObj = new ProgressBar( progressBarElement );
-     *          });
-     *      </script>
-     */
-    var ProgressBar = function( selector, options ){
-
-        if( typeof selector !== 'object' ){
-            if( typeof selector !== 'string' ){
-                throw '[Ink.UI.ProgressBar] :: Invalid selector';
-            } else {
-                this._element = Selector.select(selector);
-                if( this._element.length < 1 ){
-                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
-                }
-                this._element = this._element[0];
-            }
-        } else {
-            this._element = selector;
-        }
-
-
-        this._options = Ink.extendObj({
-            'startValue': 0,
-            'onStart': function(){},
-            'onEnd': function(){}
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj( this._options, options || {});
-        this._value = this._options.startValue;
-
-        this._init();
-    };
-
-    ProgressBar.prototype = {
-
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-            this._elementBar = Selector.select('.bar',this._element);
-            if( this._elementBar.length < 1 ){
-                throw '[Ink.UI.ProgressBar] :: Bar element not found';
-            }
-            this._elementBar = this._elementBar[0];
-
-            this._options.onStart = Ink.bind(this._options.onStart,this);
-            this._options.onEnd = Ink.bind(this._options.onEnd,this);
-            this.setValue( this._options.startValue );
-        },
-
-        /**
-         * Sets the value of the Progressbar
-         * 
-         * @method setValue
-         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
-         * @public
-         */
-        setValue: function( newValue ){
-            this._options.onStart( this._value);
-
-            newValue = parseInt(newValue,10);
-            if( isNaN(newValue) || (newValue < 0) ){
-                newValue = 0;
-            } else if( newValue>100 ){
-                newValue = 100;
-            }
-            this._value = newValue;
-            this._elementBar.style.width =  this._value + '%';
-
-            this._options.onEnd( this._value );
-        }
-    };
-
-    return ProgressBar;
-
-});
-
-/**
  * @module Ink.UI.SmoothScroller_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -11756,345 +11996,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
     };
 
     return SmoothScroller;
-
-});
-
-/**
- * @module Ink.UI.SortableList_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * Adds sortable behaviour to any list!
-     * 
-     * @class Ink.UI.SortableList
-     * @constructor
-     * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
-     * @example
-     *      <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
-     *              var sortableListElement = Ink.s('.ink-sortable-list');
-     *              var sortableListObj = new SortableList( sortableListElement );
-     *          });
-     *      </script>
-     */
-    var SortableList = function(selector, options) {
-
-        this._element = Aux.elOrSelector(selector, '1st argument');
-
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.SortableList] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Ink.Dom.Selector.select( selector );
-
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.SortableList] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-
-        } else {
-            this._element = selector;
-        }
-
-        this._options = Ink.extendObj({
-            dragObject: 'li'
-        }, Ink.Dom.Element.data(this._element));
-
-        this._options = Ink.extendObj( this._options, options || {});
-
-        this._handlers = {
-            down: Ink.bindEvent(this._onDown,this),
-            move: Ink.bindEvent(this._onMove,this),
-            up:   Ink.bindEvent(this._onUp,this)
-        };
-
-        this._model = [];
-        this._index = undefined;
-        this._isMoving = false;
-
-        if (this._options.model instanceof Array) {
-            this._model = this._options.model;
-            this._createdFrom = 'JSON';
-        }
-        else if (this._element.nodeName.toLowerCase() === 'ul') {
-            this._createdFrom = 'DOM';
-        }
-        else {
-            throw new TypeError('You must pass a selector expression/DOM element as 1st option or provide a model on 2nd argument!');
-        }
-
-
-        this._dragTriggers = Selector.select( this._options.dragObject, this._element );
-        if( !this._dragTriggers ){
-            throw "[Ink.UI.SortableList] :: Drag object not found";
-        }
-
-        this._init();
-    };
-
-    SortableList.prototype = {
-
-        /**
-         * Init function called by the constructor.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function() {
-            // extract model
-            if (this._createdFrom === 'DOM') {
-                this._extractModelFromDOM();
-                this._createdFrom = 'JSON';
-            }
-
-            var isTouch = 'ontouchstart' in document.documentElement;
-
-            this._down = isTouch ? 'touchstart': 'mousedown';
-            this._move = isTouch ? 'touchmove' : 'mousemove';
-            this._up   = isTouch ? 'touchend'  : 'mouseup';
-
-            // subscribe events
-            var db = document.body;
-            Event.observe(db, this._move, this._handlers.move);
-            Event.observe(db, this._up,   this._handlers.up);
-            this._observe();
-
-            Aux.registerInstance(this, this._element, 'sortableList');
-        },
-
-        /**
-         * Sets the event handlers.
-         * 
-         * @method _observe
-         * @private
-         */
-        _observe: function() {
-            Event.observe(this._element, this._down, this._handlers.down);
-        },
-
-        /**
-         * Updates the model from the UL representation
-         * 
-         * @method _extractModelFromDOM
-         * @private
-         */
-        _extractModelFromDOM: function() {
-            this._model = [];
-            var that = this;
-
-            var liEls = Selector.select('> li', this._element);
-
-            InkArray.each(liEls,function(liEl) {
-                //var t = Element.getChildrenText(liEl);
-                var t = liEl.innerHTML;
-                that._model.push(t);
-            });
-        },
-
-        /**
-         * Returns the top element for the gallery DOM representation
-         * 
-         * @method _generateMarkup
-         * @return {DOMElement}
-         * @private
-         */
-        _generateMarkup: function() {
-            var el = document.createElement('ul');
-            el.className = 'unstyled ink-sortable-list';
-            var that = this;
-
-            InkArray.each(this._model,function(label, idx) {
-                var liEl = document.createElement('li');
-                if (idx === that._index) {
-                    liEl.className = 'drag';
-                }
-                liEl.innerHTML = [
-                    // '<span class="ink-label ink-info"><i class="icon-reorder"></i>', that._options.dragLabel, '</span>', label
-                    label
-                ].join('');
-                el.appendChild(liEl);
-            });
-
-            return el;
-        },
-
-        /**
-         * Extracts the Y coordinate of the mouse from the given MouseEvent
-         * 
-         * @method _getY
-         * @param  {Event} ev
-         * @return {Number}
-         * @private
-         */
-        _getY: function(ev) {
-            if (ev.type.indexOf('touch') === 0) {
-                //console.log(ev.type, ev.changedTouches[0].pageY);
-                return ev.changedTouches[0].pageY;
-            }
-            if (typeof ev.pageY === 'number') {
-                return ev.pageY;
-            }
-            return ev.clientY;
-        },
-
-        /**
-         * Refreshes the markup.
-         * 
-         * @method _refresh
-         * @param {Boolean} skipObs True if needs to set the event handlers, false if not.
-         * @private
-         */
-        _refresh: function(skipObs) {
-            var el = this._generateMarkup();
-            this._element.parentNode.replaceChild(el, this._element);
-            this._element = el;
-
-            Aux.restoreIdAndClasses(this._element, this);
-
-            this._dragTriggers = Selector.select( this._options.dragObject, this._element );
-
-            // subscribe events
-            if (!skipObs) { this._observe(); }
-        },
-
-        /**
-         * Mouse down handler
-         * 
-         * @method _onDown
-         * @param {Event} ev
-         * @return {Boolean|undefined} [description]
-         * @private
-         */
-        _onDown: function(ev) {
-            if (this._isMoving) { return; }
-            var tgtEl = Event.element(ev);
-
-            if( !InkArray.inArray(tgtEl,this._dragTriggers) ){
-                while( !InkArray.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                    tgtEl = tgtEl.parentNode;
-                }
-
-                if( tgtEl.nodeName.toLowerCase() === 'body' ){
-                    return;
-                }
-            }
-
-            Event.stop(ev);
-
-            var liEl;
-            if( tgtEl.nodeName.toLowerCase() !== 'li' ){
-                while( (tgtEl.nodeName.toLowerCase() !== 'li') && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                    tgtEl = tgtEl.parentNode;
-                }
-            }
-            liEl = tgtEl;
-
-            this._index = Aux.childIndex(liEl);
-            this._height = liEl.offsetHeight;
-            this._startY = this._getY(ev);
-            this._isMoving = true;
-
-            document.body.style.cursor = 'move';
-
-            this._refresh(false);
-
-            return false;
-        },
-
-        /**
-         * Mouse move handler
-         * 
-         * @method _onMove
-         * @param {Event} ev
-         * @private
-         */
-        _onMove: function(ev) {
-            if (!this._isMoving) { return; }
-            Event.stop(ev);
-
-            var y = this._getY(ev);
-            //console.log(y);
-            var dy = y - this._startY;
-            var sign = dy > 0 ? 1 : -1;
-            var di = sign * Math.floor( Math.abs(dy) / this._height );
-            if (di === 0) { return; }
-            di = di / Math.abs(di);
-            if ( (di === -1 && this._index === 0) ||
-                 (di === 1 && this._index === this._model.length - 1) ) { return; }
-
-            var a = di > 0 ? this._index : this._index + di;
-            var b = di < 0 ? this._index : this._index + di;
-            //console.log(a, b);
-            this._model.splice(a, 2, this._model[b], this._model[a]);
-            this._index += di;
-            this._startY = y;
-
-            this._refresh(false);
-        },
-
-        /**
-         * Mouse up handler
-         * 
-         * @method _onUp
-         * @param {Event} ev
-         * @private
-         */
-        _onUp: function(ev) {
-            if (!this._isMoving) { return; }
-            Event.stop(ev);
-
-            this._index = undefined;
-            this._isMoving = false;
-            document.body.style.cursor = '';
-
-            this._refresh();
-        },
-
-
-
-        /**************
-         * PUBLIC API *
-         **************/
-
-        /**
-         * Returns a copy of the model
-         * 
-         * @method getModel
-         * @return {Array} Copy of the model
-         * @public
-         */
-        getModel: function() {
-            return this._model.slice();
-        },
-
-        /**
-         * Unregisters the component and removes its markup from the DOM
-         * 
-         * @method destroy
-         * @public
-         */
-        destroy: Aux.destroyComponent
-
-    };
-
-    return SortableList;
 
 });
 
@@ -12727,7 +12628,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
                 this._pagination.setCurrent(this._pagination._current);
 
-            } else {
+            } else {
 
                 if( index === -1){
                     return;
@@ -12891,14 +12792,18 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
             /**
              * Setting the sortable columns and its event listeners
              */
-            Event.observe(Selector.select('thead',this._rootElement)[0],'click',this._handlers.click);
+            var theads = Selector.select('thead', this._rootElement);
+            if (!theads.length) {
+                return;
+            }
+            Event.observe(theads[0],'click',this._handlers.click);
             this._headers = Selector.select('thead tr th',this._rootElement);
             InkArray.each(this._headers,Ink.bind(function(item, index){
                 var dataset = Element.data( item );
                 if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
                     this._sortableFields['col_' + index] = 'none';
                 }
-            },this));
+            }, this));
 
         },
 
@@ -13527,6 +13432,1794 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 });
 
 /**
+00 * @module Ink.UI.Toggle_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+    'use strict';
+
+    /**
+     * Toggle component
+     * 
+     * @class Ink.UI.Toggle
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
+     *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
+     *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
+     * @example
+     *      <div class="ink-dropdown">
+     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+     *          <ul id="dropdown" class="dropdown-menu">
+     *              <li class="heading">Heading</li>
+     *              <li class="separator-above"><a href="#">Option</a></li>
+     *              <li><a href="#">Option</a></li>
+     *              <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+     *              <li class="submenu">
+     *                  <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
+     *                  <ul id="submenu1" class="dropdown-menu">
+     *                      <li class="submenu">
+     *                          <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+     *                          <ul id="ultrasubmenu" class="dropdown-menu">
+     *                              <li><a href="#">Sub option</a></li>
+     *                              <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+     *                              <li><a href="#">Sub option</a></li>
+     *                          </ul>
+     *                      </li>
+     *                      <li><a href="#">Sub option</a></li>
+     *                      <li><a href="#">Sub option</a></li>
+     *                  </ul>
+     *              </li>
+     *              <li><a href="#">Option</a></li>
+     *          </ul>
+     *      </div>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Toggle_1'], function( Selector, Toggle ){
+     *              var toggleElement = Ink.s('.toggle');
+     *              var toggleObj = new Toggle( toggleElement );
+     *          });
+     *      </script>
+     */
+    var Toggle = function( selector, options ){
+
+        if( typeof selector !== 'string' && typeof selector !== 'object' ){
+            throw '[Ink.UI.Toggle] Invalid CSS selector to determine the root element';
+        }
+
+        if( typeof selector === 'string' ){
+            this._rootElement = Selector.select( selector );
+            if( this._rootElement.length <= 0 ){
+                throw '[Ink.UI.Toggle] Root element not found';
+            }
+
+            this._rootElement = this._rootElement[0];
+        } else {
+            this._rootElement = selector;
+        }
+
+        this._options = Ink.extendObj({
+            target : undefined,
+            triggerEvent: 'click',
+            closeOnClick: true
+        },Element.data(this._rootElement));
+
+        this._options = Ink.extendObj(this._options,options || {});
+
+        if( typeof this._options.target === 'undefined' ){
+            throw '[Ink.UI.Toggle] Target option not defined';
+        }
+
+        this._childElement = Aux.elOrSelector( this._options.target, 'Target' );
+        // this._childElement = Selector.select( this._options.target, this._rootElement );
+        // if( this._childElement.length <= 0 ){
+        //     if( this._childElement.length <= 0 ){
+        //         this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
+        //     }
+
+        //     if( this._childElement.length <= 0 ){
+        //         this._childElement = Selector.select( this._options.target );
+        //     }
+
+        //     if( this._childElement.length <= 0 ){
+        //         return;
+        //     }
+        // }
+        // this._childElement = this._childElement[0];
+
+        this._init();
+
+    };
+
+    Toggle.prototype = {
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+
+            this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._childElement.parentNode,'accordion') );
+
+            Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
+            if( this._options.closeOnClick.toString() === 'true' ){
+                Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
+            }
+        },
+
+        /**
+         * Event handler. It's responsible for handling the <triggerEvent> defined in the options.
+         * This will trigger the toggle.
+         * 
+         * @method _onTriggerEvent
+         * @param {Event} event
+         * @private
+         */
+        _onTriggerEvent: function( event ){
+
+            if( this._accordion ){
+                var elms, i, accordionElement;
+                if( Css.hasClassName(this._childElement.parentNode,'accordion') ){
+                    accordionElement = this._childElement.parentNode;
+                } else {
+                    accordionElement = this._childElement.parentNode.parentNode;
+                }
+                elms = Selector.select('.toggle',accordionElement);
+                for( i=0; i<elms.length; i+=1 ){
+                    var
+                        dataset = Element.data( elms[i] ),
+                        targetElm = Selector.select( dataset.target,accordionElement )
+                    ;
+                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
+                            targetElm[0].style.display = 'none';
+                    }
+                }
+            }
+
+            var finalClass = ( Css.getStyle(this._childElement,'display') === 'none') ? 'show-all' : 'hide-all';
+            var finalDisplay = ( Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
+            Css.removeClassName(this._childElement,'show-all');
+            Css.removeClassName(this._childElement, 'hide-all');
+            Css.addClassName(this._childElement, finalClass);
+            this._childElement.style.display = finalDisplay;
+
+            if( finalClass === 'show-all' ){
+                Css.addClassName(this._rootElement,'active');
+            } else {
+                Css.removeClassName(this._rootElement,'active');
+            }
+        },
+
+        /**
+         * Click handler. Will handle clicks outside the toggle component.
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function( event ){
+            var
+                tgtEl = Event.element(event),
+                shades
+            ;
+
+            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
+                return;
+            } else if( (shades = Ink.ss('.ink-shade')).length ) {
+                var
+                    shadesLength = shades.length
+                ;
+
+                for( var i = 0; i < shadesLength; i++ ){
+                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
+                        return;
+                    }
+                }
+            }
+
+            if(!Element.findUpwardsByClass(tgtEl, 'toggle')) {
+                return;
+            }
+            
+            this._dismiss( this._rootElement );
+        },
+
+        /**
+         * Dismisses the toggling.
+         * 
+         * @method _dismiss
+         * @private
+         */
+        _dismiss: function(){
+            if( ( Css.getStyle(this._childElement,'display') === 'none') ){
+                return;
+            }
+            Css.removeClassName(this._childElement, 'show-all');
+            Css.removeClassName(this._rootElement,'active');
+            Css.addClassName(this._childElement, 'hide-all');
+            this._childElement.style.display = 'none';
+        }
+    };
+
+    return Toggle;
+
+});
+
+/**
+ * @module Ink.UI.Tooltip_1
+ * @author inkdev AT sapo.pt
+ */
+Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
+    'use strict';
+
+    /**
+     * @class Ink.UI.Tooltip
+     * @constructor
+     *
+     * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
+     * @param {Object} [options]
+     *     @param [options.text='']             Text content for the tooltip.
+     *     @param [options.where='up']          Positioning for the tooltip. Options:
+     *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
+     *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
+     *          @param options.where.mousefix   Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
+     *     
+     *     @param [options.color='']            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
+     *     @param [options.fade=0.3]            Fade time; Duration of the fade in/out effect.
+     *     @param [options.forever=0]           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+     *     @param [options.timeout=0]           Time for the tooltip to live. Useful together with [options.forever].
+     *     @param [options.delay]               Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
+     *     @param [options.template=null]       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
+     *     @param [options.templatefield=null]  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
+     *
+     *     @param [options.left,top=10]         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+     *     @param [options.spacing=8]           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+     * 
+     * @example
+     *     <ul class="buttons">
+     *         <li class="button" data-tip-text="Create a new document">New</li>
+     *         <li class="button" data-tip-text="Exit the program">Quit</li>
+     *         <li class="button" data-tip-text="Save the document you are working on">Save</li>
+     *     </ul>
+     *     
+     *     [...]
+     *
+     *     <script>
+     *         Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
+     *             new Tooltip('.button', {where: 'mousefix'});
+     *         });
+     *     </script>
+     */
+    function Tooltip(element, options) {
+        this._init(element, options || {});
+    }
+
+    function EachTooltip(root, elm) {
+        this._init(root, elm);
+    }
+
+    var transitionDurationName,
+        transitionPropertyName,
+        transitionTimingFunctionName;
+    (function () {  // Feature detection
+        var test = document.createElement('DIV');
+        var names = ['transition', 'oTransition', 'msTransition', 'mozTransition',
+            'webkitTransition'];
+        for (var i = 0; i < names.length; i++) {
+            if (typeof test.style[names[i] + 'Duration'] !== 'undefined') {
+                transitionDurationName = names[i] + 'Duration';
+                transitionPropertyName = names[i] + 'Property';
+                transitionTimingFunctionName = names[i] + 'TimingFunction';
+                break;
+            }
+        }
+    }());
+
+    Tooltip.prototype = {
+        _init: function(element, options) {
+            var elements;
+
+            this.options = Ink.extendObj({
+                    where: 'up',
+                    zIndex: 10000,
+                    left: 10,
+                    top: 10,
+                    spacing: 8,
+                    forever: 0,
+                    color: '',
+                    timeout: 0,
+                    delay: 0,
+                    template: null,
+                    templatefield: null,
+                    fade: 0.3,
+                    text: ''
+                }, options || {});
+
+            if (typeof element === 'string') {
+                elements = Selector.select(element);
+            } else if (typeof element === 'object') {
+                elements = [element];
+            } else {
+                throw 'Element expected';
+            }
+
+            this.tooltips = [];
+
+            for (var i = 0, len = elements.length; i < len; i++) {
+                this.tooltips[i] = new EachTooltip(this, elements[i]);
+            }
+        },
+        /**
+         * Destroys the tooltips created by this instance
+         *
+         * @method destroy
+         */
+        destroy: function () {
+            InkArray.each(this.tooltips, function (tooltip) {
+                tooltip._destroy();
+            });
+            this.tooltips = null;
+            this.options = null;
+        }
+    };
+
+    EachTooltip.prototype = {
+        _oppositeDirections: {
+            left: 'right',
+            right: 'left',
+            up: 'down',
+            down: 'up'
+        },
+        _init: function(root, elm) {
+            InkEvent.observe(elm, 'mouseover', Ink.bindEvent(this._onMouseOver, this));
+            InkEvent.observe(elm, 'mouseout', Ink.bindEvent(this._onMouseOut, this));
+            InkEvent.observe(elm, 'mousemove', Ink.bindEvent(this._onMouseMove, this));
+
+            this.root = root;
+            this.element = elm;
+            this._delayTimeout = null;
+            this.tooltip = null;
+        },
+        _makeTooltip: function (mousePosition) {
+            var tooltip;
+
+            tooltip = this._createTooltipElement();
+
+            if (this.tooltip) {
+                this._removeTooltip();
+            }
+
+            this.tooltip = tooltip;
+
+            this._fadeInTooltipElement(tooltip);
+            this._placeTooltipElement(tooltip, mousePosition);
+
+            InkEvent.observe(tooltip, 'mouseover', Ink.bindEvent(this._onTooltipMouseOver, this));
+
+            var timeout = this._getFloatOpt('timeout');
+            if (timeout) {
+                setTimeout(Ink.bind(function () {
+                    if (this.tooltip === tooltip) {
+                        this._removeTooltip();
+                    }
+                }, this), timeout * 1000);
+            }
+        },
+        _createTooltipElement: function () {
+            var template = this._getOpt('template'),  // User template instead of our HTML
+                templatefield = this._getOpt('templatefield'),
+                
+                where = this._getOpt('where'),
+                tooltip,  // The element we float
+                field;  // Element where we write our message. Child or same as the above
+
+            if (template) {  // The user told us of a template to use. We copy it.
+                var temp = document.createElement('DIV');
+                temp.innerHTML = Aux.elOrSelector(template, 'options.template').outerHTML;
+                tooltip = temp.firstChild;
+                
+                if (templatefield) {
+                    field = Selector.select(templatefield, tooltip);
+                    if (field) {
+                        field = field[0];
+                    } else {
+                        throw 'options.templatefield must be a valid selector within options.template';
+                    }
+                } else {
+                    field = tooltip;  // Assume same element if user did not specify a field
+                }
+            } else {  // We create the default structure
+                tooltip = document.createElement('DIV');
+                Css.addClassName(tooltip, 'ink-tooltip');
+                Css.addClassName(tooltip, this._getOpt('color'));
+
+                field = document.createElement('DIV');
+                Css.addClassName(field, 'content');
+
+                tooltip.appendChild(field);
+                
+                if (where.match(/(up|down|left|right)/)) {
+                    var arrow = document.createElement('SPAN');
+                    Css.addClassName(arrow, 'arrow');
+                    Css.addClassName(arrow, this._oppositeDirections[where]);
+                    tooltip.appendChild(arrow);
+                }
+            }
+            
+            InkElement.setTextContent(field, this._getOpt('text'));
+            tooltip.style.display = 'block';
+            tooltip.style.position = 'absolute';
+            tooltip.style.zIndex = this._getIntOpt('zIndex');
+
+            return tooltip;
+        },
+        _fadeInTooltipElement: function (tooltip) {
+            var fadeTime = this._getFloatOpt('fade');
+            if (transitionDurationName && fadeTime) {
+                tooltip.style.opacity = '0';
+                tooltip.style[transitionDurationName] = fadeTime + 's';
+                tooltip.style[transitionPropertyName] = 'opacity';
+                tooltip.style[transitionTimingFunctionName] = 'ease-in-out';
+                setTimeout(function () {
+                    tooltip.style.opacity = '1';
+                }, 0);
+            }
+        },
+        _placeTooltipElement: function (tooltip, mousePosition) {
+            var where = this._getOpt('where');
+            
+            var insert = function () {
+                var bodies = document.getElementsByTagName('body');
+                var insertInto = bodies && bodies.length ? bodies[0] : document.documentElement;
+
+                // InkElement.insertTop(tooltip, insertInto);
+                insertInto.appendChild(tooltip);  // TODO use above line instead when Ink CSS does not meddle too much with element positioning.
+            };
+            
+            if (where === 'mousemove' || where === 'mousefix') {
+                var mPos = mousePosition;
+                this._setPos(mPos[0], mPos[1]);
+                insert();
+            } else if (where.match(/(up|down|left|right)/)) {
+                insert();
+                var targetElementPos = InkElement.offset(this.element);
+                var tleft = targetElementPos[0],
+                    ttop = targetElementPos[1];
+
+                if (tleft instanceof Array) {  // Work around a bug in Ink.Dom.Element.offsetLeft which made it return the result of offset() instead. TODO remove this check when fix is merged
+                    ttop = tleft[1];
+                    tleft = tleft[0];
+                }
+
+                var centerh = (InkElement.elementWidth(this.element) / 2) - (InkElement.elementWidth(tooltip) / 2),
+                    centerv = (InkElement.elementHeight(this.element) / 2) - (InkElement.elementHeight(tooltip) / 2);
+                var spacing = this._getIntOpt('spacing');
+                
+                if (where === 'up') {
+                    ttop -= InkElement.elementHeight(tooltip);
+                    ttop -= spacing;
+                    tleft += centerh;
+                } else if (where === 'down') {
+                    ttop += InkElement.elementHeight(this.element);
+                    ttop += spacing;
+                    tleft += centerh;
+                } else if (where === 'left') {
+                    tleft -= InkElement.elementWidth(tooltip);
+                    tleft -= spacing;
+                    ttop += centerv;
+                } else if (where === 'right') {
+                    tleft += InkElement.elementWidth(this.element);
+                    tleft += spacing;
+                    ttop += centerv;
+                }
+
+                var scrl = this._getLocalScroll();
+
+                tooltip.style.left = (tleft - scrl[0]) + 'px';
+                tooltip.style.top = (ttop - scrl[1]) + 'px';
+            }
+        },
+        _removeTooltip: function() {
+            var tooltip = this.tooltip;
+            if (!tooltip) {return;}
+
+            var remove = Ink.bind(InkElement.remove, {}, tooltip);
+
+            if (this._getOpt('where') !== 'mousemove' && transitionDurationName) {
+                tooltip.style.opacity = 0;
+                // remove() will operate on correct tooltip, although this.tooltip === null then
+                setTimeout(remove, this._getFloatOpt('fade') * 1000);
+            } else {
+                remove();
+            }
+            this.tooltip = null;
+        },
+        _getOpt: function (option) {
+            var dataAttrVal = InkElement.data(this.element)[InkElement._camelCase('tip-' + option)];
+            if (dataAttrVal /* either null or "" may signify the absense of this attribute*/) {
+                return dataAttrVal;
+            }
+            var instanceOption = this.root.options[option];
+            if (typeof instanceOption !== 'undefined') {
+                return instanceOption;
+            }
+        },
+        _getIntOpt: function (option) {
+            return parseInt(this._getOpt(option), 10);
+        },
+        _getFloatOpt: function (option) {
+            return parseFloat(this._getOpt(option), 10);
+        },
+        _destroy: function () {
+            if (this.tooltip) {
+                InkElement.remove(this.tooltip);
+            }
+            this.root = null;  // Cyclic reference = memory leaks
+            this.element = null;
+            this.tooltip = null;
+        },
+        _onMouseOver: function(e) {
+            // on IE < 10 you can't access the mouse event not even a tick after it fired
+            var mousePosition = this._getMousePosition(e);
+            var delay = this._getFloatOpt('delay');
+            if (delay) {
+                this._delayTimeout = setTimeout(Ink.bind(function () {
+                    if (!this.tooltip) {
+                        this._makeTooltip(mousePosition);
+                    }
+                    this._delayTimeout = null;
+                }, this), delay * 1000);
+            } else {
+                this._makeTooltip(mousePosition);
+            }
+        },
+        _onMouseMove: function(e) {
+            if (this._getOpt('where') === 'mousemove' && this.tooltip) {
+                var mPos = this._getMousePosition(e);
+                this._setPos(mPos[0], mPos[1]);
+            }
+        },
+        _onMouseOut: function () {
+            if (!this._getIntOpt('forever')) {
+                this._removeTooltip();
+            }
+            if (this._delayTimeout) {
+                clearTimeout(this._delayTimeout);
+                this._delayTimeout = null;
+            }
+        },
+        _onTooltipMouseOver: function () {
+            if (this.tooltip) {  // If tooltip is already being removed, this has no effect
+                this._removeTooltip();
+            }
+        },
+        _setPos: function(left, top) {
+            left += this._getIntOpt('left');
+            top += this._getIntOpt('top');
+            var pageDims = this._getPageXY();
+            if (this.tooltip) {
+                var elmDims = [InkElement.elementWidth(this.tooltip), InkElement.elementHeight(this.tooltip)];
+                var scrollDim = this._getScroll();
+
+                if((elmDims[0] + left - scrollDim[0]) >= (pageDims[0] - 20)) {
+                    left = (left - elmDims[0] - this._getIntOpt('left') - 10);
+                }
+                if((elmDims[1] + top - scrollDim[1]) >= (pageDims[1] - 20)) {
+                    top = (top - elmDims[1] - this._getIntOpt('top') - 10);
+                }
+
+                this.tooltip.style.left = left + 'px';
+                this.tooltip.style.top = top + 'px';
+            }
+        },
+        _getPageXY: function() {
+            var cWidth = 0;
+            var cHeight = 0;
+            if( typeof( window.innerWidth ) === 'number' ) {
+                cWidth = window.innerWidth;
+                cHeight = window.innerHeight;
+            } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                cWidth = document.documentElement.clientWidth;
+                cHeight = document.documentElement.clientHeight;
+            } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                cWidth = document.body.clientWidth;
+                cHeight = document.body.clientHeight;
+            }
+            return [parseInt(cWidth, 10), parseInt(cHeight, 10)];
+        },
+        _getScroll: function() {
+            var dd = document.documentElement, db = document.body;
+            if (dd && (dd.scrollLeft || dd.scrollTop)) {
+                return [dd.scrollLeft, dd.scrollTop];
+            } else if (db) {
+                return [db.scrollLeft, db.scrollTop];
+            } else {
+                return [0, 0];
+            }
+        },
+        _getLocalScroll: function () {
+            var cumScroll = [0, 0];
+            var cursor = this.element.parentNode;
+            var left, top;
+            while (cursor && cursor !== document.documentElement && cursor !== document.body) {
+                left = cursor.scrollLeft;
+                top = cursor.scrollTop;
+                if (left) {
+                    cumScroll[0] += left;
+                }
+                if (top) {
+                    cumScroll[1] += top;
+                }
+                cursor = cursor.parentNode;
+            }
+            return cumScroll;
+        },
+        _getMousePosition: function(e) {
+            return [parseInt(InkEvent.pointerX(e), 10), parseInt(InkEvent.pointerY(e), 10)];
+        }
+    };
+
+    return Tooltip;
+});
+
+/**
+ * @module Ink.UI.TreeView_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @class Ink.UI.TreeView
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @example
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
+     *          });
+     *      </script>
+     */
+    var TreeView = function(selector, options){
+
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+        } else {
+            this._element = selector;
+        }
+
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul'
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj(this._options, options || {});
+
+        this._init();
+    };
+
+    TreeView.prototype = {
+
+        /**
+         * Init function called by the constructor. Sets the necessary event handlers.
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
+
+            Event.observe(this._element, 'click', this._handlers.click);
+
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            InkArray.each(nodes,Ink.bind(function(item){
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                InkArray.each(children,Ink.bind(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') ){
+                        Css.addClassName(inner_item,'hide-all');
+                    }
+                },this));
+            },this));
+
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
+
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
+             */
+            var tgtEl = Event.element(event);
+
+            if( this._options.node[0] === '.' ) {
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else if( this._options.node[0] === '#' ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else {
+                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
+                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            }
+
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+
+            var child = Selector.select(this._options.child,tgtEl);
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+            }
+
+        }
+
+    };
+
+    return TreeView;
+
+});
+
+/**
+ * @module Ink.UI.SortableList_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * Adds sortable behaviour to any list!
+     * 
+     * @class Ink.UI.SortableList
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
+     * @example
+     *      <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
+     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
+     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
+     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
+     *              var sortableListElement = Ink.s('.ink-sortable-list');
+     *              var sortableListObj = new SortableList( sortableListElement );
+     *          });
+     *      </script>
+     */
+    var SortableList = function(selector, options) {
+
+        this._element = Aux.elOrSelector(selector, '1st argument');
+
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.SortableList] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Ink.Dom.Selector.select( selector );
+
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.SortableList] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+
+        } else {
+            this._element = selector;
+        }
+
+        this._options = Ink.extendObj({
+            dragObject: 'li'
+        }, Ink.Dom.Element.data(this._element));
+
+        this._options = Ink.extendObj( this._options, options || {});
+
+        this._handlers = {
+            down: Ink.bindEvent(this._onDown,this),
+            move: Ink.bindEvent(this._onMove,this),
+            up:   Ink.bindEvent(this._onUp,this)
+        };
+
+        this._model = [];
+        this._index = undefined;
+        this._isMoving = false;
+
+        if (this._options.model instanceof Array) {
+            this._model = this._options.model;
+            this._createdFrom = 'JSON';
+        }
+        else if (this._element.nodeName.toLowerCase() === 'ul') {
+            this._createdFrom = 'DOM';
+        }
+        else {
+            throw new TypeError('You must pass a selector expression/DOM element as 1st option or provide a model on 2nd argument!');
+        }
+
+
+        this._dragTriggers = Selector.select( this._options.dragObject, this._element );
+        if( !this._dragTriggers ){
+            throw "[Ink.UI.SortableList] :: Drag object not found";
+        }
+
+        this._init();
+    };
+
+    SortableList.prototype = {
+
+        /**
+         * Init function called by the constructor.
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function() {
+            // extract model
+            if (this._createdFrom === 'DOM') {
+                this._extractModelFromDOM();
+                this._createdFrom = 'JSON';
+            }
+
+            var isTouch = 'ontouchstart' in document.documentElement;
+
+            this._down = isTouch ? 'touchstart': 'mousedown';
+            this._move = isTouch ? 'touchmove' : 'mousemove';
+            this._up   = isTouch ? 'touchend'  : 'mouseup';
+
+            // subscribe events
+            var db = document.body;
+            Event.observe(db, this._move, this._handlers.move);
+            Event.observe(db, this._up,   this._handlers.up);
+            this._observe();
+
+            Aux.registerInstance(this, this._element, 'sortableList');
+        },
+
+        /**
+         * Sets the event handlers.
+         * 
+         * @method _observe
+         * @private
+         */
+        _observe: function() {
+            Event.observe(this._element, this._down, this._handlers.down);
+        },
+
+        /**
+         * Updates the model from the UL representation
+         * 
+         * @method _extractModelFromDOM
+         * @private
+         */
+        _extractModelFromDOM: function() {
+            this._model = [];
+            var that = this;
+
+            var liEls = Selector.select('> li', this._element);
+
+            InkArray.each(liEls,function(liEl) {
+                //var t = Element.getChildrenText(liEl);
+                var t = liEl.innerHTML;
+                that._model.push(t);
+            });
+        },
+
+        /**
+         * Returns the top element for the gallery DOM representation
+         * 
+         * @method _generateMarkup
+         * @return {DOMElement}
+         * @private
+         */
+        _generateMarkup: function() {
+            var el = document.createElement('ul');
+            el.className = 'unstyled ink-sortable-list';
+            var that = this;
+
+            InkArray.each(this._model,function(label, idx) {
+                var liEl = document.createElement('li');
+                if (idx === that._index) {
+                    liEl.className = 'drag';
+                }
+                liEl.innerHTML = [
+                    // '<span class="ink-label ink-info"><i class="icon-reorder"></i>', that._options.dragLabel, '</span>', label
+                    label
+                ].join('');
+                el.appendChild(liEl);
+            });
+
+            return el;
+        },
+
+        /**
+         * Extracts the Y coordinate of the mouse from the given MouseEvent
+         * 
+         * @method _getY
+         * @param  {Event} ev
+         * @return {Number}
+         * @private
+         */
+        _getY: function(ev) {
+            if (ev.type.indexOf('touch') === 0) {
+                //console.log(ev.type, ev.changedTouches[0].pageY);
+                return ev.changedTouches[0].pageY;
+            }
+            if (typeof ev.pageY === 'number') {
+                return ev.pageY;
+            }
+            return ev.clientY;
+        },
+
+        /**
+         * Refreshes the markup.
+         * 
+         * @method _refresh
+         * @param {Boolean} skipObs True if needs to set the event handlers, false if not.
+         * @private
+         */
+        _refresh: function(skipObs) {
+            var el = this._generateMarkup();
+            this._element.parentNode.replaceChild(el, this._element);
+            this._element = el;
+
+            Aux.restoreIdAndClasses(this._element, this);
+
+            this._dragTriggers = Selector.select( this._options.dragObject, this._element );
+
+            // subscribe events
+            if (!skipObs) { this._observe(); }
+        },
+
+        /**
+         * Mouse down handler
+         * 
+         * @method _onDown
+         * @param {Event} ev
+         * @return {Boolean|undefined} [description]
+         * @private
+         */
+        _onDown: function(ev) {
+            if (this._isMoving) { return; }
+            var tgtEl = Event.element(ev);
+
+            if( !InkArray.inArray(tgtEl,this._dragTriggers) ){
+                while( !InkArray.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                    tgtEl = tgtEl.parentNode;
+                }
+
+                if( tgtEl.nodeName.toLowerCase() === 'body' ){
+                    return;
+                }
+            }
+
+            Event.stop(ev);
+
+            var liEl;
+            if( tgtEl.nodeName.toLowerCase() !== 'li' ){
+                while( (tgtEl.nodeName.toLowerCase() !== 'li') && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                    tgtEl = tgtEl.parentNode;
+                }
+            }
+            liEl = tgtEl;
+
+            this._index = Aux.childIndex(liEl);
+            this._height = liEl.offsetHeight;
+            this._startY = this._getY(ev);
+            this._isMoving = true;
+
+            document.body.style.cursor = 'move';
+
+            this._refresh(false);
+
+            return false;
+        },
+
+        /**
+         * Mouse move handler
+         * 
+         * @method _onMove
+         * @param {Event} ev
+         * @private
+         */
+        _onMove: function(ev) {
+            if (!this._isMoving) { return; }
+            Event.stop(ev);
+
+            var y = this._getY(ev);
+            //console.log(y);
+            var dy = y - this._startY;
+            var sign = dy > 0 ? 1 : -1;
+            var di = sign * Math.floor( Math.abs(dy) / this._height );
+            if (di === 0) { return; }
+            di = di / Math.abs(di);
+            if ( (di === -1 && this._index === 0) ||
+                 (di === 1 && this._index === this._model.length - 1) ) { return; }
+
+            var a = di > 0 ? this._index : this._index + di;
+            var b = di < 0 ? this._index : this._index + di;
+            //console.log(a, b);
+            this._model.splice(a, 2, this._model[b], this._model[a]);
+            this._index += di;
+            this._startY = y;
+
+            this._refresh(false);
+        },
+
+        /**
+         * Mouse up handler
+         * 
+         * @method _onUp
+         * @param {Event} ev
+         * @private
+         */
+        _onUp: function(ev) {
+            if (!this._isMoving) { return; }
+            Event.stop(ev);
+
+            this._index = undefined;
+            this._isMoving = false;
+            document.body.style.cursor = '';
+
+            this._refresh();
+        },
+
+
+
+        /**************
+         * PUBLIC API *
+         **************/
+
+        /**
+         * Returns a copy of the model
+         * 
+         * @method getModel
+         * @return {Array} Copy of the model
+         * @public
+         */
+        getModel: function() {
+            return this._model.slice();
+        },
+
+        /**
+         * Unregisters the component and removes its markup from the DOM
+         * 
+         * @method destroy
+         * @public
+         */
+        destroy: Aux.destroyComponent
+
+    };
+
+    return SortableList;
+
+});
+
+/**
+ * @module Ink.UI.Modal_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * @class Ink.UI.Modal
+     * @constructor
+     * @version 1
+     * @uses Ink.UI.Aux
+     * @uses Ink.Dom.Event
+     * @uses Ink.Dom.Css
+     * @uses Ink.Dom.Element
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Util.Array
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
+     *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
+     *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
+     *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
+     *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
+     *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
+     *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
+     *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
+     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed.
+     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
+     *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
+     *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
+     *
+     * @example
+     *      <div class="ink-shade fade">
+     *          <div id="test" class="ink-modal fade" data-trigger="#bModal" data-width="800px" data-height="400px">
+     *              <div class="modal-header">
+     *                  <button class="modal-close ink-dismiss"></button>
+     *                  <h5>Modal windows can have headers</h5>
+     *              </div>
+     *              <div class="modal-body" id="modalContent">
+     *                  <h3>Please confirm your previous choice</h3>
+     *                  <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
+     *                  <p>
+     *                      <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+     *                  </p>
+     *                  <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
+     *                  <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
+     *              </div>
+     *              <div class="modal-footer">
+     *                  <div class="push-right">
+     *                      <button class="ink-button info">Confirm</button>
+     *                      <button class="ink-button caution ink-dismiss">Cancel</button>
+     *                  </div>
+     *              </div>
+     *          </div>
+     *      </div>
+     *      <a href="#" id="bModal">Open modal</a>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
+     *              var modalElement = Ink.s('#test');
+     *              var modalObj = new Modal( modalElement );
+     *          });
+     *      </script>
+     */
+    var Modal = function(selector, options) {
+
+        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
+            throw 'Invalid Modal selector';
+        } else if(typeof selector === 'string'){
+            if( selector !== '' ){
+                this._element = Selector.select(selector);
+                if( this._element.length === 0 ){
+                    /**
+                     * From a developer's perspective this should be like it is...
+                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
+                     */
+                    throw 'The Modal selector has not returned any elements';
+                } else {
+                    this._element = this._element[0];
+                }
+            }
+        } else if( !!selector ){
+            this._element = selector;
+        }
+
+        this._options = {
+            /**
+             * Width, height and markup really optional, as they can be obtained by the element
+             */
+            width:        undefined,
+            height:       undefined,
+
+            /**
+             * To add extra classes
+             */
+            shadeClass: undefined,
+            modalClass: undefined,
+
+            /**
+             * Optional trigger properties
+             */
+            trigger:      undefined,
+            triggerEvent: 'click',
+
+            /**
+             * Remaining options
+             */
+            markup:       undefined,
+            onShow:       undefined,
+            onDismiss:    undefined,
+            closeOnClick: false,
+            responsive:    true,
+            disableScroll: true
+        };
+
+
+        this._handlers = {
+            click:   Ink.bindEvent(this._onClick, this),
+            keyDown: Ink.bindEvent(this._onKeyDown, this),
+            resize:  Ink.bindEvent(this._onResize, this)
+        };
+
+        this._wasDismissed = false;
+
+        /**
+         * Modal Markup
+         */
+        if( this._element ){
+            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
+        } else {
+            this._markupMode = false;
+        }
+
+
+
+
+        if( !this._markupMode ){
+
+
+            this._modalShadow      = document.createElement('div');
+            this._modalShadowStyle = this._modalShadow.style;
+
+            this._modalDiv         = document.createElement('div');
+            this._modalDivStyle    = this._modalDiv.style;
+
+            if( !!this._element ){
+                this._options.markup = this._element.innerHTML;
+            }
+
+            /**
+             * Not in full markup mode, let's set the classes and css configurations
+             */
+            Css.addClassName( this._modalShadow,'ink-shade' );
+            Css.addClassName( this._modalDiv,'ink-modal' );
+            Css.addClassName( this._modalDiv,'ink-space' );
+
+            /**
+             * Applying the main css styles
+             */
+            // this._modalDivStyle.position = 'absolute';
+            this._modalShadow.appendChild( this._modalDiv);
+            document.body.appendChild( this._modalShadow );
+        } else {
+            this._modalDiv         = this._element;
+            this._modalDivStyle    = this._modalDiv.style;
+            this._modalShadow      = this._modalDiv.parentNode;
+            this._modalShadowStyle = this._modalShadow.style;
+
+            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+            if( !this._contentContainer.length ){
+                throw 'Missing div with class "modal-body"';
+            }
+
+            this._contentContainer = this._contentContainer[0];
+            this._options.markup = this._contentContainer.innerHTML;
+
+            /**
+             * First, will handle the least important: The dataset
+             */
+            this._options = Ink.extendObj(this._options,Element.data(this._element));
+
+        }
+
+        /**
+         * Now, the most important, the initialization options
+         */
+        this._options = Ink.extendObj(this._options,options || {});
+
+        if( !this._markupMode ){
+            this.setContentMarkup(this._options.markup);
+        }
+
+        if( typeof this._options.shadeClass === 'string' ){
+
+            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
+                Css.addClassName( this._modalShadow, item.trim() );
+            }, this));
+        }
+
+        if( typeof this._options.modalClass === 'string' ){
+            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
+                Css.addClassName( this._modalDiv, item.trim() );
+            }, this));
+        }
+
+        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
+            var triggerElement,i;
+            if( typeof this._options.trigger === 'string' ){
+                triggerElement = Selector.select( this._options.trigger );
+                if( triggerElement.length > 0 ){
+                    for( i=0; i<triggerElement.length; i++ ){
+                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this._init, this) );
+                    }
+                }
+            }
+        } else {
+            this._init();
+        }
+    };
+
+    Modal.prototype = {
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @param {Event} [event] In case its fired by the trigger.
+         * @private
+         */
+        _init: function(event) {
+
+            if( event ){ Event.stop(event); }
+
+            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+
+            this._resizeTimeout    = null;
+
+            Css.addClassName( this._modalShadow,'ink-shade' );
+            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
+            setTimeout(Ink.bind(function(){
+                Css.addClassName( this._modalShadow,'visible' );
+                Css.addClassName( this._modalDiv,'visible' );
+            }, this),100);
+
+            /**
+             * Fallback to the old one
+             */
+            this._contentElement = this._modalDiv;
+            this._shadeElement   = this._modalShadow;
+
+            /**
+             * Setting the content of the modal
+             */
+            this.setContentMarkup( this._options.markup );
+
+            /**
+             * If any size has been user-defined, let's set them as max-width and max-height
+             */
+            if( typeof this._options.width !== 'undefined' ){
+                this._modalDivStyle.width = this._options.width;
+                if( this._options.width.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
+                }
+            } else {
+                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
+            }
+
+            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
+                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
+            }
+
+            if( typeof this._options.height !== 'undefined' ){
+                this._modalDivStyle.height = this._options.height;
+                if( this._options.height.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                }
+            } else {
+                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
+            }
+
+            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
+                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
+            }
+
+            this.originalStatus = {
+                viewportHeight:     parseInt(elem.clientHeight,10),
+                viewportWidth:      parseInt(elem.clientWidth,10),
+                width:              parseInt(this._modalDivStyle.maxWidth,10),
+                height:             parseInt(this._modalDivStyle.maxHeight,10)
+            };
+
+            /**
+             * Let's 'resize' it:
+             */
+            if(this._options.responsive) {
+                this._onResize(true);
+                Event.observe( window,'resize',this._handlers.resize );
+            } else {
+                this._resizeContainer();
+                this._reposition();
+            }
+
+            if (this._options.onShow) {
+                this._options.onShow(this);
+            }
+
+            if(this._options.disableScroll) {
+                this._disableScroll();
+            }
+
+            // subscribe events
+            Event.observe(this._shadeElement, 'click',   this._handlers.click);
+            Event.observe(document,           'keydown', this._handlers.keyDown);
+
+            Aux.registerInstance(this, this._shadeElement, 'modal');
+        },
+
+        /**
+         * Responsible for repositioning the modal
+         * 
+         * @method _reposition
+         * @private
+         */
+        _reposition: function(){
+
+            this._modalDivStyle.top = this._modalDivStyle.left = '50%';
+
+            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
+        },
+
+        /**
+         * Responsible for resizing the modal
+         * 
+         * @method _onResize
+         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
+         * @private
+         */
+        _onResize: function( runNow ){
+
+            if( typeof runNow === 'boolean' ){
+                this._timeoutResizeFunction.call(this);
+            } else if( !this._resizeTimeout && (typeof runNow === 'object') ){
+                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
+            }
+        },
+
+        /**
+         * Timeout Resize Function
+         * 
+         * @method _timeoutResizeFunction
+         * @private
+         */
+        _timeoutResizeFunction: function(){
+            /**
+             * Getting the current viewport size
+             */
+            var
+                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
+                currentViewportHeight = parseInt(elem.clientHeight,10),
+                currentViewportWidth = parseInt(elem.clientWidth,10)
+            ;
+
+            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
+                /**
+                 * The viewport width has expanded
+                 */
+                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
+
+            } else {
+                /**
+                 * The viewport width has not changed or reduced
+                 */
+                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
+                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
+            }
+
+            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
+
+                /**
+                 * The viewport height has expanded
+                 */
+                //this._modalDivStyle.maxHeight =
+                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
+
+            } else {
+                /**
+                 * The viewport height has not changed, or reduced
+                 */
+                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
+            }
+
+            this._resizeContainer();
+            this._reposition();
+            this._resizeTimeout = undefined;
+        },
+
+        /**
+         * Navigation click handler
+         * 
+         * @method _onClick
+         * @param {Event} ev
+         * @private
+         */
+        _onClick: function(ev) {
+            var tgtEl = Event.element(ev);
+
+            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
+                (
+                    this._options.closeOnClick &&
+                    (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
+                )
+            ) {
+                var 
+                    alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
+                    alertsLength = alertsInTheModal.length
+                ;
+                for( var i = 0; i < alertsLength; i++ ){
+                    if( Element.descendantOf(alertsInTheModal[i], tgtEl) ){
+                        return;
+                    }
+                }
+
+                Event.stop(ev);
+                this.dismiss();
+            }
+        },
+
+        /**
+         * Responsible for handling the escape key pressing.
+         *
+         * @method _onKeyDown
+         * @param  {Event} ev
+         * @private
+         */
+        _onKeyDown: function(ev) {
+            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
+            this.dismiss();
+        },
+
+        /**
+         * Responsible for setting the size of the modal (and position) based on the viewport.
+         * 
+         * @method _resizeContainer
+         * @private
+         */
+        _resizeContainer: function()
+        {
+
+            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
+            var containerHeight = Element.elementHeight(this._modalDiv);
+
+            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
+            if( this._modalHeader.length>0 ){
+                this._modalHeader = this._modalHeader[0];
+                containerHeight -= Element.elementHeight(this._modalHeader);
+            }
+
+            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
+            if( this._modalFooter.length>0 ){
+                this._modalFooter = this._modalFooter[0];
+                containerHeight -= Element.elementHeight(this._modalFooter);
+            }
+
+            this._contentContainer.style.height = containerHeight + 'px';
+            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
+                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
+            }
+
+            if( this._markupMode ){ return; }
+
+            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
+            this._contentContainer.style.overflowY = 'auto';
+            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
+        },
+
+        /**
+         * Responsible for 'disabling' the page scroll
+         * 
+         * @method _disableScroll
+         * @private
+         */
+        _disableScroll: function()
+        {
+            this._oldScrollPos = Element.scroll();
+            this._onScrollBinded = Ink.bindEvent(function(event) {
+                var tgtEl = Event.element(event);
+
+                if( !Element.descendantOf(this._modalShadow, tgtEl) ){
+                    Event.stop(event);
+                    window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
+                }
+            },this);
+            Event.observe(window, 'scroll', this._onScrollBinded);
+            Event.observe(document, 'touchmove', this._onScrollBinded);
+        },
+
+        /**************
+         * PUBLIC API *
+         **************/
+
+        /**
+         * Dismisses the modal
+         * 
+         * @method dismiss
+         * @public
+         */
+        dismiss: function() {
+            if (this._options.onDismiss) {
+                this._options.onDismiss(this);
+            }
+
+            if(this._options.disableScroll) {
+                Event.stopObserving(window, 'scroll', this._onScrollBinded);
+                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
+            }
+
+            if( this._options.responsive ){
+                Event.stopObserving(window, 'resize', this._handlers.resize);
+            }
+
+            // this._modalShadow.parentNode.removeChild(this._modalShadow);
+
+            if( !this._markupMode ){
+                this._modalShadow.parentNode.removeChild(this._modalShadow);
+                this.destroy();
+            } else {
+                Css.removeClassName( this._modalDiv, 'visible' );
+                Css.removeClassName( this._modalShadow, 'visible' );
+
+                var
+                    dismissInterval,
+                    transitionEndFn = Ink.bindEvent(function(){
+                        if( !dismissInterval ){ return; }
+                        this._modalShadowStyle.display = 'none';
+                        Event.stopObserving(document,'transitionend',transitionEndFn);
+                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
+                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
+                        clearInterval(dismissInterval);
+                        dismissInterval = undefined;
+                    }, this)
+                ;
+
+                Event.observe(document,'transitionend',transitionEndFn);
+                Event.observe(document,'oTransitionEnd',transitionEndFn);
+                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
+
+                if( !dismissInterval ){
+                    dismissInterval = setInterval(Ink.bind(function(){
+                        if( this._modalShadowStyle.opacity > 0 ){
+                            return;
+                        } else {
+                            this._modalShadowStyle.display = 'none';
+                            clearInterval(dismissInterval);
+                            dismissInterval = undefined;
+                        }
+
+                    }, this),500);
+                }
+            }
+        },
+
+        /**
+         * Removes the modal from the DOM
+         * 
+         * @method destroy
+         * @public
+         */
+        destroy: function() {
+            Aux.unregisterInstance(this._instanceId);
+
+        },
+
+        /**
+         * Returns the content DOM element
+         * 
+         * @method getContentElement
+         * @return {DOMElement} Modal main cointainer.
+         * @public
+         */
+        getContentElement: function() {
+            return this._contentContainer;
+        },
+
+        /**
+         * Replaces the content markup
+         * 
+         * @method setContentMarkup
+         * @param {String} contentMarkup
+         * @public
+         */
+        setContentMarkup: function(contentMarkup) {
+            if( !this._markupMode ){
+                this._modalDiv.innerHTML = [contentMarkup].join('');
+                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                if( !this._contentContainer.length ){
+                    // throw 'Missing div with class "modal-body"';
+                    var tempHeader = Selector.select(".modal-header",this._modalDiv);
+                    var tempFooter = Selector.select(".modal-footer",this._modalDiv);
+
+                    InkArray.each(tempHeader,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+                    InkArray.each(tempFooter,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+
+                    var body = document.createElement('div');
+                    Css.addClassName(body,'modal-body');
+                    body.innerHTML = this._modalDiv.innerHTML;
+                    this._modalDiv.innerHTML = '';
+
+                    InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    this._modalDiv.appendChild(body);
+                    InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    
+                    this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                }
+                this._contentContainer = this._contentContainer[0];
+            } else {
+                this._contentContainer.innerHTML = [contentMarkup].join('');
+            }
+            this._contentElement = this._modalDiv;
+            this._resizeContainer();
+        }
+
+    };
+
+    return Modal;
+
+});
+
+/**
  * @module Ink.UI.ImageQuery_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -13787,944 +15480,6 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 });
 
 /**
- * @module Ink.UI.TreeView_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
-     * @class Ink.UI.TreeView
-     * @constructor
-     * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
-     * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
-     *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
-     *          </ul>
-     *        </li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
-     *          });
-     *      </script>
-     */
-    var TreeView = function(selector, options){
-
-        /**
-         * Gets the element
-         */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-        } else {
-            this._element = selector;
-        }
-
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul'
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
-
-        this._init();
-    };
-
-    TreeView.prototype = {
-
-        /**
-         * Init function called by the constructor. Sets the necessary event handlers.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
-
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                children
-            ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
-
-                children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
-
-        },
-
-        /**
-         * Handles the click event (as specified in the _init function).
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function(event){
-
-            /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
-             */
-            var tgtEl = Event.element(event);
-
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            }
-
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
-
-            var child = Selector.select(this._options.child,tgtEl);
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
-            }
-
-        }
-
-    };
-
-    return TreeView;
-
-});
-
-/**
- * @module Ink.UI.Gallery_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.Gallery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Swipe_1'], function(Aux, Event, Css, Element, Selector, InkArray, Swipe ) {
-    'use strict';
-    
-    /**
-     * Function to calculate the size based on a given max. size and image size.
-     * 
-     * @function maximizeBox
-     * @param  {Number} maxSz
-     * @param  {Number} imageSz
-     * @param  {Boolean} forceMaximize
-     * @return {Number}
-     * @private
-     */
-    var maximizeBox = function(maxSz, imageSz, forceMaximize) {
-        var w = imageSz[0];
-        var h = imageSz[1];
-
-        if (forceMaximize || (w > maxSz[0] || h > maxSz[1]) ) {
-            var arImg = w / h;
-            var arMax = maxSz[0] / maxSz[1];
-            var s = (arImg > arMax) ? maxSz[0] / w : maxSz[1] / h;
-            return [parseInt(w * s + 0.5, 10), parseInt(h * s + 0.5, 10)];
-        }
-
-        return imageSz;
-    };
-    
-    /**
-     * @function maximizeBox
-     * @param  {Object} o
-     * @param  {Function} cb Callback function to run on each image loaded.
-     * @private
-     */
-    var getDimsAsync = function(o, cb) {
-        cb = Ink.bind(cb,o);
-
-        var dims = [o.img.offsetWidth, o.img.offsetHeight];
-        if (dims[0] && dims[1]) {
-            cb(dims);
-        }
-        o.img.onload = Ink.bindEvent(function() {
-            cb([this.img.offsetWidth, this.img.offsetHeight]);
-        },o);
-    };
-
-    /**
-     * @class Ink.UI.Gallery
-     * @constructor
-     * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @uses Ink.Util.Swipe
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the gallery
-     *      @param {Number}   [options.fullImageMaxWidth]       Default value is 400.
-     *      @param {Number}   [options.thumbnailMaxWidth]       Max. width of the thumbnail. Default value is 106.
-     *      @param {Number}   [options.layout]                  This determines what layout the gallery will have. Numeric value between 0 and 3.
-     *      @param {Boolean}  [options.circular]                Determines if the gallery behaves in a circular never ending cycle.
-     *      @param {Boolean}  [options.fixImageSizes]           Specifies if the images should be forced to have the gallery size.
-     * @example
-     *     <ul class="ink-gallery-source">
-     *         <li class="hentry hmedia">
-     *             <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png">
-     *                 <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png">
-     *             </a>
-     *             <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png">
-     *                 <span class="entry-title">s1</span>
-     *             </a>
-     *             <span class="entry-content"><p>hello world 1</p></span>
-     *         </li>
-     *         <li class="hentry hmedia">
-     *             <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png">
-     *                 <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png">
-     *             </a>
-     *             <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png">
-     *                 <span class="entry-title">s2</span>
-     *             </a>
-     *             <span class="entry-content"><p>hello world 2</p></span>
-     *         </li>
-     *     </ul>
-     *     <script>
-     *         Ink.requireModules(['Ink.Dom.Selector_1','Ink.UI.Gallery_1'],function( Selector, Gallery ){
-     *             var galleryElement = Ink.s('ul.ink-gallery-source');
-     *             var galleryObj = new Gallery( galleryElement );
-     *         });
-     *     </script>
-     */
-    var Gallery = function(selector, options) {
-
-        this._element = Aux.elOrSelector(selector, '1st argument');
-
-        this._options = Ink.extendObj({
-            fullImageMaxWidth:   600,
-            fullImageMaxHeight:  400,
-            thumbnailMaxWidth:   106,
-            layout:              0,
-            circular:            false,
-            fixImageSizes:       false
-        }, Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
-
-        this._handlers = {
-            navClick:        Ink.bindEvent(this._onNavClick,this),
-            paginationClick: Ink.bindEvent(this._onPaginationClick,this),
-            thumbsClick:     Ink.bindEvent(this._onThumbsClick,this),
-            focusBlur:       Ink.bindEvent(this._onFocusBlur,this),
-            keyDown:         Ink.bindEvent(this._onKeyDown,this)
-        };
-
-        this._isFocused = false;
-        this._model = [];
-
-        if (this._options.model instanceof Array) {
-            this._model = this._options.model;
-            this._createdFrom = 'JSON';
-        }
-        else if (this._element.nodeName.toLowerCase() === 'ul') {
-            this._createdFrom = 'DOM';
-        }
-        else {
-            throw new TypeError('You must pass a selector expression/DOM element as 1st option or provide a model on 2nd argument!');
-        }
-
-        this._index      = 0;
-        this._thumbIndex = 0;
-
-        if( !isNaN(this._options.layout) ){
-
-            this._options.layout = parseInt(this._options.layout,10);
-            if (this._options.layout === 0) {
-                this._showThumbs            = false;
-                this._showDescription       = false;
-                this._paginationHasPrevNext = false;
-            }
-            else if (this._options.layout === 1 || this._options.layout === 2 || this._options.layout === 3) {
-                this._showThumbs            = true;
-                this._showDescription       = true;
-                this._paginationHasPrevNext = true;
-            }
-            else {
-                throw new TypeError('supported layouts are 0-3!');
-            }
-        }
-
-        if (this._element.getAttribute('data-fix-image-sizes') !== null) {
-            this._options.fixImageSizes = true;
-        }
-
-        this._init();
-    };
-
-    Gallery.prototype = {
-
-        /**
-         * Init function called from the constructor.
-         *
-         * @method  _init
-         * @private
-         */
-        _init: function() {
-            // extract model
-            if (this._createdFrom === 'DOM') {
-                this._extractModelFromDOM();
-            }
-
-            // generate and apply DOM
-            var el = this._generateMarkup();
-            var parentEl = this._element.parentNode;
-
-            if (!this._notFirstInit) {
-                Aux.storeIdAndClasses(this._element, this);
-                this._notFirstInit = true;
-            }
-
-            parentEl.insertBefore(el, this._element);
-            parentEl.removeChild(this._element);
-            this._element = el;
-
-            Aux.restoreIdAndClasses(this._element, this);
-
-            // subscribe events
-            Event.observe(this._paginationEl, 'click',     this._handlers.paginationClick);
-            Event.observe(this._navEl,        'click',     this._handlers.navClick);
-
-            if (this._showThumbs) {
-                Event.observe(this._thumbsUlEl,   'click',     this._handlers.thumbsClick);
-            }
-
-            Event.observe(this._element,      'mouseover', this._handlers.focusBlur);
-            Event.observe(this._element,      'mouseout',  this._handlers.focusBlur);
-            Event.observe(document,           'keydown',   this._handlers.keyDown);
-
-            Aux.registerInstance(this, this._element, 'gallery');
-        },
-
-        /**
-         * Updates the model from the UL representation
-         *
-         * @method _extractModelFromDOM
-         * @private
-         */
-        _extractModelFromDOM: function() {
-            /*global console:false */
-            var m = [];
-            var dims;
-
-            var liEls = Selector.select('> li', this._element);
-            InkArray.each(liEls,function(liEl) {
-                try {
-                    var d = {
-                        image_full:  '',
-                        image_thumb: '',
-                        title_text:  '',
-                        title_link:  '',
-                        description: '',
-                        content_overlay: document.createDocumentFragment()
-                    };
-
-                    var enclosureAEl       = Selector.select('> a[rel=enclosure]',          liEl)[0];
-                    var thumbImgEl         = Selector.select('> img',                       enclosureAEl)[0];
-                    var bookmarkAEl        = Selector.select('> a[class=bookmark]',         liEl)[0];
-                    var titleSpanEl        = Selector.select('span[class=entry-title]',     liEl)[0];
-                    var entryContentSpanEl = Selector.select('> span[class=entry-content]', liEl)[0];
-                    var contentOverlayEl   = Selector.select('> .content-overlay',          liEl)[0];
-
-                    dims = enclosureAEl.getAttribute('data-dims');
-                    if (dims !== null) {
-                        dims = dims.split(',');
-                        dims[0] = parseInt(dims[0], 10);
-                        dims[1] = parseInt(dims[1], 10);
-                    }
-                    if (dims && !isNaN(dims[0]) && !isNaN(dims[1])) { d.dims = dims; }
-
-                    d.image_full  = enclosureAEl.getAttribute('href');
-                    d.image_thumb = thumbImgEl.getAttribute('src');
-                    if (bookmarkAEl) {
-                        d.title_link  = bookmarkAEl.getAttribute('href');
-                    }
-                    d.title_text  = titleSpanEl.innerHTML;
-                    if (entryContentSpanEl) {
-                        d.description = entryContentSpanEl.innerHTML;
-                    }
-
-                    if(contentOverlayEl){
-                        d.content_overlay.appendChild(contentOverlayEl);
-                    }
-
-                    m.push(d);
-                } catch(ex) {
-                    console.error('problematic element:');
-                    console.error(liEl);
-                    console.error(ex);
-                    throw new Error('Problem parsing gallery data from DOM!');
-                }
-            });
-
-            this._model = m;
-        },
-
-        /**
-         * Returns the top element for the gallery DOM representation
-         *
-         * @method _generateMarkup
-         * @private
-         * @return {DOMElement} Returns the Gallery element totally rendered.
-         */
-        _generateMarkup: function() {
-            /*jshint maxstatements:80 */
-            var el = document.createElement('div');
-            el.className = 'ink-gallery';
-
-            var stageEl = document.createElement('div');
-            stageEl.className = 'stage';
-
-            // nav
-            var navEl = document.createElement('nav');
-            navEl.innerHTML = [
-                '<ul class="unstyled">',
-                    '<li><a href="#" class="next"></a></li>',
-                    '<li><a href="#" class="previous"></a></li>',
-                '</ul>'
-            ].join('');
-            this._navEl = navEl;
-
-            // slider
-            var sliderEl = document.createElement('div');
-            sliderEl.className = 'slider';
-
-            var ulEl = document.createElement('ul');
-            this._sliderUlEl = ulEl;
-
-            var that = this;
-
-            var W = this._options.fullImageMaxWidth;
-            var H = this._options.fullImageMaxHeight;
-
-            InkArray.each(this._model,function(d, i) {
-                var liEl = document.createElement('li');
-                var imgEl = document.createElement('img');
-                imgEl.setAttribute('name', 'image ' + (i + 1));
-                imgEl.setAttribute('src',  d.image_full);
-                imgEl.setAttribute('alt',  d.title_text);
-                //imgEl.style.maxWidth = that._options.fullImageMaxWidth + 'px';
-                //imgEl.setAttribute('width', that._options.fullImageMaxWidth);       // TODO?
-                liEl.appendChild(imgEl);
-
-                if(d.content_overlay){
-                    if(d.content_overlay.nodeType === 1 || d.content_overlay.nodeType === 11){
-                        d.content_overlay = liEl.appendChild(d.content_overlay);
-                    } else if(typeof d.content_overlay === 'string'){
-                        var contentOverlayEl = document.createElement('div');
-
-                        contentOverlayEl.className = 'content-overlay';
-                        contentOverlayEl.innerHTML = d.content_overlay;
-
-                        d.content_overlay = liEl.appendChild(contentOverlayEl);
-                    }
-                }
-
-                ulEl.appendChild(liEl);
-
-                if (that._options.fixImageSizes) {
-                    var dimsCb = function(dims) {
-                        //console.log(this, dims);
-                        var imgEl = this.img;
-                        var data  = this.data;
-
-                        if (!data.dims) { data.dims = dims; }
-
-                        var dims2 = maximizeBox([W, H], dims);
-
-                        var w = dims2[0];
-                        var h = dims2[1];
-                        var dw = Math.floor( (W - w)/2 );
-                        var dh = Math.floor( (H - h)/2 );
-
-                        if (w !== W || h !== H) {
-                            imgEl.setAttribute('width',  w);
-                            imgEl.setAttribute('height', h);
-
-                            var s = imgEl.style;
-                            if (dw > 0) { s.paddingLeft   = dw + 'px'; }
-                            if (dh > 0) { s.paddingBottom = dh + 'px'; }
-                        }
-                    };
-
-                    if (d.dims) { dimsCb.call( {img:imgEl, data:d}, d.dims); }
-                    else {        getDimsAsync({img:imgEl, data:d}, dimsCb); }
-                }
-            });
-
-            sliderEl.appendChild(ulEl);
-            this._sliderEl = sliderEl;
-
-            // description
-            var articleTextDivEl;
-            if (this._showDescription) {
-                var d = this._model[this._index];
-                articleTextDivEl = document.createElement('div');
-                articleTextDivEl.className = ['article_text', 'example' + (this._options.layout === 3 ? 2 : this._options.layout)].join(' ');
-                if (d.title_link) {
-                    articleTextDivEl.innerHTML = ['<h1><a href="', d.title_link, '">', d.title_text, '</a></h1>', d.description].join('');
-                }
-                else {
-                    articleTextDivEl.innerHTML = ['<h1>', d.title_text, '</h1>', d.description].join('');
-                }
-                this._articleTextDivEl = articleTextDivEl;
-            }
-
-            // thumbs
-            var thumbsDivEl;
-            if (this._showThumbs) {
-                thumbsDivEl = document.createElement('div');
-                thumbsDivEl.className = 'thumbs';
-                ulEl = document.createElement('ul');
-                ulEl.className = 'unstyled';
-
-                InkArray.each(this._model,function(d, i) {
-                    var liEl = document.createElement('li');
-                    var aEl = document.createElement('a');
-                    aEl.setAttribute('href', '#');
-                    var imgEl = document.createElement('img');
-                    imgEl.setAttribute('name', 'thumb ' + (i + 1));
-                    imgEl.setAttribute('src', d.image_thumb);
-                    imgEl.setAttribute('alt', (i + 1));
-                    var spanEl = document.createElement('span');
-                    spanEl.innerHTML = d.title_text;
-                    aEl.appendChild(imgEl);
-                    aEl.appendChild(spanEl);
-                    liEl.appendChild(aEl);
-                    ulEl.appendChild(liEl);
-                });
-                thumbsDivEl.appendChild(ulEl);
-
-                this._thumbsDivEl = thumbsDivEl;
-                this._thumbsUlEl = ulEl;
-            }
-
-
-            // pagination
-            var paginationEl = document.createElement('div');
-            paginationEl.className = 'pagination';
-
-            var aEl;
-            if (this._paginationHasPrevNext) {
-                aEl = document.createElement('a');
-                aEl.setAttribute('href', '#');
-                aEl.className = 'previous';
-                paginationEl.appendChild(aEl);
-            }
-
-            InkArray.each(this._model,function(d, i) {
-                var aEl = document.createElement('a');
-                aEl.setAttribute('href', '#');
-                aEl.setAttribute('data-index', i);
-                if (i === that._index) { aEl.className = 'active'; }
-                paginationEl.appendChild(aEl);
-            });
-
-            if (this._paginationHasPrevNext) {
-                aEl = document.createElement('a');
-                aEl.setAttribute('href', '#');
-                aEl.className = 'next';
-                paginationEl.appendChild(aEl);
-            }
-
-            this._paginationEl = paginationEl;
-
-            // last appends...
-            if (this._options.layout === 0) {
-                stageEl.appendChild(navEl);
-                stageEl.appendChild(sliderEl);
-                stageEl.appendChild(paginationEl);
-                el.appendChild(stageEl);
-            }
-            else if (this._options.layout === 1 || this._options.layout === 2 || this._options.layout === 3) {
-                stageEl.appendChild(navEl);
-                stageEl.appendChild(sliderEl);
-                stageEl.appendChild(articleTextDivEl);
-                el.appendChild(stageEl);
-
-                if (this._options.layout === 3) {
-                    //this._thumbsUlEl.appendChild(paginationEl);
-                    this._thumbsUlEl.className = 'thumbs unstyled';
-                    Css.addClassName(el, 'rightNav');
-                    el.appendChild(this._thumbsUlEl);
-                }
-                else {
-                    thumbsDivEl.appendChild(paginationEl);
-                    el.appendChild(thumbsDivEl);
-                }
-            }
-
-            this._swipeDir = 'x';
-            this._swipeThumbsDir = this._options.layout === 0 ? '' : (this._options.layout === 3 ? 'y' : 'x');
-
-            if (Swipe._supported) {
-                new Swipe(el, {
-                    callback:    Ink.bind(function(sw, o) {
-                        var th =              this._isMeOrParent(o.target, this._thumbsUlEl);
-                        var sl = th ? false : this._isMeOrParent(o.target, el);//this._sliderUlEl);
-                        if ( (!th && !sl) || (th && !this._swipeThumbsDir) ) { return; }
-                        if ( (sl && o.axis !== this._swipeDir) || (th && o.axis !== this._swipeThumbsDir) ) { return; }
-                        if (o.dr[0] < 0) { if (th) { this.thumbNext();     } else { this.next();     } }
-                        else {             if (th) { this.thumbPrevious(); } else { this.previous(); } }
-                    },this),
-                    maxDuration: 0.4,
-                    minDist:     50
-                });
-            }
-
-            return el;
-        },
-
-        /**
-         * Verifies if a given element is equals to its parent
-         *
-         * @method _isMeOrParent
-         * @param  {DOMElement}  el       Element to be compared with the parent element
-         * @param  {DOMElement}  parentEl Parent element to be compared with the element
-         * @return {Boolean|undefined}          In case the 'el' variable is not defined, it returns undefined. Otherwise, it will return true or false depending on the comparison.
-         * @private
-         */
-        _isMeOrParent: function(el, parentEl) {
-            if (!el) {return;}
-            do {
-                if (el === parentEl) { return true; }
-                el = el.parentNode;
-            } while (el);
-            return false;
-        },
-
-        /**
-         * Navigation click handler
-         *
-         * @method _onNavClick
-         * @param {Event} ev
-         * @private
-         */
-        _onNavClick: function(ev) {
-            var tgtEl = Event.element(ev);
-            var delta;
-            if      (Css.hasClassName(tgtEl, 'previous')) { delta = -1; }
-            else if (Css.hasClassName(tgtEl, 'next')) {     delta =  1; }
-            else { return; }
-
-            Event.stop(ev);
-            this.goTo(delta, true);
-        },
-
-        /**
-         * Pagination click handler
-         *
-         * @method _onPaginationClick
-         * @param {Event} ev
-         * @private
-         */
-        _onPaginationClick: function(ev) {
-            var tgtEl = Event.element(ev);
-            var i = tgtEl.getAttribute('data-index');
-            var isRelative = false;
-            if      (Css.hasClassName(tgtEl, 'previous')) { i = -1; isRelative = true; }
-            else if (Css.hasClassName(tgtEl, 'next')) {     i =  1; isRelative = true; }
-            else if (i === null) { return; }
-            else { i = parseInt(i, 10); }
-            Event.stop(ev);
-
-            if (isRelative) { this.thumbGoTo(i, true); }
-            else {            this.goTo(i);            }
-        },
-
-        /**
-         * Thumbs click handler
-         *
-         * @method _onThumbsClick
-         * @param {Event} ev
-         * @private
-         */
-        _onThumbsClick: function(ev) {
-            var tgtEl = Event.element(ev);
-            if      (tgtEl.nodeName.toLowerCase() === 'img') {}
-            else if (tgtEl.nodeName.toLowerCase() === 'span') {
-                tgtEl = Selector.select('> img', tgtEl.parentNode)[0];
-            }
-            else { return; }
-
-            Event.stop(ev);
-            var i = parseInt(tgtEl.getAttribute('alt'), 10) - 1;
-            this.goTo(i);
-        },
-
-        /**
-         * Focus handler
-         *
-         * @method _onFocusBlur
-         * @param  {Event} ev
-         * @private
-         */
-        _onFocusBlur: function(ev) {
-            this._isFocused = (ev.type === 'mouseover');
-        },
-
-        /**
-         * Key handler
-         *
-         * @method _onKeyDown
-         * @param  {Event} ev
-         * @private
-         */
-        _onKeyDown: function(ev) {
-            if (!this._isFocused) { return; }
-            var kc = ev.keyCode;
-            if      (kc === 37) { this.previous(); }
-            else if (kc === 39) { this.next();     }
-            else { return; }
-            Event.stop(ev);
-        },
-
-        /**
-         * Validates the number of the item against the gallery items.
-         *
-         * @method _validateValue
-         * @param  {Number}  i  The number of the item being validated
-         * @param  {Boolean} [isRelative]
-         * @param  {Boolean} [isThumb]
-         * @return {Number|Boolean}
-         * @private
-         */
-        _validateValue: function(i, isRelative, isThumb) {
-            // check arguments
-            if (!Aux.isInteger(i)) {
-                throw new TypeError('1st parameter must be an integer number!');
-            }
-            if ( isRelative !== undefined &&
-                 isRelative !== false     &&
-                 isRelative !== true ) {
-                throw new TypeError('2nd parameter must either be boolean or ommitted!');
-            }
-
-            var val = isThumb ? this._thumbIndex : this._index;
-
-            // compute new index
-            if (isRelative) { i += val; }
-
-            if (this._options.circular) {
-                if      (i < 0) {                   i = this._model.length - 1; }
-                else if (i >= this._model.length) { i = 0;                      }
-            }
-            else {
-                if (i < 0 || i >= this._model.length || i === val) { return false; }
-            }
-
-            return i;
-        },
-
-
-
-        /**************
-         * PUBLIC API *
-         **************/
-
-        /**
-         * Returns the index of the current image
-         *
-         * @method getIndex
-         * @return {Number} Index of the current image
-         * @public
-         */
-        getIndex: function() {
-            return this._index;
-        },
-
-        /**
-         * Returns the number of images in the gallery
-         *
-         * @method getLength
-         * @return {Number} Number of images in the gallery
-         * @public
-         */
-        getLength: function() {
-            return this._model.length;
-        },
-
-        /**
-         * Moves gallery to the nth - 1 image
-         *
-         * @method goTo
-         * @param  {Number} i Absolute or relative index
-         * @param  {Boolean} [isRelative] pass true for relative movement, otherwise absolute
-         * @public
-         */
-        goTo: function(i, isRelative) {
-            i = this._validateValue(i, isRelative, false);
-            if (i === false) { return; }
-            this._index = i;
-
-            // update DOM representation
-            var paginationAEls = Selector.select('> a', this._paginationEl);
-            var that = this;
-            InkArray.each(paginationAEls,function(aEl, i) {
-                Css.setClassName(aEl, 'active', (i - (that._paginationHasPrevNext ? 1 : 0)) === that._index);
-            });
-
-            this._sliderUlEl.style.marginLeft = ['-', this._options.fullImageMaxWidth * this._index, 'px'].join('');
-
-            if (this._showDescription) {
-                var d = this._model[this._index];
-                if (d.title_link) {
-                    this._articleTextDivEl.innerHTML = ['<h1><a href="', d.title_link, '">', d.title_text, '</a></h1>', d.description].join('');
-                }
-                else {
-                    this._articleTextDivEl.innerHTML = ['<h1>', d.title_text, '</h1>', d.description].join('');
-                }
-            }
-        },
-
-        /**
-         * Moves gallery to the nth - 1 thumb
-         *
-         * @method thumbGoTo
-         * @param  {Number} i Absolute or relative index
-         * @param  {Boolean} [isRelative] pass true for relative movement, otherwise absolute
-         * @public
-         */
-        thumbGoTo: function(i, isRelative) {
-            i = this._validateValue(i, isRelative, true);
-            if (i === false) { return; }
-            this._thumbIndex = i;
-
-            // update DOM representation
-            var prop = 'margin' + (this._swipeThumbsDir === 'x' ? 'Left' : 'Top');
-            this._thumbsUlEl.style[prop] = ['-', this._options.thumbnailMaxWidth * this._thumbIndex, 'px'].join('');
-        },
-
-        /**
-         * Move to the previous image
-         *
-         * @method previous
-         * @public
-         */
-        previous: function() {
-            this.goTo(-1, true);
-        },
-
-        /**
-         * Move to the next image
-         *
-         * @method next
-         * @public
-         */
-        next: function() {
-            this.goTo(1, true);
-        },
-
-        /**
-         * Move to the previous thumb
-         *
-         * @method thumbPrevious
-         * @public
-         */
-        thumbPrevious: function() {
-            this.thumbGoTo(-1, true);
-        },
-
-        /**
-         * Move to the next thumb
-         *
-         * @method thumbNext
-         * @public
-         */
-        thumbNext: function() {
-            this.thumbGoTo(1, true);
-        },
-
-        /**
-         * Unregisters the component and removes its markup from the DOM
-         *
-         * @method destroy
-         * @public
-         */
-        destroy: Aux.destroyComponent
-
-    };
-
-    return Gallery;
-
-});
-
-/**
  * @module Ink.UI.FormValidator_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -14962,8 +15717,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
             this.elements[this.element.id] = [];
             this.confirmElms[this.element.id] = [];
-            console.log(this.element);
-            console.log(this.element.elements);
+            //console.log(this.element);
+            //console.log(this.element.elements);
             var formElms = this.element.elements;
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
@@ -15001,7 +15756,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                 }
             }
-            debugger;
+            //debugger;
         },
 
         /**
@@ -15303,7 +16058,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                         if( !(validFormat in InkValidator._dateParsers ) ){
                             var validValues = [];
-                            for( val in InkValidator._dateParsers ){
+                            for( var val in InkValidator._dateParsers ){
                                 validValues.push(val);
                             }
                             throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
@@ -15342,8 +16097,10 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                     var newLabel = document.createElement('p');
                     //newLabel.setAttribute('for',curElm.id);
-                    newLabel.className = this._errorClassName;
-                    newLabel.className += ' ' . this._errorTypeErrorClassName;
+                    //newLabel.className = this._errorClassName;
+                    //newLabel.className += ' ' + this._errorTypeErrorClassName;
+                    Css.addClassName(newLabel, this._errorClassName);
+                    Css.addClassName(newLabel, this._errorTypeErrorClassName);
                     if(aFail[i].errors[0] !== 'ink-fv-custom') {
                         newLabel.innerHTML = this._flagMap[aFail[i].errors[0]].msg;
                     } else {
@@ -15449,15 +16206,15 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
      * @version 1
      * @static
      */
-	var Droppable = {
-		/**
-		 * Flag that determines if it's in debug mode or not
-		 *
-		 * @property debug
-		 * @type {Boolean}
-		 * @private
-		 */
-		debug: false,
+    var Droppable = {
+        /**
+         * Flag that determines if it's in debug mode or not
+         *
+         * @property debug
+         * @type {Boolean}
+         * @private
+         */
+        debug: false,
 
         /**
          * Associative array with the elements that are droppable
@@ -15466,169 +16223,167 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @type {Object}
          * @private
          */
-		_elements: {}, // indexed by id
+        _elements: {}, // indexed by id
 
         /**
-		 * Makes an element droppable and adds it to the stack of droppable elements.
-		 * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
+         * Makes an element droppable and adds it to the stack of droppable elements.
+         * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
          * 
          * @method add
-		 * @param {String|DOMElement}       element    - target element
-		 * @param {optional Object}         options    - options object
-		 *     @param {String}       [options.hoverclass] - Classname applied when an acceptable draggable element is hovering the element
-		 *     @param {Array|String} [options.accept]     - Array or comma separated string of classnames for elements that can be accepted by this droppable
-		 *     @param {Function}     [options.onHover]    - callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
-		 *     @param {Function}     [options.onDrop]     - callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameterse.
+         * @param {String|DOMElement}       element    - target element
+         * @param {Object}                  [options]  - options object
+         *     @param {String}       [options.hoverclass] - Classname applied when an acceptable draggable element is hovering the element
+         *     @param {Array|String} [options.accept]     - Array or comma separated string of classnames for elements that can be accepted by this droppable
+         *     @param {Function}     [options.onHover]    - callback called when an acceptable draggable element is hovering the droppable. Gets the draggable and the droppable element as parameters.
+         *     @param {Function}     [options.onDrop]     - callback called when an acceptable draggable element is dropped. Gets the draggable, the droppable and the event as parameterse.
          * @public
          */
-		add: function(element, options) {
-			var opt = Ink.extendObj( {
-				hoverclass:		false,
-				accept:			false,
-				onHover:		false,
-				onDrop:			false,
-				onDropOut:		false				
-			}, options || {});
+        add: function(element, options) {
+            var opt = Ink.extendObj( {
+                hoverclass:     false,
+                accept:         false,
+                onHover:        false,
+                onDrop:         false,
+                onDropOut:      false                
+            }, options || {});
 
-			element = Ink.i(element);
+            element = Ink.i(element);
 
-			if (opt.accept && opt.accept.constructor === Array) {
-				opt.accept = opt.accept.join();
-			}
+            if (opt.accept && opt.accept.constructor === Array) {
+                opt.accept = opt.accept.join();
+            }
 
-			this._elements[element.id] = {options: opt};
-			this.update(element.id);
-		},
+            this._elements[element.id] = {options: opt};
+            this.update(element.id);
+        },
 
         /**
-		 * Invoke every time a drag starts
+         * Invoke every time a drag starts
          * 
          * @method updateAll
          * @public
          */
-		/**
-		 */
-		updateAll: function() {
-			for (var id in this._elements) {
-				if (!this._elements.hasOwnProperty(id)) {	continue;	}
-				this.update(Ink.i(id));
-			}
-		},
+        updateAll: function() {
+            for (var id in this._elements) {
+                if (!this._elements.hasOwnProperty(id)) {    continue;    }
+                this.update(Ink.i(id));
+            }
+        },
 
         /**
-		 * Updates location and size of droppable element
+         * Updates location and size of droppable element
          * 
          * @method update
-		 * @param {String|DOMElement} element - target element
+         * @param {String|DOMElement} element - target element
          * @public
          */
-		update: function(element) {
-			element = Ink.i(element);
-			var data = this._elements[element.id];
-			if (!data) {
-				return; /*throw 'Data about element with id="' + element.id + '" was not found!';*/
-			}
+        update: function(element) {
+            element = Ink.i(element);
+            var data = this._elements[element.id];
+            if (!data) {
+                return; /*throw 'Data about element with id="' + element.id + '" was not found!';*/
+            }
 
-			data.left	= Element.offsetLeft(element);
-			data.top	= Element.offsetTop( element);
-			data.right	= data.left + Element.elementWidth( element);
-			data.bottom	= data.top  + Element.elementHeight(element);
+            data.left   = Element.offsetLeft(element);
+            data.top    = Element.offsetTop( element);
+            data.right  = data.left + Element.elementWidth( element);
+            data.bottom = data.top  + Element.elementHeight(element);
 
-			// if (this.debug) {
-			// 	// for debugging purposes
-			// 	if (!data.rt) {		data.rt = SAPO.Utility.Debug.addRect(document.body,	[data.left, data.top], [data.right-data.left+1, data.bottom-data.top+1]);	}
-			// 	else {				SAPO.Utility.Debug.updateRect(data.rt,				[data.left, data.top], [data.right-data.left+1, data.bottom-data.top+1]);	}
-			// }
-		},
+            // if (this.debug) {
+            //     // for debugging purposes
+            //     if (!data.rt) {        data.rt = SAPO.Utility.Debug.addRect(document.body,    [data.left, data.top], [data.right-data.left+1, data.bottom-data.top+1]);    }
+            //     else {                SAPO.Utility.Debug.updateRect(data.rt,                [data.left, data.top], [data.right-data.left+1, data.bottom-data.top+1]);    }
+            // }
+        },
 
         /**
-		 * Removes an element from the droppable stack and removes the droppable behavior
-		 * 
+         * Removes an element from the droppable stack and removes the droppable behavior
+         * 
          * @method remove
-		 * @param {String|DOMElement} el - target element
+         * @param {String|DOMElement} el - target element
          * @public
          */
-		remove: function(el) {
-			el = Ink.i(el);
-			delete this._elements[el.id];
-		},
+        remove: function(el) {
+            el = Ink.i(el);
+            delete this._elements[el.id];
+        },
 
         /**
-		 * Method called by a draggable to execute an action on a droppable
+         * Method called by a draggable to execute an action on a droppable
          * 
          * @method action
-		 * @param {Object} coords    - coordinates where the action happened
-		 * @param {String} type      - type of action. drag or drop.
-		 * @param {Object} ev        - Event object
-		 * @param {Object} draggable - draggable element
+         * @param {Object} coords    - coordinates where the action happened
+         * @param {String} type      - type of action. drag or drop.
+         * @param {Object} ev        - Event object
+         * @param {Object} draggable - draggable element
          * @public
          */
-		action: function(coords, type, ev, draggable) {
-			var opt, classnames, accept, el, element;
+        action: function(coords, type, ev, draggable) {
+            var opt, classnames, accept, el, element;
 
-			// check all droppable elements
-			for (var elId in this._elements) {
-				if (!this._elements.hasOwnProperty(elId)) {	continue;	}
-				el = this._elements[elId];
-				opt = el.options;
-				accept = false;
-				element = Ink.i(elId);
+            // check all droppable elements
+            for (var elId in this._elements) {
+                if (!this._elements.hasOwnProperty(elId)) {    continue;    }
+                el = this._elements[elId];
+                opt = el.options;
+                accept = false;
+                element = Ink.i(elId);
 
-				// check if our draggable is over our droppable
-				if (coords.x >= el.left && coords.x <= el.right && coords.y >= el.top && coords.y <= el.bottom) {
+                // check if our draggable is over our droppable
+                if (coords.x >= el.left && coords.x <= el.right && coords.y >= el.top && coords.y <= el.bottom) {
 
-					// INSIDE
+                    // INSIDE
 
-					// check if the droppable accepts the draggable
-					if (opt.accept) {
-						classnames = draggable.className.split(' ');
-						for ( var j = 0, lj = classnames.length; j < lj; j++) {
-							if (opt.accept.search(classnames[j]) >= 0 && draggable !== element) {
-								accept = true;
-							}
-						}
-					}
-					else {
-						accept = true;
-					}
-
-					if (accept) {
-						if (type === 'drag') {
-							if (opt.hoverclass) {
-								Css.addClassName(element, opt.hoverclass);
-							}
-							if (opt.onHover) {
-								opt.onHover(draggable, element);
-							}
-						}
-						else {
-							if (type === 'drop' && opt.onDrop) {
-								if (opt.hoverclass) {
-									Css.removeClassName(element, opt.hoverclass);
-								}
-								if (opt.onDrop) {
-									opt.onDrop(draggable, element, ev);
-								}
-							}
+                    // check if the droppable accepts the draggable
+                    if (opt.accept) {
+                        classnames = draggable.className.split(' ');
+                        for ( var j = 0, lj = classnames.length; j < lj; j++) {
+                            if (opt.accept.search(classnames[j]) >= 0 && draggable !== element) {
+                                accept = true;
+                            }
                         }
-					}
-				}
-				else {
-					// OUTSIDE
-					if (type === 'drag' && opt.hoverclass) {
-						Css.removeClassName(element, opt.hoverclass);
-					}
-					if(type === 'drop'){
-						if(opt.onDropOut){
-							opt.onDropOut(draggable, element, ev);
-						}
-					}
-				}
-			}
-		}
-	};
+                    }
+                    else {
+                        accept = true;
+                    }
 
-	return Droppable;
+                    if (accept) {
+                        if (type === 'drag') {
+                            if (opt.hoverclass) {
+                                Css.addClassName(element, opt.hoverclass);
+                            }
+                            if (opt.onHover) {
+                                opt.onHover(draggable, element);
+                            }
+                        }
+                        else {
+                            if (type === 'drop' && opt.onDrop) {
+                                if (opt.hoverclass) {
+                                    Css.removeClassName(element, opt.hoverclass);
+                                }
+                                if (opt.onDrop) {
+                                    opt.onDrop(draggable, element, ev);
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    // OUTSIDE
+                    if (type === 'drag' && opt.hoverclass) {
+                        Css.removeClassName(element, opt.hoverclass);
+                    }
+                    if(type === 'drop'){
+                        if(opt.onDropOut){
+                            opt.onDropOut(draggable, element, ev);
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    return Droppable;
 });
 
 /**
@@ -15636,40 +16391,41 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1"],function( Element, Event, Css, Browser, Droppable) {
+Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1"],function( InkElement, InkEvent, Css, Browser, Droppable) {
 
     /**
      * @class Ink.UI.Draggable
      * @version 1
      * @constructor
-     * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
-     * @param {Object} [opptions] Optional object for configuring the component
-	 *     @param {String}            [options.constraint]     - Movement constraint. None by default. Can be either vertical or horizontal.
-	 *     @param {Number}            [options.top]            - top limit for the draggable area
-	 *     @param {Number}            [options.right]          - right limit for the draggable area
-	 *     @param {Number}            [options.bottom]         - bottom limit for the draggable area
-	 *     @param {Number}            [options.left]           - left limit for the draggable area
-	 *     @param {String|DOMElement} [options.handler]        - if specified, only this element will be used for dragging instead of the whole target element
-	 *     @param {Boolean}           [options.revert]         - if true, reverts the draggable to the original position when dragging stops
-	 *     @param {String}            [options.cursor]         - cursor type used over the draggable object
-	 *     @param {Number}            [options.zindex]         - zindex applied to the draggable element while dragged
-	 *     @param {Number}            [options.fps]            - if defined, on drag will run every n frames per second only
-	 *     @param {DomElement}        [options.droppableProxy] - if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
-	 *     @param {String}            [options.mouseAnchor]    - defaults to mouse cursor. can be 'left|center|right top|center|bottom'
-	 *     @param {Function}          [options.onStart]        - callback called when dragging starts
-	 *     @param {Function}          [options.onEnd]          - callback called when dragging stops
-	 *     @param {Function}          [options.onDrag]         - callback called while dragging, prior to position updates
-	 *     @param {Function}          [options.onChange]       - callback called while dragging, after position updates
+     * @param {String|DOMElement} element ID of the element or DOM Element.
+     * @param {Object} [options] Optional object for configuring the component
+     *     @param {String}            [options.constraint]     - Movement constraint. None by default. Can be either vertical or horizontal.
+     *     @param {Number}            [options.top]            - top limit for the draggable area
+     *     @param {Number}            [options.right]          - right limit for the draggable area
+     *     @param {Number}            [options.bottom]         - bottom limit for the draggable area
+     *     @param {Number}            [options.left]           - left limit for the draggable area
+     *     @param {String|DOMElement} [options.handler]        - if specified, only this element will be used for dragging instead of the whole target element
+     *     @param {Boolean}           [options.revert]         - if true, reverts the draggable to the original position when dragging stops
+     *     @param {String}            [options.cursor]         - cursor type used over the draggable object
+     *     @param {Number}            [options.zindex]         - zindex applied to the draggable element while dragged
+     *     @param {Number}            [options.fps]            - if defined, on drag will run every n frames per second only
+     *     @param {DomElement}        [options.droppableProxy] - if set, a shallow copy of the droppableProxy will be put on document.body with transparent bg
+     *     @param {String}            [options.mouseAnchor]    - defaults to mouse cursor. can be 'left|center|right top|center|bottom'
+     *     @param {String}            [options.dragClass='drag'] - class to add when the draggable is being dragged.
+     *     @param {Function}          [options.onStart]        - callback called when dragging starts
+     *     @param {Function}          [options.onEnd]          - callback called when dragging stops
+     *     @param {Function}          [options.onDrag]         - callback called while dragging, prior to position updates
+     *     @param {Function}          [options.onChange]       - callback called while dragging, after position updates
      * @example
      *     Ink.requireModules( ['Ink.UI.Draggable_1'], function( Draggable ){
      *         new Draggable( 'myElementId' );
      *     });
      */
-	var Draggable = function(element, options) {
-		this.init(element, options);
-	};
+    var Draggable = function(element, options) {
+        this.init(element, options);
+    };
 
-	Draggable.prototype = {
+    Draggable.prototype = {
 
         /**
          * Init function called by the constructor
@@ -15679,137 +16435,138 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {Object} [options] Options object for configuration of the module.
          * @private
          */
-		init: function(element, options) {
-			var o = Ink.extendObj( {
-				constraint:			false,
-				top:				0,
-				right:				Element.pageWidth(),
-				bottom:				Element.pageHeight(),
-				left:				0,
-				handler:			false,
-				revert:				false,
-				cursor:				'move',
-				zindex:				9999,
-				onStart:			false,
-				onEnd:				false,
-				onDrag:				false,
-				onChange:			false,
-				droppableProxy:		false,
-				mouseAnchor:		undefined,
-				skipChildren:		true,
-				debug:				false
-			}, options || {});
+        init: function(element, options) {
+            var o = Ink.extendObj( {
+                constraint:         false,
+                top:                0,
+                right:              InkElement.pageWidth(),
+                bottom:             InkElement.pageHeight(),
+                left:               0,
+                handler:            false,
+                revert:             false,
+                cursor:             'move',
+                zindex:             9999,
+                dragClass:          'drag',
+                onStart:            false,
+                onEnd:              false,
+                onDrag:             false,
+                onChange:           false,
+                droppableProxy:     false,
+                mouseAnchor:        undefined,
+                skipChildren:       true,
+                debug:              false
+            }, options || {});
 
-			this.options = o;
-			this.element = Ink.i(element);
+            this.options = o;
+            this.element = Ink.i(element);
 
-			this.handle				= false;
-			this.elmStartPosition	= false;
-			this.active				= false;
-			this.dragged			= false;
-			this.prevCoords			= false;
-			this.placeholder		= false;
+            this.handle             = false;
+            this.elmStartPosition   = false;
+            this.active             = false;
+            this.dragged            = false;
+            this.prevCoords         = false;
+            this.placeholder        = false;
 
-			this.position			= false;
-			this.zindex				= false;
-			this.firstDrag			= true;
+            this.position           = false;
+            this.zindex             = false;
+            this.firstDrag          = true;
 
-			if (o.fps) {
-				this.deltaMs = 1000 / o.fps;
-				this.lastRanAt = 0;
-			}
+            if (o.fps) {
+                this.deltaMs = 1000 / o.fps;
+                this.lastRanAt = 0;
+            }
 
-			this.handlers = {};
-			this.handlers.start			= Ink.bindEvent(this._onStart,this);
-			this.handlers.dragFacade	= Ink.bindEvent(this._onDragFacade,this);
-			this.handlers.drag			= Ink.bindEvent(this._onDrag,this);
-			this.handlers.end			= Ink.bindEvent(this._onEnd,this);
-			this.handlers.selectStart	= function(event) {	Event.stop(event);	return false;	};
+            this.handlers = {};
+            this.handlers.start         = Ink.bindEvent(this._onStart,this);
+            this.handlers.dragFacade    = Ink.bindEvent(this._onDragFacade,this);
+            this.handlers.drag          = Ink.bindEvent(this._onDrag,this);
+            this.handlers.end           = Ink.bindEvent(this._onEnd,this);
+            this.handlers.selectStart   = function(event) {    InkEvent.stop(event);    return false;    };
 
-			// set handler
-			this.handle = (this.options.handler) ? Ink.i(this.options.handler) : this.element;
-			this.handle.style.cursor = o.cursor;
+            // set handler
+            this.handle = (this.options.handler) ? Ink.i(this.options.handler) : this.element;
+            this.handle.style.cursor = o.cursor;
 
-			if (o.right  !== false) {	this.options.right	= o.right  - Element.elementWidth( element);	}
-			if (o.bottom !== false) {	this.options.bottom	= o.bottom - Element.elementHeight(element);	}
+            if (o.right  !== false) {   this.options.right    = o.right  - InkElement.elementWidth( element);    }
+            if (o.bottom !== false) {   this.options.bottom   = o.bottom - InkElement.elementHeight(element);    }
 
-			Event.observe(this.handle, 'touchstart', this.handlers.start);
-			Event.observe(this.handle, 'mousedown', this.handlers.start);
+            InkEvent.observe(this.handle, 'touchstart', this.handlers.start);
+            InkEvent.observe(this.handle, 'mousedown', this.handlers.start);
 
-			if (Browser.IE) {
-				Event.observe(this.element, 'selectstart', this.handlers.selectStart);
-			}
-		},
+            if (Browser.IE) {
+                InkEvent.observe(this.element, 'selectstart', this.handlers.selectStart);
+            }
+        },
 
         /**
-		 * Removes the ability of the element of being dragged
+         * Removes the ability of the element of being dragged
          * 
          * @method destroy
          * @public
          */
-		destroy: function() {
-			Event.stopObserving(this.handle, 'touchstart', this.handlers.start);
-			Event.stopObserving(this.handle, 'mousedown', this.handlers.start);
+        destroy: function() {
+            InkEvent.stopObserving(this.handle, 'touchstart', this.handlers.start);
+            InkEvent.stopObserving(this.handle, 'mousedown', this.handlers.start);
 
-			if (Browser.IE) {
-				Event.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
-			}
-		},
+            if (Browser.IE) {
+                InkEvent.stopObserving(this.element, 'selectstart', this.handlers.selectStart);
+            }
+        },
 
         /**
-		 * Browser-independant implementation of page scroll
+         * Browser-independant implementation of page scroll
          * 
          * @method _getPageScroll
          * @return {Array} Array where the first position is the scrollLeft and the second position is the scrollTop
          * @private
          */
-		_getPageScroll: function() {
+        _getPageScroll: function() {
 
-			if (typeof self.pageXOffset !== "undefined") {
-				return [ self.pageXOffset, self.pageYOffset ];
-			}
-			if (typeof document.documentElement !== "undefined" && typeof document.documentElement.scrollLeft !== "undefined") {
-				return [ document.documentElement.scrollLeft, document.documentElement.scrollTop ];
-			}
-			return [ document.body.scrollLeft, document.body.scrollTop ];
-		},
+            if (typeof self.pageXOffset !== "undefined") {
+                return [ self.pageXOffset, self.pageYOffset ];
+            }
+            if (typeof document.documentElement !== "undefined" && typeof document.documentElement.scrollLeft !== "undefined") {
+                return [ document.documentElement.scrollLeft, document.documentElement.scrollTop ];
+            }
+            return [ document.body.scrollLeft, document.body.scrollTop ];
+        },
 
         /**
-		 * Gets coordinates for a given event (with added page scroll)
+         * Gets coordinates for a given event (with added page scroll)
          * 
          * @method _getCoords
          * @param {Object} e window.event object.
          * @return {Array} Array where the first position is the x coordinate, the second is the y coordinate
          * @private
          */
-		_getCoords: function(e) {
-			var ps = this._getPageScroll();
-			return {
-				x: (e.touches ? e.touches[0].clientX : e.clientX) + ps[0],
-				y: (e.touches ? e.touches[0].clientY : e.clientY) + ps[1]
-			};
-		},
+        _getCoords: function(e) {
+            var ps = this._getPageScroll();
+            return {
+                x: (e.touches ? e.touches[0].clientX : e.clientX) + ps[0],
+                y: (e.touches ? e.touches[0].clientY : e.clientY) + ps[1]
+            };
+        },
 
         /**
-		 * Clones src element's relevant properties to dst
+         * Clones src element's relevant properties to dst
          * 
          * @method _cloneStyle
          * @param {DOMElement} src Element from where we're getting the styles
          * @param {DOMElement} dst Element where we're placing the styles.
          * @private
          */
-		_cloneStyle: function(src, dst) {
-			dst.className = src.className;
-			dst.style.borderWidth	= '0';
-			dst.style.padding		= '0';
-			dst.style.position		= 'absolute';
-			dst.style.width			= Element.elementWidth(src)		+ 'px';
-			dst.style.height		= Element.elementHeight(src)	+ 'px';
-			dst.style.left			= Element.elementLeft(src)		+ 'px';
-			dst.style.top			= Element.elementTop(src)		+ 'px';
-			dst.style.cssFloat		= Css.getStyle(src, 'float');
-			dst.style.display		= Css.getStyle(src, 'display');
-		},
+        _cloneStyle: function(src, dst) {
+            dst.className = src.className;
+            dst.style.borderWidth   = '0';
+            dst.style.padding       = '0';
+            dst.style.position      = 'absolute';
+            dst.style.width         = InkElement.elementWidth(src)        + 'px';
+            dst.style.height        = InkElement.elementHeight(src)    + 'px';
+            dst.style.left          = InkElement.elementLeft(src)        + 'px';
+            dst.style.top           = InkElement.elementTop(src)        + 'px';
+            dst.style.cssFloat      = Css.getStyle(src, 'float');
+            dst.style.display       = Css.getStyle(src, 'display');
+        },
 
         /**
          * onStart event handler
@@ -15819,102 +16576,104 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @return {Boolean|void} In some cases return false. Otherwise is void
          * @private
          */
-		_onStart: function(e) {
-			if (!this.active && Event.isLeftClick(e) || typeof e.button === 'undefined') {
+        _onStart: function(e) {
+            if (!this.active && InkEvent.isLeftClick(e) || typeof e.button === 'undefined') {
 
-				var tgtEl = e.target || e.srcElement;
-				if (this.options.skipChildren && tgtEl !== this.element) {	return;	}
+                var tgtEl = InkEvent.element(e);
+                if (this.options.skipChildren && tgtEl !== this.element) {    return;    }
 
-				Event.stop(e);
+                InkEvent.stop(e);
 
-				this.elmStartPosition = [
-					Element.elementLeft(this.element),
-					Element.elementTop( this.element)
-				];
+                Css.addClassName(this.element, this.options.dragClass);
 
-				var pos = [
-					parseInt(Css.getStyle(this.element, 'left'), 10),
-					parseInt(Css.getStyle(this.element, 'top'),  10)
-				];
+                this.elmStartPosition = [
+                    InkElement.elementLeft(this.element),
+                    InkElement.elementTop( this.element)
+                ];
 
-				var dims = [
-					Element.elementWidth( this.element),
-					Element.elementHeight(this.element)
-				];
+                var pos = [
+                    parseInt(Css.getStyle(this.element, 'left'), 10),
+                    parseInt(Css.getStyle(this.element, 'top'),  10)
+                ];
 
-				this.originalPosition = [ pos[0] ? pos[0]: null, pos[1] ? pos[1] : null ];
-				this.delta = this._getCoords(e); // mouse coords at beginning of drag
+                var dims = [
+                    InkElement.elementWidth( this.element),
+                    InkElement.elementHeight(this.element)
+                ];
 
-				this.active = true;
-				this.position = Css.getStyle(this.element, 'position');
-				this.zindex = Css.getStyle(this.element, 'zIndex');
+                this.originalPosition = [ pos[0] ? pos[0]: null, pos[1] ? pos[1] : null ];
+                this.delta = this._getCoords(e); // mouse coords at beginning of drag
 
-				var div = document.createElement('div');
-				div.style.position		= this.position;
-				div.style.width			= dims[0] + 'px';
-				div.style.height		= dims[1] + 'px';
-				div.style.marginTop		= Css.getStyle(this.element, 'margin-top');
-				div.style.marginBottom	= Css.getStyle(this.element, 'margin-bottom');
-				div.style.marginLeft	= Css.getStyle(this.element, 'margin-left');
-				div.style.marginRight	= Css.getStyle(this.element, 'margin-right');
-				div.style.borderWidth	= '0';
-				div.style.padding		= '0';
-				div.style.cssFloat		= Css.getStyle(this.element, 'float');
-				div.style.display		= Css.getStyle(this.element, 'display');
-				div.style.visibility	= 'hidden';
+                this.active = true;
+                this.position = Css.getStyle(this.element, 'position');
+                this.zindex = Css.getStyle(this.element, 'zIndex');
 
-				this.delta2 = [ this.delta.x - this.elmStartPosition[0], this.delta.y - this.elmStartPosition[1] ]; // diff between top-left corner of obj and mouse
-				if (this.options.mouseAnchor) {
-					var parts = this.options.mouseAnchor.split(' ');
-					var ad = [dims[0], dims[1]];	// starts with 'right bottom'
-					if (parts[0] === 'left') {	ad[0] = 0;	} else if(parts[0] === 'center') {	ad[0] = parseInt(ad[0]/2, 10);	}
-					if (parts[1] === 'top') {	ad[1] = 0;	} else if(parts[1] === 'center') {	ad[1] = parseInt(ad[1]/2, 10);	}
-					this.applyDelta = [this.delta2[0] - ad[0], this.delta2[1] - ad[1]];
-				}
+                var div = document.createElement('div');
+                div.style.position      = this.position;
+                div.style.width         = dims[0] + 'px';
+                div.style.height        = dims[1] + 'px';
+                div.style.marginTop     = Css.getStyle(this.element, 'margin-top');
+                div.style.marginBottom  = Css.getStyle(this.element, 'margin-bottom');
+                div.style.marginLeft    = Css.getStyle(this.element, 'margin-left');
+                div.style.marginRight   = Css.getStyle(this.element, 'margin-right');
+                div.style.borderWidth   = '0';
+                div.style.padding       = '0';
+                div.style.cssFloat      = Css.getStyle(this.element, 'float');
+                div.style.display       = Css.getStyle(this.element, 'display');
+                div.style.visibility    = 'hidden';
 
-				this.placeholder = div;
+                this.delta2 = [ this.delta.x - this.elmStartPosition[0], this.delta.y - this.elmStartPosition[1] ]; // diff between top-left corner of obj and mouse
+                if (this.options.mouseAnchor) {
+                    var parts = this.options.mouseAnchor.split(' ');
+                    var ad = [dims[0], dims[1]];    // starts with 'right bottom'
+                    if (parts[0] === 'left') {    ad[0] = 0;    } else if(parts[0] === 'center') {    ad[0] = parseInt(ad[0]/2, 10);    }
+                    if (parts[1] === 'top') {     ad[1] = 0;    } else if(parts[1] === 'center') {    ad[1] = parseInt(ad[1]/2, 10);    }
+                    this.applyDelta = [this.delta2[0] - ad[0], this.delta2[1] - ad[1]];
+                }
 
-				if (this.options.onStart) {		this.options.onStart(this.element, e);		}
+                this.placeholder = div;
 
-				if (this.options.droppableProxy) {	// create new transparent div to optimize DOM traversal during drag
-					this.proxy = document.createElement('div');
-					dims = [
-						window.innerWidth	|| document.documentElement.clientWidth		|| document.body.clientWidth,
-						window.innerHeight	|| document.documentElement.clientHeight	|| document.body.clientHeight
-					];
-					var fs = this.proxy.style;
-					fs.width			= dims[0] + 'px';
-					fs.height			= dims[1] + 'px';
-					fs.position			= 'fixed';
-					fs.left				= '0';
-					fs.top				= '0';
-					fs.zIndex			= this.options.zindex + 1;
-					fs.backgroundColor	= '#FF0000';
-					Css.setOpacity(this.proxy, 0);
+                if (this.options.onStart) {        this.options.onStart(this.element, e);        }
 
-					var firstEl = document.body.firstChild;
-					while (firstEl && firstEl.nodeType !== 1) {	firstEl = firstEl.nextSibling;	}
-					document.body.insertBefore(this.proxy, firstEl);
+                if (this.options.droppableProxy) {    // create new transparent div to optimize DOM traversal during drag
+                    this.proxy = document.createElement('div');
+                    dims = [
+                        window.innerWidth     || document.documentElement.clientWidth   || document.body.clientWidth,
+                        window.innerHeight    || document.documentElement.clientHeight  || document.body.clientHeight
+                    ];
+                    var fs = this.proxy.style;
+                    fs.width            = dims[0] + 'px';
+                    fs.height           = dims[1] + 'px';
+                    fs.position         = 'fixed';
+                    fs.left             = '0';
+                    fs.top              = '0';
+                    fs.zIndex           = this.options.zindex + 1;
+                    fs.backgroundColor  = '#FF0000';
+                    Css.setOpacity(this.proxy, 0);
 
-					Event.observe(this.proxy, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
-					Event.observe(this.proxy, 'touchmove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
-				}
-				else {
-					Event.observe(document, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
-				}
+                    var firstEl = document.body.firstChild;
+                    while (firstEl && firstEl.nodeType !== 1) {    firstEl = firstEl.nextSibling;    }
+                    document.body.insertBefore(this.proxy, firstEl);
 
-				this.element.style.position = 'absolute';
-				this.element.style.zIndex = this.options.zindex;
-				this.element.parentNode.insertBefore(this.placeholder, this.element);
+                    InkEvent.observe(this.proxy, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+                    InkEvent.observe(this.proxy, 'touchmove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+                }
+                else {
+                    InkEvent.observe(document, 'mousemove', this.handlers[this.options.fps ? 'dragFacade' : 'drag']);
+                }
 
-				this._onDrag(e);
+                this.element.style.position = 'absolute';
+                this.element.style.zIndex = this.options.zindex;
+                this.element.parentNode.insertBefore(this.placeholder, this.element);
 
-				Event.observe(document, 'mouseup',	this.handlers.end);
-				Event.observe(document, 'touchend',	this.handlers.end);
+                this._onDrag(e);
 
-				return false;
-			}
-		},
+                InkEvent.observe(document, 'mouseup',      this.handlers.end);
+                InkEvent.observe(document, 'touchend',     this.handlers.end);
+
+                return false;
+            }
+        },
 
         /**
          * Function that gets the timestamp of the current run from time to time. (FPS)
@@ -15923,13 +16682,13 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {Object} window.event object.
          * @private
          */
-		_onDragFacade: function(e) {
-			var now = new Date().getTime();
-			if (!this.lastRanAt || now > this.lastRanAt + this.deltaMs) {
-				this.lastRanAt = now;
-				this._onDrag(e);
-			}
-		},
+        _onDragFacade: function(e) {
+            var now = new Date().getTime();
+            if (!this.lastRanAt || now > this.lastRanAt + this.deltaMs) {
+                this.lastRanAt = now;
+                this._onDrag(e);
+            }
+        },
 
         /**
          * Function that handles the dragging movement
@@ -15938,67 +16697,67 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {Object} window.event object.
          * @private
          */
-		_onDrag: function(e) {
-			if (this.active) {
-				Event.stop(e);
-				this.dragged = true;
-				var mouseCoords	= this._getCoords(e),
-					mPosX		= mouseCoords.x,
-					mPosY		= mouseCoords.y,
-					o			= this.options,
-					newX		= false,
-					newY		= false;
+        _onDrag: function(e) {
+            if (this.active) {
+                InkEvent.stop(e);
+                this.dragged = true;
+                var mouseCoords = this._getCoords(e),
+                    mPosX       = mouseCoords.x,
+                    mPosY       = mouseCoords.y,
+                    o           = this.options,
+                    newX        = false,
+                    newY        = false;
 
-				if (!this.prevCoords) {		this.prevCoords = {x: 0, y: 0};		}
+                if (!this.prevCoords) {        this.prevCoords = {x: 0, y: 0};        }
 
-				if (mPosX !== this.prevCoords.x || mPosY !== this.prevCoords.y) {
-					if (o.onDrag) {		o.onDrag(this.element, e);		}
-					this.prevCoords = mouseCoords;
+                if (mPosX !== this.prevCoords.x || mPosY !== this.prevCoords.y) {
+                    if (o.onDrag) {        o.onDrag(this.element, e);        }
+                    this.prevCoords = mouseCoords;
 
-					newX = this.elmStartPosition[0] + mPosX - this.delta.x;
-					newY = this.elmStartPosition[1] + mPosY - this.delta.y;
+                    newX = this.elmStartPosition[0] + mPosX - this.delta.x;
+                    newY = this.elmStartPosition[1] + mPosY - this.delta.y;
 
-					if (o.constraint === 'horizontal' || o.constraint === 'both') {
-						if (o.right !== false && newX > o.right) {		newX = o.right;		}
-						if (o.left  !== false && newX < o.left) {		newX = o.left;		}
-					}
-					if (o.constraint === 'vertical' || o.constraint === 'both') {
-						if (o.bottom !== false && newY > o.bottom) {	newY = o.bottom;	}
-						if (o.top    !== false && newY < o.top) {		newY = o.top;		}
-					}
+                    if (o.constraint === 'horizontal' || o.constraint === 'both') {
+                        if (o.right !== false && newX > o.right) {        newX = o.right;        }
+                        if (o.left  !== false && newX < o.left)  {        newX = o.left;        }
+                    }
+                    if (o.constraint === 'vertical' || o.constraint === 'both') {
+                        if (o.bottom !== false && newY > o.bottom) {    newY = o.bottom;    }
+                        if (o.top    !== false && newY < o.top) {       newY = o.top;        }
+                    }
 
-					if (this.firstDrag) {
-						if (Droppable) {	Droppable.updateAll();	}
-						/*this.element.style.position = 'absolute';
-						this.element.style.zIndex = this.options.zindex;
-						this.element.parentNode.insertBefore(this.placeholder, this.element);*/
-						this.firstDrag = false;
-					}
+                    if (this.firstDrag) {
+                        if (Droppable) {    Droppable.updateAll();    }
+                        /*this.element.style.position = 'absolute';
+                        this.element.style.zIndex = this.options.zindex;
+                        this.element.parentNode.insertBefore(this.placeholder, this.element);*/
+                        this.firstDrag = false;
+                    }
 
-					if (newX) {		this.element.style.left = newX + 'px';		}
-					if (newY) {		this.element.style.top  = newY + 'px';		}
+                    if (newX) {        this.element.style.left = newX + 'px';        }
+                    if (newY) {        this.element.style.top  = newY + 'px';        }
 
-					if (Droppable) {
-						// apply applyDelta defined on drag init
-						var mouseCoords2 = this.options.mouseAnchor ? {x: mPosX - this.applyDelta[0], y: mPosY - this.applyDelta[1]} : mouseCoords;
+                    if (Droppable) {
+                        // apply applyDelta defined on drag init
+                        var mouseCoords2 = this.options.mouseAnchor ? {x: mPosX - this.applyDelta[0], y: mPosY - this.applyDelta[1]} : mouseCoords;
 
-						// for debugging purposes
-						// if (this.options.debug) {
-						// 	if (!this.pt) {
-						// 		this.pt = Debug.addPoint(document.body, [mouseCoords2.x, mouseCoords2.y], '#0FF', 9);
-						// 		this.pt.style.zIndex = this.options.zindex + 1;
-						// 	}
-						// 	else {
-						// 		Debug.movePoint(this.pt, [mouseCoords2.x, mouseCoords2.y]);
-						// 	}
-						// }
+                        // for debugging purposes
+                        // if (this.options.debug) {
+                        //     if (!this.pt) {
+                        //         this.pt = Debug.addPoint(document.body, [mouseCoords2.x, mouseCoords2.y], '#0FF', 9);
+                        //         this.pt.style.zIndex = this.options.zindex + 1;
+                        //     }
+                        //     else {
+                        //         Debug.movePoint(this.pt, [mouseCoords2.x, mouseCoords2.y]);
+                        //     }
+                        // }
 
-						Droppable.action(mouseCoords2, 'drag', e, this.element);
-					}
-					if (o.onChange) {	o.onChange(this);	}
-				}
-			}
-		},
+                        Droppable.action(mouseCoords2, 'drag', e, this.element);
+                    }
+                    if (o.onChange) {    o.onChange(this);    }
+                }
+            }
+        },
 
         /**
          * Function that handles the end of the dragging process
@@ -16007,65 +16766,67 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @param {Object} window.event object.
          * @private
          */
-		_onEnd: function(e) {
-			Event.stopObserving(document, 'mousemove', this.handlers.drag);
-			Event.stopObserving(document, 'touchmove', this.handlers.drag);
+        _onEnd: function(e) {
+            InkEvent.stopObserving(document, 'mousemove', this.handlers.drag);
+            InkEvent.stopObserving(document, 'touchmove', this.handlers.drag);
 
-			if (this.options.fps) {
-				this._onDrag(e);
-			}
+            if (this.options.fps) {
+                this._onDrag(e);
+            }
 
-			if (this.active && this.dragged) {
+            Css.removeClassName(this.element, this.options.dragClass);
 
-				if (this.options.droppableProxy) {	// remove transparent div...
-					document.body.removeChild(this.proxy);
-				}
+            if (this.active && this.dragged) {
 
-				if (this.pt) {	// remove debugging element...
-					this.pt.parentNode.removeChild(this.pt);
-					this.pt = undefined;
-				}
+                if (this.options.droppableProxy) {    // remove transparent div...
+                    document.body.removeChild(this.proxy);
+                }
 
-	            /*if (this.options.revert) {
-					this.placeholder.parentNode.removeChild(this.placeholder);
-				}*/
+                if (this.pt) {    // remove debugging element...
+                    InkElement.remove(this.pt);
+                    this.pt = undefined;
+                }
 
-	            if(this.placeholder) {
-	                this.placeholder.parentNode.removeChild(this.placeholder);
-	            }
+                /*if (this.options.revert) {
+                    this.placeholder.parentNode.removeChild(this.placeholder);
+                }*/
 
-				if (this.options.revert) {
-					this.element.style.position = this.position;
-					if (this.zindex !== null) {
-						this.element.style.zIndex = this.zindex;
-					}
-					else {
-						this.element.style.zIndex = 'auto';
-					} // restore default zindex of it had none
+                if(this.placeholder) {
+                    InkElement.remove(this.placeholder);
+                }
 
-					this.element.style.left = (this.originalPosition[0]) ? this.originalPosition[0] + 'px' : '';
-					this.element.style.top  = (this.originalPosition[1]) ? this.originalPosition[1] + 'px' : '';
-				}
+                if (this.options.revert) {
+                    this.element.style.position = this.position;
+                    if (this.zindex !== null) {
+                        this.element.style.zIndex = this.zindex;
+                    }
+                    else {
+                        this.element.style.zIndex = 'auto';
+                    } // restore default zindex of it had none
 
-				if (this.options.onEnd) {
-					this.options.onEnd(this.element, e);
-				}
+                    this.element.style.left = (this.originalPosition[0]) ? this.originalPosition[0] + 'px' : '';
+                    this.element.style.top  = (this.originalPosition[1]) ? this.originalPosition[1] + 'px' : '';
+                }
 
-				if (Droppable) {
-					Droppable.action(this._getCoords(e), 'drop', e, this.element);
-				}
+                if (this.options.onEnd) {
+                    this.options.onEnd(this.element, e);
+                }
 
-				this.position	= false;
-				this.zindex		= false;
-				this.firstDrag	= true;
-			}
+                if (Droppable) {
+                    Droppable.action(this._getCoords(e), 'drop', e, this.element);
+                }
 
-			this.active			= false;
-			this.dragged		= false;
-		}
-	};
+                this.position   = false;
+                this.zindex     = false;
+                this.firstDrag  = true;
+            }
 
-	return Draggable;
+            this.active         = false;
+            this.dragged        = false;
+        }
+    };
+
+    return Draggable;
 
 });
 
@@ -16074,7 +16835,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';    
 
     /**
@@ -16345,12 +17106,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     if ( this._options.position === 'bottom' )
                     {
                         this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        this._containerObject.style.left = Element.offset2(this._dataField)[0] +'px';
+                        this._containerObject.style.left = Element.offset(this._dataField)[0] +'px';
                     }
                     else
                     {
-                        this._containerObject.style.top = Element.offset2(this._dataField)[1] +'px';
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset2(this._dataField)[0] +'px';
+                        this._containerObject.style.top = Element.offset(this._dataField)[1] +'px';
+                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
                     }
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
@@ -17267,9 +18028,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 /**
  * @module Ink.UI.Close_1
  * @author inkdev AT sapo.pt
- * @version 1
  */
-Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Util.Array_1'], function(Event, Css, InkArray ) {
+Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
     'use strict';
 
     /**
@@ -17282,10 +18042,8 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Ut
      * 
      * @class Ink.UI.Close
      * @constructor
-     * @version 1
      * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Util.Array
+     * @uses Ink.Dom.Element
      * @example
      *     <script>
      *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
@@ -17294,247 +18052,28 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Ut
      *     </script>
      */
     var Close = function() {
+        InkEvent.observe(document.body, 'click', function(ev) {
+            var el = InkEvent.element(ev);
 
-        Event.observe(document.body, 'click', function(ev) {
-            var el = Event.element(ev);
-            if (!Css.hasClassName(el, 'ink-close') && !Css.hasClassName(el, 'ink-dismiss')) { return; }
+            el = InkElement.findUpwardsByClass(el, 'ink-close') ||
+                 InkElement.findUpwardsByClass(el, 'ink-dismiss');
 
-            var classes;
-            do { 
-                if (!el.className) { continue; }
-                classes = el.className.split(' ');
-                if (!classes) { continue; }
-                if ( InkArray.inArray('ink-alert',       classes) ||
-                     InkArray.inArray('ink-alert-block', classes) ) { break; }
-            } while ((el = el.parentNode));
+            if (!el) {
+                return;  // ink-close or ink-dismiss class not found
+            }
 
-            if (el) {
-                Event.stop(ev);
-                el.parentNode.removeChild(el);
+            var toRemove = el;
+            toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
+                       InkElement.findUpwardsByClass(el, 'ink-alert-block');
+
+            if (toRemove) {
+                InkEvent.stop(ev);
+                InkElement.remove(toRemove);
             }
         });
     };
 
     return Close;
-
-});
-
-/**
-00 * @module Ink.UI.Toggle_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
-    'use strict';
-
-    /**
-     * Toggle component
-     * 
-     * @class Ink.UI.Toggle
-     * @constructor
-     * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
-     *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
-     *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
-     * @example
-     *      <div class="ink-dropdown">
-     *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
-     *          <ul id="dropdown" class="dropdown-menu">
-     *              <li class="heading">Heading</li>
-     *              <li class="separator-above"><a href="#">Option</a></li>
-     *              <li><a href="#">Option</a></li>
-     *              <li class="separator-above disabled"><a href="#">Disabled option</a></li>
-     *              <li class="submenu">
-     *                  <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
-     *                  <ul id="submenu1" class="dropdown-menu">
-     *                      <li class="submenu">
-     *                          <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
-     *                          <ul id="ultrasubmenu" class="dropdown-menu">
-     *                              <li><a href="#">Sub option</a></li>
-     *                              <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
-     *                              <li><a href="#">Sub option</a></li>
-     *                          </ul>
-     *                      </li>
-     *                      <li><a href="#">Sub option</a></li>
-     *                      <li><a href="#">Sub option</a></li>
-     *                  </ul>
-     *              </li>
-     *              <li><a href="#">Option</a></li>
-     *          </ul>
-     *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Toggle_1'], function( Selector, Toggle ){
-     *              var toggleElement = Ink.s('.toggle');
-     *              var toggleObj = new Toggle( toggleElement );
-     *          });
-     *      </script>
-     */
-    var Toggle = function( selector, options ){
-
-        if( typeof selector !== 'string' && typeof selector !== 'object' ){
-            throw '[Ink.UI.Toggle] Invalid CSS selector to determine the root element';
-        }
-
-        if( typeof selector === 'string' ){
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0 ){
-                throw '[Ink.UI.Toggle] Root element not found';
-            }
-
-            this._rootElement = this._rootElement[0];
-        } else {
-            this._rootElement = selector;
-        }
-
-        this._options = Ink.extendObj({
-            target : undefined,
-            triggerEvent: 'click',
-            closeOnClick: true
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( typeof this._options.target === 'undefined' ){
-            throw '[Ink.UI.Toggle] Target option not defined';
-        }
-
-        this._childElement = Aux.elOrSelector( this._options.target, 'Target' );
-        // this._childElement = Selector.select( this._options.target, this._rootElement );
-        // if( this._childElement.length <= 0 ){
-        //     if( this._childElement.length <= 0 ){
-        //         this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
-        //     }
-
-        //     if( this._childElement.length <= 0 ){
-        //         this._childElement = Selector.select( this._options.target );
-        //     }
-
-        //     if( this._childElement.length <= 0 ){
-        //         return;
-        //     }
-        // }
-        // this._childElement = this._childElement[0];
-
-        this._init();
-
-    };
-
-    Toggle.prototype = {
-
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._childElement.parentNode,'accordion') );
-
-            Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
-            if( this._options.closeOnClick.toString() === 'true' ){
-                Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
-            }
-        },
-
-        /**
-         * Event handler. It's responsible for handling the <triggerEvent> defined in the options.
-         * This will trigger the toggle.
-         * 
-         * @method _onTriggerEvent
-         * @param {Event} event
-         * @private
-         */
-        _onTriggerEvent: function( event ){
-
-            if( this._accordion ){
-                var elms, i, accordionElement;
-                if( Css.hasClassName(this._childElement.parentNode,'accordion') ){
-                    accordionElement = this._childElement.parentNode;
-                } else {
-                    accordionElement = this._childElement.parentNode.parentNode;
-                }
-                elms = Selector.select('.toggle',accordionElement);
-                for( i=0; i<elms.length; i+=1 ){
-                    var
-                        dataset = Element.data( elms[i] ),
-                        targetElm = Selector.select( dataset.target,accordionElement )
-                    ;
-                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
-                            targetElm[0].style.display = 'none';
-                    }
-                }
-            }
-
-            var finalClass = ( Css.getStyle(this._childElement,'display') === 'none') ? 'show-all' : 'hide-all';
-            var finalDisplay = ( Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
-            Css.removeClassName(this._childElement,'show-all');
-            Css.removeClassName(this._childElement, 'hide-all');
-            Css.addClassName(this._childElement, finalClass);
-            this._childElement.style.display = finalDisplay;
-
-            if( finalClass === 'show-all' ){
-                Css.addClassName(this._rootElement,'active');
-            } else {
-                Css.removeClassName(this._rootElement,'active');
-            }
-        },
-
-        /**
-         * Click handler. Will handle clicks outside the toggle component.
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function( event ){
-            var
-                tgtEl = Event.element(event),
-                shades
-            ;
-
-            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
-                return;
-            } else if( (shades = Ink.ss('.ink-shade')).length ) {
-                var
-                    shadesLength = shades.length
-                ;
-
-                for( var i = 0; i < shadesLength; i++ ){
-                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
-                        return;
-                    }
-                }
-            }
-            
-            this._dismiss( this._rootElement );
-        },
-
-        /**
-         * Dismisses the toggling.
-         * 
-         * @method _dismiss
-         * @private
-         */
-        _dismiss: function( ){
-            if( ( Css.getStyle(this._childElement,'display') === 'none') ){
-                return;
-            }
-            Css.removeClassName(this._childElement, 'show-all');
-            Css.removeClassName(this._rootElement,'active');
-            Css.addClassName(this._childElement, 'hide-all');
-            this._childElement.style.display = 'none';
-        }
-    };
-
-    return Toggle;
 
 });
 
@@ -18009,5 +18548,116 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
     };
 
     return Pagination;
+
+});
+
+/**
+ * @module Ink.UI.ProgressBar_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
+    'use strict';
+
+    /**
+     * Associated to a .ink-progress-bar element, it provides the necessary
+     * method - setValue() - for the user to change the element's value.
+     * 
+     * @class Ink.UI.ProgressBar
+     * @constructor
+     * @version 1
+     * @uses Ink.Dom.Selector
+     * @uses Ink.Dom.Element
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
+     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
+     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
+     *
+     * @example
+     *      <div class="ink-progress-bar grey" data-start-value="70%">
+     *          <span class="caption">I am a grey progress bar</span>
+     *          <div class="bar grey"></div>
+     *      </div>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+     *              var progressBarElement = Ink.s('.ink-progress-bar');
+     *              var progressBarObj = new ProgressBar( progressBarElement );
+     *          });
+     *      </script>
+     */
+    var ProgressBar = function( selector, options ){
+
+        if( typeof selector !== 'object' ){
+            if( typeof selector !== 'string' ){
+                throw '[Ink.UI.ProgressBar] :: Invalid selector';
+            } else {
+                this._element = Selector.select(selector);
+                if( this._element.length < 1 ){
+                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
+                }
+                this._element = this._element[0];
+            }
+        } else {
+            this._element = selector;
+        }
+
+
+        this._options = Ink.extendObj({
+            'startValue': 0,
+            'onStart': function(){},
+            'onEnd': function(){}
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj( this._options, options || {});
+        this._value = this._options.startValue;
+
+        this._init();
+    };
+
+    ProgressBar.prototype = {
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+            this._elementBar = Selector.select('.bar',this._element);
+            if( this._elementBar.length < 1 ){
+                throw '[Ink.UI.ProgressBar] :: Bar element not found';
+            }
+            this._elementBar = this._elementBar[0];
+
+            this._options.onStart = Ink.bind(this._options.onStart,this);
+            this._options.onEnd = Ink.bind(this._options.onEnd,this);
+            this.setValue( this._options.startValue );
+        },
+
+        /**
+         * Sets the value of the Progressbar
+         * 
+         * @method setValue
+         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
+         * @public
+         */
+        setValue: function( newValue ){
+            this._options.onStart( this._value);
+
+            newValue = parseInt(newValue,10);
+            if( isNaN(newValue) || (newValue < 0) ){
+                newValue = 0;
+            } else if( newValue>100 ){
+                newValue = 100;
+            }
+            this._value = newValue;
+            this._elementBar.style.width =  this._value + '%';
+
+            this._options.onEnd( this._value );
+        }
+    };
+
+    return ProgressBar;
 
 });

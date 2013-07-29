@@ -25,8 +25,7 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {
-        Ink: window.location.protocol + '//js.ink.sapo.pt/Ink/' // TODO as soon as a production site exists, replace this default!
-	//Ink: ( ('INK_PATH' in window) ? window.INK_PATH :'http://inkjs.gamblap/Ink/' )
+	    Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
     };
     var modules = {};
     var modulesLoadOrder = [];
@@ -651,7 +650,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!this.isHTTP || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 this.isCrossDomain = false;
             } else {
-                this.isCrossDomain = location.protocol !== urlLocation.protocol || location.host !== urlLocation.host.split(':')[0];
+                this.isCrossDomain = location.protocol !== urlLocation.protocol || location.host !== urlLocation.host;
             }
             if(this.options.cors) {
                 this.isCrossDomain = false;
@@ -1206,7 +1205,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
     /**
      * Loads content from a given url through a XMLHttpRequest.
      * Shortcut function for simple AJAX use cases.
-     * 
+     *
      * @function ping
      * @param {String}   url       request url
      * @param {Function} callback  callback to be executed if the request is successful
@@ -1241,21 +1240,38 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
      */
 
     /**
+     * This class takes care of the nitty-gritty details of doing jsonp requests: Storing
+     * a callback in a globally accessible manner, waiting for the timeout or completion
+     * of the request, and passing extra GET parameters to the server, is not so complicated
+     * but it's boring and repetitive to code and tricky to get right.
+     *
      * @class Ink.Net.JsonP
      * @constructor
      * @param {String} uri
      * @param {Object} options
-     * @param {Function}  [options.onComplete]        success callback
-     * @param {Function}  [options.onFailure]         failure callback
-     * @param {Object}    [options.failureObj]        object to be passed as argument to failure callback
-     * @param {Number}    [options.timeout]           timeout for request fail, in seconds. defaults to 10
-     * @param {Object}    [options.params]            object with the parameters and respective values to unfold
-     * @param {String}    [options.callbackParam]     parameter to use as callback. defaults to 'jsoncallback'
-     * @param {String}    [options.internalCallback]  x
+     * @param {Function}  options.onSuccess         success callback
+     * @param {Function}  [options.onFailure]       failure callback
+     * @param {Object}    [options.failureObj]      object to be passed as argument to failure callback
+     * @param {Number}    [options.timeout]         timeout for request fail, in seconds. defaults to 10
+     * @param {Object}    [options.params]          object with the parameters and respective values to unfold
+     * @param {String}    [options.callbackParam]   parameter to use as callback. defaults to 'jsoncallback'
+     * @param {String}    [options.internalCallback] *Advanced*: name of the callback function stored in the Ink.Net.JsonP object.
+     *
+     * @example
+     *      Ink.requireModules(['Ink.Net.JsonP_1'], function (JsonP) {
+     *          var jsonp = new JsonP('http://path.to.jsonp/endpoint', {
+     *              // When the JSONP response arrives, this callback is called:
+     *              onSuccess: function (gameData) {
+     *                  game.startGame(gameData);
+     *              },
+     *              // after options.timeout seconds, this callback gets called:
+     *              onFailure: function () {
+     *                  game.error('Could not load game data!');
+     *              },
+     *              timeout: 5
+     *          });
+     *      });
      */
-
-
-
     var JsonP = function(uri, options) {
         this.init(uri, options);
     };
@@ -1338,7 +1354,6 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
             this.options.params[this.options.callbackParam] = 'Ink.Net.JsonP.' + this.options.internalCallback;
             this.options.params.rnd_seed = this.randVar;
             this.uri = this._addParamsToGet(this.uri, this.options.params);
-
             // create script tag
             var scriptEl = document.createElement('script');
             scriptEl.type = 'text/javascript';
@@ -1359,9 +1374,11 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
         _removeScriptTag: function() {
             var scriptEl;
             var scriptEls = document.getElementsByTagName('script');
+            var scriptUri;
             for (var i = 0, f = scriptEls.length; i < f; ++i) {
                 scriptEl = scriptEls[i];
-                if (scriptEl.src === this.uri) {
+                scriptUri = scriptEl.getAttribute('src') || scriptEl.src;
+                if (scriptUri !== null && scriptUri === this.uri) {
                     scriptEl.parentNode.removeChild(scriptEl);
                     return;
                 }
@@ -1397,8 +1414,14 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          *
          * @function addRemoveClassName
          * @param {DOMElement|string}   elm          DOM element or element id
-         * @param {string}              className    class name
-         * @param {boolean}             addRemState  which method to apply
+         * @param {string}              className    class name to add or remove.
+         * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
+         *
+         * @example
+         *      Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
+         *          Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
+         *          Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
+         *      });
          */
         addRemoveClassName: function(elm, className, addRemState) {
             if (addRemState) {
@@ -1647,11 +1670,26 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
 
         /**
-         * Sets the value for an element's style attribute
+         * Adds CSS rules to an element's style attribute.
          *
          * @function setStyle
          * @param {DOMElement|String}  elm    DOM element or element id
          * @param {String}             style  Which css attribute to set
+         *
+         * @example
+         *     <a href="#" class="change-color">Change his color</a>
+         *     <p class="him">"He" is me</p>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Css, InkEvent, Selector) {
+         *             var btn = Selector.select('.change-color')[0];
+         *             var other = Selector.select('.him')[0];
+         *             InkEvent.observe(btn, 'click', function () {
+         *                 Css.setStyle(other, 'background-color: black');
+         *                 Css.setStyle(other, 'color: white');
+         *             });
+         *         });
+         *     </script>
+         *
          */
         setStyle: function(elm, style) {
             elm = Ink.i(elm);
@@ -1719,8 +1757,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * shows or hides according to param show
          *
          * @function showHide
-         * @param {DOMElement|String}  elm   DOM element or element id
-         * @param {boolean}            show
+         * @param {DOMElement|String}  elm          DOM element or element id
+         * @param {boolean}            [show=false] Whether to show or hide `elm`.
          */
         showHide: function(elm, show) {
             elm = Ink.i(elm);
@@ -1828,9 +1866,9 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @function appendStylesheet
          * @param {String}  path     File path
          * @param {Object}  options  Options for the tag
-         *    @param {String}   [options.media]  media type
-         *    @param {String}   [options.type]   file type
-         *    @param {Boolean}  [options.force]  if true, tag will be appended to end of head
+         *    @param {String}   [options.media='screen']    media type
+         *    @param {String}   [options.type='text/css']   file type
+         *    @param {Boolean}  [options.force=false]       if true, tag will be appended to end of head
          */
         appendStylesheet: function(path, options){
             options = Ink.extendObj({
@@ -2207,12 +2245,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     var Element = {
 
-        /** 
-         * Shortcut for document.getElementById
+        /**
+         * Shortcut for `document.getElementById`
          *
          * @function get
-         * @param {String|Array} elm  Receives either an id or an Array of ids
-         * @return Either the DOM element for the given id or an array of elements for the given ids
+         * @param {String|DOMElement} elm   Either an ID of an element, or an element.
+         * @return {DOMElement|null} The DOM element with the given id or null when it was not found
          */
         get: function(elm) {
             if(typeof elm !== 'undefined') {
@@ -2246,10 +2284,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Removes DOM Element from DOM
+         * Removes a DOM Element from the DOM
          *
          * @function remove
-         * @param  {DOMElement} el
+         * @param {DOMElement} elm  The element to remove
          */
         remove: function(el) {
             var parEl;
@@ -2259,7 +2297,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Scrolls to an element
+         * Scrolls the window to an element
          *
          * @function scrollTo
          * @param {DOMElement|String} elm  Element where to scroll
@@ -2290,57 +2328,32 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Gets the top cumulative offset for an element
          *
+         * Requires Ink.Dom.Browser
+         *
          * @function offsetTop
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the top of the document
          */
         offsetTop: function(elm) {
-            elm = this.get(elm);
-
-            var offset = elm.offsetTop;
-
-            while(elm.offsetParent){
-                if(elm.offsetParent.tagName.toLowerCase() !== "body"){
-                    elm = elm.offsetParent;
-                    offset += elm.offsetTop;
-                } else {
-                    break;
-                }
-            }
-
-            return offset;
+            return this.offset(elm)[1];
         },
 
         /**
          * Gets the left cumulative offset for an element
+         *
+         * Requires Ink.Dom.Browser
          *
          * @function offsetLeft
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the left of the document
          */
         offsetLeft: function(elm) {
-            /*
-                elm = this.get(elm);
-
-                var offset = elm.offsetLeft;
-
-                while(elm.offsetParent){
-                    if(elm.offsetParent.tagName.toLowerCase() !== "body"){
-                        elm = elm.offsetParent;
-                        offset += elm.offsetLeft;
-                    } else {
-                        break;
-                    }
-                }
-
-                return offset;
-            */
-           return this.offset2( elm );
+            return this.offset(elm)[0];
         },
 
         /**
         * Gets the element offset relative to its closest positioned ancestor
-        * 
+        *
         * @function positionedOffset
         * @param {DOMElement|String} elm  target element
         * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
@@ -2372,15 +2385,51 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Gets the cumulative offset for an element
          *
+         * Returns the top left position of the element on the page
+         *
+         * Requires Ink.Dom.Browser
+         *
          * @function offset
-         * @param {DOMElement|String} elm  target element
-         * @return {Array} Array with offset from the target element to the top/left of the document
+         * @param {DOMElement|String}   elm     Target element
+         * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
          */
-        offset: function(elm) {
-            return [
-                this.offsetLeft(elm),
-                this.offsetTop(elm)
-            ];
+        offset: function(el) {
+            /*jshint boss:true */
+            el = Ink.i(el);
+            var bProp = ['border-left-width', 'border-top-width'];
+            var res = [0, 0];
+            var dRes, bRes, parent, cs;
+            var getPropPx = this._getPropPx;
+
+            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
+
+            do {
+                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
+                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
+
+                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
+                if( InkBrowser.OPERA ){
+                    res[0] += dRes[0];
+                    res[1] += dRes[1];
+                } else {
+                    res[0] += dRes[0] + bRes[0];
+                    res[1] += dRes[1] + bRes[1];
+                }
+                parent = el.offsetParent;
+            } while (el = parent);
+
+            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
+
+            if (InkBrowser.GECKO) {
+                res[0] += bRes[0];
+                res[1] += bRes[1];
+            }
+            else if( !InkBrowser.OPERA ) {
+                res[0] -= bRes[0];
+                res[1] -= bRes[1];
+            }
+
+            return res;
         },
 
         /**
@@ -2416,54 +2465,19 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Returns the top left position of the element on the page
+         * Alias for offset()
          *
          * @function offset2
-         * @param {String|DOMElement} el
-         * @return {Number[2]}
+         * @deprecated Kept for historic reasons. Use offset() instead.
          */
         offset2: function(el) {
-            /*jshint boss:true */
-            el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
-            var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = this._getPropPx;
-
-            var InkBrowser = Ink.getModule('Ink.Dom.Browser',1);
-
-            do {
-                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                if( InkBrowser.OPERA ){
-                    res[0] += dRes[0];
-                    res[1] += dRes[1];
-                } else {
-                    res[0] += dRes[0] + bRes[0];
-                    res[1] += dRes[1] + bRes[1];
-                }
-                parent = el.offsetParent;
-            } while (el = parent);
-
-            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-            if (InkBrowser.GECKO) {
-                res[0] += bRes[0];
-                res[1] += bRes[1];
-            }
-            else if( !InkBrowser.OPERA ) {
-                res[0] -= bRes[0];
-                res[1] -= bRes[1];
-            }
-            
-            return res;
+            return this.offset(el);
         },
 
         /**
          * Verifies the existence of an attribute
          *
-         * @function hasAttribute 
+         * @function hasAttribute
          * @param {Object} elm   target element
          * @param {String} attr  attribute name
          * @return {Boolean} Boolean based on existance of attribute
@@ -2492,7 +2506,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
          */
-        insertTop: function(newElm,targetElm) {
+        insertTop: function(newElm,targetElm) {  // TODO check first child exists
             /*jshint boss:true */
             if (targetElm = this.get(targetElm)) {
                 targetElm.insertBefore(newElm, targetElm.firstChild);
@@ -2550,8 +2564,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Removes all nodes children and adds the text
          *
          * @function setTextContent
-         * @param {DOMNode} node from which to retreive text from. Can be any node type.
-         * @param {String}  text to be appended to the node.
+         * @param {DOMNode} node    node to add the text to. Can be any node type.
+         * @param {String}  text    text to be appended to the node.
          */
         setTextContent: function(node, text){
             node = Ink.i(node);
@@ -2590,7 +2604,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Tells if element is a clickable link
          *
          * @function isLink
-         * @param {DOMNode} node to check if it's link
+         * @param {DOMNode} node    node to check if it's link
          * @return {Boolean}
          */
         isLink: function(element){
@@ -2638,7 +2652,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Get first child in document order of node type 1
          * @function firstElementChild
-         * @param {DOMNode} parent node
+         * @param {DOMNode} elm parent node
          * @return {DOMNode} the element child
          */
         firstElementChild: function(elm){
@@ -2658,7 +2672,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Get last child in document order of node type 1
          * @function lastElementChild
-         * @param {DOMNode} parent node
+         * @param {DOMNode} elm parent node
          * @return {DOMNode} the element child
          */
         lastElementChild: function(elm){
@@ -2677,7 +2691,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Get the first element sibling after the node
-         * 
+         *
          * @function nextElementSibling
          * @param {DOMNode} node  current node
          * @return {DOMNode|Null} the first element sibling after node or null if none is found
@@ -2806,11 +2820,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} the element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
-            /*
-            cloneTo.style.top = this.offsetTop(cloneFrom) + 'px';
-            cloneTo.style.left = this.offsetLeft(cloneFrom) + 'px';
-            */
-            var pos = this.offset2(cloneFrom);
+            var pos = this.offset(cloneFrom);
             cloneTo.style.left = pos[0]+'px';
             cloneTo.style.top = pos[1]+'px';
 
@@ -2835,7 +2845,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Searches up the DOM tree for an element of specified class name
+         * Searches up the DOM tree for an element of specified class name.
+         *
+         * If the target `element` already has the required `className`, it is returned.
          *
          * @function findUpwardsByClass
          * @param {DOMElement}  element
@@ -3029,7 +3041,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Select element on steroids - allows the creation of new values
-         * 
+         *
          * @function fillSelect2
          * @param {DomElement|String} ctn select element which will get filled
          * @param {Object} opts
@@ -3377,12 +3389,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-        * parses and prepends an html string to a container, not destroying its contents
-        *
-        * @function prependHTML
-        * @param {String|DomElement} elm   element
-        * @param {String}            html  markup string
-        */
+         * parses and prepends an html string to a container, not destroying its contents
+         *
+         * @function prependHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
         prependHTML: function(elm, html){
             var temp = document.createElement('div');
             temp.innerHTML = html;
@@ -3391,6 +3403,26 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             for (var i = tempChildren.length - 1; i >= 0; i--){
                 elm.insertBefore(tempChildren[i], first);
                 first = elm.firstChild;
+            }
+        },
+
+        /**
+         * Removes direct children on type text.
+         * Useful to remove nasty layout gaps generated by whitespace on the markup.
+         *
+         * @function removeTextNodeChildren
+         * @param  {DOMElement} el
+         */
+        removeTextNodeChildren: function(el) {
+            var prevEl, toRemove, parent = el;
+            el = el.firstChild;
+            while (el) {
+                toRemove = (el.nodeType === 3);
+                prevEl = el;
+                el = el.nextSibling;
+                if (toRemove) {
+                    parent.removeChild(prevEl);
+                }
             }
         },
 
@@ -3439,10 +3471,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             return this.htmlToFragment.call(this, html);
         },
 
-        _camelCase: function(str) 
+        _camelCase: function(str)
         {
             return str ? str.replace(/-(\w)/g, function (_, $1){
-                    return $1.toUpperCase(); 
+                    return $1.toUpperCase();
             }) : str;
         },
 
@@ -3451,7 +3483,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @function data
          * @param {String|DomElement} selector Element or CSS selector
-         * @return {Object} Object with the data-* properties or empty if none found.
+         * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
         */
         data: function( selector ){
             if( typeof selector !== 'object' && typeof selector !== 'string'){
@@ -3476,8 +3508,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             var dataset = {};
-            // var attributesElements = _element.dataset || _element.attributes || {}; 
-            var attributesElements = _element.attributes || []; 
+            // var attributesElements = _element.dataset || _element.attributes || {};
+            var attributesElements = _element.attributes || [];
             var prop ;
 
             var curAttr, curAttrName, curAttrValue;
@@ -3750,10 +3782,14 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
+     * Navigate up the DOM tree, looking for a tag with the name `elmTagName`.
+     *
+     * If such tag is not found, `document` is returned.
+     *
      * @function findElement
-     * @param {Object}  ev          event object
-     * @param {String}  elmTagName  tag name to find
-     * @param {Boolean} [force]     force the return of the wanted type of tag, or false otherwise
+     * @param {Object}  ev              event object
+     * @param {String}  elmTagName      tag name to find
+     * @param {Boolean} [force=false]   If this is true, never return `document`, and returns `false` instead.
      * @return {DOMElement} the first element which matches given tag name or the document element if the wanted tag is not found
      */
     findElement: function(ev, elmTagName, force)
@@ -3982,6 +4018,21 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
+     * Stops event propagation
+     *
+     * @function stopPropagation
+     * @param {Object} event  event handle
+     */
+    stopPropagation: function(event) {
+        if(event.cancelBubble !== null) {
+            event.cancelBubble = true;
+        }
+        if(event.stopPropagation) {
+            event.stopPropagation();
+        }
+    },
+
+    /**
      * Stops event default behaviour
      *
      * @function stopDefault
@@ -4036,7 +4087,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * @function isLeftClick
      * @param {Object} ev  event object
-     * @return {Boolea} True if there is a left click on the event
+     * @return {Boolean} True if the event is a left mouse click
      */
     isLeftClick: function(ev) {
         if (window.addEventListener) {
@@ -4115,6 +4166,222 @@ return Event;
 });
 
 /**
+ * @module Ink.Dom.FormSerialize
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
+    'use strict';
+    /**
+     * Supports serialization of form data to/from javascript Objects.
+     *
+     * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
+     *
+     * @class Ink.Dom.FormSerialize
+     *
+     */
+    var FormSerialize = {
+
+        /**
+         * Serializes a form into an object, turning field names into keys, and field values into values.
+         *
+         * note: Multi-select and checkboxes with multiple values will yield arrays
+         *
+         * @method serialize
+         * @return {Object} map of fieldName -> String|String[]|Boolean
+         * @param {DomElement|String}   form    form element from which the extraction is to occur
+         *
+         * @example
+         *     <form id="frm">
+         *         <input type="text" name="field1">
+         *         <button type="submit">Submit</button>
+         *     </form>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
+         *             InkEvent.observe('frm', 'submit', function (event) {
+         *                 var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
+         *                 InkEvent.stop(event);
+         *             });
+         *         });
+         *     </script>
+         */
+        serialize: function(form) {
+            form = Ink.i(form);
+            var map = this._getFieldNameInputsMap(form);
+
+            var map2 = {};
+            for (var k in map) if (map.hasOwnProperty(k)) {
+                if(k !== null) {
+                    var tmpK = k.replace(/\[\]$/, '');
+                    map2[tmpK] = this._getValuesOfField( map[k] );
+                } else {
+                    map2[k] = this._getValuesOfField( map[k] );
+                }
+            }
+
+            delete map2['null'];    // this can occur. if so, delete it...
+            return map2;
+        },
+
+
+
+
+        /**
+         * Sets form elements's values with values given from object
+         *
+         * One cannot restore the values of an input with `type="file"` (browser prohibits it)
+         *
+         * @method fillIn 
+         * @param {DomElement|String}   form    form element which is to be populated
+         * @param {Object}              map2    map of fieldName -> String|String[]|Boolean
+         * @example
+         *     <form id="frm">
+         *         <input type="text" name="field1">
+         *         <button type="submit">Submit</button>
+         *     </form>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+         *             var values = {field1: 'CTHULHU'};
+         *             FormSerialize.fillIn('frm', values);
+         *             // At this point the form is pre-filled with the values above.
+         *         });
+         *     </script>
+         */
+        fillIn: function(form, map2) {
+            form = Ink.i(form);
+            var map = this._getFieldNameInputsMap(form);
+            delete map['null']; // this can occur. if so, delete it...
+
+            for (var k in map2) if (map2.hasOwnProperty(k)) {
+                this._setValuesOfField( map[k], map2[k] );
+            }
+        },
+
+
+
+        _getFieldNameInputsMap: function(formEl) {
+            var name, nodeName, el, map = {};
+            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
+                el = formEl.elements[i];
+                name = el.getAttribute('name');
+                nodeName = el.nodeName.toLowerCase();
+                if (nodeName === 'fieldset') {
+                    continue;
+                } else if (map[name] === undefined) {
+                    map[name] = [el];
+                } else {
+                    map[name].push(el);
+                }
+            }
+            return map;
+        },
+
+
+
+        _getValuesOfField: function(fieldInputs) {
+            var nodeName = fieldInputs[0].nodeName.toLowerCase();
+            var type = fieldInputs[0].getAttribute('type');
+            var value = fieldInputs[0].value;
+            var i, f, el, res = [];
+
+            switch(nodeName) {
+                case 'select':
+                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
+                        el = fieldInputs[0].options[i];
+                        if (el.selected) {
+                            res.push(    el.value    );
+                        }
+                    }
+                    return ( (fieldInputs[0].getAttribute('multiple')) ?  res : res[0] );
+
+                case 'textarea':
+                case 'input':
+                    if (type === 'checkbox' || type === 'radio') {
+                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                            el = fieldInputs[i];
+                            if (el.checked) {
+                                res.push(    el.value    );
+                            }
+                        }
+                        if (type === 'checkbox') {
+                            return (fieldInputs.length > 1) ? res : !!(res.length);
+                        }
+                        return (fieldInputs.length > 1) ? res[0] : !!(res.length);    // on radios only 1 option is selected at most
+                    }
+                    else {
+                        //if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if(fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) {
+                            var tmpValues = [];
+                            for(i=0, f = fieldInputs.length; i < f; ++i) {
+                                tmpValues.push(fieldInputs[i].value);
+                            }
+                            return tmpValues;
+                        } else {
+                            return value;
+                        }
+                    }
+                    break;    // to keep JSHint happy...  (reply to this comment by gamboa: - ROTFL)
+
+                default:
+                    //throw 'Unsupported element: "' + nodeName + '"!';
+                    return undefined;
+            }
+        },
+
+
+
+        _valInArray: function(val, arr) {
+            for (var i = 0, f = arr.length; i < f; ++i) {
+                if (arr[i] === val) {    return true;    }
+            }
+            return false;
+        },
+
+
+
+        _setValuesOfField: function(fieldInputs, fieldValues) {
+            if (!fieldInputs) {    return;    }
+            var nodeName = fieldInputs[0].nodeName.toLowerCase();
+            var type = fieldInputs[0].getAttribute('type');
+            var i, f, el;
+
+            switch(nodeName) {
+                case 'select':
+                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
+                        el = fieldInputs[0].options[i];
+                        el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
+                    }
+                    break;
+
+                case 'textarea':
+                case 'input':
+                    if (type === 'checkbox' || type === 'radio') {
+                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                            el = fieldInputs[i];
+                            //el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
+                            el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : (fieldInputs.length > 1 ? el.value === fieldValues : !!fieldValues);
+                        }
+                    }
+                    else {
+                        if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if (type !== 'file') {
+                            fieldInputs[0].value = fieldValues;
+                        }
+                    }
+                    break;
+
+                default:
+                    throw 'Unsupported element: "' + nodeName + '"!';
+            }
+        }
+    };
+
+    return FormSerialize;
+});
+
+/**
  * @module Ink.Dom.Loaded_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -4134,25 +4401,25 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
     var Loaded = {
 
         /**
-         * Functions queue.
+         * Callbacks and their contexts. Array of 2-arrays.
          *
-         * @property _cbQueue
-         * @type {Array}
+         * []
+         *
+         * @attribute _contexts Array
          * @private
-         * @static
-         * @readOnly
+         * 
          */
-        _cbQueue: [], // Callbacks' queue
+        _contexts: [], // Callbacks' queue
 
         /**
          * Adds a new function that will be invoked once the document is ready
          *
          * @method run
-         * @param {Object}   [win] Window object to attach/add the event
-         * @param {Function} fn  Callback function to be run after the page is loaded
+         * @param {Object}   [win=window]   Window object to attach/add the event
+         * @param {Function} fn             Callback function to be run after the page is loaded
          * @public
          * @example
-         *     Ink.requireModules(['Ink.Dom.Loaded_1'],function(Loaded){
+         *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
          *         Loaded.run(function(){
          *             console.log('This will run when the page/document is ready/loaded');
          *         });
@@ -4164,46 +4431,65 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
                 win = window;
             }
 
-            this._win  = win;
-            this._doc  = win.document;
-            this._root = this._doc.documentElement;
-            this._done = false;
-            this._top  = true;
+            var context;
 
-            this._handlers = {
-                checkState: Ink.bindEvent(this._checkState, this),
-                poll:       Ink.bind(this._poll, this)
-            };
-
-            var   ael = this._doc.addEventListener;
-            this._add = ael ? 'addEventListener' : 'attachEvent';
-            this._rem = ael ? 'removeEventListener' : 'detachEvent';
-            this._pre = ael ? '' : 'on';
-            this._det = ael ? 'DOMContentLoaded' : 'onreadystatechange';
-            this._wet = this._pre + 'load';
-
-            var csf = this._handlers.checkState;
-
-            if (this._doc.readyState === 'complete'){
-                fn.call(this._win, 'lazy');
+            for (var i = 0, len = this._contexts.length; i < len; i++) {
+                if (this._contexts[i][0] === win) {
+                    context = this._contexts[i][1];
+                    break;
+                }
             }
-            else {
-                this._cbQueue.push(fn);
+            if (!context) {
+                context = {
+                    cbQueue: [],
+                    win: win,
+                    doc: win.document,
+                    root: win.document.documentElement,
+                    done: false,
+                    top: true
+                };
+                context.handlers = {
+                    checkState: Ink.bindEvent(this._checkState, this, context),
+                    poll: Ink.bind(this._poll, this, context)
+                };
+                this._contexts.push(
+                    [win, context]  // Javascript Objects cannot map different windows to
+                                    // different values.
+                );
+            }
 
-                this._doc[this._add]( this._det , csf );
-                this._win[this._add]( this._wet , csf );
+            var   ael = context.doc.addEventListener;
+            context.add = ael ? 'addEventListener' : 'attachEvent';
+            context.rem = ael ? 'removeEventListener' : 'detachEvent';
+            context.pre = ael ? '' : 'on';
+            context.det = ael ? 'DOMContentLoaded' : 'onreadystatechange';
+            context.wet = context.pre + 'load';
+
+            var csf = context.handlers.checkState;
+            var alreadyLoaded = (
+                context.doc.readyState === 'complete' &&
+                context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
+
+            if (alreadyLoaded){
+                setTimeout(Ink.bind(function () {
+                    fn.call(context.win, 'lazy');
+                }, this), 0);
+            } else {
+                context.cbQueue.push(fn);
+
+                context.doc[context.add]( context.det , csf );
+                context.win[context.add]( context.wet , csf );
 
                 var frameElement = 1;
                 try{
-                    frameElement = this._win.frameElement;
+                    frameElement = context.win.frameElement;
                 } catch(e) {}
-
-                if ( !ael && this._root.doScroll ) { // IE HACK
+                if ( !ael && context.root && context.root.doScroll ) { // IE HACK
                     try {
-                        this._top = !frameElement;
+                        context.top = !frameElement;
                     } catch(e) { }
-                    if (this._top) {
-                        this._poll();
+                    if (context.top) {
+                        this._poll(context);
                     }
                 }
             }
@@ -4216,13 +4502,13 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @param {Event} event Triggered event
          * @private
          */
-        _checkState: function(event) {
-            if ( !event || (event.type === 'readystatechange' && this._doc.readyState !== 'complete')) {
+        _checkState: function(event, context) {
+            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
                 return;
             }
-            var where = (event.type === 'load') ? this._win : this._doc;
-            where[this._rem](this._pre+event.type, this._handlers.checkState, false);
-            this._ready();
+            var where = (event.type === 'load') ? context.win : context.doc;
+            where[context.rem](context.pre+event.type, context.handlers.checkState, false);
+            this._ready(context);
         },
 
         /**
@@ -4236,13 +4522,13 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          *
          * function _poll
          */
-        _poll: function() {
+        _poll: function(context) {
             try {
-                this._root.doScroll('left');
+                context.root.doScroll('left');
             } catch(e) {
-                return setTimeout(this._handlers.poll, 50);
+                return setTimeout(context.handlers.poll, 50);
             }
-            this._ready();
+            this._ready(context);
         },
 
         /**
@@ -4251,13 +4537,13 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
          * @method _ready
          * @private
          */
-        _ready: function() {
-            if (!this._done) {
-                this._done = true;
-                for (var i = 0; i < this._cbQueue.length; ++i) {
-                    this._cbQueue[i].call(this._win);
+        _ready: function(context) {
+            if (!context.done) {
+                context.done = true;
+                for (var i = 0; i < context.cbQueue.length; ++i) {
+                    context.cbQueue[i].call(context.win);
                 }
-                this._cbQueue = [];
+                context.cbQueue = [];
             }
         }
     };
@@ -6188,23 +6474,23 @@ support.detectDuplicates = hasDuplicate;
 // EXPOSE
 
 /**
- * Alias for the Sizzle search engine
+ * Alias for the Sizzle selector engine
  *
  * @method select
  * @param {String} selector CSS selector to search for elements
  * @param {DOMElement} [context] By default the search is done in the document element. However, you can specify an element as search context
  * @param {Array} [results] By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
  * @param {Object} [seed]
- * @return {Array} Array of DOM Elements as results
+ * @return {Array} Array of resulting DOM Elements
  */
 
 /**
- * Retorna elementos que façam match com o 2º argumento da função
+ * Returns elements which match with the second argument to the function.
  *
  * @method matches
  * @param {String} selector CSS selector to search for elements
  * @param {Array} matches Elements to be 'matched' with
- * @result {Array} Elements that matched
+ * @return {Array} Elements that matched
  */
 
 return {
@@ -6299,7 +6585,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         CHROME: false,
 
         /**
-         * The specific browser model. False if it is unable to get it.
+         * The specific browser model. False if it is unavailable.
          *
          * @property model
          * @type {Boolean|String}
@@ -6309,7 +6595,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         model: false,
 
         /**
-         * The browser version. False if it is unable to get it.
+         * The browser version. False if it is unavailable.
          *
          * @property version
          * @type {Boolean|String}
@@ -6319,7 +6605,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         version: false,
 
         /**
-         * The user agent string. False if it is unable to get it.
+         * The user agent string. False if it is unavailable.
          *
          * @property userAgent
          * @type {Boolean|String}
@@ -6329,7 +6615,9 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         userAgent: false,
 
         /**
-         * Initialization function for the Browser object
+         * Initialization function for the Browser object.
+         *
+         * Is called automatically when this module is loaded, and calls setDimensions, setBrowser and setReferrer.
          *
          * @method init
          * @public
@@ -6342,7 +6630,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Stores window dimensions
+         * Retrieves and stores window dimensions in this object. Called automatically when this module is loaded.
          *
          * @method setDimensions
          * @public
@@ -6367,7 +6655,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Stores the referrer
+         * Stores the referrer. Called automatically when this module is loaded.
          *
          * @method setReferrer
          * @public
@@ -6378,7 +6666,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Detects the browser and stores the found properties
+         * Detects the browser and stores the found properties. Called automatically when this module is loaded.
          *
          * @method detectBrowser
          * @public
@@ -6455,10 +6743,27 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
         },
 
         /**
-         * Debug function to help checking values.
+         * Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.
          *
          * @method debug
          * @public
+         *
+         * @example
+         *  
+         *  The following code
+         *
+         *      Ink.requireModules(['Ink.Dom.Browser_1'], function (Browser) {
+         *          Browser.debug();
+         *      });
+         *
+         *  Alerts (On Firefox 22):
+         *
+         *      known browsers: (ie, gecko, opera, safari, konqueror) 
+         *      false,true,false,false,false
+         *      model -> firefox
+         *      version -> 22.0
+         *      
+         *      original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
          */
         debug: function()
         {
@@ -6478,6 +6783,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 
     return Browser;
 });
+
 /**
  * @module Ink.Util.Url_1
  * @author inkdev AT sapo.pt
@@ -7054,7 +7360,7 @@ Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
         _onUp: function(ev) {
             if (!this._isOn || event.changedTouches.length !== 1) { return; }
 
-            if( this._options.stopEvents === true ){
+            if (this._options.stopEvents) {
                 Event.stop(ev);
             }
             ev = ev.changedTouches[0];   // TODO SHOULD CHECK IT IS THE SAME TOUCH
@@ -7078,6 +7384,7 @@ Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
             if (o.forceAxis   && axis !== o.forceAxis) {   return; }
 
             var O = {
+                upEvent:   ev,
                 elementId: this._element.id,
                 duration:  dt,
                 dr:        dr,
@@ -7773,6 +8080,365 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
     return InkUtilString;
 
+});
+
+/**
+ * @module Ink.Util.I18n_1
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Util.I18n', '1', [], function () {
+    'use strict';
+
+    /**
+     * Creates a new internationalization helper object
+     *
+     * @class Ink.Util.I18n
+     * @constructor
+     *
+     * @param {Object} langObject object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
+     *     @param {Object} langObject.(dictionaries...) 
+     * @param {String} [langCode='pt_PT'] language code of the target language
+     * @param {Boolean} [translationStringsInRoot=false] indicates whether translation strings are in the root of langObject. This is turned off by default.
+     *
+     * @example
+     *      var dictionaries = {    // This could come from a JSONP request from your server
+     *          'pt_PT': {
+     *              'hello': 'olá',
+     *              'me': 'eu',
+     *              'i have a {%s} for you': 'tenho um {%s} para ti'
+     *          },
+     *          'pt_BR': {
+     *              'hello': 'oi',
+     *              'me': 'eu',
+     *              'i have a {%s} for you': 'tenho um {%s} para você'
+     *          }
+     *      };
+     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
+     *          var i18n = new I18n(dictionaries, 'pt_PT');
+     *          i18n.text('hello');  // returns 'olá'
+     *          i18n.text('i have a {%s} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
+     *          
+     *          i18n.setLang('pt_BR');  // Changes language. pt_BR dictionary is loaded
+     *          i18n.text('hello');  // returns 'oi'
+     *
+     *          i18n.setLang('en_US');  // Missing language.
+     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
+     *      });
+     */
+    function I18n (langObject, langCode, translationStringsInRoot) {
+        this._init(langObject, langCode, translationStringsInRoot);
+    }
+
+    function makeObj (key, val) { // To make an object from an arbitrary key and a value
+        var ret = {};
+        ret[key] = val;
+        return ret;
+    }
+
+    I18n.prototype = {
+        _init: function (langObject, langCode, translationStringsInRoot) {
+            this._testMode = false;
+            this._lang = langCode || 'pt_PT';
+            this._strings = {};
+            this._otherDicts = [];
+            this.append(langObject || {}, translationStringsInRoot);  // Add the translation strings
+        },
+        /**
+         * Adds translation strings for this helper to use.
+         *
+         * @method append
+         * @param {Object} baseLangObject object containing language objects identified by their language code
+         * @param {Boolean} [translationStringsInRoot=false] indicates whether translation strings are in the root of langObject. This is turned off by default.
+         *
+         * @example
+         *     var i18n = new I18n({}, 'pt_PT');
+         *     i18n.append({'pt_PT': {
+         *         'sfraggles': 'braggles'
+         *     }});
+         *     equal(i18n.text('sfraggles'), 'braggles');
+         */
+        append: function (langObject, translationStringsInRoot) {
+            if (translationStringsInRoot) {
+                langObject = makeObj(this._lang, langObject);
+            }
+            this._otherDicts.push(langObject);
+            Ink.extendObj(this._strings, langObject[this._lang]);
+        },
+        /**
+         * Get the language code
+         *
+         * @returns {String} the language code for this instance
+         * @method {String} getLang
+         */
+        getLang: function () {return this._lang;},
+        /**
+         * Set the language. If there are more dictionaries available in cache, they will be loaded.
+         *
+         * @method  setLang
+         * @param   lang    {String} Language code to set this instance to.
+         */
+        setLang: function (lang) {
+            if (this._lang === lang) {
+                return;
+            }
+            this._lang = lang;
+            this._strings = {};
+            for (var i = 0, len = this._otherDicts.length; i < len; i++) {
+                Ink.extendObj(this._strings,
+                    this._otherDicts[i][lang] || {});
+            }
+        },
+        /**
+         * Sets or unsets test mode. In test mode, unknown strings are wrapped
+         * in `[ ... ]`. This is useful for debugging your application and
+         * making sure all your translation keys are in place.
+         *
+         * @method testMode
+         * @param {Boolean} toggle boolean value to set the test mode to.
+         */
+        testMode: function (toggle) {
+            this._testMode = toggle || false;
+        },
+        /**
+         * Returns an alias to `text()`, for convenience. The resulting function is
+         * traditionally assigned to "_".
+         *
+         * @method alias
+         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         'pt_PT': {
+         *             'hi': 'olá',
+         *             '{%s} day': '{%s} dia',
+         *             '{%s} days': '{%s} dias',
+         *             '_ordinals': {
+         *                 'default': 'º'
+         *             }
+         *         }
+         *     }, 'pt_PT');
+         *     var _ = i18n.alias();
+         *     equal(_('hi'), 'olá');
+         *     equal(_('{%s} days', 3), '3 dias');
+         *     equal(_.ntext('{%s} day', '{%s} days', 2), '2 dias');
+         *     equal(_.ntext('{%s} day', '{%s} days', 1), '1 dia');
+         *     equal(_.ordinal(3), 'º');
+         */
+        alias: function () {
+            var ret = Ink.bind(I18n.prototype.text, this);
+            ret.ntext = Ink.bind(I18n.prototype.ntext, this);
+            ret.append = Ink.bind(I18n.prototype.append, this);
+            ret.ordinal = Ink.bind(I18n.prototype.ordinal, this);
+            ret.testMode = Ink.bind(I18n.prototype.testMode, this);
+            return ret;
+        },
+        /**
+         * Given a translation key, return a translated string, with replaced parameters.
+         * When a translated string is not available, the original string is returned unchanged.
+         *
+         * @method {String} text
+         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
+         * @param {optional String} arg1 replacement #1 (replaces first {%s} and all {%s:1})
+         * @param {optional String} arg2 replacement #2 (replaces second {%s} and all {%s:2})
+         * @param {optional String} argn... replacement #n (replaces nth {%s} and all {%s:n})
+         *
+         * @example
+         *     _('Gosto muito de {%s} e o céu é {%s}.', 'carros', 'azul');
+         *     // returns 'Gosto muito de carros e o céu é azul.'
+         *
+         * @example
+         *     _('O {%s:1} é {%s:2} como {%s:2} é a cor do {%s:3}.', 'carro', 'azul', 'FCP');
+         *     // returns 'O carro é azul como azul é o FCP.'
+         */
+        text: function (str /*, replacements...*/) {
+            if (typeof str !== 'string') {return;} // Backwards-compat
+
+            var original, res;
+            if (!this._strings) {
+                original = str;
+            }
+            else {
+                res = this._strings[str];
+                original = (typeof res === 'undefined') ? (this._testMode ? '[' + str + ']' : str) : res;
+            }
+
+            var re = false,
+                i,
+                l = arguments.length;
+
+            if (l > 1) {
+                for (i = 1; i < l; ++i) {
+                    if (typeof arguments[i] !== 'undefined') {
+                        re = new RegExp('{%s:' + i + '}', '');
+                        if (re.test(original)) {
+                            original = original.replace(re, arguments[i]);
+                        }
+                        else {
+                            original = original.replace(/\{%s\}/, arguments[i]);
+                        }
+                        re = null;
+                        re = false;
+                    }
+                }
+            }
+            original = original.replace(/\{%s(\:\d*)?\}/ig, '');
+
+            return original;
+        },
+        /**
+         * Given a singular string, a plural string, and a number, translates
+         * either the singular or plural string.
+         *
+         * @method ntext
+         * @return {String}
+         *
+         * @param {String} strSin   word to use when count is 1
+         * @param {String} strPlur  word to use otherwise
+         * @param {Number} count    number which defines which word to use
+         * @param [...]             extra arguments, to be passed to `text()`
+         *
+         * @example
+         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
+         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
+         * 
+         * @example
+         *     // Extra arguments are passed to text()
+         *     i18n.ntext('{%s} platypus', '{%s} platypuses', 1, 1); // returns '1 ornitorrinco'
+         *     i18n.ntext('{%s} platypus', '{%s} platypuses', 2, 2); // returns '2 ornitorrincos'
+         */
+        ntext: function(strSin, strPlur, count) {
+            var argsForText = [].slice.call(arguments, 2);
+            if (count === 1) {
+                return this.text.apply(this, [strSin].concat(argsForText));
+            } else {
+                return this.text.apply(this, [strPlur].concat(argsForText));
+            }
+        },
+        /**
+         * Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
+         *
+         * This works by using transforms (in the form of Objects or Functions) passed into the
+         * function or found in the special key `_ordinals` in the active language dictionary.
+         *
+         * @method ordinal
+         *
+         * @param {Number}          num             Input number
+         * 
+         * @param {Object}          [options={}]
+         *
+         *    Maps for translating. Each of these options' fallback is found in the current
+         *    language's dictionary. The lookup order is the following:
+         *   
+         *        1. `exceptions`
+         *        2. `byLastDigit`
+         *        3. `default`
+         *   
+         *    Each of these may be either an `Object` or a `Function`. If it's a function, it
+         *    is called, and if the function returns a string, that is used. If it's an object,
+         *    the property is looked up using `[...]`. If what is found is a string, it is used.
+         *
+         * @param {Object|Function} [options.byLastDigit={}]
+         *    If the language requires the last digit to be considered, mappings of last digits
+         *    to ordinal suffixes can be created here.
+         *
+         * @param {Object|Function} [options.exceptions={}]
+         *    Map unique, special cases to their ordinal suffixes.
+         *
+         * @returns {String}        Ordinal suffix for `num`.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         fr: {  // 1er, 2e, 3e, 4e, ...
+         *             _ordinal: {  // The _ordinals key is special.
+         *                 'default': "e", // Usually the suffix is "e" in french...
+         *                 exceptions: {
+         *                     1: "er"   // ... Except for the number one.
+         *                 }
+         *             }
+         *         },
+         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
+         *             _ordinal: {
+         *                 'default': "th",// Usually the digit is "th" in english...
+         *                 byLastDigit: {
+         *                     1: "st",  // When the last digit is 1, use "th"...
+         *                     2: "nd",  // When the last digit is 2, use "nd"...
+         *                     3: "rd"   // When the last digit is 3, use "rd"...
+         *                 },
+         *                 exceptions: { // But these numbers are special
+         *                     0: "",
+         *                     11: "th",
+         *                     12: "th",
+         *                     13: "th"
+         *                 }
+         *             }
+         *         }
+         *     });
+         *
+         *     i18n.setLang('fr');
+         *     i18n.ordinal(1);    // return 'er'
+         *     i18n.ordinal(2);    // return 'e'
+         *     i18n.ordinal(11);   // return 'e'
+         *
+         *     i18n.setLang('en');
+         *     i18n.ordinal(1);    // returns 'st'
+         *     i18n.ordinal(2);    // returns 'nd'
+         *     i18n.ordinal(12);   // returns 'th'
+         *     i18n.ordinal(22);   // returns 'nd'
+         *     i18n.ordinal(3);    // returns 'rd'
+         *     i18n.ordinal(4);    // returns 'th'
+         *     i18n.ordinal(5);    // returns 'th'
+         *      
+         *     // Examples of passing in the options directly
+         *     var ptOrdinals = {
+         *         'default': 'º'
+         *     }
+         *     var i18n2 = new I18n();
+         *     i18n2.ordinal(1, ptOrdinals); // Returns 'º'
+         *     i18n2.ordinal(4, ptOrdinals); // Returns 'º'
+         *
+         **/
+        ordinal: function (num, options) {
+            if (typeof num === 'undefined') {
+                return '';
+            }
+            var numStr = num.toString();
+            options = options || {};
+            var fromDict = this._strings._ordinals || {};
+
+            var inCaseOptionsIsAFunction = v(options, num) || v(fromDict, num);
+            if (inCaseOptionsIsAFunction) {
+                return inCaseOptionsIsAFunction;
+            }
+
+            function v(val, number) {
+                number = typeof number === 'undefined' ? num : number;
+                if (typeof val === 'undefined') {
+                    return;
+                } else if (typeof val === 'function') {
+                    try {
+                        var ret = val(number);
+                        return typeof ret === 'string' ? ret : null;
+                    } catch(e) {}
+                } else if (typeof val === 'object') {
+                    return val[number];
+                } else if (typeof val === 'string') {
+                    // Useful for the default option, or to define a global _ordinals rule for languages which don't need it.
+                    return val;
+                }
+            }
+            function lookup (obj) {
+                return (
+                    v(obj.exceptions, num) ||
+                    v(obj.byLastDigit, +(numStr[numStr.length - 1])) ||
+                    v(obj.default, num) ||
+                    null);
+            }
+            return lookup(options) || lookup(fromDict) || '';
+        }
+    };
+    
+    return I18n;
 });
 
 /**
@@ -8936,6 +9602,320 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 });
 
 /**
+ * @module Ink.Util.BinPack_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Util.BinPack', '1', [], function() {
+
+    'use strict';
+
+    /*jshint boss:true */
+
+    // https://github.com/jakesgordon/bin-packing/
+
+    /*
+        Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+    */
+
+
+
+    var Packer = function(w, h) {
+        this.init(w, h);
+    };
+
+    Packer.prototype = {
+
+        init: function(w, h) {
+            this.root = { x: 0, y: 0, w: w, h: h };
+        },
+
+        fit: function(blocks) {
+            var n, node, block;
+            for (n = 0; n < blocks.length; ++n) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
+                }
+            }
+        },
+
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
+            }
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        },
+
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        }
+
+    };
+
+
+
+    var GrowingPacker = function() {};
+
+    GrowingPacker.prototype = {
+
+        fit: function(blocks) {
+            var n, node, block, len = blocks.length;
+            var w = len > 0 ? blocks[0].w : 0;
+            var h = len > 0 ? blocks[0].h : 0;
+            this.root = { x: 0, y: 0, w: w, h: h };
+            for (n = 0; n < len ; n++) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
+                }
+                else {
+                    block.fit = this.growNode(block.w, block.h);
+                }
+            }
+        },
+
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
+            }
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        },
+
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        },
+
+        growNode: function(w, h) {
+            var canGrowDown  = (w <= this.root.w);
+            var canGrowRight = (h <= this.root.h);
+
+            var shouldGrowRight = canGrowRight && (this.root.h >= (this.root.w + w)); // attempt to keep square-ish by growing right when height is much greater than width
+            var shouldGrowDown  = canGrowDown  && (this.root.w >= (this.root.h + h)); // attempt to keep square-ish by growing down  when width  is much greater than height
+
+            if (shouldGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (shouldGrowDown) {
+                return this.growDown(w, h);
+            }
+            else if (canGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (canGrowDown) {
+                return this.growDown(w, h);
+            }
+            else {
+                return null; // need to ensure sensible root starting size to avoid this happening
+            }
+        },
+
+        growRight: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w + w,
+                h: this.root.h,
+                down: this.root,
+                right: { x: this.root.w, y: 0, w: w, h: this.root.h }
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        },
+
+        growDown: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w,
+                h: this.root.h + h,
+                down:  { x: 0, y: this.root.h, w: this.root.w, h: h },
+                right: this.root
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        }
+
+    };
+
+
+
+    var sorts = {
+        random:  function() { return Math.random() - 0.5; },
+        w:       function(a, b) { return b.w - a.w; },
+        h:       function(a, b) { return b.h - a.h; },
+        a:       function(a, b) { return b.area - a.area; },
+        max:     function(a, b) { return Math.max(b.w, b.h) - Math.max(a.w, a.h); },
+        min:     function(a, b) { return Math.min(b.w, b.h) - Math.min(a.w, a.h); },
+        height:  function(a, b) { return sorts.msort(a, b, ['h', 'w']);               },
+        width:   function(a, b) { return sorts.msort(a, b, ['w', 'h']);               },
+        area:    function(a, b) { return sorts.msort(a, b, ['a', 'h', 'w']);          },
+        maxside: function(a, b) { return sorts.msort(a, b, ['max', 'min', 'h', 'w']); },
+        msort:   function(a, b, criteria) { /* sort by multiple criteria */
+            var diff, n;
+            for (n = 0; n < criteria.length; ++n) {
+                diff = sorts[ criteria[n] ](a, b);
+                if (diff !== 0) {
+                    return diff;
+                }
+            }
+            return 0;
+        }
+    };
+
+
+
+    // end of Jake's code
+
+
+
+    // aux, used to display blocks in unfitted property
+    var toString = function() {
+      return [this.w, ' x ', this.h].join('');
+    };
+
+
+
+    /**
+     * Binary Packing algorithm implementation
+     *
+     * Based on the work of Jake Gordon
+     *
+     * see https://github.com/jakesgordon/bin-packing/
+     *
+     * @class Ink.Util.BinPack
+     * @version 1
+     * @static
+     */
+    var BinPack = {
+
+        /**
+        * @function binPack
+        * @param {Object}      o              options
+        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
+        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
+        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
+        * @return {Object}
+        *     * {Number[2]} dimensions - resulted container size,
+        *     * {Number}    filled     - filled ratio,
+        *     * {Object[]}  fitted,
+        *     * {Object[]}  unfitted,
+        *     * {Object[]}  blocks
+        * @static
+        */
+        binPack: function(o) {
+            var i, f, bl;
+
+
+
+            // calculate area if not there already
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (! ('area' in bl) ) {
+                    bl.area = bl.w * bl.h;
+                }
+            }
+
+
+
+            // apply algorithm
+            var packer = o.dimensions ? new Packer(o.dimensions[0], o.dimensions[1]) : new GrowingPacker();
+
+            if (!o.sorter) { o.sorter = 'maxside'; }
+
+            o.blocks.sort( sorts[ o.sorter ] );
+
+            packer.fit(o.blocks);
+
+            var dims2 = [packer.root.w, packer.root.h];
+
+
+
+            // layout is done here, generating report data...
+            var fitted   = [];
+            var unfitted = [];
+
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (bl.fit) {
+                    fitted.push(bl);
+                }
+                else {
+                    bl.toString = toString; // TO AID SERIALIZATION
+                    unfitted.push(bl);
+                }
+            }
+
+            var area = dims2[0] * dims2[1];
+            var fit = 0;
+            for (i = 0, f = fitted.length; i < f; ++i) {
+                bl = fitted[i];
+                fit += bl.area;
+            }
+
+            return {
+                dimensions: dims2,
+                filled:     fit / area,
+                blocks:     o.blocks,
+                fitted:     fitted,
+                unfitted:   unfitted
+            };
+        }
+    };
+
+
+
+    return BinPack;
+
+});
+
+/**
  * @module Ink.Util.Array_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -9081,7 +10061,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Runs a functions through each of the elements of an array
+         * Runs a function through each of the elements of an array
          *
          * @method each
          * @param {Array} arr Array to be cycled/iterated
@@ -9215,7 +10195,7 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          *         testArray.myMethod = function(){
          *             console.log('stuff');
          *         }
-         *         
+         *
          *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
          *     });
          */
