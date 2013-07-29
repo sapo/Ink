@@ -1418,16 +1418,16 @@
         <div id="drag2" class="acceptme">
     Drag me
 </div>
-<div id="drop">
-    Drop me here
-</div>        <script type="text/javascript">
+<p>
+    Drop it <b id="drop" class="success">here</b>
+</p>        <script type="text/javascript">
     Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
         new Draggable('drag2', {
             revert: false
         });
         Droppable.add('drop', {
-            hoverclass: 'drop',
-            accept: 'acceptme'
+            hoverclass: 'ink-label',
+            accept: 'acceptme'  // Accept any element with the "acceptme" class.
         });
     });
 </script>    </div>
@@ -1435,17 +1435,17 @@
     <pre id="droppable_sourcecode" class="ink-l100 prettyprint linenums">&lt;div id=&quot;drag2&quot; class=&quot;acceptme&quot;&gt;
     Drag me
 &lt;/div&gt;
-&lt;div id=&quot;drop&quot;&gt;
-    Drop me here
-&lt;/div&gt;
+&lt;p&gt;
+    Drop it &lt;b id=&quot;drop&quot; class=&quot;success&quot;&gt;here&lt;/b&gt;
+&lt;/p&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
         new Draggable('drag2', {
             revert: false
         });
         Droppable.add('drop', {
-            hoverclass: 'drop',
-            accept: 'acceptme'
+            hoverclass: 'ink-label',
+            accept: 'acceptme'  // Accept any element with the &quot;acceptme&quot; class.
         });
     });
 &lt;/script&gt;</pre>
@@ -1487,39 +1487,67 @@
     <div class="box" id="">
         <h5>What do you want to do now?</h5>
 <hr>
-<ul >
-    <li><span class="tooltip"
-        data-tip-text="Attempt to talk to this stranger"
-        data-tip-where="up"
-        data-tip-color="blue">Talk</span></li>
-    <li><span class="tooltip"
-        data-tip-text="Fight this person as an enemy"
-        data-tip-where="mousemove"
-        data-tip-color="red">Fight</span></li>
-    <li><span class="tooltip"
-        data-tip-text="This guy does not seem dangerous. But you can still run for your life."
-        data-tip-where="mousefix">Run</span></li>
+<ul>
+    <li>
+        <span class="tooltip"
+            data-tip-text="Attempt to talk to this stranger"
+            data-tip-where="up"
+            data-tip-color="blue">
+            Talk
+        </span>
+    </li>
+    <li>
+        <span class="tooltip"
+            data-tip-text="Fight this person as an enemy"
+            data-tip-where="mousemove"
+            data-tip-color="red">
+            Fight
+        </span>
+    </li>
+    <li>
+        <span class="tooltip"
+            data-tip-text="This guy does not seem dangerous. But you can still run for your life."
+            data-tip-where="mousefix"
+            data-tip-color="orange">
+            Run
+        </span>
+    </li>
 </ul>
     </div>
     <p><span class="ink-label info">Code</span></p>
     <pre id="tooltip_sourcecode" class="ink-l100 prettyprint linenums">&lt;h5&gt;What do you want to do now?&lt;/h5&gt;
 &lt;hr&gt;
-&lt;ul &gt;
-    &lt;li&gt;&lt;span class=&quot;tooltip&quot;
-        data-tip-text=&quot;Attempt to talk to this stranger&quot;
-        data-tip-where=&quot;up&quot;
-        data-tip-color=&quot;blue&quot;&gt;Talk&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span class=&quot;tooltip&quot;
-        data-tip-text=&quot;Fight this person as an enemy&quot;
-        data-tip-where=&quot;mousemove&quot;
-        data-tip-color=&quot;red&quot;&gt;Fight&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span class=&quot;tooltip&quot;
-        data-tip-text=&quot;This guy does not seem dangerous. But you can still run for your life.&quot;
-        data-tip-where=&quot;mousefix&quot;&gt;Run&lt;/span&gt;&lt;/li&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;span class=&quot;tooltip&quot;
+            data-tip-text=&quot;Attempt to talk to this stranger&quot;
+            data-tip-where=&quot;up&quot;
+            data-tip-color=&quot;blue&quot;&gt;
+            Talk
+        &lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span class=&quot;tooltip&quot;
+            data-tip-text=&quot;Fight this person as an enemy&quot;
+            data-tip-where=&quot;mousemove&quot;
+            data-tip-color=&quot;red&quot;&gt;
+            Fight
+        &lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span class=&quot;tooltip&quot;
+            data-tip-text=&quot;This guy does not seem dangerous. But you can still run for your life.&quot;
+            data-tip-where=&quot;mousefix&quot;
+            data-tip-color=&quot;orange&quot;&gt;
+            Run
+        &lt;/span&gt;
+    &lt;/li&gt;
 &lt;/ul&gt;
 </pre>
-    <p><span class="ink-label info">Hint</span></p>
-    <p>You can use the <code>[data-tip-text]</code> selector instead of <code>.tooltip</code> above.</p>
+    <p>
+        <span class="ink-label info">Hint</span>
+        You can use the <code>[data-tip-text]</code> selector instead of <code>.tooltip</code> above.
+    </p>
 
     <h3>Options</h3>
     
