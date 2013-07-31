@@ -4,7 +4,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 
 Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt)
 
-## Current Version: 2.1.0
+## Current Version: 2.2.0
 
 We've completely rewritten the grid system and JavaScript components, along with many other changes. Please read our [changelog](http://ink.sapo.pt/changelog) to find out about them.
 
