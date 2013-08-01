@@ -37,6 +37,24 @@
                         }
                     }
                 }
+
+                &.heading {
+                    font-weight: 700;
+                    padding-bottom: 0.35em;
+                    margin-bottom: 0.35em;
+                    padding: 0.5em 0.8em;
+                    color: @grey-80;
+                }
+
+                &.disabled {
+                    a {
+                        color: @grey-30;
+                        &:hover {
+                            background: transparent;
+                            cursor: default;
+                        }
+                    }
+                }
             }
 
             #ink > #utils > .clearfix ();
