@@ -10,7 +10,7 @@
                 *height: 100%;
              
                 a { 
-                    #ink > #effects > .transition ('background',100ms);
+                    #ink > #effects > .transition ('background',140ms);
                 }
 
                 &:hover {
@@ -32,6 +32,7 @@
                         overflow: hidden;
 
                         a {
+                            padding: @navigation-padding;
                             display: block;
                             float: none;
                         }
@@ -47,13 +48,12 @@
                 li {
 
                     float: left;
-                    line-height: @navigation-line-height;
                     position: relative;
 
                     a {
-                        //float: left;
-                        padding: @navigation-v-padding @navigation-h-padding @navigation-v-padding 0;
-                        display: inline-block;
+                        padding: @navigation-padding;
+                        display: block;
+                        line-height: @navigation-line-height;
                     }
 
                     .control {
