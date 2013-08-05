@@ -131,6 +131,54 @@
 .screen-size-helper ul li.large {
   color: #c91111;
 }
+.drag {
+  -webkit-box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.3);
+}
+.ink-shade {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 0;
+  position: fixed;
+  z-index: 100;
+  display: none;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 0;
+}
+.ink-shade.fade {
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 300ms;
+  -moz-transition-duration: 300ms;
+  -o-transition-duration: 300ms;
+  -ms-transition-duration: 300ms;
+  transition-duration: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -ms-transition-delay: 0;
+  transition-delay: 0;
+}
+.ink-shade.visible {
+  filter: alpha(opacity=100);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+}
 body {
   background: #f7f7f7;
 }
@@ -148,7 +196,7 @@ h2 span {
   margin-top: 1em;
 }
 mark {
-  font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+  font-family: Ubuntu_monospaced, Monaco, 'Andale Mono', 'Courier New', monospace;
   font-size: .938em;
   background: #deedf1;
   padding: 1px 3px;
