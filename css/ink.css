@@ -6767,6 +6767,16 @@ table.ink-table.bordered tr td:first-child {
   background: #0069d6;
   color: #ffffff;
 }
+.sapo_cal_month li a.sapo_cal_off,
+.sapo_cal_year_selector li a.sapo_cal_off,
+.sapo_cal_month_selector li a.sapo_cal_off,
+.sapo_cal_month li a.sapo_cal_off:hover,
+.sapo_cal_year_selector li a.sapo_cal_off:hover,
+.sapo_cal_month_selector li a.sapo_cal_off:hover {
+  background: #ffffff;
+  color: #aaa;
+  cursor: default;
+}
 .sapo_cal_month ul,
 .sapo_cal_year_selector ul,
 .sapo_cal_month_selector ul {
