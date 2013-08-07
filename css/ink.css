@@ -6730,6 +6730,10 @@ table.ink-table.bordered tr td:first-child {
 .sapo_cal_top .sapo_cal_next {
   width: 10%;
 }
+.sapo_cal_top .sapo_cal_prev a,
+.sapo_cal_top .sapo_cal_next a {
+  display: block;
+}
 .sapo_cal_top .sapo_cal_month_desc {
   width: 80%;
 }
