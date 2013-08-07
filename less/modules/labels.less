@@ -1,0 +1,44 @@
+.@{label-class-name} {
+    padding: @label-padding;
+    color: white;
+    white-space: nowrap;
+    font-weight: bold;
+    #ink > #border-radius > .all (2px);
+    #ink > #shadows > .text-shadow (0, -1px, 0, rgba(0, 0, 0, 0.25));
+
+    &.success { 
+        background-color: @success-bg;
+        &.invert {
+            #ink > #states > .success (true);
+            #ink > #shadows > .no-text-shadow ();
+            padding: 0;
+        }
+    }
+
+    &.warning { 
+        background-color: @warning-bg; 
+        &.invert {
+            #ink > #states > .warning (true);
+            #ink > #shadows > .no-text-shadow ();
+            padding: 0;
+        }
+    }
+
+    &.error { 
+        background-color: @error-bg;
+        &.invert {
+            #ink > #states > .error (true);
+            #ink > #shadows > .no-text-shadow ();
+            padding: 0;
+        }
+    }
+    
+    &.info { 
+        background-color: @info-bg;
+        &.invert {
+            #ink > #states > .info (true);
+            #ink > #shadows > .no-text-shadow ();
+            padding: 0;
+        }
+    }
+}

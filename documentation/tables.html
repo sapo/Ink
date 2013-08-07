@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Tables</h1>
+        <p>Still unbeatable to display tabular data.</p>
+    </div>
+
+    <div class="column-group gutters">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="tables_menu">
+                <ul class="menu vertical black rounded">                    
+                                        <li><a class="scrollableLink" href="./tables.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./tables.html#default">Table basics</a></li>
+                    <li><a class="scrollableLink" href="./tables.html#alternating">Alternating</a></li>
+                    <li><a class="scrollableLink" href="./tables.html#highlight">Highlight</a></li>
+                    <li><a class="scrollableLink" href="./tables.html#fullBorders">Full borders</a></li>
+                    <li><a class="scrollableLink" href="./tables.html#combined">Combined</a></li>
+                    <li><a class="scrollableLink" href="./tables.html#special">Special</a></li>
+                     
+                </ul>
+            </nav>
+        </div>
+
+        <div class="large-80 medium-75 small-100">
+            <section id="default" data-spy="true" data-target="#tables_menu">
+                <h2>Table basics</h2>
+                <p>
+                    The default table style can be accessed by adding the <code>.ink-table</code> class to the <code>&lt;table&gt;</code> element. 
+                    This will enable you to use the default style. You can then add other classes to get any of the variations.
+                </p>
+                <p><span class="ink-label success">Example</span></p>                
+                <div class="box">
+                    <table class="ink-table">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            
+                                <td colspan="3">FOOTER</td>
+                            
+                        </tfoot>                                  
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <span class="ink-label info">Note</span> 
+                    To improve table cell formatting you can use Ink's <a href="./index.php/layout">Layout</a> classes such as <code>.large-%</code>, 
+                    <code>.medium-%</code> and <code>.small-%</code>. Or even <code>.content-left</code> and <code>.content-right</code> if a different alignment is
+                    needed for any given cell.
+                </p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;table class=&quot;ink-table&quot;&gt;</pre>
+            </section>
+
+            <section id="alternating" data-spy="true" data-target="#tables_menu">
+                <h2>Alternating colored rows</h2>
+                <p>To better distinguish between consecutive rows, combine the <code>.ink-table</code> class with the <code>.alternating</code> class to get an alternating background color effect.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table alternating">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">This is a table footer</td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;table class=&quot;ink-table alternating&quot;&gt;
+</pre>
+            </section>
+
+            <section id="highlight" data-spy="true" data-target="#tables_menu">
+                <h2>Highlight rows on hover</h2>
+                <p>To highlight rows on mouse hover, add the <code>.ink-hover</code> class.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table hover">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">This is a table footer</td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;table class=&quot;ink-table hover&quot;&gt;
+</pre>
+            </section>
+            
+            <section id="fullBorders" data-spy="true" data-target="#tables_menu">
+                <h2>Full borders</h2>
+                <p>To get a more classic table with borders all around, use <code>.ink-bordered</code>.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    
+                    <table class="ink-table bordered">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;table class=&quot;ink-table bordered&quot;&gt;
+</pre>
+            </section>
+
+            <section id="combined" data-spy="true" data-target="#tables_menu">
+                <h2>Combining several styles</h2>
+                <p>For great flexibility you can combine all of the above styles in the same table, obtaining a fully bordered table with alternating colored rows that light up on hover.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table bordered alternating hover">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;table class=&quot;ink-table bordered alternating hover&quot;&gt;
+</pre>
+            </section>
+
+            <section id="special" data-spy="true" data-target="#tables_menu">
+                <h2>Special colored rows</h2>
+                <p>
+                    You can use the <a href="./index.php/typography#nav-utilities">Ink utility classes</a> to style rows that need special attention. 
+                    Use the <code>.ink-label</code> class with the <code>.info</code>, <code>.warning</code>, <code>.error</code> or <code>.success</code> class
+                    on any <code>&lt;tr&gt;</code> to paint the row in the corresponding background color.
+                </p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table bordered">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="ink-label warning">
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr class="ink-label success">
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr class="ink-label info">
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div><footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright vspace">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+        <p><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>

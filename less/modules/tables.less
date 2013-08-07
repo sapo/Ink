@@ -1,0 +1,95 @@
+table {
+
+    &.ink-table {
+
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background: none;
+        
+        tr {
+            th {
+                padding: @table-cell-padding;
+                border-bottom: @table-cell-borderColor 1px solid;
+                background: none;
+                font-weight: 700;
+                line-height: @table-row-line-height;
+                &[data-sortable="true"]{
+                
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        i {
+                            text-decoration: none;
+                        }
+                    }
+
+                    i {
+                        padding-left: 0.5em;
+                    }
+                    
+                }
+            }
+
+            td {
+                padding: @table-cell-padding;
+                border-bottom: @table-cell-borderColor 1px solid;
+                background: none;
+                line-height: @table-row-line-height;
+            }
+        }
+
+        &.alternating {
+
+            tbody {
+
+                tr:nth-child(odd) {
+                    background-color: @table-alternating-rowColor;
+                }
+
+            }
+        }
+
+        &.hover {
+
+            tbody {
+
+                tr:hover {
+                    background: @table-row-hoverColor;
+                    cursor: pointer;
+                }
+
+            }
+        }
+
+        &.bordered {
+
+            border-collapse: separate;
+            border: @table-cell-borderColor 1px solid;
+            #ink > #border-radius > .all (4px);
+
+            tr {
+                
+                th {
+                    border-left: @table-cell-borderColor 1px solid;
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+
+                &:last-child {
+                    td {
+                        border-bottom: none;
+                    }
+                }
+
+                td {
+                    border-left: @table-cell-borderColor 1px solid;
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
+}

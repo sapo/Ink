@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Navigation</h1>
+        <p>Navigation is key in any website or web application.</p>
+    </div>
+
+    <div class="column-group gutters">
+
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="nav_menu">
+                <ul class="menu vertical rounded black">                    
+                                        <li><a class="scrollableLink" href="./navigation.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-basics">Navigation basics</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-sub">Submenus</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-styling">Navigation Styling</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-horizontal">Horizontal Menu</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-vertical">Vertical Menu</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-pagination">Pagination</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-pills">Pills</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-breadcrumbs">Breadcrumbs</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-footer">Footer</a></li>
+                    <li><a class="scrollableLink" href="./navigation.html#nav-dropdowns">Dropdowns</a></li>
+                      
+                </ul>
+            </nav>
+        </div>
+
+        <div class="large-80 medium-75 small-100">
+            <section id="nav-basics" data-spy="true" data-target="#nav_menu">
+                <h2>Navigation basics</h2>
+                <p>As with everything else in Ink, navigation is easy to implement and quick to make flexible and responsive to various screen widths and if you know your way around natural language you'll quickly pick up on how things work.</p>
+                <p><span class="ink-label info">Tip</span> we strongly suggest you start with the basics and read the <a href="./index.php/layout">Layout</a> section, it'll make it that much easier to get into the spirit of Ink and learn the rest.</p>
+                <h3>Anatomy of a menu</h3>
+                <p>A menu in Ink starts with a block-level element, such as <code>&lt;nav&gt;</code> or, if you prefer, and to keep things more compatible with older browsers, <code>&lt;div&gt;</code>.</p>
+                <p>This element needs to have the class <code>.ink-navigation</code> and will act as a wrapper to the whole thing.</p>
+                <p>Menus need to be lists, as that's what they are anyway and it's considered the industry standard best practice. So, inside your wrapper block put an unsorted list <code>&lt;ul&gt;</code> with the <code>.menu</code> class and list your menu items within <code>&lt;li&gt;</code>.</p>
+                <p><span class="ink-label info">Code</span></p>
+                
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+   &lt;ul class=&quot;menu&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>                
+            </section>
+            <section id="nav-sub" data-spy="true" data-target="#nav_menu">
+                <h2>Submenus</h2>
+                <p>Making submenus is as simple as adding a new <code>&lt;ul&gt;</code> inside the <code>&lt;li&gt;</code> you want to control the sublist and giving it the <code>.submenu</code> class.</p>
+                <p><span class="ink-label info">Code</span></p>
+                
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+   &lt;ul class=&quot;menu&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item with a submenu&lt;/a&gt;
+        &lt;ul class=&quot;submenu&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Subitem 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Subitem 2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>                
+            </section>
+            <section id="nav-styling" data-spy="true" data-target="#nav_menu">
+                <h2>Navigation styling</h2>
+                <p>To style the menu, we add classes to the <code>&lt;ul&gt;</code> element. First, declare it a menu, using the <code>.menu</code> class, then, decide what type of menu it's going to be: <code>.horizontal</code> and <code>.vertical</code> will be your primary classes, but there are others we'll describe below.</p>
+                <p>Finally, you can use utility classes for stuff like rounded corners, gradients and color.</p>
+                <p>To see code examples keep reading below for each type of menu.</p>
+                <h3>Special items</h3>
+                <p>Menus frequently need active and disabled items to fit most usage scenarios, so simply add the <code>.active</code> or <code>.disabled</code> classes to the list item you need to make either state. We strongly discourage you to use both in the same <code>&lt;li&gt;</code></p>
+                <h3>Available classes</h3>
+                <div class="column-group horizontal-gutters">
+                    <div class="large-50 medium-50 small-100">
+                        <ul>
+                            <li><code>.ink-navigation</code> Takes your list and takes care of spacing, centering and building a basic menu look. Apply to parent block element, such as <code>&lt;nav&gt;</code>.</li>
+                            <li><code>.menu</code> further prepares the list elements and links to be styled as a menu. Apply to <code>&lt;ul&gt;</code>.</li>
+                            <li><code>.horizontal</code> turns your list into a horizontal menu. Apply to <code>&lt;ul&gt;</code>.</li>
+                            <li><code>.vertical</code> turns your list into a vertical menu. Apply to <code>&lt;ul&gt;</code>.</li>
+                        </ul>
+                    </div>
+                    <div class="large-50 medium-50 small-100">
+                        <ul>
+                            <li><code>.flat</code> produces a flat color background, instead of the default gradient. Apply to <code>&lt;ul&gt;</code>.</li>
+                            <li><code>.rounded</code> adds rounded corners. Apply to <code>&lt;ul&gt;</code>.</li>
+                            <li><code>.shadowed</code> adds a dropshadow. Apply to <code>&lt;ul&gt;</code>.</li>
+                            <li><code>.grey</code> <code>.green</code> <code>.blue</code> <code>.red</code> <code>.orange</code> and <code>.black</code> define the base color scheme for the menu. Apply to <code>&lt;ul&gt;</code>.</li>
+                            <li><code>.active</code> marks an item as active. Apply to <code>&lt;li&gt;</code>.</li>
+                            <li><code>.disabled</code> marks an item as disabled. Apply to <code>&lt;li&gt;</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section id="nav-horizontal" data-spy="true" data-target="#nav_menu">
+                <h2>Horizontal menu</h2>
+                <p>As explained in the basics, you'll need a block element containing an unsorted list to make any menu, as long as the block has the class <code>.ink-navigation</code> and the list has the class <code>.menu</code></p>
+                <p>For the horizontal variant, we'll add the <code>.horizontal</code> tag to the list element.</p>
+                <p><span class="ink-label success">Examples</span></p>
+                <div class="box">
+                    <div class="column-group">
+                        <div class="large-50 medium-50 small-100">
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal">
+                                    <li class="active"><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed white">
+                                    <li class="active"><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>  
+                                </ul>
+                            </nav>
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed grey">
+                                    <li class="active"><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed black">
+                                    <li class="active"><a href="#">Item</a> </li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="large-50 medium-50 small-100">
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed green">
+                                    <li class="active"><a href="#">Item</a> </li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed blue">
+                                    <li class="active"><a href="#">Item</a> </li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed red">
+                                    <li class="active"><a href="#">Item</a> </li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <nav class="ink-navigation space">
+                                <ul class="menu horizontal rounded shadowed orange">
+                                    <li class="active"><a href="#">Item</a> </li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Submenu <i class="icon-caret-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                            <li><a href="#">Item</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <p><span class="ink-label info">Tip</span> If you see one you like, grab the code from your inspector.</p>
+                <p><span class="ink-label info">Code</span></p>
+                
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+   &lt;ul class=&quot;menu horizontal&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>            </section>
+            <section id="nav-vertical" data-spy="true" data-target="#nav_menu">
+                <h2>Vertical menu</h2>
+                <div class="column-group gutters">
+                    <div class="large-50 medium-50 small-100">
+                        <p>Vertical menus work exactly like horizontal ones, except you have to use the <code>.vertical</code> class on the list, instead of <code>.horizontal</code></p>
+                        <p>Everything else works the same way, including making submenus. Note, however that if you add the <code>.submenu</code> class to your sublist you get a flyout menu that extends to the right of your vertical menu. If you prefer a dropdown submenu, add the <code>.dropdown</code> class as well. Check the last two items of the attached orange example menu to see the difference between flyout and dropdown.</p>
+                    </div>
+                    
+                    <nav class="ink-navigation large-50 medium-50 small-100">
+                        <p><span class="ink-label success">Example</span></p>
+                        <div class="box">
+                            <ul class="menu vertical orange rounded shadowed">
+                                <li class="active"><a href="#">Item</a></li>
+                                <li><a href="#">Item</a></li>
+                                <li><a href="#">Flyout submenu</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Dropdown submenu</a>
+                                    <ul class="submenu dropdown">
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                </div>
+
+                <p><span class="ink-label info">Code</span></p>
+                
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+   &lt;ul class=&quot;menu vertical&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>                
+            </section>
+            <section id="nav-pagination" data-spy="true" data-target="#nav_menu">
+                <h2>Pagination</h2>
+                <p>To create a pagination-style navigation, you need to keep your parent <code>.ink-navigation</code> and instead of declaring your <code>ul</code> with the <code>.menu</code> class, use the <code>.pagination</code> class. Pagination elements are always horizontal, so don't bother with the orientation classes.</p>
+                <p>There are two special classes for pagination elements and those are the <code>.previous</code> and <code>.next</code> classes. Just add them to your first and last <code>li</code> elements and make sure they contain links to navigate backward and forward in your page list. The classes will create a cap effect at both ends of the pagination bar.</p>
+                <p>Styling classes such as <code>.rounded</code> <code>.shadowed</code> <code>flat</code> and the color classes, will work with pagination bars exactly like they do with other types of navigation.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <div class="column-group horizontal-gutters">
+                        <nav class="ink-navigation large-50 medium-100 small-100">
+                            <h6 class="note half-bottom-space">Default styling</h6>
+                            <ul class="pagination">
+                                <li class="previous disabled"><a href="#">Previous</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li class="next"><a href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                        <nav class="ink-navigation large-50 medium-100 small-100"> 
+                            <h6 class="note half-bottom-space">Blue, shadowed and rounded</h6>
+                            <ul class="pagination rounded shadowed blue">
+                                <li class="previous disabled"><a href="#">Previous</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li class="next"><a href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <p><span class="ink-label info">Code</span></p>        
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+    &lt;ul class=&quot;pagination&quot;&gt;
+        &lt;li class=&quot;previous&quot;&gt;&lt;a href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</pre>            </section>
+            <section id="nav-pills" data-spy="true" data-target="#nav_menu">
+                <h2>Pills</h2>
+                <p>
+                    Pills are just another way to show your menu items as individual little rounded boxes. 
+                    If you've guessed already, you probably guessed right: just put the <code>.pills</code> class in your <code>ul</code> and you're set. Again, styling for rounded corners, shadows and colors still apply.
+                </p>
+                <p>With a little added styling, it looks like this:</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <nav class="ink-navigation">
+                        <ul class="pills shadowed rounded">
+                            <li class="active"><a href="#">Pill 1</a></li>
+                            <li><a href="#">Pill 2</a></li>
+                            <li><a href="#">Pill 3</a></li>
+                            <li class="disabled"><a href="#">Disabled</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+    &lt;ul class=&quot;pills&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Pill 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Pill 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Pill 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</pre>            </section>
+            <section id="nav-breadcrumbs" data-spy="true" data-target="#nav_menu">
+                <h2>Breadcrumbs</h2>
+                <p>A breadcrumb navigation can be useful if you have several levels of depth in your site and want to let your users know where they are and easily navigate to previous items in the tree. Breadcrumbs in Ink are created by adding the <code>.breadcrumbs</code> class to the <code>&lt;ul&gt;</code> element. Keep using all the visual classes for adding flair to your breadcrumbs, just read above about rounded corners, colors and more.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <nav class="ink-navigation">
+                        <h6 class="note half-bottom-space">Default styling</h6>
+                        <ul class="breadcrumbs">
+                            <li><a href="#">Start</a></li>
+                            <li><a href="#">Level 1</a></li>
+                            <li><a href="#">Level 2</a></li>
+                            <li class="active"><a href="#">Current item</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="ink-navigation">
+                        <h6 class="note half-bottom-space">Orange, flat, rounded and shadowed</h6>
+                        <ul class="breadcrumbs orange flat rounded shadowed">
+                            <li><a href="#">Start</a></li>
+                            <li><a href="#">Level 1</a></li>
+                            <li><a href="#">Level 2</a></li>
+                            <li class="active"><a href="#">Current item</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
+    &lt;ul class=&quot;breadcrumbs&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Start&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Current item&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</pre>                
+                
+                <p><span class="ink-label info">Note</span> A separator is automatically added.</p>
+                <h3>Customizing the separator</h3>
+                <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
+                
+<pre class=" prettyprint linenums">.ink-navigation .breadcrumbs li:after {
+   content: '*';
+}</pre>                
+                <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
+            </section>
+            <section id="nav-footer" data-spy="true" data-target="#nav_menu">
+                <h2>Footer menu</h2>
+                <p>Footer menus are usually simple text menus with either redundant or accessory navigation. Because the default of every element in Ink is very simple, you can simply use a horizontal or vertical menu in your footer, leaving out any visual styling classes, to obtain that simple, text menu look.</p>
+                <p><span class="ink-label info">Tip</span> make sure your parent <code>.ink-navigation</code> element is, itself, wrapped in a <code>&lt;footer&gt;</code> element to get proper spacing.</p>
+                <p><span class="ink-label info">code</span> for an example horizontal footer menu.</p>
+                
+<pre class=" prettyprint linenums">&lt;footer&gt;
+    &lt;nav class=&quot;ink-navigation&quot;&gt;
+        &lt;ul class=&quot;menu horizontal&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;footerItem&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;footerItem&lt;/a&gt;&lt;/li&gt;
+            ...
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/footer&gt;</pre>            </section>
+            <section id="nav-dropdowns" data-spy="true" data-target="#nav_menu">
+                
+                <h2>Dropdowns</h2>
+                
+                <div class="column-group gutters">
+                    <div class="large-75 medium-75 small-100">
+                        <p>Dropdowns are extremely powerful and versatile. We developed a simple to implement model which works both on item click, or hover, making it work on touch devices effortlessly. Go ahead and click the dropdown button above to see what it does, and then read on to see how you can make your own.</p>
+                        <p><span class="ink-label success">Example</span> Try clicking the button below to see it in action.</p>
+                        <div class="box">
+                            <div class="ink-dropdown black">
+                            <button class="ink-button toggle" data-target=".dropdown2">Dropdown <span class="icon-caret-down"></span></button>
+                            <ul id="" class="dropdown-menu dropdown2">
+                                <li class="heading">Heading</li>
+                                <li class="separator-above"><a href="#">Option</a></li>
+                                <li><a href="#">Option</a></li>
+                                <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                                <li class="submenu">
+                                    <a href="#" class="toggle" data-target="#submenu2">A longer option name</a>
+                                    <ul id="submenu2" class="dropdown-menu">
+                                        <li class="submenu">
+                                            <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+                                            <ul id="ultrasubmenu" class="dropdown-menu">
+                                                <li><a href="#">Sub option</a></li>
+                                                <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+                                                <li><a href="#">Sub option</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sub option</a></li>
+                                        <li><a href="#">Sub option</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Option</a></li>
+                            </ul>
+                        </div>
+                        </div>
+                        <p>To begin, create a block-level element with the <code>.ink-dropdown</code> class. This element will wrap your entire dropdown menu: your trigger element, your menus and submenus.</p>
+                        <pre class=" prettyprint linenums">&lt;div class=&quot;ink-dropdown&quot;&gt;&lt;/div&gt;</pre>                    </div>
+                    <div class="large-25 medium-25 small-100">
+                        <div class="ink-dropdown red">
+                            <ul id="" class="dropdown-menu dropdown1" style="display: block; position: static;">
+                                <li class="heading">Heading</li>
+                                <li class="separator-above"><a href="#">Option</a></li>
+                                <li class="active"><a href="#">Active option</a></li>
+                                <li class="separator-above disabled"><a href="#">Disabled option</a></li>
+                                <li class="submenu">
+                                    <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
+                                    <ul id="submenu1" class="dropdown-menu">
+                                        <li class="submenu">
+                                            <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+                                            <ul id="ultrasubmenu" class="dropdown-menu">
+                                                <li><a href="#">Sub option</a></li>
+                                                <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
+                                                <li><a href="#">Sub option</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sub option</a></li>
+                                        <li><a href="#">Sub option</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Option</a></li>
+                            </ul>
+                            <p class="note">Example menu</p>
+                        </div>
+                    </div>
+                
+                    <div class="large-100 medium-100 small-100">                        
+                        <p>Next, you need to create the trigger element, which will toggle the dropdown on and off. For the sake of semantics either use a <code>&lt;button&gt;</code> or an <code>&lt;a&gt;</code>.</p>
+                        <p>The trigger element must have two important attributes: the <code>.toggle</code> class and a <code>data-target</code> set to the ID of the element you need toggled.</p>
+                        <p>So, let's say you want a button that says "click me" and toggles a menu called <code>#dropdown</code> on and off. Here's the code:</p>
+                        <pre class=" prettyprint linenums">&lt;button class=&quot;toggle&quot; data-target=&quot;#dropdown&quot;&gt;Click me&lt;/button&gt;</pre>                        <p>Next, you need the actual menu that you want toggled, so just create a <code>&lt;ul&gt;</code> with the <code>.dropdown-menu</code> class. Don't forget to also add the <code>#dropdown</code> ID to be targetted by the data-target attribute of the trigger button we created above. Essentially, still inside your <code>.ink-dropdown</code>, and after your <code>.toggle</code> button, you'll create the following:</p>
+                        <pre class=" prettyprint linenums">&lt;ul class=&quot;dropdown-menu&quot; id=&quot;dropdown&quot;&gt;</pre>                        <p>There you have it. Create a container for your dropdown, then add a trigger button referencing an ID on your actual menu. It will just work and you can integrate it wherever you need.</p>
+
+                        <h3>Sub menus</h3>
+                        <p>Creating sub menus follows the same logic. One of your <code>&lt;li&gt;</code> elements will hold a link with the <code>.toggle</code> class and the <code>data-target</code> attribute pointing to the ID of a <code>&lt;ul&gt;</code> which is also within the same <code>&lt;li&gt;</code>. You also need to add the class <code>.submenu</code> to the containing <code>&lt;li&gt;</code>. It will look something like this:</p>
+                        <pre class=" prettyprint linenums">&lt;li class=&quot;submenu&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;subitems&quot;&gt;Sub-items&lt;/a&gt;
+    &lt;ul class=&quot;dropdown-menu&quot; id=&quot;subitems&quot;&gt;</pre>                        <p>So, it's the same logic as before, only it's nested within a specific list element and, in this case, we used an <code>&lt;a&gt;</code> instead of a <code>&lt;button&gt;</code> as trigger.</p>
+
+                        <h3>Helper elements</h3>
+                        <p>
+                            To make your menus better looking, more organized and easier to use, we have some helper elements that will give you styling options for most your menu-building needs. Here's a list:
+                        </p>
+                        <ul>
+                            <li><strong>Headings</strong> - add a heading within your menu by styling an <code>&lt;li&gt;</code> with the <code>.heading</code> class;</li>
+                            <li><strong>Separators</strong> - create horizontal lines to separate groups of items on a menu by adding either a <code>.separator-above</code> or a <code>.separator-below</code> class to an <code>&lt;li&gt;</code>.</li>
+                            <li><strong>Disabled</strong> - add the <code>.disabled</code> class to an <code>&lt;li&gt;</code> containing menu text that you want to appear as disabled.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p>
+                    <span class="ink-label info">Code</span> 
+                    To help you get started we've prepared a functional code example covering all the topics explained above.
+                </p>
+<div class="hide show-large">
+<pre class=" prettyprint linenums">&lt;div class=&quot;ink-dropdown&quot;&gt;
+    &lt;button class=&quot;ink-button toggle&quot; data-target=&quot;#dropdown&quot;&gt;Dropdown &lt;span class=&quot;icon-caret-down&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;ul id=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+        &lt;li class=&quot;heading&quot;&gt;Heading&lt;/li&gt;
+        &lt;li class=&quot;separator-above&quot;&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;separator-above disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;submenu&quot;&gt;
+            &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#submenu1&quot;&gt;A longer option name&lt;/a&gt;
+            &lt;ul id=&quot;submenu1&quot; class=&quot;dropdown-menu&quot;&gt;
+                &lt;li class=&quot;submenu&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;
+                    &lt;ul id=&quot;ultrasubmenu&quot; class=&quot;dropdown-menu&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot; data-target=&quot;ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</pre></div>
+<div class="hide-large">
+<pre class=" prettyprint linenums">&lt;div class=&quot;ink-dropdown&quot;&gt;
+ &lt;button class=&quot;ink-button toggle&quot; data-target=&quot;#dropdown&quot;&gt;Dropdown &lt;span class=&quot;icon-caret-down&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+  &lt;ul id=&quot;dropdown&quot; class=&quot;dropdown-menu&quot;&gt;
+   &lt;li class=&quot;heading&quot;&gt;Heading&lt;/li&gt;
+   &lt;li class=&quot;separator-above&quot;&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+   &lt;li class=&quot;separator-above disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
+   &lt;li class=&quot;submenu&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#submenu1&quot;&gt;A longer option name&lt;/a&gt;
+    &lt;ul id=&quot;submenu1&quot; class=&quot;dropdown-menu&quot;&gt;
+     &lt;li class=&quot;submenu&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;toggle&quot; data-target=&quot;#ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;
+      &lt;ul id=&quot;ultrasubmenu&quot; class=&quot;dropdown-menu&quot;&gt;
+       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+       &lt;li&gt;&lt;a href=&quot;#&quot; data-target=&quot;ultrasubmenu&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+     &lt;/li&gt;
+     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub option&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+   &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</pre></div>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright vspace">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+        <p><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>

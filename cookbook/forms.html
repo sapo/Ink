@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>
+            Forms
+        </title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
+        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="stylesheet" type="text/css" href="../css/ink.css">
+        
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+        
+        <script type="text/javascript" src="../js/holder.js"></script>
+        <script type="text/javascript" src="../js/ink.min.js"></script>
+        <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+        <script type="text/javascript" src="../js/autoload.js"></script>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        
+        
+        <style type="text/css">
+            body {
+                background: #ededed;
+            }
+            header {
+                padding: 2em 0;
+                margin-bottom: 2em;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            header h1 small:before  {
+                content: "|";
+                margin: 0 0.5em;
+                font-size: 1.6em;
+            }
+            footer {
+                background: #ccc;
+                color: #0003;
+            }
+            footer p {
+                padding: 0.5em 1em 0.5em 0;
+                margin: 0;        
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="ink-grid">
+            <header>
+                <h1>site name<small>smaller text</small></h1>
+                <nav class="ink-navigation vspace">
+                    <ul class="menu horizontal black rounded shadowed">
+                        <li class="active"><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li class="push-right">
+                            <form class="ink-form">
+                                <div class="control">
+                                    <input type="search" placeholder="search">
+                                    <button class="ink-button"><span class="icon-search"></span></button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>             
+            </header>
+            
+            <div class="column-group gutters">
+                
+                <form action="" class="ink-form large-50 medium-50 small-100">
+                    <fieldset>
+                        <div class="control-group required column-group gutters">
+                            <label for="email" class="large-20 content-right">Name</label>
+                            <div class="control large-40">
+                                <input type="text" id="email">
+                                <p class="tip">First Name</p>
+                            </div>
+                            <div class="control large-40">
+                                <input type="text" id="email">
+                                <p class="tip">Last Name</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group required column-group gutters">
+                            <label for="email" class="large-20 content-right">Email</label>
+                            <div class="control large-80">
+                                <input type="text" id="email">
+                            </div>
+                        </div>
+
+                        <div class="control-group column-group gutters">
+                            <label for="area" class="large-20 content-right">Description</label>
+                            <div  class="control large-80">
+                                <textarea id="area"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group column-group gutters">
+                            <label for="file-input" class="large-20 content-right">File input</label>
+                            <div  class="control large-80">
+                                <div class="input-file">
+                                    <input type="file" name="" id="file-input">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                
+                <div class="large-50 medium-50 small-100">
+                    <p>
+                        Chuck Norris once kicked a baby elephant into puberty. Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the f*ck down.
+                    </p>
+                    <img src="holder.js/1200x600/auto/ink" alt="">
+                </div>
+
+            </div>
+            
+
+            
+            <form action="#" class="ink-form column-group gutters">
+                <fieldset class="large-33 medium-33 small-100">
+                    <legend>Fieldset title</legend>
+                    <div class="control-group">
+                        <label for="name">Name</label>
+                        <div class="control">
+                            <input type="text" id="name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="phone">Phone</label>
+                        <div class="control">
+                            <input type="text" id="phone">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="email">Email</label>
+                        <div class="control">
+                            <input type="text" id="email">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="large-33 medium-33 small-100">
+                    <legend>Rock Bands</legend>
+                    <div class="control-group">
+                        <p class="label">Please select one or more options</p>
+                        <ul class="control unstyled">
+                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Chimaira</label></li>
+                            <li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Metallica</label></li>
+                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Motörhead</label></li>
+                            <li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Pantera</label></li>
+                            <li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Slayer</label></li>
+                            <li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Switchtense</label></li>
+                        </ul>
+                    </div>
+                </fieldset>                     
+
+                <fieldset class="large-33 medium-33 small-100">
+                    <legend>Pick a card</legend>
+                    <div class="control-group">
+                        <p class="label">Please select one of these options</p>
+                        <ul class="control unstyled">
+                            <li><input type="radio" id="rb1" name="rb" value=""><label for="rb1">Ace of Spades</label></li>
+                            <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Diamonds</label></li>
+                            <li><input type="radio" id="rb2" name="rb" value=""><label for="rb2">Queen of Spades</label></li>
+                            <li><input type="radio" id="rb3" name="rb" value=""><label for="rb3">Jack of Hearts</label></li>
+                            <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Clubs</label></li>
+                            <li><input type="radio" id="rb4" name="rb" value=""><label for="rb4">King of Diamonds</label></li>
+                        </ul>
+                    </div>
+                </fieldset>
+
+            </form>
+
+            <form action="#" class="ink-form">
+                <h4>Inline form with inline fields</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                </p>
+                <fieldset class="column-group gutters vspace">
+                    
+                    <div class="control-group large-33 medium-33 small-100">
+                        <div class="column-group gutters">
+                            <label for="name" class="large-20 content-right">Name</label>
+                            <div class="control large-80">
+                                <input type="text" id="name">
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="control-group large-33 medium-33 small-100">
+                        <div class="column-group gutters">
+                            <label for="phone" class="large-20 content-right">Phone</label>
+                            <div class="control large-80">
+                                <input type="text" id="phone">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group large-33 medium-33 small-100">
+                        <div class="column-group gutters">
+                            <label for="email" class="large-20 content-right">Email</label>
+                            <div class="control large-80">
+                                <input type="text" id="email">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <form action="#" class="ink-form">
+                <h4>Block form with inline fields</h4>
+                <p>
+                    Proin nibh nulla, consequat vitae aliquet nec, consequat consectetur quam. Morbi diam dui, ornare vel elementum ut, pharetra at urna. Proin vel purus orci, vel euismod lorem. In hac habitasse platea dictumst. Donec eu scelerisque velit. Suspendisse velit lectus, ultrices vitae luctus vel, lobortis non metus.
+                </p>
+                <fieldset class="column-group gutters vspace">
+                    <div class="control-group large-33 medium-33 small-100">
+                        <label for="name">Name</label>
+                        <div class="control">
+                            <input type="text" id="name">
+                        </div>
+                    </div>
+                    <div class="control-group large-33 medium-33 small-100">
+                        <label for="phone">Phone</label>
+                        <div class="control">
+                            <input type="text" id="phone">
+                        </div>
+                    </div>
+                    <div class="control-group large-33 medium-33 small-100">
+                        <label for="email">Email</label>
+                        <div class="control">
+                            <input type="text" id="email">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <form action="#" class="ink-form">
+                <h4>Appended and prepended buttons and symbols</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida lacus purus. Integer turpis enim, condimentum non pellentesque vel, consequat vitae diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                </p>
+                <fieldset class="column-group gutters vspace">
+                    
+                    <div class="control-group large-50 medium-50 small-100">
+                        <div class="column-group gutters">
+                            <label for="name" class="large-20 content-right">Name</label>
+                            <div class="control large-80 append-button">
+                                <span><input type="text" id="name"></span>
+                                <button class="ink-button"><i class="icon-search"></i> Search</button>
+                            </div>
+                            
+                        </div>
+                        <div class="column-group gutters">
+                            <label for="phone" class="large-20 content-right">Phone</label>
+                            <div class="control large-80 prepend-button">
+                                <input type="submit" value="Search" class="ink-button">
+                                <span><input type="text" id="phone"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group large-50 medium-50 small-100">
+                        <div class="column-group gutters">
+                            <label for="email" class="large-20 content-right">Email</label>
+                            <div class="control large-80 append-symbol">
+                                <span>
+                                    <input type="text" id="email">
+                                    <i class="icon-envelope-alt"></i>
+                                </span>
+                                
+                            </div>
+                        </div>
+                        <div class="column-group gutters">
+                            <label for="email" class="large-20 content-right">Email</label>
+                            <div class="control large-80 prepend-symbol">
+                                <span>
+                                    <input type="text" id="email">
+                                    <i class="icon-envelope-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        
+        </div>
+        <footer>
+            <div class="ink-grid">
+                <nav class="ink-navigation push-left medium-100 small-100 small-push-left">
+                    <ul class="menu horizontal">
+                        <li><a href="#">Footer item</a></li>
+                        <li><a href="#">Footer item</a></li>
+                        <li><a href="#">Footer item</a></li>
+                    </ul>
+                </nav>
+                <p class="push-right small-100">some text</p>
+            </div>
+        </footer>
+    </body>
+</html>

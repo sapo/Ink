@@ -1,0 +1,260 @@
+html {
+    #ink > #text > .body-font-size (@base-font-size);
+}
+
+body {
+    color: @text-color;
+    #ink > #text > .ink-font-stack();
+}
+
+.sans {
+    font-family: @sans-serif-font-stack;
+}
+
+.serif {
+    font-family: @serif-font-stack;
+}
+
+a {
+    color: @link-color; 
+    text-decoration: none;
+    
+    &:hover {
+        color: @link-hover-color; 
+        text-decoration: underline;
+    }
+}
+
+/* Headings  */
+h1, h2, h3, h4, h5, h6 {
+    //font-weight: bold; 
+    color: @headings-color;
+}
+
+h1 {font-size: 2.5em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.715em;}
+h4 {font-size: 1.438em;}
+h5 {font-size: 1.250em;}
+h6 {font-size: 1em;}      
+
+h3, h4, h5, h6 {
+    line-height: 1.3;
+} 
+
+h1 small {font-size: .6em; color: #BFBFBF; font-weight: 100;}
+
+small {color: lighten(@text-color, 30%); font-size: .6em;}
+
+/* Paragraphs  */
+
+p { 
+    line-height: 1.5;
+}
+
+// VERTICAL SPACING
+
+h1, h2, h3, h4, h5, h6, section {
+
+    address + &,
+    article + &,
+    aside + &,
+    audio + &,
+    blockquote + &,
+    canvas + &,
+    details + &,
+    dl + &,
+    figure + &,
+    footer + &,
+    form + &,
+    header + &,
+    hr + &,
+    img + &,
+    ol + &,
+    p + &,
+    pre + &,
+    table + &,
+    ul + &,
+    video + & {
+        margin-top: 1.5em;
+    }
+
+    & + address,
+    & + article,
+    & + aside,
+    & + audio,
+    & + blockquote,
+    & + canvas,
+    & + details,
+    & + dl,
+    & + figure,
+    & + footer,
+    & + form,
+    & + header,
+    & + hr,
+    & + img,
+    & + ol,
+    & + p,
+    & + pre,
+    & + table,
+    & + ul,
+    & + video {
+        margin-top: 1em;
+    }
+
+    address,
+    article,
+    aside,
+    audio,
+    blockquote,
+    canvas,
+    details,
+    dl,
+    figure,
+    footer,
+    form,
+    header,
+    hr,
+    img,
+    ol,
+    p,
+    //pre,
+    table,
+    ul,
+    video {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    div + & {
+        margin-top: 1.5em;
+    }
+
+    & + div {
+        margin-top: 1.5em;
+    }
+
+    & + & {
+        margin-top: 1em;
+    }
+
+}
+
+address,
+article,
+aside,
+audio,
+blockquote,
+canvas,
+details,
+dl,
+figure,
+footer,
+form,
+header,
+hr,
+img,
+nav,
+ol,
+p,
+pre,
+table,
+ul,
+video {
+
+    div + &,
+    & + div {
+        margin-top: 1.5em;
+    }
+
+    & + & {
+        margin-top: 1em;
+    }
+}
+
+input, textarea {
+    //#ink > #text > .ink-font-stack();
+    color: #666;
+}
+
+h1 small, h2 small, h3 small, h4 small {
+    color: #bbb;
+    font-size: .6em;
+    font-weight: 100;
+    line-height: 1;
+}
+
+address {
+    color: lighten(@text-color, 20%);
+    font-size: 1em;
+    line-height: 1.4;
+    
+    p { margin-top: 0 }
+
+    h6 { color: @text-color; }
+}
+
+abbr {
+    &:hover {
+        cursor: help;
+    }
+}
+
+blockquote {
+    border-left: 4px solid #ddd; 
+    padding-left: 1em; 
+    margin:1em 0; 
+    font-weight: 200; 
+    font-size: 1.1em;
+
+    small {
+        font-size: .9em;
+
+        &::before,
+        &::after {
+            content: ' — ';
+        }
+    } 
+}
+
+ul, ol, dl      { padding-left: 1.4em; margin:0; }
+ul.unstyled     { list-style:none; padding-left: 0em; }
+ul.unstyled ul  { list-style:disc outside; padding-left: 1.4em; }
+ol > li         { list-style: decimal outside; }
+dl              { padding: 0em; }
+dl dt           { font-weight: bold; margin-top: .7em; }
+dl dd           { padding-left: 1em; margin: .5em 0; }
+
+
+ul, ol {
+    line-height:1.4;
+    margin:0;
+    padding-left: 1.4em;
+
+    li {
+        margin:.5em 0; 
+    }
+
+    &.inline {
+        li {
+            float:left;
+        }
+    }
+}
+
+.note {
+    font-size: .9em; 
+    color: lighten(@text-color, 20%);
+
+    strong {color: @text-color;}
+}
+
+.small      { font-size: 0.75em; }
+.medium      { font-size: 0.85em; }
+.large      { font-size: 1.2em; }
+.extralarge { font-size: 1.45em !important; }
+
+hr {border: 0; border-top: 1px solid #ddd; margin:1em 0}
+
+.lead {font-size: 1.1em; font-weight: bold; }

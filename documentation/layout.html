@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Layout</h1>
+        <p>Ink's layout classes are truly fluid, responsive and extremely easy to implement.</p>
+    </div>
+
+    <div class="column-group gutters">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="layout_menu">
+                <ul class="menu vertical rounded black">
+                                        <li><a class="scrollableLink" href="./layout.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./layout.html#nav-foundation">Foundation</a></li>
+                    <li><a class="scrollableLink" href="./layout.html#nav-usage">Practical Usage</a></li>
+                    <li><a class="scrollableLink" href="./layout.html#nav-space">Adding Space</a></li>
+                    <li><a class="scrollableLink" href="./layout.html#nav-aligning">Aligning</a></li>
+                    <li><a class="scrollableLink" href="./layout.html#nav-screens">Multiple Screens</a></li>
+                    <li><a class="scrollableLink" href="./layout.html#nav-showhide">Showing &amp; Hiding</a></li>
+                                        
+                </ul>
+            </nav>
+        </div>
+        <div class="large-80 medium-75 small-100">            
+            <section id="nav-foundation" data-spy="true" data-target="#layout_menu">
+                <h2>Foundation</h2>
+                <p>The way you build layouts in Ink is its prime differentiator from other available web UI frameworks and also one of its strongest suits. You'll find Ink's approach is very intuitive and will have anyone building layouts quickly and consistently.</p>
+                <p>So, let's get started with the basics, then we will expand upon that so that you can leave this page knowing, not only how to build a layout from scratch, but also how to simultaneously build for three screen sizes.</p>                
+                <p>
+                    <span class="ink-label info">Tip</span> Before diving into the documentation, 
+                    download the Ink package available on our <a href="./index.php/">homepage</a>                    so you can try as you go along.
+                </p>
+                <h3>The container</h3>
+                <p>The block-level element you wrap your entire page with is usually called your container and Ink uses that tried and tested method to get the layout started. This container will define the width of your page, be it a fixed or relative measurement. By default, Ink uses a maximum width of 1200px, but you can change this by customizing the <code>@site-width</code> variable in the <mark>__grid.less</mark> config file, or, if you prefer, use another customization method, such as described in the <a href="./index.php/getting_started#nav-customizing">Getting Started</a> section.</p>
+                <p>To start using the main container, create a <code>&lt;div&gt;</code> with the <code>.ink-grid</code> class and you're good to go. Like this:</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-grid&quot;&gt;
+  &lt;p&gt;Your content here&lt;/p&gt;
+&lt;/div&gt;                </pre>
+                <h3>The Column Groups</h3>
+                <p>If you want a single-column page, then you don't need anything else, just use your <code>.ink-grid</code> and pour your content into it. However, if you want a more common column-based layout, then you're going to need to start thinking in rows of side-by-side columns, what we, in Ink, call <code>.column-group</code>, which is again applied to a <code>&lt;div&gt;</code>.</p>
+                <p>A row is simply a wrapper of columns that keeps them together and helps align spacing between them. You only need a row if you have more than one column side-by-side, otherwise, either just put your content straight in the <code>.ink-grid</code> or use a single, specific-width, column.</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-grid&quot;&gt;
+    &lt;div class=&quot;column-group&quot;&gt;
+        &lt;div&gt;One column&lt;/div&gt;
+        &lt;div&gt;Another column&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;                </pre>
+                <h3>The columns</h3>
+                <p>Columns in Ink are always fluid, because they're always percentage-based. How much they stretch depends on your page width, as defined in the <code>.ink-grid</code>. This makes column pairing a very simple and intuitive mathematical operation.</p>
+                <p>If you need two columns taking half of your container each, then make two 50% columns. If you need a 60/40 layout, then just use a 60% and a 40% column. Need three columns, one of which takes up 20% of the space and the other divide the rest between them? Then, use a 20% column and two 40% columns. It's that simple and you'll be surprised how easy it is to make it work across different screens, but more on that in a minute.</p>
+                <h4>Basic columns: the 'large' screen</h4>
+                <p>To get you acquainted with the concept, we'll first explain how this works for large screens, large being an abstract concept used only to make things more intuitive, but which is defined by default to be wider than 960 pixels.</p>
+                <p>Ink offers all manners of percentage-based widths, from 5 to 100% with various intervals which are combinable to add up to 100 and these are accessible via the <code>large-%</code> classes, in which the 'large-' defines the screen size and '%' is a number from 5 to 100 in the intervals we'll list below (there's no trailing zero for numbers under 100).</p>
+                <p>Let's continue our previous code and make the two columns into halves of our available space.</p>
+                <p class="note"><span class="ink-label warning">Please note</span> This code will not work well without gutters, which come next, but we're going step by step to be absolutely clear and not overwhelm you with information right off the bat.</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-grid&quot;&gt;
+    &lt;div class=&quot;column-group&quot;&gt;
+        &lt;div class=&quot;large-80&quot;&gt;A main 80% column&lt;/div&gt;
+        &lt;div class=&quot;large-20&quot;&gt;A 20% sidebar&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;                </pre>
+                <h4>Basic columns: available widths</h4>
+                <p>Available column widths are: 5, 10, 15, 20, 25, 30, 33, 35, 40, 45, 50, 55, 60, 65, 66, 70, 75, 80, 85, 90, 95 and 100%. You can mix and match them to add up to 100, inside a row. You even go over 100, but, obviously, there will be a break in your floats.</p>
+                <p><span class="ink-label success">Example combinations</span></p>
+                <div class="box">
+                    <div class="column-group half-gutters gridExample">
+
+                        <div class="large-100 medium-100 small-100"><p>100%</p></div>
+
+                        <div class="large-95 medium-95 small-95"><p>95%</p></div>
+                        <div class="large-5 medium-5 small-5"><p>5%</p></div>
+
+                        <div class="large-90 medium-90 small-90"><p>90%</p></div>
+                        <div class="large-10 medium-10 small-10"><p>10%</p></div>
+
+                        <div class="large-85 medium-85 small-85"><p>85%</p></div>
+                        <div class="large-15 medium-15 small-15"><p>15%</p></div>
+
+                        <div class="large-80 medium-80 small-80"><p>80%</p></div>
+                        <div class="large-20 medium-20 small-20"><p>20%</p></div>
+
+                        <div class="large-75 medium-75 small-75"><p>75%</p></div>
+                        <div class="large-25 medium-25 small-25"><p>25%</p></div>
+
+                        <div class="large-70 medium-70 small-70"><p>70%</p></div>
+                        <div class="large-30 medium-30 small-30"><p>30%</p></div>
+
+                        <div class="large-65 medium-65 small-65"><p>65%</p></div>
+                        <div class="large-35 medium-35 small-35"><p>35%</p></div>
+
+                        <div class="large-60 medium-60 small-60"><p>60%</p></div>
+                        <div class="large-40 medium-40 small-40"><p>40%</p></div>
+
+                        <div class="large-55 medium-55 small-55"><p>55%</p></div>
+                        <div class="large-45 medium-45 small-45"><p>45%</p></div>
+
+                        <div class="large-50 medium-50 small-50"><p>50%</p></div>
+                        <div class="large-50 medium-50 small-50"><p>50%</p></div>
+
+                        <div class="large-66 medium-66 small-66"><p>66%</p></div>
+                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
+
+                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
+                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
+                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
+                    </div>
+                </div>
+                <p>The previous grid shows only a few of the possible combinations you can make with the 22 available widths, we'll leave you to imagine the rest, and go on to our last, but not least, basic layout element.</p>
+                <h3>The gutters</h3>
+                <p>In order to create space between your columns, you will need to add gutters. As you might have guessed by the straight-forwardedness of Ink's class names so far, the class to use in this case is <code>.gutters</code>. Just add the class to your <code>.column-group</code> block and you're set.</p>
+                <p>Keeping up with Ink's flexibility, if you don't like our default wide gutters, then just use <code>.half-gutters</code> or <code>.quarter-gutters</code>, instead, to halve that space.</p>
+                <p>Also, if don't need the bottom space created by the <code>.gutters</code> class to separate the blocks, you can use <code>.horizontal-gutters</code>, <code>.half-horizontal-gutters</code> or <code>.quarter-horizontal-gutters</code> for horizontal spacing only.</p>
+                <p><span class="ink-label info">Note</span> The width combination example above uses <code>.half-gutters</code> to make better use of the available space for that particular example.</span></p>
+                <p>Now you have all the basic elements to build an Ink layout: a container, a column group, columns and gutters. So we can put it all together, picking up where we left off in our example code.</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-grid&quot;&gt;
+    &lt;div class=&quot;column-group gutters&quot;&gt; &lt;!-- or half-gutters --&gt;
+        &lt;div class=&quot;large-80&quot;&gt;
+            &lt;p&gt;A main 80% column&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;large-20&quot;&gt;
+            &lt;p&gt;A 20% sidebar&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;                </pre>
+                <p>And that's your basic Ink layout. If you want to follow up with, say, four 25% columns, you just add a <code>.column-group</code> with <code>.gutters</code>, then create each of the <code>.large-25</code> elements and you're good to go.</p>
+            </section>
+            <section id="nav-usage" data-spy="true" data-target="#layout_menu">
+                <h2>Practical Usage</h2>
+                <h4>Simple layout </h4>
+                <p>
+                    By now, you've realized that Ink's approach is not a grid approach in which blocks fall neatly onto a predetermined 
+                    grid of a fixed number of underlying columns, 
+                    this really makes it flexible and easy to understand and keep track of code, but it can also mess with your OCD, 
+                    if you're the "neatly aligned" kind of person.
+                </p>
+                <p>However, you can easily bend Ink to your will, by staying within a certain divisor range in your layouts. If you opt for 20 as your base, use 60/40, 20/20/20/20/20 or 80/20 and build layouts that fall on a grid without the constriction of actually having one. If you prefer 25, then use 50 and 75, for example. It's easy and it lets you keep the flexibility of percentage-based layout.</p>
+                <p><span class="ink-label success">20%-based Layout Example</span></p>
+                <div class="box">
+                    <div class="column-group">      
+                        <nav class="ink-navigation hide-small">
+                            <ul class="menu horizontal black rounded shadowed">
+                                <li class="active">
+                                    <a href="javascript:void(0);"><i class="icon-home"></i></a>
+                                    <button class="ink-for-s ink-for-m ink-button" style="display: none;"><i class="icon-reorder" style="height:auto"></i></button>
+                                </li>
+                                <li><a href="javascript:void(0);">About Us</a></li>
+                                <li><a href="javascript:void(0);">Our Services</a></li>
+                                <li><a href="javascript:void(0);">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <nav class="ink-navigation hide-all show-small">
+                            <div class="ink-dropdown">
+                                <ul class="menu horizontal black rounded shadowed">
+                                    <li><a href="" class="toggle" data-target="#dropdown">Menu <i class="icon-caret-down"></i></a></li>
+                                </ul>
+                                <ul class="dropdown-menu vertical black rounded shadowed" id="dropdown">
+                                    <li class="active"><a href="javascript:void(0);"><i class="icon-home"></i> Home</a></li>
+                                    <li><a href="javascript:void(0);">About Us</a></li>
+                                    <li><a href="javascript:void(0);">Our Services</a></li>
+                                    <li><a href="javascript:void(0);">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        
+                        <div class="column-group half-gutters">
+                            <div class="large-100 medium-100 small-100"><h3>Welcome to our website</h3></div>
+                            <div class="large-60 medium-60 small-100">
+                                <img src="http://placehold.it/600x600" class="large-100 medium-100 small-100">
+                            </div>
+                            <nav class="ink-navigation large-40 medium-40 small-100">
+                                <ul class="menu vertical grey rounded shadowed">
+                                    <li><a href="javascript:void(0);">Welcome</a></li>
+                                    <li><a href="javascript:void(0);">Xmas Promotions</a></li>
+                                    <li><a href="javascript:void(0);">Free coupon</a></li>
+                                    <li><a href="javascript:void(0);">Get the catalogue</a></li>
+                                    <li><a href="javascript:void(0);">Enter to win!</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="column-group half-gutters vspace">
+                            <div class="large-20 medium-20 small-100">
+                                <h6><i class="icon-star icon-large"></i> Better</h6>
+                                <p>This is our better product line ever, because it's much better than before.</p>
+                            </div>
+                            <div class="large-20 medium-20 small-100">
+                                <h6><i class="icon-dashboard icon-large"></i> Faster</h6>
+                                <p>Our new service is faster than it used to be and that's good because faster is better.</p>
+                            </div>
+                            <div class="large-20 medium-20 small-100">
+                                <h6><i class="icon-truck icon-large"></i> Harder</h6>
+                                <p>Our service line is harder and heavier but not in a bad way. It's actually in a good way.</p>
+                            </div>
+                            <div class="large-20 medium-20 small-100">
+                                <h6><i class="icon-key icon-large"></i> Safer</h6>
+                                <p>Instead of huge, horrible security holes, we now offer secure servers and passwords and stuff.</p>
+                            </div>
+                            <div class="large-20 medium-20 small-100">
+                                <h6><i class="icon-gift icon-large"></i> Updated</h6>
+                                <p>Have we mentioned this is new? Because it's new, it's better, because studies show that.</p>
+                            </div>
+                        </div>
+                        <!-- <footer> -->
+                        <footer>
+                            <nav class="ink-navigation hspace">
+                                <ul class="menu horizontal hide-small">
+                                    <li><a href="">FAQ</a></li>
+                                    <li><a href="">Terms and Conditions</a></li>
+                                    <li><a href="">Github repo</a></li>
+                                    <li><a href="">Legal</a></li>
+                                </ul>
+                                <ul class="menu vertical hide-all show-small">
+                                    <li><a href="">FAQ</a></li>
+                                    <li><a href="">Terms and Conditions</a></li>
+                                    <li><a href="">Github repo</a></li>
+                                    <li><a href="">Legal</a></li>
+                                </ul>
+                            </nav>
+                        </footer>
+                    <!-- </footer> -->
+                    </div>
+                </div>
+                <p><span class="ink-label warning">Please note</span> for small screens we went with 100% stacked blocks, since there wasn't enough space to keep the 20% grid anymore, but if you check the layout on a medium or large screens you can clearly see how an underlying grid is apparent, even when Ink doesn't have a formal grid system.</p>
+                <h3>Column nesting</h3>
+                <p>Now, obviously, not all layouts are as simple as a content area with a sidebar, a header and a footer. Sometimes, layouts get really intricate and, although we advocate simplicity, Ink allows for all the nesting your project may need.</p>
+                <p>As a simple example, let's stick with the main column and sidebar layout, but let's make a running sidebar alongside a more complex main area.</p>
+                <p>We'll start with our main code, which defined a 80% main area and a 20% sidebar, and we'll say the main area has a large picture, followed by two columns with some highlights and then it breaks into four columns with product feature descriptions. All the while, the sidebar will continue.</p>
+                <p>Simply start adding rows with columns inside the main column and you're done. Remember, percentages are relative units, so when you put a 50% column inside your 80% main area, you're getting half of the 80%, meaning 40% of total space. And that's all you need to keep in mind when nesting columns with Ink.</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-grid&quot;&gt;
+    &lt;div class=&quot;column-group gutters&quot;&gt;
+        &lt;div class=&quot;large-80&quot;&gt;
+            &lt;img src=&quot;prettypic.png&quot;&gt;
+            &lt;div class=&quot;column-group gutters&quot;&gt;
+                &lt;div class=&quot;large-50&quot;&gt;
+                    &lt;p&gt;50% Nested column&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;large-50&quot;&gt;
+                    &lt;p&gt;50% Nested column&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;column-group gutters&quot;&gt;
+                &lt;div class=&quot;large-25&quot;&gt;
+                    &lt;p&gt;25% Nested column&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;large-25&quot;&gt;
+                    &lt;p&gt;25% Nested column&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;large-25&quot;&gt;
+                    &lt;p&gt;25% Nested column&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;large-25&quot;&gt;
+                    &lt;p&gt;25% Nested column&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;large-20&quot;&gt;
+            &lt;p&gt;A 20% sidebar&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;                </pre>
+                <h3>Clearing floats</h3>
+                <p>Should you need to clear floating elements, Ink gives you the <code>.ink-clear</code>, <code>.ink-clear-left</code> and <code>.ink-clear-right</code> utility classes.</p>
+                <p>If, for whatever reason, you want two columns to be stacked instead of side-by-side, just apply the appropriate clear class, like in the example below.</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;large-30 ink-clear&quot;&gt;
+    &lt;p&gt;Hello world!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;large-30&quot;&gt;
+    &lt;p&gt;Goodbye cruel world!&lt;/p&gt;
+&lt;/div&gt;                </pre>
+                <p><span class="ink-label warning">Please note</span> that this can easily be achieved by wrapping each column in an <code>.ink-row</code> element, which may add extra code, but in the long run is easier to read and maintain.</p>
+            </section>
+            <section id="nav-space" data-spy="true" data-target="#layout_menu">
+                <h2>Adding Space</h2>
+                <p>Ink is carefully crafted to maximize legibility and readability, not only in what comes to typography, but also layout spacing. So, using the basics that you've learned above, you should obtain industry-standard results for presenting your content and not really have to worry much about it, unless if you need deeper customization.</p>
+                <p>
+                    However, sometimes, extra space is essential and so Ink ships with a few simple spacer classes. 
+                    Add a <code>.space</code> <code>.vertical-space</code> or <code>.horizontal-space</code> class to any block-level element to obtain an all around space, 
+                    a vertical space or an horizontal space, respectively.
+                </p>
+                <p>More spacing classes are available. To know all about them, check our <a href="./index.php/glossary">Glossary</a>.</p>
+                
+                <p><span class="ink-label info">Tip</span> If you're trying to vertically space layout elements, you should place your <code>.vertical-space</code> in the <code>.column-group</code> element.</p>
+            </section>
+            <section id="nav-aligning" data-spy="true" data-target="#layout_menu">
+                <h2>Aligning</h2>
+                <p>If you have floating elements that you need to left, right or center align, you can use the three corresponding utility classes <code>.push-left</code>, <code>.push-right</code> and <code>.push-center</code>. You should pair these classes with common width classes, such as <code>.large-50</code>, this is especially important in centering, as Ink uses an auto margin method to achieve that positioning.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <div class="column-group gridExample">
+                        <div class="large-30 medium-30 small-30 push-center">
+                            <p>This is a 30% wide column, centered, using the <code>.push-center</code> class.</p>
+                        </div>
+                    </div>
+                
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;column-group&quot;&gt;
+  &lt;div class=&quot;large-50 push-center&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+                <p>If you need to align content within your blocks, you can use the <code>.content-left</code>, <code>.content-right</code> and <code>.content-center</code> classes.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <p class="content-right">This is some right-aligned text, using the <code>.content-right</code> class.</p>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;p class=&quot;content-right&quot;&gt;Your content here&lt;/p&gt;</pre>
+            </section>
+            <section id="nav-screens" data-spy="true" data-target="#layout_menu">
+                <h2>Multiple Screens</h2>
+                <p>As the web becomes more and more device-agnostic, your layouts need to be more flexible and adaptable. That's why there isn't a "normal" and a "responsive" Ink, there's just Ink and it does everything out of the box.</p>
+                <p>You may have already guessed, from previous examples, how easy it is to build for three screen sizes, but let's dig a little deeper and see how it all works.</p>
+                <h3>Layout for large, medium &amp; small screens</h3>
+                <p>So far, we've talked about the 22 different widths you can divide your layout in, using classes such as <code>.large-50</code> and <code>.large-25</code>, now let's talk about 'medium' and 'small' layouts.</p>
+                <p>Using 'large-%', 'medium-%' and 'small-%', together with the 22 widths, you can define how much space each of your containers takes up in each screen; so, imagine you need a column that takes up 25% of a large screen, 50% of a medium screen and 100% of a small one.</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;large-25 medium-50 small-100&quot;&gt;                </pre>
+                <p>This is all you need to do to get your layouts behaving differently in each of three screen sizes. Just make sure you build your large layout <em>first</em> so that you get all the <code>.column-group</code> elements right, because these are crucial to keep stuff together.</p>
+                <p>So, to keep things simple, Ink defines three breakpoints, with the following widths:</p>
+                <ul>
+                    <li><strong>SMALL</strong> which catches everything below <strong>650 pixels</strong></li>
+                    <li><strong>MEDIUM</strong> which works between <strong>651 and 960 pixels</strong></li>
+                    <li><strong>LARGE</strong> which catches everything above <strong>961 pixels</strong></li>
+                 </ul>
+                <h4>Customizing breakpoints </h4>
+                <p>You can find the media queries for the three breakpoints in the <code>ink.css</code> file.</p>
+                <p><span class="ink-label warning">Caution is advised</span> Customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usually advise you to keep your changes in a separate file, but in this case, you can't do that.</p>
+                <p>Meanwhile, if you do decide to customize the breakpoints provided, you can do this by <strong>editing the <mark>ink.css</mark> by hand</strong> and changing the values on those media-queries. (A regular search in the file for "@media" will get you there).</p>
+                <p><span class="ink-label info">Example Code</span> Using only two layouts (large and small)</p>
+                <pre class="prettyprint linenums">
+/* INK: LARGE SCREENS - ENABLED */
+@media screen and (min-width: 767px) {
+(...)
+
+/* INK: MEDIUM SCREENS - DISABLED */
+@media screen and (min-width: 0px) and (max-width: 0px) {
+(...)
+
+/* INK: SMALL SCREENS - ENABLED */
+@media screen and (max-width: 766px) {
+(...)                  </pre>
+                <p><span class="ink-label info">Note</span> You can just customize the values. In this example we show how robust and extensible this approach allows you to be. Just don't remove the entire media-query because you may change your mind later in the project.</p>
+                <p>If you want to simplify your code, for a matter of speed, for example, you may opt to use only large class names, such as <code>.large-80</code>. In this case, everything below the medium breakpoint will revert to 100% width stacked blocks.</p>
+                <p>If you don't want this default behavior to happen, then disable all breakpoints safe for large. Here's the code to do it:</p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+/* INK: LARGE SCREENS - ENABLED */
+@media screen and (min-width: 0px) {
+(...)
+
+/* INK: MEDIUM SCREENS - DISABLED */
+@media screen and (min-width: 0px) and (max-width: 0px) {
+(...)
+
+/* INK: SMALL SCREENS - DISABLED */
+@media screen and (max-width: 0px) {
+(...)                 </pre>
+            </section>
+            <section id="nav-showhide" data-spy="true" data-target="#layout_menu">
+                <h2>Showing &amp; Hiding</h2>
+                <p>Building a truly flexible and responsive layout isn't just about offering different layouts or sizes for your blocks, sometimes you need to make decisions that involve only showing certain things in certain screens or even, duplicating blocks to show one version on large screens and a different one on smaller screens. All that is not only possible, but really simple with Ink.</p>
+                <p>You can either choose to declare what you want to hide or what you need to show. To do this we have several ways:</p>
+                <ul>
+                    <li><code>.hide-all</code> - hides the element, regardless of media queries</li>
+                    <li><code>.show-all</code> - shows the element, regardless of media queries</li>
+                </ul>
+                <p>To control visibility in a media query context we have:</p>
+                <ul>
+                    <li><code>.show-large</code> - shows previously hidden (display: none) elements in large layouts</li>
+                    <li><code>.show-medium</code> - shows previously hidden (display: none) elements in medium layouts</li>
+                    <li><code>.show-small</code> - shows previously hidden (display: none) elements in small layouts</li>
+                    <li><code>.hide-large</code> - hides (display: none) elements in large layouts</li>
+                    <li><code>.hide-medium</code> - hides (display: none) elements in medium layouts</li>
+                    <li><code>.hide-small</code> - hides (display: none) elements in small layouts</li>
+                </ul>
+                <p>So, Ink's philosophy is that you should have the flexibility to either hide everything and then show what you need or do the reverse. This makes it easy to use less code and be clearer.</p>
+                <p>Here's how you should think about this whole hiding and showing thing: if you have an element that you want to only be visible in small screens, then add the <code>.hide</code> class to begin by hiding it from everyone, then, add the <code>.show-small</code> class to show the element in that screen size.</p>
+                <p>Now, say you need to show something in both small and medium screens, in that case, you're better off simply hiding it from the large view, by using the <code>.hide-large</code> class.</p>
+                <p>Since visible is the default state of elements, in the second example, you don't really need to add the <code>.show</code> class to make sure the element is visible in all other screen sizes. However, you do have that class available, in case it may be useful.</p>
+                <p><span class="ink-label info">Note</span> Content hidden via these classes won't be read out loud by screenreaders.</p>
+                <p>Here's a simple helper bar to let you know which screen size you're operating in, it uses the <code>.hide</code> class to hide the words "small", "medium" and "large" by default and then the correct <code>.show-%</code> classes to show each word in the corresponding screen size. You can see the code below.</p>
+                <p><span class="ink-label success">Example</span> The bar below will display different values and colors depending on whether you view it on a large, medium or small screen.</p>
+                <div class="box">
+                    <div class="screen-size-helper example">
+                        <p class="title">Screen size:</p>
+                        <ul class="unstyled">
+                            <li class="hide-all show-small small">SMALL</li>
+                            <li class="hide-all show-medium medium">MEDIUM</li>
+                            <li class="hide-all show-large large">LARGE</li>
+                        </ul>
+                    </div>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;screen-size-helper example&quot;&gt;
+    &lt;p class=&quot;title&quot;&gt;Screen size:&lt;/p&gt;
+    &lt;ul class=&quot;unstyled&quot;&gt;
+        &lt;li class=&quot;hide show-small&quot;&gt;SMALL&lt;/li&gt;
+        &lt;li class=&quot;hide show-medium&quot;&gt;MEDIUM&lt;/li&gt;
+        &lt;li class=&quot;hide show-large&quot;&gt;LARGE&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;                </pre>
+            </section>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright vspace">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+        <p><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>

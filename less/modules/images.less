@@ -1,0 +1,114 @@
+img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: top;
+}
+
+figure {
+
+    &.rounded {
+
+        #ink > #border-radius > .all (6px);
+
+        img {
+            &:first-child {                
+                #ink > #border-radius > .top (6px);
+            }
+            
+            &:last-child {
+                #ink > #border-radius > .bottom (6px);
+            }
+        }
+
+        figcaption {
+
+            &:first-child {                
+                #ink > #border-radius > .top (6px);
+            }
+            
+            &:last-child {
+                #ink > #border-radius > .bottom (6px);
+            }
+
+        }
+
+        &.caption-over-top {
+            img {
+                #ink > #border-radius > .all (6px)
+            }
+            figcaption {
+             #ink > #border-radius > .top (6px)   
+            }
+        }
+
+        &.caption-over-bottom {
+            img {
+                #ink > #border-radius > .all (6px)
+            }
+            figcaption {
+                #ink > #border-radius > .bottom (6px)   
+            }
+        }
+
+
+    }
+
+    position: relative;
+
+    &.caption-over-top {
+        figcaption {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        img + figcaption {
+            margin-top: 0;
+        }
+    }
+    &.caption-over-bottom {
+        figcaption {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-bottom: 4px;
+        }
+    }
+
+    &.caption-over-top, &.caption-over-bottom {
+        figcaption {
+            &.light {
+                background: rgba(255,255,255,0.8);
+                color: @black;
+            }
+
+            &.dark {
+                background: rgba(0,0,0,0.8);
+                color: @white;
+            }
+        }
+    }
+
+}
+
+figcaption {
+
+    font-size: 0.8em;
+    padding: 1em;
+    width: 100%;
+
+    &.light {
+        background: lighten(@black,5%);
+        color: @text-color;
+    }
+
+    &.dark {
+        background: lighten(@black,5%);
+        color: @white;
+    }
+
+}
+
+
+

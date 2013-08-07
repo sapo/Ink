@@ -1,0 +1,1083 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Ink's Javascript core</h1>
+        <p>The framework for extensibility.</p>
+    </div>
+    
+    <div class="column-group gutters">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="core_menu">
+                <ul class="menu vertical black rounded">
+                                        <li><a class="scrollableLink" href="./js-core.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-ink">Ink</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-dom">Dom</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-net">Net</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-util">Util</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-custom-components">Custom components</a></li>
+                                    </ul>
+            </nav>
+        </div>
+        
+        <div class="large-80 medium-75 small-100">
+            
+            <section>
+                <p>
+                    Ink includes a group of <a href="./js/ui/">UI components</a> out of the box.<br>
+                    Those components depend on Ink's Javascript core, which provides a set of methods and modules that help developers extending the features of this framework.
+                </p>
+
+                <p>
+                    The Javascript core can be loaded in one of the following forms:<br>
+
+                    <p><span class="ink-label info">Loading Ink's Javascript core Bundle from CDN</span></p>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <br>
+                    <span class="ink-label info">Loading Ink's Javascript core Bundle from your localhost</span>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="/js/ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <br>
+                </p>
+                <p>
+                    This Bundle is a compressed and minified version of the following &quot;methods and modules&quot;:
+                </p>
+                <ul>
+                    <li>
+                        <b><a href="Ink.html">Ink</a></b> - Ink's Javascript <i>ecosystem</i>. Provides the necessary methods to create and load the different Ink's Javascript modules:
+                        <ul>
+                            <li><b>Ink.bind</b> - This method is a cross-browser Function.prototype.bind alternative. Allows the developer to define in which context a function is called.</li>
+
+                            <li><b>Ink.bindEvent</b> - Like <i>Ink.bind</i> this method is a cross-browser Function.prototype.bind alternative. The difference is that it maintains the <i>window.event</i> object as first argument in the function's call.</li>
+
+                            <li><b>Ink.createModule</b> - This method is used to create several of Ink's Javascript components. Want to create a custom component? <a title="Custom Components" href="./index.php/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-custom-components">Check here</a>.
+                            </li>
+
+                            <li><b>Ink.extendObj</b> - This method enriches the destination object with values from source object whenever the key is missing in destination.</li>
+
+                            <li><b>Ink.getModule</b> - Synchronous way to use a module. This method assumes that <u>the module is already loaded</u>!</li>
+
+                            <li><b>Ink.getModulesLoadOrder</b> - This method returns a list of module names, ordered by loaded time.</li>
+
+                            <li><b>Ink.i</b> - This method is an alias to <i>document.getElementById</i></li>
+
+                            <li><b>Ink.loadScript</b> - Method for loading a javascript script in the &lt;head&gt;</li>
+
+                            <li><b>Ink.namespace</b> - Method for creating namespaces inside the Ink's Javascript <i>ecosystem</i>.</li>
+
+                            <li><b>Ink.requireModules</b> - Method used to load modules asynchronously, being able to define a callback function to run whenever the specified modules are loaded. This is the recommended way to load modules, because when the callback runs you know for sure that the modules are loaded.</li>
+
+                            <li><b>Ink.s</b> - Alias for the querySelector method. Fallbacks to Ink.Dom.Selector if querySelector not available.</li>
+
+                            <li><b>Ink.ss</b> - Alias for the querySelectorAll method.  Fallbacks to Ink.Dom.Selector if querySelectorAll not available.</li>
+                        </ul>
+                        <br>
+                    </li>
+                    <li>
+                        <b>Ink.Dom</b> - Set of modules that helps the developer navigate and manipulate the DOM:
+                        <ul>
+                            <li><b><a href="Ink.Dom.Browser.html">Ink.Dom.Browser</a></b> - This module provides informations about the users' browsers.</li>
+
+                            <li><b><a href="Ink.Dom.Css.html">Ink.Dom.Css</a></b> - This module provides a method for getting, manipulating the CSS features of DOM Elements.</li>
+
+                            <li><b><a href="Ink.Dom.Element.html">Ink.Dom.Element</a></b> - This module provides methods to manipulate the DOM, get and set attributes of DOM elements, amongst others.</li>
+
+                            <li><b><a href="Ink.Dom.Event.html">Ink.Dom.Event</a></b> - This module provides methods for adding and removing event listeners, as well as stopping the propagation ( also known as <i>bubbling</i>) and preventing the default behavior of events.</li>
+
+                            <li><b><a href="Ink.Dom.Loaded.html">Ink.Dom.Loaded</a></b> - This module provides a method for running functions when the page is loaded ( <i>document.ready</i> ).</li>
+
+                            <li><b><a href="Ink.Dom.Selector.html">Ink.Dom.Selector</a></b> - This module provides methods for selecting elements in the DOM.</li>
+                            <li><b><a href="Ink.Dom.Loaded.html">Ink.Dom.Loaded</a></b> - Use this module to add code to be executed when the browser loads your web pages. Handy when you are not sure whether the elements you need are available yet.</li>
+                            <li><b><a href="Ink.Dom.FormSerialize.html">Ink.Dom.FormSerialize</a></b> - Serialize or unserialize your form data to and from JavaScript object structures. Useful when you want to juice up an existing form using AJAX.</li>
+                        </ul>
+                        <br>
+                    </li>
+                    <li>
+                        <b>Ink.Net</b> - Set of modules related with communication and external requests:
+                        <ul>
+                            <li><b><a href="Ink.Net.Ajax.html">Ink.Net.Ajax</a></b> - Cross-browser module that has functions to do AJAX requests.</li>
+
+                            <li><b><a href="Ink.Net.JsonP.html">Ink.Net.JsonP</a></b> - This module provides functions to make JSONP requests.</li>
+                        </ul>
+                        <br>
+                    </li>
+                    <li>
+                        <b>Ink.Util</b> - Set of utility modules to assist the developer (and the Javascript components) in some more common tasks:
+                        <ul>
+                            <li><b><a href="Ink.Util.Array.html">Ink.Util.Array</a></b> - This module provides cross-browser methods to manipulate arrays.</li>
+
+                            <li><b><a href="Ink.Util.Cookie.html">Ink.Util.Cookie</a></b> - This module provides cross-browser methods for setting, reading and removing cookies with Javascript.</li>
+
+                            <li><b><a href="Ink.Util.Date.html">Ink.Util.Date</a></b> - This module provide several utility functions to manipulate dates.</li>
+
+                            <li><b><a href="Ink.Util.Dumper.html">Ink.Util.Dumper</a></b> - This module provides methods to assist the developer to dump/profile code.</li>
+
+                            <li><b><a href="Ink.Util.String.html">Ink.Util.String</a></b> - This module contains string handling and manipulation functions.</li>
+
+                            <li><b><a href="Ink.Util.Swipe.html">Ink.Util.Swipe</a></b> - This module provides a set of cross-browser, cross-device functions to detect swiping. That includes direction, velocity, coordinates.</li>
+
+                            <li><b><a href="Ink.Util.Url.html">Ink.Util.Url</a></b> - This module provides methods to handle and manipulate URLs.</li>
+
+                            <li><b><a href="Ink.Util.Validator.html">Ink.Util.Validator</a></b> - This module provides methods to help the developer in validation processes.</li>
+                        </ul>
+                        <br>
+                    </li>
+                </ul>
+                <br>
+                <p>
+                    All of these components are in the Bundle, but in case you don't need all of them, you can load only some.
+                </p>
+                <p><span class="ink-label info">Loading Javascript components from CDN</span></p>
+                <p>
+                    This file is required and should <u>always</u> be loaded first:
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <br>
+                    And then the different components... Example:
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.modal.js"&gt;&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <section id="nav-ink" data-spy="true" data-target="#core_menu">
+                <h2>Ink</h2>
+                <p class="note"><a href="Ink.html">API Link</a></p>
+                <p>This is the starting point of the Ink's Javascript core. It provides the necessary methods for loading the different modules, extensibility (creation of modules), scope/context manipulation, namespace creation, amongst other things.</p>
+
+                <h3><i>requireModules</i></h3>
+                <p>
+                    This method provides an easy way to load any Ink's javascript module.<br>
+                    It receives an array with the modules to be loaded as 1st parameter and a callback function - to be called when all modules from the array are loaded - as 2nd parameter.
+                </p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(
+        ['Ink.Dom.Loaded_1','Ink.Dom.Selector_1'],  // Modules to be loaded
+        function( Loaded, Selector ){               // Callback function
+            Loaded.run(
+                function(){
+                    var bodyEl = Selector.select('body')[0]; // Get the first item of the array.
+                    bodyEl.innerHTML = 'Test!';
+                }
+            );
+        }
+    );
+&lt;/script&gt;</pre>
+                <p>
+                    As you can see, the names of the modules have the following syntax: <span style="color:blue">Ink</span>.<span style="color:red">Namespace</span>.<span style="color:orange">Component</span>_<span style="color:purple">Version</span> and are loaded into the callback function as parameters, in the same order as they're listed in the array.
+                </p>
+
+                <h3><i>namespace</i></h3>
+                <p>
+                    Let's say you want to create your own namespace, to extend Ink's Javascript core or control other objects.<br>
+                    This method allows you to make sure that the specified namespace exists... In case it doesn't, it'll create it!
+                </p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.namespace('MyNamespace');
+    Ink.MyNamespace.myCustomFunction = function( name ){
+        console.log('Hello, ' + name);
+    };
+    Ink.MyNamespace.myCustomFunction('User');
+&lt;/script&gt;</pre>
+                <p>
+                    As you can see, the names of the modules have the following syntax: <span style="color:blue">Ink</span>.<span style="color:red">Namespace</span>.<span style="color:orange">Component</span>_<span style="color:purple">Version</span> and are loaded into the callback function as parameters, in the same order as they're listed in the array.
+                </p>
+
+                <h3><i>bind</i> and <i>bindEvent</i></h3>
+                <p>
+                    Ink's javascript core has two methods to ease the pain of setting the context (and its arguments) in a function.<br>
+                    While Ink.bindEvent is more directed to functions that handle events - because it sets the context of the function and passes the event object as first parameter - on the other hand, Ink.bind is related to the more common function that you need to set the context and still maintain its arguments as it is.
+                </p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    // An object
+    var myObj = {
+        name:       'User',
+        age:        27,
+        comment:    'This is an object with some data'
+    };
+    function echoName(){                        // A function that logs the name
+        console.log(this.name);
+    }
+    echoName = Ink.bind(echoName,myObj)();     // Usage of Ink.bind
+
+    function echoEventAndMyObj(event){
+        console.log(event);
+        console.log(this);
+    }
+    // Usage of Ink.bindEvent
+    Ink.requireModules(['Ink.Dom.Event_1'],function(Event){                         // Loads the Event component, to handle events
+        Event.observe(document,'click',Ink.bindEvent(echoEventAndMyObj,myObj));     // Listening to the event 'click' in the page
+    });
+&lt;/script&gt;</pre>
+                
+            </section>
+
+            <section id="nav-dom" data-spy="true" data-target="#core_menu">
+                <h2>Dom</h2>
+                <p>The DOM is a mess, you know it and we do too, that's why we've added specialized DOM methods to Ink, it makes your life easier and that makes us happy.</p>
+
+                <h3>Browser</h3>
+                <p class="note"><a href="Ink.Dom.Browser.html">API Link</a></p>
+                <p>Want to know something about the user's browser? Here's how...</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Dom.Browser_1'],function(Browser){
+        if( Browser.CHROME ){
+            console.log( 'You are using Google Chrome' );
+        }
+    });
+&lt;/script&gt;</pre>
+
+                <h3>Css</h3>
+                <p class="note"><a href="Ink.Dom.Css.html">API Link</a></p>
+                <p>Give your document some style with our Css class.</p>
+                <pre class="prettyprint linenums">&lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Dom.Css_1'],function(Css){
+
+        var myElement = Ink.i('myElement'); // Same as document.getElementById('myElement')
+        console.log( Css.hasClassName( myElement, 'myClass' ) ); // Result: false
+        Css.addClassName( myElement, 'myClass' );
+        console.log( Css.hasClassName( myElement, 'myClass' ) ); // Result: true
+    });
+&lt;/script&gt;</pre>
+
+                <h3>Element</h3>
+                <p class="note"><a href="Ink.Dom.Element.html">API Link</a></p>
+                <p>Not all browsers were created equal, and the DOM is where it shows the most. Get the document just the way you want it with Element.</p>
+                <pre class="prettyprint linenums">&lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Dom.Element_1'],function(Element){
+
+        var myElement = Ink.i('myElement');
+        var myDiv = Element.create('div', {
+            class:              'myClass',
+            id:                 'myNewDiv',
+            'data-attribute':   'my Data Attribute Value'
+        });
+
+        Element.insertAfter(myDiv, myElement);
+
+        // Result:
+        // &lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
+        // &lt;div class=&quot;myClass&quot; id=&quot;myNewDiv&quot; data-attribute=&quot;my Data Attribute Value&quot;&gt;&lt;/div&gt;
+    });
+&lt;/script&gt;</pre>
+
+                <h3>Event</h3>
+                <p class="note"><a href="Ink.Dom.Event.html">API Link</a></p>
+                <p>Event handling is easy with Ink, using our Event class.</p>
+                <pre class="prettyprint linenums">&lt;button id=&quot;myButton&quot;&gt;Click me!&lt;/button&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Dom.Event_1'],function(Event){
+        var myElement = Ink.i('myButton');
+        Event.observe( myElement, 'click', function( e ){
+            Event.stop(e);                  // Stopping the event and preventing the bubbling
+            var target = Event.element(e);  // Getting the element that triggered the event
+            console.log('The element we clicked was: ', target);
+        });
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Selector</h3>
+                <p class="note"><a href="Ink.Dom.Selector.html">API Link</a></p>
+                <p>If you've ever worked with CSS then you know how to use our Selector engine, we've enlisted the help of Sizzle to bring you a simple and fast way to get the elements you need.</p>
+
+                <pre class="prettyprint linenums">&lt;div class="myClass" id="myDiv1"&gt;myDiv 1&lt;/div&gt;
+&lt;div class="myClass" id="myDiv2"&gt;myDiv 2&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Dom.Selector_1'],function( Selector ){
+        // There are several ways to select DOM elements...
+        // One is via Ink.i(), which is basically an alias of document.getElementById()
+        console.log( Ink.i('myDiv1') );     // Result is the first div
+
+        // Another is via Ink.s() which is an alias of document.querySelector()
+        // In case document.querySelector is not available, it uses the Ink.Dom.Selector
+        // Like document.querySelector, only returns the first DOM element found.
+        console.log( Ink.s('.myClass') );
+
+        // Another alias is Ink.ss() which is an alias for document.querySelectorAll()
+        // Like Ink.s() it fallsback to the Ink.Dom.Selector if document.querySelectorAll is not available
+        // Like document.querySelectorAll(), it returns an array of matching DOM elements
+        console.log( Ink.ss('.myClass') );
+
+        // Last but not least... You can use the Selector.select() method.
+        // Ink.ss() and Selector.select() produce the same results
+        console.log( Selector.select('.myClass') );
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Loaded</h3>
+                <p class="note"><a href="Ink.Dom.Loaded.html">API Link</a></p>
+                <p>Whether you're executing code when the document is ready or loaded we've got the tools you need to get your code running when you want.</p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Dom.Loaded_1'],function( Loaded ){
+        Loaded.run( function(){
+            console.log('The document is ready!');
+        });
+    });
+&lt;/script&gt;</pre>
+
+                <h3>FormSerialize</h3>
+                <p class="note"><a href="Ink.Dom.FormSerialize.html">API Link</a></p>
+                <p>This static module contains two functions used to serialize and unserialize a form to and from a JavaScript object.</p>
+
+                <h4>Serialize a form</h4>
+                <p>This is how you serialize a form into a JavaScript object, possibly to turn into JSON and send over the network:</p>
+                <pre class="prettyprint linenums">&lt;form id=&quot;frm&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
+        InkEvent.observe('frm', 'submit', function (event) {
+            var formData = FormSerialize.serialize('frm'); // -&gt; {field1:&quot;123&quot;}
+            InkEvent.stop(event);
+        });
+    });
+&lt;/script&gt;</pre>
+                <h4>Fill in a form</h4>
+                <p>You can fill in a form with values from an object by using the <code>fillIn</code> method.</p>
+                <pre class="prettyprint linenums">&lt;form id=&quot;frm&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+        var values = {field1: 'CTHULHU'};
+        FormSerialize.fillIn('frm', values);
+        // At this point the form is pre-filled with the values above.
+    });
+&lt;/script&gt;</pre>
+            </section>
+
+            <section id="nav-net" data-spy="true" data-target="#core_menu">
+                <h2>Net</h2>
+                <p>Ink's Javascript engine offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX and JsonP will get you up and running in no time.</p>
+                
+                <h3>Ajax</h3>
+                <p class="note"><a href="Ink.Net.Ajax.html">API Link</a></p>
+                <p>The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Net.Ajax_1'],function(Ajax){
+        // Here iss a quick way to do a simple GET request:
+        Ajax.load( '../js/example.json', function( response ){
+            console.log( response );        // This will log the HTML of the homepage
+        });
+
+        // Now a POST request:
+        new Ajax('../js/example.json',{
+            asynchronous: true,
+            method: 'POST',
+            onSuccess: function( response ){
+                console.log( response.responseText );
+            }
+        });
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>JsonP</h3>
+                <p class="note"><a href="Ink.Net.JsonP.html">API Link</a></p>
+                <p>
+                    Break out of your local domain chains and enjoy the freedom of cross domain requests, 
+                    JsonP give you the tools you need to start getting data from any source you want.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Net.JsonP_1'],function( JsonP ){
+        new JsonP( 'https://services.sapo.pt/Codebits/session/301',{
+            callbackParam: 'callback',
+            onSuccess: function(response){
+                console.log( response );    // Result: JSON Object
+            }
+        });
+    });
+&lt;/script&gt;</pre>
+                
+            </section>
+
+            <section id="nav-util" data-spy="true" data-target="#core_menu">
+                <h2>Util</h2>
+                <p>Even certain bat suit wearing ninjas need to use utilities every one in a while, and what are JavaScript developers if not ninjas without the bat suit? Ink offers those who possess the script-fu ways to take their skills to the next level.</p>
+                
+                <h3>Array</h3>
+                <p class="note"><a href="Ink.Util.Array.html">API Link</a></p>
+                <p>
+                    Utility functions for Array manipulation.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    // We use InkArray because Array is a reserved keyword. Feel free to use other name...
+    Ink.requireModules(['Ink.Util.Array_1'],function( InkArray ){ 
+        var myArray = [ 'value1','value2','value3' ]; // Array initialization
+
+        // Here are some usage examples of methods available in the Array utility component.
+        InkArray.each( myArray, function( value, index, arr ){
+            console.log( 'In the index #' + index + ' the value is: ' + value );
+        });
+
+        if( InkArray.inArray( 'value3', myArray ) ){
+            console.log("\nvalue3 is in the array");
+        }
+
+        var myArrayOfObjects = [
+            {
+                'name': 'Peter',
+                'age': 22,
+                'gender': 'male'
+            },
+            {
+                'name': 'Maria',
+                'age': 25,
+                'gender': 'female'
+            },
+            {
+                'name': 'Jessica',
+                'age': 33,
+                'gender': 'female'
+            },
+            {
+                'name': 'Filip',
+                'age': 19,
+                'gender': 'male'
+            }
+        ];
+
+        console.log( "\nOrdered by name:" );
+        InkArray.each( InkArray.sortMulti( myArrayOfObjects, 'name' ), function( value, index, arr ){
+            console.log( 'In the index #' + index + ' the value is: ', value );
+        });
+
+        console.log( "\nOrdered by age:" );
+        InkArray.each( InkArray.sortMulti( myArrayOfObjects, 'age' ), function( value, index, arr ){
+            console.log( 'In the index #' + index + ' the value is: ', value );
+        });
+
+        console.log( "\nOrdered by gender:" );
+        InkArray.each( InkArray.sortMulti( myArrayOfObjects, 'gender' ), function( value, index, arr ){
+            console.log( 'In the index #' + index + ' the value is: ', value );
+        });
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Cookie</h3>
+                <p class="note"><a href="Ink.Util.Array.html">API Link</a></p>
+                <p>
+                    Utility functions for Cookie creating, reading and deleting.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.Cookie_1'],function( Cookie ){ 
+        // Checking if there is a cookie already set. If so, shows the cookie object
+        console.log( 'Initial cookie values (if any): ', Cookie.get() );
+        console.log( 'Just getting our number: ', Cookie.get('myValue') );
+
+        // Generates a random number and stores it into the cookie (also displays the generated number)
+        var random_number = Math.floor((Math.random()*100)+1); // Number between 0 and 100
+        console.log("\nCookie's new number", random_number);
+
+        Cookie.set( 'myValue', random_number, 3600);  // Expires in 3600 seconds, or 1 hour.
+
+        // Removing the cookie:
+        Cookie.remove('myValue');
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Date</h3>
+                <p class="note"><a href="Ink.Util.Date.html">API Link</a></p>
+                <p>
+                    Utility functions for Date handling.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    // We use the variable InkDate because Date is a reserved keyword
+    Ink.requireModules(['Ink.Util.Date_1'],function( InkDate ){
+        // Formatting a date in a specific format and getting it formatted:
+        var dateObj_1 = InkDate.get('Y-m-d');                         // Current date
+        var dateObj_2 = InkDate.get('d/m/Y', new Date(2013,0,1));     // 2013-01-01 as date reference.
+        console.log( dateObj_1 );
+        console.log( dateObj_2 );
+
+        // Making a Date Object based in string and its format:
+        console.log( InkDate.set('Y-m-d', '2013-07-29') );
+        console.log( InkDate.set('d/m/Y', '01/01/2013') );
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Dumper</h3>
+                <p class="note"><a href="Ink.Util.Dumper.html">API Link</a></p>
+                <p>
+                    Utility functions for Dumping/Profiling.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;div id=&quot;output&quot;&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.Dumper_1'],function( Dumper ){
+         var myObj = {
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3'
+         };
+
+         Dumper.alertDump( myObj );                 // Makes an alert with the variable structure
+         Dumper.printDump( myObj, 'output' );       // Prints the variable structure in the given element
+         console.log( Dumper.returnDump(myObj) );   // Returns the variable structure, and logs it
+
+         // Opens a new window with the variable structure
+         // In this case, the new window might be blocked by the popup if not triggered by a user event
+         // ... like a mouse click or a touch event.
+         Dumper.windowDump( myObj );
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>String</h3>
+                <p class="note"><a href="Ink.Util.String.html">API Link</a></p>
+                <p>
+                    Examples of some String manipulation functions.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;div id=&quot;output&quot;&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.String_1'],function( InkString ){
+         var myObj = {
+            'key1':         'value1',
+            'key2':         'value2',
+            'key3':         'value3',
+            'htmlContent':  '            &lt;p&gt;Some HTML tags&lt;/p&gt;&lt;p&gt;Not stripped nor encoded&lt;/p&gt;      &lt;b&gt;And       with some extra spaces in the beginning, in the middle and in the end&lt;/b&gt;               '
+         };
+
+         var jsonVersion = JSON.stringify( myObj );
+         if( InkString.isJSON( jsonVersion ) ){
+            console.log( 'This is a JSON Object... Now decoding it back to object');
+            console.log( InkString.evalJSON( jsonVersion ) );
+         }
+
+         // Placing original HTML in the output div
+         Ink.i('output').innerHTML = myObj.htmlContent;
+
+         // Placing stripped HTML in the output div
+         Ink.i('output').innerHTML = InkString.stripTags(myObj.htmlContent);
+
+         // Placing HTML encoded in the output div...
+         Ink.i('output').innerHTML = InkString.htmlEntitiesEncode(myObj.htmlContent);
+
+         // ... and decodes it
+         Ink.i('output').innerHTML = InkString.htmlEntitiesDecode(Ink.i('output').innerHTML);
+
+         // Now only escaping the unsafe HTML characters:
+         Ink.i('output').innerHTML = InkString.htmlEscapeUnsafe(myObj.htmlContent);
+
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Swipe</h3>
+                <p class="note"><a href="Ink.Util.Swipe.html">API Link</a></p>
+                <p>
+                    Usage of the Swipe utility component, to detect swiping on touch-enabled devices.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;div id=&quot;swipableArea&quot;&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.Swipe_1'],function( Swipe ){
+        new Swipe( Ink.i('swipableArea'),{
+            forceAxis:  'x',     // It will only detect horizontal swiping
+            minDist:    20,       // Minimum distance that a swipe must have to be detected as such
+            callback: function( swipeObj, swipeInfo ){
+                console.log( 'A SWIPE HAS BEEN DETECTED!!!! ');
+                console.log( swipeObj);
+                console.log( swipeInfo);
+            }
+        })
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Url</h3>
+                <p class="note"><a href="Ink.Util.Url.html">API Link</a></p>
+                <p>
+                    Usage of some of the Url utility component functions, to parse and generate URLs.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;div id=&quot;swipableArea&quot;&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.Url_1'],function( Url ){
+        var currentURL = Url.getUrl();                  // Gets the current URL
+        console.log( Url.parseUrl( currentURL ) );      // Returns an object with the url info
+
+        var params = {
+            'var1': 'value1',
+            'var2': 'value2',
+            'var3': 'value3'
+        }
+        console.log( Url.genQueryString( currentURL, params ) ); // Result: http://siteink.local/js/core?var1=value1&var2=value2&var3=value3
+
+    });
+&lt;/script&gt;</pre>
+                
+                <h3>Validator</h3>
+                <p class="note"><a href="Ink.Util.Validator.html">API Link</a></p>
+                <p>
+                    Usage of some of the Validator utility component functions.
+                </p>
+
+                <pre class="prettyprint linenums">&lt;div id=&quot;swipableArea&quot;&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.Util.Validator_1'],function( Validator ){
+        // Validating a Portuguese phone number
+        console.log( Validator.isPortuguesePhone( '+351213919264' ) );    // Result: true
+
+        // Validating e-mails
+        console.log( Validator.mail( 'agfsdfgfdsgdsf' ) ); // Result: false
+        console.log( Validator.mail( 'inkdev@sapo.pt' ) ); // Result: true
+
+        // Validating URLs
+        console.log( Validator.url( 'www.sapo.pt' ) );                // Result: true
+        console.log( Validator.url( 'http://www.sapo.pt', true ) );   // Result: true
+        console.log( Validator.url( 'meh' ) );                        // Result: false
+
+        // Validating Colors
+        console.log( Validator.isColor( '#FF00FF' ) );        // Result: true
+        console.log( Validator.isColor( '--1231-312' ) );      // Result: false
+    });
+&lt;/script&gt;</pre>
+            </section>
+
+
+            <section id="nav-custom-components" data-spy="true" data-target="#core_menu">
+                <h2>Custom Components</h2>
+                <p>So you want to extend the core, add your own components? It's very easy.</p>
+                <p>Using <a href="/js/core#nav-ink">Ink</a>.createModule() you'll have the ability to create your own components, having a private scope and returning only what will be used.</p>
+                <p>From our perspective, there are two types of components:</p>
+
+                <h3>Static components</h3>
+                <p>This type of component doesn't need a constructor (or to be prepend with the <i>new</i> keyword).<br>
+                    Here's an example:
+                </p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.createModule(
+        'Ink.YourNameSpace.YourStaticModuleName',   // full module name
+        '1',                                        // module's version
+        ['Ink.Dom.Event_1', 'Ink.Dom.Css_1'],       // array of dependency modules
+        function(Event, Css) {                      // this fn will be called async with dependencies as arguments
+            'use strict';
+            /**
+             * This is an awesome set of methods to paint the sky.
+             *
+             * @class Ink.YourNamespace.YourStaticModule
+             * @static
+             */
+            var YourStaticModule = {
+                /**
+                 * This method returns the string 'foo'.
+                 * (Apparently it is useless, since it is not used, but you get the point)
+                 *
+                 * @method _privateMethod
+                 * @return {String} String 'foo' is returned
+                 */
+                _privateMethod: function() {
+                    return 'foo';
+                },
+
+                /**
+                 * @property publicProperty
+                 * @readOnly
+                 */
+                publicProperty: 'sky is blue',
+
+                /**
+                 * Returns a string 'Hello [name], how are you doing? Your number is [number].'
+                 *
+                 * @method publicMethod
+                 * @param {String} name    Name to be placed in the string
+                 * @param {Number} number  Number to be placed in the string
+                 * @returns {String} The string correctly parsed.
+                 */
+                publicMethod: function(name, number) {
+                    return ['Hello ', name, ', how are you doing? Your number is ', number, '.'].join('');
+                }
+            };
+            return YourStaticModule; // this line is critical, otherwise nothing is bound to the module definition!
+        }
+    );
+&lt;/script&gt;</pre>
+                <p>Save your code as a js file, include it as a &lt;script&gt; tag, and then just use it like a normal component:</p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.YourNameSpace.YourStaticModuleName_1'],function( yourVar ){
+        console.log( yourVar.publicMethod( 'User', 23 ) );
+    });
+&lt;/script&gt;</pre>
+
+
+                <h3>Class components</h3>
+                <p>This type of component has a constructor. It's used to create objects of this classe's type.<br>
+                    Here's an example:
+                </p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.createModule(
+        'Ink.YourNameSpace.YourClassModule',          // full module name
+        '1',                                  // module's version
+        ['Ink.Dom.Event_1', 'Ink.Dom.Css_1'], // array of dependency modules
+        function(Event, Css) {                // this fn will be called async with dependencies as arguments
+
+            'use strict';
+
+            /**
+             * Demo case.
+             *
+             * @class Ink.YourNamespace.YourClassModule
+             * @constructor
+             * @param {DOMElement} element DOM Element to listen the events from
+             * @param {Object} [options]
+             *      @param {String} [options.opt1] Info about opt1. By default is 'foo'.
+             *      @param {String} [options.opt2] Info about opt2. By default is 'bar'.
+             */
+            var YourModuleName = function(element, options) {
+                this._element = element;
+                this._options = Ink.extendObj({
+                    event: 'click'
+                }, options || {});
+                this._handler = undefined;
+                this._init();
+            };
+
+            YourModuleName.prototype = {
+                /**
+                 * Initialization function. Sets the event listener in the beginning.
+                 *
+                 * @method _init
+                 * @private
+                 */
+                _init: function() {
+                    this._setEventListener();
+                },
+
+                /**
+                 * Function that will be executed when the specified event is triggered.
+                 * Logs in the console which event was detected
+                 *
+                 * @method _eventHandler
+                 * @param  {Object} event Window.event object
+                 * @private
+                 */
+                _eventHandler: function( event ){
+                    Event.stop( event );
+                    console.log( 'The event ', this._options.event, ' was detected!');
+                },
+
+                /**
+                 * Removes the event listening.
+                 *
+                 * @method _stopEventListener
+                 * @private
+                 */
+                _stopEventListener: function(){
+                    Event.stopObserving(this._element, this._options.event, this._handler );
+                },
+
+                /**
+                 * Sets the event listening
+                 *
+                 * @method _setEventListener
+                 * @private
+                 */
+                _setEventListener: function(){
+                    this._handler = Ink.bindEvent( this._eventHandler, this );
+                    Event.observe(this._element,this._options.event, this._handler);
+                },
+
+                /**
+                 * Changes the event that is listened.
+                 * Stops the previous listener, and starts listening the current one
+                 *
+                 * @method setEvent
+                 * @param  {String} event An event string, ex: 'click'
+                 * @public
+                 */
+                setEvent: function( event ) {
+                    this._stopEventListener();    
+                    this._options.event = event;
+                    this._setEventListener();
+                },
+
+                /**
+                 * Dismisses the event handling.
+                 *
+                 * @method dismiss
+                 * @public
+                 */
+                dismiss: function() {
+                    this._stopEventListener();
+                }
+            };
+
+            return YourModuleName; // this line is critical, otherwise nothing is bound to the module definition!
+        }
+    );
+&lt;/script&gt;</pre>
+            </section>
+                <p>Save your code as a js file, include it as a &lt;script&gt; tag, and then just use it like a normal component:</p>
+
+                <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
+    Ink.requireModules(['Ink.YourNameSpace.YourClassModule_1'],function( yourClass ){
+        window.yourObj = new yourClass( Ink.i('testArea'),{
+            event: 'mouseover'
+        } );
+    });
+&lt;/script&gt;</pre>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright vspace">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+        <p><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>
