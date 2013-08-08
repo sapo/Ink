@@ -6824,6 +6824,10 @@ table.ink-table.bordered tr td:first-child {
 .sapo_cal_top .sapo_cal_next {
   width: 10%;
 }
+.sapo_cal_top .sapo_cal_prev a,
+.sapo_cal_top .sapo_cal_next a {
+  display: block;
+}
 .sapo_cal_top .sapo_cal_month_desc {
   width: 80%;
 }
@@ -6856,6 +6860,16 @@ table.ink-table.bordered tr td:first-child {
 .sapo_cal_month_selector li a.sapo_cal_on:hover {
   background: #0069d6;
   color: #ffffff;
+}
+.sapo_cal_month li a.sapo_cal_off,
+.sapo_cal_year_selector li a.sapo_cal_off,
+.sapo_cal_month_selector li a.sapo_cal_off,
+.sapo_cal_month li a.sapo_cal_off:hover,
+.sapo_cal_year_selector li a.sapo_cal_off:hover,
+.sapo_cal_month_selector li a.sapo_cal_off:hover {
+  background: #ffffff;
+  color: #aaa;
+  cursor: default;
 }
 .sapo_cal_month ul,
 .sapo_cal_year_selector ul,
