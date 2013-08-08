@@ -1,15 +1,23 @@
+# JEKYLL
+exclude: ["fonts", "js", ".gitignore", "less", "presskit", "css", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
+destination: ./documentation/
+
+# SITE TITLE
 title: Ink
-markdown: redcarpet
-pygments: true
 
 # INK LATEST VERSION
 latest: 2.2.0
 
 # URLS
-base_url: http://localhost:4000/
-images_url: http://cdn.ink.sapo.pt/@LATEST/img/
-js_url: http://cdn.ink.sapo.pt/@LATEST/js/
-css_url: http://cdn.ink.sapo.pt/@LATEST/css/
+site_url: http://ink.sapo.pt/
+download_url: 234
+github_url: https://github.com/sapo/Ink
+
+# ASSETS PATHS
+base_url: ./
+images_url: ../img/
+js_url: ../js/
+css_url: ../css/
 
 # ANALYTICS
-analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
+# analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D

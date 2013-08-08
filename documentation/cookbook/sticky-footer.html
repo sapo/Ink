@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>
+            Sticky footer
+        </title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" href="../img/ink-favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
+        media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="stylesheet" type="text/css" href="../css/ink.css">
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+        
+        <script type="text/javascript" src="../js/holder.js"></script>
+        <script type="text/javascript" src="../js/ink.min.js"></script>
+        <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+        <script type="text/javascript" src="../js/autoload.js"></script>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        
+        
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                background: #f0f0f0;
+            }
+            .wrap {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                margin: 0 auto -80px;
+                overflow: auto;
+            }
+            .push, footer { 
+                height: 80px; 
+                margin-top: 0; 
+            }
+            footer { 
+                background: rgba(10,10,10,0.95); 
+                border: 0; 
+                line-height: 80px; 
+                margin-top: 0 !important; 
+            }
+            footer * { 
+                line-height: inherit; 
+            }
+            footer p { 
+                margin-top: 0; 
+            }
+            footer .ink-navigation ul.menu.horizontal li { 
+                margin-right: 2em; 
+                line-height: inherit; 
+            }
+            footer .ink-navigation ul.menu.horizontal li a {
+                padding: 0;
+                color: white;
+                text-decoration: underline;
+            }
+            footer p {
+                color: white;
+            }
+            footer .ink-navigation ul.menu.horizontal li a:hover {
+                color: #c91111;
+            }
+            .top-menu {
+                background: #000;
+            }
+            .cta {
+                font-size: 1.8em;
+                margin-left: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="wrap">
+            <div class="top-menu">
+                <nav class="ink-navigation ink-grid">
+                    <ul class="menu horizontal black flat">
+                        <li class="active"><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                        <li><a href="#">item</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="ink-grid vspace">
+                <div class="column-group">
+                    <div class="large-100 medium-100 small-100">
+                        <h1>heading</h1>
+                        <p>And though of all men the moody captain of the Pequod was the least given to that sort of shallowest assumption; and though the only homage he ever exacted, was implicit, instantaneous obedience; though he required no man to remove the shoes from his feet ere stepping upon the quarter-deck; and though there were times when, owing to peculiar circumstances connected with events hereafter to be detailed, he addressed them in unusual terms, whether of condescension or IN TERROREM, or otherwise; yet even Captain Ahab was by no means unobservant of the paramount forms and usages of the sea.</p>                        
+                    </div>
+                </div>
+            </div>
+            <div class="push"></div>
+        </div>
+        <footer>
+        <div class="ink-grid">
+            <nav class="ink-navigation push-left medium-100 small-100 small-push-left">
+                <ul class="menu horizontal">
+                    <li class="active"><a href="#">item</a></li>
+                    <li><a href="#">item</a></li>
+                    <li><a href="#">item</a></li>
+                </ul>
+            </nav>
+            <p class="push-right small-100">some text</p>
+        </div>
+        </footer>
+    </body>
+
+</html>

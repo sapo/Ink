@@ -12,15 +12,9 @@ title: Alerts
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="alerts_menu">
                 <ul class="menu vertical black rounded">
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('alerts') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('alerts') ?>#nav-basic">Basic Alerts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('alerts') ?>#nav-block">Block alerts</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-basic">Basic Alerts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-block">Block alerts</a></li>
-                <?php endif; ?>
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#nav-basic">Basic Alerts</a></li>
+                    <li><a class="scrollableLink" href="#nav-block">Block alerts</a></li>
                 </ul>
             </nav>
         </div>
@@ -63,11 +57,12 @@ title: Alerts
                     </div>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<div class="ink-alert basic info">
+{% capture inline %}<div class="ink-alert basic info">
     <button class="ink-dismiss">&times;</button>
     <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
-</div>')) ?></pre>
+</div>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ inline | escape }}</pre>
             </section>
             
             <section id="nav-block" data-spy="true" data-target="#alerts_menu">
@@ -112,12 +107,14 @@ title: Alerts
                     </div>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<div class="ink-alert block success">
+{% capture block %}
+<div class="ink-alert block success">
     <button class="ink-dismiss">&times;</button>
     <h4>Thank you for buying!</h4>
     <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
-</div>')) ?></pre>
+</div>
+{% endcapture %}
+      <pre class="prettyprint linenums">{{ block | escape }}</pre>
             </section>
         </div>
     </div>
