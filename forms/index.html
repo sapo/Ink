@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Forms
+base_url: ../
 ---
 <div class="ink-grid">
     <div class="whatIs">
@@ -12,23 +13,13 @@ title: Forms
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="forms_menu">
                 <ul class="menu vertical black rounded">
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#building">Form building</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#inline">Inline form</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#required">Required fields & warnings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#checkboxes-radios">Checkboxes & radio buttons</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#buttons">Buttons</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('forms') ?>#append-prepend">Prepended and appended inputs</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#building">Form building</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#inline">Inline form</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#required">Required fields & warnings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#checkboxes-radios">Checkboxes & radio buttons</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#buttons">Buttons</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#append-prepend">Prepended and appended inputs</a></li>
-                    <?php endif; ?>
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#building">Form building</a></li>
+                    <li><a class="scrollableLink" href="#inline">Inline form</a></li>
+                    <li><a class="scrollableLink" href="#required">Required fields & warnings</a></li>
+                    <li><a class="scrollableLink" href="#checkboxes-radios">Checkboxes & radio buttons</a></li>
+                    <li><a class="scrollableLink" href="#buttons">Buttons</a></li>
+                    <li><a class="scrollableLink" href="#append-prepend">Prepended and appended inputs</a></li>
                 </ul>
             </nav>
         </div>

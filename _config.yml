@@ -1,5 +1,5 @@
 # JEKYLL
-exclude: ["fonts", "js", ".gitignore", "less", "presskit", "css", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
+exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
 destination: ./documentation/
 
 # SITE TITLE
@@ -14,7 +14,6 @@ download_url: 234
 github_url: https://github.com/sapo/Ink
 
 # ASSETS PATHS
-base_url: ./
 images_url: ../img/
 js_url: ../js/
 css_url: ../css/

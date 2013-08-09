@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Getting started
+base_url: ../
 ---
 
 <div class="ink-grid">
@@ -165,9 +166,7 @@ title: Getting started
               <p>Just edit the variable values, save the file, and then compile ink.less, which in turn, will include the configuration files and output <mark>ink.css</mark> for you to use.</p>
               <p>For example, say you want your pages to have a width which is 95% of the viewport, instead of the 1200 px default. Just edit the <mark>__grid.less</mark> file and change the <code>@site-width</code> variable to that value, like this:</p>
               <p><span class="ink-label info">Code</span></p>
-              <pre class="prettyprint linenums">
-@site-width: 95%;
-                </pre>
+              <pre class="prettyprint linenums">@site-width: 95%;</pre>
               <p><span class="ink-label warning">Attention</span> if you re-download Ink to the same top folder, the config files will be written over, so make sure you keep your Ink instances separate by project.</p>
               <p><a href="#nav-getting-technical">Read below</a> to find out more about LESS and how Ink uses it.</p>
               <h3>Adding custom CSS</h3>
@@ -181,40 +180,44 @@ title: Getting started
               <h4>Method 1 - Semantic Classes</h4>
               <p>In essence, if you define your main content area as taking up 75% of the space with a left sidebar taking up the remaining 25%, don't just use the appropriate <code>.large-25</code> and <code>.large-75</code> classes, but also use your own <code>.sidebar</code> and <code>.content</code> classes.</p>
               <p><span class="ink-label info">Code</span></p>
-              <pre class="prettyprint linenums">
-<div class="large-75 content>Your content here</div>
+{% capture semantic_classes %}
+<div class="large-75 content">Your content here</div>
 <div class="large-25 sidebar">Your sidebar stuff here</div>
-              </pre>
+{% endcapture %}
+              <pre class="prettyprint linenums">{{ semantic_classes | escape }}</pre>
               <p><span class="ink-label info">Note</span> You'll read about the large classes in the <a href="/layout">Layout</a> section.</p>
               <h4>Method 2 - Custom ID</h4>
               <p>Another method of using custom CSS is to simply add a class or id to your <code>&lt;body&gt;</code> element and then resort to CSS inheritance to customize Ink's own classes without delving into <mark>ink.css</mark>. Like this, you keep the original Ink CSS with added customizations on top, which you can turn on and off my simply adding or removing a single class/id.</p>
               <p><span class="ink-label info">Code</span> HTML Example using an ID on the <code>&lt;body&gt;</code></p>
-              <pre class="prettyprint linenums">
+{% capture custom_id %}
 <body id="mySite"> <!-- Identify your custom CSS with an ID on the body -->
   <div class="ink-grid"> <!-- Use Ink classes to build everything -->
     ...
   </div>
 </body>
-              </pre>
+{% endcapture %}
+              <pre class="prettyprint linenums">{{ custom_id | escape }}</pre>
               <p><span class="ink-label info">Code</span> CSS example for customizing <code>.ink-grid</code> using your custom ID</p>
-              <pre class="prettyprint linenums">
+{% capture custom_grid %}
 body#mySite div.ink-grid {
   width: 95%;
 }
-              </pre>
+{% endcapture %}
+              <pre class="prettyprint linenums">{{ custom_grid | escape }}</pre>
               <p><span class="ink-label info">Tip</span> Try to keep your CSS specificity high, to make sure you avoid colisions.</p>
               <p>Both methods described above will allow you to build your own customizations in a separate CSS file, while keeping Ink CSS 'clean'.</p>
               <p>We provide you with the <mark>quick-start.css</mark> file (in the <mark>./css/</mark> folder), which is media-query ready, so just use that (evidently, you can rename it to whatever you like), and link it in the <code>&lt;head&gt;</code> of your document.</p>
               <p>So, if you're using the templates included with Ink (we suggest you at least start with <mark>empty-page.html</mark>, in the <mark>./cookbook/</mark> folder), look for the following line:</p>
-              <pre class="prettyprint linenums">
+{% capture custom_css %}
 <link rel="stylesheet" href="./css/ink.css">
-              </pre>
+{% endcapture %}
+              <pre class="prettyprint linenums">{{ custom_css | escape }}</pre>
               <p>And add your own link:</p>
-              <pre class="prettyprint linenums">
+{% capture custom_css_2 %}
 <link rel="stylesheet" href="./css/ink.css">
 <link rel="stylesheet" href="./css/quick-start.css"> <!--We suggest you rename this to match your project-->
-              </pre>
-              
+{% endcapture %}
+              <pre class="prettyprint linenums">{{ custom_css_2 | escape }}</pre>              
               <h3>Hacking Ink</h3>
               <p>If you want, you can alter ink.css directly or, if you prefer, change everything in the <mark>./less/modules/</mark> LESS files. If you look in there, you'll see Ink in all its glory.</p>
               <p>The reason we don't recommend this method is that you will not be able to benefit from our updates and bug fixes. If you use the second method, described above, and just style your own custom semantic classes, then you can download any future version of Ink and just overwrite the original files, while retaining your custom LESS and custom CSS files and you'll be able to benefit from whatever new developments Ink has to offer.</p>
@@ -228,11 +231,14 @@ body#mySite div.ink-grid {
                 <p>In order to make Ink as easy to use as possible we've opted to make our CSS class names as similar as possible to a human language, in our case, English. Class names describe component types and visual/behaviour characteristics. This can be a bit verbose but we feel that it makes the code highly readable and easy to learn and rememeber.</p>
                 <p>To avoid name collisions and get higher css specificity, all components have a "root" class, on which children classes depend like <code>.ink-navigation</code> or <code>.ink-form</code>.</p>
                 <p><span class="ink-label info">Code</span></p>
-<?php prettyprint('<nav class="ink-navigation">
+{% capture class_names %}
+<nav class="ink-navigation">
   <ul class="menu horizontal blue">
     ...
   </ul>
-</nav>'); ?>                
+</nav>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ class_names | escape }}</pre>
                 <p>You've guessed it. It's a blue horizontal menu!</p>
             </section>         
         </div>
