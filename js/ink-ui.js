@@ -752,7 +752,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
     /**
      * Spy is a component that 'spies' an element (or a group of elements) and when they leave the viewport (through the top),
      * highlight an option - related to that element being spied - that resides in a menu, initially identified as target.
-     * 
+     *
      * @class Ink.UI.Spy
      * @constructor
      * @version 1
@@ -806,13 +806,13 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
          * @property _elements
          * @type {Array}
          * @readOnly
-         * 
+         *
          */
         _elements: [],
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -823,13 +823,13 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
 
         /**
          * Scroll handler. Responsible for highlighting the right options of the target menu.
-         * 
+         *
          * @method _onScroll
          * @private
          */
         _onScroll: function(){
 
-            var scrollHeight = Element.scrollHeight(); 
+            var scrollHeight = Element.scrollHeight();
             if( (scrollHeight < this._rootElement.offsetTop) ){
                 return;
             } else {
@@ -876,7 +876,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
     /**
      * The Sticky component takes an element and transforms it's behavior in order to, when the user scrolls he sets its position
      * to fixed and maintain it until the user scrolls back to the same place.
-     * 
+     *
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
@@ -954,7 +954,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -970,7 +970,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Scroll handler.
-         * 
+         *
          * @method _onScroll
          * @private
          */
@@ -979,7 +979,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            if( 
+            if(
                 ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
                 ( viewport.clientWidth<=649 )
             ){
@@ -995,7 +995,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             }
 
             this._scrollTimeout = setTimeout(Ink.bind(function(){
-                    
+
                 var scrollHeight = Element.scrollHeight();
 
                 if( Element.hasAttribute(this._rootElement,'style') ){
@@ -1033,7 +1033,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Resize handler
-         * 
+         *
          * @method _onResize
          * @private
          */
@@ -1054,7 +1054,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         /**
          * On each resizing (and in the beginning) the component recalculates the offsets, since
          * the top and bottom element heights might have changed.
-         * 
+         *
          * @method _calculateOffsets
          * @private
          */
@@ -1131,7 +1131,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
     /**
      * The Table component transforms the native/DOM table element into a
      * sortable, paginated component.
-     * 
+     *
      * @class Ink.UI.Table
      * @constructor
      * @version 1
@@ -1263,7 +1263,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -1290,7 +1290,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
                 /**
                  * Set pagination if defined
-                 * 
+                 *
                  */
                 if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
                     /**
@@ -1322,7 +1322,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
         /**
          * Click handler. This will mainly handle the sorting (when you click in the headers)
-         * 
+         *
          * @method _onClick
          * @param {Event} event Event obj
          * @private
@@ -1421,7 +1421,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
         /**
          * Applies and/or changes the CSS classes in order to show the right columns
-         * 
+         *
          * @method _paginate
          * @param {Number} page Current page
          * @private
@@ -1438,7 +1438,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
         /**
          * Sorts by a specific column.
-         * 
+         *
          * @method _sort
          * @param {Number} index Column number (starting at 0)
          * @private
@@ -1637,7 +1637,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                         onChange: Ink.bind(function( ){
                             this._getData( this._options.endpoint );
                         },this)
-                    }); 
+                    });
                 }
             }
         },
@@ -1668,7 +1668,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                     parsedURL.query = [];
                 }
 
-                if( !paginated ){            
+                if( !paginated ){
                     this._getDataViaAjax( endpoint );
                 } else {
 
@@ -1692,8 +1692,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
         },
 
         /**
-         * Gets the data via AJAX and triggers the changes in the 
-         * 
+         * Gets the data via AJAX and triggers the changes in the
+         *
          * @param  {[type]} endpoint     [description]
          * @param  {[type]} firstRequest [description]
          * @return {[type]}              [description]
@@ -1719,14 +1719,14 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                         this._setData( jsonResponse.rows );
 
                         if( paginated ){
-                            if( !!this._totalRows && (parseInt(jsonResponse.totalRows,10) !== parseInt(this._totalRows,10)) ){ 
+                            if( !!this._totalRows && (parseInt(jsonResponse.totalRows,10) !== parseInt(this._totalRows,10)) ){
                                 this._totalRows = jsonResponse.totalRows;
                                 this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
                             } else {
                                 this._totalRows = jsonResponse.totalRows;
                             }
                         } else {
-                            if( !!this._totalRows && (jsonResponse.rows.length !== parseInt(this._totalRows,10)) ){ 
+                            if( !!this._totalRows && (jsonResponse.rows.length !== parseInt(this._totalRows,10)) ){
                                 this._totalRows = jsonResponse.rows.length;
                                 this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
                             } else {
@@ -1756,7 +1756,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
     /**
      * Tabs component
-     * 
+     *
      * @class Ink.UI.Tabs
      * @constructor
      * @version 1
@@ -1775,7 +1775,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      *     @param {Function}     [options.onChange]                callback to be executed after changing tabs
      * @example
      *      <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
-     *          
+     *
      *          <!-- put navigation first if using top, left or right positioning -->
      *          <ul class="tabs-nav">
      *              <li><a href="#home">Home</a></li>
@@ -1784,7 +1784,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      *              <li><a href="#stuff">Stuff</a></li>
      *              <li><a href="#more_stuff">More stuff</a></li>
      *          </ul>
-     *          
+     *
      *          <!-- Put your content second if using top, left or right navigation -->
      *          <div id="home" class="tabs-content"><p>Content</p></div>
      *          <div id="news" class="tabs-content"><p>Content</p></div>
@@ -1792,7 +1792,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      *          <div id="stuff" class="tabs-content"><p>Content</p></div>
      *          <div id="more_stuff" class="tabs-content"><p>Content</p></div>
      *          <!-- If you're using bottom navigation, switch the nav block with the content blocks -->
-     *       
+     *
      *      </div>
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Tabs_1'], function( Selector, Tabs ){
@@ -1835,7 +1835,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -1863,7 +1863,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Initialization of the tabs, hides all content before setting the active tab
-         * 
+         *
          * @method _initializeDom
          * @private
          */
@@ -1875,7 +1875,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Subscribe events
-         * 
+         *
          * @method _observe
          * @private
          */
@@ -1895,7 +1895,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
         /**
          * Run at instantiation, to determine which is the first active tab
          * fallsback from window.location.href to options.active to the first not disabled tab
-         * 
+         *
          * @method _setFirstActive
          * @private
          */
@@ -1911,7 +1911,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Changes to the desired tab
-         * 
+         *
          * @method _changeTab
          * @param {DOMElement} link             anchor linking to the content container
          * @param {boolean}    runCallbacks     defines if the callbacks should be run or not
@@ -1943,7 +1943,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Tab clicked handler
-         * 
+         *
          * @method _onTabClicked
          * @param {Event} ev
          * @private
@@ -1968,7 +1968,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Disabled tab clicked handler
-         * 
+         *
          * @method _onDisabledTabClicked
          * @param {Event} ev
          * @private
@@ -1979,7 +1979,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Resize handler
-         * 
+         *
          * @method _onResize
          * @private
          */
@@ -2007,7 +2007,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Allows the hash to be passed with or without the cardinal sign
-         * 
+         *
          * @method _hashify
          * @param {String} hash     the string to be hashified
          * @return {String} Resulting hash
@@ -2022,7 +2022,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Returns the anchor with the desired href
-         * 
+         *
          * @method _findLinkBuHref
          * @param {String} href     the href to be found on the returned link
          * @return {String|undefined} [description]
@@ -2042,7 +2042,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Returns the child elements of a given parent element
-         * 
+         *
          * @method _getChildElements
          * @param {DOMElement} parent  DOMElement to fetch the child elements from.
          * @return {Array}  Child elements of the given parent.
@@ -2065,7 +2065,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Changes to the desired tag
-         * 
+         *
          * @method changeTab
          * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
          * @public
@@ -2080,7 +2080,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Disables the desired tag
-         * 
+         *
          * @method disable
          * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
          * @public
@@ -2097,7 +2097,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
          /**
          * Enables the desired tag
-         * 
+         *
          * @method enable
          * @param {String|DOMElement} selector      the id of the desired tab or the link that links to it
          * @public
@@ -2118,7 +2118,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Returns the active tab id
-         * 
+         *
          * @method activeTab
          * @return {String} ID of the active tab.
          * @public
@@ -2129,7 +2129,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Returns the current active Menu LI
-         * 
+         *
          * @method activeMenuTab
          * @return {DOMElement} Active menu LI.
          * @public
@@ -2140,7 +2140,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Returns the current active Menu anchorChanges to the desired tag
-         * 
+         *
          * @method activeMenuLink
          * @return {DOMElement} Active menu link
          * @public
@@ -2151,7 +2151,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Returns the current active Content Tab
-         * 
+         *
          * @method activeContentTab
          * @return {DOMElement} Active Content Tab
          * @public
@@ -2162,7 +2162,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
         /**
          * Unregisters the component and removes its markup from the DOM
-         * 
+         *
          * @method destroy
          * @public
          */
@@ -2183,7 +2183,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
     /**
      * Toggle component
-     * 
+     *
      * @class Ink.UI.Toggle
      * @constructor
      * @version 1
@@ -2284,7 +2284,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -2301,7 +2301,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         /**
          * Event handler. It's responsible for handling the <triggerEvent> defined in the options.
          * This will trigger the toggle.
-         * 
+         *
          * @method _onTriggerEvent
          * @param {Event} event
          * @private
@@ -2343,7 +2343,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Click handler. Will handle clicks outside the toggle component.
-         * 
+         *
          * @method _onClick
          * @param {Event} event
          * @private
@@ -2368,16 +2368,16 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 }
             }
 
-            if(!Element.findUpwardsByClass(tgtEl, 'toggle')) {
+            if(Element.findUpwardsByClass(tgtEl, 'toggle')) {
                 return;
             }
-            
+
             this._dismiss( this._rootElement );
         },
 
         /**
          * Dismisses the toggling.
-         * 
+         *
          * @method _dismiss
          * @private
          */
@@ -2414,7 +2414,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
      *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
      *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
      *          @param options.where.mousefix   Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
-     *     
+     *
      *     @param [options.color='']            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
      *     @param [options.fade=0.3]            Fade time; Duration of the fade in/out effect.
      *     @param [options.forever=0]           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
@@ -2425,14 +2425,14 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
      *
      *     @param [options.left,top=10]         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
      *     @param [options.spacing=8]           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
-     * 
+     *
      * @example
      *     <ul class="buttons">
      *         <li class="button" data-tip-text="Create a new document">New</li>
      *         <li class="button" data-tip-text="Exit the program">Quit</li>
      *         <li class="button" data-tip-text="Save the document you are working on">Save</li>
      *     </ul>
-     *     
+     *
      *     [...]
      *
      *     <script>
@@ -2559,7 +2559,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
         _createTooltipElement: function () {
             var template = this._getOpt('template'),  // User template instead of our HTML
                 templatefield = this._getOpt('templatefield'),
-                
+
                 where = this._getOpt('where'),
                 tooltip,  // The element we float
                 field;  // Element where we write our message. Child or same as the above
@@ -2568,7 +2568,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 var temp = document.createElement('DIV');
                 temp.innerHTML = Aux.elOrSelector(template, 'options.template').outerHTML;
                 tooltip = temp.firstChild;
-                
+
                 if (templatefield) {
                     field = Selector.select(templatefield, tooltip);
                     if (field) {
@@ -2588,7 +2588,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 Css.addClassName(field, 'content');
 
                 tooltip.appendChild(field);
-                
+
                 if (where.match(/(up|down|left|right)/)) {
                     var arrow = document.createElement('SPAN');
                     Css.addClassName(arrow, 'arrow');
@@ -2596,7 +2596,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                     tooltip.appendChild(arrow);
                 }
             }
-            
+
             InkElement.setTextContent(field, this._getOpt('text'));
             tooltip.style.display = 'block';
             tooltip.style.position = 'absolute';
@@ -2618,7 +2618,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
         },
         _placeTooltipElement: function (tooltip, mousePosition) {
             var where = this._getOpt('where');
-            
+
             var insert = function () {
                 var bodies = document.getElementsByTagName('body');
                 var insertInto = bodies && bodies.length ? bodies[0] : document.documentElement;
@@ -2626,7 +2626,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 // InkElement.insertTop(tooltip, insertInto);
                 insertInto.appendChild(tooltip);  // TODO use above line instead when Ink CSS does not meddle too much with element positioning.
             };
-            
+
             if (where === 'mousemove' || where === 'mousefix') {
                 var mPos = mousePosition;
                 this._setPos(mPos[0], mPos[1]);
@@ -2645,7 +2645,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 var centerh = (InkElement.elementWidth(this.element) / 2) - (InkElement.elementWidth(tooltip) / 2),
                     centerv = (InkElement.elementHeight(this.element) / 2) - (InkElement.elementHeight(tooltip) / 2);
                 var spacing = this._getIntOpt('spacing');
-                
+
                 if (where === 'up') {
                     ttop -= InkElement.elementHeight(tooltip);
                     ttop -= spacing;
@@ -2823,7 +2823,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
 
     /**
      * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
+     *
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
@@ -2901,7 +2901,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
 
         /**
          * Init function called by the constructor. Sets the necessary event handlers.
-         * 
+         *
          * @method _init
          * @private
          */
@@ -2939,7 +2939,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
 
         /**
          * Handles the click event (as specified in the _init function).
-         * 
+         *
          * @method _onClick
          * @param {Event} event
          * @private
@@ -3003,7 +3003,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
     /**
      * Adds sortable behaviour to any list!
-     * 
+     *
      * @class Ink.UI.SortableList
      * @constructor
      * @version 1
@@ -3087,7 +3087,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Init function called by the constructor.
-         * 
+         *
          * @method _init
          * @private
          */
@@ -3115,7 +3115,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Sets the event handlers.
-         * 
+         *
          * @method _observe
          * @private
          */
@@ -3125,7 +3125,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Updates the model from the UL representation
-         * 
+         *
          * @method _extractModelFromDOM
          * @private
          */
@@ -3144,7 +3144,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Returns the top element for the gallery DOM representation
-         * 
+         *
          * @method _generateMarkup
          * @return {DOMElement}
          * @private
@@ -3171,7 +3171,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Extracts the Y coordinate of the mouse from the given MouseEvent
-         * 
+         *
          * @method _getY
          * @param  {Event} ev
          * @return {Number}
@@ -3190,7 +3190,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Refreshes the markup.
-         * 
+         *
          * @method _refresh
          * @param {Boolean} skipObs True if needs to set the event handlers, false if not.
          * @private
@@ -3210,7 +3210,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Mouse down handler
-         * 
+         *
          * @method _onDown
          * @param {Event} ev
          * @return {Boolean|undefined} [description]
@@ -3254,7 +3254,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Mouse move handler
-         * 
+         *
          * @method _onMove
          * @param {Event} ev
          * @private
@@ -3285,7 +3285,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Mouse up handler
-         * 
+         *
          * @method _onUp
          * @param {Event} ev
          * @private
@@ -3309,7 +3309,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Returns a copy of the model
-         * 
+         *
          * @method getModel
          * @return {Array} Copy of the model
          * @public
@@ -3320,7 +3320,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
 
         /**
          * Unregisters the component and removes its markup from the DOM
-         * 
+         *
          * @method destroy
          * @public
          */
@@ -3557,7 +3557,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @param {Event} [event] In case its fired by the trigger.
          * @private
@@ -3652,7 +3652,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Responsible for repositioning the modal
-         * 
+         *
          * @method _reposition
          * @private
          */
@@ -3666,7 +3666,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Responsible for resizing the modal
-         * 
+         *
          * @method _onResize
          * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
          * @private
@@ -3682,7 +3682,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Timeout Resize Function
-         * 
+         *
          * @method _timeoutResizeFunction
          * @private
          */
@@ -3732,7 +3732,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Navigation click handler
-         * 
+         *
          * @method _onClick
          * @param {Event} ev
          * @private
@@ -3746,7 +3746,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
                     (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
                 )
             ) {
-                var 
+                var
                     alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
                     alertsLength = alertsInTheModal.length
                 ;
@@ -3775,7 +3775,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
+         *
          * @method _resizeContainer
          * @private
          */
@@ -3811,7 +3811,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Responsible for 'disabling' the page scroll
-         * 
+         *
          * @method _disableScroll
          * @private
          */
@@ -3836,7 +3836,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Dismisses the modal
-         * 
+         *
          * @method dismiss
          * @public
          */
@@ -3897,7 +3897,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Removes the modal from the DOM
-         * 
+         *
          * @method destroy
          * @public
          */
@@ -3908,7 +3908,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Returns the content DOM element
-         * 
+         *
          * @method getContentElement
          * @return {DOMElement} Modal main cointainer.
          * @public
@@ -3919,7 +3919,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
 
         /**
          * Replaces the content markup
-         * 
+         *
          * @method setContentMarkup
          * @param {String} contentMarkup
          * @public
@@ -3944,7 +3944,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
                     InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
                     this._modalDiv.appendChild(body);
                     InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    
+
                     this._contentContainer = Selector.select(".modal-body",this._modalDiv);
                 }
                 this._contentContainer = this._contentContainer[0];
@@ -4010,7 +4010,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      *                  {
      *                      label: 'large',
      *                      width: 1024
-     *                  }   
+     *                  }
      *              ]
      *          });
      *      } );
@@ -4072,7 +4072,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -4344,7 +4344,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Check if a form is valid or not
-         * 
+         *
          * @method validate
          * @param {DOMElement|String} elm DOM form element or form id
          * @param {Object} options Options for
@@ -4406,7 +4406,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Reset previously generated validation errors
-         * 
+         *
          * @method reset
          * @public
          */
@@ -4418,7 +4418,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Cleans the object
-         * 
+         *
          * @method _free
          * @private
          */
@@ -4432,7 +4432,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Cleans the properties responsible for caching
-         * 
+         *
          * @method _clearCache
          * @private
          */
@@ -4446,7 +4446,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Gets the form elements and stores them in the caching properties
-         * 
+         *
          * @method _getElements
          * @private
          */
@@ -4503,7 +4503,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Runs the validation for each element
-         * 
+         *
          * @method _validateElements
          * @private
          */
@@ -4557,7 +4557,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Runs the 'confirm' validation for each group of elements
-         * 
+         *
          * @method _validateConfirmGroups
          * @param {Array} oGroups Array/Object that contains the group of confirm objects
          * @param {Array} errors Array that will store the errors
@@ -4581,7 +4581,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Creates the groups of 'confirm' objects
-         * 
+         *
          * @method _makeConfirmGroups
          * @private
          * @return {Array|Boolean} Returns the array of confirm elements or false on error.
@@ -4624,7 +4624,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Validates an element with a custom validation
-         * 
+         *
          * @method _isCustomValid
          * @param {DOMElemenmt} elm Element to be validated
          * @private
@@ -4647,7 +4647,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Runs the normal validation functions for a specific element
-         * 
+         *
          * @method :_isValid
          * @param {DOMElement} elm DOMElement that will be validated
          * @param {String} fieldType Rule to be validated. This must be one of the keys present in the _flagMap property.
@@ -4805,7 +4805,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                             }
                             throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
                         }
-                        
+
                         return InkValidator.isDate( validFormat, elm.value );
                     }
                     break;
@@ -4818,7 +4818,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Makes the necessary changes to the markup to show the errors of a given element
-         * 
+         *
          * @method _showError
          * @param {DOMElement} formElm The form element to be changed to show the errors
          * @param {Array} aFail An array with the errors found.
@@ -4879,7 +4879,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Clears the error of a given element. Normally executed before any validation, for all elements, as a reset.
-         * 
+         *
          * @method _clearErrors
          * @param {DOMElement} formElm Form element to be cleared.
          * @private
@@ -4917,7 +4917,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
         /**
          * Removes unnecessary spaces to the left or right of a string
-         * 
+         *
          * @method _trim
          * @param {String} stri String to be trimmed
          * @private
@@ -4960,7 +4960,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Associative array with the elements that are droppable
-         * 
+         *
          * @property _elements
          * @type {Object}
          * @private
@@ -4970,7 +4970,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
         /**
          * Makes an element droppable and adds it to the stack of droppable elements.
          * Can consider it a constructor of droppable elements, but where no Droppable object is returned.
-         * 
+         *
          * @method add
          * @param {String|DOMElement}       element    - target element
          * @param {Object}                  [options]  - options object
@@ -4986,7 +4986,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 accept:         false,
                 onHover:        false,
                 onDrop:         false,
-                onDropOut:      false                
+                onDropOut:      false
             }, options || {});
 
             element = Ink.i(element);
@@ -5001,7 +5001,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Invoke every time a drag starts
-         * 
+         *
          * @method updateAll
          * @public
          */
@@ -5014,7 +5014,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Updates location and size of droppable element
-         * 
+         *
          * @method update
          * @param {String|DOMElement} element - target element
          * @public
@@ -5040,7 +5040,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Removes an element from the droppable stack and removes the droppable behavior
-         * 
+         *
          * @method remove
          * @param {String|DOMElement} el - target element
          * @public
@@ -5052,7 +5052,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Method called by a draggable to execute an action on a droppable
-         * 
+         *
          * @method action
          * @param {Object} coords    - coordinates where the action happened
          * @param {String} type      - type of action. drag or drop.
@@ -5171,7 +5171,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @param {String|DOMElement} element ID of the element or DOM Element.
          * @param {Object} [options] Options object for configuration of the module.
@@ -5242,7 +5242,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Removes the ability of the element of being dragged
-         * 
+         *
          * @method destroy
          * @public
          */
@@ -5257,7 +5257,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Browser-independant implementation of page scroll
-         * 
+         *
          * @method _getPageScroll
          * @return {Array} Array where the first position is the scrollLeft and the second position is the scrollTop
          * @private
@@ -5275,7 +5275,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Gets coordinates for a given event (with added page scroll)
-         * 
+         *
          * @method _getCoords
          * @param {Object} e window.event object.
          * @return {Array} Array where the first position is the x coordinate, the second is the y coordinate
@@ -5291,7 +5291,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Clones src element's relevant properties to dst
-         * 
+         *
          * @method _cloneStyle
          * @param {DOMElement} src Element from where we're getting the styles
          * @param {DOMElement} dst Element where we're placing the styles.
@@ -5312,7 +5312,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * onStart event handler
-         * 
+         *
          * @method _onStart
          * @param {Object} e window.event object
          * @return {Boolean|void} In some cases return false. Otherwise is void
@@ -5419,7 +5419,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Function that gets the timestamp of the current run from time to time. (FPS)
-         * 
+         *
          * @method _onDragFacade
          * @param {Object} window.event object.
          * @private
@@ -5434,7 +5434,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Function that handles the dragging movement
-         * 
+         *
          * @method _onDrag
          * @param {Object} window.event object.
          * @private
@@ -5503,7 +5503,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
         /**
          * Function that handles the end of the dragging process
-         * 
+         *
          * @method _onEnd
          * @param {Object} window.event object.
          * @private
@@ -5578,7 +5578,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @version 1
  */
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
-    'use strict';    
+    'use strict';
 
     /**
      * @class Ink.UI.DatePicker
@@ -6487,7 +6487,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
          * @private
          */
         _updateCal: function(inc){
-            
+
             if( typeof this._options.onMonthSelected === 'function' ){
                 this._options.onMonthSelected(this, {
                     'year': this._year,
@@ -6752,7 +6752,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true if the calendar sceen is in 'select day' mode
-         * 
+         *
          * @return {Boolean} True if the calendar sceen is in 'select day' mode
          * @public
          */
@@ -6779,9 +6779,9 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
      * of the following classes: "ink-alert", "ink-alert-block".
      * If it is found, it is removed from the DOM.
-     * 
+     *
      * One should call close once per page (full page refresh).
-     * 
+     *
      * @class Ink.UI.Close
      * @constructor
      * @uses Ink.Dom.Event
@@ -6924,7 +6924,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -6941,7 +6941,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Responsible for setting listener in the 'click' event of the Pagination element.
-         * 
+         *
          * @method _observe
          * @private
          */
@@ -6951,7 +6951,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Updates the markup everytime there's a change in the Pagination object.
-         * 
+         *
          * @method _updateItems
          * @private
          */
@@ -7015,7 +7015,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns the top element for the gallery DOM representation
-         * 
+         *
          * @method _generateMarkup
          * @param {DOMElement} el
          * @private
@@ -7084,7 +7084,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Click handler
-         * 
+         *
          * @method _onClick
          * @param {Event} ev
          * @private
@@ -7097,7 +7097,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                 do{
                     tgtEl = tgtEl.parentNode;
                 }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
-                
+
                 if( tgtEl === this._element){
                     return;
                 }
@@ -7142,7 +7142,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Sets the number of pages
-         * 
+         *
          * @method setSize
          * @param {Number} sz number of pages
          * @public
@@ -7159,7 +7159,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Sets the current page
-         * 
+         *
          * @method setCurrent
          * @param {Number} nr sets the current page to given number
          * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
@@ -7194,7 +7194,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns the number of pages
-         * 
+         *
          * @method getSize
          * @return {Number} Number of pages
          * @public
@@ -7205,7 +7205,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns current page
-         * 
+         *
          * @method getCurrent
          * @return {Number} Current page
          * @public
@@ -7216,7 +7216,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif at first page
-         * 
+         *
          * @method isFirst
          * @return {Boolean} True if at first page
          * @public
@@ -7227,7 +7227,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif at last page
-         * 
+         *
          * @method isLast
          * @return {Boolean} True if at last page
          * @public
@@ -7238,7 +7238,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has prior pages
-         * 
+         *
          * @method hasPrevious
          * @return {Boolean} True if has prior pages
          * @public
@@ -7249,7 +7249,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has pages ahead
-         * 
+         *
          * @method hasNext
          * @return {Boolean} True if has pages ahead
          * @public
@@ -7260,7 +7260,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has prior set of page(s)
-         * 
+         *
          * @method hasPreviousPage
          * @return {Boolean} Returns true iif has prior set of page(s)
          * @public
@@ -7271,7 +7271,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has set of page(s) ahead
-         * 
+         *
          * @method hasNextPage
          * @return {Boolean} Returns true iif has set of page(s) ahead
          * @public
@@ -7282,7 +7282,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Unregisters the component and removes its markup from the DOM
-         * 
+         *
          * @method destroy
          * @public
          */
@@ -7304,7 +7304,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
     /**
      * Associated to a .ink-progress-bar element, it provides the necessary
      * method - setValue() - for the user to change the element's value.
-     * 
+     *
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
@@ -7361,7 +7361,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -7379,7 +7379,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
 
         /**
          * Sets the value of the Progressbar
-         * 
+         *
          * @method setValue
          * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
          * @public
