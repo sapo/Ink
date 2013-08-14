@@ -9,7 +9,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
     /**
      * The Sticky component takes an element and transforms it's behavior in order to, when the user scrolls he sets its position
      * to fixed and maintain it until the user scrolls back to the same place.
-     * 
+     *
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
@@ -87,7 +87,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -103,7 +103,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Scroll handler.
-         * 
+         *
          * @method _onScroll
          * @private
          */
@@ -112,7 +112,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            if( 
+            if(
                 ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
                 ( viewport.clientWidth<=649 )
             ){
@@ -128,13 +128,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             }
 
             this._scrollTimeout = setTimeout(Ink.bind(function(){
-                    
+
                 var scrollHeight = Element.scrollHeight();
 
                 if( Element.hasAttribute(this._rootElement,'style') ){
                     if( scrollHeight <= this._options.offsetTop){
                         this._rootElement.removeAttribute('style');
                     } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
+                        this._rootElement.style.left = this._options.originalLeft + 'px';
                         this._rootElement.style.position = 'fixed';
                         this._rootElement.style.top = 'auto';
                         if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
@@ -144,6 +145,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                         }
                         this._rootElement.style.width = this._options.originalWidth + 'px';
                     } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
+                        this._rootElement.style.left = this._options.originalLeft + 'px';
                         this._rootElement.style.position = 'fixed';
                         this._rootElement.style.bottom = 'auto';
                         this._rootElement.style.top = this._options.originalOffsetTop + 'px';
@@ -158,6 +160,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                     this._rootElement.style.bottom = 'auto';
                     this._rootElement.style.top = this._options.offsetTop + 'px';
                     this._rootElement.style.width = this._options.originalWidth + 'px';
+                    this._rootElement.style.left = this._options.originalLeft + 'px';
                 }
 
                 this._scrollTimeout = undefined;
@@ -166,7 +169,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         /**
          * Resize handler
-         * 
+         *
          * @method _onResize
          * @private
          */
@@ -187,7 +190,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         /**
          * On each resizing (and in the beginning) the component recalculates the offsets, since
          * the top and bottom element heights might have changed.
-         * 
+         *
          * @method _calculateOffsets
          * @private
          */
@@ -226,6 +229,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 }
             }
 
+
+
             this._onScroll();
 
         },
@@ -241,6 +246,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
             this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
+            this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
             if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
                 this._options.originalWidth = 0;
             }
