@@ -132,7 +132,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 var scrollHeight = Element.scrollHeight();
 
                 if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( scrollHeight <= (this._rootElement.originalTop+this._options.offsetTop)){
+                    if( scrollHeight <= (this._rootElement.originalTop-this._options.offsetTop)){
                         this._rootElement.removeAttribute('style');
                     } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
                         this._rootElement.style.left = this._options.originalLeft + 'px';
@@ -152,7 +152,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                         this._rootElement.style.width = this._options.originalWidth + 'px';
                     }
                 } else {
-                    if( scrollHeight <= (this._rootElement.originalTop+this._options.offsetTop)){
+                    if( scrollHeight <= (this._rootElement.originalTop-this._options.offsetTop)){
                         return;
                     }
 
