@@ -1,0 +1,122 @@
+---
+layout: default
+title: Alerts
+base_url: ../
+---
+<div class="ink-grid">
+    <div class="whatIs">
+        <h1>Alerts</h1>
+        <p>Although they're a way of displaying text, alerts have their own specificity and functionality.</p>
+    </div>
+
+    <div class="column-group gutters">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="alerts_menu">
+                <ul class="menu vertical black rounded">
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#nav-basic">Basic Alerts</a></li>
+                    <li><a class="scrollableLink" href="#nav-block">Block alerts</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="large-80 medium-75 small-100">
+            <section id="nav-basic" data-spy="true" data-target="#alerts_menu">
+                <h2>Basic alerts</h2>
+                <p>Basic alerts are useful for simple interaction with the user, such as showing a state on a web application or giving a warning on a form.</p>
+                <p>
+                    To style some text as an alert, create a block element, such as a <code>&lt;div&gt;</code>, 
+                    with the <code>.ink-alert</code> and <code>.basic</code> classes. 
+                    This creates the outer shell of the alert, so to speak. To add some meaning, using color, add one of the following classes:
+                </p>
+                <ul>
+                    <li><code>.error</code> for error messages</li>
+                    <li><code>.success</code> for success messages</li>
+                    <li><code>.info</code> for informative messages</li>
+                </ul>
+                <p>Add a <code>&lt;button&gt;</code> element with the class <code>.ink-dismiss</code> and some sort of symbol (we like to use the <code>&amp;times;</code> HTML entity), to add a simple dismiss action to your alerts. You can test this on the examples below, just reload this page to get the alerts back.</p>
+                
+                <p><span class="ink-label success">Example</span></p> 
+                <div class="box">
+                    <div class="ink-alert basic">
+                        <button class="ink-dismiss">&times;</button>
+                        <p><b>Warning:</b> There's a warning for you</p>
+                    </div>
+                    
+                    <div class="ink-alert basic error">
+                        <button class="ink-dismiss">&times;</button>
+                        <p><b>Error:</b> The system has failed</p>
+                    </div>
+                    
+                    <div class="ink-alert basic success">
+                        <button class="ink-dismiss">&times;</button>
+                        <p><b>Done:</b> Process completed successfully</p>
+                    </div>
+    
+                    <div class="ink-alert basic info">
+                        <button class="ink-dismiss">&times;</button>
+                        <p><b>Note:</b> You have 5 minutes to leave, before self-destruct</p>
+                    </div>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+{% capture inline %}<div class="ink-alert basic info">
+    <button class="ink-dismiss">&times;</button>
+    <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
+</div>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ inline | escape }}</pre>
+            </section>
+            
+            <section id="nav-block" data-spy="true" data-target="#alerts_menu">
+                <h2>Block Alerts</h2>
+                <p>
+                    Block alerts are ideal for messages that require further explanation, since they're comprised of a title, close button and description text. 
+                    Implementation is similar to basic alerts, simply use the <code>.ink-alert</code> and <code>.block</code> classes, 
+                    instead of <code>.basic</code> and use an <code>&lt;h4&gt;</code> for the title and a <code>&lt;p&gt;</code> or a list for the description.
+                </p>
+                
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <div class="ink-alert block">
+                        <button class="ink-dismiss">&times;</button>
+                        <h4>System maintenance scheduled</h4>
+                        <p>
+                            Please note that, due to a platypus invasion on our datacenter early last morning, 
+                            the servers will have to undergo a maintenance cleaning today at 23:00 GMT.
+                        </p>
+                    </div>
+                    
+                    <div class="ink-alert block error">
+                        <button class="ink-dismiss">&times;</button>
+                        <h4>System is down</h4>
+                        <ul>
+                            <li>Do not panic</li>
+                            <li>Do not call our service line</li>
+                            <li>Breathe deep and wait an hour</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ink-alert block success">
+                        <button class="ink-dismiss">&times;</button>
+                        <h4>Thank you for buying!</h4>
+                        <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+                    </div>
+
+                    <div class="ink-alert block info">
+                        <button class="ink-dismiss">&times;</button>
+                        <h4>Additional info</h4>
+                        <p>A ring of weapons-grade 99.96% pure electrorefined plutonium is enough for one bomb core.</p>
+                    </div>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+{% capture block %}
+<div class="ink-alert block success">
+    <button class="ink-dismiss">&times;</button>
+    <h4>Thank you for buying!</h4>
+    <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
+</div>
+{% endcapture %}
+      <pre class="prettyprint linenums">{{ block | escape }}</pre>
+            </section>
+        </div>
+    </div>
+</div>

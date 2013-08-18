@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{site.title}} - {{page.title}}</title>
+    <title>{{ site.title }} - {{ page.title }}</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
@@ -18,33 +18,33 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="{{ site.images_url }}ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="{{ site.images_url }}touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.images_url }}touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.images_url }}touch-icon.114.png">
-    <link rel="apple-touch-startup-image" href="{{ site.images_url }}splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="{{ site.images_url }}splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="{{ site.images_url }}splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="shortcut icon" href="{{ page.base_url }}{{  site.images_url  }}ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="{{ page.base_url }}{{  site.images_url  }}touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ page.base_url }}{{  site.images_url  }}touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ page.base_url }}{{  site.images_url  }}touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="{{ page.base_url }}{{  site.images_url  }}splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="{{ page.base_url }}{{  site.images_url  }}splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="{{ page.base_url }}{{  site.images_url  }}splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     
     <!-- Load Inks' CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ site.css_url }}ink-min.css">
+    <link rel="stylesheet" type="text/css" href="{{ page.base_url }}{{  site.css_url  }}ink-min.css">
     
     <!-- Load Documentation sites' CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ site.css_url }}docs.css">  
+    <link rel="stylesheet" type="text/css" href="{{ page.base_url }}{{  site.css_url  }}docs.css">  
 
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="{{ site.js_url }}html5shiv.js"></script>
-        <script type="text/javascript" src="{{ site.js_url }}html5shiv-printshiv.js"></script>
+        <script type="text/javascript" src="{{ page.base_url }}{{  site.js_url  }}html5shiv.js"></script>
+        <script type="text/javascript" src="{{ page.base_url }}{{  site.js_url  }}html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="{{ site.css_url }}ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{{ page.base_url }}{{  site.css_url  }}ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="{{ site.js_url }}ink-all.min.js"></script>
-    <script type="text/javascript" src="{{ site.js_url }}autoload.js"></script>
-    <script type="text/javascript" src="{{ site.js_url }}prettify.js"></script>
+    <script type="text/javascript" src="{{ page.base_url }}{{  site.js_url  }}ink-all.min.js"></script>
+    <script type="text/javascript" src="{{ page.base_url }}{{  site.js_url  }}autoload.js"></script>
+    <script type="text/javascript" src="{{ page.base_url }}{{  site.js_url  }}prettify.js"></script>
     <!-- End of javascript -->
 
 </head>

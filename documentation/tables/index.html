@@ -1,0 +1,336 @@
+---
+layout: default
+title: Tables
+base_url: ../
+---
+<div class="ink-grid">
+    <div class="whatIs">
+        <h1>Tables</h1>
+        <p>Still unbeatable to display tabular data.</p>
+    </div>
+
+    <div class="column-group gutters">
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="tables_menu">
+                <ul class="menu vertical black rounded">                    
+                    <?php if(isset($dump)): ?>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#default">Table basics</a></li>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#alternating">Alternating</a></li>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#highlight">Highlight</a></li>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#fullBorders">Full borders</a></li>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#combined">Combined</a></li>
+                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#special">Special</a></li>
+                    <?php else: ?>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#default">Table basics</a></li>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#alternating">Alternating</a></li>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#highlight">Highlight</a></li>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#fullBorders">Full borders</a></li>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#combined">Combined</a></li>
+                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#special">Special</a></li>
+                    <?php endif; ?> 
+                </ul>
+            </nav>
+        </div>
+
+        <div class="large-80 medium-75 small-100">
+            <section id="default" data-spy="true" data-target="#tables_menu">
+                <h2>Table basics</h2>
+                <p>
+                    The default table style can be accessed by adding the <code>.ink-table</code> class to the <code>&lt;table&gt;</code> element. 
+                    This will enable you to use the default style. You can then add other classes to get any of the variations.
+                </p>
+                <p><span class="ink-label success">Example</span></p>                
+                <div class="box">
+                    <table class="ink-table">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            
+                                <td colspan="3">FOOTER</td>
+                            
+                        </tfoot>                                  
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <span class="ink-label info">Note</span> 
+                    To improve table cell formatting you can use Ink's <?php echo anchor('/layout','Layout') ?> classes such as <code>.large-%</code>, 
+                    <code>.medium-%</code> and <code>.small-%</code>. Or even <code>.content-left</code> and <code>.content-right</code> if a different alignment is
+                    needed for any given cell.
+                </p>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+<?php echo(htmlentities('<table class="ink-table">')) ?></pre>
+            </section>
+
+            <section id="alternating" data-spy="true" data-target="#tables_menu">
+                <h2>Alternating colored rows</h2>
+                <p>To better distinguish between consecutive rows, combine the <code>.ink-table</code> class with the <code>.alternating</code> class to get an alternating background color effect.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table alternating">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">This is a table footer</td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+<?php echo(htmlentities('<table class="ink-table alternating">
+')) ?></pre>
+            </section>
+
+            <section id="highlight" data-spy="true" data-target="#tables_menu">
+                <h2>Highlight rows on hover</h2>
+                <p>To highlight rows on mouse hover, add the <code>.ink-hover</code> class.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table hover">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">This is a table footer</td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+<?php echo(htmlentities('<table class="ink-table hover">
+')) ?></pre>
+            </section>
+            
+            <section id="fullBorders" data-spy="true" data-target="#tables_menu">
+                <h2>Full borders</h2>
+                <p>To get a more classic table with borders all around, use <code>.ink-bordered</code>.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    
+                    <table class="ink-table bordered">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+<?php echo(htmlentities('<table class="ink-table bordered">
+')) ?></pre>
+            </section>
+
+            <section id="combined" data-spy="true" data-target="#tables_menu">
+                <h2>Combining several styles</h2>
+                <p>For great flexibility you can combine all of the above styles in the same table, obtaining a fully bordered table with alternating colored rows that light up on hover.</p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table bordered alternating hover">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="ink-label info">Code</span></p>
+                <pre class="prettyprint linenums">
+<?php echo(htmlentities('<table class="ink-table bordered alternating hover">
+')) ?></pre>
+            </section>
+
+            <section id="special" data-spy="true" data-target="#tables_menu">
+                <h2>Special colored rows</h2>
+                <p>
+                    You can use the <?php echo anchor('/typography#nav-utilities','Ink utility classes') ?> to style rows that need special attention. 
+                    Use the <code>.ink-label</code> class with the <code>.info</code>, <code>.warning</code>, <code>.error</code> or <code>.success</code> class
+                    on any <code>&lt;tr&gt;</code> to paint the row in the corresponding background color.
+                </p>
+                <p><span class="ink-label success">Example</span></p>
+                <div class="box">
+                    <table class="ink-table bordered">
+                        <thead>
+                            <tr>
+                                <th class="content-left">ID</th>
+                                <th class="content-left">Product name</th>
+                                <th class="content-left">Product price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="ink-label warning">
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                            <tr class="ink-label success">
+                                <td>13</td>
+                                <td>Cast iron waffle maker</td>
+                                <td>&euro;158,00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Sports duffle bag</td>
+                                <td>&euro;15,00</td>
+                            </tr>
+                            <tr class="ink-label info">
+                                <td>23</td>
+                                <td>Some stuff </td>
+                                <td>&euro;489,00</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>Twin color basketball shoe</td>
+                                <td>&euro;26,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

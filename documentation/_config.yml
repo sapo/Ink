@@ -1,3 +1,8 @@
+# JEKYLL
+# exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
+
+destination: ./_site
+
 # SITE TITLE
 title: Ink
 
@@ -5,10 +10,15 @@ title: Ink
 latest: 2.2.0
 
 # URLS
-base_url: http://localhost:4000/
-images_url: /assets/img/
-js_url: /assets/js/
-css_url: /assets/css/
+site_url: http://ink.sapo.pt/
+download_url: 234
+github_url: https://github.com/sapo/Ink
+
+# ASSETS PATHS
+images_url: /img/
+js_url: /js/
+css_url: /css/
+fonts_url: /font/
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
