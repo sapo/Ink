@@ -5,14 +5,14 @@
             {% assign clean_url = page.url|remove:'index.html' %}
             {% if link.url %}
             <li {% if clean_url == link.url %}class="active"{% endif %}>            
-                <a {% if link.url == '/'%}class="logoPlaceholder"{% endif %} href="{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
+                <a {% if link.url == './'%}class="logoPlaceholder"{% endif %} href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
             </li>
             {% elsif link.submenu %}
             <li>
                 <a href="#" title="{{ sublink.text }}">{{ link.text }}&nbsp;<i class="icon-caret-down"></i></a>
                 <ul class="submenu">
                 {% for sublink in link.submenu %}
-                    <li><a href="{{ sublink.url }}" title="{{ sublink.text }}">{{ sublink.text }}</a></li>
+                    <li><a href="{{ page.base_path }}{{ sublink.url }}" title="{{ sublink.text }}">{{ sublink.text }}</a></li>
                 {% endfor %}
                 </ul>
             </li>
@@ -33,16 +33,16 @@
         <ul class="menu vertical flat black hide-all" id="topbar_menu">
         {% for link in site.navigation %}
         {% assign clean_url = page.url|remove:'index.html' %}
-            {% if link.url != '/' and link.url %}
+            {% if link.url != './' and link.url %}
             <li {% if clean_url == link.url %}class="active"{% endif %}>
-                <a href="{{ link.url }}">{{ link.text }}</a>
+                <a href="{{ page.base_path }}{{ link.url }}">{{ link.text }}</a>
             </li>
             {% elsif link.submenu %}
             <li>
                 <a class="toggle" data-target="#inkjs" href="#">{{link.text}}&nbsp;<i class="icon-caret-down"></i></a>
                 <ul class="submenu hide-all" id="inkjs">
                 {% for sublink in link.submenu %}
-                    <li><a href="{{ sublink.url }}" title="{{ sublink.text }}">{{ sublink.text }}</a></li>
+                    <li><a href="{{ page.base_path }}{{ sublink.url }}" title="{{ sublink.text }}">{{ sublink.text }}</a></li>
                 {% endfor %}
                 </ul>
             </li>
