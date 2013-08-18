@@ -6,7 +6,7 @@ pygments: true
 latest: 2.2.0
 
 # URLS
-base_url: http://localhost:4000/
+base_path:  http://localhost:4000/
 images_url: http://cdn.ink.sapo.pt/@LATEST/img/
 js_url: http://cdn.ink.sapo.pt/@LATEST/js/
 css_url: http://cdn.ink.sapo.pt/@LATEST/css/

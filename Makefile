@@ -2,7 +2,7 @@
 CSS_OUTPUT_DIR = ./css
 
 # Documentation CSS output directory
-DOCS_CSS_OUTPUT_DIR = ./documentation/assets/css
+DOCS_CSS_OUTPUT_DIR = ./documentation/css
 
 # LESS files directory
 LESS_SOURCE_DIR = ./less

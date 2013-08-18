@@ -7717,8 +7717,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   font-size: 2em;
   font-weight: bold;
   line-height: 1.3;
-  padding: 0;
-  margin-right: .5em;
+  padding: 0 0.5em;
 }
 #topbar .ink-navigation ul li a.logoPlaceholder:hover {
   background: none;

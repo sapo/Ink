@@ -20,5 +20,33 @@ js_url: js/
 css_url: css/
 fonts_url: font/
 
+# SITE PAGES
+navigation:
+ - text: Ink
+   url: /
+ - text: Getting started
+   url: /getting_started/
+ - text: Layout
+   url: /layout/
+ - text: Navigation
+   url: /navigation/
+ - text: Typography
+   url: /typography/
+ - text: Icons
+   url: /icons/
+ - text: Forms
+   url: /forms/
+ - text: Alerts
+   url: /alerts/
+ - text: Tables
+   url: /tables/
+ - text: Ink JS
+   submenu: 
+   - text: UI
+     url: /javascript/ui/
+   - text: Core
+     url: /javascript/core/
+
+
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
