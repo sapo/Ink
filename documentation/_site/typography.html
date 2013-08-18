@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+        <base href="./">
+        <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Ink - Interface Kit</title>
+    <title>InK - Interface Kit</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
@@ -25,8 +27,11 @@
     <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        
-    <!-- Load Documentation site CSS -->
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
     <link rel="stylesheet" type="text/css" href="../css/docs.css">  
 
     <!--[if lt IE 9]>
@@ -35,11 +40,12 @@
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
@@ -47,103 +53,135 @@
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
-
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                <a class="logoPlaceholder" href="../" title="Ink - Interface Kit">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
             </li>
-            <li>
-                <a href="../getting_started">Getting started</a>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
             </li>
-            <li>
-                <a href="../layout">Layout</a>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
             </li>
-            <li>
-                <a href="../navigation">Navigation</a>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
             </li>
-            <li>
-                <a href="../typography">Typography</a>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
             </li>
-            <li>
-                <a href="../icons">Icons</a>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
             </li>
-            <li>
-                <a href="../forms">Forms</a>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
             </li>
-            <li>
-                <a href="../alerts">Alerts</a>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
             </li>
-            <li>
-                <a href="../tables">Tables</a>
-            </li>
-            <li>
-                <a href="#">InK JS <i class="icon-caret-down"></i></a>
-                <ul class="submenu">
-                    <li>
-                        <a href="../javascript/ui">UI</a>
-                    </li>
-                    <li>
-                        <a href="../javascript/core">Core</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
     </nav>
+    
+
     <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
-                <a class="logoPlaceholder push-left" href="../" title="page Title">InK</a>
-                <button class="toggle" data-target="#topbar_menu">
-                    <span class="icon-reorder">
-                    </span>
-                </button>
-            </li>
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
         </ul>
-        <ul class="menu vertical flat black hide-all" id="topbar_menu">
-            <li>
-                <a href="../getting_started">Getting started</a>
-            </li>
-            <li>
-                <a href="../layout">Layout</a>
-            </li>
-            <li>
-                <a href="../navigation">Navigation</a>
-            </li>
-            <li>
-                <a href="../typography">Typography</a>
-            </li>
-            <li>
-                <a href="../icons">Icons</a>
-            </li>
-            <li>
-                <a href="../forms">Forms</a>
-            </li>
-            <li>
-                <a href="../alerts">Alerts</a>
-            </li>
-            <li>
-                <a href="../tables">Tables</a>
-            </li>
-            <li class="">
-                <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
-                <ul class="submenu hide">
-                    <li>
-                        <a href="../javascript/ui">UI</a>
-                    </li>
-                    <li>
-                        <a href="../javascript/core">Core</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="border">
-    </div>
-</div>
 
-<div class="ink-grid">
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
     <div class="whatIs">
         <h1>Typography</h1>
         <p>Text is the fundamental content type.</p>
@@ -153,23 +191,14 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="typo_menu">
                 <ul class="menu vertical rounded black ink-vspace">                    
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-fonts">Fonts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-headings">Headings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-lists">Lists</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-utilities">Utility Classes</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-additional">Additional Elements</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-fonts">Fonts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-headings">Headings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-lists">Lists</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-utilities">Utility Classes</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-additional">Additional Elements</a></li>
-                    <?php endif; ?> 
+                                        <li><a class="scrollableLink" href="./typography.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-fonts">Fonts</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-headings">Headings</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-body-hypertext">Body & Hypertext</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-lists">Lists</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-utilities">Utility Classes</a></li>
+                    <li><a class="scrollableLink" href="./typography.html#nav-additional">Additional Elements</a></li>
+                     
                 </ul>
             </nav>
         </div>
@@ -181,19 +210,17 @@
                 <p>Ink's typography is designed to create a strong hierarchy with basic styles. We distribute the open source Ubuntu font family for a modern fresh look, but you can opt for non-webfont solutions. Let's see how you can customize your font choice and we'll also throw in some advice on font stacks.</p>
                 <h3>Customizing typefaces</h3>
                 <p>Since typography is such an integral part of how you communicate with your audience, customizing font choice is paramount. Of course, you can use Ink as-is, with the Ubuntu font, but chances are, you'll want to change that.</p>
-                <p>To do that, you can add your custom CSS file, as explained in <?php echo anchor('/getting_started#nav-customizing','Getting started') ?>, and add the following rule:</p>
+                <p>To do that, you can add your custom CSS file, as explained in <a href="./index.php/getting_started#nav-customizing">Getting started</a>, and add the following rule:</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('body {
-  font-family: font1, font2, font3; <!--Your font stack here-->
-}')) ?>
-                </pre>
+body {
+  font-family: font1, font2, font3; &lt;!--Your font stack here--&gt;
+}                </pre>
                  <p>If you want, you can also edit the <mark>__typography.less</mark> file in the <mark>./less/config/</mark> folder and alter these values:</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('// sans-serif font stack
-@sans-serif-font-stack: Ubuntu, Arial, sans-serif;')) ?>
-                </pre>
+// sans-serif font stack
+@sans-serif-font-stack: Ubuntu, Arial, sans-serif;                </pre>
                 <h3>Ubuntu</h3>
                 <p>Ink's default font stack starts with the Ubuntu webfont. Make sure you can serve up the font files from your server, they are free to use and redistribute. If you can't, it's ok, the stack will default to Arial, then Helvetica, and finally, the system's default sans-serif. The stack is:</p>
                 <p><code>font-family: Ubuntu, Arial, Helvetica, Sans-serif;</code></p>
@@ -256,13 +283,12 @@
                 <p>To customize these colors to match your design, either set up your custom CSS or edit the appropriate <mark>__colors.less</mark> file in the <mark>./less/config/</mark> folder, and change these values:</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('// LINKS
+// LINKS
 @link-color                 : #0069D6;
 @link-visited-color         : #808080;
 @link-active-color          : darken(red,5%);
 @link-hover-color           : #007ED5;
-@link-focus-color           : @link-color;')) ?>
-                </pre>
+@link-focus-color           : @link-color;                </pre>
                 <h3>Notes</h3>
                 <p>If you need to add side notes to your text, apply the utility class <code>.note</code> to your paragraphs to get smaller, faded text as in the example below.</p>
                 <p><span class="ink-label success">Example</span></p>
@@ -281,14 +307,13 @@
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Ingredients</h4>
-<ul>
-   <li>Two fresh avocados</li>
-   <li>Two ripe limes</li>
-   <li>An onion</li>
-   <li>Parsley</li>
-</ul>')) ?>
-                        </pre>
+&lt;h4&gt;Ingredients&lt;/h4&gt;
+&lt;ul&gt;
+   &lt;li&gt;Two fresh avocados&lt;/li&gt;
+   &lt;li&gt;Two ripe limes&lt;/li&gt;
+   &lt;li&gt;An onion&lt;/li&gt;
+   &lt;li&gt;Parsley&lt;/li&gt;
+&lt;/ul&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -308,14 +333,13 @@
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Instructions</h4>
-<ol>
-   <li>Grill the chicken</li>
-   <li>Pour into tortilla</li>
-   <li>Add guacamole, sour cream and cheese</li>
-   <li>Roll tortilla and serve</li>
-</ol>')) ?>
-                        </pre>
+&lt;h4&gt;Instructions&lt;/h4&gt;
+&lt;ol&gt;
+   &lt;li&gt;Grill the chicken&lt;/li&gt;
+   &lt;li&gt;Pour into tortilla&lt;/li&gt;
+   &lt;li&gt;Add guacamole, sour cream and cheese&lt;/li&gt;
+   &lt;li&gt;Roll tortilla and serve&lt;/li&gt;
+&lt;/ol&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -335,14 +359,13 @@
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Definitions</h4>
-<dl>
-   <dt>Avocado</dt>
-   <dd>Pear-shaped fruit native to Central Mexico.</dd>
-   <dt>Guacamole</dt>
-   <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
-</dl>')) ?>
-                        </pre>
+&lt;h4&gt;Definitions&lt;/h4&gt;
+&lt;dl&gt;
+   &lt;dt&gt;Avocado&lt;/dt&gt;
+   &lt;dd&gt;Pear-shaped fruit native to Central Mexico.&lt;/dd&gt;
+   &lt;dt&gt;Guacamole&lt;/dt&gt;
+   &lt;dd&gt;An avocado-based sauce that originated with the Aztecs in Mexico.&lt;/dd&gt;
+&lt;/dl&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -362,14 +385,13 @@
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
                         <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Stuff</h4>
-<ul class="unstyled">
-   <li>Carnitas</li>
-   <li>Jalapeno peppers</li>
-   <li>Sour cream</li>
-   <li>Pico de gallo</li>
-</ul>')) ?>
-                        </pre>
+&lt;h4&gt;Stuff&lt;/h4&gt;
+&lt;ul class=&quot;unstyled&quot;&gt;
+   &lt;li&gt;Carnitas&lt;/li&gt;
+   &lt;li&gt;Jalapeno peppers&lt;/li&gt;
+   &lt;li&gt;Sour cream&lt;/li&gt;
+   &lt;li&gt;Pico de gallo&lt;/li&gt;
+&lt;/ul&gt;                        </pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -452,7 +474,7 @@
                 
 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('<span class="ink-badge black">2</span>')) ?></pre>
+&lt;span class=&quot;ink-badge black&quot;&gt;2&lt;/span&gt;</pre>
                 
                 <p class="top-space"><span class="ink-label success">Examples</span> One of the most common usecases is the menu update badge.</p>
                 <div class="box">
@@ -479,7 +501,7 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="note">Please refer to the <?php echo anchor('/navigation','navigation') ?> section for further reading on how to build a menu.</p>
+                <p class="note">Please refer to the <a href="./index.php/navigation">navigation</a> section for further reading on how to build a menu.</p>
 
                 
             </section>
@@ -493,7 +515,7 @@
                 <p>For abbreviations, simply use the HTML <code>&lt;abbr&gt;</code> tag, like so:</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('<p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>')) ?></pre>
+&lt;p&gt;Ink was entirely developed with text editors, no &lt;abbr title=&quot;What You See Is What You Get&quot;&gt;WYSIWYG&lt;/abbr&gt; software was harmed.&lt;/p&gt;</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
@@ -502,11 +524,10 @@
                 <p>For block quotes, use the <code>&lt;blockquote&gt;</code> element, with an optional <code>&lt;cite&gt;</code> element to contain the source name, like so:</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('<blockquote>
-<p>You can\'t always get what you want.</p>
-<p><cite>Jagger & Richards</cite>, 1969</p>
-</blockquote>')) ?>
-                </pre>
+&lt;blockquote&gt;
+&lt;p&gt;You can't always get what you want.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Jagger &amp; Richards&lt;/cite&gt;, 1969&lt;/p&gt;
+&lt;/blockquote&gt;                </pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <blockquote>
@@ -518,10 +539,10 @@
                 <p>You can use the <code>&lt;address&gt;</code> element to contain address elements, such as a name, street, postal code. Use headings, paragraphs and line-breaks to compose your address.</p>
                 <p><span class="ink-label info">Code</span></p>
                 <pre class="prettyprint linenums">
-<?php echo(htmlentities('<address>
-<h6>SAPO</h6>
-<p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
-</address>')) ?></pre>
+&lt;address&gt;
+&lt;h6&gt;SAPO&lt;/h6&gt;
+&lt;p&gt;Av. Fontes Pereira de Melo, 40&lt;br&gt;1050 Lisboa&lt;/p&gt;
+&lt;/address&gt;</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <address>
@@ -533,9 +554,7 @@
             <!--additionalelements_end-->
         </div>
     </div>
-</div>
-
-<footer>
+</div><footer>
     <div class="ink-grid">
         <div class="socialplugins">
             <div class="column-group gutters">
@@ -558,9 +577,9 @@
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                    <li><a href="about">About</a></li>
-                    <li><a href="changelog">Changelog</a></li>
-                    <li><a href="glossary">Glossary</a></li>           
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
                     <li>
                         Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
                         <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
@@ -595,26 +614,14 @@
         </div>
     </div>
 </footer>
-
-
-<script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
-</script>
-<script>
-        SAPO.WebAnalytics.track({
-            swakt: ""
-        });
-        SAPO.WebAnalytics.registerClick();
-</script>
-<script>
+        <script>
 (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-    fjs.parentNode.insertBefore(js, fjs);
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
-
 </html>

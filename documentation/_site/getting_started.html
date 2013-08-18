@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+        <base href="./">
+        <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Ink - Interface Kit</title>
+    <title>InK - Interface Kit</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
@@ -25,8 +27,11 @@
     <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        
-    <!-- Load Documentation site CSS -->
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
     <link rel="stylesheet" type="text/css" href="../css/docs.css">  
 
     <!--[if lt IE 9]>
@@ -35,11 +40,12 @@
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
@@ -47,103 +53,135 @@
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
-
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                <a class="logoPlaceholder" href="../" title="Ink - Interface Kit">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
             </li>
-            <li>
-                <a href="../getting_started">Getting started</a>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
             </li>
-            <li>
-                <a href="../layout">Layout</a>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
             </li>
-            <li>
-                <a href="../navigation">Navigation</a>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
             </li>
-            <li>
-                <a href="../typography">Typography</a>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
             </li>
-            <li>
-                <a href="../icons">Icons</a>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
             </li>
-            <li>
-                <a href="../forms">Forms</a>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
             </li>
-            <li>
-                <a href="../alerts">Alerts</a>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
             </li>
-            <li>
-                <a href="../tables">Tables</a>
-            </li>
-            <li>
-                <a href="#">InK JS <i class="icon-caret-down"></i></a>
-                <ul class="submenu">
-                    <li>
-                        <a href="../javascript/ui">UI</a>
-                    </li>
-                    <li>
-                        <a href="../javascript/core">Core</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
     </nav>
+    
+
     <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
-                <a class="logoPlaceholder push-left" href="../" title="page Title">InK</a>
-                <button class="toggle" data-target="#topbar_menu">
-                    <span class="icon-reorder">
-                    </span>
-                </button>
-            </li>
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
         </ul>
-        <ul class="menu vertical flat black hide-all" id="topbar_menu">
-            <li>
-                <a href="../getting_started">Getting started</a>
-            </li>
-            <li>
-                <a href="../layout">Layout</a>
-            </li>
-            <li>
-                <a href="../navigation">Navigation</a>
-            </li>
-            <li>
-                <a href="../typography">Typography</a>
-            </li>
-            <li>
-                <a href="../icons">Icons</a>
-            </li>
-            <li>
-                <a href="../forms">Forms</a>
-            </li>
-            <li>
-                <a href="../alerts">Alerts</a>
-            </li>
-            <li>
-                <a href="../tables">Tables</a>
-            </li>
-            <li class="">
-                <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
-                <ul class="submenu hide">
-                    <li>
-                        <a href="../javascript/ui">UI</a>
-                    </li>
-                    <li>
-                        <a href="../javascript/core">Core</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="border">
-    </div>
-</div>
 
-<div class="ink-grid">
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
     <div class="whatIs">
         <h1>Getting started</h1>
         <p>So you want to start using Ink? You've come to the right place.</p>
@@ -153,13 +191,13 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="start_menu">
                 <ul class="menu vertical rounded black">
-                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="#nav-introduction">Introduction</a></li>
-                    <li><a class="scrollableLink" href="#nav-the-grid">The grid</a></li>
-                    <li><a class="scrollableLink" href="#nav-first-steps">First steps</a></li>
-                    <li><a class="scrollableLink" href="#nav-customizing">Customizing Ink</a></li>
-                    <li><a class="scrollableLink" href="#nav-getting-technical">Getting technical</a></li> 
-                </ul>
+                                        <li><a class="scrollableLink" href="./getting_started.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./getting_started.html#nav-introduction">Introduction</a></li>
+                    <li><a class="scrollableLink" href="./getting_started.html#nav-the-grid">The grid</a></li>
+                    <li><a class="scrollableLink" href="./getting_started.html#nav-first-steps">First steps</a></li>
+                    <li><a class="scrollableLink" href="./getting_started.html#nav-customizing">Customizing Ink</a></li>
+                    <li><a class="scrollableLink" href="./getting_started.html#nav-getting-technical">Getting technical</a></li>
+                                    </ul>
             </nav>
         </div>
         
@@ -185,7 +223,7 @@
               <pre class="prettyprint linenums">
 &lt;!--[if lte IE 7 ]&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;./css/ink-ie7.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; title=&quot;no title&quot; charset=&quot;utf-8&quot;&gt;
-&lt;![endif]--&gt;</pre>
+&iuml;&pound;&iquest;&lt;![endif]--&gt;              </pre>
                 <p class="hide-all show-large">Here's the whole thing summed up in a nifty table:</p>
                 <table class="ink-table bordered alternating browser-support hide-all show-large">
                     <thead>
@@ -241,12 +279,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <p>For a detailed explanation on Ink's grid, check out the <?php echo anchor('layout','Layout') ?> page.</p>    
+                <p>For a detailed explanation on Ink's grid, check out the <a href="./index.php/layout">Layout</a> page.</p>    
             </section>
             <section id="nav-first-steps" data-spy="true" data-target="#start_menu">                
                 <h2>First steps</h2>
                 <h3>Download Ink</h3>
-                <p><?php echo anchor('download/latest','Download') ?> a fresh copy of Ink's latest version, you'll get a zip package containing all kinds of treats. Read the following file tree carefully to make sure you understand where everything is and what each folder and file set's purpose is.</p>
+                <p><a href="./index.php/download/latest">Download</a> a fresh copy of Ink's latest version, you'll get a zip package containing all kinds of treats. Read the following file tree carefully to make sure you understand where everything is and what each folder and file set's purpose is.</p>
 <pre class="ink-package">
  <strong>ink/</strong>
   ├── <strong>cookbook/</strong> <span>(recipes for common layout types using Ink)</span>
@@ -286,7 +324,7 @@
   └── <strong>presskit/</strong> <span>(contains .psd and .eps versions of Ink's logo)</span>
 </pre>
             <p>
-              Along with all the files described above, the bundle you just downloaded contains an <mark>empty-page.html</mark> file in the <mark>./cookbook/</mark> folder. There is also a <mark>quick-start.css</mark> file in the <mark>./css/</mark> folder with media queries for default screen sizes. Read more about these, in the <a href="#nav-customizing">customization section</a>, below.
+              Along with all the files described above, the bundle you just downloaded contains an <mark>empty-page.html</mark> file in the <mark>./cookbook/</mark> folder. There is also a <mark>quick-start.css</mark> file in the <mark>./css/</mark> folder with media queries for default screen sizes. Read more about these, in the <a href="./index.php/getting_started/index/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-customizing">customization section</a>, below.
             </p>
             <p>In the <mark>./cookbook/</mark> folder you'll also find some HTML files with common layout solutions. Take a look at those to get familiar with the way Ink works. Or even use them to start your project.</p>
             <p>Now that you've got acquainted with Ink's basics, give the rest of the documentation a read and start your new project! we strongly recommend you go through the documentation, which we made as detailed and simple as possible for both seasoned professionals and absolute beginners to be able to pick Ink up and learn it in depth. You can always use the <a href="http://ink.sapo.pt">website</a> or, if it's more convenient for you or you happen to be offline, check the <mark>./documentation/</mark> folder, inside your Ink bundle.</p>
@@ -305,7 +343,8 @@
               <p>Just edit the variable values, save the file, and then compile ink.less, which in turn, will include the configuration files and output <mark>ink.css</mark> for you to use.</p>
               <p>For example, say you want your pages to have a width which is 95% of the viewport, instead of the 1200 px default. Just edit the <mark>__grid.less</mark> file and change the <code>@site-width</code> variable to that value, like this:</p>
               <p><span class="ink-label info">Code</span></p>
-              <pre class="prettyprint linenums">@site-width: 95%;</pre>
+              <pre class="prettyprint linenums">
+@site-width: 95%;                </pre>
               <p><span class="ink-label warning">Attention</span> if you re-download Ink to the same top folder, the config files will be written over, so make sure you keep your Ink instances separate by project.</p>
               <p><a href="#nav-getting-technical">Read below</a> to find out more about LESS and how Ink uses it.</p>
               <h3>Adding custom CSS</h3>
@@ -319,44 +358,35 @@
               <h4>Method 1 - Semantic Classes</h4>
               <p>In essence, if you define your main content area as taking up 75% of the space with a left sidebar taking up the remaining 25%, don't just use the appropriate <code>.large-25</code> and <code>.large-75</code> classes, but also use your own <code>.sidebar</code> and <code>.content</code> classes.</p>
               <p><span class="ink-label info">Code</span></p>
-
               <pre class="prettyprint linenums">
-&lt;div class=&quot;large-75 content&quot;&gt;Your content here&lt;/div&gt;
-&lt;div class=&quot;large-25 sidebar&quot;&gt;Your sidebar stuff here&lt;/div&gt;
-</pre>
+&lt;div class=&quot;large-75 content&gt;Your content here&lt;/div&gt;
+&lt;div class=&quot;large-25 sidebar&quot;&gt;Your sidebar stuff here&lt;/div&gt;              </pre>
               <p><span class="ink-label info">Note</span> You'll read about the large classes in the <a href="/layout">Layout</a> section.</p>
               <h4>Method 2 - Custom ID</h4>
               <p>Another method of using custom CSS is to simply add a class or id to your <code>&lt;body&gt;</code> element and then resort to CSS inheritance to customize Ink's own classes without delving into <mark>ink.css</mark>. Like this, you keep the original Ink CSS with added customizations on top, which you can turn on and off my simply adding or removing a single class/id.</p>
               <p><span class="ink-label info">Code</span> HTML Example using an ID on the <code>&lt;body&gt;</code></p>
-
               <pre class="prettyprint linenums">
 &lt;body id=&quot;mySite&quot;&gt; &lt;!-- Identify your custom CSS with an ID on the body --&gt;
   &lt;div class=&quot;ink-grid&quot;&gt; &lt;!-- Use Ink classes to build everything --&gt;
     ...
   &lt;/div&gt;
-&lt;/body&gt;
-</pre>
+&lt;/body&gt;              </pre>
               <p><span class="ink-label info">Code</span> CSS example for customizing <code>.ink-grid</code> using your custom ID</p>
-
               <pre class="prettyprint linenums">
 body#mySite div.ink-grid {
   width: 95%;
-}
-</pre>
+}              </pre>
               <p><span class="ink-label info">Tip</span> Try to keep your CSS specificity high, to make sure you avoid colisions.</p>
               <p>Both methods described above will allow you to build your own customizations in a separate CSS file, while keeping Ink CSS 'clean'.</p>
               <p>We provide you with the <mark>quick-start.css</mark> file (in the <mark>./css/</mark> folder), which is media-query ready, so just use that (evidently, you can rename it to whatever you like), and link it in the <code>&lt;head&gt;</code> of your document.</p>
               <p>So, if you're using the templates included with Ink (we suggest you at least start with <mark>empty-page.html</mark>, in the <mark>./cookbook/</mark> folder), look for the following line:</p>
-
               <pre class="prettyprint linenums">
-&lt;link rel=&quot;stylesheet&quot; href=&quot;./css/ink.css&quot;&gt;
-</pre>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./css/ink.css&quot;&gt;              </pre>
               <p>And add your own link:</p>
-
               <pre class="prettyprint linenums">
 &lt;link rel=&quot;stylesheet&quot; href=&quot;./css/ink.css&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;./css/quick-start.css&quot;&gt; &lt;!--We suggest you rename this to match your project--&gt;
-</pre>              
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./css/quick-start.css&quot;&gt; &lt;!--We suggest you rename this to match your project--&gt;              </pre>
+              
               <h3>Hacking Ink</h3>
               <p>If you want, you can alter ink.css directly or, if you prefer, change everything in the <mark>./less/modules/</mark> LESS files. If you look in there, you'll see Ink in all its glory.</p>
               <p>The reason we don't recommend this method is that you will not be able to benefit from our updates and bug fixes. If you use the second method, described above, and just style your own custom semantic classes, then you can download any future version of Ink and just overwrite the original files, while retaining your custom LESS and custom CSS files and you'll be able to benefit from whatever new developments Ink has to offer.</p>
@@ -370,21 +400,16 @@ body#mySite div.ink-grid {
                 <p>In order to make Ink as easy to use as possible we've opted to make our CSS class names as similar as possible to a human language, in our case, English. Class names describe component types and visual/behaviour characteristics. This can be a bit verbose but we feel that it makes the code highly readable and easy to learn and rememeber.</p>
                 <p>To avoid name collisions and get higher css specificity, all components have a "root" class, on which children classes depend like <code>.ink-navigation</code> or <code>.ink-form</code>.</p>
                 <p><span class="ink-label info">Code</span></p>
-
-                <pre class="prettyprint linenums">
-&lt;nav class=&quot;ink-navigation&quot;&gt;
+<pre class=" prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot;&gt;
   &lt;ul class=&quot;menu horizontal blue&quot;&gt;
     ...
   &lt;/ul&gt;
-&lt;/nav&gt;
-</pre>
+&lt;/nav&gt;</pre>                
                 <p>You've guessed it. It's a blue horizontal menu!</p>
             </section>         
         </div>
     </div>
-</div>
-
-<footer>
+</div><footer>
     <div class="ink-grid">
         <div class="socialplugins">
             <div class="column-group gutters">
@@ -407,9 +432,9 @@ body#mySite div.ink-grid {
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                    <li><a href="about">About</a></li>
-                    <li><a href="changelog">Changelog</a></li>
-                    <li><a href="glossary">Glossary</a></li>           
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
                     <li>
                         Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
                         <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
@@ -444,26 +469,14 @@ body#mySite div.ink-grid {
         </div>
     </div>
 </footer>
-
-
-<script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
-</script>
-<script>
-        SAPO.WebAnalytics.track({
-            swakt: ""
-        });
-        SAPO.WebAnalytics.registerClick();
-</script>
-<script>
+        <script>
 (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-    fjs.parentNode.insertBefore(js, fjs);
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
-
 </html>

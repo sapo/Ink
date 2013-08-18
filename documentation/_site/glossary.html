@@ -1,9 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+        <base href="./">
+        <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Ink - Interface Kit</title>
+    <title><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined variable: pageTitle</p>
+<p>Filename: common/document_top.php</p>
+<p>Line Number: 10</p>
+
+</div>InK - Interface Kit</title>
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
@@ -25,8 +36,11 @@
     <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        
-    <!-- Load Documentation site CSS -->
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
     <link rel="stylesheet" type="text/css" href="../css/docs.css">  
 
     <!--[if lt IE 9]>
@@ -35,11 +49,12 @@
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
     <!-- End of javascript -->
@@ -47,103 +62,135 @@
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
-
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
             <li>
-                <a class="logoPlaceholder" href="../" title="Ink - Interface Kit">InK</a>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
             </li>
-            <li>
-                <a href="../getting_started">Getting started</a>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
             </li>
-            <li>
-                <a href="../layout">Layout</a>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
             </li>
-            <li>
-                <a href="../navigation">Navigation</a>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
             </li>
-            <li>
-                <a href="../typography">Typography</a>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
             </li>
-            <li>
-                <a href="../icons">Icons</a>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
             </li>
-            <li>
-                <a href="../forms">Forms</a>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
             </li>
-            <li>
-                <a href="../alerts">Alerts</a>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
             </li>
-            <li>
-                <a href="../tables">Tables</a>
-            </li>
-            <li>
-                <a href="#">InK JS <i class="icon-caret-down"></i></a>
-                <ul class="submenu">
-                    <li>
-                        <a href="../javascript/ui">UI</a>
-                    </li>
-                    <li>
-                        <a href="../javascript/core">Core</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
     </nav>
+    
+
     <nav class="ink-navigation ink-grid hide-all show-medium show-small">
         <ul class="menu vertical flat black">
             <li class="title">
-                <a class="logoPlaceholder push-left" href="../" title="page Title">InK</a>
-                <button class="toggle" data-target="#topbar_menu">
-                    <span class="icon-reorder">
-                    </span>
-                </button>
-            </li>
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
         </ul>
-        <ul class="menu vertical flat black hide-all" id="topbar_menu">
-            <li>
-                <a href="../getting_started">Getting started</a>
-            </li>
-            <li>
-                <a href="../layout">Layout</a>
-            </li>
-            <li>
-                <a href="../navigation">Navigation</a>
-            </li>
-            <li>
-                <a href="../typography">Typography</a>
-            </li>
-            <li>
-                <a href="../icons">Icons</a>
-            </li>
-            <li>
-                <a href="../forms">Forms</a>
-            </li>
-            <li>
-                <a href="../alerts">Alerts</a>
-            </li>
-            <li>
-                <a href="../tables">Tables</a>
-            </li>
-            <li class="">
-                <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
-                <ul class="submenu hide">
-                    <li>
-                        <a href="../javascript/ui">UI</a>
-                    </li>
-                    <li>
-                        <a href="../javascript/core">Core</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="border">
-    </div>
-</div>
 
-<div class="ink-grid" id="nav-home">
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid" id="nav-home">
     <div class="whatIs">
         <h1>Glossary</h1>
         <p>Know all about Ink's hidden treasures.</p>
@@ -339,7 +386,7 @@
                 </tr>
                 <tr>
                     <td><code>.icon-*</code></td>
-                    <td>Every class with this prefix is part of the icon webfont collection. Please check the detailed information in our <a href="<?php echo site_url('icons') ?>">icon section</a> or the <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> website.</td>
+                    <td>Every class with this prefix is part of the icon webfont collection. Please check the detailed information in our <a href="./index.php/icons">icon section</a> or the <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> website.</td>
                 </tr>
                 <tr>
                     <td><code>.ink-alert.basic</code></td>
@@ -1016,10 +1063,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><span class="ink-label success">New</span> <code>.tooltip</code></td>
-                    <td>Defines a container with an associated tooltip.</td>
-                </tr>
-                <tr>
                     <td><code>.unstyled</code></td>
                     <td>Resets <code>&lt;ul&gt;</code> padding and list styles.</td>
                 </tr>
@@ -1036,9 +1079,7 @@
             </tbody>
         </table>
     </section>
-</div>
-
-<footer>
+</div><footer>
     <div class="ink-grid">
         <div class="socialplugins">
             <div class="column-group gutters">
@@ -1061,9 +1102,9 @@
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                    <li><a href="about">About</a></li>
-                    <li><a href="changelog">Changelog</a></li>
-                    <li><a href="glossary">Glossary</a></li>           
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
                     <li>
                         Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
                         <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
@@ -1098,26 +1139,14 @@
         </div>
     </div>
 </footer>
-
-
-<script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
-</script>
-<script>
-        SAPO.WebAnalytics.track({
-            swakt: ""
-        });
-        SAPO.WebAnalytics.registerClick();
-</script>
-<script>
+        <script>
 (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-    fjs.parentNode.insertBefore(js, fjs);
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
-
 </html>

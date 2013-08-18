@@ -15,10 +15,10 @@ download_url: 234
 github_url: https://github.com/sapo/Ink
 
 # ASSETS PATHS
-images_url: /img/
-js_url: /js/
-css_url: /css/
-fonts_url: /font/
+images_url: img/
+js_url: js/
+css_url: css/
+fonts_url: font/
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D

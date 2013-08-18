@@ -1,9 +1,187 @@
----
-layout: default
-title: JS Core
-base_url: ../../
----
-<div class="ink-grid">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
     <div class="whatIs">
         <h1>Ink's Javascript core</h1>
         <p>The framework for extensibility.</p>
@@ -13,13 +191,13 @@ base_url: ../../
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="core_menu">
                 <ul class="menu vertical black rounded">
-                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="#nav-ink">Ink</a></li>
-                    <li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
-                    <li><a class="scrollableLink" href="#nav-net">Net</a></li>
-                    <li><a class="scrollableLink" href="#nav-util">Util</a></li>
-                    <li><a class="scrollableLink" href="#nav-custom-components">Custom components</a></li>
-                </ul>
+                                        <li><a class="scrollableLink" href="./js-core.html#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-ink">Ink</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-dom">Dom</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-net">Net</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-util">Util</a></li>
+                    <li><a class="scrollableLink" href="./js-core.html#nav-custom-components">Custom components</a></li>
+                                    </ul>
             </nav>
         </div>
         
@@ -27,7 +205,7 @@ base_url: ../../
             
             <section>
                 <p>
-                    Ink includes a group of <a href="<?php echo base_url() . 'js/ui/';?>">UI components</a> out of the box.<br>
+                    Ink includes a group of <a href="./js/ui/">UI components</a> out of the box.<br>
                     Those components depend on Ink's Javascript core, which provides a set of methods and modules that help developers extending the features of this framework.
                 </p>
 
@@ -35,7 +213,7 @@ base_url: ../../
                     The Javascript core can be loaded in one of the following forms:<br>
 
                     <p><span class="ink-label info">Loading Ink's Javascript core Bundle from CDN</span></p>
-                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="<?php echo cdn_url('js');?>ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;</pre>
                     <br>
                     <span class="ink-label info">Loading Ink's Javascript core Bundle from your localhost</span>
                     <pre class="prettyprint linenums">&lt;script type="text/javascript" src="/js/ink.min.js"&gt;&lt;/script&gt;</pre>
@@ -46,13 +224,13 @@ base_url: ../../
                 </p>
                 <ul>
                     <li>
-                        <b><a href="<?php echo tech_docs_url();?>Ink.html">Ink</a></b> - Ink's Javascript <i>ecosystem</i>. Provides the necessary methods to create and load the different Ink's Javascript modules:
+                        <b><a href="Ink.html">Ink</a></b> - Ink's Javascript <i>ecosystem</i>. Provides the necessary methods to create and load the different Ink's Javascript modules:
                         <ul>
                             <li><b>Ink.bind</b> - This method is a cross-browser Function.prototype.bind alternative. Allows the developer to define in which context a function is called.</li>
 
                             <li><b>Ink.bindEvent</b> - Like <i>Ink.bind</i> this method is a cross-browser Function.prototype.bind alternative. The difference is that it maintains the <i>window.event</i> object as first argument in the function's call.</li>
 
-                            <li><b>Ink.createModule</b> - This method is used to create several of Ink's Javascript components. Want to create a custom component? <a title="Custom Components" href="<?php echo current_url() ?>#nav-custom-components">Check here</a>.
+                            <li><b>Ink.createModule</b> - This method is used to create several of Ink's Javascript components. Want to create a custom component? <a title="Custom Components" href="./index.php/js/core/4cc555ce5b2d4d3ba338d60ff224c6fa#nav-custom-components">Check here</a>.
                             </li>
 
                             <li><b>Ink.extendObj</b> - This method enriches the destination object with values from source object whenever the key is missing in destination.</li>
@@ -78,49 +256,49 @@ base_url: ../../
                     <li>
                         <b>Ink.Dom</b> - Set of modules that helps the developer navigate and manipulate the DOM:
                         <ul>
-                            <li><b><a href="<?php echo tech_docs_url('Browser','Dom');?>">Ink.Dom.Browser</a></b> - This module provides informations about the users' browsers.</li>
+                            <li><b><a href="Ink.Dom.Browser.html">Ink.Dom.Browser</a></b> - This module provides informations about the users' browsers.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Css','Dom');?>">Ink.Dom.Css</a></b> - This module provides a method for getting, manipulating the CSS features of DOM Elements.</li>
+                            <li><b><a href="Ink.Dom.Css.html">Ink.Dom.Css</a></b> - This module provides a method for getting, manipulating the CSS features of DOM Elements.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Element','Dom');?>">Ink.Dom.Element</a></b> - This module provides methods to manipulate the DOM, get and set attributes of DOM elements, amongst others.</li>
+                            <li><b><a href="Ink.Dom.Element.html">Ink.Dom.Element</a></b> - This module provides methods to manipulate the DOM, get and set attributes of DOM elements, amongst others.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Event','Dom');?>">Ink.Dom.Event</a></b> - This module provides methods for adding and removing event listeners, as well as stopping the propagation ( also known as <i>bubbling</i>) and preventing the default behavior of events.</li>
+                            <li><b><a href="Ink.Dom.Event.html">Ink.Dom.Event</a></b> - This module provides methods for adding and removing event listeners, as well as stopping the propagation ( also known as <i>bubbling</i>) and preventing the default behavior of events.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Loaded','Dom');?>">Ink.Dom.Loaded</a></b> - This module provides a method for running functions when the page is loaded ( <i>document.ready</i> ).</li>
+                            <li><b><a href="Ink.Dom.Loaded.html">Ink.Dom.Loaded</a></b> - This module provides a method for running functions when the page is loaded ( <i>document.ready</i> ).</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Selector','Dom');?>">Ink.Dom.Selector</a></b> - This module provides methods for selecting elements in the DOM.</li>
-                            <li><b><a href="<?php echo tech_docs_url('Loaded','Dom');?>">Ink.Dom.Loaded</a></b> - Use this module to add code to be executed when the browser loads your web pages. Handy when you are not sure whether the elements you need are available yet.</li>
-                            <li><b><a href="<?php echo tech_docs_url('FormSerialize','Dom');?>">Ink.Dom.FormSerialize</a></b> - Serialize or unserialize your form data to and from JavaScript object structures. Useful when you want to juice up an existing form using AJAX.</li>
+                            <li><b><a href="Ink.Dom.Selector.html">Ink.Dom.Selector</a></b> - This module provides methods for selecting elements in the DOM.</li>
+                            <li><b><a href="Ink.Dom.Loaded.html">Ink.Dom.Loaded</a></b> - Use this module to add code to be executed when the browser loads your web pages. Handy when you are not sure whether the elements you need are available yet.</li>
+                            <li><b><a href="Ink.Dom.FormSerialize.html">Ink.Dom.FormSerialize</a></b> - Serialize or unserialize your form data to and from JavaScript object structures. Useful when you want to juice up an existing form using AJAX.</li>
                         </ul>
                         <br>
                     </li>
                     <li>
                         <b>Ink.Net</b> - Set of modules related with communication and external requests:
                         <ul>
-                            <li><b><a href="<?php echo tech_docs_url('Ajax','Net');?>">Ink.Net.Ajax</a></b> - Cross-browser module that has functions to do AJAX requests.</li>
+                            <li><b><a href="Ink.Net.Ajax.html">Ink.Net.Ajax</a></b> - Cross-browser module that has functions to do AJAX requests.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('JsonP','Net');?>">Ink.Net.JsonP</a></b> - This module provides functions to make JSONP requests.</li>
+                            <li><b><a href="Ink.Net.JsonP.html">Ink.Net.JsonP</a></b> - This module provides functions to make JSONP requests.</li>
                         </ul>
                         <br>
                     </li>
                     <li>
                         <b>Ink.Util</b> - Set of utility modules to assist the developer (and the Javascript components) in some more common tasks:
                         <ul>
-                            <li><b><a href="<?php echo tech_docs_url('Array','Util');?>">Ink.Util.Array</a></b> - This module provides cross-browser methods to manipulate arrays.</li>
+                            <li><b><a href="Ink.Util.Array.html">Ink.Util.Array</a></b> - This module provides cross-browser methods to manipulate arrays.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Cookie','Util');?>">Ink.Util.Cookie</a></b> - This module provides cross-browser methods for setting, reading and removing cookies with Javascript.</li>
+                            <li><b><a href="Ink.Util.Cookie.html">Ink.Util.Cookie</a></b> - This module provides cross-browser methods for setting, reading and removing cookies with Javascript.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Date','Util');?>">Ink.Util.Date</a></b> - This module provide several utility functions to manipulate dates.</li>
+                            <li><b><a href="Ink.Util.Date.html">Ink.Util.Date</a></b> - This module provide several utility functions to manipulate dates.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Dumper','Util');?>">Ink.Util.Dumper</a></b> - This module provides methods to assist the developer to dump/profile code.</li>
+                            <li><b><a href="Ink.Util.Dumper.html">Ink.Util.Dumper</a></b> - This module provides methods to assist the developer to dump/profile code.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('String','Util');?>">Ink.Util.String</a></b> - This module contains string handling and manipulation functions.</li>
+                            <li><b><a href="Ink.Util.String.html">Ink.Util.String</a></b> - This module contains string handling and manipulation functions.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Swipe','Util');?>">Ink.Util.Swipe</a></b> - This module provides a set of cross-browser, cross-device functions to detect swiping. That includes direction, velocity, coordinates.</li>
+                            <li><b><a href="Ink.Util.Swipe.html">Ink.Util.Swipe</a></b> - This module provides a set of cross-browser, cross-device functions to detect swiping. That includes direction, velocity, coordinates.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Url','Util');?>">Ink.Util.Url</a></b> - This module provides methods to handle and manipulate URLs.</li>
+                            <li><b><a href="Ink.Util.Url.html">Ink.Util.Url</a></b> - This module provides methods to handle and manipulate URLs.</li>
 
-                            <li><b><a href="<?php echo tech_docs_url('Validator','Util');?>">Ink.Util.Validator</a></b> - This module provides methods to help the developer in validation processes.</li>
+                            <li><b><a href="Ink.Util.Validator.html">Ink.Util.Validator</a></b> - This module provides methods to help the developer in validation processes.</li>
                         </ul>
                         <br>
                     </li>
@@ -132,16 +310,16 @@ base_url: ../../
                 <p><span class="ink-label info">Loading Javascript components from CDN</span></p>
                 <p>
                     This file is required and should <u>always</u> be loaded first:
-                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="<?php echo cdn_url('js');?>ink.min.js"&gt;&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;</pre>
                     <br>
                     And then the different components... Example:
-                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="<?php echo cdn_url('js');?>ink.modal.js"&gt;&lt;/script&gt;</pre>
+                    <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.modal.js"&gt;&lt;/script&gt;</pre>
                 </p>
             </section>
 
             <section id="nav-ink" data-spy="true" data-target="#core_menu">
                 <h2>Ink</h2>
-                <p class="note"><a href="<?php echo tech_docs_url();?>Ink.html">API Link</a></p>
+                <p class="note"><a href="Ink.html">API Link</a></p>
                 <p>This is the starting point of the Ink's Javascript core. It provides the necessary methods for loading the different modules, extensibility (creation of modules), scope/context manipulation, namespace creation, amongst other things.</p>
 
                 <h3><i>requireModules</i></h3>
@@ -149,7 +327,7 @@ base_url: ../../
                     This method provides an easy way to load any Ink's javascript module.<br>
                     It receives an array with the modules to be loaded as 1st parameter and a callback function - to be called when all modules from the array are loaded - as 2nd parameter.
                 </p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="<?php echo cdn_url('js');?>ink.min.js"&gt;&lt;/script&gt;
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
     Ink.requireModules(
         ['Ink.Dom.Loaded_1','Ink.Dom.Selector_1'],  // Modules to be loaded
@@ -172,7 +350,7 @@ base_url: ../../
                     Let's say you want to create your own namespace, to extend Ink's Javascript core or control other objects.<br>
                     This method allows you to make sure that the specified namespace exists... In case it doesn't, it'll create it!
                 </p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="<?php echo cdn_url('js');?>ink.min.js"&gt;&lt;/script&gt;
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
     Ink.namespace('MyNamespace');
     Ink.MyNamespace.myCustomFunction = function( name ){
@@ -189,7 +367,7 @@ base_url: ../../
                     Ink's javascript core has two methods to ease the pain of setting the context (and its arguments) in a function.<br>
                     While Ink.bindEvent is more directed to functions that handle events - because it sets the context of the function and passes the event object as first parameter - on the other hand, Ink.bind is related to the more common function that you need to set the context and still maintain its arguments as it is.
                 </p>
-                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="<?php echo cdn_url('js');?>ink.min.js"&gt;&lt;/script&gt;
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
     // An object
     var myObj = {
@@ -219,7 +397,7 @@ base_url: ../../
                 <p>The DOM is a mess, you know it and we do too, that's why we've added specialized DOM methods to Ink, it makes your life easier and that makes us happy.</p>
 
                 <h3>Browser</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Browser','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.Browser.html">API Link</a></p>
                 <p>Want to know something about the user's browser? Here's how...</p>
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
     Ink.requireModules(['Ink.Dom.Browser_1'],function(Browser){
@@ -230,7 +408,7 @@ base_url: ../../
 &lt;/script&gt;</pre>
 
                 <h3>Css</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Css','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.Css.html">API Link</a></p>
                 <p>Give your document some style with our Css class.</p>
                 <pre class="prettyprint linenums">&lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -244,7 +422,7 @@ base_url: ../../
 &lt;/script&gt;</pre>
 
                 <h3>Element</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Element','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.Element.html">API Link</a></p>
                 <p>Not all browsers were created equal, and the DOM is where it shows the most. Get the document just the way you want it with Element.</p>
                 <pre class="prettyprint linenums">&lt;div id=&quot;myElement&quot; &gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -266,7 +444,7 @@ base_url: ../../
 &lt;/script&gt;</pre>
 
                 <h3>Event</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Event','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.Event.html">API Link</a></p>
                 <p>Event handling is easy with Ink, using our Event class.</p>
                 <pre class="prettyprint linenums">&lt;button id=&quot;myButton&quot;&gt;Click me!&lt;/button&gt;
 &lt;script type="text/javascript"&gt;
@@ -281,7 +459,7 @@ base_url: ../../
 &lt;/script&gt;</pre>
                 
                 <h3>Selector</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Selector','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.Selector.html">API Link</a></p>
                 <p>If you've ever worked with CSS then you know how to use our Selector engine, we've enlisted the help of Sizzle to bring you a simple and fast way to get the elements you need.</p>
 
                 <pre class="prettyprint linenums">&lt;div class="myClass" id="myDiv1"&gt;myDiv 1&lt;/div&gt;
@@ -309,7 +487,7 @@ base_url: ../../
 &lt;/script&gt;</pre>
                 
                 <h3>Loaded</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Loaded','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.Loaded.html">API Link</a></p>
                 <p>Whether you're executing code when the document is ready or loaded we've got the tools you need to get your code running when you want.</p>
 
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
@@ -321,42 +499,36 @@ base_url: ../../
 &lt;/script&gt;</pre>
 
                 <h3>FormSerialize</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('FormSerialize','Dom');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Dom.FormSerialize.html">API Link</a></p>
                 <p>This static module contains two functions used to serialize and unserialize a form to and from a JavaScript object.</p>
 
                 <h4>Serialize a form</h4>
                 <p>This is how you serialize a form into a JavaScript object, possibly to turn into JSON and send over the network:</p>
-                <pre class="prettyprint linenums"><?php echo htmlentities(<<<HTML
-<form id="frm">
-    <input type="text" name="field1">
-    <button type="submit">Submit</button>
-</form>
-<script type="text/javascript">
+                <pre class="prettyprint linenums">&lt;form id=&quot;frm&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
     Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
         InkEvent.observe('frm', 'submit', function (event) {
-            var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
+            var formData = FormSerialize.serialize('frm'); // -&gt; {field1:&quot;123&quot;}
             InkEvent.stop(event);
         });
     });
-</script>
-HTML
-); ?></pre>
+&lt;/script&gt;</pre>
                 <h4>Fill in a form</h4>
                 <p>You can fill in a form with values from an object by using the <code>fillIn</code> method.</p>
-                <pre class="prettyprint linenums"><?php echo htmlentities(<<<HTML
-<form id="frm">
-    <input type="text" name="field1">
-    <button type="submit">Submit</button>
-</form>
-<script type="text/javascript">
+                <pre class="prettyprint linenums">&lt;form id=&quot;frm&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;field1&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
     Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
         var values = {field1: 'CTHULHU'};
         FormSerialize.fillIn('frm', values);
         // At this point the form is pre-filled with the values above.
     });
-</script>
-HTML
-); ?></pre>
+&lt;/script&gt;</pre>
             </section>
 
             <section id="nav-net" data-spy="true" data-target="#core_menu">
@@ -364,18 +536,18 @@ HTML
                 <p>Ink's Javascript engine offers you plenty of ways to get your web site communicating with the vast collection of public services available on the web. CORS enabled AJAX and JsonP will get you up and running in no time.</p>
                 
                 <h3>Ajax</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Ajax','Net');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Net.Ajax.html">API Link</a></p>
                 <p>The same AJAX you know and love, now with some extra CORS magic to spice up your cross request filled life.</p>
 
                 <pre class="prettyprint linenums">&lt;script type="text/javascript"&gt;
     Ink.requireModules(['Ink.Net.Ajax_1'],function(Ajax){
         // Here iss a quick way to do a simple GET request:
-        Ajax.load( '<?php echo cdn_url('js');?>example.json', function( response ){
+        Ajax.load( '../js/example.json', function( response ){
             console.log( response );        // This will log the HTML of the homepage
         });
 
         // Now a POST request:
-        new Ajax('<?php echo cdn_url('js');?>example.json',{
+        new Ajax('../js/example.json',{
             asynchronous: true,
             method: 'POST',
             onSuccess: function( response ){
@@ -386,7 +558,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>JsonP</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('JsonP','Net');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Net.JsonP.html">API Link</a></p>
                 <p>
                     Break out of your local domain chains and enjoy the freedom of cross domain requests, 
                     JsonP give you the tools you need to start getting data from any source you want.
@@ -410,7 +582,7 @@ HTML
                 <p>Even certain bat suit wearing ninjas need to use utilities every one in a while, and what are JavaScript developers if not ninjas without the bat suit? Ink offers those who possess the script-fu ways to take their skills to the next level.</p>
                 
                 <h3>Array</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Array','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Array.html">API Link</a></p>
                 <p>
                     Utility functions for Array manipulation.
                 </p>
@@ -470,7 +642,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>Cookie</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Array','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Array.html">API Link</a></p>
                 <p>
                     Utility functions for Cookie creating, reading and deleting.
                 </p>
@@ -493,7 +665,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>Date</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Date','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Date.html">API Link</a></p>
                 <p>
                     Utility functions for Date handling.
                 </p>
@@ -508,13 +680,13 @@ HTML
         console.log( dateObj_2 );
 
         // Making a Date Object based in string and its format:
-        console.log( InkDate.set('Y-m-d', '<?php echo date("Y-m-d");?>') );
+        console.log( InkDate.set('Y-m-d', '2013-07-29') );
         console.log( InkDate.set('d/m/Y', '01/01/2013') );
     });
 &lt;/script&gt;</pre>
                 
                 <h3>Dumper</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Dumper','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Dumper.html">API Link</a></p>
                 <p>
                     Utility functions for Dumping/Profiling.
                 </p>
@@ -540,7 +712,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>String</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('String','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.String.html">API Link</a></p>
                 <p>
                     Examples of some String manipulation functions.
                 </p>
@@ -580,7 +752,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>Swipe</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Swipe','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Swipe.html">API Link</a></p>
                 <p>
                     Usage of the Swipe utility component, to detect swiping on touch-enabled devices.
                 </p>
@@ -601,7 +773,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>Url</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Url','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Url.html">API Link</a></p>
                 <p>
                     Usage of some of the Url utility component functions, to parse and generate URLs.
                 </p>
@@ -623,7 +795,7 @@ HTML
 &lt;/script&gt;</pre>
                 
                 <h3>Validator</h3>
-                <p class="note"><a href="<?php echo tech_docs_url('Validator','Util');?>">API Link</a></p>
+                <p class="note"><a href="Ink.Util.Validator.html">API Link</a></p>
                 <p>
                     Usage of some of the Validator utility component functions.
                 </p>
@@ -838,3 +1010,74 @@ HTML
         </div>
     </div>
 </div>
+<footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright vspace">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+        <p><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>

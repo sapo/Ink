@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Ink JS UI - InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="http://imgs.sapo.pt/ink/assets/imgs/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://css.ink.sapo.pt/v1/imgs/touch-icon.114.png">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+	<link rel="apple-touch-startup-image" href="http://css.ink.sapo.pt/v1/imgs/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+
+	<link rel="stylesheet" type="text/css" href="http://css.ink.sapo.pt/v1/css/ink.css" />
+
+	<!--[if IE ]>
+	<link rel="stylesheet" href="http://css.ink.sapo.pt/v1/css/ink-ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<![endif]-->
+	
+	<link rel="stylesheet" href="http://imgs.sapo.pt/ink/assets/css/demo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/themes/default/theme.css"/>
+
+	<!-- DEFINES TRANSITIONS: appear3d, slide, hover -->
+	<link rel="stylesheet" type="text/css" href="http://js.sapo.pt/Assets/Images/ComponentDialog2/effects/appear3d.css"/>
+
+    <script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink.js"></script>
+    
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Core/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Effects/Slide/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Color/0.1/"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPO/Component/ColorWheel/0.1/"></script>
+
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/html5shiv.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/respond.src.js"></script>
+	<script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<div id="topbar">
+	<nav class="ink-navigation ink-collapsible ink-container">
+		<ul class="menu horizontal flat black">
+			<li class="ink-title">
+				<a class="logoPlaceholder" href="index.html" title="Site Title">InK</a>
+			</li>
+			
+													<li ><a href="layout.html">Layout</a></li>
+																<li ><a href="navigation.html">Navigation</a></li>
+																<li ><a href="typography.html">Typography</a></li>
+																<li ><a href="icons.html">Icons</a></li>
+																<li ><a href="forms.html">Forms</a></li>
+																<li ><a href="alerts.html">Alerts</a></li>
+																<li ><a href="tables.html">Tables</a></li>
+														
+								
+				<li class="active">
+					<a href="ui.html#">InK JS<i class="icon-caret-down"></i></a>
+					<ul class="submenu">
+													<li><a href="ui.html">UI</a></li>
+													<li><a href="core.html">Core</a></li>
+											</ul>
+				</li>
+								</ul>
+	</nav>
+	<div class="border"></div>
+</div><div class="whatIs">
+   <div class="ink-container" id="ui_home">
+		<h2>Ink JS UI</h2>
+		<p>Beautiful js components to go with your project.</p>
+	</div>
+</div>
+
+<div>
+	<div class="ink-container">
+		<nav class="ink-navigation ink-collapsible ink-dockable" data-fixed-height="44">
+			<ul class="menu horizontal black ink-l100 ink-m100 ink-s100">
+				<li class="active"><a class="scrollableLink home" href="ui.html#ui_home">
+					<i class="icon-chevron-up ink-for-l"></i>
+					<span class="ink-for-m ink-for-s">Back to Top</span>
+				</a></li>
+									<li><a class="scrollableLink" href="ui.html#gallery">Gallery</a></li>
+									<li><a class="scrollableLink" href="ui.html#modal">Modal</a></li>
+									<li><a class="scrollableLink" href="ui.html#table">Table</a></li>
+									<li><a class="scrollableLink" href="ui.html#tree_view">Tree View</a></li>
+									<li><a class="scrollableLink" href="ui.html#sortable_list">Sortable List</a></li>
+									<li><a class="scrollableLink" href="ui.html#date_picker">Date Picker</a></li>
+									<li><a class="scrollableLink" href="ui.html#tabs">Tabs</a></li>
+									<li><a class="scrollableLink" href="ui.html#formvalidator">Form Validator</a></li>
+									<li><a class="scrollableLink" href="ui.html#behaviors">Behaviors</a></li>
+							</ul>
+		</nav>
+	</div>
+</div>
+
+<div class="ink-container">
+	<div class="ink-section">
+		<p>To use these components in your application you need to include the Ink.js bundle. Just add this line somewhere in your document:</p>
+<pre class="prettyprint linenums">&lt;script type="text/javascript" src="http://js.sapo.pt/Bundles/Ink-v1.js"&gt;&lt;/script&gt;</pre>
+	</div>
+	<div class="ink-section">
+	<div class="ink-row ink-vspace">
+
+		<div class="ink-l40">
+			<div class="ink-gutter"> 
+				<h3 id="gallery">Gallery</h3>
+				<p>
+					The <i>Gallery</i> component provides you an easy way to show images in a &quot;carousel&quot; format.
+                </p>
+                <p>
+                    Besides being a responsive component, it also allows you to set other configurations such as:
+                    <ul>
+                        <li>Captions</li>
+                        <li>Thumbnails</li>
+                        <li>Images' maximum width and height, in the full and thumbnail version</li>
+                        <li>Type of Layout</li>
+                    </ul>
+                </p>
+                <p>
+                    Want to know more?
+                </p>
+                <p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Gallery/doc.html">technical documentation</a>.</p>
+				</p>
+			</div>
+		</div>
+
+		<div class="ink-l60">
+			<div class="ink-gutter">
+				<div class="ink-tabs-gallery">
+                    <nav class="ink-navigation">
+                        <ul class="ink-tabs-nav menu horizontal">
+                            <li><a href="ui.html#ui_gallery_layout0">Layout 0</a></li>
+                            <li><a href="ui.html#ui_gallery_layout1">Layout 1</a></li>
+                            <li><a href="ui.html#ui_gallery_layout2">Layout 2</a></li>
+                            <li><a href="ui.html#ui_gallery_layout3">Layout 3</a></li>
+                        </ul>
+                    </nav>
+                    <div id="ui_gallery_layout0" class="ink-tabs-container">
+                        <ul class="ink-gallery-source">
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <span class="entry-title">s1</span>
+        </a>
+        <span class="entry-content"><p>hello world 1</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <span class="entry-title">s2</span>
+        </a>
+        <span class="entry-content"><p>hello world 2</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <span class="entry-title">s3</span>
+        </a>
+        <span class="entry-content"><p>hello world 3</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <span class="entry-title">s4</span>
+        </a>
+        <span class="entry-content"><p>hello world 4</p></span>
+    </li>
+</ul>
+<script type="text/javascript">
+    var gal0 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:0});
+</script>                        <a href="ui.html#" data-target="gallery_sourcecode_0" class="ink-button toggleTrigger">View Source Code</a>
+                        <pre id="gallery_sourcecode_0" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var gal0 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:0});
+&lt;/script&gt;</pre>
+                    </div>
+                    <div id="ui_gallery_layout1" class="ink-tabs-container">
+                        <ul class="ink-gallery-source">
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <span class="entry-title">s1</span>
+        </a>
+        <span class="entry-content"><p>hello world 1</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <span class="entry-title">s2</span>
+        </a>
+        <span class="entry-content"><p>hello world 2</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <span class="entry-title">s3</span>
+        </a>
+        <span class="entry-content"><p>hello world 3</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <span class="entry-title">s4</span>
+        </a>
+        <span class="entry-content"><p>hello world 4</p></span>
+    </li>
+</ul>
+<script type="text/javascript">
+    var gal1 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:1});
+</script>                        <a href="ui.html#" data-target="gallery_sourcecode_1" class="ink-button toggleTrigger">View Source Code</a>
+                        <pre id="gallery_sourcecode_1" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var gal1 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:1});
+&lt;/script&gt;</pre>
+                    </div>
+                    <div id="ui_gallery_layout2" class="ink-tabs-container">
+                        <ul class="ink-gallery-source">
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <span class="entry-title">s1</span>
+        </a>
+        <span class="entry-content"><p>hello world 1</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <span class="entry-title">s2</span>
+        </a>
+        <span class="entry-content"><p>hello world 2</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <span class="entry-title">s3</span>
+        </a>
+        <span class="entry-content"><p>hello world 3</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <span class="entry-title">s4</span>
+        </a>
+        <span class="entry-content"><p>hello world 4</p></span>
+    </li>
+</ul>
+<script type="text/javascript">
+    var gal2 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:2});
+</script>                        <a href="ui.html#" data-target="gallery_sourcecode_2" class="ink-button toggleTrigger">View Source Code</a>
+                        <pre id="gallery_sourcecode_2" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var gal2 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:2});
+&lt;/script&gt;</pre>
+                    </div>
+                    <div id="ui_gallery_layout3" class="ink-tabs-container">
+                        <ul class="ink-gallery-source">
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <img alt="s1" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb1.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.1.png">
+            <span class="entry-title">s1</span>
+        </a>
+        <span class="entry-content"><p>hello world 1</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <img alt="s2" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb2.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.2.png">
+            <span class="entry-title">s2</span>
+        </a>
+        <span class="entry-content"><p>hello world 2</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <img alt="s3" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb3.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.3.png">
+            <span class="entry-title">s3</span>
+        </a>
+        <span class="entry-content"><p>hello world 3</p></span>
+    </li>
+    <li class="hentry hmedia">
+        <a rel="enclosure" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <img alt="s4" src="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/thumb4.png">
+        </a>
+        <a class="bookmark" href="http://imgs.sapo.pt/ink/assets/imgs/ink-js-placeholders/1.4.png">
+            <span class="entry-title">s4</span>
+        </a>
+        <span class="entry-content"><p>hello world 4</p></span>
+    </li>
+</ul>
+<script type="text/javascript">
+    var gal3 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:3});
+</script>                        <a href="ui.html#" data-target="gallery_sourcecode_3" class="ink-button toggleTrigger">View Source Code</a>
+                        <pre id="gallery_sourcecode_3" style="display:none" class="ink-l100 prettyprint linenums">&lt;ul class=&quot;ink-gallery-source&quot;&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb1.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.1.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s1&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 1&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;hentry hmedia&quot;&gt;
+        &lt;a rel=&quot;enclosure&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;img alt=&quot;s1&quot; src=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/thumb2.png&quot;&gt;
+        &lt;/a&gt;
+        &lt;a class=&quot;bookmark&quot; href=&quot;http://imgs.sapo.pt/ink/assets/imgs_gal/1.2.png&quot;&gt;
+            &lt;span class=&quot;entry-title&quot;&gt;s2&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;span class=&quot;entry-content&quot;&gt;&lt;p&gt;hello world 2&lt;/p&gt;&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var gal3 = new SAPO.Ink.Gallery('ul.ink-gallery-source', {layout:3});
+&lt;/script&gt;</pre>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var gallery_tabs = new SAPO.Ink.Tabs('.ink-tabs-gallery', {
+                        disabled: ['#stuff', '#more_stuff'], 
+                        active: '#ui_gallery_layout0',
+                        onBeforeChange: function(tab){}, 
+                        onChange: function(tab){}
+                    });
+                </script>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ink-section">
+	<div class="ink-vspace">
+		<h3 id="modal">Modal</h3>
+		<p>
+			The <i>Modal</i> component was designed to replace the common/native modal boxes that browser have, providing some features:
+            <ul>
+                <li>HTML formatted messages</li>
+                <li>Configuration of height and width of the modal</li>
+                <li>Remove the dismissing through the 'x'/close button. Particularly useful if you want to define another button to do the dismissing</li>
+            </ul> 
+        </p>
+        <p>
+            Other options available and a more detailed explanation of the above ones are available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Modal/doc.html">technical documentation</a>.
+		</p>
+        <br/>
+		<p><div id="modalContent" style="display:none">
+    <div class="ink-space">
+        <h1>Some title</h1>
+        <p><em>Hello modal!</em></p>
+        <p>dismiss it pressing the close button or the escape key.</p>
+    </div>
+</div>
+<a style="cursor:pointer;" id="bModal">Open modal</a>
+<script type="text/javascript">
+    SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
+        new SAPO.Ink.Modal('#modalContent', {
+            width:  500,
+            height: 250
+        });
+    });
+</script> to view the component working.</p>
+		<a data-target="modal_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+		<pre id="modal_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">&lt;div id=&quot;modalContent&quot; style=&quot;display:none&quot;&gt;
+    &lt;div class=&quot;ink-space&quot;&gt;
+        &lt;h1&gt;Some title&lt;/h1&gt;
+        &lt;p&gt;&lt;em&gt;Hello modal!&lt;/em&gt;&lt;/p&gt;
+        &lt;p&gt;dismiss it pressing the close button or the escape key.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;a style=&quot;cursor:pointer;&quot; id=&quot;bModal&quot;&gt;Open modal&lt;/a&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    SAPO.Dom.Event.observe('bModal', 'click', function(ev) {
+        new SAPO.Ink.Modal('#modalContent', {
+            width:  500,
+            height: 250
+        });
+    });
+&lt;/script&gt;</pre>
+	</div>
+</div><div class="ink-section">
+	<div class="ink-row ink-vspace">
+		<div class="ink-l40">
+			<div class="ink-gutter"> 
+				<h3 id="table">Table</h3>
+				<p>
+					The <i>Table</i> component ease the process of improving a regular table element with some features like:
+                    <ul>
+                        <li>Pagination</li>
+                        <li>Sorting</li>
+                        <li>Loading through AJAX (via an endpoint)</li>
+                    </ul>
+				</p>
+                <p>
+                    More examples and a list of all options supported on our <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Table/doc.html">technical documentation</a>.
+                </p>
+			</div>
+		</div>
+		<div class="ink-l60">
+			<div class="ink-gutter">
+				<div class="box">
+					<table></table>
+<script type="text/javascript">
+    var t = new SAPO.Ink.Table('table', {
+        fields: ['name', 'age'],
+        sortableFields: '*',
+        model: [
+            {name:'Jesus Christ',    age:33},
+            {name:'Kurt Cobain',     age:27},
+            {name:'Joni Mitchel',    age:27},
+            {name:'Michael Jackson', age:51}
+        ],
+        pageSize: 2
+    });
+</script>				</div>
+				<a href="ui.html#" data-target="table_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+				<pre id="table_sourcecode" style="display:none" class="prettyprint linenums">&lt;table&gt;&lt;/table&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var t = new SAPO.Ink.Table('table', {
+        fields: ['name', 'age'],
+        sortableFields: '*',
+        model: [
+            {name:'Jesus Christ',    age:33},
+            {name:'Kurt Cobain',     age:27},
+            {name:'Joni Mitchel',    age:27},
+            {name:'Michael Jackson', age:51}
+        ],
+        pageSize: 2
+    });
+&lt;/script&gt;</pre>
+			</div>
+		</div>
+	</div>
+</div><div class="ink-section">
+	<div class="ink-row ink-vspace">
+		<div class="ink-l40">
+			<div class="ink-gutter"> 
+				<h3 id="tree_view">Tree View</h3>
+				<p>
+					The <i>Tree View</i> component allows you to create a hierarchical list in a tree format or transform an existing list.
+                    It supports:
+                    <ul>
+                        <li>Multi-node trees</li>
+                        <li>Custom state of the branches (open, closed)</li>
+                    </ul>
+                </p>
+                <br/>
+                <p>
+					Specifications and other examples, available in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/TreeView/doc.html">technical documentation</a>.
+				</p>
+			</div>
+		</div>
+		<div class="ink-l60">
+			<div class="ink-gutter">
+				<div class="box">
+					<ul id="tview">
+    <li>root
+        <ul>
+            <li>child 1
+                <ul>
+                    <li>c</li>
+                    <li>grandchild 1b</li>
+                    <li>grandchild 1c</li>
+                </ul>
+            </li>
+            <li>child 2
+                <ul>
+                    <li>grandchild 2a</li>
+                    <li>grandchild 2b
+                        <ul>
+                            <li>grandgrandchild 1bA</b>
+                            <li>grandgrandchild 1bB</b>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>child 3</li>
+        </ul>
+    </li>
+</ul>
+<script type="text/javascript">
+    var tv1 = new SAPO.Ink.TreeView('#tview');
+</script>				</div>
+				<a href="ui.html#" data-target="treeview_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
+				<pre id="treeview_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul id=&quot;tview&quot;&gt;
+    &lt;li&gt;root
+        &lt;ul&gt;
+            &lt;li&gt;child 1
+                &lt;ul&gt;
+                    &lt;li&gt;c&lt;/li&gt;
+                    &lt;li&gt;grandchild 1b&lt;/li&gt;
+                    &lt;li&gt;grandchild 1c&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            &lt;li&gt;child 2
+                &lt;ul&gt;
+                    &lt;li&gt;grandchild 2a&lt;/li&gt;
+                    &lt;li&gt;grandchild 2b
+                        &lt;ul&gt;
+                            &lt;li&gt;grandgrandchild 1bA&lt;/b&gt;
+                            &lt;li&gt;grandgrandchild 1bB&lt;/b&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            &lt;li&gt;child 3&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tv1 = new SAPO.Ink.TreeView('#tview');
+&lt;/script&gt;</pre>
+			</div>
+		</div>
+	</div>
+</div>    <div class="ink-section">
+        <div class="ink-row ink-vspace">
+        	<div class="ink-l40">
+                <div class="ink-gutter"> 
+                    <h3 id="sortable_list">Sortable List</h3>
+                    <p>
+                        The <i>Sortable List</i> component transforms the rows of a list in draggable/droppable items inside of the list.
+                    </p>
+                    <p>
+                        By doing that, allows the user to sort the order of the list.
+                    </p>
+                    <br/>
+                    <p>Also allows other configurations, as you can see in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/SortableList/doc.html">technical documentation</a>.</p>
+                </div>
+            </div>
+            <div class="ink-l60">
+				<div class="ink-gutter">
+                    <div class="box">
+    					<ul id="slist">
+    <li>first</li>
+    <li>second</li>
+    <li>third</li>
+</ul>
+<script type="text/javascript">
+    var list = new SAPO.Ink.SortableList('#slist');
+</script>                    </div>
+					<a href="ui.html#" data-target="sortablelist_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+    	            <pre id="sortablelist_sourcecode" style="display:none" class="prettyprint linenums">&lt;ul id=&quot;slist&quot;&gt;
+    &lt;li&gt;first&lt;/li&gt;
+    &lt;li&gt;second&lt;/li&gt;
+    &lt;li&gt;third&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var list = new SAPO.Ink.SortableList('#slist');
+&lt;/script&gt;</pre>
+				</div>
+            </div>
+        </div>
+    </div><div class="ink-section">
+	<div class="ink-row ink-vspace">
+		<div class="ink-l40">
+			<div class="ink-gutter"> 
+				<h3 id="date_picker">Date Picker</h3>
+				<p>
+					As the name says, the <i>Date Picker</i> transforms a textbox into an element that, when in use, shows a calendar to help selecting a specific date.
+				</p>
+				<br/>
+				<p>
+					It allows several configurations, available on the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/DatePicker/doc.html">technical documentation</a>.</p>.
+				</p>
+			</div>
+		</div>
+		<div class="ink-l60">
+			<div class="ink-gutter">
+				<div class="box">
+					<form class="ink-form inline">
+						<div class="ink-l100"><div class="control">
+	<label for="dPicker" class="ink-form-inline">A date field:</label>
+	<input id="dPicker" type="text"></input>
+</div>
+<script type="text/javascript">
+    var picker = new SAPO.Ink.DatePicker('#dPicker');
+</script></div>
+					</form>
+				</div>
+				<a href="ui.html#" data-target="datepicker_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
+				<pre id="datepicker_sourcecode" style="display:none" class="ink-l100 prettyprint linenums">&lt;div class=&quot;control&quot;&gt;
+	&lt;label for=&quot;dPicker&quot; class=&quot;ink-form-inline&quot;&gt;A date field:&lt;/label&gt;
+	&lt;input id=&quot;dPicker&quot; type=&quot;text&quot;&gt;&lt;/input&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var picker = new SAPO.Ink.DatePicker('#dPicker');
+&lt;/script&gt;</pre>
+			</div>
+		</div>
+	</div>
+</div>
+    
+    <div class="ink-section">
+        <div class="ink-row ink-vspace">
+
+            <div class="ink-l40">
+                <div class="ink-gutter"> 
+                    <h3 id="tabs">Tabs</h3>
+                    <p>
+                        The <i>Tabs</i> component allows you to implement a tabbed UI, where each container is displayed as it's related tabbed is selected.
+                    </p>
+                    <br/>
+                    <p>
+                        You can see several examples in <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Tabs/doc.html">technical documentation</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="ink-l60">
+                <div class="ink-gutter">
+                    <div class="box">
+                        <div class="ink-tabs">
+                            <nav class="ink-navigation">
+                                <ul class="ink-tabs-nav menu horizontal">
+                                    <li><a href="ui.html#ui_tabs_home">Home</a></li>
+                                    <li><a href="ui.html#ui_tabs_news">News</a></li>
+                                    <li><a href="ui.html#ui_tabs_description">Description</a></li>
+                                    <li><a href="ui.html#ui_tabs_stuff">Stuff</a></li>
+                                </ul>
+                            </nav>
+                            <div class="ink-vspace">
+                                <div id="ui_tabs_home" class="ink-tabs-container">
+                                    <h4>Home</h4>
+                                    <p>
+                                        Arnold ipsum. Well then God shouldn't have cloned my dog. I'm a cybernetic
+                                        organizm. Living tissue over endoskeleton. You're not going to have your
+                                        mommies right behind you to wipe your little tushies. Blondes. Consider
+                                        it a divorce. Talk to the hand. Take it BACK. I'll be back. Knock knock.
+                                        I did nothing. The pavement with his enemy. You LIE! I'm not shitting on
+                                        you. Get down or I'll put you down. You are not you you're me. Scumbag.
+                                        Bring your toy back to the carpet. Bring it back to the carpet. Dylan.
+                                        You son of a bitch. Get down. Of course. I'm a Terminator. Talk to the
+                                        hand. I need your clothes, your boots, and your motorcycle. Into the tunnel.
+                                        My name is John Kimble and I love my car. I'll be back.
+                                    </p>
+                                </div>
+                                <div id="ui_tabs_news" class="ink-tabs-container">
+                                    <h4>News</h4>
+                                    <p>
+                                        Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
+                                        When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. 
+                                        When playing dead doesn't work, he plays zombie. Chuck Norris invented water.
+                                        Shortly after the farm animal sprang back to life and a crowd had gathered, 
+                                        Chuck Norris roundhouse kicked the animal, breaking its neck, to remind the crew once more that Chuck giveth, 
+                                        and the good Chuck, he taketh away.
+                                    </p>
+                                </div>
+                                <div id="ui_tabs_description" class="ink-tabs-container">
+                                    <h4>Description</h4>
+                                    <p>
+                                        Aliens do exist. They're just waiting for Chuck Norris to die before they attack. 
+                                        When his martial arts prowess fails to resolve a situation, Chuck Norris plays dead. When playing dead doesn't work,
+                                        he plays zombie. Chuck Norris invented water. Chuck Norris eats transformer toys in vehicle mode and poos them out 	
+                                        transformed into a robot. Filming on location for Walker: 
+                                        Texas Ranger, Chuck Norris brought a stillborn baby lamb back to life by giving it a prolonged beard rub.
+                                    </p>
+                                </div>
+                                <div id="ui_tabs_stuff" class="ink-tabs-container">
+                                    <h4>Stuff</h4>
+                                    <p>
+                                        They now play poker every second Wednesday of the month. Chuck Norris doesnt have AIDS but he gives it to people anyway.
+                                         When you open a can of whoop-ass, Chuck Norris jumps out. If you have five dollars and Chuck Norris has five dollars,
+                                          Chuck Norris has more money than you. A blind man once stepped on Chuck Norris' shoe. Chuck replied, 
+                                          "Don't you know who I am? I'm Chuck Norris!" The mere mention of his name cured this man blindness. Sadly the first, 
+                                          last, and only thing this man ever saw, was a fatal roundhouse delivered by Chuck Norris. Helen Keller's favorite color 										is Chuck Norris Chuck Norris
+                                           invented water.
+                                    </p>
+                                </div>
+                            </div>
+                    	</div>
+                    </div>
+                	
+                    <a href="ui.html#" data-target="tabs_sourcecode" class="toggleTrigger ink-button">View Source Code</a>
+                    <pre id="tabs_sourcecode" style="display:none" class="prettyprint linenums">&lt;div class=&quot;ink-tabs&quot;&gt;
+    &lt;nav class=&quot;ink-navigation&quot;&gt;
+        &lt;ul class=&quot;ink-tabs-nav menu horizontal&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div id=&quot;home&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Home&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;news&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;News&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;description&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Description&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;more_stuff&quot; class=&quot;ink-tabs-container&quot;&gt;
+        &lt;h4&gt;More Stuff&lt;/h4&gt;
+        &lt;p&gt;Arnold ipsum (...)&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+        disabled: ['#stuff', '#more_stuff'], 
+        active: '#news',
+        onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
+        }, 
+        onChange: function(tab){
+            console.log('Changed', tab);
+        }
+    });
+&lt;/script&gt;</pre>
+
+                </div>
+            </div>
+        </div>
+    	
+		<script type="text/javascript">
+            var tabs = new SAPO.Ink.Tabs('.ink-tabs', {
+                disabled: ['#stuff', '#more_stuff'], 
+                active: '#ui_tabs_news',
+                onBeforeChange: function(tab){
+                }, 
+                onChange: function(tab){
+                }
+            });
+        </script>
+    </div>
+<div class="ink-section">
+	<div class="ink-row ink-vspace">
+		<div class="ink-l40">
+			<div class="ink-gutter">
+				<h3 id="formvalidator">Form Validator</h3>
+				<p>
+					The <i>FormValidator</i> component provides an easy way to validate forms before submitting them.
+					It can:
+                    <ul>
+                        <li>Detect required fields</li>
+                        <li>Validate some field types</li>
+                        <li>Detect match with password and confirmation password</li>
+                        <li>Use custom field types</li>
+                    </ul>
+                </p>
+                <br/>
+                <p>More examples and detailed configurations, in the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/FormValidator/doc.html">technical documentation</a>.</p>
+			</div>
+		</div>
+		<div class="ink-l60">
+			<div class="ink-gutter">
+				<div class="box">
+					<form id="myform" class="ink-form block" method="post" action="ui.html#" onsubmit="return SAPO.Ink.FormValidator.validate(this);">
+    <fieldset>
+        <div class="control required">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="ink-fv-required" />
+        </div>
+        <div class="control required">
+            <label for="mail">Email:</label>
+            <input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" />
+        </div>
+        <div class="control required">
+            <label for="pass">Password: </label>
+            <input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" />
+        </div>
+        <div class="control required">
+            <label for="confpass">Confirm Password:</label>
+            <input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" />
+        </div>
+        <ul class="control-group required">
+            <li><p class="label">Radio test: </p></li>
+            <li><input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /> <label for="radio1_g">radio 1</label> </li>
+            <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
+            <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
+        </ul>
+    </fieldset>
+    <div>
+        <input type="submit" name="sub" value="Submit" class="ink-button success" />
+    </div>
+</form>				</div>
+				<a href="ui.html#" data-target="formvalidator_sourcecode" class="ink-button toggleTrigger">View Source Code</a>
+				<pre id="formvalidator_sourcecode" style="display:none" class="prettyprint linenums">&lt;form id=&quot;myform&quot; class=&quot;ink-form block&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return SAPO.Ink.FormValidator.validate(this);&quot;&gt;
+    &lt;fieldset&gt;
+        &lt;div class=&quot;control required&quot;&gt;
+            &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; class=&quot;ink-fv-required&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;control required&quot;&gt;
+            &lt;label for=&quot;mail&quot;&gt;Email:&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;mail&quot; class=&quot;ink-fv-required ink-fv-email&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;control required&quot;&gt;
+            &lt;label for=&quot;pass&quot;&gt;Password: &lt;/label&gt;
+            &lt;input type=&quot;password&quot; name=&quot;pass&quot; id=&quot;pass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;control required&quot;&gt;
+            &lt;label for=&quot;confpass&quot;&gt;Confirm Password:&lt;/label&gt;
+            &lt;input type=&quot;password&quot; name=&quot;confpass&quot; id=&quot;confpass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+        &lt;/div&gt;
+        &lt;ul class=&quot;control-group required&quot;&gt;
+            &lt;li&gt;&lt;p class=&quot;label&quot;&gt;Radio test: &lt;/p&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio1_g&quot; value=&quot;1&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio1_g&quot;&gt;radio 1&lt;/label&gt; &lt;/li&gt;
+            &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio2_g&quot; value=&quot;2&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio2_g&quot;&gt;radio 2&lt;/label&gt; &lt;/li&gt;
+            &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio3_g&quot; value=&quot;3&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio3_g&quot;&gt;radio 3&lt;/label&gt; &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/fieldset&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;sub&quot; value=&quot;Submit&quot; class=&quot;ink-button success&quot; /&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</pre>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ink-section" id="behaviors">
+    <div class="ink-row ink-vspace">
+        <div class="ink-l100">
+            <div class="ink-gutter">
+                <h3>Behaviors</h3>
+            </div>
+        </div>
+        <div class="ink-l33">
+            <div class="ink-gutter">
+                <h4>Dockable</h4>
+                <p>
+                    <i>Dockable</i> keeps your menus visible while scrolling through the page.
+                </p>
+                <p>
+                    Activate it by using the "ink-dockable" class. A working example of dockable is the submenu that keeps following your progress on this page.
+                </p>
+                <p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Dockable/doc.html">technical documentation</a> for more details.</p>
+                </p>
+            </div>
+        </div>
+
+        <div class="ink-l33">
+            <div class="ink-gutter">
+                <h4>Collapsible</h4>
+                <p>
+                    <i>Collapsible</i> turns your horizontal menus into vertical ones depending on the screen width. It gives you the possibility to collapse/expand your menus.
+                </p>
+                <p>
+                    Activate it by using the "ink-collapsible" class. A working example of collapsible is the top most menu.
+                </p>
+                <p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/Collapsible/doc.html">technical documentation</a> for more details.</p>
+                </p>
+            </div>
+        </div>
+
+        <div class="ink-l33">
+            <div class="ink-gutter">
+                <h4>Close</h4>
+                <p>
+                    When clicking an element with the "ink-close" class, the first "ink-alert" or "ink-alert-block" ancestor is removed from the document.
+                </p>
+                <p>
+                    Activate it by using the "ink-close" class inside of an element with one of the previously mentioned classes.
+                </p>
+                <p>
+                    Check the <a target="_blank" href="http://js.sapo.pt/SAPO/Ink/doc.html#Close">technical documentation</a> for more details.</p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<style>
+	/*.ink-docked {
+		position:           fixed !important;
+		opacity:            0.75;
+		z-index:            1000;
+	}
+	.ink-docked:hover {
+		opacity:            1;
+    }*/
+</style>
+<script>
+
+	var toggleTriggers = SAPO.Dom.Selector.select('.toggleTrigger');
+	for(i=0;i<toggleTriggers.length;i+=1){
+		SAPO.Dom.Event.observe(toggleTriggers[i],'click',function(event){
+			var targetElm = s$(this.getAttribute('data-target'));
+			this.innerHTML = ( ( targetElm.style.display === 'none' ) ? 'Hide' : 'View' ) + ' Source Code';
+			SAPO.Dom.Css.toggle(targetElm);
+			SAPO.Dom.Event.stop(event);
+		});
+	}
+</script><footer>
+	<div class="ink-container">
+		<div class="ink-l75">
+			<nav class="ink-navigation">
+				<ul class="ink-footer-nav">
+					<li><a href="about.html">About</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+                    <li>Ink's code licensed under <a rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
+                    
+				</ul>
+			</nav>	
+			<a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a>
+			
+			<p class="ink-vspace copyright">
+				<a class="PTClogo" href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+				SAPO is a trademark and a search engine created at the University of Aveiro.
+			</p>
+			
+		</div>
+		
+		<div class="ink-l25">
+			<ul class="sociallinks">
+				<h5>Follow SAPO:</h5>
+				<li><a class="Fb_link" href="http://www.facebook.com/inksapo"></a></li>
+				<li><a class="Twt_link" href="http://twitter.com/inksapo"></a></li>
+				<li><a class="Gplus_link" href="https://plus.google.com/111905015404301701945/posts"></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+    <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/ink.js"></script>
+    <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>         
+    <script> SAPO.WebAnalytics.track({swakt:"FC2C65EF-D60C-4BC2-9D76-251A50DADC3D"}); </script>
+</body>
+</html>

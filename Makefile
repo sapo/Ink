@@ -1,6 +1,9 @@
 # CSS output directory
 CSS_OUTPUT_DIR = ./css
 
+# Documentation CSS output directory
+DOCS_CSS_OUTPUT_DIR = ./documentation/assets/css
+
 # LESS files directory
 LESS_SOURCE_DIR = ./less
 
@@ -12,7 +15,7 @@ SITE_LESS = ${LESS_SOURCE_DIR}/docs.less
 # CSS output files
 INK_CSS = "${CSS_OUTPUT_DIR}/ink.css"
 INK_IE7_CSS = "${CSS_OUTPUT_DIR}/ink-ie7.css"
-SITE_CSS = "${CSS_OUTPUT_DIR}/docs.css"
+SITE_CSS = "${DOCS_CSS_OUTPUT_DIR}/docs.css"
 
 # Minified CSS output files
 INK_MIN_CSS = "${CSS_OUTPUT_DIR}/ink-min.css"

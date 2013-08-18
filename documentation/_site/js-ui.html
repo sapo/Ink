@@ -1,0 +1,2143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <base href="./">
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>InK - Interface Kit</title>
+    <meta name="description" content="">
+    <meta name="author" content="SAPO WEB & MEDIA DESIGN">
+
+<meta property="og:title" content="Ink - Interface Kit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ink.sapo.pt/"/>
+<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+<meta property="og:site_name" content="Ink"/>
+<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="shortcut icon" href="../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    
+    <!-- Load Inks' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/ink-min.css">
+    
+    <!-- Load Documentation sites' CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/docs.css">  
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 7 ]>
+        <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../js/ink.min.js"></script>
+    <script type="text/javascript" src="../js/ink-ui.min.js"></script>
+    <script type="text/javascript" src="../js/autoload.js"></script>
+    <script type="text/javascript" src="../js/prettify.js"></script>
+    <!-- End of javascript -->
+
+</head>
+<body onload="prettyPrint()">
+    <div id="fb-root"></div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
+        <ul class="menu horizontal flat black shadowed">
+            <li>
+                            <a class="logoPlaceholder" href="index.html" title="Ink - Interface Kit">InK</a>
+                        </li>           
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li >
+                    <a href="#">InK JS <i class="icon-caret-down"></i></a>
+                    <ul class="submenu">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+    
+
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical flat black">
+            <li class="title">
+            
+                                        <a class="logoPlaceholder push-left" href="./index.php" title="Site Title">InK</a>
+                <button class="toggle" data-target="#topbar_menu"><span class="icon-reorder"></span></button>
+                        </li>           
+        </ul>
+
+        <ul class="menu vertical flat black hide-all" id="topbar_menu">
+                                                    <li >
+
+                                <a href="getting_started.html">Getting started</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="layout.html">Layout</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="navigation.html">Navigation</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="typography.html">Typography</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="icons.html">Icons</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="forms.html">Forms</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="alerts.html">Alerts</a>
+                    
+            </li>
+                                                                <li >
+
+                                <a href="tables.html">Tables</a>
+                    
+            </li>
+                                                        
+                                <li class="">
+                    <a class="toggle" data-target=".submenu" href="#">InK JS<i class="icon-caret-down"></i></a>
+                    <ul class="submenu hide">
+                                                    <li>
+                                                                <a href="./js-ui.html">UI</a>                           
+                            </li>
+                                                    <li>
+                                                                <a href="./js-core.html">Core</a>                           
+                            </li>
+                                            </ul>
+                </li>
+                                </ul>
+    </nav>
+
+    <div class="border"></div>
+</div><div class="ink-grid">
+    <div class="whatIs">
+        <h1>Ink JS UI</h1>
+        <p>Beautiful js components to go with your project.</p>
+    </div>
+    
+    <div class="column-group gutters">
+        
+        <div class="large-20 medium-25 small-100">
+            <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="ui_menu">
+                <ul class="menu vertical black rounded">
+                    <li><a class="scrollableLink" href="./index.php/js/ui/4cc555ce5b2d4d3ba338d60ff224c6fa#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                                                            <li><a class="scrollableLink" href="./js-ui.html#modal">Modal</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#table">Table</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#tree_view">Tree View</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#sortable_list">Sortable List</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#date_picker">Date Picker</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#tabs">Tabs</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#draggables">Draggables</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#droppables">Droppables</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#tooltips">Tooltips</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#formvalidator">Form Validator</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#progress_bar">Progress Bar</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#imagequery">Image Query</a></li>
+                                                                                <li><a class="scrollableLink" href="./js-ui.html#behaviors">Behaviors</a></li>
+                                                        </ul>
+            </nav>
+        </div>
+
+        <div class="large-80 medium-75 small-100">
+    
+            <section id="top" data-spy="true" data-target="#ui_menu">
+                <h2>Ink UI Javascript components</h2>
+                <p>Ink offers a great set of Javascript components to enrich your user interface, which are easy to implement, powerful and responsive. We made these components thinking of people who don't know JS but still need to include certain features on their web pages without help from a programmer, but there is also a deep core of JS code to explore, if you're so inclined.</p>
+                <p>Next, we'll detail each component, explain it as simply as we can, provide you with all the configuration details and also provide you with links to the deeper technical docs, in case you are a developer, looking for more power under the hood.</p>
+                <p>To get started, you need to include certain scripts which will make your components work. We suggest you place these in your document's <code>&lt;head&gt;</code> and keep them all neatly organised. You will need to include:</p>
+                    <ul>
+                        <li>ink.js which is the core code that makes everything else work</li>
+                        <li>the modules you need (eg. Modal, if you need a modal window)</li>
+                        <li>autoload.js, which initializes all modules, so you don't have to</li>
+                    </ul>
+                <p>Ink's javascript files can be loaded in one of several ways:</p>
+                
+                <p><span class="ink-label info">Loading from the CDN</span></p>
+
+                <p>You can load Ink's Javascript Core and its UI Components in just one minified file (the complete bundle):</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink-all.min.js"&gt;&lt;/script&gt;</pre>
+                <br>
+                <p>You can load Ink's Javascript Core Bundle and its UI Components Bundle separately, still minified:</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../js/ink-ui.min.js"&gt;&lt;/script&gt;</pre>
+                <br>
+                <p>You can load Ink's Javascript Core Bundle and each UI Component separately (one line per UI Component):</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="../js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../js/ink.someComponent.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../js/ink.anotherComponent.min.js"&gt;&lt;/script&gt;</pre>
+                <p>Don't forget to replace the <i>someComponent</i> and the <i>anotherComponent</i> parts of the example for the real names of the components, like <i>modal</i> or <i>progressbar</i>.</p>
+                <br>
+                <br>
+                <p><span class="ink-label info">Code for loading from your local host</span></p>
+
+                <p>Similarly to the CDN, you can load Ink's Javascript Core and its UI Components in just one minified file (the complete bundle):</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="/js/ink-all.min.js"&gt;&lt;/script&gt;</pre>
+                <br>
+                <p>Once again, you can load Ink's Javascript Core Bundle and its UI Components Bundle separately, still minified:</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="/js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/js/ink-ui.min.js"&gt;&lt;/script&gt;</pre>
+                <br>
+                <p>Finally, you can also load Ink's Javascript Core Bundle and each UI Component separately (one line per UI Component):</p>
+                <pre class="prettyprint linenums">&lt;script type="text/javascript" src="/js/ink.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/js/ink.someComponent.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/js/ink.anotherComponent.min.js"&gt;&lt;/script&gt;</pre>
+                <p>Don't forget to replace the <i>someComponent</i> and the <i>anotherComponent</i> parts of the example for the real names of the components, like <i>modal</i> or <i>progressbar</i>.</p>
+
+                <p>We'll remind you to load the correct modules for each component, using the local host method, in the documentation below. Just replace the given local host examples with the CDN URL above, if you prefer it.</p>
+                <p>If you have a better grasp of JS and do not want all components intitialized off the bat, then do not inclue autoload.js, and, instead, initialize each component by hand. You can refer to the technical documentation to see how each initialization is made.</p>
+            </section>
+            
+<section id="modal" data-spy="true" data-target="#ui_menu">
+    <h2>Modal Window</h2>
+    <p class="note"><a href="#modalCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The Modal Window component allows you to place content in the form of a dialog window that takes center stage and fades out the rest of your content, allowing you to focus attention on that content and even require a certain action from your users to dismiss, or interact with that window.</p>
+    <p>Ink's Modal Window component is basically a bit of HTML and a Javascript instruction, so it's really easy to use and very flexible, allowing you to easily add text, images, videos, iframes, you name it.</p>       
+    <p>The Modal Window is also really easy to configure, like our other components, simply by using data-attributes. Let's see how to get started.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.modal.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.modal.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Modal component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var modal = new Ink.UI.Modal( '#test' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.Modal_1'], function(Modal){
+        new Modal( '#test' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Building the window</h3>
+    <p>First, you need to create two wrappers, by using two <code>&lt;div&gt;</code>. The first one must have the <code>.ink-shade</code> class, and takes care of darkening the background in order to make your modal window float above the rest of the page. The second one, inside the first, must have the <code>.ink-modal</code> class, to take care of setting up your window.</p>
+    <p>The <code>.ink-modal</code> wrapper is the configurable bit of the window, which you can change by using data-attributes. Let's look at just the most common one, for now, which allows you to fire up your window from another element, such as a link: <code>data-trigger="#myModal"</code>, this ID (in the example "myModal"), will be targetted by the Javascript instruction which will render the window onscreen; you can change the ID to whatever suits your particular case. If you don't use this attribute, the modal window will simply be created on page load, which is actually something you may want, so all our data-attributes are optional.</p>
+    <p>There's a lot more you can configure with data-attributes, but let's stay with the basic for now and we'll give you a list of all the parameters and their values further ahead.</p>
+    <p>So, up to now, you have this:</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-shade&gt;
+  &lt;div class=&quot;ink-modal&quot; data-trigger=&quot;#myModal&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p>That is the skelleton for the modal window. To add some content, you can create three <code>&lt;div&gt;</code>, one for each of the <code>.modal-header</code>, <code>.modal-body</code> and <code>.modal-footer</code> elements, inside the <code>.ink-modal</code> container. These are self-explanatory and you can add whatever you want inside them, such as headings, paragraphs, lists, images, videos, etc.</p>
+    <p>You'll need an interactive element to close your window, so Ink offers the <code>.ink-dismiss</code> class, which you can add to pretty much anything: an anchor, a button, a piece of text or an image which, when clicked by the user, will cause the modal window to be dismissed. There is also a <code>.modal-close</code> class which specifically renders a small "X" button in your modal window to keep up with the familiarity factor from general users. Add it to a button, together with the dismiss class, in your modal window's header element, for example.</p>
+    <p>Let's see what we have so far, then:</p>
+    <p><span class="ink-label info">Code</span></p>
+<pre class="prettyprint linenums">
+&lt;div class=&quot;ink-shade&quot;&gt;
+  &lt;div class=&quot;ink-modal&quot; data-trigger=&quot;#myModal&quot;&gt;
+    &lt;div class=&quot;modal-header&quot;&gt;&lt;/div&gt; &lt;!--Add a title and a close button here--&gt;
+    &lt;div class=&quot;modal-body&quot;&gt;&lt;/div&gt; &lt;!--Add some text and an image, or a form, here--&gt;
+    &lt;div class=&quot;modal-footer&quot;&gt;&lt;/div&gt; &lt;!--Add your submit button and a close button, here--&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p>Simple enough, right? Now you need a link or a button to fire up your modal window, just make sure it has the same ID as you defined before. In our case: "myModal"</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;button id=&quot;#myModal&quot;&gt;Open My Modal&lt;/button&gt;</pre>
+    <p><span class="ink-label info">Hint</span> We suggest you add the <code>.fade</code> class to your <code>.ink-shade</code> container, to obtain a fade-in/fade-out transition for your modal window. Why don't you hop over to our glorious <a href="/glossary">glossary</a> to get an overview of every available class in Ink?</p>
+    <p id="modalCode">So, without further ado, you can <a href="#" id="bModal">open the example window</a>, and then, check out the example code below, by hitting the view code button.</p>
+    <p><button data-target="#modal_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="modal_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-shade fade&quot;&gt;
+    &lt;div id=&quot;test&quot; class=&quot;ink-modal&quot; data-trigger=&quot;#bModal&quot; data-width=&quot;800px&quot; data-height=&quot;400px&quot;&gt;
+        &lt;div class=&quot;modal-header&quot;&gt;
+            &lt;button class=&quot;modal-close ink-dismiss&quot;&gt;&lt;/button&gt;
+            &lt;h5&gt;Modal windows can have headers&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-body&quot; id=&quot;modalContent&quot;&gt;
+            &lt;h3&gt;Please confirm your previous choice&lt;/h3&gt;
+            &lt;p&gt;&quot;No,&quot; said Peleg, &quot;and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face.&quot;&lt;/p&gt;
+            &lt;p&gt;
+                &lt;img src=&quot;http://placehold.it/800x400&quot; style=&quot;width: 100%;&quot; alt=&quot;&quot;&gt;
+            &lt;/p&gt;
+            &lt;p&gt;&quot;Do tell, now,&quot; cried Bildad, &quot;is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day.&quot;&lt;/p&gt;
+            &lt;p&gt;&quot;I don't know anything about Deacon Deuteronomy or his meeting,&quot; said I; &quot;all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is.&quot;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-footer&quot;&gt;
+            &lt;div class=&quot;push-right&quot;&gt;
+                &lt;button class=&quot;ink-button info&quot;&gt;Confirm&lt;/button&gt;
+                &lt;button class=&quot;ink-button caution ink-dismiss&quot;&gt;Cancel&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;a href=&quot;#&quot; id=&quot;bModal&quot;&gt;Open modal&lt;/a&gt;
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var modal = new Ink.UI.Modal( '#test' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.Modal_1'], function(Modal){
+        new Modal( '#test' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Configurable data attributes</h3>
+    <p>As you can see in the example code above, there are several data-attributes you can use to configure your window. In our case, we defined a certain width and height, but there's more you can use, just check out the list below and remember that these are all optional.</p>
+    
+    <ul>
+        <!-- <li>HTML formatted messages</li> -->
+        <li>
+           <strong>data-width</strong> and <strong>data-height</strong> define the size of your window and must be a valid unit, such as <code>px</code>, <code>em</code> or <code>%</code>. Example: <code>data-width="300px"</code> <code>data-height="600px"</code>
+            
+        </li>
+        <li>
+            <strong>data-trigger</strong> allows you to specify one or more elements that will trigger you modal window, it must be a valid CSS selector. Example: <code>data-trigger="#button"</code>. If you don't use this property, the modal window will be rendered as soon as it's created.
+            
+        </li>
+        <li>
+            <strong>data-trigger-event</strong> lets you specify in what event will the window be triggered, must be used together with <code>data-trigger</code> and must be a valid Javascript event. Example: <code>data-trigger-event="mouseover"</code>.
+        </li>
+        <li>
+            <strong>data-responsive</strong> makes your window respond to changes in viewport width, must be "true" (default) or "false". Example: <code>data-responsive="false"</code></li>
+        <li>
+            <strong>data-close-on-click</strong> defines whether or not your modal window will close if you click anywhere in the viewport, outside said window. Must be "true" or "false" (default). Example: <code>data-close-on-click="true"</code>
+        </li>
+        <li>
+            <strong>data-disable-scroll</strong> allows you to disable scolling your page behind the modal window. Values are "true" (default) or "false". Example: <code>data-disable-scroll="false"</code>
+        </li>
+    </ul>
+    <p>
+        Other options, more directed for the Javascript implementation, and a more detailed explanation of the above ones are available in the <a target="_blank" href="Ink.UI.Modal.html">technical documentation</a>.
+    </p>
+    <div class="ink-shade fade">
+        <div id="test" class="ink-modal" data-trigger="#bModal" data-disable-scroll="true" data-width="800px" data-height="600px">
+            <div class="modal-header">
+                <button class="modal-close ink-dismiss"></button>
+                <h5>Modal windows can have headers</h5>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <h3>Please confirm your previous choice</h3>
+                <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
+                <p>
+                    <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+                </p>
+                <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
+                <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
+            </div>
+            <div class="modal-footer">
+                <div class="push-right">
+                    <button class="ink-button blue">Confirm</button>
+                    <button class="ink-button red ink-dismiss">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><section id="table" data-spy='true' data-target="#ui_menu">    
+    <h2>Table</h2>
+    <p class="note"><a href="#tableCode">Skip to the code</a></p>
+    <p>
+        The table component adds powerful features to a native HTML table, such as sorting and pagination, that will offer improved interactivity with tabular data.
+    </p>
+    <p>All you need is a table and some simple data-attributes and you're set.</p>
+    <h3>Necessary JS Modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.table.js and autoload.js.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.table.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Table component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var table = new Ink.UI.Table( '.ink-table' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.Table_1'], function(Table){
+        new Table( '.ink-table' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Setting up sorting</h3>
+    <p>
+        To make your table columns sortable, you need to add the <code>data-sortable</code> attribute to your <code>&lt;th&gt;</code> elements. The value must be either "true" or "false" and Ink will just look a the column, figure out what kind of content it contains and then sort it, either alphabetically or numerically, depending on that content.
+    </p>
+    <p>So, if you have a table with names and ages and you want both columns to be sortable, you simply add the data-attribute in both headers, like this:</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;thead&gt;
+  &lt;th data-sortable=&quot;true&quot;&gt;Name&lt;/th&gt;
+  &lt;th data-sortable=&quot;true&quot;&gt;Age&lt;/th&gt;
+&lt;/thead&gt;</pre>
+    <h3>Setting up pagination</h3>
+    <p>Sometimes, your tables are just too long and you need to split them up by pages, without forcing your user to skip to a different page and load an entirely new table. With Ink, all you need is to specify how many rows per page you want your table to have. If your table grows to more than the specified number of rows, then it will create a new page within the table, which you can access via a pagination-style menu. Check out the Navigation section, under <a href="/navigation#nav-pagination">pagination menus</a> to see how they work.</p>
+    <p>To have pagination, you also need to provide an empty <code>&lt;nav&gt;</code> with an empty <code>&lt;ul&gt;</code> element for Ink to write the page navigation into. They need the <code>.ink-navigation</code> and <code>.pagination</code> classes, respectivelly. Furthermore, you can configure said pagination by adding classes to the <code>&lt;ul&gt;</code> just as detailed in the Navigation section linked above. So, you'll need this:</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;table data-page-size=&quot;10&quot;&gt; &lt;!--tells your table to break at every 10 rows--&gt;
+  ... &lt;!--your table content here--&gt;
+&lt;/table&gt;
+&lt;nav class=&quot;ink-navigation&quot;&gt;&lt;ul class=&quot;pagination&quot;&gt;&lt;/ul&gt;&lt;/nav&gt; &lt;!--pagination will be written here, automatically--&gt;</pre>
+    <p id="tableCode">As you can see, it's pretty easy to setup. We suggest you read our <a href="/tables">Tables</a> section in order to create your Ink tables and then add the JS to make them work better for your users. Here's an example of a sortable and paginated table, just hit the show source code button to copy the code.</p>
+    <p><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <h4>Scoville Rating of Peppers</h4>
+        <table class="ink-table alternating" data-page-size="6">
+            <thead>
+                <tr>
+                    <th data-sortable="true" width="75%">Pepper</th>
+                    <th data-sortable="true" width="25%">Scoville Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Trinidad Moruga Scorpion</td>
+                    <td>1500000</td>
+                </tr>
+                <tr>
+                    <td>Bhut Jolokia</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>Naga Viper</td>
+                    <td>1463700</td>
+                </tr>
+                <tr>
+                    <td>Red Savina Habanero</td>
+                    <td>580000</td>
+                </tr>
+                <tr>
+                    <td>Habanero</td>
+                    <td>350000</td>
+                </tr>
+                <tr>
+                    <td>Scotch Bonnet</td>
+                    <td>180000</td>
+                </tr>
+                <tr>
+                    <td>Malagueta</td>
+                    <td>50000</td>
+                </tr>
+                <tr>
+                    <td>Tabasco</td>
+                    <td>35000</td>
+                </tr>
+                <tr>
+                    <td>Serrano Chili</td>
+                    <td>27000</td>
+                </tr>
+                <tr>
+                    <td>Jalapeño</td>
+                    <td>8000</td>
+                </tr>
+                <tr>
+                    <td>Poblano</td>
+                    <td>1500</td>
+                </tr>
+                <tr>
+                    <td>Peperoncino</td>
+                    <td>500</td>
+                </tr>
+            </tbody>
+        </table>
+        <nav class="ink-navigation"><ul class="pagination"></ul></nav>
+    </div>
+    <p><button data-target="#table_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="table_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;table class=&quot;ink-table alternating&quot; data-page-size=&quot;6&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th data-sortable=&quot;true&quot; width=&quot;75%&quot;&gt;Pepper&lt;/th&gt;
+            &lt;th data-sortable=&quot;true&quot; width=&quot;25%&quot;&gt;Scoville Rating&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Trinidad Moruga Scorpion&lt;/td&gt;
+            &lt;td&gt;1500000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Bhut Jolokia&lt;/td&gt;
+            &lt;td&gt;1000000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Naga Viper&lt;/td&gt;
+            &lt;td&gt;1463700&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Red Savina Habanero&lt;/td&gt;
+            &lt;td&gt;580000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Habanero&lt;/td&gt;
+            &lt;td&gt;350000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Scotch Bonnet&lt;/td&gt;
+            &lt;td&gt;180000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Malagueta&lt;/td&gt;
+            &lt;td&gt;50000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Tabasco&lt;/td&gt;
+            &lt;td&gt;35000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Serrano Chili&lt;/td&gt;
+            &lt;td&gt;27000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Jalape&Atilde;&plusmn;o&lt;/td&gt;
+            &lt;td&gt;8000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Poblano&lt;/td&gt;
+            &lt;td&gt;1500&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Peperoncino&lt;/td&gt;
+            &lt;td&gt;500&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;nav class=&quot;ink-navigation&quot;&gt;&lt;ul class=&quot;pagination&quot;&gt;&lt;/ul&gt;&lt;/nav&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var table = new Ink.UI.Table( '.ink-table' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.Table_1'], function(Table){
+        new Table( '.ink-table' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Configurable data attributes</h3>
+    <p>Here's a list of the data-attributes you can use to manage your table components.</p>
+    
+    <ul>
+        <li>
+           <strong>data-page-size</strong> defines how many rows per page (not counting headers) your table shows, must be a numeric value. Must be applied to <code>&lt;table&gt;</code> element. Example: <code>data-page-size="20"</code>
+        </li>
+        <li>
+           <strong>data-sortable</strong> makes a column sortable (toggles between not sorted, ascending and descending), value must be "true" or "false" (default). Must be applied to a <code>&lt;th&gt;</code> element. Example: <code>data-sortable="true"</code>
+        </li>
+    </ul>
+    <p>
+        For more examples, like remote data loading via AJAX, and a list of all supported options, check our <a target="_blank" href="Ink.UI.Table.html">technical documentation</a>.
+    </p>
+</section><section id="tree_view" data-spy='true' data-target="#ui_menu">
+    <h2>Tree View</h2>
+    <p class="note"><a href="#treeviewCode">Skip to the code</a></p>
+    <p>The Tree View component takes a structure of nested lists and transforms it into an interactive tree with expandable and collapsible branches.</p>
+    <p>Although we recommend you use primarily unordered or ordered lists, this component can be applied to any
+        structured group of DOM elements.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.treeview.js and autoload.js if you want your module to be initialized with no hassle.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.treeview.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Modal component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var treeview = new Ink.UI.TreeView( '.ink-tree-view' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.TreeView_1'], function(TreeView){
+        new TreeView( '.ink-tree-view' );
+    });
+&lt;/script&gt;</pre>
+
+    <h3>Building a tree view</h3>
+    <p>To make a tree view, you need to create a list, with sub lists and make sure your first parent list has the <code>.ink-tree-view</code> class.</p>
+    <p>To add a small state icon, indicating if a node is opened or closed, you need to add an empty <code>&lt;span&gt;</code> in the corresponding list element. The Javascript will write the correct icon into that <code>&lt;span&gt;</code> as required.</p>
+    <p>To make your lists expand and collapse, make sure you envelop each interactive node in and anchor element with an empty href, like so: <code>&lt;a href=""&gt;</code>.</p>
+    <p>Finally, you can indicate whether each node starts out closed, which is the default, or open, for which you need to simply add the <code>.open</code> class in the corresponding <code>&lt;li&gt;</code>.</p>
+    <p>If you check the example below, you'll see how the lists are nested, with the first branch being open by defult, then, hit the view source code button to get it. Keep reading below for more details and configurations.</p>
+    <p id="treeviewCode"><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <ul class="ink-tree-view" id="tview1">
+            <li class="open">
+                <span></span>
+                <a href="#">root</a>
+
+                <ul>
+                    <li>
+                        <a href="">child 1</a>
+                    </li>
+                    
+                    <li>
+                        <span></span>
+                        <a href="">child 2</a>
+
+                        <ul>
+                            <li><a href="">grandchild 2a</a></li>
+                            <li>
+                                <span></span>
+                                <a href="">grandchild 2b</a>
+
+                                <ul>
+                                    <li>
+                                        
+                                        <a href="">grandgrandchild 1bA</a>
+                                    </li>
+                                    <li>
+                                        
+                                        <a href="">grandgrandchild 1bB</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="">child 3</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <p><button data-target="#treeview_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="treeview_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;ink-tree-view&quot;&gt;
+  &lt;li class=&quot;open&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;a href=&quot;#&quot;&gt;root&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;&quot;&gt;child 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;/span&gt;&lt;a href=&quot;&quot;&gt;child 2&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;&quot;&gt;grandchild 2a&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;span&gt;&lt;/span&gt;&lt;a href=&quot;&quot;&gt;grandchild 2b&lt;/a&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;&quot;&gt;grandgrandchild 1bA&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;&quot;&gt;grandgrandchild 1bB&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;&quot;&gt;child 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var treeview = new Ink.UI.TreeView( '.ink-tree-view' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.TreeView_1'], function(TreeView){
+        new TreeView( '.ink-tree-view' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Configurable data attributes</h3>
+    <p>If by any chance you need the functionality of a tree view, with expandable and collapsible branches, but can't use a list, you can still create a functioning structure by using two data-attributes that will define which are the trigger elements and which are the interactive children.</p>
+    <ul>
+        <li><strong>data-node</strong> Identifies which of your elements are considered nodes, that can be expanded and collapsed. Value must be a valid CSS selector. The default value is <code>li</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myNode"</code></li>
+        <li><strong>data-child</strong> Identifies which of your elements are condidered children elements within your structure. value must be a valid CSS selector. The default value is <code>ul</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myChild"</code></li>
+    </ul>
+    <p><span class="ink-label info">Note</span> If you need to build a tree view with elements other than lists, then you will not benefit from Ink's defaul styling for this component and you'll have to add your own style.</p>
+    <p>Specifications and other examples, available in the <a target="_blank" href="Ink.UI.TreeView.html">technical documentation</a>.</p>
+</section>
+<section id="sortable_list" data-spy="true" data-target="#ui_menu">
+    <h2>Sortable List</h2>
+    <p class="note"><a href="#sortablelistCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The Sortable List component allows the user to reorder items on a list, by dragging and dropping.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.modal.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.sortablelist.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Modal component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var sortablelist = new Ink.UI.SortableList( '.ink-sortable-list' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.SortableList_1'], function(SortableList){
+        new SortableList( '.ink-sortable-list' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Building a sortable list</h3>
+    <p>Making a sortable list is as easy as using a class. Build a <code>&lt;ul&gt;</code> with the <code>.ink-sortable-list</code> class, and you're set. By default, your <code>&lt;li&gt;</code> elements can be dragged and their order changed by the user.</p>
+    <p>If you need your sortable list to work differently, check the configurable attributes after the example. Click the view source code button to get a functional snippet.</p>
+    <p><span class="ink-label success" id="sortablelistCode">Example</span></p>
+    <div class="box">
+        <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9" data-drag-object=".ink-label">
+            <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>First element</li>
+            <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>Second element</li>
+            <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>Third element</li>
+        </ul>
+    </div>
+    <p><button data-target="#sortablelist_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="sortablelist_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;ul class=&quot;unstyled ink-sortable-list&quot; id=&quot;slist&quot; data-instance=&quot;sortableList9&quot;&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;primeiro&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;segundo&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;ink-label info&quot;&gt;&lt;i class=&quot;icon-reorder&quot;&gt;&lt;/i&gt;drag here&lt;/span&gt;terceiro&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var sortablelist = new Ink.UI.SortableList( '.ink-sortable-list' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.SortableList_1'], function(SortableList){
+        new SortableList( '.ink-sortable-list' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Configurable data attributes</h3>
+    <ul>
+        <li><strong>data-drag-object</strong> Allows you to set which element is draggable. Default is <code>&lt;li&gt;</code>, can be set to any CSS selector. Example: <code>data-drag-object=".myClass"</code>.</li>
+    </ul>
+    <p>If you check the example code above, you'll see we created a "drag here" label and made that the draggable element with <code>data-drag-object=".ink-label"</code></p>
+    <p>Check our <a target="_blank" href="Ink.UI.SortableList.html">technical documentation</a> for further configuration.</p>
+</section>
+<section id="date_picker" data-spy="true" data-target="#ui_menu">
+    <h2>Date Picker</h2>
+    <p class="note"><a href="#datepickerCode">Skip to the code</a></p>
+    <p>The date picker component adds a flyout calendar to a textbox, within a form, so your users can just click the box and pick a date, visually, instead of having to guess the date format or you having to print specific instructions to explain that format.</p>
+    <p>Using the date picker also guarantees that you get your dates in the format you need, without extra form validation.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.datepicker.js and autoload.js.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.datepicker.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var datepicker = new Ink.UI.DatePicker( '.ink-date-picker' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.DatePicker_1'], function(DatePicker){
+        new DatePicker( '.ink-date-picker' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Getting started</h3>
+    <p>Creating a date picker couldn't be easier. All you need is a text input in your form, tagged with the <code>.ink-datepicker</code> class. And that is all.</p>
+    <p>Like other Ink Javascript components, the date picker is configurable by using data-attributes, which we will detail below. For now, let's see what your code should look like. Remember, you are within a form, so go read up on Ink <a href="/forms">forms</a>, if you need to.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;input type=&quot;text&quot; id=&quot;date&quot; class=&quot;ink-datepicker&quot;&gt;</pre>
+    <p id="datepickerCode">That is the basic of basics for getting a date picker, but there is a more complete example below, grab the code by hitting the view code button. Then, you can read up on all the ways you can configure your date picker, using data-attributes.</p>
+    <form class="ink-form vspace">
+        
+        <div class="control-group column-group gutters">
+            <label for="dPicker" class="large-15">A date field:</label>
+            <div class="control large-20">
+                <input id="dPicker" data-format="dd-mm-yyyy" data-position="bottom" class="ink-datepicker" type="text">
+            </div>
+        </div>
+        
+    </form>
+    <p><button href="#" data-target="#datepicker_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="datepicker_sourcecode" class="prettyprint linenums">&lt;div class=&quot;control-group&quot;&gt;
+    &lt;label for=&quot;dPicker&quot;&gt;A date field:&lt;/label&gt;
+    &lt;div class=&quot;control&quot;&gt;
+        &lt;input id=&quot;dPicker&quot; class=&quot;ink-datepicker&quot; type=&quot;text&quot;&gt;&lt;/input&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var datepicker = new Ink.UI.DatePicker( '.ink-date-picker' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.DatePicker_1'], function(DatePicker){
+        new DatePicker( '.ink-date-picker' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Using the calendar</h3>
+    <p>The calendar has some really useful features you might want to be aware of. On the top left corner you have a link to clear the input box, in case you've entered a wrong date, and on the top right, you can click to close the calendar.</p>
+    <p>On the next line, you have navigation chevrons on either side, that will allow you to navigate by month and in the center, you can click either the month name to directly pick another month, or the year, to pick a different year, without having to navigate by hand to those dates. When you click a day, the date gets written into the input field. Just click the above example and try it out.</p>
+    <h3>Configurable data attributes</h3>
+    <p>To further configure your date picker, just add data-attributes to your text input field. Here's a comprehensive list of all the attributes you can use on the date picker.</p>
+    <ul>
+        <li>
+            <p><strong>data-format</strong> sets the date format which will be written into the text input and submitted with the form. The default value is <code>data-format="yyyy-mm-dd"</code> but there are many different options as you can see below:</p>
+            <ul>
+                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-07-29 (default)</li>
+                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/07/29</li>
+                <li><strong>yy-mm-dd</strong> Ex: 13-07-29</li>
+                <li><strong>yy/mm/dd</strong> Ex: 13/07/29</li>
+                <li><strong>dd-mm-yyyy</strong> - Ex: 29-07-2013</li>
+                <li><strong>dd/mm/yyyy</strong> - Ex: 29/07/2013</li>
+                <li><strong>dd-mm-yy</strong> Ex: 29-07-13</li>
+                <li><strong>dd/mm/yy</strong> Ex: 29/07/13</li>
+                <li><strong>mm-dd-yyyy</strong> - Ex: 07-29-2013</li>
+                <li><strong>mm/dd/yyyy</strong> - Ex: 07/29/2013</li>
+            </ul>
+            <p></p>
+        </li>
+        <li>
+            <p><strong>data-position</strong> specifies where the calendar will appear, relative to the input field. Example: <code>data-position="bottom"</code>. Possible values are:</p>
+            <ul>
+                <li><strong>bottom</strong></li>
+                <li><strong>left</strong></li>
+            </ul>
+            <p></p>
+        </li>
+        <li>
+            <p><strong>data-css-class</strong> sets a class for the calendar. The default value is <code>data-css-class="sapo_component_datepicker"</code>, but you can change it to any class you need to use in your project to style the calendar.
+        </li>
+        <li>
+            <p><strong>data-start-date</strong> sets a start date, that will be selected when you open the calendar. It must be defined in the following format: <code>yyyy-mm-dd</code>. Example: <code>data-start-date="2013-01-01"</code></p>
+        </li>
+    </ul>
+    <p>There are other configurations, some specific for Javascript, available on the <a target="_blank" href="Ink.UI.DatePicker.html">technical documentation</a>.</p>
+</section>
+    
+<section id="tabs" data-spy="true" data-target="#ui_menu">
+    <h2>Tabs</h2>
+    <p class="note"><a href="#tabsCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.tabs.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.modal.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Tabs component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p>Notice that, in this particular case, when initializing the module, you'll have to declare which tab is active on load and which aren't, by using their respective indexes.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var tabs = new Ink.UI.Tabs( '.ink-tabs',{
+        disabled: ['#stuff', '#more_stuff'], 
+        active: '#news',
+        onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
+        }, 
+        onChange: function(tab){
+            console.log('Changed', tab);
+        }
+    });
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.Tabs_1'], function(Tabs){
+        new Tabs( '.ink-tabs',{
+            disabled: ['#stuff', '#more_stuff'], 
+            active: '#news',
+            onBeforeChange: function(tab){
+                console.log('beforeChange', tab);
+            }, 
+            onChange: function(tab){
+                console.log('Changed', tab);
+            }
+        });
+    });
+&lt;/script&gt;</pre>
+    <h3>Building tabs</h3>
+    <p>To make a tabbed view, you'll need a block element with the <code>.ink-tabs</code> class, such as a <code>&lt;div&gt;</code>, within which you'll have a <code>&lt;ul&gt;</code> for your tabbed navigation and a set of <code>&lt;div&gt;</code> elements to hold the content of each tab. Your <code>.ink-tabs</code> element should also have a class to determine where the navigation will be in relation to the content: <code>.top</code>, <code>.bottom</code>, <code>.left</code> or <code>.right</code></p>
+    <p>The <code>&lt;ul&gt;</code> must have the <code>.tabs-nav</code> class and each list element must be wrapped in an anchor pointing to a valid ID in the content of the tabs.</p>
+    <p>Each of the <code>&lt;div&gt;</code> holding the content, must have the <code>.tabs-content</code> class and an ID that matches the navigation anchors.</p>
+    <p>If you're making a tabbed view with tabs on top, on the left or on the right, put the navigation first in your markup, if you need the tabs at the bottom, then, put the content first and the navigation after.</p>
+    <p>Examples of each and a full code snippet will follow, but for now, let's look at an example code, just to clarify everything.</p>
+    <p><span class="ink-label info">Example Code</span></p>
+<pre class="prettyprint linenums">
+&lt;div class=&quot;ink-tabs top&quot;&gt; &lt;!-- Creates a tabbed view with top nav --&gt;
+  &lt;ul class=&quot;tabs-nav&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#item1&quot;&gt;Item 1&lt;/a&gt;&lt;/li&gt; &lt;!-- Points to item 1 below --&gt;
+    &lt;li&gt;&lt;a href=&quot;#item2&quot;&gt;Item 2&lt;/a&gt;&lt;/li&gt; &lt;!-- Points to item 2 below --&gt;
+    ...
+  &lt;/ul&gt;
+  &lt;div id=&quot;item1&quot; class=&quot;tabs-content&quot;&gt; &lt;!-- Item 1 --&gt;
+    ... &lt;!-- Your tab content here --&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;item2&quot; class=&quot;tabs-content&quot;&gt; &lt;!-- Item 2 --&gt;
+    ... &lt;!-- Your tab content here --&gt;
+  &lt;/div&gt;
+  ...
+&lt;/div&gt;</pre>
+
+    
+        <p><span class="ink-label success">Example</span> With top navigation</p>
+        <div class="box">
+            <div class="ink-tabs top hide-small" data-active="#ui_tabs_news_1" data-prevent-url-change="true">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_1">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_1">Nails</a></li>
+                    <li><a href="#ui_tabs_description_1">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_1">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_1" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_1" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_1" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_1" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>            </div>
+            <div class="ink-tabs top hide-all show-small" data-active="#ui_tabs_news_1" data-prevent-url-change="true">
+                <ul class="tabs-nav hide-small">
+                    <li><a href="#ui_tabs_home_1" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_1" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_1" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_1" class="small">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_1" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_1" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_1" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_1" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>            </div>
+        </div>
+
+        <p><span class="ink-label success">Example</span> With bottom navigation</p>
+        <div class="box">
+            <div class="ink-tabs bottom hide-small" data-active="#ui_tabs_home_2">
+                
+            <div id="ui_tabs_home_2" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_2" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_2" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_2" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_2">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_2">Nails</a></li>
+                    <li><a href="#ui_tabs_description_2">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_2">Lightning</a></li>
+                </ul>
+            </div>
+            <div class="ink-tabs bottom hide-all show-small" data-active="#ui_tabs_home_2">
+                
+            <div id="ui_tabs_home_2" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_2" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_2" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_2" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_2" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_2" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_2" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_2" class="small">Lightning</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <p><span class="ink-label success">Example</span> With left navigation</p>
+        <div class="box">
+            <div class="ink-tabs left hide-small" data-active="#ui_tabs_stuff_3">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_3">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_3">Nails</a></li>
+                    <li><a href="#ui_tabs_description_3">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_3">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_3" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_3" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_3" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_3" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>            </div>
+            <div class="ink-tabs left hide-all show-small" data-active="#ui_tabs_stuff_3">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_3" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_3" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_3" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_3" class="small">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_3" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_3" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_3" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_3" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>            </div>
+        </div>
+
+        <p><span class="ink-label success">Example</span> With right navigation</p>
+        <div class="box">
+            <div class="ink-tabs right hide-small"  data-active="#ui_tabs_description_4">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_4">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_4">Nails</a></li>
+                    <li><a href="#ui_tabs_description_4">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_4">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_4" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_4" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_4" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_4" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>            </div>
+            <div class="ink-tabs right hide-all show-small"  data-active="#ui_tabs_description_4">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_4" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_4" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_4" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_4" class="small">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_4" class="tabs-content hide-all">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                <p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_4" class="tabs-content hide-all">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_4" class="tabs-content hide-all">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_4" class="tabs-content hide-all">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                </p>
+            </div>            </div>
+        </div>
+        <p id="tabsCode"><button data-target="#tabs_sourcecode_3" class="ink-button toggle">View Source Code</button></p>
+        <pre id="tabs_sourcecode_3" class="hide-all prettyprint linenums">&lt;div class=&quot;ink-tabs top&quot;&gt; &lt;!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation --&gt;
+    
+    &lt;!-- put navigation first if using top, left or right positioning --&gt;
+    &lt;ul class=&quot;tabs-nav&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#stuff&quot;&gt;Stuff&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#more_stuff&quot;&gt;More stuff&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- Put your content second if using top, left or right navigation --&gt;
+    &lt;div id=&quot;home&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+    &lt;div id=&quot;news&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+    &lt;div id=&quot;description&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+    &lt;div id=&quot;stuff&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+    &lt;div id=&quot;more_stuff&quot; class=&quot;tabs-content&quot;&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;
+    &lt;!-- If you're using bottom navigation, switch the nav block with the content blocks --&gt;
+
+&lt;/div&gt;
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var tabs = new Ink.UI.Tabs( '.ink-tabs',{
+        disabled: ['#stuff', '#more_stuff'], 
+        active: '#news',
+        onBeforeChange: function(tab){
+            console.log('beforeChange', tab);
+        }, 
+        onChange: function(tab){
+            console.log('Changed', tab);
+        }
+    });
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.Tabs_1'], function(Tabs){
+        new Tabs( '.ink-tabs',{
+            disabled: ['#stuff', '#more_stuff'], 
+            active: '#news',
+            onBeforeChange: function(tab){
+                console.log('beforeChange', tab);
+            }, 
+            onChange: function(tab){
+                console.log('Changed', tab);
+            }
+        });
+    });
+&lt;/script&gt;
+</pre>
+
+        <h3>Configurable Data Attributes</h3>
+        <p>As with most Ink JS components, you can add extra features to the tabs via data attributes. Check the following list for attributes you can add to your <code>.ink-tabs</code> <code>&lt;div&gt;</code></p> 
+    </p>
+    <ul>
+        <li><strong>data-prevent-url-change</strong> Prevents the URL from being changed when navigating between tabs. Value must be boolean, "true" (default) or "false". Example: <code>data-prevent-url-change="false"</code></li>
+        <li><strong>data-active</strong> Allows specifying which of the tabs is open by default. Value must be an ID present in the markup structure of the tabs. Example: <code>data-active="#secondItem"</code></li>
+    </ul>
+    <p>You can see several examples in the <a target="_blank" href="Ink.UI.Tabs.html">technical documentation</a>.</p>
+    
+</section>
+<section id="draggables" data-spy="true" data-target="#ui_menu">
+    <h2>Draggables</h2>
+    <p>You can have elements which can be dragged around by your user.</p>
+
+    <p id="draggable_example"><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <div id="drag1">
+    Drag me
+</div>        <script type="text/javascript">
+    Ink.requireModules(['Ink.UI.Draggable_1'], function (Draggable) {
+        new Draggable('drag1', {
+            revert: false
+        });
+    });
+</script>    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre id="draggable_sourcecode" class="ink-l100 prettyprint linenums">&lt;div id=&quot;drag1&quot;&gt;
+    Drag me
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    Ink.requireModules(['Ink.UI.Draggable_1'], function (Draggable) {
+        new Draggable('drag1', {
+            revert: false
+        });
+    });
+&lt;/script&gt;</pre>
+
+    <h3>Options</h3>
+    
+    <p>Draggable options:</p>
+
+    <ul>
+        <li><strong>constraint</strong> Movement constraint. None by default.
+        Can be either vertical or horizontal.</li>
+
+        <li><strong>top</strong> top limit for the draggable area</li>
+
+        <li><strong>right</strong> right limit for the draggable area</li>
+
+        <li><strong>bottom</strong> bottom limit for the draggable area</li>
+
+        <li><strong>left</strong> left limit for the draggable area</li>
+
+        <li><strong>handler</strong> if specified, only this element will be
+        used for dragging instead of the whole target element</li>
+
+        <li><strong>revert</strong> if true, reverts the draggable to the
+        original position when dragging stops</li>
+
+        <li><strong>cursor</strong> cursor type used over the draggable
+        object</li>
+
+        <li><strong>zindex</strong> zindex applied to the draggable element
+        while dragged</li>
+
+        <li><strong>fps</strong> if defined, on drag will run every n frames
+        per second only</li>
+
+        <li><strong>droppableProxy</strong> if set, a shallow copy of the
+        droppableProxy will be put on document.body with transparent bg</li>
+
+        <li><strong>mouseAnchor</strong> defaults to mouse cursor. can be
+        'left|center|right top|center|bottom'</li>
+
+        <li><strong>dragClass</strong> class to add when the draggable
+        is being dragged.</li>
+
+        <li><strong>onStart</strong> callback called when dragging starts</li>
+
+        <li><strong>onEnd</strong> callback called when dragging stops</li>
+
+        <li><strong>onDrag</strong> callback called while dragging, prior to
+        position updates</li>
+
+        <li><strong>onChange</strong> callback called while dragging, after
+        position updates</li>
+    </ul>
+
+    <p>More details can be found in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Draggable.html">technical documentation</a>.</p>
+</section>
+
+
+
+<section id="droppables" data-spy="true" data-target="#ui_menu">
+    <h2>Droppables</h2>
+    <p>You can have elements which can be dragged around by your user.</p>
+
+    <p id="droppable_example"><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <div id="drag2" class="acceptme">
+    Drag me
+</div>
+<p>
+    Drop it <b id="drop" class="success">here</b>
+</p>        <script type="text/javascript">
+    Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+        new Draggable('drag2', {
+            revert: false
+        });
+        Droppable.add('drop', {
+            hoverclass: 'ink-label',
+            accept: 'acceptme'  // Accept any element with the "acceptme" class.
+        });
+    });
+</script>    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre id="droppable_sourcecode" class="ink-l100 prettyprint linenums">&lt;div id=&quot;drag2&quot; class=&quot;acceptme&quot;&gt;
+    Drag me
+&lt;/div&gt;
+&lt;p&gt;
+    Drop it &lt;b id=&quot;drop&quot; class=&quot;success&quot;&gt;here&lt;/b&gt;
+&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+        new Draggable('drag2', {
+            revert: false
+        });
+        Droppable.add('drop', {
+            hoverclass: 'ink-label',
+            accept: 'acceptme'  // Accept any element with the &quot;acceptme&quot; class.
+        });
+    });
+&lt;/script&gt;</pre>
+
+    <h3>Options</h3>
+    
+    <p>Droppable options:</p>
+
+    <ul>
+        <li><strong>element</strong> target element</li>
+
+        <li><strong>options</strong> options object</li>
+
+        <li><strong>hoverclass</strong> Classname applied when an
+        acceptable draggable element is hovering the element</li>
+
+        <li><strong>accept</strong> Array or comma separated string of
+        classnames for elements that can be accepted by this droppable</li>
+
+        <li><strong>onHover</strong> callback called when an acceptable
+        draggable element is hovering the droppable. Gets the draggable and the
+        droppable element as parameters.</li>
+
+        <li><strong>onDrop</strong> callback called when an acceptable
+        draggable element is dropped. Gets the draggable, the droppable and the
+        event as parameterse.</li>
+    </ul>
+    <p>More details can be found in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Droppable.html">technical documentation</a>.</p>
+</section>
+
+
+
+
+<section id="tooltips" data-spy="true" data-target="#ui_menu">
+    <h2>Tooltips</h2>
+    <p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
+
+    <p id="tooltip_example"><span class="ink-label success">Example</span></p>
+    <div class="box" id="">
+        <h5>What do you want to do now?</h5>
+<hr>
+<ul>
+    <li>
+        <span class="tooltip"
+            data-tip-text="Attempt to talk to this stranger"
+            data-tip-where="up"
+            data-tip-color="blue">
+            Talk
+        </span>
+    </li>
+    <li>
+        <span class="tooltip"
+            data-tip-text="Fight this person as an enemy"
+            data-tip-where="mousemove"
+            data-tip-color="red">
+            Fight
+        </span>
+    </li>
+    <li>
+        <span class="tooltip"
+            data-tip-text="This guy does not seem dangerous. But you can still run for your life."
+            data-tip-where="mousefix"
+            data-tip-color="orange">
+            Run
+        </span>
+    </li>
+</ul>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre id="tooltip_sourcecode" class="ink-l100 prettyprint linenums">&lt;h5&gt;What do you want to do now?&lt;/h5&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;span class=&quot;tooltip&quot;
+            data-tip-text=&quot;Attempt to talk to this stranger&quot;
+            data-tip-where=&quot;up&quot;
+            data-tip-color=&quot;blue&quot;&gt;
+            Talk
+        &lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span class=&quot;tooltip&quot;
+            data-tip-text=&quot;Fight this person as an enemy&quot;
+            data-tip-where=&quot;mousemove&quot;
+            data-tip-color=&quot;red&quot;&gt;
+            Fight
+        &lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span class=&quot;tooltip&quot;
+            data-tip-text=&quot;This guy does not seem dangerous. But you can still run for your life.&quot;
+            data-tip-where=&quot;mousefix&quot;
+            data-tip-color=&quot;orange&quot;&gt;
+            Run
+        &lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+    <p>
+        <span class="ink-label info">Hint</span>
+        You can use the <code>[data-tip-text]</code> selector instead of <code>.tooltip</code> above.
+    </p>
+
+    <h3>Options</h3>
+    
+    <p>You can define options either through the second argument to the Tooltip constructor, or as data-attributes in each target element. Options set through data-attributes all start with <code>data-tip</code>, and are prioritized over options passed into the Tooltip constructor.</p>
+
+    <p>Some options:</p>
+
+    <ul>
+        <li>
+            <strong>text</strong>:
+            Text content for the tooltip.
+        </li>
+
+        <li>
+            <strong>where</strong>:
+            Positioning for the tooltip. Can be <code>'up'</code>, <code>'down'</code>, <code>'left'</code>, <code>'right'</code>, <code>'mousemove'</code> or <code>'mousefix'</code>:
+        </li>
+
+        <li>
+            <strong>color</strong>:
+            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
+        </li>
+
+        <li>
+            <strong>fade</strong>:
+            Fade time; Duration of the fade in/out effect.
+        </li>
+
+        <li>
+            <strong>forever</strong>:
+            Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+        </li>
+
+        <li>
+            <strong>timeout</strong>:
+            Time for the tooltip to live. Useful together with [options.forever].
+        </li>
+
+        <li>
+            <strong>delay</strong>:
+            Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
+        </li>
+
+        <li>
+            <strong>template</strong>:
+            Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS <code>display</code> is set to <code>block</code>.
+        </li>
+
+        <li>
+            <strong>templatefield</strong>:
+            Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
+        </li>
+    </ul>
+
+    <p>More details can be found in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Tooltip.html">technical documentation</a>.</p>
+</section>
+
+
+
+<section id="formvalidator" data-spy="true" data-target="#ui_menu">
+    <h2>Form Validator</h2>
+    <p class="note"><a href="#formvalidatorCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The Form Validator component provides an easy way to validate forms before submitting them. It can:</p>
+    <ul>
+        <li>Detect required fields</li>
+        <li>Validate some field types</li>
+        <li>Detect match with password and confirmation password</li>
+        <li>Use custom field types</li>
+    </ul>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js and ink.formvalidator.js.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.formvalidator.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>Notice that, contrary to other modules, you don't really need to initialize the Form Validator, as the validation request is made on form submission.</p>
+    <h3>Validating</h3>
+    <p>There are two components that you need to use in order to validate a form using Ink. You'll have to request validation on form submission and you'll have to tag the input elements with certain classes to tell Ink what to validate.</p>
+    <p>So, start by building your form (make sure you read the sction on <a href="./index.php/forms">Forms</a>), and add the bit of Javascript that tells Ink to do the validation in your <code>&lt;form&gt;</code>, like this:</p>
+    <pre class="prettyprint linenums">
+&lt;form class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return Ink.UI.FormValidator.validate(this);&quot;&gt;</pre>
+    <p>Once you have the <code>onsubmit</code> attribute set, you need to 'tag' each of your input elements (text, radio buttons, select boxes, etc), with one or more validation classes. Refer to the following list to see what they do:</p>
+    <ul>
+        <li><strong>.ink-fv-required</strong> - Marks a field as required and checks if it has been filled/set.</li>
+        <li><strong>.ink-fv-email</strong> - Checks if the form field value is a valid e-mail address.</li>
+        <li><strong>.ink-fv-url</strong> - Checks if the form field value is a valid URL.</li>
+        <li><strong>.ink-fv-number</strong> - Checks if the form field value is a number.</li>
+        <li><strong>.ink-fv-phone_pt</strong> - Checks if the form field value is a valid Portugal phone number.</li>
+        <li><strong>.ink-fv-phone_cv</strong> - Checks if the form field value is a valid Cape Verde phone number.</li>
+        <li><strong>.ink-fv-phone_mz</strong> - Checks if the form field value is a valid Mozambique phone number.</li>
+        <li><strong>.ink-fv-phone_ao</strong> - Checks if the form field value is a valid Angola phone number.</li>
+        <li><strong>.ink-fv-date</strong> - Checks if the form field value is a valid date.</li>
+        <li><strong>.ink-fv-confirm</strong> - A pair of form fields with this class will be checked to make sure the inputed values match.</li>
+        <li><strong>.ink-fv-custom</strong> - Allows custom Javascript validation.</li>
+    </ul>
+    <p>More examples and detailed configurations, in the <a target="_blank" href="Ink.UI.FormValidator.html">technical documentation</a>.</p>
+    <div class="box" id="formvalidatorCode">
+        <form id="myform" class="ink-form" method="post" action="#" onsubmit="return Ink.UI.FormValidator.validate(this);">
+    <fieldset>
+        <div class="control-group required">
+            <label for="name">Name:</label>
+            <div class="control">
+                <input type="text" name="name" id="name" class="ink-fv-required" />
+            </div>
+        </div>
+        
+        <div class="control-group required">
+            <label for="mail">Email:</label>
+            <div class="control">
+                <input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" />
+            </div>
+        </div>
+        
+        <div class="control-group required">
+            <label for="pass">Password: </label>
+            <div class="control">
+                <input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" />
+            </div>
+        </div>
+        
+        <div class="control-group required">
+            <label for="confpass">Confirm Password:</label>
+            <div class="control">
+                <input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" />
+            </div>
+        </div>
+        
+        <div class="control-group required">
+            <p class="label">Please select one option</p>
+            <ul class="control unstyled">
+                <li><input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /> <label for="radio1_g">radio 1</label> </li>
+                <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
+                <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
+            </ul>
+        </div>
+    </fieldset>
+    <div>
+        <input type="submit" name="sub" value="Submit" class="ink-button success" />
+    </div>
+</form>    </div>
+    <p><button data-target="#formvalidator_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="formvalidator_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;form id=&quot;myform&quot; class=&quot;ink-form&quot; method=&quot;post&quot; action=&quot;#&quot; onsubmit=&quot;return Ink.UI.FormValidator.validate(this);&quot;&gt;
+    &lt;fieldset&gt;
+        &lt;div class=&quot;control-group required&quot;&gt;
+            &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; class=&quot;ink-fv-required&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
+            &lt;label for=&quot;mail&quot;&gt;Email:&lt;/label&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;mail&quot; class=&quot;ink-fv-required ink-fv-email&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
+            &lt;label for=&quot;pass&quot;&gt;Password: &lt;/label&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;password&quot; name=&quot;pass&quot; id=&quot;pass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
+            &lt;label for=&quot;confpass&quot;&gt;Confirm Password:&lt;/label&gt;
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;input type=&quot;password&quot; name=&quot;confpass&quot; id=&quot;confpass&quot; class=&quot;ink-fv-required ink-fv-confirm&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;control-group required&quot;&gt;
+            &lt;p class=&quot;label&quot;&gt;Please select one option&lt;/p&gt;
+            &lt;ul class=&quot;control unstyled&quot;&gt;
+                &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio1_g&quot; value=&quot;1&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio1_g&quot;&gt;radio 1&lt;/label&gt; &lt;/li&gt;
+                &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio2_g&quot; value=&quot;2&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio2_g&quot;&gt;radio 2&lt;/label&gt; &lt;/li&gt;
+                &lt;li&gt;&lt;input type=&quot;radio&quot; name=&quot;radio1&quot; id=&quot;radio3_g&quot; value=&quot;3&quot; class=&quot;ink-fv-required&quot; /&gt; &lt;label for=&quot;radio3_g&quot;&gt;radio 3&lt;/label&gt; &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;sub&quot; value=&quot;Submit&quot; class=&quot;ink-button success&quot; /&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</pre>
+</section>
+<section id="progress_bar" data-spy="true" data-target="#ui_menu">
+    <h2>Progress bar</h2>
+    <p class="note"><a href="#progressbarCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The progress bar component allows you to animate a progress bar using JavaScript. This component requires a knowledge of Javascript to read and write the events that will make the progress bar fill up.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.progressbar.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.progressbar.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Progress Bar component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var progressbar = new Ink.UI.ProgressBar( '.ink-progress-bar' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.ProgressBar_1'], function(ProgressBar){
+        new ProgressBar( '.ink-progress-bar' );
+    });
+&lt;/script&gt;</pre>
+    <h3>Building a progress bar</h3>
+    <p>Ink gives you basic styles to create a progress bar to which you can apply the Javascript to obtain the animation based on a set value.</p>
+    <p>To create a bar, you need the outter shell, which is done with a <code>&lt;div&gt;</code> with the <code>.ink-progress-bar</code> class. Next, you'll need another <code>&lt;div&gt;</code> within the first one, with the <code>.bar</code> and a color class. Valid colors are <code>.grey</code>, <code>.green</code>, <code>.blue</code>, <code>.red</code>, <code>.orange</code> and <code>.black</code>.</p>
+    <p>You can also add some text to your progress bar, using a <code>&lt;span&gt;</code> with the <code>.caption</code> class.</p>
+    <p id="progressbarCode"><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <div class="ink-progress-bar">
+          <span class="caption">My Progress Bar</span>
+          <div class="bar red"></div>
+        </div>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-progress-bar&quot;&gt;
+  &lt;span class=&quot;caption&quot;&gt;My Progress Bar&lt;/span&gt;
+  &lt;div class=&quot;bar red&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p>You can configure where the bar begins (the default is an empty bar), using the <strong>data-start-value</strong> attribute, which must be an integer between 0 and 100, for example: <code>data-start-value="50"</code>, produces a progress bar that starts half-full (or half empty, if you're a pessimist).</p>
+    <p>Besides that, the component provides - for those who code in Javascript - a public method for setting the value in runtime. The public method is <code>setValue</code> and accepts an integer, within the range 0-100. More info, see the source code example below.</p>
+    <p><button data-target="#progressbar_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="progressbar_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;div class=&quot;ink-progress-bar&quot; data-start-value=&quot;50%&quot;&gt;
+    &lt;span class=&quot;caption&quot;&gt;I am a red progress bar&lt;/span&gt;
+    &lt;div class=&quot;bar red&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    // There are two ways to run the code...
+    // 1 - If you know you have the component and its dependencies already loaded, just do:
+    var progressbar = new Ink.UI.ProgressBar( '.ink-progress-bar' );
+
+    // 2 - If you're not sure the component or its dependencies are loaded at runtime, do:
+    Ink.requireModules( ['Ink.UI.ProgressBar_1'], function(ProgressBar){
+        new ProgressBar( '.ink-progress-bar' );
+    });
+&lt;/script&gt;</pre>
+    <p>
+        For more examples and a list of all supported options, check our <a target="_blank" href="Ink.UI.ProgressBar.html">technical documentation</a>.
+    </p>
+</section>
+<section id="imagequery" data-spy="true" data-target="#ui_menu">
+    <h2>Image Query</h2>
+    <p class="note"><a href="#imgqueryCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The Image Query component allows you to load different versions of an image, depending on the viewport width. This is great when building for various devices, as you can load a smaller image for smaller screens and a bigger one for larger screens, meaning you'll save your users bandwidth on their mobile devices by loading an image which is appropriate for their screensize.</p>
+    <p>This component always loads the smaller image first, then, if it detects a larger screen width, it will load the appropriate, larger, image. This certifies that a smaller, probably mobile, device will get the small image.</p>
+    <p>The Image Query component is also Retina-screen ready, and can serve an image specifically prepared for those screens.</p>
+    <p><span class="ink-label info">Tip</span> You can use this component to serve up three different sizes of the same image, but you can also use it creatively to serve three different images, according to screen width. This allows for great creative flexibility.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>. This component works in a slightly different way and requires you to add some extra code. But don't fret, it's pretty simple.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.imagequery.js&quot;&gt;&lt;/script&gt;</pre>
+    <h3>Using the Image Query</h3>
+    <p>To use this component, you need to declare your image as you normally would in HTML, and then reference it with Javascript and indicate where the alternative images are and at what screen widths they should be shown.</p>
+    <p>There are many ways you can reference your images with the component, but as an example, let's say you add an <code>.imagequery</code> class to your <code>&lt;img&gt;</code> element. Then, you can add a template-style bit of code that will take care of the rest, you just need to create a directory structure to hold your images and reference it in the code.</p>
+    <p>Let's start with the image.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;img src=&quot;./imgs/small/image.png&quot; class=&quot;imagequery&quot;&gt; &lt;!-- Make sure you always load your small image first --&gt;</pre>
+    <p>Now, add the Javascript. See the following code for a commented example, and scroll down to the View Source Code button to get the functinal example show on this page.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <p>First create a new instance of the ImageQuery component referencing the CSS selector we used, in this case, the <code>.imagequery</code> class, can be any valid selector</p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var imagequery = new Ink.UI.ImageQuery('.imagequery',{        </pre>
+        <p>Then, setup the template that will give ImageQuery the correct path for each image. <code>{:label}</code> will read whatever value you give label afterwards, <code>{:file}</code> will read the original filename and look for the same filename in each of the referenced directories.</p>
+        <p>In the example, ImageQuery will look in the <code>./imgs/</code> directory for a <code>{:label}</code> sub-directory, containing an <code>image.png</code> file.</p>
+        <pre class="prettyprint linenums">
+src: './imgs/{:label}/{:file}',</pre>
+        <p>Finally, we need to define each of the <code>{:label}</code> elements, according to our directory structure and declare the corresponding screen width.</p>
+<pre class="prettyprint linenums">
+queries: [
+        {
+            label: 'small',
+            width: 480
+        },
+        {
+            label: 'medium',
+            width: 640
+        },
+        {
+            label: 'large',
+            width: 1024
+        }
+    ]
+});
+&lt;/script&gt;</pre>
+        <p>If you're using images for Retina Displays, then add an extra line, after the <code>src:</code> declaration, with a <code>retina:</code> declaration, indicating the path of that particular asset, for example:</p>
+        <pre class="prettyprint linenums">
+src: './imgs/{:label}/{:file}', &lt;!-- The original src declaration --&gt;
+retina: './imgs/retina/{:label}/{:file}', &lt;!-- The retina declaration --&gt;</pre>
+        <p>This works independent of screen size, because we detect whether or not you have a retina display.</p>
+        <p id="imgqueryCode"><span class="ink-label success">Example</span></p>
+        <p>Below, you can see how different images are being loaded according to your screen width. Hit the Show Source Code button to get the fully functional example.</p>
+        <img src="http://imgs.sapo.pt/ink/assets/imgs/imagequery/small/image.jpg" class="large-100 medium-100 small-100 vspace imagequery"/>
+
+<script type="text/javascript">
+    Ink.requireModules( ['Ink.UI.ImageQuery_1'], function( ImageQuery ){
+        var tv1 = new Ink.UI.ImageQuery('.imagequery',{
+            src: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/{:label}/{:file}',
+            retina: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/retina/{:file}',
+            queries: [
+                {
+                    label: 'small',
+                    width: 480
+                },
+                {
+                    label: 'medium',
+                    width: 640
+                },
+                {
+                    label: 'large',
+                    width: 1024
+                }
+            ]
+        });
+    });
+</script>        <button href="#" data-target="#imagequery_sourcecode" class="ink-button toggle">View Source Code</button>
+        <pre id="imagequery_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;img src=&quot;http://imgs.sapo.pt/ink/assets/imgs/imagequery/small/image.jpg&quot; class=&quot;large-100 medium-100 small-100 vspace imagequery&quot;/&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    Ink.requireModules( ['Ink.UI.ImageQuery_1'], function( ImageQuery ){
+        var tv1 = new Ink.UI.ImageQuery('.imagequery',{
+            src: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/{:label}/{:file}',
+            retina: 'http://imgs.sapo.pt/ink/assets/imgs/imagequery/retina/{:file}',
+            queries: [
+                {
+                    label: 'small',
+                    width: 480
+                },
+                {
+                    label: 'medium',
+                    width: 640
+                },
+                {
+                    label: 'large',
+                    width: 1024
+                }
+            ]
+        });
+    });
+&lt;/script&gt;</pre>
+        <p>More specifications and other examples, available in the <a target="_blank" href="Ink.UI.ImageQuery.html">technical documentation</a>.</p>
+</section>
+<section id="behaviors" data-spy="true" data-target="#ui_menu">
+    <h2>Behaviors</h2>
+    
+    <h3>Dismiss</h3>
+    <p>This behavior allows you to dismiss an element from your markup by using a class in a child element. It's used for closing <a href="./index.php/js/ui#modal">Modal Windows</a> as well as <a href="./index.php/alerts">Alerts</a> in Ink, but you can use it to remove any parent container from your document.</p>
+    <h4>Necessary JS modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you only need ink.js for the dismiss behavior and there is no intialization needed.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;</pre>
+    <h4>Using Dismiss</h4>
+    <p>To use dismiss, simply add a child element to the one you want dismissed, and give it the <code>.ink-dismiss</code> class.</p>
+    <p><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <p>Click the &times; below, to dismiss the notification, using the Dismiss behavior.</p>
+        <div class="ink-alert basic info">
+            <button class="ink-dismiss">&times;</button>
+            <p>This is a simple notification</p>
+        </div>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;div class=&quot;ink-alert basic info&quot;&gt;
+    &lt;button class=&quot;ink-dismiss&quot;&gt;&amp;times;&lt;/button&gt;
+    &lt;p&gt;This is a simple notification&lt;/p&gt;
+&lt;/div&gt;</pre>
+    <p>Check the <a target="_blank" href="Ink.UI.Close.html">technical documentation</a> for more details, and read the <a href="./index.php/alerts">Alerts</a> section to see more examples like the one above.</p>
+
+    <h3>Spy</h3>
+    <p>The Spy behavior looks for a specified element to see if it's visible in the viewport and changes a second element to an active state. You can see this working in the side menu in medium and large screens: as you scroll past each section, its corresponding link in the menu becomes highlighted.</p>
+    <h4>Necessary Javascript Modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.spy.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.spy.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Spy behavior by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+  var spyObj = new Ink.UI.Spy('#mySpy');
+&lt;/script&gt;</pre>
+    <h4>Using Spy</h4>
+    <p>Spy is used in long pages with anchors linked from a menu. So you'll begin by building your menu, with each item pointing to a specific id down the page. To learn how to build menus with Ink, read the <a href="./index.php/navigation">Navigation</a>  section, for the sake of example, we'll use an ultra-simplified model.</p>
+    <p>You jsut need to build your menu, using and use a unique ID, such as <code>#myMenu</code> in the example below.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;nav class=&quot;ink-navigation&quot; id=&quot;myMenu&quot;&gt;
+   &lt;ul class=&quot;menu&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#section1&quot;&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section2&quot;&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+    <p>Notice how each item points to a specific ID. Now, we build our content and identify each section with corresponding IDs, making them "spyable". First, you need to identify the begining of the section (in the example we used the <code>&lt;section&gt;</code> element, but this can be any element), with an ID that corresponds to one item in your menu, in our case: <code>#section1</code> and <code>#section2</code>.</p>
+    <p>Then, you need to add two data-attributes to the section element:</p>
+    <ul>
+        <li><strong>data-spy</strong> Marks the element as spyable, value must be boolean (true or false). Example: <code>data-spy="true"</code></li>
+        <li><strong>data-target</strong> Identifies the menu where the links to the sections are located. Must be a CSS selector. Example <code>data-target="myMenu"</code></li>
+    </ul>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;section data-spy=&quot;true&quot; data-target=&quot;myMenu&quot; id=&quot;section1&quot;&gt;
+    &lt;p&gt;Your content here&lt;/p&gt;
+&lt;/section&gt;
+&lt;section data-spy=&quot;true&quot; data-target=&quot;myMenu&quot; id=&quot;section2&quot;&gt;
+    &lt;p&gt;More content here&lt;/p&gt;
+&lt;/section&gt;
+</pre>
+
+    
+    <p>Check the <a target="_blank" href="Ink.UI.Spy.html">technical documentation</a> for more details.</p>
+    <p><button data-target="#spy_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="spy_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;nav class=&quot;ink-navigation&quot; id=&quot;myMenu&quot;&gt;
+   &lt;ul class=&quot;menu&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#section1&quot;&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section2&quot;&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;section data-spy=&quot;true&quot; data-target=&quot;myMenu&quot; id=&quot;section1&quot;&gt;
+    &lt;p&gt;Your content here&lt;/p&gt;
+&lt;/section&gt;
+&lt;section data-spy=&quot;true&quot; data-target=&quot;myMenu&quot; id=&quot;section2&quot;&gt;
+    &lt;p&gt;More content here&lt;/p&gt;
+&lt;/section&gt;</pre>
+
+    <h3>Sticky</h3>
+    <p>The Sticky behavior keeps an element "stuck" as you scroll the rest of the page. The best example is the side menu on this website, if you see it in medium or large screens.</p>
+    <h4>Necessary Javascript Modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.sticky.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.sticky.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Sticky behavior by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+  var stickyObj = new Ink.UI.Sticky('#myDiv');
+&lt;/script&gt;</pre>
+    <h4>Using Sticky</h4>
+    <p>It couldn't be easier to use Sticky: just add the <code>.sticky</code> class on any block level element and it will stick, remaining in sight as you scroll.</p>
+    <p>There are a few configurable options, to make Sticky more useful, to use them, just add the necessary data-attribute to the block level element you wish to make stiky. Here's a list.</p>
+    <ul>
+        <li><strong>data-top-element</strong> - Specifies an element the sticky object must be aware of when scrolling to the top of the page. Must be a CSS selector. Default is value is <code>body</code>. Example: <code>data-top-element="body"</code></li>
+        <li><strong>data-bottom-element</strong> - Specifies an element the sticky object must be aware of when scrolling to the bottom of the page. Must be a CSS selector. Default is <code>body</code>. Example: <code>data-top-element="body"</code></li>
+        <li><strong>data-offset-top</strong> - Defines an offset, in pixels, that the sticky object must respect, relative to the <code>data-top-element</code>. Must be a number and unit combination. Example: <code>data-offset-top="50px"</code></li>
+        <li><strong>data-offset-bottom</strong> - Defines an offset, in pixels, that the sticky object must respect, relative to the <code>data-bottom-element</code>. Must be a number and unit combination. Example: <code>data-offset-bottom="50px"</code></li>
+    </ul>
+    <p>Check the <a target="_blank" href="Ink.UI.Sticky.html">technical documentation</a> for more details.</p>
+    <p><button data-target="#sticky_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="sticky_sourcecode" class="ink-l100 hide-all prettyprint linenums">&lt;div id=&quot;myDiv&quot; data-offset-top=&quot;20px&quot; data-offset-bottom=&quot;20px&quot; class=&quot;sticky&quot;&gt;
+    &lt;p&gt;Your content here&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+    <h3>Toggle</h3>
+    <p>The Toggle behavior allows to easily show and hide elements using another element as trigger. It's used and explained in-depth in the <a href="./index.php/navigation#nav-dropdowns">Navigation > Dropdowns</a> section and a good example is the View Source Button in this page, that shows/hides the full code examples.</p>
+    <h4>Necessary Javascript Modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.toggle.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.toggle.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Toggle behavior by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;script&gt;
+  var toggleObj = new Ink.UI.Toggle( '#myButton' );
+&lt;/script&gt;</pre>
+    <h4>Using Toggle</h4>
+    <p>You need two elements to use toggle: the trigger element, and the element you want to show and hide with that trigger.</p>
+    <p>The first one needs a <code>.toggle</code> class and the <code>data-target</code> attribute set to the ID of the element it will toggle.</p>
+    <p>The second one needs to have its ID set to that same value. If you want the element to start off hidden, you also need to add the <code>.hide-all</code> class.</p>
+    <p>So, here's a <code>button</code> showing and hiding a <code>div</code></p>
+
+    <p><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <button class="toggle ink-button" data-target="#myContent">Toggle</button>
+        <div class="hide-all ink-alert basic info" id="myContent">
+          <p>Here's my togglable content</p>
+        </div>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums">
+&lt;button class=&quot;toggle&quot; data-target=&quot;#myContent&quot;&gt;Toggle&lt;/button&gt;
+&lt;div class=&quot;hide-all&quot; id=&quot;myContent&quot;&gt;
+  &lt;p&gt;Here's my togglable content&lt;/p&gt;
+&lt;/div&gt;</pre>
+    <p>You can configure some attributes of the Toggle behavior, by adding any of the following to the trigger element:</p>
+    <ul>
+        <li><strong>data-target</strong> - Sets which element is to be shown/hidden. Must be a CSS selector. Example: <code>data-target="#myStuff"</code></li>
+        <li><strong>data-trigger-event</strong> - Defines which event will trigger the toggle. Must be a valid event type, default value is <code>click</code>. Example: <code>data-trigger-event="mousedown"</code>. Possible values are:
+            <ul>
+                <li>click</li>
+                <li>mousedown</li>
+                <li>mouseup</li>
+                <li>dblclick</li>
+                <li>mouseover</li>
+                <li>mouseover</li>
+            </ul>
+        </li>
+        <li><strong>data-close-on-click</strong> - Defines whether or not the togglable element changes state when the user clicks anywhere outside the trigger element. Must be a boolean value (true or false), default is true. Example: <code>data-close-on-click="false"</code></li>
+    </ul>
+    <p>Check the <a target="_blank" href="Ink.UI.Toggle.html">technical documentation</a> for more details.</p></p>
+</section>
+        </div>
+    </div>
+</div><footer>
+    <div class="ink-grid">
+        <div class="socialplugins">
+            <div class="column-group gutters">
+                <div class="large-40 medium-40 small-100">
+                    <p class="small">Follow Ink to stay on top of the latest news.</p>
+                </div>
+                
+               
+                <div class="large-60 medium-60 small-100">
+                    <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+                    <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="large-70 medium-70 small-100">
+            <nav class="ink-navigation">
+                <ul class="menu horizontal">
+                                        <li><a href="./about.html">About</a></li>
+                    <li><a href="./changelog.html">Changelog</a></li>
+                                        
+                    <li>
+                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
+                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
+                    </li>
+                </ul>
+            </nav>  
+            
+            <div class="copyright vspace">
+                <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
+                <p class="PTClogo">
+                    <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
+                    SAPO is a trademark and a search engine created at the University of Aveiro.
+                </p>
+            </div>
+            
+        </div>
+
+        <p><strong>Built with:</strong></p>
+
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
+                <li><a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a><br><span class="small">(<a href="http://creativecommons.org/licenses/by/3.0/">cc-by-3.0</a>)</span></li>
+                <li><a href="http://font.ubuntu.com/">Ubuntu Font</a><br><span class="small">(<a href="http://font.ubuntu.com/licence/">Ubuntu Font License</a>)</span></li>
+            </ul>
+        </div>
+        <div class="large-15 medium-15 small-50">
+            <ul class="unstyled">
+                <li><a href="http://code.google.com/p/html5shiv/">HTML5 shiv</a><br><span class="small">(<a href="http://opensource.org/licenses/MIT">MIT License</a>)</span></li>
+                <li><a href="http://necolas.github.com/normalize.css/">normalize.css</a><br><span class="small">(<a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">normalize license</a>)</span></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        <script>
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>

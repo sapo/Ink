@@ -18,33 +18,30 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link rel="shortcut icon" href="../..//img/ink-favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="../..//img/touch-icon.57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../..//img/touch-icon.72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../..//img/touch-icon.114.png">
-    <link rel="apple-touch-startup-image" href="../..//img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../..//img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../..//img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-    
-    <!-- Load Inks' CSS -->
-    <link rel="stylesheet" type="text/css" href="../..//css/ink-min.css">
-    
-    <!-- Load Documentation sites' CSS -->
-    <link rel="stylesheet" type="text/css" href="../..//css/docs.css">  
+    <link rel="shortcut icon" href="../../img/ink-favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../../img/touch-icon.57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../img/touch-icon.72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../img/touch-icon.114.png">
+    <link rel="apple-touch-startup-image" href="../../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="../../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        
+    <!-- Load Documentation site CSS -->
+    <link rel="stylesheet" type="text/css" href="../../css/docs.css">  
 
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="../..//js/html5shiv.js"></script>
-        <script type="text/javascript" src="../..//js/html5shiv-printshiv.js"></script>
+        <script type="text/javascript" src="../../js/html5shiv.js"></script>
+        <script type="text/javascript" src="../../js/html5shiv-printshiv.js"></script>
     <![endif]-->
 
     <!--[if lte IE 7 ]>
-        <link rel="stylesheet" href="../..//css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../../css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../..//js/ink-all.min.js"></script>
-    <script type="text/javascript" src="../..//js/autoload.js"></script>
-    <script type="text/javascript" src="../..//js/prettify.js"></script>
+    <script type="text/javascript" src="../../js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../../js/autoload.js"></script>
+    <script type="text/javascript" src="../../js/prettify.js"></script>
     <!-- End of javascript -->
 
 </head>
@@ -156,21 +153,12 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="core_menu">
                 <ul class="menu vertical black rounded">
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('js-core') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('js-core') ?>#nav-ink">Ink</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('js-core') ?>#nav-dom">Dom</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('js-core') ?>#nav-net">Net</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('js-core') ?>#nav-util">Util</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('js-core') ?>#nav-custom-components">Custom components</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-ink">Ink</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-dom">Dom</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-net">Net</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-util">Util</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-custom-components">Custom components</a></li>
-                <?php endif; ?>
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#nav-ink">Ink</a></li>
+                    <li><a class="scrollableLink" href="#nav-dom">Dom</a></li>
+                    <li><a class="scrollableLink" href="#nav-net">Net</a></li>
+                    <li><a class="scrollableLink" href="#nav-util">Util</a></li>
+                    <li><a class="scrollableLink" href="#nav-custom-components">Custom components</a></li>
                 </ul>
             </nav>
         </div>
