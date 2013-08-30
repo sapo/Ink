@@ -57,7 +57,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * Method to check if an item is a valid integer.
-         * 
+         *
          * @method isInteger
          * @static
          * @param {Mixed} n     The value to be checked.
@@ -77,7 +77,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
         /**
          * Method to get a DOM Element. The first parameter should be either a DOM Element or a valid CSS Selector.
          * If not, then it will throw an exception. Otherwise, it returns a DOM Element.
-         * 
+         *
          * @method elOrSelector
          * @static
          * @param  {DOMElement|String} elOrSelector Valid DOM Element or CSS Selector
@@ -100,7 +100,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
         /**
          * Method to make a deep copy (clone) of an object.
          * Note: The object cannot have loops.
-         * 
+         *
          * @method clone
          * @static
          * @param  {Object} o The object to be cloned/copied.
@@ -125,7 +125,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * Method to return the 'nth' position that an element occupies relatively to its parent.
-         * 
+         *
          * @method childIndex
          * @static
          * @param  {DOMElement} childEl Valid DOM Element.
@@ -160,7 +160,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
         /**
          * This method provides a more convenient way to do an async AJAX request and expect a JSON response.
          * It offers a callback option, as third paramenter, for a better async handling.
-         * 
+         *
          * @method ajaxJSON
          * @static
          * @async
@@ -200,7 +200,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * Method to get the current Ink layout applied.
-         * 
+         *
          * @method currentLayout
          * @static
          * @return {String}         Returns the value of one of the options of the property Layouts above defined.
@@ -235,7 +235,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * Method to set the location's hash (window.location.hash).
-         * 
+         *
          * @method hashSet
          * @static
          * @param  {Object} o   Object with the info to be placed in the location's hash.
@@ -258,7 +258,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * Method to remove children nodes from a given object.
          * This method was initially created to help solve a problem in Internet Explorer(s) that occurred when trying
          * to set the innerHTML of some specific elements like 'table'.
-         * 
+         *
          * @method cleanChildren
          * @static
          * @param  {DOMElement} parentEl Valid DOM Element
@@ -270,11 +270,11 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          *       <li>Three</li>
          *       <li>Four</li>
          *     </ul>
-         *     
+         *
          *     <script>
          *     Ink.UI.Aux.cleanChildren( Ink.s( '#myUl' ) );
          *     </script>
-         *     
+         *
          *     <!-- After running it, the HTML changes to: -->
          *     <ul id="myUl"></ul>
          */
@@ -292,14 +292,14 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method stores the id and/or the classes of a given element in a given object.
-         * 
+         *
          * @method storeIdAndClasses
          * @static
          * @param  {DOMElement} fromEl    Valid DOM Element to get the id and classes from.
          * @param  {Object}     inObj     Object where the id and classes will be saved.
          * @example
          *     <div id="myDiv" class="aClass"></div>
-         *     
+         *
          *     <script>
          *         var storageObj = {};
          *         Ink.UI.Aux.storeIdAndClasses( Ink.s('#myDiv'), storageObj );
@@ -329,23 +329,23 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
         /**
          * This method sets the id and className properties of a given DOM Element based on a given similar object
          * resultant of the previous function 'storeIdAndClasses'.
-         * 
+         *
          * @method restoreIdAndClasses
          * @static
          * @param  {DOMElement} toEl    Valid DOM Element to set the id and classes on.
          * @param  {Object}     inObj   Object where the id and classes to be set are.
          * @example
          *     <div></div>
-         *     
+         *
          *     <script>
          *         var storageObj = {
          *           _id: 'myDiv',
          *           _classes: 'aClass'
          *         };
-         *         
+         *
          *         Ink.UI.Aux.storeIdAndClasses( Ink.s('div'), storageObj );
          *     </script>
-         *     
+         *
          *     <!-- After the code runs the div element changes to: -->
          *     <div id="myDiv" class="aClass"></div>
          */
@@ -371,7 +371,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method saves a component's instance reference for later retrieval.
-         * 
+         *
          * @method registerInstance
          * @static
          * @param  {Object}     inst                Object that holds the instance.
@@ -397,7 +397,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method deletes/destroy an instance with a given id.
-         * 
+         *
          * @method unregisterInstance
          * @static
          * @param  {String}     id       Id of the instance to be destroyed.
@@ -408,7 +408,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method retrieves the registered instance(s) of a given element or instance id.
-         * 
+         *
          * @method getInstance
          * @static
          * @param  {String|DOMElement}      instanceIdOrElement      Instance's id or DOM Element from which we want the instances.
@@ -441,7 +441,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method retrieves the registered instance(s) of an element based on the given selector.
-         * 
+         *
          * @method getInstanceFromSelector
          * @static
          * @param  {String}             selector    CSS selector to define the element from which it'll get the instance(s).
@@ -455,7 +455,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method retrieves the registered instances' ids of all instances.
-         * 
+         *
          * @method getInstanceIds
          * @static
          * @return  {String[]}     Id or collection of ids of all existing instances.
@@ -472,7 +472,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
 
         /**
          * This method retrieves all existing instances.
-         * 
+         *
          * @method getInstances
          * @static
          * @return  {Object[]}     Collection of existing instances.
@@ -490,7 +490,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
         /**
          * This method is not to supposed to be invoked by the Aux component.
          * Components should copy this method as its destroy method.
-         * 
+         *
          * @method destroyComponent
          * @static
          */

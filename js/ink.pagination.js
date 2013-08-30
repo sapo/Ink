@@ -3,7 +3,9 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Pagination', '1',
+    ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
+    function(Aux, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
@@ -13,9 +15,12 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @param  {String} inner HTML to be placed inside the anchor.
      * @return {DOMElement}  Anchor created
      */
-    var genAEl = function(inner) {
+    var genAEl = function(inner, index) {
         var aEl = document.createElement('a');
         aEl.setAttribute('href', '#');
+        if (index !== undefined) {
+            aEl.setAttribute('data-index', index);
+        }
         aEl.innerHTML = inner;
         return aEl;
     };
@@ -41,13 +46,17 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @param {String}   [options.firstLabel]        label to display on previous page button
      * @param {String}   [options.lastLabel]         label to display on next page button
      * @param {Function} [options.onChange]          optional callback
+     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
      * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
     var Pagination = function(selector, options) {
 
-        this._options = Ink.extendObj({
-            size:          undefined,
+        this._element = Aux.elOrSelector(selector, '1st argument');
+
+        this._options = Ink.extendObj(
+            {
+                size:          undefined,
             start:         1,
             firstLabel:    'First',
             lastLabel:     'Last',
@@ -55,8 +64,18 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
             nextLabel:     'Next',
             onChange:      undefined,
             setHash:       false,
-            hashParameter: 'page'
-        }, options || {});
+            hashParameter: 'page',
+            numberFormatter: function(i) { return i + 1; }
+            },
+            Element.data(this._element)
+        );
+
+        if (options) {
+            this._options = Ink.extendObj(
+                this._options,
+                options
+            );
+        }
 
         if (!this._options.previousPageLabel) {
             this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
@@ -70,8 +89,6 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
         this._handlers = {
             click: Ink.bindEvent(this._onClick,this)
         };
-
-        this._element = Aux.elOrSelector(selector, '1st argument');
 
         if (!Aux.isInteger(this._options.size)) {
             throw new TypeError('size option is a required integer!');
@@ -93,6 +110,10 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
             throw new TypeError('onChange option must be a function!');
         }
 
+        if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
+            this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
+        }
+
         this._current = this._options.start - 1;
         this._itemLiEls = [];
 
@@ -103,7 +124,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
@@ -120,7 +141,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Responsible for setting listener in the 'click' event of the Pagination element.
-         * 
+         *
          * @method _observe
          * @private
          */
@@ -130,7 +151,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Updates the markup everytime there's a change in the Pagination object.
-         * 
+         *
          * @method _updateItems
          * @private
          */
@@ -157,7 +178,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                 liEls = [];
                 for (i = 0, f = this._options.size; i < f; ++i) {
                     liEl = document.createElement('li');
-                    liEl.appendChild( genAEl( i + 1 ) );
+                    liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
                     Css.setClassName(liEl, 'active', i === this._current);
                     this._ulEl.insertBefore(liEl, this._nextEl);
                     liEls.push(liEl);
@@ -194,7 +215,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns the top element for the gallery DOM representation
-         * 
+         *
          * @method _generateMarkup
          * @param {DOMElement} el
          * @private
@@ -263,7 +284,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Click handler
-         * 
+         *
          * @method _onClick
          * @param {Event} ev
          * @private
@@ -276,7 +297,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                 do{
                     tgtEl = tgtEl.parentNode;
                 }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
-                
+
                 if( tgtEl === this._element){
                     return;
                 }
@@ -308,7 +329,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                 this.setCurrent(isPrev ? -1 : 1, true);
             }
             else {
-                var nr = parseInt( tgtEl.innerHTML, 10) - 1;
+                var nr = parseInt( tgtEl.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },
@@ -321,7 +342,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Sets the number of pages
-         * 
+         *
          * @method setSize
          * @param {Number} sz number of pages
          * @public
@@ -338,7 +359,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Sets the current page
-         * 
+         *
          * @method setCurrent
          * @param {Number} nr sets the current page to given number
          * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
@@ -373,7 +394,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns the number of pages
-         * 
+         *
          * @method getSize
          * @return {Number} Number of pages
          * @public
@@ -384,7 +405,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns current page
-         * 
+         *
          * @method getCurrent
          * @return {Number} Current page
          * @public
@@ -395,7 +416,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif at first page
-         * 
+         *
          * @method isFirst
          * @return {Boolean} True if at first page
          * @public
@@ -406,7 +427,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif at last page
-         * 
+         *
          * @method isLast
          * @return {Boolean} True if at last page
          * @public
@@ -417,7 +438,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has prior pages
-         * 
+         *
          * @method hasPrevious
          * @return {Boolean} True if has prior pages
          * @public
@@ -428,7 +449,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has pages ahead
-         * 
+         *
          * @method hasNext
          * @return {Boolean} True if has pages ahead
          * @public
@@ -439,7 +460,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has prior set of page(s)
-         * 
+         *
          * @method hasPreviousPage
          * @return {Boolean} Returns true iif has prior set of page(s)
          * @public
@@ -450,7 +471,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Returns true iif has set of page(s) ahead
-         * 
+         *
          * @method hasNextPage
          * @return {Boolean} Returns true iif has set of page(s) ahead
          * @public
@@ -461,7 +482,7 @@ Ink.createModule('Ink.UI.Pagination', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         /**
          * Unregisters the component and removes its markup from the DOM
-         * 
+         *
          * @method destroy
          * @public
          */

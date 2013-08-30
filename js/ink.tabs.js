@@ -19,7 +19,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      * @uses Ink.Dom.Selector
      * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
      *     @param {String}       [options.active]                  ID of the tab to activate on creation
      *     @param {Array}        [options.disabled]                IDs of the tabs that will be disabled on creation

@@ -24,6 +24,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
      *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
      *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
      *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
+     *      @param {Boolean}   [options.autoDisplay=true]  Display the Modal automatically when constructed.
      *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
      *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
      *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed.
@@ -102,6 +103,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
              */
             trigger:      undefined,
             triggerEvent: 'click',
+            autoDisplay:  true,
 
             /**
              * Remaining options
@@ -210,111 +212,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
                 triggerElement = Selector.select( this._options.trigger );
                 if( triggerElement.length > 0 ){
                     for( i=0; i<triggerElement.length; i++ ){
-                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this._init, this) );
+                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this.open, this) );
                     }
                 }
             }
-        } else {
-            this._init();
+        } else if ( this._options.autoDisplay ) {
+            this.open();
         }
     };
 
     Modal.prototype = {
-
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @param {Event} [event] In case its fired by the trigger.
-         * @private
-         */
-        _init: function(event) {
-
-            if( event ){ Event.stop(event); }
-
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
-
-            this._resizeTimeout    = null;
-
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
-            setTimeout(Ink.bind(function(){
-                Css.addClassName( this._modalShadow,'visible' );
-                Css.addClassName( this._modalDiv,'visible' );
-            }, this),100);
-
-            /**
-             * Fallback to the old one
-             */
-            this._contentElement = this._modalDiv;
-            this._shadeElement   = this._modalShadow;
-
-            /**
-             * Setting the content of the modal
-             */
-            this.setContentMarkup( this._options.markup );
-
-            /**
-             * If any size has been user-defined, let's set them as max-width and max-height
-             */
-            if( typeof this._options.width !== 'undefined' ){
-                this._modalDivStyle.width = this._options.width;
-                if( this._options.width.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
-            }
-
-            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
-                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
-            }
-
-            if( typeof this._options.height !== 'undefined' ){
-                this._modalDivStyle.height = this._options.height;
-                if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
-            }
-
-            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
-                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
-            }
-
-            this.originalStatus = {
-                viewportHeight:     parseInt(elem.clientHeight,10),
-                viewportWidth:      parseInt(elem.clientWidth,10),
-                width:              parseInt(this._modalDivStyle.maxWidth,10),
-                height:             parseInt(this._modalDivStyle.maxHeight,10)
-            };
-
-            /**
-             * Let's 'resize' it:
-             */
-            if(this._options.responsive) {
-                this._onResize(true);
-                Event.observe( window,'resize',this._handlers.resize );
-            } else {
-                this._resizeContainer();
-                this._reposition();
-            }
-
-            if (this._options.onShow) {
-                this._options.onShow(this);
-            }
-
-            if(this._options.disableScroll) {
-                this._disableScroll();
-            }
-
-            // subscribe events
-            Event.observe(this._shadeElement, 'click',   this._handlers.click);
-            Event.observe(document,           'keydown', this._handlers.keyDown);
-
-            Aux.registerInstance(this, this._shadeElement, 'modal');
-        },
 
         /**
          * Responsible for repositioning the modal
@@ -499,6 +406,99 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
         /**************
          * PUBLIC API *
          **************/
+
+        /**
+         * Display this Modal. Useful if you have initialized the modal
+         * @method open 
+         * @param {Event} [event] (internal) In case its fired by the internal trigger.
+         */
+        open: function(event) {
+
+            if( event ){ Event.stop(event); }
+
+            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+
+            this._resizeTimeout    = null;
+
+            Css.addClassName( this._modalShadow,'ink-shade' );
+            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
+            setTimeout(Ink.bind(function(){
+                Css.addClassName( this._modalShadow,'visible' );
+                Css.addClassName( this._modalDiv,'visible' );
+            }, this),100);
+
+            /**
+             * Fallback to the old one
+             */
+            this._contentElement = this._modalDiv;
+            this._shadeElement   = this._modalShadow;
+
+            /**
+             * Setting the content of the modal
+             */
+            this.setContentMarkup( this._options.markup );
+
+            /**
+             * If any size has been user-defined, let's set them as max-width and max-height
+             */
+            if( typeof this._options.width !== 'undefined' ){
+                this._modalDivStyle.width = this._options.width;
+                if( this._options.width.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
+                }
+            } else {
+                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
+            }
+
+            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
+                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
+            }
+
+            if( typeof this._options.height !== 'undefined' ){
+                this._modalDivStyle.height = this._options.height;
+                if( this._options.height.indexOf('%') === -1 ){
+                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                }
+            } else {
+                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
+            }
+
+            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
+                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
+            }
+
+            this.originalStatus = {
+                viewportHeight:     parseInt(elem.clientHeight,10),
+                viewportWidth:      parseInt(elem.clientWidth,10),
+                width:              parseInt(this._modalDivStyle.maxWidth,10),
+                height:             parseInt(this._modalDivStyle.maxHeight,10)
+            };
+
+            /**
+             * Let's 'resize' it:
+             */
+            if(this._options.responsive) {
+                this._onResize(true);
+                Event.observe( window,'resize',this._handlers.resize );
+            } else {
+                this._resizeContainer();
+                this._reposition();
+            }
+
+            if (this._options.onShow) {
+                this._options.onShow(this);
+            }
+
+            if(this._options.disableScroll) {
+                this._disableScroll();
+            }
+
+            // subscribe events
+            Event.observe(this._shadeElement, 'click',   this._handlers.click);
+            Event.observe(document,           'keydown', this._handlers.keyDown);
+
+            Aux.registerInstance(this, this._shadeElement, 'modal');
+        },
 
         /**
          * Dismisses the modal
