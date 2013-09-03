@@ -19,7 +19,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
      * @uses Ink.Dom.Selector
      * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
      *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
      * @example

@@ -115,15 +115,10 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
          */
         _init: function(){
 
-            /**
-             * Sort queries by width, in descendant order.
-             */
+            // Sort queries by width, in descendant order.
             this._options.queries = InkArray.sortMulti(this._options.queries,'width').reverse();
 
-            /**
-             * Declaring the event handlers, in this case, the window.resize and the (element) load.
-             * @type {Object}
-             */
+            // Declaring the event handlers, in this case, the window.resize and the (element) load.
             this._handlers = {
                 resize: Ink.bindEvent(this._onResize,this),
                 load: Ink.bindEvent(this._onLoad,this)

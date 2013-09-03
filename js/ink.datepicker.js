@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';    
 
     /**
@@ -35,7 +35,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      *      @param {Boolean}  [options.showClean]        whether to display the clean button or not. defaults to true.
      *      @param {String}   [options.yearRange]        enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *      @param {String}   [options.dateRange]        enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
-     *      @paran {Number}   [options.startWeekDay]     day to use as first column on the calendar view. Defaults to Monday (1)
+     *      @param {Number}   [options.startWeekDay]     day to use as first column on the calendar view. Defaults to Monday (1)
      *      @param {String}   [options.closeText]        text to display on close button. defaults to 'Fechar'
      *      @param {String}   [options.cleanText]        text to display on clean button. defaults to 'Limpar'
      *      @param {String}   [options.prevLinkText]     text to display on the previous button. defaults to '«'
@@ -274,12 +274,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     if ( this._options.position === 'bottom' )
                     {
                         this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        this._containerObject.style.left = Element.offset2(this._dataField)[0] +'px';
+                        this._containerObject.style.left = Element.offset(this._dataField)[0] +'px';
                     }
                     else
                     {
-                        this._containerObject.style.top = Element.offset2(this._dataField)[1] +'px';
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset2(this._dataField)[0] +'px';
+                        this._containerObject.style.top = Element.offset(this._dataField)[1] +'px';
+                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
                     }
                     //dom.appendChild(this._containerObject);
                     this._updateDate();

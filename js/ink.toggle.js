@@ -192,6 +192,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                     }
                 }
             }
+
+            if(!Element.findUpwardsByClass(tgtEl, 'toggle')) {
+                return;
+            }
             
             this._dismiss( this._rootElement );
         },
@@ -202,7 +206,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @method _dismiss
          * @private
          */
-        _dismiss: function( ){
+        _dismiss: function(){
             if( ( Css.getStyle(this._childElement,'display') === 'none') ){
                 return;
             }

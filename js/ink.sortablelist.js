@@ -19,7 +19,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
      * @uses Ink.Dom.Selector
      * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
      * @example
      *      <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">

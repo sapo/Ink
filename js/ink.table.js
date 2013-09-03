@@ -248,7 +248,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
                 this._pagination.setCurrent(this._pagination._current);
 
-            } else {
+            } else {
 
                 if( index === -1){
                     return;
@@ -412,14 +412,18 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
             /**
              * Setting the sortable columns and its event listeners
              */
-            Event.observe(Selector.select('thead',this._rootElement)[0],'click',this._handlers.click);
+            var theads = Selector.select('thead', this._rootElement);
+            if (!theads.length) {
+                return;
+            }
+            Event.observe(theads[0],'click',this._handlers.click);
             this._headers = Selector.select('thead tr th',this._rootElement);
             InkArray.each(this._headers,Ink.bind(function(item, index){
                 var dataset = Element.data( item );
                 if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
                     this._sortableFields['col_' + index] = 'none';
                 }
-            },this));
+            }, this));
 
         },
 

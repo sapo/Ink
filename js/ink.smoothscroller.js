@@ -19,7 +19,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
         /**
          * Sets the speed of the scrolling
          *
-         * @property
+         * @property speed
          * @type {Number}
          * @readOnly
          * @static

@@ -425,7 +425,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
         /**
          * Runs the normal validation functions for a specific element
          * 
-         * @method :_isValid
+         * @method _isValid
          * @param {DOMElement} elm DOMElement that will be validated
          * @param {String} fieldType Rule to be validated. This must be one of the keys present in the _flagMap property.
          * @private

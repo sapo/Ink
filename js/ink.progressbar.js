@@ -16,7 +16,7 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
      * @uses Ink.Dom.Selector
      * @uses Ink.Dom.Element
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the datepicker
+     * @param {Object} [options] Options
      *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
      *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
      *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
