@@ -25,27 +25,27 @@ navigation:
  - text: Ink
    url: /
  - text: Getting started
-   url: /getting_started/
+   url: ./getting_started/
  - text: Layout
-   url: /layout/
+   url: ./layout/
  - text: Navigation
-   url: /navigation/
+   url: ./navigation/
  - text: Typography
-   url: /typography/
+   url: ./typography/
  - text: Icons
-   url: /icons/
+   url: ./icons/
  - text: Forms
-   url: /forms/
+   url: ./forms/
  - text: Alerts
-   url: /alerts/
+   url: ./alerts/
  - text: Tables
-   url: /tables/
+   url: ./tables/
  - text: Ink JS
    submenu: 
    - text: UI
-     url: /javascript/ui/
+     url: ./javascript/ui/
    - text: Core
-     url: /javascript/core/
+     url: ./javascript/core/
 
 
 # ANALYTICS
