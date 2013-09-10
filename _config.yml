@@ -1,5 +1,5 @@
 # JEKYLL
-# exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
+exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
 
 destination: ./_site
 
