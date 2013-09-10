@@ -1,0 +1,370 @@
+.@{form-class-name} {
+
+    fieldset {
+        border: none;
+        margin-bottom: 1.5em;
+        padding: 0;
+
+        legend {
+            font-size: 1.438em;
+            font-weight: 700;
+            width: 100%;
+            border-bottom:1px solid #ddd;
+
+            & + * {
+                -webkit-margin-top-collapse: separate; // webkit hack that makes the legend margins work like they should
+                margin: 2em 0;
+            }
+        }
+    }
+
+    p {
+        &.tip {
+            font-size: .875em;
+            color: lighten(@text-color,35%);
+            position: relative;
+            margin: .3em 0 0 0.1em;
+        }
+
+        &.label {
+            color: @text-color;
+            padding: 0;
+            white-space: normal;
+        }
+    }
+
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+        #ink > #border-radius > .all (@border-radius);
+        padding: @form-field-padding;
+        border: 1px solid darken(@form-field-borderColor,10%);
+        resize: none;
+        font-size: @form-field-fontSize;
+        background: @form-field-bg;
+        vertical-align: middle;
+
+        &:focus {
+            #ink > #forms > .input_focus (@focusBlurSize, @focusColor);
+            outline: 0 none;
+        }
+    }
+
+    .input-file {
+        #ink > #border-radius > .all (@border-radius);
+        padding: 6px;
+        border: 1px solid darken(@form-field-borderColor,10%);
+        background: @form-field-bg;
+        vertical-align: middle;
+        line-height: 1.2;
+        
+        input[type="file"] {
+            #ink > #border-radius > .none ();    
+            border:none;
+            padding: 0;
+            background: none;
+            width: 100%;
+        }
+    }
+
+    .ink-button {
+        margin: 0 5px;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    select {
+        line-height: 2;
+        cursor: pointer;
+    }
+
+    textarea {
+        min-height: 5em;
+    }
+
+    .control-group {
+        line-height: 2;
+        margin-bottom: 1em;
+        #ink > #utils > .clearfix ();
+
+        .control {
+            position: relative;
+            #ink > #utils > .clearfix ();
+
+            & > input,
+            & > select,
+            & > textarea {
+                width: 100%;
+                
+                & + [class^="icon-"],
+                & + [class*=" icon-"] {
+                    display: none;
+                }
+            }
+            
+            &.append-button,
+            &.append-symbol,
+            &.prepend-button,
+            &.prepend-symbol {
+                
+                span {
+                    width: 100%;
+                    position: relative;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        width: 100%;
+                    }
+                }
+
+                & > input[type="submit"],
+                & > input[type="button"],
+                & > input[type="reset"] {
+                    width: auto;
+                }
+            }
+
+            &.append-button {
+
+                display: table;
+
+                span {
+                    
+                    display: table-cell;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        #ink > #border-radius > .left (@border-radius);
+                    }
+                }
+                
+                .ink-button {
+                    margin: 0;
+                    #ink > #border-radius > .right (@border-radius);
+                    border-left: none;
+                }
+            }
+
+            &.prepend-button {
+
+                display: table;
+
+                span {
+                    
+                    display: table-cell;
+                
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        #ink > #border-radius > .right (@border-radius);
+                    }
+                }
+                
+                .ink-button {
+                    margin: 0;
+                    #ink > #border-radius > .left (@border-radius);
+                    border-right: none;
+                }
+            }
+
+            &.append-symbol {
+
+                span {
+
+                    display: block;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        padding-right: @form-append-width;
+                    }
+
+                    & > [class^="icon-"],
+                    & > [class*=" icon-"] {
+                        position: absolute;
+                        right: 1em;
+                        top: .15em;
+                    }
+                }
+            }
+
+            &.prepend-symbol {
+                
+                span {
+
+                    display: block;
+
+                    & > input,
+                    & > select,
+                    & > textarea {
+                        padding-left: @form-append-width;
+                    }
+                    
+                    & > [class^="icon-"],
+                    & > [class*=" icon-"] {
+                        position: absolute;
+                        left: 1em;
+                        top: .15em;
+                    }
+                }
+            }
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            line-height: 2;
+            padding: 0;
+            border: none;
+            margin-top: 0.55em;
+            clear: left;
+            float: left;
+            cursor: pointer;
+
+            & + label {
+                float: left;
+                line-height: 2.5;
+                margin-left: 0.55em;
+                margin-top: -.4em;
+            }
+        }
+
+        .inline {
+            label {
+                margin-right: 1em;
+            }
+        }
+
+        &.validation {  
+
+            &.error {
+
+                input, textarea, select {
+                    #ink > #forms > .input_focus (@focusBlurSize, @errorColor);
+                    border: 1px solid @errorColor;
+                }
+
+                p {
+                    &.tip {
+                        color: darken(@errorColor,10%);
+                    }
+                }
+            }
+
+            &.warning {
+                input, textarea, select {
+                    #ink > #forms > .input_focus (@focusBlurSize, @warningColor);
+                    border: 1px solid @warningColor;
+                }
+
+                p {
+                    &.tip {
+                        color: darken(@warningColor,10%);                               
+                    }
+                }
+            }
+        }
+
+        &.required {
+
+            & label,
+            & p.label {
+                color: @text-color;
+
+                &:after {
+                    content: "\f069";
+                    color: @error-bg;
+                    margin-left: .6em;
+                    font-family: FontAwesome;
+                    font-size: .75em;
+                    width: 1.25em;
+                }
+            }
+        }
+    }
+}
+
+.status-indicator {
+
+    position: relative;                        
+    color: transparent;
+    display: block;
+    float: right;
+    width: 1.6em;
+    height: 1.6em;
+    line-height: 1.6em;
+    font-family: FontAwesome;        
+    color: @white;
+    margin: 0.4em 0em 0.4em 0.4em;
+    #ink > #border-radius > .all (100%);                     
+
+    &.error {
+
+        background: @red; 
+
+        &:after {
+            content: "\f00d";
+            #ink > #shadows > .text-shadow (0,-1px,0,darken(@red,10%));
+        }           
+            
+        &:before {                
+            border-right: 10px solid @red;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            
+        }
+    }
+
+    &.success {
+        
+        background: @green;
+
+        &:after {
+            content: "\f00c";
+            #ink > #shadows > .text-shadow (0,-1px,0,darken(@green,5%));
+
+        }  
+        
+        &:before {
+            border-right: 10px solid @green;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+    }
+
+    &.success, 
+    &.error {
+    
+        &:after {
+            display: block;
+            width: 104%;
+            text-align: center;
+        }
+    
+        &:before {
+            content: "";
+            width: 0;
+            height: 0;
+            // font-size: 0;
+            position: absolute;
+            left: -6px;
+            top: 0.5em;
+        }
+    }    
+}

@@ -22,8 +22,6 @@ fonts_url: font/
 
 # SITE PAGES
 navigation:
- - text: Ink
-   url: /
  - text: Getting started
    url: ./getting_started/
  - text: Layout

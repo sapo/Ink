@@ -1,18 +1,19 @@
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
-        <ul class="menu horizontal flat black shadowed">            
+        <ul class="menu horizontal flat black shadowed">
+        <li class="logoPlaceholder"><a href="{{page.base_path}}" class="logoPlaceholder">Ink</a></li>            
             {% for link in site.navigation %}
             {% assign clean_url = page.url|remove:'index.html' %}
             {% if link.url %}
             <li {% if clean_url == link.url %}class="active"{% endif %}>            
-                <a {% if link.url == '/'%}class="logoPlaceholder"{% endif %} href="{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
+                <a href="{{page.base_path}}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
             </li>
             {% elsif link.submenu %}
             <li>
                 <a href="#" title="{{ sublink.text }}">{{ link.text }}&nbsp;<i class="icon-caret-down"></i></a>
                 <ul class="submenu">
                 {% for sublink in link.submenu %}
-                    <li><a href="{{ sublink.url }}" title="{{ sublink.text }}">{{ sublink.text }}</a></li>
+                    <li><a href="{{page.base_path}}{{ sublink.url }}" title="{{ sublink.text }}">{{ sublink.text }}</a></li>
                 {% endfor %}
                 </ul>
             </li>

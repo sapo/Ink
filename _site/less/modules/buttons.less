@@ -1,0 +1,94 @@
+.ink-button {
+
+    -webkit-appearance: menuitem;
+    font-weight: bold;
+    font-size: @btn-fontSize;
+    //line-height: 1.3em;
+    padding: @btn-padding;
+    // float: none;
+    border: 1px solid #ccc;
+    cursor:pointer; 
+    margin: @btn-margin;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    #ink > #border-radius > .all (@border-radius);
+    #ink > #buttons > .standard (@btn-bg , #333, @white, true);
+
+    &[disabled], 
+    .ink-disabled {
+        #ink > #states > .disabled (@btn-bg);
+    }
+
+    &.orange {
+        #ink > #buttons > .standard (@orange,@white,darken(@orange,25%));
+        &[disabled], 
+        .ink-disabled {
+            #ink > #states > .disabled (@orange);
+            #ink > #shadows > .no-text-shadow ();
+        }
+    }
+
+    &.red {
+        #ink > #buttons > .standard (@red,@white,darken(@red,25%));
+        &[disabled], 
+        .ink-disabled {
+            #ink > #states > .disabled (@red);
+            #ink > #shadows > .no-text-shadow ();
+        }
+    }
+
+    &.green {
+        #ink > #buttons > .standard (@green,@white,darken(@green,25%));
+        &[disabled], 
+        .ink-disabled {
+            #ink > #states > .disabled (@green);
+            #ink > #shadows > .no-text-shadow ();
+        }
+    }
+
+    &.blue {
+        #ink > #buttons > .standard (@blue,@white,darken(@blue,25%));
+        &[disabled], 
+        .ink-disabled {
+            #ink > #states > .disabled (@blue);
+            #ink > #shadows > .no-text-shadow ();
+        }
+    }
+
+}
+
+.button-group {
+
+    & > .ink-button {
+        float: left;
+        margin: @btn-margin 0;
+        #ink > #border-radius > .none ();
+        border-left: none;
+
+        &:first-child {
+            border-bottom-left-radius: (@border-radius);
+            border-top-left-radius: (@border-radius);
+            border-left: 1px solid #ccc;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: (@border-radius);
+            border-top-right-radius: (@border-radius);
+        }
+    }
+
+    #ink > #utils > .clearfix ();
+}
+
+.button-toolbar {
+    
+    & > .button-group {
+        margin-right: @btn-margin * 2;
+        float: left;
+    }
+
+    #ink > #utils > .clearfix ();
+}

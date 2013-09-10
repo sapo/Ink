@@ -1,0 +1,35 @@
+// grid.less
+
+// HELPER CLASSES
+
+// set content alignment
+.content-left { text-align: left; }
+.content-center { text-align: center;}
+.content-right { text-align: right; }
+
+// show hidden element
+.show-all {
+    display: inherit;
+}
+
+// hide visible element
+.hide-all {
+    display: none;
+}
+
+// These mixins takes up to five arguments to generate the css for media query breakpoints:
+
+// 1. A breakpoint classname prefix to help identify the css classes.
+// 2. The media query screen min-width parameter wich can be 0 or greater integer .
+// 3. The media query screen max-width parameter wich can be 0 or greater integer.
+// 4. The breakpoint grid gutter size as a decimal value that converts to em units.
+// 5. A optional boolean parameter (TRUE) that will generate css for a default, non media query dependent breakpoint, usually the largest.
+
+// LARGE SCREENS ( width > 960px )
+#ink > #grid > .set-breakpoint (@large-class-prefix,@large-min-width,@large-max-width,@large-gutter-width,true,@medium-max-width+1);
+
+// MEDIUM SCREENS ( width > 650px and < 959px )
+#ink > #grid > .set-breakpoint (@medium-class-prefix,@medium-min-width,@medium-max-width,@medium-gutter-width);
+
+// SMALL SCREENS ( width < 649px )
+#ink > #grid > .set-breakpoint (@small-class-prefix,@small-min-width,@small-max-width,@small-gutter-width);

@@ -1,0 +1,1114 @@
+#ink {
+
+    #grid {
+
+        // If a supplied min-width is > 0 and max-width = 0
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width) when (isnumber(@min-width)) and (@min-width > 0) and (isnumber(@max-width)) and (@max-width = 0) {
+
+            @media screen and (min-width: @min-width) {
+
+                #ink > #grid > #generators > .grid-container (@site-width);
+                #ink > #grid > #generators > .grid-column-group ();
+                #ink > #grid > #generators > .grid-divisions ();
+                #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
+                        
+            }
+        }
+
+        // If a supplied min-width is > 0 and max-width > 0
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width) when (isnumber(@min-width)) and (@min-width > 0) and (isnumber(@max-width)) and (@max-width > 0) {
+
+            @media screen and (min-width: @min-width) and (max-width: @max-width) {
+                                                            
+                #ink > #grid > #generators > .grid-container (@site-width);
+                #ink > #grid > #generators > .grid-column-group ();
+                #ink > #grid > #generators > .grid-divisions ();
+                #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
+
+            }
+        }
+
+        // If a supplied min-width is = 0 and max-width > 0
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width > 0) {
+
+            @media screen and (max-width: @max-width) {
+                                                                                                
+                #ink > #grid > #generators > .grid-container (@site-width);
+                #ink > #grid > #generators > .grid-column-group ();
+                #ink > #grid > #generators > .grid-divisions ();
+                #ink > #grid > #generators > .grid-helper-classes ();
+                #ink > #grid > #generators > .grid-visibility ();
+
+            }
+        }
+
+        // If a supplied min-width is = 0 and max-width = 0 and default (the 5th argument) = true
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width,@default) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width = 0) and (@default = true) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group ();
+            #ink > #grid > #generators > .grid-divisions ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+        }
+
+        // If a supplied min-width is = 0 and max-width = 0 and default (the 5th argument) = true
+        .set-breakpoint (@breakpoint-alias,@min-width,@max-width,@gutter-width,@default,@visibility) when (isnumber(@min-width)) and (@min-width = 0) and (isnumber(@max-width)) and (@max-width = 0) and (@default = true) and (isnumber(@visibility)) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group ();
+            #ink > #grid > #generators > .grid-divisions ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+            @media screen and (min-width: @visibility ) {
+                #ink > #grid > #generators > .grid-visibility ();
+            }
+
+        }
+
+        // IE7 gets a simplified version of the grid.
+        .ie7-grid (@breakpoint-alias,@gutter-width) {
+                    
+            #ink > #grid > #generators > .grid-container (@site-width);
+            #ink > #grid > #generators > .grid-column-group-ie7 ();
+            #ink > #grid > #generators > .grid-divisions-ie7 ();
+            #ink > #grid > #generators > .grid-helper-classes ();
+
+        }
+
+        #generators {
+
+            // if a width (site-width) is supplied and > 0, set the width property to its value
+            .grid-container (@width) when (isnumber(@width)) and (@width > 0) {
+                .@{grid-class-name} {
+                    width: auto;
+                    max-width: @width;
+                    margin: 0 auto;
+                    // overflow: hidden;
+                    padding: 0 @gutter-width;
+                }
+            }
+
+            // if a width (site-width) is supplied and > 0, set the width property to auto
+            .grid-container (@width) when (isnumber(@width)) and (@width = 0) {
+                .@{grid-class-name} {
+                    width: auto;
+                    max-width: 100%;
+                    margin: 0 auto;            
+                    padding: 0 @gutter-width;
+                }
+            }
+
+            // generate the column-group grid element styling
+            .grid-column-group () {
+
+                .@{grid-column-group-class-name} {
+                    // width: 100%;
+                    clear: both;
+                    zoom: 1;
+                    &:after {
+                        content: "."; 
+                        display: block;
+                        height: 0; 
+                        clear: both; 
+                        visibility: hidden; 
+                        // zoom: 1;
+                    }
+                }
+
+                // pulls the grid columns left to correct for gutter horizontal spacing                
+                .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                    margin-left: -@gutter-width;
+                }
+                    // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
+                    margin-left: -(@gutter-width / 2);
+                }
+                // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} {
+                    margin-left: -(@gutter-width / 4);
+                }
+
+                // pulls the grid columns left to correct for gutter horizontal spacing                
+                .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} {
+                    margin-left: -@gutter-width;
+                }
+                    // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} {
+                    margin-left: -(@gutter-width / 2);
+                }
+                // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} {
+                    margin-left: -(@gutter-width / 4);
+                }
+
+
+            }
+
+            // generate the column-group grid element styling
+            .grid-column-group-ie7 () {
+
+                .@{grid-column-group-class-name} {
+                    width: auto;
+                    clear: both;
+                    zoom: 1;
+                    margin-left: @gutter-width - (@gutter-width * 2);
+
+                    &:after {
+                        content: "."; 
+                        display: block;
+                        height: 0; 
+                        clear: both; 
+                        visibility: hidden; 
+                        zoom: 1;
+                    }
+                }
+
+                .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                    padding-right: @gutter-width;
+                    margin-left: -@gutter-width;
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
+                    padding-right: (@gutter-width / 2);
+                    margin-left: -(@gutter-width / 2);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} {
+                    padding-right: (@gutter-width / 4);
+                    margin-left: -(@gutter-width / 4);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} {
+                    padding-right: @gutter-width;
+                    margin-left: -@gutter-width;
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width / 2);
+                    margin-left: -(@gutter-width / 2);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width / 4);
+                    margin-left: -(@gutter-width / 4);
+                    overflow: visible;
+                } 
+            }
+
+            // Generate the grid column division classes
+            .grid-divisions () {
+
+
+                // Our sincere thanks the the guys @ twitter bootstrap for the loop hack
+
+                .loop (@index) when (@index >= 5) and (@index =< 95) {
+
+                    .@{breakpoint-alias}-@{index} {
+                        width: (@index * 1%);
+                        float: left;
+                    }
+
+                    // next iteration
+                    .loop(@index - 5);
+                }
+
+                .loop (@index) when (@index =< 70) and (@index > 65) {
+                    .@{breakpoint-alias}-66 {
+                        width: 66.66%;
+                        float: left;
+                    }
+                }
+
+                .loop (@index) when (@index =< 35) and (@index > 30) {
+                    .@{breakpoint-alias}-33 {
+                        width: 33.33%;
+                        float: left;
+                    }
+                }
+
+                .loop (@index) when (@index = 95) {
+                    .@{breakpoint-alias}-100 {
+                        width: 100%;
+                        clear: both;
+                        float: none;
+                    }
+                }
+
+                .loop (0) {}
+                .loop (95);
+
+                [class*="@{breakpoint-alias}-"] {
+                    margin-top: 0;
+                    zoom: 1; 
+                }
+
+                table[class*="@{breakpoint-alias}-"],
+                th[class*="@{breakpoint-alias}-"],
+                td[class*="@{breakpoint-alias}-"] {
+                    float: none;
+                }                
+
+                body.animated *[class*="@{breakpoint-alias}-"] {
+                    #ink > #effects > .transition (width, font-size, line-height,125ms);                 
+                }
+
+                // creates horizontal and vertical gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: @gutter-width;
+                    margin-bottom: @gutter-width;
+                }
+
+                // creates horizontal and vertical half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 2);
+                    margin-bottom: (@gutter-width / 2);
+                }
+
+                // creates horizontal and vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 4);
+                    margin-bottom: (@gutter-width / 4);
+                }
+
+                // creates horizontal gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: @gutter-width;
+                }
+
+                // creates horizontal half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 2);
+                }
+
+                // creates horizontal quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 4);
+                }
+
+                // creates vertical gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: @gutter-width;
+                }
+
+                // creates vertical half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 2);
+                }
+
+                // creates vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 4);
+                }
+
+
+                [class*="@{breakpoint-alias}-"]:empty {
+                    // clear:both; 
+                }
+
+                [class*="@{breakpoint-alias}-"]:empty:after {
+                    content: "\00a0";
+                }
+
+                *[class*="@{breakpoint-alias}-"] > *[class*="@{breakpoint-alias}-"] {
+                    margin-left: 0;
+                }
+                
+            }
+
+            // Generate the grid column division classes for IE7
+            .grid-divisions-ie7 () {       
+
+                .@{breakpoint-alias}-100 {
+                    width: ((100% - @subpixel-rounding) * 1) !important;
+                    clear: both;
+                }
+                .@{breakpoint-alias}-95 {
+                    width: ((95%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-90 {
+                    width: ((90%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-85 {
+                    width: ((85%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-80 {
+                    width: ((80%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-75 {
+                    width: ((75%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-70 {
+                    width: ((70%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-66 {
+                    width: ((66%  - @subpixel-rounding) * 0.995) !important;
+                }
+                .@{breakpoint-alias}-65 {
+                    width: ((65%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-60 {
+                    width: ((60%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-55 {
+                    width: ((55%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-50 {
+                    width: ((50%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-45 {
+                    width: ((45%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-40 {
+                    width: ((40%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-33 {
+                    width: ((33%  - @subpixel-rounding) * 0.949) !important;
+                }
+                .@{breakpoint-alias}-35 {
+                    width: ((35%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-30 {
+                    width: ((30%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-25 {
+                    width: ((25%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-20 {
+                    width: ((20%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-15 {
+                    width: ((15%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-10 {
+                    width: ((10%  - @subpixel-rounding) * 0.97) !important;
+                }
+                .@{breakpoint-alias}-5 {
+                    width:(( 5%  - @subpixel-rounding) * 0.97) !important;
+                }
+
+                [class*="@{breakpoint-alias}-"] {
+                    float: left;                    
+                    overflow: hidden;
+                    zoom: 1;
+                }
+
+                table[class*="@{breakpoint-alias}-"],
+                th[class*="@{breakpoint-alias}-"],
+                td[class*="@{breakpoint-alias}-"] {
+                    float: none;
+                }
+
+                // set the padding to create the gutters
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-100,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-100 {
+                    width: (100% - @subpixel-rounding) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-95,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-95 {
+                    width: ((95% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-90,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-90 {
+                    width: ((90% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-85,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-85 {
+                    width: ((85% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-80,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-80 {
+                    width: ((80% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-75,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-75 {
+                    width: ((75% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important; 
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-70,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-70 {
+                    width: ((70% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-66,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-66 {
+                    width: ((66% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-65,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-65 {
+                    width: ((65% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-60,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-60 {
+                    width: ((60% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-55,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-55 {
+                    width: ((55% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-50,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-50 {
+                    width: ((50% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-45,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-45 {
+                    width: ((45% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-40,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-40 {
+                    width: ((40% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-35,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-35 {
+                    width: ((35% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-33,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-33 {
+                    width: ((33% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-30,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-30 {
+                    width: ((30% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-25,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-25 {
+                    width: ((25% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important; 
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-20,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-20 {
+                    width: ((20% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-10,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-10 {
+                    width: ((10% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > .@{breakpoint-alias}-5,
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > .@{breakpoint-alias}-5 {
+                    width: ((5% - @subpixel-rounding) - (@gutter-width - @subpixel-rounding)) !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: @gutter-width - @subpixel-rounding;
+                    margin-bottom: @gutter-width;
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 2);
+                    margin-bottom: (@gutter-width / 2);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 4);
+                    margin-bottom: (@gutter-width / 4);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: @gutter-width - @subpixel-rounding;
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 2);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-left: ((@gutter-width - @subpixel-rounding) / 4);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: @gutter-width;
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-half-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 2);
+                    padding-left: 0px !important;
+                }
+
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 4);
+                    padding-left: 0px !important;
+                }
+
+                [class*="@{breakpoint-alias}-"]:empty {
+                    clear:both; 
+                }
+
+                *[class*="@{breakpoint-alias}-"] > *[class*="@{breakpoint-alias}-"] {
+                    margin-left: 0;
+                }
+                
+                // generate the forms column-group grid element styling
+                .@{form-class-name} .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                    margin-left: -@gutter-width;
+                }
+
+                .@{form-class-name} [class*="@{breakpoint-alias}-"] {
+                    input, textarea {
+                      width: 98.5% !important;
+                      margin-left: (-@gutter-width + @subpixel-rounding);
+                      padding-left: 0;
+                      padding-right: 0;
+                    }
+                }
+
+            }
+
+            .grid-visibility () {
+                .hide-@{breakpoint-alias} {
+                    display: none;
+                }
+                .show-@{breakpoint-alias} {
+                    display: inherit;
+                }
+                table.show-@{breakpoint-alias} {
+                    display: table;
+                }
+                thead.show-@{breakpoint-alias} {
+                    display: table-header-group;
+                }
+                tbody.show-@{breakpoint-alias} {
+                    display: table-row-group;
+                }
+                tfoot.show-@{breakpoint-alias} {
+                    display: table-footer-group;
+                }
+                tr.show-@{breakpoint-alias} {
+                    display: table-row;
+                }
+                th.show-@{breakpoint-alias},
+                td.show-@{breakpoint-alias} {
+                    display: table-cell;
+                }
+            }
+
+            // create the helper classes
+            .grid-helper-classes () {                
+
+                .@{breakpoint-alias}-push-left {
+                    float: left;
+                }
+
+                .@{breakpoint-alias}-push-center {
+                    float: none;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .@{breakpoint-alias}-push-right {
+                    float: right;
+                }
+                .@{breakpoint-alias}-align-left {
+                    text-align: left;
+                }
+                .@{breakpoint-alias}-align-center {
+                    text-align: center;
+                }
+                .@{breakpoint-alias}-align-right {
+                    text-align: right;
+                }
+                
+                .space {
+                    margin: @gutter-width;
+                }
+
+                .half-space {
+                    margin: (@gutter-width/2);
+                }
+
+                .quarter-space {
+                    margin: (@gutter-width/4);
+                }
+
+                .vspace {
+                    margin-top: @gutter-width;
+                    margin-bottom: @gutter-width;
+                }
+                .hspace {
+                    margin-left: @gutter-width;
+                    margin-right: @gutter-width;
+                }
+
+                .vertical-space {
+                    margin-top: @gutter-width;
+                    margin-bottom: @gutter-width;
+                }
+
+                .half-vertical-space {
+                    margin-top: (@gutter-width/2);
+                    margin-bottom: (@gutter-width/2);
+                }
+
+                .quarter-vertical-space {
+                    margin-top: (@gutter-width/4);
+                    margin-bottom: (@gutter-width/4);
+                }
+
+                .horizontal-space {
+                    margin-left: @gutter-width;
+                    margin-right: @gutter-width;
+                }
+
+                .half-horizontal-space {
+                    margin-left: (@gutter-width/2);
+                    margin-right: (@gutter-width/2);
+                }
+
+                .quarter-horizontal-space {
+                    margin-left: (@gutter-width/4);
+                    margin-right: (@gutter-width/4);
+                }
+
+                .top-space {
+                    margin-top: @gutter-width;
+                }
+
+                .half-top-space {
+                    margin-top: (@gutter-width/2);
+                }
+
+                .quarter-top-space {
+                    margin-top: (@gutter-width/4);
+                }
+
+                .right-space {
+                    margin-right: @gutter-width;
+                }
+
+                .half-right-space {
+                    margin-right: (@gutter-width/2);
+                }
+
+                .quarter-right-space {
+                    margin-right: (@gutter-width/4);
+                }
+
+                .bottom-space {
+                    margin-bottom: @gutter-width;
+                }
+
+                .half-bottom-space {
+                    margin-bottom: (@gutter-width/2);
+                }
+
+                .quarter-bottom-space {
+                    margin-bottom: (@gutter-width/4);
+                }
+
+                .left-space {
+                    margin-left: @gutter-width;
+                }
+
+                .half-left-space {
+                    margin-left: (@gutter-width/2);
+                }
+
+                .quarter-left-space {
+                    margin-left: (@gutter-width/4);
+                }
+
+
+            }
+
+        }
+
+    }
+
+    #border-radius {
+
+        // set the same border radius to all corners
+        .all (@radius) {
+            border-radius: @radius;
+        }
+
+        // set individual border radius to the four corners
+        .all (@topLeftRadius, @topRightRadius, @bottomRightRadius, @bottomLeftRadius) {
+            border-radius: @topLeftRadius @topRightRadius @bottomRightRadius @bottomLeftRadius;
+        }
+
+        // set the same border radius to both top corners
+        .top (@radius) {
+            border-top-right-radius: @radius;
+            border-top-left-radius: @radius;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        // set the same border radius to both bottom corners
+
+        .bottom (@radius) {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: @radius;
+            border-bottom-left-radius: @radius;
+        }
+
+        // set the same border radius to both left corners
+        .left (@radius) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: @radius;
+            border-top-left-radius: @radius;
+        }
+
+        // set the same border radius to both right corners
+        .right (@radius) {
+            border-top-right-radius: @radius;
+            border-bottom-right-radius: @radius;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+        .none (){
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+                
+    }
+
+    #forms {
+
+        .input_focus (@fb, @fc){
+            outline: none;
+            border-color: fadeIn(@fc, 30%);
+            -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+            -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 @fb @fc;
+        }
+
+    }
+
+    #buttons {
+
+        .standard (@button-color, @text-color, @text-shadow-color, @shadow-above) when (@shadow-above = true) {
+
+            color: @text-color; 
+            border-color: darken(@button-color, 15%);
+            border-bottom-color: darken(@button-color, 25%);
+
+            #ink > #shadows > .text-shadow (0, .09em, .03em, @text-shadow-color);
+            #ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+
+            &:hover {
+                #ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+                #ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+                color: @text-color; // force text color for anchor tags
+                text-decoration: none; // remove underline on anchr tags
+            }
+
+            &:active {
+                #ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+                #ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25),inset);
+            }
+        }
+
+        .standard (@button-color, @text-color, @text-shadow-color) {
+
+            color: @text-color; 
+            border-color: darken(@button-color, 15%);
+            border-bottom-color: darken(@button-color, 25%);
+
+            #ink > #shadows > .text-shadow (0, -.09em, .03em, @text-shadow-color);
+            #ink > #gradients > .gradient ( lighten(@button-color, 0%), darken(@button-color, 15%), 100%);
+            #ink > #shadows > .box-shadow (0, 1px, 0, rgba(255, 255, 255, 0.2), inset);
+
+            &:hover {
+                #ink > #gradients > .gradient (lighten(@button-color, 7%), darken(@button-color, 14%), 100%); 
+                #ink > #shadows > .box-shadows ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+                color: @text-color; // force text color for anchor tags
+                text-decoration: none; // remove underline on anchr tags
+            }
+
+            &:active {
+                #ink > #gradients > .gradient ( darken(@button-color, 7%), lighten(@button-color, 7%),  100%);
+                #ink > #shadows > .box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
+            }
+
+            &.flat {
+                
+                background: darken(@button-color,5%);
+
+                &:hover {
+                    background: darken(@button-color,10%);
+                }
+            }
+        }
+
+    }
+
+    #gradients {
+
+        .gradient (@start-color, @end-color, @end-color-stop) {
+            background: @start-color;
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+            background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+            background: -o-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+            background: -ms-linear-gradient(top, @start-color 0%,@end-color @end-color-stop);
+            background: linear-gradient(to bottom, @start-color 0%,@end-color @end-color-stop);
+        }
+
+        .horizontal-two-stops (@start-color, @start-color-stop, @end-color, @end-color-stop) {
+            background: @start-color;
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+            background: -moz-linear-gradient(left, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, right top, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -o-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -ms-linear-gradient(left, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: linear-gradient(to right, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+        
+        .vertical-two-stops (@start-color, @start-color-stop, @end-color, @end-color-stop) {
+            background: @start-color;
+            filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start-color}', endColorstr='@{end-color}')";
+            background: -moz-linear-gradient(top, @start-color @start-color-stop, @end-color @end-color-stop);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(@start-color-stop, @start-color), color-stop(@end-color-stop, @end-color));
+            background: -webkit-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -o-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: -ms-linear-gradient(top, @start-color @start-color-stop,@end-color @end-color-stop);
+            background: linear-gradient(to bottom, @start-color @start-color-stop,@end-color @end-color-stop);
+        }
+
+        .multiple-stops (@exp) {
+            background: -moz-linear-gradient(@arguments);
+            background: -webkit-gradient(@arguments);
+            background: -webkit-linear-gradient(@arguments);
+            background: -o-linear-gradient(@arguments);
+            background: -ms-linear-gradient(@arguments);
+            background: linear-gradient(@arguments);
+        }
+    }
+
+
+    #shadows {
+
+        // creates a outset box shadow. takes 5 arguments x, y, blur, spread and color. 
+        .box-shadow (@x, @y, @blur, @spread, @color) {
+            -webkit-box-shadow: @arguments;
+            -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+        }     
+
+        // creates a box shadow. takes 5 arguments x, y, blur, spread and color. 
+        // If the 6th argument is used the shadow is inset.
+        .box-shadow (@x, @y, @blur, @spread, @color, @inset) {
+            -webkit-box-shadow: @arguments;
+            -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+        }
+
+        // if several box shadows are needed on the same element you can pass the declarations as a "string"
+        .box-shadows (@exp: "") {
+            -webkit-box-shadow: @exp;
+            -moz-box-shadow: @exp;
+            box-shadow: @exp;
+        }
+
+        // creates a text shadow
+        .text-shadow (@x, @y, @blur, @color){
+            text-shadow: @arguments;
+        }
+
+        // remove box-shadows
+        .no-box-shadow () {
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        // remove text-shadows
+        .no-text-shadow () {
+            text-shadow: none;
+        }
+    }
+
+
+    #text {
+
+        // hide text inside element
+        .hide-text (){
+            text-indent: -99999px;
+            color: transparent;
+        }
+
+        .body-font-size (@font-size) when (ispixel(@font-size)) and (@font-size > 0) {
+            font-size: ~"@{font-size}px";
+        }
+
+        .body-font-size (@font-size){}
+
+        .ink-font-stack (@style: "sans") when (@style = "serif") {
+            font-family: @serif-font-stack;
+        }
+
+        .ink-font-stack (@style: "sans") when (@style = "sans") {
+            font-family: @sans-serif-font-stack;
+        }
+
+    }
+
+    #effects {
+
+        .transition-delay (@delay) {
+            -webkit-transition-delay: @delay;
+            -moz-transition-delay: @delay;
+            -o-transition-delay: @delay;
+            -ms-transition-delay: @delay;
+            transition-delay: @delay;
+        }
+
+        .transition-property (@property) {
+            -webkit-transition-property: @property;
+            -moz-transition-property: @property;
+            -o-transition-property: @property;
+            -ms-transition-property: @property;
+            transition-property: @property;
+        }
+
+        .transition-timing-function (@function) {
+            -webkit-transition-timing-function: @function;
+            -moz-transition-timing-function: @function;
+            -o-transition-timing-function: @function;
+            -ms-transition-timing-function: @function;
+            transition-timing-function: @function;
+        }
+
+        .transition-duration (@duration) {
+            -webkit-transition-duration: @duration;
+            -moz-transition-duration: @duration;
+            -o-transition-duration: @duration;
+            -ms-transition-duration: @duration;
+            transition-duration: @duration;
+        }
+
+        .transition (@property: "background-color, color", @duration: 100ms, @timing-function: ease-in-out, @delay: 0) {
+            #ink > #effects > .transition-property (@property);
+            #ink > #effects > .transition-duration (@duration);
+            #ink > #effects > .transition-timing-function (@timing-function);
+            #ink > #effects > .transition-delay (@delay);
+        }
+
+        .none () {
+            -webkit-transition-property: none;
+            -moz-transition-property: none;
+            -o-transition-property: none;
+            -ms-transition-property: none;
+            transition-property: none;
+        }
+
+        // set element opacity
+        .opacity (@op) {
+            @percent: (@op * 100);
+            filter:  ~"alpha(opacity=@{percent})";
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
+            opacity: @op;
+        }
+
+    }
+
+    #utils {
+
+        .clearfix () {
+            &:after {
+                content: "."; 
+                display: block;
+                height: 0; 
+                clear: both; 
+                visibility: hidden;
+                zoom:1;
+            }
+        }
+    }
+
+    #states {
+
+        .error (@inv) when (@inv = true) {
+            color: @error-bg;
+            background-color: transparent;
+        }
+
+        .error () {
+            color: @white;
+            background-color: @error-bg;
+        }
+
+
+        .warning (@inv) when (@inv = true) {
+            color: @warning-bg;
+            background-color: transparent;
+        }
+
+        .warning (){
+            background-color: @warning-bg;
+            color: @white;
+        }
+
+        .success (@inv) when (@inv = true) {
+            color: @success-bg;
+            background-color: transparent;
+        }
+
+        .success () {
+            background-color: @success-bg;
+            color: @white;
+        }
+
+        .info (@inv) when (@inv = true) {
+            color: @info-bg;
+            background-color: transparent;
+        }
+
+        .info () {
+            color: @white;
+            background-color: @info-bg;
+        }
+
+        .disabled (@color) when (lightness(@color) < 60%){
+            background: lighten(desaturate(@color,50%),25%);
+            box-shadow: none;
+            border: none;
+            &:hover {
+                background: lighten(desaturate(@color,50%),25%);
+                cursor: not-allowed;
+            }
+        }
+
+        .disabled (@color) when (lightness(@color) > 60%){
+            background: @color;
+            box-shadow: none;
+            border: none;
+            &:hover {
+                background: @color;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    #navigation {
+
+        #gradients {
+
+            .white { #ink > #gradients > .gradient (@white, darken(@white,5%), 150%); }
+            .grey { #ink > #gradients > .gradient (@grey-10, @grey-20, 150%); }
+            .black { #ink > #gradients > .gradient (lighten(@black,10%), lighten(@black,5%), 150%); }
+            .orange { #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%); }
+            .blue { #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%); }
+            .green { #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); }
+            .red { #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%); }
+        }
+    }
+}
