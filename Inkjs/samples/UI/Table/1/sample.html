@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Table samples</title>
+
+        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Table Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>Table #1 - Markup with the configuration via data attributes</h2>
+                </header>
+                <table id="table1" class="ink-table" data-page-size="2">
+                    <thead>
+                        <tr>
+                            <th data-sortable="true" width="75%">Pepper</th>
+                            <th width="25%">Scoville Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Trinidad Moruga Scorpion</td>
+                            <td>1500000</td>
+                        </tr>
+                        <tr>
+                            <td>Bhut Jolokia</td>
+                            <td>1000000</td>
+                        </tr>
+                        <tr>
+                            <td>Naga Viper</td>
+                            <td>1463700</td>
+                        </tr>
+                        <tr>
+                            <td>Red Savina Habanero</td>
+                            <td>580000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav class="ink-navigation"></nav>
+                <p>
+                    <pre class="prettyprint linenums">&lt;table id="table1" class="ink-table" data-page-size="2"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th data-sortable="true" width="75%"&gt;Pepper&lt;/th&gt;
+            &lt;th width="25%"&gt;Scoville Rating&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Trinidad Moruga Scorpion&lt;/td&gt;
+            &lt;td&gt;1500000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Bhut Jolokia&lt;/td&gt;
+            &lt;td&gt;1000000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Naga Viper&lt;/td&gt;
+            &lt;td&gt;1463700&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Red Savina Habanero&lt;/td&gt;
+            &lt;td&gt;580000&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Table_1'],function(Table){
+        var table1 = new Table('#table1');
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <section>
+                <header>
+                    <h2>Table #2 - Loading data via AJAX</h2>
+                </header>
+                <table
+                    id="table2" class="ink-table" data-page-size="2"
+                    data-endpoint="file.json" data-fields="pepper,scoville"
+                    data-labels="Pepper,Scoville Rating" data-sortable="scoville"
+                >
+                </table>
+                <nav class="ink-navigation"></nav>
+                <p>
+                    <pre class="prettyprint linenums">&lt;table
+    id="table1" class="ink-table" data-page-size="2"
+    data-endpoint="file.json" data-fields="pepper,scoville"
+    data-labels="Pepper,Scoville Rating" data-sortable="scoville"
+&gt;
+&lt;/table&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Table_1'],function(Table){
+        var table2 = new Table('#table2');
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+        </div>
+        <script>
+            Ink.requireModules(['Ink.UI.Table_1'],function(Table){
+                var table1 = new Table('#table1');
+                var table2 = new Table('#table2');
+            });
+        </script>
+    </body>
+</html>

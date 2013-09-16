@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Ink.Util.I18n</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="pt-pt" />
+
+<script type="text/javascript" src="/Ink/1/"></script>
+<script type="text/javascript" src="/Ink/Util/I18n/1/"></script>
+
+<script type="text/javascript">
+
+window.words = {
+    pt_PT: {
+       'Nome': 'Nome',
+       'Mais Recentes': 'Mais Recentes',
+       'Faltam {} caracteres': 'Faltam {} caracteres',
+       'Coment&aacute;rio enviado em {} &agrave;s {}': 'Coment&aacute;rio enviado em {} às {}',
+       'Confirmo que o coment&aacute;rio respeita os <a href="{}">termos de utiliza&ccedil;&atilde;o</a>': 'Confirmo que o coment&aacute;rio respeita os <a href="{}">termos de utiliza&ccedil;&atilde;o</a>',
+       '{} singular {}': '{} singular {}',
+       '{} plural {}': '{} plural {}',
+       '{} maisque {}': '{} maisque {}',
+       '{1} abril {2}': 'dia {1} de abril de {2}',
+       '{1} teste vars {} {2}': '{1} teste vars {} {2}',
+       '{1} teste vars {} {3} {2} {} {4}': '{1} teste vars {} {3} {2} {} {4}',
+       '{1} teste vars {} {3} {} {} {4}': '{1} teste vars {} {3} {} {} {4}',
+       'debug': false
+    },
+    en_US: {
+       'Nome': 'Name',
+       'Mais Recentes': 'Recent',
+       'Faltam {} caracteres': '{} characters to go',
+       'Coment&aacute;rio enviado em {} &agrave;s {}': 'Comment posted in {} at {}',
+       'Confirmo que o coment&aacute;rio respeita os <a href="{}">termos de utiliza&ccedil;&atilde;o</a>': 'I confirm the comment respects the <a href="{}">terms of use</a>',
+       '{} singular {}': '{} singular {}',
+       '{} plural {}': '{} plural {}',
+       '{} maisque {}': '{} maisque {}',
+       '{1} abril {2}': 'year {2} april day {1}',
+       '{1} teste vars {} {2}': '{1} teste en vars {} {2}',
+       '{1} teste vars {} {3} {2} {} {4}': '{1} teste en vars {} {3} {2} {} {4}',
+       '{1} teste vars {} {3} {} {} {4}': '{1} teste vars {} {3} {} {} {4}',
+       'debug': false
+   }
+};
+
+</script>
+</head>
+
+<body> 
+
+<script type="text/javascript">
+
+Ink.requireModules(['Ink.Util.I18n'], function (I18n) {
+    // var i18n = new Ink.Util.I18n(words, 'pt_PT');
+    var i18n = new I18n(words, 'en_US');
+
+    document.write('<h1>Ink.Util.I18n</h1>');
+
+    document.write('<hr/>');
+
+    document.write('<h3>Ink.Util.I18n.alias()</h3>');
+
+
+    var _ = i18n.alias(); 
+
+    /* ************************************************************* */
+
+    document.write('<h3>Ink.Util.I18n.text()</h3>');
+
+    document.write(i18n.text('Nome')+'<br /><br />');
+
+    document.write('<h3>Using _()</h3>');
+
+    document.write(_('Mais Recentes')+'<br /><br />');
+
+    document.write(_('Faltam {} caracteres', '56')+'<br /><br />');
+
+    document.write(_('Coment&aacute;rio enviado em {} &agrave;s {}', '2010-03-27', '15:45')+'<br /><br />');
+
+    document.write(_('Confirmo que o coment&aacute;rio respeita os <a href="{}">termos de utiliza&ccedil;&atilde;o</a>', 'http://www.sapo.pt/')+'<br /><br />');
+
+    /* ************************************************************* */
+
+    document.write('<h3>Using {index}</h3>');
+
+    document.write(_('{1} abril {2}', '25', '2010')+'<br /><br />');
+    //
+    //document.write(_.text('{1} teste vars {} {3} {2} {} {4}', 'A', 'B', 'C', 'D', 'E', 'F')+'<br /><br />');
+
+    /* ************************************************************* */
+
+    document.write('<h3>Ink.Util.I18n.ntext();</h3>');
+
+    document.write(i18n.ntext('{} singular {}', '{} plural {}<br/><br/>', 5, 'A', 'B'));
+    document.write(i18n.ntext('{} singular {}', '{} plural {}<br/><br/>', 1, 'A', 'B'));
+
+
+    /* ************************************************************* */
+
+    document.write('<h3>String not defined</h3>');
+
+    document.write(_('teste sem estar definido {} {}', 'X', 'Y')+'<br /><br />');
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Ink.UI.Sticky sample</title>
+
+        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            p {
+                padding: 3em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <div id="up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac sollicitudin velit. Donec venenatis purus in lectus pharetra fermentum. Vestibulum dignissim arcu ut eros dignissim venenatis. Aliquam erat volutpat. Maecenas lacus libero, tempor quis tellus dictum, lacinia tempor sem. Curabitur fringilla suscipit eros, non suscipit mauris fringilla id. Vestibulum vulputate orci mi, egestas aliquam elit blandit quis. Sed est augue, egestas sit amet auctor ut, pellentesque eget ante. Nunc gravida, velit ut rhoncus molestie, risus justo tempus nisi, volutpat dignissim enim sem placerat dui. Praesent ac consectetur sem. Duis varius dictum sapien, ut lacinia eros scelerisque eu. Morbi consequat ipsum purus, at vestibulum odio convallis a. Nunc sed rhoncus libero. Vivamus urna diam, adipiscing quis lectus vel, tristique lobortis urna. Sed eleifend arcu id arcu cursus, sed congue velit vehicula. Quisque at scelerisque ipsum, vel tristique orci.</div>
+        <h1>Ink.UI.Sticky sample</h1>
+        <span class="ink-label success" id="mySticky" data-top-element="#up">Sticky</span>
+        <p>Space</p>
+        <p>Space</p>
+        <p>Space</p>
+        <p>Space</p>
+        <p>Space</p>
+        <p>Space</p>
+        <p>Space</p>
+        <p>Space</p>
+        <script>
+            Ink.requireModules(['Ink.UI.Sticky_1'], function(Sticky) {
+                new Sticky(document.getElementById('mySticky'))
+            });
+        </script>
+    </body>
+</html>
