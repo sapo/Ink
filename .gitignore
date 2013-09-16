@@ -27,3 +27,13 @@ ink_to_prod_dir
 
 /build-docs.sh
 /.sass-cache/
+
+Ink.js/builds
+Ink.js/docs
+Ink.js/node_modules
+Ink.js/report
+Ink.js/serverUtils/moduleDirs.json
+Ink.js/serverUtils/moduleFiles.json
+Ink.js/inkjs.sublime-workspace
+Ink.js/samples/tests
+Ink.js/*min.js
