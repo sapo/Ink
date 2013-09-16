@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<title>...</title> 
+<script type="text/javascript" src="/Ink/1/"></script>
+<script type="text/javascript">
+    Ink.setPath('Ink', '/Ink/');
+</script>
+<link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.1.1/css/ink.css"></script>
+<link rel="stylesheet" href="style.css"></script>
+<style type="text/css">
+.tooltip-list {
+    width: 300px;
+    border: 1px solid gray;
+}
+.box {
+    width: 10px;
+    height: 10px;
+    display: block;
+    border: 1px solid red;
+}
+</style>
+</head>
+<body> 
+
+<h1>Tooltip - demo</h1>
+
+<h2>How to use</h2>
+
+<p>Require Ink.UI.Tooltip and instantiate it. The first argument to the constructor is a selector, and the second is an object containing options.</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;ul class="buttons"&gt;
+    &lt;li class="button" data-tip-text="Create a new document"&gt;New&lt;/li&gt;
+    &lt;li class="button" data-tip-text="Exit the program"&gt;Quit&lt;/li&gt;
+    &lt;li class="button" data-tip-text="Save the document you are working on"&gt;Save&lt;/li&gt;
+&lt;/ul&gt;</pre></code>
+
+<p>JavaScript:</p>
+<pre><code>Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
+    new Tooltip('.button', {where: 'mousefix'});
+});
+</code></pre>
+
+
+<h2>Options</h2>
+
+<p>You can define options either through the second argument to the Tooltip constructor, or as data-attributes in each target element. Options set through data-attributes all start with <code>data-tip</code>, and are prioritized over options passed into the Tooltip constructor.</p>
+
+
+<h2>Demos</h2>
+
+<p>Here you can see several lists where each item has options on it through data-attributes. Hover your mouse on each example to see the tooltips (applied with the above code)</p>
+
+<p>You can configure the text</p>
+
+<ul class="tooltip-list">
+    <li data-tip-text="something">data-tip-text="something"</li>
+</ul>
+
+
+<p>Several tooltip positions:</p>
+
+<ul class="tooltip-list">
+    <li data-tip-where="up">data-tip-where="up" [default]</li>
+    <li data-tip-where="down">data-tip-where="down"</li>
+    <li data-tip-where="left">data-tip-where="left"</li>
+    <li data-tip-where="right">data-tip-where="right"</li>
+    <li data-tip-where="mousemove">data-tip-where="mousemove"</li>
+    <li data-tip-where="mousefix">data-tip-where="mousefix"</li>
+</ul>
+
+<p>A tooltip delay is useful when you don't want the tooltip to get the user's attention unnecessarily.</p>
+
+<ul class="tooltip-list">
+    <li data-tip-delay="0">data-tip-delay="0" [default]</li>
+    <li data-tip-delay="1">data-tip-delay="1"</li>
+    <li data-tip-delay="2.5">data-tip-delay="2.5"</li>
+</ul>
+
+
+<p>Different colors</p>
+
+<ul class="tooltip-list">
+    <li>[no color defined] [default]</li>
+    <li data-tip-color="red">data-tip-color="red"</li>
+    <li data-tip-color="orange">data-tip-color="orange"</li>
+    <li data-tip-color="blue">data-tip-color="blue"</li>
+    <li data-tip-color="green">data-tip-color="green"</li>
+    <li data-tip-color="black">data-tip-color="black"</li>
+</ul>
+
+
+<p>Custom templates:</p>
+
+<div id="tooltip-template" style="border: 1px solid gray; background-color: #eee; float:right;">
+    <p><strong>A random tooltip template</strong></p>
+    <p><span>Write tooltip text here in this span, please</span></p>
+</div>
+
+<ul class="tooltip-list">
+    <li data-tip-template="#tooltip-template" data-tip-templatefield="span" data-tip-text="Something I wish to write in that span">data-tip-template="#tooltip-template" data-tip-templatefield="span" data-tip-text="Something I wish to write in that span"</li>
+</ul>
+
+
+<p>It totally works on scrolled content</p>
+
+<div class="tooltip-list" style="height: 150px; overflow-y: scroll">
+    <h3>The Spanish Inquisition</h3>
+    <p><b class="biggles">Biggles:</b> Er.... Nobody...um....</p>
+    <p><b class="ximinez">Ximinez:</b> Expects...</p>
+    <p><b class="biggles">Biggles:</b> Expects... Nobody expects the...um...the Spanish...um...</p>
+    <p><b class="ximinez">Ximinez:</b> Inquisition.</p>
+    <p><b class="biggles">Biggles:</b> I know, I know! Nobody expects the Spanish Inquisition.</p>
+</div>
+
+<p>Also within elements with margins, padding, floating, borders, and relative positioning.</p>
+
+<div class="tooltip-list" style="overflow: hidden">
+    <div class="box tooltip" style="float: left"></div>
+    <div class="box tooltip" style="float: left"></div>
+</div>
+
+<div class="tooltip-list" style="overflow:hidden">
+    <div class="box tooltip" style="float: left; width: 30%"></div>
+    <div class="box tooltip" style="float: left; width: 60%"></div>
+</div>
+
+<div class="tooltip-list" style="overflow:hidden">
+    <div class="box tooltip" style="float: right; width: 30%"></div>
+    <div class="box tooltip" style="float: right; width: 60%"></div>
+</div>
+
+<div class="tooltip-list" style="overflow:hidden">
+    <div class="box tooltip" style="float: left; width: 30%"></div>
+    <div class="box tooltip" style="float: right; width: 60%"></div>
+</div>
+
+<div class="tooltip-list" style="overflow:hidden">
+    <div class="box tooltip" style="float: right; width: 30%"></div>
+    <div class="box tooltip" style="float: left; width: 60%"></div>
+</div>
+
+
+
+
+<p>You can specify whether you want it to fade in and out, and how much time (in seconds) you want it to take.</p>
+
+<ul class="tooltip-list">
+    <li data-tip-fade="0">data-tip-fade="0"</li>
+    <li data-tip-fade="0.2">data-tip-fade="0.3" [default]</li>
+    <li data-tip-fade="0.5">data-tip-fade="0.5"</li>
+    <li data-tip-fade="1">data-tip-fade="1"</li>
+    <li data-tip-fade="10">data-tip-fade="10"</li>
+</ul>
+
+
+<p>You can limit how many seconds the tooltip is shown before it disappears. (This doesn't stop it from disappearing when you move your mouse away)</p>
+
+<ul class="tooltip-list">
+    <li data-tip-timeout="0">data-tip-timeout="0" [default] (stays forever)</li>
+    <li data-tip-timeout="2">data-tip-timeout="2"</li>
+    <li data-tip-timeout="5.1">data-tip-timeout="5.1"</li>
+</ul>
+
+
+<p>And you can set them up so they don't go away when the mouse leaves the target. Instead, they fade out when the timeout (if applicable) expires, or when you hover over them. They are shy like that.</p>
+
+<ul class="tooltip-list">
+    <li data-tip-forever="0">data-tip-forever="0" [default]</li>
+    <li data-tip-forever="1" data-tip-timeout="3.5">data-tip-forever="1" data-tip-timeout="3.5"</li>
+</ul>
+
+<p>Tooltips cannot exit the screen to the side. Nor above or below.</p>
+
+<p class="push-right"> --&gt;<b class="tooltip">Here</b></p>
+<p><b class="tooltip">Here</b> &lt;-- </p>
+
+<p>&nbsp;</p>
+
+<p class="push-right"> --&gt;<b class="tooltip" data-tip-where=right>Here</b></p>
+<p><b class="tooltip" data-tip-where=left>Here</b> &lt;-- </p>
+
+<p>&nbsp;</p>
+
+<p style="position:fixed;top:-10px">Tooltip on the top of the screen <b class="tooltip" data-tip-where="right">Here</b></p>
+<div style="overflow:hidden">
+    <p style="margin-bottom: -10px">Tooltip on the bottom of the screen <b class="tooltip" data-tip-where="right">Here</b></p>
+</div>
+
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
+        new Tooltip('.tooltip-list li', {text: 'This is a tooltip!'});
+        new Tooltip('.biggles', {text: 'Biggles'});
+        new Tooltip('.ximinez', {text: 'Ximinez'});
+        new Tooltip('.tooltip', {text: 'This is a tooltip!'});
+    });
+</script>
+
+</body>
+</html>

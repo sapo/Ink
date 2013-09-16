@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Draggable</title>
+        
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/');
+        </script>
+        
+        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.1.1/css/ink.css"/>
+        <!-- TODO remove when .drag is a thing -->
+        <link rel="stylesheet" type="text/css" href="http://ink.local/css/ink.css"/>
+
+        <style>
+            body {
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 16px;
+            }
+            
+            .draggable {
+                border-style: solid;
+                border-color: #1F0050;
+                border-width: 2px;
+                background-color: #DDD;
+                width:  200px;
+                overflow: hidden;
+            }
+            
+            .draggable_handler {
+                height:  20px;
+                width:  100%;
+                background-color: #CCF;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>Draggable</h1>
+        
+        <div id="drag1" class="draggable ink-button">
+            <div id="handler" class="draggable_handler">drag1 w/revert</div>
+            <p>
+                With the `revert` option, the draggable always goes back to where it started.
+            </p>
+        </div>
+        
+        <div id="drag2" class="draggable ink-button">
+            <div id="handler" class="draggable_handler">drag2</div>
+            <p>
+                Setting `revert` to `false` makes the draggable stay in place when you drop it.
+            </p>
+        </div>
+        
+        <script>
+            Ink.requireModules(['Ink.UI.Draggable_1'], function (Draggable) {
+                function makeDebug(eventName) {
+                    return function (element, event) {
+                        if (typeof console !== 'undefined') {
+                            console.log([eventName, element.id]);
+                        }
+                    };
+                }
+            
+                new Draggable('#drag1', {
+                        revert: true,
+                        onStart: makeDebug('start'),
+                        onDrag: makeDebug('drag'),
+                        onEnd: makeDebug('stop')
+                    });
+
+
+                new Draggable('#drag2', {
+                        revert: false,
+                        onStart: makeDebug('start'),
+                        onDrag: makeDebug('drag'),
+                        onEnd: makeDebug('stop')
+                    });
+            });
+        </script>
+    </body>
+</html>

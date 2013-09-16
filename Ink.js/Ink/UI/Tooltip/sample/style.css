@@ -1,0 +1,153 @@
+.ink-tooltip {
+  display: inline-block;
+  position: relative;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 150ms;
+  -moz-transition-duration: 150ms;
+  -o-transition-duration: 150ms;
+  -ms-transition-duration: 150ms;
+  transition-duration: 150ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -ms-transition-delay: 0;
+  transition-delay: 0;
+}
+.ink-tooltip > .content {
+  background: #f0f0f0;
+  padding: 0.5em 0.6em;
+  border-radius: 4px;
+  font-size: 0.8em;
+  color: #8c8c8c;
+}
+.ink-tooltip > .arrow {
+  position: absolute;
+}
+.ink-tooltip > .arrow.up,
+.ink-tooltip > .arrow.down,
+.ink-tooltip > .arrow.left,
+.ink-tooltip > .arrow.right {
+  width: 0;
+  height: 0;
+}
+.ink-tooltip > .arrow.up {
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-bottom: 0.4em solid #f0f0f0;
+  top: -0.4em;
+  left: 50%;
+  margin-left: -0.2em;
+}
+.ink-tooltip > .arrow.down {
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid #f0f0f0;
+  bottom: -0.36363636363636365em;
+  left: 50%;
+  margin-left: -0.2em;
+}
+.ink-tooltip > .arrow.right {
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.4em solid #f0f0f0;
+  top: 50%;
+  right: -0.36363636363636365em;
+  margin-top: -0.4em;
+}
+.ink-tooltip > .arrow.left {
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+  border-right: 0.4em solid #f0f0f0;
+  top: 50%;
+  left: -0.36363636363636365em;
+  margin-top: -0.4em;
+}
+.ink-tooltip.blue > .content {
+  background: #0f75da;
+  color: #ffffff;
+}
+.ink-tooltip.blue > .arrow.up {
+  border-bottom-color: #0f75da;
+}
+.ink-tooltip.blue > .arrow.down {
+  border-top-color: #0f75da;
+}
+.ink-tooltip.blue > .arrow.left {
+  border-right-color: #0f75da;
+}
+.ink-tooltip.blue > .arrow.right {
+  border-left-color: #0f75da;
+}
+.ink-tooltip.red > .content {
+  background: #c91111;
+  color: #ffffff;
+}
+.ink-tooltip.red > .arrow.up {
+  border-bottom-color: #c91111;
+}
+.ink-tooltip.red > .arrow.down {
+  border-top-color: #c91111;
+}
+.ink-tooltip.red > .arrow.left {
+  border-right-color: #c91111;
+}
+.ink-tooltip.red > .arrow.right {
+  border-left-color: #c91111;
+}
+.ink-tooltip.orange > .content {
+  background: #ff9c00;
+  color: #ffffff;
+}
+.ink-tooltip.orange > .arrow.up {
+  border-bottom-color: #ff9c00;
+}
+.ink-tooltip.orange > .arrow.down {
+  border-top-color: #ff9c00;
+}
+.ink-tooltip.orange > .arrow.left {
+  border-right-color: #ff9c00;
+}
+.ink-tooltip.orange > .arrow.right {
+  border-left-color: #ff9c00;
+}
+.ink-tooltip.green > .content {
+  background: #4a9b17;
+  color: #ffffff;
+}
+.ink-tooltip.green > .arrow.up {
+  border-bottom-color: #4a9b17;
+}
+.ink-tooltip.green > .arrow.down {
+  border-top-color: #4a9b17;
+}
+.ink-tooltip.green > .arrow.left {
+  border-right-color: #4a9b17;
+}
+.ink-tooltip.green > .arrow.right {
+  border-left-color: #4a9b17;
+}
+.ink-tooltip.black > .content {
+  background: #000000;
+  color: #ffffff;
+}
+.ink-tooltip.black > .arrow.up {
+  border-bottom-color: #000000;
+}
+.ink-tooltip.black > .arrow.down {
+  border-top-color: #000000;
+}
+.ink-tooltip.black > .arrow.left {
+  border-right-color: #000000;
+}
+.ink-tooltip.black > .arrow.right {
+  border-left-color: #000000;
+}

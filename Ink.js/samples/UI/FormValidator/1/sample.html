@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - FormValidator samples</title>
+
+        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript" src="/Ink/Dom/Selector/1/"></script>
+        <script type="text/javascript" src="/Ink/Dom/Event/1/"></script>
+        <script type="text/javascript" src="/Ink/UI/FormValidator/1/"></script>
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>FormValidator Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>FormValidator #1 - Default Markup</h2>
+                </header>
+                <form id="myform" class="ink-form" method="post" action="#">
+                    <fieldset>
+                        <div class="control-group required">
+                            <label for="name">Name:</label>
+                            <div class="control">
+                                <input type="text" name="name" id="name" class="ink-fv-required" />
+                            </div>
+                        </div>
+                        
+                        <div class="control-group required">
+                            <label for="mail">Email:</label>
+                            <div class="control">
+                                <input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" />
+                            </div>
+                        </div>
+                        
+                        <div class="control-group required">
+                            <label for="pass">Password: </label>
+                            <div class="control">
+                                <input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" />
+                            </div>
+                        </div>
+                        
+                        <div class="control-group required">
+                            <label for="confpass">Confirm Password:</label>
+                            <div class="control">
+                                <input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" />
+                            </div>
+                        </div>
+                        
+                        <div class="control-group required">
+                            <p class="label">Please select one option</p>
+                            <ul class="control unstyled">
+                                <li><input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /> <label for="radio1_g">radio 1</label> </li>
+                                <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
+                                <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                    <div>
+                        <input type="submit" name="sub" value="Submit" class="ink-button success" />
+                    </div>
+                </form>
+                <p>
+                    <pre class="prettyprint linenums">&lt;form id="myform" class="ink-form" method="post" action="#"&gt;
+    &lt;fieldset&gt;
+        &lt;div class="control-group required"&gt;
+            &lt;label for="name"&gt;Name:&lt;/label&gt;
+            &lt;div class="control"&gt;
+                &lt;input type="text" name="name" id="name" class="ink-fv-required" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="control-group required"&gt;
+            &lt;label for="mail"&gt;Email:&lt;/label&gt;
+            &lt;div class="control"&gt;
+                &lt;input type="text" name="mail" id="mail" class="ink-fv-required ink-fv-email" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="control-group required"&gt;
+            &lt;label for="pass"&gt;Password: &lt;/label&gt;
+            &lt;div class="control"&gt;
+                &lt;input type="password" name="pass" id="pass" class="ink-fv-required ink-fv-confirm" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="control-group required"&gt;
+            &lt;label for="confpass"&gt;Confirm Password:&lt;/label&gt;
+            &lt;div class="control"&gt;
+                &lt;input type="password" name="confpass" id="confpass" class="ink-fv-required ink-fv-confirm" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="control-group required"&gt;
+            &lt;p class="label"&gt;Please select one option&lt;/p&gt;
+            &lt;ul class="control unstyled"&gt;
+                &lt;li&gt;&lt;input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /&gt; &lt;label for="radio1_g"&gt;radio 1&lt;/label&gt; &lt;/li&gt;
+                &lt;li&gt;&lt;input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /&gt; &lt;label for="radio2_g"&gt;radio 2&lt;/label&gt; &lt;/li&gt;
+                &lt;li&gt;&lt;input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /&gt; &lt;label for="radio3_g"&gt;radio 3&lt;/label&gt; &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    &lt;div&gt;
+        &lt;input type="submit" name="sub" value="Submit" class="ink-button success" /&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+&lt;script&gt;
+Ink.requireModules(['Ink.Dom.Selector_1','Ink.Dom.Event_1','Ink.UI.FormValidator_1'],function(Selector,Event,FormValidator){
+    Event.observe(Ink.s('#myform'),'submit',function( event ){
+        Event.stop(event);
+        FormValidator.validate(this);
+    });
+});
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+            <script>
+                Ink.requireModules(['Ink.Dom.Selector_1','Ink.Dom.Event_1','Ink.UI.FormValidator_1'],function(Selector,Event,FormValidator){
+                    Event.observe(Ink.s('#myform'),'submit',function( event ){
+                        if(!FormValidator.validate(this)) {
+                            Event.stop(event);
+                        } else {
+                            alert('Success... submit form');
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

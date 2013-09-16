@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Carousel samples</title>
+
+        <!--<link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />-->
+
+        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.2.0/css/ink-min.css">
+
+        <script type="text/javascript">
+            var INK_PATH = 'http://ink.brushed-sapo.pt/Ink/';
+        </script>
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="ink-container ink-grid">
+            <h1>Carousel Samples - InkJS</h1>
+
+            <style type="text/css">
+                #car1 li {
+                    width:  256px;
+                    height: 256px;
+                    background-color: #FDD;
+                }
+
+                #car1 li:nth-child(even) {
+                    background-color: #DDF;
+                }
+
+                /**************/
+
+                #car2 {
+                    height: 392px;
+                }
+
+                #car2 li {
+                    width:  196px;
+                    height: 196px;
+                    background-color: #FFD;
+                }
+
+                #car2 li:nth-child(even) {
+                    background-color: #DFF;
+                }
+
+                /**************/
+
+                .ink-navigation .dotted a {
+                    text-decoration: none !important;
+                    opacity: 0.33;
+                }
+
+                .ink-navigation .dotted .active a {
+                    opacity: 1;
+                }
+
+                /**************/
+
+                .ink-carousel {
+                    /*border: 1px solid #AAA;*/
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .ink-carousel ul {
+                    position: relative;
+
+                    -webkit-transition: left 0.5s, top 0.5s;
+                       -moz-transition: left 0.5s, top 0.5s;
+                         -o-transition: left 0.5s, top 0.5s;
+                            transition: left 0.5s, top 0.5s;
+                }
+
+                .ink-carousel li {
+                    display: inline-block;
+                    margin: 0;
+                    vertical-align: top;
+                }
+
+                .ink-carousel .hider {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #FFF; /* TODO: THIS CAN CHANGE IN THE FUTURE */
+                }
+            </style>
+
+            <div id="car1" class="ink-carousel">
+                <ul class="unstyled">
+                    <li>
+                        <a href="/cronica/alpha" class="box column-group gutters external">
+                            <div class="image-wrapper">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>Highlight Title<span class="icon-external-link"></span></h5>
+                                <p class="author">Baby Doe</p>
+                                É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/cronica-2" class="box column-group gutters external">
+                            <div class="image-wrapper">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>The war against bad habbits<span class="icon-external-link"></span></h5>
+                                <p class="author">Laurentino Franciscano</p>
+                                What she meant to say is that you're a ...
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/esta-fui-eu-que-fiz" class="box column-group gutters external">
+                            <div class="image-wrapper">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>o titulo de destaque<span class="icon-external-link"></span></h5>
+                                <p class="author">a fontezita da treta</p>
+                                esta é a descrição curta, ou seja, do destaque
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/cronica-3" class="box column-group gutters external">
+                            <div class="image-wrapper">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>short title<span class="icon-external-link"></span></h5>
+                                <p class="author">source</p>
+                                short description
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/fui-eu-que-inventei-a-internet" class="box column-group gutters external">
+                            <div class="image-wrapper">
+                                <img src="http://sm1.imgs.sapo.pt/mb/P/t/b/Mw53SGTYMNRmQRr9gHZyQfAg_.jpg">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>Fui eu que inventei a Internet<span class="icon-external-link"></span></h5>
+                                <p class="author">Diário da Gomes</p>
+                                Num dia de verão
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/cronica-1" class="box column-group gutters external">
+                            <div class="image-wrapper">
+                                <img src="http://sm1.imgs.sapo.pt/mb/w/z/1/ki74RDJS8FPDUiNFQO4dtgm8_.jpg">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>cat<span class="icon-external-link"></span></h5>
+                                <p class="author">John</p>
+                                panther
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <nav id="p1" class="ink-navigation">
+                <ul class="pagination rounded shadowed red"></ul>
+            </nav>
+
+            <!-- -->
+
+            <div id="car2" class="ink-carousel">
+                <ul class="unstyled">
+                    <li>
+                        <a href="/cronica/alpha" class="box column-group gutters external">
+                            <div class="image-wrapper large-40 medium-40 small-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>Highlight Title<span class="icon-external-link"></span></h5>
+                                <p class="author">Baby Doe</p>
+                                É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/cronica-2" class="box column-group gutters external">
+                            <div class="image-wrapper large-40 medium-40 small-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>The war against bad habbits<span class="icon-external-link"></span></h5>
+                                <p class="author">Laurentino Franciscano</p>
+                                What she meant to say is that you're a ...
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/esta-fui-eu-que-fiz" class="box column-group gutters external">
+                            <div class="image-wrapper large-40 medium-40 small-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>o titulo de destaque<span class="icon-external-link"></span></h5>
+                                <p class="author">a fontezita da treta</p>
+                                esta é a descrição curta, ou seja, do destaque
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/cronica-3" class="box column-group gutters external">
+                            <div class="image-wrapper large-40 medium-40 small-100">
+                                <img src="http://h.s.sl.pt/imgs/img_default.png">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>short title<span class="icon-external-link"></span></h5>
+                                <p class="author">source</p>
+                                short description
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/fui-eu-que-inventei-a-internet" class="box column-group gutters external">
+                            <div class="image-wrapper large-40 medium-40 small-100">
+                                <img src="http://sm1.imgs.sapo.pt/mb/P/t/b/Mw53SGTYMNRmQRr9gHZyQfAg_.jpg">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>Fui eu que inventei a Internet<span class="icon-external-link"></span></h5>
+                                <p class="author">Diário da Gomes</p>
+                                Num dia de verão
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/cronica/cronica-1" class="box column-group gutters external">
+                            <div class="image-wrapper large-40 medium-40 small-100">
+                                <img src="http://sm1.imgs.sapo.pt/mb/w/z/1/ki74RDJS8FPDUiNFQO4dtgm8_.jpg">
+                            </div>
+                            <div class="description-wrapper large-60 medium-60 small-100">
+                                <h5>cat<span class="icon-external-link"></span></h5>
+                                <p class="author">John</p>
+                                panther
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <nav id="p2" class="ink-navigation" data-previous-label="" data-next-label="">
+                <ul class="pagination dotted"></ul>
+            </nav>
+        </div>
+
+        <script>
+            Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                window.c1 = new Carousel('#car1', {
+                    pagination: Ink.s('#p1'),
+                    center:     true
+                });
+
+                window.g2 = new Carousel('#car2', {
+                    pagination: Ink.s('#p2'),
+                    axis:       'y' // TODO
+                });
+            });
+        </script>
+    </body>
+</html>
