@@ -235,7 +235,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                         if (Object.prototype.toString.call(a) === '[object Array]' && !isNaN(a.length)) {
                             for (k = 0, m = a.length; k < m; k++) {
                                 params = params.concat([
-                                    encodeURIComponent(p),    '=',
+                                    encodeURIComponent(p), '[]',   '=',
                                     encodeURIComponent(a[k]), '&'
                                 ]);
                             }
