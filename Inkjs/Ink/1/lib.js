@@ -465,12 +465,7 @@
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            if(!document.querySelectorAll) {
-                return Ink.Dom.Selector.select(rule, (from || document));
-            } else {
-                var nodeList = (from || document).querySelectorAll(rule);
-                return Array.prototype.slice.call(nodeList); // to mimic selector, which returns an array
-            }
+            return Ink.Dom.Selector.select(rule, (from || document));
         },
 
         /**
