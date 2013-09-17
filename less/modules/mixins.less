@@ -1102,13 +1102,13 @@
 
         #gradients {
 
-            .white { #ink > #gradients > .gradient (@white, darken(@white,5%), 150%); }
-            .grey { #ink > #gradients > .gradient (@grey-10, @grey-20, 150%); }
-            .black { #ink > #gradients > .gradient (lighten(@black,10%), lighten(@black,5%), 150%); }
-            .orange { #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%); }
-            .blue { #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%); }
-            .green { #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); }
-            .red { #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%); }
+            .white  () { #ink > #gradients > .gradient (@white, darken(@white,5%), 150%); }
+            .grey   () { #ink > #gradients > .gradient (@grey-10, @grey-20, 150%); }
+            .black  () { #ink > #gradients > .gradient (lighten(@black,10%), lighten(@black,5%), 150%); }
+            .orange () { #ink > #gradients > .gradient (desaturate(@orange,10%), darken(desaturate(@orange,10%),10%), 150%); }
+            .blue   () { #ink > #gradients > .gradient (desaturate(@blue,10%), darken(desaturate(@blue,10%),10%), 150%); }
+            .green  () { #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); }
+            .red    () { #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%); }
         }
     }
 }
