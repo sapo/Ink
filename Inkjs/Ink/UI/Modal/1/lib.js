@@ -313,7 +313,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
         _onClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
+            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
+                Element.findUpwardsByClass(tgtEl, 'ink-close') || Element.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
                     (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
