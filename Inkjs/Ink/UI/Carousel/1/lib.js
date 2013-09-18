@@ -68,7 +68,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
         this._hiderEl = hiderEl;
 
-        this._updateMeasurings();
+        this.remeasure();
 
         if (this._options.center) {
             this._center();
@@ -96,8 +96,14 @@ Ink.createModule('Ink.UI.Carousel', '1',
     };
 
     Carousel.prototype = {
-
-        _updateMeasurings: function() {
+        /**
+         * Measure the carousel once again, adjusting the involved elements'
+         * sizes. Called automatically when the window resizes, in order to
+         * cater for changes from responsive media queries.
+         *
+         * @method remeasure
+         */
+        remeasure: function() {
             var off = 'offset' + (this._options.axis === 'y' ? 'Height' : 'Width');
             this._numItems = this._liEls.length;
             this._ctnLength = this._element[off];
@@ -148,7 +154,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onWindowResize: function() {
-            this._updateMeasurings();
+            this.remeasure();
 
             if (this._options.pagination) {
                 this._pagination.setSize(this._numPages);
@@ -162,7 +168,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this._justUpdateHider();
             }
         }
-
     };
 
 
