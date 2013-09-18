@@ -440,16 +440,7 @@
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            if(!document.querySelector) {
-                var aRes = Ink.Dom.Selector.select(rule, (from || document));
-                if(aRes.length > 0) {
-                    return aRes[0];
-                } else {
-                    return null;
-                }
-            } else {
-                return (from || document).querySelector(rule);
-            }
+            return Ink.Dom.Selector.select(rule, (from || document))[0] || null;
         },
 
         /**
@@ -465,12 +456,7 @@
             if(typeof(Ink.Dom) === 'undefined' || typeof(Ink.Dom.Selector) === 'undefined') {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
-            if(!document.querySelectorAll) {
-                return Ink.Dom.Selector.select(rule, (from || document));
-            } else {
-                var nodeList = (from || document).querySelectorAll(rule);
-                return Array.prototype.slice.call(nodeList); // to mimic selector, which returns an array
-            }
+            return Ink.Dom.Selector.select(rule, (from || document));
         },
 
         /**
