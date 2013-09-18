@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -92,7 +92,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             }
         }(this._options.target));
 
-        if (!this._targets) {
+        if (!this._targets.length) {
             throw '[Ink.UI.Toggle] Toggle target was not found! Supply a valid selector, array, or element through the `target` option.';
         }
 
@@ -145,11 +145,14 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                     }
                 }
             }
+            
+            var finalClass,
+                finalDisplay;
 
-            var finalClass = ( Css.getStyle(this._targets[0],'display') === 'none') ? 'show-all' : 'hide-all';
-            var finalDisplay = ( Css.getStyle(this._targets[0],'display') === 'none') ? 'block' : 'none';
 
             for (var j = 0, len = this._targets.length; j < len; j++) {
+                finalClass = ( Css.getStyle(this._targets[j],'display') === 'none') ? 'show-all' : 'hide-all';
+                finalDisplay = ( Css.getStyle(this._targets[j],'display') === 'none') ? 'block' : 'none';
                 Css.removeClassName(this._targets[j],'show-all');
                 Css.removeClassName(this._targets[j], 'hide-all');
                 Css.addClassName(this._targets[j], finalClass);
@@ -176,7 +179,11 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 shades
             ;
 
-            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._targets[0], tgtEl ) ){
+            var ancestorOfTargets = InkArray.some(this._targets, function (target) {
+                return Element.isAncestorOf(target, tgtEl);
+            });
+
+            if( (this._rootElement === tgtEl) || Element.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets ) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
                 var
