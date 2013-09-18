@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				".*",
+				"*~",
+				"inkjs.sublime-workspace"
+			],
+			"folder_exclude_patterns":
+			[
+				"docs",
+				"builds"
+			],
+			"path": "."
+		}
+	]
+}

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Droppable - 1</title>
+        
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.1.1/css/ink.css">
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/');
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 16px;
+            }
+
+            .draggable {
+                border-style: solid;
+                border-color: #1F0050;
+                border-width: 2px;
+                background-color: #DDD;
+                width:  200px;
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .draggable_handler {
+                height:  20px;
+                width:  100%;
+                background-color: #CCF;
+            }
+
+            .drops {
+                margin-left:    25%;
+                margin-top:        10%
+            }
+
+            .droppable {
+                color: #777;
+                border: 1px dotted #777;
+                width: 50%;
+                height: 200px;
+            }
+
+            .droppable_hover {
+                border: 2px solid #FAA;
+            }
+        </style>
+    </head>
+
+    <body class="urmom urmom2 urmom3">
+        <h1>Droppable - 1</h1>
+        
+        <div class="drops">
+            <div id="drop1" class="droppable ink-alert block">
+                <h4>Drop #1</h4>
+            </div>
+            <div id="drop2" class="droppable ink-alert block">
+                <h4>Drop #2</h4>
+            </div>
+        </div>
+        
+        <div id="drag1" class="draggable ink-button">
+            <div id="handler" class="draggable_handler">drag 1 w/revert</div>
+            <p>
+                The Quick Brown Fox
+                jumps over the lazy dog
+            </p>
+        </div>
+        
+        <div id="drag2" class="draggable ink-button">
+            <div id="handler" class="draggable_handler">drag 2</div>
+            <p>
+                The Quick Brown Fox
+                jumps over the lazy dog
+            </p>
+        </div>
+        
+        <script type="text/javascript">
+            Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+                var fps = 100;        // use a number to apply fps (ex: 15)
+                
+                new Draggable(    '#drag1', {fps:fps, revert:true, mouseAnchor:'left top'}    );
+                new Draggable(    '#drag2', {fps:fps,              mouseAnchor:'left top'}    );
+                
+                function onHover(draggable, element) {
+                    if (typeof console !== 'undefined') {
+                        console.log(['hovering', draggable.id, element.id]);
+                    }
+                }
+                
+                function onDrop(draggable, element, event) {
+                    if (typeof console !== 'undefined') {
+                        console.log(['dropped', draggable.id, element.id]);
+                    }
+                }
+
+                function onDropOut(draggable, element, event) {
+                    if (typeof console !== 'undefined') {
+                        console.log(['dropped out', draggable.id, element.id]);
+                    }
+                }
+
+                
+                Droppable.add(
+                    '#drop1',
+                    {    hoverClass: 'droppable_hover',
+                        accept:        '.draggable',
+                        onHover:    onHover,
+                        onDrop:        onDrop, 
+                        onDropOut:     onDropOut    }            
+                );
+        
+                Droppable.add(
+                    '#drop2',
+                    {    hoverClass:    'droppable_hover',
+                        accept:        '.draggable',
+                        onHover:    onHover,
+                        onDrop:        onDrop    }            
+                );
+            });
+        </script>
+    </body>
+</html>

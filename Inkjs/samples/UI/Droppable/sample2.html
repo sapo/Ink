@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Droppable - 2</title>
+        
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.1.1/css/ink.css">
+        <link rel="stylesheet" type="text/css" href="http://ink.local/css/ink.css"/>
+
+        <script type="text/javascript" src="/Ink/1/"></script> 
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/');
+        </script> 
+        
+        <style type="text/css">
+            .draggable.ink-button {
+                display: block;
+                background-color: #DDD;
+                width:  200px;
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .draggable_handler {
+                height:  20px;
+                width:  100%;
+                background-color: #CCF;
+            }
+
+            .drops {
+                margin-left:    25%;
+                margin-top:        10%
+            }
+
+            .droppable {
+                color: #777;
+                border: 1px dotted #777;
+                width: 50%;
+                height: 200px;
+            }
+
+            .droppable_hover {
+                border: 2px solid #FAA;
+            }
+        </style>
+    </head>
+
+<body>
+    <h1>Droppable - 2</h1>
+    
+    <div class="drops">
+        <div id="drop1" class="droppable ink-alert block">
+            <h4>Drop #1</h4>
+        </div>
+        <div id="drop2" class="droppable ink-alert block">
+            <h4>Drop #2</h4>
+        </div>
+    </div>
+    
+    <div id="drag0" class="draggable ink-button">
+        <div id="handler" class="draggable_handler">without anchor</div>
+        <p>
+            The Quick Brown Fox
+            jumps over the lazy dog
+        </p>
+    </div>
+    
+    <div id="drag1" class="draggable ink-button">
+        <div id="handler" class="draggable_handler">with 'left top' anchor</div>
+        <p>
+            The Quick Brown Fox
+            jumps over the lazy dog
+        </p>
+    </div>
+    
+    <div id="drag2" class="draggable ink-button">
+        <div id="handler" class="draggable_handler">with 'center center' anchor</div>
+        <p>
+            The Quick Brown Fox
+            jumps over the lazy dog
+        </p>
+    </div>
+    
+    <script type="text/javascript">
+        Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+            var fps = 100;
+            var dbg = true;
+
+            new Draggable('#drag0', {
+                    fps:fps, debug:dbg, revert:true
+                });
+            new Draggable('#drag1', {
+                    fps:fps, debug:dbg, revert:true, mouseAnchor:'left top'
+                });
+            new Draggable('#drag2', {
+                    fps:fps, debug:dbg, revert:true, mouseAnchor:'center center'
+                });
+            
+            function onDrop(draggable, element, event) {
+                if (typeof console !== 'undefined') {
+                    console.log(['dropped', draggable.id, element.id]);
+                }
+            }
+            
+            Droppable.add('#drop1', {
+                    hoverClass: 'droppable_hover',
+                    accept: '.draggable',
+                    onDrop: onDrop
+                });
+
+            Droppable.add('#drop2', {
+                    hoverClass: 'droppable_hover',
+                    accept: '.draggable',
+                    onDrop: onDrop
+                });
+        });
+    </script>
+    </body>
+</html>

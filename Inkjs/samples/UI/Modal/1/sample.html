@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Modal samples</title>
+
+        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/')
+        </script>
+
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Modal Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>Open the modal on page load</h2>
+                </header>
+                <p>
+                    <pre class="prettyprint linenums">&lt;div id="displayOnStart" class="ink-modal fade" data-width="800px" data-height="400px"&gt;
+    &lt;div class="modal-header"&gt;
+        &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
+        &lt;h5&gt;This Modal is dislayed as soon as the page is fully available&lt;/h5&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body" id="modalContent"&gt;
+        &lt;h3&gt;Please confirm your previous choice&lt;/h3&gt;
+        &lt;p&gt;"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."&lt;/p&gt;
+        &lt;p&gt;
+            &lt;img src="http://placehold.it/800x400" style="width: 100%;" alt=""&gt;
+        &lt;/p&gt;
+        &lt;p&gt;"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."&lt;/p&gt;
+        &lt;p&gt;"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+        &lt;div class="push-right"&gt;
+            &lt;button class="ink-button info"&gt;Confirm&lt;/button&gt;
+            &lt;button class="ink-button caution ink-dismiss"&gt;Cancel&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Modal_1'],function(Modal){
+        var myFirstModal = new Modal('#displayOnStart');
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <section>
+                <header>
+                    <h2>Click in the button to open a different modal</h2>
+                </header>
+                <p>
+                    <button id="myTrigger">Open Modal</button>
+                    <pre class="prettyprint linenums">&lt;div class="ink-shade fade"&gt;
+    &lt;div id="displayOnBtnClick" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px"&gt;
+        &lt;div class="modal-header"&gt;
+            &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
+            &lt;h5&gt;This is a different modal&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-body" id="modalContent"&gt;
+            Different!!! Opened by a button
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Modal_1'],function(Modal){
+        var mySecondModal = new Modal('#displayOnBtnClick');
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <section>
+                <header>
+                    <h2>Click in the button to open a different modal through code</h2>
+                </header>
+                <p>
+                    <button id="codeTrigger">Open Modal</button>
+                    <pre class="prettyprint linenums">&lt;script&gt;
+    Ink.requireModules(['Ink.Dom.Event_1','Ink.UI.Modal_1'],function(Event,Modal){
+        Event.observe( Ink.s('#codeTrigger'), 'click', function( event ){
+            Event.stop(event);
+            var myThirdModal = new Modal(null,{
+                width: '600px',
+                height: '400px',
+                markup: '&lt;div class="modal-header"&gt;&lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;&lt;/div&gt;&lt;div class="modal-body"&gt;Stuff&lt;/div&gt;'
+            });
+        });
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <section>
+            	<header>
+                    <h2>Create a Modal for opening later</h2>
+                </header>
+            	<p>
+                    <button id="openDisplayLaterModal">Open Modal</button>
+                    <pre class="prettyprint linenums">&lt;div class="ink-shade fade"&gt;
+    &lt;div id="displayLater" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px"&gt;
+        &lt;div class="modal-header"&gt;
+            &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
+            &lt;h5&gt;Created after constructing the &lt;code&gt;Modal&lt;/code&gt; object&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-body" id="modalContent"&gt;
+            &lt;p&gt;Opened using the &lt;code&gt;open()&lt;/code&gt; method. To do this, add the &lt;code&gt;autoDisplay:false&lt;/code&gt; option.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button id="openDisplayLaterModal"&gt;Open Modal&lt;/button&gt;
+
+&lt;script&gt;
+    Ink.requireModules(['Ink.Dom.Event_1','Ink.UI.Modal_1'],function(Event,Modal){
+        var openLater = new Modal('#displayLater', { autoDisplay: false });
+        Event.observe( Ink.s('#openDisplayLaterModal'), 'click', function ( event ) {
+            openLater.open();
+        });
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <div class="ink-shade fade">
+                <div id="displayOnStart" class="ink-modal fade" data-width="800px" data-height="400px">
+                    <div class="modal-header">
+                        <button class="modal-close ink-dismiss"></button>
+                        <h5>This Modal is dislayed as soon as the page is fully available</h5>
+                    </div>
+                    <div class="modal-body" id="modalContent">
+                        <h3>Please confirm your previous choice</h3>
+                        <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
+                        <p>
+                            <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+                        </p>
+                        <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
+                        <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="push-right">
+                            <button class="ink-button info">Confirm</button>
+                            <button class="ink-button caution ink-dismiss">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ink-shade fade">
+                <div id="displayOnBtnClick" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px">
+                    <div class="modal-header">
+                        <button class="modal-close ink-dismiss"></button>
+                        <h5>This is a different modal</h5>
+                    </div>
+                    <div class="modal-body" id="modalContent">
+                        Different!!! Opened by a button and filled dynamically!
+                    </div>
+                </div>
+            </div>
+
+            <div class="ink-shade fade">
+                <div id="displayLater" class="ink-modal fade" data-trigger="#myTrigger" data-width="800px" data-height="400px">
+                    <div class="modal-header">
+                        <button class="modal-close ink-dismiss"></button>
+                        <h5>Created after constructing the <code>Modal</code> object</h5>
+                    </div>
+                    <div class="modal-body" id="modalContent">
+                        <p>Opened using the <code>open()</code> method. To do this, add the <code>autoDisplay:false</code> option.</p>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                Ink.requireModules(['Ink.Dom.Event_1','Ink.UI.Modal_1'],function(Event,Modal){
+                    var myFirstModal = new Modal('#displayOnStart');
+
+                    var mySecondModal = new Modal('#displayOnBtnClick');
+
+                    var openLater = new Modal('#displayLater', { autoDisplay: false });
+                    
+                    Event.observe( Ink.s('#openDisplayLaterModal'), 'click', function ( event ) {
+                        openLater.open();
+                    });
+                    Event.observe( Ink.s('#codeTrigger'), 'click', function( event ){
+
+                        Event.stop(event);
+
+                        var myThirdModal = new Modal(null,{
+                            width: '600px',
+                            height: '400px',
+                            shadeClass: 'myShadeClass myOtherShadeClass',
+                            modalClass: 'myModalClass myOtherModalClass',
+                            markup: '<div class="modal-header"><button class="modal-close ink-dismiss"></button></div><div class="modal-body">Stuff</div>'
+                        });
+
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>
