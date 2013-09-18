@@ -1,5 +1,5 @@
 /**
- * @module Ink.UI.Table_1
+ * @module Ink.UI.Carousel_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
@@ -11,12 +11,24 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
 
 
-    /**
+    /*
      * TODO:
      *  keyboardSupport
      *  swipe
      */
-
+    
+    /**
+     * @class Ink.UI.Carousel_1
+     * @constructor
+     *
+     * @param {String|DOMElement} selector
+     * @param {Object} [options]
+     *  @param {String} [options.axis='x'] Can be 'x' or 'y', for a horizontal or vertical carousel
+     *  @param {Boolean} [options.center=false] Center the carousel (default is to align to the top/left).
+     *  @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
+     *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an UL element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
+     *  @param {Function} [options.onChange] Callback for when the page is changed.
+     */
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bind(this._onPaginationChange, this),
@@ -27,21 +39,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         this._element = Aux.elOrSelector(selector, '1st argument');
 
-        this._options = Ink.extendObj(
-            {
-                axis:            'x',
-                center:          false,
-                keyboardSupport: false
-            },
-            Element.data(this._element)
-        );
-
-        if (options) {
-            this._options = Ink.extendObj(
-                this._options,
-                options
-            );
-        }
+        this._options = Ink.extendObj({
+            axis:            'x',
+            center:          false,
+            keyboardSupport: false,
+            pagination:      null,
+            onChange:        null
+        }, options || {}, Element.data(this._element));
 
         this._isY = (this._options.axis === 'y');
 
@@ -64,17 +68,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
         this._hiderEl = hiderEl;
 
-        this._updateMeasurings();
-
-        if (this._isY) {
-            this._element.style.width = liEls[0].offsetWidth + 'px';
-            ulEl.style.width  =  liEls[0].offsetWidth + 'px';
-            ulEl.style.height = (liEls[0].offsetHeight * this._numItems) + 'px';
-        }
-        else {
-            ulEl.style.width  = (liEls[0].offsetWidth * this._numItems) + 'px';
-            ulEl.style.height =  liEls[0].offsetHeight + 'px';
-        }
+        this.remeasure();
 
         if (this._options.center) {
             this._center();
@@ -102,8 +96,14 @@ Ink.createModule('Ink.UI.Carousel', '1',
     };
 
     Carousel.prototype = {
-
-        _updateMeasurings: function() {
+        /**
+         * Measure the carousel once again, adjusting the involved elements'
+         * sizes. Called automatically when the window resizes, in order to
+         * cater for changes from responsive media queries.
+         *
+         * @method remeasure
+         */
+        remeasure: function() {
             var off = 'offset' + (this._options.axis === 'y' ? 'Height' : 'Width');
             this._numItems = this._liEls.length;
             this._ctnLength = this._element[off];
@@ -111,6 +111,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
             this._numPages = Math.ceil( this._numItems / this._itemsPerPage );
             this._deltaLength = this._itemsPerPage * this._elLength;
+            
+            var ulEl = this._ulEl;
+            var liEls = this._liEls;
+            if (this._isY) {
+                this._element.style.width = liEls[0].offsetWidth + 'px';
+                ulEl.style.width  =  liEls[0].offsetWidth + 'px';
+                ulEl.style.height = (liEls[0].offsetHeight * this._numItems) + 'px';
+            }
+            else {
+                ulEl.style.width  = (liEls[0].offsetWidth * this._numItems) + 'px';
+                ulEl.style.height =  liEls[0].offsetHeight + 'px';
+            }
         },
 
         _center: function() {
@@ -136,10 +148,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _onPaginationChange: function(pgn) {
             var currPage = pgn.getCurrent();
             this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
+            if (this._options.onChange) {
+                this._options.onChange.call(this, currPage);
+            }
         },
 
         _onWindowResize: function() {
-            this._updateMeasurings();
+            this.remeasure();
 
             if (this._options.pagination) {
                 this._pagination.setSize(this._numPages);
@@ -153,7 +168,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this._justUpdateHider();
             }
         }
-
     };
 
 
