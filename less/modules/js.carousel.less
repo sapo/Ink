@@ -1,0 +1,42 @@
+
+.ink-carousel {
+    position: relative;
+    overflow: hidden;
+
+    ul {
+        position: relative;
+
+        -webkit-transition: left 0.5s, top 0.5s;
+           -moz-transition: left 0.5s, top 0.5s;
+             -o-transition: left 0.5s, top 0.5s;
+                transition: left 0.5s, top 0.5s;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0;
+        vertical-align: top;
+    }
+
+    .hider {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background-color: #FFF;
+    }
+}
+
+.ink-navigation {
+    .dotted {
+        a {
+            text-decoration: none !important;
+            opacity: 0.33;
+        }
+        .active {
+            a {
+                opacity: 1;
+            }
+        }
+    }
+}
+
