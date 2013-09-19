@@ -23,10 +23,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
-     *  @param {String} [options.axis='x'] Can be 'x' or 'y', for a horizontal or vertical carousel
-     *  @param {Boolean} [options.center=false] Center the carousel (default is to align to the top/left).
-     *  @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
-     *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an UL element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
+     *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
+     *  @param {Boolean} [options.center=false] Center the carousel.
+     *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
+     *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
      *  @param {Function} [options.onChange] Callback for when the page is changed.
      */
     var Carousel = function(selector, options) {
