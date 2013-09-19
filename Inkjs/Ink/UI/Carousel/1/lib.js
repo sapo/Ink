@@ -6,7 +6,6 @@
 Ink.createModule('Ink.UI.Carousel', '1',
     ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Selector_1'],
     function(Aux, Event, Css, Element, Pagination/*, Selector*/) {
-
     'use strict';
 
 
@@ -84,8 +83,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                     size:     this._numPages,
                     onChange: this._handlers.paginationChange
                 });
-            }
-            else {
+            } else {
                 // assumes instantiated pagination
                 this._pagination = this._options.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
@@ -105,11 +103,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
          */
         remeasure: function() {
             var off = 'offset' + (this._options.axis === 'y' ? 'Height' : 'Width');
-            this._numItems = this._liEls.length;
+            var numItems = this._liEls.length;
             this._ctnLength = this._element[off];
             this._elLength = this._liEls[0][off];
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
-            this._numPages = Math.ceil( this._numItems / this._itemsPerPage );
+            this._numPages = Math.ceil( numItems / this._itemsPerPage );
             this._deltaLength = this._itemsPerPage * this._elLength;
             
             var ulEl = this._ulEl;
@@ -117,10 +115,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._isY) {
                 this._element.style.width = liEls[0].offsetWidth + 'px';
                 ulEl.style.width  =  liEls[0].offsetWidth + 'px';
-                ulEl.style.height = (liEls[0].offsetHeight * this._numItems) + 'px';
             }
             else {
-                ulEl.style.width  = (liEls[0].offsetWidth * this._numItems) + 'px';
                 ulEl.style.height =  liEls[0].offsetHeight + 'px';
             }
         },
@@ -156,7 +152,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _onWindowResize: function() {
             this.remeasure();
 
-            if (this._options.pagination) {
+            if (this._pagination) {
                 this._pagination.setSize(this._numPages);
                 this._pagination.setCurrent(0);
             }
