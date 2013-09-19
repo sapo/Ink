@@ -76,11 +76,7 @@ code,
 kbd,
 pre,
 samp {
-<<<<<<< Updated upstream
   font-family: Ubuntu_monospaced, Monaco, 'Andale Mono', 'Courier New', monospace;
-=======
-  font-family: Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
->>>>>>> Stashed changes
   font-size: 1em;
 }
 pre {
@@ -4014,8 +4010,6 @@ a .icon-flip-vertical:before {
 }
 .ink-dropdown ul.dropdown-menu {
   position: absolute;
-<<<<<<< Updated upstream
-=======
   background: #ffffff;
   z-index: 30;
   border: 1px solid #d9d9d9;
@@ -4093,138 +4087,6 @@ a .icon-flip-vertical:before {
 .ink-dropdown ul.dropdown-menu li.submenu {
   overflow: visible;
 }
-.ink-dropdown ul.dropdown-menu li.submenu > a {
-  white-space: nowrap;
-}
-.ink-dropdown ul.dropdown-menu li.submenu > a:after {
-  content: "\f0da";
-  float: right;
-  width: auto;
-  margin-left: 0.8em;
-  font-family: FontAwesome;
-  color: #b3b3b3;
-  clear: both;
-  text-align: right;
-}
-.ink-dropdown ul.dropdown-menu li.submenu:hover > a {
-  background: #f2f2f2;
-  text-decoration: none;
-}
-.ink-dropdown ul.dropdown-menu li.submenu:hover:hover > ul.dropdown-menu {
-  display: block;
-}
-.ink-dropdown ul.dropdown-menu li.submenu > ul.dropdown-menu {
-  font-size: inherit;
-  position: absolute;
-  top: -0.36em;
-  left: 100%;
-  display: none;
-}
-.ink-navigation ul.menu li.active a {
-  text-decoration: underline;
-}
-.ink-navigation ul.menu li.disabled a {
-  color: #b3b3b3;
-  text-shadow: 0 1px 0 #ffffff;
-}
-.ink-navigation ul.menu li.disabled a:hover {
-  cursor: default;
-  background: none;
-  text-decoration: none;
-}
-.ink-navigation ul.menu li ul.submenu {
->>>>>>> Stashed changes
-  background: #ffffff;
-  z-index: 30;
-  border: 1px solid #d9d9d9;
-  height: auto;
-  width: auto;
-  min-width: 10em;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 1px 0 rgba(100, 100, 100, 0.3);
-  -moz-box-shadow: 0 0 1px 0 rgba(100, 100, 100, 0.3);
-  box-shadow: 0 0 1px 0 rgba(100, 100, 100, 0.3);
-  padding: 0.3em 0;
-  display: none;
-  margin-left: 0px;
-  padding: 0.35em 0;
-  font-size: 0.85em;
-}
-<<<<<<< Updated upstream
-.ink-dropdown ul.dropdown-menu li {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  width: auto;
-  height: auto;
-  min-height: auto;
-  display: list-item;
-  float: none;
-  margin: 0;
-  text-align: left;
-  text-transform: none;
-  padding: 0;
-  position: relative;
-  list-style-type: none;
-=======
-.ink-navigation ul.menu li ul.submenu li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
->>>>>>> Stashed changes
-}
-.ink-dropdown ul.dropdown-menu li.separator-above {
-  padding-top: 0.35em;
-  margin-top: 0.35em;
-  border-top: 1px solid #d9d9d9;
-}
-.ink-dropdown ul.dropdown-menu li.separator-below {
-  padding-bottom: 0.35em;
-  margin-bottom: 0.35em;
-  border-bottom: 1px solid #d9d9d9;
-}
-.ink-dropdown ul.dropdown-menu li.heading {
-  font-weight: 700;
-  padding-bottom: 0.35em;
-  margin-bottom: 0.35em;
-  padding: 0.5em 0.8em;
-  color: #333333;
-}
-.ink-dropdown ul.dropdown-menu li a {
-  color: #444;
-  padding: 0.5em 0.8em;
-  display: block;
-  clear: both;
-}
-.ink-dropdown ul.dropdown-menu li a:hover {
-  background: #f2f2f2;
-  text-decoration: none;
-}
-.ink-dropdown ul.dropdown-menu li.active a {
-  background: #999999;
-  color: #ffffff;
-}
-.ink-dropdown ul.dropdown-menu li.disabled a {
-  color: #b3b3b3;
-}
-<<<<<<< Updated upstream
-.ink-dropdown ul.dropdown-menu li.disabled a:hover {
-  background: transparent;
-  cursor: default;
-=======
-.ink-navigation ul.menu.vertical li .dropdown li a:hover {
-  background: none;
-}
-.ink-navigation ul.menu.vertical li:last-child .dropdown li:first-child a {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
->>>>>>> Stashed changes
-}
-.ink-dropdown ul.dropdown-menu li.submenu {
-  overflow: visible;
-}
-<<<<<<< Updated upstream
 .ink-dropdown ul.dropdown-menu li.submenu > a {
   white-space: nowrap;
 }
@@ -4390,95 +4252,6 @@ a .icon-flip-vertical:before {
 }
 .ink-navigation ul.menu.black li.active {
   background: #333333;
-=======
-.ink-navigation ul.menu.white li a {
-  color: #555555;
-  text-decoration: none;
-}
-.ink-navigation ul.menu.white li a:hover {
-  background: #d9d9d9;
-}
-.ink-navigation ul.menu.white li.active {
-  background: #d9d9d9;
-}
-.ink-navigation ul.menu.white li.disabled a {
-  color: #999999;
-  text-shadow: 0 1px 0 #ffffff;
-}
-.ink-navigation ul.menu.white li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-.ink-navigation ul.menu.white li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-.ink-navigation ul.menu.white li ul.submenu li a {
-  color: #555555;
-}
-.ink-navigation ul.menu.white li ul.submenu.dropdown {
-  background: #ffffff;
-}
-.ink-navigation ul.menu.white li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-.ink-navigation ul.menu.grey {
-  background: #e6e6e6;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#cccccc');
-  background: -moz-linear-gradient(top, #e6e6e6 0%, #cccccc 150%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e6e6e6), color-stop(150%, #cccccc));
-  background: -webkit-linear-gradient(top, #e6e6e6 0%, #cccccc 150%);
-  background: -o-linear-gradient(top, #e6e6e6 0%, #cccccc 150%);
-  background: -ms-linear-gradient(top, #e6e6e6 0%, #cccccc 150%);
-  background: linear-gradient(to bottom, #e6e6e6 0%, #cccccc 150%);
-}
-.ink-navigation ul.menu.grey li.active {
-  background: #b3b3b3;
-}
-.ink-navigation ul.menu.grey li.disabled a {
-  color: #999999;
-  text-shadow: 0 1px 0 #ffffff;
-}
-.ink-navigation ul.menu.grey li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-.ink-navigation ul.menu.grey li a {
-  color: #555555;
-  text-decoration: none;
-}
-.ink-navigation ul.menu.grey li a:hover {
-  background: #b3b3b3;
-}
-.ink-navigation ul.menu.grey li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-.ink-navigation ul.menu.grey li ul.submenu li a {
-  color: #555555;
-}
-.ink-navigation ul.menu.grey li ul.submenu.dropdown {
-  background: #ffffff;
-}
-.ink-navigation ul.menu.grey li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-.ink-navigation ul.menu.black {
-  background: #1a1a1a;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a1a1a', endColorstr='#0d0d0d');
-  background: -moz-linear-gradient(top, #1a1a1a 0%, #0d0d0d 150%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1a1a1a), color-stop(150%, #0d0d0d));
-  background: -webkit-linear-gradient(top, #1a1a1a 0%, #0d0d0d 150%);
-  background: -o-linear-gradient(top, #1a1a1a 0%, #0d0d0d 150%);
-  background: -ms-linear-gradient(top, #1a1a1a 0%, #0d0d0d 150%);
-  background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 150%);
-}
-.ink-navigation ul.menu.black li.active {
-  background: #333333;
-}
-.ink-navigation ul.menu.black li.disabled a {
-  color: #666666;
-  text-shadow: 0 -1px 0 #000000;
-}
-.ink-navigation ul.menu.black li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
->>>>>>> Stashed changes
 }
 .ink-navigation ul.menu.black li.disabled a {
   color: #666666;
@@ -4682,12 +4455,9 @@ a .icon-flip-vertical:before {
 .ink-navigation ul.menu.red li ul.submenu.dropdown li a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
-<<<<<<< Updated upstream
 .ink-navigation ul.menu.flat {
   filter: none;
 }
-=======
->>>>>>> Stashed changes
 .ink-navigation ul.menu.flat.white {
   background: #ffffff;
 }
@@ -5456,7 +5226,6 @@ a .icon-flip-vertical:before {
   color: #08427b;
   background: rgba(0, 0, 0, 0);
   text-shadow: 0 1px 0 #2289f0;
-<<<<<<< Updated upstream
 }
 .ink-navigation ul.pills.green li {
   background: #4c9220;
@@ -5492,43 +5261,6 @@ a .icon-flip-vertical:before {
   background: -ms-linear-gradient(top, #be1c1c 0%, #921515 150%);
   background: linear-gradient(to bottom, #be1c1c 0%, #921515 150%);
 }
-=======
-}
-.ink-navigation ul.pills.green li {
-  background: #4c9220;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c9220', endColorstr='#366817');
-  background: -moz-linear-gradient(top, #4c9220 0%, #366817 150%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c9220), color-stop(150%, #366817));
-  background: -webkit-linear-gradient(top, #4c9220 0%, #366817 150%);
-  background: -o-linear-gradient(top, #4c9220 0%, #366817 150%);
-  background: -ms-linear-gradient(top, #4c9220 0%, #366817 150%);
-  background: linear-gradient(to bottom, #4c9220 0%, #366817 150%);
-}
-.ink-navigation ul.pills.green li a {
-  color: #ffffff;
-}
-.ink-navigation ul.pills.green li a:hover {
-  background: #2a580d;
-}
-.ink-navigation ul.pills.green li.active a {
-  background: #2a580d;
-}
-.ink-navigation ul.pills.green li.disabled a {
-  color: #20420a;
-  background: rgba(0, 0, 0, 0);
-  text-shadow: 0 1px 0 #57b61b;
-}
-.ink-navigation ul.pills.red li {
-  background: #be1c1c;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#be1c1c', endColorstr='#921515');
-  background: -moz-linear-gradient(top, #be1c1c 0%, #921515 150%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #be1c1c), color-stop(150%, #921515));
-  background: -webkit-linear-gradient(top, #be1c1c 0%, #921515 150%);
-  background: -o-linear-gradient(top, #be1c1c 0%, #921515 150%);
-  background: -ms-linear-gradient(top, #be1c1c 0%, #921515 150%);
-  background: linear-gradient(to bottom, #be1c1c 0%, #921515 150%);
-}
->>>>>>> Stashed changes
 .ink-navigation ul.pills.red li a {
   color: #ffffff;
 }
@@ -5548,7 +5280,6 @@ a .icon-flip-vertical:before {
 }
 .ink-navigation ul.pills.flat.grey li {
   background: #d9d9d9;
-<<<<<<< Updated upstream
   filter: none;
 }
 .ink-navigation ul.pills.flat.black li {
@@ -5570,23 +5301,6 @@ a .icon-flip-vertical:before {
 .ink-navigation ul.pills.flat.red li {
   background: #be1c1c;
   filter: none;
-=======
-}
-.ink-navigation ul.pills.flat.black li {
-  background: #000000;
-}
-.ink-navigation ul.pills.flat.orange li {
-  background: #f2990d;
-}
-.ink-navigation ul.pills.flat.blue li {
-  background: #1b75ce;
-}
-.ink-navigation ul.pills.flat.green li {
-  background: #4c9220;
-}
-.ink-navigation ul.pills.flat.red li {
-  background: #be1c1c;
->>>>>>> Stashed changes
 }
 .ink-navigation ul.pills.rounded li {
   border-radius: 4px;
@@ -6021,6 +5735,7 @@ a .icon-flip-vertical:before {
   background: -o-linear-gradient(top, #ee3838 0%, #c91111 100%);
   background: -ms-linear-gradient(top, #ee3838 0%, #c91111 100%);
   background: linear-gradient(to bottom, #ee3838 0%, #c91111 100%);
+  color: #ffffff;
 }
 .ink-alert.basic.info {
   background: #2c8ef0;
@@ -7480,6 +7195,54 @@ ul.ink-tree-view li.open span:before {
 }
 ul.ink-tree-view li.closed span:before {
   content: "\f055";
+}
+.ink-carousel {
+  width: 100%;
+  position: relative;
+  padding-bottom: 1em;
+  overflow: hidden;
+  margin-top: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+.ink-carousel .stage {
+  white-space: nowrap;
+  font-size: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  -webkit-transition-property: left, top;
+  -moz-transition-property: left, top;
+  -o-transition-property: left, top;
+  -ms-transition-property: left, top;
+  transition-property: left, top;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -ms-transition-delay: 0;
+  transition-delay: 0;
+}
+.ink-carousel .stage .slide {
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 16px;
+  width: 50%;
+  white-space: normal;
+  zoom: 1;
+  *display: inline;
 }
 img {
   width: auto;
