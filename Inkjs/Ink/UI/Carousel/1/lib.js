@@ -4,11 +4,9 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.Carousel', '1',
-    ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Selector_1'],
-    function(Aux, InkEvent, Css, InkElement, Pagination/*, Selector*/) {
+    ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
+    function(Aux, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
     'use strict';
-
-
 
     /*
      * TODO:
@@ -31,7 +29,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bind(this._onPaginationChange, this),
-            windowResize:     Ink.bind(this._onWindowResize,     this)
+            windowResize:     Ink.bind(this.refit, this)
         };
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
@@ -39,11 +37,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
         this._element = Aux.elOrSelector(selector, '1st argument');
 
         this._options = Ink.extendObj({
-            axis:            'x',
-            center:          false,
-            keyboardSupport: false,
-            pagination:      null,
-            onChange:        null
+            axis:           'x',
+            hideLast:       false,
+            center:         false,
+            keyboardSupport:false,
+            pagination:     null,
+            onChange:       null
         }, options || {}, InkElement.data(this._element));
 
         this._isY = (this._options.axis === 'y');
@@ -55,29 +54,23 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkElement.removeTextNodeChildren(ulEl);
 
-        var liEls = Ink.ss('li.slide', ulEl);
-        this._liEls = liEls;
 
 
-
-        // hider
-
-        var hiderEl = document.createElement('div');
-        hiderEl.className = 'hider';
-        this._element.appendChild(hiderEl);
-        hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
-        this._hiderEl = hiderEl;
-
-        this.remeasure();
-
-        if (this._options.center) {
-            this._center();
+        if (this._options.hideLast) {
+            var hiderEl = document.createElement('div');
+            hiderEl.className = 'hider';
+            this._element.appendChild(hiderEl);
+            hiderEl.style.position = 'absolute';
+            hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
+            hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
+            hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
+            this._hiderEl = hiderEl;
         }
-        else {
-            this._justUpdateHider();
-        }
+
+        this.refit();
 
         if (this._isY) {
+            // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
             this._ulEl.style.whiteSpace = 'normal';
         }
 
@@ -102,12 +95,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Measure the carousel once again, adjusting the involved elements'
          * sizes. Called automatically when the window resizes, in order to
-         * cater for changes from responsive media queries.
+         * cater for changes from responsive media queries, for instance.
          *
-         * @method remeasure
+         * @method refit
          */
-        remeasure: function() {
-            var off = 'offset' + (this._isY === 'y' ? 'Height' : 'Width');
+        refit: function() {
+            this._liEls = Ink.ss('li.slide', this._ulEl);
             var numItems = this._liEls.length;
             this._ctnLength = this._size(this._element);
             this._elLength = this._size(this._liEls[0]);
@@ -121,6 +114,14 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             else {
                 this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
+            }
+
+            this._center();
+            this._updateHider();
+            
+            if (this._pagination) {
+                this._pagination.setSize(this._numPages);
+                this._pagination.setCurrent(0);
             }
         },
 
@@ -136,6 +137,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _center: function() {
+            if (!this._options.center) { return; }
             var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
 
             var pad;
@@ -146,12 +148,14 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 pad = ['0 ', gap, 'px'];
             }
             this._ulEl.style.padding = pad.join('');
-
-            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
 
-        _justUpdateHider: function() {
+        _updateHider: function() {
+            if (!this._hiderEl) { return; }
             var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+            if (this._options.center) {
+                gap /= 2;
+            }
             this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
 
@@ -162,22 +166,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this._options.onChange.call(this, currPage);
             }
         },
-
-        _onWindowResize: function() {
-            this.remeasure();
-
-            if (this._pagination) {
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
-            }
-
-            if (this._options.center) {
-                this._center();
-            }
-            else {
-                this._justUpdateHider();
-            }
-        }
     };
 
 

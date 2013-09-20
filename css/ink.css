@@ -7243,6 +7243,10 @@ ul.ink-tree-view li.closed span:before {
   zoom: 1;
   *display: inline;
 }
+.ink-carousel .hider {
+  background-color: white;
+  margin: 0;
+}
 img {
   width: auto;
   max-width: 100%;
