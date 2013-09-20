@@ -107,10 +107,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * @method remeasure
          */
         remeasure: function() {
-            var off = 'offset' + (this._options.axis === 'y' ? 'Height' : 'Width');
+            var off = 'offset' + (this._isY === 'y' ? 'Height' : 'Width');
             var numItems = this._liEls.length;
-            this._ctnLength = this._element[off];
-            this._elLength = this._liEls[0][off];
+            this._ctnLength = this._size(this._element);
+            this._elLength = this._size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
             this._numPages = Math.ceil( numItems / this._itemsPerPage );
             this._deltaLength = this._itemsPerPage * this._elLength;
@@ -121,6 +121,17 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             else {
                 this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
+            }
+        },
+
+        _size: function (elm) {
+            try {
+                var rect = elm.getBoundingClientRect();
+                return this._isY ?
+                    rect.bottom - rect.top :
+                    rect.right - rect.left;
+            } catch(e) {
+                return elm[this._isY ? 'offsetHeight' : 'offsetWidth'];
             }
         },
 
