@@ -7201,7 +7201,6 @@ ul.ink-tree-view li.closed span:before {
   position: relative;
   padding-bottom: 1em;
   overflow: hidden;
-  margin-top: 10em;
   margin-left: auto;
   margin-right: auto;
   display: inline-block;
@@ -7239,8 +7238,8 @@ ul.ink-tree-view li.closed span:before {
   display: inline-block;
   overflow: hidden;
   font-size: 16px;
-  width: 50%;
   white-space: normal;
+  float: none;
   zoom: 1;
   *display: inline;
 }

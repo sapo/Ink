@@ -61,13 +61,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
 
         // hider
-        // TODO check if this is really needed
 
-        // var hiderEl = document.createElement('div');
-        // hiderEl.className = 'hider';
-        // this._element.appendChild(hiderEl);
-        // hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
-        // this._hiderEl = hiderEl;
+        var hiderEl = document.createElement('div');
+        hiderEl.className = 'hider';
+        this._element.appendChild(hiderEl);
+        hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
+        this._hiderEl = hiderEl;
 
         this.remeasure();
 
@@ -137,12 +136,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             this._ulEl.style.padding = pad.join('');
 
-            // this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
+            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
 
         _justUpdateHider: function() {
             var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
-            // this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
+            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
 
         _onPaginationChange: function(pgn) {

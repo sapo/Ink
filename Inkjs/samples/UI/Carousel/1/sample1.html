@@ -69,6 +69,8 @@
                 }
             </style>
 
+            <h2>Centered items</h2>
+
             <div id="car1" class="ink-carousel">
                 <ul class="unstyled stage">
                     <li class="slide">
@@ -156,6 +158,42 @@
             </nav>
 
             <!-- -->
+
+            <hr>
+
+            <h2>Using percentage widths</h2>
+
+            <div id="percentage" class="ink-carousel">
+                <ul class="unstyled stage">
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>First</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>Second</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>Third</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>Fourth</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+
+            <nav id="percentagepag">
+                <ul class="pagination rounded shadowed red"></ul>
+            </nav>
+
+            <hr>
+
+            <h2>Vertical alignment</h2>
 
             <div id="car2" class="ink-carousel">
                 <ul class="unstyled stage">
@@ -254,6 +292,10 @@
                 window.g2 = new Carousel('#car2', {
                     pagination: Ink.s('#p2'),
                     axis:       'y' // TODO
+                });
+
+                window.perc = new Carousel('#percentage', {
+                    pagination: '#percentagepag'
                 });
             });
         </script>
