@@ -111,13 +111,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._isY) {
                 this._element.style.width = this._liEls[0].offsetWidth + 'px';
                 this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
-            }
-            else {
+            } else {
                 this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
             }
 
             this._center();
             this._updateHider();
+            this._IE7();
             
             if (this._pagination) {
                 this._pagination.setSize(this._numPages);
@@ -158,6 +158,24 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
             this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
+        
+        /**
+         * Refit stuff for IE7 because it won't support inline-block.
+         *
+         * @method _IE7
+         * @private
+         */
+        _IE7: function () {
+            if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
+                var numPages = this._numPages;
+                var slides = Ink.ss('li.slide', this._ulEl);
+                var stl = function (prop, val) {slides[i].style[prop] = val; };
+                for (var i = 0, len = slides.length; i < len; i++) {
+                    stl('position', 'absolute');
+                    stl(this._isY ? 'top' : 'left', (i * this._elLength) + 'px');
+                }
+            }
+        },
 
         _onPaginationChange: function(pgn) {
             var currPage = pgn.getCurrent();
@@ -165,7 +183,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._options.onChange) {
                 this._options.onChange.call(this, currPage);
             }
-        },
+        }
     };
 
 
