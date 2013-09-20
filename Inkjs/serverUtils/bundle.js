@@ -6,6 +6,8 @@
 
 var fs       = require('fs'),
     async    = require('async'),
+    sys      = require('sys'),
+    exec     = require('child_process').exec,
     myUtils  = require('./utils');
 
 
@@ -67,11 +69,6 @@ for (i = 0, f = files.length; i < f; ++i) {
 
     //console.log(useIt ? 'Y' : 'N', file);
 
-    if (minify) {
-        l = file.length;
-        file = [file.substring(0, l - 3), '.min.js'].join('');
-    }
-
     filesToBundle.push(file);
 }
 
@@ -80,10 +77,23 @@ for (i = 0, f = files.length; i < f; ++i) {
 console.log('* ' + filesToBundle.join('\n* '));*/
 
 
-// concatenate
-var ws = fs.createWriteStream(bundleFile);
-var left = filesToBundle.length;
+// options
+var options = ' -b',
+    command = '';
 
+// If we have the minified flag, minify the bundling instead of beautifying it
+if(minify){
+    options = ' -e document,window:document,window -c -m eval=true ';
+}
+
+command = 'uglifyjs ' + filesToBundle.join(' ') + options + ' -o ' + bundleFile;
+
+// Execute bash command
+exec(command, function(error, stdout, stderr){
+    var message = minify ? 'minified' : 'beautified';
+    console.log('File bundled and ' + message + ': ' + bundleFile);
+});
+/*
 async.forEachSeries(
     filesToBundle,
     function(f, innerCb) { // for each
@@ -96,5 +106,11 @@ async.forEachSeries(
     },
     function(err) { // on all done or error...
         console.log(err ? err : 'Created bundle on ' + bundleFile);
+        if(minify){
+        exec('uglifyjs '+bundleFile+' -e document,window:document,window -c -m toplevel=true,eval=true -o '+bundleFile, function(error, stdout, stderr){
+            console.log('File minified: ' + bundleFile);
+        });
+        }
     }
 );
+*/
