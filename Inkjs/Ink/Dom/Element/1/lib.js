@@ -6,6 +6,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     'use strict';
 
+    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -14,7 +16,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
      * @class Ink.Dom.Element
      */
 
-    var Element = {
+    var InkElement = {
 
         /**
          * Shortcut for `document.getElementById`
@@ -74,7 +76,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement|String} elm  Element where to scroll
          */
         scrollTo: function(elm) {
-            elm = this.get(elm);
+            elm = InkElement.get(elm);
             if(elm) {
                 if (elm.scrollIntoView) {
                     return elm.scrollIntoView();
@@ -106,7 +108,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Number} Offset from the target element to the top of the document
          */
         offsetTop: function(elm) {
-            return this.offset(elm)[1];
+            return InkElement.offset(elm)[1];
         },
 
         /**
@@ -119,7 +121,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Number} Offset from the target element to the left of the document
          */
         offsetLeft: function(elm) {
-            return this.offset(elm)[0];
+            return InkElement.offset(elm)[0];
         },
 
         /**
@@ -131,7 +133,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         */
         positionedOffset: function(element) {
             var valueTop = 0, valueLeft = 0;
-            element = this.get(element);
+            element = InkElement.get(element);
             do {
                 valueTop  += element.offsetTop  || 0;
                 valueLeft += element.offsetLeft || 0;
@@ -170,7 +172,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
             var dRes, bRes, parent, cs;
-            var getPropPx = this._getPropPx;
+            var getPropPx = InkElement._getPropPx;
 
             var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
 
@@ -242,7 +244,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @deprecated Kept for historic reasons. Use offset() instead.
          */
         offset2: function(el) {
-            return this.offset(el);
+            return InkElement.offset(el);
         },
 
         /**
@@ -265,7 +267,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          */
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
-            if (targetElm = this.get(targetElm)) {
+            if (targetElm = InkElement.get(targetElm)) {
                 targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
             }
         },
@@ -279,7 +281,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          */
         insertTop: function(newElm,targetElm) {  // TODO check first child exists
             /*jshint boss:true */
-            if (targetElm = this.get(targetElm)) {
+            if (targetElm = InkElement.get(targetElm)) {
                 targetElm.insertBefore(newElm, targetElm.firstChild);
             }
         },
@@ -298,7 +300,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             switch(node && node.nodeType) {
             case 9: /*DOCUMENT_NODE*/
                 // IE quirks mode does not have documentElement
-                return this.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
+                return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
 
             case 1: /*ELEMENT_NODE*/
                 text = node.innerText;
@@ -314,13 +316,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
                 if (node.firstChild === node.lastChild) {
                     // Common case: 0 or 1 children
-                    return this.textContent(node.firstChild);
+                    return InkElement.textContent(node.firstChild);
                 }
 
                 text = [];
                 cs = node.childNodes;
                 for (k = 0, m = cs.length; k < m; ++k) {
-                    text.push( this.textContent( cs[k] ) );
+                    text.push( InkElement.textContent( cs[k] ) );
                 }
                 return text.join('');
 
@@ -417,7 +419,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Boolean} true if 'descendant' is descendant of 'node'
          */
         descendantOf: function(node, descendant){
-            return node !== descendant && this.isAncestorOf(node, descendant);
+            return node !== descendant && InkElement.isAncestorOf(node, descendant);
         },
 
         /**
@@ -592,13 +594,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var rect = Ink.i(element).getBoundingClientRect();
             if (partial) {
                 return  rect.bottom > 0                        && // from the top
-                        rect.left < Element.viewportWidth()    && // from the right
-                        rect.top < Element.viewportHeight()    && // from the bottom
+                        rect.left < InkElement.viewportWidth()    && // from the right
+                        rect.top < InkElement.viewportHeight()    && // from the bottom
                         rect.right  > 0;                          // from the left
             } else {
                 return  rect.top > 0                           && // from the top
-                        rect.right < Element.viewportWidth()   && // from the right
-                        rect.bottom < Element.viewportHeight() && // from the bottom
+                        rect.right < InkElement.viewportWidth()   && // from the right
+                        rect.bottom < InkElement.viewportHeight() && // from the bottom
                         rect.left  > 0;                           // from the left
             }
         },
@@ -612,7 +614,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} the element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
-            var pos = this.offset(cloneFrom);
+            var pos = InkElement.offset(cloneFrom);
             cloneTo.style.left = pos[0]+'px';
             cloneTo.style.top = pos[1]+'px';
 
@@ -668,7 +670,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 var cls = el.className;
                 return cls && re.test(cls);
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -684,7 +686,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var tst = function(el) {
                 return el.nodeName && el.nodeName.toUpperCase() === tag;
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -699,7 +701,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var tst = function(el) {
                 return el.id === id;
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -717,7 +719,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var tst = function(el) {
                 return Ink.Dom.Selector.matchesSelector(el, sel);
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -744,7 +746,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 node = nodes[j];
                 if (!node) {    continue;   }
                 if (node.nodeType === 3) {  // TEXT NODE
-                    part = this._trimString( String(node.data) );
+                    part = InkElement._trimString( String(node.data) );
                     if (part.length > 0) {
                         text += part;
                         if (removeIt) { el.removeChild(node);   }
@@ -826,7 +828,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 containerEl.appendChild(optionEl);
             }
 
-            data = this._normalizeData(data);
+            data = InkElement._normalizeData(data);
 
             for (var i = 0, f = data.length; i < f; ++i) {
                 d = data[i];
@@ -883,7 +885,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var optGroupValuesEl = document.createElement('optgroup');
             optGroupValuesEl.setAttribute('label', opts.optionsGroupLabel);
 
-            opts.data = this._normalizeData(opts.data);
+            opts.data = InkElement._normalizeData(opts.data);
 
             if (!opts.skipCreate) {
                 opts.data.unshift(['$create$', opts.createLabel]);
@@ -974,7 +976,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 Ink.i(insertAfterEl).appendChild(containerEl);
             }
 
-            data = this._normalizeData(data);
+            data = InkElement._normalizeData(data);
 
             if (name.substring(name.length - 1) !== ']') {
                 name += '[]';
@@ -1037,7 +1039,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 Ink.i(insertAfterEl).appendChild(containerEl);
             }
 
-            data = this._normalizeData(data);
+            data = InkElement._normalizeData(data);
 
             if (name.substring(name.length - 1) !== ']') {
                 name += '[]';
@@ -1100,7 +1102,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements = [],
                     siblings = elm.parentNode.children,
-                    index    = this.parentIndexOf(elm.parentNode, elm);
+                    index    = InkElement.parentIndexOf(elm.parentNode, elm);
 
                 for(var i = ++index, len = siblings.length; i<len; i++) {
                     elements.push(siblings[i]);
@@ -1126,7 +1128,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements    = [],
                     siblings    = elm.parentNode.children,
-                    index       = this.parentIndexOf(elm.parentNode, elm);
+                    index       = InkElement.parentIndexOf(elm.parentNode, elm);
 
                 for(var i = 0, len = index; i<len; i++) {
                     elements.push(siblings[i]);
@@ -1177,7 +1179,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 return elm.childElementCount;
             }
             if (!elm) { return 0; }
-            return this.siblings(elm).length + 1;
+            return InkElement.siblings(elm).length + 1;
         },
 
        /**
@@ -1240,11 +1242,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param  {String} html  html string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
          */
-        htmlToFragment: function(html){
-            /*jshint boss:true */
-            /*global Range:false */
-            if(typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function'){
-                this.htmlToFragment = function(html){
+        htmlToFragment: (createContextualFragmentSupport ?
+            function(html){
                     var range;
 
                     if(typeof html !== 'string'){ return document.createDocumentFragment(); }
@@ -1256,8 +1255,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
                     return range.createContextualFragment(html);
                 };
-            } else {
-                this.htmlToFragment = function(html){
+            } : function (html) {
                     var fragment = document.createDocumentFragment(),
                         tempElement,
                         current;
@@ -1273,11 +1271,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                     }
 
                     return fragment;
-                };
-            }
-
-            return this.htmlToFragment.call(this, html);
-        },
+            }),
 
         _camelCase: function(str)
         {
@@ -1305,7 +1299,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             else {
                 var InkDomSelector = Ink.getModule('Ink.Dom.Selector', 1);
                 if (!InkDomSelector) {
-                    throw "[Ink.Dom.Element.data] :: This method requires Ink.Dom.Selector - v1";
+                    throw "[Ink.Dom.Element.data] :: this method requires Ink.Dom.Selector - v1";
                 }
                 el = InkDomSelector.select(selector);
                 if (el.length <= 0) {
@@ -1324,7 +1318,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                     curAttrName = curAttr.name;
                     curAttrValue = curAttr.value;
                     if (curAttrName && curAttrName.indexOf('data-') === 0) {
-                        dataset[this._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
+                        dataset[InkElement._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
                     }
                 }
             }
@@ -1474,6 +1468,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         }
     };
 
-    return Element;
+    return InkElement;
 
 });
