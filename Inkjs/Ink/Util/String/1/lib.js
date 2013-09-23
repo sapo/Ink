@@ -118,13 +118,18 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          *
          * @method ucFirst
          * @param {String} string
+         * @param {Boolean} [firstWordOnly=false] capitalize only first word.
          * @return {String} string camel cased
          * @public
          * @static
+         *
+         * @example
+         *      InkString.ucFirst('hello world'); // -> 'Hello World'
+         *      InkString.ucFirst('hello world', true); // -> 'Hello world'
          */
-        ucFirst: function(string)
-        {
-            return string ? String(string).replace(/(^|\s)(\w)(\S{2,})/g, function(_, $1, $2, $3){
+        ucFirst: function(string, firstWordOnly) {
+            var replacer = firstWordOnly ? /(^|\s)(\w)(\S{2,})/ : /(^|\s)(\w)(\S{2,})/g;
+            return string ? String(string).replace(replacer, function(_, $1, $2, $3){
                 return $1 + $2.toUpperCase() + $3.toLowerCase();
             }) : string;
         },
@@ -164,12 +169,12 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         stripTags: function(string, allowed)
         {
             if (allowed && typeof allowed === 'string') {
-                var aAllowed = this.trim(allowed).split(',');
+                var aAllowed = InkUtilString.trim(allowed).split(',');
                 var aNewAllowed = [];
                 var cleanedTag = false;
                 for(var i=0; i < aAllowed.length; i++) {
-                    if(this.trim(aAllowed[i]) !== '') {
-                        cleanedTag = this.trim(aAllowed[i].replace(/(\<|\>)/g, '').replace(/\s/, ''));
+                    if(InkUtilString.trim(aAllowed[i]) !== '') {
+                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(\<|\>)/g, '').replace(/\s/, ''));
                         aNewAllowed.push('(<'+cleanedTag+'\\s[^>]+>|<(\\s|\\/)?(\\s|\\/)?'+cleanedTag+'>)');
                     }
                 }
@@ -202,9 +207,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         {
             if (string && string.replace) {
                 var re = false;
-                for (var i = 0; i < this._chars.length; i++) {
-                    re = new RegExp(this._chars[i], "gm");
-                    string = string.replace(re, '&' + this._entities[i] + ';');
+                for (var i = 0; i < InkUtilString._chars.length; i++) {
+                    re = new RegExp(InkUtilString._chars[i], "gm");
+                    string = string.replace(re, '&' + InkUtilString._entities[i] + ';');
                 }
             }
             return string;
@@ -223,9 +228,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         {
             if (string && string.replace) {
                 var re = false;
-                for (var i = 0; i < this._entities.length; i++) {
-                    re = new RegExp("&"+this._entities[i]+";", "gm");
-                    string = string.replace(re, this._chars[i]);
+                for (var i = 0; i < InkUtilString._entities.length; i++) {
+                    re = new RegExp("&"+InkUtilString._entities[i]+";", "gm");
+                    string = string.replace(re, InkUtilString._chars[i]);
                 }
                 string = string.replace(/&#[^;]+;?/g, function($0){
                     if ($0.charAt(2) === 'x') {
@@ -367,9 +372,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         {
             var newString = string;
             var re = false;
-            for (var i = 0; i < this._accentedChars.length; i++) {
-                re = new RegExp(this._accentedChars[i], "gm");
-                newString = newString.replace(re, '' + this._accentedRemovedChars[i] + '');
+            for (var i = 0; i < InkUtilString._accentedChars.length; i++) {
+                re = new RegExp(InkUtilString._accentedChars[i], "gm");
+                newString = newString.replace(re, '' + InkUtilString._accentedRemovedChars[i] + '');
             }
             return newString;
         },
@@ -399,9 +404,9 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        evalJSON: function(strJSON, sanitize)
-        {
-            if( (typeof sanitize === 'undefined' || sanitize === null) || this.isJSON(strJSON)) {
+        evalJSON: function(strJSON, sanitize) {
+            /* jshint evil:true */
+            if( (typeof sanitize === 'undefined' || sanitize === null) || InkUtilString.isJSON(strJSON)) {
                 try {
                     if(typeof(JSON) !== "undefined" && typeof(JSON.parse) !== 'undefined'){
                         return JSON.parse(strJSON);
@@ -438,7 +443,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @static
          */
         htmlEscapeUnsafe: function(str){
-            var chars = this._htmlUnsafeChars;
+            var chars = InkUtilString._htmlUnsafeChars;
             return str != null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
         },
 
@@ -454,7 +459,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @static
          */
         normalizeWhitespace: function(str){
-            return str != null ? this.trim(String(str).replace(/\s+/g,' ')) : str;
+            return str != null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
         },
 
         /**
@@ -527,7 +532,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         /**
          * Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX
          *
-         * @method ucFirst
+         * @method escape
          * @param {String} c Char
          * @return {String} escaped char
          * @public
@@ -591,7 +596,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 c = txt[i];
                 C = c.charCodeAt(0);
                 if (C < 32 || C > 126 && whiteList.indexOf(c) === -1) {
-                    c = this.escape(c);
+                    c = InkUtilString.escape(c);
                 }
                 txt2.push(c);
             }
@@ -621,10 +626,10 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
         unescapeText: function(txt) {
             /*jshint boss:true */
             var m;
-            while (m = this.escapedCharRegex.exec(txt)) {
+            while (m = InkUtilString.escapedCharRegex.exec(txt)) {
                 m = m[0];
-                txt = txt.replace(m, this.unescape(m));
-                this.escapedCharRegex.lastIndex = 0;
+                txt = txt.replace(m, InkUtilString.unescape(m));
+                InkUtilString.escapedCharRegex.lastIndex = 0;
             }
             return txt;
         },
