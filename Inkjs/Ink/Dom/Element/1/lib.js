@@ -1190,12 +1190,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         * @param {String}            html  markup string
         */
         appendHTML: function(elm, html){
-            var temp = document.createElement('div');
-            temp.innerHTML = html;
-            var tempChildren = temp.children;
-            for (var i = 0; i < tempChildren.length; i++){
-                elm.appendChild(tempChildren[i]);
-            }
+            return elm.insertAdjacentHTML('beforeend', html);
         },
 
         /**
@@ -1206,14 +1201,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         prependHTML: function(elm, html){
-            var temp = document.createElement('div');
-            temp.innerHTML = html;
-            var first = elm.firstChild;
-            var tempChildren = temp.children;
-            for (var i = tempChildren.length - 1; i >= 0; i--){
-                elm.insertBefore(tempChildren[i], first);
-                first = elm.firstChild;
-            }
+            return elm.insertAdjacentHTML('afterbegin', html);
         },
 
         /**
