@@ -579,7 +579,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
-            return Array(element.offsetWidth, element.offsetHeight);
+            return [element.offsetWidth, element.offsetHeight];
         },
 
         /**
@@ -1244,39 +1244,38 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          */
         htmlToFragment: (createContextualFragmentSupport ?
             function(html){
-                    var range;
+                var range;
 
-                    if(typeof html !== 'string'){ return document.createDocumentFragment(); }
+                if(typeof html !== 'string'){ return document.createDocumentFragment(); }
 
-                    range = document.createRange();
+                range = document.createRange();
 
-                    // set the context to document.body (firefox does this already, webkit doesn't)
-                    range.selectNode(document.body);
+                // set the context to document.body (firefox does this already, webkit doesn't)
+                range.selectNode(document.body);
 
-                    return range.createContextualFragment(html);
-                };
+                return range.createContextualFragment(html);
             } : function (html) {
-                    var fragment = document.createDocumentFragment(),
-                        tempElement,
-                        current;
+                var fragment = document.createDocumentFragment(),
+                    tempElement,
+                    current;
 
-                    if(typeof html !== 'string'){ return fragment; }
+                if(typeof html !== 'string'){ return fragment; }
 
-                    tempElement = document.createElement('div');
-                    tempElement.innerHTML = html;
+                tempElement = document.createElement('div');
+                tempElement.innerHTML = html;
 
-                    // append child removes elements from the original parent
-                    while(current = tempElement.firstChild){ // intentional assignment
-                        fragment.appendChild(current);
-                    }
+                // append child removes elements from the original parent
+                while( (current = tempElement.firstChild) ){ // intentional assignment
+                    fragment.appendChild(current);
+                }
 
-                    return fragment;
+                return fragment;
             }),
 
         _camelCase: function(str)
         {
             return str ? str.replace(/-(\w)/g, function (_, $1){
-                    return $1.toUpperCase();
+                return $1.toUpperCase();
             }) : str;
         },
 
