@@ -577,7 +577,27 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
-            return Array(element.offsetWidth, element.offsetHeight);
+            return [element.offsetWidth, element.offsetHeight];
+        },
+
+        /**
+         * Returns the outer (width + margin + padding included) dimensions of an element, in pixels.
+         *
+         * Requires Ink.Dom.Css
+         *
+         * @method uterDimensions
+         * @param {DOMElement} element Target element
+         * @return {Array} Array with element width and height.
+         */
+        outerDimensions: function (element) {
+            var bbox = Element.elementDimensions(element);
+
+            var Css = Ink.getModule('Ink.Dom.Css_1');
+            
+            return [
+                bbox[0] + parseFloat(Css.getStyle(element, 'marginLeft') || 0) + parseFloat(Css.getStyle(element, 'marginRight') || 0),  // w
+                bbox[1] + parseFloat(Css.getStyle(element, 'marginTop') || 0) + parseFloat(Css.getStyle(element, 'marginBottom') || 0)  // h
+            ];
         },
 
         /**

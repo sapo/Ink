@@ -126,14 +126,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _size: function (elm) {
-            try {
-                var rect = elm.getBoundingClientRect();
-                return this._isY ?
-                    rect.bottom - rect.top :
-                    rect.right - rect.left;
-            } catch(e) {
-                return elm[this._isY ? 'offsetHeight' : 'offsetWidth'];
-            }
+            var dims = InkElement.outerDimensions(elm)
+            return this._isY ? dims[1] : dims[0];
         },
 
         _center: function() {
