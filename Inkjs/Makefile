@@ -73,6 +73,7 @@ min: extractTree
 
 bundle: extractTree
 	@echo "\nbundling..."
+	@mkdir -p ./builds
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).js
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).js "/UI/"
 	@node serverUtils/bundle.js ./builds/ink-$(VERSION).js    "/UI/" negates
@@ -80,6 +81,7 @@ bundle: extractTree
 
 bundleMin: min
 	@echo "\nbundling minified..."
+	@mkdir -p ./builds
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).min.js minify
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).min.js  minify "/UI/"
 	@node serverUtils/bundle.js ./builds/ink-$(VERSION).min.js     minify "/UI/" negates
@@ -99,3 +101,4 @@ removeDirs:
 importPreCommitHook:
 	@echo "\ncreating symbolic link of pre-commit.sh to your git internals"
 	@ln -s ../../pre-commit.sh .git/hooks/pre-commit
+

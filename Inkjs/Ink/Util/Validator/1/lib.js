@@ -411,7 +411,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             
             if (options.maxDigits!== null) {
                 if (split[0].replace(/-/g, '').length > options.maxDigits) {
-                    return split
+                    return split;
                 }
             }
             
