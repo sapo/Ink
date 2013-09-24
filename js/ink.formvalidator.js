@@ -346,12 +346,10 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
             //console.log(oGroups);
             var curGroup = false;
             for(var i in oGroups) {
-                if (oGroups.hasOwnProperty(i)) {
-                    curGroup = oGroups[i];
-                    if(curGroup.length === 2) {
-                        if(curGroup[0].value !== curGroup[1].value) {
-                            errors.push({elm:curGroup[1], errors:['ink-fv-confirm']});
-                        }
+                curGroup = oGroups[i];
+                if(curGroup.length === 2) {
+                    if(curGroup[0].value !== curGroup[1].value) {
+                        errors.push({elm:curGroup[1], errors:['ink-fv-confirm']});
                     }
                 }
             }
@@ -580,9 +578,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         if( !(validFormat in InkValidator._dateParsers ) ){
                             var validValues = [];
                             for( var val in InkValidator._dateParsers ){
-                                if (InkValidator._dateParsers.hasOwnProperty(val) {
-                                    validValues.push(val);
-                                }
+                                validValues.push(val);
                             }
                             throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
                         }
