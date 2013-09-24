@@ -1182,6 +1182,33 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             return InkElement.siblings(elm).length + 1;
         },
 
+        _wrapElements: {
+            TABLE: function (div, html) {
+                div.innerHTML = "<table>" + html + "</table>";
+                return div.firstChild;
+            },
+            TBODY: function (div, html) {
+                div.innerHTML = '<table><tbody>' + html + '</tbody></table>';
+                return div.firstChild.getElementsByTagName('tbody')[0];
+            },
+            THEAD: function (div, html) {
+                div.innerHTML = '<table><thead>' + html + '</thead><tbody></tbody></table>';
+                return div.firstChild.getElementsByTagName('thead')[0];
+            },
+            TFOOT: function (div, html) {
+                div.innerHTML = '<table><tfoot>' + html + '</tfoot><tbody></tbody></table>';
+                return div.firstChild.getElementsByTagName('tfoot')[0];
+            },
+            TR: function (div, html) {
+                div.innerHTML = '<table><tbody><tr>' + html + '</tr></tbody></table>';
+                return div.firstChild.firstChild.firstChild;
+            },
+            "DEFAULT": function (div, html) {
+                div.innerHTML = html;
+                return div;
+            }
+        },
+
        /**
         * parses and appends an html string to a container, not destroying its contents
         *
@@ -1190,7 +1217,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         * @param {String}            html  markup string
         */
         appendHTML: function(elm, html){
-            return elm.insertAdjacentHTML('beforeend', html);
+            var wrapper;
+            var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
+            if ( !(nodeName in InkElement._wrapElements) ) {
+                nodeName = 'DEFAULT'
+            }
+
+            var wrapper = InkElement._wrapElements[nodeName](document.createElement('div'), html);
+            while (wrapper.firstChild) {
+                elm.appendChild(wrapper.firstChild);
+            }
         },
 
         /**
@@ -1201,7 +1237,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         prependHTML: function(elm, html){
-            return elm.insertAdjacentHTML('afterbegin', html);
+            var wrapper;
+            var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
+            if ( !(nodeName in InkElement._wrapElements) ) {
+                nodeName = 'DEFAULT'
+            }
+
+            var wrapper = InkElement._wrapElements[nodeName](document.createElement('div'), html);
+            while (wrapper.lastChild) {
+                elm.insertBefore(wrapper.lastChild, elm.firstChild);
+            }
         },
 
         /**

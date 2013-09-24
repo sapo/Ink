@@ -28,7 +28,71 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (InkEle
         InkElement.prependHTML(elem, 'text');
         equal(elem.innerHTML, 'text');
     });
-    test('prependHTML on tables', function () {
+    (function () {
+        var table,
+            tbody,
+            tr,
+            td;
+
+        function init() {
+            var table = InkElement.create('table');
+            tbody = InkElement.create('tbody');
+            tr = InkElement.create('tr');
+            td = InkElement.create('td');
+
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+        }
+
+        test('prepending tbodies to tables', function () {
+            var table = InkElement.create('table');
+            table = document.body.appendChild(table)
+            InkElement.prependHTML(table, '<tbody></tbody>');
+            equal(table.innerHTML.toLowerCase(), '<tbody></tbody>');
+        })
+
+        test('prepending theads to tables', function () {
+            var table = InkElement.create('table');
+            InkElement.prependHTML(table, '<thead>');
+            equal(table.innerHTML.toLowerCase(), '<thead></thead>');
+        });
+        test('prepending trs to tbodies', function () {
+            init();
+            InkElement.prependHTML(tbody, '<tr><td>td1</td></tr>')
+            equal(tbody.innerHTML.toLowerCase(), '<tr><td>td1</td></tr><tr><td></td></tr>');
+        });
+        test('prepending tds to trs', function () {
+            init();
+            InkElement.prependHTML(tr, '<td>td1</td>')
+            equal(tr.innerHTML.toLowerCase(), '<td>td1</td><td></td>');
+        });
+
+        test('appending tbodies to tables', function () {
+            var table = InkElement.create('table');
+            equal(table.children.length, 0);
+            equal(table.innerHTML, '');
+            InkElement.appendHTML(table, '<tbody>');
+            equal(table.children.length, 1);
+            equal(table.innerHTML.toLowerCase(), '<tbody></tbody>');
+        });
+        test('appending theads to tables', function () {
+            var table = InkElement.create('table');
+            InkElement.appendHTML(table, '<thead>');
+            equal(table.innerHTML.toLowerCase(), '<thead></thead>');
+        });
+        test('appending trs to tbodies', function () {
+            init();
+            InkElement.appendHTML(tbody, '<tr><td>td1</td></tr>')
+            equal(tbody.innerHTML.toLowerCase(), '<tr><td></td></tr><tr><td>td1</td></tr>');
+        });
+        test('appending tds to trs', function () {
+            init();
+            InkElement.appendHTML(tr, '<td>td1</td>')
+            equal(tr.innerHTML.toLowerCase(), '<td></td><td>td1</td>');
+        });
+    }());
+    /*test('prependHTML on tables', function () {
         var table = InkElement.create('table');
         var tbody = InkElement.create('tbody');
         var tr = InkElement.create('tr');
@@ -79,5 +143,10 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (InkEle
 
         equal(tbody.children.length, 2);
         equal(tr.children.length, 5);
+    });*/
+    test('DIV in a P', function () {
+        var p = InkElement.create('p');
+        InkElement.prependHTML(p, '<div>hello</div>');
+        equal(p.innerHTML.toLowerCase(), '<div>hello</div>');
     });
 });
