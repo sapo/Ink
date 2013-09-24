@@ -4,11 +4,9 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.Carousel', '1',
-    ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Selector_1'],
-    function(Aux, Event, Css, Element, Pagination/*, Selector*/) {
+    ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
+    function(Aux, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
     'use strict';
-
-
 
     /*
      * TODO:
@@ -31,49 +29,49 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bind(this._onPaginationChange, this),
-            windowResize:     Ink.bind(this._onWindowResize,     this)
+            windowResize:     Ink.bind(this.refit, this)
         };
 
-        Event.observe(window, 'resize', this._handlers.windowResize);
+        InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
         this._element = Aux.elOrSelector(selector, '1st argument');
 
         this._options = Ink.extendObj({
-            axis:            'x',
-            center:          false,
-            keyboardSupport: false,
-            pagination:      null,
-            onChange:        null
-        }, options || {}, Element.data(this._element));
+            axis:           'x',
+            hideLast:       false,
+            center:         false,
+            keyboardSupport:false,
+            pagination:     null,
+            onChange:       null
+        }, options || {}, InkElement.data(this._element));
 
         this._isY = (this._options.axis === 'y');
 
         var rEl = this._element;
 
-        var ulEl = Ink.s('ul', rEl);
+        var ulEl = Ink.s('ul.stage', rEl);
         this._ulEl = ulEl;
 
-        Element.removeTextNodeChildren(ulEl);
-
-        var liEls = Ink.ss('li', ulEl);
-        this._liEls = liEls;
+        InkElement.removeTextNodeChildren(ulEl);
 
 
 
-        // hider
-        var hiderEl = document.createElement('div');
-        hiderEl.className = 'hider';
-        this._element.appendChild(hiderEl);
-        hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
-        this._hiderEl = hiderEl;
-
-        this.remeasure();
-
-        if (this._options.center) {
-            this._center();
+        if (this._options.hideLast) {
+            var hiderEl = document.createElement('div');
+            hiderEl.className = 'hider';
+            this._element.appendChild(hiderEl);
+            hiderEl.style.position = 'absolute';
+            hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
+            hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
+            hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
+            this._hiderEl = hiderEl;
         }
-        else {
-            this._justUpdateHider();
+
+        this.refit();
+
+        if (this._isY) {
+            // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
+            this._ulEl.style.whiteSpace = 'normal';
         }
 
         if (this._options.pagination) {
@@ -97,31 +95,49 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Measure the carousel once again, adjusting the involved elements'
          * sizes. Called automatically when the window resizes, in order to
-         * cater for changes from responsive media queries.
+         * cater for changes from responsive media queries, for instance.
          *
-         * @method remeasure
+         * @method refit
          */
-        remeasure: function() {
-            var off = 'offset' + (this._options.axis === 'y' ? 'Height' : 'Width');
+        refit: function() {
+            this._liEls = Ink.ss('li.slide', this._ulEl);
             var numItems = this._liEls.length;
-            this._ctnLength = this._element[off];
-            this._elLength = this._liEls[0][off];
+            this._ctnLength = this._size(this._element);
+            this._elLength = this._size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
             this._numPages = Math.ceil( numItems / this._itemsPerPage );
             this._deltaLength = this._itemsPerPage * this._elLength;
             
-            var ulEl = this._ulEl;
-            var liEls = this._liEls;
             if (this._isY) {
-                this._element.style.width = liEls[0].offsetWidth + 'px';
-                ulEl.style.width  =  liEls[0].offsetWidth + 'px';
+                this._element.style.width = this._liEls[0].offsetWidth + 'px';
+                this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
+            } else {
+                this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
             }
-            else {
-                ulEl.style.height =  liEls[0].offsetHeight + 'px';
+
+            this._center();
+            this._updateHider();
+            this._IE7();
+            
+            if (this._pagination) {
+                this._pagination.setSize(this._numPages);
+                this._pagination.setCurrent(0);
+            }
+        },
+
+        _size: function (elm) {
+            try {
+                var rect = elm.getBoundingClientRect();
+                return this._isY ?
+                    rect.bottom - rect.top :
+                    rect.right - rect.left;
+            } catch(e) {
+                return elm[this._isY ? 'offsetHeight' : 'offsetWidth'];
             }
         },
 
         _center: function() {
+            if (!this._options.center) { return; }
             var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
 
             var pad;
@@ -132,13 +148,33 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 pad = ['0 ', gap, 'px'];
             }
             this._ulEl.style.padding = pad.join('');
-
-            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
 
-        _justUpdateHider: function() {
+        _updateHider: function() {
+            if (!this._hiderEl) { return; }
             var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+            if (this._options.center) {
+                gap /= 2;
+            }
             this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
+        },
+        
+        /**
+         * Refit stuff for IE7 because it won't support inline-block.
+         *
+         * @method _IE7
+         * @private
+         */
+        _IE7: function () {
+            if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
+                var numPages = this._numPages;
+                var slides = Ink.ss('li.slide', this._ulEl);
+                var stl = function (prop, val) {slides[i].style[prop] = val; };
+                for (var i = 0, len = slides.length; i < len; i++) {
+                    stl('position', 'absolute');
+                    stl(this._isY ? 'top' : 'left', (i * this._elLength) + 'px');
+                }
+            }
         },
 
         _onPaginationChange: function(pgn) {
@@ -146,22 +182,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
                 this._options.onChange.call(this, currPage);
-            }
-        },
-
-        _onWindowResize: function() {
-            this.remeasure();
-
-            if (this._pagination) {
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
-            }
-
-            if (this._options.center) {
-                this._center();
-            }
-            else {
-                this._justUpdateHider();
             }
         }
     };

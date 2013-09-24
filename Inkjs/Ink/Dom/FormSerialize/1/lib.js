@@ -115,18 +115,26 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
             var nodeName = fieldInputs[0].nodeName.toLowerCase();
             var type = fieldInputs[0].getAttribute('type');
             var value = fieldInputs[0].value;
-            var i, f, el, res = [];
+            var i, f, j, o, el, m, res = [];
 
             switch(nodeName) {
                 case 'select':
-                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
-                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
-                        el = fieldInputs[0].options[i];
-                        if (el.selected) {
-                            res.push(    el.value    );
+                    for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                        res[i] = [];
+                        m = fieldInputs[i].getAttribute('multiple');
+                        for (j = 0, o = fieldInputs[i].options.length; j < o; ++j) {
+                            el = fieldInputs[i].options[j];
+                            if (el.selected) {
+                                if (m) {
+                                    res[i].push(el.value);
+                                } else {
+                                    res[i] = el.value;
+                                    break;
+                                }
+                            }
                         }
                     }
-                    return ( (fieldInputs[0].getAttribute('multiple')) ?  res : res[0] );
+                    return ((fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) ? res : res[0]);
 
                 case 'textarea':
                 case 'input':
@@ -187,7 +195,6 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
                         el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
                     }
                     break;
-
                 case 'textarea':
                 case 'input':
                     if (type === 'checkbox' || type === 'radio') {

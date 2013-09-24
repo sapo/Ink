@@ -7200,7 +7200,7 @@ ul.ink-tree-view li.closed span:before {
   width: 100%;
   position: relative;
   padding-bottom: 1em;
-  margin-top: 10em;
+  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
   display: inline-block;
@@ -7211,6 +7211,26 @@ ul.ink-tree-view li.closed span:before {
   position: relative;
   top: 0;
   left: 0;
+  -webkit-transition-property: left, top;
+  -moz-transition-property: left, top;
+  -o-transition-property: left, top;
+  -ms-transition-property: left, top;
+  transition-property: left, top;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -ms-transition-delay: 0;
+  transition-delay: 0;
 }
 .ink-carousel .stage .slide {
   margin: 0 auto;
@@ -7218,10 +7238,14 @@ ul.ink-tree-view li.closed span:before {
   display: inline-block;
   overflow: hidden;
   font-size: 16px;
-  width: 50%;
   white-space: normal;
+  float: none;
   zoom: 1;
   *display: inline;
+}
+.ink-carousel .hider {
+  background-color: white;
+  margin: 0;
 }
 img {
   width: auto;

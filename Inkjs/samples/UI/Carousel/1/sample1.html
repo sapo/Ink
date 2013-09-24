@@ -69,9 +69,11 @@
                 }
             </style>
 
+            <h2>Centered items</h2>
+
             <div id="car1" class="ink-carousel">
-                <ul class="unstyled">
-                    <li>
+                <ul class="unstyled stage">
+                    <li class="slide">
                         <a href="/cronica/alpha" class="box column-group gutters external">
                             <div class="image-wrapper">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -84,7 +86,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/cronica-2" class="box column-group gutters external">
                             <div class="image-wrapper">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -97,7 +99,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/esta-fui-eu-que-fiz" class="box column-group gutters external">
                             <div class="image-wrapper">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -110,7 +112,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/cronica-3" class="box column-group gutters external">
                             <div class="image-wrapper">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -123,7 +125,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/fui-eu-que-inventei-a-internet" class="box column-group gutters external">
                             <div class="image-wrapper">
                                 <img src="http://sm1.imgs.sapo.pt/mb/P/t/b/Mw53SGTYMNRmQRr9gHZyQfAg_.jpg">
@@ -136,7 +138,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/cronica-1" class="box column-group gutters external">
                             <div class="image-wrapper">
                                 <img src="http://sm1.imgs.sapo.pt/mb/w/z/1/ki74RDJS8FPDUiNFQO4dtgm8_.jpg">
@@ -157,9 +159,45 @@
 
             <!-- -->
 
+            <hr>
+
+            <h2>Using percentage widths</h2>
+
+            <div id="percentage" class="ink-carousel">
+                <ul class="unstyled stage">
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>First</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>Second</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>Third</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                    <li class="slide small-100 medium-50 large-33">
+                        <h4>Fourth</h4>
+                        <p>Lorem ipsum dolor etc.</p>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+
+            <nav id="percentagepag">
+                <ul class="pagination rounded shadowed red"></ul>
+            </nav>
+
+            <hr>
+
+            <h2>Vertical alignment</h2>
+
             <div id="car2" class="ink-carousel">
-                <ul class="unstyled">
-                    <li>
+                <ul class="unstyled stage">
+                    <li class="slide">
                         <a href="/cronica/alpha" class="box column-group gutters external">
                             <div class="image-wrapper large-40 medium-40 small-100">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -172,7 +210,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/cronica-2" class="box column-group gutters external">
                             <div class="image-wrapper large-40 medium-40 small-100">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -185,7 +223,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/esta-fui-eu-que-fiz" class="box column-group gutters external">
                             <div class="image-wrapper large-40 medium-40 small-100">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -198,7 +236,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/cronica-3" class="box column-group gutters external">
                             <div class="image-wrapper large-40 medium-40 small-100">
                                 <img src="http://h.s.sl.pt/imgs/img_default.png">
@@ -211,7 +249,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/fui-eu-que-inventei-a-internet" class="box column-group gutters external">
                             <div class="image-wrapper large-40 medium-40 small-100">
                                 <img src="http://sm1.imgs.sapo.pt/mb/P/t/b/Mw53SGTYMNRmQRr9gHZyQfAg_.jpg">
@@ -224,7 +262,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="slide">
                         <a href="/cronica/cronica-1" class="box column-group gutters external">
                             <div class="image-wrapper large-40 medium-40 small-100">
                                 <img src="http://sm1.imgs.sapo.pt/mb/w/z/1/ki74RDJS8FPDUiNFQO4dtgm8_.jpg">
@@ -244,16 +282,21 @@
             </nav>
         </div>
 
-        <script>
+        <script type="text/javascript">
             Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
                 window.c1 = new Carousel('#car1', {
                     pagination: Ink.s('#p1'),
-                    center:     true
+                    center:     true,
+                    hideLast:   true
                 });
 
                 window.g2 = new Carousel('#car2', {
                     pagination: Ink.s('#p2'),
                     axis:       'y' // TODO
+                });
+
+                window.perc = new Carousel('#percentage', {
+                    pagination: '#percentagepag'
                 });
             });
         </script>
