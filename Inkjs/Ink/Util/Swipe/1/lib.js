@@ -14,7 +14,6 @@ Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
      * @class Ink.Util.Swipe
      * @constructor
      * @version 1
-     * @uses Ink.Dom.Event
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options for the Swipe detection

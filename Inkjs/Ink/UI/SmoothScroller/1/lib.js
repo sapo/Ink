@@ -9,9 +9,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
     /**
      * @class Ink.UI.SmoothScroller
      * @version 1
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Loaded
      * @static
      */
     var SmoothScroller = {
