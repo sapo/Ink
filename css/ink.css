@@ -7233,7 +7233,6 @@ ul.ink-tree-view li.closed span:before {
   transition-delay: 0;
 }
 .ink-carousel .stage .slide {
-  margin: 0 auto;
   position: relative;
   display: inline-block;
   overflow: hidden;
