@@ -9,8 +9,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
     /**
      * @class Ink.UI.FormValidator
      * @version 1
-     * @uses Ink.Dom.Css
-     * @uses Ink.Util.Validator
      */
     var FormValidator = {
 

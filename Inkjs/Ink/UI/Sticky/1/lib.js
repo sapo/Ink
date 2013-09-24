@@ -13,11 +13,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     options.offsetBottom       Number of pixels of distance from the bottomElement.
