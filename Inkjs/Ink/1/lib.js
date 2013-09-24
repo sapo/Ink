@@ -353,7 +353,7 @@
          * Function.prototype.bind alternative.
          * Additional arguments will be sent to the original function as prefix arguments.
          *
-         * @function bind
+         * @method bind
          * @param {Function}  fn
          * @param {Object}    context
          * @return {Function}
@@ -370,7 +370,7 @@
         /**
          * Function.prototype.bind alternative for binding class methods
          *
-         * @function bindMethod
+         * @method bindMethod
          * @param {Object}  object
          * @param {String}  methodName
          * @return {Function}
@@ -397,7 +397,7 @@
          * Same as bind but keeps first argument of the call the original event.
          * Additional arguments will be sent to the original function as prefix arguments.
          *
-         * @function bindEvent
+         * @method bindEvent
          * @param {Function}  fn
          * @param {Object}    context
          * @return {Function}
@@ -414,7 +414,7 @@
         /**
          * alias to document.getElementById
          *
-         * @function i
+         * @method i
          * @param {String} id
          */
         i: function(id) {
@@ -430,7 +430,7 @@
         /**
          * alias to sizzle or querySelector
          *
-         * @function s
+         * @method s
          * @param {String}     rule
          * @param {DOMElement} [from]
          * @return {DOMElement}
@@ -446,7 +446,7 @@
         /**
          * alias to sizzle or querySelectorAll
          *
-         * @function ss
+         * @method ss
          * @param {String}     rule
          * @param {DOMElement} [from]
          * @return {Array} array of DOMElements
@@ -464,7 +464,7 @@
          *
          * More than one object can be passed as source, in which case the rightmost objects have precedence.
          *
-         * @function extendObj
+         * @method extendObj
          * @param {Object} destination
          * @param {Object...} sources
          * @return destination object, enriched with defaults from the sources

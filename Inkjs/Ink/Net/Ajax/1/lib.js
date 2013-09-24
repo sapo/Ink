@@ -151,7 +151,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Creates the appropriate XMLHttpRequest object
          *
-         * @function getTransport
+         * @method getTransport
          * @return {Object} XMLHttpRequest object
          */
         getTransport: function()
@@ -178,7 +178,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Set the necessary headers for an ajax request
          *
-         * @function setHeaders
+         * @method setHeaders
          * @param {String} url - url for the request
          */
         setHeaders: function()
@@ -222,7 +222,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Converts an object with parameters to a querystring
          *
-         * @function paramsObjToStr
+         * @method paramsObjToStr
          * @param {Object|String}  optParams  parameters object
          * @return {String} querystring
          */
@@ -262,7 +262,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * set the url parameters for a GET request
          *
-         * @function setParams
+         * @method setParams
          */
         setParams: function()
         {
@@ -286,7 +286,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Retrieves HTTP header from response
          *
-         * @function getHeader
+         * @method getHeader
          * @param {String}  name  header name
          * @return {String} header content
          */
@@ -305,7 +305,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Returns all http headers from the response
          *
-         * @function getAllHeaders
+         * @method getAllHeaders
          * @return {String} the headers, each separated by a newline
          */
         getAllHeaders: function()
@@ -320,7 +320,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Setup the response object
          *
-         * @function getResponse
+         * @method getResponse
          * @return {Object} the response object
          */
         getResponse: function(){
@@ -350,7 +350,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Aborts the request if still running. No callbacks are called
          *
-         * @function abort
+         * @method abort
          */
         abort: function(){
             if (this.transport) {
@@ -364,7 +364,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Executes the state changing phase of an ajax request
          *
-         * @function runStateChange
+         * @method runStateChange
          */
         runStateChange: function()
         {
@@ -458,7 +458,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Last step after XHR is complete. Call onComplete and cleanup object
          *
-         * @function finish
+         * @method finish
          * @param {} response
          * @param {} responseContent
          */
@@ -486,7 +486,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * Safely calls a callback function.
          * Verifies that the callback is well defined and traps errors
          *
-         * @function safeCall
+         * @method safeCall
          * @param {Function}  listener
          */
         safeCall: function(listener, first/*, second*/) {
@@ -516,7 +516,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Sets new request header for the subsequent http request
          *
-         * @function setRequestHeader
+         * @method setRequestHeader
          * @param {String} name
          * @param {String} value
          */
@@ -530,7 +530,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Execute the request
          *
-         * @function request
+         * @method request
          */
         request: function()
         {
@@ -621,7 +621,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Returns new exception object that can be thrown
          *
-         * @function makeError
+         * @method makeError
          * @param code
          * @param message
          * @returns {Object}
@@ -638,7 +638,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Checks if a given string is valid JSON
          *
-         * @function isJSON
+         * @method isJSON
          * @param {String} str  String to be evaluated
          * @return {Boolean} True if the string is valid JSON
          */
@@ -652,7 +652,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
         /**
          * Evaluates a given string as JSON
          *
-         * @function evalJSON
+         * @method evalJSON
          * @param {String}  str       String to be evaluated
          * @param {Boolean} sanitize  whether to sanitize the content or not
          * @return {Object} Json content as an object
@@ -677,7 +677,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * Loads content from a given url through a XMLHttpRequest.
      * Shortcut function for simple AJAX use cases.
      *
-     * @function load
+     * @method load
      * @param {String}   url       request url
      * @param {Function} callback  callback to be executed if the request is successful
      * @return {Object} XMLHttpRequest object
@@ -695,7 +695,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * Loads content from a given url through a XMLHttpRequest.
      * Shortcut function for simple AJAX use cases.
      *
-     * @function ping
+     * @method ping
      * @param {String}   url       request url
      * @param {Function} callback  callback to be executed if the request is successful
      * @return {Object} XMLHttpRequest object

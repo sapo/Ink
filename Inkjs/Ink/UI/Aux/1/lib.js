@@ -15,10 +15,6 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
      *
      * @class Ink.UI.Aux
      * @version 1
-     * @uses Ink.Net.Ajax
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Url
      * @static
      */
     var Aux = {
