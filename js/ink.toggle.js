@@ -1,9 +1,9 @@
 /**
-00 * @module Ink.UI.Toggle_1
+ * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -80,29 +80,23 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
         this._options = Ink.extendObj(this._options,options || {});
 
-        if( typeof this._options.target === 'undefined' ){
-            throw '[Ink.UI.Toggle] Target option not defined';
+        this._targets = (function (target) {
+            if (typeof target === 'string') {
+                return Selector.select(target);
+            } else if (typeof target === 'object') {
+                if (target.constructor === Array) {
+                    return target;
+                } else {
+                    return [target];
+                }
+            }
+        }(this._options.target));
+
+        if (!this._targets.length) {
+            throw '[Ink.UI.Toggle] Toggle target was not found! Supply a valid selector, array, or element through the `target` option.';
         }
 
-        this._childElement = Aux.elOrSelector( this._options.target, 'Target' );
-        // this._childElement = Selector.select( this._options.target, this._rootElement );
-        // if( this._childElement.length <= 0 ){
-        //     if( this._childElement.length <= 0 ){
-        //         this._childElement = Selector.select( this._options.target, this._rootElement.parentNode );
-        //     }
-
-        //     if( this._childElement.length <= 0 ){
-        //         this._childElement = Selector.select( this._options.target );
-        //     }
-
-        //     if( this._childElement.length <= 0 ){
-        //         return;
-        //     }
-        // }
-        // this._childElement = this._childElement[0];
-
         this._init();
-
     };
 
     Toggle.prototype = {
@@ -115,7 +109,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          */
         _init: function(){
 
-            this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._childElement.parentNode,'accordion') );
+            this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._targets[0].parentNode,'accordion') );
 
             Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
             if( this._options.closeOnClick.toString() === 'true' ){
@@ -135,10 +129,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
 
             if( this._accordion ){
                 var elms, i, accordionElement;
-                if( Css.hasClassName(this._childElement.parentNode,'accordion') ){
-                    accordionElement = this._childElement.parentNode;
+                if( Css.hasClassName(this._targets[0].parentNode,'accordion') ){
+                    accordionElement = this._targets[0].parentNode;
                 } else {
-                    accordionElement = this._childElement.parentNode.parentNode;
+                    accordionElement = this._targets[0].parentNode.parentNode;
                 }
                 elms = Selector.select('.toggle',accordionElement);
                 for( i=0; i<elms.length; i+=1 ){
@@ -146,18 +140,24 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                         dataset = Element.data( elms[i] ),
                         targetElm = Selector.select( dataset.target,accordionElement )
                     ;
-                    if( (targetElm.length > 0) && (targetElm[0] !== this._childElement) ){
-                            targetElm[0].style.display = 'none';
+                    if( (targetElm.length > 0) && (targetElm[0] !== this._targets[0]) ){
+                        targetElm[0].style.display = 'none';
                     }
                 }
             }
+            
+            var finalClass,
+                finalDisplay;
 
-            var finalClass = ( Css.getStyle(this._childElement,'display') === 'none') ? 'show-all' : 'hide-all';
-            var finalDisplay = ( Css.getStyle(this._childElement,'display') === 'none') ? 'block' : 'none';
-            Css.removeClassName(this._childElement,'show-all');
-            Css.removeClassName(this._childElement, 'hide-all');
-            Css.addClassName(this._childElement, finalClass);
-            this._childElement.style.display = finalDisplay;
+
+            for (var j = 0, len = this._targets.length; j < len; j++) {
+                finalClass = ( Css.getStyle(this._targets[j],'display') === 'none') ? 'show-all' : 'hide-all';
+                finalDisplay = ( Css.getStyle(this._targets[j],'display') === 'none') ? 'block' : 'none';
+                Css.removeClassName(this._targets[j],'show-all');
+                Css.removeClassName(this._targets[j], 'hide-all');
+                Css.addClassName(this._targets[j], finalClass);
+                this._targets[j].style.display = finalDisplay;
+            }
 
             if( finalClass === 'show-all' ){
                 Css.addClassName(this._rootElement,'active');
@@ -179,7 +179,11 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 shades
             ;
 
-            if( (this._rootElement === tgtEl) || Element.isAncestorOf( this._rootElement, tgtEl ) || Element.isAncestorOf( this._childElement, tgtEl ) ){
+            var ancestorOfTargets = InkArray.some(this._targets, function (target) {
+                return Element.isAncestorOf(target, tgtEl);
+            });
+
+            if( (this._rootElement === tgtEl) || Element.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets ) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
                 var
@@ -207,13 +211,16 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _dismiss: function(){
-            if( ( Css.getStyle(this._childElement,'display') === 'none') ){
+            if( ( Css.getStyle(this._targets[0],'display') === 'none') ){
                 return;
             }
-            Css.removeClassName(this._childElement, 'show-all');
+            
+            for (var i = 0, len = this._targets.length; i < len; i++) {
+                Css.removeClassName(this._targets[i], 'show-all');
+                Css.addClassName(this._targets[i], 'hide-all');
+                this._targets[i].style.display = 'none';
+            }
             Css.removeClassName(this._rootElement,'active');
-            Css.addClassName(this._childElement, 'hide-all');
-            this._childElement.style.display = 'none';
         }
     };
 
