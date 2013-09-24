@@ -67,15 +67,9 @@ Ink.createModule('Ink.UI.Pagination', '1',
             hashParameter: 'page',
             numberFormatter: function(i) { return i + 1; }
             },
+            options || {},
             Element.data(this._element)
         );
-
-        if (options) {
-            this._options = Ink.extendObj(
-                this._options,
-                options
-            );
-        }
 
         if (!this._options.previousPageLabel) {
             this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
