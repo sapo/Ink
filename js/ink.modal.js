@@ -27,7 +27,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
      *      @param {Boolean}   [options.autoDisplay=true]  Display the Modal automatically when constructed.
      *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
      *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
-     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed.
+     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.
      *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
      *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
      *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
@@ -313,7 +313,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
         _onClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
+            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
+                Element.findUpwardsByClass(tgtEl, 'ink-close') || Element.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
                     (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
@@ -433,10 +434,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
             this._contentElement = this._modalDiv;
             this._shadeElement   = this._modalShadow;
 
-            /**
-             * Setting the content of the modal
-             */
-            this.setContentMarkup( this._options.markup );
+            if( !this._markupMode ){
+                /**
+                 * Setting the content of the modal
+                 */
+                this.setContentMarkup( this._options.markup );
+            }
 
             /**
              * If any size has been user-defined, let's set them as max-width and max-height
@@ -498,6 +501,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
             Event.observe(document,           'keydown', this._handlers.keyDown);
 
             Aux.registerInstance(this, this._shadeElement, 'modal');
+
+            this._wasDismissed = false;
         },
 
         /**
@@ -508,8 +513,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
          */
         dismiss: function() {
             if (this._options.onDismiss) {
-                this._options.onDismiss(this);
+                var ret = this._options.onDismiss(this);
+                if (ret === false) { return; }
             }
+
+            this._wasDismissed = true;
 
             if(this._options.disableScroll) {
                 Event.stopObserving(window, 'scroll', this._onScrollBinded);

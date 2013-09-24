@@ -435,7 +435,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          */
         _isValid: function(elm, fieldType)
         {
-            /*jshint maxstatements:50, maxcomplexity:50 */
             switch(fieldType) {
                 case 'ink-fv-required':
                     if(elm.nodeName.toLowerCase() === 'select') {
@@ -580,7 +579,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         if( !(validFormat in InkValidator._dateParsers ) ){
                             var validValues = [];
                             for( var val in InkValidator._dateParsers ){
-                                if (InkValidator._dateParsers.hasOwnProperty(val) {
+                                if (InkValidator._dateParsers.hasOwnProperty(val)) {
                                     validValues.push(val);
                                 }
                             }

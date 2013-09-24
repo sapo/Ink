@@ -206,7 +206,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
          * @private
          */
         _onClick: function( event ){
-            Event.stop(event);
+            
             var
                 tgtEl = Event.element(event),
                 dataset = Element.data(tgtEl),
@@ -217,6 +217,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                 return;
             }
 
+            Event.stop(event);
+            
             index = -1;
             if( InkArray.inArray( tgtEl,this._headers ) ){
                 for( i=0; i<this._headers.length; i++ ){

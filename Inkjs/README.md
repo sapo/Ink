@@ -53,13 +53,16 @@ ModuleName.moduleMethod('arg1', 'arg2');
 
 
 ## Creating modules 
+
 Take a look at our samples on __/Ink/Namespace/ClassModule/__ and __/Ink/Namespace/StaticModule/__
-In a simple explanation its: 
+
+To put it simply:
+
 ```javascript
 Ink.createModule(
     'Ink.Namespace.ModuleName', 
     'version', 
-    ['Ink_Namespace_Dependency1_version', 'Ink_Namespace_Dependency2_version'], 
+    ['Ink.Namespace.Dependency1_version', 'Ink.Namespace.Dependency2_version'], 
     function(Dependency1, Dependency2) {
         var ModuleName = {
             // __...your code here...__
@@ -90,10 +93,8 @@ Ink.createModule(
 
 ## Install
 
-    [sudo] npm -g install yuidocjs
-    [sudo] npm -g install plato
-    npm install uglify-js
-    npm install async
+    [sudo] npm -g install yuidocjs plato
+    npm install uglify-js async
 
 
 
