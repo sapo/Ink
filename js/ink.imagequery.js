@@ -220,8 +220,10 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                  */
                 var property;
                 for( property in this._options.queries[selected] ){
-                    if( ( property === 'src' ) || ( property === 'retina' ) ){ continue; }
-                    src = src.replace("{:" + property + "}",this._options.queries[selected][property]);
+                    if (this._options.queries[selected].hasOwnProperty(property)) {
+                        if( ( property === 'src' ) || ( property === 'retina' ) ){ continue; }
+                        src = src.replace("{:" + property + "}",this._options.queries[selected][property]);
+                    }
                 }
                 this._element.src = src;
 

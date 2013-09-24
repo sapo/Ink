@@ -324,8 +324,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
         _sort: function( index ){
             this._data.sort(Ink.bind(function(a,b){
                 var
-                    aValue = Selector.select('td',a)[index].innerText,
-                    bValue = Selector.select('td',b)[index].innerText
+                    aValue = Element.textContent(Selector.select('td',a)[index]),
+                    bValue = Element.textContent(Selector.select('td',b)[index])
                 ;
 
                 var regex = new RegExp(/\d/g);
@@ -368,35 +368,39 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                 tr = thead.insertRow(0);
 
                 for( field in headers ){
+                    if (headers.hasOwnProperty(field)) {
 
-                    if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                        continue;
+                        if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
+                            continue;
+                        }
+
+                        // th = tr.insertCell(index++);
+                        th = document.createElement('th');
+                        header = headers[field];
+
+                        if( ("sortable" in header) && (header.sortable.toString() === 'true') ){
+                            th.setAttribute('data-sortable','true');
+                        }
+
+                        if( ("label" in header) ){
+                            Element.setTextContent(th, header.label);
+                        }
+
+                        this._originalFields.push(field);
+                        tr.appendChild(th);
                     }
-
-                    // th = tr.insertCell(index++);
-                    th = document.createElement('th');
-                    header = headers[field];
-
-                    if( ("sortable" in header) && (header.sortable.toString() === 'true') ){
-                        th.setAttribute('data-sortable','true');
-                    }
-
-                    if( ("label" in header) ){
-                        th.innerText = header.label;
-                    }
-
-                    this._originalFields.push(field);
-                    tr.appendChild(th);
                 }
             } else {
                 var firstLine = rows[0];
 
                 for( field in firstLine ){
-                    if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                        continue;
-                    }
+                    if (firstLine.hasOwnProperty(field)) {
+                        if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
+                            continue;
+                        }
 
-                    this._originalFields.push(field);
+                        this._originalFields.push(field);
+                    }
                 }
             }
         },
@@ -456,19 +460,23 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
 
 
             for( trIndex in rows ){
-                tr = document.createElement('tr');
-                tbody.appendChild( tr );
-                tdIndex = 0;
-                for( field in rows[trIndex] ){
+                if (rows.hasOwnProperty(trIndex)) {
+                    tr = document.createElement('tr');
+                    tbody.appendChild( tr );
+                    tdIndex = 0;
+                    for( field in rows[trIndex] ){
+                        if (rows[trIndex].hasOwnProperty(field)) {
 
-                    if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                        continue;
+                            if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
+                                continue;
+                            }
+
+                            td = tr.insertCell(tdIndex++);
+                            td.innerHTML = rows[trIndex][field];
+                        }
                     }
-
-                    td = tr.insertCell(tdIndex++);
-                    td.innerHTML = rows[trIndex][field];
+                    this._data.push(tr);
                 }
-                this._data.push(tr);
             }
 
             this._originalData = this._data.slice(0);
