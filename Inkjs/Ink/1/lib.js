@@ -389,6 +389,9 @@
                 var root = m.substring(0, cutAt);
                 m = m.substring(cutAt + 1);
                 var rootPath = Ink.getPath(root);
+                if (rootPath[rootPath.length - 1] !== '/') {
+                    rootPath += '/';
+                }
                 return ['<script type="text/javascript" src="', rootPath, m.replace(/\./g, '/'), '/"></script>'].join('');
             });
 
