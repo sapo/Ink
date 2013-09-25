@@ -7,5 +7,9 @@
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-less": "~0.7.0"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "http://github.com/pedrocorreia/Ink.git"
   }
 }
