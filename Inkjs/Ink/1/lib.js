@@ -110,9 +110,9 @@
             var i;
             var root;
             var path;
-            // Look for Ink.Dom.Element, Ink.Dom, Ink in this order.
+            // Look for Ink.Dom.Element.1, Ink.Dom.Element, Ink.Dom, Ink in this order.
             for (i = split.length; i >= 0; i -= 1) {
-                curKey = split.slice(0, i + 1).join('.');
+                curKey = split.slice(0, i + 1).join('.');  // See comment in setPath
                 if (paths[curKey]) {
                     root = curKey;
                     break;
@@ -144,14 +144,15 @@
          *      Ink.setPath('Ink', 'http://my-cdn/Ink/');
          *      Ink.setPath('Lol', 'http://my-cdn/Lol/');
          *
-         *      // Loads from http://my-cdn/Ink/
+         *      // Loads from http://my-cdn/Ink/Dom/Whatever/lib.js
          *      Ink.requireModules(['Ink.Dom.Whatever'], function () { ... });
-         *      // Loads from http://my-cdn/Lol/
+         *      // Loads from http://my-cdn/Lol/Whatever/lib.js
          *      Ink.requireModules(['Lol.Whatever'], function () { ... });
          */
         setPath: function(key, rootURI) {
             // Replacing version separator with dot because the difference
             // between a submodule and a version doesn't matter here.
+            // It would also overcomplicate the implementation of getPath
             paths[key.replace(/_/, '.')] = rootURI;
         },
 

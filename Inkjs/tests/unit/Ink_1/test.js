@@ -58,7 +58,7 @@ test('getPath, setPath', function () {
     equal(Ink.getPath('Ink'), 'http://example.com/lib.js');
     equal(Ink.getPath('Ink.Dom.Element'), 'http://example.com/Dom/Element/lib.js');
     equal(Ink.getPath('Ink.Dom.Element.Stuff_1'), 'http://example.com/Dom/Element/Stuff/1/lib.js');
-    equal(Ink.getPath('Ink', true), 'http://example.com/');
+    equal(Ink.getPath('Ink', true), 'http://example.com/');  // noLib === true, so no lib.jhs
 });
 
 test('getPath, setPath', function () {
