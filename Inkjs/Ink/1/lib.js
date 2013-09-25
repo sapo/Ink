@@ -1,4 +1,4 @@
-(function() {
+(function(window, document) {
 
     'use strict';
 
@@ -24,8 +24,9 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {
-	    Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
+        Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
     };
+    var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulesLoadOrder = [];
     var modulesRequested = {};
@@ -99,6 +100,10 @@
             return [uriPrefix, parts.join('/'), '/lib.js'].join('');
         },
 
+        setStaticMode: function(newStatus) {
+            staticMode = newStatus;
+        },
+
         getPath: function(key) {
             return paths[key || 'Ink'];
         },
@@ -115,6 +120,10 @@
          */
         loadScript: function(uri) {
             /*jshint evil:true */
+
+            if (staticMode) {
+                throw new Error('Requiring a module to be loaded dynamically while in static mode');
+            }
 
             var scriptEl = document.createElement('script');
             scriptEl.setAttribute('type', 'text/javascript');
@@ -186,18 +195,18 @@
          * @param  {Function}  modFn    its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module.
          */
         createModule: function(mod, ver, deps, modFn) { // define
+            if (typeof mod !== 'string') {
+                throw new Error('module name must be a string!');
+            }
+
+            // validate version correctness
+            if (typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0)) {
+            } else {
+                throw new Error('version number missing!');
+            }
+
             var cb = function() {
                 //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
-
-                if (typeof mod !== 'string') {
-                    throw new Error('module name must be a string!');
-                }
-
-                // validate version correctness
-                if (typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0)) {
-                } else {
-                    throw new Error('version number missing!');
-                }
 
                 var modAll = [mod, '_', ver].join('');
 
@@ -519,4 +528,4 @@
     }, checkDelta*1000);
     */
 
-})();
+})(window, document);

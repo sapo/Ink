@@ -19,3 +19,12 @@ test('bindMethod', function () {
     deepEqual(test1(), [1, 2, 3, 4], 'returns arguments given at bind time');
     deepEqual(test2(), obj, 'returns the object owning the method');
 });
+
+test('staticMode', function () {
+    Ink.setStaticMode(true);
+    throws(function () {
+        Ink.requireModules(['Ink.Dom.Element_1'], function () {});
+    }, /[sS]tatic( mode)?/);
+    Ink.setStaticMode(false);
+});
+
