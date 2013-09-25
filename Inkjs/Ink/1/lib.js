@@ -110,17 +110,15 @@
             var i;
             var root;
             var path;
+            // Look for Ink.Dom.Element, Ink.Dom, Ink in this order.
             for (i = split.length; i >= 0; i -= 1) {
                 curKey = split.slice(0, i + 1).join('.');
                 if (paths[curKey]) {
                     root = curKey;
-                    path = paths[curKey];
                     break;
                 }
             }
-            if (!root) {
-                path = paths['Ink'];
-            }
+            path = paths[root || 'Ink'];
             if (path[path.length - 1] !== '/') {
                 path += '/';
             }
@@ -152,6 +150,8 @@
          *      Ink.requireModules(['Lol.Whatever'], function () { ... });
          */
         setPath: function(key, rootURI) {
+            // Replacing version separator with dot because the difference
+            // between a submodule and a version doesn't matter here.
             paths[key.replace(/_/, '.')] = rootURI;
         },
 

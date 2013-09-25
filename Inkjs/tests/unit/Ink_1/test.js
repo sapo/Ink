@@ -79,3 +79,41 @@ test('getPath, setPath', function () {
     equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/lib.js');
 });
 
+asyncTest('loadScript', function () {
+    window.loadScriptWorks = function (sayYeah) {
+        equal(sayYeah, 'yeah');
+        start();
+    }
+    Ink.loadScript('./loadscript-test.js');  // This script calls window.loadScriptWorks('yeah')
+});
+
+(function () {
+    Ink.createModule('My.Module', 1, [], function () {
+        return {
+            my: 'module'
+        };
+    });
+
+    Ink.createModule('My.Other.Module', 1, ['My.Module_1'], function (mymodule) {
+        return {
+            my: 'othermodule',
+            dependency: mymodule
+        };
+    });
+
+    test('createModule dependencies', function () {
+        var myModule = Ink.getModule('My.Module_1');
+        equal(myModule.my, 'module');
+
+        var myOtherModule = Ink.getModule('My.Other.Module_1');
+        equal(myOtherModule.my, 'othermodule');
+        equal(myOtherModule.dependency.my, 'module');
+    });
+
+    test('requireModules', function () {
+        Ink.requireModules(['My.Module_1'], function (module) {
+            equal(module.my, 'module');
+        });
+    });
+}());
+
