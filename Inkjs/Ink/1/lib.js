@@ -100,6 +100,15 @@
             return [uriPrefix, parts.join('/'), '/lib.js'].join('');
         },
 
+        /**
+         * Sets or unsets the static mode.
+         *
+         * Enable static mode to disable dynamic loading of modules and throw an exception.
+         *
+         * @method setStaticMode
+         *
+         * @param {Boolean} staticMode
+         */
         setStaticMode: function(newStatus) {
             staticMode = newStatus;
         },
@@ -107,7 +116,25 @@
         getPath: function(key) {
             return paths[key || 'Ink'];
         },
-
+        
+        /**
+         * Sets the URL path for a namespace. Use this to customize where
+         * requireModules (and createModule) will load dependencies from.
+         *
+         * @method setPath
+         *
+         * @param key
+         * @param rootURI
+         *
+         * @example
+         *      Ink.setPath('Ink', 'http://my-cdn/Ink/');
+         *      Ink.setPath('Lol', 'http://my-cdn/Lol/');
+         *
+         *      // Loads from http://my-cdn/Ink/
+         *      Ink.requireModules(['Ink.Dom.Whatever'], function () { ... });
+         *      // Loads from http://my-cdn/Lol/
+         *      Ink.requireModules(['Lol.Whatever'], function () { ... });
+         */
         setPath: function(key, rootURI) {
             paths[key] = rootURI;
         },
@@ -357,6 +384,18 @@
 
             return mlo.join('\n');
         },
+
+        /**
+         * Creates an Ink.Ext module
+         *
+         * Does exactly the same as createModule but creates the module in the Ink.Ext namespace
+         *
+         * @method createExt
+         * @param {String} moduleName   Extension name
+         * @param {String} version  Extension version
+         * @param {Array}  dependencies Extension dependencies
+         * @param {Function} modFn  Function returning the extension
+         */
 
         /**
          * Function.prototype.bind alternative.
