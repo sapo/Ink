@@ -1,29 +1,28 @@
 # ignore diff backups
 *.orig
 *.bak
+
 # ignore compiled css files
 !prettify.css
 !demo.css
-# ignore CI log files
-*/logs/log-*.php
-*/logs/!index.html
-# ignore CI cache files
-*/cache/*
-*/cache/!index.html
+
 # ignore temp InK build files
 */builds/*
 */builds/!index.html
+._*
+
 # ignore OS generated files
 .DS_Store
 .DS_Store?
-._*
+ehthumbs.db
 .Spotlight-V100
 .Trashes
-
-ehthumbs.db
 Thumbs.db
 *.zip
-ink_to_prod_dir
 
 /build-docs.sh
 /.sass-cache/
+
+# Folders
+node_modules
+ink_to_prod_dir
