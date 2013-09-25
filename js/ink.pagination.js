@@ -29,11 +29,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
      * @param {Object} options Options
      * @param {Number}   options.size                number of pages
