@@ -55,31 +55,27 @@ test('deleteModule', function () {
 
 test('getPath, setPath', function () {
     Ink.setPath('Ink', 'http://example.com/');
-    equal(Ink.getPath('Ink'), 'http://example.com/');
-
-    Ink.setPath('App', 'http://example.com/app/');
-    equal(Ink.getPath('App'), 'http://example.com/app/');
-
-    // cleanup
-    Ink.setPath('Ink', undefined);
-    Ink.setPath('App', undefined);
+    equal(Ink.getPath('Ink'), 'http://example.com/lib.js');
+    equal(Ink.getPath('Ink.Dom.Element'), 'http://example.com/Dom/Element/lib.js');
+    equal(Ink.getPath('Ink.Dom.Element.Stuff_1'), 'http://example.com/Dom/Element/Stuff/1/lib.js');
+    equal(Ink.getPath('Ink', true), 'http://example.com/');
 });
 
 test('getPath, setPath', function () {
     Ink.setPath('Ink.Sub', 'http://example.com/sub/');
-    equal(Ink.getPath('Ink.Sub'), 'http://example.com/sub/');
-    equal(Ink.getPath('Ink.Sub.Sub_1'), 'http://example.com/sub/');
+    equal(Ink.getPath('Ink.Sub'), 'http://example.com/sub/lib.js');
+    equal(Ink.getPath('Ink.Sub.Sub_1'), 'http://example.com/sub/Sub/1/lib.js');
 
     Ink.setPath('Plug.Sub', 'http://example.com/subplug/');
-    equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/');
-    equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subplug/');
+    equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/lib.js');
+    equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subplug/Sub/lib.js');
 
     Ink.setPath('Ink.Sub.Sub', 'http://example.com/subsub/');
-    equal(Ink.getPath('Ink.Sub'), 'http://example.com/sub/');
-    equal(Ink.getPath('Ink.Sub.Sub_whoo'), 'http://example.com/subsub/');
+    equal(Ink.getPath('Ink.Sub'), 'http://example.com/sub/lib.js');
+    equal(Ink.getPath('Ink.Sub.Sub_whoo'), 'http://example.com/subsub/whoo/lib.js');
 
     Ink.setPath('Plug.Sub.Sub', 'http://example.com/subsubplug/');
-    equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/');
-    equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/');
+    equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/lib.js');
+    equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/lib.js');
 });
 

@@ -23,9 +23,7 @@
      * NOTE:
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
-    var paths = {
-        Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
-    };
+    var paths = {};
     var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulesLoadOrder = [];
@@ -86,20 +84,6 @@
             }
         },
 
-        _modNameToUri: function(modName) {
-            if (modName.indexOf('/') !== -1) {
-                return modName;
-            }
-            var parts = modName.replace(/_/g, '.').split('.');
-            var root = parts.shift();
-            var uriPrefix = paths[root];
-            if (!uriPrefix) {
-                uriPrefix = './' + root + '/';
-                // console.warn('Not sure where to fetch ' + root + ' modules from! Attempting ' + uriPrefix + '...');
-            }
-            return [uriPrefix, parts.join('/'), '/lib.js'].join('');
-        },
-
         /**
          * Sets or unsets the static mode.
          *
@@ -112,19 +96,41 @@
         setStaticMode: function(newStatus) {
             staticMode = newStatus;
         },
-
-        getPath: function(key) {
+        
+        /**
+         * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
+         *
+         * @method getPath
+         * @param modName   Name of the module you want the path of.
+         * @param noLib     Exclude the 'lib.js' filename
+         */
+        getPath: function(key, noLib) {
             var split = key.split(/[._]/g);
             var curKey;
             var i;
-            for (i = split.length; i; i -= 1) {
+            var root;
+            var path;
+            for (i = split.length; i >= 0; i -= 1) {
                 curKey = split.slice(0, i + 1).join('.');
-                console.log(key);
-                if (curKey in paths) {
-                    return paths[curKey];
+                if (paths[curKey]) {
+                    root = curKey;
+                    path = paths[curKey];
+                    break;
                 }
             }
-            return paths[key || 'Ink'];
+            if (!root) {
+                path = paths['Ink'];
+            }
+            if (path[path.length - 1] !== '/') {
+                path += '/';
+            }
+            if (i < split.length) {
+                path += split.slice(i + 1).join('/') + '/';
+            }
+            if (!noLib) {
+                path += 'lib.js';
+            }
+            return path;
         },
         
         /**
@@ -162,9 +168,13 @@
                 throw new Error('Requiring a module to be loaded dynamically while in static mode');
             }
 
+            if (uri.indexOf('/') === -1) {
+                uri = this.getPath(uri);
+            }
+
             var scriptEl = document.createElement('script');
             scriptEl.setAttribute('type', 'text/javascript');
-            scriptEl.setAttribute('src', this._modNameToUri(uri));
+            scriptEl.setAttribute('src', uri);
 
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
@@ -382,17 +392,8 @@
         getModuleScripts: function() {
             var mlo = this.getModulesLoadOrder();
             mlo.unshift('Ink_1');
-            // console.log(mlo);
             mlo = mlo.map(function(m) {
-                var cutAt = m.indexOf('.');
-                if (cutAt === -1) { cutAt = m.indexOf('_'); }
-                var root = m.substring(0, cutAt);
-                m = m.substring(cutAt + 1);
-                var rootPath = Ink.getPath(root);
-                if (rootPath[rootPath.length - 1] !== '/') {
-                    rootPath += '/';
-                }
-                return ['<script type="text/javascript" src="', rootPath, m.replace(/\./g, '/'), '/"></script>'].join('');
+                return ['<script type="text/javascript" src="', Ink.getModuleURL(m), '"></script>'].join('');
             });
 
             return mlo.join('\n');
@@ -556,6 +557,9 @@
         }
 
     };
+
+    Ink.setPath('Ink',
+        ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/');
 
 
 
