@@ -31,13 +31,13 @@ test('staticMode', function () {
 test('createExt', function () {
     stop();  // async
     
-    Ink.createExt('Lol.Parser', 1, function () {
+    Ink.createExt('Lol.Parser', 1, [], function () {
         return {
             parse: function () {}
         }
     });
 
-    Ink.requireModules('Ink.Ext.Lol.Parser', function (Parser) {
+    Ink.requireModules(['Ink.Ext.Lol.Parser'], function (Parser) {
         equal(typeof Parser.parse, 'function');
         start();  // done
     });

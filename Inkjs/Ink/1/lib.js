@@ -384,7 +384,7 @@
 
             return mlo.join('\n');
         },
-
+        
         /**
          * Creates an Ink.Ext module
          *
@@ -396,6 +396,9 @@
          * @param {Array}  dependencies Extension dependencies
          * @param {Function} modFn  Function returning the extension
          */
+        createExt: function (moduleName, version, dependencies, modFn) {
+            return Ink.createModule('Ink.Ext.' + moduleName, version, dependencies, modFn);
+        },
 
         /**
          * Function.prototype.bind alternative.
