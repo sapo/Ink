@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <!-- <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Ink - Interface Kit</title>
     <meta name="description" content="">
@@ -24,31 +24,28 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./img/touch-icon.114.png">
     <link rel="apple-touch-startup-image" href="./img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="./img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="./img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="./img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
         
     <!-- Load Documentation site CSS -->
     <link rel="stylesheet" type="text/css" href="./css/docs.css">  
-
-    <!--[if lt IE 9]>
-        <script type="text/javascript" src="./js/html5shiv.js"></script>
-        <script type="text/javascript" src="./js/html5shiv-printshiv.js"></script>
-    <![endif]-->
+    <!-- <link rel="stylesheet/less" type="text/css" href="slider.less" /> -->
 
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="./css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
-    <!-- Javascript -->
+    <!-- 
+    <script type="text/javascript" src="./js/modernizr.js"></script>
     <script type="text/javascript" src="./js/ink-all.min.js"></script>
     <script type="text/javascript" src="./js/autoload.js"></script>
     <script type="text/javascript" src="./js/prettify.js"></script>
-    <!-- End of javascript -->
+    -->
 
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
 
-<div id="topbar">
+<!-- <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
         <li class="logoPlaceholder"><a href="./" class="logoPlaceholder">Ink</a></li>            
@@ -211,7 +208,7 @@
     </nav>
     <div class="border">
     </div>
-</div>
+</div> -->
 
 <div class="ink-hero">
     <img src="img/logo_home.png" alt="Logo Home" class="logo_hp">
@@ -233,6 +230,16 @@
     </div>
 </div>
 <!--/end Get Now-->
+<style>
+    .truncate {
+        width: 250px;
+        max-width: 250px;
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        max-height: 1.8;
+    }
+</style>
 
 <div class="ink-grid">
 
@@ -383,51 +390,40 @@ InkSite = {
 
 </script>
 
-<footer>
+<!-- <footer>
     <div class="ink-grid">
         <div class="socialplugins">
             <div class="column-group gutters">
                 <div class="large-40 medium-40 small-100">
                     <p class="small">Follow Ink to stay on top of the latest news.</p>
-                </div>
-                
-               
+                </div>                               
                 <div class="large-60 medium-60 small-100">
                     <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
                     <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
                     <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-                </div>
-                
+                </div>                
             </div>
-        </div>
-        
+        </div>        
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                    <li><a href="about">About</a></li>
-                    <li><a href="changelog">Changelog</a></li>
-                    <li><a href="glossary">Glossary</a></li>           
-                    <li>
-                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
-                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
-                    </li>
+                    <li><a href="./about/">About</a></li>
+                    <li><a href="./changelog/">Changelog</a></li>
+                    <li><a href="./glossary/">Glossary</a></li>           
+                    <li>Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
                 </ul>
-            </nav>  
-            
+            </nav>              
             <div class="copyright vspace">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
                     <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
                     SAPO is a trademark and a search engine created at the University of Aveiro.
                 </p>
-            </div>
-            
+            </div>            
         </div>
-
         <p><strong>Built with:</strong></p>
-
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
                 <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
@@ -443,8 +439,9 @@ InkSite = {
         </div>
     </div>
 </footer>
+ -->
 
-
+<!-- 
 <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
 </script>
 <script>
@@ -463,6 +460,7 @@ InkSite = {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
+ -->
 </body>
 
 </html>

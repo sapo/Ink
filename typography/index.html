@@ -13,23 +13,13 @@ base_path:  ../
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="typo_menu">
                 <ul class="menu vertical rounded black ink-vspace">                    
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-fonts">Fonts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-headings">Headings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-lists">Lists</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-utilities">Utility Classes</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-additional">Additional Elements</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-fonts">Fonts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-headings">Headings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-lists">Lists</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-utilities">Utility Classes</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-additional">Additional Elements</a></li>
-                    <?php endif; ?> 
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#nav-fonts">Fonts</a></li>
+                    <li><a class="scrollableLink" href="#nav-headings">Headings</a></li>
+                    <li><a class="scrollableLink" href="#nav-body-hypertext">Body & Hypertext</a></li>
+                    <li><a class="scrollableLink" href="#nav-lists">Lists</a></li>
+                    <li><a class="scrollableLink" href="#nav-utilities">Utility Classes</a></li>
+                    <li><a class="scrollableLink" href="#nav-additional">Additional Elements</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,17 +33,19 @@ base_path:  ../
                 <p>Since typography is such an integral part of how you communicate with your audience, customizing font choice is paramount. Of course, you can use Ink as-is, with the Ubuntu font, but chances are, you'll want to change that.</p>
                 <p>To do that, you can add your custom CSS file, as explained in <?php echo anchor('/getting_started#nav-customizing','Getting started') ?>, and add the following rule:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('body {
+{% capture typo_1 %}
+body {
   font-family: font1, font2, font3; <!--Your font stack here-->
-}')) ?>
-                </pre>
+}
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_1 | escape }}</pre>
                  <p>If you want, you can also edit the <mark>__typography.less</mark> file in the <mark>./less/config/</mark> folder and alter these values:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('// sans-serif font stack
-@sans-serif-font-stack: Ubuntu, Arial, sans-serif;')) ?>
-                </pre>
+{% capture typo_2 %}
+// sans-serif font stack
+@sans-serif-font-stack: Ubuntu, Arial, sans-serif;
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_2 | escape }}</pre>
                 <h3>Ubuntu</h3>
                 <p>Ink's default font stack starts with the Ubuntu webfont. Make sure you can serve up the font files from your server, they are free to use and redistribute. If you can't, it's ok, the stack will default to Arial, then Helvetica, and finally, the system's default sans-serif. The stack is:</p>
                 <p><code>font-family: Ubuntu, Arial, Helvetica, Sans-serif;</code></p>
@@ -115,14 +107,15 @@ base_path:  ../
                 </div>
                 <p>To customize these colors to match your design, either set up your custom CSS or edit the appropriate <mark>__colors.less</mark> file in the <mark>./less/config/</mark> folder, and change these values:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('// LINKS
+{% capture typo_3 %}
+// LINKS
 @link-color                 : #0069D6;
 @link-visited-color         : #808080;
 @link-active-color          : darken(red,5%);
 @link-hover-color           : #007ED5;
-@link-focus-color           : @link-color;')) ?>
-                </pre>
+@link-focus-color           : @link-color;
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_3 | escape }}</pre>
                 <h3>Notes</h3>
                 <p>If you need to add side notes to your text, apply the utility class <code>.note</code> to your paragraphs to get smaller, faded text as in the example below.</p>
                 <p><span class="ink-label success">Example</span></p>
@@ -140,15 +133,16 @@ base_path:  ../
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Ingredients</h4>
+{% capture typo_4 %}
+<h4>Ingredients</h4>
 <ul>
    <li>Two fresh avocados</li>
    <li>Two ripe limes</li>
    <li>An onion</li>
    <li>Parsley</li>
-</ul>')) ?>
-                        </pre>
+</ul>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_4 | escape }}</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -167,15 +161,16 @@ base_path:  ../
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Instructions</h4>
+{% capture typo_5 %}
+<h4>Instructions</h4>
 <ol>
    <li>Grill the chicken</li>
    <li>Pour into tortilla</li>
    <li>Add guacamole, sour cream and cheese</li>
    <li>Roll tortilla and serve</li>
-</ol>')) ?>
-                        </pre>
+</ol>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_5 | escape }}</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -194,15 +189,16 @@ base_path:  ../
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Definitions</h4>
+{% capture typo_6 %}
+<h4>Definitions</h4>
 <dl>
    <dt>Avocado</dt>
    <dd>Pear-shaped fruit native to Central Mexico.</dd>
    <dt>Guacamole</dt>
    <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
-</dl>')) ?>
-                        </pre>
+</dl>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_6 | escape }}</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -221,15 +217,16 @@ base_path:  ../
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Stuff</h4>
+{% capture typo_7 %}
+<h4>Stuff</h4>
 <ul class="unstyled">
    <li>Carnitas</li>
    <li>Jalapeno peppers</li>
    <li>Sour cream</li>
    <li>Pico de gallo</li>
-</ul>')) ?>
-                        </pre>
+</ul>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_7 | escape }}</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -311,8 +308,10 @@ base_path:  ../
                 </p>
                 
 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<span class="ink-badge black">2</span>')) ?></pre>
+{% capture typo_8 %}
+<span class="ink-badge black">2</span>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_8 | escape }}</pre>
                 
                 <p class="top-space"><span class="ink-label success">Examples</span> One of the most common usecases is the menu update badge.</p>
                 <div class="box">
@@ -352,8 +351,10 @@ base_path:  ../
                 <h3>Abbreviations</h3>
                 <p>For abbreviations, simply use the HTML <code>&lt;abbr&gt;</code> tag, like so:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>')) ?></pre>
+{% capture typo_9 %}
+<p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_9 | escape }}</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
@@ -361,12 +362,13 @@ base_path:  ../
                 <h3>Block quotes</h3>
                 <p>For block quotes, use the <code>&lt;blockquote&gt;</code> element, with an optional <code>&lt;cite&gt;</code> element to contain the source name, like so:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<blockquote>
-<p>You can\'t always get what you want.</p>
-<p><cite>Jagger & Richards</cite>, 1969</p>
-</blockquote>')) ?>
-                </pre>
+{% capture typo_10 %}
+<blockquote>
+   <p>You can\'t always get what you want.</p>
+   <p><cite>Jagger & Richards</cite>, 1969</p>
+</blockquote>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_10 | escape }}</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <blockquote>
@@ -377,11 +379,13 @@ base_path:  ../
                 <h3>Addresses</h3>
                 <p>You can use the <code>&lt;address&gt;</code> element to contain address elements, such as a name, street, postal code. Use headings, paragraphs and line-breaks to compose your address.</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<address>
-<h6>SAPO</h6>
-<p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
-</address>')) ?></pre>
+{% capture typo_11 %}
+<address>
+   <h6>SAPO</h6>
+   <p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
+</address>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ typo_11 | escape }}</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <address>

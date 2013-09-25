@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <!-- <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Ink - Interface Kit</title>
     <meta name="description" content="">
@@ -24,31 +24,28 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/touch-icon.114.png">
     <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"> -->
         
     <!-- Load Documentation site CSS -->
     <link rel="stylesheet" type="text/css" href="../css/docs.css">  
-
-    <!--[if lt IE 9]>
-        <script type="text/javascript" src="../js/html5shiv.js"></script>
-        <script type="text/javascript" src="../js/html5shiv-printshiv.js"></script>
-    <![endif]-->
+    <!-- <link rel="stylesheet/less" type="text/css" href="slider.less" /> -->
 
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="../css/ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <![endif]-->
 
-    <!-- Javascript -->
+    <!-- 
+    <script type="text/javascript" src="../js/modernizr.js"></script>
     <script type="text/javascript" src="../js/ink-all.min.js"></script>
     <script type="text/javascript" src="../js/autoload.js"></script>
     <script type="text/javascript" src="../js/prettify.js"></script>
-    <!-- End of javascript -->
+    -->
 
 </head>
 <body onload="prettyPrint()">
     <div id="fb-root"></div>
 
-<div id="topbar">
+<!-- <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black shadowed">
         <li class="logoPlaceholder"><a href="../" class="logoPlaceholder">Ink</a></li>            
@@ -211,7 +208,7 @@
     </nav>
     <div class="border">
     </div>
-</div>
+</div> -->
 
 <div class="ink-grid">
     <div class="whatIs">
@@ -223,23 +220,13 @@
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="typo_menu">
                 <ul class="menu vertical rounded black ink-vspace">                    
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-fonts">Fonts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-headings">Headings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-lists">Lists</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-utilities">Utility Classes</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('typography') ?>#nav-additional">Additional Elements</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-fonts">Fonts</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-headings">Headings</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-body-hypertext">Body & Hypertext</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-lists">Lists</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-utilities">Utility Classes</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-additional">Additional Elements</a></li>
-                    <?php endif; ?> 
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#nav-fonts">Fonts</a></li>
+                    <li><a class="scrollableLink" href="#nav-headings">Headings</a></li>
+                    <li><a class="scrollableLink" href="#nav-body-hypertext">Body & Hypertext</a></li>
+                    <li><a class="scrollableLink" href="#nav-lists">Lists</a></li>
+                    <li><a class="scrollableLink" href="#nav-utilities">Utility Classes</a></li>
+                    <li><a class="scrollableLink" href="#nav-additional">Additional Elements</a></li>
                 </ul>
             </nav>
         </div>
@@ -253,17 +240,19 @@
                 <p>Since typography is such an integral part of how you communicate with your audience, customizing font choice is paramount. Of course, you can use Ink as-is, with the Ubuntu font, but chances are, you'll want to change that.</p>
                 <p>To do that, you can add your custom CSS file, as explained in <?php echo anchor('/getting_started#nav-customizing','Getting started') ?>, and add the following rule:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('body {
-  font-family: font1, font2, font3; <!--Your font stack here-->
-}')) ?>
-                </pre>
+
+<pre class="prettyprint linenums">
+body {
+  font-family: font1, font2, font3; &lt;!--Your font stack here--&gt;
+}
+</pre>
                  <p>If you want, you can also edit the <mark>__typography.less</mark> file in the <mark>./less/config/</mark> folder and alter these values:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('// sans-serif font stack
-@sans-serif-font-stack: Ubuntu, Arial, sans-serif;')) ?>
-                </pre>
+
+<pre class="prettyprint linenums">
+// sans-serif font stack
+@sans-serif-font-stack: Ubuntu, Arial, sans-serif;
+</pre>
                 <h3>Ubuntu</h3>
                 <p>Ink's default font stack starts with the Ubuntu webfont. Make sure you can serve up the font files from your server, they are free to use and redistribute. If you can't, it's ok, the stack will default to Arial, then Helvetica, and finally, the system's default sans-serif. The stack is:</p>
                 <p><code>font-family: Ubuntu, Arial, Helvetica, Sans-serif;</code></p>
@@ -325,14 +314,15 @@
                 </div>
                 <p>To customize these colors to match your design, either set up your custom CSS or edit the appropriate <mark>__colors.less</mark> file in the <mark>./less/config/</mark> folder, and change these values:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('// LINKS
+
+<pre class="prettyprint linenums">
+// LINKS
 @link-color                 : #0069D6;
 @link-visited-color         : #808080;
 @link-active-color          : darken(red,5%);
 @link-hover-color           : #007ED5;
-@link-focus-color           : @link-color;')) ?>
-                </pre>
+@link-focus-color           : @link-color;
+</pre>
                 <h3>Notes</h3>
                 <p>If you need to add side notes to your text, apply the utility class <code>.note</code> to your paragraphs to get smaller, faded text as in the example below.</p>
                 <p><span class="ink-label success">Example</span></p>
@@ -350,15 +340,16 @@
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Ingredients</h4>
-<ul>
-   <li>Two fresh avocados</li>
-   <li>Two ripe limes</li>
-   <li>An onion</li>
-   <li>Parsley</li>
-</ul>')) ?>
-                        </pre>
+
+<pre class="prettyprint linenums">
+&lt;h4&gt;Ingredients&lt;/h4&gt;
+&lt;ul&gt;
+   &lt;li&gt;Two fresh avocados&lt;/li&gt;
+   &lt;li&gt;Two ripe limes&lt;/li&gt;
+   &lt;li&gt;An onion&lt;/li&gt;
+   &lt;li&gt;Parsley&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -377,15 +368,16 @@
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Instructions</h4>
-<ol>
-   <li>Grill the chicken</li>
-   <li>Pour into tortilla</li>
-   <li>Add guacamole, sour cream and cheese</li>
-   <li>Roll tortilla and serve</li>
-</ol>')) ?>
-                        </pre>
+
+<pre class="prettyprint linenums">
+&lt;h4&gt;Instructions&lt;/h4&gt;
+&lt;ol&gt;
+   &lt;li&gt;Grill the chicken&lt;/li&gt;
+   &lt;li&gt;Pour into tortilla&lt;/li&gt;
+   &lt;li&gt;Add guacamole, sour cream and cheese&lt;/li&gt;
+   &lt;li&gt;Roll tortilla and serve&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -404,15 +396,16 @@
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Definitions</h4>
-<dl>
-   <dt>Avocado</dt>
-   <dd>Pear-shaped fruit native to Central Mexico.</dd>
-   <dt>Guacamole</dt>
-   <dd>An avocado-based sauce that originated with the Aztecs in Mexico.</dd>
-</dl>')) ?>
-                        </pre>
+
+<pre class="prettyprint linenums">
+&lt;h4&gt;Definitions&lt;/h4&gt;
+&lt;dl&gt;
+   &lt;dt&gt;Avocado&lt;/dt&gt;
+   &lt;dd&gt;Pear-shaped fruit native to Central Mexico.&lt;/dd&gt;
+   &lt;dt&gt;Guacamole&lt;/dt&gt;
+   &lt;dd&gt;An avocado-based sauce that originated with the Aztecs in Mexico.&lt;/dd&gt;
+&lt;/dl&gt;
+</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -431,15 +424,16 @@
                 <div class="column-group horizontal-gutters">
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums">
-<?php echo(htmlentities('<h4>Stuff</h4>
-<ul class="unstyled">
-   <li>Carnitas</li>
-   <li>Jalapeno peppers</li>
-   <li>Sour cream</li>
-   <li>Pico de gallo</li>
-</ul>')) ?>
-                        </pre>
+
+<pre class="prettyprint linenums">
+&lt;h4&gt;Stuff&lt;/h4&gt;
+&lt;ul class=&quot;unstyled&quot;&gt;
+   &lt;li&gt;Carnitas&lt;/li&gt;
+   &lt;li&gt;Jalapeno peppers&lt;/li&gt;
+   &lt;li&gt;Sour cream&lt;/li&gt;
+   &lt;li&gt;Pico de gallo&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
                     </div>
                     <div class="large-50 medium-50 small-100">
                         <p><span class="ink-label success">Example</span></p>
@@ -521,8 +515,10 @@
                 </p>
                 
 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<span class="ink-badge black">2</span>')) ?></pre>
+
+<pre class="prettyprint linenums">
+&lt;span class=&quot;ink-badge black&quot;&gt;2&lt;/span&gt;
+</pre>
                 
                 <p class="top-space"><span class="ink-label success">Examples</span> One of the most common usecases is the menu update badge.</p>
                 <div class="box">
@@ -562,8 +558,10 @@
                 <h3>Abbreviations</h3>
                 <p>For abbreviations, simply use the HTML <code>&lt;abbr&gt;</code> tag, like so:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>')) ?></pre>
+
+<pre class="prettyprint linenums">
+&lt;p&gt;Ink was entirely developed with text editors, no &lt;abbr title=&quot;What You See Is What You Get&quot;&gt;WYSIWYG&lt;/abbr&gt; software was harmed.&lt;/p&gt;
+</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <p>Ink was entirely developed with text editors, no <abbr title="What You See Is What You Get">WYSIWYG</abbr> software was harmed.</p>
@@ -571,12 +569,13 @@
                 <h3>Block quotes</h3>
                 <p>For block quotes, use the <code>&lt;blockquote&gt;</code> element, with an optional <code>&lt;cite&gt;</code> element to contain the source name, like so:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<blockquote>
-<p>You can\'t always get what you want.</p>
-<p><cite>Jagger & Richards</cite>, 1969</p>
-</blockquote>')) ?>
-                </pre>
+
+<pre class="prettyprint linenums">
+&lt;blockquote&gt;
+   &lt;p&gt;You can\'t always get what you want.&lt;/p&gt;
+   &lt;p&gt;&lt;cite&gt;Jagger &amp; Richards&lt;/cite&gt;, 1969&lt;/p&gt;
+&lt;/blockquote&gt;
+</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <blockquote>
@@ -587,11 +586,13 @@
                 <h3>Addresses</h3>
                 <p>You can use the <code>&lt;address&gt;</code> element to contain address elements, such as a name, street, postal code. Use headings, paragraphs and line-breaks to compose your address.</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<address>
-<h6>SAPO</h6>
-<p>Av. Fontes Pereira de Melo, 40<br>1050 Lisboa</p>
-</address>')) ?></pre>
+
+<pre class="prettyprint linenums">
+&lt;address&gt;
+   &lt;h6&gt;SAPO&lt;/h6&gt;
+   &lt;p&gt;Av. Fontes Pereira de Melo, 40&lt;br&gt;1050 Lisboa&lt;/p&gt;
+&lt;/address&gt;
+</pre>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <address>
@@ -605,51 +606,40 @@
     </div>
 </div>
 
-<footer>
+<!-- <footer>
     <div class="ink-grid">
         <div class="socialplugins">
             <div class="column-group gutters">
                 <div class="large-40 medium-40 small-100">
                     <p class="small">Follow Ink to stay on top of the latest news.</p>
-                </div>
-                
-               
+                </div>                               
                 <div class="large-60 medium-60 small-100">
                     <div class="push-right socialwidget"><a href="https://twitter.com/share" class="twitter-share-button" data-via="inksapo">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
                     <div class="push-right socialwidget"><a href="https://twitter.com/inksapo" class="twitter-follow-button" data-show-count="false">Follow @inksapo</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
                     <div class="fb-like push-right socialwidget" data-href="https://www.facebook.com/inksapo" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-                </div>
-                
+                </div>                
             </div>
-        </div>
-        
+        </div>        
         <div class="large-70 medium-70 small-100">
             <nav class="ink-navigation">
                 <ul class="menu horizontal">
-                    <li><a href="about">About</a></li>
-                    <li><a href="changelog">Changelog</a></li>
-                    <li><a href="glossary">Glossary</a></li>           
-                    <li>
-                        Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, 
-                        <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a>
-                    </li>
+                    <li><a href="../about/">About</a></li>
+                    <li><a href="../changelog/">Changelog</a></li>
+                    <li><a href="../glossary/">Glossary</a></li>           
+                    <li>Ink's code licensed under <a class="license" rel="license" href="http://opensource.org/licenses/MIT">MIT</a>, <abbr title="documentation">docs</abbr> under <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">cc-by-nc</a></li>
                 </ul>
-            </nav>  
-            
+            </nav>              
             <div class="copyright vspace">
                 <p><a class="SAPOlogo" href="http://www.sapo.pt">sapo.pt</a></p>
                 <p class="PTClogo">
                     <a href="http://www.telecom.pt">PTC logo</a>PTC - All rights reserved.<br />
                     SAPO is a trademark and a search engine created at the University of Aveiro.
                 </p>
-            </div>
-            
+            </div>            
         </div>
-
         <p><strong>Built with:</strong></p>
-
         <div class="large-15 medium-15 small-50">
             <ul class="unstyled">
                 <li><a href="http://lesscss.org/">{LESS}</a><br><span class="small">(<a href="https://github.com/cloudhead/less.js/blob/master/LICENSE">Apache License 2.0</a>)</span></li>
@@ -665,8 +655,9 @@
         </div>
     </div>
 </footer>
+ -->
 
-
+<!-- 
 <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
 </script>
 <script>
@@ -685,6 +676,7 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
+ -->
 </body>
 
 </html>

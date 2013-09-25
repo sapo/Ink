@@ -14,31 +14,17 @@ base_path:  ../
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="nav_menu">
                 <ul class="menu vertical rounded black">                    
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-basics">Navigation basics</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-sub">Submenus</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-styling">Navigation Styling</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-horizontal">Horizontal Menu</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-vertical">Vertical Menu</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-pagination">Pagination</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-pills">Pills</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-breadcrumbs">Breadcrumbs</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-footer">Footer</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('navigation') ?>#nav-dropdowns">Dropdowns</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-basics">Navigation basics</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-sub">Submenus</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-styling">Navigation Styling</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-horizontal">Horizontal Menu</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-vertical">Vertical Menu</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-pagination">Pagination</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-pills">Pills</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-breadcrumbs">Breadcrumbs</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-footer">Footer</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#nav-dropdowns">Dropdowns</a></li>
-                    <?php endif; ?>  
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#nav-basics">Navigation basics</a></li>
+                    <li><a class="scrollableLink" href="#nav-sub">Submenus</a></li>
+                    <li><a class="scrollableLink" href="#nav-styling">Navigation Styling</a></li>
+                    <li><a class="scrollableLink" href="#nav-horizontal">Horizontal Menu</a></li>
+                    <li><a class="scrollableLink" href="#nav-vertical">Vertical Menu</a></li>
+                    <li><a class="scrollableLink" href="#nav-pagination">Pagination</a></li>
+                    <li><a class="scrollableLink" href="#nav-pills">Pills</a></li>
+                    <li><a class="scrollableLink" href="#nav-breadcrumbs">Breadcrumbs</a></li>
+                    <li><a class="scrollableLink" href="#nav-footer">Footer</a></li>
+                    <li><a class="scrollableLink" href="#nav-dropdowns">Dropdowns</a></li>
                 </ul>
             </nav>
         </div>
@@ -54,20 +40,22 @@ base_path:  ../
                 <p>Menus need to be lists, as that's what they are anyway and it's considered the industry standard best practice. So, inside your wrapper block put an unsorted list <code>&lt;ul&gt;</code> with the <code>.menu</code> class and list your menu items within <code>&lt;li&gt;</code>.</p>
                 <p><span class="ink-label info">Code</span></p>
                 
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_1 %}
+<nav class="ink-navigation">
    <ul class="menu">
       <li><a href="#">Item</a></li>
       <li><a href="#">Item</a></li>
    </ul>
-</nav>') ?>
-                
+</nav>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ nav_1 | escape }}</pre>
             </section>
             <section id="nav-sub" data-spy="true" data-target="#nav_menu">
                 <h2>Submenus</h2>
                 <p>Making submenus is as simple as adding a new <code>&lt;ul&gt;</code> inside the <code>&lt;li&gt;</code> you want to control the sublist and giving it the <code>.submenu</code> class.</p>
                 <p><span class="ink-label info">Code</span></p>
-                
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_2 %}
+<nav class="ink-navigation">
    <ul class="menu">
       <li><a href="#">Item</a></li>
       <li><a href="#">Item with a submenu</a>
@@ -77,8 +65,9 @@ base_path:  ../
         </ul>
       </li>
    </ul>
-</nav>') ?>
-                
+</nav>            
+{% endcapture %}            
+            <pre class="prettyprint linenums">{{ nav_2 | escape }}</pre>                
             </section>
             <section id="nav-styling" data-spy="true" data-target="#nav_menu">
                 <h2>Navigation styling</h2>
@@ -228,13 +217,15 @@ base_path:  ../
                 </div>
                 <p><span class="ink-label info">Tip</span> If you see one you like, grab the code from your inspector.</p>
                 <p><span class="ink-label info">Code</span></p>
-                
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_3 %}
+<nav class="ink-navigation">
    <ul class="menu horizontal">
       <li><a href="#">Item</a></li>
       <li><a href="#">Item</a></li>
    </ul>
-</nav>') ?>
+</nav>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_3 | escape }}</pre>
             </section>
             <section id="nav-vertical" data-spy="true" data-target="#nav_menu">
                 <h2>Vertical menu</h2>
@@ -272,12 +263,15 @@ base_path:  ../
 
                 <p><span class="ink-label info">Code</span></p>
                 
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_4 %}
+<nav class="ink-navigation">
    <ul class="menu vertical">
       <li><a href="#">Item</a></li>
       <li><a href="#">Item</a></li>
    </ul>
-</nav>') ?>
+</nav>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_4 | escape }}</pre>
                 
             </section>
             <section id="nav-pagination" data-spy="true" data-target="#nav_menu">
@@ -311,7 +305,8 @@ base_path:  ../
                     </div>
                 </div>
                 <p><span class="ink-label info">Code</span></p>        
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_5 %}
+<nav class="ink-navigation">
     <ul class="pagination">
         <li class="previous"><a href="#">Previous</a></li>
         <li><a href="#">1</a></li>
@@ -319,7 +314,9 @@ base_path:  ../
         <li><a href="#">3</a></li>
         <li class="next"><a href="#">Next</a></li>
     </ul>
-</nav>') ?>
+</nav>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_5 | escape }}</pre>
             </section>
             <section id="nav-pills" data-spy="true" data-target="#nav_menu">
                 <h2>Pills</h2>
@@ -340,14 +337,16 @@ base_path:  ../
                     </nav>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_6 %}
+<nav class="ink-navigation">
     <ul class="pills">
         <li><a href="#">Pill 1</a></li>
         <li><a href="#">Pill 2</a></li>
         <li><a href="#">Pill 3</a></li>
     </ul>
-</nav>') ?>
+</nav>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ nav_6 | escape }}</pre>                
             </section>
             <section id="nav-breadcrumbs" data-spy="true" data-target="#nav_menu">
                 <h2>Breadcrumbs</h2>
@@ -375,23 +374,29 @@ base_path:  ../
                 </div>
                 <p><span class="ink-label info">Code</span></p>
                 
-<?php prettyprint('<nav class="ink-navigation">
+{% capture nav_6 %}
+<nav class="ink-navigation">
     <ul class="breadcrumbs">
         <li><a href="#">Start</a></li>
         <li><a href="#">Level 1</a></li>
         <li><a href="#">Level 2</a></li>
         <li class="active"><a href="#">Current item</a></li>
     </ul>
-</nav>') ?>
+</nav>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_6 | escape }}</pre>
                 
                 
                 <p><span class="ink-label info">Note</span> A separator is automatically added.</p>
                 <h3>Customizing the separator</h3>
                 <p>If, by any chance, you'd like to use a different separator character (like <code>*</code>) feel free to drop this into your CSS:</p>
                 
-<?php prettyprint('.ink-navigation .breadcrumbs li:after {
+{% capture nav_7 %}
+.ink-navigation .breadcrumbs li:after {
    content: \'*\';
-}') ?>
+}
+{% endcapture %}
+<pre class="prettyprint linenums lang-css">{{ nav_7 | escape }}</pre>
                 
                 <p class="ink-alert info">Cascading <abbr title="for the win">FTW</abbr>!</p>
             </section>
@@ -401,7 +406,8 @@ base_path:  ../
                 <p><span class="ink-label info">Tip</span> make sure your parent <code>.ink-navigation</code> element is, itself, wrapped in a <code>&lt;footer&gt;</code> element to get proper spacing.</p>
                 <p><span class="ink-label info">code</span> for an example horizontal footer menu.</p>
                 
-<?php prettyprint('<footer>
+{% capture nav_8 %}
+<footer>
     <nav class="ink-navigation">
         <ul class="menu horizontal">
             <li><a href="#">footerItem</a></li>
@@ -409,7 +415,9 @@ base_path:  ../
             ...
         </ul>
     </nav>
-</footer>') ?>
+</footer>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_8 | escape }}</pre>
             </section>
             <section id="nav-dropdowns" data-spy="true" data-target="#nav_menu">
                 
@@ -447,7 +455,10 @@ base_path:  ../
                         </div>
                         </div>
                         <p>To begin, create a block-level element with the <code>.ink-dropdown</code> class. This element will wrap your entire dropdown menu: your trigger element, your menus and submenus.</p>
-                        <?php prettyprint('<div class="ink-dropdown"></div>') ?>
+{% capture nav_9 %}
+<div class="ink-dropdown"></div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_9 | escape }}</pre>
                     </div>
                     <div class="large-25 medium-25 small-100">
                         <div class="ink-dropdown red">
@@ -481,16 +492,25 @@ base_path:  ../
                         <p>Next, you need to create the trigger element, which will toggle the dropdown on and off. For the sake of semantics either use a <code>&lt;button&gt;</code> or an <code>&lt;a&gt;</code>.</p>
                         <p>The trigger element must have two important attributes: the <code>.toggle</code> class and a <code>data-target</code> set to the ID of the element you need toggled.</p>
                         <p>So, let's say you want a button that says "click me" and toggles a menu called <code>#dropdown</code> on and off. Here's the code:</p>
-                        <?php prettyprint('<button class="toggle" data-target="#dropdown">Click me</button>') ?>
+{% capture nav_10 %}
+<button class="toggle" data-target="#dropdown">Click me</button>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_10 | escape }}</pre>
                         <p>Next, you need the actual menu that you want toggled, so just create a <code>&lt;ul&gt;</code> with the <code>.dropdown-menu</code> class. Don't forget to also add the <code>#dropdown</code> ID to be targetted by the data-target attribute of the trigger button we created above. Essentially, still inside your <code>.ink-dropdown</code>, and after your <code>.toggle</code> button, you'll create the following:</p>
-                        <?php prettyprint('<ul class="dropdown-menu" id="dropdown">') ?>
+{% capture nav_11 %}
+<ul class="dropdown-menu" id="dropdown">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_11 | escape }}</pre>
                         <p>There you have it. Create a container for your dropdown, then add a trigger button referencing an ID on your actual menu. It will just work and you can integrate it wherever you need.</p>
 
                         <h3>Sub menus</h3>
                         <p>Creating sub menus follows the same logic. One of your <code>&lt;li&gt;</code> elements will hold a link with the <code>.toggle</code> class and the <code>data-target</code> attribute pointing to the ID of a <code>&lt;ul&gt;</code> which is also within the same <code>&lt;li&gt;</code>. You also need to add the class <code>.submenu</code> to the containing <code>&lt;li&gt;</code>. It will look something like this:</p>
-                        <?php prettyprint('<li class="submenu">
+{% capture nav_12 %}
+<li class="submenu">
     <a href="#" class="toggle" data-target="subitems">Sub-items</a>
-    <ul class="dropdown-menu" id="subitems">') ?>
+    <ul class="dropdown-menu" id="subitems">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_12 | escape }}</pre>
                         <p>So, it's the same logic as before, only it's nested within a specific list element and, in this case, we used an <code>&lt;a&gt;</code> instead of a <code>&lt;button&gt;</code> as trigger.</p>
 
                         <h3>Helper elements</h3>
@@ -509,8 +529,9 @@ base_path:  ../
                     <span class="ink-label info">Code</span> 
                     To help you get started we've prepared a functional code example covering all the topics explained above.
                 </p>
-<div class="hide show-large">
-<?php prettyprint('<div class="ink-dropdown">
+<div class="hide-all show-large">
+{% capture nav_13 %}
+<div class="ink-dropdown">
     <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
     <ul id="dropdown" class="dropdown-menu">
         <li class="heading">Heading</li>
@@ -534,10 +555,13 @@ base_path:  ../
         </li>
         <li><a href="#">Option</a></li>
     </ul>
-</div>') ?>
+</div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_13 | escape }}</pre>
 </div>
 <div class="hide-large">
-<?php prettyprint('<div class="ink-dropdown">
+{% capture nav_14 %}
+<div class="ink-dropdown">
  <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
   <ul id="dropdown" class="dropdown-menu">
    <li class="heading">Heading</li>
@@ -561,7 +585,9 @@ base_path:  ../
    </li>
   <li><a href="#">Option</a></li>
  </ul>
-</div>') ?>
+</div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ nav_14 | escape }}</pre>
 </div>
 
             </section>

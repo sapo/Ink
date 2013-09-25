@@ -47,8 +47,8 @@ base_path:  ../
                     </form>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<form class="ink-form">
+{% capture forms_1 %}
+<form class="ink-form">
     <fieldset>
         <div class="control-group">
             <label for="text-input">Text input</label> 
@@ -57,7 +57,9 @@ base_path:  ../
             </div>
         </div>
     </fieldset>
-</form>')) ?></pre>
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_1 | escape }}</pre>
                 <h3>File input field exception</h3>
                 <p>If you need a file input field, to allow users to upload files, then you need a little extra code to make sure you maintain consistency across browsers. So, if you have an <code>&lt;input type="file"&gt;</code>, then add an extra <code>&lt;div&gt;</code> with the class <code>.input-file</code> around it. That is besides your <code>&lt;div class="control"&gt;</code>, not instead of it. It's a little extra markup, but it will solve your file input problems.</p>
                 <p><span class="ink-label success">Example</span></p>
@@ -72,14 +74,15 @@ base_path:  ../
                     </form>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<div class="control-group">
+{% capture forms_2 %}
+<div class="control-group">
     <label>File input</label> 
     <div class="control">
         <div class="input-file"><input type="file"></div>
     </div>
 </div>
-')) ?></pre>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_2 | escape }}</pre>
                 <h3>Adding tips</h3>
                 <p>Adding tips to forms fields is easy. Just add the message by using a paragraph element with the <code>.tip</code> class. Keep it inside your control group and you're home safe.</p>
                 <p><span class="ink-label success">Example</span> A simple text input field with a small note.</p>
@@ -97,15 +100,16 @@ base_path:  ../
                     </form>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<div class="control-group">
+{% capture form_3 %}
+<div class="control-group">
     <label for="text-input">Text input</label> 
     <div class="control">
         <input id="text-input" type="text" placeholder="Please input some text">
     </div>
     <p class="tip">You can add help text to fields</p>
 </div>
-')) ?></pre>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ form_3 | escape }}</pre>
                 <h3>Block form with inline fields</h3>
                 <p>You're not always going to just need form fields which are vertically stacked, so Ink lets you use layout classes to build different form field layouts. For that, you can easily use a <code>&lt;fieldset&gt;</code> with the <code>.column-group</code> and <code>.gutters</code> classes, and then, apply the <code>.large-xx</code> <code>.medium-xx</code> and <code>.small-xx</code> classes to your control-group <code>&lt;div&gt;</code></p>
                 <p><span class="ink-label info">Tip</span> if you haven't yet, read the <a href="/layout">layout</a> section of this documentation to have a better understanding of how you can easily fit your forms into multiple fluid columns.</p>
@@ -136,7 +140,7 @@ base_path:  ../
                     </form>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_4 %}
 <form action="#" class="ink-form">
     <fieldset class="column-group gutters">
         <div class="control-group large-33 medium-33 small-100">
@@ -158,8 +162,9 @@ base_path:  ../
             </div>
         </div>
     </fieldset>
-</form>')) ?></pre>
-            
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_4 | escape }}</pre>
             </section>
 
             <section id="inline" data-spy="true" data-target="#forms_menu">
@@ -210,8 +215,8 @@ base_path:  ../
                     </form>
                 </div>
                 <p><span class="ink-label info">Code</span></p>   
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<form class="ink-form">
+{% capture forms_5 %}
+<form class="ink-form">
     <fieldset>
         <div class="control-group column-group gutters">
             <label class="large-20 content-right" for="phone">Phone:</label> 
@@ -220,9 +225,9 @@ base_path:  ../
             </div>
         </div>
     </fieldset>
-</form>')) ?></pre>
-
-                    
+</form>
+{% endcapture %}
+                    <pre class="prettyprint linenums">{{ forms_5 | escape }}</pre>                    
                 <h3>Inline form with inline fields</h3>
                 <p>To achieve a form in multiple columns in which everything is inline, you need to do some column nesting. Just add an extra <code>&lt;div&gt;</code> with the <code>column-group</code> and <code>gutters</code> classes within your control-group to create further columns of each label/field pair.</p>
                 <p>So, basically, you first think in your major columns, in our example we have three, and then, inside each column, you build your inline label/field pair.</p>
@@ -266,8 +271,8 @@ base_path:  ../
                 </div>
 
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<form action="#" class="ink-form">
+{% capture forms_6 %}
+<form action="#" class="ink-form">
     <fieldset class="column-group gutters">
         
         <div class="control-group large-33 medium-33 small-100">
@@ -278,7 +283,6 @@ base_path:  ../
                 </div>
             </div>
         </div>
-
         <div class="control-group large-33 medium-33 small-100">
             <div class="column-group gutters">
                 <label for="phone" class="large-20 content-right">Phone</label>
@@ -287,7 +291,6 @@ base_path:  ../
                 </div>
             </div>
         </div>
-
         <div class="control-group large-33 medium-33 small-100">
             <div class="column-group gutters">
                 <label for="email" class="large-20 content-right">Email</label>
@@ -298,7 +301,9 @@ base_path:  ../
         </div>
 
     </fieldset>
-</form>')) ?></pre>
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_6 | escape }}</pre>
             <p>Yes, it gets a little complicated, but it's very powerful and flexible. If you indent your code and use empty lines to separate your blocks, like we did in the example above, you'll be fine.</p>
             </section>
             
@@ -327,8 +332,8 @@ base_path:  ../
                 </div>
 
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<form action="#" class="ink-form">
+{% capture forms_7 %}
+<form action="#" class="ink-form">
     <fieldset class="column-group gutters">
         <div class="control-group required validation error">
             <label for="text-input">Text input</label> 
@@ -338,9 +343,9 @@ base_path:  ../
             <p class="tip">You can add help text to fields</p>
         </div>
     </fieldset>
-</form>')) ?></pre>
-
-
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_7 | escape }}</pre>
                 <p>If something doesn't quite validate or is completely filled out, you can warn users, using color coding and adding an error or warning message. Just add two more classes to the <code>.control-group</code> wrapper. Use the <code>.validation</code> class to mark the field for validation and either <code>.warning</code> or <code>.error</code> for the styling (yellow or red color codes, as defaults, respectively).</p>
                 <p>Add a tip just as explained above to explain what the error is.</p>
 
@@ -367,8 +372,8 @@ base_path:  ../
                 </div>
 
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<form action="#" class="ink-form">
+{% capture forms_8 %}
+<form action="#" class="ink-form">
     <fieldset class="column-group gutters">
         <div class="control-group required validation warning">
             <label for="text-input">Text input</label> 
@@ -385,7 +390,9 @@ base_path:  ../
             <p class="tip">This field is required</p>
         </div>
     </fieldset>
-</form>')) ?></pre>
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_8 | escape }}</pre>
 
             </section>
 
@@ -428,7 +435,7 @@ base_path:  ../
                         </p>
 
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_9 %}
 <form action="" class="ink-form">
     <fieldset>
         <legend>Group of checkboxes</legend>
@@ -443,8 +450,9 @@ base_path:  ../
             </ul>
         </div>
     </fieldset>                     
-</form>')) ?></pre>
-                        
+</form>                        
+{% endcapture %}
+                        <pre class="prettyprint linenums">{{ forms_9 | escape }}</pre>                        
                         <h3>Group of Radio Buttons</h3>
                         <p><span class="ink-label success">Example</span></p>
                         <div class="box">
@@ -465,7 +473,7 @@ base_path:  ../
                         </div>
 
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_10 %}
 <form action="" class="ink-form">
     <fieldset>
         <legend>Group of checkboxes</legend>
@@ -480,7 +488,9 @@ base_path:  ../
             </ul>
         </div>
     </fieldset>                     
-</form>')) ?></pre>
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_10 | escape }}</pre>
 
 
                         <h3>Inline Checkboxes &amp; Radio Buttons</h3>
@@ -503,7 +513,7 @@ base_path:  ../
                         </div>
 
                         <p><span class="ink-label info">Code</span></p>
-                        <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_11 %}
 <form action="" class="ink-form">
   <fieldset>
     <legend>Group of checkboxes</legend>
@@ -518,7 +528,9 @@ base_path:  ../
       </ul>
     </div>
   </fieldset>                     
-</form>')) ?></pre>
+</form>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_11 | escape }}</pre>
             
             </section>
             
@@ -545,10 +557,12 @@ base_path:  ../
                     </div>    
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums"><?php echo(htmlentities('<button class="ink-button">Cancel Dinner</button> <!-- A default button -->
+{% capture forms_12 %}
+<button class="ink-button">Cancel Dinner</button> <!-- A default button -->
 <button class="ink-button blue">Execute Order 66</button> <!-- A blue button -->
 <button class="ink-button red" disabled>Disable Missiles</button> <!-- A red button that\'s disabled -->
-')) ?></pre>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_12 | escape }}</pre>
                 <h3>Button Groups</h3>
                 <p>
                     Need to group buttons? Ink has an easy solution for that. 
@@ -564,12 +578,14 @@ base_path:  ../
                 </div>
 
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_13 %}
 <div class="button-group">
     <button class="ink-button">left</button>
     <button class="ink-button">middle</button>
     <button class="ink-button">right</button>
-</div>')) ?></pre>
+</div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_13 | escape }}</pre>
 
                 <h3>Inline button groups</h4>
                 <p>
@@ -599,7 +615,7 @@ base_path:  ../
                 </div>
                 
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_14 %}
 <div class="button-toolbar">
     <div class="button-group">
         <button class="ink-button"><span class="icon-file"></span></button>
@@ -618,7 +634,9 @@ base_path:  ../
         <button class="ink-button"><span class="icon-align-right"></span></button>
         <button class="ink-button"><span class="icon-align-justify"></span></button>
     </div>
-</div>')) ?></pre>
+</div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_14 | escape }}</pre>
 
             </section>
 
@@ -668,7 +686,7 @@ base_path:  ../
                     </form>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_15 %}
 <!-- Append button -->
 <div class="control-group">
     <div class="column-group gutters">
@@ -689,11 +707,13 @@ base_path:  ../
             <span><input type="text" id="phone"></span>
         </div>
     </div>
-</div>')) ?></pre>
+</div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_15 | escape }}</pre>
 
                     <h3>Symbols</h3>
                     <p>
-                        For symbols, just choose one from the <?php echo anchor('/icons','icon') ?> section 
+                        For symbols, just choose one from the <a href="{{page.base_path}}icons/">icons</a> section 
                         and place it inside the <code>&lt;span&gt;</code> element.
                     </p>
                     <p><span class="ink-label success">Example</span></p>
@@ -706,7 +726,7 @@ base_path:  ../
                                         <label for="email" class="large-20 medium-20 small-10 content-right">Email</label>
                                         <div class="control large-80 medium-80 small-90 append-symbol">
                                             <span>
-                                                <input type="text" id="email">
+                                                <input type="email" id="email">
                                                 <i class="icon-envelope-alt"></i>
                                             </span>
                                         </div>
@@ -718,7 +738,7 @@ base_path:  ../
                                         <label for="email" class="large-20 medium-20 small-10 content-right">Email</label>
                                         <div class="control large-80 medium-80 small-90 prepend-symbol">
                                             <span>
-                                                <input type="text" id="email">
+                                                <input type="email" id="email">
                                                 <i class="icon-envelope-alt"></i>
                                             </span>
                                         </div>
@@ -729,7 +749,7 @@ base_path:  ../
                         </form>
                     </div>
                     <p><span class="ink-label info">Code</span></p>
-                    <pre class="prettyprint linenums"><?php echo(htmlentities('
+{% capture forms_16 %}
 <!-- Append Symbol -->
 <div class="control-group">
     <div class="column-group gutters">
@@ -754,7 +774,9 @@ base_path:  ../
             </span>
         </div>
     </div>
-</div>')) ?></pre>
+</div>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ forms_16 | escape }}</pre>
                 </form>
             </section>
 

@@ -58,12 +58,12 @@ base_path:  ../
                     </div>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-{% capture inline %}<div class="ink-alert basic info">
+{% capture alerts_1 %}<div class="ink-alert basic info">
     <button class="ink-dismiss">&times;</button>
     <p><b>Note:</b> You have 5 minutes to leave, before self-destruction</p>
 </div>
 {% endcapture %}
-                <pre class="prettyprint linenums">{{ inline | escape }}</pre>
+                <pre class="prettyprint linenums">{{ alerts_1 | escape }}</pre>
             </section>
             
             <section id="nav-block" data-spy="true" data-target="#alerts_menu">
@@ -108,14 +108,14 @@ base_path:  ../
                     </div>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-{% capture block %}
+{% capture alerts_2 %}
 <div class="ink-alert block success">
     <button class="ink-dismiss">&times;</button>
     <h4>Thank you for buying!</h4>
     <p>Your payment has been received and your plutonium will be shipped shortly. Check your e-mail for tracking information.</p>
 </div>
 {% endcapture %}
-      <pre class="prettyprint linenums">{{ block | escape }}</pre>
+      <pre class="prettyprint linenums">{{ alerts_2 | escape }}</pre>
             </section>
         </div>
     </div>

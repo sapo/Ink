@@ -13,23 +13,13 @@ base_path:  ../
         <div class="large-20 medium-25 small-100">
             <nav class="ink-navigation sticky" data-offset-top="70px" data-offset-bottom="350px" id="tables_menu">
                 <ul class="menu vertical black rounded">                    
-                    <?php if(isset($dump)): ?>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#default">Table basics</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#alternating">Alternating</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#highlight">Highlight</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#fullBorders">Full borders</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#combined">Combined</a></li>
-                    <li><a class="scrollableLink" href="<?php echo static_url('tables') ?>#special">Special</a></li>
-                    <?php else: ?>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#default">Table basics</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#alternating">Alternating</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#highlight">Highlight</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#fullBorders">Full borders</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#combined">Combined</a></li>
-                    <li><a class="scrollableLink" href="<?php echo current_url() ?>#special">Special</a></li>
-                    <?php endif; ?> 
+                    <li><a class="scrollableLink" href="#topbar"><span class="icon-chevron-up"></span> Back to Top</a></li>
+                    <li><a class="scrollableLink" href="#default">Table basics</a></li>
+                    <li><a class="scrollableLink" href="#alternating">Alternating</a></li>
+                    <li><a class="scrollableLink" href="#highlight">Highlight</a></li>
+                    <li><a class="scrollableLink" href="#fullBorders">Full borders</a></li>
+                    <li><a class="scrollableLink" href="#combined">Combined</a></li>
+                    <li><a class="scrollableLink" href="#special">Special</a></li>
                 </ul>
             </nav>
         </div>
@@ -87,8 +77,10 @@ base_path:  ../
                     needed for any given cell.
                 </p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<table class="ink-table">')) ?></pre>
+{% capture tables_1 %}
+<table class="ink-table">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ tables_1 | escape }}</pre>
             </section>
 
             <section id="alternating" data-spy="true" data-target="#tables_menu">
@@ -134,9 +126,10 @@ base_path:  ../
                     </table>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<table class="ink-table alternating">
-')) ?></pre>
+{% capture tables_2 %}
+<table class="ink-table alternating">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ tables_2 | escape }}</pre>
             </section>
 
             <section id="highlight" data-spy="true" data-target="#tables_menu">
@@ -182,9 +175,10 @@ base_path:  ../
                     </table>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<table class="ink-table hover">
-')) ?></pre>
+{% capture tables_3 %}
+<table class="ink-table hover">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ tables_3 | escape }}</pre>
             </section>
             
             <section id="fullBorders" data-spy="true" data-target="#tables_menu">
@@ -231,9 +225,10 @@ base_path:  ../
                     </table>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<table class="ink-table bordered">
-')) ?></pre>
+{% capture tables_4 %}
+<table class="ink-table bordered">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ tables_4 | escape }}</pre>
             </section>
 
             <section id="combined" data-spy="true" data-target="#tables_menu">
@@ -279,9 +274,10 @@ base_path:  ../
                     </table>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<?php echo(htmlentities('<table class="ink-table bordered alternating hover">
-')) ?></pre>
+{% capture tables_5 %}
+<table class="ink-table bordered alternating hover">
+{% endcapture %}
+<pre class="prettyprint linenums">{{ tables_5 | escape }}</pre>
             </section>
 
             <section id="special" data-spy="true" data-target="#tables_menu">

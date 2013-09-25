@@ -79,47 +79,64 @@ base_path:  ../
                 <p>Available column widths are: 5, 10, 15, 20, 25, 30, 33, 35, 40, 45, 50, 55, 60, 65, 66, 70, 75, 80, 85, 90, 95 and 100%. You can mix and match them to add up to 100, inside a row. You even go over 100, but, obviously, there will be a break in your floats.</p>
                 <p><span class="ink-label success">Example combinations</span></p>
                 <div class="box">
-                    <div class="column-group half-gutters gridExample">
-
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-100 medium-100 small-100"><p>100%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-95 medium-95 small-95"><p>95%</p></div>
                         <div class="large-5 medium-5 small-5"><p>5%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-90 medium-90 small-90"><p>90%</p></div>
                         <div class="large-10 medium-10 small-10"><p>10%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-85 medium-85 small-85"><p>85%</p></div>
                         <div class="large-15 medium-15 small-15"><p>15%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-80 medium-80 small-80"><p>80%</p></div>
                         <div class="large-20 medium-20 small-20"><p>20%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-75 medium-75 small-75"><p>75%</p></div>
                         <div class="large-25 medium-25 small-25"><p>25%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-70 medium-70 small-70"><p>70%</p></div>
                         <div class="large-30 medium-30 small-30"><p>30%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-65 medium-65 small-65"><p>65%</p></div>
                         <div class="large-35 medium-35 small-35"><p>35%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-60 medium-60 small-60"><p>60%</p></div>
                         <div class="large-40 medium-40 small-40"><p>40%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-55 medium-55 small-55"><p>55%</p></div>
                         <div class="large-45 medium-45 small-45"><p>45%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-gutters grid-example">
                         <div class="large-50 medium-50 small-50"><p>50%</p></div>
                         <div class="large-50 medium-50 small-50"><p>50%</p></div>
-
+                    </div>
+                    
+                    <div class="column-group half-horizontal-gutters grid-example">
                         <div class="large-66 medium-66 small-66"><p>66%</p></div>
                         <div class="large-33 medium-33 small-33"><p>33%</p></div>
-
-                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
-                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
-                        <div class="large-33 medium-33 small-33"><p>33%</p></div>
-                    </div>
+                    </div>                    
                 </div>
                 <p>The previous grid shows only a few of the possible combinations you can make with the 22 available widths, we'll leave you to imagine the rest, and go on to our last, but not least, basic layout element.</p>
                 <h3>The gutters</h3>
@@ -321,18 +338,22 @@ base_path:  ../
                 
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
+{% capture align_1 %}
 <div class="column-group">
   <div class="large-50 push-center"></div>
-</div></pre>
+</div>
+{% endcapture %}              
+                <pre class="prettyprint linenums">{{ align_1 | escape }}</pre>
                 <p>If you need to align content within your blocks, you can use the <code>.content-left</code>, <code>.content-right</code> and <code>.content-center</code> classes.</p>
                 <p><span class="ink-label success">Example</span></p>
                 <div class="box">
                     <p class="content-right">This is some right-aligned text, using the <code>.content-right</code> class.</p>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
-<p class="content-right">Your content here</p></pre>
+{% capture align_2 %}
+<p class="content-right">Your content here</p>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ align_2 | escape }}</pre>
             </section>
             <section id="nav-screens" data-spy="true" data-target="#layout_menu">
                 <h2>Multiple Screens</h2>
@@ -342,9 +363,10 @@ base_path:  ../
                 <p>So far, we've talked about the 22 different widths you can divide your layout in, using classes such as <code>.large-50</code> and <code>.large-25</code>, now let's talk about 'medium' and 'small' layouts.</p>
                 <p>Using 'large-%', 'medium-%' and 'small-%', together with the 22 widths, you can define how much space each of your containers takes up in each screen; so, imagine you need a column that takes up 25% of a large screen, 50% of a medium screen and 100% of a small one.</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
+{% capture multiscreen_1 %}
 <div class="large-25 medium-50 small-100">
-                </pre>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ multiscreen_1 | escape }}</pre>
                 <p>This is all you need to do to get your layouts behaving differently in each of three screen sizes. Just make sure you build your large layout <em>first</em> so that you get all the <code>.column-group</code> elements right, because these are crucial to keep stuff together.</p>
                 <p>So, to keep things simple, Ink defines three breakpoints, with the following widths:</p>
                 <ul>
@@ -357,7 +379,7 @@ base_path:  ../
                 <p><span class="ink-label warning">Caution is advised</span> Customization comes at a price: when we update Ink in the future you'll have to repeat any customization made on the file we provide. We usually advise you to keep your changes in a separate file, but in this case, you can't do that.</p>
                 <p>Meanwhile, if you do decide to customize the breakpoints provided, you can do this by <strong>editing the <mark>ink.css</mark> by hand</strong> and changing the values on those media-queries. (A regular search in the file for "@media" will get you there).</p>
                 <p><span class="ink-label info">Example Code</span> Using only two layouts (large and small)</p>
-                <pre class="prettyprint linenums">
+{% capture mq_1 %}
 /* INK: LARGE SCREENS - ENABLED */
 @media screen and (min-width: 767px) {
 (...)
@@ -368,13 +390,14 @@ base_path:  ../
 
 /* INK: SMALL SCREENS - ENABLED */
 @media screen and (max-width: 766px) {
-(...)  
-                </pre>
+(...)
+{% endcapture %}          
+                <pre class="prettyprint linenums">{{ mq_1 | escape }}</pre>
                 <p><span class="ink-label info">Note</span> You can just customize the values. In this example we show how robust and extensible this approach allows you to be. Just don't remove the entire media-query because you may change your mind later in the project.</p>
                 <p>If you want to simplify your code, for a matter of speed, for example, you may opt to use only large class names, such as <code>.large-80</code>. In this case, everything below the medium breakpoint will revert to 100% width stacked blocks.</p>
                 <p>If you don't want this default behavior to happen, then disable all breakpoints safe for large. Here's the code to do it:</p>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
+{% capture mq_2 %}
 /* INK: LARGE SCREENS - ENABLED */
 @media screen and (min-width: 0px) {
 (...)
@@ -385,8 +408,9 @@ base_path:  ../
 
 /* INK: SMALL SCREENS - DISABLED */
 @media screen and (max-width: 0px) {
-(...) 
-                </pre>
+(...)
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ mq_2 | escape }}</pre>
             </section>
             <section id="nav-showhide" data-spy="true" data-target="#layout_menu">
                 <h2>Showing &amp; Hiding</h2>
@@ -423,7 +447,7 @@ base_path:  ../
                     </div>
                 </div>
                 <p><span class="ink-label info">Code</span></p>
-                <pre class="prettyprint linenums">
+{% capture visibility %}
 <div class="screen-size-helper example">
     <p class="title">Screen size:</p>
     <ul class="unstyled">
@@ -432,7 +456,8 @@ base_path:  ../
         <li class="hide show-large">LARGE</li>
     </ul>
 </div>
-                </pre>
+{% endcapture %}
+                <pre class="prettyprint linenums">{{ visibility | escape }}</pre>
             </section>
         </div>
     </div>

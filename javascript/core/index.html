@@ -343,7 +343,7 @@ HTML
 ); ?></pre>
                 <h4>Fill in a form</h4>
                 <p>You can fill in a form with values from an object by using the <code>fillIn</code> method.</p>
-                <pre class="prettyprint linenums"><?php echo htmlentities(<<<HTML
+{% capture js_form_fill %}
 <form id="frm">
     <input type="text" name="field1">
     <button type="submit">Submit</button>
@@ -355,9 +355,19 @@ HTML
         // At this point the form is pre-filled with the values above.
     });
 </script>
-HTML
-); ?></pre>
-            </section>
+{% endcapture %}
+<pre class="prettyprint linenums">{{ js_form_fill | escape }}</pre>
+            </section><form id="frm">
+    <input type="text" name="field1">
+    <button type="submit">Submit</button>
+</form>
+<script type="text/javascript">
+    Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+        var values = {field1: 'CTHULHU'};
+        FormSerialize.fillIn('frm', values);
+        // At this point the form is pre-filled with the values above.
+    });
+</script>
 
             <section id="nav-net" data-spy="true" data-target="#core_menu">
                 <h2>Net</h2>
