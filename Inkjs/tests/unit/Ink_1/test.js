@@ -30,16 +30,27 @@ test('staticMode', function () {
 
 test('createExt', function () {
     stop();  // async
+    expect(1);  // only one assertion
     
     Ink.createExt('Lol.Parser', 1, [], function () {
         return {
             parse: function () {}
-        }
+        };
     });
 
     Ink.requireModules(['Ink.Ext.Lol.Parser'], function (Parser) {
         equal(typeof Parser.parse, 'function');
-        start();  // done
+        start();  // async done
     });
 });
+
+test('deleteModule', function () {
+    Ink.createModule('Ink.Util.Whatever', 1, [], function () {
+        return 'whatever';
+    });
+    equal(Ink.getModule('Ink.Util.Whatever_1'), 'whatever');
+    Ink.deleteModule('Ink.Util.Whatever_1');
+    equal(Ink.getModule('Ink.Util.Whatever_1'));
+});
+
 

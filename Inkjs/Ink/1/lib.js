@@ -400,6 +400,13 @@
             return Ink.createModule('Ink.Ext.' + moduleName, version, dependencies, modFn);
         },
 
+        deleteModule: function (modName) {
+            if (!(modName in modules)) {
+                throw new Error('Module not found');
+            }
+            delete modules[modName];
+        },
+
         /**
          * Function.prototype.bind alternative.
          * Additional arguments will be sent to the original function as prefix arguments.
