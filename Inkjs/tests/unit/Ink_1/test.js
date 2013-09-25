@@ -50,7 +50,36 @@ test('deleteModule', function () {
     });
     equal(Ink.getModule('Ink.Util.Whatever_1'), 'whatever');
     Ink.deleteModule('Ink.Util.Whatever_1');
-    equal(Ink.getModule('Ink.Util.Whatever_1'));
+    equal(Ink.getModule('Ink.Util.Whatever_1'), undefined);
 });
 
+test('getPath, setPath', function () {
+    Ink.setPath('Ink', 'http://example.com/');
+    equal(Ink.getPath('Ink'), 'http://example.com/');
+
+    Ink.setPath('App', 'http://example.com/app/');
+    equal(Ink.getPath('App'), 'http://example.com/app/');
+
+    // cleanup
+    Ink.setPath('Ink', undefined);
+    Ink.setPath('App', undefined);
+});
+
+test('getPath, setPath', function () {
+    Ink.setPath('Ink.Sub', 'http://example.com/sub/');
+    equal(Ink.getPath('Ink.Sub'), 'http://example.com/sub/');
+    equal(Ink.getPath('Ink.Sub.Sub_1'), 'http://example.com/sub/');
+
+    Ink.setPath('Plug.Sub', 'http://example.com/subplug/');
+    equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/');
+    equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subplug/');
+
+    Ink.setPath('Ink.Sub.Sub', 'http://example.com/subsub/');
+    equal(Ink.getPath('Ink.Sub'), 'http://example.com/sub/');
+    equal(Ink.getPath('Ink.Sub.Sub_whoo'), 'http://example.com/subsub/');
+
+    Ink.setPath('Plug.Sub.Sub', 'http://example.com/subsubplug/');
+    equal(Ink.getPath('Plug.Sub'), 'http://example.com/subplug/');
+    equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/');
+});
 

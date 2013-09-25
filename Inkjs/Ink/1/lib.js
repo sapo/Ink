@@ -114,6 +114,16 @@
         },
 
         getPath: function(key) {
+            var split = key.split(/[._]/g);
+            var curKey;
+            var i;
+            for (i = split.length; i; i -= 1) {
+                curKey = split.slice(0, i + 1).join('.');
+                console.log(key);
+                if (curKey in paths) {
+                    return paths[curKey];
+                }
+            }
             return paths[key || 'Ink'];
         },
         
@@ -136,7 +146,7 @@
          *      Ink.requireModules(['Lol.Whatever'], function () { ... });
          */
         setPath: function(key, rootURI) {
-            paths[key] = rootURI;
+            paths[key.replace(/_/, '.')] = rootURI;
         },
 
         /**
