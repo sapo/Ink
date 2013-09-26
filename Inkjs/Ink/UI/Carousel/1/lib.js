@@ -112,7 +112,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this._element.style.width = this._liEls[0].offsetWidth + 'px';
                 this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
             } else {
-                this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
+                // this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
             }
 
             this._center();
@@ -126,7 +126,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _size: function (elm) {
-            var dims = InkElement.outerDimensions(elm)
+            var dims = InkElement.outerDimensions(elm);
             return this._isY ? dims[1] : dims[0];
         },
 
