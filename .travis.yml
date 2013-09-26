@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - 0.8
+branches:
+  only:
+    - develop
 before_script:
   - npm install -g grunt-cli
-secure: "CbMC/kBW16VnuUmj4NwMnhX+zpWGYkX4yosMm2+MSSVs1jOsa7QSSpAmDIK0ndTwxDklCZcvCtVx31fMYE3Krw1zQ9pjgOv/p+um0cxdhzDb51ttX8oSuZeRBKu4bB97a8vUKO9ywouZLFbc3HRHXQLyDuq3WKDJGFYOzhxkdQM="
+env:
+  global:
+    secure: "CbMC/kBW16VnuUmj4NwMnhX+zpWGYkX4yosMm2+MSSVs1jOsa7QSSpAmDIK0ndTwxDklCZcvCtVx31fMYE3Krw1zQ9pjgOv/p+um0cxdhzDb51ttX8oSuZeRBKu4bB97a8vUKO9ywouZLFbc3HRHXQLyDuq3WKDJGFYOzhxkdQM="
