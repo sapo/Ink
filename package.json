@@ -11,5 +11,8 @@
   "repository" :
   { "type" : "git"
   , "url" : "http://github.com/pedrocorreia/Ink.git"
+  },
+  "scripts": {
+    "test": "grunt --verbose"
   }
 }
