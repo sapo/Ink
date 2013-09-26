@@ -6,8 +6,7 @@
 
 var fs       = require('fs'),
     async    = require('async'),
-    sys      = require('sys'),
-    exec     = require('child_process').exec,
+    spawn     = require('child_process').spawn,
     myUtils  = require('./utils');
 
 
@@ -78,20 +77,24 @@ console.log('* ' + filesToBundle.join('\n* '));*/
 
 
 // options
-var options = ' -b',
-    command = '';
+var options = ['-b'],
+    command = [],
+    cmd;
 
 // If we have the minified flag, minify the bundling instead of beautifying it
 if(minify){
-    options = ' -e document,window:document,window -c -m eval=true ';
+    options = ['-e', 'document,window:document,window', '-c', '-m', 'eval=true'];
 }
 
-command = 'uglifyjs ' + filesToBundle.join(' ') + options + ' -o ' + bundleFile;
 
-// Execute bash command
-exec(command, function(error, stdout, stderr){
-    var message = minify ? 'minified' : 'beautified';
-    console.log('File bundled and ' + message + ': ' + bundleFile);
+options.push('-o', bundleFile);
+
+cmd = spawn('uglifyjs', filesToBundle.concat(options));
+cmd.stdout.on('data', function (data) {
+      console.log('stdout: ' + data);
+});
+cmd.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
 });
 /*
 async.forEachSeries(
@@ -107,7 +110,7 @@ async.forEachSeries(
     function(err) { // on all done or error...
         console.log(err ? err : 'Created bundle on ' + bundleFile);
         if(minify){
-        exec('uglifyjs '+bundleFile+' -e document,window:document,window -c -m toplevel=true,eval=true -o '+bundleFile, function(error, stdout, stderr){
+        spawn('uglifyjs '+bundleFile+' -e document,window:document,window -c -m toplevel=true,eval=true -o '+bundleFile, function(error, stdout, stderr){
             console.log('File minified: ' + bundleFile);
         });
         }
