@@ -109,8 +109,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._deltaLength = this._itemsPerPage * this._elLength;
             
             if (this._isY) {
-                // this._element.style.width = this._liEls[0].offsetWidth + 'px';
-                // this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
+                this._element.style.width = this._liEls[0].offsetWidth + 'px';
+                this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
             } else {
                 // this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
             }
