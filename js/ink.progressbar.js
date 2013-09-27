@@ -13,8 +13,6 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Element
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0

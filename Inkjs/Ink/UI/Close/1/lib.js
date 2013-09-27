@@ -15,8 +15,6 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      * 
      * @class Ink.UI.Close
      * @constructor
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Element
      * @example
      *     <script>
      *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){

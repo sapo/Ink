@@ -13,12 +13,6 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
      * @class Ink.UI.Spy
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.

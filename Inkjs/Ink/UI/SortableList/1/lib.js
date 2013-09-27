@@ -12,12 +12,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
      * @class Ink.UI.SortableList
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.

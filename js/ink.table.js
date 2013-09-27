@@ -13,13 +13,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @uses Ink.UI.Pagination
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     options.pageSize       Number of rows per page.

@@ -19,7 +19,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Shortcut for `document.getElementById`
          *
-         * @function get
+         * @method get
          * @param {String|DOMElement} elm   Either an ID of an element, or an element.
          * @return {DOMElement|null} The DOM element with the given id or null when it was not found
          */
@@ -36,7 +36,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Creates a DOM element
          *
-         * @function create
+         * @method create
          * @param {String} tag        tag name
          * @param {Object} properties  object with properties to be set on the element
          */
@@ -57,7 +57,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Removes a DOM Element from the DOM
          *
-         * @function remove
+         * @method remove
          * @param {DOMElement} elm  The element to remove
          */
         remove: function(el) {
@@ -70,7 +70,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Scrolls the window to an element
          *
-         * @function scrollTo
+         * @method scrollTo
          * @param {DOMElement|String} elm  Element where to scroll
          */
         scrollTo: function(elm) {
@@ -101,7 +101,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * Requires Ink.Dom.Browser
          *
-         * @function offsetTop
+         * @method offsetTop
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the top of the document
          */
@@ -114,7 +114,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * Requires Ink.Dom.Browser
          *
-         * @function offsetLeft
+         * @method offsetLeft
          * @param {DOMElement|String} elm  target element
          * @return {Number} Offset from the target element to the left of the document
          */
@@ -125,7 +125,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
         * Gets the element offset relative to its closest positioned ancestor
         *
-        * @function positionedOffset
+        * @method positionedOffset
         * @param {DOMElement|String} elm  target element
         * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
         */
@@ -160,7 +160,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * Requires Ink.Dom.Browser
          *
-         * @function offset
+         * @method offset
          * @param {DOMElement|String}   elm     Target element
          * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
          */
@@ -206,7 +206,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Gets the scroll of the element
          *
-         * @function scroll
+         * @method scroll
          * @param {DOMElement|String} [elm] target element or document.body
          * @returns {Array} offset values for x and y scroll
          */
@@ -238,7 +238,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Alias for offset()
          *
-         * @function offset2
+         * @method offset2
          * @deprecated Kept for historic reasons. Use offset() instead.
          */
         offset2: function(el) {
@@ -248,7 +248,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Verifies the existence of an attribute
          *
-         * @function hasAttribute
+         * @method hasAttribute
          * @param {Object} elm   target element
          * @param {String} attr  attribute name
          * @return {Boolean} Boolean based on existance of attribute
@@ -259,7 +259,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Inserts a element immediately after a target element
          *
-         * @function insertAfter
+         * @method insertAfter
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
          */
@@ -273,7 +273,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Inserts a element at the top of the childNodes of a target element
          *
-         * @function insertTop
+         * @method insertTop
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
          */
@@ -287,7 +287,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Retreives textContent from node
          *
-         * @function textContent
+         * @method textContent
          * @param {DOMNode} node from which to retreive text from. Can be any node type.
          * @return {String} the text
          */
@@ -334,7 +334,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Removes all nodes children and adds the text
          *
-         * @function setTextContent
+         * @method setTextContent
          * @param {DOMNode} node    node to add the text to. Can be any node type.
          * @param {String}  text    text to be appended to the node.
          */
@@ -374,7 +374,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Tells if element is a clickable link
          *
-         * @function isLink
+         * @method isLink
          * @param {DOMNode} node    node to check if it's link
          * @return {Boolean}
          */
@@ -387,7 +387,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Tells if ancestor is ancestor of node
          *
-         * @function isAncestorOf
+         * @method isAncestorOf
          * @param {DOMNode} ancestor  ancestor node
          * @param {DOMNode} node      descendant node
          * @return {Boolean}
@@ -411,7 +411,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Tells if descendant is descendant of node
          *
-         * @function descendantOf
+         * @method descendantOf
          * @param {DOMNode} node        the ancestor
          * @param {DOMNode} descendant  the descendant
          * @return {Boolean} true if 'descendant' is descendant of 'node'
@@ -422,7 +422,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Get first child in document order of node type 1
-         * @function firstElementChild
+         * @method firstElementChild
          * @param {DOMNode} elm parent node
          * @return {DOMNode} the element child
          */
@@ -442,7 +442,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Get last child in document order of node type 1
-         * @function lastElementChild
+         * @method lastElementChild
          * @param {DOMNode} elm parent node
          * @return {DOMNode} the element child
          */
@@ -463,7 +463,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Get the first element sibling after the node
          *
-         * @function nextElementSibling
+         * @method nextElementSibling
          * @param {DOMNode} node  current node
          * @return {DOMNode|Null} the first element sibling after node or null if none is found
          */
@@ -489,7 +489,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Get the first element sibling before the node
          *
-         * @function previousElementSibling
+         * @method previousElementSibling
          * @param {DOMNode}        node  current node
          * @return {DOMNode|Null} the first element sibling before node or null if none is found
          */
@@ -515,7 +515,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns the width of the given element, in pixels
          *
-         * @function elementWidth
+         * @method elementWidth
          * @param {DOMElement|string} element target DOM element or target ID
          * @return {Number} the element's width
          */
@@ -529,7 +529,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns the height of the given element, in pixels
          *
-         * @function elementHeight
+         * @method elementHeight
          * @param {DOMElement|string} element target DOM element or target ID
          * @return {Number} the element's height
          */
@@ -543,7 +543,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns the element's left position in pixels
          *
-         * @function elementLeft
+         * @method elementLeft
          * @param {DOMElement|string} element target DOM element or target ID
          * @return {Number} element's left position
          */
@@ -557,7 +557,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns the element's top position in pixels
          *
-         * @function elementTop
+         * @method elementTop
          * @param {DOMElement|string} element target DOM element or target ID
          * @return {Number} element's top position
          */
@@ -571,13 +571,33 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns the dimensions of the given element, in pixels
          *
-         * @function elementDimensions
+         * @method elementDimensions
          * @param {element} element target element
          * @return {Array} array with element's width and height
          */
         elementDimensions: function(element) {
             element = Ink.i(element);
-            return Array(element.offsetWidth, element.offsetHeight);
+            return [element.offsetWidth, element.offsetHeight];
+        },
+
+        /**
+         * Returns the outer (width + margin + padding included) dimensions of an element, in pixels.
+         *
+         * Requires Ink.Dom.Css
+         *
+         * @method uterDimensions
+         * @param {DOMElement} element Target element
+         * @return {Array} Array with element width and height.
+         */
+        outerDimensions: function (element) {
+            var bbox = Element.elementDimensions(element);
+
+            var Css = Ink.getModule('Ink.Dom.Css_1');
+            
+            return [
+                bbox[0] + parseFloat(Css.getStyle(element, 'marginLeft') || 0) + parseFloat(Css.getStyle(element, 'marginRight') || 0),  // w
+                bbox[1] + parseFloat(Css.getStyle(element, 'marginTop') || 0) + parseFloat(Css.getStyle(element, 'marginBottom') || 0)  // h
+            ];
         },
 
         /**
@@ -606,7 +626,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Applies the cloneFrom's dimensions to cloneTo
          *
-         * @function clonePosition
+         * @method clonePosition
          * @param {DOMElement} cloneTo    element to be position cloned
          * @param {DOMElement} cloneFrom  element to get the cloned position
          * @return {DOMElement} the element with positionClone
@@ -623,7 +643,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Slices off a piece of text at the end of the element and adds the ellipsis
          * so all text fits in the element.
          *
-         * @function ellipsizeText
+         * @method ellipsizeText
          * @param {DOMElement} element     which text is to add the ellipsis
          * @param {String}     [ellipsis]  String to append to the chopped text
          */
@@ -639,7 +659,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Searches up the DOM tree for an element fulfilling the boolTest function (returning trueish)
          *
-         * @function findUpwardsHaving
+         * @method findUpwardsHaving
          * @param {HtmlElement} element
          * @param {Function}    boolTest
          * @return {HtmlElement|false} the matched element or false if did not match
@@ -657,7 +677,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Śearches up the DOM tree for an element of specified class name
          *
-         * @function findUpwardsByClass
+         * @method findUpwardsByClass
          * @param {HtmlElement} element
          * @param {String}      className
          * @returns {HtmlElement|false} the matched element or false if did not match
@@ -674,7 +694,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Śearches up the DOM tree for an element of specified tag
          *
-         * @function findUpwardsByTag
+         * @method findUpwardsByTag
          * @param {HtmlElement} element
          * @param {String}      tag
          * @returns {HtmlElement|false} the matched element or false if did not match
@@ -690,7 +710,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Śearches up the DOM tree for an element of specified id
          *
-         * @function findUpwardsById
+         * @method findUpwardsById
          * @param {HtmlElement} element
          * @param {String}      id
          * @returns {HtmlElement|false} the matched element or false if did not match
@@ -705,7 +725,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Śearches up the DOM tree for an element matching the given selector
          *
-         * @function findUpwardsBySelector
+         * @method findUpwardsBySelector
          * @param {HtmlElement} element
          * @param {String}      sel
          * @returns {HtmlElement|false} the matched element or false if did not match
@@ -723,7 +743,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns trimmed text content of descendants
          *
-         * @function getChildrenText
+         * @method getChildrenText
          * @param {DOMElement}  el          element being seeked
          * @param {Boolean}     [removeIt]  whether to remove the found text nodes or not
          * @return {String} text found
@@ -771,7 +791,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns the values of a select element
          *
-         * @function getSelectValues
+         * @method getSelectValues
          * @param {DomElement|String} select element
          * @return {Array} selected values
          */
@@ -806,7 +826,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Fills select element with choices
          *
-         * @function fillSelect
+         * @method fillSelect
          * @param {DomElement|String}  container       select element which will get filled
          * @param {Array}              data            data which will populate the component
          * @param {Boolean}            [skipEmpty]     true to skip empty option
@@ -850,7 +870,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Select element on steroids - allows the creation of new values
          *
-         * @function fillSelect2
+         * @method fillSelect2
          * @param {DomElement|String} ctn select element which will get filled
          * @param {Object} opts
          * @param {Array}                      [opts.data]               data which will populate the component
@@ -952,7 +972,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Creates set of radio buttons, returns wrapper
          *
-         * @function fillRadios
+         * @method fillRadios
          * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
          * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
          * @param {Array}              data            data which will populate the component
@@ -1015,7 +1035,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Creates set of checkbox buttons, returns wrapper
          *
-         * @function fillChecks
+         * @method fillChecks
          * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
          * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
          * @param {Array}              data            data which will populate the component
@@ -1068,7 +1088,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns index of element from parent, -1 if not child of parent...
          *
-         * @function parentIndexOf
+         * @method parentIndexOf
          * @param {DOMElement}  parentEl  Element to parse
          * @param {DOMElement}  childEl   Child Element to look for
          * @return {Number}
@@ -1089,7 +1109,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns an array of elements - the next siblings
          *
-         * @function nextSiblings
+         * @method nextSiblings
          * @param {String|DomElement} elm element
          * @return {Array} Array of next sibling elements
          */
@@ -1115,7 +1135,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns an array of elements - the previous siblings
          *
-         * @function previousSiblings
+         * @method previousSiblings
          * @param {String|DomElement} elm element
          * @return {Array} Array of previous sibling elements
          */
@@ -1141,7 +1161,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Returns an array of elements - its siblings
          *
-         * @function siblings
+         * @method siblings
          * @param {String|DomElement} elm element
          * @return {Array} Array of sibling elements
          */
@@ -1167,7 +1187,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * fallback to elem.childElementCount
          *
-         * @function childElementCount
+         * @method childElementCount
          * @param {String|DomElement} elm element
          * @return {Number} number of child elements
          */
@@ -1183,7 +1203,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
        /**
         * parses and appends an html string to a container, not destroying its contents
         *
-        * @function appendHTML
+        * @method appendHTML
         * @param {String|DomElement} elm   element
         * @param {String}            html  markup string
         */
@@ -1199,7 +1219,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * parses and prepends an html string to a container, not destroying its contents
          *
-         * @function prependHTML
+         * @method prependHTML
          * @param {String|DomElement} elm   element
          * @param {String}            html  markup string
          */
@@ -1218,7 +1238,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * Removes direct children on type text.
          * Useful to remove nasty layout gaps generated by whitespace on the markup.
          *
-         * @function removeTextNodeChildren
+         * @method removeTextNodeChildren
          * @param  {DOMElement} el
          */
         removeTextNodeChildren: function(el) {
@@ -1236,7 +1256,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         /**
          * Pass an HTML string and receive a documentFragment with the corresponding elements
-         * @function htmlToFragment
+         * @method htmlToFragment
          * @param  {String} html  html string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
          */
@@ -1289,7 +1309,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         /**
          * Gets all of the data attributes from an element
          *
-         * @function data
+         * @method data
          * @param {String|DomElement} selector Element or CSS selector
          * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
         */
@@ -1333,7 +1353,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * @function moveCursorTo
+         * @method moveCursorTo
          * @param  {Input|Textarea}  el
          * @param  {Number}          t
          */
@@ -1352,7 +1372,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * @function pageWidth
+         * @method pageWidth
          * @return {Number} page width
          */
         pageWidth: function() {
@@ -1388,7 +1408,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * @function pageHeight
+         * @method pageHeight
          * @return {Number} page height
          */
         pageHeight: function() {
@@ -1420,7 +1440,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
        /**
-         * @function viewportWidth
+         * @method viewportWidth
          * @return {Number} viewport width
          */
         viewportWidth: function() {
@@ -1433,7 +1453,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * @function viewportHeight
+         * @method viewportHeight
          * @return {Number} viewport height
          */
         viewportHeight: function() {
@@ -1446,7 +1466,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * @function scrollWidth
+         * @method scrollWidth
          * @return {Number} scroll width
          */
         scrollWidth: function() {
@@ -1460,7 +1480,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * @function scrollHeight
+         * @method scrollHeight
          * @return {Number} scroll height
          */
         scrollHeight: function() {

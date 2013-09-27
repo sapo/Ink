@@ -233,7 +233,7 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
     var BinPack = {
 
         /**
-        * @function binPack
+        * @method binPack
         * @param {Object}      o              options
         * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
         * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions

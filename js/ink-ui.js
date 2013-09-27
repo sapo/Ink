@@ -16,10 +16,6 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
      *
      * @class Ink.UI.Aux
      * @version 1
-     * @uses Ink.Net.Ajax
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Url
      * @static
      */
     var Aux = {
@@ -537,11 +533,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
      * @param {Object} options Options
      * @param {Number}   options.size                number of pages
@@ -1009,12 +1000,6 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','
      * @class Ink.UI.SortableList
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
@@ -1349,12 +1334,6 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
      * @class Ink.UI.Spy
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
@@ -1473,11 +1452,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
      * @class Ink.UI.Sticky
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     options.offsetBottom       Number of pixels of distance from the bottomElement.
@@ -1739,13 +1713,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @uses Ink.UI.Pagination
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     options.pageSize       Number of rows per page.
@@ -1932,7 +1899,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
          * @private
          */
         _onClick: function( event ){
-            Event.stop(event);
+            
             var
                 tgtEl = Event.element(event),
                 dataset = Element.data(tgtEl),
@@ -1943,6 +1910,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Aux_1','Ink.Dom.
                 return;
             }
 
+            Event.stop(event);
+            
             index = -1;
             if( InkArray.inArray( tgtEl,this._headers ) ){
                 for( i=0; i<this._headers.length; i++ ){
@@ -2372,12 +2341,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      * @class Ink.UI.Tabs
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
@@ -2799,11 +2762,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
      * @class Ink.UI.Toggle
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
@@ -3029,6 +2987,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
      * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
      * @param {Object} [options]
      *     @param [options.text='']             Text content for the tooltip.
+     *     @param [options.html='']             HTML for the tooltip. Same as above, but won't escape HTML.
      *     @param [options.where='up']          Positioning for the tooltip. Options:
      *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
      *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
@@ -3214,7 +3173,11 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 tooltip.appendChild(field);
             }
             
-            InkElement.setTextContent(field, this._getOpt('text'));
+            if (this._getOpt('html')) {
+                field.innerHTML = this._getOpt('html');
+            } else {
+                InkElement.setTextContent(field, this._getOpt('text'));
+            }
             tooltip.style.display = 'block';
             tooltip.style.position = 'absolute';
             tooltip.style.zIndex = this._getIntOpt('zIndex');
@@ -3230,7 +3193,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 tooltip.style[transitionTimingFunctionName] = 'ease-in-out';
                 setTimeout(function () {
                     tooltip.style.opacity = '1';
-                }, 0);
+                }, 0); // Wait a tick
             }
         },
         _placeTooltipElement: function (tooltip, mousePosition) {
@@ -3482,12 +3445,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
@@ -3659,9 +3616,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
     /**
      * @class Ink.UI.SmoothScroller
      * @version 1
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Loaded
      * @static
      */
     var SmoothScroller = {
@@ -3895,12 +3849,6 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @class Ink.UI.ImageQuery
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
@@ -5055,8 +5003,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
     /**
      * @class Ink.UI.FormValidator
      * @version 1
-     * @uses Ink.Dom.Css
-     * @uses Ink.Util.Validator
      */
     var FormValidator = {
 
@@ -6523,13 +6469,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      * @class Ink.UI.DatePicker
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
-     * @uses Ink.Util.Date
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
@@ -7723,8 +7662,6 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
      * 
      * @class Ink.UI.Close
      * @constructor
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Element
      * @example
      *     <script>
      *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
@@ -7764,11 +7701,9 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
  * @version 1
  */
 Ink.createModule('Ink.UI.Carousel', '1',
-    ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Selector_1'],
-    function(Aux, Event, Css, Element, Pagination/*, Selector*/) {
+    ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
+    function(Aux, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
     'use strict';
-
-
 
     /*
      * TODO:
@@ -7791,49 +7726,49 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bind(this._onPaginationChange, this),
-            windowResize:     Ink.bind(this._onWindowResize,     this)
+            windowResize:     Ink.bind(this.refit, this)
         };
 
-        Event.observe(window, 'resize', this._handlers.windowResize);
+        InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
         this._element = Aux.elOrSelector(selector, '1st argument');
 
         this._options = Ink.extendObj({
-            axis:            'x',
-            center:          false,
-            keyboardSupport: false,
-            pagination:      null,
-            onChange:        null
-        }, options || {}, Element.data(this._element));
+            axis:           'x',
+            hideLast:       false,
+            center:         false,
+            keyboardSupport:false,
+            pagination:     null,
+            onChange:       null
+        }, options || {}, InkElement.data(this._element));
 
         this._isY = (this._options.axis === 'y');
 
         var rEl = this._element;
 
-        var ulEl = Ink.s('ul', rEl);
+        var ulEl = Ink.s('ul.stage', rEl);
         this._ulEl = ulEl;
 
-        Element.removeTextNodeChildren(ulEl);
-
-        var liEls = Ink.ss('li', ulEl);
-        this._liEls = liEls;
+        InkElement.removeTextNodeChildren(ulEl);
 
 
 
-        // hider
-        var hiderEl = document.createElement('div');
-        hiderEl.className = 'hider';
-        this._element.appendChild(hiderEl);
-        hiderEl.style[ this._isY ? 'width' : 'height' ] = '100%';
-        this._hiderEl = hiderEl;
-
-        this.remeasure();
-
-        if (this._options.center) {
-            this._center();
+        if (this._options.hideLast) {
+            var hiderEl = document.createElement('div');
+            hiderEl.className = 'hider';
+            this._element.appendChild(hiderEl);
+            hiderEl.style.position = 'absolute';
+            hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
+            hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
+            hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
+            this._hiderEl = hiderEl;
         }
-        else {
-            this._justUpdateHider();
+
+        this.refit();
+
+        if (this._isY) {
+            // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
+            this._ulEl.style.whiteSpace = 'normal';
         }
 
         if (this._options.pagination) {
@@ -7857,31 +7792,43 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Measure the carousel once again, adjusting the involved elements'
          * sizes. Called automatically when the window resizes, in order to
-         * cater for changes from responsive media queries.
+         * cater for changes from responsive media queries, for instance.
          *
-         * @method remeasure
+         * @method refit
          */
-        remeasure: function() {
-            var off = 'offset' + (this._options.axis === 'y' ? 'Height' : 'Width');
+        refit: function() {
+            this._liEls = Ink.ss('li.slide', this._ulEl);
             var numItems = this._liEls.length;
-            this._ctnLength = this._element[off];
-            this._elLength = this._liEls[0][off];
+            this._ctnLength = this._size(this._element);
+            this._elLength = this._size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
             this._numPages = Math.ceil( numItems / this._itemsPerPage );
             this._deltaLength = this._itemsPerPage * this._elLength;
             
-            var ulEl = this._ulEl;
-            var liEls = this._liEls;
             if (this._isY) {
-                this._element.style.width = liEls[0].offsetWidth + 'px';
-                ulEl.style.width  =  liEls[0].offsetWidth + 'px';
+                this._element.style.width = this._liEls[0].offsetWidth + 'px';
+                this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
+            } else {
+                this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
             }
-            else {
-                ulEl.style.height =  liEls[0].offsetHeight + 'px';
+
+            this._center();
+            this._updateHider();
+            this._IE7();
+            
+            if (this._pagination) {
+                this._pagination.setSize(this._numPages);
+                this._pagination.setCurrent(0);
             }
         },
 
+        _size: function (elm) {
+            var dims = InkElement.outerDimensions(elm)
+            return this._isY ? dims[1] : dims[0];
+        },
+
         _center: function() {
+            if (!this._options.center) { return; }
             var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
 
             var pad;
@@ -7892,13 +7839,33 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 pad = ['0 ', gap, 'px'];
             }
             this._ulEl.style.padding = pad.join('');
-
-            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
 
-        _justUpdateHider: function() {
+        _updateHider: function() {
+            if (!this._hiderEl) { return; }
             var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+            if (this._options.center) {
+                gap /= 2;
+            }
             this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
+        },
+        
+        /**
+         * Refit stuff for IE7 because it won't support inline-block.
+         *
+         * @method _IE7
+         * @private
+         */
+        _IE7: function () {
+            if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
+                var numPages = this._numPages;
+                var slides = Ink.ss('li.slide', this._ulEl);
+                var stl = function (prop, val) {slides[i].style[prop] = val; };
+                for (var i = 0, len = slides.length; i < len; i++) {
+                    stl('position', 'absolute');
+                    stl(this._isY ? 'top' : 'left', (i * this._elLength) + 'px');
+                }
+            }
         },
 
         _onPaginationChange: function(pgn) {
@@ -7906,22 +7873,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
                 this._options.onChange.call(this, currPage);
-            }
-        },
-
-        _onWindowResize: function() {
-            this.remeasure();
-
-            if (this._pagination) {
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
-            }
-
-            if (this._options.center) {
-                this._center();
-            }
-            else {
-                this._justUpdateHider();
             }
         }
     };
@@ -7944,12 +7895,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
      * @class Ink.UI.Modal
      * @constructor
      * @version 1
-     * @uses Ink.UI.Aux
-     * @uses Ink.Dom.Event
-     * @uses Ink.Dom.Css
-     * @uses Ink.Dom.Element
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Util.Array
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
@@ -8247,7 +8192,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom
         _onClick: function(ev) {
             var tgtEl = Event.element(ev);
 
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') ||
+            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
+                Element.findUpwardsByClass(tgtEl, 'ink-close') || Element.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
                     (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
@@ -8583,8 +8529,6 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
      * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
-     * @uses Ink.Dom.Selector
-     * @uses Ink.Dom.Element
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0

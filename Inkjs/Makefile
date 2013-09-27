@@ -55,6 +55,7 @@ runTests: extractTestsTree deleteTestResults
 docs:
 	@echo "\ngenerating documentation..."
 	@yuidoc -c .yuidoc.json -T default -q ./Ink
+	@cp .yuidoclogo.png docs/yuidoclogo.png
 
 
 liveDocs:

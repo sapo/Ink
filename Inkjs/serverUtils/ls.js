@@ -122,13 +122,13 @@ var parseNode = function(o, cfg) {
 
 
 /**
- * @function ls
+ * @method ls
  * @param	{Object}						cfg
- * @...		{			String}				path		- root path to start traversing
- * @...		{optional	Function(err, o)}	onComplete	- called when no directory is left to traverse
- * @...		{optional	Function(o}			onDir		- if defined, this method is on every directory found
- * @...		{optional	Function(o}			onFile		- if defined, this method is on every file found
- * @...		{optional	Function(o}			filterFn	- if defined, every element which returns a falsy value isn't traversed
+ *     @param {String}				[cfg.path]		- root path to start traversing
+ *     @param {Function(err, o)}	[cfg.onComplete]- called when no directory is left to traverse
+ *     @param {Function(o)}			[cfg.onDir]		- if defined, this method is on every directory found
+ *     @param {Function(o)}			[cfg.onFile]	- if defined, this method is on every file found
+ *     @param {Function(o)}			[cfg.filterFn]	- if defined, every element which returns a falsy value isn't traversed
  *
  * o object contains:
  *   {			String}		path	- the current path
