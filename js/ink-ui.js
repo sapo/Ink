@@ -2346,8 +2346,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
      *     @param {String}       [options.active]                  ID of the tab to activate on creation
      *     @param {Array}        [options.disabled]                IDs of the tabs that will be disabled on creation
-     *     @param {Function}     [options.onBeforeChange]          callback to be executed before changing tabs
-     *     @param {Function}     [options.onChange]                callback to be executed after changing tabs
+     *     @param {Function}     [options.onBeforeChange]          Callback to be executed before changing tabs
+     *     @param {Function}     [options.onChange]                Callback to be executed after changing tabs
+     *     @param {Boolean}      [options.triggerEventsOnLoad]     Trigger the above events when the page is loaded.
      * @example
      *      <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
      *          
@@ -2392,10 +2393,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
             active: undefined,
             disabled: [],
             onBeforeChange: undefined,
-            onChange: undefined
-        }, Element.data(selector));
-
-        this._options = Ink.extendObj(this._options,options || {});
+            onChange: undefined,
+            triggerEventsOnLoad: true
+        }, options || {}, Element.data(selector));
 
         this._handlers = {
             tabClicked: Ink.bindEvent(this._onTabClicked,this),
@@ -2429,7 +2429,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
             this._setFirstActive();
 
             //shows the active tab
-            this._changeTab(this._activeMenuLink);
+            this._changeTab(this._activeMenuLink, this._options.triggerEventsOnLoad);
 
             this._handlers.resize();
 
@@ -2820,10 +2820,9 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         this._options = Ink.extendObj({
             target : undefined,
             triggerEvent: 'click',
-            closeOnClick: true
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj(this._options,options || {});
+            closeOnClick: true,
+            closeOnInsideClick: 'a[href]'  // closes the toggle when a target is clicked and it is a link
+        }, options || {}, Element.data(this._rootElement));
 
         this._targets = (function (target) {
             if (typeof target === 'string') {
@@ -2834,6 +2833,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 } else {
                     return [target];
                 }
+            } else {
+                return [];
             }
         }(this._options.target));
 
@@ -2859,6 +2860,13 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
             if( this._options.closeOnClick.toString() === 'true' ){
                 Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
+            }
+            if( this._options.closeOnInsideClick ) {
+                Event.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
+                    if ( Element.findUpwardsBySelector(Event.element(e), this._options.closeOnInsideClick) ) {
+                        this._dismiss();
+                    }
+                }, this));
             }
         },
 
@@ -2909,6 +2917,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             } else {
                 Css.removeClassName(this._rootElement,'active');
             }
+
+            Event.stop(event);
         },
 
         /**

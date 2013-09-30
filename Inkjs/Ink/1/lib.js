@@ -1,4 +1,4 @@
-(function() {
+(function(window, document) {
 
     'use strict';
 
@@ -23,9 +23,8 @@
      * NOTE:
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
-    var paths = {
-	    Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
-    };
+    var paths = {};
+    var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulesLoadOrder = [];
     var modulesRequested = {};
@@ -85,26 +84,76 @@
             }
         },
 
-        _modNameToUri: function(modName) {
-            if (modName.indexOf('/') !== -1) {
-                return modName;
-            }
-            var parts = modName.replace(/_/g, '.').split('.');
-            var root = parts.shift();
-            var uriPrefix = paths[root];
-            if (!uriPrefix) {
-                uriPrefix = './' + root + '/';
-                // console.warn('Not sure where to fetch ' + root + ' modules from! Attempting ' + uriPrefix + '...');
-            }
-            return [uriPrefix, parts.join('/'), '/lib.js'].join('');
+        /**
+         * Sets or unsets the static mode.
+         *
+         * Enable static mode to disable dynamic loading of modules and throw an exception.
+         *
+         * @method setStaticMode
+         *
+         * @param {Boolean} staticMode
+         */
+        setStaticMode: function(newStatus) {
+            staticMode = newStatus;
         },
-
-        getPath: function(key) {
-            return paths[key || 'Ink'];
+        
+        /**
+         * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
+         *
+         * @method getPath
+         * @param modName   Name of the module you want the path of.
+         * @param noLib     Exclude the 'lib.js' filename
+         */
+        getPath: function(key, noLib) {
+            var split = key.split(/[._]/g);
+            var curKey;
+            var i;
+            var root;
+            var path;
+            // Look for Ink.Dom.Element.1, Ink.Dom.Element, Ink.Dom, Ink in this order.
+            for (i = split.length; i >= 0; i -= 1) {
+                curKey = split.slice(0, i + 1).join('.');  // See comment in setPath
+                if (paths[curKey]) {
+                    root = curKey;
+                    break;
+                }
+            }
+            path = paths[root || 'Ink'];
+            if (path[path.length - 1] !== '/') {
+                path += '/';
+            }
+            if (i < split.length) {
+                path += split.slice(i + 1).join('/') + '/';
+            }
+            if (!noLib) {
+                path += 'lib.js';
+            }
+            return path;
         },
-
+        
+        /**
+         * Sets the URL path for a namespace. Use this to customize where
+         * requireModules (and createModule) will load dependencies from.
+         *
+         * @method setPath
+         *
+         * @param key
+         * @param rootURI
+         *
+         * @example
+         *      Ink.setPath('Ink', 'http://my-cdn/Ink/');
+         *      Ink.setPath('Lol', 'http://my-cdn/Lol/');
+         *
+         *      // Loads from http://my-cdn/Ink/Dom/Whatever/lib.js
+         *      Ink.requireModules(['Ink.Dom.Whatever'], function () { ... });
+         *      // Loads from http://my-cdn/Lol/Whatever/lib.js
+         *      Ink.requireModules(['Lol.Whatever'], function () { ... });
+         */
         setPath: function(key, rootURI) {
-            paths[key] = rootURI;
+            // Replacing version separator with dot because the difference
+            // between a submodule and a version doesn't matter here.
+            // It would also overcomplicate the implementation of getPath
+            paths[key.replace(/_/, '.')] = rootURI;
         },
 
         /**
@@ -116,9 +165,17 @@
         loadScript: function(uri) {
             /*jshint evil:true */
 
+            if (staticMode) {
+                throw new Error('Requiring a module to be loaded dynamically while in static mode');
+            }
+
+            if (uri.indexOf('/') === -1) {
+                uri = this.getPath(uri);
+            }
+
             var scriptEl = document.createElement('script');
             scriptEl.setAttribute('type', 'text/javascript');
-            scriptEl.setAttribute('src', this._modNameToUri(uri));
+            scriptEl.setAttribute('src', uri);
 
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
@@ -186,18 +243,18 @@
          * @param  {Function}  modFn    its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module.
          */
         createModule: function(mod, ver, deps, modFn) { // define
+            if (typeof mod !== 'string') {
+                throw new Error('module name must be a string!');
+            }
+
+            // validate version correctness
+            if (typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0)) {
+            } else {
+                throw new Error('version number missing!');
+            }
+
             var cb = function() {
                 //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
-
-                if (typeof mod !== 'string') {
-                    throw new Error('module name must be a string!');
-                }
-
-                // validate version correctness
-                if (typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0)) {
-                } else {
-                    throw new Error('version number missing!');
-                }
 
                 var modAll = [mod, '_', ver].join('');
 
@@ -336,17 +393,26 @@
         getModuleScripts: function() {
             var mlo = this.getModulesLoadOrder();
             mlo.unshift('Ink_1');
-            // console.log(mlo);
             mlo = mlo.map(function(m) {
-                var cutAt = m.indexOf('.');
-                if (cutAt === -1) { cutAt = m.indexOf('_'); }
-                var root = m.substring(0, cutAt);
-                m = m.substring(cutAt + 1);
-                var rootPath = Ink.getPath(root);
-                return ['<script type="text/javascript" src="', rootPath, m.replace(/\./g, '/'), '/"></script>'].join('');
+                return ['<script type="text/javascript" src="', Ink.getModuleURL(m), '"></script>'].join('');
             });
 
             return mlo.join('\n');
+        },
+        
+        /**
+         * Creates an Ink.Ext module
+         *
+         * Does exactly the same as createModule but creates the module in the Ink.Ext namespace
+         *
+         * @method createExt
+         * @param {String} moduleName   Extension name
+         * @param {String} version  Extension version
+         * @param {Array}  dependencies Extension dependencies
+         * @param {Function} modFn  Function returning the extension
+         */
+        createExt: function (moduleName, version, dependencies, modFn) {
+            return Ink.createModule('Ink.Ext.' + moduleName, version, dependencies, modFn);
         },
 
         /**
@@ -486,6 +552,9 @@
 
     };
 
+    Ink.setPath('Ink',
+        ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/');
+
 
 
     // TODO for debug - to detect pending stuff
@@ -519,4 +588,4 @@
     }, checkDelta*1000);
     */
 
-})();
+})(window, document);
