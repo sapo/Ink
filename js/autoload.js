@@ -59,7 +59,12 @@
         /***************************
          * Tooltip - Default CSS selector is .tooltip
          ***************************/
-         'Tooltip_1': '.tooltip'
+         'Tooltip_1': '.tooltip',
+
+        /***************************
+         * Carousel - Default CSS selector is .ink-carousel
+         ***************************/
+         'Carousel_1': '.ink-carousel'
     };
 
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.Util.Array_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'],
