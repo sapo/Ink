@@ -1,5 +1,5 @@
 # JEKYLL
-exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png"]
+exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
 
 destination: ./_site
 
@@ -38,13 +38,34 @@ navigation:
    url: ./alerts/
  - text: Tables
    url: ./tables/
- - text: Ink JS
-   submenu: 
-   - text: UI
-     url: ./javascript/ui/
-   - text: Core
-     url: ./javascript/core/
-
+ - text: JavaScript Core
+   url: ./javascript/core/
+ - text: JavaScript UI
+   submenu:
+   - text: Modal
+     url: ./javascript/ui/modal/
+   - text: Table
+     url: ./javascript/ui/table/
+   - text: Tree view
+     url: ./javascript/ui/tree-view/
+   - text: Carousel
+     url: ./javascript/ui/carousel/
+   - text: Sortable list
+     url: ./javascript/ui/sortable-list/
+   - text: Date picker
+     url: ./javascript/ui/date-picker/
+   - text: Tabs
+     url: ./javascript/ui/tabs/
+   - text: Draggables
+     url: ./javascript/ui/draggables/
+   - text: Droppables
+     url: ./javascript/ui/droppables/
+   - text: Tooltips
+     url: ./javascript/ui/tooltips/
+   - text: Form validator
+     url: ./javascript/ui/form-validator/
+ - text: Glossary
+   url: ./glossary/
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D

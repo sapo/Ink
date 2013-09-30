@@ -1,0 +1,402 @@
+---
+layout: default 
+title: JS Core 
+base_path: ../../../
+---
+<div class="ink-grid">
+    <section id="modal" data-spy="true" data-target="#ui_menu">
+        <h2>
+            Modal Window
+        </h2>
+        <p class="note">
+            <a href="#modalCode" class="scrollableLink">Skip to the code</a>
+        </p>
+        <p>
+            The Modal Window component allows you to place content in the form of
+            a dialog window that takes center stage and fades out the rest of your
+            content, allowing you to focus attention on that content and even require
+            a certain action from your users to dismiss, or interact with that window.
+        </p>
+        <p>
+            Ink's Modal Window component is basically a bit of HTML and a Javascript
+            instruction, so it's really easy to use and very flexible, allowing you
+            to easily add text, images, videos, iframes, you name it.
+        </p>
+        <p>
+            The Modal Window is also really easy to configure, like our other components,
+            simply by using data-attributes. Let's see how to get started.
+        </p>
+        <h3>
+            Necessary JS modules
+        </h3>
+        <p>
+            Before you begin, make sure you're including the necessary Javascript
+            inside your
+            <code>
+                &lt;head&gt;
+            </code>
+            , you'll need ink.js, ink.modal.js and autoload.js to initialize the module
+            automatically.
+        </p>
+        <p>
+            <span class="ink-label info">
+                Code
+            </span>
+        </p>
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/ink.modal.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/autoload.js&quot;&gt;&lt;/script&gt;</pre>
+        <p>
+            If you opted for not using the autoload feature, then you'll need to initialize
+            the Modal component by hand. Simply include the following code, at the
+            end of your page, before the closing
+            <code>
+                &lt;body&gt;
+            </code>
+        </p>
+        <p>
+            <span class="ink-label info">
+                Code
+            </span>
+        </p>
+        <pre class="prettyprint linenums">
+            &lt;script type=&quot;text/javascript&quot;&gt; // There are two ways
+            to run the code... // 1 - If you know you have the component and its dependencies
+            already loaded, just do: var modal = new Ink.UI.Modal( '#test' ); // 2
+            - If you're not sure the component or its dependencies are loaded at runtime,
+            do: Ink.requireModules( ['Ink.UI.Modal_1'], function(Modal){ new Modal(
+            '#test' ); }); &lt;/script&gt;
+        </pre>
+        <h3>
+            Building the window
+        </h3>
+        <p>
+            First, you need to create two wrappers, by using two
+            <code>
+                &lt;div&gt;
+            </code>
+            . The first one must have the
+            <code>
+                .ink-shade
+            </code>
+            class, and takes care of darkening the background in order to make your
+            modal window float above the rest of the page. The second one, inside the
+            first, must have the
+            <code>
+                .ink-modal
+            </code>
+            class, to take care of setting up your window.
+        </p>
+        <p>
+            The
+            <code>
+                .ink-modal
+            </code>
+            wrapper is the configurable bit of the window, which you can change by
+            using data-attributes. Let's look at just the most common one, for now,
+            which allows you to fire up your window from another element, such as a
+            link:
+            <code>
+                data-trigger="#myModal"
+            </code>
+            , this ID (in the example "myModal"), will be targetted by the Javascript
+            instruction which will render the window onscreen; you can change the ID
+            to whatever suits your particular case. If you don't use this attribute,
+            the modal window will simply be created on page load, which is actually
+            something you may want, so all our data-attributes are optional.
+        </p>
+        <p>
+            There's a lot more you can configure with data-attributes, but let's stay
+            with the basic for now and we'll give you a list of all the parameters
+            and their values further ahead.
+        </p>
+        <p>
+            So, up to now, you have this:
+        </p>
+        <p>
+            <span class="ink-label info">
+                Code
+            </span>
+        </p>
+        <pre class="prettyprint linenums">
+            &lt;div class=&quot;ink-shade&gt; &lt;div class=&quot;ink-modal&quot;
+            data-trigger=&quot;#myModal&quot;&gt;&lt;/div&gt; &lt;/div&gt;
+        </pre>
+        <p>
+            That is the skelleton for the modal window. To add some content, you can
+            create three
+            <code>
+                &lt;div&gt;
+            </code>
+            , one for each of the
+            <code>
+                .modal-header
+            </code>
+            ,
+            <code>
+                .modal-body
+            </code>
+            and
+            <code>
+                .modal-footer
+            </code>
+            elements, inside the
+            <code>
+                .ink-modal
+            </code>
+            container. These are self-explanatory and you can add whatever you want
+            inside them, such as headings, paragraphs, lists, images, videos, etc.
+        </p>
+        <p>
+            You'll need an interactive element to close your window, so Ink offers
+            the
+            <code>
+                .ink-dismiss
+            </code>
+            class, which you can add to pretty much anything: an anchor, a button,
+            a piece of text or an image which, when clicked by the user, will cause
+            the modal window to be dismissed. There is also a
+            <code>
+                .modal-close
+            </code>
+            class which specifically renders a small "X" button in your modal window
+            to keep up with the familiarity factor from general users. Add it to a
+            button, together with the dismiss class, in your modal window's header
+            element, for example.
+        </p>
+        <p>
+            Let's see what we have so far, then:
+        </p>
+        <p>
+            <span class="ink-label info">
+                Code
+            </span>
+        </p>
+        <pre class="prettyprint linenums">
+            &lt;div class=&quot;ink-shade&quot;&gt; &lt;div class=&quot;ink-modal&quot;
+            data-trigger=&quot;#myModal&quot;&gt; &lt;div class=&quot;modal-header&quot;&gt;&lt;/div&gt;
+            &lt;!--Add a title and a close button here--&gt; &lt;div class=&quot;modal-body&quot;&gt;&lt;/div&gt;
+            &lt;!--Add some text and an image, or a form, here--&gt; &lt;div class=&quot;modal-footer&quot;&gt;&lt;/div&gt;
+            &lt;!--Add your submit button and a close button, here--&gt; &lt;/div&gt;
+            &lt;/div&gt;
+        </pre>
+        <p>
+            Simple enough, right? Now you need a link or a button to fire up your
+            modal window, just make sure it has the same ID as you defined before.
+            In our case: "myModal"
+        </p>
+        <p>
+            <span class="ink-label info">
+                Code
+            </span>
+        </p>
+        <pre class="prettyprint linenums">
+            &lt;button id=&quot;#myModal&quot;&gt;Open My Modal&lt;/button&gt;
+        </pre>
+        <p>
+            <span class="ink-label info">
+                Hint
+            </span>
+            We suggest you add the
+            <code>
+                .fade
+            </code>
+            class to your
+            <code>
+                .ink-shade
+            </code>
+            container, to obtain a fade-in/fade-out transition for your modal window.
+            Why don't you hop over to our glorious
+            <a href="/glossary">glossary</a>
+            to get an overview of every available class in Ink?
+        </p>
+        <p id="modalCode">
+            So, without further ado, you can
+            <a href="#" id="bModal">open the example window</a>
+            , and then, check out the example code below, by hitting the view code
+            button.
+        </p>
+        <p>
+            <button data-target="#modal_sourcecode" class="ink-button toggle">
+                View Source Code
+            </button>
+        </p>
+        <pre id="modal_sourcecode" class="ink-l100 hide-all prettyprint linenums">
+            &lt;div class=&quot;ink-shade fade&quot;&gt; &lt;div id=&quot;test&quot;
+            class=&quot;ink-modal&quot; data-trigger=&quot;#bModal&quot; data-width=&quot;800px&quot;
+            data-height=&quot;400px&quot;&gt; &lt;div class=&quot;modal-header&quot;&gt;
+            &lt;button class=&quot;modal-close ink-dismiss&quot;&gt;&lt;/button&gt;
+            &lt;h5&gt;Modal windows can have headers&lt;/h5&gt; &lt;/div&gt; &lt;div
+            class=&quot;modal-body&quot; id=&quot;modalContent&quot;&gt; &lt;h3&gt;Please
+            confirm your previous choice&lt;/h3&gt; &lt;p&gt;&quot;No,&quot; said Peleg,
+            &quot;and he hasn't been baptized right either, or it would have washed
+            some of that devil's blue off his face.&quot;&lt;/p&gt; &lt;p&gt; &lt;img
+            src=&quot;http://placehold.it/800x400&quot; style=&quot;width: 100%;&quot;
+            alt=&quot;&quot;&gt; &lt;/p&gt; &lt;p&gt;&quot;Do tell, now,&quot; cried
+            Bildad, &quot;is this Philistine a regular member of Deacon Deuteronomy's
+            meeting? I never saw him going there, and I pass it every Lord's day.&quot;&lt;/p&gt;
+            &lt;p&gt;&quot;I don't know anything about Deacon Deuteronomy or his meeting,&quot;
+            said I; &quot;all I know is, that Queequeg here is a born member of the
+            First Congregational Church. He is a deacon himself, Queequeg is.&quot;&lt;/p&gt;
+            &lt;/div&gt; &lt;div class=&quot;modal-footer&quot;&gt; &lt;div class=&quot;push-right&quot;&gt;
+            &lt;button class=&quot;ink-button info&quot;&gt;Confirm&lt;/button&gt;
+            &lt;button class=&quot;ink-button caution ink-dismiss&quot;&gt;Cancel&lt;/button&gt;
+            &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;a href=&quot;#&quot;
+            id=&quot;bModal&quot;&gt;Open modal&lt;/a&gt; &lt;script&gt; // There are
+            two ways to run the code... // 1 - If you know you have the component and
+            its dependencies already loaded, just do: var modal = new Ink.UI.Modal(
+            '#test' ); // 2 - If you're not sure the component or its dependencies
+            are loaded at runtime, do: Ink.requireModules( ['Ink.UI.Modal_1'], function(Modal){
+            new Modal( '#test' ); }); &lt;/script&gt;
+        </pre>
+        <h3>
+            Configurable data attributes
+        </h3>
+        <p>
+            As you can see in the example code above, there are several data-attributes
+            you can use to configure your window. In our case, we defined a certain
+            width and height, but there's more you can use, just check out the list
+            below and remember that these are all optional.
+        </p>
+        <ul>
+            <!-- <li>HTML formatted messages</li> -->
+            <li>
+                <strong>
+                    data-width
+                </strong>
+                and
+                <strong>
+                    data-height
+                </strong>
+                define the size of your window and must be a valid unit, such as
+                <code>
+                    px
+                </code>
+                ,
+                <code>
+                    em
+                </code>
+                or
+                <code>
+                    %
+                </code>
+                . Example:
+                <code>
+                    data-width="300px"
+                </code>
+                <code>
+                    data-height="600px"
+                </code>
+            </li>
+            <li>
+                <strong>
+                    data-trigger
+                </strong>
+                allows you to specify one or more elements that will trigger you modal
+                window, it must be a valid CSS selector. Example:
+                <code>
+                    data-trigger="#button"
+                </code>
+                . If you don't use this property, the modal window will be rendered as
+                soon as it's created.
+            </li>
+            <li>
+                <strong>
+                    data-trigger-event
+                </strong>
+                lets you specify in what event will the window be triggered, must be used
+                together with
+                <code>
+                    data-trigger
+                </code>
+                and must be a valid Javascript event. Example:
+                <code>
+                    data-trigger-event="mouseover"
+                </code>
+                .
+            </li>
+            <li>
+                <strong>
+                    data-responsive
+                </strong>
+                makes your window respond to changes in viewport width, must be "true"
+                (default) or "false". Example:
+                <code>
+                    data-responsive="false"
+                </code>
+            </li>
+            <li>
+                <strong>
+                    data-close-on-click
+                </strong>
+                defines whether or not your modal window will close if you click anywhere
+                in the viewport, outside said window. Must be "true" or "false" (default).
+                Example:
+                <code>
+                    data-close-on-click="true"
+                </code>
+            </li>
+            <li>
+                <strong>
+                    data-disable-scroll
+                </strong>
+                allows you to disable scolling your page behind the modal window. Values
+                are "true" (default) or "false". Example:
+                <code>
+                    data-disable-scroll="false"
+                </code>
+            </li>
+        </ul>
+        <p>
+            Other options, more directed for the Javascript implementation, and a
+            more detailed explanation of the above ones are available in the
+            <a target="_blank" href="Ink.UI.Modal.html">technical documentation</a>
+            .
+        </p>
+        <div class="ink-shade fade">
+            <div id="test" class="ink-modal" data-trigger="#bModal" data-disable-scroll="true"
+            data-width="800px" data-height="600px">
+                <div class="modal-header">
+                    <button class="modal-close ink-dismiss">
+                    </button>
+                    <h5>
+                        Modal windows can have headers
+                    </h5>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <h3>
+                        Please confirm your previous choice
+                    </h3>
+                    <p>
+                        "No," said Peleg, "and he hasn't been baptized right either, or it would
+                        have washed some of that devil's blue off his face."
+                    </p>
+                    <p>
+                        <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+                    </p>
+                    <p>
+                        "Do tell, now," cried Bildad, "is this Philistine a regular member of
+                        Deacon Deuteronomy's meeting? I never saw him going there, and I pass it
+                        every Lord's day."
+                    </p>
+                    <p>
+                        "I don't know anything about Deacon Deuteronomy or his meeting," said
+                        I; "all I know is, that Queequeg here is a born member of the First Congregational
+                        Church. He is a deacon himself, Queequeg is."
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <div class="push-right">
+                        <button class="ink-button blue">
+                            Confirm
+                        </button>
+                        <button class="ink-button red ink-dismiss">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
