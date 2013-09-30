@@ -22,8 +22,10 @@ fonts_url: font/
 
 # SITE PAGES
 navigation:
+ # GETTING STARTED
  - text: Getting started
    url: ./getting_started/
+ # LAYOUT
  - text: Layout
    url: ./layout/
  - text: Navigation
@@ -42,14 +44,19 @@ navigation:
    url: ./javascript/core/
  - text: JavaScript UI
    submenu:
+   # MODAL WINDOW
    - text: Modal
      url: ./javascript/ui/modal/
+   # TABLE
    - text: Table
      url: ./javascript/ui/table/
+   # TREE VIEW
    - text: Tree view
      url: ./javascript/ui/tree-view/
+   # CAROUSEL
    - text: Carousel
      url: ./javascript/ui/carousel/
+   # SORTABLE LIST
    - text: Sortable list
      url: ./javascript/ui/sortable-list/
    - text: Date picker

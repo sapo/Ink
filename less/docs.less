@@ -31,7 +31,7 @@ mark {
     padding:1px 3px;
 }
 
-.grid-example {
+.gridExample {
 
     p {
         #ink > #border-radius > .all(4px);
@@ -265,8 +265,8 @@ footer {
                         font-size: 2em;
                         font-weight: bold;
                         line-height: 1.3;
-                        padding: 0 0.5em;
-                        // margin-right: .5em;
+                        padding: 0;
+                        margin-right: .5em;
 
                         &:hover {
                             background: none;
@@ -305,6 +305,15 @@ footer {
                     }
 
                     top: 2.66em;
+                }
+            }
+
+            &.horizontal {
+                li {
+                    ul.submenu {
+                        width: auto;
+                        max-width: 15em;
+                    }
                 }
             }
 
@@ -405,8 +414,6 @@ footer {
 }
 
 
-
-
 /* Prettyfier  */
 pre {
     background: #FEFBF3;
@@ -466,7 +473,6 @@ code {
     border: 1px solid #E0E0E0;
     background: #E9E9E9;
     padding: 0 4px;
-    font-family: Ubuntu_monospaced;
 }
 
 section,

@@ -1,0 +1,377 @@
+---
+layout: default 
+title: Javascript UI - Tabs
+base_path: ../../../
+---
+<div class="ink-grid">
+    <section id="tabs" data-spy="true" data-target="#ui_menu">
+    <h2>Tabs</h2>
+    <p class="note"><a href="#tabsCode" class="scrollableLink">Skip to the code</a></p>
+    <p>The Tabs Component offers a simple way to build a tab-separated layout, allowing you to offer multiple content in the same space with intuitive navigation.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.tabs.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.modal.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/autoload.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Tabs component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p>Notice that, in this particular case, when initializing the module, you'll have to declare which tab is active on load and which aren't, by using their respective indexes.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">    </span><span class="com">// There are two ways to run the code...</span></li><li class="L2"><span class="pln">    </span><span class="com">// 1 - If you know you have the component and its dependencies already loaded, just do:</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> tabs </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">Tabs</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tabs'</span><span class="pun">,{</span></li><li class="L4"><span class="pln">        disabled</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'#stuff'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'#more_stuff'</span><span class="pun">],</span><span class="pln"> </span></li><li class="L5"><span class="pln">        active</span><span class="pun">:</span><span class="pln"> </span><span class="str">'#news'</span><span class="pun">,</span></li><li class="L6"><span class="pln">        onBeforeChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L7"><span class="pln">            console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'beforeChange'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L8"><span class="pln">        </span><span class="pun">},</span><span class="pln"> </span></li><li class="L9"><span class="pln">        onChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L0"><span class="pln">            console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Changed'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L1"><span class="pln">        </span><span class="pun">}</span></li><li class="L2"><span class="pln">    </span><span class="pun">});</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    </span><span class="com">// 2 - If you're not sure the component or its dependencies are loaded at runtime, do:</span></li><li class="L5"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="str">'Ink.UI.Tabs_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="typ">Tabs</span><span class="pun">){</span></li><li class="L6"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabs</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tabs'</span><span class="pun">,{</span></li><li class="L7"><span class="pln">            disabled</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'#stuff'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'#more_stuff'</span><span class="pun">],</span><span class="pln"> </span></li><li class="L8"><span class="pln">            active</span><span class="pun">:</span><span class="pln"> </span><span class="str">'#news'</span><span class="pun">,</span></li><li class="L9"><span class="pln">            onBeforeChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L0"><span class="pln">                console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'beforeChange'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L1"><span class="pln">            </span><span class="pun">},</span><span class="pln"> </span></li><li class="L2"><span class="pln">            onChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L3"><span class="pln">                console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Changed'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L4"><span class="pln">            </span><span class="pun">}</span></li><li class="L5"><span class="pln">        </span><span class="pun">});</span></li><li class="L6"><span class="pln">    </span><span class="pun">});</span></li><li class="L7"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h3>Building tabs</h3>
+    <p>To make a tabbed view, you'll need a block element with the <code>.ink-tabs</code> class, such as a <code>&lt;div&gt;</code>, within which you'll have a <code>&lt;ul&gt;</code> for your tabbed navigation and a set of <code>&lt;div&gt;</code> elements to hold the content of each tab. Your <code>.ink-tabs</code> element should also have a class to determine where the navigation will be in relation to the content: <code>.top</code>, <code>.bottom</code>, <code>.left</code> or <code>.right</code></p>
+    <p>The <code>&lt;ul&gt;</code> must have the <code>.tabs-nav</code> class and each list element must be wrapped in an anchor pointing to a valid ID in the content of the tabs.</p>
+    <p>Each of the <code>&lt;div&gt;</code> holding the content, must have the <code>.tabs-content</code> class and an ID that matches the navigation anchors.</p>
+    <p>If you're making a tabbed view with tabs on top, on the left or on the right, put the navigation first in your markup, if you need the tabs at the bottom, then, put the content first and the navigation after.</p>
+    <p>Examples of each and a full code snippet will follow, but for now, let's look at an example code, just to clarify everything.</p>
+    <p><span class="ink-label info">Example Code</span></p>
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-tabs top"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="com">&lt;!-- Creates a tabbed view with top nav --&gt;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-nav"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#item1"</span><span class="tag">&gt;</span><span class="pln">Item 1</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span><span class="pln"> </span><span class="com">&lt;!-- Points to item 1 below --&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#item2"</span><span class="tag">&gt;</span><span class="pln">Item 2</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span><span class="pln"> </span><span class="com">&lt;!-- Points to item 2 below --&gt;</span></li><li class="L4"><span class="pln">    ...</span></li><li class="L5"><span class="pln">  </span><span class="tag">&lt;/ul&gt;</span></li><li class="L6"><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"item1"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="com">&lt;!-- Item 1 --&gt;</span></li><li class="L7"><span class="pln">    ... </span><span class="com">&lt;!-- Your tab content here --&gt;</span></li><li class="L8"><span class="pln">  </span><span class="tag">&lt;/div&gt;</span></li><li class="L9"><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"item2"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="com">&lt;!-- Item 2 --&gt;</span></li><li class="L0"><span class="pln">    ... </span><span class="com">&lt;!-- Your tab content here --&gt;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;/div&gt;</span></li><li class="L2"><span class="pln">  ...</span></li><li class="L3"><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+
+    
+        <p><span class="ink-label success">Example</span> With top navigation</p>
+        <div class="box">
+            <div class="ink-tabs top hide-small" data-active="#ui_tabs_news_1" data-prevent-url-change="true" data-instance="tabs5">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_1">Shotgun</a></li>
+                    <li class="active"><a href="#ui_tabs_news_1">Nails</a></li>
+                    <li><a href="#ui_tabs_description_1">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_1">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_1" class="tabs-content hide-all" style="display: none;">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_1" class="tabs-content active" style="">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_1" class="tabs-content hide-all" style="display: none;">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_1" class="tabs-content hide-all" style="display: none;">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>            </div>
+            <div class="ink-tabs top hide-all show-small" data-active="#ui_tabs_news_1" data-prevent-url-change="true" data-instance="tabs6">
+                <ul class="tabs-nav hide-small">
+                    <li><a href="#ui_tabs_home_1" class="small">Shotgun</a></li>
+                    <li class="active"><a href="#ui_tabs_news_1" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_1" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_1" class="small">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_1" class="tabs-content hide-all" style="display: none;">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_1" class="tabs-content active" style="">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_1" class="tabs-content hide-all" style="display: none;">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_1" class="tabs-content hide-all" style="display: none;">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>            </div>
+        </div>
+
+        <p><span class="ink-label success">Example</span> With bottom navigation</p>
+        <div class="box">
+            <div class="ink-tabs bottom hide-small" data-active="#ui_tabs_home_2" data-instance="tabs7">
+                
+            <div id="ui_tabs_home_2" class="tabs-content active" style="">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_2" class="tabs-content hide-all" style="display: none;">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_2" class="tabs-content hide-all" style="display: none;">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_2" class="tabs-content hide-all" style="display: none;">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>                <ul class="tabs-nav">
+                    <li class="active"><a href="#ui_tabs_home_2">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_2">Nails</a></li>
+                    <li><a href="#ui_tabs_description_2">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_2">Lightning</a></li>
+                </ul>
+            </div>
+            <div class="ink-tabs bottom hide-all show-small" data-active="#ui_tabs_home_2" data-instance="tabs8">
+                
+            <div id="ui_tabs_home_2" class="tabs-content active" style="">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_2" class="tabs-content hide-all" style="display: none;">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_2" class="tabs-content hide-all" style="display: none;">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_2" class="tabs-content hide-all" style="display: none;">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>                <ul class="tabs-nav">
+                    <li class="active"><a href="#ui_tabs_home_2" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_2" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_2" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_2" class="small">Lightning</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <p><span class="ink-label success">Example</span> With left navigation</p>
+        <div class="box">
+            <div class="ink-tabs left hide-small" data-active="#ui_tabs_stuff_3" data-instance="tabs9">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_3">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_3">Nails</a></li>
+                    <li><a href="#ui_tabs_description_3">Rockets</a></li>
+                    <li class="active"><a href="#ui_tabs_stuff_3">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_3" class="tabs-content hide-all" style="display: none;">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_3" class="tabs-content hide-all" style="display: none;">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_3" class="tabs-content hide-all" style="display: none;">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_3" class="tabs-content active" style="">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>            </div>
+            <div class="ink-tabs left hide-all show-small" data-active="#ui_tabs_stuff_3" data-instance="tabs10">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_3" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_3" class="small">Nails</a></li>
+                    <li><a href="#ui_tabs_description_3" class="small">Rockets</a></li>
+                    <li class="active"><a href="#ui_tabs_stuff_3" class="small">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_3" class="tabs-content hide-all" style="display: none;">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_3" class="tabs-content hide-all" style="display: none;">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_3" class="tabs-content hide-all" style="display: none;">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_3" class="tabs-content active" style="">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>            </div>
+        </div>
+
+        <p><span class="ink-label success">Example</span> With right navigation</p>
+        <div class="box">
+            <div class="ink-tabs right hide-small" data-active="#ui_tabs_description_4" data-instance="tabs11">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_4">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_4">Nails</a></li>
+                    <li class="active"><a href="#ui_tabs_description_4">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_4">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_4" class="tabs-content hide-all" style="display: none;">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_4" class="tabs-content hide-all" style="display: none;">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_4" class="tabs-content active" style="">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_4" class="tabs-content hide-all" style="display: none;">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>            </div>
+            <div class="ink-tabs right hide-all show-small" data-active="#ui_tabs_description_4" data-instance="tabs12">
+                <ul class="tabs-nav">
+                    <li><a href="#ui_tabs_home_4" class="small">Shotgun</a></li>
+                    <li><a href="#ui_tabs_news_4" class="small">Nails</a></li>
+                    <li class="active"><a href="#ui_tabs_description_4" class="small">Rockets</a></li>
+                    <li><a href="#ui_tabs_stuff_4" class="small">Lightning</a></li>
+                </ul>
+                
+            <div id="ui_tabs_home_4" class="tabs-content hide-all" style="display: none;">
+                <h4>Shotgun</h4>
+                <p>The shotgun fires once every 500ms. It fires 6 pellets per attack, and each pellet does 4 damage, making for a maximum possible damage of 24. Pellets are arranged in a random pattern around the crosshair.
+                </p><p>Range is 2048 units.</p>
+                <p>The shotgun is a hitscan weapon; when the attacker fires, traces are performed to see what the player is aiming at, in that very same frame. There are no moving projectiles.</p>
+            </div>
+
+            <div id="ui_tabs_news_4" class="tabs-content hide-all" style="display: none;">
+                <h4>Nailgun</h4>
+                <p>
+                    The nailgun is a projectile weapon; projectile weapons fire actual objects with a finite speed.</p>
+                <p>The nailgun may fire every 100ms. Nails travel at 1000ups, and dissappear after 6 seconds if they haven't hit anything.</p>
+                <p>Nails do 9 damage per hit, and are fired alternatively from 5u left of the crosshair, then 5u right of the crosshair. Nails are a point.
+                </p>
+            </div>
+
+            <div id="ui_tabs_description_4" class="tabs-content active" style="">
+                <h4>Rocket Launcher</h4>
+                <p>
+                    The rocket launcher may fire every 800ms. Like nails, rockets travel at 1000ups, and are not affected by gravity. A direct hit by a rocket does a random amount of damage between 100 and 120 (or fixed 110 in KTX).</p>
+                <p>All hits, direct or not, do 120 splash damage (over a 160u radius, like the grenade launcher), however objects that are hit directly are immune to this splash damage.</p>
+                <p>This avoids making the rocket launcher too destructive.</p>
+            </div>
+
+            <div id="ui_tabs_stuff_4" class="tabs-content hide-all" style="display: none;">
+                <h4>Lightning Gun</h4>
+                <p>
+                    The lightning gun fires every 100ms. It has a range of 600u, and is a hitscan weapon. It does 30 damage per hit, and may damage up to 3 damagable objects in that 600u range per hit.</p>
+                <p>When fired underwater in deathmatch mode 3, the lightning gun does (35 x number of cells in gun) splash damage, with the firer as the centre. The radius is the damage (35 x cells), plus 40.</p>
+                <p>A few rules change in DMM4. Discharging only works a random 50% of the time, the rest of the time you do 4000 damage to yourself only. Additionally, the lightning gun is disabled when you obtain Quad.</p>
+                <p></p>
+            </div>            </div>
+        </div>
+        <p id="tabsCode"><button data-target="#tabs_sourcecode_3" class="ink-button toggle">View Source Code</button></p>
+        <pre id="tabs_sourcecode_3" class="hide-all prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-tabs top"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="com">&lt;!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation --&gt;</span></li><li class="L1"><span class="pln">    </span></li><li class="L2"><span class="pln">    </span><span class="com">&lt;!-- put navigation first if using top, left or right positioning --&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-nav"</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">        </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#home"</span><span class="tag">&gt;</span><span class="pln">Home</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#news"</span><span class="tag">&gt;</span><span class="pln">News</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L6"><span class="pln">        </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#description"</span><span class="tag">&gt;</span><span class="pln">Description</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L7"><span class="pln">        </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#stuff"</span><span class="tag">&gt;</span><span class="pln">Stuff</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L8"><span class="pln">        </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#more_stuff"</span><span class="tag">&gt;</span><span class="pln">More stuff</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L9"><span class="pln">    </span><span class="tag">&lt;/ul&gt;</span></li><li class="L0"><span class="pln">    </span></li><li class="L1"><span class="pln">    </span><span class="com">&lt;!-- Put your content second if using top, left or right navigation --&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"home"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;&lt;/div&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"news"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;&lt;/div&gt;</span></li><li class="L4"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"description"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;&lt;/div&gt;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"stuff"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;&lt;/div&gt;</span></li><li class="L6"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"more_stuff"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tabs-content"</span><span class="tag">&gt;&lt;p&gt;</span><span class="pln">Content</span><span class="tag">&lt;/p&gt;&lt;/div&gt;</span></li><li class="L7"><span class="pln">    </span><span class="com">&lt;!-- If you're using bottom navigation, switch the nav block with the content blocks --&gt;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="tag">&lt;/div&gt;</span></li><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">    </span><span class="com">// There are two ways to run the code...</span></li><li class="L2"><span class="pln">    </span><span class="com">// 1 - If you know you have the component and its dependencies already loaded, just do:</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> tabs </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">Tabs</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tabs'</span><span class="pun">,{</span></li><li class="L4"><span class="pln">        disabled</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'#stuff'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'#more_stuff'</span><span class="pun">],</span><span class="pln"> </span></li><li class="L5"><span class="pln">        active</span><span class="pun">:</span><span class="pln"> </span><span class="str">'#news'</span><span class="pun">,</span></li><li class="L6"><span class="pln">        onBeforeChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L7"><span class="pln">            console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'beforeChange'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L8"><span class="pln">        </span><span class="pun">},</span><span class="pln"> </span></li><li class="L9"><span class="pln">        onChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L0"><span class="pln">            console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Changed'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L1"><span class="pln">        </span><span class="pun">}</span></li><li class="L2"><span class="pln">    </span><span class="pun">});</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    </span><span class="com">// 2 - If you're not sure the component or its dependencies are loaded at runtime, do:</span></li><li class="L5"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="str">'Ink.UI.Tabs_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="typ">Tabs</span><span class="pun">){</span></li><li class="L6"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabs</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tabs'</span><span class="pun">,{</span></li><li class="L7"><span class="pln">            disabled</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'#stuff'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'#more_stuff'</span><span class="pun">],</span><span class="pln"> </span></li><li class="L8"><span class="pln">            active</span><span class="pun">:</span><span class="pln"> </span><span class="str">'#news'</span><span class="pun">,</span></li><li class="L9"><span class="pln">            onBeforeChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L0"><span class="pln">                console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'beforeChange'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L1"><span class="pln">            </span><span class="pun">},</span><span class="pln"> </span></li><li class="L2"><span class="pln">            onChange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tab</span><span class="pun">){</span></li><li class="L3"><span class="pln">                console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Changed'</span><span class="pun">,</span><span class="pln"> tab</span><span class="pun">);</span></li><li class="L4"><span class="pln">            </span><span class="pun">}</span></li><li class="L5"><span class="pln">        </span><span class="pun">});</span></li><li class="L6"><span class="pln">    </span><span class="pun">});</span></li><li class="L7"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+
+        <h3>Configurable Data Attributes</h3>
+        <p>As with most Ink JS components, you can add extra features to the tabs via data attributes. Check the following list for attributes you can add to your <code>.ink-tabs</code> <code>&lt;div&gt;</code></p> 
+    <p></p>
+    <ul>
+        <li><strong>data-prevent-url-change</strong> Prevents the URL from being changed when navigating between tabs. Value must be boolean, "true" (default) or "false". Example: <code>data-prevent-url-change="false"</code></li>
+        <li><strong>data-active</strong> Allows specifying which of the tabs is open by default. Value must be an ID present in the markup structure of the tabs. Example: <code>data-active="#secondItem"</code></li>
+    </ul>
+    <p>You can see several examples in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Tabs.html">technical documentation</a>.</p>
+    
+</section>
+</div>
