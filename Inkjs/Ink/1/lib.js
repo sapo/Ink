@@ -24,11 +24,12 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {
-	    Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
+        Ink: ( ('INK_PATH' in window) ? window.INK_PATH : window.location.protocol + '//js.ink.sapo.pt/Ink/' )
     };
     var modules = {};
     var modulesLoadOrder = [];
     var modulesRequested = {};
+    var modulesMentioned = {};
     var pendingRMs = [];
 
 
@@ -186,6 +187,10 @@
          * @param  {Function}  modFn    its arguments are the resolved dependecies, once all of them are fetched. the body of this function should return the module.
          */
         createModule: function(mod, ver, deps, modFn) { // define
+            var modAll = [mod, ver].join('_');
+            if (modulesMentioned[modAll]) {
+                return;
+            }
             var cb = function() {
                 //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
 
@@ -199,15 +204,11 @@
                     throw new Error('version number missing!');
                 }
 
-                var modAll = [mod, '_', ver].join('');
-
-
                 // make sure module in not loaded twice
                 if (modules[modAll]) {
                     //console.warn(['Ink.createModule ', modAll, ': module has been defined already.'].join(''));
                     return;
                 }
-
 
                 // delete related pending tasks
                 delete modulesRequested[modAll];
@@ -266,6 +267,7 @@
             };
 
             this.requireModules(deps, cb);
+            modulesMentioned[modAll] = true;
         },
 
         /**
@@ -301,7 +303,7 @@
                     --o.remaining;
                     continue;
                 }
-                else if (modulesRequested[dep]) {
+                else if (modulesRequested[dep] || modulesMentioned[dep]) {
                 }
                 else {
                     modulesRequested[dep] = true;
