@@ -44,15 +44,6 @@ test('createExt', function () {
     });
 });
 
-test('deleteModule', function () {
-    Ink.createModule('Ink.Util.Whatever', 1, [], function () {
-        return 'whatever';
-    });
-    equal(Ink.getModule('Ink.Util.Whatever_1'), 'whatever');
-    Ink.deleteModule('Ink.Util.Whatever_1');
-    equal(Ink.getModule('Ink.Util.Whatever_1'), undefined);
-});
-
 test('getPath, setPath', function () {
     Ink.setPath('Ink', 'http://example.com/');
     equal(Ink.getPath('Ink'), 'http://example.com/lib.js');
