@@ -3,11 +3,11 @@
   "version": "2.2.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-less": "~0.7.0"
+    "grunt-git-dist": "~0.4.0"
   },
-  "repository" :
-  { "type" : "git"
-  , "url" : "http://github.com/pedrocorreia/Ink.git"
+  "repository": { 
+    "type" : "git", 
+    "url" : "http://github.com/pedrocorreia/Ink.git"
   },
   "scripts": {
     "test": "grunt --verbose"
