@@ -6,16 +6,25 @@
             {% assign clean_url = page.url|remove:'index.html' %}
             {% if link.url %}
             <li {% if clean_url == link.url %}class="active"{% endif %}>            
-                <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
-            </li>
-            {% elsif link.submenu %}
-            <li>
-                <a href="#" title="{{ sublink.text }}">{{ link.text }}&nbsp;<i class="icon-caret-down"></i></a>
+                <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
+                {% if link.submenu %}
                 <ul class="submenu">
                 {% for link in link.submenu %}
                     <li><a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a></li>
                 {% endfor %}
                 </ul>
+                {% endif %}
+            </li>
+            {% else %}
+            <li {% if clean_url == link.url %}class="active"{% endif %}>            
+                <a href="#" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
+                {% if link.submenu %}
+                <ul class="submenu">
+                {% for link in link.submenu %}
+                    <li><a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a></li>
+                {% endfor %}
+                </ul>
+                {% endif %}
             </li>
             {% endif %}
             {% endfor %}

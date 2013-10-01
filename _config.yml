@@ -51,6 +51,7 @@ navigation:
    url: ./javascript/core/
  # JAVASCRIPT UI COMPONENTS
  - text: JavaScript UI
+   # url: ./javascript/ui/
    submenu:
    # BEHAVIOURS
    - text: Behaviours
@@ -100,3 +101,5 @@ navigation:
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
+
+cenas: ["one", "two"]
