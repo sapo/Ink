@@ -19,7 +19,6 @@ test('bindMethod', function () {
     deepEqual(test1(), [1, 2, 3, 4], 'returns arguments given at bind time');
     deepEqual(test2(), obj, 'returns the object owning the method');
 });
-
 test('staticMode', function () {
     Ink.setStaticMode(true);
     throws(function () {
@@ -28,21 +27,25 @@ test('staticMode', function () {
     Ink.setStaticMode(false);
 });
 
-test('createExt', function () {
-    stop();  // async
+/*
+asyncTest('createExt', function () {
     expect(1);  // only one assertion
     
     Ink.createExt('Lol.Parser', 1, [], function () {
+        debugger
         return {
             parse: function () {}
         };
     });
 
-    Ink.requireModules(['Ink.Ext.Lol.Parser'], function (Parser) {
-        equal(typeof Parser.parse, 'function');
-        start();  // async done
-    });
+    setTimeout(function() {
+        Ink.requireModules(['Ink.Ext.Lol.Parser'], function (Parser) {
+            equal(typeof Parser.parse, 'function', 'checking module');
+            start();  // async done
+        });
+    }, 100);
 });
+*/
 
 test('getPath, setPath', function () {
     Ink.setPath('Ink', 'http://example.com/');
@@ -70,6 +73,7 @@ test('getPath, setPath', function () {
     equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/lib.js');
 });
 
+
 asyncTest('loadScript', function () {
     window.loadScriptWorks = function (sayYeah) {
         equal(sayYeah, 'yeah');
@@ -85,6 +89,12 @@ asyncTest('loadScript', function () {
         };
     });
 
+    Ink.createModule('Ink.My.Module', 1, [], function () {
+        return {
+            my: 'ink-module'
+        };
+    });
+
     Ink.createModule('My.Other.Module', 1, ['My.Module_1'], function (mymodule) {
         return {
             my: 'othermodule',
@@ -92,18 +102,31 @@ asyncTest('loadScript', function () {
         };
     });
 
-    test('createModule dependencies', function () {
+    asyncTest('createModule dependencies', function () {
         var myModule = Ink.getModule('My.Module_1');
         equal(myModule.my, 'module');
+
+        var inkMyModule = Ink.getModule('Ink.My.Module_1');
+        equal(inkMyModule.my, 'ink-module');
 
         var myOtherModule = Ink.getModule('My.Other.Module_1');
         equal(myOtherModule.my, 'othermodule');
         equal(myOtherModule.dependency.my, 'module');
+        start();
     });
 
-    test('requireModules', function () {
+    asyncTest('global variables', function () {
+        ok(Ink.My.Module);
+        ok(Ink.My.Module_1);
+        equal(Ink.My.Module.my, 'ink-module');
+        equal(Ink.My.Module_1.my, 'ink-module');
+        start();
+    });
+
+    asyncTest('requireModules', function () {
         Ink.requireModules(['My.Module_1'], function (module) {
             equal(module.my, 'module');
+            start();
         });
     });
 }());
@@ -126,4 +149,119 @@ asyncTest('requireModules waits a tick before requiring the module', function ()
     }); 
     equal(required, 'not yet', 'requireModules callback function not called yet');
 });
+
+asyncTest('Nested requireModules', function () {
+    expect(2);// expecting all the callbacks to run
+    Ink.requireModules(['Ink.nest1_1'], function () {
+        ok(true, 'first callback run');
+        Ink.requireModules(['Ink.nest2_1'], function () {
+            ok(true, 'second callback run');
+            start();
+        });
+    });
+    Ink.createModule('Ink.nest1', 1, [], function () { return {} });
+    Ink.createModule('Ink.nest2', 1, [], function () { return {} });
+});
+
+asyncTest('pinkySwear integration', function () {
+    var promise = Ink.promise();
+    setTimeout(function () {
+        promise(true, ['its okay']);
+    }, 100);
+    promise
+        .then(function (okay) {
+            equal(okay, 'its okay');
+            start();
+        })
+});
+
+asyncTest('promise errors', function () {
+    var promiseForBetterTimes = Ink.promise();
+    setTimeout(function () {
+        promiseForBetterTimes(false, ['better times failed to come']);
+    }, 100);
+    promiseForBetterTimes
+        .then(function (value) {
+            ok(false, 'this should never happen');
+            start();
+        })
+        .error(function (error) {
+            equal(error, 'better times failed to come');
+            start();
+        })
+});
+
+asyncTest('promise.all', function () {
+    var promise = Ink.promise();
+    
+    var dependency1 = Ink.promise();
+    var dependency2 = Ink.promise();
+
+    promise.all([dependency1, dependency2]).then(function (results) {
+        deepEqual(results, ['result 1', 'result 2']);
+        start();
+    });
+
+    setTimeout(function () {
+        dependency1(true, ['result 1']);
+    });
+    setTimeout(function () {
+        dependency2(true, ['result 2']);
+    });
+});
+
+asyncTest('promise.all, no dependencies', function () {
+    var promise = Ink.promise();
+    
+    promise.all([]).then(function (results) {
+        deepEqual(results, []);
+        start();
+    });
+});
+
+asyncTest('requireModules should wait at least a tick until a module is created', function () {
+    expect(0);  // this test just tries to cause a 404 error.
+    Ink.requireModules(['Ink.notYet_1'], function () {
+        start();
+    });
+    Ink.createModule('Ink.notYet', 1, [], function () {
+        return {};
+    });
+});
+
+asyncTest('trying to load TestModule/1/lib.js', function () {
+    expect(1);
+    Ink.setPath('TestModule', './TestModule')
+    Ink.requireModules(['TestModule_1'], function (TestModule) {
+        equal(TestModule.hello, 'world');
+        start();
+    });
+});
+
+asyncTest('trying to load TestModuleWithDependencies/1/lib.js', function () {
+    expect(2);
+    Ink.setPath('TestModule', './TestModule'); // TestModuleWithDependencies's dependency
+    Ink.setPath('TestModuleWithDependencies', './TestModuleWithDependencies')
+    Ink.requireModules(['TestModuleWithDependencies_1'], function (TestModule) {
+        equal(TestModule.hello, 'dependencies');
+        ok(TestModule.TestModule);
+        start();
+    });
+});
+
+// TEMPORARY TESTS:
+asyncTest('requireModules, no dependencies', function () {
+    Ink.requireModules([], function () {
+        ok(true);
+        start();
+    });
+});
+
+asyncTest('createModule, no dependencies', function () {
+    Ink.createModule('Ink.Foo.Bar.Baz.NoDependencies', 1, [], function () {
+        ok(true);
+        start();
+    });
+});
+
 
