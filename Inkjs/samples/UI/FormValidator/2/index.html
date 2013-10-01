@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - FormValidator samples</title>
+
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.0/css/ink-min.css" />
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.0/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/lib.js"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/');
+        </script>
+        <script type="text/javascript" src="/Ink/Util/Validator/1/lib.js"></script>
+        <script type="text/javascript" src="/Ink/UI/FormValidator/2/lib.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.2.0/js/ink-ui.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>FormValidator Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>FormValidator #1 - Default Markup</h2>
+                </header>
+                <form id="myform" class="ink-form" method="post" action="#">
+                    <fieldset>
+                        <div class="control-group required">
+                            <label for="name">Name:</label>
+                            <div class="control">
+                                <input type="text" data-rules="required|text[true,false]" name="name" id="name" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required">
+                            <label for="ip">IP address:</label>
+                            <div class="control">
+                                <input type="text" data-rules="required|ip" name="ip" id="ip" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required">
+                            <label for="mail">Email:</label>
+                            <div class="control">
+                                <input type="text" name="mail" id="mail" data-rules="required|email" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required">
+                            <label for="pass">Password: </label>
+                            <div class="control">
+                                <input type="password" name="pass" id="pass" data-rules="required|min_length[8]" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required">
+                            <label for="confpass">Confirm Password:</label>
+                            <div class="control">
+                                <input type="password" name="confpass" id="confpass" data-rules="matches[pass]" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required">
+                            <label for="number">A number between -1.23 and 2.25 with at most 2 decimal points!</label>
+                            <div class="control">
+                                <input type="text" name="number" id="number" data-rules="required|numeric[.,2]|range[-1.23,2.25]" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required">
+                            <label for="creditcard">Credit card</label>
+                            <div class="control">
+                                <input type="text" name="creditcard" id="creditcard" data-rules="credit_card" />
+                            </div>
+                        </div>
+
+                        <div class="control-group required" data-rules="atLeastOne">
+                            <p class="label">Please select one option</p>
+                            <ul class="control unstyled">
+                                <li><input type="radio" name="radio1" id="radio1_g" value="1" class="ink-fv-required" /> <label for="radio1_g">radio 1</label> </li>
+                                <li><input type="radio" name="radio1" id="radio2_g" value="2" class="ink-fv-required" /> <label for="radio2_g">radio 2</label> </li>
+                                <li><input type="radio" name="radio1" id="radio3_g" value="3" class="ink-fv-required" /> <label for="radio3_g">radio 3</label> </li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                    <div>
+                        <input type="submit" name="sub" value="Submit" class="ink-button success" />
+                    </div>
+                </form>
+                <p>
+                    <pre class="prettyprint linenums"></pre>
+                </p>
+            </section>
+            <script>
+                Ink.requireModules(['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Element_1','Ink.Dom.Css_1','Ink.UI.FormValidator_2','Ink.Util.Array_1'],function(Event, Selector, Element, Css, FormValidator, InkArray){
+
+                    FormValidator.setRule('atLeastOne', 'Select at least one of the radio options', function( value ){
+
+                        return !!Selector.select('input[type="radio"]:checked',this.getElement()).length;
+
+                    });
+
+                    var myForm = new FormValidator( Ink.i('myform'), {
+                        searchFor: 'input, select, textarea, div.control-group',
+
+                        beforeValidation: function(){
+
+                        },
+                        onSuccess: function(){
+                            console.log("LOL");
+                        },
+                        onError: function( elements ){
+
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

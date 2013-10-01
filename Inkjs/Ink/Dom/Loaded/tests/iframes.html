@@ -1,0 +1,33 @@
+<iframe src="timeout.php?w=0.5" id="i1"></iframe>
+<iframe src="timeout.php?w=1.0" id="i2"></iframe>
+<iframe src="timeout.php?w=1.5" id="i3"></iframe>
+<iframe src="timeout.php?w=2.0" id="i4"></iframe>
+<iframe src="timeout.php?w=2.5" id="i5"></iframe>
+<iframe src="timeout.php?w=3.0" id="i6"></iframe>
+
+<p id="p1">Iframe 1</p>
+<p id="p2">Iframe 2</p>
+<p id="p3">Iframe 3</p>
+<p id="p4">Iframe 4</p>
+<p id="p5">Iframe 5</p>
+<p id="p6">Iframe 6</p>
+<p id="pwnd">Window</p>
+
+<script src="/Ink/1/"></script>
+<script src="/Ink/Dom/Loaded/1/"></script>
+<script>
+    Ink.setPath('Ink', '/Ink/');
+</script>
+<script>
+    Ink.requireModules(['Ink.Dom.Loaded_1'], function (Loaded) {
+        for (var i = 1; i <= 6; i++) {
+            addTo(document.getElementById('i' + i).contentWindow, document.getElementById('p' + i));
+        }
+        addTo(window, document.getElementById('pwnd'));
+        function addTo(iframe, paragraph) {
+            Loaded.run(iframe, function () {
+                paragraph.innerHTML += ' loaded';
+            });
+        }
+    });
+</script>

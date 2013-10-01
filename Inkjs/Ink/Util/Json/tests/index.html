@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ink Json unit tests</title>
+
+        <link type="text/css" href="http://code.jquery.com/qunit/git/qunit.css" rel="stylesheet"/>
+        <script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
+
+        <!-- test dependencies here -->
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript" src="/Ink/Util/Json/1/"></script>
+
+        <!-- Test object -->
+        <script type="text/javascript" src="hugeObject.js"></script>
+        <!-- Crockford's JSON -->
+        <script type="text/javascript">
+            window.nativeJSON = window.JSON;
+            window.JSON = undefined;
+        </script>
+        <script type="text/javascript" src="json.js"></script>
+    </head>
+
+    <body>
+        <h1 id="qunit-header">Ink.Util.Json</h1>
+        <h2 id="qunit-banner"></h2>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+
+        <script type="text/javascript" src="test.js"></script>
+    </body>
+</html>

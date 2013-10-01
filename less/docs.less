@@ -30,7 +30,7 @@ h2 span {
 }
 
 mark {
-    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace; 
+    font-family: @mono-font-stack;
     font-size: .938em;
     background: @themeBackground; 
     padding:1px 3px;
@@ -234,8 +234,12 @@ footer {
     .ink-navigation {
         ul.menu.horizontal {
             li {
-                a.license {
-                    padding: 0.5em 0 0.5em 0;
+                a {
+                    padding: .5em 1em .5em 0;
+                    display: inline-block;
+                    &.license {
+                        padding: .5em 0;    
+                    }
                 }
             }
         }
@@ -414,7 +418,7 @@ footer {
 pre {
     background: #FEFBF3;
     #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,.1));
-    font-family: Ubuntu_monospaced, Monaco, Andale Mono, Courier New, monospace;
+    font-family: @mono-font-stack;
     display: block;
     font-size: 14px;
     color: #aaa;

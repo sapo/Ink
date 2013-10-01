@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AA.BB.CC</title>
+
+        <link type="text/css"           href="http://code.jquery.com/qunit/qunit-1.12.0.css" rel="stylesheet"/>
+        <script type="text/javascript"   src="http://code.jquery.com/qunit/qunit-1.12.0.js"></script>
+        <script type="text/javascript"          src="../qunitExtras.js"></script>
+
+        <!-- test dependencies here -->
+        <!--<script type="text/javascript" src="/SAPO/0.1/"></script>-->
+    </head>
+
+    <body>
+        <h1 id="qunit-header">AA.BB.CC</h1>
+        <h2 id="qunit-banner"></h2>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+
+        <script type="text/javascript">
+            modul('Ink.Dom.Css');
+
+            test('sum 1 and 1', function() {
+                equal(2, 1+1, '1 + 1 = 2');
+            });
+
+            test('sum 1 and 2', function() {
+                //equal(brName === 'ch' ? 3 : 2, 1+2, '1 + 2 = 3'); // so only chrome passes
+                equal(3, 1+2, '1 + 2 = 3');
+            });
+
+            test('sum 1 and 3', function() {
+            	//throw new Error('DAMN IT AN ERROR!');
+            	equal(true, true, 'yay');
+            	//notEqual(brName === 'ff', false, 'nay'); // so only ff passes
+                notEqual(true, false, 'nay');
+            });
+        </script>
+    </body>
+</html>

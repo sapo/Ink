@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - ProgressBar samples</title>
+
+        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>ProgressBar Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>ProgressBar #1 - Setting the initial value throught data attributes</h2>
+                    <p> ... and with a 3s change of value. </p>
+                </header>
+                <div id="progressbar1" class="ink-progress-bar grey" data-start-value="70%">
+                    <div class="bar grey"></div>
+                </div>
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;div class="ink-progress-bar grey" data-start-value="70%"&gt;
+    &lt;div class="bar grey"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.ProgressBar_1'],function(ProgressBar){
+        var myFirstProgressBar = new ProgressBar('#progressbar1');
+        var myFirstInterval = setInterval(function(){
+            var myPercentage = ((Math.random(0,1)*100)+1);
+            myFirstProgressBar.setValue( myPercentage );
+        },3000);
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+
+            <section>
+                <header>
+                    <h2>ProgressBar #2 - Making all settings via Javascript</h2>
+                    <p>... and setting callbacks on each value change</p>
+                </header>
+                <div id="progressbar2" class="ink-progress-bar grey" data-start-value="70%">
+                    <span class="caption" id="progressBar2Caption"></span>
+                    <div class="bar blue"></div>
+                </div>
+                <p>
+                    <pre class="prettyprint linenums">&lt;div class="ink-progress-bar grey"&gt;
+    &lt;div class="bar blue"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.ProgressBar_1'],function(ProgressBar){
+        var mySecondProgressBar = new ProgressBar('#progressbar2',{
+            startValue: 10,
+            onStart: function( value ){
+                console.log( 'ProgressBar Value BEFORE change: ' + value + '%' );
+            },
+            onEnd: function( value ){
+                console.log( 'ProgressBar Value AFTER change: ' + value + '%' );
+                Ink.s('#progressBar2Caption').innerHTML = value +'%';
+            }
+        });
+        var mySecondInterval = setInterval(function(){
+            var myPercentage = ((Math.random(0,1)*100)+1);
+            mySecondProgressBar.setValue( myPercentage );
+        },3000);
+    });
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+            <script>
+                Ink.requireModules(['Ink.UI.ProgressBar_1'],function(ProgressBar){
+                    var myFirstProgressBar = new ProgressBar('#progressbar1');
+                    var myFirstInterval = setInterval(function(){
+                        var myPercentage = ((Math.random(0,1)*100)+1);
+                        myFirstProgressBar.setValue( myPercentage );
+                    },3000);
+
+                    var mySecondProgressBar = new ProgressBar('#progressbar2',{
+                        startValue: 10,
+                        onStart: function( value ){
+                            console.log( 'ProgressBar Value BEFORE change: ' + value + '%' );
+                        },
+                        onEnd: function( value ){
+                            console.log( 'ProgressBar Value AFTER change: ' + value + '%' );
+                            Ink.s('#progressBar2Caption').innerHTML = value +'%';
+                        }
+                    });
+                    var mySecondInterval = setInterval(function(){
+                        var myPercentage = ((Math.random(0,1)*100)+1);
+                        mySecondProgressBar.setValue( myPercentage );
+                    },3000);
+                });
+            </script>
+        </div>
+    </body>
+</html>

@@ -37,7 +37,11 @@
 
     .sapo_cal_prev,
     .sapo_cal_next {
-        width: 10%
+        width: 10%;
+
+        a {
+           display: block;
+        }
     }
 
     .sapo_cal_month_desc {
@@ -66,6 +70,13 @@
             &.sapo_cal_on:hover {
                 background: @datepicker-active-bg;
                 color: @datepicker-active-color;
+            }
+
+            &.sapo_cal_off,
+            &.sapo_cal_off:hover {
+                background: @datepicker-bgColor;
+                color: @datepicker-inactive-color;
+                cursor: default;
             }
         } 
     }

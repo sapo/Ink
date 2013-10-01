@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - ImageQuery samples</title>
+
+        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
+        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>ImageQuery Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>ImageQuery #1 - Default Markup</h2>
+                </header>
+                <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
+                    <img src="/samples/assets/imgs/imagequery/small/image.jpg" />
+                </div>
+                <p>
+                    <pre class="prettyprint linenums">&lt;div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace"&gt;
+    &lt;img src="/samples/assets/imgs/imagequery/small/image.jpg" /&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Ink.requireModules(['Ink.Util.Array_1','Ink.UI.ImageQuery_1'], function(InkArray, ImageQuery) {
+    InkArray.each(Ink.ss('.imageQueryExample img'),function(item){
+        new ImageQuery(item,{
+            src: '/samples/assets/imgs/imagequery/{:label}/{:file}',
+            queries: [
+                {
+                    label: 'small',
+                    width: 480
+                },
+                {
+                    label: 'medium',
+                    width: 640
+                },
+                {
+                    label: 'large',
+                    width: 1024
+                }
+            ]
+        });
+    });
+});
+&lt;/script&gt;</pre>
+                </p>
+            </section>
+        </div>
+        <script>
+            Ink.requireModules(['Ink.Util.Array_1','Ink.UI.ImageQuery_1'], function(InkArray, ImageQuery) {
+                InkArray.each(Ink.ss('.imageQueryExample img'),function(item){
+                    new ImageQuery(item,{
+                        src: '/samples/assets/imgs/imagequery/{:label}/{:file}',
+                        queries: [
+                            {
+                                label: 'small',
+                                width: 480
+                            },
+                            {
+                                label: 'medium',
+                                width: 640
+                            },
+                            {
+                                label: 'large',
+                                width: 1024
+                            }
+                        ]
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
