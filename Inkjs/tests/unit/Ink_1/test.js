@@ -20,25 +20,20 @@ test('bindMethod', function () {
     deepEqual(test2(), obj, 'returns the object owning the method');
 });
 
-/*
 asyncTest('createExt', function () {
     expect(1);  // only one assertion
     
     Ink.createExt('Lol.Parser', 1, [], function () {
-        debugger
         return {
             parse: function () {}
         };
     });
 
-    setTimeout(function() {
-        Ink.requireModules(['Ink.Ext.Lol.Parser'], function (Parser) {
-            equal(typeof Parser.parse, 'function', 'checking module');
-            start();  // async done
-        });
-    }, 100);
+    Ink.requireModules(['Ink.Ext.Lol.Parser_1'], function (Parser) {
+        equal(typeof Parser.parse, 'function', 'checking module');
+        start();  // async done
+    });
 });
-*/
 
 test('getPath, setPath', function () {
     Ink.setPath('Ink', 'http://example.com/');
@@ -158,9 +153,7 @@ asyncTest('Nested requireModules', function () {
 
 asyncTest('pinkySwear integration', function () {
     var promise = Ink.promise();
-    setTimeout(function () {
-        promise(true, ['its okay']);
-    }, 100);
+    promise(true, ['its okay']);
     promise
         .then(function (okay) {
             equal(okay, 'its okay');
@@ -172,7 +165,7 @@ asyncTest('promise errors', function () {
     var promiseForBetterTimes = Ink.promise();
     setTimeout(function () {
         promiseForBetterTimes(false, ['better times failed to come']);
-    }, 100);
+    }, 1);
     promiseForBetterTimes
         .then(function (value) {
             ok(false, 'this should never happen');
@@ -193,12 +186,10 @@ asyncTest('promise.all', function () {
         start();
     });
 
-    setTimeout(function () {
         dependency1(true, ['result 1']);
-    });
     setTimeout(function () {
         dependency2(true, ['result 2']);
-    });
+    }, 0);
 });
 
 asyncTest('promise.all, no dependencies', function () {

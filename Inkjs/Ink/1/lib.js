@@ -27,6 +27,7 @@
     var paths = {};
     var modules = {};
     var modulePromises = {};
+    var versionlessModules = {};  // taint modules which are already loaded, without their version
     var visited = {};  // taint modules which are being loaded
 
 
@@ -216,8 +217,15 @@
             this.requireModules(deps, function (/*...*/) {
                 var module = modFn.apply(this, [].slice.call(arguments));
                 modules[modAll] = module;
-                this._addToNamespaceObjects(mod, ver, module);
-                this._getModulePromiseFor(modAll)(true, [module]);
+                var parentObjectAndKey = this.namespace(modAll, true);
+                (function (parent, key) {  // unpacking an array of 2 items
+                    parent[key] = module;
+                    var noVersion = key.split('_')[0];  // 'Element_1'.split('_')[0]
+                    if (!(noVersion in parent)) {  // Make sure the first version of the module prevails
+                        parent[noVersion] = module;
+                    }
+                }.apply({}, parentObjectAndKey));
+                this._getModulePromiseFor(modAll)(true, [module]);  // resolve promise for this module
             });
         },
 
@@ -243,36 +251,14 @@
             
             for (var m = 0, len = deps.length; m < len; m++) {
                 promisesForModules[m] = this._getModulePromiseFor(deps[m]);
-                setTimeout(Ink.bindMethod(Ink, 'loadScript', deps[m]), 0);
+                setTimeout(Ink.bindMethod(Ink, 'loadScript', deps[m]), 0);  // wait a tick before we loadScript. createModule might be called before the tick ends.
             }
             
             var that = this;
-
-            var whenDone = this.promise(promisesForModules)
+            this.promise(promisesForModules)
                 .then(function (modules) {
                     cbFn.apply(that, modules);
                 });
-        },
-
-        _addToNamespaceObjects: function (mod, ver, module) {
-            // TODO this is namespace();
-            var modPath = mod.split('.');           // ['Ink', 'Dom', 'Element']
-            var root = modPath[0];                  // 'Ink'
-            var leaf = modPath[modPath.length - 1]; // 'Element'
-            var leafWithVersion = leaf + '_' + ver; // 'Element_1'
-            if (root === 'Ink') {
-                var current = Ink
-                for (var i = 1, len = modPath.length - 1; i < len; i++) {
-                    if (typeof current[modPath[i]] !== 'object') {
-                        current[modPath[i]] = {};
-                    }
-                    current = current[modPath[i]];
-                }
-                current[leaf] = module;
-                if (!current[leafWithVersion]) {
-                    current[leafWithVersion] = module;
-                }
-            }  
         },
 
         _getModulePromiseFor: function (modName) {
