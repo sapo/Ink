@@ -28,6 +28,7 @@
     var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulePromises = {};
+    var visited = {};  // taint modules which are being loaded
 
 
     window.Ink = {
@@ -155,6 +156,12 @@
 
             if (uri.indexOf('/') === -1) {
                 uri = this.getPath(uri);
+            }
+
+            if (uri in visited) {
+                return;  // already requesting this
+            } else {
+                visited[uri] = true;
             }
 
             var scriptEl = document.createElement('script');
