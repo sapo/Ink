@@ -387,7 +387,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Aux_1','Ink.Dom.Element_
             'formvalidator.color': '{field} deve conter uma cor válida',
             'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
             'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
-        },
+        }
     }, 'en_US');
 
     /**
