@@ -3,12 +3,42 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    // Compile Inks CSS
+    
+    ink: {
+      js: {
+        paths: {
+          src: './Inkjs/',
+          output: './js/'
+        }
+      },
+      css: {
+        paths: {
+          src: 'less/',
+          output: 'css/'
+        }
+      }
+    },
+
+    concat: {
+      dist: {
+        src: ['<%= pkg.modules %>'],
+        dest: "<%= ink.js.paths.output %><%= pkg.name %>.js"
+      }
+    },
+
+    uglify: {
+      dist: {
+        files: {
+          '<%= ink.js.paths.output %><%= pkg.name %>.min.js': ['<%= ink.js.paths.output %><%= pkg.name %>.js']
+        }
+      }
+    },
+
     less: {
       dist: {
         files: {
-          "css/<%= pkg.name %>.css":"less/<%= pkg.name %>.less",
-          "css/<%= pkg.name %>-ie7.css":"less/<%= pkg.name %>-ie7.less"
+          '<%= ink.css.paths.output %><%= pkg.name %>.css':['<%= ink.css.paths.src %><%= pkg.name %>.less'],
+          '<%= ink.css.paths.output %><%= pkg.name %>-ie7.css':['<%= ink.css.paths.src %><%= pkg.name %>-ie7.less']
         }
       },
       // Compile Inks minified CSS
@@ -17,8 +47,8 @@ module.exports = function(grunt) {
           yuicompress: true
         },
         files: {
-          "css/<%= pkg.name %>-min.css":"less/<%= pkg.name %>.less",
-          "css/<%= pkg.name %>-ie7-min.css":"less/<%= pkg.name %>-ie7.less"            
+          '<%= ink.css.paths.output %><%= pkg.name %>-min.css':'<%= ink.css.paths.src %><%= pkg.name %>.less',
+          '<%= ink.css.paths.output %><%= pkg.name %>-ie7-min.css':'<%= ink.css.paths.src %><%= pkg.name %>-ie7.less'
         }
       }
     }
@@ -27,8 +57,9 @@ module.exports = function(grunt) {
 
   // Load the plugin that provides the "less" task.
   grunt.loadNpmTasks('grunt-contrib-less');
-  // grunt.loadNpmTasks('grunt-git-dist'); 
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['less']);
+  grunt.registerTask('default', ['less', 'concat', 'uglify']);
 };

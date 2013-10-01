@@ -3,13 +3,59 @@
   "version": "2.2.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-git-dist": "~0.4.0"
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-less": "~0.7.0"
   },
-  "repository": { 
-    "type" : "git", 
-    "url" : "http://github.com/pedrocorreia/Ink.git"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/pedrocorreia/Ink.git"
   },
   "scripts": {
     "test": "grunt --verbose"
-  }
+  },
+  "modules": [
+    "./Inkjs/Ink/1/lib.js",
+    "./Inkjs/Ink/Net/Ajax/1/lib.js",
+    "./Inkjs/Ink/Net/JsonP/1/lib.js",
+    "./Inkjs/Ink/Dom/Css/1/lib.js",
+    "./Inkjs/Ink/Dom/Element/1/lib.js",
+    "./Inkjs/Ink/Dom/Event/1/lib.js",
+    "./Inkjs/Ink/Dom/FormSerialize/1/lib.js",
+    "./Inkjs/Ink/Dom/Loaded/1/lib.js",
+    "./Inkjs/Ink/Dom/Selector/1/lib.js",
+    "./Inkjs/Ink/Dom/Browser/1/lib.js",
+    "./Inkjs/Ink/Util/Url/1/lib.js",
+    "./Inkjs/Ink/Util/Swipe/1/lib.js",
+    "./Inkjs/Ink/Util/String/1/lib.js",
+    "./Inkjs/Ink/Util/Json/1/lib.js",
+    "./Inkjs/Ink/Util/I18n/1/lib.js",
+    "./Inkjs/Ink/Util/Dumper/1/lib.js",
+    "./Inkjs/Ink/Util/Date/1/lib.js",
+    "./Inkjs/Ink/Util/Cookie/1/lib.js",
+    "./Inkjs/Ink/Util/BinPack/1/lib.js",
+    "./Inkjs/Ink/Util/Array/1/lib.js",
+    "./Inkjs/Ink/Util/Validator/1/lib.js",
+    "./Inkjs/Ink/UI/Aux/1/lib.js",
+    "./Inkjs/Ink/UI/Pagination/1/lib.js",
+    "./Inkjs/Ink/UI/SortableList/1/lib.js",
+    "./Inkjs/Ink/UI/Spy/1/lib.js",
+    "./Inkjs/Ink/UI/Sticky/1/lib.js",
+    "./Inkjs/Ink/UI/Table/1/lib.js",
+    "./Inkjs/Ink/UI/Tabs/1/lib.js",
+    "./Inkjs/Ink/UI/Toggle/1/lib.js",
+    "./Inkjs/Ink/UI/Tooltip/1/lib.js",
+    "./Inkjs/Ink/UI/TreeView/1/lib.js",
+    "./Inkjs/Ink/UI/SmoothScroller/1/lib.js",
+    "./Inkjs/Ink/UI/FormValidator/2/lib.js",
+    "./Inkjs/Ink/UI/FormValidator/1/lib.js",
+    "./Inkjs/Ink/UI/ImageQuery/1/lib.js",
+    "./Inkjs/Ink/UI/Droppable/1/lib.js",
+    "./Inkjs/Ink/UI/Draggable/1/lib.js",
+    "./Inkjs/Ink/UI/DatePicker/1/lib.js",
+    "./Inkjs/Ink/UI/Close/1/lib.js",
+    "./Inkjs/Ink/UI/Carousel/1/lib.js",
+    "./Inkjs/Ink/UI/Modal/1/lib.js",
+    "./Inkjs/Ink/UI/ProgressBar/1/lib.js"
+  ]
 }
