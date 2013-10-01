@@ -1,5 +1,5 @@
 # JEKYLL
-exclude: ["fonts", ".gitignore", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
+exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "fonts", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
 
 destination: ./_site
 
@@ -28,49 +28,73 @@ navigation:
  # LAYOUT
  - text: Layout
    url: ./layout/
+ # NAVIGATION
  - text: Navigation
    url: ./navigation/
+ # TYPOGRAPHY
  - text: Typography
    url: ./typography/
+ # ICONS
  - text: Icons
    url: ./icons/
+ # FORMS
  - text: Forms
    url: ./forms/
+ # ALERTS
  - text: Alerts
    url: ./alerts/
+ # TABLES
  - text: Tables
    url: ./tables/
+ # JAVASCRIPT CORE
  - text: JavaScript Core
    url: ./javascript/core/
+ # JAVASCRIPT UI COMPONENTS
  - text: JavaScript UI
    submenu:
-   # MODAL WINDOW
-   - text: Modal
-     url: ./javascript/ui/modal/
-   # TABLE
-   - text: Table
-     url: ./javascript/ui/table/
-   # TREE VIEW
-   - text: Tree view
-     url: ./javascript/ui/tree-view/
+   # BEHAVIOURS
+   - text: Behaviours
+     url: ./javascript/ui/behaviours/
    # CAROUSEL
    - text: Carousel
      url: ./javascript/ui/carousel/
+   # DATE PICKER
+   - text: Date picker
+     url: ./javascript/ui/date-picker/
+   # DRAGGABLES
+   - text: Draggables
+     url: ./javascript/ui/draggables/
+   # DROPPABLES
+   - text: Droppables
+     url: ./javascript/ui/droppables/
+   # FORM VALIDATOR
+   - text: Form validator
+     url: ./javascript/ui/form-validator/
+   # IMAGE QUERY
+   - text: Image query
+     url: ./javascript/ui/image-query/
+   # MODAL WINDOW
+   - text: Modal
+     url: ./javascript/ui/modal/
+   # PROGRESS BAR
+   - text: Progress bar
+     url: ./javascript/ui/progress-bar/
    # SORTABLE LIST
    - text: Sortable list
      url: ./javascript/ui/sortable-list/
-   - text: Date picker
-     url: ./javascript/ui/date-picker/
+   # TABLE
+   - text: Table
+     url: ./javascript/ui/table/
+   # TABS
    - text: Tabs
      url: ./javascript/ui/tabs/
-   - text: Draggables
-     url: ./javascript/ui/draggables/
-   - text: Droppables
-     url: ./javascript/ui/droppables/
+   # TOOLTIPS
    - text: Tooltips
      url: ./javascript/ui/tooltips/
-   - text: Form validator
-     url: ./javascript/ui/form-validator/
+   # TREE VIEW
+   - text: Tree view
+     url: ./javascript/ui/tree-view/
+ # GLOSSARY
  - text: Glossary
    url: ./glossary/
 

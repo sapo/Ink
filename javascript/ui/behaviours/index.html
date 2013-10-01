@@ -1,5 +1,125 @@
 ---
 layout: default 
-title: Javascript UI -  
+title: Javascript UI - Behaviours
 base_path: ../../../
 ---
+<div class="ink-grid">
+    <div class="page-header">
+        <h1>Behaviours</h1>
+        <p>A collection of several commonplace </p>
+    </div>
+    <section id="behaviors">
+    <h2>Behaviors</h2>
+    
+    <h3>Dismiss</h3>
+    <p>This behavior allows you to dismiss an element from your markup by using a class in a child element. It's used for closing <a href="http://ink.sapo.pt/js/ui#modal">Modal Windows</a> as well as <a href="http://ink.sapo.pt/alerts">Alerts</a> in Ink, but you can use it to remove any parent container from your document.</p>
+    <h4>Necessary JS modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you only need ink.js for the dismiss behavior and there is no intialization needed.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <h4>Using Dismiss</h4>
+    <p>To use dismiss, simply add a child element to the one you want dismissed, and give it the <code>.ink-dismiss</code> class.</p>
+    <p><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <p>Click the × below, to dismiss the notification, using the Dismiss behavior.</p>
+        <div class="ink-alert basic info">
+            <button class="ink-dismiss">×</button>
+            <p>This is a simple notification</p>
+        </div>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-alert basic info"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;button</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-dismiss"</span><span class="tag">&gt;</span><span class="pln">&amp;times;</span><span class="tag">&lt;/button&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">This is a simple notification</span><span class="tag">&lt;/p&gt;</span></li><li class="L3"><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Close.html">technical documentation</a> for more details, and read the <a href="http://ink.sapo.pt/alerts">Alerts</a> section to see more examples like the one above.</p>
+
+    <h3>Spy</h3>
+    <p>The Spy behavior looks for a specified element to see if it's visible in the viewport and changes a second element to an active state. You can see this working in the side menu in medium and large screens: as you scroll past each section, its corresponding link in the menu becomes highlighted.</p>
+    <h4>Necessary Javascript Modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.spy.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.spy.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/autoload.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Spy behavior by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">  </span><span class="kwd">var</span><span class="pln"> spyObj </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">Spy</span><span class="pun">(</span><span class="str">'#mySpy'</span><span class="pun">);</span></li><li class="L2"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h4>Using Spy</h4>
+    <p>Spy is used in long pages with anchors linked from a menu. So you'll begin by building your menu, with each item pointing to a specific id down the page. To learn how to build menus with Ink, read the <a href="http://ink.sapo.pt/navigation">Navigation</a>  section, for the sake of example, we'll use an ultra-simplified model.</p>
+    <p>You jsut need to build your menu, using and use a unique ID, such as <code>#myMenu</code> in the example below.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;nav</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-navigation"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"myMenu"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">   </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"menu"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#section1"</span><span class="tag">&gt;</span><span class="pln">Item 1</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L3"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#section2"</span><span class="tag">&gt;</span><span class="pln">Item 2</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L4"><span class="pln">   </span><span class="tag">&lt;/ul&gt;</span></li><li class="L5"><span class="tag">&lt;/nav&gt;</span></li></ol></pre>
+    <p>Notice how each item points to a specific ID. Now, we build our content and identify each section with corresponding IDs, making them "spyable". First, you need to identify the begining of the section (in the example we used the <code>&lt;section&gt;</code> element, but this can be any element), with an ID that corresponds to one item in your menu, in our case: <code>#section1</code> and <code>#section2</code>.</p>
+    <p>Then, you need to add two data-attributes to the section element:</p>
+    <ul>
+        <li><strong>data-spy</strong> Marks the element as spyable, value must be boolean (true or false). Example: <code>data-spy="true"</code></li>
+        <li><strong>data-target</strong> Identifies the menu where the links to the sections are located. Must be a CSS selector. Example <code>data-target="myMenu"</code></li>
+    </ul>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;section</span><span class="pln"> </span><span class="atn">data-spy</span><span class="pun">=</span><span class="atv">"true"</span><span class="pln"> </span><span class="atn">data-target</span><span class="pun">=</span><span class="atv">"myMenu"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section1"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">Your content here</span><span class="tag">&lt;/p&gt;</span></li><li class="L2"><span class="tag">&lt;/section&gt;</span></li><li class="L3"><span class="tag">&lt;section</span><span class="pln"> </span><span class="atn">data-spy</span><span class="pun">=</span><span class="atv">"true"</span><span class="pln"> </span><span class="atn">data-target</span><span class="pun">=</span><span class="atv">"myMenu"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section2"</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">More content here</span><span class="tag">&lt;/p&gt;</span></li><li class="L5"><span class="tag">&lt;/section&gt;</span></li></ol></pre>
+
+    
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Spy.html">technical documentation</a> for more details.</p>
+    <p><button data-target="#spy_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="spy_sourcecode" class="hide-all prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;nav</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-navigation"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"myMenu"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">   </span><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"menu"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#section1"</span><span class="tag">&gt;</span><span class="pln">Item 1</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L3"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#section2"</span><span class="tag">&gt;</span><span class="pln">Item 2</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L4"><span class="pln">   </span><span class="tag">&lt;/ul&gt;</span></li><li class="L5"><span class="tag">&lt;/nav&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="tag">&lt;section</span><span class="pln"> </span><span class="atn">data-spy</span><span class="pun">=</span><span class="atv">"true"</span><span class="pln"> </span><span class="atn">data-target</span><span class="pun">=</span><span class="atv">"myMenu"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section1"</span><span class="tag">&gt;</span></li><li class="L8"><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">Your content here</span><span class="tag">&lt;/p&gt;</span></li><li class="L9"><span class="tag">&lt;/section&gt;</span></li><li class="L0"><span class="tag">&lt;section</span><span class="pln"> </span><span class="atn">data-spy</span><span class="pun">=</span><span class="atv">"true"</span><span class="pln"> </span><span class="atn">data-target</span><span class="pun">=</span><span class="atv">"myMenu"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"section2"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">More content here</span><span class="tag">&lt;/p&gt;</span></li><li class="L2"><span class="tag">&lt;/section&gt;</span></li></ol></pre>
+
+    <h3>Sticky</h3>
+    <p>The Sticky behavior keeps an element "stuck" as you scroll the rest of the page. The best example is the side menu on this website, if you see it in medium or large screens.</p>
+    <h4>Necessary Javascript Modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.sticky.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.sticky.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/autoload.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Sticky behavior by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">  </span><span class="kwd">var</span><span class="pln"> stickyObj </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">Sticky</span><span class="pun">(</span><span class="str">'#myDiv'</span><span class="pun">);</span></li><li class="L2"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h4>Using Sticky</h4>
+    <p>It couldn't be easier to use Sticky: just add the <code>.sticky</code> class on any block level element and it will stick, remaining in sight as you scroll.</p>
+    <p>There are a few configurable options, to make Sticky more useful, to use them, just add the necessary data-attribute to the block level element you wish to make stiky. Here's a list.</p>
+    <ul>
+        <li><strong>data-top-element</strong> - Specifies an element the sticky object must be aware of when scrolling to the top of the page. Must be a CSS selector. Default is value is <code>body</code>. Example: <code>data-top-element="body"</code></li>
+        <li><strong>data-bottom-element</strong> - Specifies an element the sticky object must be aware of when scrolling to the bottom of the page. Must be a CSS selector. Default is <code>body</code>. Example: <code>data-top-element="body"</code></li>
+        <li><strong>data-offset-top</strong> - Defines an offset, in pixels, that the sticky object must respect, relative to the <code>data-top-element</code>. Must be a number and unit combination. Example: <code>data-offset-top="50px"</code></li>
+        <li><strong>data-offset-bottom</strong> - Defines an offset, in pixels, that the sticky object must respect, relative to the <code>data-bottom-element</code>. Must be a number and unit combination. Example: <code>data-offset-bottom="50px"</code></li>
+    </ul>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Sticky.html">technical documentation</a> for more details.</p>
+    <p><button data-target="#sticky_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="sticky_sourcecode" class="hide-all prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"myDiv"</span><span class="pln"> </span><span class="atn">data-offset-top</span><span class="pun">=</span><span class="atv">"20px"</span><span class="pln"> </span><span class="atn">data-offset-bottom</span><span class="pun">=</span><span class="atv">"20px"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"sticky"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;p&gt;</span><span class="pln">Your content here</span><span class="tag">&lt;/p&gt;</span></li><li class="L2"><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+
+    <h3>Toggle</h3>
+    <p>The Toggle behavior allows to easily show and hide elements using another element as trigger. It's used and explained in-depth in the <a href="http://ink.sapo.pt/navigation#nav-dropdowns">Navigation &gt; Dropdowns</a> section and a good example is the View Source Button in this page, that shows/hides the full code examples.</p>
+    <h4>Necessary Javascript Modules</h4>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.toggle.js and autoload.js to initialize the module automatically.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.toggle.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/autoload.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Toggle behavior by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">  </span><span class="kwd">var</span><span class="pln"> toggleObj </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">Toggle</span><span class="pun">(</span><span class="pln"> </span><span class="str">'#myButton'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L2"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h4>Using Toggle</h4>
+    <p>You need two elements to use toggle: the trigger element, and the element you want to show and hide with that trigger.</p>
+    <p>The first one needs a <code>.toggle</code> class and the <code>data-target</code> attribute set to the ID of the element it will toggle.</p>
+    <p>The second one needs to have its ID set to that same value. If you want the element to start off hidden, you also need to add the <code>.hide-all</code> class.</p>
+    <p>So, here's a <code>button</code> showing and hiding a <code>div</code></p>
+
+    <p><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <button class="toggle ink-button" data-target="#myContent">Toggle</button>
+        <div class="hide-all ink-alert basic info" id="myContent">
+          <p>Here's my togglable content</p>
+        </div>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;button</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"toggle"</span><span class="pln"> </span><span class="atn">data-target</span><span class="pun">=</span><span class="atv">"#myContent"</span><span class="tag">&gt;</span><span class="pln">Toggle</span><span class="tag">&lt;/button&gt;</span></li><li class="L1"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"hide-all"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"myContent"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;p&gt;</span><span class="pln">Here's my togglable content</span><span class="tag">&lt;/p&gt;</span></li><li class="L3"><span class="tag">&lt;/div&gt;</span></li></ol></pre>
+    <p>You can configure some attributes of the Toggle behavior, by adding any of the following to the trigger element:</p>
+    <ul>
+        <li><strong>data-target</strong> - Sets which element is to be shown/hidden. Must be a CSS selector. Example: <code>data-target="#myStuff"</code></li>
+        <li><strong>data-trigger-event</strong> - Defines which event will trigger the toggle. Must be a valid event type, default value is <code>click</code>. Example: <code>data-trigger-event="mousedown"</code>. Possible values are:
+            <ul>
+                <li>click</li>
+                <li>mousedown</li>
+                <li>mouseup</li>
+                <li>dblclick</li>
+                <li>mouseover</li>
+                <li>mouseover</li>
+            </ul>
+        </li>
+        <li><strong>data-close-on-click</strong> - Defines whether or not the togglable element changes state when the user clicks anywhere outside the trigger element. Must be a boolean value (true or false), default is true. Example: <code>data-close-on-click="false"</code></li>
+    </ul>
+    <p>Check the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Toggle.html">technical documentation</a> for more details.</p><p></p>
+</section>
+</div>

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       // Compile Inks minified CSS
       docs: {
         options: {
-          yuicompress: true
+          yuicompress: false
         },
         files: {
           "./css/docs.css":"./less/docs.less",
@@ -23,6 +23,15 @@ module.exports = function(grunt) {
           port: 4000
         }
       }
+    },
+    watch: {
+      scripts: {
+        files: ['less/docs.less'],
+        tasks: ['less'],
+        options: {
+          spawn: false,
+        },
+      },
     }
   });
 
@@ -30,6 +39,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   // Load the plugin that provides the "jekyll" task.
   grunt.loadNpmTasks('grunt-jekyll');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
   grunt.registerTask('default', ['less']);

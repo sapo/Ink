@@ -1,5 +1,79 @@
 ---
 layout: default 
-title: Javascript UI -  
+title: Javascript UI - Droppables
 base_path: ../../../
 ---
+<div class="ink-grid">
+    <section id="droppables">
+    <h2>Droppables</h2>
+    <p>You can have elements which can be dragged around by your user.</p>
+
+    <p id="droppable_example"><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <p>
+    Drop 1 <b id="drop">here</b>
+</p>
+<p>
+    Drop 2 <b id="drop2">here</b>
+</p>
+<span id="dropex-1" class="acceptme" style="cursor: move;">
+    Drag me (1)
+</span>
+<span id="dropex-2" class="acceptme2" style="cursor: move;">
+    Drag me (2)
+</span>        <script type="text/javascript">
+    Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1'], function (Draggable, Droppable) {
+        new Draggable('#dropex-1', {});
+        new Draggable('#dropex-2', {});
+        Droppable.add('#drop', {
+            hoverclass: 'ink-label success',
+            accept: '.acceptme',  // Select acceptable elements here
+        });
+        Droppable.add('#drop2', {
+            hoverclass: 'ink-label success',
+            accept: '.acceptme2',
+            onDrop: 'move',  // This is a predefined event handler which moves the draggable element here when dropped
+            onDropOut: 'revert'  // This predefined event handler moves the draggable back to where it came from
+        });
+    });
+</script>    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre id="droppable_sourcecode" class="ink-l100 prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;p&gt;</span></li><li class="L1"><span class="pln">    Drop 1 </span><span class="tag">&lt;b</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"drop"</span><span class="tag">&gt;</span><span class="pln">here</span><span class="tag">&lt;/b&gt;</span></li><li class="L2"><span class="tag">&lt;/p&gt;</span></li><li class="L3"><span class="tag">&lt;p&gt;</span></li><li class="L4"><span class="pln">    Drop 2 </span><span class="tag">&lt;b</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"drop2"</span><span class="tag">&gt;</span><span class="pln">here</span><span class="tag">&lt;/b&gt;</span></li><li class="L5"><span class="tag">&lt;/p&gt;</span></li><li class="L6"><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dropex-1"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"acceptme"</span><span class="tag">&gt;</span></li><li class="L7"><span class="pln">    Drag me (1)</span></li><li class="L8"><span class="tag">&lt;/span&gt;</span></li><li class="L9"><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dropex-2"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"acceptme2"</span><span class="tag">&gt;</span></li><li class="L0"><span class="pln">    Drag me (2)</span></li><li class="L1"><span class="tag">&lt;/span&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">([</span><span class="str">'Ink.UI.Draggable_1'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Ink.UI.Droppable_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Draggable</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Droppable</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Draggable</span><span class="pun">(</span><span class="str">'#dropex-1'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{});</span></li><li class="L5"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Draggable</span><span class="pun">(</span><span class="str">'#dropex-2'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{});</span></li><li class="L6"><span class="pln">        </span><span class="typ">Droppable</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">'#drop'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">            hoverclass</span><span class="pun">:</span><span class="pln"> </span><span class="str">'ink-label success'</span><span class="pun">,</span></li><li class="L8"><span class="pln">            accept</span><span class="pun">:</span><span class="pln"> </span><span class="str">'.acceptme'</span><span class="pun">,</span><span class="pln">  </span><span class="com">// Select acceptable elements here</span></li><li class="L9"><span class="pln">        </span><span class="pun">});</span></li><li class="L0"><span class="pln">        </span><span class="typ">Droppable</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">'#drop2'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">            hoverclass</span><span class="pun">:</span><span class="pln"> </span><span class="str">'ink-label success'</span><span class="pun">,</span></li><li class="L2"><span class="pln">            accept</span><span class="pun">:</span><span class="pln"> </span><span class="str">'.acceptme2'</span><span class="pun">,</span></li><li class="L3"><span class="pln">            onDrop</span><span class="pun">:</span><span class="pln"> </span><span class="str">'move'</span><span class="pun">,</span><span class="pln">  </span><span class="com">// This is a predefined event handler which moves the draggable element here when dropped</span></li><li class="L4"><span class="pln">            onDropOut</span><span class="pun">:</span><span class="pln"> </span><span class="str">'revert'</span><span class="pln">  </span><span class="com">// This predefined event handler moves the draggable back to where it came from</span></li><li class="L5"><span class="pln">        </span><span class="pun">});</span></li><li class="L6"><span class="pln">    </span><span class="pun">});</span></li><li class="L7"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+
+    <h3>Options</h3>
+    
+    <p>Droppable options:</p>
+
+    <ul>
+        <li><strong>element</strong> target element</li>
+
+        <li><strong>options</strong> options object</li>
+
+        <li><strong>hoverClass</strong> Classname applied when an
+        acceptable draggable element is hovering the element</li>
+
+        <li><strong>accept</strong> Selector for elements that can
+        be accepted by this droppable</li>
+        
+        <li><strong>Event handlers:</strong> Any of the following can
+        take a function, or one of the strings <code>'revert'</code>
+        (to place the draggable where it came from, useful in onDropOut)
+        <code>'move'</code> (to move the element) <code>'copy'</code>
+        (to copy the element)</li>
+        <ul>
+            <li><strong>onHover</strong> callback called when an acceptable
+            draggable element is hovering the droppable. Gets the draggable and the
+            droppable element as parameters.</li>
+
+            <li><strong>onDrop</strong> callback called when an acceptable
+            draggable element is dropped. Gets the draggable, the droppable and the
+            event as parameters.</li>
+
+            <li><strong>onDropOut</strong> callback called when an acceptable
+            draggable element is dropped. Gets the draggable, the droppable and the
+            event as parameters.</li>
+        </ul>
+    </ul>
+    <p>More details can be found in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Droppable.html">technical documentation</a>.</p>
+</section>
+</div>

@@ -1,5 +1,125 @@
 ---
 layout: default 
-title: Javascript UI -  
+title: Javascript UI - Tooltips
 base_path: ../../../
 ---
+<div class="ink-grid">
+    <section id="tooltips">
+    <h2>Tooltips</h2>
+    <p>Tooltips are useful as a means to display information about functionality while avoiding clutter.</p>
+
+    <p id="tooltip_example"><span class="ink-label success">Example</span></p>
+    <div class="box" id="">
+        <h5>What do you want to do now?</h5>
+<hr>
+<table class="ink-table">
+    <tbody><tr>
+        <td>
+            <span class="tooltip ink-label success" data-tip-text="Attempt to talk to this stranger" data-tip-where="up">
+                Talk
+            </span>
+        </td>
+        <td>
+            (<code>class="tooltip" data-tip-text="..." data-tip-where="up"</code>)
+        </td>
+    </tr><tr>
+        <td>
+            <span class="tooltip ink-label success" data-tip-text="Grab an item from your backpack" data-tip-where="down" data-tip-color="blue">b1</span>
+            <span class="tooltip ink-label success" data-tip-text="Second backpack" data-tip-color="blue" data-tip-where="right">b2</span>
+        </td>
+        <td>
+             (b1: <code>class="tooltip" data-tip-text="..."
+                data-tip-where="down"
+                data-tip-color="blue"</code>)
+             (b2: <code>class="tooltip" data-tip-text="..."
+                data-tip-where="right"
+                data-tip-color="blue"</code>)
+        </td>
+    </tr><tr>
+        <td>
+            <span class="tooltip ink-label success" data-tip-text="Fight this person as an enemy" data-tip-where="mousemove" data-tip-color="red">
+                Fight
+            </span>
+        </td>
+        <td>
+            (<code>class="tooltip" data-tip-text="..."
+                data-tip-where="mousemove"
+                data-tip-color="red"</code>)
+        </td>
+    </tr><tr>
+        <td>
+            <span class="tooltip ink-label success" data-tip-text="This guy does not seem dangerous. But you can still run for your life." data-tip-where="mousefix" data-tip-color="orange">
+                Run
+            </span>
+        </td>
+        <td>
+            (<code>class="tooltip" data-tip-text="..."
+                data-tip-where="mousefix"
+                data-tip-color="orange"</code>)
+        </td>
+    </tr>
+</tbody></table>
+    </div>
+    <p><span class="ink-label info">Code</span></p>
+    <pre id="tooltip_sourcecode" class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;h5&gt;</span><span class="pln">What do you want to do now?</span><span class="tag">&lt;/h5&gt;</span></li><li class="L1"><span class="tag">&lt;hr&gt;</span></li><li class="L2"><span class="tag">&lt;table</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-table"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;tr&gt;</span></li><li class="L4"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L5"><span class="pln">            </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tooltip ink-label success"</span></li><li class="L6"><span class="pln">                </span><span class="atn">data-tip-text</span><span class="pun">=</span><span class="atv">"Attempt to talk to this stranger"</span></li><li class="L7"><span class="pln">                </span><span class="atn">data-tip-where</span><span class="pun">=</span><span class="atv">"up"</span><span class="tag">&gt;</span></li><li class="L8"><span class="pln">                Talk</span></li><li class="L9"><span class="pln">            </span><span class="tag">&lt;/span&gt;</span></li><li class="L0"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L1"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L2"><span class="pln">            (</span><span class="tag">&lt;code&gt;</span><span class="pln">class="tooltip" data-tip-text="..." data-tip-where="up"</span><span class="tag">&lt;/code&gt;</span><span class="pln">)</span></li><li class="L3"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L4"><span class="pln">    </span><span class="tag">&lt;/tr&gt;&lt;tr&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L6"><span class="pln">            </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tooltip ink-label success"</span></li><li class="L7"><span class="pln">                </span><span class="atn">data-tip-text</span><span class="pun">=</span><span class="atv">"Grab an item from your backpack"</span></li><li class="L8"><span class="pln">                </span><span class="atn">data-tip-where</span><span class="pun">=</span><span class="atv">"down"</span></li><li class="L9"><span class="pln">                </span><span class="atn">data-tip-color</span><span class="pun">=</span><span class="atv">"blue"</span><span class="tag">&gt;</span><span class="pln">b1</span><span class="tag">&lt;/span&gt;</span></li><li class="L0"><span class="pln">            </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tooltip ink-label success"</span></li><li class="L1"><span class="pln">                </span><span class="atn">data-tip-text</span><span class="pun">=</span><span class="atv">"Second backpack"</span></li><li class="L2"><span class="pln">                </span><span class="atn">data-tip-color</span><span class="pun">=</span><span class="atv">"blue"</span></li><li class="L3"><span class="pln">                </span><span class="atn">data-tip-where</span><span class="pun">=</span><span class="atv">"right"</span><span class="tag">&gt;</span><span class="pln">b2</span><span class="tag">&lt;/span&gt;</span></li><li class="L4"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L6"><span class="pln">             (b1: </span><span class="tag">&lt;code&gt;</span><span class="pln">class="tooltip" data-tip-text="..."</span></li><li class="L7"><span class="pln">                data-tip-where="down"</span></li><li class="L8"><span class="pln">                data-tip-color="blue"</span><span class="tag">&lt;/code&gt;</span><span class="pln">)</span></li><li class="L9"><span class="pln">             (b2: </span><span class="tag">&lt;code&gt;</span><span class="pln">class="tooltip" data-tip-text="..."</span></li><li class="L0"><span class="pln">                data-tip-where="right"</span></li><li class="L1"><span class="pln">                data-tip-color="blue"</span><span class="tag">&lt;/code&gt;</span><span class="pln">)</span></li><li class="L2"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;/tr&gt;&lt;tr&gt;</span></li><li class="L4"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L5"><span class="pln">            </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tooltip ink-label success"</span></li><li class="L6"><span class="pln">                </span><span class="atn">data-tip-text</span><span class="pun">=</span><span class="atv">"Fight this person as an enemy"</span></li><li class="L7"><span class="pln">                </span><span class="atn">data-tip-where</span><span class="pun">=</span><span class="atv">"mousemove"</span></li><li class="L8"><span class="pln">                </span><span class="atn">data-tip-color</span><span class="pun">=</span><span class="atv">"red"</span><span class="tag">&gt;</span></li><li class="L9"><span class="pln">                Fight</span></li><li class="L0"><span class="pln">            </span><span class="tag">&lt;/span&gt;</span></li><li class="L1"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L2"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L3"><span class="pln">            (</span><span class="tag">&lt;code&gt;</span><span class="pln">class="tooltip" data-tip-text="..."</span></li><li class="L4"><span class="pln">                data-tip-where="mousemove"</span></li><li class="L5"><span class="pln">                data-tip-color="red"</span><span class="tag">&lt;/code&gt;</span><span class="pln">)</span></li><li class="L6"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L7"><span class="pln">    </span><span class="tag">&lt;/tr&gt;&lt;tr&gt;</span></li><li class="L8"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L9"><span class="pln">            </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"tooltip ink-label success"</span></li><li class="L0"><span class="pln">                </span><span class="atn">data-tip-text</span><span class="pun">=</span><span class="atv">"This guy does not seem dangerous. But you can still run for your life."</span></li><li class="L1"><span class="pln">                </span><span class="atn">data-tip-where</span><span class="pun">=</span><span class="atv">"mousefix"</span></li><li class="L2"><span class="pln">                </span><span class="atn">data-tip-color</span><span class="pun">=</span><span class="atv">"orange"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">                Run</span></li><li class="L4"><span class="pln">            </span><span class="tag">&lt;/span&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L6"><span class="pln">        </span><span class="tag">&lt;td&gt;</span></li><li class="L7"><span class="pln">            (</span><span class="tag">&lt;code&gt;</span><span class="pln">class="tooltip" data-tip-text="..."</span></li><li class="L8"><span class="pln">                data-tip-where="mousefix"</span></li><li class="L9"><span class="pln">                data-tip-color="orange"</span><span class="tag">&lt;/code&gt;</span><span class="pln">)</span></li><li class="L0"><span class="pln">        </span><span class="tag">&lt;/td&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;/tr&gt;</span></li><li class="L2"><span class="tag">&lt;/table&gt;</span></li></ol></pre>
+    <p>
+        <span class="ink-label info">Hint</span>
+        You can use the <code>[data-tip-text]</code> selector instead of <code>.tooltip</code> above.
+    </p>
+
+    <h3>Options</h3>
+    
+    <p>You can define options either through the second argument to the Tooltip constructor, or as data-attributes in each target element. Options set through data-attributes all start with <code>data-tip</code>, and are prioritized over options passed into the Tooltip constructor.</p>
+
+    <p>Some options:</p>
+
+    <ul>
+        <li>
+            <strong>text</strong>:
+            Text content for the tooltip.
+        </li>
+
+        <li>
+            <strong>where</strong>:
+            Positioning for the tooltip. Can be <code>'up'</code>, <code>'down'</code>, <code>'left'</code>, <code>'right'</code>, <code>'mousemove'</code> or <code>'mousefix'</code>:
+        </li>
+
+        <li>
+            <strong>color</strong>:
+            Color of the tooltip. Options are red, <code>orange</code>, <code>blue</code>, <code>green</code>, grey and black. Default is a light shade of grey.
+        </li>
+
+        <li>
+            <strong>fade</strong>:
+            Fade time; Duration of the fade in/out effect.
+        </li>
+
+        <li>
+            <strong>forever</strong>:
+            Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+        </li>
+
+        <li>
+            <strong>timeout</strong>:
+            Time for the tooltip to live. Useful together with [options.forever].
+        </li>
+
+        <li>
+            <strong>delay</strong>:
+            Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
+        </li>
+
+        <li>
+            <strong>template</strong>:
+            Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS <code>display</code> is set to <code>block</code>.
+        </li>
+
+        <li>
+            <strong>templatefield</strong>:
+            Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
+        </li>
+    </ul>
+
+    <p>More details can be found in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.Tooltip.html">technical documentation</a>.</p>
+</section>
+</div>
