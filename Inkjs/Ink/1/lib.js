@@ -1,5 +1,5 @@
 (function(window, document) {
-    /*jshint eqnull:false*/
+    /*jshint eqnull:true, sub:true*/
 
     'use strict';
 
@@ -27,7 +27,6 @@
     var paths = {};
     var modules = {};
     var modulePromises = {};
-    var versionlessModules = {};  // taint modules which are already loaded, without their version
     var visited = {};  // taint modules which are being loaded
 
 
@@ -134,19 +133,33 @@
          * @method namespace
          * @param  {String}   ns
          * @param  {Boolean}  [returnParentAndKey]
+         * @param  {Object}   [assign] when truthy, assign this object to the tree;
          * @return {Array|Object} if returnParentAndKey, returns [parent, lastPart], otherwise return the namespace directly
          */
-        namespace: function(ns, returnParentAndKey) {
+        namespace: function(ns, returnParentAndKey, assign) {
             if (!ns || !ns.length) { return null; }
 
             var levels = ns.split('.');
+            if (assign && levels[0] !== 'Ink') { return; }
             var nsobj = window;
             var parent;
+            var f = levels.length;
 
-            for (var i = 0, f = levels.length; i < f; ++i) {
+            if (assign) { f -= 1; }
+
+            for (var i = 0; i < f; ++i) {
                 nsobj[ levels[i] ] = nsobj[ levels[i] ] || {};
                 parent = nsobj;
                 nsobj = nsobj[ levels[i] ];
+            }
+
+            if (assign) {
+                var leaf = levels[levels.length - 1];
+                nsobj[leaf] = assign;
+                var nameNoVersion = leaf.split('_')[0];
+                if (!(nameNoVersion in nsobj)) {
+                    nsobj[nameNoVersion] = assign;
+                }
             }
 
             if (returnParentAndKey) {
@@ -217,15 +230,8 @@
             this.requireModules(deps, function (/*...*/) {
                 var module = modFn.apply(this, [].slice.call(arguments));
                 modules[modAll] = module;
-                var parentObjectAndKey = this.namespace(modAll, true);
-                (function (parent, key) {  // unpacking an array of 2 items
-                    parent[key] = module;
-                    var noVersion = key.split('_')[0];  // 'Element_1'.split('_')[0]
-                    if (!(noVersion in parent)) {  // Make sure the first version of the module prevails
-                        parent[noVersion] = module;
-                    }
-                }.apply({}, parentObjectAndKey));
-                this._getModulePromiseFor(modAll)(true, [module]);  // resolve promise for this module
+                this.namespace(modAll, null, module);
+                this._getModulePromiseFor(modAll)(true, [module]);
             });
         },
 
@@ -251,11 +257,12 @@
             
             for (var m = 0, len = deps.length; m < len; m++) {
                 promisesForModules[m] = this._getModulePromiseFor(deps[m]);
-                setTimeout(Ink.bindMethod(Ink, 'loadScript', deps[m]), 0);  // wait a tick before we loadScript. createModule might be called before the tick ends.
+                setTimeout(Ink.bindMethod(Ink, 'loadScript', deps[m]), 0);
             }
             
             var that = this;
-            this.promise(promisesForModules)
+
+            var whenDone = this.promise(promisesForModules)
                 .then(function (modules) {
                     cbFn.apply(that, modules);
                 });
@@ -586,17 +593,17 @@
             set(true, [[]]);  // all the promises were fulfilled!
         } else if (promises) {
             var remaining = promises.length;
-            var values = new Array(promises.length);
+            var resolvedValues = new Array(promises.length);
             for (var i = 0; i < promises.length; i++) {
                 (function (promise, i) {
                     promise.then(function (value) {
                         remaining -= 1;
-                        values[i] = value
+                        resolvedValues[i] = value;
                         if (remaining === 0) {
-                            set(true, [values]);
+                            set(true, [resolvedValues]);
                         }
                     });
-                }(promises[i], i))
+                }(promises[i], i));
             }
         }
         return set;
