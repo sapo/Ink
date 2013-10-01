@@ -25,7 +25,6 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {};
-    var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulePromises = {};
     var visited = {};  // taint modules which are being loaded
@@ -33,55 +32,6 @@
 
     window.Ink = {
 
-        _checkPendingRequireModules: function() {
-            var I, F, o, dep, mod, cb, pRMs = [];
-            for (I = 0, F = pendingRMs.length; I < F; ++I) {
-                o = pendingRMs[I];
-
-                if (!o) { continue; }
-
-                for (dep in o.left) {
-                    if (o.left.hasOwnProperty(dep)) {
-                        mod = modules[dep];
-                        if (mod) {
-                            o.args[o.left[dep] ] = mod;
-                            delete o.left[dep];
-                            --o.remaining;
-                        }
-                    }
-                }
-
-                if (o.remaining > 0) {
-                    pRMs.push(o);
-                }
-                else {
-                    cb = o.cb;
-                    if (!cb) { continue; }
-                    delete o.cb; // to make sure I won't call this more than once!
-                    cb.apply(false, o.args);
-                }
-            }
-
-            pendingRMs = pRMs;
-
-            if (pendingRMs.length > 0) {
-                setTimeout( function() { this._checkPendingRequireModules(); }, 0 );
-            }
-        },
-
-        /**
-         * Sets or unsets the static mode.
-         *
-         * Enable static mode to disable dynamic loading of modules and throw an exception.
-         *
-         * @method setStaticMode
-         *
-         * @param {Boolean} staticMode
-         */
-        setStaticMode: function(newStatus) {
-            staticMode = newStatus;
-        },
-        
         /**
          * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
          *
@@ -145,21 +95,18 @@
          * loads a javascript script in the head.
          *
          * @method loadScript
-         * @param  {String}   uri  can be an http URI or a module name
+         * @param  {String}   modName can be an http URI or a module name
          */
         loadScript: function(uri) {
             /*jshint evil:true */
 
-            if (staticMode) {
-                throw new Error('Requiring a module to be loaded dynamically while in static mode');
-            }
-
             if (uri.indexOf('/') === -1) {
+                if ( uri in modules ) { return; } // already loaded or created
                 uri = this.getPath(uri);
             }
 
-            if (uri in visited) {
-                return;  // already requesting this
+            if ( uri in visited ) {
+                return;  // already requesting/requested this
             } else {
                 visited[uri] = true;
             }
@@ -227,10 +174,16 @@
         /**
          * Return a promises/A+ object
          *
+         * The returned object is a pinkySwear promise. Documentation is present in the link below:
+         * https://github.com/timjansen/PinkySwear.js
+         *
          * @method promise
+         * @param {Array} [fromPromises=null] Create a promise which is resolved when all these are resolved
          * @return A pinkySwear promise object.
          */
-        promise: function () { return pinkySwear(); },
+        promise: function (fromPromises) {
+            return pinkySwear( fromPromises );
+        },
         
         /**
          * must be the wrapper around each Ink lib module for require resolution
@@ -256,9 +209,11 @@
 
             if (modules[modAll]) {
                 return;  // already defined
+            } else {
+                visited[Ink.getPath(modAll)] = true;  // do not loadScript this
             }
 
-            this.requireModules(deps, function (/*..*/) {
+            this.requireModules(deps, function (/*...*/) {
                 var module = modFn.apply(this, [].slice.call(arguments));
                 modules[modAll] = module;
                 this._addToNamespaceObjects(mod, ver, module);
@@ -276,7 +231,6 @@
         requireModules: function(deps, cbFn) { // require
             //console.log(['requireModules([', deps.join(', '), '], ', !!cbFn, ')'].join(''));
 
-            var whenDone = this.promise();
 
             if (!(typeof deps === 'object' && deps.length !== undefined)) {
                 throw new Error('Dependency list should be an array!');
@@ -289,15 +243,15 @@
             
             for (var m = 0, len = deps.length; m < len; m++) {
                 promisesForModules[m] = this._getModulePromiseFor(deps[m]);
-                if (!modules[deps[m]]) {
-                    Ink.loadScript(deps[m]);
-                }
+                setTimeout(Ink.bindMethod(Ink, 'loadScript', deps[m]), 0);
             }
             
             var that = this;
-            whenDone.all(promisesForModules).then(function (modules) {
-                cbFn.apply(that, modules);
-            });
+
+            var whenDone = this.promise(promisesForModules)
+                .then(function (modules) {
+                    cbFn.apply(that, modules);
+                });
         },
 
         _addToNamespaceObjects: function (mod, ver, module) {
@@ -594,7 +548,7 @@
     }
     
     /* target[0][target[1]] = Ink: unnecessary */
-    function pinkySwear() {
+    function pinkySwear(/* Ink: create a promise from an array of promises */promises) {
         var state;           // undefined/null = pending, true = fulfilled, false = rejected
         var values = [];     // an array of values as arguments for the then() handlers
         var deferred = [];   // functions to call when set() is invoked
@@ -638,30 +592,27 @@
         // always(func) is the same as then(func, func)
         set['always'] = function(func) { return set['then'](func, func); };
         
+        // error(func) is the same as then(0, func)
+        set['error'] = function(func) { return set['then'](0, func); };
+
         // Ink: A little extension for waiting for many promises at the same time
-        set['all'] = function (promises) {
-            if (promises.length === 0) {
-                set(true, [[]]);
-                return set;
-            }
+        if (promises && promises.length === 0) {
+            set(true, [[]]);  // all the promises were fulfilled!
+        } else if (promises) {
             var remaining = promises.length;
             var values = new Array(promises.length);
-            for (var i = 0, len = promises.length; i < len; i++) {
-                (function (i) {
-                    promises[i].then(function (value) {
+            for (var i = 0; i < promises.length; i++) {
+                (function (promise, i) {
+                    promise.then(function (value) {
                         remaining -= 1;
                         values[i] = value
                         if (remaining === 0) {
                             set(true, [values]);
                         }
                     });
-                }(i))
+                }(promises[i], i))
             }
-            return set;  // Chainable, but mutable
-        };
-
-        // error(func) is the same as then(0, func)
-        set['error'] = function(func) { return set['then'](0, func); };
+        }
         return set;
     }
 // })(typeof module === 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);  // Ink: unnecessary here

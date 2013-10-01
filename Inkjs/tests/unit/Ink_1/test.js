@@ -19,13 +19,6 @@ test('bindMethod', function () {
     deepEqual(test1(), [1, 2, 3, 4], 'returns arguments given at bind time');
     deepEqual(test2(), obj, 'returns the object owning the method');
 });
-test('staticMode', function () {
-    Ink.setStaticMode(true);
-    throws(function () {
-        Ink.requireModules(['Ink.Dom.Element_1'], function () {});
-    }, /[sS]tatic( mode)?/);
-    Ink.setStaticMode(false);
-});
 
 /*
 asyncTest('createExt', function () {
@@ -192,12 +185,10 @@ asyncTest('promise errors', function () {
 });
 
 asyncTest('promise.all', function () {
-    var promise = Ink.promise();
-    
     var dependency1 = Ink.promise();
     var dependency2 = Ink.promise();
 
-    promise.all([dependency1, dependency2]).then(function (results) {
+    Ink.promise([dependency1, dependency2]).then(function (results) {
         deepEqual(results, ['result 1', 'result 2']);
         start();
     });
@@ -213,16 +204,26 @@ asyncTest('promise.all', function () {
 asyncTest('promise.all, no dependencies', function () {
     var promise = Ink.promise();
     
-    promise.all([]).then(function (results) {
+    Ink.promise([]).then(function (results) {
         deepEqual(results, []);
         start();
     });
 });
 
 asyncTest('requireModules should wait at least a tick until a module is created', function () {
-    expect(0);  // this test just tries to cause a 404 error.
-    Ink.requireModules(['Ink.notYet_1'], function () {
+    expect(1);
+    Ink.requireModules(['Ink.notYet_1'], function (obj) {
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0, len = scripts.length; i < len; i++) {
+            if (scripts[i].src === Ink.getPath('Ink.notYet_1')) {
+                ok(false, 'Ink tried to load the module and did not wait a tick!');
+                start();
+                return
+            }
+        }
+        ok(true, 'Ink did not try to load the module before waiting a tick');
         start();
+        return;
     });
     Ink.createModule('Ink.notYet', 1, [], function () {
         return {};
