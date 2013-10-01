@@ -108,3 +108,22 @@ asyncTest('loadScript', function () {
     });
 }());
 
+asyncTest('createModule waits a tick before creating the module', function () {
+    Ink.createModule('Ink.foo', '1', [], function () {
+        ok(true, 'module created');
+        start();
+        return {}; 
+    }); 
+    equal(Ink.foo_1, undefined, 'Ink.foo will not exist until next tick');
+});
+
+asyncTest('requireModules waits a tick before requiring the module', function () {
+    var required = 'not yet'
+    Ink.requireModules(['Ink.foo_1'], function () {
+        required = true;
+        ok(true, 'module required');
+        start();
+    }); 
+    equal(required, 'not yet', 'requireModules callback function not called yet');
+});
+
