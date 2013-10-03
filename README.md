@@ -5,7 +5,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt)
 
 
-## Current Version: 2.2.0
+## Current Version: 2.2.1
 
 We've completely rewritten the grid system and JavaScript components, along with many other changes. Please read our [changelog](http://ink.sapo.pt/changelog) to find out about them.
 
@@ -41,7 +41,7 @@ The Ink JavaScript modules used to be in a separate repository. Now they are in 
 
 ## LESS Compiler
 
-Ink requires the 1.4.0 LESS compiler version.
+Ink requires the 1.4.2 LESS compiler version.
 
 
 ## Legal stuff
@@ -62,5 +62,10 @@ If you wish to contribute with your own code, please submit your pull requests t
 
 ## Previous versions
 
+* [Ink v2.2.1](https://github.com/sapo/Ink/archive/2.2.0.zip)
+* [Ink v2.2.0](https://github.com/sapo/Ink/archive/2.2.0.zip)
+* [Ink v2.1.1](https://github.com/sapo/Ink/archive/2.1.1.zip)
+* [Ink v2.1.0](https://github.com/sapo/Ink/archive/2.1.0.zip)
+* [Ink v2.0.0](https://github.com/sapo/Ink/archive/2.0.0.zip)
 * [Ink v1.1.0](https://github.com/sapo/Ink/archive/1.1.0.zip)
 
