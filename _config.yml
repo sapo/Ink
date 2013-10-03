@@ -1,5 +1,5 @@
 # JEKYLL
-exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "fonts", "less", "presskit", "ink.js", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
+exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "fonts", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
 
 destination: ./_site
 
@@ -15,10 +15,10 @@ download_url: 234
 github_url: https://github.com/sapo/Ink
 
 # ASSETS PATHS
-images_url: img/
-js_url: js/
-css_url: css/
-fonts_url: font/
+images_url: assets/img/
+js_url: assets/js/
+css_url: assets/css/
+fonts_url: assets/font/
 
 # SITE PAGES
 navigation:
@@ -47,54 +47,54 @@ navigation:
  - text: Tables
    url: ./tables/
  # JAVASCRIPT CORE
- - text: JavaScript Core
-   url: ./javascript/core/
+ - text: JS Core
+   url: ./js/core/
  # JAVASCRIPT UI COMPONENTS
- - text: JavaScript UI
-   # url: ./javascript/ui/
+ - text: JS UI
+   # url: ./js/ui/
    submenu:
    # BEHAVIOURS
    - text: Behaviours
-     url: ./javascript/ui/behaviours/
+     url: ./js/ui/behaviours/
    # CAROUSEL
    - text: Carousel
-     url: ./javascript/ui/carousel/
+     url: ./js/ui/carousel/
    # DATE PICKER
    - text: Date picker
-     url: ./javascript/ui/date-picker/
+     url: ./js/ui/date-picker/
    # DRAGGABLES
    - text: Draggables
-     url: ./javascript/ui/draggables/
+     url: ./js/ui/draggables/
    # DROPPABLES
    - text: Droppables
-     url: ./javascript/ui/droppables/
+     url: ./js/ui/droppables/
    # FORM VALIDATOR
    - text: Form validator
-     url: ./javascript/ui/form-validator/
+     url: ./js/ui/form-validator/
    # IMAGE QUERY
    - text: Image query
-     url: ./javascript/ui/image-query/
+     url: ./js/ui/image-query/
    # MODAL WINDOW
    - text: Modal
-     url: ./javascript/ui/modal/
+     url: ./js/ui/modal/
    # PROGRESS BAR
    - text: Progress bar
-     url: ./javascript/ui/progress-bar/
+     url: ./js/ui/progress-bar/
    # SORTABLE LIST
    - text: Sortable list
-     url: ./javascript/ui/sortable-list/
+     url: ./js/ui/sortable-list/
    # TABLE
    - text: Table
-     url: ./javascript/ui/table/
+     url: ./js/ui/table/
    # TABS
    - text: Tabs
-     url: ./javascript/ui/tabs/
+     url: ./js/ui/tabs/
    # TOOLTIPS
    - text: Tooltips
-     url: ./javascript/ui/tooltips/
+     url: ./js/ui/tooltips/
    # TREE VIEW
    - text: Tree view
-     url: ./javascript/ui/tree-view/
+     url: ./js/ui/tree-view/
  # GLOSSARY
  - text: Glossary
    url: ./glossary/

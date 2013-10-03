@@ -35,9 +35,7 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "less" task.
   grunt.loadNpmTasks('grunt-contrib-less');
-  // Load the plugin that provides the "jekyll" task.
   grunt.loadNpmTasks('grunt-jekyll');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
