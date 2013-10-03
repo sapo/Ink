@@ -105,10 +105,9 @@ module.exports = function(grunt) {
           },
         ],
       },
-
     },
 
-
+    clean: ["<%= ink.js.paths.output %>"],
 
     // CONCATENATE JS
     uglify: {
@@ -118,7 +117,7 @@ module.exports = function(grunt) {
           sequences: true,
           properties: true,
           dead_code: false,
-          drop_debugger: true,
+          drop_debugger: false,
           unsafe: false,
           conditionals: true,
           comparisons: true,
@@ -127,19 +126,24 @@ module.exports = function(grunt) {
           booleans: true,
           loops: true,
           unused: false,
-          hoist_funs: true,
+          hoist_funs: false,
           hoist_vars: false,
           if_return: true,
           join_vars: true,
           cascade: true
         }
       },
-      files: {
-        expand: true,
-        cwd: '<%= ink.js.paths.output %>',
-        src: ['*.js'],
-        dest: '<%= ink.js.paths.output %>',
-        ext: '.min.js'
+      ink: {
+        src: '<%= ink.js.paths.output %>ink.js', 
+        dest: '<%= ink.js.paths.output %>ink.min.js'
+      },
+      ink_all: {
+        src: '<%= ink.js.paths.output %>ink-all.js', 
+        dest: '<%= ink.js.paths.output %>ink-all.min.js'
+      },
+      ink_ui: {
+        src: '<%= ink.js.paths.output %>ink-ui.js', 
+        dest: '<%= ink.js.paths.output %>ink-ui.min.js'
       },
     },
 
@@ -169,6 +173,7 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['less','concat','uglify']);
+  grunt.registerTask('default', ['less','clean','concat','uglify']);
 };
