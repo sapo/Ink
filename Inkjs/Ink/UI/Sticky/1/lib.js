@@ -99,124 +99,58 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @method _onScroll
          * @private
          */
-        _onScroll: function(){
-
-
-            var scrollHeight = Element.scrollHeight();
+        _onScroll: Event.throttle(function(){
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+            var elm = this._rootElement;
 
             if(
                 ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
                 ( viewport.clientWidth<=649 )
             ){
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    this._rootElement.removeAttribute('style');
+                if( Element.hasAttribute(elm,'style') ){
+                    elm.removeAttribute('style');
                 }
-                return;
+                return;  // Do not do anything for mobile
             }
 
-            var cb = Ink.bind(function(){
-                var elm = this._rootElement;
 
-                var elementRect = elm.getBoundingClientRect();
-                var topRect = this._topElement && this._topElement.getBoundingClientRect();
-                var bottomRect = this._bottomElement && this._bottomElement.getBoundingClientRect();
+            var elementRect = elm.getBoundingClientRect();
+            var topRect = this._topElement && this._topElement.getBoundingClientRect();
+            var bottomRect = this._bottomElement && this._bottomElement.getBoundingClientRect();
 
-                var offsetTop = this.ORIGINAL.offsetTop ? parseInt(this.ORIGINAL.offsetTop, 10) : 0;
-                var offsetBottom = this.ORIGINAL.offsetBottom ? parseInt(this.ORIGINAL.offsetBottom, 10) : 0;
+            var offsetTop = this.ORIGINAL.offsetTop ? parseInt(this.ORIGINAL.offsetTop, 10) : 0;
+            var offsetBottom = this.ORIGINAL.offsetBottom ? parseInt(this.ORIGINAL.offsetBottom, 10) : 0;
 
-                
+            var elementHeight = elementRect.bottom - elementRect.top;
 
-                // elementMinTop += parseInt(this.ORIGINAL.offsetTop, 10)
-                // elementMaxBottom -= parseInt(this.ORIGINAL.offsetBottom, 10)
+            // elementMinTop += parseInt(this.ORIGINAL.offsetTop, 10)
+            // elementMaxBottom -= parseInt(this.ORIGINAL.offsetBottom, 10)
 
-                var stickingTo = '';
+            var stickingTo = '';
 
-                if ((elementRect.top <= offsetTop) && this._stickingTo !== 'screen' && this._stickingTo !== 'bottom')  {
-                    // Stick to screen
-                    stickingTo = 'screen'
-                    elm.style.position = 'fixed'
-                    elm.style.top = offsetTop + 'px'
-                } else if (elementRect.top < topRect.bottom && this._stickingTo !== 'top') {
-                    stickingTo = 'top'
-                    elm.style.position = 'static'
-                    elm.style.top = 'auto'
-                } else if (elementRect.bottom > bottomRect.top + offsetBottom || this._stickingTo === 'bottom') {
-                    stickingTo = 'bottom'  // More complex logic, see below
-                    var h = elementRect.bottom - elementRect.top
+            if (topRect.bottom > offsetTop && bottomRect.top > elementHeight) {
+                stickingTo = 'top'
+                elm.style.position = 'static'
+                elm.style.top = 'auto'
+            } else if (bottomRect.top < elementHeight) {
+                stickingTo = 'bottom';
+                elm.style.position = 'fixed';
+                elm.style.top = bottomRect.top - elementHeight - offsetBottom + 'px'
+            } else if (topRect.bottom <= offsetTop) {
+                // Stick to screen
+                stickingTo = 'screen'
+                elm.style.position = 'fixed'
+                elm.style.top = offsetTop + 'px'
+            }
 
-                    if (bottomRect.top > h) {
-                        // Unstick from bottom
-                        stickingTo = 'screen';
-                        elm.style.position = 'fixed';
-                        elm.style.top = offsetTop + 'px';
-                    } else {
-                        elm.style.position = 'fixed';
-                        elm.style.top = bottomRect.top - h - offsetBottom + 'px'
-                    }
-                }
+            if (stickingTo && stickingTo !== this._stickingTo) {
+                this._stickingTo = stickingTo
+                console.log(stickingTo)
+            }
 
-                if (stickingTo && stickingTo !== this._stickingTo) {
-                    this._stickingTo = stickingTo
-                    console.log(stickingTo)
-                }
-                // if (elementRect.bottom > elementMaxBottom) {
-                    // Stick to the bottom
-                //    stickingTo = 'bottom';
-                //    elm.style.position = 'fixed';
-                //} else 
-                // } else{
-                    // Stick to the screen
-                //     elm.style.position = 'fixed';
-                //     elm.style.top = elementMinTop + 'px';
-                //     elm.style.bottom = 'auto';
-                // }
-
-                Css.addRemoveClassName(elm, 'ink-sticky-sticking', stickingTo === 'top');
-                Css.addRemoveClassName(elm, 'ink-sticky-sticking-bottom', stickingTo === 'bottom');
-
-                /*
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
-
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-
-                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
-                            this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
-                        } else {
-                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
-                        }
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.bottom = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-                    }
-                } else {
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        return;
-                    }
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.position = 'fixed';
-                    this._rootElement.style.bottom = 'auto';
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                    this._rootElement.style.width = this._options.originalWidth + 'px';
-                }*/
-
-                this._scrollTimeout = undefined;
-            },this);
-
-            this._scrollTimeout = setTimeout(cb, 0);
-        },
+            Css.addRemoveClassName(elm, 'ink-sticky-sticking', stickingTo === 'top');
+            Css.addRemoveClassName(elm, 'ink-sticky-sticking-bottom', stickingTo === 'bottom');
+        }, 10),
 
         /**
          * Resize handler
