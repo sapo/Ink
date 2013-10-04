@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, InkEvent, Css, InkElement) {
     'use strict';
 
     /**
@@ -33,15 +33,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             throw '[Sticky] :: Invalid selector defined';
         }
 
-        if( typeof selector === 'object' ){
-            this._rootElement = selector;
-        } else {
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0) {
-                throw "[Sticky] :: Can't find any element with the specified selector";
-            }
-            this._rootElement = this._rootElement[0];
-        }
+        this._rootElement = Aux.elOrSelector(selector,
+            "[Sticky] :: Can't find any element with the specified selector");
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes and given options
@@ -49,29 +42,18 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         this._options = Ink.extendObj({
             offsetBottom: 0,
             offsetTop: 0,
-            topElement: undefined,
-            bottomElement: undefined
-        }, options || {},  Element.data( this._rootElement ) );
+            topElement: null,
+            bottomElement: null
+        }, options || {},  InkElement.data( this._rootElement ) );
 
-        this.ORIGINAL = Ink.extendObj({}, this._options);
-
-        if( typeof( this._options.topElement ) !== 'undefined' ){
+        if( this._options.topElement ){
             this._topElement = Aux.elOrSelector( this._options.topElement, 'Top Element');
-        } else {
-            this._topElement = Aux.elOrSelector( 'body', 'Top Element');
         }
 
-        if( typeof( this._options.bottomElement ) !== 'undefined' ){
+        if( this._options.bottomElement ){
             this._bottomElement = Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
-        } else {
-            this._bottomElement = Aux.elOrSelector( 'body', 'Top Element');
         }
 
-        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
-        this._dims = {
-            height: this._computedStyle.height,
-            width: this._computedStyle.width
-        };
         this._init();
     };
 
@@ -84,13 +66,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _init: function(){
-            Event.observe( document, 'scroll', Event.throttle(Ink.bindEvent(this._onScroll,this), 10 ) );
-            Event.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
-
-            this._calculateOriginalSizes();
-
-            this._calculateOffsets();
-
+            InkEvent.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
+            InkEvent.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
         },
 
         /**
@@ -99,15 +76,15 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @method _onScroll
          * @private
          */
-        _onScroll: Event.throttle(function(){
+        _onScroll: InkEvent.throttle(function(){
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
             var elm = this._rootElement;
 
             if(
-                ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
+                ( ( (InkElement.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
                 ( viewport.clientWidth<=649 )
             ){
-                if( Element.hasAttribute(elm,'style') ){
+                if( InkElement.hasAttribute(elm,'style') ){
                     elm.removeAttribute('style');
                 }
                 return;  // Do not do anything for mobile
@@ -118,39 +95,36 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             var topRect = this._topElement && this._topElement.getBoundingClientRect();
             var bottomRect = this._bottomElement && this._bottomElement.getBoundingClientRect();
 
-            var offsetTop = this.ORIGINAL.offsetTop ? parseInt(this.ORIGINAL.offsetTop, 10) : 0;
-            var offsetBottom = this.ORIGINAL.offsetBottom ? parseInt(this.ORIGINAL.offsetBottom, 10) : 0;
+            var offsetTop = this._options.offsetTop ? parseInt(this._options.offsetTop, 10) : 0;
+            var offsetBottom = this._options.offsetBottom ? parseInt(this._options.offsetBottom, 10) : 0;
 
             var elementHeight = elementRect.bottom - elementRect.top;
 
-            // elementMinTop += parseInt(this.ORIGINAL.offsetTop, 10)
-            // elementMaxBottom -= parseInt(this.ORIGINAL.offsetBottom, 10)
+            var elMargins =
+                (parseInt(Css.getStyle(elm, 'margin-top'), 10) || 0) +
+                (parseInt(Css.getStyle(elm, 'margin-bottom'), 10) || 0);
 
-            var stickingTo = '';
+            var stickingTo = this._lastStickingTo;
 
-            if (topRect.bottom > offsetTop && bottomRect.top > elementHeight) {
-                stickingTo = 'top'
-                elm.style.position = 'static'
-                elm.style.top = 'auto'
-            } else if (bottomRect.top < elementHeight) {
+            if (bottomRect && bottomRect.top < elementHeight + offsetTop + offsetBottom + elMargins) {
                 stickingTo = 'bottom';
                 elm.style.position = 'fixed';
-                elm.style.top = bottomRect.top - elementHeight - offsetBottom + 'px'
-            } else if (topRect.bottom <= offsetTop) {
-                // Stick to screen
-                stickingTo = 'screen'
-                elm.style.position = 'fixed'
-                elm.style.top = offsetTop + 'px'
+                elm.style.top = bottomRect.top - elementHeight - offsetBottom - elMargins + 'px';
+            } else if (!topRect || topRect.bottom > offsetTop) {
+                stickingTo = '[normal]';
+                elm.style.position = 'static';
+                elm.style.top = 'auto';
+            } else if (topRect && topRect.bottom <= offsetTop) {
+                stickingTo = 'top';
+                elm.style.position = 'fixed';
+                elm.style.top = offsetTop + 'px';
             }
 
-            if (stickingTo && stickingTo !== this._stickingTo) {
-                this._stickingTo = stickingTo
-                console.log(stickingTo)
+            if (stickingTo !== this._lastStickingTo) {
+                Css.addRemoveClassName(elm, 'ink-sticky-top', stickingTo === 'top');
+                Css.addRemoveClassName(elm, 'ink-sticky-bottom', stickingTo === 'bottom');
             }
-
-            Css.addRemoveClassName(elm, 'ink-sticky-sticking', stickingTo === 'top');
-            Css.addRemoveClassName(elm, 'ink-sticky-sticking-bottom', stickingTo === 'bottom');
-        }, 10),
+        }, 80),
 
         /**
          * Resize handler
@@ -158,85 +132,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
          * @method _onResize
          * @private
          */
-        _onResize: function(){
-
-            if( this._resizeTimeout ){
-                clearTimeout(this._resizeTimeout);
-            }
-
-            this._resizeTimeout = setTimeout(Ink.bind(function(){
-                this._rootElement.removeAttribute('style');
-                this._calculateOriginalSizes();
-                this._calculateOffsets();
-            }, this),0);
-
-        },
-
-        /**
-         * On each resizing (and in the beginning) the component recalculates the offsets, since
-         * the top and bottom element heights might have changed.
-         *
-         * @method _calculateOffsets
-         * @private
-         */
-        _calculateOffsets: function(){
-
-            /**
-             * Calculating the offset top
-             */
-            if( typeof this._topElement !== 'undefined' ){
-
-                if( this._topElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        topElementHeight = Element.elementHeight( this._topElement ),
-                        topElementTop = Element.elementTop( this._topElement )
-                    ;
-
-                    this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
-                } else {
-                    this._options.offsetTop = parseInt(this._options.originalOffsetTop,10);
-                }
-            }
-
-            /**
-             * Calculating the offset bottom
-             */
-            if( typeof this._bottomElement !== 'undefined' ){
-
-                if( this._bottomElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        bottomElementHeight = Element.elementHeight(this._bottomElement)
-                    ;
-                    this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
-                } else {
-                    this._options.offsetBottom = parseInt(this._options.originalOffsetBottom,10);
-                }
-            }
-
+        _onResize: InkEvent.throttle(function(){
             this._onScroll();
-
-        },
-
-        /**
-         * Function to calculate the 'original size' of the element.
-         * It's used in the begining (_init method) and when a scroll happens
-         *
-         * @method _calculateOriginalSizes
-         * @private
-         */
-        _calculateOriginalSizes: function(){
-
-            if( typeof this._options.originalOffsetTop === 'undefined' ){
-                this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
-                this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
-            }
-            this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
-            if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
-                this._options.originalWidth = 0;
-            }
-            this._options.originalWidth = parseInt(this._computedStyle.width,10);
-        }
+        }, 80),
 
     };
 
