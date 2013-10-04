@@ -5,18 +5,16 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     
     ink: {
-      js: {
-        paths: {
+      folders: {
+        js: {
           src: './src/js/',
           output: './dist/js/'
-        }
-      }
-      ,css: {
-        paths: {
+        },
+        css: {
           src: './src/less/',
           output: './dist/css/'
-        }
-      }
+        },
+      },
     },
 
     // builds the javascript bundles
@@ -28,14 +26,14 @@ module.exports = function(grunt) {
         {
           expand: true,
           flatten: true,
-          cwd: '<%= ink.js.paths.src %>',
+          cwd: '<%= ink.folders.js.src %>',
           src: [
             '1/**/lib.js',
             'Net/**/lib.js',
             'Dom/**/lib.js',
             'Util/**/lib.js',
           ],
-          dest: '<%= ink.js.paths.output %>',
+          dest: '<%= ink.folders.js.output %>',
           rename: function(dest, src) {
             return dest + 'ink.js';
           },
@@ -49,7 +47,7 @@ module.exports = function(grunt) {
         {
           expand: true,
           flatten: true,
-          cwd: '<%= ink.js.paths.src %>',
+          cwd: '<%= ink.folders.js.src %>',
           src: [
             '1/**/lib.js',
             'Net/**/lib.js',
@@ -58,7 +56,7 @@ module.exports = function(grunt) {
             'UI/Aux/lib.js',
             'UI/**/lib.js'
           ],
-          dest: '<%= ink.js.paths.output %>',
+          dest: '<%= ink.folders.js.output %>',
           rename: function(dest, src) {
             return dest + 'ink-all.js';
           },
@@ -72,12 +70,12 @@ module.exports = function(grunt) {
           {
             expand: true,
             flatten: true,
-            cwd: '<%= ink.js.paths.src %>UI/',
+            cwd: '<%= ink.folders.js.src %>UI/',
             src: [
               'UI/Aux/lib.js',
               '**/lib.js'
             ],
-            dest: '<%= ink.js.paths.output %>',
+            dest: '<%= ink.folders.js.output %>',
             rename: function(dest, src) {
               return dest + 'ink-ui.js';
             },
@@ -90,9 +88,9 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: '<%= ink.js.paths.src %>UI/',
+            cwd: '<%= ink.folders.js.src %>UI/',
             src: ['**/[0-9]/lib.js'],
-            dest: '<%= ink.js.paths.output %>',
+            dest: '<%= ink.folders.js.output %>',
             rename: function(dest, src) {
               // check if this is v1
               if (src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) == 1)
@@ -112,7 +110,7 @@ module.exports = function(grunt) {
     },
 
     // TODO: build on separate folder and move to dist
-    clean: ["<%= ink.js.paths.output %>"],
+    clean: ["<%= ink.folders.js.output %>/ink*.js"],
 
 
     qunit: {
@@ -158,16 +156,16 @@ module.exports = function(grunt) {
         }
       },
       ink: {
-        src: '<%= ink.js.paths.output %>ink.js', 
-        dest: '<%= ink.js.paths.output %>ink.min.js'
+        src: '<%= ink.folders.js.output %>ink.js', 
+        dest: '<%= ink.folders.js.output %>ink.min.js'
       },
       ink_all: {
-        src: '<%= ink.js.paths.output %>ink-all.js', 
-        dest: '<%= ink.js.paths.output %>ink-all.min.js'
+        src: '<%= ink.folders.js.output %>ink-all.js', 
+        dest: '<%= ink.folders.js.output %>ink-all.min.js'
       },
       ink_ui: {
-        src: '<%= ink.js.paths.output %>ink-ui.js', 
-        dest: '<%= ink.js.paths.output %>ink-ui.min.js'
+        src: '<%= ink.folders.js.output %>ink-ui.js', 
+        dest: '<%= ink.folders.js.output %>ink-ui.min.js'
       },
     },
 
@@ -175,8 +173,8 @@ module.exports = function(grunt) {
     less: {
       dist: {
         files: {
-          '<%= ink.css.paths.output %><%= pkg.name %>.css':['<%= ink.css.paths.src %><%= pkg.name %>.less'],
-          '<%= ink.css.paths.output %><%= pkg.name %>-ie7.css':['<%= ink.css.paths.src %><%= pkg.name %>-ie7.less']
+          '<%= ink.folders.css.output %><%= pkg.name %>.css':['<%= ink.folders.css.src %><%= pkg.name %>.less'],
+          '<%= ink.folders.css.output %><%= pkg.name %>-ie7.css':['<%= ink.folders.css.src %><%= pkg.name %>-ie7.less']
         }
       },
 
@@ -186,8 +184,8 @@ module.exports = function(grunt) {
           yuicompress: true
         },
         files: {
-          '<%= ink.css.paths.output %><%= pkg.name %>-min.css':'<%= ink.css.paths.src %><%= pkg.name %>.less',
-          '<%= ink.css.paths.output %><%= pkg.name %>-ie7-min.css':'<%= ink.css.paths.src %><%= pkg.name %>-ie7.less'
+          '<%= ink.folders.css.output %><%= pkg.name %>-min.css':'<%= ink.folders.css.src %><%= pkg.name %>.less',
+          '<%= ink.folders.css.output %><%= pkg.name %>-ie7-min.css':'<%= ink.folders.css.src %><%= pkg.name %>-ie7.less'
         }
       }
     }
