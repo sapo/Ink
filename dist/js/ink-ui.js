@@ -1,4 +1,3 @@
-var cena = "cena";
 /**
  * @module Ink.UI.Aux_1
  * @author inkdev AT sapo.pt
