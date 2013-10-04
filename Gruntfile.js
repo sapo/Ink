@@ -7,14 +7,14 @@ module.exports = function(grunt) {
     ink: {
       js: {
         paths: {
-          src: './Inkjs/Ink/',
-          output: './js/test/'
+          src: './src/js/',
+          output: './dist/js/'
         }
       }
       ,css: {
         paths: {
-          src: 'less/',
-          output: 'css/'
+          src: './src/less/',
+          output: './dist/css/'
         }
       }
     },
@@ -55,7 +55,8 @@ module.exports = function(grunt) {
             'Net/**/lib.js',
             'Dom/**/lib.js',
             'Util/**/lib.js',
-            'UI/**/lib.js',
+            'UI/Aux/lib.js',
+            'UI/**/lib.js'
           ],
           dest: '<%= ink.js.paths.output %>',
           rename: function(dest, src) {
@@ -72,7 +73,10 @@ module.exports = function(grunt) {
             expand: true,
             flatten: true,
             cwd: '<%= ink.js.paths.src %>UI/',
-            src: ['**/lib.js'],
+            src: [
+              'UI/Aux/lib.js',
+              '**/lib.js'
+            ],
             dest: '<%= ink.js.paths.output %>',
             rename: function(dest, src) {
               return dest + 'ink-ui.js';
@@ -107,7 +111,27 @@ module.exports = function(grunt) {
       },
     },
 
+    // TODO: build on separate folder and move to dist
     clean: ["<%= ink.js.paths.output %>"],
+
+
+    qunit: {
+        options: {
+          // inject: 'js/tests/assets/phantom.js',
+          urls: ['http://localhost:8000/js/tests/index.html']
+        },
+        files: ['js/tests/*.html']
+      },
+
+      connect: {
+        server: {
+          options: {
+            port: 8000,
+            debug: true,
+            base: '.'
+          }
+        }
+      },
 
     // CONCATENATE JS
     uglify: {
@@ -170,10 +194,12 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-less');
-  // grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
 
   grunt.registerTask('default', ['less','clean','concat','uglify']);
+  grunt.registerTask('test', ['connect', 'qunit']);
 };
