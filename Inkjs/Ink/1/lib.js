@@ -1,4 +1,5 @@
 (function(window, document) {
+    /*jshint eqnull:true, sub:true*/
 
     'use strict';
 
@@ -24,79 +25,13 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {};
-    var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
-    var modulesLoadOrder = [];
-    var modulesRequested = {};
-    var pendingRMs = [];
-
-
-
-    // auxiliary fns
-    var isEmptyObject = function(o) {
-        /*jshint unused:false */
-        if (typeof o !== 'object') { return false; }
-        for (var k in o) {
-            if (o.hasOwnProperty(k)) {
-                return false;
-            }
-        }
-        return true;
-    };
-
+    var modulePromises = {};
+    var visited = {};  // taint modules which are being loaded
 
 
     window.Ink = {
 
-        _checkPendingRequireModules: function() {
-            var I, F, o, dep, mod, cb, pRMs = [];
-            for (I = 0, F = pendingRMs.length; I < F; ++I) {
-                o = pendingRMs[I];
-
-                if (!o) { continue; }
-
-                for (dep in o.left) {
-                    if (o.left.hasOwnProperty(dep)) {
-                        mod = modules[dep];
-                        if (mod) {
-                            o.args[o.left[dep] ] = mod;
-                            delete o.left[dep];
-                            --o.remaining;
-                        }
-                    }
-                }
-
-                if (o.remaining > 0) {
-                    pRMs.push(o);
-                }
-                else {
-                    cb = o.cb;
-                    if (!cb) { continue; }
-                    delete o.cb; // to make sure I won't call this more than once!
-                    cb.apply(false, o.args);
-                }
-            }
-
-            pendingRMs = pRMs;
-
-            if (pendingRMs.length > 0) {
-                setTimeout( function() { Ink._checkPendingRequireModules(); }, 0 );
-            }
-        },
-
-        /**
-         * Sets or unsets the static mode.
-         *
-         * Enable static mode to disable dynamic loading of modules and throw an exception.
-         *
-         * @method setStaticMode
-         *
-         * @param {Boolean} staticMode
-         */
-        setStaticMode: function(newStatus) {
-            staticMode = newStatus;
-        },
-        
         /**
          * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
          *
@@ -160,17 +95,20 @@
          * loads a javascript script in the head.
          *
          * @method loadScript
-         * @param  {String}   uri  can be an http URI or a module name
+         * @param  {String}   modName can be an http URI or a module name
          */
         loadScript: function(uri) {
             /*jshint evil:true */
 
-            if (staticMode) {
-                throw new Error('Requiring a module to be loaded dynamically while in static mode');
+            if (uri.indexOf('/') === -1) {
+                if ( uri in modules ) { return; } // already loaded or created
+                uri = this.getPath(uri);
             }
 
-            if (uri.indexOf('/') === -1) {
-                uri = this.getPath(uri);
+            if ( uri in visited ) {
+                return;  // already requesting/requested this
+            } else {
+                visited[uri] = true;
             }
 
             var scriptEl = document.createElement('script');
@@ -195,19 +133,33 @@
          * @method namespace
          * @param  {String}   ns
          * @param  {Boolean}  [returnParentAndKey]
+         * @param  {Object}   [assign] when truthy, assign this object to the tree;
          * @return {Array|Object} if returnParentAndKey, returns [parent, lastPart], otherwise return the namespace directly
          */
-        namespace: function(ns, returnParentAndKey) {
+        namespace: function(ns, returnParentAndKey, assign) {
             if (!ns || !ns.length) { return null; }
 
             var levels = ns.split('.');
+            if (assign && levels[0] !== 'Ink') { return; }
             var nsobj = window;
             var parent;
+            var f = levels.length;
 
-            for (var i = 0, f = levels.length; i < f; ++i) {
+            if (assign) { f -= 1; }
+
+            for (var i = 0; i < f; ++i) {
                 nsobj[ levels[i] ] = nsobj[ levels[i] ] || {};
                 parent = nsobj;
                 nsobj = nsobj[ levels[i] ];
+            }
+
+            if (assign) {
+                var leaf = levels[levels.length - 1];
+                nsobj[leaf] = assign;
+                var nameNoVersion = leaf.split('_')[0];
+                if (!(nameNoVersion in nsobj)) {
+                    nsobj[nameNoVersion] = assign;
+                }
             }
 
             if (returnParentAndKey) {
@@ -229,10 +181,24 @@
          * @return {Object|Function} module object / function
          */
         getModule: function(mod, version) {
-            var key = version ? [mod, '_', version].join('') : mod;
+            var key = version ? [mod, version].join('_') : mod;
             return modules[key];
         },
 
+        /**
+         * Return a promises/A+ object
+         *
+         * The returned object is a pinkySwear promise. Documentation is present in the link below:
+         * https://github.com/timjansen/PinkySwear.js
+         *
+         * @method promise
+         * @param {Array} [fromPromises=null] Create a promise which is resolved when all these are resolved
+         * @return A pinkySwear promise object.
+         */
+        promise: function (fromPromises) {
+            return pinkySwear( fromPromises );
+        },
+        
         /**
          * must be the wrapper around each Ink lib module for require resolution
          *
@@ -253,76 +219,20 @@
                 throw new Error('version number missing!');
             }
 
-            var cb = function() {
-                //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
+            var modAll = [mod, '_', ver].join('');  // 'Ink_Dom_Element_1'
 
-                var modAll = [mod, '_', ver].join('');
+            if (modules[modAll]) {
+                return;  // already defined
+            } else {
+                visited[Ink.getPath(modAll)] = true;  // do not loadScript this
+            }
 
-
-                // make sure module in not loaded twice
-                if (modules[modAll]) {
-                    //console.warn(['Ink.createModule ', modAll, ': module has been defined already.'].join(''));
-                    return;
-                }
-
-
-                // delete related pending tasks
-                delete modulesRequested[modAll];
-                delete modulesRequested[mod];
-
-
-                // run module's supplied factory
-                var args = Array.prototype.slice.call(arguments);
-                var moduleContent = modFn.apply(window, args);
-                modulesLoadOrder.push(modAll);
-                // console.log('** loaded module ' + modAll + '**');
-
-
-                // set version
-                if (typeof moduleContent === 'object') { // Dom.Css Dom.Event
-                    moduleContent._version = ver;
-                }
-                else if (typeof moduleContent === 'function') {
-                    moduleContent.prototype._version = ver; // if constructor
-                    moduleContent._version = ver;           // if regular function
-                }
-
-
-                // add to global namespace...
-                var isInkModule = mod.indexOf('Ink.') === 0;
-                var t;
-                if (isInkModule) {
-                    t = Ink.namespace(mod, true); // for mod 'Ink.Dom.Css', t[0] gets 'Ink.Dom' object and t[1] 'Css'
-                }
-
-
-                // versioned
-                modules[ modAll ] = moduleContent; // in modules
-
-                if (isInkModule) {
-                    t[0][ t[1] + '_' + ver ] = moduleContent; // in namespace
-                }
-
-
-                // unversioned
-                modules[ mod ] = moduleContent; // in modules
-
-                if (isInkModule) {
-                    if (isEmptyObject( t[0][ t[1] ] )) {
-                        t[0][ t[1] ] = moduleContent; // in namespace
-                    }
-                    else {
-                        // console.warn(['Ink.createModule ', modAll, ': module has been defined already with a different version!'].join(''));
-                    }
-                }
-
-
-                if (this) { // there may be pending requires expecting this module, check...
-                    Ink._checkPendingRequireModules();
-                }
-            };
-
-            this.requireModules(deps, cb);
+            this.requireModules(deps, function (/*...*/) {
+                var module = modFn.apply(this, [].slice.call(arguments));
+                modules[modAll] = module;
+                this.namespace(modAll, null, module);
+                this._getModulePromiseFor(modAll)(true, [module]);
+            });
         },
 
         /**
@@ -334,14 +244,7 @@
          */
         requireModules: function(deps, cbFn) { // require
             //console.log(['requireModules([', deps.join(', '), '], ', !!cbFn, ')'].join(''));
-            var i, f, o, dep, mod;
-            f = deps.length;
-            o = {
-                args: new Array(f),
-                left: {},
-                remaining: f,
-                cb: cbFn
-            };
+
 
             if (!(typeof deps === 'object' && deps.length !== undefined)) {
                 throw new Error('Dependency list should be an array!');
@@ -350,29 +253,26 @@
                 throw new Error('Callback should be a function!');
             }
 
-            for (i = 0; i < f; ++i) {
-                dep = deps[i];
-                mod = modules[dep];
-                if (mod) {
-                    o.args[i] = mod;
-                    --o.remaining;
-                    continue;
-                }
-                else if (modulesRequested[dep]) {
-                }
-                else {
-                    modulesRequested[dep] = true;
-                    Ink.loadScript(dep);
-                }
-                o.left[dep] = i;
+            var promisesForModules = new Array(deps.length);
+            
+            for (var m = 0, len = deps.length; m < len; m++) {
+                promisesForModules[m] = this._getModulePromiseFor(deps[m]);
+                setTimeout(Ink.bindMethod(Ink, 'loadScript', deps[m]), 0);
             }
+            
+            var that = this;
 
-            if (o.remaining > 0) {
-                pendingRMs.push(o);
+            var whenDone = this.promise(promisesForModules)
+                .then(function (modules) {
+                    cbFn.apply(that, modules);
+                });
+        },
+
+        _getModulePromiseFor: function (modName) {
+            if ( !(modName in modulePromises) ) {
+                modulePromises[modName] = Ink.promise();
             }
-            else {
-                cbFn.apply(true, o.args);
-            }
+            return modulePromises[modName];
         },
 
         /**
@@ -412,7 +312,7 @@
          * @param {Function} modFn  Function returning the extension
          */
         createExt: function (moduleName, version, dependencies, modFn) {
-            return Ink.createModule('Ink.Ext.' + moduleName, version, dependencies, modFn);
+            Ink.createModule('Ink.Ext.' + moduleName, version, dependencies, modFn);
         },
 
         /**
@@ -588,4 +488,125 @@
     }, checkDelta*1000);
     */
 
+/*
+* PinkySwear.js - Minimalistic implementation of the Promises/A+ spec
+*
+* Public Domain. Use, modify and distribute it any way you like. No attribution required.
+*
+* NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+*
+* PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
+* Google Closure Compiler and gzipping it weighs less than 350 bytes. It is based on the implementation for
+* my upcoming library Minified.js and should be perfect for embedding.
+*
+*
+* PinkySwear has just four functions.
+*
+* To create a new promise in pending state, call pinkySwear():
+* var promise = pinkySwear();
+*
+* The returned object has a Promises/A+ compatible then() implementation:
+* promise.then(function(value) { alert("Success!"); }, function(value) { alert("Failure!"); });
+*
+*
+* The promise returned by pinkySwear() is a function. To fulfill the promise, call the function with true as first argument and
+* an optional array of values to pass to the then() handler. By putting more than one value in the array, you can pass more than one
+* value to the then() handlers. Here an example to fulfill a promsise, this time with only one argument:
+* promise(true, [42]);
+*
+* When the promise has been rejected, call it with false. Again, there may be more than one argument for the then() handler:
+* promise(true, [6, 6, 6]);
+*
+* PinkySwear has two convenience functions. always(func) is the same as then(func, func) and thus will always be called, no matter what the
+* promises final state is:
+* promise.always(function(value) { alert("Done!"); });
+*
+* error(func) is the same as then(0, func), and thus the handler will only be called on error:
+* promise.error(function(value) { alert("Failure!"); });
+*
+*
+* https://github.com/timjansen/PinkySwear.js
+*/
+
+
+// (function(target) {  // Ink: unnecessary
+    function isFunction(f,o) {
+        return typeof f == 'function';
+    }
+    function defer(callback) {
+        // Ink: unnecessary  if (typeof process != 'undefined' && process['nextTick'])
+        // Ink: unnecessary     process['nextTick'](callback);
+        // Ink: unnecessary  else
+            window.setTimeout(callback, 0);
+    }
+    
+    /* target[0][target[1]] = Ink: unnecessary */
+    function pinkySwear(/* Ink: create a promise from an array of promises */promises) {
+        var state;           // undefined/null = pending, true = fulfilled, false = rejected
+        var values = [];     // an array of values as arguments for the then() handlers
+        var deferred = [];   // functions to call when set() is invoked
+
+        var set = function promise(newState, newValues) {
+            if (state == null) {
+                state = newState;
+                values = newValues;
+                defer(function() {
+                    for (var i = 0; i < deferred.length; i++)
+                        deferred[i]();
+                });
+            }
+        };
+        set['then'] = function(onFulfilled, onRejected) {
+            var newPromise = pinkySwear();
+            var callCallbacks = function() {
+                try {
+                    var f = (state ? onFulfilled : onRejected);
+                    if (isFunction(f)) {
+                        var r = f.apply(null, values);
+                        if (r && isFunction(r['then']))
+                            r['then'](function(value){newPromise(true,[value]);}, function(value){newPromise(false,[value]);});
+                        else
+                            newPromise(true, [r]);
+                    }
+                    else
+                        newPromise(state, values);
+                }
+                catch (e) {
+                    newPromise(false, [e]);
+                }
+            };
+            if (state != null)
+                defer(callCallbacks);
+            else
+                deferred.push(callCallbacks);            
+            return newPromise;
+        };
+
+        // always(func) is the same as then(func, func)
+        set['always'] = function(func) { return set['then'](func, func); };
+        
+        // error(func) is the same as then(0, func)
+        set['error'] = function(func) { return set['then'](0, func); };
+
+        // Ink: A little extension for waiting for many promises at the same time
+        if (promises && promises.length === 0) {
+            set(true, [[]]);  // all the promises were fulfilled!
+        } else if (promises) {
+            var remaining = promises.length;
+            var resolvedValues = new Array(promises.length);
+            for (var i = 0; i < promises.length; i++) {
+                (function (promise, i) {
+                    promise.then(function (value) {
+                        remaining -= 1;
+                        resolvedValues[i] = value;
+                        if (remaining === 0) {
+                            set(true, [resolvedValues]);
+                        }
+                    });
+                }(promises[i], i));
+            }
+        }
+        return set;
+    }
+// })(typeof module === 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);  // Ink: unnecessary here
 })(window, document);
