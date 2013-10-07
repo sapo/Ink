@@ -16,7 +16,7 @@ help:
 	@echo "    extractTree"
 
 
-all: extractTree docs min bundle bundleMin
+all: extractTree docs min bundle bundleMin updateJsFolder
 
 
 report: deleteMinFiles
@@ -84,6 +84,21 @@ bundleMin: min
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).min.js minify
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).min.js  minify "/UI/"
 	@node serverUtils/bundle.js ./builds/ink-$(VERSION).min.js     minify "/UI/" negates
+
+
+updateUi:
+	@echo "Updating UI modules"
+	@node serverUtils/updateUi.js ./Ink/UI ../js/
+
+
+updateJsFolder: bundle bundleMin updateUi
+	@echo "Moving built modules to js/ folder"
+	@mv ./builds/ink-all-$(VERSION).js ../js/ink-all.js
+	@mv ./builds/ink-ui-$(VERSION).js ../js/ink-ui.js
+	@mv ./builds/ink-$(VERSION).js ../js/ink.js
+	@mv ./builds/ink-all-$(VERSION).min.js ../js/ink-all.min.js
+	@mv ./builds/ink-ui-$(VERSION).min.js ../js/ink-ui.min.js
+	@mv ./builds/ink-$(VERSION).min.js ../js/ink.min.js
 
 
 deleteMinFiles:
