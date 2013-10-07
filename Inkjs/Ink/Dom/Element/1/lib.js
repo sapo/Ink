@@ -45,10 +45,14 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             //Ink.extendObj(el, properties);
             for(var property in properties) {
                 if(properties.hasOwnProperty(property)) {
-                    if(property === 'className') {
-                        property = 'class';
+                    if (property in Element) {
+                        Element[property](el, properties[property]);
+                    } else {
+                        if(property === 'className') {
+                            property = 'class';
+                        }
+                        el.setAttribute(property, properties[property]);
                     }
-                    el.setAttribute(property, properties[property]);
                 }
             }
             return el;
@@ -285,9 +289,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Retreives textContent from node
+         * Retrieves textContent from node
          *
-         * @method textContent
+         * @method innerText
          * @param {DOMNode} node from which to retreive text from. Can be any node type.
          * @return {String} the text
          */
