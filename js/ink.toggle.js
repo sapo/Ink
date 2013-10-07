@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -70,10 +70,9 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         this._options = Ink.extendObj({
             target : undefined,
             triggerEvent: 'click',
-            closeOnClick: true
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj(this._options,options || {});
+            closeOnClick: true,
+            closeOnInsideClick: 'a[href]'  // closes the toggle when a target is clicked and it is a link
+        }, options || {}, Element.data(this._rootElement));
 
         this._targets = (function (target) {
             if (typeof target === 'string') {
@@ -84,6 +83,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 } else {
                     return [target];
                 }
+            } else {
+                return [];
             }
         }(this._options.target));
 
@@ -109,6 +110,13 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
             if( this._options.closeOnClick.toString() === 'true' ){
                 Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
+            }
+            if( this._options.closeOnInsideClick ) {
+                Event.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
+                    if ( Element.findUpwardsBySelector(Event.element(e), this._options.closeOnInsideClick) ) {
+                        this._dismiss();
+                    }
+                }, this));
             }
         },
 
@@ -159,6 +167,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             } else {
                 Css.removeClassName(this._rootElement,'active');
             }
+
+            Event.stop(event);
         },
 
         /**
