@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 2
  */
-Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Aux_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Aux, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Aux, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
     /**
