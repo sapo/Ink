@@ -8,6 +8,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
 
+    var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
+    var browserCreatesTbodies = (function () {
+        var div = document.createElement('div');
+        div.innerHTML = '<table>';
+        return div.getElementsByTagName('tbody').length !== 0;
+    }());
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -1239,7 +1246,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
         _wrapElements: {
             TABLE: function (div, html) {
-                div.innerHTML = "<table>" + html + "</table>";
+                /* If we don't create a tbody, IE7 does that for us. Adding a tbody with a random string and then filtering for that random string is the only way to avoid double insertion of tbodies. */
+                if (browserCreatesTbodies) {
+                    div.innerHTML = "<table>" + html + "<tbody><tr><td>" + deleteThisTbodyToken + "</tr></td></tbody></table>";
+                } else {
+                    div.innerHTML = "<table>" + html + "</table>";
+                }
                 return div.firstChild;
             },
             TBODY: function (div, html) {
@@ -1257,28 +1269,43 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             TR: function (div, html) {
                 div.innerHTML = '<table><tbody><tr>' + html + '</tr></tbody></table>';
                 return div.firstChild.firstChild.firstChild;
-            },
-            "DEFAULT": function (div, html) {
-                div.innerHTML = html;
-                return div;
             }
         },
 
-       /**
-        * parses and appends an html string to a container, not destroying its contents
-        *
-        * @method appendHTML
-        * @param {String|DomElement} elm   element
-        * @param {String}            html  markup string
-        */
-        appendHTML: function(elm, html){
-            var wrapper;
+        _getWrapper: function (elm, html) {
             var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
-            if ( !(nodeName in InkElement._wrapElements) ) {
-                nodeName = 'DEFAULT';
-            }
+            var wrapper = document.createElement('div');
+            var wrapFunc = InkElement._wrapElements[nodeName];
 
-            wrapper = InkElement._wrapElements[nodeName](document.createElement('div'), html);
+            if ( !wrapFunc ) {
+                wrapper.innerHTML = html;
+                return wrapper;
+            }
+            // special cases
+            wrapper = wrapFunc(wrapper, html);
+            // worst case: tbody creation
+            if (browserCreatesTbodies && nodeName === 'TABLE') {
+                // terrible case. Deal with tbody creation too.
+                var tds = wrapper.getElementsByTagName('td');
+                for (var i = 0, len = tds.length; i < len; i++) {
+                    if (tds[i].innerHTML === deleteThisTbodyToken) {
+                        var tbody = tds[i].parentNode.parentNode;
+                        tbody.parentNode.removeChild(tbody);
+                    }
+                }
+            }
+            return wrapper;
+        },
+
+        /**
+         * parses and appends an html string to a container, not destroying its contents
+         *
+         * @method appendHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
+        appendHTML: function(elm, html){
+            var wrapper = InkElement._getWrapper(elm, html);
             while (wrapper.firstChild) {
                 elm.appendChild(wrapper.firstChild);
             }
@@ -1292,13 +1319,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         prependHTML: function(elm, html){
-            var wrapper;
-            var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
-            if ( !(nodeName in InkElement._wrapElements) ) {
-                nodeName = 'DEFAULT';
-            }
-
-            wrapper = InkElement._wrapElements[nodeName](document.createElement('div'), html);
+            var wrapper = InkElement._getWrapper(elm, html);
             while (wrapper.lastChild) {
                 elm.insertBefore(wrapper.lastChild, elm.firstChild);
             }
@@ -1312,7 +1333,10 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            elm.html = '';
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (elm.firstChild) {
+                elm.removeChild(elm.firstChild);
+            }
             InkElement.appendHTML(elm, html);
         },
 

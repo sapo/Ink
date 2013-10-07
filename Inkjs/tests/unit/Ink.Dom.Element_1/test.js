@@ -66,14 +66,15 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
 
         test('prepending tbodies to tables', function () {
             var table = InkElement.create('table');
-            table = document.body.appendChild(table)
             InkElement.prependHTML(table, '<tbody></tbody>');
             equalHTML(table.innerHTML, '<tbody></tbody>');
         })
 
         test('prepending theads to tables', function () {
             init();
+            equalHTML(table.innerHTML, '<tbody><tr><td></td></tr></tbody>');
             InkElement.prependHTML(table, '<thead></thead>');
+            // No automatically generated tbody!
             equalHTML(table.innerHTML, '<thead></thead><tbody><tr><td></td></tr></tbody>');
         });
         test('prepending trs to tbodies', function () {
@@ -114,21 +115,49 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
 
 
     test('setHTML', function () {
-        var elm = InkElement.create('div')
+        var elm = InkElement.create('div');
+        elm.innerHTML = '<span>Hi!</span>';
+
         InkElement.setHTML(elm, '<span>Hello!</span>');
-        equal(elm.getElementsByTagName('span')[0].innerHTML, 'Hello!');
+        equalHTML(elm.innerHTML, '<span>Hello!</span>');
     });
 
     test('setHTML with tables', function () {
         var elm = InkElement.create('table');
-        var tr = InkElement.create('tr', { insertBottom: elm });
-        var td = InkElement.create('td', { insertBottom: tr });
+        var tbody = InkElement.create('tbody', { insertBottom: elm });
+        var tr = InkElement.create('tr', { insertBottom: tbody });
+        var td = InkElement.create('td', { insertBottom: tr});
 
         InkElement.setHTML(td, '<span>Hello!</span>');
         ok(td.getElementsByTagName('span'))
         InkElement.setHTML(tr, '<td><span>Hello!</span></td>');
         ok(tr.getElementsByTagName('td')[0].getElementsByTagName('span'))
-        InkElement.setHTML(elm, '<thead>Hello!</thead>');
+        InkElement.setHTML(elm, '<thead>Hello!</thead><tbody></tbody>');
         ok(elm.getElementsByTagName('thead'))
+
+        equalHTML(tbody.innerHTML,
+            '<tr><td><span>Hello!</span></td></tr>');
+    });
+
+    test('setHTML and text nodes', function () {
+        var elm = InkElement.create('a');
+        InkElement.setHTML(elm, 'hi!');
+        equalHTML(elm.innerHTML, 'hi!');
+
+        InkElement.setHTML(elm, 'hi!<br>');
+        equalHTML(elm.innerHTML, 'hi!<br>');
+
+        InkElement.setHTML(elm, '<br>hi!');
+        equalHTML(elm.innerHTML, '<br>hi!');
+    });
+
+    test('setHTML and automatically generated tbodies', function () {
+        var elm = InkElement.create('table');
+        InkElement.appendHTML(elm, '<thead><tr><th>hi!</th></tr></thead>');
+        equalHTML(elm.innerHTML, '<thead><tr><th>hi!</th></tr></thead>', 'no tbody!');
+
+        InkElement.appendHTML(elm, '<tbody><tr><th>hi!</th></tr></tbody>');
+        equalHTML(elm.innerHTML, '<thead><tr><th>hi!</th></tr></thead>'
+            + '<tbody><tr><th>hi!</th></tr></tbody>', 'no tbody!');
     });
 });
