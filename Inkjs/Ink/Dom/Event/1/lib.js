@@ -7,6 +7,18 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     'use strict';
 
     /**
+     * Instantiate browser native events array
+     */
+
+    var nativeEvents;
+
+    if (document.createEvent) {
+        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+    } else {
+        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+    }
+
+    /**
      * @module Ink.Dom.Event_1
      */
 
@@ -14,7 +26,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @class Ink.Dom.Event
      */
 
-    var Event = {
+    var InkEvent = {
 
     KEY_BACKSPACE: 8,
     KEY_TAB:       9,
@@ -174,54 +186,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     fire: function(element, eventName, memo)
     {
         element = Ink.i(element);
-        var ev, nativeEvents;
-        if(document.createEvent){
-            nativeEvents = {
-                "DOMActivate": true, "DOMFocusIn": true, "DOMFocusOut": true,
-                "focus": true, "focusin": true, "focusout": true,
-                "blur": true, "load": true, "unload": true, "abort": true,
-                "error": true, "select": true, "change": true, "submit": true,
-                "reset": true, "resize": true, "scroll": true,
-                "click": true, "dblclick": true, "mousedown": true,
-                "mouseenter": true, "mouseleave": true, "mousemove": true, "mouseover": true,
-                "mouseout": true, "mouseup": true, "mousewheel": true, "wheel": true,
-                "textInput": true, "keydown": true, "keypress": true, "keyup": true,
-                "compositionstart": true, "compositionupdate": true, "compositionend": true,
-                "DOMSubtreeModified": true, "DOMNodeInserted": true, "DOMNodeRemoved": true,
-                "DOMNodeInsertedIntoDocument": true, "DOMNodeRemovedFromDocument": true,
-                "DOMAttrModified": true, "DOMCharacterDataModified": true,
-                "DOMAttributeNameChanged": true, "DOMElementNameChanged": true,
-                "hashchange": true
-            };
-        } else {
-            nativeEvents = {
-                "onabort": true, "onactivate": true, "onafterprint": true, "onafterupdate": true,
-                "onbeforeactivate": true, "onbeforecopy": true, "onbeforecut": true,
-                "onbeforedeactivate": true, "onbeforeeditfocus": true, "onbeforepaste": true,
-                "onbeforeprint": true, "onbeforeunload": true, "onbeforeupdate": true, "onblur": true,
-                "onbounce": true, "oncellchange": true, "onchange": true, "onclick": true,
-                "oncontextmenu": true, "oncontrolselect": true, "oncopy": true, "oncut": true,
-                "ondataavailable": true, "ondatasetchanged": true, "ondatasetcomplete": true,
-                "ondblclick": true, "ondeactivate": true, "ondrag": true, "ondragend": true,
-                "ondragenter": true, "ondragleave": true, "ondragover": true, "ondragstart": true,
-                "ondrop": true, "onerror": true, "onerrorupdate": true,
-                "onfilterchange": true, "onfinish": true, "onfocus": true, "onfocusin": true,
-                "onfocusout": true, "onhashchange": true, "onhelp": true, "onkeydown": true,
-                "onkeypress": true, "onkeyup": true, "onlayoutcomplete": true,
-                "onload": true, "onlosecapture": true, "onmessage": true, "onmousedown": true,
-                "onmouseenter": true, "onmouseleave": true, "onmousemove": true, "onmouseout": true,
-                "onmouseover": true, "onmouseup": true, "onmousewheel": true, "onmove": true,
-                "onmoveend": true, "onmovestart": true, "onoffline": true, "ononline": true,
-                "onpage": true, "onpaste": true, "onprogress": true, "onpropertychange": true,
-                "onreadystatechange": true, "onreset": true, "onresize": true,
-                "onresizeend": true, "onresizestart": true, "onrowenter": true, "onrowexit": true,
-                "onrowsdelete": true, "onrowsinserted": true, "onscroll": true, "onselect": true,
-                "onselectionchange": true, "onselectstart": true, "onstart": true,
-                "onstop": true, "onstorage": true, "onstoragecommit": true, "onsubmit": true,
-                "ontimeout": true, "onunload": true
-            };
-        }
-
+        var ev;
 
         if(element !== null && element !== undefined){
             if (element === document && document.createEvent && !element.dispatchEvent) {
@@ -449,8 +414,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     pointer: function(ev)
     {
         return {
-            x: ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft)),
-            y: ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop))
+            x: this.pointerX(ev),
+            y: this.pointerY(ev)
         };
     },
 
@@ -551,6 +516,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-return Event;
+return InkEvent;
 
 });
