@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    
+
     ink: {
       folders: {
         js: {
@@ -143,7 +143,6 @@ module.exports = function(grunt) {
           unsafe: false,
           conditionals: true,
           comparisons: true,
-          unsafe: false,
           evaluate: true,
           booleans: true,
           loops: true,
@@ -200,4 +199,33 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['less','clean','concat','uglify']);
   grunt.registerTask('test', ['connect', 'qunit']);
+  grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function(fileName){
+    if (arguments.length === 0) {
+      grunt.log.error('You need to specify a file name');
+    }
+    
+    var bundle = grunt.file.readJSON(fileName);
+    var dependencies = bundle.dependencies || [];
+    grunt.config.set('concat.ink_custom', {
+         files: [
+          {
+            expand: true,
+            flatten: true,
+            cwd: '<%= ink.folders.js.src %>',
+            dest: '<%= ink.folders.js.output %>' + bundle['name'] + '/',
+            src: dependencies.map(function(depName){
+                return depName.replace('Ink/', '') + '/lib.js';
+            }),
+            rename: function(dest, src) {
+              return dest + 'ink-custom.js';
+            },
+          },
+        ],       
+    });
+    grunt.config.set('uglify.ink_custom', {
+        src: '<%= ink.folders.js.output %>' + bundle['name'] + '/' + 'ink-custom.js',
+        dest: '<%= ink.folders.js.output %>' + bundle['name'] + '/' + 'ink-custom.min.js'
+    });
+    grunt.task.run(['concat:ink_custom', 'uglify:ink_custom']);
+  });
 };
