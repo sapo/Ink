@@ -343,7 +343,7 @@
                 var root = m.substring(0, cutAt);
                 m = m.substring(cutAt + 1);
                 var rootPath = Ink.getPath(root);
-                return ['<script type="text/javascript" src="', rootPath, m.replace(/\./g, '/'), '/"></script>'].join('');
+                return ['<scr', 'ipt type="text/javascript" src="', rootPath, m.replace(/\./g, '/'), '/"></scr', 'ipt>'].join('');
             });
 
             return mlo.join('\n');
