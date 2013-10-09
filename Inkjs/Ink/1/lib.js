@@ -394,7 +394,7 @@
             var mlo = this.getModulesLoadOrder();
             mlo.unshift('Ink_1');
             mlo = mlo.map(function(m) {
-                return ['<script type="text/javascript" src="', Ink.getModuleURL(m), '"></script>'].join('');
+                return ['<scr', 'ipt type="text/javascript" src="', Ink.getModuleURL(m), '"></scr', 'ipt>'].join('');
             });
 
             return mlo.join('\n');
