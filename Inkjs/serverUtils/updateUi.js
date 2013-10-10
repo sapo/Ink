@@ -2,7 +2,7 @@
 'use strict';
 
 var fs = require('fs');
-var sh = require('execSync'); // npm install execSync
+var sh = require('execSync');
 var path = require('path');
 
 if (process.argv.length === 4) {
@@ -30,6 +30,8 @@ fs.readdirSync(uiFolder).forEach(function (module) {
         } else {    // When version is '1', no need to add the version to the fname.
             copyOp.to = 'ink.' + module.toLowerCase() + '.js';
         }
+
+        copyOp.to = path.join(jsFolder, copyOp.to);
 
         copyOps.push(copyOp);
     });
