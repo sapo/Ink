@@ -160,4 +160,24 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         equalHTML(elm.innerHTML, '<thead><tr><th>hi!</th></tr></thead>'
             + '<tbody><tr><th>hi!</th></tr></tbody>', 'no tbody!');
     });
+
+    function toArray(pseudoArray) {
+        var ret = [];
+        for (var i = 0, len = pseudoArray.length; i < len; i++) {
+            ret.push(pseudoArray[i]);
+        }
+        return ret;
+    }
+
+    test('wrap()', function () {
+        var elm = InkElement.create('div');
+        var child1 = InkElement.create('div', { insertBottom: elm });
+        var child2 = InkElement.create('div', { insertBottom: elm });
+        var child3 = InkElement.create('div', { insertBottom: elm });
+
+        var wrap = InkElement.wrap(child2, InkElement.create('section'));
+
+        deepEqual(toArray(elm.children), [child1, wrap, child3]);
+        deepEqual(toArray(wrap.children), [child2]);
+    });
 });
