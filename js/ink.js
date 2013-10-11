@@ -1527,6 +1527,2882 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
  * @author inkdev AT sapo.pt
  */
 
+Ink.createModule('Ink.Dom.Event', 1, [], function() {
+
+    'use strict';
+
+    /**
+     * Instantiate browser native events array
+     */
+
+    var nativeEvents;
+
+    if (document.createEvent) {
+        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+    } else {
+        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+    }
+
+    /**
+     * @module Ink.Dom.Event_1
+     */
+
+    /**
+     * @class Ink.Dom.Event
+     */
+
+    var InkEvent = {
+
+    KEY_BACKSPACE: 8,
+    KEY_TAB:       9,
+    KEY_RETURN:   13,
+    KEY_ESC:      27,
+    KEY_LEFT:     37,
+    KEY_UP:       38,
+    KEY_RIGHT:    39,
+    KEY_DOWN:     40,
+    KEY_DELETE:   46,
+    KEY_HOME:     36,
+    KEY_END:      35,
+    KEY_PAGEUP:   33,
+    KEY_PAGEDOWN: 34,
+    KEY_INSERT:   45,
+    
+    /**
+     * Returns a function which calls `func`, waiting at least `wait`
+     * milliseconds between calls. This is useful for events such as `scroll`
+     * or `resize`, which can be triggered too many times per second, slowing
+     * down the browser with needless function calls.
+     *
+     * *note:* This does not delay the first function call to the function.
+     *
+     * @method throttle
+     * @param {Function} func   Function to call. Arguments and context are both passed.
+     * @param {Number} [wait=0] Milliseconds to wait between calls.
+     *
+     * @example
+     *  
+     *  // BEFORE
+     *  InkEvent.observe(window, 'scroll', function () {
+     *      ...
+     *  }); // When scrolling on mobile devices or on firefox's smooth scroll
+     *      // this is expensive because onscroll is called many times
+     *
+     *  // AFTER
+     *  InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
+     *      ...
+     *  }, 100)); // The event handler is called only every 100ms. Problem solved.
+     *
+     * @example
+     *  var handler = InkEvent.throttle(function () {
+     *      ...
+     *  }, 100);
+     *
+     *  InkEvent.observe(window, 'scroll', handler);
+     *  InkEvent.observe(window, 'resize', handler);
+     *
+     *  // on resize, both the "scroll" and the "resize" events are triggered
+     *  // a LOT of times. This prevents both of them being called a lot of
+     *  // times when the window is being resized by a user.
+     *
+     **/
+    throttle: function (func, wait) {
+        wait = wait || 0;
+        var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
+        var timeout;
+        var throttled = function () {
+            var now = +new Date();
+            var timeDiff = now - lastCall;
+            if (timeDiff >= wait) {
+                lastCall = now;
+                return func.apply(this, [].slice.call(arguments));
+            } else {
+                var that = this;
+                var args = [].slice.call(arguments);
+                clearTimeout(timeout);
+                timeout = setTimeout(function () {
+                    return throttled.apply(that, args);
+                });
+            }
+        };
+        return throttled;
+    },
+
+    /**
+     * Returns the target of the event object
+     *
+     * @method element
+     * @param {Object} ev  event object
+     * @return {Node} The target
+     */
+    element: function(ev)
+    {
+        var node = ev.target ||
+            // IE stuff
+            (ev.type === 'mouseout'   && ev.fromElement) ||
+            (ev.type === 'mouseleave' && ev.fromElement) ||
+            (ev.type === 'mouseover'  && ev.toElement) ||
+            (ev.type === 'mouseenter' && ev.toElement) ||
+            ev.srcElement ||
+            null;
+        return node && (node.nodeType === 3 || node.nodeType === 4) ? node.parentNode : node;
+    },
+
+    /**
+     * Returns the related target of the event object
+     *
+     * @method relatedTarget
+     * @param {Object} ev event object
+     * @return {Node} The related target
+     */
+    relatedTarget: function(ev){
+        var node = ev.relatedTarget ||
+            // IE stuff
+            (ev.type === 'mouseout'   && ev.toElement) ||
+            (ev.type === 'mouseleave' && ev.toElement) ||
+            (ev.type === 'mouseover'  && ev.fromElement) ||
+            (ev.type === 'mouseenter' && ev.fromElement) ||
+            null;
+        return node && (node.nodeType === 3 || node.nodeType === 4) ? node.parentNode : node;
+    },
+
+    /**
+     * Navigate up the DOM tree, looking for a tag with the name `elmTagName`.
+     *
+     * If such tag is not found, `document` is returned.
+     *
+     * @method findElement
+     * @param {Object}  ev              event object
+     * @param {String}  elmTagName      tag name to find
+     * @param {Boolean} [force=false]   If this is true, never return `document`, and returns `false` instead.
+     * @return {DOMElement} the first element which matches given tag name or the document element if the wanted tag is not found
+     */
+    findElement: function(ev, elmTagName, force)
+    {
+        var node = this.element(ev);
+        while(true) {
+            if(node.nodeName.toLowerCase() === elmTagName.toLowerCase()) {
+                return node;
+            } else {
+                node = node.parentNode;
+                if(!node) {
+                    if(force) {
+                        return false;
+                    }
+                    return document;
+                }
+                if(!node.parentNode){
+                    if(force){ return false; }
+                    return document;
+                }
+            }
+        }
+    },
+
+
+    /**
+     * Dispatches an event to element
+     *
+     * @method fire
+     * @param {DOMElement|String}  element    element id or element
+     * @param {String}             eventName  event name
+     * @param {Object}             [memo]     metadata for the event
+     */
+    fire: function(element, eventName, memo)
+    {
+        element = Ink.i(element);
+        var ev;
+
+        if(element !== null && element !== undefined){
+            if (element === document && document.createEvent && !element.dispatchEvent) {
+                element = document.documentElement;
+            }
+
+            if (document.createEvent) {
+                ev = document.createEvent("HTMLEvents");
+                if(typeof nativeEvents[eventName] === "undefined"){
+                    ev.initEvent("dataavailable", true, true);
+                } else {
+                    ev.initEvent(eventName, true, true);
+                }
+
+            } else {
+                ev = document.createEventObject();
+                if(typeof nativeEvents["on"+eventName] === "undefined"){
+                    ev.eventType = "ondataavailable";
+                } else {
+                    ev.eventType = "on"+eventName;
+                }
+            }
+
+            ev.eventName = eventName;
+            ev.memo = memo || { };
+
+            try {
+                if (document.createEvent) {
+                    element.dispatchEvent(ev);
+                } else if(element.fireEvent){
+                    element.fireEvent(ev.eventType, ev);
+                } else {
+                    return;
+                }
+            } catch(ex) {}
+
+            return ev;
+        }
+    },
+
+    _callbackForCustomEvents: function (element, eventName, callBack) {
+        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !window.onhashchange;
+        var isCustomEvent = eventName.indexOf(':') !== -1;
+        if (isHashChangeInIE || isCustomEvent) {
+            /**
+             *
+             * prevent that each custom event fire without any test
+             * This prevents that if you have multiple custom events
+             * on dataavailable to trigger the callback event if it
+             * is a different custom event
+             *
+             */
+            var argCallback = callBack;
+            return Ink.bindEvent(function(ev, eventName, cb){
+
+              //tests if it is our event and if not
+              //check if it is IE and our dom:loaded was overrided (IE only supports one ondatavailable)
+              //- fix /opera also supports attachEvent and was firing two events
+              // if(ev.eventName === eventName || (Ink.Browser.IE && eventName === 'dom:loaded')){
+              if(ev.eventName === eventName){
+                //fix for FF since it loses the event in case of using a second binObjEvent
+                if(window.addEventListener){
+                  window.event = ev;
+                }
+                cb();
+              }
+
+            }, this, eventName, argCallback);
+        } else {
+            return null;
+        }
+    },
+
+    /**
+     * Attaches an event to element
+     *
+     * @method observe
+     * @param {DOMElement|String}  element      Element id or element
+     * @param {String}             eventName    Event name
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
+     * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
+     */
+    observe: function(element, eventName, callBack, useCapture)
+    {
+        element = Ink.i(element);
+        if(element !== null && element !== undefined) {
+            /* rare corner case: some events need a different callback to be generated */
+            var callbackForCustomEvents = this._callbackForCustomEvents(element, eventName, callBack);
+            if (callbackForCustomEvents) {
+                callBack = callbackForCustomEvents;
+                eventName = 'dataavailable';
+            }
+
+            if(element.addEventListener) {
+                element.addEventListener(eventName, callBack, !!useCapture);
+            } else {
+                element.attachEvent('on' + eventName, callBack);
+            }
+            return callBack;
+        }
+    },
+
+    /**
+     * Attaches an event to a selector or array of elements.
+     *
+     * Requires Ink.Dom.Selector or a browser with Element.querySelectorAll.
+     *
+     * Ink.Dom.Event.observe
+     *
+     * @method observeMulti
+     * @param {Array|String} elements
+     * @param ... See the `observe` function.
+     * @return {Function} The used callback.
+     */
+    observeMulti: function (elements, eventName, callBack, useCapture) {
+        if (typeof elements === 'string') {
+            elements = Ink.ss(elements);
+        } else if (elements instanceof Element) {
+            elements = [elements];
+        }
+        if (!elements[0]) { return false; }
+
+        var callbackForCustomEvents = this._callbackForCustomEvents(elements[0], eventName, callBack);
+        if (callbackForCustomEvents) {
+            callBack = callbackForCustomEvents;
+            eventName = 'dataavailable';
+        }
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+            this.observe(elements[i], eventName, callBack, useCapture);
+        }
+        return callBack;
+    },
+
+    /**
+     * Remove an event attached to an element
+     *
+     * @method stopObserving
+     * @param {DOMElement|String}  element       element id or element
+     * @param {String}             eventName     event name
+     * @param {Function}           callBack      callback function
+     * @param {Boolean}            [useCapture]  set to true if the event was being observed with useCapture set to true as well.
+     */
+    stopObserving: function(element, eventName, callBack, useCapture)
+    {
+        element = Ink.i(element);
+
+        if(element !== null && element !== undefined) {
+            if(element.removeEventListener) {
+                element.removeEventListener(eventName, callBack, !!useCapture);
+            } else {
+                element.detachEvent('on' + eventName, callBack);
+            }
+        }
+    },
+
+    /**
+     * Stops event propagation and bubbling
+     *
+     * @method stop
+     * @param {Object} event  event handle
+     */
+    stop: function(event)
+    {
+        if(event.cancelBubble !== null) {
+            event.cancelBubble = true;
+        }
+        if(event.stopPropagation) {
+            event.stopPropagation();
+        }
+        if(event.preventDefault) {
+            event.preventDefault();
+        }
+        if(window.attachEvent) {
+            event.returnValue = false;
+        }
+        if(event.cancel !== null) {
+            event.cancel = true;
+        }
+    },
+
+    /**
+     * Stops event propagation
+     *
+     * @method stopPropagation
+     * @param {Object} event  event handle
+     */
+    stopPropagation: function(event) {
+        if(event.cancelBubble !== null) {
+            event.cancelBubble = true;
+        }
+        if(event.stopPropagation) {
+            event.stopPropagation();
+        }
+    },
+
+    /**
+     * Stops event default behaviour
+     *
+     * @method stopDefault
+     * @param {Object} event  event handle
+     */
+    stopDefault: function(event)
+    {
+        if(event.preventDefault) {
+            event.preventDefault();
+        }
+        if(window.attachEvent) {
+            event.returnValue = false;
+        }
+        if(event.cancel !== null) {
+            event.cancel = true;
+        }
+    },
+
+    /**
+     * @method pointer
+     * @param {Object} ev event object
+     * @return {Object} an object with the mouse X and Y position
+     */
+    pointer: function(ev)
+    {
+        return {
+            x: this.pointerX(ev),
+            y: this.pointerY(ev)
+        };
+    },
+
+    /**
+     * @method pointerX
+     * @param {Object} ev event object
+     * @return {Number} mouse X position
+     */
+    pointerX: function(ev)
+    {
+        return ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+    },
+
+    /**
+     * @method pointerY
+     * @param {Object} ev event object
+     * @return {Number} mouse Y position
+     */
+    pointerY: function(ev)
+    {
+        return ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+    },
+
+    /**
+     * @method isLeftClick
+     * @param {Object} ev  event object
+     * @return {Boolean} True if the event is a left mouse click
+     */
+    isLeftClick: function(ev) {
+        if (window.addEventListener) {
+            if(ev.button === 0){
+                return true;
+            }
+            else if(ev.type.substring(0,5) === 'touch' && ev.button === null){
+                return true;
+            }
+        }
+        else {
+            if(ev.button === 1){ return true; }
+        }
+        return false;
+    },
+
+    /**
+     * @method isRightClick
+     * @param {Object} ev  event object
+     * @return {Boolean} True if there is a right click on the event
+     */
+    isRightClick: function(ev) {
+        return (ev.button === 2);
+    },
+
+    /**
+     * @method isMiddleClick
+     * @param {Object} ev  event object
+     * @return {Boolean} True if there is a middle click on the event
+     */
+    isMiddleClick: function(ev) {
+        if (window.addEventListener) {
+            return (ev.button === 1);
+        }
+        else {
+            return (ev.button === 4);
+        }
+        return false;
+    },
+
+    /**
+     * Work in Progress.
+     * Used in SAPO.Component.MaskedInput
+     *
+     * @method getCharFromKeyboardEvent
+     * @param {KeyboardEvent}     event           keyboard event
+     * @param {optional Boolean}  [changeCasing]  if true uppercases, if false lowercases, otherwise keeps casing
+     * @return {String} character representation of pressed key combination
+     */
+    getCharFromKeyboardEvent: function(event, changeCasing) {
+        var k = event.keyCode;
+        var c = String.fromCharCode(k);
+
+        var shiftOn = event.shiftKey;
+        if (k >= 65 && k <= 90) {   // A-Z
+            if (typeof changeCasing === 'boolean') {
+                shiftOn = changeCasing;
+            }
+            return (shiftOn) ? c : c.toLowerCase();
+        }
+        else if (k >= 96 && k <= 105) { // numpad digits
+            return String.fromCharCode( 48 + (k-96) );
+        }
+        switch (k) {
+            case 109:   case 189:   return '-';
+            case 107:   case 187:   return '+';
+        }
+        return c;
+    },
+
+    debug: function(){}
+};
+
+return InkEvent;
+
+});
+
+/**
+ * @module Ink.Dom.FormSerialize
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
+    'use strict';
+    /**
+     * Supports serialization of form data to/from javascript Objects.
+     *
+     * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
+     *
+     * @class Ink.Dom.FormSerialize
+     *
+     */
+    var FormSerialize = {
+
+        /**
+         * Serializes a form into an object, turning field names into keys, and field values into values.
+         *
+         * note: Multi-select and checkboxes with multiple values will yield arrays
+         *
+         * @method serialize
+         * @return {Object} map of fieldName -> String|String[]|Boolean
+         * @param {DomElement|String}   form    form element from which the extraction is to occur
+         *
+         * @example
+         *     <form id="frm">
+         *         <input type="text" name="field1">
+         *         <button type="submit">Submit</button>
+         *     </form>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
+         *             InkEvent.observe('frm', 'submit', function (event) {
+         *                 var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
+         *                 InkEvent.stop(event);
+         *             });
+         *         });
+         *     </script>
+         */
+        serialize: function(form) {
+            form = Ink.i(form);
+            var map = this._getFieldNameInputsMap(form);
+
+            var map2 = {};
+            for (var k in map) if (map.hasOwnProperty(k)) {
+                if(k !== null) {
+                    var tmpK = k.replace(/\[\]$/, '');
+                    map2[tmpK] = this._getValuesOfField( map[k] );
+                } else {
+                    map2[k] = this._getValuesOfField( map[k] );
+                }
+            }
+
+            delete map2['null'];    // this can occur. if so, delete it...
+            return map2;
+        },
+
+
+
+
+        /**
+         * Sets form elements's values with values given from object
+         *
+         * One cannot restore the values of an input with `type="file"` (browser prohibits it)
+         *
+         * @method fillIn 
+         * @param {DomElement|String}   form    form element which is to be populated
+         * @param {Object}              map2    map of fieldName -> String|String[]|Boolean
+         * @example
+         *     <form id="frm">
+         *         <input type="text" name="field1">
+         *         <button type="submit">Submit</button>
+         *     </form>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+         *             var values = {field1: 'CTHULHU'};
+         *             FormSerialize.fillIn('frm', values);
+         *             // At this point the form is pre-filled with the values above.
+         *         });
+         *     </script>
+         */
+        fillIn: function(form, map2) {
+            form = Ink.i(form);
+            var map = this._getFieldNameInputsMap(form);
+            delete map['null']; // this can occur. if so, delete it...
+
+            for (var k in map2) if (map2.hasOwnProperty(k)) {
+                this._setValuesOfField( map[k], map2[k] );
+            }
+        },
+
+
+
+        _getFieldNameInputsMap: function(formEl) {
+            var name, nodeName, el, map = {};
+            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
+                el = formEl.elements[i];
+                name = el.getAttribute('name');
+                nodeName = el.nodeName.toLowerCase();
+                if (nodeName === 'fieldset') {
+                    continue;
+                } else if (map[name] === undefined) {
+                    map[name] = [el];
+                } else {
+                    map[name].push(el);
+                }
+            }
+            return map;
+        },
+
+
+
+        _getValuesOfField: function(fieldInputs) {
+            var nodeName = fieldInputs[0].nodeName.toLowerCase();
+            var type = fieldInputs[0].getAttribute('type');
+            var value = fieldInputs[0].value;
+            var i, f, j, o, el, m, res = [];
+
+            switch(nodeName) {
+                case 'select':
+                    for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                        res[i] = [];
+                        m = fieldInputs[i].getAttribute('multiple');
+                        for (j = 0, o = fieldInputs[i].options.length; j < o; ++j) {
+                            el = fieldInputs[i].options[j];
+                            if (el.selected) {
+                                if (m) {
+                                    res[i].push(el.value);
+                                } else {
+                                    res[i] = el.value;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    return ((fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) ? res : res[0]);
+
+                case 'textarea':
+                case 'input':
+                    if (type === 'checkbox' || type === 'radio') {
+                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                            el = fieldInputs[i];
+                            if (el.checked) {
+                                res.push(    el.value    );
+                            }
+                        }
+                        if (type === 'checkbox') {
+                            return (fieldInputs.length > 1) ? res : !!(res.length);
+                        }
+                        return (fieldInputs.length > 1) ? res[0] : !!(res.length);    // on radios only 1 option is selected at most
+                    }
+                    else {
+                        //if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if(fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) {
+                            var tmpValues = [];
+                            for(i=0, f = fieldInputs.length; i < f; ++i) {
+                                tmpValues.push(fieldInputs[i].value);
+                            }
+                            return tmpValues;
+                        } else {
+                            return value;
+                        }
+                    }
+                    break;    // to keep JSHint happy...  (reply to this comment by gamboa: - ROTFL)
+
+                default:
+                    //throw 'Unsupported element: "' + nodeName + '"!';
+                    return undefined;
+            }
+        },
+
+
+
+        _valInArray: function(val, arr) {
+            for (var i = 0, f = arr.length; i < f; ++i) {
+                if (arr[i] === val) {    return true;    }
+            }
+            return false;
+        },
+
+
+
+        _setValuesOfField: function(fieldInputs, fieldValues) {
+            if (!fieldInputs) {    return;    }
+            var nodeName = fieldInputs[0].nodeName.toLowerCase();
+            var type = fieldInputs[0].getAttribute('type');
+            var i, f, el;
+
+            switch(nodeName) {
+                case 'select':
+                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
+                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
+                        el = fieldInputs[0].options[i];
+                        el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
+                    }
+                    break;
+                case 'textarea':
+                case 'input':
+                    if (type === 'checkbox' || type === 'radio') {
+                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
+                            el = fieldInputs[i];
+                            //el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
+                            el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : (fieldInputs.length > 1 ? el.value === fieldValues : !!fieldValues);
+                        }
+                    }
+                    else {
+                        if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
+                        if (type !== 'file') {
+                            fieldInputs[0].value = fieldValues;
+                        }
+                    }
+                    break;
+
+                default:
+                    throw 'Unsupported element: "' + nodeName + '"!';
+            }
+        }
+    };
+
+    return FormSerialize;
+});
+
+/**
+ * @module Ink.Dom.Loaded_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
+
+    'use strict';
+
+    /**
+     * The Loaded class provides a method that allows developers to queue functions to run when
+     * the page is loaded (document is ready).
+     *
+     * @class Ink.Dom.Loaded
+     * @version 1
+     * @static
+     */
+    var Loaded = {
+
+        /**
+         * Callbacks and their contexts. Array of 2-arrays.
+         *
+         * []
+         *
+         * @attribute _contexts Array
+         * @private
+         * 
+         */
+        _contexts: [], // Callbacks' queue
+
+        /**
+         * Adds a new function that will be invoked once the document is ready
+         *
+         * @method run
+         * @param {Object}   [win=window]   Window object to attach/add the event
+         * @param {Function} fn             Callback function to be run after the page is loaded
+         * @public
+         * @example
+         *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
+         *         Loaded.run(function(){
+         *             console.log('This will run when the page/document is ready/loaded');
+         *         });
+         *     });
+         */
+        run: function(win, fn) {
+            if (!fn) {
+                fn  = win;
+                win = window;
+            }
+
+            var context;
+
+            for (var i = 0, len = this._contexts.length; i < len; i++) {
+                if (this._contexts[i][0] === win) {
+                    context = this._contexts[i][1];
+                    break;
+                }
+            }
+            if (!context) {
+                context = {
+                    cbQueue: [],
+                    win: win,
+                    doc: win.document,
+                    root: win.document.documentElement,
+                    done: false,
+                    top: true
+                };
+                context.handlers = {
+                    checkState: Ink.bindEvent(this._checkState, this, context),
+                    poll: Ink.bind(this._poll, this, context)
+                };
+                this._contexts.push(
+                    [win, context]  // Javascript Objects cannot map different windows to
+                                    // different values.
+                );
+            }
+
+            var   ael = context.doc.addEventListener;
+            context.add = ael ? 'addEventListener' : 'attachEvent';
+            context.rem = ael ? 'removeEventListener' : 'detachEvent';
+            context.pre = ael ? '' : 'on';
+            context.det = ael ? 'DOMContentLoaded' : 'onreadystatechange';
+            context.wet = context.pre + 'load';
+
+            var csf = context.handlers.checkState;
+            var alreadyLoaded = (
+                context.doc.readyState === 'complete' &&
+                context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
+
+            if (alreadyLoaded){
+                setTimeout(Ink.bind(function () {
+                    fn.call(context.win, 'lazy');
+                }, this), 0);
+            } else {
+                context.cbQueue.push(fn);
+
+                context.doc[context.add]( context.det , csf );
+                context.win[context.add]( context.wet , csf );
+
+                var frameElement = 1;
+                try{
+                    frameElement = context.win.frameElement;
+                } catch(e) {}
+                if ( !ael && context.root && context.root.doScroll ) { // IE HACK
+                    try {
+                        context.top = !frameElement;
+                    } catch(e) { }
+                    if (context.top) {
+                        this._poll(context);
+                    }
+                }
+            }
+        },
+
+        /**
+         * Function that will be running the callbacks after the page is loaded
+         *
+         * @method _checkState
+         * @param {Event} event Triggered event
+         * @private
+         */
+        _checkState: function(event, context) {
+            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
+                return;
+            }
+            var where = (event.type === 'load') ? context.win : context.doc;
+            where[context.rem](context.pre+event.type, context.handlers.checkState, false);
+            this._ready(context);
+        },
+
+        /**
+         * Polls the load progress of the page to see if it has already loaded or not
+         *
+         * @method _poll
+         * @private
+         */
+
+        /**
+         *
+         * function _poll
+         */
+        _poll: function(context) {
+            try {
+                context.root.doScroll('left');
+            } catch(e) {
+                return setTimeout(context.handlers.poll, 50);
+            }
+            this._ready(context);
+        },
+
+        /**
+         * Function that runs the callbacks from the queue when the document is ready.
+         *
+         * @method _ready
+         * @private
+         */
+        _ready: function(context) {
+            if (!context.done) {
+                context.done = true;
+                for (var i = 0; i < context.cbQueue.length; ++i) {
+                    context.cbQueue[i].call(context.win);
+                }
+                context.cbQueue = [];
+            }
+        }
+    };
+
+    return Loaded;
+
+});
+
+/**
+ * @module Ink.Dom.Selector_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Dom.Selector', 1, [], function() {
+    /*jshint forin:false, eqnull:true*/
+	'use strict';
+
+    /**
+     * @class Ink.Dom.Selector
+     * @static
+     * @version 1
+     */
+
+
+/*!
+ * Sizzle CSS Selector Engine
+ * Copyright 2013 jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://sizzlejs.com/
+ */
+
+var i,
+	cachedruns,
+	Expr,
+	getText,
+	isXML,
+	compile,
+	outermostContext,
+	recompare,
+	sortInput,
+
+	// Local document vars
+	setDocument,
+	document,
+	docElem,
+	documentIsHTML,
+	rbuggyQSA,
+	rbuggyMatches,
+	matches,
+	contains,
+
+	// Instance-specific data
+	expando = "sizzle" + -(new Date()),
+	preferredDoc = window.document,
+	support = {},
+	dirruns = 0,
+	done = 0,
+	classCache = createCache(),
+	tokenCache = createCache(),
+	compilerCache = createCache(),
+	hasDuplicate = false,
+	sortOrder = function() { return 0; },
+
+	// General-purpose constants
+	strundefined = typeof undefined,
+	MAX_NEGATIVE = 1 << 31,
+
+	// Array methods
+	arr = [],
+	pop = arr.pop,
+	push_native = arr.push,
+	push = arr.push,
+	slice = arr.slice,
+	// Use a stripped-down indexOf if we can't use a native one
+	indexOf = arr.indexOf || function( elem ) {
+		var i = 0,
+			len = this.length;
+		for ( ; i < len; i++ ) {
+			if ( this[i] === elem ) {
+				return i;
+			}
+		}
+		return -1;
+	},
+
+
+	// Regular expressions
+
+	// Whitespace characters http://www.w3.org/TR/css3-selectors/#whitespace
+	whitespace = "[\\x20\\t\\r\\n\\f]",
+	// http://www.w3.org/TR/css3-syntax/#characters
+	characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
+
+	// Loosely modeled on CSS identifier characters
+	// An unquoted value should be a CSS identifier http://www.w3.org/TR/css3-selectors/#attribute-selectors
+	// Proper syntax: http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+	identifier = characterEncoding.replace( "w", "w#" ),
+
+	// Acceptable operators http://www.w3.org/TR/selectors/#attribute-selectors
+	operators = "([*^$|!~]?=)",
+	attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + whitespace +
+		"*(?:" + operators + whitespace + "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + whitespace + "*\\]",
+
+	// Prefer arguments quoted,
+	//   then not containing pseudos/brackets,
+	//   then attribute selectors/non-parenthetical expressions,
+	//   then anything else
+	// These preferences are here to reduce the number of selectors
+	//   needing tokenize in the PSEUDO preFilter
+	pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
+
+	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
+	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+
+	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
+	rcombinators = new RegExp( "^" + whitespace + "*([\\x20\\t\\r\\n\\f>+~])" + whitespace + "*" ),
+	rpseudo = new RegExp( pseudos ),
+	ridentifier = new RegExp( "^" + identifier + "$" ),
+
+	matchExpr = {
+		"ID": new RegExp( "^#(" + characterEncoding + ")" ),
+		"CLASS": new RegExp( "^\\.(" + characterEncoding + ")" ),
+		"NAME": new RegExp( "^\\[name=['\"]?(" + characterEncoding + ")['\"]?\\]" ),
+		"TAG": new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
+		"ATTR": new RegExp( "^" + attributes ),
+		"PSEUDO": new RegExp( "^" + pseudos ),
+		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
+			"*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
+			"*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
+		// For use in libraries implementing .is()
+		// We use this for POS matching in `select`
+		"needsContext": new RegExp( "^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
+			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
+	},
+
+	rsibling = /[\x20\t\r\n\f]*[+~]/,
+
+	rnative = /^[^{]+\{\s*\[native code/,
+
+	// Easily-parseable/retrievable ID or TAG or CLASS selectors
+	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
+
+	rinputs = /^(?:input|select|textarea|button)$/i,
+	rheader = /^h\d$/i,
+
+	rescape = /'|\\/g,
+	rattributeQuotes = /\=[\x20\t\r\n\f]*([^'"\]]*)[\x20\t\r\n\f]*\]/g,
+
+	// CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+	runescape = /\\([\da-fA-F]{1,6}[\x20\t\r\n\f]?|.)/g,
+	funescape = function( _, escaped ) {
+		var high = "0x" + escaped - 0x10000;
+		// NaN means non-codepoint
+		return high !== high ?
+			escaped :
+			// BMP codepoint
+			high < 0 ?
+				String.fromCharCode( high + 0x10000 ) :
+				// Supplemental Plane codepoint (surrogate pair)
+				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
+	};
+
+// Optimize for push.apply( _, NodeList )
+try {
+	push.apply(
+		(arr = slice.call( preferredDoc.childNodes )),
+		preferredDoc.childNodes
+	);
+	// Support: Android<4.0
+	// Detect silently failing push.apply
+	arr[ preferredDoc.childNodes.length ].nodeType;
+} catch ( e ) {
+	push = { apply: arr.length ?
+
+		// Leverage slice if possible
+		function( target, els ) {
+			push_native.apply( target, slice.call(els) );
+		} :
+
+		// Support: IE<9
+		// Otherwise append directly
+		function( target, els ) {
+			var j = target.length,
+				i = 0;
+			// Can't trust NodeList.length
+			while ( (target[j++] = els[i++]) ) {}
+			target.length = j - 1;
+		}
+	};
+}
+
+/*
+ * For feature detection
+ * @param {Function} fn The function to test for native support
+ */
+function isNative( fn ) {
+	return rnative.test( fn + "" );
+}
+
+/*
+ * Create key-value caches of limited size
+ * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
+ *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	deleting the oldest entry
+ */
+function createCache() {
+	var cache,
+		keys = [];
+
+	return (cache = function( key, value ) {
+		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+		if ( keys.push( key += " " ) > Expr.cacheLength ) {
+			// Only keep the most recent entries
+			delete cache[ keys.shift() ];
+		}
+		return (cache[ key ] = value);
+	});
+}
+
+/*
+ * Mark a function for special use by Sizzle
+ * @param {Function} fn The function to mark
+ */
+function markFunction( fn ) {
+	fn[ expando ] = true;
+	return fn;
+}
+
+/*
+ * Support testing using an element
+ * @param {Function} fn Passed the created div and expects a boolean result
+ */
+function assert( fn ) {
+	var div = document.createElement("div");
+
+	try {
+		return !!fn( div );
+	} catch (e) {
+		return false;
+	} finally {
+		// release memory in IE
+		div = null;
+	}
+}
+
+function Sizzle( selector, context, results, seed ) {
+	var match, elem, m, nodeType,
+		// QSA vars
+		i, groups, old, nid, newContext, newSelector;
+
+	if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
+		setDocument( context );
+	}
+
+	context = context || document;
+	results = results || [];
+
+	if ( !selector || typeof selector !== "string" ) {
+		return results;
+	}
+
+	if ( (nodeType = context.nodeType) !== 1 && nodeType !== 9 ) {
+		return [];
+	}
+
+	if ( documentIsHTML && !seed ) {
+
+		// Shortcuts
+		if ( (match = rquickExpr.exec( selector )) ) {
+			// Speed-up: Sizzle("#ID")
+			if ( (m = match[1]) ) {
+				if ( nodeType === 9 ) {
+					elem = context.getElementById( m );
+					// Check parentNode to catch when Blackberry 4.6 returns
+					// nodes that are no longer in the document #6963
+					if ( elem && elem.parentNode ) {
+						// Handle the case where IE, Opera, and Webkit return items
+						// by name instead of ID
+						if ( elem.id === m ) {
+							results.push( elem );
+							return results;
+						}
+					} else {
+						return results;
+					}
+				} else {
+					// Context is not a document
+					if ( context.ownerDocument && (elem = context.ownerDocument.getElementById( m )) &&
+						contains( context, elem ) && elem.id === m ) {
+						results.push( elem );
+						return results;
+					}
+				}
+
+			// Speed-up: Sizzle("TAG")
+			} else if ( match[2] ) {
+				push.apply( results, context.getElementsByTagName( selector ) );
+				return results;
+
+			// Speed-up: Sizzle(".CLASS")
+			} else if ( (m = match[3]) && support.getElementsByClassName && context.getElementsByClassName ) {
+				push.apply( results, context.getElementsByClassName( m ) );
+				return results;
+			}
+		}
+
+		// QSA path
+		if ( support.qsa && !rbuggyQSA.test(selector) ) {
+			old = true;
+			nid = expando;
+			newContext = context;
+			newSelector = nodeType === 9 && selector;
+
+			// qSA works strangely on Element-rooted queries
+			// We can work around this by specifying an extra ID on the root
+			// and working up from there (Thanks to Andrew Dupont for the technique)
+			// IE 8 doesn't work on object elements
+			if ( nodeType === 1 && context.nodeName.toLowerCase() !== "object" ) {
+				groups = tokenize( selector );
+
+				if ( (old = context.getAttribute("id")) ) {
+					nid = old.replace( rescape, "\\$&" );
+				} else {
+					context.setAttribute( "id", nid );
+				}
+				nid = "[id='" + nid + "'] ";
+
+				i = groups.length;
+				while ( i-- ) {
+					groups[i] = nid + toSelector( groups[i] );
+				}
+				newContext = rsibling.test( selector ) && context.parentNode || context;
+				newSelector = groups.join(",");
+			}
+
+			if ( newSelector ) {
+				try {
+					push.apply( results,
+						newContext.querySelectorAll( newSelector )
+					);
+					return results;
+				} catch(qsaError) {
+				} finally {
+					if ( !old ) {
+						context.removeAttribute("id");
+					}
+				}
+			}
+		}
+	}
+
+	// All others
+	return select( selector.replace( rtrim, "$1" ), context, results, seed );
+}
+
+/*
+ * Detect xml
+ * @param {Element|Object} elem An element or a document
+ */
+isXML = Sizzle.isXML = function( elem ) {
+	// documentElement is verified for cases where it doesn't yet exist
+	// (such as loading iframes in IE - #4833)
+	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
+	return documentElement ? documentElement.nodeName !== "HTML" : false;
+};
+
+/*
+ * Sets document-related variables once based on the current document
+ * @param {Element|Object} [doc] An element or document object to use to set the document
+ * @returns {Object} Returns the current document
+ */
+setDocument = Sizzle.setDocument = function( node ) {
+	var doc = node ? node.ownerDocument || node : preferredDoc;
+
+	// If no document and documentElement is available, return
+	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
+		return document;
+	}
+
+	// Set our document
+	document = doc;
+	docElem = doc.documentElement;
+
+	// Support tests
+	documentIsHTML = !isXML( doc );
+
+	// Check if getElementsByTagName("*") returns only elements
+	support.getElementsByTagName = assert(function( div ) {
+		div.appendChild( doc.createComment("") );
+		return !div.getElementsByTagName("*").length;
+	});
+
+	// Check if attributes should be retrieved by attribute nodes
+	support.attributes = assert(function( div ) {
+		div.innerHTML = "<select></select>";
+		var type = typeof div.lastChild.getAttribute("multiple");
+		// IE8 returns a string for some attributes even when not present
+		return type !== "boolean" && type !== "string";
+	});
+
+	// Check if getElementsByClassName can be trusted
+	support.getElementsByClassName = assert(function( div ) {
+		// Opera can't find a second classname (in 9.6)
+		div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>";
+		if ( !div.getElementsByClassName || !div.getElementsByClassName("e").length ) {
+			return false;
+		}
+
+		// Safari 3.2 caches class attributes and doesn't catch changes
+		div.lastChild.className = "e";
+		return div.getElementsByClassName("e").length === 2;
+	});
+
+	// Check if getElementsByName privileges form controls or returns elements by ID
+	// If so, assume (for broader support) that getElementById returns elements by name
+	support.getByName = assert(function( div ) {
+		// Inject content
+		div.id = expando + 0;
+		// Support: Windows 8 Native Apps
+		// Assigning innerHTML with "name" attributes throws uncatchable exceptions
+		// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx
+		div.appendChild( document.createElement("a") ).setAttribute( "name", expando );
+		div.appendChild( document.createElement("i") ).setAttribute( "name", expando );
+		docElem.appendChild( div );
+
+		// Test
+		var pass = doc.getElementsByName &&
+			// buggy browsers will return fewer than the correct 2
+			doc.getElementsByName( expando ).length === 2 +
+			// buggy browsers will return more than the correct 0
+			doc.getElementsByName( expando + 0 ).length;
+
+		// Cleanup
+		docElem.removeChild( div );
+
+		return pass;
+	});
+
+	// Support: Webkit<537.32
+	// Detached nodes confoundingly follow *each other*
+	support.sortDetached = assert(function( div1 ) {
+		return div1.compareDocumentPosition &&
+			// Should return 1, but Webkit returns 4 (following)
+			(div1.compareDocumentPosition( document.createElement("div") ) & 1);
+	});
+
+	// IE6/7 return modified attributes
+	Expr.attrHandle = assert(function( div ) {
+		div.innerHTML = "<a href='#'></a>";
+		return div.firstChild && typeof div.firstChild.getAttribute !== strundefined &&
+			div.firstChild.getAttribute("href") === "#";
+	}) ?
+		{} :
+		{
+			"href": function( elem ) {
+				return elem.getAttribute( "href", 2 );
+			},
+			"type": function( elem ) {
+				return elem.getAttribute("type");
+			}
+		};
+
+	// ID find and filter
+	if ( support.getByName ) {
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== strundefined && documentIsHTML ) {
+				var m = context.getElementById( id );
+				// Check parentNode to catch when Blackberry 4.6 returns
+				// nodes that are no longer in the document #6963
+				return m && m.parentNode ? [m] : [];
+			}
+		};
+		Expr.filter["ID"] = function( id ) {
+			var attrId = id.replace( runescape, funescape );
+			return function( elem ) {
+				return elem.getAttribute("id") === attrId;
+			};
+		};
+	} else {
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== strundefined && documentIsHTML ) {
+				var m = context.getElementById( id );
+
+				return m ?
+					m.id === id || typeof m.getAttributeNode !== strundefined && m.getAttributeNode("id").value === id ?
+						[m] :
+						undefined :
+					[];
+			}
+		};
+		Expr.filter["ID"] =  function( id ) {
+			var attrId = id.replace( runescape, funescape );
+			return function( elem ) {
+				var node = typeof elem.getAttributeNode !== strundefined && elem.getAttributeNode("id");
+				return node && node.value === attrId;
+			};
+		};
+	}
+
+	// Tag
+	Expr.find["TAG"] = support.getElementsByTagName ?
+		function( tag, context ) {
+			if ( typeof context.getElementsByTagName !== strundefined ) {
+				return context.getElementsByTagName( tag );
+			}
+		} :
+		function( tag, context ) {
+			var elem,
+				tmp = [],
+				i = 0,
+				results = context.getElementsByTagName( tag );
+
+			// Filter out possible comments
+			if ( tag === "*" ) {
+				while ( (elem = results[i++]) ) {
+					if ( elem.nodeType === 1 ) {
+						tmp.push( elem );
+					}
+				}
+
+				return tmp;
+			}
+			return results;
+		};
+
+	// Name
+	Expr.find["NAME"] = support.getByName && function( tag, context ) {
+		if ( typeof context.getElementsByName !== strundefined ) {
+			return context.getElementsByName( name );
+		}
+	};
+
+	// Class
+	Expr.find["CLASS"] = support.getElementsByClassName && function( className, context ) {
+		if ( typeof context.getElementsByClassName !== strundefined && documentIsHTML ) {
+			return context.getElementsByClassName( className );
+		}
+	};
+
+	// QSA and matchesSelector support
+
+	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	rbuggyMatches = [];
+
+	// qSa(:focus) reports false when true (Chrome 21),
+	// no need to also add to buggyMatches since matches checks buggyQSA
+	// A support test would require too much code (would include document ready)
+	rbuggyQSA = [ ":focus" ];
+
+	if ( (support.qsa = isNative(doc.querySelectorAll)) ) {
+		// Build QSA regex
+		// Regex strategy adopted from Diego Perini
+		assert(function( div ) {
+			// Select is set to empty string on purpose
+			// This is to test IE's treatment of not explicitly
+			// setting a boolean content attribute,
+			// since its presence should be enough
+			// http://bugs.jquery.com/ticket/12359
+			div.innerHTML = "<select><option selected=''></option></select>";
+
+			// IE8 - Some boolean attributes are not treated correctly
+			if ( !div.querySelectorAll("[selected]").length ) {
+				rbuggyQSA.push( "\\[" + whitespace + "*(?:checked|disabled|ismap|multiple|readonly|selected|value)" );
+			}
+
+			// Webkit/Opera - :checked should return selected option elements
+			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			// IE8 throws error here and will not see later tests
+			if ( !div.querySelectorAll(":checked").length ) {
+				rbuggyQSA.push(":checked");
+			}
+		});
+
+		assert(function( div ) {
+
+			// Opera 10-12/IE8 - ^= $= *= and empty values
+			// Should not select anything
+			div.innerHTML = "<input type='hidden' i=''/>";
+			if ( div.querySelectorAll("[i^='']").length ) {
+				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:\"\"|'')" );
+			}
+
+			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
+			// IE8 throws error here and will not see later tests
+			if ( !div.querySelectorAll(":enabled").length ) {
+				rbuggyQSA.push( ":enabled", ":disabled" );
+			}
+
+			// Opera 10-11 does not throw on post-comma invalid pseudos
+			div.querySelectorAll("*,:x");
+			rbuggyQSA.push(",.*:");
+		});
+	}
+
+	if ( (support.matchesSelector = isNative( (matches = docElem.matchesSelector ||
+		docElem.mozMatchesSelector ||
+		docElem.webkitMatchesSelector ||
+		docElem.oMatchesSelector ||
+		docElem.msMatchesSelector) )) ) {
+
+		assert(function( div ) {
+			// Check to see if it's possible to do matchesSelector
+			// on a disconnected node (IE 9)
+			support.disconnectedMatch = matches.call( div, "div" );
+
+			// This should fail with an exception
+			// Gecko does not error, returns false instead
+			matches.call( div, "[s!='']:x" );
+			rbuggyMatches.push( "!=", pseudos );
+		});
+	}
+
+	rbuggyQSA = new RegExp( rbuggyQSA.join("|") );
+	rbuggyMatches = rbuggyMatches.length && new RegExp( rbuggyMatches.join("|") );
+
+	// Element contains another
+	// Purposefully does not implement inclusive descendent
+	// As in, an element does not contain itself
+	contains = isNative(docElem.contains) || docElem.compareDocumentPosition ?
+		function( a, b ) {
+			var adown = a.nodeType === 9 ? a.documentElement : a,
+				bup = b && b.parentNode;
+			return a === bup || !!( bup && bup.nodeType === 1 && (
+				adown.contains ?
+					adown.contains( bup ) :
+					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
+			));
+		} :
+		function( a, b ) {
+			if ( b ) {
+				while ( (b = b.parentNode) ) {
+					if ( b === a ) {
+						return true;
+					}
+				}
+			}
+			return false;
+		};
+
+	// Document order sorting
+	sortOrder = docElem.compareDocumentPosition ?
+	function( a, b ) {
+
+		// Flag for duplicate removal
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+
+		var compare = b.compareDocumentPosition && a.compareDocumentPosition && a.compareDocumentPosition( b );
+
+		if ( compare ) {
+			// Disconnected nodes
+			if ( compare & 1 ||
+				(recompare && b.compareDocumentPosition( a ) === compare) ) {
+
+				// Choose the first element that is related to our preferred document
+				if ( a === doc || contains(preferredDoc, a) ) {
+					return -1;
+				}
+				if ( b === doc || contains(preferredDoc, b) ) {
+					return 1;
+				}
+
+				// Maintain original order
+				return sortInput ?
+					( indexOf.call( sortInput, a ) - indexOf.call( sortInput, b ) ) :
+					0;
+			}
+
+			return compare & 4 ? -1 : 1;
+		}
+
+		// Not directly comparable, sort on existence of method
+		return a.compareDocumentPosition ? -1 : 1;
+	} :
+	function( a, b ) {
+		var cur,
+			i = 0,
+			aup = a.parentNode,
+			bup = b.parentNode,
+			ap = [ a ],
+			bp = [ b ];
+
+		// Exit early if the nodes are identical
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+
+		// Parentless nodes are either documents or disconnected
+		} else if ( !aup || !bup ) {
+			return a === doc ? -1 :
+				b === doc ? 1 :
+				aup ? -1 :
+				bup ? 1 :
+				0;
+
+		// If the nodes are siblings, we can do a quick check
+		} else if ( aup === bup ) {
+			return siblingCheck( a, b );
+		}
+
+		// Otherwise we need full lists of their ancestors for comparison
+		cur = a;
+		while ( (cur = cur.parentNode) ) {
+			ap.unshift( cur );
+		}
+		cur = b;
+		while ( (cur = cur.parentNode) ) {
+			bp.unshift( cur );
+		}
+
+		// Walk down the tree looking for a discrepancy
+		while ( ap[i] === bp[i] ) {
+			i++;
+		}
+
+		return i ?
+			// Do a sibling check if the nodes have a common ancestor
+			siblingCheck( ap[i], bp[i] ) :
+
+			// Otherwise nodes in our document sort first
+			ap[i] === preferredDoc ? -1 :
+			bp[i] === preferredDoc ? 1 :
+			0;
+	};
+
+	return document;
+};
+
+Sizzle.matches = function( expr, elements ) {
+	return Sizzle( expr, null, null, elements );
+};
+
+Sizzle.matchesSelector = function( elem, expr ) {
+	// Set document vars if needed
+	if ( ( elem.ownerDocument || elem ) !== document ) {
+		setDocument( elem );
+	}
+
+	// Make sure that attribute selectors are quoted
+	expr = expr.replace( rattributeQuotes, "='$1']" );
+
+	// rbuggyQSA always contains :focus, so no need for an existence check
+	if ( support.matchesSelector && documentIsHTML && (!rbuggyMatches || !rbuggyMatches.test(expr)) && !rbuggyQSA.test(expr) ) {
+		try {
+			var ret = matches.call( elem, expr );
+
+			// IE 9's matchesSelector returns false on disconnected nodes
+			if ( ret || support.disconnectedMatch ||
+					// As well, disconnected nodes are said to be in a document
+					// fragment in IE 9
+					elem.document && elem.document.nodeType !== 11 ) {
+				return ret;
+			}
+		} catch(e) {}
+	}
+
+	return Sizzle( expr, document, null, [elem] ).length > 0;
+};
+
+Sizzle.contains = function( context, elem ) {
+	// Set document vars if needed
+	if ( ( context.ownerDocument || context ) !== document ) {
+		setDocument( context );
+	}
+	return contains( context, elem );
+};
+
+Sizzle.attr = function( elem, name ) {
+	var val;
+
+	// Set document vars if needed
+	if ( ( elem.ownerDocument || elem ) !== document ) {
+		setDocument( elem );
+	}
+
+	if ( documentIsHTML ) {
+		name = name.toLowerCase();
+	}
+	if ( (val = Expr.attrHandle[ name ]) ) {
+		return val( elem );
+	}
+	if ( !documentIsHTML || support.attributes ) {
+		return elem.getAttribute( name );
+	}
+	return ( (val = elem.getAttributeNode( name )) || elem.getAttribute( name ) ) && elem[ name ] === true ?
+		name :
+		val && val.specified ? val.value : null;
+};
+
+Sizzle.error = function( msg ) {
+	throw new Error( "Syntax error, unrecognized expression: " + msg );
+};
+
+// Document sorting and removing duplicates
+Sizzle.uniqueSort = function( results ) {
+	var elem,
+		duplicates = [],
+		j = 0,
+		i = 0;
+
+	// Unless we *know* we can detect duplicates, assume their presence
+	hasDuplicate = !support.detectDuplicates;
+	// Compensate for sort limitations
+	recompare = !support.sortDetached;
+	sortInput = !support.sortStable && results.slice( 0 );
+	results.sort( sortOrder );
+
+	if ( hasDuplicate ) {
+		while ( (elem = results[i++]) ) {
+			if ( elem === results[ i ] ) {
+				j = duplicates.push( i );
+			}
+		}
+		while ( j-- ) {
+			results.splice( duplicates[ j ], 1 );
+		}
+	}
+
+	return results;
+};
+
+/*
+ * Checks document order of two siblings
+ * @param {Element} a
+ * @param {Element} b
+ * @returns Returns -1 if a precedes b, 1 if a follows b
+ */
+function siblingCheck( a, b ) {
+	var cur = b && a,
+		diff = cur && ( ~b.sourceIndex || MAX_NEGATIVE ) - ( ~a.sourceIndex || MAX_NEGATIVE );
+
+	// Use IE sourceIndex if available on both nodes
+	if ( diff ) {
+		return diff;
+	}
+
+	// Check if b follows a
+	if ( cur ) {
+		while ( (cur = cur.nextSibling) ) {
+			if ( cur === b ) {
+				return -1;
+			}
+		}
+	}
+
+	return a ? 1 : -1;
+}
+
+// Returns a function to use in pseudos for input types
+function createInputPseudo( type ) {
+	return function( elem ) {
+		var name = elem.nodeName.toLowerCase();
+		return name === "input" && elem.type === type;
+	};
+}
+
+// Returns a function to use in pseudos for buttons
+function createButtonPseudo( type ) {
+	return function( elem ) {
+		var name = elem.nodeName.toLowerCase();
+		return (name === "input" || name === "button") && elem.type === type;
+	};
+}
+
+// Returns a function to use in pseudos for positionals
+function createPositionalPseudo( fn ) {
+	return markFunction(function( argument ) {
+		argument = +argument;
+		return markFunction(function( seed, matches ) {
+			var j,
+				matchIndexes = fn( [], seed.length, argument ),
+				i = matchIndexes.length;
+
+			// Match elements found at the specified indexes
+			while ( i-- ) {
+				if ( seed[ (j = matchIndexes[i]) ] ) {
+					seed[j] = !(matches[j] = seed[j]);
+				}
+			}
+		});
+	});
+}
+
+/*
+ * Utility function for retrieving the text value of an array of DOM nodes
+ * @param {Array|Element} elem
+ */
+getText = Sizzle.getText = function( elem ) {
+	var node,
+		ret = "",
+		i = 0,
+		nodeType = elem.nodeType;
+
+	if ( !nodeType ) {
+		// If no nodeType, this is expected to be an array
+		for ( ; (node = elem[i]); i++ ) {
+			// Do not traverse comment nodes
+			ret += getText( node );
+		}
+	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+		// Use textContent for elements
+		// innerText usage removed for consistency of new lines (see #11153)
+		if ( typeof elem.textContent === "string" ) {
+			return elem.textContent;
+		} else {
+			// Traverse its children
+			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+				ret += getText( elem );
+			}
+		}
+	} else if ( nodeType === 3 || nodeType === 4 ) {
+		return elem.nodeValue;
+	}
+	// Do not include comment or processing instruction nodes
+
+	return ret;
+};
+
+Expr = Sizzle.selectors = {
+
+	// Can be adjusted by the user
+	cacheLength: 50,
+
+	createPseudo: markFunction,
+
+	match: matchExpr,
+
+	find: {},
+
+	relative: {
+		">": { dir: "parentNode", first: true },
+		" ": { dir: "parentNode" },
+		"+": { dir: "previousSibling", first: true },
+		"~": { dir: "previousSibling" }
+	},
+
+	preFilter: {
+		"ATTR": function( match ) {
+			match[1] = match[1].replace( runescape, funescape );
+
+			// Move the given value to match[3] whether quoted or unquoted
+			match[3] = ( match[4] || match[5] || "" ).replace( runescape, funescape );
+
+			if ( match[2] === "~=" ) {
+				match[3] = " " + match[3] + " ";
+			}
+
+			return match.slice( 0, 4 );
+		},
+
+		"CHILD": function( match ) {
+			/* matches from matchExpr["CHILD"]
+				1 type (only|nth|...)
+				2 what (child|of-type)
+				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
+				4 xn-component of xn+y argument ([+-]?\d*n|)
+				5 sign of xn-component
+				6 x of xn-component
+				7 sign of y-component
+				8 y of y-component
+			*/
+			match[1] = match[1].toLowerCase();
+
+			if ( match[1].slice( 0, 3 ) === "nth" ) {
+				// nth-* requires argument
+				if ( !match[3] ) {
+					Sizzle.error( match[0] );
+				}
+
+				// numeric x and y parameters for Expr.filter.CHILD
+				// remember that false/true cast respectively to 0/1
+				match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
+				match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
+
+			// other types prohibit arguments
+			} else if ( match[3] ) {
+				Sizzle.error( match[0] );
+			}
+
+			return match;
+		},
+
+		"PSEUDO": function( match ) {
+			var excess,
+				unquoted = !match[5] && match[2];
+
+			if ( matchExpr["CHILD"].test( match[0] ) ) {
+				return null;
+			}
+
+			// Accept quoted arguments as-is
+			if ( match[4] ) {
+				match[2] = match[4];
+
+			// Strip excess characters from unquoted arguments
+			} else if ( unquoted && rpseudo.test( unquoted ) &&
+				// Get excess from tokenize (recursively)
+				(excess = tokenize( unquoted, true )) &&
+				// advance to the next closing parenthesis
+				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
+
+				// excess is a negative index
+				match[0] = match[0].slice( 0, excess );
+				match[2] = unquoted.slice( 0, excess );
+			}
+
+			// Return only captures needed by the pseudo filter method (type and argument)
+			return match.slice( 0, 3 );
+		}
+	},
+
+	filter: {
+
+		"TAG": function( nodeName ) {
+			if ( nodeName === "*" ) {
+				return function() { return true; };
+			}
+
+			nodeName = nodeName.replace( runescape, funescape ).toLowerCase();
+			return function( elem ) {
+				return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
+			};
+		},
+
+		"CLASS": function( className ) {
+			var pattern = classCache[ className + " " ];
+
+			return pattern ||
+				(pattern = new RegExp( "(^|" + whitespace + ")" + className + "(" + whitespace + "|$)" )) &&
+				classCache( className, function( elem ) {
+					return pattern.test( elem.className || (typeof elem.getAttribute !== strundefined && elem.getAttribute("class")) || "" );
+				});
+		},
+
+		"ATTR": function( name, operator, check ) {
+			return function( elem ) {
+				var result = Sizzle.attr( elem, name );
+
+				if ( result == null ) {
+					return operator === "!=";
+				}
+				if ( !operator ) {
+					return true;
+				}
+
+				result += "";
+
+				return operator === "=" ? result === check :
+					operator === "!=" ? result !== check :
+					operator === "^=" ? check && result.indexOf( check ) === 0 :
+					operator === "*=" ? check && result.indexOf( check ) > -1 :
+					operator === "$=" ? check && result.slice( -check.length ) === check :
+					operator === "~=" ? ( " " + result + " " ).indexOf( check ) > -1 :
+					operator === "|=" ? result === check || result.slice( 0, check.length + 1 ) === check + "-" :
+					false;
+			};
+		},
+
+		"CHILD": function( type, what, argument, first, last ) {
+			var simple = type.slice( 0, 3 ) !== "nth",
+				forward = type.slice( -4 ) !== "last",
+				ofType = what === "of-type";
+
+			return first === 1 && last === 0 ?
+
+				// Shortcut for :nth-*(n)
+				function( elem ) {
+					return !!elem.parentNode;
+				} :
+
+				function( elem, context, xml ) {
+					var cache, outerCache, node, diff, nodeIndex, start,
+						dir = simple !== forward ? "nextSibling" : "previousSibling",
+						parent = elem.parentNode,
+						name = ofType && elem.nodeName.toLowerCase(),
+						useCache = !xml && !ofType;
+
+					if ( parent ) {
+
+						// :(first|last|only)-(child|of-type)
+						if ( simple ) {
+							while ( dir ) {
+								node = elem;
+								while ( (node = node[ dir ]) ) {
+									if ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) {
+										return false;
+									}
+								}
+								// Reverse direction for :only-* (if we haven't yet done so)
+								start = dir = type === "only" && !start && "nextSibling";
+							}
+							return true;
+						}
+
+						start = [ forward ? parent.firstChild : parent.lastChild ];
+
+						// non-xml :nth-child(...) stores cache data on `parent`
+						if ( forward && useCache ) {
+							// Seek `elem` from a previously-cached index
+							outerCache = parent[ expando ] || (parent[ expando ] = {});
+							cache = outerCache[ type ] || [];
+							nodeIndex = cache[0] === dirruns && cache[1];
+							diff = cache[0] === dirruns && cache[2];
+							node = nodeIndex && parent.childNodes[ nodeIndex ];
+
+							while ( (node = ++nodeIndex && node && node[ dir ] ||
+
+								// Fallback to seeking `elem` from the start
+								(diff = nodeIndex = 0) || start.pop()) ) {
+
+								// When found, cache indexes on `parent` and break
+								if ( node.nodeType === 1 && ++diff && node === elem ) {
+									outerCache[ type ] = [ dirruns, nodeIndex, diff ];
+									break;
+								}
+							}
+
+						// Use previously-cached element index if available
+						} else if ( useCache && (cache = (elem[ expando ] || (elem[ expando ] = {}))[ type ]) && cache[0] === dirruns ) {
+							diff = cache[1];
+
+						// xml :nth-child(...) or :nth-last-child(...) or :nth(-last)?-of-type(...)
+						} else {
+							// Use the same loop as above to seek `elem` from the start
+							while ( (node = ++nodeIndex && node && node[ dir ] ||
+								(diff = nodeIndex = 0) || start.pop()) ) {
+
+								if ( ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) && ++diff ) {
+									// Cache the index of each encountered element
+									if ( useCache ) {
+										(node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
+									}
+
+									if ( node === elem ) {
+										break;
+									}
+								}
+							}
+						}
+
+						// Incorporate the offset, then check against cycle size
+						diff -= last;
+						return diff === first || ( diff % first === 0 && diff / first >= 0 );
+					}
+				};
+		},
+
+		"PSEUDO": function( pseudo, argument ) {
+			// pseudo-class names are case-insensitive
+			// http://www.w3.org/TR/selectors/#pseudo-classes
+			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
+			// Remember that setFilters inherits from pseudos
+			var args,
+				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
+					Sizzle.error( "unsupported pseudo: " + pseudo );
+
+			// The user may use createPseudo to indicate that
+			// arguments are needed to create the filter function
+			// just as Sizzle does
+			if ( fn[ expando ] ) {
+				return fn( argument );
+			}
+
+			// But maintain support for old signatures
+			if ( fn.length > 1 ) {
+				args = [ pseudo, pseudo, "", argument ];
+				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
+					markFunction(function( seed, matches ) {
+						var idx,
+							matched = fn( seed, argument ),
+							i = matched.length;
+						while ( i-- ) {
+							idx = indexOf.call( seed, matched[i] );
+							seed[ idx ] = !( matches[ idx ] = matched[i] );
+						}
+					}) :
+					function( elem ) {
+						return fn( elem, 0, args );
+					};
+			}
+
+			return fn;
+		}
+	},
+
+	pseudos: {
+		// Potentially complex pseudos
+		"not": markFunction(function( selector ) {
+			// Trim the selector passed to compile
+			// to avoid treating leading and trailing
+			// spaces as combinators
+			var input = [],
+				results = [],
+				matcher = compile( selector.replace( rtrim, "$1" ) );
+
+			return matcher[ expando ] ?
+				markFunction(function( seed, matches, context, xml ) {
+					var elem,
+						unmatched = matcher( seed, null, xml, [] ),
+						i = seed.length;
+
+					// Match elements unmatched by `matcher`
+					while ( i-- ) {
+						if ( (elem = unmatched[i]) ) {
+							seed[i] = !(matches[i] = elem);
+						}
+					}
+				}) :
+				function( elem, context, xml ) {
+					input[0] = elem;
+					matcher( input, null, xml, results );
+					return !results.pop();
+				};
+		}),
+
+		"has": markFunction(function( selector ) {
+			return function( elem ) {
+				return Sizzle( selector, elem ).length > 0;
+			};
+		}),
+
+		"contains": markFunction(function( text ) {
+			return function( elem ) {
+				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+			};
+		}),
+
+		// "Whether an element is represented by a :lang() selector
+		// is based solely on the element's language value
+		// being equal to the identifier C,
+		// or beginning with the identifier C immediately followed by "-".
+		// The matching of C against the element's language value is performed case-insensitively.
+		// The identifier C does not have to be a valid language name."
+		// http://www.w3.org/TR/selectors/#lang-pseudo
+		"lang": markFunction( function( lang ) {
+			// lang value must be a valid identifier
+			if ( !ridentifier.test(lang || "") ) {
+				Sizzle.error( "unsupported lang: " + lang );
+			}
+			lang = lang.replace( runescape, funescape ).toLowerCase();
+			return function( elem ) {
+				var elemLang;
+				do {
+					if ( (elemLang = documentIsHTML ?
+						elem.lang :
+						elem.getAttribute("xml:lang") || elem.getAttribute("lang")) ) {
+
+						elemLang = elemLang.toLowerCase();
+						return elemLang === lang || elemLang.indexOf( lang + "-" ) === 0;
+					}
+				} while ( (elem = elem.parentNode) && elem.nodeType === 1 );
+				return false;
+			};
+		}),
+
+		// Miscellaneous
+		"target": function( elem ) {
+			var hash = window.location && window.location.hash;
+			return hash && hash.slice( 1 ) === elem.id;
+		},
+
+		"root": function( elem ) {
+			return elem === docElem;
+		},
+
+		"focus": function( elem ) {
+			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
+		},
+
+		// Boolean properties
+		"enabled": function( elem ) {
+			return elem.disabled === false;
+		},
+
+		"disabled": function( elem ) {
+			return elem.disabled === true;
+		},
+
+		"checked": function( elem ) {
+			// In CSS3, :checked should return both checked and selected elements
+			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			var nodeName = elem.nodeName.toLowerCase();
+			return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
+		},
+
+		"selected": function( elem ) {
+			// Accessing this property makes selected-by-default
+			// options in Safari work properly
+			if ( elem.parentNode ) {
+				elem.parentNode.selectedIndex;
+			}
+
+			return elem.selected === true;
+		},
+
+		// Contents
+		"empty": function( elem ) {
+			// http://www.w3.org/TR/selectors/#empty-pseudo
+			// :empty is only affected by element nodes and content nodes(including text(3), cdata(4)),
+			//   not comment, processing instructions, or others
+			// Thanks to Diego Perini for the nodeName shortcut
+			//   Greater than "@" means alpha characters (specifically not starting with "#" or "?")
+			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+				if ( elem.nodeName > "@" || elem.nodeType === 3 || elem.nodeType === 4 ) {
+					return false;
+				}
+			}
+			return true;
+		},
+
+		"parent": function( elem ) {
+			return !Expr.pseudos["empty"]( elem );
+		},
+
+		// Element/input types
+		"header": function( elem ) {
+			return rheader.test( elem.nodeName );
+		},
+
+		"input": function( elem ) {
+			return rinputs.test( elem.nodeName );
+		},
+
+		"button": function( elem ) {
+			var name = elem.nodeName.toLowerCase();
+			return name === "input" && elem.type === "button" || name === "button";
+		},
+
+		"text": function( elem ) {
+			var attr;
+			// IE6 and 7 will map elem.type to 'text' for new HTML5 types (search, etc)
+			// use getAttribute instead to test this case
+			return elem.nodeName.toLowerCase() === "input" &&
+				elem.type === "text" &&
+				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === elem.type );
+		},
+
+		// Position-in-collection
+		"first": createPositionalPseudo(function() {
+			return [ 0 ];
+		}),
+
+		"last": createPositionalPseudo(function( matchIndexes, length ) {
+			return [ length - 1 ];
+		}),
+
+		"eq": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			return [ argument < 0 ? argument + length : argument ];
+		}),
+
+		"even": createPositionalPseudo(function( matchIndexes, length ) {
+			var i = 0;
+			for ( ; i < length; i += 2 ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"odd": createPositionalPseudo(function( matchIndexes, length ) {
+			var i = 1;
+			for ( ; i < length; i += 2 ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; --i >= 0; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"gt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; ++i < length; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		})
+	}
+};
+
+// Add button/input type pseudos
+for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
+	Expr.pseudos[ i ] = createInputPseudo( i );
+}
+for ( i in { submit: true, reset: true } ) {
+	Expr.pseudos[ i ] = createButtonPseudo( i );
+}
+
+function tokenize( selector, parseOnly ) {
+	var matched, match, tokens, type,
+		soFar, groups, preFilters,
+		cached = tokenCache[ selector + " " ];
+
+	if ( cached ) {
+		return parseOnly ? 0 : cached.slice( 0 );
+	}
+
+	soFar = selector;
+	groups = [];
+	preFilters = Expr.preFilter;
+
+	while ( soFar ) {
+
+		// Comma and first run
+		if ( !matched || (match = rcomma.exec( soFar )) ) {
+			if ( match ) {
+				// Don't consume trailing commas as valid
+				soFar = soFar.slice( match[0].length ) || soFar;
+			}
+			groups.push( tokens = [] );
+		}
+
+		matched = false;
+
+		// Combinators
+		if ( (match = rcombinators.exec( soFar )) ) {
+			matched = match.shift();
+			tokens.push( {
+				value: matched,
+				// Cast descendant combinators to space
+				type: match[0].replace( rtrim, " " )
+			} );
+			soFar = soFar.slice( matched.length );
+		}
+
+		// Filters
+		for ( type in Expr.filter ) {
+			if ( (match = matchExpr[ type ].exec( soFar )) && (!preFilters[ type ] ||
+				(match = preFilters[ type ]( match ))) ) {
+				matched = match.shift();
+				tokens.push( {
+					value: matched,
+					type: type,
+					matches: match
+				} );
+				soFar = soFar.slice( matched.length );
+			}
+		}
+
+		if ( !matched ) {
+			break;
+		}
+	}
+
+	// Return the length of the invalid excess
+	// if we're just parsing
+	// Otherwise, throw an error or return tokens
+	return parseOnly ?
+		soFar.length :
+		soFar ?
+			Sizzle.error( selector ) :
+			// Cache the tokens
+			tokenCache( selector, groups ).slice( 0 );
+}
+
+function toSelector( tokens ) {
+	var i = 0,
+		len = tokens.length,
+		selector = "";
+	for ( ; i < len; i++ ) {
+		selector += tokens[i].value;
+	}
+	return selector;
+}
+
+function addCombinator( matcher, combinator, base ) {
+	var dir = combinator.dir,
+		checkNonElements = base && dir === "parentNode",
+		doneName = done++;
+
+	return combinator.first ?
+		// Check against closest ancestor/preceding element
+		function( elem, context, xml ) {
+			while ( (elem = elem[ dir ]) ) {
+				if ( elem.nodeType === 1 || checkNonElements ) {
+					return matcher( elem, context, xml );
+				}
+			}
+		} :
+
+		// Check against all ancestor/preceding elements
+		function( elem, context, xml ) {
+			var data, cache, outerCache,
+				dirkey = dirruns + " " + doneName;
+
+			// We can't set arbitrary data on XML nodes, so they don't benefit from dir caching
+			if ( xml ) {
+				while ( (elem = elem[ dir ]) ) {
+					if ( elem.nodeType === 1 || checkNonElements ) {
+						if ( matcher( elem, context, xml ) ) {
+							return true;
+						}
+					}
+				}
+			} else {
+				while ( (elem = elem[ dir ]) ) {
+					if ( elem.nodeType === 1 || checkNonElements ) {
+						outerCache = elem[ expando ] || (elem[ expando ] = {});
+						if ( (cache = outerCache[ dir ]) && cache[0] === dirkey ) {
+							if ( (data = cache[1]) === true || data === cachedruns ) {
+								return data === true;
+							}
+						} else {
+							cache = outerCache[ dir ] = [ dirkey ];
+							cache[1] = matcher( elem, context, xml ) || cachedruns;
+							if ( cache[1] === true ) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		};
+}
+
+function elementMatcher( matchers ) {
+	return matchers.length > 1 ?
+		function( elem, context, xml ) {
+			var i = matchers.length;
+			while ( i-- ) {
+				if ( !matchers[i]( elem, context, xml ) ) {
+					return false;
+				}
+			}
+			return true;
+		} :
+		matchers[0];
+}
+
+function condense( unmatched, map, filter, context, xml ) {
+	var elem,
+		newUnmatched = [],
+		i = 0,
+		len = unmatched.length,
+		mapped = map != null;
+
+	for ( ; i < len; i++ ) {
+		if ( (elem = unmatched[i]) ) {
+			if ( !filter || filter( elem, context, xml ) ) {
+				newUnmatched.push( elem );
+				if ( mapped ) {
+					map.push( i );
+				}
+			}
+		}
+	}
+
+	return newUnmatched;
+}
+
+function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
+	if ( postFilter && !postFilter[ expando ] ) {
+		postFilter = setMatcher( postFilter );
+	}
+	if ( postFinder && !postFinder[ expando ] ) {
+		postFinder = setMatcher( postFinder, postSelector );
+	}
+	return markFunction(function( seed, results, context, xml ) {
+		var temp, i, elem,
+			preMap = [],
+			postMap = [],
+			preexisting = results.length,
+
+			// Get initial elements from seed or context
+			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
+
+			// Prefilter to get matcher input, preserving a map for seed-results synchronization
+			matcherIn = preFilter && ( seed || !selector ) ?
+				condense( elems, preMap, preFilter, context, xml ) :
+				elems,
+
+			matcherOut = matcher ?
+				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
+				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+
+					// ...intermediate processing is necessary
+					[] :
+
+					// ...otherwise use results directly
+					results :
+				matcherIn;
+
+		// Find primary matches
+		if ( matcher ) {
+			matcher( matcherIn, matcherOut, context, xml );
+		}
+
+		// Apply postFilter
+		if ( postFilter ) {
+			temp = condense( matcherOut, postMap );
+			postFilter( temp, [], context, xml );
+
+			// Un-match failing elements by moving them back to matcherIn
+			i = temp.length;
+			while ( i-- ) {
+				if ( (elem = temp[i]) ) {
+					matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
+				}
+			}
+		}
+
+		if ( seed ) {
+			if ( postFinder || preFilter ) {
+				if ( postFinder ) {
+					// Get the final matcherOut by condensing this intermediate into postFinder contexts
+					temp = [];
+					i = matcherOut.length;
+					while ( i-- ) {
+						if ( (elem = matcherOut[i]) ) {
+							// Restore matcherIn since elem is not yet a final match
+							temp.push( (matcherIn[i] = elem) );
+						}
+					}
+					postFinder( null, (matcherOut = []), temp, xml );
+				}
+
+				// Move matched elements from seed to results to keep them synchronized
+				i = matcherOut.length;
+				while ( i-- ) {
+					if ( (elem = matcherOut[i]) &&
+						(temp = postFinder ? indexOf.call( seed, elem ) : preMap[i]) > -1 ) {
+
+						seed[temp] = !(results[temp] = elem);
+					}
+				}
+			}
+
+		// Add elements to results, through postFinder if defined
+		} else {
+			matcherOut = condense(
+				matcherOut === results ?
+					matcherOut.splice( preexisting, matcherOut.length ) :
+					matcherOut
+			);
+			if ( postFinder ) {
+				postFinder( null, results, matcherOut, xml );
+			} else {
+				push.apply( results, matcherOut );
+			}
+		}
+	});
+}
+
+function matcherFromTokens( tokens ) {
+	var checkContext, matcher, j,
+		len = tokens.length,
+		leadingRelative = Expr.relative[ tokens[0].type ],
+		implicitRelative = leadingRelative || Expr.relative[" "],
+		i = leadingRelative ? 1 : 0,
+
+		// The foundational matcher ensures that elements are reachable from top-level context(s)
+		matchContext = addCombinator( function( elem ) {
+			return elem === checkContext;
+		}, implicitRelative, true ),
+		matchAnyContext = addCombinator( function( elem ) {
+			return indexOf.call( checkContext, elem ) > -1;
+		}, implicitRelative, true ),
+		matchers = [ function( elem, context, xml ) {
+			return ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
+				(checkContext = context).nodeType ?
+					matchContext( elem, context, xml ) :
+					matchAnyContext( elem, context, xml ) );
+		} ];
+
+	for ( ; i < len; i++ ) {
+		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
+			matchers = [ addCombinator(elementMatcher( matchers ), matcher) ];
+		} else {
+			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
+
+			// Return special upon seeing a positional matcher
+			if ( matcher[ expando ] ) {
+				// Find the next relative operator (if any) for proper handling
+				j = ++i;
+				for ( ; j < len; j++ ) {
+					if ( Expr.relative[ tokens[j].type ] ) {
+						break;
+					}
+				}
+				return setMatcher(
+					i > 1 && elementMatcher( matchers ),
+					i > 1 && toSelector( tokens.slice( 0, i - 1 ) ).replace( rtrim, "$1" ),
+					matcher,
+					i < j && matcherFromTokens( tokens.slice( i, j ) ),
+					j < len && matcherFromTokens( (tokens = tokens.slice( j )) ),
+					j < len && toSelector( tokens )
+				);
+			}
+			matchers.push( matcher );
+		}
+	}
+
+	return elementMatcher( matchers );
+}
+
+function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
+	// A counter to specify which element is currently being matched
+	var matcherCachedRuns = 0,
+		bySet = setMatchers.length > 0,
+		byElement = elementMatchers.length > 0,
+		superMatcher = function( seed, context, xml, results, expandContext ) {
+			var elem, j, matcher,
+				setMatched = [],
+				matchedCount = 0,
+				i = "0",
+				unmatched = seed && [],
+				outermost = expandContext != null,
+				contextBackup = outermostContext,
+				// We must always have either seed elements or context
+				elems = seed || byElement && Expr.find["TAG"]( "*", expandContext && context.parentNode || context ),
+				// Use integer dirruns iff this is the outermost matcher
+				dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1);
+
+			if ( outermost ) {
+				outermostContext = context !== document && context;
+				cachedruns = matcherCachedRuns;
+			}
+
+			// Add elements passing elementMatchers directly to results
+			// Keep `i` a string if there are no elements so `matchedCount` will be "00" below
+			for ( ; (elem = elems[i]) != null; i++ ) {
+				if ( byElement && elem ) {
+					j = 0;
+					while ( (matcher = elementMatchers[j++]) ) {
+						if ( matcher( elem, context, xml ) ) {
+							results.push( elem );
+							break;
+						}
+					}
+					if ( outermost ) {
+						dirruns = dirrunsUnique;
+						cachedruns = ++matcherCachedRuns;
+					}
+				}
+
+				// Track unmatched elements for set filters
+				if ( bySet ) {
+					// They will have gone through all possible matchers
+					if ( (elem = !matcher && elem) ) {
+						matchedCount--;
+					}
+
+					// Lengthen the array for every element, matched or not
+					if ( seed ) {
+						unmatched.push( elem );
+					}
+				}
+			}
+
+			// Apply set filters to unmatched elements
+			matchedCount += i;
+			if ( bySet && i !== matchedCount ) {
+				j = 0;
+				while ( (matcher = setMatchers[j++]) ) {
+					matcher( unmatched, setMatched, context, xml );
+				}
+
+				if ( seed ) {
+					// Reintegrate element matches to eliminate the need for sorting
+					if ( matchedCount > 0 ) {
+						while ( i-- ) {
+							if ( !(unmatched[i] || setMatched[i]) ) {
+								setMatched[i] = pop.call( results );
+							}
+						}
+					}
+
+					// Discard index placeholder values to get only actual matches
+					setMatched = condense( setMatched );
+				}
+
+				// Add matches to results
+				push.apply( results, setMatched );
+
+				// Seedless set matches succeeding multiple successful matchers stipulate sorting
+				if ( outermost && !seed && setMatched.length > 0 &&
+					( matchedCount + setMatchers.length ) > 1 ) {
+
+					Sizzle.uniqueSort( results );
+				}
+			}
+
+			// Override manipulation of globals by nested matchers
+			if ( outermost ) {
+				dirruns = dirrunsUnique;
+				outermostContext = contextBackup;
+			}
+
+			return unmatched;
+		};
+
+	return bySet ?
+		markFunction( superMatcher ) :
+		superMatcher;
+}
+
+compile = Sizzle.compile = function( selector, group /* Internal Use Only */ ) {
+	var i,
+		setMatchers = [],
+		elementMatchers = [],
+		cached = compilerCache[ selector + " " ];
+
+	if ( !cached ) {
+		// Generate a function of recursive functions that can be used to check each element
+		if ( !group ) {
+			group = tokenize( selector );
+		}
+		i = group.length;
+		while ( i-- ) {
+			cached = matcherFromTokens( group[i] );
+			if ( cached[ expando ] ) {
+				setMatchers.push( cached );
+			} else {
+				elementMatchers.push( cached );
+			}
+		}
+
+		// Cache the compiled function
+		cached = compilerCache( selector, matcherFromGroupMatchers( elementMatchers, setMatchers ) );
+	}
+	return cached;
+};
+
+function multipleContexts( selector, contexts, results ) {
+	var i = 0,
+		len = contexts.length;
+	for ( ; i < len; i++ ) {
+		Sizzle( selector, contexts[i], results );
+	}
+	return results;
+}
+
+function select( selector, context, results, seed ) {
+	var i, tokens, token, type, find,
+		match = tokenize( selector );
+
+	if ( !seed ) {
+		// Try to minimize operations if there is only one group
+		if ( match.length === 1 ) {
+
+			// Take a shortcut and set the context if the root selector is an ID
+			tokens = match[0] = match[0].slice( 0 );
+			if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+					context.nodeType === 9 && documentIsHTML &&
+					Expr.relative[ tokens[1].type ] ) {
+
+				context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+				if ( !context ) {
+					return results;
+				}
+
+				selector = selector.slice( tokens.shift().value.length );
+			}
+
+			// Fetch a seed set for right-to-left matching
+			i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
+			while ( i-- ) {
+				token = tokens[i];
+
+				// Abort if we hit a combinator
+				if ( Expr.relative[ (type = token.type) ] ) {
+					break;
+				}
+				if ( (find = Expr.find[ type ]) ) {
+					// Search, expanding context for leading sibling combinators
+					if ( (seed = find(
+						token.matches[0].replace( runescape, funescape ),
+						rsibling.test( tokens[0].type ) && context.parentNode || context
+					)) ) {
+
+						// If seed is empty or no tokens remain, we can return early
+						tokens.splice( i, 1 );
+						selector = seed.length && toSelector( tokens );
+						if ( !selector ) {
+							push.apply( results, seed );
+							return results;
+						}
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	// Compile and execute a filtering function
+	// Provide `match` to avoid retokenization if we modified the selector above
+	compile( selector, match )(
+		seed,
+		context,
+		!documentIsHTML,
+		results,
+		rsibling.test( selector )
+	);
+	return results;
+}
+
+// Deprecated
+Expr.pseudos["nth"] = Expr.pseudos["eq"];
+
+// Easy API for creating new setFilters
+function setFilters() {}
+setFilters.prototype = Expr.filters = Expr.pseudos;
+Expr.setFilters = new setFilters();
+
+// Check sort stability
+support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
+
+// Initialize with the default document
+setDocument();
+
+// Always assume the presence of duplicates if sort doesn't
+// pass them to our comparison function (as in Google Chrome).
+[0, 0].sort( sortOrder );
+support.detectDuplicates = hasDuplicate;
+
+// EXPOSE
+/*if ( typeof define === "function" && define.amd ) {
+	define(function() { return Sizzle; });
+} else {
+	window.Sizzle = Sizzle;
+}*/
+// EXPOSE
+
+/**
+ * Alias for the Sizzle selector engine
+ *
+ * @method select
+ * @param {String} selector CSS selector to search for elements
+ * @param {DOMElement} [context] By default the search is done in the document element. However, you can specify an element as search context
+ * @param {Array} [results] By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
+ * @param {Object} [seed]
+ * @return {Array} Array of resulting DOM Elements
+ */
+
+/**
+ * Returns elements which match with the second argument to the function.
+ *
+ * @method matches
+ * @param {String} selector CSS selector to search for elements
+ * @param {Array} matches Elements to be 'matched' with
+ * @return {Array} Elements that matched
+ */
+
+/**
+ * Returns true iif element matches given selector
+ *
+ * @method matchesSelector
+ * @param {DOMElement} element to test
+ * @param {String}     selector CSS selector to test the element with
+ * @return {Boolean} true iif element matches the CSS selector
+ */
+
+return {
+    select:          Sizzle,
+    matches:         Sizzle.matches,
+    matchesSelector: Sizzle.matchesSelector
+};
+
+
+}); //( window );
+
+/**
+ * @author inkdev AT sapo.pt
+ */
+
 Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
     'use strict';
@@ -3713,28 +6589,44 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Wraps an element with another.
+         * Wraps an element inside a container.
+         *
+         * The container may or may not be in the document yet.
          *
          * @method wrap
-         * @param {String|DomElement}   wrappee Element to be wrapped
-         * @param {String|DomElement}   wrapper Element to wrap the wrappee
+         * @param {String|DomElement}   target Element to be wrapped
+         * @param {String|DomElement}   container Element to wrap the target
+         * @return Container element
+         *
+         * @example
+         * before:
+         *
+         *     <div id="target"></div>
+         *
+         * call this function to wrap:
+         *
+         *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
+         * 
+         * after: 
+         *
+         *     <div id="container"><div id="target"></div></div>
          */
-        wrap: function (wrappee, wrapper) {
-            wrappee = Ink.i(wrappee);
-            wrapper = Ink.i(wrapper);
+        wrap: function (target, container) {
+            target = Ink.i(target);
+            container = Ink.i(container);
             
-            var nextNode = wrappee.nextSibling;
-            var parent = wrappee.parentNode;
+            var nextNode = target.nextSibling;
+            var parent = target.parentNode;
 
-            wrapper.appendChild(wrappee);
+            container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(wrapper, nextNode)
+                parent.insertBefore(container, nextNode)
             } else {
-                parent.appendChild(wrapper);
+                parent.appendChild(container);
             }
 
-            return wrapper;
+            return container;
         },
 
         /**
@@ -3935,7 +6827,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
        /**
          * @method viewportWidth
-         * @return {Number} viewport width
+         * @return {Number} viewport width in pixels
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
@@ -3991,2941 +6883,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
     return InkElement;
 
 });
-
-/**
- * @author inkdev AT sapo.pt
- */
-
-Ink.createModule('Ink.Dom.Event', 1, [], function() {
-
-    'use strict';
-
-    /**
-     * Instantiate browser native events array
-     */
-
-    var nativeEvents;
-
-    if (document.createEvent) {
-        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
-    } else {
-        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
-    }
-
-    /**
-     * @module Ink.Dom.Event_1
-     */
-
-    /**
-     * @class Ink.Dom.Event
-     */
-
-    var InkEvent = {
-
-    KEY_BACKSPACE: 8,
-    KEY_TAB:       9,
-    KEY_RETURN:   13,
-    KEY_ESC:      27,
-    KEY_LEFT:     37,
-    KEY_UP:       38,
-    KEY_RIGHT:    39,
-    KEY_DOWN:     40,
-    KEY_DELETE:   46,
-    KEY_HOME:     36,
-    KEY_END:      35,
-    KEY_PAGEUP:   33,
-    KEY_PAGEDOWN: 34,
-    KEY_INSERT:   45,
-    
-    /**
-     * Returns a function which calls `func`, waiting at least `wait`
-     * milliseconds between calls. This is useful for events such as `scroll`
-     * or `resize`, which can be triggered too many times per second, slowing
-     * down the browser with needless function calls.
-     *
-     * *note:* This does not delay the first function call to the function.
-     *
-     * @method throttle
-     * @param {Function} func   Function to call. Arguments and context are both passed.
-     * @param {Number} [wait=0] Milliseconds to wait between calls.
-     *
-     * @example
-     *  
-     *  // BEFORE
-     *  InkEvent.observe(window, 'scroll', function () {
-     *      ...
-     *  }); // When scrolling on mobile devices or on firefox's smooth scroll
-     *      // this is expensive because onscroll is called many times
-     *
-     *  // AFTER
-     *  InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
-     *      ...
-     *  }, 100)); // The event handler is called only every 100ms. Problem solved.
-     *
-     * @example
-     *  var handler = InkEvent.throttle(function () {
-     *      ...
-     *  }, 100);
-     *
-     *  InkEvent.observe(window, 'scroll', handler);
-     *  InkEvent.observe(window, 'resize', handler);
-     *
-     *  // on resize, both the "scroll" and the "resize" events are triggered
-     *  // a LOT of times. This prevents both of them being called a lot of
-     *  // times when the window is being resized by a user.
-     *
-     **/
-    throttle: function (func, wait) {
-        wait = wait || 0;
-        var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
-        var timeout;
-        var throttled = function () {
-            var now = +new Date();
-            var timeDiff = now - lastCall;
-            if (timeDiff >= wait) {
-                lastCall = now;
-                return func.apply(this, [].slice.call(arguments));
-            } else {
-                var that = this;
-                var args = [].slice.call(arguments);
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    return throttled.apply(that, args);
-                });
-            }
-        };
-        return throttled;
-    },
-
-    /**
-     * Returns the target of the event object
-     *
-     * @method element
-     * @param {Object} ev  event object
-     * @return {Node} The target
-     */
-    element: function(ev)
-    {
-        var node = ev.target ||
-            // IE stuff
-            (ev.type === 'mouseout'   && ev.fromElement) ||
-            (ev.type === 'mouseleave' && ev.fromElement) ||
-            (ev.type === 'mouseover'  && ev.toElement) ||
-            (ev.type === 'mouseenter' && ev.toElement) ||
-            ev.srcElement ||
-            null;
-        return node && (node.nodeType === 3 || node.nodeType === 4) ? node.parentNode : node;
-    },
-
-    /**
-     * Returns the related target of the event object
-     *
-     * @method relatedTarget
-     * @param {Object} ev event object
-     * @return {Node} The related target
-     */
-    relatedTarget: function(ev){
-        var node = ev.relatedTarget ||
-            // IE stuff
-            (ev.type === 'mouseout'   && ev.toElement) ||
-            (ev.type === 'mouseleave' && ev.toElement) ||
-            (ev.type === 'mouseover'  && ev.fromElement) ||
-            (ev.type === 'mouseenter' && ev.fromElement) ||
-            null;
-        return node && (node.nodeType === 3 || node.nodeType === 4) ? node.parentNode : node;
-    },
-
-    /**
-     * Navigate up the DOM tree, looking for a tag with the name `elmTagName`.
-     *
-     * If such tag is not found, `document` is returned.
-     *
-     * @method findElement
-     * @param {Object}  ev              event object
-     * @param {String}  elmTagName      tag name to find
-     * @param {Boolean} [force=false]   If this is true, never return `document`, and returns `false` instead.
-     * @return {DOMElement} the first element which matches given tag name or the document element if the wanted tag is not found
-     */
-    findElement: function(ev, elmTagName, force)
-    {
-        var node = this.element(ev);
-        while(true) {
-            if(node.nodeName.toLowerCase() === elmTagName.toLowerCase()) {
-                return node;
-            } else {
-                node = node.parentNode;
-                if(!node) {
-                    if(force) {
-                        return false;
-                    }
-                    return document;
-                }
-                if(!node.parentNode){
-                    if(force){ return false; }
-                    return document;
-                }
-            }
-        }
-    },
-
-
-    /**
-     * Dispatches an event to element
-     *
-     * @method fire
-     * @param {DOMElement|String}  element    element id or element
-     * @param {String}             eventName  event name
-     * @param {Object}             [memo]     metadata for the event
-     */
-    fire: function(element, eventName, memo)
-    {
-        element = Ink.i(element);
-        var ev;
-
-        if(element !== null && element !== undefined){
-            if (element === document && document.createEvent && !element.dispatchEvent) {
-                element = document.documentElement;
-            }
-
-            if (document.createEvent) {
-                ev = document.createEvent("HTMLEvents");
-                if(typeof nativeEvents[eventName] === "undefined"){
-                    ev.initEvent("dataavailable", true, true);
-                } else {
-                    ev.initEvent(eventName, true, true);
-                }
-
-            } else {
-                ev = document.createEventObject();
-                if(typeof nativeEvents["on"+eventName] === "undefined"){
-                    ev.eventType = "ondataavailable";
-                } else {
-                    ev.eventType = "on"+eventName;
-                }
-            }
-
-            ev.eventName = eventName;
-            ev.memo = memo || { };
-
-            try {
-                if (document.createEvent) {
-                    element.dispatchEvent(ev);
-                } else if(element.fireEvent){
-                    element.fireEvent(ev.eventType, ev);
-                } else {
-                    return;
-                }
-            } catch(ex) {}
-
-            return ev;
-        }
-    },
-
-    _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !window.onhashchange;
-        var isCustomEvent = eventName.indexOf(':') !== -1;
-        if (isHashChangeInIE || isCustomEvent) {
-            /**
-             *
-             * prevent that each custom event fire without any test
-             * This prevents that if you have multiple custom events
-             * on dataavailable to trigger the callback event if it
-             * is a different custom event
-             *
-             */
-            var argCallback = callBack;
-            return Ink.bindEvent(function(ev, eventName, cb){
-
-              //tests if it is our event and if not
-              //check if it is IE and our dom:loaded was overrided (IE only supports one ondatavailable)
-              //- fix /opera also supports attachEvent and was firing two events
-              // if(ev.eventName === eventName || (Ink.Browser.IE && eventName === 'dom:loaded')){
-              if(ev.eventName === eventName){
-                //fix for FF since it loses the event in case of using a second binObjEvent
-                if(window.addEventListener){
-                  window.event = ev;
-                }
-                cb();
-              }
-
-            }, this, eventName, argCallback);
-        } else {
-            return null;
-        }
-    },
-
-    /**
-     * Attaches an event to element
-     *
-     * @method observe
-     * @param {DOMElement|String}  element      Element id or element
-     * @param {String}             eventName    Event name
-     * @param {Function}           callBack     Receives event object as a
-     * parameter. If you're manually firing custom events, check the
-     * eventName property of the event object to make sure you're handling
-     * the right event.
-     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
-     * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
-     */
-    observe: function(element, eventName, callBack, useCapture)
-    {
-        element = Ink.i(element);
-        if(element !== null && element !== undefined) {
-            /* rare corner case: some events need a different callback to be generated */
-            var callbackForCustomEvents = this._callbackForCustomEvents(element, eventName, callBack);
-            if (callbackForCustomEvents) {
-                callBack = callbackForCustomEvents;
-                eventName = 'dataavailable';
-            }
-
-            if(element.addEventListener) {
-                element.addEventListener(eventName, callBack, !!useCapture);
-            } else {
-                element.attachEvent('on' + eventName, callBack);
-            }
-            return callBack;
-        }
-    },
-
-    /**
-     * Attaches an event to a selector or array of elements.
-     *
-     * Requires Ink.Dom.Selector or a browser with Element.querySelectorAll.
-     *
-     * Ink.Dom.Event.observe
-     *
-     * @method observeMulti
-     * @param {Array|String} elements
-     * @param ... See the `observe` function.
-     * @return {Function} The used callback.
-     */
-    observeMulti: function (elements, eventName, callBack, useCapture) {
-        if (typeof elements === 'string') {
-            elements = Ink.ss(elements);
-        } else if (elements instanceof Element) {
-            elements = [elements];
-        }
-        if (!elements[0]) { return false; }
-
-        var callbackForCustomEvents = this._callbackForCustomEvents(elements[0], eventName, callBack);
-        if (callbackForCustomEvents) {
-            callBack = callbackForCustomEvents;
-            eventName = 'dataavailable';
-        }
-
-        for (var i = 0, len = elements.length; i < len; i++) {
-            this.observe(elements[i], eventName, callBack, useCapture);
-        }
-        return callBack;
-    },
-
-    /**
-     * Remove an event attached to an element
-     *
-     * @method stopObserving
-     * @param {DOMElement|String}  element       element id or element
-     * @param {String}             eventName     event name
-     * @param {Function}           callBack      callback function
-     * @param {Boolean}            [useCapture]  set to true if the event was being observed with useCapture set to true as well.
-     */
-    stopObserving: function(element, eventName, callBack, useCapture)
-    {
-        element = Ink.i(element);
-
-        if(element !== null && element !== undefined) {
-            if(element.removeEventListener) {
-                element.removeEventListener(eventName, callBack, !!useCapture);
-            } else {
-                element.detachEvent('on' + eventName, callBack);
-            }
-        }
-    },
-
-    /**
-     * Stops event propagation and bubbling
-     *
-     * @method stop
-     * @param {Object} event  event handle
-     */
-    stop: function(event)
-    {
-        if(event.cancelBubble !== null) {
-            event.cancelBubble = true;
-        }
-        if(event.stopPropagation) {
-            event.stopPropagation();
-        }
-        if(event.preventDefault) {
-            event.preventDefault();
-        }
-        if(window.attachEvent) {
-            event.returnValue = false;
-        }
-        if(event.cancel !== null) {
-            event.cancel = true;
-        }
-    },
-
-    /**
-     * Stops event propagation
-     *
-     * @method stopPropagation
-     * @param {Object} event  event handle
-     */
-    stopPropagation: function(event) {
-        if(event.cancelBubble !== null) {
-            event.cancelBubble = true;
-        }
-        if(event.stopPropagation) {
-            event.stopPropagation();
-        }
-    },
-
-    /**
-     * Stops event default behaviour
-     *
-     * @method stopDefault
-     * @param {Object} event  event handle
-     */
-    stopDefault: function(event)
-    {
-        if(event.preventDefault) {
-            event.preventDefault();
-        }
-        if(window.attachEvent) {
-            event.returnValue = false;
-        }
-        if(event.cancel !== null) {
-            event.cancel = true;
-        }
-    },
-
-    /**
-     * @method pointer
-     * @param {Object} ev event object
-     * @return {Object} an object with the mouse X and Y position
-     */
-    pointer: function(ev)
-    {
-        return {
-            x: this.pointerX(ev),
-            y: this.pointerY(ev)
-        };
-    },
-
-    /**
-     * @method pointerX
-     * @param {Object} ev event object
-     * @return {Number} mouse X position
-     */
-    pointerX: function(ev)
-    {
-        return ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
-    },
-
-    /**
-     * @method pointerY
-     * @param {Object} ev event object
-     * @return {Number} mouse Y position
-     */
-    pointerY: function(ev)
-    {
-        return ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
-    },
-
-    /**
-     * @method isLeftClick
-     * @param {Object} ev  event object
-     * @return {Boolean} True if the event is a left mouse click
-     */
-    isLeftClick: function(ev) {
-        if (window.addEventListener) {
-            if(ev.button === 0){
-                return true;
-            }
-            else if(ev.type.substring(0,5) === 'touch' && ev.button === null){
-                return true;
-            }
-        }
-        else {
-            if(ev.button === 1){ return true; }
-        }
-        return false;
-    },
-
-    /**
-     * @method isRightClick
-     * @param {Object} ev  event object
-     * @return {Boolean} True if there is a right click on the event
-     */
-    isRightClick: function(ev) {
-        return (ev.button === 2);
-    },
-
-    /**
-     * @method isMiddleClick
-     * @param {Object} ev  event object
-     * @return {Boolean} True if there is a middle click on the event
-     */
-    isMiddleClick: function(ev) {
-        if (window.addEventListener) {
-            return (ev.button === 1);
-        }
-        else {
-            return (ev.button === 4);
-        }
-        return false;
-    },
-
-    /**
-     * Work in Progress.
-     * Used in SAPO.Component.MaskedInput
-     *
-     * @method getCharFromKeyboardEvent
-     * @param {KeyboardEvent}     event           keyboard event
-     * @param {optional Boolean}  [changeCasing]  if true uppercases, if false lowercases, otherwise keeps casing
-     * @return {String} character representation of pressed key combination
-     */
-    getCharFromKeyboardEvent: function(event, changeCasing) {
-        var k = event.keyCode;
-        var c = String.fromCharCode(k);
-
-        var shiftOn = event.shiftKey;
-        if (k >= 65 && k <= 90) {   // A-Z
-            if (typeof changeCasing === 'boolean') {
-                shiftOn = changeCasing;
-            }
-            return (shiftOn) ? c : c.toLowerCase();
-        }
-        else if (k >= 96 && k <= 105) { // numpad digits
-            return String.fromCharCode( 48 + (k-96) );
-        }
-        switch (k) {
-            case 109:   case 189:   return '-';
-            case 107:   case 187:   return '+';
-        }
-        return c;
-    },
-
-    debug: function(){}
-};
-
-return InkEvent;
-
-});
-
-/**
- * @module Ink.Dom.FormSerialize
- * @author inkdev AT sapo.pt
- */
-
-Ink.createModule('Ink.Dom.FormSerialize', 1, [], function () {
-    'use strict';
-    /**
-     * Supports serialization of form data to/from javascript Objects.
-     *
-     * Valid applications are ad hoc AJAX/syndicated submission of forms, restoring form values from server side state, etc.
-     *
-     * @class Ink.Dom.FormSerialize
-     *
-     */
-    var FormSerialize = {
-
-        /**
-         * Serializes a form into an object, turning field names into keys, and field values into values.
-         *
-         * note: Multi-select and checkboxes with multiple values will yield arrays
-         *
-         * @method serialize
-         * @return {Object} map of fieldName -> String|String[]|Boolean
-         * @param {DomElement|String}   form    form element from which the extraction is to occur
-         *
-         * @example
-         *     <form id="frm">
-         *         <input type="text" name="field1">
-         *         <button type="submit">Submit</button>
-         *     </form>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.FormSerialize_1', 'Ink.Dom.Event_1'], function (FormSerialize, InkEvent) {
-         *             InkEvent.observe('frm', 'submit', function (event) {
-         *                 var formData = FormSerialize.serialize('frm'); // -> {field1:"123"}
-         *                 InkEvent.stop(event);
-         *             });
-         *         });
-         *     </script>
-         */
-        serialize: function(form) {
-            form = Ink.i(form);
-            var map = this._getFieldNameInputsMap(form);
-
-            var map2 = {};
-            for (var k in map) if (map.hasOwnProperty(k)) {
-                if(k !== null) {
-                    var tmpK = k.replace(/\[\]$/, '');
-                    map2[tmpK] = this._getValuesOfField( map[k] );
-                } else {
-                    map2[k] = this._getValuesOfField( map[k] );
-                }
-            }
-
-            delete map2['null'];    // this can occur. if so, delete it...
-            return map2;
-        },
-
-
-
-
-        /**
-         * Sets form elements's values with values given from object
-         *
-         * One cannot restore the values of an input with `type="file"` (browser prohibits it)
-         *
-         * @method fillIn 
-         * @param {DomElement|String}   form    form element which is to be populated
-         * @param {Object}              map2    map of fieldName -> String|String[]|Boolean
-         * @example
-         *     <form id="frm">
-         *         <input type="text" name="field1">
-         *         <button type="submit">Submit</button>
-         *     </form>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
-         *             var values = {field1: 'CTHULHU'};
-         *             FormSerialize.fillIn('frm', values);
-         *             // At this point the form is pre-filled with the values above.
-         *         });
-         *     </script>
-         */
-        fillIn: function(form, map2) {
-            form = Ink.i(form);
-            var map = this._getFieldNameInputsMap(form);
-            delete map['null']; // this can occur. if so, delete it...
-
-            for (var k in map2) if (map2.hasOwnProperty(k)) {
-                this._setValuesOfField( map[k], map2[k] );
-            }
-        },
-
-
-
-        _getFieldNameInputsMap: function(formEl) {
-            var name, nodeName, el, map = {};
-            for (var i = 0, f = formEl.elements.length; i < f; ++i) {
-                el = formEl.elements[i];
-                name = el.getAttribute('name');
-                nodeName = el.nodeName.toLowerCase();
-                if (nodeName === 'fieldset') {
-                    continue;
-                } else if (map[name] === undefined) {
-                    map[name] = [el];
-                } else {
-                    map[name].push(el);
-                }
-            }
-            return map;
-        },
-
-
-
-        _getValuesOfField: function(fieldInputs) {
-            var nodeName = fieldInputs[0].nodeName.toLowerCase();
-            var type = fieldInputs[0].getAttribute('type');
-            var value = fieldInputs[0].value;
-            var i, f, j, o, el, m, res = [];
-
-            switch(nodeName) {
-                case 'select':
-                    for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                        res[i] = [];
-                        m = fieldInputs[i].getAttribute('multiple');
-                        for (j = 0, o = fieldInputs[i].options.length; j < o; ++j) {
-                            el = fieldInputs[i].options[j];
-                            if (el.selected) {
-                                if (m) {
-                                    res[i].push(el.value);
-                                } else {
-                                    res[i] = el.value;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    return ((fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) ? res : res[0]);
-
-                case 'textarea':
-                case 'input':
-                    if (type === 'checkbox' || type === 'radio') {
-                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                            el = fieldInputs[i];
-                            if (el.checked) {
-                                res.push(    el.value    );
-                            }
-                        }
-                        if (type === 'checkbox') {
-                            return (fieldInputs.length > 1) ? res : !!(res.length);
-                        }
-                        return (fieldInputs.length > 1) ? res[0] : !!(res.length);    // on radios only 1 option is selected at most
-                    }
-                    else {
-                        //if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
-                        if(fieldInputs.length > 0 && /\[[^\]]*\]$/.test(fieldInputs[0].getAttribute('name'))) {
-                            var tmpValues = [];
-                            for(i=0, f = fieldInputs.length; i < f; ++i) {
-                                tmpValues.push(fieldInputs[i].value);
-                            }
-                            return tmpValues;
-                        } else {
-                            return value;
-                        }
-                    }
-                    break;    // to keep JSHint happy...  (reply to this comment by gamboa: - ROTFL)
-
-                default:
-                    //throw 'Unsupported element: "' + nodeName + '"!';
-                    return undefined;
-            }
-        },
-
-
-
-        _valInArray: function(val, arr) {
-            for (var i = 0, f = arr.length; i < f; ++i) {
-                if (arr[i] === val) {    return true;    }
-            }
-            return false;
-        },
-
-
-
-        _setValuesOfField: function(fieldInputs, fieldValues) {
-            if (!fieldInputs) {    return;    }
-            var nodeName = fieldInputs[0].nodeName.toLowerCase();
-            var type = fieldInputs[0].getAttribute('type');
-            var i, f, el;
-
-            switch(nodeName) {
-                case 'select':
-                    if (fieldInputs.length > 1) {    throw 'Got multiple select elements with same name!';    }
-                    for (i = 0, f = fieldInputs[0].options.length; i < f; ++i) {
-                        el = fieldInputs[0].options[i];
-                        el.selected = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
-                    }
-                    break;
-                case 'textarea':
-                case 'input':
-                    if (type === 'checkbox' || type === 'radio') {
-                        for (i = 0, f = fieldInputs.length; i < f; ++i) {
-                            el = fieldInputs[i];
-                            //el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : el.value === fieldValues;
-                            el.checked = (fieldValues instanceof Array) ? this._valInArray(el.value, fieldValues) : (fieldInputs.length > 1 ? el.value === fieldValues : !!fieldValues);
-                        }
-                    }
-                    else {
-                        if (fieldInputs.length > 1) {    throw 'Got multiple input elements with same name!';    }
-                        if (type !== 'file') {
-                            fieldInputs[0].value = fieldValues;
-                        }
-                    }
-                    break;
-
-                default:
-                    throw 'Unsupported element: "' + nodeName + '"!';
-            }
-        }
-    };
-
-    return FormSerialize;
-});
-
-/**
- * @module Ink.Dom.Selector_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.Dom.Selector', 1, [], function() {
-    /*jshint forin:false, eqnull:true*/
-	'use strict';
-
-    /**
-     * @class Ink.Dom.Selector
-     * @static
-     * @version 1
-     */
-
-
-/*!
- * Sizzle CSS Selector Engine
- * Copyright 2013 jQuery Foundation and other contributors
- * Released under the MIT license
- * http://sizzlejs.com/
- */
-
-var i,
-	cachedruns,
-	Expr,
-	getText,
-	isXML,
-	compile,
-	outermostContext,
-	recompare,
-	sortInput,
-
-	// Local document vars
-	setDocument,
-	document,
-	docElem,
-	documentIsHTML,
-	rbuggyQSA,
-	rbuggyMatches,
-	matches,
-	contains,
-
-	// Instance-specific data
-	expando = "sizzle" + -(new Date()),
-	preferredDoc = window.document,
-	support = {},
-	dirruns = 0,
-	done = 0,
-	classCache = createCache(),
-	tokenCache = createCache(),
-	compilerCache = createCache(),
-	hasDuplicate = false,
-	sortOrder = function() { return 0; },
-
-	// General-purpose constants
-	strundefined = typeof undefined,
-	MAX_NEGATIVE = 1 << 31,
-
-	// Array methods
-	arr = [],
-	pop = arr.pop,
-	push_native = arr.push,
-	push = arr.push,
-	slice = arr.slice,
-	// Use a stripped-down indexOf if we can't use a native one
-	indexOf = arr.indexOf || function( elem ) {
-		var i = 0,
-			len = this.length;
-		for ( ; i < len; i++ ) {
-			if ( this[i] === elem ) {
-				return i;
-			}
-		}
-		return -1;
-	},
-
-
-	// Regular expressions
-
-	// Whitespace characters http://www.w3.org/TR/css3-selectors/#whitespace
-	whitespace = "[\\x20\\t\\r\\n\\f]",
-	// http://www.w3.org/TR/css3-syntax/#characters
-	characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
-
-	// Loosely modeled on CSS identifier characters
-	// An unquoted value should be a CSS identifier http://www.w3.org/TR/css3-selectors/#attribute-selectors
-	// Proper syntax: http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
-	identifier = characterEncoding.replace( "w", "w#" ),
-
-	// Acceptable operators http://www.w3.org/TR/selectors/#attribute-selectors
-	operators = "([*^$|!~]?=)",
-	attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + whitespace +
-		"*(?:" + operators + whitespace + "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + whitespace + "*\\]",
-
-	// Prefer arguments quoted,
-	//   then not containing pseudos/brackets,
-	//   then attribute selectors/non-parenthetical expressions,
-	//   then anything else
-	// These preferences are here to reduce the number of selectors
-	//   needing tokenize in the PSEUDO preFilter
-	pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
-
-	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
-	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
-
-	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-	rcombinators = new RegExp( "^" + whitespace + "*([\\x20\\t\\r\\n\\f>+~])" + whitespace + "*" ),
-	rpseudo = new RegExp( pseudos ),
-	ridentifier = new RegExp( "^" + identifier + "$" ),
-
-	matchExpr = {
-		"ID": new RegExp( "^#(" + characterEncoding + ")" ),
-		"CLASS": new RegExp( "^\\.(" + characterEncoding + ")" ),
-		"NAME": new RegExp( "^\\[name=['\"]?(" + characterEncoding + ")['\"]?\\]" ),
-		"TAG": new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
-		"ATTR": new RegExp( "^" + attributes ),
-		"PSEUDO": new RegExp( "^" + pseudos ),
-		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
-			"*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
-			"*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
-		// For use in libraries implementing .is()
-		// We use this for POS matching in `select`
-		"needsContext": new RegExp( "^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
-			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
-	},
-
-	rsibling = /[\x20\t\r\n\f]*[+~]/,
-
-	rnative = /^[^{]+\{\s*\[native code/,
-
-	// Easily-parseable/retrievable ID or TAG or CLASS selectors
-	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
-
-	rinputs = /^(?:input|select|textarea|button)$/i,
-	rheader = /^h\d$/i,
-
-	rescape = /'|\\/g,
-	rattributeQuotes = /\=[\x20\t\r\n\f]*([^'"\]]*)[\x20\t\r\n\f]*\]/g,
-
-	// CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-	runescape = /\\([\da-fA-F]{1,6}[\x20\t\r\n\f]?|.)/g,
-	funescape = function( _, escaped ) {
-		var high = "0x" + escaped - 0x10000;
-		// NaN means non-codepoint
-		return high !== high ?
-			escaped :
-			// BMP codepoint
-			high < 0 ?
-				String.fromCharCode( high + 0x10000 ) :
-				// Supplemental Plane codepoint (surrogate pair)
-				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
-	};
-
-// Optimize for push.apply( _, NodeList )
-try {
-	push.apply(
-		(arr = slice.call( preferredDoc.childNodes )),
-		preferredDoc.childNodes
-	);
-	// Support: Android<4.0
-	// Detect silently failing push.apply
-	arr[ preferredDoc.childNodes.length ].nodeType;
-} catch ( e ) {
-	push = { apply: arr.length ?
-
-		// Leverage slice if possible
-		function( target, els ) {
-			push_native.apply( target, slice.call(els) );
-		} :
-
-		// Support: IE<9
-		// Otherwise append directly
-		function( target, els ) {
-			var j = target.length,
-				i = 0;
-			// Can't trust NodeList.length
-			while ( (target[j++] = els[i++]) ) {}
-			target.length = j - 1;
-		}
-	};
-}
-
-/*
- * For feature detection
- * @param {Function} fn The function to test for native support
- */
-function isNative( fn ) {
-	return rnative.test( fn + "" );
-}
-
-/*
- * Create key-value caches of limited size
- * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entry
- */
-function createCache() {
-	var cache,
-		keys = [];
-
-	return (cache = function( key, value ) {
-		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
-		if ( keys.push( key += " " ) > Expr.cacheLength ) {
-			// Only keep the most recent entries
-			delete cache[ keys.shift() ];
-		}
-		return (cache[ key ] = value);
-	});
-}
-
-/*
- * Mark a function for special use by Sizzle
- * @param {Function} fn The function to mark
- */
-function markFunction( fn ) {
-	fn[ expando ] = true;
-	return fn;
-}
-
-/*
- * Support testing using an element
- * @param {Function} fn Passed the created div and expects a boolean result
- */
-function assert( fn ) {
-	var div = document.createElement("div");
-
-	try {
-		return !!fn( div );
-	} catch (e) {
-		return false;
-	} finally {
-		// release memory in IE
-		div = null;
-	}
-}
-
-function Sizzle( selector, context, results, seed ) {
-	var match, elem, m, nodeType,
-		// QSA vars
-		i, groups, old, nid, newContext, newSelector;
-
-	if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
-		setDocument( context );
-	}
-
-	context = context || document;
-	results = results || [];
-
-	if ( !selector || typeof selector !== "string" ) {
-		return results;
-	}
-
-	if ( (nodeType = context.nodeType) !== 1 && nodeType !== 9 ) {
-		return [];
-	}
-
-	if ( documentIsHTML && !seed ) {
-
-		// Shortcuts
-		if ( (match = rquickExpr.exec( selector )) ) {
-			// Speed-up: Sizzle("#ID")
-			if ( (m = match[1]) ) {
-				if ( nodeType === 9 ) {
-					elem = context.getElementById( m );
-					// Check parentNode to catch when Blackberry 4.6 returns
-					// nodes that are no longer in the document #6963
-					if ( elem && elem.parentNode ) {
-						// Handle the case where IE, Opera, and Webkit return items
-						// by name instead of ID
-						if ( elem.id === m ) {
-							results.push( elem );
-							return results;
-						}
-					} else {
-						return results;
-					}
-				} else {
-					// Context is not a document
-					if ( context.ownerDocument && (elem = context.ownerDocument.getElementById( m )) &&
-						contains( context, elem ) && elem.id === m ) {
-						results.push( elem );
-						return results;
-					}
-				}
-
-			// Speed-up: Sizzle("TAG")
-			} else if ( match[2] ) {
-				push.apply( results, context.getElementsByTagName( selector ) );
-				return results;
-
-			// Speed-up: Sizzle(".CLASS")
-			} else if ( (m = match[3]) && support.getElementsByClassName && context.getElementsByClassName ) {
-				push.apply( results, context.getElementsByClassName( m ) );
-				return results;
-			}
-		}
-
-		// QSA path
-		if ( support.qsa && !rbuggyQSA.test(selector) ) {
-			old = true;
-			nid = expando;
-			newContext = context;
-			newSelector = nodeType === 9 && selector;
-
-			// qSA works strangely on Element-rooted queries
-			// We can work around this by specifying an extra ID on the root
-			// and working up from there (Thanks to Andrew Dupont for the technique)
-			// IE 8 doesn't work on object elements
-			if ( nodeType === 1 && context.nodeName.toLowerCase() !== "object" ) {
-				groups = tokenize( selector );
-
-				if ( (old = context.getAttribute("id")) ) {
-					nid = old.replace( rescape, "\\$&" );
-				} else {
-					context.setAttribute( "id", nid );
-				}
-				nid = "[id='" + nid + "'] ";
-
-				i = groups.length;
-				while ( i-- ) {
-					groups[i] = nid + toSelector( groups[i] );
-				}
-				newContext = rsibling.test( selector ) && context.parentNode || context;
-				newSelector = groups.join(",");
-			}
-
-			if ( newSelector ) {
-				try {
-					push.apply( results,
-						newContext.querySelectorAll( newSelector )
-					);
-					return results;
-				} catch(qsaError) {
-				} finally {
-					if ( !old ) {
-						context.removeAttribute("id");
-					}
-				}
-			}
-		}
-	}
-
-	// All others
-	return select( selector.replace( rtrim, "$1" ), context, results, seed );
-}
-
-/*
- * Detect xml
- * @param {Element|Object} elem An element or a document
- */
-isXML = Sizzle.isXML = function( elem ) {
-	// documentElement is verified for cases where it doesn't yet exist
-	// (such as loading iframes in IE - #4833)
-	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
-	return documentElement ? documentElement.nodeName !== "HTML" : false;
-};
-
-/*
- * Sets document-related variables once based on the current document
- * @param {Element|Object} [doc] An element or document object to use to set the document
- * @returns {Object} Returns the current document
- */
-setDocument = Sizzle.setDocument = function( node ) {
-	var doc = node ? node.ownerDocument || node : preferredDoc;
-
-	// If no document and documentElement is available, return
-	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
-		return document;
-	}
-
-	// Set our document
-	document = doc;
-	docElem = doc.documentElement;
-
-	// Support tests
-	documentIsHTML = !isXML( doc );
-
-	// Check if getElementsByTagName("*") returns only elements
-	support.getElementsByTagName = assert(function( div ) {
-		div.appendChild( doc.createComment("") );
-		return !div.getElementsByTagName("*").length;
-	});
-
-	// Check if attributes should be retrieved by attribute nodes
-	support.attributes = assert(function( div ) {
-		div.innerHTML = "<select></select>";
-		var type = typeof div.lastChild.getAttribute("multiple");
-		// IE8 returns a string for some attributes even when not present
-		return type !== "boolean" && type !== "string";
-	});
-
-	// Check if getElementsByClassName can be trusted
-	support.getElementsByClassName = assert(function( div ) {
-		// Opera can't find a second classname (in 9.6)
-		div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>";
-		if ( !div.getElementsByClassName || !div.getElementsByClassName("e").length ) {
-			return false;
-		}
-
-		// Safari 3.2 caches class attributes and doesn't catch changes
-		div.lastChild.className = "e";
-		return div.getElementsByClassName("e").length === 2;
-	});
-
-	// Check if getElementsByName privileges form controls or returns elements by ID
-	// If so, assume (for broader support) that getElementById returns elements by name
-	support.getByName = assert(function( div ) {
-		// Inject content
-		div.id = expando + 0;
-		// Support: Windows 8 Native Apps
-		// Assigning innerHTML with "name" attributes throws uncatchable exceptions
-		// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx
-		div.appendChild( document.createElement("a") ).setAttribute( "name", expando );
-		div.appendChild( document.createElement("i") ).setAttribute( "name", expando );
-		docElem.appendChild( div );
-
-		// Test
-		var pass = doc.getElementsByName &&
-			// buggy browsers will return fewer than the correct 2
-			doc.getElementsByName( expando ).length === 2 +
-			// buggy browsers will return more than the correct 0
-			doc.getElementsByName( expando + 0 ).length;
-
-		// Cleanup
-		docElem.removeChild( div );
-
-		return pass;
-	});
-
-	// Support: Webkit<537.32
-	// Detached nodes confoundingly follow *each other*
-	support.sortDetached = assert(function( div1 ) {
-		return div1.compareDocumentPosition &&
-			// Should return 1, but Webkit returns 4 (following)
-			(div1.compareDocumentPosition( document.createElement("div") ) & 1);
-	});
-
-	// IE6/7 return modified attributes
-	Expr.attrHandle = assert(function( div ) {
-		div.innerHTML = "<a href='#'></a>";
-		return div.firstChild && typeof div.firstChild.getAttribute !== strundefined &&
-			div.firstChild.getAttribute("href") === "#";
-	}) ?
-		{} :
-		{
-			"href": function( elem ) {
-				return elem.getAttribute( "href", 2 );
-			},
-			"type": function( elem ) {
-				return elem.getAttribute("type");
-			}
-		};
-
-	// ID find and filter
-	if ( support.getByName ) {
-		Expr.find["ID"] = function( id, context ) {
-			if ( typeof context.getElementById !== strundefined && documentIsHTML ) {
-				var m = context.getElementById( id );
-				// Check parentNode to catch when Blackberry 4.6 returns
-				// nodes that are no longer in the document #6963
-				return m && m.parentNode ? [m] : [];
-			}
-		};
-		Expr.filter["ID"] = function( id ) {
-			var attrId = id.replace( runescape, funescape );
-			return function( elem ) {
-				return elem.getAttribute("id") === attrId;
-			};
-		};
-	} else {
-		Expr.find["ID"] = function( id, context ) {
-			if ( typeof context.getElementById !== strundefined && documentIsHTML ) {
-				var m = context.getElementById( id );
-
-				return m ?
-					m.id === id || typeof m.getAttributeNode !== strundefined && m.getAttributeNode("id").value === id ?
-						[m] :
-						undefined :
-					[];
-			}
-		};
-		Expr.filter["ID"] =  function( id ) {
-			var attrId = id.replace( runescape, funescape );
-			return function( elem ) {
-				var node = typeof elem.getAttributeNode !== strundefined && elem.getAttributeNode("id");
-				return node && node.value === attrId;
-			};
-		};
-	}
-
-	// Tag
-	Expr.find["TAG"] = support.getElementsByTagName ?
-		function( tag, context ) {
-			if ( typeof context.getElementsByTagName !== strundefined ) {
-				return context.getElementsByTagName( tag );
-			}
-		} :
-		function( tag, context ) {
-			var elem,
-				tmp = [],
-				i = 0,
-				results = context.getElementsByTagName( tag );
-
-			// Filter out possible comments
-			if ( tag === "*" ) {
-				while ( (elem = results[i++]) ) {
-					if ( elem.nodeType === 1 ) {
-						tmp.push( elem );
-					}
-				}
-
-				return tmp;
-			}
-			return results;
-		};
-
-	// Name
-	Expr.find["NAME"] = support.getByName && function( tag, context ) {
-		if ( typeof context.getElementsByName !== strundefined ) {
-			return context.getElementsByName( name );
-		}
-	};
-
-	// Class
-	Expr.find["CLASS"] = support.getElementsByClassName && function( className, context ) {
-		if ( typeof context.getElementsByClassName !== strundefined && documentIsHTML ) {
-			return context.getElementsByClassName( className );
-		}
-	};
-
-	// QSA and matchesSelector support
-
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
-	rbuggyMatches = [];
-
-	// qSa(:focus) reports false when true (Chrome 21),
-	// no need to also add to buggyMatches since matches checks buggyQSA
-	// A support test would require too much code (would include document ready)
-	rbuggyQSA = [ ":focus" ];
-
-	if ( (support.qsa = isNative(doc.querySelectorAll)) ) {
-		// Build QSA regex
-		// Regex strategy adopted from Diego Perini
-		assert(function( div ) {
-			// Select is set to empty string on purpose
-			// This is to test IE's treatment of not explicitly
-			// setting a boolean content attribute,
-			// since its presence should be enough
-			// http://bugs.jquery.com/ticket/12359
-			div.innerHTML = "<select><option selected=''></option></select>";
-
-			// IE8 - Some boolean attributes are not treated correctly
-			if ( !div.querySelectorAll("[selected]").length ) {
-				rbuggyQSA.push( "\\[" + whitespace + "*(?:checked|disabled|ismap|multiple|readonly|selected|value)" );
-			}
-
-			// Webkit/Opera - :checked should return selected option elements
-			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			// IE8 throws error here and will not see later tests
-			if ( !div.querySelectorAll(":checked").length ) {
-				rbuggyQSA.push(":checked");
-			}
-		});
-
-		assert(function( div ) {
-
-			// Opera 10-12/IE8 - ^= $= *= and empty values
-			// Should not select anything
-			div.innerHTML = "<input type='hidden' i=''/>";
-			if ( div.querySelectorAll("[i^='']").length ) {
-				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:\"\"|'')" );
-			}
-
-			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
-			// IE8 throws error here and will not see later tests
-			if ( !div.querySelectorAll(":enabled").length ) {
-				rbuggyQSA.push( ":enabled", ":disabled" );
-			}
-
-			// Opera 10-11 does not throw on post-comma invalid pseudos
-			div.querySelectorAll("*,:x");
-			rbuggyQSA.push(",.*:");
-		});
-	}
-
-	if ( (support.matchesSelector = isNative( (matches = docElem.matchesSelector ||
-		docElem.mozMatchesSelector ||
-		docElem.webkitMatchesSelector ||
-		docElem.oMatchesSelector ||
-		docElem.msMatchesSelector) )) ) {
-
-		assert(function( div ) {
-			// Check to see if it's possible to do matchesSelector
-			// on a disconnected node (IE 9)
-			support.disconnectedMatch = matches.call( div, "div" );
-
-			// This should fail with an exception
-			// Gecko does not error, returns false instead
-			matches.call( div, "[s!='']:x" );
-			rbuggyMatches.push( "!=", pseudos );
-		});
-	}
-
-	rbuggyQSA = new RegExp( rbuggyQSA.join("|") );
-	rbuggyMatches = rbuggyMatches.length && new RegExp( rbuggyMatches.join("|") );
-
-	// Element contains another
-	// Purposefully does not implement inclusive descendent
-	// As in, an element does not contain itself
-	contains = isNative(docElem.contains) || docElem.compareDocumentPosition ?
-		function( a, b ) {
-			var adown = a.nodeType === 9 ? a.documentElement : a,
-				bup = b && b.parentNode;
-			return a === bup || !!( bup && bup.nodeType === 1 && (
-				adown.contains ?
-					adown.contains( bup ) :
-					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
-			));
-		} :
-		function( a, b ) {
-			if ( b ) {
-				while ( (b = b.parentNode) ) {
-					if ( b === a ) {
-						return true;
-					}
-				}
-			}
-			return false;
-		};
-
-	// Document order sorting
-	sortOrder = docElem.compareDocumentPosition ?
-	function( a, b ) {
-
-		// Flag for duplicate removal
-		if ( a === b ) {
-			hasDuplicate = true;
-			return 0;
-		}
-
-		var compare = b.compareDocumentPosition && a.compareDocumentPosition && a.compareDocumentPosition( b );
-
-		if ( compare ) {
-			// Disconnected nodes
-			if ( compare & 1 ||
-				(recompare && b.compareDocumentPosition( a ) === compare) ) {
-
-				// Choose the first element that is related to our preferred document
-				if ( a === doc || contains(preferredDoc, a) ) {
-					return -1;
-				}
-				if ( b === doc || contains(preferredDoc, b) ) {
-					return 1;
-				}
-
-				// Maintain original order
-				return sortInput ?
-					( indexOf.call( sortInput, a ) - indexOf.call( sortInput, b ) ) :
-					0;
-			}
-
-			return compare & 4 ? -1 : 1;
-		}
-
-		// Not directly comparable, sort on existence of method
-		return a.compareDocumentPosition ? -1 : 1;
-	} :
-	function( a, b ) {
-		var cur,
-			i = 0,
-			aup = a.parentNode,
-			bup = b.parentNode,
-			ap = [ a ],
-			bp = [ b ];
-
-		// Exit early if the nodes are identical
-		if ( a === b ) {
-			hasDuplicate = true;
-			return 0;
-
-		// Parentless nodes are either documents or disconnected
-		} else if ( !aup || !bup ) {
-			return a === doc ? -1 :
-				b === doc ? 1 :
-				aup ? -1 :
-				bup ? 1 :
-				0;
-
-		// If the nodes are siblings, we can do a quick check
-		} else if ( aup === bup ) {
-			return siblingCheck( a, b );
-		}
-
-		// Otherwise we need full lists of their ancestors for comparison
-		cur = a;
-		while ( (cur = cur.parentNode) ) {
-			ap.unshift( cur );
-		}
-		cur = b;
-		while ( (cur = cur.parentNode) ) {
-			bp.unshift( cur );
-		}
-
-		// Walk down the tree looking for a discrepancy
-		while ( ap[i] === bp[i] ) {
-			i++;
-		}
-
-		return i ?
-			// Do a sibling check if the nodes have a common ancestor
-			siblingCheck( ap[i], bp[i] ) :
-
-			// Otherwise nodes in our document sort first
-			ap[i] === preferredDoc ? -1 :
-			bp[i] === preferredDoc ? 1 :
-			0;
-	};
-
-	return document;
-};
-
-Sizzle.matches = function( expr, elements ) {
-	return Sizzle( expr, null, null, elements );
-};
-
-Sizzle.matchesSelector = function( elem, expr ) {
-	// Set document vars if needed
-	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
-	}
-
-	// Make sure that attribute selectors are quoted
-	expr = expr.replace( rattributeQuotes, "='$1']" );
-
-	// rbuggyQSA always contains :focus, so no need for an existence check
-	if ( support.matchesSelector && documentIsHTML && (!rbuggyMatches || !rbuggyMatches.test(expr)) && !rbuggyQSA.test(expr) ) {
-		try {
-			var ret = matches.call( elem, expr );
-
-			// IE 9's matchesSelector returns false on disconnected nodes
-			if ( ret || support.disconnectedMatch ||
-					// As well, disconnected nodes are said to be in a document
-					// fragment in IE 9
-					elem.document && elem.document.nodeType !== 11 ) {
-				return ret;
-			}
-		} catch(e) {}
-	}
-
-	return Sizzle( expr, document, null, [elem] ).length > 0;
-};
-
-Sizzle.contains = function( context, elem ) {
-	// Set document vars if needed
-	if ( ( context.ownerDocument || context ) !== document ) {
-		setDocument( context );
-	}
-	return contains( context, elem );
-};
-
-Sizzle.attr = function( elem, name ) {
-	var val;
-
-	// Set document vars if needed
-	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
-	}
-
-	if ( documentIsHTML ) {
-		name = name.toLowerCase();
-	}
-	if ( (val = Expr.attrHandle[ name ]) ) {
-		return val( elem );
-	}
-	if ( !documentIsHTML || support.attributes ) {
-		return elem.getAttribute( name );
-	}
-	return ( (val = elem.getAttributeNode( name )) || elem.getAttribute( name ) ) && elem[ name ] === true ?
-		name :
-		val && val.specified ? val.value : null;
-};
-
-Sizzle.error = function( msg ) {
-	throw new Error( "Syntax error, unrecognized expression: " + msg );
-};
-
-// Document sorting and removing duplicates
-Sizzle.uniqueSort = function( results ) {
-	var elem,
-		duplicates = [],
-		j = 0,
-		i = 0;
-
-	// Unless we *know* we can detect duplicates, assume their presence
-	hasDuplicate = !support.detectDuplicates;
-	// Compensate for sort limitations
-	recompare = !support.sortDetached;
-	sortInput = !support.sortStable && results.slice( 0 );
-	results.sort( sortOrder );
-
-	if ( hasDuplicate ) {
-		while ( (elem = results[i++]) ) {
-			if ( elem === results[ i ] ) {
-				j = duplicates.push( i );
-			}
-		}
-		while ( j-- ) {
-			results.splice( duplicates[ j ], 1 );
-		}
-	}
-
-	return results;
-};
-
-/*
- * Checks document order of two siblings
- * @param {Element} a
- * @param {Element} b
- * @returns Returns -1 if a precedes b, 1 if a follows b
- */
-function siblingCheck( a, b ) {
-	var cur = b && a,
-		diff = cur && ( ~b.sourceIndex || MAX_NEGATIVE ) - ( ~a.sourceIndex || MAX_NEGATIVE );
-
-	// Use IE sourceIndex if available on both nodes
-	if ( diff ) {
-		return diff;
-	}
-
-	// Check if b follows a
-	if ( cur ) {
-		while ( (cur = cur.nextSibling) ) {
-			if ( cur === b ) {
-				return -1;
-			}
-		}
-	}
-
-	return a ? 1 : -1;
-}
-
-// Returns a function to use in pseudos for input types
-function createInputPseudo( type ) {
-	return function( elem ) {
-		var name = elem.nodeName.toLowerCase();
-		return name === "input" && elem.type === type;
-	};
-}
-
-// Returns a function to use in pseudos for buttons
-function createButtonPseudo( type ) {
-	return function( elem ) {
-		var name = elem.nodeName.toLowerCase();
-		return (name === "input" || name === "button") && elem.type === type;
-	};
-}
-
-// Returns a function to use in pseudos for positionals
-function createPositionalPseudo( fn ) {
-	return markFunction(function( argument ) {
-		argument = +argument;
-		return markFunction(function( seed, matches ) {
-			var j,
-				matchIndexes = fn( [], seed.length, argument ),
-				i = matchIndexes.length;
-
-			// Match elements found at the specified indexes
-			while ( i-- ) {
-				if ( seed[ (j = matchIndexes[i]) ] ) {
-					seed[j] = !(matches[j] = seed[j]);
-				}
-			}
-		});
-	});
-}
-
-/*
- * Utility function for retrieving the text value of an array of DOM nodes
- * @param {Array|Element} elem
- */
-getText = Sizzle.getText = function( elem ) {
-	var node,
-		ret = "",
-		i = 0,
-		nodeType = elem.nodeType;
-
-	if ( !nodeType ) {
-		// If no nodeType, this is expected to be an array
-		for ( ; (node = elem[i]); i++ ) {
-			// Do not traverse comment nodes
-			ret += getText( node );
-		}
-	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
-		// Use textContent for elements
-		// innerText usage removed for consistency of new lines (see #11153)
-		if ( typeof elem.textContent === "string" ) {
-			return elem.textContent;
-		} else {
-			// Traverse its children
-			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-				ret += getText( elem );
-			}
-		}
-	} else if ( nodeType === 3 || nodeType === 4 ) {
-		return elem.nodeValue;
-	}
-	// Do not include comment or processing instruction nodes
-
-	return ret;
-};
-
-Expr = Sizzle.selectors = {
-
-	// Can be adjusted by the user
-	cacheLength: 50,
-
-	createPseudo: markFunction,
-
-	match: matchExpr,
-
-	find: {},
-
-	relative: {
-		">": { dir: "parentNode", first: true },
-		" ": { dir: "parentNode" },
-		"+": { dir: "previousSibling", first: true },
-		"~": { dir: "previousSibling" }
-	},
-
-	preFilter: {
-		"ATTR": function( match ) {
-			match[1] = match[1].replace( runescape, funescape );
-
-			// Move the given value to match[3] whether quoted or unquoted
-			match[3] = ( match[4] || match[5] || "" ).replace( runescape, funescape );
-
-			if ( match[2] === "~=" ) {
-				match[3] = " " + match[3] + " ";
-			}
-
-			return match.slice( 0, 4 );
-		},
-
-		"CHILD": function( match ) {
-			/* matches from matchExpr["CHILD"]
-				1 type (only|nth|...)
-				2 what (child|of-type)
-				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
-				4 xn-component of xn+y argument ([+-]?\d*n|)
-				5 sign of xn-component
-				6 x of xn-component
-				7 sign of y-component
-				8 y of y-component
-			*/
-			match[1] = match[1].toLowerCase();
-
-			if ( match[1].slice( 0, 3 ) === "nth" ) {
-				// nth-* requires argument
-				if ( !match[3] ) {
-					Sizzle.error( match[0] );
-				}
-
-				// numeric x and y parameters for Expr.filter.CHILD
-				// remember that false/true cast respectively to 0/1
-				match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
-				match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
-
-			// other types prohibit arguments
-			} else if ( match[3] ) {
-				Sizzle.error( match[0] );
-			}
-
-			return match;
-		},
-
-		"PSEUDO": function( match ) {
-			var excess,
-				unquoted = !match[5] && match[2];
-
-			if ( matchExpr["CHILD"].test( match[0] ) ) {
-				return null;
-			}
-
-			// Accept quoted arguments as-is
-			if ( match[4] ) {
-				match[2] = match[4];
-
-			// Strip excess characters from unquoted arguments
-			} else if ( unquoted && rpseudo.test( unquoted ) &&
-				// Get excess from tokenize (recursively)
-				(excess = tokenize( unquoted, true )) &&
-				// advance to the next closing parenthesis
-				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
-
-				// excess is a negative index
-				match[0] = match[0].slice( 0, excess );
-				match[2] = unquoted.slice( 0, excess );
-			}
-
-			// Return only captures needed by the pseudo filter method (type and argument)
-			return match.slice( 0, 3 );
-		}
-	},
-
-	filter: {
-
-		"TAG": function( nodeName ) {
-			if ( nodeName === "*" ) {
-				return function() { return true; };
-			}
-
-			nodeName = nodeName.replace( runescape, funescape ).toLowerCase();
-			return function( elem ) {
-				return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
-			};
-		},
-
-		"CLASS": function( className ) {
-			var pattern = classCache[ className + " " ];
-
-			return pattern ||
-				(pattern = new RegExp( "(^|" + whitespace + ")" + className + "(" + whitespace + "|$)" )) &&
-				classCache( className, function( elem ) {
-					return pattern.test( elem.className || (typeof elem.getAttribute !== strundefined && elem.getAttribute("class")) || "" );
-				});
-		},
-
-		"ATTR": function( name, operator, check ) {
-			return function( elem ) {
-				var result = Sizzle.attr( elem, name );
-
-				if ( result == null ) {
-					return operator === "!=";
-				}
-				if ( !operator ) {
-					return true;
-				}
-
-				result += "";
-
-				return operator === "=" ? result === check :
-					operator === "!=" ? result !== check :
-					operator === "^=" ? check && result.indexOf( check ) === 0 :
-					operator === "*=" ? check && result.indexOf( check ) > -1 :
-					operator === "$=" ? check && result.slice( -check.length ) === check :
-					operator === "~=" ? ( " " + result + " " ).indexOf( check ) > -1 :
-					operator === "|=" ? result === check || result.slice( 0, check.length + 1 ) === check + "-" :
-					false;
-			};
-		},
-
-		"CHILD": function( type, what, argument, first, last ) {
-			var simple = type.slice( 0, 3 ) !== "nth",
-				forward = type.slice( -4 ) !== "last",
-				ofType = what === "of-type";
-
-			return first === 1 && last === 0 ?
-
-				// Shortcut for :nth-*(n)
-				function( elem ) {
-					return !!elem.parentNode;
-				} :
-
-				function( elem, context, xml ) {
-					var cache, outerCache, node, diff, nodeIndex, start,
-						dir = simple !== forward ? "nextSibling" : "previousSibling",
-						parent = elem.parentNode,
-						name = ofType && elem.nodeName.toLowerCase(),
-						useCache = !xml && !ofType;
-
-					if ( parent ) {
-
-						// :(first|last|only)-(child|of-type)
-						if ( simple ) {
-							while ( dir ) {
-								node = elem;
-								while ( (node = node[ dir ]) ) {
-									if ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) {
-										return false;
-									}
-								}
-								// Reverse direction for :only-* (if we haven't yet done so)
-								start = dir = type === "only" && !start && "nextSibling";
-							}
-							return true;
-						}
-
-						start = [ forward ? parent.firstChild : parent.lastChild ];
-
-						// non-xml :nth-child(...) stores cache data on `parent`
-						if ( forward && useCache ) {
-							// Seek `elem` from a previously-cached index
-							outerCache = parent[ expando ] || (parent[ expando ] = {});
-							cache = outerCache[ type ] || [];
-							nodeIndex = cache[0] === dirruns && cache[1];
-							diff = cache[0] === dirruns && cache[2];
-							node = nodeIndex && parent.childNodes[ nodeIndex ];
-
-							while ( (node = ++nodeIndex && node && node[ dir ] ||
-
-								// Fallback to seeking `elem` from the start
-								(diff = nodeIndex = 0) || start.pop()) ) {
-
-								// When found, cache indexes on `parent` and break
-								if ( node.nodeType === 1 && ++diff && node === elem ) {
-									outerCache[ type ] = [ dirruns, nodeIndex, diff ];
-									break;
-								}
-							}
-
-						// Use previously-cached element index if available
-						} else if ( useCache && (cache = (elem[ expando ] || (elem[ expando ] = {}))[ type ]) && cache[0] === dirruns ) {
-							diff = cache[1];
-
-						// xml :nth-child(...) or :nth-last-child(...) or :nth(-last)?-of-type(...)
-						} else {
-							// Use the same loop as above to seek `elem` from the start
-							while ( (node = ++nodeIndex && node && node[ dir ] ||
-								(diff = nodeIndex = 0) || start.pop()) ) {
-
-								if ( ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) && ++diff ) {
-									// Cache the index of each encountered element
-									if ( useCache ) {
-										(node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
-									}
-
-									if ( node === elem ) {
-										break;
-									}
-								}
-							}
-						}
-
-						// Incorporate the offset, then check against cycle size
-						diff -= last;
-						return diff === first || ( diff % first === 0 && diff / first >= 0 );
-					}
-				};
-		},
-
-		"PSEUDO": function( pseudo, argument ) {
-			// pseudo-class names are case-insensitive
-			// http://www.w3.org/TR/selectors/#pseudo-classes
-			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
-			// Remember that setFilters inherits from pseudos
-			var args,
-				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
-					Sizzle.error( "unsupported pseudo: " + pseudo );
-
-			// The user may use createPseudo to indicate that
-			// arguments are needed to create the filter function
-			// just as Sizzle does
-			if ( fn[ expando ] ) {
-				return fn( argument );
-			}
-
-			// But maintain support for old signatures
-			if ( fn.length > 1 ) {
-				args = [ pseudo, pseudo, "", argument ];
-				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
-					markFunction(function( seed, matches ) {
-						var idx,
-							matched = fn( seed, argument ),
-							i = matched.length;
-						while ( i-- ) {
-							idx = indexOf.call( seed, matched[i] );
-							seed[ idx ] = !( matches[ idx ] = matched[i] );
-						}
-					}) :
-					function( elem ) {
-						return fn( elem, 0, args );
-					};
-			}
-
-			return fn;
-		}
-	},
-
-	pseudos: {
-		// Potentially complex pseudos
-		"not": markFunction(function( selector ) {
-			// Trim the selector passed to compile
-			// to avoid treating leading and trailing
-			// spaces as combinators
-			var input = [],
-				results = [],
-				matcher = compile( selector.replace( rtrim, "$1" ) );
-
-			return matcher[ expando ] ?
-				markFunction(function( seed, matches, context, xml ) {
-					var elem,
-						unmatched = matcher( seed, null, xml, [] ),
-						i = seed.length;
-
-					// Match elements unmatched by `matcher`
-					while ( i-- ) {
-						if ( (elem = unmatched[i]) ) {
-							seed[i] = !(matches[i] = elem);
-						}
-					}
-				}) :
-				function( elem, context, xml ) {
-					input[0] = elem;
-					matcher( input, null, xml, results );
-					return !results.pop();
-				};
-		}),
-
-		"has": markFunction(function( selector ) {
-			return function( elem ) {
-				return Sizzle( selector, elem ).length > 0;
-			};
-		}),
-
-		"contains": markFunction(function( text ) {
-			return function( elem ) {
-				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
-			};
-		}),
-
-		// "Whether an element is represented by a :lang() selector
-		// is based solely on the element's language value
-		// being equal to the identifier C,
-		// or beginning with the identifier C immediately followed by "-".
-		// The matching of C against the element's language value is performed case-insensitively.
-		// The identifier C does not have to be a valid language name."
-		// http://www.w3.org/TR/selectors/#lang-pseudo
-		"lang": markFunction( function( lang ) {
-			// lang value must be a valid identifier
-			if ( !ridentifier.test(lang || "") ) {
-				Sizzle.error( "unsupported lang: " + lang );
-			}
-			lang = lang.replace( runescape, funescape ).toLowerCase();
-			return function( elem ) {
-				var elemLang;
-				do {
-					if ( (elemLang = documentIsHTML ?
-						elem.lang :
-						elem.getAttribute("xml:lang") || elem.getAttribute("lang")) ) {
-
-						elemLang = elemLang.toLowerCase();
-						return elemLang === lang || elemLang.indexOf( lang + "-" ) === 0;
-					}
-				} while ( (elem = elem.parentNode) && elem.nodeType === 1 );
-				return false;
-			};
-		}),
-
-		// Miscellaneous
-		"target": function( elem ) {
-			var hash = window.location && window.location.hash;
-			return hash && hash.slice( 1 ) === elem.id;
-		},
-
-		"root": function( elem ) {
-			return elem === docElem;
-		},
-
-		"focus": function( elem ) {
-			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
-		},
-
-		// Boolean properties
-		"enabled": function( elem ) {
-			return elem.disabled === false;
-		},
-
-		"disabled": function( elem ) {
-			return elem.disabled === true;
-		},
-
-		"checked": function( elem ) {
-			// In CSS3, :checked should return both checked and selected elements
-			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			var nodeName = elem.nodeName.toLowerCase();
-			return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
-		},
-
-		"selected": function( elem ) {
-			// Accessing this property makes selected-by-default
-			// options in Safari work properly
-			if ( elem.parentNode ) {
-				elem.parentNode.selectedIndex;
-			}
-
-			return elem.selected === true;
-		},
-
-		// Contents
-		"empty": function( elem ) {
-			// http://www.w3.org/TR/selectors/#empty-pseudo
-			// :empty is only affected by element nodes and content nodes(including text(3), cdata(4)),
-			//   not comment, processing instructions, or others
-			// Thanks to Diego Perini for the nodeName shortcut
-			//   Greater than "@" means alpha characters (specifically not starting with "#" or "?")
-			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-				if ( elem.nodeName > "@" || elem.nodeType === 3 || elem.nodeType === 4 ) {
-					return false;
-				}
-			}
-			return true;
-		},
-
-		"parent": function( elem ) {
-			return !Expr.pseudos["empty"]( elem );
-		},
-
-		// Element/input types
-		"header": function( elem ) {
-			return rheader.test( elem.nodeName );
-		},
-
-		"input": function( elem ) {
-			return rinputs.test( elem.nodeName );
-		},
-
-		"button": function( elem ) {
-			var name = elem.nodeName.toLowerCase();
-			return name === "input" && elem.type === "button" || name === "button";
-		},
-
-		"text": function( elem ) {
-			var attr;
-			// IE6 and 7 will map elem.type to 'text' for new HTML5 types (search, etc)
-			// use getAttribute instead to test this case
-			return elem.nodeName.toLowerCase() === "input" &&
-				elem.type === "text" &&
-				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === elem.type );
-		},
-
-		// Position-in-collection
-		"first": createPositionalPseudo(function() {
-			return [ 0 ];
-		}),
-
-		"last": createPositionalPseudo(function( matchIndexes, length ) {
-			return [ length - 1 ];
-		}),
-
-		"eq": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			return [ argument < 0 ? argument + length : argument ];
-		}),
-
-		"even": createPositionalPseudo(function( matchIndexes, length ) {
-			var i = 0;
-			for ( ; i < length; i += 2 ) {
-				matchIndexes.push( i );
-			}
-			return matchIndexes;
-		}),
-
-		"odd": createPositionalPseudo(function( matchIndexes, length ) {
-			var i = 1;
-			for ( ; i < length; i += 2 ) {
-				matchIndexes.push( i );
-			}
-			return matchIndexes;
-		}),
-
-		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			var i = argument < 0 ? argument + length : argument;
-			for ( ; --i >= 0; ) {
-				matchIndexes.push( i );
-			}
-			return matchIndexes;
-		}),
-
-		"gt": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			var i = argument < 0 ? argument + length : argument;
-			for ( ; ++i < length; ) {
-				matchIndexes.push( i );
-			}
-			return matchIndexes;
-		})
-	}
-};
-
-// Add button/input type pseudos
-for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
-	Expr.pseudos[ i ] = createInputPseudo( i );
-}
-for ( i in { submit: true, reset: true } ) {
-	Expr.pseudos[ i ] = createButtonPseudo( i );
-}
-
-function tokenize( selector, parseOnly ) {
-	var matched, match, tokens, type,
-		soFar, groups, preFilters,
-		cached = tokenCache[ selector + " " ];
-
-	if ( cached ) {
-		return parseOnly ? 0 : cached.slice( 0 );
-	}
-
-	soFar = selector;
-	groups = [];
-	preFilters = Expr.preFilter;
-
-	while ( soFar ) {
-
-		// Comma and first run
-		if ( !matched || (match = rcomma.exec( soFar )) ) {
-			if ( match ) {
-				// Don't consume trailing commas as valid
-				soFar = soFar.slice( match[0].length ) || soFar;
-			}
-			groups.push( tokens = [] );
-		}
-
-		matched = false;
-
-		// Combinators
-		if ( (match = rcombinators.exec( soFar )) ) {
-			matched = match.shift();
-			tokens.push( {
-				value: matched,
-				// Cast descendant combinators to space
-				type: match[0].replace( rtrim, " " )
-			} );
-			soFar = soFar.slice( matched.length );
-		}
-
-		// Filters
-		for ( type in Expr.filter ) {
-			if ( (match = matchExpr[ type ].exec( soFar )) && (!preFilters[ type ] ||
-				(match = preFilters[ type ]( match ))) ) {
-				matched = match.shift();
-				tokens.push( {
-					value: matched,
-					type: type,
-					matches: match
-				} );
-				soFar = soFar.slice( matched.length );
-			}
-		}
-
-		if ( !matched ) {
-			break;
-		}
-	}
-
-	// Return the length of the invalid excess
-	// if we're just parsing
-	// Otherwise, throw an error or return tokens
-	return parseOnly ?
-		soFar.length :
-		soFar ?
-			Sizzle.error( selector ) :
-			// Cache the tokens
-			tokenCache( selector, groups ).slice( 0 );
-}
-
-function toSelector( tokens ) {
-	var i = 0,
-		len = tokens.length,
-		selector = "";
-	for ( ; i < len; i++ ) {
-		selector += tokens[i].value;
-	}
-	return selector;
-}
-
-function addCombinator( matcher, combinator, base ) {
-	var dir = combinator.dir,
-		checkNonElements = base && dir === "parentNode",
-		doneName = done++;
-
-	return combinator.first ?
-		// Check against closest ancestor/preceding element
-		function( elem, context, xml ) {
-			while ( (elem = elem[ dir ]) ) {
-				if ( elem.nodeType === 1 || checkNonElements ) {
-					return matcher( elem, context, xml );
-				}
-			}
-		} :
-
-		// Check against all ancestor/preceding elements
-		function( elem, context, xml ) {
-			var data, cache, outerCache,
-				dirkey = dirruns + " " + doneName;
-
-			// We can't set arbitrary data on XML nodes, so they don't benefit from dir caching
-			if ( xml ) {
-				while ( (elem = elem[ dir ]) ) {
-					if ( elem.nodeType === 1 || checkNonElements ) {
-						if ( matcher( elem, context, xml ) ) {
-							return true;
-						}
-					}
-				}
-			} else {
-				while ( (elem = elem[ dir ]) ) {
-					if ( elem.nodeType === 1 || checkNonElements ) {
-						outerCache = elem[ expando ] || (elem[ expando ] = {});
-						if ( (cache = outerCache[ dir ]) && cache[0] === dirkey ) {
-							if ( (data = cache[1]) === true || data === cachedruns ) {
-								return data === true;
-							}
-						} else {
-							cache = outerCache[ dir ] = [ dirkey ];
-							cache[1] = matcher( elem, context, xml ) || cachedruns;
-							if ( cache[1] === true ) {
-								return true;
-							}
-						}
-					}
-				}
-			}
-		};
-}
-
-function elementMatcher( matchers ) {
-	return matchers.length > 1 ?
-		function( elem, context, xml ) {
-			var i = matchers.length;
-			while ( i-- ) {
-				if ( !matchers[i]( elem, context, xml ) ) {
-					return false;
-				}
-			}
-			return true;
-		} :
-		matchers[0];
-}
-
-function condense( unmatched, map, filter, context, xml ) {
-	var elem,
-		newUnmatched = [],
-		i = 0,
-		len = unmatched.length,
-		mapped = map != null;
-
-	for ( ; i < len; i++ ) {
-		if ( (elem = unmatched[i]) ) {
-			if ( !filter || filter( elem, context, xml ) ) {
-				newUnmatched.push( elem );
-				if ( mapped ) {
-					map.push( i );
-				}
-			}
-		}
-	}
-
-	return newUnmatched;
-}
-
-function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
-	if ( postFilter && !postFilter[ expando ] ) {
-		postFilter = setMatcher( postFilter );
-	}
-	if ( postFinder && !postFinder[ expando ] ) {
-		postFinder = setMatcher( postFinder, postSelector );
-	}
-	return markFunction(function( seed, results, context, xml ) {
-		var temp, i, elem,
-			preMap = [],
-			postMap = [],
-			preexisting = results.length,
-
-			// Get initial elements from seed or context
-			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
-
-			// Prefilter to get matcher input, preserving a map for seed-results synchronization
-			matcherIn = preFilter && ( seed || !selector ) ?
-				condense( elems, preMap, preFilter, context, xml ) :
-				elems,
-
-			matcherOut = matcher ?
-				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
-
-					// ...intermediate processing is necessary
-					[] :
-
-					// ...otherwise use results directly
-					results :
-				matcherIn;
-
-		// Find primary matches
-		if ( matcher ) {
-			matcher( matcherIn, matcherOut, context, xml );
-		}
-
-		// Apply postFilter
-		if ( postFilter ) {
-			temp = condense( matcherOut, postMap );
-			postFilter( temp, [], context, xml );
-
-			// Un-match failing elements by moving them back to matcherIn
-			i = temp.length;
-			while ( i-- ) {
-				if ( (elem = temp[i]) ) {
-					matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
-				}
-			}
-		}
-
-		if ( seed ) {
-			if ( postFinder || preFilter ) {
-				if ( postFinder ) {
-					// Get the final matcherOut by condensing this intermediate into postFinder contexts
-					temp = [];
-					i = matcherOut.length;
-					while ( i-- ) {
-						if ( (elem = matcherOut[i]) ) {
-							// Restore matcherIn since elem is not yet a final match
-							temp.push( (matcherIn[i] = elem) );
-						}
-					}
-					postFinder( null, (matcherOut = []), temp, xml );
-				}
-
-				// Move matched elements from seed to results to keep them synchronized
-				i = matcherOut.length;
-				while ( i-- ) {
-					if ( (elem = matcherOut[i]) &&
-						(temp = postFinder ? indexOf.call( seed, elem ) : preMap[i]) > -1 ) {
-
-						seed[temp] = !(results[temp] = elem);
-					}
-				}
-			}
-
-		// Add elements to results, through postFinder if defined
-		} else {
-			matcherOut = condense(
-				matcherOut === results ?
-					matcherOut.splice( preexisting, matcherOut.length ) :
-					matcherOut
-			);
-			if ( postFinder ) {
-				postFinder( null, results, matcherOut, xml );
-			} else {
-				push.apply( results, matcherOut );
-			}
-		}
-	});
-}
-
-function matcherFromTokens( tokens ) {
-	var checkContext, matcher, j,
-		len = tokens.length,
-		leadingRelative = Expr.relative[ tokens[0].type ],
-		implicitRelative = leadingRelative || Expr.relative[" "],
-		i = leadingRelative ? 1 : 0,
-
-		// The foundational matcher ensures that elements are reachable from top-level context(s)
-		matchContext = addCombinator( function( elem ) {
-			return elem === checkContext;
-		}, implicitRelative, true ),
-		matchAnyContext = addCombinator( function( elem ) {
-			return indexOf.call( checkContext, elem ) > -1;
-		}, implicitRelative, true ),
-		matchers = [ function( elem, context, xml ) {
-			return ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
-				(checkContext = context).nodeType ?
-					matchContext( elem, context, xml ) :
-					matchAnyContext( elem, context, xml ) );
-		} ];
-
-	for ( ; i < len; i++ ) {
-		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
-			matchers = [ addCombinator(elementMatcher( matchers ), matcher) ];
-		} else {
-			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
-
-			// Return special upon seeing a positional matcher
-			if ( matcher[ expando ] ) {
-				// Find the next relative operator (if any) for proper handling
-				j = ++i;
-				for ( ; j < len; j++ ) {
-					if ( Expr.relative[ tokens[j].type ] ) {
-						break;
-					}
-				}
-				return setMatcher(
-					i > 1 && elementMatcher( matchers ),
-					i > 1 && toSelector( tokens.slice( 0, i - 1 ) ).replace( rtrim, "$1" ),
-					matcher,
-					i < j && matcherFromTokens( tokens.slice( i, j ) ),
-					j < len && matcherFromTokens( (tokens = tokens.slice( j )) ),
-					j < len && toSelector( tokens )
-				);
-			}
-			matchers.push( matcher );
-		}
-	}
-
-	return elementMatcher( matchers );
-}
-
-function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
-	// A counter to specify which element is currently being matched
-	var matcherCachedRuns = 0,
-		bySet = setMatchers.length > 0,
-		byElement = elementMatchers.length > 0,
-		superMatcher = function( seed, context, xml, results, expandContext ) {
-			var elem, j, matcher,
-				setMatched = [],
-				matchedCount = 0,
-				i = "0",
-				unmatched = seed && [],
-				outermost = expandContext != null,
-				contextBackup = outermostContext,
-				// We must always have either seed elements or context
-				elems = seed || byElement && Expr.find["TAG"]( "*", expandContext && context.parentNode || context ),
-				// Use integer dirruns iff this is the outermost matcher
-				dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1);
-
-			if ( outermost ) {
-				outermostContext = context !== document && context;
-				cachedruns = matcherCachedRuns;
-			}
-
-			// Add elements passing elementMatchers directly to results
-			// Keep `i` a string if there are no elements so `matchedCount` will be "00" below
-			for ( ; (elem = elems[i]) != null; i++ ) {
-				if ( byElement && elem ) {
-					j = 0;
-					while ( (matcher = elementMatchers[j++]) ) {
-						if ( matcher( elem, context, xml ) ) {
-							results.push( elem );
-							break;
-						}
-					}
-					if ( outermost ) {
-						dirruns = dirrunsUnique;
-						cachedruns = ++matcherCachedRuns;
-					}
-				}
-
-				// Track unmatched elements for set filters
-				if ( bySet ) {
-					// They will have gone through all possible matchers
-					if ( (elem = !matcher && elem) ) {
-						matchedCount--;
-					}
-
-					// Lengthen the array for every element, matched or not
-					if ( seed ) {
-						unmatched.push( elem );
-					}
-				}
-			}
-
-			// Apply set filters to unmatched elements
-			matchedCount += i;
-			if ( bySet && i !== matchedCount ) {
-				j = 0;
-				while ( (matcher = setMatchers[j++]) ) {
-					matcher( unmatched, setMatched, context, xml );
-				}
-
-				if ( seed ) {
-					// Reintegrate element matches to eliminate the need for sorting
-					if ( matchedCount > 0 ) {
-						while ( i-- ) {
-							if ( !(unmatched[i] || setMatched[i]) ) {
-								setMatched[i] = pop.call( results );
-							}
-						}
-					}
-
-					// Discard index placeholder values to get only actual matches
-					setMatched = condense( setMatched );
-				}
-
-				// Add matches to results
-				push.apply( results, setMatched );
-
-				// Seedless set matches succeeding multiple successful matchers stipulate sorting
-				if ( outermost && !seed && setMatched.length > 0 &&
-					( matchedCount + setMatchers.length ) > 1 ) {
-
-					Sizzle.uniqueSort( results );
-				}
-			}
-
-			// Override manipulation of globals by nested matchers
-			if ( outermost ) {
-				dirruns = dirrunsUnique;
-				outermostContext = contextBackup;
-			}
-
-			return unmatched;
-		};
-
-	return bySet ?
-		markFunction( superMatcher ) :
-		superMatcher;
-}
-
-compile = Sizzle.compile = function( selector, group /* Internal Use Only */ ) {
-	var i,
-		setMatchers = [],
-		elementMatchers = [],
-		cached = compilerCache[ selector + " " ];
-
-	if ( !cached ) {
-		// Generate a function of recursive functions that can be used to check each element
-		if ( !group ) {
-			group = tokenize( selector );
-		}
-		i = group.length;
-		while ( i-- ) {
-			cached = matcherFromTokens( group[i] );
-			if ( cached[ expando ] ) {
-				setMatchers.push( cached );
-			} else {
-				elementMatchers.push( cached );
-			}
-		}
-
-		// Cache the compiled function
-		cached = compilerCache( selector, matcherFromGroupMatchers( elementMatchers, setMatchers ) );
-	}
-	return cached;
-};
-
-function multipleContexts( selector, contexts, results ) {
-	var i = 0,
-		len = contexts.length;
-	for ( ; i < len; i++ ) {
-		Sizzle( selector, contexts[i], results );
-	}
-	return results;
-}
-
-function select( selector, context, results, seed ) {
-	var i, tokens, token, type, find,
-		match = tokenize( selector );
-
-	if ( !seed ) {
-		// Try to minimize operations if there is only one group
-		if ( match.length === 1 ) {
-
-			// Take a shortcut and set the context if the root selector is an ID
-			tokens = match[0] = match[0].slice( 0 );
-			if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-					context.nodeType === 9 && documentIsHTML &&
-					Expr.relative[ tokens[1].type ] ) {
-
-				context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
-				if ( !context ) {
-					return results;
-				}
-
-				selector = selector.slice( tokens.shift().value.length );
-			}
-
-			// Fetch a seed set for right-to-left matching
-			i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
-			while ( i-- ) {
-				token = tokens[i];
-
-				// Abort if we hit a combinator
-				if ( Expr.relative[ (type = token.type) ] ) {
-					break;
-				}
-				if ( (find = Expr.find[ type ]) ) {
-					// Search, expanding context for leading sibling combinators
-					if ( (seed = find(
-						token.matches[0].replace( runescape, funescape ),
-						rsibling.test( tokens[0].type ) && context.parentNode || context
-					)) ) {
-
-						// If seed is empty or no tokens remain, we can return early
-						tokens.splice( i, 1 );
-						selector = seed.length && toSelector( tokens );
-						if ( !selector ) {
-							push.apply( results, seed );
-							return results;
-						}
-
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	// Compile and execute a filtering function
-	// Provide `match` to avoid retokenization if we modified the selector above
-	compile( selector, match )(
-		seed,
-		context,
-		!documentIsHTML,
-		results,
-		rsibling.test( selector )
-	);
-	return results;
-}
-
-// Deprecated
-Expr.pseudos["nth"] = Expr.pseudos["eq"];
-
-// Easy API for creating new setFilters
-function setFilters() {}
-setFilters.prototype = Expr.filters = Expr.pseudos;
-Expr.setFilters = new setFilters();
-
-// Check sort stability
-support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
-
-// Initialize with the default document
-setDocument();
-
-// Always assume the presence of duplicates if sort doesn't
-// pass them to our comparison function (as in Google Chrome).
-[0, 0].sort( sortOrder );
-support.detectDuplicates = hasDuplicate;
-
-// EXPOSE
-/*if ( typeof define === "function" && define.amd ) {
-	define(function() { return Sizzle; });
-} else {
-	window.Sizzle = Sizzle;
-}*/
-// EXPOSE
-
-/**
- * Alias for the Sizzle selector engine
- *
- * @method select
- * @param {String} selector CSS selector to search for elements
- * @param {DOMElement} [context] By default the search is done in the document element. However, you can specify an element as search context
- * @param {Array} [results] By default this is considered an empty array. But if you want to merge it with other searches you did, pass their result array through here.
- * @param {Object} [seed]
- * @return {Array} Array of resulting DOM Elements
- */
-
-/**
- * Returns elements which match with the second argument to the function.
- *
- * @method matches
- * @param {String} selector CSS selector to search for elements
- * @param {Array} matches Elements to be 'matched' with
- * @return {Array} Elements that matched
- */
-
-/**
- * Returns true iif element matches given selector
- *
- * @method matchesSelector
- * @param {DOMElement} element to test
- * @param {String}     selector CSS selector to test the element with
- * @return {Boolean} true iif element matches the CSS selector
- */
-
-return {
-    select:          Sizzle,
-    matches:         Sizzle.matches,
-    matchesSelector: Sizzle.matchesSelector
-};
-
-
-}); //( window );
-
-/**
- * @module Ink.Dom.Loaded_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
-
-    'use strict';
-
-    /**
-     * The Loaded class provides a method that allows developers to queue functions to run when
-     * the page is loaded (document is ready).
-     *
-     * @class Ink.Dom.Loaded
-     * @version 1
-     * @static
-     */
-    var Loaded = {
-
-        /**
-         * Callbacks and their contexts. Array of 2-arrays.
-         *
-         * []
-         *
-         * @attribute _contexts Array
-         * @private
-         * 
-         */
-        _contexts: [], // Callbacks' queue
-
-        /**
-         * Adds a new function that will be invoked once the document is ready
-         *
-         * @method run
-         * @param {Object}   [win=window]   Window object to attach/add the event
-         * @param {Function} fn             Callback function to be run after the page is loaded
-         * @public
-         * @example
-         *     Ink.requireModules(['Ink.Dom.Loaded_1'], function(Loaded){
-         *         Loaded.run(function(){
-         *             console.log('This will run when the page/document is ready/loaded');
-         *         });
-         *     });
-         */
-        run: function(win, fn) {
-            if (!fn) {
-                fn  = win;
-                win = window;
-            }
-
-            var context;
-
-            for (var i = 0, len = this._contexts.length; i < len; i++) {
-                if (this._contexts[i][0] === win) {
-                    context = this._contexts[i][1];
-                    break;
-                }
-            }
-            if (!context) {
-                context = {
-                    cbQueue: [],
-                    win: win,
-                    doc: win.document,
-                    root: win.document.documentElement,
-                    done: false,
-                    top: true
-                };
-                context.handlers = {
-                    checkState: Ink.bindEvent(this._checkState, this, context),
-                    poll: Ink.bind(this._poll, this, context)
-                };
-                this._contexts.push(
-                    [win, context]  // Javascript Objects cannot map different windows to
-                                    // different values.
-                );
-            }
-
-            var   ael = context.doc.addEventListener;
-            context.add = ael ? 'addEventListener' : 'attachEvent';
-            context.rem = ael ? 'removeEventListener' : 'detachEvent';
-            context.pre = ael ? '' : 'on';
-            context.det = ael ? 'DOMContentLoaded' : 'onreadystatechange';
-            context.wet = context.pre + 'load';
-
-            var csf = context.handlers.checkState;
-            var alreadyLoaded = (
-                context.doc.readyState === 'complete' &&
-                context.win.location.toString() !== 'about:blank');  // https://code.google.com/p/chromium/issues/detail?id=32357
-
-            if (alreadyLoaded){
-                setTimeout(Ink.bind(function () {
-                    fn.call(context.win, 'lazy');
-                }, this), 0);
-            } else {
-                context.cbQueue.push(fn);
-
-                context.doc[context.add]( context.det , csf );
-                context.win[context.add]( context.wet , csf );
-
-                var frameElement = 1;
-                try{
-                    frameElement = context.win.frameElement;
-                } catch(e) {}
-                if ( !ael && context.root && context.root.doScroll ) { // IE HACK
-                    try {
-                        context.top = !frameElement;
-                    } catch(e) { }
-                    if (context.top) {
-                        this._poll(context);
-                    }
-                }
-            }
-        },
-
-        /**
-         * Function that will be running the callbacks after the page is loaded
-         *
-         * @method _checkState
-         * @param {Event} event Triggered event
-         * @private
-         */
-        _checkState: function(event, context) {
-            if ( !event || (event.type === 'readystatechange' && context.doc.readyState !== 'complete')) {
-                return;
-            }
-            var where = (event.type === 'load') ? context.win : context.doc;
-            where[context.rem](context.pre+event.type, context.handlers.checkState, false);
-            this._ready(context);
-        },
-
-        /**
-         * Polls the load progress of the page to see if it has already loaded or not
-         *
-         * @method _poll
-         * @private
-         */
-
-        /**
-         *
-         * function _poll
-         */
-        _poll: function(context) {
-            try {
-                context.root.doScroll('left');
-            } catch(e) {
-                return setTimeout(context.handlers.poll, 50);
-            }
-            this._ready(context);
-        },
-
-        /**
-         * Function that runs the callbacks from the queue when the document is ready.
-         *
-         * @method _ready
-         * @private
-         */
-        _ready: function(context) {
-            if (!context.done) {
-                context.done = true;
-                for (var i = 0; i < context.cbQueue.length; ++i) {
-                    context.cbQueue[i].call(context.win);
-                }
-                context.cbQueue = [];
-            }
-        }
-    };
-
-    return Loaded;
-
-});
-
-/*jshint browser:true, eqeqeq:true, undef:true, curly:true, laxbreak:true */
-/*global SAPO:true, s$:true */
-
-
-
-SAPO.namespace('Effects');
-
-/**
- * @class SAPO.Effects.ToClass
- *
- * <p><strong>requires</strong> {@link SAPO.Effects.Core}</p>
- */
-(function(){
-
-	var Core	= SAPO.Effects.Core;
-	var Css		= SAPO.Dom.Css;
-
-
-	SAPO.Effects.ToClass = {
-
-		animate: function(el, className, options) {
-			var props = Css.getPropertiesFromRule('.' + className);
-			//console.log(props);
-			el = s$(el);
-
-			options = SAPO.extendObj({
-				dur:	500,
-				after:	undefined,
-				easing:	'linear'
-			}, options || {});
-
-			var el2 = el;
-			var o = [{
-				dur: options.dur,
-				onEnd: function() {
-					for (var prop in props) {	el.style[prop] = '';	}	// remove styles
-					el.className = className;								// apply class
-                    if(options.after && typeof(options.after) === 'function') {
-                        options.after();
-                    }
-				}
-			}];
-
-			for (var prop in props) {
-				o.push({
-					el:		el,
-					prop:	prop,
-					to:		props[prop],
-					easing:	options.easing
-				});
-			}
-
-			var core = Core.apply(undefined, o);
-			core.start();
-		}
-	};
-
-})();
 
 /**
  * @module Ink.Dom.Browser_1
@@ -7210,2751 +7167,707 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
     return Browser;
 });
 
-/*jshint browser:true, eqeqeq:true, undef:true, curly:true, laxbreak:true */
-/*global SAPO:true, s$:true */
-
-
-
-SAPO.namespace('Effects');
-
 /**
- * @class SAPO.Effects.Slide
+ * @module Ink.Util.Json_1
  *
- * <p><strong>requires</strong> {@link SAPO.Effects.Core}</p>
- */
-(function(){
-
-	var Core	= SAPO.Effects.Core;
-	var Css		= SAPO.Dom.Css;
-
-
-	SAPO.Effects.Slide = {
-
-		_props: {},
-
-		_slide: function(el, options, isDown) {
-			el = s$(el);
-
-			if (!el.id) {
-				el.id = 'SAPO_FX_' + parseInt(Math.random()*100000, 10);
-			}
-
-			options = SAPO.extendObj({
-				dur:	500,
-				after:	undefined
-			}, options || {});
-
-			var props = SAPO.Effects.Slide._props[el.id];
-
-			var displayWasNone = Css.getStyle(el, 'display') === 'none';
-
-			if (!props && !isDown && !displayWasNone) {	return;	}
-			else if (!props) {
-				props = {
-					overflow:			Css.getStyle(el, 'overflow'),
-					display:			Css.getStyle(el, 'display'),
-					height:				Css.getStyle(el, 'height'),
-					heightOriginal:		Css.getStyle(el, 'height'),
-					paddingTop:			Css.getStyle(el, 'paddingTop'),
-					paddingBottom:		Css.getStyle(el, 'paddingBottom'),
-					borderTopWidth:		Css.getStyle(el, 'borderTopWidth'),
-					borderBottomWidth:	Css.getStyle(el, 'borderBottomWidth')
-				};
-
-				displayWasNone	= (props.display === 'none');
-				var heightWasAuto	= isNaN(	parseInt(props.height, 10)	);
-
-				if (displayWasNone) {
-					props.dH = parseInt(props.paddingTop, 10) + parseInt(props.paddingBottom, 10);
-				}
-
-				if (heightWasAuto) {
-					var vis, flt;
-					if (displayWasNone) {
-						el.style.height		= '0px';
-						props.height		= '0px';
-
-						el.style.display	= 'block';
-					}
-
-					var h = el.offsetHeight + 'px';
-					props.height			= h;
-					props.heightOriginal	= h;
-
-					if (displayWasNone) {
-						el.style.paddingTop			= '0px';
-						el.style.paddingBottom		= '0px';
-						el.style.borderTopWidth		= '0px';
-						el.style.borderBottomWidth	= '0px';
-					}
-				}
-				else if (displayWasNone) {
-					el.style.height				= '0px';
-					el.style.paddingTop			= '0px';
-					el.style.paddingBottom		= '0px';
-					el.style.borderTopWidth		= '0px';
-					el.style.borderBottomWidth	= '0px';
-					props.height				= '0px';
-				}
-
-				SAPO.Effects.Slide._props[el.id] = props;
-			}
-
-			if (isDown || displayWasNone) {	el.style.overflow = 'hidden';	}
-
-			var aft = options.after;
-
-			Core({
-					dur:	options.dur,
-					onEnd:	function() {
-						if (!isDown) {
-							//el.style.overflow	= props.overflow;
-						}
-						aft(this);
-					}
-				}, {el: el,	prop: 'height',				to:	isDown ? '0px' : (props.dH ? (parseInt(props.height, 10) + props.dH) + 'px' : props.height)
-				}, {el: el,	prop: 'paddingTop',			to: isDown ? '0px' : props.paddingTop
-				}, {el: el,	prop: 'paddingBottom',		to:	isDown ? '0px' : props.paddingBottom
-				}, {el: el,	prop: 'borderTopWidth',		to: isDown ? '0px' : props.borderTopWidth
-				}, {el: el,	prop: 'borderBottomWidth',	to:	isDown ? '0px' : props.borderBottomWidth
-			}).start();
-		},
-
-		/**
-		 * @function ? slides down the given element
-		 * @param {Object|DomElement}	el		- target element
-		 * @param {Object}				options	- animation options
-		 *     @... {optional Number}	dur		- duration in milliseconds
-		 *     @... {optional Function}	after	- callback executed when the animation is finished
-		 */
-		down: function(el, options) {
-			SAPO.Effects.Slide._slide(el, options);
-		},
-
-		/**
-		 * @function ? slides up the given element
-		 * @param {Object|DomElement}	el		- target element
-		 * @param {Object}				options	- animation options
-		 *     @... {optional Number}	dur		- duration in milliseconds
-		 *     @... {optional Function}	after	- callback executed when the animation is finished
-		 */
-		up: function(el, options) {
-			SAPO.Effects.Slide._slide(el, options, true);
-		},
-
-		/**
-		 * @function ? restores any hacked styles and erases any info related to the element
-		 * @param {Object|DomElement}	el		- target element
-		 */
-		restore: function(el) {
-			el = s$(el);
-			var props = SAPO.Effects.Slide._props[el.id];
-			el.style.overflow	= props.overflow;
-			el.style.display	= props.display;
-			el.style.height		= props.heightOriginal;
-			delete SAPO.Effects.Slide._props[el.id];
-		}
-
-	};
-
-})();
-
-/*global SAPO:true, s$:true, window:true */
-SAPO.namespace('Effects');
-
-/**
- * @class SAPO.Effects.Slide
- *
- * <p><strong>requires</strong> {@link SAPO.Effects.Core}</p>
- */
-(function(){
-
-var Core = SAPO.Effects.Core,
-    __afterCount = 0;
-
-/**
- * {Number} Get a numeric CSS property value and apply some special processing for height
- * @param {Object} el - target element
- * @param {Object} style - CSS style declaration
- * @param {String} prop - property name
- * @return Property value parsed to integer
- */
-function getProperty(el, style, prop){
-    var val = style[prop];
-
-    if(prop == "height" && val == "auto"){
-        return el.offsetHeight - (
-            getProperty(el, style, "paddingTop") +
-            getProperty(el, style, "paddingBottom") +
-            getProperty(el, style, "borderTopWidth") +
-            getProperty(el, style, "borderBottomWidth")
-        );
-    }
-    return val == "auto" ? 0 : parseInt(val, 10);
-}
-
-/**
- * {Object} Get the original CSS properties for a given element
- * @param {Object} el - target element
- * @return Original properties
- */
-function getOriginalProps(el){
-    var i, l, style = Core.getStyle(el);
-
-    // let's hide our element but put it in the layout so we can get it's dimensions
-    var position = style.position;
-    el.style.position = "absolute";
-    var visibility = style.visibility;
-    el.style.visibility = "hidden";
-
-    // if we've slided up before we have our styles at 0
-    var zeroedStyles = ['height', 'paddingTop', 'paddingBottom', 'borderTopWidth', 'borderBottomWidth'];
-
-    for(i=0, l=zeroedStyles.length; i<l; i++){
-        if(parseInt(el.style[zeroedStyles[i]], 10) === 0){
-            el.style[zeroedStyles[i]] = "";
-        }
-    }
-
-    // reset the display property
-    var olddisplay = Core.getCustomProp(el, "display");
-    el.style.display = olddisplay ? olddisplay : "block";
-
-    // get our style again for the real dimensions
-    style = Core.getStyle(el);
-    var height = style.height;
-
-    var props = {
-        height: getProperty(el, style, "height"),
-        paddingTop: getProperty(el, style, "paddingTop"),
-        paddingBottom: getProperty(el, style, "paddingBottom"),
-        borderTopWidth: getProperty(el, style, "borderTopWidth"),
-        borderBottomWidth: getProperty(el, style, "borderBottomWidth")
-    };
-
-    // reset the element properties
-    el.style.position = position;
-
-    for(i=0, l=zeroedStyles.length; i<l; i++){
-        if(el.style[zeroedStyles[i]] === ""){
-            el.style[zeroedStyles[i]] = "0px";
-        }
-    }
-
-    el.style.visibility = visibility;
-
-    return props;
-}
-
-
-/**
- * @constructor SAPO.Effects.Slide.?
- */
-SAPO.Effects.Slide = {
-    /**
-     * Slide animation logic
-     * @param {Object} el - element target
-     * @param {Object} options - animation options
-     * @param {Boolean} up - True if going up
-     */
-    _slide: function(el, options, up){
-        var o = SAPO.extendObj({
-            dur: 500,
-            after: false
-        }, options);
-
-
-        if(Core.getCustomProp(el, "lock")){
-            return false;
-        }
-        Core.setCustomProp(el, "lock", "true");
-
-        var transition = Core.getTransitionProperties();
-        el = s$(el);
-
-        var style = Core.getStyle(el);
-        var originalProps = false;
-
-        var _after = function(l){
-            __afterCount++;
-            if(__afterCount < l) { return false; }
-            __afterCount = 0;
-
-            if(!up){
-                var oldoverflow = Core.getCustomProp(el, "overflow");
-                el.style.overflow = oldoverflow ? oldoverflow : "visible";
-            }
-
-            if(up){
-                el.style.display = "none";
-            }
-
-            // remove lock
-            Core.getCustomProp(el, "lock");
-
-            if(transition){
-                el.removeEventListener(transition.ev, _after, false);
-            }
-
-            if(o.after){
-                o.after();
-            }
-        };
-
-        // save some properties
-        if(style.overflow != "hidden"){
-            Core.setCustomProp(el, "overflow", style.overflow);
-        }
-        el.style.overflow = 'hidden';
-
-        if(up){
-            Core.setCustomProp(el, "display", style.display);
-        } else {
-            if(transition){
-                var olddisplay = Core.getCustomProp(el, "display");
-                el.style.display = olddisplay ? olddisplay : "block";
-            } else {
-                originalProps = up ? false : getOriginalProps(el);
-            }
-        }
-
-        // activate the animation
-        if(transition){
-            if(!up && parseInt(style.height, 10) > 0){
-                el.style.height = "0px";
-            }
-            setTimeout(function(){
-                var d = parseFloat(o.dur/1000, 10);
-                el.style[transition.pre+'-property'] = 'height, padding-top, padding-bottom, border-top-width, border-bottom-width';
-                el.style[transition.pre+'-duration'] = d+'s';
-                el.style[transition.pre+'-delay'] = '0s';
-                el.style[transition.pre+'-timing-function'] = 'ease';
-                el.style.height = up ? '0px': '';
-                el.style.paddingTop = up ? '0px': '';
-                el.style.paddingBottom = up ? '0px': '';
-                el.style.borderTopWidth = up ? '0px': '';
-                el.style.borderBottomWidth = up ? '0px': '';
-                el.addEventListener(transition.ev, _after, false);
-            }, 0);
-        } else {
-            var effects = [
-                {
-                    func: function(val){
-                        el.style.height = val+'px';
-                    },
-                    from: up ? getProperty(el, style, "height"): 0,
-                    to: up ? 0 : originalProps.height,
-                    delay: 0
-                }, {
-                    func: function(val){
-                        el.style.paddingTop = val+'px';
-                    },
-                    from: up ? getProperty(el, style, "paddingTop") : 0,
-                    to: up ? 0 : originalProps.paddingTop,
-                    delay: 0
-                }, {
-                    func: function(val){
-                        el.style.paddingBottom = val+'px';
-                    },
-                    from: up ? getProperty(el, style, "paddingBottom") : 0,
-                    to: up ? 0 : originalProps.paddingBottom,
-                    delay: 0
-                }, {
-                    func: function(val){
-                        el.style.borderTopWidth = val+'px';
-                    },
-                    from: up ? getProperty(el, style, "borderTopWidth") : 0,
-                    to: up ? 0 : originalProps.borderTopWidth,
-                    delay: 0
-                }, {
-                    func: function(val){
-                        el.style.borderBottomWidth = val+'px';
-                    },
-                    from: up ? getProperty(el, style, "borderBottomWidth") : 0,
-                    to: up ? 0 : originalProps.borderBottomWidth,
-                    delay: 0
-                }
-            ];
-
-            for(var i=0, l=effects.length; i<l; i++){
-                Core.animate(
-                    effects[i].func, o.dur, effects[i].from, effects[i].to,
-                    false, _after.bindObj(this, l),
-                    up ? 'webkitEase' : 'easeInSine');
-            }
-        }
-    },
-
-    /**
-     * @function ? Slide an element up
-     * @param {Object} el - target element
-     * @param {Object} options - animation options
-     *     @... {Number} dur - duration in milliseconds
-     *     @... {Function} after - Callback executed when the animation is finished
-     */
-    up: function(el, options){
-        this._slide(el, options, true);
-    },
-
-    /**
-     * @function ? Slide an element down
-     * @param {Object} el - target element
-     * @param {Object} options - animation options
-     *     @... {Number} dur - duration in milliseconds
-     *     @... {Function} after - Callback executed when the animation is finished
-     */
-    down: function(el, options){
-        this._slide(el, options, false);
-    }
-};
-}());
-
-/*jshint browser:true, eqeqeq:true, undef:true, curly:true, laxbreak:true */
-/*global SAPO:true, s$:true */
-
-
-
-SAPO.namespace('Effects');
-
-/**
- * @class SAPO.Effects.Fade
- *
- * <p><strong>requires</strong> {@link SAPO.Effects.Core}</p>
- */
-(function(){
-
-	var Core = SAPO.Effects.Core;
-
-
-	var opacityProp		= 'opacity';
-	var opacityValTpl	= '{0}';
-	var opacityLimits	= [0, 1];
-	var opacityValues	= [
-		opacityValTpl.replace('{0}', opacityLimits[0]),
-		opacityValTpl.replace('{0}', opacityLimits[1])
-	];
-
-	if (!window.addEventListener) {
-		opacityProp		= 'filter';
-		opacityValTpl	= 'alpha(opacity:{0})';
-		opacityLimits	= [0, 100];
-	}
-
-
-	SAPO.Effects.Fade = {
-
-		_fromTo: function(el, options, from, to, easing) {
-			options = SAPO.extendObj({
-				dur:	500,
-				after:	undefined,
-				loop:	false
-			}, options || {});
-
-			if (options.loop) {
-				options.after = function() {
-					this.start();
-				};
-			}
-
-			Core({
-					dur:	options.dur,
-					onEnd:	options.after
-				}, {
-					el:		el,
-					prop:	opacityProp,
-					from:	from,
-					to:		to,
-					easing:	easing || 'linear'
-			}).start();
-		},
-
-		/**
-		 * @function ? Shows a given element with a fade-in effect
-		 * @param {Object} el		- target element
-		 * @param {Object} options	- animation options
-		 *     @... {optional Number}	dur		- duration in milliseconds
-		 *     @... {optional Function}	after	- callback executed when the animation is finished
-		 */
-		show: function(el, options) {
-			SAPO.Effects.Fade._fromTo(el, options, opacityValues[0], opacityValues[1]);
-		},
-
-		/**
-		 * @function ? Shows a given element with a fade-out effect
-		 * @param {Object} el		- target element
-		 * @param {Object} options	- animation options
-		 *     @... {optional Number}	dur		- duration in milliseconds
-		 *     @... {optional Function}	after	- callback executed when the animation is finished
-		 */
-		hide: function(el, options) {
-			SAPO.Effects.Fade._fromTo(el, options, opacityValues[1], opacityValues[0]);
-		},
-
-		blink: function(el, options) {
-			SAPO.Effects.Fade._fromTo(el, options, opacityValues[0], opacityValues[1], 'linearTri');
-		}
-
-	};
-
-})();
-
-/*global SAPO:true, s$:true, window:true */
-SAPO.namespace('Effects');
-
-/**
- * @class SAPO.Effects.Fade
- *
- * <p><strong>requires</strong> {@link SAPO.Effects.Core}</p>
- */
-(function(){
-
-var Core = SAPO.Effects.Core;
-
-function setOpacity(el, val){
-    if(!window.addEventListener){
-        el.style.filter = "alpha(opacity:"+ val +")";
-    } else {
-        el.style.opacity = val;
-    }
-}
-
-/**
- * @constructor SAPO.Effects.Fade.?
- */
-SAPO.Effects.Fade = {
-    /**
-     * @function ? Transitions a given element from one opacity value to another
-     * @param {Object} el - target element
-     * @param {Object} options - animation options
-     *     @... {Number} from - initial opacity value (between 0 and 1)
-     *     @... {Number} to - final opacity value (between 0 and 1)
-     *     @... {Number} dur - duration in milliseconds
-     *     @... {Function} after - Callback executed when the animation is finished
-     */
-    fromTo: function(el, options){
-        var o = SAPO.extendObj({
-            dur: 500,
-            after: false
-        }, options);
-        var from = o.from, to = o.to, dur = o.dur, after = o.after;
-
-        var transition = Core.getTransitionProperties();
-        el = s$(el);
-
-        var show = (to === 1.0) ? true:false;
-
-        // normalize values for IE
-        if(!window.addEventListener){
-            from = from * 100;
-            to = to * 100;
-        }
-
-        var _after = function(){
-            // make sure it's not visible and not occupying space when we're hiding it
-            if(to === 0){
-                el.style.display = "none";
-                if(!transition){
-                    setOpacity(el, 0);
-                }
-            }
-
-            // make sure it's visible if we're showing it
-            if(show && !transition) {
-                setOpacity(el, to);
-            }
-
-            // user defined callback
-            if(after){
-                after();
-            }
-            if(transition){
-                el.removeEventListener(transition.ev, _after, false);
-            }
-        };
-
-        var style = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-
-        // we'll hide this element, so let's store it's display status
-        if(to === 0){
-            Core.setCustomProp(el, "olddisplay", style.display);
-        }
-
-        // if we're showing an element
-        if(to > 0){
-            // set the initial opacity (hidden)
-            if(!transition && from === 0){
-                setOpacity(el, 0);
-            }
-
-            // restore the display property before we animate the opacity
-            var olddisplay = Core.getCustomProp(el, "olddisplay");
-            if(olddisplay){
-                el.style.display = olddisplay;
-            } else {
-                // make sure we have a display property set if it wasn't stored
-                if(style.display && style.display !== "none"){
-                    el.style.display = style.display;
-                } else {
-                    el.style.display = "block";
-                }
-            }
-        }
-
-        // activate the animation
-        if(transition){
-            el.style.opacity = from;
-            setTimeout(function(){
-                var d = parseFloat(dur/1000, 10);
-                el.style[transition.pre] = "opacity "+ d +"s ease-in";
-                el.style.opacity = to;
-                el.addEventListener(transition.ev, _after, false);
-            }, 0);
-        } else {
-            Core.animate(function(val){
-                setOpacity(el, val);
-            }, dur, from, to, false, _after, 'webkitEaseIn');
-        }
-    },
-
-    /**
-     * @function ? Shows a given element with a fadein effect
-     * @param {Object} el - target element
-     * @param {Object} options - animation options
-     *     @... {Number} dur - duration in milliseconds
-     *     @... {Function} after - Callback executed when the animation is finished
-     */
-    show: function(el, options){
-        this.fromTo(el, SAPO.extendObj({
-            from: 0,
-            to: 1.0
-        }, options));
-    },
-
-    /**
-     * @function ? Hides a given element with a fadeout effect
-     * @param {Object} el - target element
-     * @param {Object} options - animation options
-     *     @... {Number} dur - duration in milliseconds
-     *     @... {Function} after - Callback executed when the animation is finished
-     */
-    hide: function(el, options){
-        this.fromTo(el, SAPO.extendObj({
-            from: 1.0,
-            to: 0
-        }, options));
-    }
-};
-}());
-
-SAPO.namespace('Effects');
-
-// emile.js (c) 2009 Thomas Fuchs
-// Licensed under the terms of the MIT license.
-
-(function(emile, container){
-  var parseEl = document.createElement('div'),
-    props = ('backgroundColor borderBottomColor borderBottomWidth borderLeftColor borderLeftWidth '+
-    'borderRightColor borderRightWidth borderSpacing borderTopColor borderTopWidth bottom color fontSize '+
-    'fontWeight height left letterSpacing lineHeight marginBottom marginLeft marginRight marginTop maxHeight '+
-    'maxWidth minHeight minWidth opacity outlineColor outlineOffset outlineWidth paddingBottom paddingLeft '+
-    'paddingRight paddingTop right textIndent top width wordSpacing zIndex').split(' ');
-
-  function interpolate(source,target,pos){ return (source+(target-source)*pos).toFixed(3); }
-  function s(str, p, c){ return str.substr(p,c||1); }
-  function color(source,target,pos){
-    var i = 2, j, c, tmp, v = [], r = [];
-    while(j=3,c=arguments[i-1],i--)
-      if(s(c,0)=='r') { c = c.match(/\d+/g); while(j--) v.push(~~c[j]); } else {
-        if(c.length==4) c='#'+s(c,1)+s(c,1)+s(c,2)+s(c,2)+s(c,3)+s(c,3);
-        while(j--) v.push(parseInt(s(c,1+j*2,2), 16)); }
-    while(j--) { tmp = ~~(v[j+3]+(v[j]-v[j+3])*pos); r.push(tmp<0?0:tmp>255?255:tmp); }
-    return 'rgb('+r.join(',')+')';
-  }
-
-  function parse(prop){
-    var p = parseFloat(prop), q = prop.replace(/^[\-\d\.]+/,'');
-    return isNaN(p) ? { v: q, f: color, u: ''} : { v: p, f: interpolate, u: q };
-  }
-
-  function normalize(style){
-    var css, rules = {}, i = props.length, v;
-    parseEl.innerHTML = '<div style="'+style+'"></div>';
-    css = parseEl.childNodes[0].style;
-    while(i--) if(v = css[props[i]]) rules[props[i]] = parse(v);
-    return rules;
-  }
-
-  container[emile] = function(el, style, opts){
-    el = typeof el == 'string' ? document.getElementById(el) : el;
-    opts = opts || {};
-    var target = normalize(style), comp = el.currentStyle ? el.currentStyle : getComputedStyle(el, null),
-      prop, current = {}, start = +new Date, dur = opts.duration||200, finish = start+dur, interval,
-      easing = opts.easing || function(pos){ return (-Math.cos(pos*Math.PI)/2) + 0.5; };
-    for(prop in target) current[prop] = parse(comp[prop]);
-    interval = setInterval(function(){
-      var time = +new Date, pos = time>finish ? 1 : (time-start)/dur;
-      for(prop in target)
-        el.style[prop] = target[prop].f(current[prop].v,target[prop].v,easing(pos)) + target[prop].u;
-      if(time>finish) { clearInterval(interval); opts.after && opts.after(); }
-    },10);
-  }
-})('Emile', SAPO.Effects);
-
-/*jshint browser:true, curly:true, eqeqeq:true, undef:true, laxbreak:true, smarttabs:true, boss:true, loopfunc:true */
-/*globals CSSStyleDeclaration:false, SAPO:false, s$:false */
-
-
-
-SAPO.namespace('Effects');
-
-
-/**
- * @author jose.p.dias AT co.sapo.pt
- * @since September 2011
- * NOT based on Emile
- * Updated to make use of requestAnimationFrame if available.
- *
- * requires {@link SAPO.Dom.Css}
- * requires {@link SAPO.Dom.Event}
- */
-
-
-(function() {
-
-    'use strict';
-
-    // requestAnimationFrame polyfill
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame =
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame    ||
-            window.oRequestAnimationFrame      ||
-            window.msRequestAnimationFrame     ||
-            function(cb, element) { window.setTimeout(cb, 1000 / 30);   };
-    }
-
-    var raf = window.requestAnimationFrame;
-
-    // regular expressions used to identify and parse property values
-    var rgxRgb  = /^(rgb\()(\d+),\s*(\d+),\s*(\d+)\)$/;
-    var rgxRgba = /^(rgba\()(\d+),\s*(\d+),\s*(\d+)\,\s*([01]?\.\d*)\)$/;
-    var rgxHex6 = /^#[\da-f]{6}$/i;
-    var rgxHex3 = /^#[\da-f]{3}$/i;
-    var rgxNum  = /^(-?\d*?\.?\d*?)$/;
-    var rgxNum2 = /(-?\d+\.?\d*)/g;
-
-
-
-    // for usage in compound pType
-    var compound = {
-        getNumbers: function(s) {
-            var m, numbers = [];
-            while (m = rgxNum2.exec(s)) {
-                numbers.push(   parseFloat(m[0])    );
-            }
-            //console.log(['getNumbers', numbers]);
-            return numbers;
-        },
-        genTpl: function(s, numbers) {
-            for (var i = 0; i < numbers.length; ++i) {
-                s = s.replace(numbers[i], '{' + String.fromCharCode(97 + i) + '}');
-            }
-            //console.log(['genTpl', s]);
-            return s;
-        },
-        applyTpl: function(s, numbers) {
-            for (var i = 0; i < numbers.length; ++i) {
-                s = s.replace('{' + String.fromCharCode(97 + i) + '}', numbers[i]);
-            }
-            return s;
-        }
-    };
-
-
-
-    // easing
-    // functions which receive a number between [0,1] and return another number
-    // see t2 to plot the built-in easing functions
-    var easing = {
-        linear: function(x) {
-            return x;
-        },
-
-        sine: function(x) {
-            return 1 - Math.cos(x * Math.PI / 2);
-        },
-
-        elastic: function(x) {
-            return Math.pow(2, 10 * --x) * Math.cos(20 * x * Math.PI / 3);
-        },
-
-        bounce: function(x) {
-            var a = 0, b = 1, c;
-            while (x < (7 - 4 * a) / 11) {
-                a += b;
-                b /= 2;
-            }
-            c = (11 - 6 * a - 11 * x) / 4;
-            return b * b - c * c;
-        }
-    };
-
-    var eks = [], ek, e;
-    for (ek in easing) {    eks.push(ek);   }
-    for (var i = 0; i < eks.length; ++i) {
-        ek = eks[i];
-        e = easing[ek];
-        easing[ek + 'Out'] = (function(e) {return function(x) {
-            return 1 - e(1 - x);
-        };})(e);
-        easing[ek + 'InOut'] = (function(e) {return function(x) {
-            return (x > 0.5 ? 2 - e(2 * (1 - x)) : e(2 * x)) / 2;
-        };})(e);
-    }
-    eks = [];
-    for (ek in easing) {    eks.push(ek);   }
-    for (i = 0; i < eks.length; ++i) {
-        ek = eks[i];
-        e = easing[ek];
-        easing[ek + 'Tri'] = (function(e) {return function(x) {
-            return (x > 0.5) ? e(2 - 2 * x) : e(2 * x);
-        };})(e);
-    }
-
-
-
-    // parsers
-    // every parse has:
-    // a REDuction function which parses a property into a number or array of numbers;
-    // a EXPander function which creates a property out of a number or array of numbers
-    // some parsers may define a VALidation function which keeps values in a certain interval
-    var parsers = {
-        px: {
-            red: function(x) {  return parseInt(x, 10);         },
-            exp: function(x) {  return Math.round(x) + 'px';    }
-        },
-
-        rgb: {
-            red: function(x) {
-                var m;
-                if (rgxHex6.test(x)) {
-                    return [
-                        parseInt(x.substring(1, 3), 16),
-                        parseInt(x.substring(3, 5), 16),
-                        parseInt(x.substring(5, 7), 16)
-                    ];
-                }
-                else if (rgxHex3.test(x)) {
-                    return [
-                        parseInt(x.charAt(1) + x.charAt(1), 16),
-                        parseInt(x.charAt(2) + x.charAt(2), 16),
-                        parseInt(x.charAt(3) + x.charAt(3), 16)
-                    ];
-                }
-                else if (m = rgxRgb.exec(x)) {
-                    return [
-                        parseInt(m[2], 10),
-                        parseInt(m[3], 10),
-                        parseInt(m[4], 10)
-                    ];
-                }
-                else if (m = rgxRgba.exec(x)) {
-                    return [
-                        parseInt(m[2], 10),
-                        parseInt(m[3], 10),
-                        parseInt(m[4], 10),
-                        parseFloat(m[5])
-                    ];
-                }
-                else {
-                    throw 'Error parsing a color from "' + x + '"!';
-                }
-            },
-            exp: function(x) {
-                if (x.length === 4) {
-                    return 'rgba(' + Math.round(x[0]) + ', '+ Math.round(x[1]) + ', ' + Math.round(x[2]) + ', ' + x[3] + ')';
-                }
-                return 'rgb(' + Math.round(x[0]) + ', '+ Math.round(x[1]) + ', ' + Math.round(x[2]) + ')';
-            },
-            val: function(x) {
-                for (var i = 0; i < 3; ++i) {   // rgb: [0, 255]
-                    if      (x[i] <   0) {  x[i] =   0; }
-                    else if (x[i] > 255) {  x[i] = 255; }
-                }
-                if (x.length === 4) {           // a: [0,1]
-                    if      (x[3] < 0) {    x[3] = 0;   }
-                    else if (x[3] > 1) {    x[3] = 1;   }
-                }
-            }
-        },
-
-        'float': {
-            red: function(x) {  return parseFloat(x);   },
-            exp: function(x) {  return '' + x;          }
-        },
-
-        'int': {
-            red: function(x) {  return parseInt(x, 10);     },
-            exp: function(x) {  return '' + Math.round(x);  }
-        },
-
-        compound: {
-            red: function(x) {      return compound.getNumbers(x);      },
-            exp: function(x, tpl) { return compound.applyTpl(tpl, x);   }
-        }
-    };
-
-
-
-    /**
-     * @function ? animates an object's property
-     *
-     * @param tCfg
-     * @... {optional Number}           dur     - time the animation takes, in ms. defaults to 500
-     * @... {optional Function}         onStart - callback that gets called once the animation starts
-     * @... {optional Function}         onStep  - callback that gets called at every animation step
-     * @... {optional Function}         onEnd   - callback that gets called once the animation ends
-     *
-     * @param pCfg
-     * @... {String|DomElement}         el      - the element subject to animation
-     * @... {         String}           prop    - element's property to animate
-     * @... {optional Number}           from    - initial property value. tries to assert it automatically
-     * @... {optional Number}           delta   - increment to apply to initial property value (asserts to if passed)
-     * @... {optional Number}           to      - final property value                         (asserts delta if passed)
-     * @... {optional String|Function}  easing  - linear|sine|elastic|bounce(Out|inOut)?(Tri)? default is 'linear'
-     */
-    var Core = function() {
-        // extract arguments into t and items
-        var its = Array.prototype.slice.call(arguments);
-        var t = its.shift();
-
-        // if t is a number, assume its a dur
-        if (typeof t === 'number') {
-            t = {   dur: t  };
-        }
-        else if (typeof t !== 'object') {
-            throw 'first parameter must be time interval configuration object (object) or just its duration (number)!';
-        }
-        t.items = its;
-
-        // parse default t arguments...
-        if (t.dur === undefined) {  t.dur = 500;    }
-
-
-        // parse default items arguments...
-        var p;
-        var m, tVal, i2, f2;
-        for (var i = 0, f = t.items.length; i < f; ++i) {
-            p = t.items[i];
-
-            // easing and interp
-            if (p.easing    === undefined) {    p.easing = 'linear';    }
-            p.interp = (typeof p.easing === 'function') ? p.easing : easing[p.easing];
-
-            // el and obj
-            if (typeof p.el === 'string') { p.el = s$(p.el);    }
-            p.obj = 'style' in p.el ? p.el.style : p.el;
-
-            // determine pType and assign parser methods
-            tVal = p.delta || p.to;
-            if (p.pType === undefined) {
-                if (typeof tVal !== 'string') { tVal = '' + tVal;   }
-
-                if (p.prop === 'backgroundPosition') {
-                    p.pType = 'compound';
-                }
-                else if (tVal.substring(tVal.length - 2) === 'px') {
-                    p.pType = 'px'; // positions: -20px, 30px
-                }
-                else if (tVal.charAt(0) === '#' || tVal.substring(0, 3) === 'rgb') {
-                    p.pType = 'rgb';    // colors: #FFFFFF, #FFF, rgb(127, 255, 127), rgba(127, 255, 127, 0.5)
-                }
-                else if (m = rgxNum.exec(tVal)) {
-                    p.pType = 'float';  // float: 0, 1, 0.33, 123.32, -2.5
-                }
-                else {  throw 'Unsupported value type: "' + tVal + '"'; }
-            }
-            p.red = parsers[p.pType].red;
-            p.exp = parsers[p.pType].exp;
-
-            if (p.pType === 'compound') {
-                p.tpl = compound.genTpl(tVal, compound.getNumbers(tVal));
-            }
-
-
-            // determine value of from
-            if      (p.from !== undefined) {    p.from = p.red( p.from                              );  }
-            else if (p.obj !== p.el) {          p.from = p.red( SAPO.Dom.Css.getStyle(p.el, p.prop) );  }
-            else {                              p.from = p.red( p.obj[p.prop]                       );  }
-
-
-            // determine delta from to or to from delta
-            if (p.to !== undefined) {
-                p.to = p.red(   p.to    );
-                if (p.from instanceof Array) {
-                    p.delta = new Array(p.from.length);
-                    for (i2 = 0, f2 = p.from.length; i2 < f2; ++i2) {
-                        p.delta[i2] = p.to[i2] - p.from[i2];
-                    }
-                }
-                else {
-                    p.delta = p.to - p.from;
-                }
-            }
-            else if (p.delta !== undefined) {
-                p.delta = p.red(    p.delta );
-                if (p.from instanceof Array) {
-                    p.to = new Array(p.from.length);
-                    for (i2 = 0, f2 = p.from.length; i2 < f2; ++i2) {
-                        p.to[i2] = p.from[i2] + p.delta[i2];
-                    }
-                }
-                else {
-                    p.to = p.from + p.delta;
-                }
-            }
-            else {  throw 'You should define either "to" or "delta" options!';  }
-
-
-            //console.log([t.dur, p.pType, p.prop, p.exp(p.from, p.tpl), p.exp(p.to, p.tpl), p.delta, p.tpl]);
-        }
-
-
-        if (typeof t.onStart === 'function') {  t.onStart(t);   }
-
-
-        // run interpolator function based on asserted vars until frac === 1...
-        var interpStep = function() {
-            var currT   = (new Date()).valueOf(),
-                frac    = currT > this.endT ? 1 : (currT - this.startT) / this.dur;
-
-
-            // process items...
-            var p, val, val2, frac2, i2, f2;
-            for (var i = 0, f = this.items.length; i < f; ++i) {
-                p = this.items[i];
-
-                frac2 = p.interp(frac);
-
-                if (p.from instanceof Array) {
-                    val = new Array(p.from.length);
-                    for (i2 = 0, f2 = p.from.length; i2 < f2; ++i2) {
-                        val[i2] = p.from[i2] + frac2 * p.delta[i2];
-                    }
-                }
-                else {
-                    val = p.from + frac2 * p.delta;
-                }
-
-                val2 = p.exp(val, p.tpl);
-                p.obj[p.prop] = val2;
-
-                //console.log([prop, frac, frac2, val2]);
-            }
-
-
-            // end of step/anim?...
-            if (frac === 1) {
-                this.intervalFn = undefined;
-
-                if (typeof this.onEnd === 'function') { this.onEnd(this);   }
-                if (this.nextAnim) {    this.nextAnim.start();  }
-            }
-            else if (this.intervalFn) {
-                if (typeof this.onStep === 'function') {    this.onStep(this, frac);    }
-
-                raf(this.intervalFn);
-            }
-        };
-
-
-        t.start = function() {
-            this.startT = (new Date()).valueOf();
-            this.endT   = this.startT + this.dur;
-            this.intervalFn = interpStep.bindObj(this);
-            this.intervalFn();
-            return this;
-        };
-
-        t.stop = function() {
-            if (this.intervalFn) {
-                this.intervalFn = undefined;
-            }
-
-            if (this.nextAnim) {
-                this.nextAnim.stop();
-            }
-
-            return this;
-        };
-
-        t.next = function() {
-            this.nextAnim = Core.apply(undefined, arguments);
-            return this;
-        };
-
-        return t;
-    };
-
-
-
-    // expose Core
-    SAPO.Effects.Core = Core;
-
-})();
-
-/*global SAPO:true, window:true*/
-SAPO.namespace('Effects');
-
-
-/**
- * @class SAPO.Effects.Core
- */
-
-/*
- * Licensed under the terms of the MIT license.
- * Based on work by Thomas Fuchs from emile.js and scripty2
- */
-(function() {
-    var _easing = {
-        linear: function(pos) {
-            return pos;
-        },
-
-        reverse: function(pos) {
-            return 1 - pos;
-        },
-
-        sinusoidal: function(pos) {
-            return ( - Math.cos(pos * Math.PI) / 2) + 0.5;
-        },
-
-        longerSinusoidal: function(pos) {
-            return ( - Math.cos(pos * 0.9) / 2) + 0.5;
-        },
-
-        //  The given transition is mirrored. Defaults to sinusoidal
-        mirror: function(pos, transition) {
-            var gt = SAPO.Effects.Core.getTransition;
-            if (typeof transition !== "function") {
-                transition = gt(transition) || gt("sinusoidal");
-            }
-            if (pos < 0.5) {return transition(pos * 2);}
-            else {return transition(1 - (pos - 0.5) * 2);}
-        },
-
-        //  Effect flickers along a sine wave.
-        flicker: function(pos) {
-            pos = pos + (Math.random() - 0.5) / 5;
-            return _easing.sinusoidal(pos < 0 ? 0: pos > 1 ? 1: pos);
-        },
-
-        //  Effect wobbles increasingly fast between start and end positions.
-        wobble: function(pos) {
-            return ( - Math.cos(pos * Math.PI * (9 * pos)) / 2) + 0.5;
-        },
-
-        //  Effect pulses along a sinusoidal transition.
-        pulse: function(pos, pulses) {
-            return ( - Math.cos((pos * ((pulses || 5) - 0.5) * 2) * Math.PI) / 2) + 0.5;
-        },
-
-        //  Effect blinks on and off.
-        blink: function(pos, blinks) {
-            return Math.round(pos * (blinks || 5)) % 2;
-        },
-
-        //  Alters the effect timing to a "spring".
-        spring: function(pos) {
-            return 1 - (Math.cos(pos * 4.5 * Math.PI) * Math.exp( - pos * 6));
-        },
-
-        // Based on Easing Equations (c) 2003 Robert Penner, all rights reserved.
-        // This work is subject to the terms in http://www.robertpenner.com/easing_terms_of_use.html
-        // Adapted for script.aculo.us by
-        // Brian Crescimanno <brian.crescimanno@gmail.com>
-        // Ken Snyder <kendsnyder@gmail.com)
-        // Adapted for LibSAPO.js by Tiago Rodrigues <tiago.c.rodrigues@co.sapo.pt>
-        /*!
-         *  TERMS OF USE - EASING EQUATIONS
-         *  Open source under the BSD License.
-         *  Easing Equations (c) 2003 Robert Penner, all rights reserved.
-         */
-
-        easeInQuad: function(pos) {
-            return Math.pow(pos, 2);
-        },
-
-        easeOutQuad: function(pos) {
-            return - (Math.pow((pos - 1), 2) - 1);
-        },
-
-        easeInOutQuad: function(pos) {
-            if ((pos /= 0.5) < 1) {return 0.5 * Math.pow(pos, 2);}
-            return - 0.5 * ((pos -= 2) * pos - 2);
-        },
-
-        easeInCubic: function(pos) {
-            return Math.pow(pos, 3);
-        },
-
-        easeOutCubic: function(pos) {
-            return (Math.pow((pos - 1), 3) + 1);
-        },
-
-        easeInOutCubic: function(pos) {
-            if ((pos /= 0.5) < 1) {return 0.5 * Math.pow(pos, 3);}
-            return 0.5 * (Math.pow((pos - 2), 3) + 2);
-        },
-
-        easeInQuart: function(pos) {
-            return Math.pow(pos, 4);
-        },
-
-        easeOutQuart: function(pos) {
-            return - (Math.pow((pos - 1), 4) - 1);
-        },
-
-        easeInOutQuart: function(pos) {
-            if ((pos /= 0.5) < 1) {return 0.5 * Math.pow(pos, 4);}
-            return - 0.5 * ((pos -= 2) * Math.pow(pos, 3) - 2);
-        },
-
-        easeInQuint: function(pos) {
-            return Math.pow(pos, 5);
-        },
-
-        easeOutQuint: function(pos) {
-            return (Math.pow((pos - 1), 5) + 1);
-        },
-
-        easeInOutQuint: function(pos) {
-            if ((pos /= 0.5) < 1) {return 0.5 * Math.pow(pos, 5);}
-            return 0.5 * (Math.pow((pos - 2), 5) + 2);
-        },
-
-        easeInSine: function(pos) {
-            return - Math.cos(pos * (Math.PI / 2)) + 1;
-        },
-
-        easeOutSine: function(pos) {
-            return Math.sin(pos * (Math.PI / 2));
-        },
-
-        easeInOutSine: function(pos) {
-            return ( - 0.5 * (Math.cos(Math.PI * pos) - 1));
-        },
-
-        easeInExpo: function(pos) {
-            return (pos === 0) ? 0: Math.pow(2, 10 * (pos - 1));
-        },
-
-        easeOutExpo: function(pos) {
-            return (pos == 1) ? 1: -Math.pow(2, -10 * pos) + 1;
-        },
-
-        easeInOutExpo: function(pos) {
-            if (pos === 0) {return 0;}
-            if (pos == 1) {return 1;}
-            if ((pos /= 0.5) < 1) {return 0.5 * Math.pow(2, 10 * (pos - 1));}
-            return 0.5 * ( - Math.pow(2, -10 * --pos) + 2);
-        },
-
-        easeInCirc: function(pos) {
-            return - (Math.sqrt(1 - (pos * pos)) - 1);
-        },
-
-        easeOutCirc: function(pos) {
-            return Math.sqrt(1 - Math.pow((pos - 1), 2));
-        },
-
-        easeInOutCirc: function(pos) {
-            if ((pos /= 0.5) < 1) {return - 0.5 * (Math.sqrt(1 - pos * pos) - 1);}
-            return 0.5 * (Math.sqrt(1 - (pos -= 2) * pos) + 1);
-        },
-
-        easeOutBounce: function(pos) {
-            if ((pos) < (1 / 2.75)) {
-                return (7.5625 * pos * pos);
-            } else if (pos < (2 / 2.75)) {
-                return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
-            } else if (pos < (2.5 / 2.75)) {
-                return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
-            } else {
-                return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
-            }
-        },
-
-        easeInBack: function(pos) {
-            var s = 1.70158;
-            return (pos) * pos * ((s + 1) * pos - s);
-        },
-
-        easeOutBack: function(pos) {
-            var s = 1.70158;
-            return (pos = pos - 1) * pos * ((s + 1) * pos + s) + 1;
-        },
-
-        easeInOutBack: function(pos) {
-            var s = 1.70158;
-            if ((pos /= 0.5) < 1) {return 0.5 * (pos * pos * (((s *= (1.525)) + 1) * pos - s));}
-            return 0.5 * ((pos -= 2) * pos * (((s *= (1.525)) + 1) * pos + s) + 2);
-        },
-
-        elastic: function(pos) {
-            return - 1 * Math.pow(4, -8 * pos) * Math.sin((pos * 6 - 1) * (2 * Math.PI) / 2) + 1;
-        },
-
-        swingFromTo: function(pos) {
-            var s = 1.70158;
-            return ((pos /= 0.5) < 1) ? 0.5 * (pos * pos * (((s *= (1.525)) + 1) * pos - s)) :
-            0.5 * ((pos -= 2) * pos * (((s *= (1.525)) + 1) * pos + s) + 2);
-        },
-
-        swingFrom: function(pos) {
-            var s = 1.70158;
-            return pos * pos * ((s + 1) * pos - s);
-        },
-
-        swingTo: function(pos) {
-            var s = 1.70158;
-            return (pos -= 1) * pos * ((s + 1) * pos + s) + 1;
-        },
-
-        bounce: function(pos) {
-            if (pos < (1 / 2.75)) {
-                return (7.5625 * pos * pos);
-            } else if (pos < (2 / 2.75)) {
-                return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
-            } else if (pos < (2.5 / 2.75)) {
-                return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
-            } else {
-                return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
-            }
-        },
-
-        bouncePast: function(pos) {
-            if (pos < (1 / 2.75)) {
-                return (7.5625 * pos * pos);
-            } else if (pos < (2 / 2.75)) {
-                return 2 - (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
-            } else if (pos < (2.5 / 2.75)) {
-                return 2 - (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
-            } else {
-                return 2 - (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
-            }
-        },
-
-        easeFromTo: function(pos) {
-            if ((pos /= 0.5) < 1) {return 0.5 * Math.pow(pos, 4);}
-            return - 0.5 * ((pos -= 2) * Math.pow(pos, 3) - 2);
-        },
-
-        easeFrom: function(pos) {
-            return Math.pow(pos, 4);
-        },
-
-        easeTo: function(pos) {
-            return Math.pow(pos, 0.25);
-        }
-    };
-
-
-    /*!
-     *    Copyright (c) 2006 Apple Computer, Inc. All rights reserved.
-     *
-     *    Redistribution and use in source and binary forms, with or without
-     *    modification, are permitted provided that the following conditions are met:
-     *
-     *    1. Redistributions of source code must retain the above copyright notice,
-     *    this list of conditions and the following disclaimer.
-     *
-     *    2. Redistributions in binary form must reproduce the above copyright notice,
-     *    this list of conditions and the following disclaimer in the documentation
-     *    and/or other materials provided with the distribution.
-     *
-     *    3. Neither the name of the copyright holder(s) nor the names of any
-     *    contributors may be used to endorse or promote products derived from
-     *    this software without specific prior written permission.
-     *
-     *    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-     *    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-     *    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-     *    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
-     *    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-     *    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-     *    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-     *    ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-     *    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-     *    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-     */
-    // port of webkit cubic bezier handling by http://www.netzgesta.de/dev/
-    function CubicBezierAtTime(t,p1x,p1y,p2x,p2y,duration) {
-        var ax=0,bx=0,cx=0,ay=0,by=0,cy=0;
-        function sampleCurveX(t) {return ((ax*t+bx)*t+cx)*t;}
-        function sampleCurveY(t) {return ((ay*t+by)*t+cy)*t;}
-        function sampleCurveDerivativeX(t) {return (3.0*ax*t+2.0*bx)*t+cx;}
-        function solveEpsilon(duration) {return 1.0/(200.0*duration);}
-        function fabs(n) {if(n>=0) {return n;}else {return 0-n;}}
-        function solveCurveX(x,epsilon) {
-            var t0,t1,t2,x2,d2,i;
-            for(t2=x, i=0; i<8; i++) {
-                x2=sampleCurveX(t2)-x;
-                if(fabs(x2)<epsilon) {return t2;}
-                d2=sampleCurveDerivativeX(t2);
-                if(fabs(d2)<1e-6) {break;} t2=t2-x2/d2;
-            }
-            t0=0.0; t1=1.0; t2=x;
-            if(t2<t0) {return t0;} if(t2>t1) {return t1;}
-            while(t0<t1) {
-                x2=sampleCurveX(t2);
-                if(fabs(x2-x)<epsilon) {return t2;}
-                if(x>x2) {t0=t2;} else {t1=t2;}
-                t2=(t1-t0)*0.5+t0;
-            }
-            return t2; // Failure.
-        }
-        function solve(x,epsilon) {return sampleCurveY(solveCurveX(x,epsilon));}
-        cx=3.0*p1x; bx=3.0*(p2x-p1x)-cx; ax=1.0-cx-bx; cy=3.0*p1y; by=3.0*(p2y-p1y)-cy; ay=1.0-cy-by;
-        return solve(t, solveEpsilon(duration));
-    }
-
-    /**
-     *    Generates a transition easing function that is compatible
-     *    with WebKit's CSS transitions `-webkit-transition-timing-function`
-     *    CSS property.
-     *
-     *    The W3C has more information about
-     *    <a href="http://www.w3.org/TR/css3-transitions/#transition-timing-function_tag">
-     *    CSS3 transition timing functions</a>.
-    **/
-    function cubicBezierTransition(x1, y1, x2, y2){
-        return (function(pos){
-            return CubicBezierAtTime(pos,x1,y1,x2,y2,1);
-        });
-    }
-
-    _easing = SAPO.extendObj({
-        webkitEase: cubicBezierTransition(0.25, 0.1, 0.25, 1.0),
-        webkitLinear: cubicBezierTransition(0.0, 0.0, 1.0, 1.0),
-        webkitEaseIn: cubicBezierTransition(0.42, 0.0, 1.0, 1.0),
-        webkitEaseOut: cubicBezierTransition(0.0, 0.0, 0.58, 1.0),
-        webkitEaseInOut: cubicBezierTransition(0.42, 0.0, 0.58, 1.0)
-    }, _easing);
-
-    /**
-     * @function {Function} ? Returns a easing function
-     * @param {String} easing - name of the easing function
-     */
-    function getEasing(easing) {
-        if (typeof easing !== "undefined" && easing in _easing) {
-            return _easing[easing];
-        }
-        return _easing.linear;
-    }
-
-
-    function getStyle(el){
-        return window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-    }
-
-    // prefix for storing custom properties on elements
-    var __prefix = "SAPOEffects"+parseInt(Math.random()*10000, 10);
-
-    /**
-     * @function ? set the value of a custom property on a given DOM element
-     * @param {Object} el - target element
-     * @param {String} prop - property name
-     * @param {String} val - property value
-     */
-    function setCustomProp(el, prop, val){
-        // if our custom property doesn't exist, create it and store the val
-        if(typeof el[__prefix] == "undefined"){
-            el[__prefix] = prop+":"+val+";";
-        } else {
-            // if our custom property already exists with no val, store it
-            if(el[__prefix].search(prop+":") < 0){
-                el[__prefix] += prop+":"+val+";";
-            }
-        }
-        // don't store if it's already there
-    }
-
-    /**
-     * @function {String} ? get the value of a custom property from a DOM element
-     * @param {Object} el - target element
-     * @param {String} prop - property name
-     * @param {Boolean} keep - if false, deletes the property from the element
-     * @return value of a given property
-     */
-    function getCustomProp(el, prop, keep){
-        var val = false;
-        if(typeof el[__prefix] != "undefined"){
-            // regexp for property store
-            var re = new RegExp(prop+"\\:([\\w|\\d]+);", "g");
-            var vals = re.exec(el[__prefix]);
-            if(vals !== null){
-                // if the property exists, return it
-                val = vals[1];
-
-                if(keep) {return val;}
-                // remove it from the stored properties
-                el[__prefix] = el[__prefix].replace(re, "");
-
-                // if no more properties exist, delete our custom property
-                if(el[__prefix] === ""){
-                    try{
-                        delete el[__prefix];
-                    } catch(e){
-                        el[__prefix] = '';
-                    }
-                }
-            }
-        }
-        return val;
-    }
-
-    /**
-     * @function {String} ? Checks for the existence of CSS transition support
-     * @return Proprietary CSS prefix for the current browser. False if transitions are not supported.
-     */
-    function getTransitionProperties() {
-        if(typeof document.body.style.webkitTransition !== "undefined"){
-              return {
-                  pre: '-webkit-transition',
-                  ev: 'webkitTransitionEnd'
-              };
-        }
-
-        if(typeof document.body.style.mozTransition !== "undefined"){
-              return {
-                  pre: '-moz-transition',
-                  ev: 'transitionend'
-              };
-        }
-
-        /* FIXME setting transitions through javascript is currently buggy
-        if(typeof document.body.style.OTransition !== "undefined"){
-              return {
-                  pre: '-o-transition',
-                  ev: 'oTransitionEnd'
-              };
-        }
-        */
-
-        return false;
-    }
-
-    /**
-     * @function {String} ? Interpolates target and source values based on time position
-     * @param {Number} source - source value
-     * @param {Number} target - target value
-     * @param {Number} pos - current time position
-     * @return Interpolated value
-     */
-    function interpolate(source, target, pos) {
-        return (source + (target - source) * pos).toFixed(3);
-    }
-
-    /**
-     * @function ? Fire the animation
-     * @param {Function} cb - callback to execute at each animation
-     * cycle. Receives position in time (float value from 0 to 1) as a parameter
-     * @param {Number} dur - animation duration in milliseconds
-     * @param {Number} from - source value
-     * @param {Number} to - target value
-     * @param {Function} before - callback executed before the animation
-     * @param {Function} after - callback executed after the animation
-     * @param {Function} easing - easing function or function name
-     */
-    function animate(cb, dur, from, to, before, after, easing) {
-        var start = +new Date(),
-        finish = start + dur,
-        val = from;
-
-        easing = easing || _easing.sinusoidal;
-        if (easing in _easing) {
-            easing = _easing[easing];
-        }
-
-        if (before) {
-            before();
-        }
-
-        var interval = setInterval(function() {
-            var time = +new Date(),
-            pos = time > finish ? 1: (time - start) / dur;
-
-            val = interpolate(parseFloat(val, 10), to, easing(pos));
-            cb(val);
-
-            if (time > finish) {
-                clearInterval(interval);
-                if (after) {
-                    after();
-                }
-            }
-        }, 10);
-    }
-
-
-
-    /**
-     *  @function {Array} each
-     *  runs a functions trou each of the elements of an array
-     *  @param {Array} arr
-     *  @param {Function} callBack - the function recieves as arguments value, index and array
-     *
-     **/
-    function each(arr, callBack) {
-        /*if(arr.forEach) {
-              arr.forEach(callBack);
-              return;
-        }*/
-        var arrhash = arr.slice(0);
-        var total = arrhash.length;
-        var iterations = Math.floor(total / 8);
-        var leftover = total % 8;
-        var i = 0;
-        if (leftover > 0) {
-            //Duff's device pattern
-            do {
-                callBack(arrhash[i++], i - 1, arr);
-            }
-            while (--leftover > 0);
-        }
-        if (iterations === 0){return arr;}
-        do {
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-            callBack(arrhash[i++], i - 1, arr);
-        }
-        while (--iterations > 0);
-
-        return arr;
-    }
-
-    /**
-     * @function ? - runs an array of effects in parallel
-     * @param {Array} arrEffects
-     * @param {Object} options
-     *
-     */
-    function parallel(arrEffects, options) {
-        var runEffects = function(value, key, arr) {
-            if (options && (options.after && typeof(options.after) == "function" && (key == arr.length - 1))) {
-                if (value.options.after) {
-                    var func = value.options.after;
-                    value.options.after = function() {
-                        func();
-                        options.after();
-                    };
-                } else {
-                    value.options.after = options.after;
-                }
-            }
-
-            // fallback TODO removeme
-            if (typeof(value) != "function") {
-                SAPO.Effects.Core.emile(value.element, value.style, value.options);
-            }
-        };
-
-        if (!options || (!options.delay || options.delay === 0)) {
-            each(arrEffects, runEffects);
-        } else {
-            setTimeout(function() {
-                each(arrEffects, runEffects);
-            },
-            options.delay);
-        }
-
-    }
-
-
-    /**
-     * @constructor SAPO.Effects.Core.?
-     */
-    SAPO.Effects.Core = {
-        interpolate: interpolate,
-        animate: animate,
-        parallel: parallel,
-        getEasing: getEasing,
-        getTransitionProperties: getTransitionProperties,
-        getStyle: getStyle,
-        getCustomProp: getCustomProp,
-        setCustomProp: setCustomProp
-    };
-
-    /* starting emile.js
-
-        don't use ! only present for backward compatibility.
-    */
-    (function(emile, container){
-      var parseEl = document.createElement('div'),
-        props = ('backgroundColor borderBottomColor borderBottomWidth borderLeftColor borderLeftWidth '+
-        'borderRightColor borderRightWidth borderSpacing borderTopColor borderTopWidth bottom color fontSize '+
-        'fontWeight height left letterSpacing lineHeight marginBottom marginLeft marginRight marginTop maxHeight '+
-        'maxWidth minHeight minWidth opacity outlineColor outlineOffset outlineWidth paddingBottom paddingLeft '+
-        'paddingRight paddingTop right textIndent top width wordSpacing zIndex').split(' ');
-
-      function s(str, p, c){ return str.substr(p,c||1); }
-      function color(source,target,pos){
-        var i = 2, j, c, tmp, v = [], r = [];
-        while(j=3,c=arguments[i-1],i--)
-            if(s(c,0)=='r') { c = c.match(/\d+/g); while(j--) v.push(~~c[j]); } else {
-              if(c.length==4) c='#'+s(c,1)+s(c,1)+s(c,2)+s(c,2)+s(c,3)+s(c,3);
-              while(j--) v.push(parseInt(s(c,1+j*2,2), 16)); }
-        while(j--) { tmp = ~~(v[j+3]+(v[j]-v[j+3])*pos); r.push(tmp<0?0:tmp>255?255:tmp); }
-        return 'rgb('+r.join(',')+')';
-
-      }
-
-      function parse(prop){
-        var p = parseFloat(prop), q = prop.replace(/^[\-\d\.]+/,'');
-        return isNaN(p) ? { v: q, f: color, u: ''} : { v: p, f: interpolate, u: q };
-      }
-
-      function normalize(style){
-        var css, rules = {}, i = props.length, v;
-        parseEl.innerHTML = '<div style="'+style+'"></div>';
-        css = parseEl.childNodes[0].style;
-        while(i--) if(v = css[props[i]]) rules[props[i]] = parse(v);
-        return rules;
-      }
-
-      container[emile] = function(el, style, opts){
-        el = typeof el == 'string' ? document.getElementById(el) : el;
-        opts = opts || {};
-        var target = normalize(style), comp = el.currentStyle ? el.currentStyle : getComputedStyle(el, null),
-            prop, current = {}, start = +new Date, dur = opts.duration||200, finish = start+dur, interval,
-            easing = opts.easing || _easing.sinusoidal;
-        for(prop in target) current[prop] = parse(comp[prop]);
-        interval = setInterval(function(){
-            var time = +new Date, pos = time>finish ? 1 : (time-start)/dur;
-            for(prop in target)
-              el.style[prop] = target[prop].f(current[prop].v,target[prop].v,easing(pos)) + target[prop].u;
-            if(time>finish) { clearInterval(interval); opts.after && opts.after(); }
-        },10);
-      }
-    })('emile', SAPO.Effects.Core);
-})();
-
-/**
- * @namespace SAPO.Effects
- */
-
-/**
- * @module Ink.Util.I18n_1
  * @author inkdev AT sapo.pt
  */
 
-Ink.createModule('Ink.Util.I18n', '1', [], function () {
+Ink.createModule('Ink.Util.Json', '1', [], function() {
     'use strict';
 
-    var pattrText = /\{(?:(\{.*?})|(?:%s:)?(\d+)|(?:%s)?|([\w-]+))}/g;
+    var function_call = Function.prototype.call;
+    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
 
-    var funcOrVal = function( ret , args ) {
-        if ( typeof ret === 'function' ) {
-            return ret.apply(this, args);
-        } else if (typeof ret !== undefined) {
-            return ret;
+    function twoDigits(n) {
+        var r = '' + n;
+        if (r.length === 1) {
+            return '0' + r;
         } else {
-            return '';
+            return r;
         }
-    };
+    }
+
+    var date_toISOString = Date.prototype.toISOString ?
+        Ink.bind(function_call, Date.prototype.toISOString) :
+        function(date) {
+            // Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            return date.getUTCFullYear()
+                + '-' + twoDigits( date.getUTCMonth() + 1 )
+                + '-' + twoDigits( date.getUTCDate() )
+                + 'T' + twoDigits( date.getUTCHours() )
+                + ':' + twoDigits( date.getUTCMinutes() )
+                + ':' + twoDigits( date.getUTCSeconds() )
+                + '.' + String( (date.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
+                + 'Z';
+        };
 
     /**
-     * Creates a new internationalization helper object
+     * Use this class to convert JSON strings to JavaScript objects
+     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
+     * Internally, the standard JSON implementation is used if available
+     * Otherwise, the functions mimic the standard implementation.
      *
-     * @class Ink.Util.I18n
-     * @constructor
-     *
-     * @param {Object} dict object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
-     *     @param {Object} dict.(dictionaries...) 
-     * @param {String} [lang='pt_PT'] language code of the target language
-     *
-     * @example
-     *      var dictionaries = {    // This could come from a JSONP request from your server
-     *          'pt_PT': {
-     *              'hello': 'olá',
-     *              'me': 'eu',
-     *              'i have a {} for you': 'tenho um {} para ti' // Old syntax using `{%s}` tokens still available
-     *          },
-     *          'pt_BR': {
-     *              'hello': 'oi',
-     *              'me': 'eu',
-     *              'i have a {} for you': 'tenho um {} para você'
-     *          }
-     *      };
-     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
-     *          var i18n = new I18n(dictionaries, 'pt_PT');
-     *          i18n.text('hello');  // returns 'olá'
-     *          i18n.text('i have a {} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
-     *          
-     *          i18n.lang('pt_BR');  // Changes language. pt_BR dictionary is loaded
-     *          i18n.text('hello');  // returns 'oi'
-     *
-     *          i18n.lang('en_US');  // Missing language.
-     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
-     *      });
-     *      
-     *  @example
-     *      // The old {%s} syntax from libsapo's i18n is still supported
-     *      i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
-     */
-    var I18n = function( dict , lang , testMode ) {
-        if ( !( this instanceof I18n ) ) { return new I18n( dict , lang , testMode ); }
-
-        this.reset( )
-            .lang( lang )
-            .testMode( testMode )
-            .append( dict || { } , lang );
-    };
-
-    I18n.prototype = {
-        reset: function( ) {
-            this._dicts    = [ ];
-            this._dict     = { };
-            this._testMode = false;
-            this._lang     = this._gLang;
-
-            return this;
-        },
-        /**
-         * Adds translation strings for this helper to use.
-         *
-         * @method append
-         * @param {Object} dict object containing language objects identified by their language code
-         * @example
-         *     var i18n = new I18n({}, 'pt_PT');
-         *     i18n.append({'pt_PT': {
-         *         'sfraggles': 'braggles'
-         *     }});
-         *     i18n.text('sfraggles') // -> 'braggles'
-         */
-        append: function( dict ) {
-            this._dicts.push( dict );
-
-            this._dict = Ink.extendObj(this._dict , dict[ this._lang ] );
-
-            return this;
-        },
-        /**
-         * Get the language code
-         *
-         * @returns {String} the language code for this instance
-         * @method {String} lang
-         */
-        /**
-         * Set the language. If there are more dictionaries available in cache, they will be loaded.
-         *
-         * @method  lang
-         * @param   lang    {String} Language code to set this instance to.
-         */
-        lang: function( lang ) {
-            if ( !arguments.length ) { return this._lang; }
-
-            if ( lang && this._lang !== lang ) {
-                this._lang = lang;
-
-                this._dict = { };
-
-                for ( var i = 0, l = this._dicts.length; i < l; i++ ) {
-                    this._dict = Ink.extendObj( this._dict , this._dicts[ i ][ lang ] || { } );
-                }
-            }
-
-            return this;
-        },
-        /**
-         * Get the testMode
-         *
-         * @returns {Boolean} the testMode for this instance
-         * @method {Boolean} testMode
-         */
-        /**
-         * Sets or unsets test mode. In test mode, unknown strings are wrapped
-         * in `[ ... ]`. This is useful for debugging your application and
-         * making sure all your translation keys are in place.
-         *
-         * @method testMode
-         * @param {Boolean} bool boolean value to set the test mode to.
-         */
-        testMode: function( bool ) {
-            if ( !arguments.length ) { return !!this._testMode; }
-
-            if ( bool !== undefined  ) { this._testMode = !!bool; }
-
-            return this;
-        },
-
-        /**
-         * Return an arbitrary key from the current language dictionary
-         *
-         * @method getKey
-         * @param {String} key
-         * @return {Any} The object which happened to be in the current language dictionary on the given key.
-         *
-         * @example
-         *      _.getKey('astring'); // -> 'a translated string'
-         *      _.getKey('anobject'); // -> {'a': 'translated object'}
-         *      _.getKey('afunction'); // -> function () { return 'this is a localized function' }
-         */
-        getKey: function( key ) {
-            var ret;
-            var gLang = this._gLang;
-            var lang  = this._lang;
-    
-            if ( key in this._dict ) {
-                ret = this._dict[ key ];
-            } else {
-                I18n.lang( lang );
-    
-                ret = this._gDict[ key ];
-    
-                I18n.lang( gLang );
-            }
-    
-            return ret;
-        },
-
-        /**
-         * Given a translation key, return a translated string, with replaced parameters.
-         * When a translated string is not available, the original string is returned unchanged.
-         *
-         * @method {String} text
-         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
-         * @param {Object} [namedParms] named replacements. Replaces {named} with values in this object.
-         * @param {String} [arg1] replacement #1 (replaces first {} and all {1})
-         * @param {String} [arg2] replacement #2 (replaces second {} and all {2})
-         * @param {String} [argn...] replacement #n (replaces nth {} and all {n})
-         *
-         * @example
-         *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
-         *      // returns 'Gosto muito de carros e o céu é azul.'
-         *
-         * @example
-         *      _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
-         *      // returns 'O carro é azul como azul é o FCP.'
-         *
-         *  @example
-         *      _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
-         *      // -> 'O coisinho dava-se com a coisinha'
-         *
-         *  @example
-         *      // This is a bit more complex
-         *      var i18n = make().lang('pt_PT').append({
-         *          pt_PT: {
-         *              array: [1, 2],
-         *              object: {'a': '-a-', 'b': '-b-'},
-         *              func: function (a, b) {return '[[' + a + ',' + b + ']]';}
-         *          }
-         *      });
-         *      i18n.text('array', 0); // -> '1'
-         *      i18n.text('object', 'a'); // -> '-a-'
-         *      i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
-         */
-        text: function( str /*, replacements...*/ ) {
-            if ( typeof str !== 'string' ) { return; } // Backwards-compat
-
-            var pars = Array.prototype.slice.call( arguments , 1 );
-            var idx = 0;
-            var isObj = typeof pars[ 0 ] === 'object';
-
-            var original = this.getKey( str );
-            if ( original === undefined ) { original = this._testMode ? '[' + str + ']' : str; }
-            if ( typeof original === 'number' ) { original += ''; }
-
-            if (typeof original === 'string') {
-                original = original.replace( pattrText , function( m , $1 , $2 , $3 ) {
-                    var ret =
-                        $1 ? $1 :
-                        $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
-                        $3 ? pars[ 0 ][ $3 ] || '' :
-                             pars[ (idx++) + ( isObj ? 1 : 0 ) ]
-                    return funcOrVal( ret , [idx].concat(pars) );
-                });
-                return original;
-            }
-             
-            return (
-                typeof original === 'function' ? original.apply( this , pars ) :
-                original instanceof Array      ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
-                typeof original === 'object'   ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
-                                                 '');
-        },
-
-        /**
-         * Given a singular string, a plural string, and a number, translates
-         * either the singular or plural string.
-         *
-         * @method ntext
-         * @return {String}
-         *
-         * @param {String} strSin   word to use when count is 1
-         * @param {String} strPlur  word to use otherwise
-         * @param {Number} count    number which defines which word to use
-         * @param [...]             extra arguments, to be passed to `text()`
-         *
-         * @example
-         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
-         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
-         * 
-         * @example
-         *     // The "count" argument is passed to text()
-         *     i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
-         *     i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
-         */
-        ntext: function( strSin , strPlur , count ) {
-            var pars = Array.prototype.slice.apply( arguments );
-            var original;
-
-            if ( pars.length === 2 && typeof strPlur === 'number' ) {
-                original = this.getKey( strSin );
-                if ( !( original instanceof Array ) ) { return ''; }
-
-                pars.splice( 0 , 1 );
-                original = original[ strPlur === 1 ? 0 : 1 ];
-            } else {
-                pars.splice( 0 , 2 );
-                original = count === 1 ? strSin : strPlur;
-            }
-
-            return this.text.apply( this , [ original ].concat( pars ) );
-        },
-
-        /**
-         * Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
-         *
-         * This works by using transforms (in the form of Objects or Functions) passed into the
-         * function or found in the special key `_ordinals` in the active language dictionary.
-         *
-         * @method ordinal
-         *
-         * @param {Number}          num             Input number
-         * 
-         * @param {Object|Function} [options={}]
-         *
-         *    Maps for translating. Each of these options' fallback is found in the current
-         *    language's dictionary. The lookup order is the following:
-         *   
-         *        1. `exceptions`
-         *        2. `byLastDigit`
-         *        3. `default`
-         *   
-         *    Each of these may be either an `Object` or a `Function`. If it's a function, it
-         *    is called (with `number` and `digit` for any function except for byLastDigit,
-         *    which is called with the `lastDigit` of the number in question), and if the
-         *    function returns a string, that is used. If it's an object, the property is
-         *    looked up using `[...]`. If what is found is a string, it is used.
-         *
-         * @param {Object|Function} [options.byLastDigit={}]
-         *    If the language requires the last digit to be considered, mappings of last digits
-         *    to ordinal suffixes can be created here.
-         *
-         * @param {Object|Function} [options.exceptions={}]
-         *    Map unique, special cases to their ordinal suffixes.
-         *
-         * @returns {String}        Ordinal suffix for `num`.
-         *
-         * @example
-         *     var i18n = new I18n({
-         *         pt_PT: {  // 1º, 2º, 3º, 4º, ...
-         *             _ordinal: {  // The _ordinals key each translation dictionary is special.
-         *                 'default': "º" // Usually the suffix is "º" in portuguese...
-         *             }
-         *         },
-         *         fr: {  // 1er, 2e, 3e, 4e, ...
-         *             _ordinal: {  // The _ordinals key is special.
-         *                 'default': "e", // Usually the suffix is "e" in french...
-         *                 exceptions: {
-         *                     1: "er"   // ... Except for the number one.
-         *                 }
-         *             }
-         *         },
-         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
-         *             _ordinal: {
-         *                 'default': "th",// Usually the digit is "th" in english...
-         *                 byLastDigit: {
-         *                     1: "st",  // When the last digit is 1, use "th"...
-         *                     2: "nd",  // When the last digit is 2, use "nd"...
-         *                     3: "rd"   // When the last digit is 3, use "rd"...
-         *                 },
-         *                 exceptions: { // But these numbers are special
-         *                     0: "",
-         *                     11: "th",
-         *                     12: "th",
-         *                     13: "th"
-         *                 }
-         *             }
-         *         }
-         *     }, 'pt_PT');
-         *
-         *     i18n.ordinal(1);    // returns 'º'
-         *     i18n.ordinal(2);    // returns 'º'
-         *     i18n.ordinal(11);   // returns 'º'
-         * 
-         *     i18n.lang('fr');
-         *     i18n.ordinal(1);    // returns 'er'
-         *     i18n.ordinal(2);    // returns 'e'
-         *     i18n.ordinal(11);   // returns 'e'
-         *
-         *     i18n.lang('en_US');
-         *     i18n.ordinal(1);    // returns 'st'
-         *     i18n.ordinal(2);    // returns 'nd'
-         *     i18n.ordinal(12);   // returns 'th'
-         *     i18n.ordinal(22);   // returns 'nd'
-         *     i18n.ordinal(3);    // returns 'rd'
-         *     i18n.ordinal(4);    // returns 'th'
-         *     i18n.ordinal(5);    // returns 'th'
-         *
-         **/
-        ordinal: function( num ) {
-            if ( num === undefined ) { return ''; }
-
-            var lastDig = +num.toString( ).slice( -1 );
-
-            var ordDict  = this.getKey( '_ordinals' );
-            if ( ordDict === undefined ) { return ''; }
-
-            if ( typeof ordDict === 'string' ) { return ordDict; }
-
-            var ret;
-
-            if ( typeof ordDict === 'function' ) {
-                ret = ordDict( num , lastDig );
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            if ( 'exceptions' in ordDict ) {
-                ret = typeof ordDict.exceptions === 'function' ? ordDict.exceptions( num , lastDig ) :
-                      num in ordDict.exceptions                ? funcOrVal( ordDict.exceptions[ num ] , [num , lastDig] ) :
-                                                                 undefined;
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            if ( 'byLastDigit' in ordDict ) {
-                ret = typeof ordDict.byLastDigit === 'function' ? ordDict.byLastDigit( lastDig , num ) :
-                      lastDig in ordDict.byLastDigit            ? funcOrVal( ordDict.byLastDigit[ lastDig ] , [lastDig , num] ) :
-                                                                  undefined;
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            if ( 'default' in ordDict ) {
-                ret = funcOrVal( ordDict['default'] , [ num , lastDig ] );
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            return '';
-        },
-
-        /**
-         * Returns an alias to `text()`, for convenience. The resulting function is
-         * traditionally assigned to "_".
-         *
-         * @method alias
-         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
-         *
-         * @example
-         *     var i18n = new I18n({
-         *         'pt_PT': {
-         *             'hi': 'olá',
-         *             '{} day': '{} dia',
-         *             '{} days': '{} dias',
-         *             '_ordinals': {
-         *                 'default': 'º'
-         *             }
-         *         }
-         *     }, 'pt_PT');
-         *     var _ = i18n.alias();
-         *     _('hi');  // -> 'olá'
-         *     _('{} days', 3);  // -> '3 dias'
-         *     _.ntext('{} day', '{} days', 2);  // -> '2 dias'
-         *     _.ntext('{} day', '{} days', 1);  // -> '1 dia'
-         *     _.ordinal(3);  // -> 'º'
-         */
-        alias: function( ) {
-            var ret      = Ink.bind( I18n.prototype.text     , this );
-            ret.ntext    = Ink.bind( I18n.prototype.ntext    , this );
-            ret.append   = Ink.bind( I18n.prototype.append   , this );
-            ret.ordinal  = Ink.bind( I18n.prototype.ordinal  , this );
-            ret.testMode = Ink.bind( I18n.prototype.testMode , this );
-
-            return ret;
-        }
-    };
-
-    /**
-     * @static
-     * @method I18n.reset
-     *
-     * Reset I18n global state (global dictionaries, and default language for instances)
-     **/
-    I18n.reset = function( ) {
-        I18n.prototype._gDicts = [ ];
-        I18n.prototype._gDict  = { };
-        I18n.prototype._gLang  = 'pt_PT';
-    };
-    I18n.reset( );
-
-    /**
-     * @static
-     * @method I18n.append
-     *
-     * @param dict {Object}     Dictionary to be added
-     * @param lang {String}     Language to be added to
-     *
-     * Add a dictionary to be used in all I18n instances for the corresponding language
-     */
-    I18n.append = function( dict , lang ) {
-        if ( lang ) {
-            if ( !( lang in dict ) ) {
-                var obj = { };
-
-                obj[ lang ] = dict;
-
-                dict = obj;
-            }
-
-            if ( lang !== I18n.prototype._gLang ) { I18n.lang( lang ); }
-        }
-
-        I18n.prototype._gDicts.push( dict );
-
-        Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
-    };
-
-    /**
-     * @static
-     * @method I18n.lang
+     * Here's how to produce JSON from an existing object:
      * 
-     * @param lang {String} String in the format `"pt_PT"`, `"fr"`, etc.
+     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+     *          var obj = {
+     *              key1: 'value1',
+     *              key2: 'value2',
+     *              keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
+     *          };
+     *          Json.stringify(obj);  // The above object as a JSON string
+     *      });
      *
-     * Set global default language of I18n instances to `lang`
-     */
-    /**
+     * And here is how to parse JSON:
+     *
+     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+     *          var source = '{"key": "value", "array": [true, null, false]}';
+     *          Json.parse(source);  // The above JSON string as an object
+     *      });
+     * @class Ink.Util.Json
      * @static
-     * @method I18n.lang
-     *
-     * Get the current default language of I18n instances.
-     *
-     * @return {String} language code
+     * 
      */
-    I18n.lang = function( lang ) {
-        if ( !arguments.length ) { return I18n.prototype._gLang; }
+    var InkJson = {
+        _nativeJSON: window.JSON || null,
 
-        if ( lang && I18n.prototype._gLang !== lang ) {
-            I18n.prototype._gLang = lang;
+        _convertToUnicode: false,
 
-            I18n.prototype._gDict = { };
+        // Escape characters so as to embed them in JSON strings
+        _escape: function (theString) {
+            var _m = { '\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"': '\\"',  '\\': '\\\\' };
 
-            for ( var i = 0, l = I18n.prototype._gDicts.length; i < l; i++ ) {
-                Ink.extendObj( I18n.prototype._gDict , I18n.prototype._gDicts[ i ][ lang ] || { } );
+            if (/["\\\x00-\x1f]/.test(theString)) {
+                theString = theString.replace(/([\x00-\x1f\\"])/g, function(a, b) {
+                    var c = _m[b];
+                    if (c) {
+                        return c;
+                    }
+                    c = b.charCodeAt();
+                    return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
+                });
             }
+
+            return theString;
+        },
+
+        // A character conversion map
+        _toUnicode: function (theString)
+        {
+            if(!this._convertToUnicode) {
+                return this._escape(theString);
+            } else {
+                var unicodeString = '';
+                var inInt = false;
+                var theUnicode = false;
+                var i = 0;
+                var total = theString.length;
+                while(i < total) {
+                    inInt = theString.charCodeAt(i);
+                    if( (inInt >= 32 && inInt <= 126) ||
+                            //(inInt >= 48 && inInt <= 57) ||
+                            //(inInt >= 65 && inInt <= 90) ||
+                            //(inInt >= 97 && inInt <= 122) ||
+                            inInt === 8 ||
+                            inInt === 9 ||
+                            inInt === 10 ||
+                            inInt === 12 ||
+                            inInt === 13 ||
+                            inInt === 32 ||
+                            inInt === 34 ||
+                            inInt === 47 ||
+                            inInt === 58 ||
+                            inInt === 92) {
+
+                        if(inInt === 34 || inInt === 92 || inInt === 47) {
+                            theUnicode = '\\'+theString.charAt(i);
+                        } else if(inInt === 8) {
+                            theUnicode = '\\b';
+                        } else if(inInt === 9) {
+                            theUnicode = '\\t';
+                        } else if(inInt === 10) {
+                            theUnicode = '\\n';
+                        } else if(inInt === 12) {
+                            theUnicode = '\\f';
+                        } else if(inInt === 13) {
+                            theUnicode = '\\r';
+                        } else {
+                            theUnicode = theString.charAt(i);
+                        }
+                    } else {
+                        if(this._convertToUnicode) {
+                            theUnicode = theString.charCodeAt(i).toString(16)+''.toUpperCase();
+                            while (theUnicode.length < 4) {
+                                theUnicode = '0' + theUnicode;
+                            }
+                            theUnicode = '\\u' + theUnicode;
+                        } else {
+                            theUnicode = theString.charAt(i);
+                        }
+                    }
+                    unicodeString += theUnicode;
+
+                    i++;
+                }
+
+                return unicodeString;
+            }
+
+        },
+
+        _stringifyValue: function(param) {
+            if (typeof param === 'string') {
+                return '"' + this._toUnicode(param) + '"';
+            } else if (typeof param === 'number' && (isNaN(param) || !isFinite(param))) {  // Unusable numbers go null
+                return 'null';
+            } else if (typeof param === 'undefined' || param === null) {  // And so does undefined
+                return 'null';
+            } else if (typeof param.toJSON === 'function') {
+                var t = param.toJSON();
+                if (typeof t === 'string') {
+                    return '"' + this._escape(t) + '"';
+                } else {
+                    return this._escape(t.toString());
+                }
+            } else if (typeof param === 'number' || typeof param === 'boolean') {  // These ones' toString methods return valid JSON.
+                return '' + param;
+            } else if (typeof param === 'function') {
+                return 'null';  // match JSON.stringify
+            } else if (param.constructor === Date) {
+                throw ''
+                return '"' + this._escape(date_toISOString(param)) + '"';
+            } else if (param.constructor === Array) {
+                var arrayString = '';
+                for (var i = 0, len = param.length; i < len; i++) {
+                    if (i > 0) {
+                        arrayString += ',';
+                    }
+                    arrayString += this._stringifyValue(param[i]);
+                }
+                return '[' + arrayString + ']';
+            } else {  // Object
+                var objectString = '';
+                for (var k in param)  {
+                    if ({}.hasOwnProperty.call(param, k)) {
+                        if (objectString !== '') {
+                            objectString += ',';
+                        }
+                        objectString += '"' + this._escape(k) + '": ' + this._stringifyValue(param[k]);
+                    }
+                }
+                return '{' + objectString + '}';
+            }
+        },
+
+        /**
+         * serializes a JSON object into a string.
+         *
+         * @method stringify
+         * @param {Object}      input               Data to be serialized into JSON
+         * @param {Boolean}     convertToUnicode    When `true`, converts string contents to unicode \uXXXX
+         * @return {String}     serialized string
+         *
+         * @example
+         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+         */
+        stringify: function(input, convertToUnicode) {
+            this._convertToUnicode = !!convertToUnicode;
+            if(!this._convertToUnicode && this._nativeJSON) {
+                return this._nativeJSON.stringify(input);
+            }
+            return this._stringifyValue(input);  // And recurse.
+        },
+        
+        /**
+         * @method parse
+         * @param text      {String}    Input string
+         * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
+         * 
+         * @example
+         * Simple example:
+         *
+         *      Json.parse('{"a": "3","numbers":false}',
+         *          function (key, value) {
+         *              if (!this.numbers && key === 'a') {
+         *                  return "NO NUMBERS";
+         *              } else {
+         *                  return value;
+         *              }
+         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
+         */
+        /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
+        parse: function (text, reviver) {
+            /*jshint evil:true*/
+
+// The parse method takes a text and an optional reviver function, and returns
+// a JavaScript value if the text is a valid JSON text.
+
+            var j;
+
+            function walk(holder, key) {
+
+// The walk method is used to recursively walk the resulting structure so
+// that modifications can be made.
+
+                var k, v, value = holder[key];
+                if (value && typeof value === 'object') {
+                    for (k in value) {
+                        if (Object.prototype.hasOwnProperty.call(value, k)) {
+                            v = walk(value, k);
+                            if (v !== undefined) {
+                                value[k] = v;
+                            } else {
+                                delete value[k];
+                            }
+                        }
+                    }
+                }
+                return reviver.call(holder, key, value);
+            }
+
+
+// Parsing happens in four stages. In the first stage, we replace certain
+// Unicode characters with escape sequences. JavaScript handles many characters
+// incorrectly, either silently deleting them, or treating them as line endings.
+
+            text = String(text);
+            cx.lastIndex = 0;
+            if (cx.test(text)) {
+                text = text.replace(cx, function (a) {
+                    return '\\u' +
+                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                });
+            }
+
+// In the second stage, we run the text against regular expressions that look
+// for non-JSON patterns. We are especially concerned with '()' and 'new'
+// because they can cause invocation, and '=' because it can cause mutation.
+// But just to be safe, we want to reject all unexpected forms.
+
+// We split the second stage into 4 regexp operations in order to work around
+// crippling inefficiencies in IE's and Safari's regexp engines. First we
+// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
+// replace all simple value tokens with ']' characters. Third, we delete all
+// open brackets that follow a colon or comma or that begin the text. Finally,
+// we look to see that the remaining characters are only whitespace or ']' or
+// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+
+            if (/^[\],:{}\s]*$/
+                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+// In the third stage we use the eval function to compile the text into a
+// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
+// in JavaScript: it can begin a block or an object literal. We wrap the text
+// in parens to eliminate the ambiguity.
+
+                j = eval('(' + text + ')');
+
+// In the optional fourth stage, we recursively walk the new structure, passing
+// each name/value pair to a reviver function for possible transformation.
+
+                return typeof reviver === 'function'
+                    ? walk({'': j}, '')
+                    : j;
+            }
+
+// If the text is not JSON parseable, then a SyntaxError is thrown.
+
+            throw new SyntaxError('JSON.parse');
         }
     };
-    
-    return I18n;
+
+    return InkJson;
 });
 
 /**
- * @module Ink.Util.Cookie_1
+ * @module Ink.Util.Array_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.Util.Cookie', '1', [], function() {
+Ink.createModule('Ink.Util.Array', '1', [], function() {
 
     'use strict';
 
+    var arrayProto = Array.prototype;
+
     /**
-     * Utilities for Cookie handling
+     * Utility functions to use with Arrays
      *
-     * @class Ink.Util.Cookie
+     * @class Ink.Util.Array
      * @version 1
      * @static
      */
-    var Cookie = {
+    var InkArray = {
 
         /**
-         * Gets an object with current page cookies
+         * Checks if value exists in array
          *
-         * @method get
-         * @param {String} name
-         * @return {String|Object} If the name is specified, it returns the value related to that property. Otherwise it returns the full cookie object
+         * @method inArray
+         * @param {Mixed} value
+         * @param {Array} arr
+         * @return {Boolean}    True if value exists in the array
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var myCookieValue = InkCookie.get('someVarThere');
-         *         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3' ];
+         *         if( InkArray.inArray( 'value2', testArray ) === true ){
+         *             console.log( "Yep it's in the array." );
+         *         } else {
+         *             console.log( "No it's NOT in the array." );
+         *         }
          *     });
          */
-        get: function(name)
-        {
-            var cookie = document.cookie || false;
-
-            var _Cookie = {};
-            if(cookie) {
-                cookie = cookie.replace(new RegExp("; ", "g"), ';');
-                var aCookie = cookie.split(';');
-                var aItem = [];
-                if(aCookie.length > 0) {
-                    for(var i=0; i < aCookie.length; i++) {
-                        aItem = aCookie[i].split('=');
-                        if(aItem.length === 2) {
-                            _Cookie[aItem[0]] = decodeURIComponent(aItem[1]);
-                        }
-                        aItem = [];
+        inArray: function(value, arr) {
+            if (typeof arr === 'object') {
+                for (var i = 0, f = arr.length; i < f; ++i) {
+                    if (arr[i] === value) {
+                        return true;
                     }
                 }
             }
-            if(name) {
-                if(typeof(_Cookie[name]) !== 'undefined') {
-                    return _Cookie[name];
-                } else {
-                    return null;
-                }
-            }
-            return _Cookie;
+            return false;
         },
 
         /**
-         * Sets a cookie
+         * Sorts an array of object by an object property
          *
-         * @method set
-         * @param {String} name Cookie name
-         * @param {String} value Cookie value
-         * @param {Number} [expires] Number to add to current Date in seconds
-         * @param {String} [path] Path to sets cookie (default '/')
-         * @param {String} [domain] Domain to sets cookie (default current hostname)
-         * @param {Boolean} [secure] True if wants secure, default 'false'
+         * @method sortMulti
+         * @param {Array} arr array of objects to sort
+         * @param {String} key property to sort by
+         * @return {Array|Boolean} False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         var expireDate = new Date( 2014,00,01, 0,0,0);
-         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [
+         *             { 'myKey': 'value1' },
+         *             { 'myKey': 'value2' },
+         *             { 'myKey': 'value3' }
+         *         ];
+         *
+         *         InkArray.sortMulti( testArray, 'myKey' );
          *     });
          */
-        set: function(name, value, expires, path, domain, secure)
-        {
-            var sName;
-            if(!name || value===false || typeof(name) === 'undefined' || typeof(value) === 'undefined') {
-                return false;
-            } else {
-                sName = name+'='+encodeURIComponent(value);
+        sortMulti: function(arr, key) {
+            if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
+            if (typeof key !== 'string') { return arr.sort(); }
+            if (arr.length > 0) {
+                if (typeof(arr[0][key]) === 'undefined') { return false; }
+                arr.sort(function(a, b){
+                    var x = a[key];
+                    var y = b[key];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                });
             }
-            var sExpires = false;
-            var sPath = false;
-            var sDomain = false;
-            var sSecure = false;
-
-            if(expires && typeof(expires) !== 'undefined' && !isNaN(expires)) {
-                var oDate = new Date();
-                var sDate = (parseInt(Number(oDate.valueOf()), 10) + (Number(parseInt(expires, 10)) * 1000));
-
-                var nDate = new Date(sDate);
-                var expiresString = nDate.toGMTString();
-
-                var re = new RegExp("([^\\s]+)(\\s\\d\\d)\\s(\\w\\w\\w)\\s(.*)");
-                expiresString = expiresString.replace(re, "$1$2-$3-$4");
-
-                sExpires = 'expires='+expiresString;
-            } else {
-                if(typeof(expires) !== 'undefined' && !isNaN(expires) && Number(parseInt(expires, 10))===0) {
-                    sExpires = '';
-                } else {
-                    sExpires = 'expires=Thu, 01-Jan-2037 00:00:01 GMT';
-                }
-            }
-
-            if(path && typeof(path) !== 'undefined') {
-                sPath = 'path='+path;
-            } else {
-                sPath = 'path=/';
-            }
-
-            if(domain && typeof(domain) !== 'undefined') {
-                sDomain = 'domain='+domain;
-            } else {
-                var portClean = new RegExp(":(.*)");
-                sDomain = 'domain='+window.location.host;
-                sDomain = sDomain.replace(portClean,"");
-            }
-
-            if(secure && typeof(secure) !== 'undefined') {
-                sSecure = secure;
-            } else {
-                sSecure = false;
-            }
-
-            document.cookie = sName+'; '+sExpires+'; '+sPath+'; '+sDomain+'; '+sSecure;
+            return arr;
         },
 
         /**
-         * Delete a cookie
+         * Returns the associated key of an array value
+         *
+         * @method keyValue
+         * @param {String} value Value to search for
+         * @param {Array} arr Array where the search will run
+         * @param {Boolean} [first] Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes.
+         * @return {Boolean|Number|Array} False if not exists | number if exists and 3rd input param is true | array if exists and 3rd input param is not set or it is !== true
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
+         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
+         *     });
+         */
+        keyValue: function(value, arr, first) {
+            if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
+                var aKeys = [];
+                for (var i = 0, f = arr.length; i < f; ++i) {
+                    if (arr[i] === value) {
+                        if (typeof first !== 'undefined' && first === true) {
+                            return i;
+                        } else {
+                            aKeys.push(i);
+                        }
+                    }
+                }
+                return aKeys;
+            }
+            return false;
+        },
+
+        /**
+         * Returns the array shuffled, false if the param is not an array
+         *
+         * @method shuffle
+         * @param {Array} arr Array to shuffle
+         * @return {Boolean|Number|Array} False if not an array | Array shuffled
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
+         *     });
+         */
+        shuffle: function(arr) {
+            if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
+            var total   = arr.length,
+                tmp1    = false,
+                rnd     = false;
+
+            while (total--) {
+                rnd        = Math.floor(Math.random() * (total + 1));
+                tmp1       = arr[total];
+                arr[total] = arr[rnd];
+                arr[rnd]   = tmp1;
+            }
+            return arr;
+        },
+
+        /**
+         * Runs a function through each of the elements of an array
+         *
+         * @method forEach
+         * @param {Array} arr Array to be cycled/iterated
+         * @param {Function} cb The function receives as arguments the value, index and array.
+         * @return {Array} Array iterated.
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+         *         InkArray.forEach( testArray, function( value, index, arr ){
+         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
+         *         });
+         *     });
+         */
+        forEach: function(array, callback, context) {
+            if (arrayProto.forEach) {
+                return arrayProto.forEach.call(array, callback, context);
+            }
+            for (var i = 0, len = array.length >>> 0; i < len; i++) {
+                callback.call(context, array[i], i, array);
+            }
+        },
+
+        /**
+         * Alias for backwards compatibility. See forEach
+         *
+         * @method forEach
+         */
+        each: function () {
+            InkArray.forEach.apply(InkArray, [].slice.call(arguments));
+        },
+
+        /**
+         * Run a `map` function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.
+         * @method map
+         * @param {Array} array     The array to map over
+         * @param {Function} map    The map function. Will take `(item, index, array)` and `this` will be the `context` argument.
+         * @param {Object} [context]    Object to be `this` in the map function.
+         *
+         * @example
+         *      InkArray.map([1, 2, 3, 4], function (item) {
+         *          return item + 1;
+         *      }); // -> [2, 3, 4, 5]
+         */
+        map: function (array, callback, context) {
+            if (arrayProto.map) {
+                return arrayProto.map.call(array, callback, context);
+            }
+            var mapped = new Array(len);
+            for (var i = 0, len = array.length >>> 0; i < len; i++) {
+                mapped[i] = callback.call(context, array[i], i, array);
+            }
+            return mapped;
+        },
+
+        /**
+         * Run a test function through all the input array. Items which pass the test function (for which the test function returned `true`) are kept in the array. Other items are removed.
+         * @param {Array} array
+         * @param {Function} test       A test function taking `(item, index, array)`
+         * @param {Object} [context]    Object to be `this` in the test function.
+         * @return filtered array
+         *
+         * @example
+         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
+         *          return val > 2;
+         *      })  // -> [3, 4, 5]
+         */
+        filter: function (array, test, context) {
+            if (arrayProto.filter) {
+                return arrayProto.filter.call(array, test, context);
+            }
+            var filtered = [],
+                val = null;
+            for (var i = 0, len = array.length; i < len; i++) {
+                val = array[i]; // it might be mutated
+                if (test.call(context, val, i, array)) {
+                    filtered.push(val);
+                }
+            }
+            return filtered;
+        },
+
+        /**
+         * Runs a callback function, which should return true or false.
+         * If one of the 'runs' returns true, it will return. Otherwise if none returns true, it will return false.
+         * See more at: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some (MDN)
+         *
+         * @method some
+         * @param {Array} arr The array you walk to iterate through
+         * @param {Function} cb The callback that will be called on the array's elements. It receives the value, the index and the array as arguments.
+         * @param {Object} Context object of the callback function
+         * @return {Boolean} True if the callback returns true at any point, false otherwise
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
+         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
+         *
+         *         function myTestFunction( value, index, arr ){
+         *             if( value > 90 ){
+         *                 return true;
+         *             }
+         *             return false;
+         *         }
+         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
+         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
+         *     });
+         */
+        some: function(arr, cb, context){
+
+            if (arr === null){
+                throw new TypeError('First argument is invalid.');
+            }
+
+            var t = Object(arr);
+            var len = t.length >>> 0;
+            if (typeof cb !== "function"){ throw new TypeError('Second argument must be a function.'); }
+
+            for (var i = 0; i < len; i++) {
+                if (i in t && cb.call(context, t[i], i, t)){ return true; }
+            }
+
+            return false;
+        },
+
+        /**
+         * Returns an array containing every item that is shared between the two given arrays
+         *
+         * @method intersect
+         * @param {Array} arr Array1 to be intersected with Array2
+         * @param {Array} arr Array2 to be intersected with Array1
+         * @return {Array} Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
+         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
+         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
+         *     });
+         */
+        intersect: function(arr1, arr2) {
+            if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
+                return [];
+            }
+
+            var shared = [];
+            for (var i = 0, I = arr1.length; i<I; ++i) {
+                for (var j = 0, J = arr2.length; j < J; ++j) {
+                    if (arr1[i] === arr2[j]) {
+                        shared.push(arr1[i]);
+                    }
+                }
+            }
+
+            return shared;
+        },
+
+        /**
+         * Convert lists type to type array
+         *
+         * @method convert
+         * @param {Array} arr Array to be converted
+         * @return {Array} Array resulting of the conversion
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2' ];
+         *         testArray.myMethod = function(){
+         *             console.log('stuff');
+         *         }
+         *
+         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
+         *     });
+         */
+        convert: function(arr) {
+            return arrayProto.slice.call(arr || [], 0);
+        },
+
+        /**
+         * Insert value into the array on specified idx
+         *
+         * @method insert
+         * @param {Array} arr Array where the value will be inserted
+         * @param {Number} idx Index of the array where the value should be inserted
+         * @param {Mixed} value Value to be inserted
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2' ];
+         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
+         *     });
+         */
+        insert: function(arr, idx, value) {
+            arr.splice(idx, 0, value);
+        },
+
+        /**
+         * Remove a range of values from the array
          *
          * @method remove
-         * @param {String} cookieName Cookie name
-         * @param {String} [path] Path of the cookie (default '/')
-         * @param {String} [domain] Domain of the cookie (default current hostname)
+         * @param {Array} arr Array where the value will be inserted
+         * @param {Number} from Index of the array where the removal will start removing.
+         * @param {Number} rLen Number of items to be removed from the index onwards.
+         * @return {Array} An array with the remaining values
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
-         *         InkCookie.remove( 'someVarThere' );
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
+         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
          *     });
          */
-        remove: function(cookieName, path, domain)
-        {
-            //var expiresDate = 'Thu, 01-Jan-1970 00:00:01 GMT';
-            var sPath = false;
-            var sDomain = false;
-            var expiresDate = -999999999;
+        remove: function(arr, from, rLen){
+            var output = [];
 
-            if(path && typeof(path) !== 'undefined') {
-                sPath = path;
-            } else {
-                sPath = '/';
+            for(var i = 0, iLen = arr.length; i < iLen; i++){
+                if(i >= from && i < from + rLen){
+                    continue;
+                }
+
+                output.push(arr[i]);
             }
 
-            if(domain && typeof(domain) !== 'undefined') {
-                sDomain = domain;
-            } else {
-                sDomain = window.location.host;
-            }
-
-            this.set(cookieName, 'deleted', expiresDate, sPath, sDomain);
+            return output;
         }
     };
 
-    return Cookie;
+    return InkArray;
 
 });
 
-/**
- * @module Ink.Util.BinPack_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.Util.BinPack', '1', [], function() {
 
-    'use strict';
-
-    /*jshint boss:true */
-
-    // https://github.com/jakesgordon/bin-packing/
-
-    /*
-        Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
-
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:
-
-        The above copyright notice and this permission notice shall be included in all
-        copies or substantial portions of the Software.
-
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.
-    */
-
-
-
-    var Packer = function(w, h) {
-        this.init(w, h);
-    };
-
-    Packer.prototype = {
-
-        init: function(w, h) {
-            this.root = { x: 0, y: 0, w: w, h: h };
-        },
-
-        fit: function(blocks) {
-            var n, node, block;
-            for (n = 0; n < blocks.length; ++n) {
-                block = blocks[n];
-                if (node = this.findNode(this.root, block.w, block.h)) {
-                    block.fit = this.splitNode(node, block.w, block.h);
-                }
-            }
-        },
-
-        findNode: function(root, w, h) {
-            if (root.used) {
-                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
-            }
-            else if ((w <= root.w) && (h <= root.h)) {
-                return root;
-            }
-            else {
-                return null;
-            }
-        },
-
-        splitNode: function(node, w, h) {
-            node.used = true;
-            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
-            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
-            return node;
-        }
-
-    };
-
-
-
-    var GrowingPacker = function() {};
-
-    GrowingPacker.prototype = {
-
-        fit: function(blocks) {
-            var n, node, block, len = blocks.length;
-            var w = len > 0 ? blocks[0].w : 0;
-            var h = len > 0 ? blocks[0].h : 0;
-            this.root = { x: 0, y: 0, w: w, h: h };
-            for (n = 0; n < len ; n++) {
-                block = blocks[n];
-                if (node = this.findNode(this.root, block.w, block.h)) {
-                    block.fit = this.splitNode(node, block.w, block.h);
-                }
-                else {
-                    block.fit = this.growNode(block.w, block.h);
-                }
-            }
-        },
-
-        findNode: function(root, w, h) {
-            if (root.used) {
-                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
-            }
-            else if ((w <= root.w) && (h <= root.h)) {
-                return root;
-            }
-            else {
-                return null;
-            }
-        },
-
-        splitNode: function(node, w, h) {
-            node.used = true;
-            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
-            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
-            return node;
-        },
-
-        growNode: function(w, h) {
-            var canGrowDown  = (w <= this.root.w);
-            var canGrowRight = (h <= this.root.h);
-
-            var shouldGrowRight = canGrowRight && (this.root.h >= (this.root.w + w)); // attempt to keep square-ish by growing right when height is much greater than width
-            var shouldGrowDown  = canGrowDown  && (this.root.w >= (this.root.h + h)); // attempt to keep square-ish by growing down  when width  is much greater than height
-
-            if (shouldGrowRight) {
-                return this.growRight(w, h);
-            }
-            else if (shouldGrowDown) {
-                return this.growDown(w, h);
-            }
-            else if (canGrowRight) {
-                return this.growRight(w, h);
-            }
-            else if (canGrowDown) {
-                return this.growDown(w, h);
-            }
-            else {
-                return null; // need to ensure sensible root starting size to avoid this happening
-            }
-        },
-
-        growRight: function(w, h) {
-            this.root = {
-                used: true,
-                x: 0,
-                y: 0,
-                w: this.root.w + w,
-                h: this.root.h,
-                down: this.root,
-                right: { x: this.root.w, y: 0, w: w, h: this.root.h }
-            };
-            var node;
-            if (node = this.findNode(this.root, w, h)) {
-                return this.splitNode(node, w, h);
-            }
-            else {
-                return null;
-            }
-        },
-
-        growDown: function(w, h) {
-            this.root = {
-                used: true,
-                x: 0,
-                y: 0,
-                w: this.root.w,
-                h: this.root.h + h,
-                down:  { x: 0, y: this.root.h, w: this.root.w, h: h },
-                right: this.root
-            };
-            var node;
-            if (node = this.findNode(this.root, w, h)) {
-                return this.splitNode(node, w, h);
-            }
-            else {
-                return null;
-            }
-        }
-
-    };
-
-
-
-    var sorts = {
-        random:  function() { return Math.random() - 0.5; },
-        w:       function(a, b) { return b.w - a.w; },
-        h:       function(a, b) { return b.h - a.h; },
-        a:       function(a, b) { return b.area - a.area; },
-        max:     function(a, b) { return Math.max(b.w, b.h) - Math.max(a.w, a.h); },
-        min:     function(a, b) { return Math.min(b.w, b.h) - Math.min(a.w, a.h); },
-        height:  function(a, b) { return sorts.msort(a, b, ['h', 'w']);               },
-        width:   function(a, b) { return sorts.msort(a, b, ['w', 'h']);               },
-        area:    function(a, b) { return sorts.msort(a, b, ['a', 'h', 'w']);          },
-        maxside: function(a, b) { return sorts.msort(a, b, ['max', 'min', 'h', 'w']); },
-        msort:   function(a, b, criteria) { /* sort by multiple criteria */
-            var diff, n;
-            for (n = 0; n < criteria.length; ++n) {
-                diff = sorts[ criteria[n] ](a, b);
-                if (diff !== 0) {
-                    return diff;
-                }
-            }
-            return 0;
-        }
-    };
-
-
-
-    // end of Jake's code
-
-
-
-    // aux, used to display blocks in unfitted property
-    var toString = function() {
-      return [this.w, ' x ', this.h].join('');
-    };
-
-
-
-    /**
-     * Binary Packing algorithm implementation
-     *
-     * Based on the work of Jake Gordon
-     *
-     * see https://github.com/jakesgordon/bin-packing/
-     *
-     * @class Ink.Util.BinPack
-     * @version 1
-     * @static
-     */
-    var BinPack = {
-
-        /**
-        * @method binPack
-        * @param {Object}      o              options
-        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
-        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
-        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
-        * @return {Object}
-        *     * {Number[2]} dimensions - resulted container size,
-        *     * {Number}    filled     - filled ratio,
-        *     * {Object[]}  fitted,
-        *     * {Object[]}  unfitted,
-        *     * {Object[]}  blocks
-        * @static
-        */
-        binPack: function(o) {
-            var i, f, bl;
-
-
-
-            // calculate area if not there already
-            for (i = 0, f = o.blocks.length; i < f; ++i) {
-                bl = o.blocks[i];
-                if (! ('area' in bl) ) {
-                    bl.area = bl.w * bl.h;
-                }
-            }
-
-
-
-            // apply algorithm
-            var packer = o.dimensions ? new Packer(o.dimensions[0], o.dimensions[1]) : new GrowingPacker();
-
-            if (!o.sorter) { o.sorter = 'maxside'; }
-
-            o.blocks.sort( sorts[ o.sorter ] );
-
-            packer.fit(o.blocks);
-
-            var dims2 = [packer.root.w, packer.root.h];
-
-
-
-            // layout is done here, generating report data...
-            var fitted   = [];
-            var unfitted = [];
-
-            for (i = 0, f = o.blocks.length; i < f; ++i) {
-                bl = o.blocks[i];
-                if (bl.fit) {
-                    fitted.push(bl);
-                }
-                else {
-                    bl.toString = toString; // TO AID SERIALIZATION
-                    unfitted.push(bl);
-                }
-            }
-
-            var area = dims2[0] * dims2[1];
-            var fit = 0;
-            for (i = 0, f = fitted.length; i < f; ++i) {
-                bl = fitted[i];
-                fit += bl.area;
-            }
-
-            return {
-                dimensions: dims2,
-                filled:     fit / area,
-                blocks:     o.blocks,
-                fitted:     fitted,
-                unfitted:   unfitted
-            };
-        }
-    };
-
-
-
-    return BinPack;
-
-});
 
 /**
  * @module Ink.Util.Date_1
@@ -10942,705 +8855,696 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Array_1
+ * @module Ink.Util.I18n_1
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Util.I18n', '1', [], function () {
+    'use strict';
+
+    var pattrText = /\{(?:(\{.*?})|(?:%s:)?(\d+)|(?:%s)?|([\w-]+))}/g;
+
+    var funcOrVal = function( ret , args ) {
+        if ( typeof ret === 'function' ) {
+            return ret.apply(this, args);
+        } else if (typeof ret !== undefined) {
+            return ret;
+        } else {
+            return '';
+        }
+    };
+
+    /**
+     * Creates a new internationalization helper object
+     *
+     * @class Ink.Util.I18n
+     * @constructor
+     *
+     * @param {Object} dict object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
+     *     @param {Object} dict.(dictionaries...) 
+     * @param {String} [lang='pt_PT'] language code of the target language
+     *
+     * @example
+     *      var dictionaries = {    // This could come from a JSONP request from your server
+     *          'pt_PT': {
+     *              'hello': 'olá',
+     *              'me': 'eu',
+     *              'i have a {} for you': 'tenho um {} para ti' // Old syntax using `{%s}` tokens still available
+     *          },
+     *          'pt_BR': {
+     *              'hello': 'oi',
+     *              'me': 'eu',
+     *              'i have a {} for you': 'tenho um {} para você'
+     *          }
+     *      };
+     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
+     *          var i18n = new I18n(dictionaries, 'pt_PT');
+     *          i18n.text('hello');  // returns 'olá'
+     *          i18n.text('i have a {} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
+     *          
+     *          i18n.lang('pt_BR');  // Changes language. pt_BR dictionary is loaded
+     *          i18n.text('hello');  // returns 'oi'
+     *
+     *          i18n.lang('en_US');  // Missing language.
+     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
+     *      });
+     *      
+     *  @example
+     *      // The old {%s} syntax from libsapo's i18n is still supported
+     *      i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
+     */
+    var I18n = function( dict , lang , testMode ) {
+        if ( !( this instanceof I18n ) ) { return new I18n( dict , lang , testMode ); }
+
+        this.reset( )
+            .lang( lang )
+            .testMode( testMode )
+            .append( dict || { } , lang );
+    };
+
+    I18n.prototype = {
+        reset: function( ) {
+            this._dicts    = [ ];
+            this._dict     = { };
+            this._testMode = false;
+            this._lang     = this._gLang;
+
+            return this;
+        },
+        /**
+         * Adds translation strings for this helper to use.
+         *
+         * @method append
+         * @param {Object} dict object containing language objects identified by their language code
+         * @example
+         *     var i18n = new I18n({}, 'pt_PT');
+         *     i18n.append({'pt_PT': {
+         *         'sfraggles': 'braggles'
+         *     }});
+         *     i18n.text('sfraggles') // -> 'braggles'
+         */
+        append: function( dict ) {
+            this._dicts.push( dict );
+
+            this._dict = Ink.extendObj(this._dict , dict[ this._lang ] );
+
+            return this;
+        },
+        /**
+         * Get the language code
+         *
+         * @returns {String} the language code for this instance
+         * @method {String} lang
+         */
+        /**
+         * Set the language. If there are more dictionaries available in cache, they will be loaded.
+         *
+         * @method  lang
+         * @param   lang    {String} Language code to set this instance to.
+         */
+        lang: function( lang ) {
+            if ( !arguments.length ) { return this._lang; }
+
+            if ( lang && this._lang !== lang ) {
+                this._lang = lang;
+
+                this._dict = { };
+
+                for ( var i = 0, l = this._dicts.length; i < l; i++ ) {
+                    this._dict = Ink.extendObj( this._dict , this._dicts[ i ][ lang ] || { } );
+                }
+            }
+
+            return this;
+        },
+        /**
+         * Get the testMode
+         *
+         * @returns {Boolean} the testMode for this instance
+         * @method {Boolean} testMode
+         */
+        /**
+         * Sets or unsets test mode. In test mode, unknown strings are wrapped
+         * in `[ ... ]`. This is useful for debugging your application and
+         * making sure all your translation keys are in place.
+         *
+         * @method testMode
+         * @param {Boolean} bool boolean value to set the test mode to.
+         */
+        testMode: function( bool ) {
+            if ( !arguments.length ) { return !!this._testMode; }
+
+            if ( bool !== undefined  ) { this._testMode = !!bool; }
+
+            return this;
+        },
+
+        /**
+         * Return an arbitrary key from the current language dictionary
+         *
+         * @method getKey
+         * @param {String} key
+         * @return {Any} The object which happened to be in the current language dictionary on the given key.
+         *
+         * @example
+         *      _.getKey('astring'); // -> 'a translated string'
+         *      _.getKey('anobject'); // -> {'a': 'translated object'}
+         *      _.getKey('afunction'); // -> function () { return 'this is a localized function' }
+         */
+        getKey: function( key ) {
+            var ret;
+            var gLang = this._gLang;
+            var lang  = this._lang;
+    
+            if ( key in this._dict ) {
+                ret = this._dict[ key ];
+            } else {
+                I18n.lang( lang );
+    
+                ret = this._gDict[ key ];
+    
+                I18n.lang( gLang );
+            }
+    
+            return ret;
+        },
+
+        /**
+         * Given a translation key, return a translated string, with replaced parameters.
+         * When a translated string is not available, the original string is returned unchanged.
+         *
+         * @method {String} text
+         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
+         * @param {Object} [namedParms] named replacements. Replaces {named} with values in this object.
+         * @param {String} [arg1] replacement #1 (replaces first {} and all {1})
+         * @param {String} [arg2] replacement #2 (replaces second {} and all {2})
+         * @param {String} [argn...] replacement #n (replaces nth {} and all {n})
+         *
+         * @example
+         *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
+         *      // returns 'Gosto muito de carros e o céu é azul.'
+         *
+         * @example
+         *      _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
+         *      // returns 'O carro é azul como azul é o FCP.'
+         *
+         *  @example
+         *      _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
+         *      // -> 'O coisinho dava-se com a coisinha'
+         *
+         *  @example
+         *      // This is a bit more complex
+         *      var i18n = make().lang('pt_PT').append({
+         *          pt_PT: {
+         *              array: [1, 2],
+         *              object: {'a': '-a-', 'b': '-b-'},
+         *              func: function (a, b) {return '[[' + a + ',' + b + ']]';}
+         *          }
+         *      });
+         *      i18n.text('array', 0); // -> '1'
+         *      i18n.text('object', 'a'); // -> '-a-'
+         *      i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
+         */
+        text: function( str /*, replacements...*/ ) {
+            if ( typeof str !== 'string' ) { return; } // Backwards-compat
+
+            var pars = Array.prototype.slice.call( arguments , 1 );
+            var idx = 0;
+            var isObj = typeof pars[ 0 ] === 'object';
+
+            var original = this.getKey( str );
+            if ( original === undefined ) { original = this._testMode ? '[' + str + ']' : str; }
+            if ( typeof original === 'number' ) { original += ''; }
+
+            if (typeof original === 'string') {
+                original = original.replace( pattrText , function( m , $1 , $2 , $3 ) {
+                    var ret =
+                        $1 ? $1 :
+                        $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
+                        $3 ? pars[ 0 ][ $3 ] || '' :
+                             pars[ (idx++) + ( isObj ? 1 : 0 ) ]
+                    return funcOrVal( ret , [idx].concat(pars) );
+                });
+                return original;
+            }
+             
+            return (
+                typeof original === 'function' ? original.apply( this , pars ) :
+                original instanceof Array      ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
+                typeof original === 'object'   ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
+                                                 '');
+        },
+
+        /**
+         * Given a singular string, a plural string, and a number, translates
+         * either the singular or plural string.
+         *
+         * @method ntext
+         * @return {String}
+         *
+         * @param {String} strSin   word to use when count is 1
+         * @param {String} strPlur  word to use otherwise
+         * @param {Number} count    number which defines which word to use
+         * @param [...]             extra arguments, to be passed to `text()`
+         *
+         * @example
+         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
+         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
+         * 
+         * @example
+         *     // The "count" argument is passed to text()
+         *     i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
+         *     i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
+         */
+        ntext: function( strSin , strPlur , count ) {
+            var pars = Array.prototype.slice.apply( arguments );
+            var original;
+
+            if ( pars.length === 2 && typeof strPlur === 'number' ) {
+                original = this.getKey( strSin );
+                if ( !( original instanceof Array ) ) { return ''; }
+
+                pars.splice( 0 , 1 );
+                original = original[ strPlur === 1 ? 0 : 1 ];
+            } else {
+                pars.splice( 0 , 2 );
+                original = count === 1 ? strSin : strPlur;
+            }
+
+            return this.text.apply( this , [ original ].concat( pars ) );
+        },
+
+        /**
+         * Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
+         *
+         * This works by using transforms (in the form of Objects or Functions) passed into the
+         * function or found in the special key `_ordinals` in the active language dictionary.
+         *
+         * @method ordinal
+         *
+         * @param {Number}          num             Input number
+         * 
+         * @param {Object|Function} [options={}]
+         *
+         *    Maps for translating. Each of these options' fallback is found in the current
+         *    language's dictionary. The lookup order is the following:
+         *   
+         *        1. `exceptions`
+         *        2. `byLastDigit`
+         *        3. `default`
+         *   
+         *    Each of these may be either an `Object` or a `Function`. If it's a function, it
+         *    is called (with `number` and `digit` for any function except for byLastDigit,
+         *    which is called with the `lastDigit` of the number in question), and if the
+         *    function returns a string, that is used. If it's an object, the property is
+         *    looked up using `[...]`. If what is found is a string, it is used.
+         *
+         * @param {Object|Function} [options.byLastDigit={}]
+         *    If the language requires the last digit to be considered, mappings of last digits
+         *    to ordinal suffixes can be created here.
+         *
+         * @param {Object|Function} [options.exceptions={}]
+         *    Map unique, special cases to their ordinal suffixes.
+         *
+         * @returns {String}        Ordinal suffix for `num`.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         pt_PT: {  // 1º, 2º, 3º, 4º, ...
+         *             _ordinal: {  // The _ordinals key each translation dictionary is special.
+         *                 'default': "º" // Usually the suffix is "º" in portuguese...
+         *             }
+         *         },
+         *         fr: {  // 1er, 2e, 3e, 4e, ...
+         *             _ordinal: {  // The _ordinals key is special.
+         *                 'default': "e", // Usually the suffix is "e" in french...
+         *                 exceptions: {
+         *                     1: "er"   // ... Except for the number one.
+         *                 }
+         *             }
+         *         },
+         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
+         *             _ordinal: {
+         *                 'default': "th",// Usually the digit is "th" in english...
+         *                 byLastDigit: {
+         *                     1: "st",  // When the last digit is 1, use "th"...
+         *                     2: "nd",  // When the last digit is 2, use "nd"...
+         *                     3: "rd"   // When the last digit is 3, use "rd"...
+         *                 },
+         *                 exceptions: { // But these numbers are special
+         *                     0: "",
+         *                     11: "th",
+         *                     12: "th",
+         *                     13: "th"
+         *                 }
+         *             }
+         *         }
+         *     }, 'pt_PT');
+         *
+         *     i18n.ordinal(1);    // returns 'º'
+         *     i18n.ordinal(2);    // returns 'º'
+         *     i18n.ordinal(11);   // returns 'º'
+         * 
+         *     i18n.lang('fr');
+         *     i18n.ordinal(1);    // returns 'er'
+         *     i18n.ordinal(2);    // returns 'e'
+         *     i18n.ordinal(11);   // returns 'e'
+         *
+         *     i18n.lang('en_US');
+         *     i18n.ordinal(1);    // returns 'st'
+         *     i18n.ordinal(2);    // returns 'nd'
+         *     i18n.ordinal(12);   // returns 'th'
+         *     i18n.ordinal(22);   // returns 'nd'
+         *     i18n.ordinal(3);    // returns 'rd'
+         *     i18n.ordinal(4);    // returns 'th'
+         *     i18n.ordinal(5);    // returns 'th'
+         *
+         **/
+        ordinal: function( num ) {
+            if ( num === undefined ) { return ''; }
+
+            var lastDig = +num.toString( ).slice( -1 );
+
+            var ordDict  = this.getKey( '_ordinals' );
+            if ( ordDict === undefined ) { return ''; }
+
+            if ( typeof ordDict === 'string' ) { return ordDict; }
+
+            var ret;
+
+            if ( typeof ordDict === 'function' ) {
+                ret = ordDict( num , lastDig );
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            if ( 'exceptions' in ordDict ) {
+                ret = typeof ordDict.exceptions === 'function' ? ordDict.exceptions( num , lastDig ) :
+                      num in ordDict.exceptions                ? funcOrVal( ordDict.exceptions[ num ] , [num , lastDig] ) :
+                                                                 undefined;
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            if ( 'byLastDigit' in ordDict ) {
+                ret = typeof ordDict.byLastDigit === 'function' ? ordDict.byLastDigit( lastDig , num ) :
+                      lastDig in ordDict.byLastDigit            ? funcOrVal( ordDict.byLastDigit[ lastDig ] , [lastDig , num] ) :
+                                                                  undefined;
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            if ( 'default' in ordDict ) {
+                ret = funcOrVal( ordDict['default'] , [ num , lastDig ] );
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            return '';
+        },
+
+        /**
+         * Returns an alias to `text()`, for convenience. The resulting function is
+         * traditionally assigned to "_".
+         *
+         * @method alias
+         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         'pt_PT': {
+         *             'hi': 'olá',
+         *             '{} day': '{} dia',
+         *             '{} days': '{} dias',
+         *             '_ordinals': {
+         *                 'default': 'º'
+         *             }
+         *         }
+         *     }, 'pt_PT');
+         *     var _ = i18n.alias();
+         *     _('hi');  // -> 'olá'
+         *     _('{} days', 3);  // -> '3 dias'
+         *     _.ntext('{} day', '{} days', 2);  // -> '2 dias'
+         *     _.ntext('{} day', '{} days', 1);  // -> '1 dia'
+         *     _.ordinal(3);  // -> 'º'
+         */
+        alias: function( ) {
+            var ret      = Ink.bind( I18n.prototype.text     , this );
+            ret.ntext    = Ink.bind( I18n.prototype.ntext    , this );
+            ret.append   = Ink.bind( I18n.prototype.append   , this );
+            ret.ordinal  = Ink.bind( I18n.prototype.ordinal  , this );
+            ret.testMode = Ink.bind( I18n.prototype.testMode , this );
+
+            return ret;
+        }
+    };
+
+    /**
+     * @static
+     * @method I18n.reset
+     *
+     * Reset I18n global state (global dictionaries, and default language for instances)
+     **/
+    I18n.reset = function( ) {
+        I18n.prototype._gDicts = [ ];
+        I18n.prototype._gDict  = { };
+        I18n.prototype._gLang  = 'pt_PT';
+    };
+    I18n.reset( );
+
+    /**
+     * @static
+     * @method I18n.append
+     *
+     * @param dict {Object}     Dictionary to be added
+     * @param lang {String}     Language to be added to
+     *
+     * Add a dictionary to be used in all I18n instances for the corresponding language
+     */
+    I18n.append = function( dict , lang ) {
+        if ( lang ) {
+            if ( !( lang in dict ) ) {
+                var obj = { };
+
+                obj[ lang ] = dict;
+
+                dict = obj;
+            }
+
+            if ( lang !== I18n.prototype._gLang ) { I18n.lang( lang ); }
+        }
+
+        I18n.prototype._gDicts.push( dict );
+
+        Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
+    };
+
+    /**
+     * @static
+     * @method I18n.lang
+     * 
+     * @param lang {String} String in the format `"pt_PT"`, `"fr"`, etc.
+     *
+     * Set global default language of I18n instances to `lang`
+     */
+    /**
+     * @static
+     * @method I18n.lang
+     *
+     * Get the current default language of I18n instances.
+     *
+     * @return {String} language code
+     */
+    I18n.lang = function( lang ) {
+        if ( !arguments.length ) { return I18n.prototype._gLang; }
+
+        if ( lang && I18n.prototype._gLang !== lang ) {
+            I18n.prototype._gLang = lang;
+
+            I18n.prototype._gDict = { };
+
+            for ( var i = 0, l = I18n.prototype._gDicts.length; i < l; i++ ) {
+                Ink.extendObj( I18n.prototype._gDict , I18n.prototype._gDicts[ i ][ lang ] || { } );
+            }
+        }
+    };
+    
+    return I18n;
+});
+
+/**
+ * @module Ink.Util.Cookie_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.Util.Array', '1', [], function() {
+Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 
     'use strict';
 
-    var arrayProto = Array.prototype;
-
     /**
-     * Utility functions to use with Arrays
+     * Utilities for Cookie handling
      *
-     * @class Ink.Util.Array
+     * @class Ink.Util.Cookie
      * @version 1
      * @static
      */
-    var InkArray = {
+    var Cookie = {
 
         /**
-         * Checks if value exists in array
+         * Gets an object with current page cookies
          *
-         * @method inArray
-         * @param {Mixed} value
-         * @param {Array} arr
-         * @return {Boolean}    True if value exists in the array
+         * @method get
+         * @param {String} name
+         * @return {String|Object} If the name is specified, it returns the value related to that property. Otherwise it returns the full cookie object
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3' ];
-         *         if( InkArray.inArray( 'value2', testArray ) === true ){
-         *             console.log( "Yep it's in the array." );
-         *         } else {
-         *             console.log( "No it's NOT in the array." );
-         *         }
+         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+         *         var myCookieValue = InkCookie.get('someVarThere');
+         *         console.log( myCookieValue ); // This will output the value of the cookie 'someVarThere', from the cookie object.
          *     });
          */
-        inArray: function(value, arr) {
-            if (typeof arr === 'object') {
-                for (var i = 0, f = arr.length; i < f; ++i) {
-                    if (arr[i] === value) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        },
+        get: function(name)
+        {
+            var cookie = document.cookie || false;
 
-        /**
-         * Sorts an array of object by an object property
-         *
-         * @method sortMulti
-         * @param {Array} arr array of objects to sort
-         * @param {String} key property to sort by
-         * @return {Array|Boolean} False if it's not an array, returns a sorted array if it's an array.
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [
-         *             { 'myKey': 'value1' },
-         *             { 'myKey': 'value2' },
-         *             { 'myKey': 'value3' }
-         *         ];
-         *
-         *         InkArray.sortMulti( testArray, 'myKey' );
-         *     });
-         */
-        sortMulti: function(arr, key) {
-            if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
-            if (typeof key !== 'string') { return arr.sort(); }
-            if (arr.length > 0) {
-                if (typeof(arr[0][key]) === 'undefined') { return false; }
-                arr.sort(function(a, b){
-                    var x = a[key];
-                    var y = b[key];
-                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-                });
-            }
-            return arr;
-        },
-
-        /**
-         * Returns the associated key of an array value
-         *
-         * @method keyValue
-         * @param {String} value Value to search for
-         * @param {Array} arr Array where the search will run
-         * @param {Boolean} [first] Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes.
-         * @return {Boolean|Number|Array} False if not exists | number if exists and 3rd input param is true | array if exists and 3rd input param is not set or it is !== true
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
-         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
-         *     });
-         */
-        keyValue: function(value, arr, first) {
-            if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
-                var aKeys = [];
-                for (var i = 0, f = arr.length; i < f; ++i) {
-                    if (arr[i] === value) {
-                        if (typeof first !== 'undefined' && first === true) {
-                            return i;
-                        } else {
-                            aKeys.push(i);
+            var _Cookie = {};
+            if(cookie) {
+                cookie = cookie.replace(new RegExp("; ", "g"), ';');
+                var aCookie = cookie.split(';');
+                var aItem = [];
+                if(aCookie.length > 0) {
+                    for(var i=0; i < aCookie.length; i++) {
+                        aItem = aCookie[i].split('=');
+                        if(aItem.length === 2) {
+                            _Cookie[aItem[0]] = decodeURIComponent(aItem[1]);
                         }
-                    }
-                }
-                return aKeys;
-            }
-            return false;
-        },
-
-        /**
-         * Returns the array shuffled, false if the param is not an array
-         *
-         * @method shuffle
-         * @param {Array} arr Array to shuffle
-         * @return {Boolean|Number|Array} False if not an array | Array shuffled
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
-         *     });
-         */
-        shuffle: function(arr) {
-            if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
-            var total   = arr.length,
-                tmp1    = false,
-                rnd     = false;
-
-            while (total--) {
-                rnd        = Math.floor(Math.random() * (total + 1));
-                tmp1       = arr[total];
-                arr[total] = arr[rnd];
-                arr[rnd]   = tmp1;
-            }
-            return arr;
-        },
-
-        /**
-         * Runs a function through each of the elements of an array
-         *
-         * @method forEach
-         * @param {Array} arr Array to be cycled/iterated
-         * @param {Function} cb The function receives as arguments the value, index and array.
-         * @return {Array} Array iterated.
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         InkArray.forEach( testArray, function( value, index, arr ){
-         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
-         *         });
-         *     });
-         */
-        forEach: function(array, callback, context) {
-            if (arrayProto.forEach) {
-                return arrayProto.forEach.call(array, callback, context);
-            }
-            for (var i = 0, len = array.length >>> 0; i < len; i++) {
-                callback.call(context, array[i], i, array);
-            }
-        },
-
-        /**
-         * Alias for backwards compatibility. See forEach
-         *
-         * @method forEach
-         */
-        each: function () {
-            InkArray.forEach.apply(InkArray, [].slice.call(arguments));
-        },
-
-        /**
-         * Run a `map` function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.
-         * @method map
-         * @param {Array} array     The array to map over
-         * @param {Function} map    The map function. Will take `(item, index, array)` and `this` will be the `context` argument.
-         * @param {Object} [context]    Object to be `this` in the map function.
-         *
-         * @example
-         *      InkArray.map([1, 2, 3, 4], function (item) {
-         *          return item + 1;
-         *      }); // -> [2, 3, 4, 5]
-         */
-        map: function (array, callback, context) {
-            if (arrayProto.map) {
-                return arrayProto.map.call(array, callback, context);
-            }
-            var mapped = new Array(len);
-            for (var i = 0, len = array.length >>> 0; i < len; i++) {
-                mapped[i] = callback.call(context, array[i], i, array);
-            }
-            return mapped;
-        },
-
-        /**
-         * Run a test function through all the input array. Items which pass the test function (for which the test function returned `true`) are kept in the array. Other items are removed.
-         * @param {Array} array
-         * @param {Function} test       A test function taking `(item, index, array)`
-         * @param {Object} [context]    Object to be `this` in the test function.
-         * @return filtered array
-         *
-         * @example
-         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
-         *          return val > 2;
-         *      })  // -> [3, 4, 5]
-         */
-        filter: function (array, test, context) {
-            if (arrayProto.filter) {
-                return arrayProto.filter.call(array, test, context);
-            }
-            var filtered = [],
-                val = null;
-            for (var i = 0, len = array.length; i < len; i++) {
-                val = array[i]; // it might be mutated
-                if (test.call(context, val, i, array)) {
-                    filtered.push(val);
-                }
-            }
-            return filtered;
-        },
-
-        /**
-         * Runs a callback function, which should return true or false.
-         * If one of the 'runs' returns true, it will return. Otherwise if none returns true, it will return false.
-         * See more at: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some (MDN)
-         *
-         * @method some
-         * @param {Array} arr The array you walk to iterate through
-         * @param {Function} cb The callback that will be called on the array's elements. It receives the value, the index and the array as arguments.
-         * @param {Object} Context object of the callback function
-         * @return {Boolean} True if the callback returns true at any point, false otherwise
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
-         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
-         *
-         *         function myTestFunction( value, index, arr ){
-         *             if( value > 90 ){
-         *                 return true;
-         *             }
-         *             return false;
-         *         }
-         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
-         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
-         *     });
-         */
-        some: function(arr, cb, context){
-
-            if (arr === null){
-                throw new TypeError('First argument is invalid.');
-            }
-
-            var t = Object(arr);
-            var len = t.length >>> 0;
-            if (typeof cb !== "function"){ throw new TypeError('Second argument must be a function.'); }
-
-            for (var i = 0; i < len; i++) {
-                if (i in t && cb.call(context, t[i], i, t)){ return true; }
-            }
-
-            return false;
-        },
-
-        /**
-         * Returns an array containing every item that is shared between the two given arrays
-         *
-         * @method intersect
-         * @param {Array} arr Array1 to be intersected with Array2
-         * @param {Array} arr Array2 to be intersected with Array1
-         * @return {Array} Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
-         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
-         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
-         *     });
-         */
-        intersect: function(arr1, arr2) {
-            if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
-                return [];
-            }
-
-            var shared = [];
-            for (var i = 0, I = arr1.length; i<I; ++i) {
-                for (var j = 0, J = arr2.length; j < J; ++j) {
-                    if (arr1[i] === arr2[j]) {
-                        shared.push(arr1[i]);
+                        aItem = [];
                     }
                 }
             }
-
-            return shared;
+            if(name) {
+                if(typeof(_Cookie[name]) !== 'undefined') {
+                    return _Cookie[name];
+                } else {
+                    return null;
+                }
+            }
+            return _Cookie;
         },
 
         /**
-         * Convert lists type to type array
+         * Sets a cookie
          *
-         * @method convert
-         * @param {Array} arr Array to be converted
-         * @return {Array} Array resulting of the conversion
+         * @method set
+         * @param {String} name Cookie name
+         * @param {String} value Cookie value
+         * @param {Number} [expires] Number to add to current Date in seconds
+         * @param {String} [path] Path to sets cookie (default '/')
+         * @param {String} [domain] Domain to sets cookie (default current hostname)
+         * @param {Boolean} [secure] True if wants secure, default 'false'
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         testArray.myMethod = function(){
-         *             console.log('stuff');
-         *         }
-         *
-         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
+         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+         *         var expireDate = new Date( 2014,00,01, 0,0,0);
+         *         InkCookie.set( 'someVarThere', 'anyValueHere', expireDate.getTime() );
          *     });
          */
-        convert: function(arr) {
-            return arrayProto.slice.call(arr || [], 0);
+        set: function(name, value, expires, path, domain, secure)
+        {
+            var sName;
+            if(!name || value===false || typeof(name) === 'undefined' || typeof(value) === 'undefined') {
+                return false;
+            } else {
+                sName = name+'='+encodeURIComponent(value);
+            }
+            var sExpires = false;
+            var sPath = false;
+            var sDomain = false;
+            var sSecure = false;
+
+            if(expires && typeof(expires) !== 'undefined' && !isNaN(expires)) {
+                var oDate = new Date();
+                var sDate = (parseInt(Number(oDate.valueOf()), 10) + (Number(parseInt(expires, 10)) * 1000));
+
+                var nDate = new Date(sDate);
+                var expiresString = nDate.toGMTString();
+
+                var re = new RegExp("([^\\s]+)(\\s\\d\\d)\\s(\\w\\w\\w)\\s(.*)");
+                expiresString = expiresString.replace(re, "$1$2-$3-$4");
+
+                sExpires = 'expires='+expiresString;
+            } else {
+                if(typeof(expires) !== 'undefined' && !isNaN(expires) && Number(parseInt(expires, 10))===0) {
+                    sExpires = '';
+                } else {
+                    sExpires = 'expires=Thu, 01-Jan-2037 00:00:01 GMT';
+                }
+            }
+
+            if(path && typeof(path) !== 'undefined') {
+                sPath = 'path='+path;
+            } else {
+                sPath = 'path=/';
+            }
+
+            if(domain && typeof(domain) !== 'undefined') {
+                sDomain = 'domain='+domain;
+            } else {
+                var portClean = new RegExp(":(.*)");
+                sDomain = 'domain='+window.location.host;
+                sDomain = sDomain.replace(portClean,"");
+            }
+
+            if(secure && typeof(secure) !== 'undefined') {
+                sSecure = secure;
+            } else {
+                sSecure = false;
+            }
+
+            document.cookie = sName+'; '+sExpires+'; '+sPath+'; '+sDomain+'; '+sSecure;
         },
 
         /**
-         * Insert value into the array on specified idx
-         *
-         * @method insert
-         * @param {Array} arr Array where the value will be inserted
-         * @param {Number} idx Index of the array where the value should be inserted
-         * @param {Mixed} value Value to be inserted
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
-         *     });
-         */
-        insert: function(arr, idx, value) {
-            arr.splice(idx, 0, value);
-        },
-
-        /**
-         * Remove a range of values from the array
+         * Delete a cookie
          *
          * @method remove
-         * @param {Array} arr Array where the value will be inserted
-         * @param {Number} from Index of the array where the removal will start removing.
-         * @param {Number} rLen Number of items to be removed from the index onwards.
-         * @return {Array} An array with the remaining values
+         * @param {String} cookieName Cookie name
+         * @param {String} [path] Path of the cookie (default '/')
+         * @param {String} [domain] Domain of the cookie (default current hostname)
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
-         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
+         *     Ink.requireModules(['Ink.Util.Cookie_1'], function( InkCookie ){
+         *         InkCookie.remove( 'someVarThere' );
          *     });
          */
-        remove: function(arr, from, rLen){
-            var output = [];
-
-            for(var i = 0, iLen = arr.length; i < iLen; i++){
-                if(i >= from && i < from + rLen){
-                    continue;
-                }
-
-                output.push(arr[i]);
-            }
-
-            return output;
-        }
-    };
-
-    return InkArray;
-
-});
-
-
-
-/**
- * @module Ink.Util.Json_1
- *
- * @author inkdev AT sapo.pt
- */
-
-Ink.createModule('Ink.Util.Json', '1', [], function() {
-    'use strict';
-
-    var function_call = Function.prototype.call;
-    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-
-    function twoDigits(n) {
-        var r = '' + n;
-        if (r.length === 1) {
-            return '0' + r;
-        } else {
-            return r;
-        }
-    }
-
-    var date_toISOString = Date.prototype.toISOString ?
-        Ink.bind(function_call, Date.prototype.toISOString) :
-        function(date) {
-            // Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            return date.getUTCFullYear()
-                + '-' + twoDigits( date.getUTCMonth() + 1 )
-                + '-' + twoDigits( date.getUTCDate() )
-                + 'T' + twoDigits( date.getUTCHours() )
-                + ':' + twoDigits( date.getUTCMinutes() )
-                + ':' + twoDigits( date.getUTCSeconds() )
-                + '.' + String( (date.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
-                + 'Z';
-        };
-
-    /**
-     * Use this class to convert JSON strings to JavaScript objects
-     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
-     * Internally, the standard JSON implementation is used if available
-     * Otherwise, the functions mimic the standard implementation.
-     *
-     * Here's how to produce JSON from an existing object:
-     * 
-     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
-     *          var obj = {
-     *              key1: 'value1',
-     *              key2: 'value2',
-     *              keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
-     *          };
-     *          Json.stringify(obj);  // The above object as a JSON string
-     *      });
-     *
-     * And here is how to parse JSON:
-     *
-     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
-     *          var source = '{"key": "value", "array": [true, null, false]}';
-     *          Json.parse(source);  // The above JSON string as an object
-     *      });
-     * @class Ink.Util.Json
-     * @static
-     * 
-     */
-    var InkJson = {
-        _nativeJSON: window.JSON || null,
-
-        _convertToUnicode: false,
-
-        // Escape characters so as to embed them in JSON strings
-        _escape: function (theString) {
-            var _m = { '\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"': '\\"',  '\\': '\\\\' };
-
-            if (/["\\\x00-\x1f]/.test(theString)) {
-                theString = theString.replace(/([\x00-\x1f\\"])/g, function(a, b) {
-                    var c = _m[b];
-                    if (c) {
-                        return c;
-                    }
-                    c = b.charCodeAt();
-                    return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
-                });
-            }
-
-            return theString;
-        },
-
-        // A character conversion map
-        _toUnicode: function (theString)
+        remove: function(cookieName, path, domain)
         {
-            if(!this._convertToUnicode) {
-                return this._escape(theString);
+            //var expiresDate = 'Thu, 01-Jan-1970 00:00:01 GMT';
+            var sPath = false;
+            var sDomain = false;
+            var expiresDate = -999999999;
+
+            if(path && typeof(path) !== 'undefined') {
+                sPath = path;
             } else {
-                var unicodeString = '';
-                var inInt = false;
-                var theUnicode = false;
-                var i = 0;
-                var total = theString.length;
-                while(i < total) {
-                    inInt = theString.charCodeAt(i);
-                    if( (inInt >= 32 && inInt <= 126) ||
-                            //(inInt >= 48 && inInt <= 57) ||
-                            //(inInt >= 65 && inInt <= 90) ||
-                            //(inInt >= 97 && inInt <= 122) ||
-                            inInt === 8 ||
-                            inInt === 9 ||
-                            inInt === 10 ||
-                            inInt === 12 ||
-                            inInt === 13 ||
-                            inInt === 32 ||
-                            inInt === 34 ||
-                            inInt === 47 ||
-                            inInt === 58 ||
-                            inInt === 92) {
-
-                        if(inInt === 34 || inInt === 92 || inInt === 47) {
-                            theUnicode = '\\'+theString.charAt(i);
-                        } else if(inInt === 8) {
-                            theUnicode = '\\b';
-                        } else if(inInt === 9) {
-                            theUnicode = '\\t';
-                        } else if(inInt === 10) {
-                            theUnicode = '\\n';
-                        } else if(inInt === 12) {
-                            theUnicode = '\\f';
-                        } else if(inInt === 13) {
-                            theUnicode = '\\r';
-                        } else {
-                            theUnicode = theString.charAt(i);
-                        }
-                    } else {
-                        if(this._convertToUnicode) {
-                            theUnicode = theString.charCodeAt(i).toString(16)+''.toUpperCase();
-                            while (theUnicode.length < 4) {
-                                theUnicode = '0' + theUnicode;
-                            }
-                            theUnicode = '\\u' + theUnicode;
-                        } else {
-                            theUnicode = theString.charAt(i);
-                        }
-                    }
-                    unicodeString += theUnicode;
-
-                    i++;
-                }
-
-                return unicodeString;
+                sPath = '/';
             }
 
-        },
-
-        _stringifyValue: function(param) {
-            if (typeof param === 'string') {
-                return '"' + this._toUnicode(param) + '"';
-            } else if (typeof param === 'number' && (isNaN(param) || !isFinite(param))) {  // Unusable numbers go null
-                return 'null';
-            } else if (typeof param === 'undefined' || param === null) {  // And so does undefined
-                return 'null';
-            } else if (typeof param.toJSON === 'function') {
-                var t = param.toJSON();
-                if (typeof t === 'string') {
-                    return '"' + this._escape(t) + '"';
-                } else {
-                    return this._escape(t.toString());
-                }
-            } else if (typeof param === 'number' || typeof param === 'boolean') {  // These ones' toString methods return valid JSON.
-                return '' + param;
-            } else if (typeof param === 'function') {
-                return 'null';  // match JSON.stringify
-            } else if (param.constructor === Date) {
-                throw ''
-                return '"' + this._escape(date_toISOString(param)) + '"';
-            } else if (param.constructor === Array) {
-                var arrayString = '';
-                for (var i = 0, len = param.length; i < len; i++) {
-                    if (i > 0) {
-                        arrayString += ',';
-                    }
-                    arrayString += this._stringifyValue(param[i]);
-                }
-                return '[' + arrayString + ']';
-            } else {  // Object
-                var objectString = '';
-                for (var k in param)  {
-                    if ({}.hasOwnProperty.call(param, k)) {
-                        if (objectString !== '') {
-                            objectString += ',';
-                        }
-                        objectString += '"' + this._escape(k) + '": ' + this._stringifyValue(param[k]);
-                    }
-                }
-                return '{' + objectString + '}';
-            }
-        },
-
-        /**
-         * serializes a JSON object into a string.
-         *
-         * @method stringify
-         * @param {Object}      input               Data to be serialized into JSON
-         * @param {Boolean}     convertToUnicode    When `true`, converts string contents to unicode \uXXXX
-         * @return {String}     serialized string
-         *
-         * @example
-         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
-         */
-        stringify: function(input, convertToUnicode) {
-            this._convertToUnicode = !!convertToUnicode;
-            if(!this._convertToUnicode && this._nativeJSON) {
-                return this._nativeJSON.stringify(input);
-            }
-            return this._stringifyValue(input);  // And recurse.
-        },
-        
-        /**
-         * @method parse
-         * @param text      {String}    Input string
-         * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
-         * 
-         * @example
-         * Simple example:
-         *
-         *      Json.parse('{"a": "3","numbers":false}',
-         *          function (key, value) {
-         *              if (!this.numbers && key === 'a') {
-         *                  return "NO NUMBERS";
-         *              } else {
-         *                  return value;
-         *              }
-         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
-         */
-        /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
-        parse: function (text, reviver) {
-            /*jshint evil:true*/
-
-// The parse method takes a text and an optional reviver function, and returns
-// a JavaScript value if the text is a valid JSON text.
-
-            var j;
-
-            function walk(holder, key) {
-
-// The walk method is used to recursively walk the resulting structure so
-// that modifications can be made.
-
-                var k, v, value = holder[key];
-                if (value && typeof value === 'object') {
-                    for (k in value) {
-                        if (Object.prototype.hasOwnProperty.call(value, k)) {
-                            v = walk(value, k);
-                            if (v !== undefined) {
-                                value[k] = v;
-                            } else {
-                                delete value[k];
-                            }
-                        }
-                    }
-                }
-                return reviver.call(holder, key, value);
+            if(domain && typeof(domain) !== 'undefined') {
+                sDomain = domain;
+            } else {
+                sDomain = window.location.host;
             }
 
-
-// Parsing happens in four stages. In the first stage, we replace certain
-// Unicode characters with escape sequences. JavaScript handles many characters
-// incorrectly, either silently deleting them, or treating them as line endings.
-
-            text = String(text);
-            cx.lastIndex = 0;
-            if (cx.test(text)) {
-                text = text.replace(cx, function (a) {
-                    return '\\u' +
-                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-                });
-            }
-
-// In the second stage, we run the text against regular expressions that look
-// for non-JSON patterns. We are especially concerned with '()' and 'new'
-// because they can cause invocation, and '=' because it can cause mutation.
-// But just to be safe, we want to reject all unexpected forms.
-
-// We split the second stage into 4 regexp operations in order to work around
-// crippling inefficiencies in IE's and Safari's regexp engines. First we
-// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
-// replace all simple value tokens with ']' characters. Third, we delete all
-// open brackets that follow a colon or comma or that begin the text. Finally,
-// we look to see that the remaining characters are only whitespace or ']' or
-// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
-
-            if (/^[\],:{}\s]*$/
-                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-
-// In the third stage we use the eval function to compile the text into a
-// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
-// in JavaScript: it can begin a block or an object literal. We wrap the text
-// in parens to eliminate the ambiguity.
-
-                j = eval('(' + text + ')');
-
-// In the optional fourth stage, we recursively walk the new structure, passing
-// each name/value pair to a reviver function for possible transformation.
-
-                return typeof reviver === 'function'
-                    ? walk({'': j}, '')
-                    : j;
-            }
-
-// If the text is not JSON parseable, then a SyntaxError is thrown.
-
-            throw new SyntaxError('JSON.parse');
+            this.set(cookieName, 'deleted', expiresDate, sPath, sDomain);
         }
     };
 
-    return InkJson;
+    return Cookie;
+
 });
 
 /**
@@ -14260,5 +12164,318 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     };
 
     return Validator;
+
+});
+/**
+ * @module Ink.Util.BinPack_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Util.BinPack', '1', [], function() {
+
+    'use strict';
+
+    /*jshint boss:true */
+
+    // https://github.com/jakesgordon/bin-packing/
+
+    /*
+        Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+    */
+
+
+
+    var Packer = function(w, h) {
+        this.init(w, h);
+    };
+
+    Packer.prototype = {
+
+        init: function(w, h) {
+            this.root = { x: 0, y: 0, w: w, h: h };
+        },
+
+        fit: function(blocks) {
+            var n, node, block;
+            for (n = 0; n < blocks.length; ++n) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
+                }
+            }
+        },
+
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
+            }
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        },
+
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        }
+
+    };
+
+
+
+    var GrowingPacker = function() {};
+
+    GrowingPacker.prototype = {
+
+        fit: function(blocks) {
+            var n, node, block, len = blocks.length;
+            var w = len > 0 ? blocks[0].w : 0;
+            var h = len > 0 ? blocks[0].h : 0;
+            this.root = { x: 0, y: 0, w: w, h: h };
+            for (n = 0; n < len ; n++) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
+                }
+                else {
+                    block.fit = this.growNode(block.w, block.h);
+                }
+            }
+        },
+
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
+            }
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        },
+
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        },
+
+        growNode: function(w, h) {
+            var canGrowDown  = (w <= this.root.w);
+            var canGrowRight = (h <= this.root.h);
+
+            var shouldGrowRight = canGrowRight && (this.root.h >= (this.root.w + w)); // attempt to keep square-ish by growing right when height is much greater than width
+            var shouldGrowDown  = canGrowDown  && (this.root.w >= (this.root.h + h)); // attempt to keep square-ish by growing down  when width  is much greater than height
+
+            if (shouldGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (shouldGrowDown) {
+                return this.growDown(w, h);
+            }
+            else if (canGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (canGrowDown) {
+                return this.growDown(w, h);
+            }
+            else {
+                return null; // need to ensure sensible root starting size to avoid this happening
+            }
+        },
+
+        growRight: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w + w,
+                h: this.root.h,
+                down: this.root,
+                right: { x: this.root.w, y: 0, w: w, h: this.root.h }
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        },
+
+        growDown: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w,
+                h: this.root.h + h,
+                down:  { x: 0, y: this.root.h, w: this.root.w, h: h },
+                right: this.root
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        }
+
+    };
+
+
+
+    var sorts = {
+        random:  function() { return Math.random() - 0.5; },
+        w:       function(a, b) { return b.w - a.w; },
+        h:       function(a, b) { return b.h - a.h; },
+        a:       function(a, b) { return b.area - a.area; },
+        max:     function(a, b) { return Math.max(b.w, b.h) - Math.max(a.w, a.h); },
+        min:     function(a, b) { return Math.min(b.w, b.h) - Math.min(a.w, a.h); },
+        height:  function(a, b) { return sorts.msort(a, b, ['h', 'w']);               },
+        width:   function(a, b) { return sorts.msort(a, b, ['w', 'h']);               },
+        area:    function(a, b) { return sorts.msort(a, b, ['a', 'h', 'w']);          },
+        maxside: function(a, b) { return sorts.msort(a, b, ['max', 'min', 'h', 'w']); },
+        msort:   function(a, b, criteria) { /* sort by multiple criteria */
+            var diff, n;
+            for (n = 0; n < criteria.length; ++n) {
+                diff = sorts[ criteria[n] ](a, b);
+                if (diff !== 0) {
+                    return diff;
+                }
+            }
+            return 0;
+        }
+    };
+
+
+
+    // end of Jake's code
+
+
+
+    // aux, used to display blocks in unfitted property
+    var toString = function() {
+      return [this.w, ' x ', this.h].join('');
+    };
+
+
+
+    /**
+     * Binary Packing algorithm implementation
+     *
+     * Based on the work of Jake Gordon
+     *
+     * see https://github.com/jakesgordon/bin-packing/
+     *
+     * @class Ink.Util.BinPack
+     * @version 1
+     * @static
+     */
+    var BinPack = {
+
+        /**
+        * @method binPack
+        * @param {Object}      o              options
+        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
+        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
+        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
+        * @return {Object}
+        *     * {Number[2]} dimensions - resulted container size,
+        *     * {Number}    filled     - filled ratio,
+        *     * {Object[]}  fitted,
+        *     * {Object[]}  unfitted,
+        *     * {Object[]}  blocks
+        * @static
+        */
+        binPack: function(o) {
+            var i, f, bl;
+
+
+
+            // calculate area if not there already
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (! ('area' in bl) ) {
+                    bl.area = bl.w * bl.h;
+                }
+            }
+
+
+
+            // apply algorithm
+            var packer = o.dimensions ? new Packer(o.dimensions[0], o.dimensions[1]) : new GrowingPacker();
+
+            if (!o.sorter) { o.sorter = 'maxside'; }
+
+            o.blocks.sort( sorts[ o.sorter ] );
+
+            packer.fit(o.blocks);
+
+            var dims2 = [packer.root.w, packer.root.h];
+
+
+
+            // layout is done here, generating report data...
+            var fitted   = [];
+            var unfitted = [];
+
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (bl.fit) {
+                    fitted.push(bl);
+                }
+                else {
+                    bl.toString = toString; // TO AID SERIALIZATION
+                    unfitted.push(bl);
+                }
+            }
+
+            var area = dims2[0] * dims2[1];
+            var fit = 0;
+            for (i = 0, f = fitted.length; i < f; ++i) {
+                bl = fitted[i];
+                fit += bl.area;
+            }
+
+            return {
+                dimensions: dims2,
+                filled:     fit / area,
+                blocks:     o.blocks,
+                fitted:     fitted,
+                unfitted:   unfitted
+            };
+        }
+    };
+
+
+
+    return BinPack;
 
 });
