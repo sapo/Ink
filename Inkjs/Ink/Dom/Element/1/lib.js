@@ -645,7 +645,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Array} Array with element width and height.
          */
         outerDimensions: function (element) {
-            var bbox = Element.elementDimensions(element);
+            var bbox = InkElement.elementDimensions(element);
 
             var Css = Ink.getModule('Ink.Dom.Css_1');
             
