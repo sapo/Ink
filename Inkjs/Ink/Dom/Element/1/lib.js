@@ -1352,28 +1352,44 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Wraps an element with another.
+         * Wraps an element inside a container.
+         *
+         * The container may or may not be in the document yet.
          *
          * @method wrap
-         * @param {String|DomElement}   wrappee Element to be wrapped
-         * @param {String|DomElement}   wrapper Element to wrap the wrappee
+         * @param {String|DomElement}   target Element to be wrapped
+         * @param {String|DomElement}   container Element to wrap the target
+         * @return Container element
+         *
+         * @example
+         * before:
+         *
+         *     <div id="target"></div>
+         *
+         * call this function to wrap:
+         *
+         *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
+         * 
+         * after: 
+         *
+         *     <div id="container"><div id="target"></div></div>
          */
-        wrap: function (wrappee, wrapper) {
-            wrappee = Ink.i(wrappee);
-            wrapper = Ink.i(wrapper);
+        wrap: function (target, container) {
+            target = Ink.i(target);
+            container = Ink.i(container);
             
-            var nextNode = wrappee.nextSibling;
-            var parent = wrappee.parentNode;
+            var nextNode = target.nextSibling;
+            var parent = target.parentNode;
 
-            wrapper.appendChild(wrappee);
+            container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(wrapper, nextNode)
+                parent.insertBefore(container, nextNode)
             } else {
-                parent.appendChild(wrapper);
+                parent.appendChild(container);
             }
 
-            return wrapper;
+            return container;
         },
 
         /**
@@ -1574,7 +1590,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
        /**
          * @method viewportWidth
-         * @return {Number} viewport width
+         * @return {Number} viewport width in pixels
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
