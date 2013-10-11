@@ -31,7 +31,7 @@
                     if( elements.length ){
                         Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
                             for (var i = 0, len = elements.length; i < len; i++) {
-                                new Component(element);
+                                new Component(elements[i]);
                             }
                         });
                     }
