@@ -36,16 +36,17 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         this._element = Aux.elOrSelector(selector, '1st argument');
 
-        this._options = Ink.extendObj({
+        var options = this._options = Ink.extendObj({
             axis:           'x',
             hideLast:       false,
             center:         false,
             keyboardSupport:false,
             pagination:     null,
-            onChange:       null
+            onChange:       null,
+            swipe:          true
         }, options || {}, InkElement.data(this._element));
 
-        this._isY = (this._options.axis === 'y');
+        this._isY = (options.axis === 'y');
 
         var rEl = this._element;
 
@@ -56,7 +57,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
 
 
-        if (this._options.hideLast) {
+        if (options.hideLast) {
             var hiderEl = document.createElement('div');
             hiderEl.className = 'hider';
             this._element.appendChild(hiderEl);
@@ -74,20 +75,23 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style.whiteSpace = 'normal';
         }
 
-        if (this._options.pagination) {
-            if (Aux.isDOMElement(this._options.pagination) || typeof this._options.pagination === 'string') {
+        if (options.pagination) {
+            if (Aux.isDOMElement(options.pagination) || typeof options.pagination === 'string') {
                 // if dom element or css selector string...
-                this._pagination = new Pagination(this._options.pagination, {
+                var pagination = this._pagination = new Pagination(options.pagination, {
                     size:     this._numPages,
                     onChange: this._handlers.paginationChange
                 });
             } else {
                 // assumes instantiated pagination
-                this._pagination = this._options.pagination;
+                this._pagination = options.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
                 this._pagination.setSize(this._numPages);
                 this._pagination.setCurrent(0);
             }
+        }
+
+        if (options.swipe) {
         }
     };
 
