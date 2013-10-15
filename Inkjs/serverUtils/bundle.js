@@ -6,6 +6,7 @@
 
 var fs       = require('fs'),
     async    = require('async'),
+    spawn     = require('child_process').spawn,
     myUtils  = require('./utils');
 
 
@@ -67,11 +68,6 @@ for (i = 0, f = files.length; i < f; ++i) {
 
     //console.log(useIt ? 'Y' : 'N', file);
 
-    if (minify) {
-        l = file.length;
-        file = [file.substring(0, l - 3), '.min.js'].join('');
-    }
-
     filesToBundle.push(file);
 }
 
@@ -80,10 +76,27 @@ for (i = 0, f = files.length; i < f; ++i) {
 console.log('* ' + filesToBundle.join('\n* '));*/
 
 
-// concatenate
-var ws = fs.createWriteStream(bundleFile);
-var left = filesToBundle.length;
+// options
+var options = ['-b'],
+    command = [],
+    cmd;
 
+// If we have the minified flag, minify the bundling instead of beautifying it
+if(minify){
+    options = ['-e', 'document,window:document,window', '-c', '-m', 'eval=true'];
+}
+
+
+options.push('-o', bundleFile);
+
+cmd = spawn('uglifyjs', filesToBundle.concat(options));
+cmd.stdout.on('data', function (data) {
+      console.log('stdout: ' + data);
+});
+cmd.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
+});
+/*
 async.forEachSeries(
     filesToBundle,
     function(f, innerCb) { // for each
@@ -96,5 +109,11 @@ async.forEachSeries(
     },
     function(err) { // on all done or error...
         console.log(err ? err : 'Created bundle on ' + bundleFile);
+        if(minify){
+        spawn('uglifyjs '+bundleFile+' -e document,window:document,window -c -m toplevel=true,eval=true -o '+bundleFile, function(error, stdout, stderr){
+            console.log('File minified: ' + bundleFile);
+        });
+        }
     }
 );
+*/
