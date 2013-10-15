@@ -11,7 +11,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
     /*
      * TODO:
      *  keyboardSupport
-     *  swipe
      */
     
     /**
@@ -23,6 +22,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
+     *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
      *  @param {Function} [options.onChange] Callback for when the page is changed.
      */
@@ -34,9 +34,9 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
-        this._element = Aux.elOrSelector(selector, '1st argument');
+        var element = this._element = Aux.elOrSelector(selector, '1st argument');
 
-        var options = this._options = Ink.extendObj({
+        var opts = this._options = Ink.extendObj({
             axis:           'x',
             hideLast:       false,
             center:         false,
@@ -44,23 +44,20 @@ Ink.createModule('Ink.UI.Carousel', '1',
             pagination:     null,
             onChange:       null,
             swipe:          true
-        }, options || {}, InkElement.data(this._element));
+        }, options || {}, InkElement.data(element));
 
-        this._isY = (options.axis === 'y');
+        this._isY = (opts.axis === 'y');
 
-        var rEl = this._element;
-
-        var ulEl = Ink.s('ul.stage', rEl);
+        var ulEl = Ink.s('ul.stage', element);
         this._ulEl = ulEl;
 
         InkElement.removeTextNodeChildren(ulEl);
 
-
-
-        if (options.hideLast) {
-            var hiderEl = document.createElement('div');
-            hiderEl.className = 'hider';
-            this._element.appendChild(hiderEl);
+        if (opts.hideLast) {
+            var hiderEl = InkElement.create('div', {
+                className: 'hider',
+                insertBottom: this._element
+            });
             hiderEl.style.position = 'absolute';
             hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
             hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
@@ -75,23 +72,27 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ulEl.style.whiteSpace = 'normal';
         }
 
-        if (options.pagination) {
-            if (Aux.isDOMElement(options.pagination) || typeof options.pagination === 'string') {
+        var pagination;
+        if (opts.pagination) {
+            if (Aux.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
-                var pagination = this._pagination = new Pagination(options.pagination, {
+                pagination = this._pagination = new Pagination(opts.pagination, {
                     size:     this._numPages,
                     onChange: this._handlers.paginationChange
                 });
             } else {
                 // assumes instantiated pagination
-                this._pagination = options.pagination;
+                pagination = this._pagination = opts.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
                 this._pagination.setSize(this._numPages);
                 this._pagination.setCurrent(0);
             }
         }
 
-        if (options.swipe) {
+        if (opts.swipe) {
+            InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
+            InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMoveWrapper'));
+            InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
         }
     };
 
@@ -106,7 +107,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         refit: function() {
             this._liEls = Ink.ss('li.slide', this._ulEl);
             var numItems = this._liEls.length;
-            this._ctnLength = this._size(this._element);
+            this._ctnLength = this._size();
             this._elLength = this._size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
             this._numPages = Math.ceil( numItems / this._itemsPerPage );
@@ -130,7 +131,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _size: function (elm) {
-            var dims = InkElement.outerDimensions(elm)
+            var dims = InkElement.outerDimensions(elm || this._element);
             return this._isY ? dims[1] : dims[0];
         },
 
@@ -175,6 +176,89 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
         },
 
+        _onTouchStart: function (event) {
+            if (event.touches.length > 1) { return; }
+
+            this._touchStartData = {
+                x: InkEvent.pointerX(event),
+                y: InkEvent.pointerY(event),
+                lastUlPos: null
+            };
+
+            var ulRect = this._ulEl.getBoundingClientRect();
+
+            this._touchStartData.inUlX =  this._touchStartData.x - ulRect.left;
+            this._touchStartData.inUlY =  this._touchStartData.y - ulRect.top;
+
+            setTransitionProperty(this._ulEl, 'none');
+
+            event.preventDefault();
+            event.stopPropagation();  // TODO try to just return false
+        },
+
+        /**
+         * Calls onTouchMove, which is throttled and might not be called, and then stops the event's default actions
+         *
+         * @method onTouchMoveWrapper
+         * @private
+         **/
+        _onTouchMoveWrapper: function (event) {
+            this._onTouchMove(event);
+
+            event.preventDefault();
+            event.stopPropagation();
+        },
+
+        _onTouchMove: InkEvent.throttle(function (event) {
+            if (!this._touchStartData) { return; }
+
+            var elRect = this._element.getBoundingClientRect();
+
+            var newPos;
+
+            if (!this._isY) {
+                newPos = InkEvent.pointerX(event) - this._touchStartData.inUlX - elRect.left;
+            } else {
+                newPos = InkEvent.pointerY(event) - this._touchStartData.inUlY - elRect.top;
+            }
+
+            if (newPos !== this._touchStartData.lastUlPos) {
+                this._touchStartData.lastUlPos = newPos;
+                this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
+            }
+        }, 50),
+
+        _onTouchEnd: function (event) {
+            var snapToNext = 0.2;
+
+            setTransitionProperty(this._ulEl, null /* transition: left, top */);
+
+            if (!this._touchStartData || this._touchStartData.lastUlPos === null) { return; }
+
+            var progress = - this._touchStartData.lastUlPos;
+
+            var curPage = this._pagination.getCurrent();
+            var estimatedPage = progress / this._elLength / this._itemsPerPage;
+
+            if (Math.round(estimatedPage) === curPage) {
+                var diff = estimatedPage - curPage;
+                if (Math.abs(diff) > snapToNext) {
+                    diff = diff > 0 ? 1 : -1;
+                    curPage += diff;
+                }
+            } else {
+                curPage = Math.round(estimatedPage);
+            }
+
+            // set the left/top positions in _onPaginationChange
+            this._pagination.setCurrent(curPage);
+
+            this._touchStartData = null;
+
+            event.preventDefault();
+            event.stopPropagation();
+        },
+
         _onPaginationChange: function(pgn) {
             var currPage = pgn.getCurrent();
             this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
@@ -184,7 +268,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
         }
     };
 
-
+    function setTransitionProperty(el, newTransition) {
+        el.style.transitionProperty =
+        el.style.oTransitionProperty =
+        el.style.msTransitionProperty =
+        el.style.mozTransitionProperty =
+        el.style.webkitTransitionProperty = newTransition;
+    }
 
     return Carousel;
 
