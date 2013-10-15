@@ -180,4 +180,32 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         deepEqual(toArray(elm.children), [child1, wrap, child3]);
         deepEqual(toArray(wrap.children), [child2]);
     });
+
+    test('outerDimensions', function () {
+        var elm = InkElement.create('div');
+        document.body.appendChild(elm);
+
+        elm.style.width = '30px';
+        elm.style.paddingRight = '5px';
+        elm.style.marginRight = '5px';
+
+        elm.style.height = '10px';
+        elm.style.paddingBottom = '5px';
+        elm.style.marginBottom = '5px';
+
+        equal(InkElement.outerDimensions(elm)[0], 40);
+        equal(InkElement.outerDimensions(elm)[1], 20);
+
+        elm.style.width = '30.25px';
+        elm.style.paddingRight = '5.25px';
+        elm.style.marginRight = '5.25px';
+        equal(InkElement.outerDimensions(elm)[0], 40.75);
+
+        elm.style.height = '10.25px'
+        elm.style.paddingBottom = '5.25px'
+        elm.style.marginBottom = '5.25px'
+        equal(InkElement.outerDimensions(elm)[1], 20.75);
+
+        document.body.removeChild(elm);
+    });
 });

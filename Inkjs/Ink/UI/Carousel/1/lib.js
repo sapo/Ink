@@ -103,22 +103,35 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * cater for changes from responsive media queries, for instance.
          *
          * @method refit
+         * @public
          */
         refit: function() {
+            var _isY = this._isY;
+
+            var size = function (elm, perpendicular) {
+                if (!perpendicular) {
+                    return InkElement.outerDimensions(elm)[_isY ? 1 : 0];
+                } else {
+                    return InkElement.outerDimensions(elm)[_isY ? 0 : 1];
+                }
+            }
+
             this._liEls = Ink.ss('li.slide', this._ulEl);
             var numItems = this._liEls.length;
-            this._ctnLength = this._size();
-            this._elLength = this._size(this._liEls[0]);
+            this._ctnLength = size(this._element);
+            this._elLength = size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
             this._numPages = Math.ceil( numItems / this._itemsPerPage );
             this._deltaLength = this._itemsPerPage * this._elLength;
             
             if (this._isY) {
-                this._element.style.width = this._liEls[0].offsetWidth + 'px';
-                this._ulEl.style.width  =  this._liEls[0].offsetWidth + 'px';
+                this._element.style.width = size(this._liEls[0], true) + 'px';
+                this._ulEl.style.width  = size(this._liEls[0], true) + 'px';
             } else {
-                this._ulEl.style.height =  this._liEls[0].offsetHeight + 'px';
+                this._ulEl.style.height = size(this._liEls[0], true) + 'px';
             }
+
+            debugger
 
             this._center();
             this._updateHider();
