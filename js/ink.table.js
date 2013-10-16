@@ -507,10 +507,20 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                  * Applying the pagination
                  */
                 if( !this._pagination ){
-                    this._pagination = document.createElement('nav');
-                    this._pagination.className = 'ink-navigation';
-                    this._rootElement.parentNode.insertBefore(this._pagination,this._rootElement.nextSibling);
-                    this._pagination.appendChild( document.createElement('ul') ).className = 'pagination';
+                    /*
+                     * Applying pagination
+                     */
+                    this._pagination = this._rootElement.nextSibling;
+                    while(this._pagination.nodeType !== 1){
+                        this._pagination = this._pagination.nextSibling;
+                    }
+
+                    if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
+                        this._pagination = document.createElement('nav');
+                        this._pagination.className = 'ink-navigation';
+                        this._rootElement.parentNode.insertBefore(this._pagination,this._rootElement.nextSibling);
+                        this._pagination.appendChild( document.createElement('ul') ).className = 'pagination';
+                    }
 
                     var Pagination = Ink.getModule('Ink.UI.Pagination',1);
 
