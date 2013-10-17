@@ -44,19 +44,20 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
             Css.addClassName(this._element, 'hide-all');
 
-            var viewElm = this._viewElm = InkElement.create('div', {
+            this._viewElm = InkElement.create('div', {
                 className: 'ink-tagfield',
                 insertAfter: this._element
             });
 
-            this._tags = [];
-            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
-            InkArray.each(tags, Ink.bind(this._addTag, this));
             this._input = InkElement.create('input', {
                 type: 'text',
                 className: 'new-tag-input',
-                insertBottom: viewElm
+                insertBottom: this._viewElm
             });
+
+            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
+            this._tags = [];
+            InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
 
             InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
             InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
@@ -101,21 +102,20 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         },
 
         _addTag: function (tag) {
-            if ((!this._options.allowRepeated && InkArray.inArray(tag, this._tags, tag))
-                    || !tag) {
+            if ((!this._options.allowRepeated &&
+                    InkArray.inArray(tag, this._tags, tag)) || !tag) {
                 return false;
             }
-            var elm = InkElement.create('span');
-            Css.addClassName(elm, 'tag');
-            Css.addClassName(elm, 'ink-label');
-            Css.addClassName(elm, 'info');
-            InkElement.setTextContent(elm, tag + ' ');
+            var elm = InkElement.create('span', {
+                className: 'ink-tag',
+                setTextContent: tag + ' '
+            });
 
-            var remove = InkElement.create('i');
-            Css.addClassName(remove, 'remove');
-            Css.addClassName(remove, 'icon-remove');
+            var remove = InkElement.create('i', {
+                className: 'remove icon-remove',
+                insertBottom: elm
+            });
             InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
-            elm.appendChild(remove);
 
             var spc = document.createTextNode(' ');
 
