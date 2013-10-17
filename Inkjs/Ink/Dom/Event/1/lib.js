@@ -70,7 +70,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *         ...
      *     }, 100)); // The event handler is called only every 100ms. Problem solved.
      *
-     *    @example
+     * @example
      *     var handler = InkEvent.throttle(function () {
      *         ...
      *     }, 100);
@@ -96,10 +96,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    return throttled.apply(that, args);
-                }, timeDiff);
+                if (!timeout) {
+                    timeout = setTimeout(function () {
+                        timeout = null;
+                        return throttled.apply(that, args);
+                    }, wait - timeDiff);
+                }
             }
         };
         return throttled;
@@ -230,7 +232,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !window.onhashchange;
+        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
         var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
