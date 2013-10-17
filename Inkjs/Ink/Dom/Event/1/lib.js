@@ -331,9 +331,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * Attaches an event to a selector or array of elements.
      *
-     * Requires Ink.Dom.Selector or a browser with Element.querySelectorAll.
-     *
-     * Ink.Dom.Event.observe
+     * Requires Ink.Dom.Selector
      *
      * @method observeMulti
      * @param {Array|String} elements
@@ -358,6 +356,34 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             this.observe(elements[i], eventName, callBack, useCapture);
         }
         return callBack;
+    },
+
+    /**
+     * Observe an event on the given element and every children which matches the selector string (if provided).
+     *
+     * Requires Ink.Dom.Selector if you need to use a selector.
+     *
+     * @method observeDelegated
+     * @param {DOMElement|String} element   Element to observe.
+     * @param {String}            eventName Event name to observe.
+     * @param {String}            selector  Child element selector. When null, finds any element.
+     * @param {Function}          callback  Callback to be called when the event is fired
+     * @return {Function} The used callback, for ceasing to listen to the event later.
+     **/
+    observeDelegated: function (element, eventName, selector, callback) {
+        var delegatedWrapper = function (event, fromElement) {
+            fromElement = fromElement || Event.element(event);
+            if (!fromElement || fromElement === element) { return; }
+
+            var selectResult = Ink.Dom.Selector_1.select(selector, element);
+            if (selectResult.length) {
+                return callback.apply(selectResult[0], [event])
+            } else {
+                delegatedWrapper(event, fromElement.parentNode);
+            }
+        }
+
+        return Event.observe(element, eventName, delegatedWrapper);
     },
 
     /**
