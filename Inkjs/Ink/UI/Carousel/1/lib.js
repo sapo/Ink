@@ -12,7 +12,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * TODO:
      *  keyboardSupport
      */
-    
+
+    var requestAnimationFrame = window.requestAnimationFrame ||
+        mozRequestAnimationFrame ||
+        webkitRequestAnimationFrame ||
+        function (cb) {return setTimeout(cb, 1000 / 30); };
     /**
      * @class Ink.UI.Carousel_1
      * @constructor
@@ -28,8 +32,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
      */
     var Carousel = function(selector, options) {
         this._handlers = {
-            paginationChange: Ink.bind(this._onPaginationChange, this),
-            windowResize:     Ink.bind(this.refit, this)
+            paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
+            windowResize:     Ink.bindMethod(this, 'refit')
         };
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
@@ -91,7 +95,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         if (opts.swipe) {
             InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
-            InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMoveWrapper'));
+            InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
         }
     };
@@ -114,7 +118,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 } else {
                     return InkElement.outerDimensions(elm)[_isY ? 0 : 1];
                 }
-            }
+            };
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
             var numItems = this._liEls.length;
@@ -131,8 +135,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this._ulEl.style.height = size(this._liEls[0], true) + 'px';
             }
 
-            debugger
-
             this._center();
             this._updateHider();
             this._IE7();
@@ -143,11 +145,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             }
         },
 
-        _size: function (elm) {
-            var dims = InkElement.outerDimensions(elm || this._element);
-            return this._isY ? dims[1] : dims[0];
-        },
-
         _center: function() {
             if (!this._options.center) { return; }
             var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
@@ -155,10 +152,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var pad;
             if (this._isY) {
                 pad = [gap, 'px 0'];
-            }
-            else {
+            } else {
                 pad = ['0 ', gap, 'px'];
             }
+
             this._ulEl.style.padding = pad.join('');
         },
 
@@ -205,24 +202,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             setTransitionProperty(this._ulEl, 'none');
 
+            requestAnimationFrame(Ink.bindMethod(this, '_onAnimationFrame'));
+
             event.preventDefault();
             event.stopPropagation();  // TODO try to just return false
         },
 
-        /**
-         * Calls onTouchMove, which is throttled and might not be called, and then stops the event's default actions
-         *
-         * @method onTouchMoveWrapper
-         * @private
-         **/
-        _onTouchMoveWrapper: function (event) {
-            this._onTouchMove(event);
-
-            event.preventDefault();
-            event.stopPropagation();
-        },
-
-        _onTouchMove: InkEvent.throttle(function (event) {
+        _onTouchMove: function (event) {
             if (!this._touchStartData) { return; }
 
             var elRect = this._element.getBoundingClientRect();
@@ -235,11 +221,20 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 newPos = InkEvent.pointerY(event) - this._touchStartData.inUlY - elRect.top;
             }
 
-            if (newPos !== this._touchStartData.lastUlPos) {
-                this._touchStartData.lastUlPos = newPos;
-                this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
-            }
-        }, 50),
+            this._touchStartData.lastUlPos = newPos;
+            // this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
+
+            event.preventDefault();
+            event.stopPropagation();
+        },
+
+        _onAnimationFrame: function () {
+            if (!this._touchStartData) { return; }
+            var newPos = this._touchStartData.lastUlPos;
+
+            this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
+            requestAnimationFrame(Ink.bindMethod(this, '_onAnimationFrame'));
+        },
 
         _onTouchEnd: function (event) {
             var snapToNext = 0.2;
