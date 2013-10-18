@@ -190,45 +190,45 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     fire: function(element, eventName, memo)
     {
         element = Ink.i(element);
+        if (!element) { return null; }
+
         var ev;
 
-        if(element !== null && element !== undefined){
-            if (element === document && document.createEvent && !element.dispatchEvent) {
-                element = document.documentElement;
-            }
-
-            if (document.createEvent) {
-                ev = document.createEvent("HTMLEvents");
-                if(typeof nativeEvents[eventName] === "undefined"){
-                    ev.initEvent("dataavailable", true, true);
-                } else {
-                    ev.initEvent(eventName, true, true);
-                }
-
-            } else {
-                ev = document.createEventObject();
-                if(typeof nativeEvents["on"+eventName] === "undefined"){
-                    ev.eventType = "ondataavailable";
-                } else {
-                    ev.eventType = "on"+eventName;
-                }
-            }
-
-            ev.eventName = eventName;
-            ev.memo = memo || { };
-
-            try {
-                if (document.createEvent) {
-                    element.dispatchEvent(ev);
-                } else if(element.fireEvent){
-                    element.fireEvent(ev.eventType, ev);
-                } else {
-                    return;
-                }
-            } catch(ex) {}
-
-            return ev;
+        if (element === document && document.createEvent && !element.dispatchEvent) {
+            element = document.documentElement;
         }
+
+        if (document.createEvent) {
+            ev = document.createEvent("HTMLEvents");
+            if(nativeEvents.indexOf(eventName) === -1) {
+                ev.initEvent("dataavailable", true, true);
+            } else {
+                ev.initEvent(eventName, true, true);
+            }
+
+        } else {
+            ev = document.createEventObject();
+            if(typeof nativeEvents["on"+eventName] === "undefined"){
+                ev.eventType = "ondataavailable";
+            } else {
+                ev.eventType = "on"+eventName;
+            }
+        }
+
+        ev.eventName = eventName;
+        ev.memo = memo || { };
+
+        try {
+            if (document.createEvent) {
+                element.dispatchEvent(ev);
+            } else if(element.fireEvent){
+                element.fireEvent(ev.eventType, ev);
+            } else {
+                return;
+            }
+        } catch(ex) {}
+
+        return ev;
     },
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
@@ -341,7 +341,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      **/
     observeDelegated: function (element, eventName, selector, callback) {
         var delegatedWrapper = function (event, fromElement) {
-            fromElement = fromElement || Event.element(event);
+            fromElement = fromElement || InkEvent.element(event);
             if (!fromElement || fromElement === element) { return; }
 
             var selectResult = Ink.Dom.Selector_1.select(selector, element);
