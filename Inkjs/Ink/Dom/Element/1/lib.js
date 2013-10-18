@@ -645,13 +645,14 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Array} Array with element width and height.
          */
         outerDimensions: function (element) {
-            var bbox = InkElement.elementDimensions(element);
+            var bbox = element.getBoundingClientRect();
 
             var Css = Ink.getModule('Ink.Dom.Css_1');
-            
+            var getStyle = Ink.bindMethod(Css, 'getStyle', element);
+
             return [
-                bbox[0] + parseFloat(Css.getStyle(element, 'marginLeft') || 0) + parseFloat(Css.getStyle(element, 'marginRight') || 0),  // w
-                bbox[1] + parseFloat(Css.getStyle(element, 'marginTop') || 0) + parseFloat(Css.getStyle(element, 'marginBottom') || 0)  // h
+                bbox.right - bbox.left + parseFloat(getStyle('marginLeft') || 0) + parseFloat(getStyle('marginRight') || 0),  // w
+                bbox.bottom - bbox.top + parseFloat(getStyle('marginTop') || 0) + parseFloat(getStyle('marginBottom') || 0)  // h
             ];
         },
 
@@ -700,7 +701,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method ellipsizeText
          * @param {DOMElement} element     which text is to add the ellipsis
-         * @param {String}     [ellipsis]  String to append to the chopped text
+         * @param {String}     [ellipsis='\u2026']  String to append to the chopped text
          */
         ellipsizeText: function(element, ellipsis){
             /*jshint boss:true */
