@@ -1,6 +1,7 @@
 {
   "name": "ink",
   "version": "2.2.1",
+  "main": ["./js/ink-all.js", "./css/ink.css", "./fonts/*"],
   "ignore": [
     "**/.*",
     "node_modules",
@@ -11,7 +12,7 @@
     "cookbook"
   ],
   "dependencies": {
-    "modernizr": "~2.6.2",
-    "html5shiv": "~3.7.0"
+    "modernizr": ">=2.6.2",
+    "html5shiv": ">=3.7.0"
   }
 }
