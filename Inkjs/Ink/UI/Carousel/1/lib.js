@@ -14,9 +14,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      */
 
     var requestAnimationFrame = window.requestAnimationFrame ||
-        mozRequestAnimationFrame ||
-        webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
         function (cb) {return setTimeout(cb, 1000 / 30); };
+
     /**
      * @class Ink.UI.Carousel_1
      * @constructor
@@ -189,7 +190,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _onTouchStart: function (event) {
             if (event.touches.length > 1) { return; }
 
-            this._touchStartData = {
+            this._swipeData = {
                 x: InkEvent.pointerX(event),
                 y: InkEvent.pointerY(event),
                 lastUlPos: null
@@ -197,42 +198,49 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             var ulRect = this._ulEl.getBoundingClientRect();
 
-            this._touchStartData.inUlX =  this._touchStartData.x - ulRect.left;
-            this._touchStartData.inUlY =  this._touchStartData.y - ulRect.top;
+            this._swipeData.inUlX =  this._swipeData.x - ulRect.left;
+            this._swipeData.inUlY =  this._swipeData.y - ulRect.top;
 
             setTransitionProperty(this._ulEl, 'none');
 
-            requestAnimationFrame(Ink.bindMethod(this, '_onAnimationFrame'));
+            this._onAnimationFrame();
 
             event.preventDefault();
             event.stopPropagation();  // TODO try to just return false
         },
 
         _onTouchMove: function (event) {
-            if (!this._touchStartData) { return; }
-
-            var elRect = this._element.getBoundingClientRect();
-
-            var newPos;
+            if (!this._swipeData) { return; }
 
             if (!this._isY) {
-                newPos = InkEvent.pointerX(event) - this._touchStartData.inUlX - elRect.left;
+                this._swipeData.pointerPos = InkEvent.pointerX(event);
             } else {
-                newPos = InkEvent.pointerY(event) - this._touchStartData.inUlY - elRect.top;
+                this._swipeData.pointerPos = InkEvent.pointerY(event)
             }
-
-            this._touchStartData.lastUlPos = newPos;
-            // this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
 
             event.preventDefault();
             event.stopPropagation();
         },
 
         _onAnimationFrame: function () {
-            if (!this._touchStartData) { return; }
-            var newPos = this._touchStartData.lastUlPos;
+            var swipeData = this._swipeData;
+
+            if (!swipeData) { return; }
+
+            var elRect = this._element.getBoundingClientRect();
+
+            var newPos
+
+            if (!this._isY) {
+                newPos = swipeData.pointerPos - swipeData.inUlX - elRect.left;
+            } else {
+                newPos = swipeData.pointerPos - swipeData.inUlY - elRect.top;
+            }
 
             this._ulEl.style[this._isY ? 'top' : 'left'] = newPos + 'px';
+
+            swipeData.lastUlPos = newPos;
+
             requestAnimationFrame(Ink.bindMethod(this, '_onAnimationFrame'));
         },
 
@@ -241,9 +249,9 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             setTransitionProperty(this._ulEl, null /* transition: left, top */);
 
-            if (!this._touchStartData || this._touchStartData.lastUlPos === null) { return; }
+            if (!this._swipeData || !this._swipeData.pointerPos) { return; }
 
-            var progress = - this._touchStartData.lastUlPos;
+            var progress = - this._swipeData.lastUlPos;
 
             var curPage = this._pagination.getCurrent();
             var estimatedPage = progress / this._elLength / this._itemsPerPage;
@@ -261,7 +269,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             // set the left/top positions in _onPaginationChange
             this._pagination.setCurrent(curPage);
 
-            this._touchStartData = null;
+            this._swipeData = null;
 
             event.preventDefault();
             event.stopPropagation();
