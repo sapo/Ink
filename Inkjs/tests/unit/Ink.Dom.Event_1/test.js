@@ -1,5 +1,6 @@
-/*globals equal,test,asyncTest,stop,start,ok,expect*/
-Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'], function (InkEvent, InkElement, Selector) {
+QUnit.config.testTimeout = 4000;
+
+Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Browser_1'], function (InkEvent, InkElement, Selector, Browser) {
     var throttle = Ink.bind(InkEvent.throttle, InkEvent);
     var throttledFunc = throttle(function () {
         ok(true, 'called');
@@ -29,7 +30,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
     });
     asyncTest('throttle (called few times)', function () {
         expect(3);
-        var fewTimes = throttle(function () { ok(true) }, 20);
+        var fewTimes = throttle(function () { ok(true); }, 20);
         
         setTimeout(fewTimes, 1);
         setTimeout(fewTimes, 100);
@@ -37,6 +38,40 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
 
         setTimeout(start, 300);
     });
+
+    asyncTest('throttle called with the correct timing between calls', function () {
+        // Timing of the calls we will barrage throttled() with
+        var cTming = [
+            0,0,0,0,0,100,
+            1000];
+
+        // The times at which throttled() should be called
+        var timing = [0, 500, 1000];
+        var c = -1;
+
+        var nearEqual = function (a, b, threshold, msg) {
+            threshold = threshold || 250;
+            msg = msg || '';
+            ok( a - threshold < b && a + threshold > b, [msg, ':', a, '~=', b].join(' ') );
+        };
+
+        var startTime = +new Date();
+        var throttled = InkEvent.throttle(function () {
+            var theTime = new Date() - startTime;
+            nearEqual(timing[++c], theTime);
+            start();
+        }, 500);
+
+        for (var i = 0, len = cTming.length; i < len; i++) {
+            setTimeout(throttled, cTming[i]);
+        }
+
+        /* stop [timing] times */
+        stop(timing.length - 1);
+        /* expect [timing] assertions */
+        expect(timing.length);
+    });
+
     asyncTest('observeDelegated', function () {
         var elem = InkElement.create('ul');
         var child = InkElement.create('li');
@@ -69,26 +104,6 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         setTimeout(start, 100);
     });
 
-    asyncTest('observeDelegated can intercept an event from an <a> tag', function () {
-        var elem = InkElement.create('ul');
-        var child = InkElement.create('li');
-        var a = InkElement.create('a');
-
-        elem.appendChild(child);
-        child.appendChild(a);
-
-        a.href = "http://example.com";
-
-        expect(2);
-        InkEvent.observeDelegated(elem, 'click', 'a', function (event) {
-            ok(this === a);
-            ok(true, 'should detect click on a link all the same');
-        });
-
-        InkEvent.fire(a, 'click');
-        setTimeout(start, 100);
-    });
-
     asyncTest('observeDelegated + some selectors', function () {
         var elem = InkElement.create('ul');
         var child = InkElement.create('li');
@@ -117,6 +132,44 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         setTimeout(start, 100);
     });
 
-    asyncTest
+    asyncTest('test hashchange', function ( ) {
+        if (Browser.IE && parseFloat(Browser.version) < 8) {
+            ok(true, 'skipped');
+            start();
+            return;
+        }
+        
+        location.hash = '';
+
+        var cb = InkEvent.observe( window , 'hashchange' , function( e ) {
+            ok(true, 'callback to onhashchange called');
+
+            /* cleanup */
+            InkEvent.stopObserving(window, 'hashchange', cb);
+            location.hash = '';
+
+            start();
+        });
+
+        location.hash = 'changed';
+    });
+
+    asyncTest('test pushState', function ( ) {
+        if (Browser.IE && parseFloat(Browser.version) < 10) {
+            ok(true, 'skipped');
+            start();
+            return;
+        }
+        history.pushState( '' , '' , location.pathname.replace( /_\d\/$/ , '_2/' ) );
+
+        var cb = InkEvent.observe( window , 'popstate' , function( e ) {
+            ok(true);
+            InkEvent.stopObserving(window, 'popstate', cb);
+            start();
+        });
+
+        expect(1);
+        history.back( );
+    });
 });
 

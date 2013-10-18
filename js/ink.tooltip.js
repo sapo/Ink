@@ -2,7 +2,7 @@
  * @module Ink.UI.Tooltip_1
  * @author inkdev AT sapo.pt
  */
-Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
+Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
     'use strict';
 
     /**
@@ -12,6 +12,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
      * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
      * @param {Object} [options]
      *     @param [options.text='']             Text content for the tooltip.
+     *     @param [options.html='']             HTML for the tooltip. Same as above, but won't escape HTML.
      *     @param [options.where='up']          Positioning for the tooltip. Options:
      *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
      *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
@@ -197,7 +198,11 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 tooltip.appendChild(field);
             }
             
-            InkElement.setTextContent(field, this._getOpt('text'));
+            if (this._getOpt('html')) {
+                field.innerHTML = this._getOpt('html');
+            } else {
+                InkElement.setTextContent(field, this._getOpt('text'));
+            }
             tooltip.style.display = 'block';
             tooltip.style.position = 'absolute';
             tooltip.style.zIndex = this._getIntOpt('zIndex');
@@ -213,7 +218,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Aux_1', 'Ink.Dom.Event_1', 'Ink
                 tooltip.style[transitionTimingFunctionName] = 'ease-in-out';
                 setTimeout(function () {
                     tooltip.style.opacity = '1';
-                }, 0);
+                }, 0); // Wait a tick
             }
         },
         _placeTooltipElement: function (tooltip, mousePosition) {

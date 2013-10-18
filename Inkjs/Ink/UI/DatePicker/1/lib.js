@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';    
 
     /**
