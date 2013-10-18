@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Aux) {
+Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
     /**
      * @class Ink.UI.TagField
      * @version 1
@@ -27,7 +27,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @private
          */
         init: function(element, options) {
-            element = this._element = Aux.elOrSelector(element);
+            element = this._element = Common.elOrSelector(element);
             var o = this._options = Ink.extendObj({
                 tags: [],
                 tagQuery: null,
@@ -56,7 +56,9 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             });
 
             var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
+
             this._tags = [];
+
             InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
 
             InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
@@ -176,8 +178,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * if they press backspace again. */
         _setRemovingVisual: function (tagIndex) {
             var elm = this._viewElm.children[tagIndex];
-            Css.removeClassName(elm, 'info');
-            Css.addClassName(elm, 'warning');
+            Css.addClassName(elm, 'tag-deleting');
 
             this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
             InkEvent.observe(this._input, 'blur', Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex));
@@ -186,8 +187,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         _unsetRemovingVisual: function (tagIndex) {
             var elm = this._viewElm.children[tagIndex];
             if (elm) {
-                Css.addClassName(elm, 'info');
-                Css.removeClassName(elm, 'warning');
+                Css.removeClassName(elm, 'tag-deleting');
                 clearTimeout(this._removeRemovingVisualTimeout);
             }
             this._removeConfirm = null;
