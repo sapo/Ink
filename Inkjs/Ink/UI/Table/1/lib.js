@@ -433,13 +433,14 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
          * @param  {Object} rows Array of objects with the data to be showed
          * @private
          */
-        _setData: function( rows ){
+          _setData: function( rows ){
 
             var
                 field,
                 tbody, tr, td,
                 trIndex,
-                tdIndex
+                tdIndex,
+                tdOptions
             ;
 
             tbody = Selector.select('tbody',this._rootElement);
@@ -453,7 +454,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
             this._data = [];
 
-
             for( trIndex in rows ){
                 if (rows.hasOwnProperty(trIndex)) {
                     tr = document.createElement('tr');
@@ -461,7 +461,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     tdIndex = 0;
                     for( field in rows[trIndex] ){
                         if (rows[trIndex].hasOwnProperty(field)) {
-
                             if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
                                 continue;
                             }
@@ -469,22 +468,21 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                             td = tr.insertCell(tdIndex++);
                             td.innerHTML = rows[trIndex][field];
 
+                            tdOptions = this._options.tdOptions[field];
 
-                            if(typeof this._options.tdOptions[field] !== "undefined") {
+                            if(typeof tdOptions !== "undefined") {
                              
-                                if(this._options.tdOptions[field].class !== "undefined") {
-                                    td.className = this._options.tdOptions[field].class;
+                                if(tdOptions.class !== "undefined") {
+                                    td.className = tdOptions.class;
                                 }
-
-                                if(this._options.tdOptions[field].attrs !== "undefined") {
-                                    var attrs = this._options.tdOptions[field].attrs;
+                                if(tdOptions.attrs !== "undefined") {
+                                    var attrs = tdOptions.attrs;
 
                                     for (var attrName in attrs) {
                                          td.setAttribute(attrName, attrs[attrName]);
-                                    };                                    
+                                    };                                  
                                 } 
-                            } 
-
+                            }
                         }
                     }
                     this._data.push(tr);
