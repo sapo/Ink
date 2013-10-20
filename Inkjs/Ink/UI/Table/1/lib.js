@@ -471,12 +471,13 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
                             tdOptions = this._options.tdOptions[field];
 
-                            if(typeof tdOptions !== "undefined") {
+                            if(typeof tdOptions !== "undefined" && tdOptions !== "") {
                              
-                                if(tdOptions.class !== "undefined") {
+                                if(tdOptions.class !== "undefined" && tdOptions.class !== "") {
                                     td.className = tdOptions.class;
                                 }
-                                if(tdOptions.attrs !== "undefined") {
+
+                                if(tdOptions.attrs !== "undefined" && tdOptions.attrs !== "") { 
                                     var attrs = tdOptions.attrs;
 
                                     for (var attrName in attrs) {
