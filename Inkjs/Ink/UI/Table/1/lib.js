@@ -468,6 +468,23 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
                             td = tr.insertCell(tdIndex++);
                             td.innerHTML = rows[trIndex][field];
+
+
+                            if(typeof this._options.tdOptions[field] !== "undefined") {
+                             
+                                if(this._options.tdOptions[field].class !== "undefined") {
+                                    td.className = this._options.tdOptions[field].class;
+                                }
+
+                                if(this._options.tdOptions[field].attrs !== "undefined") {
+                                    var attrs = this._options.tdOptions[field].attrs;
+
+                                    for (var attrName in attrs) {
+                                         td.setAttribute(attrName, attrs[attrName]);
+                                    };                                    
+                                } 
+                            } 
+
                         }
                     }
                     this._data.push(tr);
