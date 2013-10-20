@@ -433,7 +433,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
          * @param  {Object} rows Array of objects with the data to be showed
          * @private
          */
-          _setData: function( rows ){
+        _setData: function( rows ){
 
             var
                 field,
@@ -461,6 +461,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     tdIndex = 0;
                     for( field in rows[trIndex] ){
                         if (rows[trIndex].hasOwnProperty(field)) {
+
                             if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
                                 continue;
                             }
