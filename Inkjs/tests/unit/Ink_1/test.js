@@ -74,7 +74,7 @@ asyncTest('loadScript', function () {
     window.loadScriptWorks = function (sayYeah) {
         equal(sayYeah, 'yeah');
         start();
-    }
+    };
     Ink.loadScript('./loadscript-test.js');  // This script calls window.loadScriptWorks('yeah')
 });
 
@@ -108,6 +108,7 @@ asyncTest('loadScript', function () {
     });
 }());
 
+/*
 asyncTest('createModule waits a tick before creating the module', function () {
     Ink.createModule('Ink.foo', '1', [], function () {
         ok(true, 'module created');
@@ -118,12 +119,20 @@ asyncTest('createModule waits a tick before creating the module', function () {
 });
 
 asyncTest('requireModules waits a tick before requiring the module', function () {
-    var required = 'not yet'
+    var required = 'not yet';
     Ink.requireModules(['Ink.foo_1'], function () {
         required = true;
         ok(true, 'module required');
         start();
     }); 
     equal(required, 'not yet', 'requireModules callback function not called yet');
+});
+*/
+
+test('createModule makes the module available immediately when there are no dependencies', function () {
+    Ink.createModule('Ink.New.Module', 1, [], function () {
+        return {};
+    });
+    ok(Ink.getModule('Ink.New.Module_1'));
 });
 
