@@ -20,14 +20,6 @@ test('bindMethod', function () {
     deepEqual(test2(), obj, 'returns the object owning the method');
 });
 
-test('staticMode', function () {
-    Ink.setStaticMode(true);
-    throws(function () {
-        Ink.requireModules(['Ink.Dom.Element_1'], function () {});
-    }, /[sS]tatic( mode)?/);
-    Ink.setStaticMode(false);
-});
-
 test('createExt', function () {
     stop();  // async
     expect(1);  // only one assertion
@@ -38,8 +30,8 @@ test('createExt', function () {
         };
     });
 
-    Ink.requireModules(['Ink.Ext.Lol.Parser'], function (Parser) {
-        equal(typeof Parser.parse, 'function');
+    Ink.requireModules(['Ink.Ext.Lol.Parser_1'], function (Parser) {
+        equal(typeof Parser.parse, 'function', 'checking module');
         start();  // async done
     });
 });
@@ -108,31 +100,68 @@ asyncTest('loadScript', function () {
     });
 }());
 
-/*
-asyncTest('createModule waits a tick before creating the module', function () {
-    Ink.createModule('Ink.foo', '1', [], function () {
-        ok(true, 'module created');
-        start();
-        return {}; 
-    }); 
-    equal(Ink.foo_1, undefined, 'Ink.foo will not exist until next tick');
-});
-
-asyncTest('requireModules waits a tick before requiring the module', function () {
-    var required = 'not yet';
-    Ink.requireModules(['Ink.foo_1'], function () {
-        required = true;
-        ok(true, 'module required');
-        start();
-    }); 
-    equal(required, 'not yet', 'requireModules callback function not called yet');
-});
-*/
-
 test('createModule makes the module available immediately when there are no dependencies', function () {
     Ink.createModule('Ink.New.Module', 1, [], function () {
         return {};
     });
     ok(Ink.getModule('Ink.New.Module_1'));
+});
+
+asyncTest('trying to load TestModule/1/lib.js', function () {
+    expect(1);
+    Ink.setPath('TestModule', './TestModule')
+    Ink.requireModules(['TestModule_1'], function (TestModule) {
+        equal(TestModule.hello, 'world');
+        start();
+    });
+});
+
+asyncTest('trying to load TestModuleWithDependencies/1/lib.js', function () {
+    expect(3);
+    Ink.setPath('TestModule', './TestModule'); // TestModuleWithDependencies's dependency
+    Ink.setPath('TestModuleWithDependencies', './TestModuleWithDependencies')
+    Ink.requireModules(['TestModuleWithDependencies_1'], function (TestModuleWithDependencies) {
+        equal(TestModuleWithDependencies.hello, 'dependencies');
+        ok(TestModuleWithDependencies.TestModule);
+        equal(TestModuleWithDependencies.TestModule.hello, 'world');
+        start();
+        return {}
+    });
+});
+
+asyncTest('Nested requireModules', function () {
+    expect(2);// expecting all the callbacks to run
+
+    Ink.createModule('Ink.nest1', 1, [], function () { return {} });
+    Ink.createModule('Ink.nest2', 1, [], function () { return {} });
+
+    Ink.requireModules(['Ink.nest1_1'], function () {
+        ok(true, 'first callback run');
+        Ink.requireModules(['Ink.nest2_1'], function () {
+            ok(true, 'second callback run');
+            start();
+        });
+    });
+
+});
+
+asyncTest('requireModules can require a module which does not yet exist. The script tag is only made on the next tick.', function () {
+    expect(1);
+    Ink.requireModules(['Ink.notYet_1'], function (obj) {
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0, len = scripts.length; i < len; i++) {
+            if (scripts[i].src === Ink.getPath('Ink.notYet_1')) {
+                ok(false, 'Ink tried to load the module and did not wait a tick!');
+                start();
+                return
+            }
+        }
+        ok(true, 'Ink did not try to load the module before waiting a tick');
+        start();
+        return;
+    });
+    Ink.createModule('Ink.notYet', 1, [], function () {
+        return {};
+    });
 });
 
