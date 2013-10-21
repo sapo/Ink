@@ -24,7 +24,6 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {};
-    var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulesLoadOrder = [];
     var modulesRequested = {};
@@ -85,19 +84,6 @@
         },
 
         /**
-         * Sets or unsets the static mode.
-         *
-         * Enable static mode to disable dynamic loading of modules and throw an exception.
-         *
-         * @method setStaticMode
-         *
-         * @param {Boolean} staticMode
-         */
-        setStaticMode: function(newStatus) {
-            staticMode = newStatus;
-        },
-        
-        /**
          * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
          *
          * @method getPath
@@ -119,7 +105,7 @@
                 }
             }
             path = paths[root || 'Ink'];
-            if (path[path.length - 1] !== '/') {
+            if (!/\/$/.test(path)) {
                 path += '/';
             }
             if (i < split.length) {
@@ -164,10 +150,6 @@
          */
         loadScript: function(uri) {
             /*jshint evil:true */
-
-            if (staticMode) {
-                throw new Error('Requiring a module to be loaded dynamically while in static mode');
-            }
 
             if (uri.indexOf('/') === -1) {
                 uri = this.getPath(uri);
@@ -361,8 +343,11 @@
                 else if (modulesRequested[dep]) {
                 }
                 else {
-                    modulesRequested[dep] = true;
-                    Ink.loadScript(dep);
+                    setTimeout(function () {
+                        if (modules[dep]) { return; }
+                        modulesRequested[dep] = true;
+                        Ink.loadScript(dep);
+                    }, 0);
                 }
                 o.left[dep] = i;
             }
@@ -394,7 +379,7 @@
             var mlo = this.getModulesLoadOrder();
             mlo.unshift('Ink_1');
             mlo = mlo.map(function(m) {
-                return ['<script type="text/javascript" src="', Ink.getModuleURL(m), '"></script>'].join('');
+                return ['<scr', 'ipt type="text/javascript" src="', Ink.getModuleURL(m), '"></scr', 'ipt>'].join('');
             });
 
             return mlo.join('\n');
