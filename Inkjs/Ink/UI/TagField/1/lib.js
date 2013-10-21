@@ -3,13 +3,38 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
+Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector) {
     /**
      * @class Ink.UI.TagField
      * @version 1
      * @constructor
      * @example
      */
+
+    // Ink.UI.Aux was renamed to Ink.UI.Common on Ink@git
+    var Common = Ink.getModule('Ink.UI.Common_1') || Ink.getModule('Ink.UI.Aux_1');
+
+    // InkElement.create on steroids, new on Ink@git
+    function createElement(tag, properties) {
+        var el = document.createElement(tag);
+        //Ink.extendObj(el, properties);
+        for(var property in properties) {
+            if(properties.hasOwnProperty(property)) {
+                if (property in InkElement) {
+                    InkElement[property](el, properties[property]);
+                } else if (property === 'insertBottom') {
+                    properties[property].appendChild(el);
+                } else {
+                    if(property === 'className' || property === 'class') {
+                        el.className = properties.className || properties['class'];
+                    } else {
+                        el.setAttribute(property, properties[property]);
+                    }
+                }
+            }
+        }
+        return el;
+    };
 
     var isTruthy = function (val) {return !!val;};
 
@@ -44,12 +69,12 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
             Css.addClassName(this._element, 'hide-all');
 
-            this._viewElm = InkElement.create('div', {
+            this._viewElm = createElement('div', {
                 className: 'ink-tagfield',
                 insertAfter: this._element
             });
 
-            this._input = InkElement.create('input', {
+            this._input = createElement('input', {
                 type: 'text',
                 className: 'new-tag-input',
                 insertBottom: this._viewElm
@@ -94,7 +119,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             } else if (tagname === 'select') {
                 element.innerHTML = '';
                 InkArray.each(tags, function (tag) {
-                    var opt = InkElement.create('option', {selected: 'selected'});
+                    var opt = createElement('option', {selected: 'selected'});
                     InkElement.setTextContent(opt, tag);
                     element.appendChild(opt);
                 });
@@ -108,12 +133,12 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                     InkArray.inArray(tag, this._tags, tag)) || !tag) {
                 return false;
             }
-            var elm = InkElement.create('span', {
+            var elm = createElement('span', {
                 className: 'ink-tag',
                 setTextContent: tag + ' '
             });
 
-            var remove = InkElement.create('i', {
+            var remove = createElement('i', {
                 className: 'remove icon-remove',
                 insertBottom: elm
             });
