@@ -4219,7 +4219,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         } else {
             ev = document.createEventObject();
-            if(typeof nativeEvents["on"+eventName] === "undefined"){
+                if (nativeEvents.indexOf("on"+eventName) === -1){
                 ev.eventType = "ondataavailable";
             } else {
                 ev.eventType = "on"+eventName;
@@ -4561,7 +4561,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-var i = 0
 
 return InkEvent;
 
@@ -6994,7 +6993,6 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          */
         KONQUEROR: false,
 
-
         /**
          * True if browser is Chrome
          *
@@ -7074,15 +7072,6 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
             this.windowWidth = myWidth;
             this.windowHeight = myHeight;
         },
-        base64Decode: function(string)
-        {
-         * --function {String} ?
-         * Decode a BASE 64 encoded string
-         * --param {String} string base64 encoded string
-         * --return string decoded
-            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
-                throw "SAPO.Utility.Url.base64Decode depends of SAPO.Utility.String, which has not been referred.";
-            }
 
         /**
          * Stores the referrer. Called automatically when this module is loaded.
@@ -7171,8 +7160,6 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
                 }
             }
         },
-        */
-
 
         /**
          * Debug function which displays browser (and Ink.Dom.Browser) information as an alert message.
@@ -7799,7 +7786,6 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @return {String} String stripped from HTML tags, leaving only the allowed ones (if any)
          * @public
          * @static
-         *
          * @example
          *     <script>
          *          var myvar='isto e um texto <b>bold</b> com imagem <img src=""> e br <br /> um <p>paragrafo</p>';
@@ -9145,10 +9131,6 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
                 Ink.extendObj( I18n.prototype._gDict , I18n.prototype._gDicts[ i ][ lang ] || { } );
             }
         }
-
-        I18n.prototype._gDicts.push( dict );
-
-        Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
     };
     
     return I18n;
@@ -10107,10 +10089,6 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
                 month = _d.getMonth( );
                 day   = _d.getDate( );
             }
-            var sExpires = false;
-            var sPath = false;
-            var sDomain = false;
-            var sSecure = false;
 
             date = year + '-' + ( month + 1 ) + '-' + day + ' ';
 
