@@ -6964,7 +6964,6 @@ ul.ink-tree-view li.closed span:before {
 .ink-carousel {
   width: 100%;
   position: relative;
-  padding-bottom: 1em;
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
@@ -7008,6 +7007,26 @@ ul.ink-tree-view li.closed span:before {
   *display: inline;
 }
 .ink-carousel .hider {
+  -webkit-transition-property: width, height;
+  -moz-transition-property: width, height;
+  -o-transition-property: width, height;
+  -ms-transition-property: width, height;
+  transition-property: width, height;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -ms-transition-delay: 0;
+  transition-delay: 0;
   background-color: white;
   margin: 0;
 }
