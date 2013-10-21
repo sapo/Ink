@@ -395,7 +395,7 @@
             var mlo = this.getModulesLoadOrder();
             mlo.unshift('Ink_1');
             mlo = mlo.map(function(m) {
-                return ['<script type="text/javascript" src="', Ink.getModuleURL(m), '"></script>'].join('');
+                return ['<scr', 'ipt type="text/javascript" src="', Ink.getModuleURL(m), '"></scr', 'ipt>'].join('');
             });
 
             return mlo.join('\n');
@@ -632,11 +632,24 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      *                                             The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies).
      *                                             e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will
      *                                             be used for cross-domain requests, if set, else a network error is returned as exception.
+     *
+     * @example
+     *     new Ajax('test.json', {
+     *         method: 'get',
+     *         onSuccess: function (ajx, responseJSON) {
+     *             // Do stuff with responseJSON or ajx.responseText
+     *             console.log(responseJSON.something.length);
+     *         },
+     *         onFailure: function (ajx, errorResponse) {
+     *             // Deal with it
+     *             alert(ajx.status);  // The HTTP response code
+     *         }
+     *     });
      */
     var Ajax = function(url, options){
 
         // start of AjaxMock patch - uncomment to enable it
-        /*var AM = SAPO.Communication.AjaxMock;
+        /*var AM = APO.Communication.AjaxMock;
         if (AM && !options.inMock) {
             if (AM.autoRecordThisUrl && AM.autoRecordThisUrl(url)) {
                 return new AM.Record(url, options);
@@ -718,20 +731,14 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
             this.safeCall('onInit');
 
-            var urlLocation =  document.createElementNS ?
-                document.createElementNS('http://www.w3.org/1999/xhtml', 'a') :
-                document.createElement('a');
-            urlLocation.href = url;
-
             this.url = url;
-            this.isHTTP = urlLocation.protocol.match(/^https?:$/i) && true;
+
+            var urlLocation = this._locationFromURL(url);
+            this.isHTTP = this._locationIsHTTP(urlLocation);
+            this.isCrossDomain = this._locationIsCrossDomain(urlLocation, location);
+
             this.requestHasBody = options.method.search(/^get|head$/i) < 0;
 
-            if (!this.isHTTP || location.protocol === 'widget:' || typeof window.widget === 'object') {
-                this.isCrossDomain = false;
-            } else {
-                this.isCrossDomain = location.protocol !== urlLocation.protocol || location.host !== urlLocation.host;
-            }
             if(this.options.cors) {
                 this.isCrossDomain = false;
             }
@@ -739,6 +746,49 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             this.transport = this.getTransport();
 
             this.request();
+        },
+
+        /**
+         * Returns a location object from an URL
+         *
+         * @method _locationFromUrl
+         * @param url
+         * @private
+         **/
+        _locationFromURL: function (url) {
+            var urlLocation =  document.createElementNS ?
+                document.createElementNS('http://www.w3.org/1999/xhtml', 'a') :
+                document.createElement('a');
+            urlLocation.href = url;
+            return urlLocation;
+        },
+
+        /**
+         * Checks whether a location is HTTP or HTTPS
+         *
+         * @method locationIsHttp
+         * @param urlLocation
+         * @private
+         */
+        _locationIsHTTP: function (urlLocation) {
+            return urlLocation.protocol.match(/^https?:/i) ? true : false;
+        },
+
+        /**
+         * Checks whether a location is cross-domain from another
+         *
+         * @method _locationIsCrossDomain
+         * @param urlLocation {Location}
+         * @param otherLocation {Location}
+         */
+        _locationIsCrossDomain: function (urlLocation, location) {
+            location = location || window.location;
+            if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
+                return false;
+            } else {
+                return location.protocol !== urlLocation.protocol
+                    || location.host !== urlLocation.host;
+            }
         },
 
         /**
@@ -782,7 +832,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                         "Accept": "text/javascript,text/xml,application/xml,application/xhtml+xml,text/html,application/json;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1",
                         "Accept-Language": navigator.language,
                         "X-Requested-With": "XMLHttpRequest",
-                        "X-Ink-Version": "1"
+                        "X-Ink-Version": "2"
                     };
                     if (this.options.cors) {
                         if (!this.options.signRequest) {
@@ -1482,6 +1532,18 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     'use strict';
 
     /**
+     * Instantiate browser native events array
+     */
+
+    var nativeEvents;
+
+    if (document.createEvent) {
+        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+    } else {
+        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+    }
+
+    /**
      * @module Ink.Dom.Event_1
      */
 
@@ -1489,7 +1551,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @class Ink.Dom.Event
      */
 
-    var Event = {
+    var InkEvent = {
 
     KEY_BACKSPACE: 8,
     KEY_TAB:       9,
@@ -1649,54 +1711,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     fire: function(element, eventName, memo)
     {
         element = Ink.i(element);
-        var ev, nativeEvents;
-        if(document.createEvent){
-            nativeEvents = {
-                "DOMActivate": true, "DOMFocusIn": true, "DOMFocusOut": true,
-                "focus": true, "focusin": true, "focusout": true,
-                "blur": true, "load": true, "unload": true, "abort": true,
-                "error": true, "select": true, "change": true, "submit": true,
-                "reset": true, "resize": true, "scroll": true,
-                "click": true, "dblclick": true, "mousedown": true,
-                "mouseenter": true, "mouseleave": true, "mousemove": true, "mouseover": true,
-                "mouseout": true, "mouseup": true, "mousewheel": true, "wheel": true,
-                "textInput": true, "keydown": true, "keypress": true, "keyup": true,
-                "compositionstart": true, "compositionupdate": true, "compositionend": true,
-                "DOMSubtreeModified": true, "DOMNodeInserted": true, "DOMNodeRemoved": true,
-                "DOMNodeInsertedIntoDocument": true, "DOMNodeRemovedFromDocument": true,
-                "DOMAttrModified": true, "DOMCharacterDataModified": true,
-                "DOMAttributeNameChanged": true, "DOMElementNameChanged": true,
-                "hashchange": true
-            };
-        } else {
-            nativeEvents = {
-                "onabort": true, "onactivate": true, "onafterprint": true, "onafterupdate": true,
-                "onbeforeactivate": true, "onbeforecopy": true, "onbeforecut": true,
-                "onbeforedeactivate": true, "onbeforeeditfocus": true, "onbeforepaste": true,
-                "onbeforeprint": true, "onbeforeunload": true, "onbeforeupdate": true, "onblur": true,
-                "onbounce": true, "oncellchange": true, "onchange": true, "onclick": true,
-                "oncontextmenu": true, "oncontrolselect": true, "oncopy": true, "oncut": true,
-                "ondataavailable": true, "ondatasetchanged": true, "ondatasetcomplete": true,
-                "ondblclick": true, "ondeactivate": true, "ondrag": true, "ondragend": true,
-                "ondragenter": true, "ondragleave": true, "ondragover": true, "ondragstart": true,
-                "ondrop": true, "onerror": true, "onerrorupdate": true,
-                "onfilterchange": true, "onfinish": true, "onfocus": true, "onfocusin": true,
-                "onfocusout": true, "onhashchange": true, "onhelp": true, "onkeydown": true,
-                "onkeypress": true, "onkeyup": true, "onlayoutcomplete": true,
-                "onload": true, "onlosecapture": true, "onmessage": true, "onmousedown": true,
-                "onmouseenter": true, "onmouseleave": true, "onmousemove": true, "onmouseout": true,
-                "onmouseover": true, "onmouseup": true, "onmousewheel": true, "onmove": true,
-                "onmoveend": true, "onmovestart": true, "onoffline": true, "ononline": true,
-                "onpage": true, "onpaste": true, "onprogress": true, "onpropertychange": true,
-                "onreadystatechange": true, "onreset": true, "onresize": true,
-                "onresizeend": true, "onresizestart": true, "onrowenter": true, "onrowexit": true,
-                "onrowsdelete": true, "onrowsinserted": true, "onscroll": true, "onselect": true,
-                "onselectionchange": true, "onselectstart": true, "onstart": true,
-                "onstop": true, "onstorage": true, "onstoragecommit": true, "onsubmit": true,
-                "ontimeout": true, "onunload": true
-            };
-        }
-
+        var ev;
 
         if(element !== null && element !== undefined){
             if (element === document && document.createEvent && !element.dispatchEvent) {
@@ -1924,8 +1939,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     pointer: function(ev)
     {
         return {
-            x: ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft)),
-            y: ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop))
+            x: this.pointerX(ev),
+            y: this.pointerY(ev)
         };
     },
 
@@ -2026,7 +2041,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-return Event;
+return InkEvent;
 
 });
 
@@ -4675,6 +4690,15 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     'use strict';
 
+    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
+
+    var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
+    var browserCreatesTbodies = (function () {
+        var div = document.createElement('div');
+        div.innerHTML = '<table>';
+        return div.getElementsByTagName('tbody').length !== 0;
+    }());
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -4683,7 +4707,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
      * @class Ink.Dom.Element
      */
 
-    var Element = {
+    var InkElement = {
 
         /**
          * Shortcut for `document.getElementById`
@@ -4707,17 +4731,33 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * @method create
          * @param {String} tag        tag name
-         * @param {Object} properties  object with properties to be set on the element
+         * @param {Object} properties  object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
+         *
+         * @example
+         *
+         *      var myPanel = InkElement.create('div', {
+         *          appendHTML: '<span></span>',
+         *          className: 'classes to add',
+         *          insertAfter: anotherPane
+         *      };
+         *
+         *      myPanel.innerHTML;  // -> '<div class="classes to add"><span></span></div>
+         *      myPanel.parentNode;  // -> anotherPane
          */
         create: function(tag, properties) {
             var el = document.createElement(tag);
             //Ink.extendObj(el, properties);
             for(var property in properties) {
                 if(properties.hasOwnProperty(property)) {
-                    if(property === 'className') {
-                        property = 'class';
+                    if (property in InkElement) {
+                        InkElement[property](el, properties[property]);
+                    } else {
+                        if(property === 'className' || property === 'class') {
+                            el.className = properties.className || properties['class'];
+                        } else {
+                            el.setAttribute(property, properties[property]);
+                        }
                     }
-                    el.setAttribute(property, properties[property]);
                 }
             }
             return el;
@@ -4743,7 +4783,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement|String} elm  Element where to scroll
          */
         scrollTo: function(elm) {
-            elm = this.get(elm);
+            elm = InkElement.get(elm);
             if(elm) {
                 if (elm.scrollIntoView) {
                     return elm.scrollIntoView();
@@ -4775,7 +4815,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Number} Offset from the target element to the top of the document
          */
         offsetTop: function(elm) {
-            return this.offset(elm)[1];
+            return InkElement.offset(elm)[1];
         },
 
         /**
@@ -4788,7 +4828,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Number} Offset from the target element to the left of the document
          */
         offsetLeft: function(elm) {
-            return this.offset(elm)[0];
+            return InkElement.offset(elm)[0];
         },
 
         /**
@@ -4800,7 +4840,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         */
         positionedOffset: function(element) {
             var valueTop = 0, valueLeft = 0;
-            element = this.get(element);
+            element = InkElement.get(element);
             do {
                 valueTop  += element.offsetTop  || 0;
                 valueLeft += element.offsetLeft || 0;
@@ -4839,7 +4879,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
             var dRes, bRes, parent, cs;
-            var getPropPx = this._getPropPx;
+            var getPropPx = InkElement._getPropPx;
 
             var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
 
@@ -4911,7 +4951,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @deprecated Kept for historic reasons. Use offset() instead.
          */
         offset2: function(el) {
-            return this.offset(el);
+            return InkElement.offset(el);
         },
 
         /**
@@ -4934,8 +4974,22 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          */
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
-            if (targetElm = this.get(targetElm)) {
+            if (targetElm = InkElement.get(targetElm)) {
                 targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+            }
+        },
+
+        /**
+         * Inserts an element before a target element
+         *
+         * @method insertBefore
+         * @param {DOMElement}         newElm     element to be inserted
+         * @param {DOMElement|String}  targetElm  key element
+         */
+        insertBefore: function (newElm, targetElm) {
+            /*jshint boss:true */
+            if ( (targetElm = InkElement.get(targetElm)) ) {
+                targetElm.parentNode.insertBefore(newElm, targetElm);
             }
         },
 
@@ -4946,17 +5000,33 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {DOMElement}         newElm     element to be inserted
          * @param {DOMElement|String}  targetElm  key element
          */
-        insertTop: function(newElm,targetElm) {  // TODO check first child exists
+        insertTop: function(newElm,targetElm) {
             /*jshint boss:true */
-            if (targetElm = this.get(targetElm)) {
-                targetElm.insertBefore(newElm, targetElm.firstChild);
+            if (targetElm = InkElement.get(targetElm)) {
+                if (targetElm.firstChild) {
+                    targetElm.insertBefore(newElm, targetElm.firstChild);
+                } else {
+                    targetElm.appendChild(newElm);
+                }
             }
         },
 
         /**
-         * Retreives textContent from node
+         * Inserts an element after all the child nodes of another element
          *
-         * @method textContent
+         * @method insertBottom
+         * @param {DOMElement}         newElm     element to be inserted
+         * @param {DOMElement|String}  targetElm  key element
+         */
+        insertBottom: function(newElm,targetElm) {
+            /*jshint boss:true */
+            targetElm.appendChild(newElm);
+        },
+
+        /**
+         * Retrieves textContent from node
+         *
+         * @method innerText
          * @param {DOMNode} node from which to retreive text from. Can be any node type.
          * @return {String} the text
          */
@@ -4967,7 +5037,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             switch(node && node.nodeType) {
             case 9: /*DOCUMENT_NODE*/
                 // IE quirks mode does not have documentElement
-                return this.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
+                return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
 
             case 1: /*ELEMENT_NODE*/
                 text = node.innerText;
@@ -4983,13 +5053,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
                 if (node.firstChild === node.lastChild) {
                     // Common case: 0 or 1 children
-                    return this.textContent(node.firstChild);
+                    return InkElement.textContent(node.firstChild);
                 }
 
                 text = [];
                 cs = node.childNodes;
                 for (k = 0, m = cs.length; k < m; ++k) {
-                    text.push( this.textContent( cs[k] ) );
+                    text.push( InkElement.textContent( cs[k] ) );
                 }
                 return text.join('');
 
@@ -5086,7 +5156,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Boolean} true if 'descendant' is descendant of 'node'
          */
         descendantOf: function(node, descendant){
-            return node !== descendant && this.isAncestorOf(node, descendant);
+            return node !== descendant && InkElement.isAncestorOf(node, descendant);
         },
 
         /**
@@ -5254,7 +5324,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          * Requires Ink.Dom.Css
          *
-         * @method uterDimensions
+         * @method outerDimensions
          * @param {DOMElement} element Target element
          * @return {Array} Array with element width and height.
          */
@@ -5281,13 +5351,13 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var rect = Ink.i(element).getBoundingClientRect();
             if (partial) {
                 return  rect.bottom > 0                        && // from the top
-                        rect.left < Element.viewportWidth()    && // from the right
-                        rect.top < Element.viewportHeight()    && // from the bottom
+                        rect.left < InkElement.viewportWidth()    && // from the right
+                        rect.top < InkElement.viewportHeight()    && // from the bottom
                         rect.right  > 0;                          // from the left
             } else {
                 return  rect.top > 0                           && // from the top
-                        rect.right < Element.viewportWidth()   && // from the right
-                        rect.bottom < Element.viewportHeight() && // from the bottom
+                        rect.right < InkElement.viewportWidth()   && // from the right
+                        rect.bottom < InkElement.viewportHeight() && // from the bottom
                         rect.left  > 0;                           // from the left
             }
         },
@@ -5301,7 +5371,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {DOMElement} the element with positionClone
          */
         clonePosition: function(cloneTo, cloneFrom){
-            var pos = this.offset(cloneFrom);
+            var pos = InkElement.offset(cloneFrom);
             cloneTo.style.left = pos[0]+'px';
             cloneTo.style.top = pos[1]+'px';
 
@@ -5357,7 +5427,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 var cls = el.className;
                 return cls && re.test(cls);
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -5373,7 +5443,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var tst = function(el) {
                 return el.nodeName && el.nodeName.toUpperCase() === tag;
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -5388,7 +5458,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var tst = function(el) {
                 return el.id === id;
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -5406,7 +5476,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var tst = function(el) {
                 return Ink.Dom.Selector.matchesSelector(el, sel);
             };
-            return this.findUpwardsHaving(element, tst);
+            return InkElement.findUpwardsHaving(element, tst);
         },
 
         /**
@@ -5433,7 +5503,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 node = nodes[j];
                 if (!node) {    continue;   }
                 if (node.nodeType === 3) {  // TEXT NODE
-                    part = this._trimString( String(node.data) );
+                    part = InkElement._trimString( String(node.data) );
                     if (part.length > 0) {
                         text += part;
                         if (removeIt) { el.removeChild(node);   }
@@ -5515,7 +5585,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 containerEl.appendChild(optionEl);
             }
 
-            data = this._normalizeData(data);
+            data = InkElement._normalizeData(data);
 
             for (var i = 0, f = data.length; i < f; ++i) {
                 d = data[i];
@@ -5572,7 +5642,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var optGroupValuesEl = document.createElement('optgroup');
             optGroupValuesEl.setAttribute('label', opts.optionsGroupLabel);
 
-            opts.data = this._normalizeData(opts.data);
+            opts.data = InkElement._normalizeData(opts.data);
 
             if (!opts.skipCreate) {
                 opts.data.unshift(['$create$', opts.createLabel]);
@@ -5663,7 +5733,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 Ink.i(insertAfterEl).appendChild(containerEl);
             }
 
-            data = this._normalizeData(data);
+            data = InkElement._normalizeData(data);
 
             if (name.substring(name.length - 1) !== ']') {
                 name += '[]';
@@ -5726,7 +5796,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 Ink.i(insertAfterEl).appendChild(containerEl);
             }
 
-            data = this._normalizeData(data);
+            data = InkElement._normalizeData(data);
 
             if (name.substring(name.length - 1) !== ']') {
                 name += '[]';
@@ -5789,7 +5859,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements = [],
                     siblings = elm.parentNode.children,
-                    index    = this.parentIndexOf(elm.parentNode, elm);
+                    index    = InkElement.parentIndexOf(elm.parentNode, elm);
 
                 for(var i = ++index, len = siblings.length; i<len; i++) {
                     elements.push(siblings[i]);
@@ -5815,7 +5885,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
                 var elements    = [],
                     siblings    = elm.parentNode.children,
-                    index       = this.parentIndexOf(elm.parentNode, elm);
+                    index       = InkElement.parentIndexOf(elm.parentNode, elm);
 
                 for(var i = 0, len = index; i<len; i++) {
                     elements.push(siblings[i]);
@@ -5866,22 +5936,73 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 return elm.childElementCount;
             }
             if (!elm) { return 0; }
-            return this.siblings(elm).length + 1;
+            return InkElement.siblings(elm).length + 1;
         },
 
-       /**
-        * parses and appends an html string to a container, not destroying its contents
-        *
-        * @method appendHTML
-        * @param {String|DomElement} elm   element
-        * @param {String}            html  markup string
-        */
+        _wrapElements: {
+            TABLE: function (div, html) {
+                /* If we don't create a tbody, IE7 does that for us. Adding a tbody with a random string and then filtering for that random string is the only way to avoid double insertion of tbodies. */
+                if (browserCreatesTbodies) {
+                    div.innerHTML = "<table>" + html + "<tbody><tr><td>" + deleteThisTbodyToken + "</tr></td></tbody></table>";
+                } else {
+                    div.innerHTML = "<table>" + html + "</table>";
+                }
+                return div.firstChild;
+            },
+            TBODY: function (div, html) {
+                div.innerHTML = '<table><tbody>' + html + '</tbody></table>';
+                return div.firstChild.getElementsByTagName('tbody')[0];
+            },
+            THEAD: function (div, html) {
+                div.innerHTML = '<table><thead>' + html + '</thead><tbody></tbody></table>';
+                return div.firstChild.getElementsByTagName('thead')[0];
+            },
+            TFOOT: function (div, html) {
+                div.innerHTML = '<table><tfoot>' + html + '</tfoot><tbody></tbody></table>';
+                return div.firstChild.getElementsByTagName('tfoot')[0];
+            },
+            TR: function (div, html) {
+                div.innerHTML = '<table><tbody><tr>' + html + '</tr></tbody></table>';
+                return div.firstChild.firstChild.firstChild;
+            }
+        },
+
+        _getWrapper: function (elm, html) {
+            var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
+            var wrapper = document.createElement('div');
+            var wrapFunc = InkElement._wrapElements[nodeName];
+
+            if ( !wrapFunc ) {
+                wrapper.innerHTML = html;
+                return wrapper;
+            }
+            // special cases
+            wrapper = wrapFunc(wrapper, html);
+            // worst case: tbody creation
+            if (browserCreatesTbodies && nodeName === 'TABLE') {
+                // terrible case. Deal with tbody creation too.
+                var tds = wrapper.getElementsByTagName('td');
+                for (var i = 0, len = tds.length; i < len; i++) {
+                    if (tds[i].innerHTML === deleteThisTbodyToken) {
+                        var tbody = tds[i].parentNode.parentNode;
+                        tbody.parentNode.removeChild(tbody);
+                    }
+                }
+            }
+            return wrapper;
+        },
+
+        /**
+         * parses and appends an html string to a container, not destroying its contents
+         *
+         * @method appendHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
         appendHTML: function(elm, html){
-            var temp = document.createElement('div');
-            temp.innerHTML = html;
-            var tempChildren = temp.children;
-            for (var i = 0; i < tempChildren.length; i++){
-                elm.appendChild(tempChildren[i]);
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (wrapper.firstChild) {
+                elm.appendChild(wrapper.firstChild);
             }
         },
 
@@ -5893,14 +6014,66 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         prependHTML: function(elm, html){
-            var temp = document.createElement('div');
-            temp.innerHTML = html;
-            var first = elm.firstChild;
-            var tempChildren = temp.children;
-            for (var i = tempChildren.length - 1; i >= 0; i--){
-                elm.insertBefore(tempChildren[i], first);
-                first = elm.firstChild;
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (wrapper.lastChild) {
+                elm.insertBefore(wrapper.lastChild, elm.firstChild);
             }
+        },
+
+        /**
+         * sets the Inner HTML of an element to the given HTML string
+         *
+         * @method setHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
+        setHTML: function (elm, html) {
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (elm.firstChild) {
+                elm.removeChild(elm.firstChild);
+            }
+            InkElement.appendHTML(elm, html);
+        },
+
+        /**
+         * Wraps an element inside a container.
+         *
+         * The container may or may not be in the document yet.
+         *
+         * @method wrap
+         * @param {String|DomElement}   target Element to be wrapped
+         * @param {String|DomElement}   container Element to wrap the target
+         * @return Container element
+         *
+         * @example
+         * before:
+         *
+         *     <div id="target"></div>
+         *
+         * call this function to wrap:
+         *
+         *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
+         * 
+         * after: 
+         *
+         *     <div id="container"><div id="target"></div></div>
+         */
+        wrap: function (target, container) {
+            target = Ink.i(target);
+            container = Ink.i(container);
+            
+            var nextNode = target.nextSibling;
+            var parent = target.parentNode;
+
+            container.appendChild(target);
+
+            if (nextNode !== null) {
+                parent.insertBefore(container, nextNode)
+            } else {
+                parent.appendChild(container);
+            }
+
+            return container;
         },
 
         /**
@@ -5929,49 +6102,40 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param  {String} html  html string
          * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
          */
-        htmlToFragment: function(html){
-            /*jshint boss:true */
-            /*global Range:false */
-            if(typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function'){
-                this.htmlToFragment = function(html){
-                    var range;
+        htmlToFragment: (createContextualFragmentSupport ?
+            function(html){
+                var range;
 
-                    if(typeof html !== 'string'){ return document.createDocumentFragment(); }
+                if(typeof html !== 'string'){ return document.createDocumentFragment(); }
 
-                    range = document.createRange();
+                range = document.createRange();
 
-                    // set the context to document.body (firefox does this already, webkit doesn't)
-                    range.selectNode(document.body);
+                // set the context to document.body (firefox does this already, webkit doesn't)
+                range.selectNode(document.body);
 
-                    return range.createContextualFragment(html);
-                };
-            } else {
-                this.htmlToFragment = function(html){
-                    var fragment = document.createDocumentFragment(),
-                        tempElement,
-                        current;
+                return range.createContextualFragment(html);
+            } : function (html) {
+                var fragment = document.createDocumentFragment(),
+                    tempElement,
+                    current;
 
-                    if(typeof html !== 'string'){ return fragment; }
+                if(typeof html !== 'string'){ return fragment; }
 
-                    tempElement = document.createElement('div');
-                    tempElement.innerHTML = html;
+                tempElement = document.createElement('div');
+                tempElement.innerHTML = html;
 
-                    // append child removes elements from the original parent
-                    while(current = tempElement.firstChild){ // intentional assignment
-                        fragment.appendChild(current);
-                    }
+                // append child removes elements from the original parent
+                while( (current = tempElement.firstChild) ){ // intentional assignment
+                    fragment.appendChild(current);
+                }
 
-                    return fragment;
-                };
-            }
-
-            return this.htmlToFragment.call(this, html);
-        },
+                return fragment;
+            }),
 
         _camelCase: function(str)
         {
             return str ? str.replace(/-(\w)/g, function (_, $1){
-                    return $1.toUpperCase();
+                return $1.toUpperCase();
             }) : str;
         },
 
@@ -5994,7 +6158,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             else {
                 var InkDomSelector = Ink.getModule('Ink.Dom.Selector', 1);
                 if (!InkDomSelector) {
-                    throw "[Ink.Dom.Element.data] :: This method requires Ink.Dom.Selector - v1";
+                    throw "[Ink.Dom.Element.data] :: this method requires Ink.Dom.Selector - v1";
                 }
                 el = InkDomSelector.select(selector);
                 if (el.length <= 0) {
@@ -6013,7 +6177,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                     curAttrName = curAttr.name;
                     curAttrValue = curAttr.value;
                     if (curAttrName && curAttrName.indexOf('data-') === 0) {
-                        dataset[this._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
+                        dataset[InkElement._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
                     }
                 }
             }
@@ -6110,7 +6274,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
        /**
          * @method viewportWidth
-         * @return {Number} viewport width
+         * @return {Number} viewport width in pixels
          */
         viewportWidth: function() {
             if(typeof window.innerWidth !== "undefined") {
@@ -6163,7 +6327,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         }
     };
 
-    return Element;
+    return InkElement;
 
 });
 
@@ -12317,230 +12481,6 @@ Ink.createModule('Ink.Util.BinPack', '1', [], function() {
 });
 
 /**
- * @module Ink.UI.TreeView_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
-     * @class Ink.UI.TreeView
-     * @constructor
-     * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
-     * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
-     *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
-     *          </ul>
-     *        </li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
-     *          });
-     *      </script>
-     */
-    var TreeView = function(selector, options){
-
-        /**
-         * Gets the element
-         */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-        } else {
-            this._element = selector;
-        }
-
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul'
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
-
-        this._init();
-    };
-
-    TreeView.prototype = {
-
-        /**
-         * Init function called by the constructor. Sets the necessary event handlers.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
-
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                children
-            ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
-
-                children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
-
-        },
-
-        /**
-         * Handles the click event (as specified in the _init function).
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function(event){
-
-            /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
-             */
-            var tgtEl = Event.element(event);
-
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            }
-
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
-
-            var child = Selector.select(this._options.child,tgtEl);
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
-            }
-
-        }
-
-    };
-
-    return TreeView;
-
-});
-
-/**
- * @module Ink.UI.Close_1
- * @author inkdev AT sapo.pt
- */
-Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
-    'use strict';
-
-    /**
-     * Subscribes clicks on the document.body. If and only if you clicked on an element
-     * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
-     * of the following classes: "ink-alert", "ink-alert-block".
-     * If it is found, it is removed from the DOM.
-     * 
-     * One should call close once per page (full page refresh).
-     * 
-     * @class Ink.UI.Close
-     * @constructor
-     * @example
-     *     <script>
-     *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
-     *             new Close();
-     *         });
-     *     </script>
-     */
-    var Close = function() {
-        InkEvent.observe(document.body, 'click', function(ev) {
-            var el = InkEvent.element(ev);
-
-            el = InkElement.findUpwardsByClass(el, 'ink-close') ||
-                 InkElement.findUpwardsByClass(el, 'ink-dismiss');
-
-            if (!el) {
-                return;  // ink-close or ink-dismiss class not found
-            }
-
-            var toRemove = el;
-            toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
-                       InkElement.findUpwardsByClass(el, 'ink-alert-block');
-
-            if (toRemove) {
-                InkEvent.stop(ev);
-                InkElement.remove(toRemove);
-            }
-        });
-    };
-
-    return Close;
-
-});
-
-/**
  * @module Ink.UI.Common_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -13040,6 +12980,230 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
     };
 
     return Aux;
+
+});
+
+/**
+ * @module Ink.UI.Close_1
+ * @author inkdev AT sapo.pt
+ */
+Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
+    'use strict';
+
+    /**
+     * Subscribes clicks on the document.body. If and only if you clicked on an element
+     * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
+     * of the following classes: "ink-alert", "ink-alert-block".
+     * If it is found, it is removed from the DOM.
+     * 
+     * One should call close once per page (full page refresh).
+     * 
+     * @class Ink.UI.Close
+     * @constructor
+     * @example
+     *     <script>
+     *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
+     *             new Close();
+     *         });
+     *     </script>
+     */
+    var Close = function() {
+        InkEvent.observe(document.body, 'click', function(ev) {
+            var el = InkEvent.element(ev);
+
+            el = InkElement.findUpwardsByClass(el, 'ink-close') ||
+                 InkElement.findUpwardsByClass(el, 'ink-dismiss');
+
+            if (!el) {
+                return;  // ink-close or ink-dismiss class not found
+            }
+
+            var toRemove = el;
+            toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
+                       InkElement.findUpwardsByClass(el, 'ink-alert-block');
+
+            if (toRemove) {
+                InkEvent.stop(ev);
+                InkElement.remove(toRemove);
+            }
+        });
+    };
+
+    return Close;
+
+});
+
+/**
+ * @module Ink.UI.TreeView_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @class Ink.UI.TreeView
+     * @constructor
+     * @version 1
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @example
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
+     *          });
+     *      </script>
+     */
+    var TreeView = function(selector, options){
+
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+        } else {
+            this._element = selector;
+        }
+
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul'
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj(this._options, options || {});
+
+        this._init();
+    };
+
+    TreeView.prototype = {
+
+        /**
+         * Init function called by the constructor. Sets the necessary event handlers.
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
+
+            Event.observe(this._element, 'click', this._handlers.click);
+
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            InkArray.each(nodes,Ink.bind(function(item){
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                InkArray.each(children,Ink.bind(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') ){
+                        Css.addClassName(inner_item,'hide-all');
+                    }
+                },this));
+            },this));
+
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
+
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
+             */
+            var tgtEl = Event.element(event);
+
+            if( this._options.node[0] === '.' ) {
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else if( this._options.node[0] === '#' ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else {
+                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
+                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            }
+
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+
+            var child = Selector.select(this._options.child,tgtEl);
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+            }
+
+        }
+
+    };
+
+    return TreeView;
 
 });
 
@@ -18080,13 +18244,36 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded ) {
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
     'use strict';
+
+    var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        function (cb) { return setTimeout(cb, 10); };
+
+    var cancelAnimationFrame =
+        window.cancelAnimationFrame ||
+        function (id) { clearTimeout(id); };
 
     /**
      * @class Ink.UI.SmoothScroller
      * @version 1
      * @static
+     *
+     * @example
+     *
+     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
+     *
+     *      [lots and lots of content...]
+     *
+     *      <h1 id="part1">Part 1</h1>
+     *
+     *      <script>
+     *          // ...Although you don't need to do this if you have autoload.js
+     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
+     *              SmoothScroller.init('.ink-smooth-scroll');
+     *          })
+     *      </script>
      */
     var SmoothScroller = {
 
@@ -18101,23 +18288,17 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
         speed: 10,
 
         /**
-         * Returns the Y position of the div
+         * Returns the Y position of an element, relative to the document
          *
-         * @method gy
+         * @method getTop
          * @param  {DOMElement} d DOMElement to get the Y position from
          * @return {Number}   Y position of div 'd'
          * @public
          * @static
          */
-        gy: function(d) {
-            var gy;
-            gy = d.offsetTop;
-            if (d.offsetParent){
-                while ( (d = d.offsetParent) ){
-                    gy += d.offsetTop;
-                }
-            }
-            return gy;
+        getTop: function(d) {
+            return Math.round(
+                SmoothScroller.scrollTop() + d.getBoundingClientRect().top);
         },
 
 
@@ -18130,18 +18311,15 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @static
          */
         scrollTop: function() {
-            var
-                body = document.body,
-                d = document.documentElement
-            ;
+            var body = document.body,
+                d = document.documentElement;
             if (body && body.scrollTop){
                 return body.scrollTop;
             }
             if (d && d.scrollTop){
                 return d.scrollTop;
             }
-            if (window.pageYOffset)
-            {
+            if (window.pageYOffset){
                 return window.pageYOffset;
             }
             return 0;
@@ -18159,7 +18337,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          */
         add: function(el, event, fn) {
             Event.observe(el,event,fn);
-            return;
         },
 
 
@@ -18183,7 +18360,9 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
 
 
         /**
-         * Moves the scrollbar to the target element
+         * Moves the scrollbar to the target element. This is the function
+         * which animates the scroll position bit by bit. It calls itself in
+         * the end through requestAnimationFrame
          *
          * @method scroll
          * @param  {Number} d Y coordinate value to stop
@@ -18191,51 +18370,53 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @static
          */
         scroll: function(d) {
-            var a = Ink.UI.SmoothScroller.scrollTop();
+            var a = SmoothScroller.scrollTop();
             if (d > a) {
-                a += Math.ceil((d - a) / Ink.UI.SmoothScroller.speed);
+                a += Math.ceil((d - a) / SmoothScroller.speed);
             } else {
-                a = a + (d - a) / Ink.UI.SmoothScroller.speed;
+                a = a + (d - a) / SmoothScroller.speed;
             }
 
             window.scrollTo(0, a);
-            if ((a) === d || Ink.UI.SmoothScroller.offsetTop === a)
-            {
-                clearInterval(Ink.UI.SmoothScroller.interval);
+
+            cancelAnimationFrame(SmoothScroller.interval);
+
+            if (!((a) === d || SmoothScroller.offsetTop === a)) {
+                SmoothScroller.interval = requestAnimationFrame(
+                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
+            } else {
+                SmoothScroller.onDone();
             }
-            Ink.UI.SmoothScroller.offsetTop = a;
+            SmoothScroller.offsetTop = a;
         },
 
 
         /**
-         * Initializer that adds the rendered to run when the page is ready
+         * Has smooth scrolling applied to relevant elements upon page load.
          *
          * @method init
+         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
          * @public
          * @static
          */
-        // initializer that adds the renderer to the onload function of the window
-        init: function() {
-            Loaded.run(Ink.UI.SmoothScroller.render);
+        init: function(selector) {
+            Loaded.run(Ink.bindMethod(SmoothScroller, 'render', selector));
         },
 
         /**
-         * This method extracts all the anchors and validates thenm as # and attaches the events
+         * This method extracts all the anchors and validates them as # and attaches the events
          *
          * @method render
          * @public
          * @static
          */
-        render: function() {
-            var a = Selector.select('a.scrollableLink');
-
-            Ink.UI.SmoothScroller.end(this);
+        render: function(selector) {
+            var a = Selector.select(selector || 'a.scrollableLink,a.ink-smooth-scroll');
 
             for (var i = 0; i < a.length; i++) {
                 var _elm = a[i];
                 if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
-                    Ink.UI.SmoothScroller.add(_elm, 'click', Ink.UI.SmoothScroller.end);
-                    Event.observe(_elm,'click', Ink.bindEvent(Ink.UI.SmoothScroller.clickScroll, this, _elm));
+                    Event.observe(_elm,'click', Ink.bindEvent(SmoothScroller.onClick, this, _elm));
                 }
             }
         },
@@ -18244,62 +18425,43 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
         /**
          * Click handler
          *
-         * @method clickScroll
+         * @method onClick
          * @public
          * @static
          */
-        clickScroll: function(event, _elm) {
-            /*
-            Ink.UI.SmoothScroller.end(this);
-            var hash = this.hash.substr(1);
-            var elm = Selector.select('a[name="' + hash + '"],#' + hash);
-
-            if (typeof(elm[0]) !== 'undefined') {
-
-                if (this.parentNode.className.indexOf('active') === -1) {
-                    var ul = this.parentNode.parentNode,
-                        li = ul.firstChild;
-                    do {
-                        if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
-                            li.className = li.className.replace('active', '');
-                            break;
-                        }
-                    } while ((li = li.nextSibling));
-                    this.parentNode.className += " active";
-                }
-                clearInterval(Ink.UI.SmoothScroller.interval);
-                Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
-
-            }
-            */
-            Ink.UI.SmoothScroller.end(_elm);
+        onClick: function(event, _elm) {
+            SmoothScroller.end(event);
             if(_elm !== null && _elm.getAttribute('href') !== null) {
                 var hashIndex = _elm.href.indexOf('#');
-                if(hashIndex === -1) {
+                if (hashIndex === -1) {
                     return;
                 }
                 var hash = _elm.href.substr((hashIndex + 1));
-                var elm = Selector.select('a[name="' + hash + '"],#' + hash);
+                var activeLiSelector = 'ul > li.active > ' + selector;
 
-                if (typeof(elm[0]) !== 'undefined') {
+                var selector = 'a[name="' + hash + '"],#' + hash;
+                var elm = Selector.select(selector)[0];
+                var activeLi = Selector.select(activeLiSelector)[0];
+                activeLi = activeLi && activeLi.parentNode;
 
+                if (typeof(elm) !== 'undefined') {
                     if (_elm.parentNode.className.indexOf('active') === -1) {
-                        var ul = _elm.parentNode.parentNode,
-                            li = ul.firstChild;
-                        do {
-                            if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
-                                li.className = li.className.replace('active', '');
-                                break;
-                            }
-                        } while ((li = li.nextSibling));
+                        if (activeLi) {
+                            activeLi.className = activeLi.className.replace(/(^|\s+)active($|\s+)/g, '');
+                        }
                         _elm.parentNode.className += " active";
                     }
-                    clearInterval(Ink.UI.SmoothScroller.interval);
-                    Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
-
+                    SmoothScroller.hash = hash;
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
                 }
             }
+        },
 
+        /**
+         * Called when the scroll movement is done. Updates browser address.
+         */
+        onDone: function () {
+            window.location.hash = SmoothScroller.hash;
         }
     };
 
@@ -18763,7 +18925,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, InkEvent, Css, InkElement, Selector ) {
     'use strict';
 
     /**
@@ -18793,48 +18955,27 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             throw '[Sticky] :: Invalid selector defined';
         }
 
-        if( typeof selector === 'object' ){
-            this._rootElement = selector;
-        } else {
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0) {
-                throw "[Sticky] :: Can't find any element with the specified selector";
-            }
-            this._rootElement = this._rootElement[0];
-        }
+        this._rootElement = Common.elOrSelector(selector,
+            "[Sticky] :: Can't find any element with the specified selector");
 
         /**
-         * Setting default options and - if needed - overriding it with the data attributes
+         * Setting default options and - if needed - overriding it with the data attributes and given options
          */
         this._options = Ink.extendObj({
             offsetBottom: 0,
             offsetTop: 0,
-            topElement: undefined,
-            bottomElement: undefined
-        }, Element.data( this._rootElement ) );
+            topElement: null,
+            bottomElement: null
+        }, options || {},  InkElement.data( this._rootElement ) );
 
-        /**
-         * In case options have been defined when creating the instance, they've precedence
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( typeof( this._options.topElement ) !== 'undefined' ){
-            this._options.topElement = Aux.elOrSelector( this._options.topElement, 'Top Element');
-        } else {
-            this._options.topElement = Aux.elOrSelector( 'body', 'Top Element');
+        if( this._options.topElement ){
+            this._topElement = Common.elOrSelector( this._options.topElement, 'Top Element');
         }
 
-        if( typeof( this._options.bottomElement ) !== 'undefined' ){
-            this._options.bottomElement = Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
-        } else {
-            this._options.bottomElement = Aux.elOrSelector( 'body', 'Top Element');
+        if( this._options.bottomElement ){
+            this._bottomElement = Common.elOrSelector( this._options.bottomElement, 'Bottom Element');
         }
 
-        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
-        this._dims = {
-            height: this._computedStyle.height,
-            width: this._computedStyle.width
-        };
         this._init();
     };
 
@@ -18847,13 +18988,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _init: function(){
-            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
-            Event.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
-
-            this._calculateOriginalSizes();
-
-            this._calculateOffsets();
-
+            InkEvent.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
+            InkEvent.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
         },
 
         /**
@@ -18862,69 +18998,55 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method _onScroll
          * @private
          */
-        _onScroll: function(){
-
-
+        _onScroll: InkEvent.throttle(function(){
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+            var elm = this._rootElement;
 
             if(
-                ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
+                ( ( (InkElement.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
                 ( viewport.clientWidth<=649 )
             ){
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    this._rootElement.removeAttribute('style');
+                if( InkElement.hasAttribute(elm,'style') ){
+                    elm.removeAttribute('style');
                 }
-                return;
+                return;  // Do not do anything for mobile
             }
 
 
-            if( this._scrollTimeout ){
-                clearTimeout(this._scrollTimeout);
+            var elementRect = elm.getBoundingClientRect();
+            var topRect = this._topElement && this._topElement.getBoundingClientRect();
+            var bottomRect = this._bottomElement && this._bottomElement.getBoundingClientRect();
+
+            var offsetTop = this._options.offsetTop ? parseInt(this._options.offsetTop, 10) : 0;
+            var offsetBottom = this._options.offsetBottom ? parseInt(this._options.offsetBottom, 10) : 0;
+
+            var elementHeight = elementRect.bottom - elementRect.top;
+
+            var elMargins =
+                (parseInt(Css.getStyle(elm, 'margin-top'), 10) || 0) +
+                (parseInt(Css.getStyle(elm, 'margin-bottom'), 10) || 0);
+
+            var stickingTo = this._lastStickingTo;
+
+            if (bottomRect && bottomRect.top < elementHeight + offsetTop + offsetBottom + elMargins) {
+                stickingTo = 'bottom';
+                elm.style.position = 'fixed';
+                elm.style.top = bottomRect.top - elementHeight - offsetBottom - elMargins + 'px';
+            } else if (!topRect || topRect.bottom > offsetTop) {
+                stickingTo = '[normal]';
+                elm.style.position = 'static';
+                elm.style.top = 'auto';
+            } else if (topRect && topRect.bottom <= offsetTop) {
+                stickingTo = 'top';
+                elm.style.position = 'fixed';
+                elm.style.top = offsetTop + 'px';
             }
 
-            this._scrollTimeout = setTimeout(Ink.bind(function(){
-
-                var scrollHeight = Element.scrollHeight();
-
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
-
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-
-                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
-                            this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
-                        } else {
-                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
-                        }
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.bottom = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-                    }
-                } else {
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        return;
-                    }
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.position = 'fixed';
-                    this._rootElement.style.bottom = 'auto';
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                    this._rootElement.style.width = this._options.originalWidth + 'px';
-                }
-
-                this._scrollTimeout = undefined;
-            },this), 0);
-        },
+            if (stickingTo !== this._lastStickingTo) {
+                Css.addRemoveClassName(elm, 'ink-sticky-top', stickingTo === 'top');
+                Css.addRemoveClassName(elm, 'ink-sticky-bottom', stickingTo === 'bottom');
+            }
+        }, 80),
 
         /**
          * Resize handler
@@ -18932,86 +19054,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method _onResize
          * @private
          */
-        _onResize: function(){
-
-            if( this._resizeTimeout ){
-                clearTimeout(this._resizeTimeout);
-            }
-
-            this._resizeTimeout = setTimeout(Ink.bind(function(){
-                this._rootElement.removeAttribute('style');
-                this._calculateOriginalSizes();
-                this._calculateOffsets();
-            }, this),0);
-
-        },
-
-        /**
-         * On each resizing (and in the beginning) the component recalculates the offsets, since
-         * the top and bottom element heights might have changed.
-         *
-         * @method _calculateOffsets
-         * @private
-         */
-        _calculateOffsets: function(){
-
-            /**
-             * Calculating the offset top
-             */
-            if( typeof this._options.topElement !== 'undefined' ){
-
-
-                if( this._options.topElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        topElementHeight = Element.elementHeight( this._options.topElement ),
-                        topElementTop = Element.elementTop( this._options.topElement )
-                    ;
-
-                    this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
-                } else {
-                    this._options.offsetTop = parseInt(this._options.originalOffsetTop,10);
-                }
-            }
-
-            /**
-             * Calculating the offset bottom
-             */
-            if( typeof this._options.bottomElement !== 'undefined' ){
-
-                if( this._options.bottomElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        bottomElementHeight = Element.elementHeight(this._options.bottomElement)
-                    ;
-                    this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
-                } else {
-                    this._options.offsetBottom = parseInt(this._options.originalOffsetBottom,10);
-                }
-            }
-
+        _onResize: InkEvent.throttle(function(){
             this._onScroll();
-
-        },
-
-        /**
-         * Function to calculate the 'original size' of the element.
-         * It's used in the begining (_init method) and when a scroll happens
-         *
-         * @method _calculateOriginalSizes
-         * @private
-         */
-        _calculateOriginalSizes: function(){
-
-            if( typeof this._options.originalOffsetTop === 'undefined' ){
-                this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
-                this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
-            }
-            this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
-            if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
-                this._options.originalWidth = 0;
-            }
-            this._options.originalWidth = parseInt(this._computedStyle.width,10);
-        }
+        }, 80),
 
     };
 

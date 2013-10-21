@@ -57,28 +57,30 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @example
      *  
-     *  // BEFORE
-     *  InkEvent.observe(window, 'scroll', function () {
-     *      ...
-     *  }); // When scrolling on mobile devices or on firefox's smooth scroll
-     *      // this is expensive because onscroll is called many times
+     * Suppose you are observing the `scroll` event, but your application is lagging because `scroll` is triggered too many times.
      *
-     *  // AFTER
-     *  InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
-     *      ...
-     *  }, 100)); // The event handler is called only every 100ms. Problem solved.
+     *     // BEFORE
+     *     InkEvent.observe(window, 'scroll', function () {
+     *         ...
+     *     }); // When scrolling on mobile devices or on firefox's smooth scroll
+     *         // this is expensive because onscroll is called many times
+     *
+     *     // AFTER
+     *     InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
+     *         ...
+     *     }, 100)); // The event handler is called only every 100ms. Problem solved.
      *
      * @example
-     *  var handler = InkEvent.throttle(function () {
-     *      ...
-     *  }, 100);
+     *     var handler = InkEvent.throttle(function () {
+     *         ...
+     *     }, 100);
      *
-     *  InkEvent.observe(window, 'scroll', handler);
-     *  InkEvent.observe(window, 'resize', handler);
+     *     InkEvent.observe(window, 'scroll', handler);
+     *     InkEvent.observe(window, 'resize', handler);
      *
-     *  // on resize, both the "scroll" and the "resize" events are triggered
-     *  // a LOT of times. This prevents both of them being called a lot of
-     *  // times when the window is being resized by a user.
+     *     // on resize, both the "scroll" and the "resize" events are triggered
+     *     // a LOT of times. This prevents both of them being called a lot of
+     *     // times when the window is being resized by a user.
      *
      **/
     throttle: function (func, wait) {
@@ -94,10 +96,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    return throttled.apply(that, args);
-                });
+                if (!timeout) {
+                    timeout = setTimeout(function () {
+                        timeout = null;
+                        return throttled.apply(that, args);
+                    }, wait - timeDiff);
+                }
             }
         };
         return throttled;
@@ -186,49 +190,49 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     fire: function(element, eventName, memo)
     {
         element = Ink.i(element);
+        if (!element) { return null; }
+
         var ev;
 
-        if(element !== null && element !== undefined){
-            if (element === document && document.createEvent && !element.dispatchEvent) {
-                element = document.documentElement;
-            }
-
-            if (document.createEvent) {
-                ev = document.createEvent("HTMLEvents");
-                if(typeof nativeEvents[eventName] === "undefined"){
-                    ev.initEvent("dataavailable", true, true);
-                } else {
-                    ev.initEvent(eventName, true, true);
-                }
-
-            } else {
-                ev = document.createEventObject();
-                if(typeof nativeEvents["on"+eventName] === "undefined"){
-                    ev.eventType = "ondataavailable";
-                } else {
-                    ev.eventType = "on"+eventName;
-                }
-            }
-
-            ev.eventName = eventName;
-            ev.memo = memo || { };
-
-            try {
-                if (document.createEvent) {
-                    element.dispatchEvent(ev);
-                } else if(element.fireEvent){
-                    element.fireEvent(ev.eventType, ev);
-                } else {
-                    return;
-                }
-            } catch(ex) {}
-
-            return ev;
+        if (element === document && document.createEvent && !element.dispatchEvent) {
+            element = document.documentElement;
         }
+
+        if (document.createEvent) {
+            ev = document.createEvent("HTMLEvents");
+            if(nativeEvents.indexOf(eventName) === -1) {
+                ev.initEvent("dataavailable", true, true);
+            } else {
+                ev.initEvent(eventName, true, true);
+            }
+
+        } else {
+            ev = document.createEventObject();
+            if(typeof nativeEvents["on"+eventName] === "undefined"){
+                ev.eventType = "ondataavailable";
+            } else {
+                ev.eventType = "on"+eventName;
+            }
+        }
+
+        ev.eventName = eventName;
+        ev.memo = memo || { };
+
+        try {
+            if (document.createEvent) {
+                element.dispatchEvent(ev);
+            } else if(element.fireEvent){
+                element.fireEvent(ev.eventType, ev);
+            } else {
+                return;
+            }
+        } catch(ex) {}
+
+        return ev;
     },
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !window.onhashchange;
+        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
         var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
@@ -296,9 +300,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * Attaches an event to a selector or array of elements.
      *
-     * Requires Ink.Dom.Selector or a browser with Element.querySelectorAll.
-     *
-     * Ink.Dom.Event.observe
+     * Requires Ink.Dom.Selector
      *
      * @method observeMulti
      * @param {Array|String} elements
@@ -323,6 +325,34 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             this.observe(elements[i], eventName, callBack, useCapture);
         }
         return callBack;
+    },
+
+    /**
+     * Observe an event on the given element and every children which matches the selector string (if provided).
+     *
+     * Requires Ink.Dom.Selector if you need to use a selector.
+     *
+     * @method observeDelegated
+     * @param {DOMElement|String} element   Element to observe.
+     * @param {String}            eventName Event name to observe.
+     * @param {String}            selector  Child element selector. When null, finds any element.
+     * @param {Function}          callback  Callback to be called when the event is fired
+     * @return {Function} The used callback, for ceasing to listen to the event later.
+     **/
+    observeDelegated: function (element, eventName, selector, callback) {
+        var delegatedWrapper = function (event, fromElement) {
+            fromElement = fromElement || InkEvent.element(event);
+            if (!fromElement || fromElement === element) { return; }
+
+            var selectResult = Ink.Dom.Selector_1.select(selector, element);
+            if (selectResult.length) {
+                return callback.apply(selectResult[0], [event])
+            } else {
+                delegatedWrapper(event, fromElement.parentNode);
+            }
+        }
+
+        return InkEvent.observe(element, eventName, delegatedWrapper);
     },
 
     /**
@@ -426,7 +456,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
+            (ev.pageX) ||
+            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
     },
 
     /**
@@ -436,7 +468,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
+            (ev.pageY) ||
+            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
     },
 
     /**
@@ -515,6 +549,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     debug: function(){}
 };
+
+var i = 0
 
 return InkEvent;
 

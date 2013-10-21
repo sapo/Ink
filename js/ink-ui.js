@@ -1,229 +1,5 @@
 
 /**
- * @module Ink.UI.TreeView_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
-     * @class Ink.UI.TreeView
-     * @constructor
-     * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
-     * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
-     *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
-     *          </ul>
-     *        </li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
-     *          });
-     *      </script>
-     */
-    var TreeView = function(selector, options){
-
-        /**
-         * Gets the element
-         */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-        } else {
-            this._element = selector;
-        }
-
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul'
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
-
-        this._init();
-    };
-
-    TreeView.prototype = {
-
-        /**
-         * Init function called by the constructor. Sets the necessary event handlers.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
-
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                children
-            ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
-
-                children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
-
-        },
-
-        /**
-         * Handles the click event (as specified in the _init function).
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function(event){
-
-            /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
-             */
-            var tgtEl = Event.element(event);
-
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            }
-
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
-
-            var child = Selector.select(this._options.child,tgtEl);
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
-            }
-
-        }
-
-    };
-
-    return TreeView;
-
-});
-
-/**
- * @module Ink.UI.Close_1
- * @author inkdev AT sapo.pt
- */
-Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
-    'use strict';
-
-    /**
-     * Subscribes clicks on the document.body. If and only if you clicked on an element
-     * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
-     * of the following classes: "ink-alert", "ink-alert-block".
-     * If it is found, it is removed from the DOM.
-     * 
-     * One should call close once per page (full page refresh).
-     * 
-     * @class Ink.UI.Close
-     * @constructor
-     * @example
-     *     <script>
-     *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
-     *             new Close();
-     *         });
-     *     </script>
-     */
-    var Close = function() {
-        InkEvent.observe(document.body, 'click', function(ev) {
-            var el = InkEvent.element(ev);
-
-            el = InkElement.findUpwardsByClass(el, 'ink-close') ||
-                 InkElement.findUpwardsByClass(el, 'ink-dismiss');
-
-            if (!el) {
-                return;  // ink-close or ink-dismiss class not found
-            }
-
-            var toRemove = el;
-            toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
-                       InkElement.findUpwardsByClass(el, 'ink-alert-block');
-
-            if (toRemove) {
-                InkEvent.stop(ev);
-                InkElement.remove(toRemove);
-            }
-        });
-    };
-
-    return Close;
-
-});
-
-/**
  * @module Ink.UI.Common_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -723,6 +499,230 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
     };
 
     return Aux;
+
+});
+
+/**
+ * @module Ink.UI.Close_1
+ * @author inkdev AT sapo.pt
+ */
+Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], function(InkEvent, InkElement) {
+    'use strict';
+
+    /**
+     * Subscribes clicks on the document.body. If and only if you clicked on an element
+     * having class "ink-close" or "ink-dismiss", will go up the DOM hierarchy looking for an element with any
+     * of the following classes: "ink-alert", "ink-alert-block".
+     * If it is found, it is removed from the DOM.
+     * 
+     * One should call close once per page (full page refresh).
+     * 
+     * @class Ink.UI.Close
+     * @constructor
+     * @example
+     *     <script>
+     *         Ink.requireModules(['Ink.UI.Close_1'],function( Close ){
+     *             new Close();
+     *         });
+     *     </script>
+     */
+    var Close = function() {
+        InkEvent.observe(document.body, 'click', function(ev) {
+            var el = InkEvent.element(ev);
+
+            el = InkElement.findUpwardsByClass(el, 'ink-close') ||
+                 InkElement.findUpwardsByClass(el, 'ink-dismiss');
+
+            if (!el) {
+                return;  // ink-close or ink-dismiss class not found
+            }
+
+            var toRemove = el;
+            toRemove = InkElement.findUpwardsByClass(el, 'ink-alert') ||
+                       InkElement.findUpwardsByClass(el, 'ink-alert-block');
+
+            if (toRemove) {
+                InkEvent.stop(ev);
+                InkElement.remove(toRemove);
+            }
+        });
+    };
+
+    return Close;
+
+});
+
+/**
+ * @module Ink.UI.TreeView_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @class Ink.UI.TreeView
+     * @constructor
+     * @version 1
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @example
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
+     *          });
+     *      </script>
+     */
+    var TreeView = function(selector, options){
+
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+        } else {
+            this._element = selector;
+        }
+
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul'
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj(this._options, options || {});
+
+        this._init();
+    };
+
+    TreeView.prototype = {
+
+        /**
+         * Init function called by the constructor. Sets the necessary event handlers.
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
+
+            Event.observe(this._element, 'click', this._handlers.click);
+
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            InkArray.each(nodes,Ink.bind(function(item){
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                InkArray.each(children,Ink.bind(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') ){
+                        Css.addClassName(inner_item,'hide-all');
+                    }
+                },this));
+            },this));
+
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
+
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
+             */
+            var tgtEl = Event.element(event);
+
+            if( this._options.node[0] === '.' ) {
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else if( this._options.node[0] === '#' ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else {
+                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
+                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            }
+
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+
+            var child = Selector.select(this._options.child,tgtEl);
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+            }
+
+        }
+
+    };
+
+    return TreeView;
 
 });
 
@@ -5763,13 +5763,36 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded ) {
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
     'use strict';
+
+    var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        function (cb) { return setTimeout(cb, 10); };
+
+    var cancelAnimationFrame =
+        window.cancelAnimationFrame ||
+        function (id) { clearTimeout(id); };
 
     /**
      * @class Ink.UI.SmoothScroller
      * @version 1
      * @static
+     *
+     * @example
+     *
+     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
+     *
+     *      [lots and lots of content...]
+     *
+     *      <h1 id="part1">Part 1</h1>
+     *
+     *      <script>
+     *          // ...Although you don't need to do this if you have autoload.js
+     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
+     *              SmoothScroller.init('.ink-smooth-scroll');
+     *          })
+     *      </script>
      */
     var SmoothScroller = {
 
@@ -5784,23 +5807,17 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
         speed: 10,
 
         /**
-         * Returns the Y position of the div
+         * Returns the Y position of an element, relative to the document
          *
-         * @method gy
+         * @method getTop
          * @param  {DOMElement} d DOMElement to get the Y position from
          * @return {Number}   Y position of div 'd'
          * @public
          * @static
          */
-        gy: function(d) {
-            var gy;
-            gy = d.offsetTop;
-            if (d.offsetParent){
-                while ( (d = d.offsetParent) ){
-                    gy += d.offsetTop;
-                }
-            }
-            return gy;
+        getTop: function(d) {
+            return Math.round(
+                SmoothScroller.scrollTop() + d.getBoundingClientRect().top);
         },
 
 
@@ -5813,18 +5830,15 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @static
          */
         scrollTop: function() {
-            var
-                body = document.body,
-                d = document.documentElement
-            ;
+            var body = document.body,
+                d = document.documentElement;
             if (body && body.scrollTop){
                 return body.scrollTop;
             }
             if (d && d.scrollTop){
                 return d.scrollTop;
             }
-            if (window.pageYOffset)
-            {
+            if (window.pageYOffset){
                 return window.pageYOffset;
             }
             return 0;
@@ -5842,7 +5856,6 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          */
         add: function(el, event, fn) {
             Event.observe(el,event,fn);
-            return;
         },
 
 
@@ -5866,7 +5879,9 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
 
 
         /**
-         * Moves the scrollbar to the target element
+         * Moves the scrollbar to the target element. This is the function
+         * which animates the scroll position bit by bit. It calls itself in
+         * the end through requestAnimationFrame
          *
          * @method scroll
          * @param  {Number} d Y coordinate value to stop
@@ -5874,51 +5889,53 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
          * @static
          */
         scroll: function(d) {
-            var a = Ink.UI.SmoothScroller.scrollTop();
+            var a = SmoothScroller.scrollTop();
             if (d > a) {
-                a += Math.ceil((d - a) / Ink.UI.SmoothScroller.speed);
+                a += Math.ceil((d - a) / SmoothScroller.speed);
             } else {
-                a = a + (d - a) / Ink.UI.SmoothScroller.speed;
+                a = a + (d - a) / SmoothScroller.speed;
             }
 
             window.scrollTo(0, a);
-            if ((a) === d || Ink.UI.SmoothScroller.offsetTop === a)
-            {
-                clearInterval(Ink.UI.SmoothScroller.interval);
+
+            cancelAnimationFrame(SmoothScroller.interval);
+
+            if (!((a) === d || SmoothScroller.offsetTop === a)) {
+                SmoothScroller.interval = requestAnimationFrame(
+                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
+            } else {
+                SmoothScroller.onDone();
             }
-            Ink.UI.SmoothScroller.offsetTop = a;
+            SmoothScroller.offsetTop = a;
         },
 
 
         /**
-         * Initializer that adds the rendered to run when the page is ready
+         * Has smooth scrolling applied to relevant elements upon page load.
          *
          * @method init
+         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
          * @public
          * @static
          */
-        // initializer that adds the renderer to the onload function of the window
-        init: function() {
-            Loaded.run(Ink.UI.SmoothScroller.render);
+        init: function(selector) {
+            Loaded.run(Ink.bindMethod(SmoothScroller, 'render', selector));
         },
 
         /**
-         * This method extracts all the anchors and validates thenm as # and attaches the events
+         * This method extracts all the anchors and validates them as # and attaches the events
          *
          * @method render
          * @public
          * @static
          */
-        render: function() {
-            var a = Selector.select('a.scrollableLink');
-
-            Ink.UI.SmoothScroller.end(this);
+        render: function(selector) {
+            var a = Selector.select(selector || 'a.scrollableLink,a.ink-smooth-scroll');
 
             for (var i = 0; i < a.length; i++) {
                 var _elm = a[i];
                 if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
-                    Ink.UI.SmoothScroller.add(_elm, 'click', Ink.UI.SmoothScroller.end);
-                    Event.observe(_elm,'click', Ink.bindEvent(Ink.UI.SmoothScroller.clickScroll, this, _elm));
+                    Event.observe(_elm,'click', Ink.bindEvent(SmoothScroller.onClick, this, _elm));
                 }
             }
         },
@@ -5927,62 +5944,43 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
         /**
          * Click handler
          *
-         * @method clickScroll
+         * @method onClick
          * @public
          * @static
          */
-        clickScroll: function(event, _elm) {
-            /*
-            Ink.UI.SmoothScroller.end(this);
-            var hash = this.hash.substr(1);
-            var elm = Selector.select('a[name="' + hash + '"],#' + hash);
-
-            if (typeof(elm[0]) !== 'undefined') {
-
-                if (this.parentNode.className.indexOf('active') === -1) {
-                    var ul = this.parentNode.parentNode,
-                        li = ul.firstChild;
-                    do {
-                        if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
-                            li.className = li.className.replace('active', '');
-                            break;
-                        }
-                    } while ((li = li.nextSibling));
-                    this.parentNode.className += " active";
-                }
-                clearInterval(Ink.UI.SmoothScroller.interval);
-                Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
-
-            }
-            */
-            Ink.UI.SmoothScroller.end(_elm);
+        onClick: function(event, _elm) {
+            SmoothScroller.end(event);
             if(_elm !== null && _elm.getAttribute('href') !== null) {
                 var hashIndex = _elm.href.indexOf('#');
-                if(hashIndex === -1) {
+                if (hashIndex === -1) {
                     return;
                 }
                 var hash = _elm.href.substr((hashIndex + 1));
-                var elm = Selector.select('a[name="' + hash + '"],#' + hash);
+                var activeLiSelector = 'ul > li.active > ' + selector;
 
-                if (typeof(elm[0]) !== 'undefined') {
+                var selector = 'a[name="' + hash + '"],#' + hash;
+                var elm = Selector.select(selector)[0];
+                var activeLi = Selector.select(activeLiSelector)[0];
+                activeLi = activeLi && activeLi.parentNode;
 
+                if (typeof(elm) !== 'undefined') {
                     if (_elm.parentNode.className.indexOf('active') === -1) {
-                        var ul = _elm.parentNode.parentNode,
-                            li = ul.firstChild;
-                        do {
-                            if ((typeof(li.tagName) !== 'undefined') && (li.tagName.toUpperCase() === 'LI') && (li.className.indexOf('active') !== -1)) {
-                                li.className = li.className.replace('active', '');
-                                break;
-                            }
-                        } while ((li = li.nextSibling));
+                        if (activeLi) {
+                            activeLi.className = activeLi.className.replace(/(^|\s+)active($|\s+)/g, '');
+                        }
                         _elm.parentNode.className += " active";
                     }
-                    clearInterval(Ink.UI.SmoothScroller.interval);
-                    Ink.UI.SmoothScroller.interval = setInterval('Ink.UI.SmoothScroller.scroll(' + Ink.UI.SmoothScroller.gy(elm[0]) + ')', 10);
-
+                    SmoothScroller.hash = hash;
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
                 }
             }
+        },
 
+        /**
+         * Called when the scroll movement is done. Updates browser address.
+         */
+        onDone: function () {
+            window.location.hash = SmoothScroller.hash;
         }
     };
 
@@ -6446,7 +6444,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, InkEvent, Css, InkElement, Selector ) {
     'use strict';
 
     /**
@@ -6476,48 +6474,27 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             throw '[Sticky] :: Invalid selector defined';
         }
 
-        if( typeof selector === 'object' ){
-            this._rootElement = selector;
-        } else {
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0) {
-                throw "[Sticky] :: Can't find any element with the specified selector";
-            }
-            this._rootElement = this._rootElement[0];
-        }
+        this._rootElement = Common.elOrSelector(selector,
+            "[Sticky] :: Can't find any element with the specified selector");
 
         /**
-         * Setting default options and - if needed - overriding it with the data attributes
+         * Setting default options and - if needed - overriding it with the data attributes and given options
          */
         this._options = Ink.extendObj({
             offsetBottom: 0,
             offsetTop: 0,
-            topElement: undefined,
-            bottomElement: undefined
-        }, Element.data( this._rootElement ) );
+            topElement: null,
+            bottomElement: null
+        }, options || {},  InkElement.data( this._rootElement ) );
 
-        /**
-         * In case options have been defined when creating the instance, they've precedence
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( typeof( this._options.topElement ) !== 'undefined' ){
-            this._options.topElement = Aux.elOrSelector( this._options.topElement, 'Top Element');
-        } else {
-            this._options.topElement = Aux.elOrSelector( 'body', 'Top Element');
+        if( this._options.topElement ){
+            this._topElement = Common.elOrSelector( this._options.topElement, 'Top Element');
         }
 
-        if( typeof( this._options.bottomElement ) !== 'undefined' ){
-            this._options.bottomElement = Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
-        } else {
-            this._options.bottomElement = Aux.elOrSelector( 'body', 'Top Element');
+        if( this._options.bottomElement ){
+            this._bottomElement = Common.elOrSelector( this._options.bottomElement, 'Bottom Element');
         }
 
-        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
-        this._dims = {
-            height: this._computedStyle.height,
-            width: this._computedStyle.width
-        };
         this._init();
     };
 
@@ -6530,13 +6507,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _init: function(){
-            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
-            Event.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
-
-            this._calculateOriginalSizes();
-
-            this._calculateOffsets();
-
+            InkEvent.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
+            InkEvent.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
         },
 
         /**
@@ -6545,69 +6517,55 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method _onScroll
          * @private
          */
-        _onScroll: function(){
-
-
+        _onScroll: InkEvent.throttle(function(){
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+            var elm = this._rootElement;
 
             if(
-                ( ( (Element.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
+                ( ( (InkElement.elementWidth(this._rootElement)*100)/viewport.clientWidth ) > 90 ) ||
                 ( viewport.clientWidth<=649 )
             ){
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    this._rootElement.removeAttribute('style');
+                if( InkElement.hasAttribute(elm,'style') ){
+                    elm.removeAttribute('style');
                 }
-                return;
+                return;  // Do not do anything for mobile
             }
 
 
-            if( this._scrollTimeout ){
-                clearTimeout(this._scrollTimeout);
+            var elementRect = elm.getBoundingClientRect();
+            var topRect = this._topElement && this._topElement.getBoundingClientRect();
+            var bottomRect = this._bottomElement && this._bottomElement.getBoundingClientRect();
+
+            var offsetTop = this._options.offsetTop ? parseInt(this._options.offsetTop, 10) : 0;
+            var offsetBottom = this._options.offsetBottom ? parseInt(this._options.offsetBottom, 10) : 0;
+
+            var elementHeight = elementRect.bottom - elementRect.top;
+
+            var elMargins =
+                (parseInt(Css.getStyle(elm, 'margin-top'), 10) || 0) +
+                (parseInt(Css.getStyle(elm, 'margin-bottom'), 10) || 0);
+
+            var stickingTo = this._lastStickingTo;
+
+            if (bottomRect && bottomRect.top < elementHeight + offsetTop + offsetBottom + elMargins) {
+                stickingTo = 'bottom';
+                elm.style.position = 'fixed';
+                elm.style.top = bottomRect.top - elementHeight - offsetBottom - elMargins + 'px';
+            } else if (!topRect || topRect.bottom > offsetTop) {
+                stickingTo = '[normal]';
+                elm.style.position = 'static';
+                elm.style.top = 'auto';
+            } else if (topRect && topRect.bottom <= offsetTop) {
+                stickingTo = 'top';
+                elm.style.position = 'fixed';
+                elm.style.top = offsetTop + 'px';
             }
 
-            this._scrollTimeout = setTimeout(Ink.bind(function(){
-
-                var scrollHeight = Element.scrollHeight();
-
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
-
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-
-                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
-                            this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
-                        } else {
-                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
-                        }
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.bottom = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-                    }
-                } else {
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        return;
-                    }
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.position = 'fixed';
-                    this._rootElement.style.bottom = 'auto';
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                    this._rootElement.style.width = this._options.originalWidth + 'px';
-                }
-
-                this._scrollTimeout = undefined;
-            },this), 0);
-        },
+            if (stickingTo !== this._lastStickingTo) {
+                Css.addRemoveClassName(elm, 'ink-sticky-top', stickingTo === 'top');
+                Css.addRemoveClassName(elm, 'ink-sticky-bottom', stickingTo === 'bottom');
+            }
+        }, 80),
 
         /**
          * Resize handler
@@ -6615,86 +6573,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method _onResize
          * @private
          */
-        _onResize: function(){
-
-            if( this._resizeTimeout ){
-                clearTimeout(this._resizeTimeout);
-            }
-
-            this._resizeTimeout = setTimeout(Ink.bind(function(){
-                this._rootElement.removeAttribute('style');
-                this._calculateOriginalSizes();
-                this._calculateOffsets();
-            }, this),0);
-
-        },
-
-        /**
-         * On each resizing (and in the beginning) the component recalculates the offsets, since
-         * the top and bottom element heights might have changed.
-         *
-         * @method _calculateOffsets
-         * @private
-         */
-        _calculateOffsets: function(){
-
-            /**
-             * Calculating the offset top
-             */
-            if( typeof this._options.topElement !== 'undefined' ){
-
-
-                if( this._options.topElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        topElementHeight = Element.elementHeight( this._options.topElement ),
-                        topElementTop = Element.elementTop( this._options.topElement )
-                    ;
-
-                    this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
-                } else {
-                    this._options.offsetTop = parseInt(this._options.originalOffsetTop,10);
-                }
-            }
-
-            /**
-             * Calculating the offset bottom
-             */
-            if( typeof this._options.bottomElement !== 'undefined' ){
-
-                if( this._options.bottomElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        bottomElementHeight = Element.elementHeight(this._options.bottomElement)
-                    ;
-                    this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
-                } else {
-                    this._options.offsetBottom = parseInt(this._options.originalOffsetBottom,10);
-                }
-            }
-
+        _onResize: InkEvent.throttle(function(){
             this._onScroll();
-
-        },
-
-        /**
-         * Function to calculate the 'original size' of the element.
-         * It's used in the begining (_init method) and when a scroll happens
-         *
-         * @method _calculateOriginalSizes
-         * @private
-         */
-        _calculateOriginalSizes: function(){
-
-            if( typeof this._options.originalOffsetTop === 'undefined' ){
-                this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
-                this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
-            }
-            this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
-            if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
-                this._options.originalWidth = 0;
-            }
-            this._options.originalWidth = parseInt(this._computedStyle.width,10);
-        }
+        }, 80),
 
     };
 

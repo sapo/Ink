@@ -18,12 +18,12 @@
 
 
     var sortLevel1Order = '1 Net Dom Util UI'.split(' ');
-    var sortAux = function(path) {
+    var sortCommon = function(path) {
         var part = path.split('/')[2];
         return sortLevel1Order.indexOf(part);
     };
     var sortFn = function(a, b) {
-        return sortAux(a) - sortAux(b);
+        return sortCommon(a) - sortCommon(b);
     };
 
 
@@ -88,7 +88,7 @@
 
             // martelada 
             var tmpFirstUI = -1; 
-            var tmpUIAux = -1; 
+            var tmpUICommon = -1; 
             for(var i=0; i < files.length; i++) {
                 if(/.*Ink\/UI.*/.test(files[i])) {
                     tmpFirstUI = i;
@@ -96,14 +96,14 @@
                 }
             }
             for(var i=0; i < files.length; i++) {
-                if(/.*Ink\/UI\/Aux.*/.test(files[i])) {
-                    tmpUIAux = i;
+                if(/.*Ink\/UI\/Common.*/.test(files[i])) {
+                    tmpUICommon = i;
                     break;
                 }
             }
-            if(tmpFirstUI > -1 && tmpUIAux > -1) {
-                var tmpTmp = files[tmpUIAux];
-                files[tmpUIAux] = files[tmpFirstUI];
+            if(tmpFirstUI > -1 && tmpUICommon > -1) {
+                var tmpTmp = files[tmpUICommon];
+                files[tmpUICommon] = files[tmpFirstUI];
                 files[tmpFirstUI] = tmpTmp; 
             }
 
