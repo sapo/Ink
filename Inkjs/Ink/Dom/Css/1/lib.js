@@ -72,10 +72,12 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
                     if (typeof elm.className === "undefined") {
                         return false;
                     }
-                    var elmClassName = elm.className,
-                        re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-                    elmClassName = elmClassName.replace(re, ' ');
-                    elmClassName = elmClassName.replace(/^\s+/, '').replace(/\s+$/, '');
+                    var elmClassName = elm.getAttribute('class') || '';
+                    var re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+                    elmClassName = elmClassName
+                        .replace(re, ' ')
+                        .replace(/^\s+/, ' ')
+                        .replace(/\s+$/, '');
 
                     elm.className = elmClassName;
                 }
