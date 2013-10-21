@@ -4219,7 +4219,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         } else {
             ev = document.createEventObject();
-            if(typeof nativeEvents["on"+eventName] === "undefined"){
+                if (nativeEvents.indexOf("on"+eventName) === -1){
                 ev.eventType = "ondataavailable";
             } else {
                 ev.eventType = "on"+eventName;
@@ -4561,7 +4561,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-var i = 0
 
 return InkEvent;
 
@@ -15387,6 +15386,239 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
 });
 
+/*
+ * @module Ink.UI.TagField_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
+    'use strict';
+
+    var isTruthy = function (val) {return !!val;};
+
+    /**
+     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
+     *
+     * The markup is as follows:
+     *
+     *           <input class="ink-tagfield" type="text" value="initial,value">
+     *
+     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
+     *
+     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
+     *
+     * @class Ink.UI.TagField
+     * @version 1
+     * @constructor
+     * @param {String|InputElement} element Selector or DOM Input Element.
+     * @param {Object} [options]
+     * @param {String|Array} [options.tags] initial tags in the input
+     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
+     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
+     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
+     * @param {Boolean} [options.autoSplit=true] Whether the 
+     * @example
+     */
+    function TagField(element, options) {
+        this.init(element, options);
+    }
+
+    TagField.prototype = {
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        init: function(element, options) {
+            element = this._element = Common.elOrSelector(element);
+            var o = this._options = Ink.extendObj({
+                tags: [],
+                tagQuery: null,
+                tagQueryAsync: null,
+                allowRepeated: false,
+                outSeparator: ',',
+                separator: /[,; ]+/g,
+                autoSplit: true
+            }, options || {}, InkElement.data(element));
+
+            if (typeof o.tags === 'string') {
+                o.tags = this._readInput(o.tags);
+            }
+
+            Css.addClassName(this._element, 'hide-all');
+
+            this._viewElm = InkElement.create('div', {
+                className: 'ink-tagfield',
+                insertAfter: this._element
+            });
+
+            this._input = InkElement.create('input', {
+                type: 'text',
+                className: 'new-tag-input',
+                insertBottom: this._viewElm
+            });
+
+            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
+
+            this._tags = [];
+
+            InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
+
+            InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
+            InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
+            InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
+            InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
+        },
+
+        destroy: function () {
+            InkElement.remove(this._viewElm);
+            Css.removeClassName(this._element, 'hide-all');
+        },
+
+        _tagsFromMarkup: function (element) {
+            var tagname = element.tagName.toLowerCase();
+            if (tagname === 'input') {
+                return this._readInput(element.value);
+            } else if (tagname === 'select') {
+                return InkArray.map(element.getElementsByTagName('option'), function (option) {
+                    return InkElement.textContent(option);
+                });
+            } else {
+                throw new Error('Cannot read tags from a ' + tagname + ' tag. Unknown tag');
+            }
+        },
+
+        _tagsToMarkup: function (tags, element) {
+            var tagname = element.tagName.toLowerCase();
+            if (tagname === 'input') {
+                if (this._options.separator) {
+                    element.value = tags.join(this._options.outSeparator);
+                }
+            } else if (tagname === 'select') {
+                element.innerHTML = '';
+                InkArray.each(tags, function (tag) {
+                    var opt = InkElement.create('option', {selected: 'selected'});
+                    InkElement.setTextContent(opt, tag);
+                    element.appendChild(opt);
+                });
+            } else {
+                throw new Error('TagField: Cannot read tags from a ' + tagname + ' tag. Unknown tag');
+            }
+        },
+
+        _addTag: function (tag) {
+            if ((!this._options.allowRepeated &&
+                    InkArray.inArray(tag, this._tags, tag)) || !tag) {
+                return false;
+            }
+            var elm = InkElement.create('span', {
+                className: 'ink-tag',
+                setTextContent: tag + ' '
+            });
+
+            var remove = InkElement.create('i', {
+                className: 'remove icon-remove',
+                insertBottom: elm
+            });
+            InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
+
+            var spc = document.createTextNode(' ');
+
+            this._tags.push(tag);
+            this._viewElm.insertBefore(elm, this._input);
+            this._viewElm.insertBefore(spc, this._input);
+            this._tagsToMarkup(this._tags, this._element);
+        },
+
+        _readInput: function (text) {
+            if (this._options.separator) {
+                return InkArray.filter(text.split(this._options.separator), isTruthy);
+            } else {
+                return [text];
+            }
+        },
+
+        _onKeyUp: function () {  // TODO control input box size
+            if (!this._options.autoSplit) {
+                return;
+            }
+            var split = this._input.value.split(this._options.separator);
+            if (split.length <= 1) {
+                return;
+            }
+            var last = split[split.length - 1];
+            split = split.splice(0, split.length - 1);
+            split = InkArray.filter(split, isTruthy);
+            
+            InkArray.each(split, Ink.bind(this._addTag, this));
+            this._input.value = last;
+        },
+
+        _onKeyDown: function (event) {
+
+            if (event.which === 13 && this._input.value) {  // enter key
+                this._addTag(this._input.value);
+                this._input.value = '';
+                InkEvent.stop(event);
+                return false;
+            } else if (event.which === 8 && !this._input.value) { // backspace key
+                if (this._removeConfirm) {
+                    this._unsetRemovingVisual(this._tags.length - 1);
+                    this._removeTag(this._tags.length - 1);
+                    this._removeConfirm = null;
+                } else {
+                    this._setRemovingVisual(this._tags.length - 1);
+                }
+            } else {
+                if (this._removeConfirm) {  // pressed another key, cancelling removal
+                    this._unsetRemovingVisual(this._tags.length - 1);
+                }
+            }
+        },
+
+        /* For when the user presses backspace.
+         * Set the style of the tag so that it seems like it's going to be removed
+         * if they press backspace again. */
+        _setRemovingVisual: function (tagIndex) {
+            var elm = this._viewElm.children[tagIndex];
+            Css.addClassName(elm, 'tag-deleting');
+
+            this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
+            InkEvent.observe(this._input, 'blur', Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex));
+            this._removeConfirm = true;
+        },
+        _unsetRemovingVisual: function (tagIndex) {
+            var elm = this._viewElm.children[tagIndex];
+            if (elm) {
+                Css.removeClassName(elm, 'tag-deleting');
+                clearTimeout(this._removeRemovingVisualTimeout);
+            }
+            this._removeConfirm = null;
+        },
+
+        _removeTag: function (event) {
+            var index;
+            if (typeof event === 'object') {  // click event on close button
+                var elm = InkEvent.element(event).parentNode;
+                index = InkElement.parentIndexOf(this._viewElm, elm);
+            } else if (typeof event === 'number') {  // manual removal
+                index = event;
+            }
+            this._tags = InkArray.remove(this._tags, index, 1);
+            InkElement.remove(this._viewElm.children[index]);
+            this._tagsToMarkup(this._tags, this._element);
+        },
+
+        _refocus: function (event) {
+            this._input.focus();
+            InkEvent.stop(event);
+            return false;
+        }
+    };
+    return TagField;
+});
+
 /**
  * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
@@ -15620,464 +15852,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
     return Toggle;
 
-});
-
-/**
- * @module Ink.UI.Tooltip_1
- * @author inkdev AT sapo.pt
- */
-Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
-    'use strict';
-
-    /**
-     * @class Ink.UI.Tooltip
-     * @constructor
-     *
-     * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
-     * @param {Object} [options]
-     *     @param [options.text='']             Text content for the tooltip.
-     *     @param [options.html='']             HTML for the tooltip. Same as above, but won't escape HTML.
-     *     @param [options.where='up']          Positioning for the tooltip. Options:
-     *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
-     *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
-     *          @param options.where.mousefix   Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
-     *     
-     *     @param [options.color='']            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
-     *     @param [options.fade=0.3]            Fade time; Duration of the fade in/out effect.
-     *     @param [options.forever=0]           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
-     *     @param [options.timeout=0]           Time for the tooltip to live. Useful together with [options.forever].
-     *     @param [options.delay]               Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
-     *     @param [options.template=null]       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
-     *     @param [options.templatefield=null]  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
-     *
-     *     @param [options.left,top=10]         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
-     *     @param [options.spacing=8]           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
-     * 
-     * @example
-     *     <ul class="buttons">
-     *         <li class="button" data-tip-text="Create a new document">New</li>
-     *         <li class="button" data-tip-text="Exit the program">Quit</li>
-     *         <li class="button" data-tip-text="Save the document you are working on">Save</li>
-     *     </ul>
-     *     
-     *     [...]
-     *
-     *     <script>
-     *         Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
-     *             new Tooltip('.button', {where: 'mousefix'});
-     *         });
-     *     </script>
-     */
-    function Tooltip(element, options) {
-        this._init(element, options || {});
-    }
-
-    function EachTooltip(root, elm) {
-        this._init(root, elm);
-    }
-
-    var transitionDurationName,
-        transitionPropertyName,
-        transitionTimingFunctionName;
-    (function () {  // Feature detection
-        var test = document.createElement('DIV');
-        var names = ['transition', 'oTransition', 'msTransition', 'mozTransition',
-            'webkitTransition'];
-        for (var i = 0; i < names.length; i++) {
-            if (typeof test.style[names[i] + 'Duration'] !== 'undefined') {
-                transitionDurationName = names[i] + 'Duration';
-                transitionPropertyName = names[i] + 'Property';
-                transitionTimingFunctionName = names[i] + 'TimingFunction';
-                break;
-            }
-        }
-    }());
-
-    // Body or documentElement
-    var bodies = document.getElementsByTagName('body');
-    var body = bodies && bodies.length ? bodies[0] : document.documentElement;
-
-    Tooltip.prototype = {
-        _init: function(element, options) {
-            var elements;
-
-            this.options = Ink.extendObj({
-                    where: 'up',
-                    zIndex: 10000,
-                    left: 10,
-                    top: 10,
-                    spacing: 8,
-                    forever: 0,
-                    color: '',
-                    timeout: 0,
-                    delay: 0,
-                    template: null,
-                    templatefield: null,
-                    fade: 0.3,
-                    text: ''
-                }, options || {});
-
-            if (typeof element === 'string') {
-                elements = Selector.select(element);
-            } else if (typeof element === 'object') {
-                elements = [element];
-            } else {
-                throw 'Element expected';
-            }
-
-            this.tooltips = [];
-
-            for (var i = 0, len = elements.length; i < len; i++) {
-                this.tooltips[i] = new EachTooltip(this, elements[i]);
-            }
-        },
-        /**
-         * Destroys the tooltips created by this instance
-         *
-         * @method destroy
-         */
-        destroy: function () {
-            InkArray.each(this.tooltips, function (tooltip) {
-                tooltip._destroy();
-            });
-            this.tooltips = null;
-            this.options = null;
-        }
-    };
-
-    EachTooltip.prototype = {
-        _oppositeDirections: {
-            left: 'right',
-            right: 'left',
-            up: 'down',
-            down: 'up'
-        },
-        _init: function(root, elm) {
-            InkEvent.observe(elm, 'mouseover', Ink.bindEvent(this._onMouseOver, this));
-            InkEvent.observe(elm, 'mouseout', Ink.bindEvent(this._onMouseOut, this));
-            InkEvent.observe(elm, 'mousemove', Ink.bindEvent(this._onMouseMove, this));
-
-            this.root = root;
-            this.element = elm;
-            this._delayTimeout = null;
-            this.tooltip = null;
-        },
-        _makeTooltip: function (mousePosition) {
-            if (!this._getOpt('text')) {
-                return false;
-            }
-
-            var tooltip = this._createTooltipElement();
-
-            if (this.tooltip) {
-                this._removeTooltip();
-            }
-
-            this.tooltip = tooltip;
-
-            this._fadeInTooltipElement(tooltip);
-            this._placeTooltipElement(tooltip, mousePosition);
-
-            InkEvent.observe(tooltip, 'mouseover', Ink.bindEvent(this._onTooltipMouseOver, this));
-
-            var timeout = this._getFloatOpt('timeout');
-            if (timeout) {
-                setTimeout(Ink.bind(function () {
-                    if (this.tooltip === tooltip) {
-                        this._removeTooltip();
-                    }
-                }, this), timeout * 1000);
-            }
-        },
-        _createTooltipElement: function () {
-            var template = this._getOpt('template'),  // User template instead of our HTML
-                templatefield = this._getOpt('templatefield'),
-                
-                tooltip,  // The element we float
-                field;  // Element where we write our message. Child or same as the above
-
-            if (template) {  // The user told us of a template to use. We copy it.
-                var temp = document.createElement('DIV');
-                temp.innerHTML = Aux.elOrSelector(template, 'options.template').outerHTML;
-                tooltip = temp.firstChild;
-                
-                if (templatefield) {
-                    field = Selector.select(templatefield, tooltip);
-                    if (field) {
-                        field = field[0];
-                    } else {
-                        throw 'options.templatefield must be a valid selector within options.template';
-                    }
-                } else {
-                    field = tooltip;  // Assume same element if user did not specify a field
-                }
-            } else {  // We create the default structure
-                tooltip = document.createElement('DIV');
-                Css.addClassName(tooltip, 'ink-tooltip');
-                Css.addClassName(tooltip, this._getOpt('color'));
-
-                field = document.createElement('DIV');
-                Css.addClassName(field, 'content');
-
-                tooltip.appendChild(field);
-            }
-            
-            if (this._getOpt('html')) {
-                field.innerHTML = this._getOpt('html');
-            } else {
-                InkElement.setTextContent(field, this._getOpt('text'));
-            }
-            tooltip.style.display = 'block';
-            tooltip.style.position = 'absolute';
-            tooltip.style.zIndex = this._getIntOpt('zIndex');
-
-            return tooltip;
-        },
-        _fadeInTooltipElement: function (tooltip) {
-            var fadeTime = this._getFloatOpt('fade');
-            if (transitionDurationName && fadeTime) {
-                tooltip.style.opacity = '0';
-                tooltip.style[transitionDurationName] = fadeTime + 's';
-                tooltip.style[transitionPropertyName] = 'opacity';
-                tooltip.style[transitionTimingFunctionName] = 'ease-in-out';
-                setTimeout(function () {
-                    tooltip.style.opacity = '1';
-                }, 0); // Wait a tick
-            }
-        },
-        _placeTooltipElement: function (tooltip, mousePosition) {
-            var where = this._getOpt('where');
-
-            if (where === 'mousemove' || where === 'mousefix') {
-                var mPos = mousePosition;
-                this._setPos(mPos[0], mPos[1]);
-                body.appendChild(tooltip);
-            } else if (where.match(/(up|down|left|right)/)) {
-                body.appendChild(tooltip);
-                var targetElementPos = InkElement.offset(this.element);
-                var tleft = targetElementPos[0],
-                    ttop = targetElementPos[1];
-
-                if (tleft instanceof Array) {  // Work around a bug in Ink.Dom.Element.offsetLeft which made it return the result of offset() instead. TODO remove this check when fix is merged
-                    ttop = tleft[1];
-                    tleft = tleft[0];
-                }
-
-                var centerh = (InkElement.elementWidth(this.element) / 2) - (InkElement.elementWidth(tooltip) / 2),
-                    centerv = (InkElement.elementHeight(this.element) / 2) - (InkElement.elementHeight(tooltip) / 2);
-                var spacing = this._getIntOpt('spacing');
-
-                var tooltipDims = InkElement.elementDimensions(tooltip);
-                var elementDims = InkElement.elementDimensions(this.element);
-
-                var maxX = InkElement.scrollWidth() + InkElement.viewportWidth();
-                var maxY = InkElement.scrollHeight() + InkElement.viewportHeight();
-                
-                if (where === 'left' &&  tleft - tooltipDims[0] < 0) {
-                    where = 'right';
-                } else if (where === 'right' && tleft + tooltipDims[0] > maxX) {
-                    where = 'left';
-                } else if (where === 'up' && ttop - tooltipDims[1] < 0) {
-                    where = 'down';
-                } else if (where === 'down' && ttop + tooltipDims[1] > maxY) {
-                    where = 'up';
-                }
-                
-                if (where === 'up') {
-                    ttop -= tooltipDims[1];
-                    ttop -= spacing;
-                    tleft += centerh;
-                } else if (where === 'down') {
-                    ttop += elementDims[1];
-                    ttop += spacing;
-                    tleft += centerh;
-                } else if (where === 'left') {
-                    tleft -= tooltipDims[0];
-                    tleft -= spacing;
-                    ttop += centerv;
-                } else if (where === 'right') {
-                    tleft += elementDims[0];
-                    tleft += spacing;
-                    ttop += centerv;
-                }
-                
-                var arrow = null;
-                if (where.match(/(up|down|left|right)/)) {
-                    arrow = document.createElement('SPAN');
-                    Css.addClassName(arrow, 'arrow');
-                    Css.addClassName(arrow, this._oppositeDirections[where]);
-                    tooltip.appendChild(arrow);
-                }
-
-                var scrl = this._getLocalScroll();
-
-                var tooltipLeft = tleft - scrl[0];
-                var tooltipTop = ttop - scrl[1];
-
-                var toBottom = (tooltipTop + tooltipDims[1]) - maxY;
-                var toRight = (tooltipLeft + tooltipDims[0]) - maxX;
-                var toLeft = 0 - tooltipLeft;
-                var toTop = 0 - tooltipTop;
-
-                if (toBottom > 0) {
-                    if (arrow) { arrow.style.top = (tooltipDims[1] / 2) + toBottom + 'px'; }
-                    tooltipTop -= toBottom;
-                } else if (toTop > 0) {
-                    if (arrow) { arrow.style.top = (tooltipDims[1] / 2) - toTop + 'px'; }
-                    tooltipTop += toTop;
-                } else if (toRight > 0) {
-                    if (arrow) { arrow.style.left = (tooltipDims[0] / 2) + toRight + 'px'; }
-                    tooltipLeft -= toRight;
-                } else if (toLeft > 0) {
-                    if (arrow) { arrow.style.left = (tooltipDims[0] / 2) - toLeft + 'px'; }
-                    tooltipLeft += toLeft;
-                }
-
-                tooltip.style.left = tooltipLeft + 'px';
-                tooltip.style.top = tooltipTop + 'px';
-            }
-        },
-        _removeTooltip: function() {
-            var tooltip = this.tooltip;
-            if (!tooltip) {return;}
-
-            var remove = Ink.bind(InkElement.remove, {}, tooltip);
-
-            if (this._getOpt('where') !== 'mousemove' && transitionDurationName) {
-                tooltip.style.opacity = 0;
-                // remove() will operate on correct tooltip, although this.tooltip === null then
-                setTimeout(remove, this._getFloatOpt('fade') * 1000);
-            } else {
-                remove();
-            }
-            this.tooltip = null;
-        },
-        _getOpt: function (option) {
-            var dataAttrVal = InkElement.data(this.element)[InkElement._camelCase('tip-' + option)];
-            if (dataAttrVal /* either null or "" may signify the absense of this attribute*/) {
-                return dataAttrVal;
-            }
-            var instanceOption = this.root.options[option];
-            if (typeof instanceOption !== 'undefined') {
-                return instanceOption;
-            }
-        },
-        _getIntOpt: function (option) {
-            return parseInt(this._getOpt(option), 10);
-        },
-        _getFloatOpt: function (option) {
-            return parseFloat(this._getOpt(option), 10);
-        },
-        _destroy: function () {
-            if (this.tooltip) {
-                InkElement.remove(this.tooltip);
-            }
-            this.root = null;  // Cyclic reference = memory leaks
-            this.element = null;
-            this.tooltip = null;
-        },
-        _onMouseOver: function(e) {
-            // on IE < 10 you can't access the mouse event not even a tick after it fired
-            var mousePosition = this._getMousePosition(e);
-            var delay = this._getFloatOpt('delay');
-            if (delay) {
-                this._delayTimeout = setTimeout(Ink.bind(function () {
-                    if (!this.tooltip) {
-                        this._makeTooltip(mousePosition);
-                    }
-                    this._delayTimeout = null;
-                }, this), delay * 1000);
-            } else {
-                this._makeTooltip(mousePosition);
-            }
-        },
-        _onMouseMove: function(e) {
-            if (this._getOpt('where') === 'mousemove' && this.tooltip) {
-                var mPos = this._getMousePosition(e);
-                this._setPos(mPos[0], mPos[1]);
-            }
-        },
-        _onMouseOut: function () {
-            if (!this._getIntOpt('forever')) {
-                this._removeTooltip();
-            }
-            if (this._delayTimeout) {
-                clearTimeout(this._delayTimeout);
-                this._delayTimeout = null;
-            }
-        },
-        _onTooltipMouseOver: function () {
-            if (this.tooltip) {  // If tooltip is already being removed, this has no effect
-                this._removeTooltip();
-            }
-        },
-        _setPos: function(left, top) {
-            left += this._getIntOpt('left');
-            top += this._getIntOpt('top');
-            var pageDims = this._getPageXY();
-            if (this.tooltip) {
-                var elmDims = [InkElement.elementWidth(this.tooltip), InkElement.elementHeight(this.tooltip)];
-                var scrollDim = this._getScroll();
-
-                if((elmDims[0] + left - scrollDim[0]) >= (pageDims[0] - 20)) {
-                    left = (left - elmDims[0] - this._getIntOpt('left') - 10);
-                }
-                if((elmDims[1] + top - scrollDim[1]) >= (pageDims[1] - 20)) {
-                    top = (top - elmDims[1] - this._getIntOpt('top') - 10);
-                }
-
-                this.tooltip.style.left = left + 'px';
-                this.tooltip.style.top = top + 'px';
-            }
-        },
-        _getPageXY: function() {
-            var cWidth = 0;
-            var cHeight = 0;
-            if( typeof( window.innerWidth ) === 'number' ) {
-                cWidth = window.innerWidth;
-                cHeight = window.innerHeight;
-            } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-                cWidth = document.documentElement.clientWidth;
-                cHeight = document.documentElement.clientHeight;
-            } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-                cWidth = document.body.clientWidth;
-                cHeight = document.body.clientHeight;
-            }
-            return [parseInt(cWidth, 10), parseInt(cHeight, 10)];
-        },
-        _getScroll: function() {
-            var dd = document.documentElement, db = document.body;
-            if (dd && (dd.scrollLeft || dd.scrollTop)) {
-                return [dd.scrollLeft, dd.scrollTop];
-            } else if (db) {
-                return [db.scrollLeft, db.scrollTop];
-            } else {
-                return [0, 0];
-            }
-        },
-        _getLocalScroll: function () {
-            var cumScroll = [0, 0];
-            var cursor = this.element.parentNode;
-            var left, top;
-            while (cursor && cursor !== document.documentElement && cursor !== document.body) {
-                left = cursor.scrollLeft;
-                top = cursor.scrollTop;
-                if (left) {
-                    cumScroll[0] += left;
-                }
-                if (top) {
-                    cumScroll[1] += top;
-                }
-                cursor = cursor.parentNode;
-            }
-            return cumScroll;
-        },
-        _getMousePosition: function(e) {
-            return [parseInt(InkEvent.pointerX(e), 10), parseInt(InkEvent.pointerY(e), 10)];
-        }
-    };
-
-    return Tooltip;
 });
 
 /**
@@ -16708,6 +16482,180 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
     };
 
     return Modal;
+
+});
+
+/**
+ * @module Ink.UI.TreeView_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+    'use strict';
+
+    /**
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @class Ink.UI.TreeView
+     * @constructor
+     * @version 1
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @example
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
+     *          });
+     *      </script>
+     */
+    var TreeView = function(selector, options){
+
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+        } else {
+            this._element = selector;
+        }
+
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         */
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul'
+        },Element.data(this._element));
+
+        this._options = Ink.extendObj(this._options, options || {});
+
+        this._init();
+    };
+
+    TreeView.prototype = {
+
+        /**
+         * Init function called by the constructor. Sets the necessary event handlers.
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
+
+            Event.observe(this._element, 'click', this._handlers.click);
+
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                children
+            ;
+            InkArray.each(nodes,Ink.bind(function(item){
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
+                }
+
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
+                }
+
+                children = Selector.select(this._options.child,item);
+                InkArray.each(children,Ink.bind(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') ){
+                        Css.addClassName(inner_item,'hide-all');
+                    }
+                },this));
+            },this));
+
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
+
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
+             */
+            var tgtEl = Event.element(event);
+
+            if( this._options.node[0] === '.' ) {
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else if( this._options.node[0] === '#' ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else {
+                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
+                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            }
+
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+
+            var child = Selector.select(this._options.child,tgtEl);
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+            }
+
+        }
+
+    };
+
+    return TreeView;
 
 });
 
@@ -20520,177 +20468,461 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 });
 
 /**
- * @module Ink.UI.TreeView_1
+ * @module Ink.UI.Tooltip_1
  * @author inkdev AT sapo.pt
- * @version 1
  */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
     'use strict';
 
     /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
-     * @class Ink.UI.TreeView
+     * @class Ink.UI.Tooltip
      * @constructor
-     * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     *
+     * @param {DOMElement|String} target Target element or selector of elements, to display the tooltips on.
+     * @param {Object} [options]
+     *     @param [options.text='']             Text content for the tooltip.
+     *     @param [options.html='']             HTML for the tooltip. Same as above, but won't escape HTML.
+     *     @param [options.where='up']          Positioning for the tooltip. Options:
+     *          @param options.where.up/down/left/right     Place above, below, to the left of, or to the right of, the target. Show an arrow.
+     *          @param options.where.mousemove  Place the tooltip to the bottom and to the right of the mouse when it hovers the element, and follow the mouse as it moves.
+     *          @param options.where.mousefix   Place the tooltip to the bottom and to the right of the mouse when it hovers the element, keep the tooltip there motionless.
+     *     
+     *     @param [options.color='']            Color of the tooltip. Options are red, orange, blue, green and black. Default is white.
+     *     @param [options.fade=0.3]            Fade time; Duration of the fade in/out effect.
+     *     @param [options.forever=0]           Set to 1/true to prevent the tooltip from being erased when the mouse hovers away from the target
+     *     @param [options.timeout=0]           Time for the tooltip to live. Useful together with [options.forever].
+     *     @param [options.delay]               Time the tooltip waits until it is displayed. Useful to avoid getting the attention of the user unnecessarily
+     *     @param [options.template=null]       Element or selector containing HTML to be cloned into the tooltips. Can be a hidden element, because CSS `display` is set to `block`.
+     *     @param [options.templatefield=null]  Selector within the template element to choose where the text is inserted into the tooltip. Useful when a wrapper DIV is required.
+     *
+     *     @param [options.left,top=10]         (Nitty-gritty) Spacing from the target to the tooltip, when `where` is `mousemove` or `mousefix`
+     *     @param [options.spacing=8]           (Nitty-gritty) Spacing between the tooltip and the target element, when `where` is `up`, `down`, `left`, or `right`
+     * 
      * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
-     *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
-     *          </ul>
-     *        </li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
-     *          });
-     *      </script>
+     *     <ul class="buttons">
+     *         <li class="button" data-tip-text="Create a new document">New</li>
+     *         <li class="button" data-tip-text="Exit the program">Quit</li>
+     *         <li class="button" data-tip-text="Save the document you are working on">Save</li>
+     *     </ul>
+     *     
+     *     [...]
+     *
+     *     <script>
+     *         Ink.requireModules(['Ink.UI.Tooltip_1'], function (Tooltip) {
+     *             new Tooltip('.button', {where: 'mousefix'});
+     *         });
+     *     </script>
      */
-    var TreeView = function(selector, options){
+    function Tooltip(element, options) {
+        this._init(element, options || {});
+    }
 
-        /**
-         * Gets the element
-         */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+    function EachTooltip(root, elm) {
+        this._init(root, elm);
+    }
+
+    var transitionDurationName,
+        transitionPropertyName,
+        transitionTimingFunctionName;
+    (function () {  // Feature detection
+        var test = document.createElement('DIV');
+        var names = ['transition', 'oTransition', 'msTransition', 'mozTransition',
+            'webkitTransition'];
+        for (var i = 0; i < names.length; i++) {
+            if (typeof test.style[names[i] + 'Duration'] !== 'undefined') {
+                transitionDurationName = names[i] + 'Duration';
+                transitionPropertyName = names[i] + 'Property';
+                transitionTimingFunctionName = names[i] + 'TimingFunction';
+                break;
             }
-            this._element = this._element[0];
-        } else {
-            this._element = selector;
         }
+    }());
 
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul'
-        },Element.data(this._element));
+    // Body or documentElement
+    var bodies = document.getElementsByTagName('body');
+    var body = bodies && bodies.length ? bodies[0] : document.documentElement;
 
-        this._options = Ink.extendObj(this._options, options || {});
+    Tooltip.prototype = {
+        _init: function(element, options) {
+            var elements;
 
-        this._init();
-    };
+            this.options = Ink.extendObj({
+                    where: 'up',
+                    zIndex: 10000,
+                    left: 10,
+                    top: 10,
+                    spacing: 8,
+                    forever: 0,
+                    color: '',
+                    timeout: 0,
+                    delay: 0,
+                    template: null,
+                    templatefield: null,
+                    fade: 0.3,
+                    text: ''
+                }, options || {});
 
-    TreeView.prototype = {
-
-        /**
-         * Init function called by the constructor. Sets the necessary event handlers.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
-
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                children
-            ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
-
-                children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
-
-        },
-
-        /**
-         * Handles the click event (as specified in the _init function).
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function(event){
-
-            /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
-             */
-            var tgtEl = Event.element(event);
-
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
+            if (typeof element === 'string') {
+                elements = Selector.select(element);
+            } else if (typeof element === 'object') {
+                elements = [element];
             } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
+                throw 'Element expected';
             }
 
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+            this.tooltips = [];
 
-            var child = Selector.select(this._options.child,tgtEl);
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+            for (var i = 0, len = elements.length; i < len; i++) {
+                this.tooltips[i] = new EachTooltip(this, elements[i]);
             }
-
+        },
+        /**
+         * Destroys the tooltips created by this instance
+         *
+         * @method destroy
+         */
+        destroy: function () {
+            InkArray.each(this.tooltips, function (tooltip) {
+                tooltip._destroy();
+            });
+            this.tooltips = null;
+            this.options = null;
         }
-
     };
 
-    return TreeView;
+    EachTooltip.prototype = {
+        _oppositeDirections: {
+            left: 'right',
+            right: 'left',
+            up: 'down',
+            down: 'up'
+        },
+        _init: function(root, elm) {
+            InkEvent.observe(elm, 'mouseover', Ink.bindEvent(this._onMouseOver, this));
+            InkEvent.observe(elm, 'mouseout', Ink.bindEvent(this._onMouseOut, this));
+            InkEvent.observe(elm, 'mousemove', Ink.bindEvent(this._onMouseMove, this));
 
+            this.root = root;
+            this.element = elm;
+            this._delayTimeout = null;
+            this.tooltip = null;
+        },
+        _makeTooltip: function (mousePosition) {
+            if (!this._getOpt('text')) {
+                return false;
+            }
+
+            var tooltip = this._createTooltipElement();
+
+            if (this.tooltip) {
+                this._removeTooltip();
+            }
+
+            this.tooltip = tooltip;
+
+            this._fadeInTooltipElement(tooltip);
+            this._placeTooltipElement(tooltip, mousePosition);
+
+            InkEvent.observe(tooltip, 'mouseover', Ink.bindEvent(this._onTooltipMouseOver, this));
+
+            var timeout = this._getFloatOpt('timeout');
+            if (timeout) {
+                setTimeout(Ink.bind(function () {
+                    if (this.tooltip === tooltip) {
+                        this._removeTooltip();
+                    }
+                }, this), timeout * 1000);
+            }
+        },
+        _createTooltipElement: function () {
+            var template = this._getOpt('template'),  // User template instead of our HTML
+                templatefield = this._getOpt('templatefield'),
+                
+                tooltip,  // The element we float
+                field;  // Element where we write our message. Child or same as the above
+
+            if (template) {  // The user told us of a template to use. We copy it.
+                var temp = document.createElement('DIV');
+                temp.innerHTML = Aux.elOrSelector(template, 'options.template').outerHTML;
+                tooltip = temp.firstChild;
+                
+                if (templatefield) {
+                    field = Selector.select(templatefield, tooltip);
+                    if (field) {
+                        field = field[0];
+                    } else {
+                        throw 'options.templatefield must be a valid selector within options.template';
+                    }
+                } else {
+                    field = tooltip;  // Assume same element if user did not specify a field
+                }
+            } else {  // We create the default structure
+                tooltip = document.createElement('DIV');
+                Css.addClassName(tooltip, 'ink-tooltip');
+                Css.addClassName(tooltip, this._getOpt('color'));
+
+                field = document.createElement('DIV');
+                Css.addClassName(field, 'content');
+
+                tooltip.appendChild(field);
+            }
+            
+            if (this._getOpt('html')) {
+                field.innerHTML = this._getOpt('html');
+            } else {
+                InkElement.setTextContent(field, this._getOpt('text'));
+            }
+            tooltip.style.display = 'block';
+            tooltip.style.position = 'absolute';
+            tooltip.style.zIndex = this._getIntOpt('zIndex');
+
+            return tooltip;
+        },
+        _fadeInTooltipElement: function (tooltip) {
+            var fadeTime = this._getFloatOpt('fade');
+            if (transitionDurationName && fadeTime) {
+                tooltip.style.opacity = '0';
+                tooltip.style[transitionDurationName] = fadeTime + 's';
+                tooltip.style[transitionPropertyName] = 'opacity';
+                tooltip.style[transitionTimingFunctionName] = 'ease-in-out';
+                setTimeout(function () {
+                    tooltip.style.opacity = '1';
+                }, 0); // Wait a tick
+            }
+        },
+        _placeTooltipElement: function (tooltip, mousePosition) {
+            var where = this._getOpt('where');
+
+            if (where === 'mousemove' || where === 'mousefix') {
+                var mPos = mousePosition;
+                this._setPos(mPos[0], mPos[1]);
+                body.appendChild(tooltip);
+            } else if (where.match(/(up|down|left|right)/)) {
+                body.appendChild(tooltip);
+                var targetElementPos = InkElement.offset(this.element);
+                var tleft = targetElementPos[0],
+                    ttop = targetElementPos[1];
+
+                if (tleft instanceof Array) {  // Work around a bug in Ink.Dom.Element.offsetLeft which made it return the result of offset() instead. TODO remove this check when fix is merged
+                    ttop = tleft[1];
+                    tleft = tleft[0];
+                }
+
+                var centerh = (InkElement.elementWidth(this.element) / 2) - (InkElement.elementWidth(tooltip) / 2),
+                    centerv = (InkElement.elementHeight(this.element) / 2) - (InkElement.elementHeight(tooltip) / 2);
+                var spacing = this._getIntOpt('spacing');
+
+                var tooltipDims = InkElement.elementDimensions(tooltip);
+                var elementDims = InkElement.elementDimensions(this.element);
+
+                var maxX = InkElement.scrollWidth() + InkElement.viewportWidth();
+                var maxY = InkElement.scrollHeight() + InkElement.viewportHeight();
+                
+                if (where === 'left' &&  tleft - tooltipDims[0] < 0) {
+                    where = 'right';
+                } else if (where === 'right' && tleft + tooltipDims[0] > maxX) {
+                    where = 'left';
+                } else if (where === 'up' && ttop - tooltipDims[1] < 0) {
+                    where = 'down';
+                } else if (where === 'down' && ttop + tooltipDims[1] > maxY) {
+                    where = 'up';
+                }
+                
+                if (where === 'up') {
+                    ttop -= tooltipDims[1];
+                    ttop -= spacing;
+                    tleft += centerh;
+                } else if (where === 'down') {
+                    ttop += elementDims[1];
+                    ttop += spacing;
+                    tleft += centerh;
+                } else if (where === 'left') {
+                    tleft -= tooltipDims[0];
+                    tleft -= spacing;
+                    ttop += centerv;
+                } else if (where === 'right') {
+                    tleft += elementDims[0];
+                    tleft += spacing;
+                    ttop += centerv;
+                }
+                
+                var arrow = null;
+                if (where.match(/(up|down|left|right)/)) {
+                    arrow = document.createElement('SPAN');
+                    Css.addClassName(arrow, 'arrow');
+                    Css.addClassName(arrow, this._oppositeDirections[where]);
+                    tooltip.appendChild(arrow);
+                }
+
+                var scrl = this._getLocalScroll();
+
+                var tooltipLeft = tleft - scrl[0];
+                var tooltipTop = ttop - scrl[1];
+
+                var toBottom = (tooltipTop + tooltipDims[1]) - maxY;
+                var toRight = (tooltipLeft + tooltipDims[0]) - maxX;
+                var toLeft = 0 - tooltipLeft;
+                var toTop = 0 - tooltipTop;
+
+                if (toBottom > 0) {
+                    if (arrow) { arrow.style.top = (tooltipDims[1] / 2) + toBottom + 'px'; }
+                    tooltipTop -= toBottom;
+                } else if (toTop > 0) {
+                    if (arrow) { arrow.style.top = (tooltipDims[1] / 2) - toTop + 'px'; }
+                    tooltipTop += toTop;
+                } else if (toRight > 0) {
+                    if (arrow) { arrow.style.left = (tooltipDims[0] / 2) + toRight + 'px'; }
+                    tooltipLeft -= toRight;
+                } else if (toLeft > 0) {
+                    if (arrow) { arrow.style.left = (tooltipDims[0] / 2) - toLeft + 'px'; }
+                    tooltipLeft += toLeft;
+                }
+
+                tooltip.style.left = tooltipLeft + 'px';
+                tooltip.style.top = tooltipTop + 'px';
+            }
+        },
+        _removeTooltip: function() {
+            var tooltip = this.tooltip;
+            if (!tooltip) {return;}
+
+            var remove = Ink.bind(InkElement.remove, {}, tooltip);
+
+            if (this._getOpt('where') !== 'mousemove' && transitionDurationName) {
+                tooltip.style.opacity = 0;
+                // remove() will operate on correct tooltip, although this.tooltip === null then
+                setTimeout(remove, this._getFloatOpt('fade') * 1000);
+            } else {
+                remove();
+            }
+            this.tooltip = null;
+        },
+        _getOpt: function (option) {
+            var dataAttrVal = InkElement.data(this.element)[InkElement._camelCase('tip-' + option)];
+            if (dataAttrVal /* either null or "" may signify the absense of this attribute*/) {
+                return dataAttrVal;
+            }
+            var instanceOption = this.root.options[option];
+            if (typeof instanceOption !== 'undefined') {
+                return instanceOption;
+            }
+        },
+        _getIntOpt: function (option) {
+            return parseInt(this._getOpt(option), 10);
+        },
+        _getFloatOpt: function (option) {
+            return parseFloat(this._getOpt(option), 10);
+        },
+        _destroy: function () {
+            if (this.tooltip) {
+                InkElement.remove(this.tooltip);
+            }
+            this.root = null;  // Cyclic reference = memory leaks
+            this.element = null;
+            this.tooltip = null;
+        },
+        _onMouseOver: function(e) {
+            // on IE < 10 you can't access the mouse event not even a tick after it fired
+            var mousePosition = this._getMousePosition(e);
+            var delay = this._getFloatOpt('delay');
+            if (delay) {
+                this._delayTimeout = setTimeout(Ink.bind(function () {
+                    if (!this.tooltip) {
+                        this._makeTooltip(mousePosition);
+                    }
+                    this._delayTimeout = null;
+                }, this), delay * 1000);
+            } else {
+                this._makeTooltip(mousePosition);
+            }
+        },
+        _onMouseMove: function(e) {
+            if (this._getOpt('where') === 'mousemove' && this.tooltip) {
+                var mPos = this._getMousePosition(e);
+                this._setPos(mPos[0], mPos[1]);
+            }
+        },
+        _onMouseOut: function () {
+            if (!this._getIntOpt('forever')) {
+                this._removeTooltip();
+            }
+            if (this._delayTimeout) {
+                clearTimeout(this._delayTimeout);
+                this._delayTimeout = null;
+            }
+        },
+        _onTooltipMouseOver: function () {
+            if (this.tooltip) {  // If tooltip is already being removed, this has no effect
+                this._removeTooltip();
+            }
+        },
+        _setPos: function(left, top) {
+            left += this._getIntOpt('left');
+            top += this._getIntOpt('top');
+            var pageDims = this._getPageXY();
+            if (this.tooltip) {
+                var elmDims = [InkElement.elementWidth(this.tooltip), InkElement.elementHeight(this.tooltip)];
+                var scrollDim = this._getScroll();
+
+                if((elmDims[0] + left - scrollDim[0]) >= (pageDims[0] - 20)) {
+                    left = (left - elmDims[0] - this._getIntOpt('left') - 10);
+                }
+                if((elmDims[1] + top - scrollDim[1]) >= (pageDims[1] - 20)) {
+                    top = (top - elmDims[1] - this._getIntOpt('top') - 10);
+                }
+
+                this.tooltip.style.left = left + 'px';
+                this.tooltip.style.top = top + 'px';
+            }
+        },
+        _getPageXY: function() {
+            var cWidth = 0;
+            var cHeight = 0;
+            if( typeof( window.innerWidth ) === 'number' ) {
+                cWidth = window.innerWidth;
+                cHeight = window.innerHeight;
+            } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                cWidth = document.documentElement.clientWidth;
+                cHeight = document.documentElement.clientHeight;
+            } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                cWidth = document.body.clientWidth;
+                cHeight = document.body.clientHeight;
+            }
+            return [parseInt(cWidth, 10), parseInt(cHeight, 10)];
+        },
+        _getScroll: function() {
+            var dd = document.documentElement, db = document.body;
+            if (dd && (dd.scrollLeft || dd.scrollTop)) {
+                return [dd.scrollLeft, dd.scrollTop];
+            } else if (db) {
+                return [db.scrollLeft, db.scrollTop];
+            } else {
+                return [0, 0];
+            }
+        },
+        _getLocalScroll: function () {
+            var cumScroll = [0, 0];
+            var cursor = this.element.parentNode;
+            var left, top;
+            while (cursor && cursor !== document.documentElement && cursor !== document.body) {
+                left = cursor.scrollLeft;
+                top = cursor.scrollTop;
+                if (left) {
+                    cumScroll[0] += left;
+                }
+                if (top) {
+                    cumScroll[1] += top;
+                }
+                cursor = cursor.parentNode;
+            }
+            return cumScroll;
+        },
+        _getMousePosition: function(e) {
+            return [parseInt(InkEvent.pointerX(e), 10), parseInt(InkEvent.pointerY(e), 10)];
+        }
+    };
+
+    return Tooltip;
 });
 
 /**

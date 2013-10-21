@@ -6702,6 +6702,39 @@ table.ink-table.bordered tr td:first-child {
 .ink-modal-open {
   overflow: hidden;
 }
+.ink-tagfield input[type="text"].new-tag-input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  line-height: 1em;
+  margin: 0;
+  padding: 5px;
+  border-radius: 2px;
+}
+.ink-tagfield input[type="text"].new-tag-input:focus {
+  -webkit-box-shadow: 0px 0px 0px 3px #eaeaea;
+  -moz-box-shadow: 0px 0px 0px 3px #eaeaea;
+  box-shadow: 0px 0px 0px 3px #eaeaea;
+  border: 1px solid #c3c3c3;
+}
+.ink-tagfield span.ink-tag {
+  background-color: #1b1b1b;
+  color: #eaeaea;
+  text-shadow: none;
+  font-size: 0.9em;
+  font-weight: normal;
+  border: 1px solid #000;
+  padding: 4px 6px;
+}
+.ink-tagfield span.ink-tag i.icon-remove {
+  color: #ccc;
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-left: 4px;
+}
+.ink-tagfield span.ink-tag i.icon-remove:hover {
+  cursor: pointer;
+  color: red;
+}
 /* Progess bars */
 .ink-progress-bar {
   margin-bottom: 1em;
