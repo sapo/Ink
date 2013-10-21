@@ -1,9 +1,9 @@
 /**
- * @module Ink.UI.Aux_1
+ * @module Ink.UI.Common_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(Ajax,Css,Selector,Url) {
+Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(Ajax,Css,Selector,Url) {
 
     'use strict';
 
@@ -13,7 +13,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
     /**
      * The Aux class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
-     * @class Ink.UI.Aux
+     * @class Ink.UI.Common
      * @version 1
      * @static
      */
@@ -41,7 +41,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * @return {Boolean}    True if it's a valid DOM Element.
          * @example
          *     var el = Ink.s('#element');
-         *     if( Ink.UI.Aux.isDOMElement( el ) === true ){
+         *     if( Ink.UI.Common.isDOMElement( el ) === true ){
          *         // It is a DOM Element.
          *     } else {
          *         // It is NOT a DOM Element.
@@ -60,7 +60,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * @return {Boolean}    True if 'n' is a valid integer.
          * @example
          *     var value = 1;
-         *     if( Ink.UI.Aux.isInteger( value ) === true ){
+         *     if( Ink.UI.Common.isInteger( value ) === true ){
          *         // It is an integer.
          *     } else {
          *         // It is NOT an integer.
@@ -81,7 +81,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
-         *     var el = Ink.UI.Aux.elOrSelector('.myInput','My Input');
+         *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
          */
         elOrSelector: function(elOrSelector, fieldName) {
             if (!this.isDOMElement(elOrSelector)) {
@@ -107,7 +107,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          *         key2: 'value2',
          *         key3: 'value3'
          *     };
-         *     var cloneObj = Ink.UI.Aux.clone( originalObj );
+         *     var cloneObj = Ink.UI.Common.clone( originalObj );
          */
         clone: function(o) {
             try {
@@ -137,7 +137,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          *
          *     <script>
          *         var testLi = Ink.s('#test');
-         *         Ink.UI.Aux.childIndex( testLi ); // Returned value: 3
+         *         Ink.UI.Common.childIndex( testLi ); // Returned value: 3
          *     </script>
          */
         childIndex: function(childEl) {
@@ -164,7 +164,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * @param  {Object} params      This field is used in the thrown Exception to identify the parameter.
          * @example
          *     // In case there are several .myInput, it will retrieve the first found
-         *     var el = Ink.UI.Aux.elOrSelector('.myInput','My Input');
+         *     var el = Ink.UI.Common.elOrSelector('.myInput','My Input');
          */
         ajaxJSON: function(endpoint, params, cb) {
             new Ajax(
@@ -201,7 +201,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * @static
          * @return {String}         Returns the value of one of the options of the property Layouts above defined.
          * @example
-         *     var inkLayout = Ink.UI.Aux.currentLayout();
+         *     var inkLayout = Ink.UI.Common.currentLayout();
          */
         currentLayout: function() {
             var i, f, k, v, el, detectorEl = Selector.select('#ink-layout-detector')[0];
@@ -237,7 +237,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          * @param  {Object} o   Object with the info to be placed in the location's hash.
          * @example
          *     // It will set the location's hash like: <url>#key1=value1&key2=value2&key3=value3
-         *     Ink.UI.Aux.hashSet({
+         *     Ink.UI.Common.hashSet({
          *         key1: 'value1',
          *         key2: 'value2',
          *         key3: 'value3'
@@ -268,7 +268,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          *     </ul>
          *
          *     <script>
-         *     Ink.UI.Aux.cleanChildren( Ink.s( '#myUl' ) );
+         *     Ink.UI.Common.cleanChildren( Ink.s( '#myUl' ) );
          *     </script>
          *
          *     <!-- After running it, the HTML changes to: -->
@@ -298,7 +298,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          *
          *     <script>
          *         var storageObj = {};
-         *         Ink.UI.Aux.storeIdAndClasses( Ink.s('#myDiv'), storageObj );
+         *         Ink.UI.Common.storeIdAndClasses( Ink.s('#myDiv'), storageObj );
          *         // storageObj changes to:
          *         {
          *           _id: 'myDiv',
@@ -339,7 +339,7 @@ Ink.createModule('Ink.UI.Aux', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.S
          *           _classes: 'aClass'
          *         };
          *
-         *         Ink.UI.Aux.storeIdAndClasses( Ink.s('div'), storageObj );
+         *         Ink.UI.Common.storeIdAndClasses( Ink.s('div'), storageObj );
          *     </script>
          *
          *     <!-- After the code runs the div element changes to: -->
