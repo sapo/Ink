@@ -105,7 +105,7 @@
                 }
             }
             path = paths[root || 'Ink'];
-            if (path[path.length - 1] !== '/') {
+            if (!/\/$/.test(path)) {
                 path += '/';
             }
             if (i < split.length) {
