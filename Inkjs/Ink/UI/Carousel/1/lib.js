@@ -162,11 +162,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _updateHider: function() {
             if (!this._hiderEl) { return; }
-            var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
-            if (this._options.center) {
-                gap /= 2;
+            if ((!this._pagination) || this._pagination.getCurrent() === 0) {
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+                if (this._options.center) {
+                    gap /= 2;
+                }
+                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
+            } else {
+                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = '0px';
             }
-            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
         
         /**
@@ -206,7 +210,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._onAnimationFrame();
 
             event.preventDefault();
-            event.stopPropagation();  // TODO try to just return false
+            event.stopPropagation();
         },
 
         _onTouchMove: function (event) {
@@ -281,6 +285,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._options.onChange) {
                 this._options.onChange.call(this, currPage);
             }
+
+            this._updateHider();
         }
     };
 
