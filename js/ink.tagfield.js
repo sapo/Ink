@@ -3,34 +3,16 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
-    'use strict';
-
-    var isTruthy = function (val) {return !!val;};
-
+Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Aux) {
     /**
-     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
-     *
-     * The markup is as follows:
-     *
-     *           <input class="ink-tagfield" type="text" value="initial,value">
-     *
-     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
-     *
-     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
-     *
      * @class Ink.UI.TagField
      * @version 1
      * @constructor
-     * @param {String|InputElement} element Selector or DOM Input Element.
-     * @param {Object} [options]
-     * @param {String|Array} [options.tags] initial tags in the input
-     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
-     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
-     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
-     * @param {Boolean} [options.autoSplit=true] Whether the 
      * @example
      */
+
+    var isTruthy = function (val) {return !!val;};
+
     function TagField(element, options) {
         this.init(element, options);
     }
@@ -40,10 +22,12 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * Init function called by the constructor
          * 
          * @method _init
+         * @param {String|DOMElement} Selector or DOM Element.
+         * @param {Object} [options] Options object.
          * @private
          */
         init: function(element, options) {
-            element = this._element = Common.elOrSelector(element);
+            element = this._element = Aux.elOrSelector(element);
             var o = this._options = Ink.extendObj({
                 tags: [],
                 tagQuery: null,
@@ -72,9 +56,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             });
 
             var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
-
             this._tags = [];
-
             InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
 
             InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
