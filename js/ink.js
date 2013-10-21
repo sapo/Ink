@@ -1527,6 +1527,2492 @@ Ink.createModule('Ink.Net.JsonP', '1', [], function() {
  * @author inkdev AT sapo.pt
  */
 
+Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
+
+    'use strict';
+
+    /**
+     * @module Ink.Dom.Css_1
+     */
+
+    /**
+     * @class Ink.Dom.Css
+     * @static
+     */
+
+    var DomCss = {
+        /**
+         * adds or removes a class to the given element according to addRemState
+         *
+         * @method addRemoveClassName
+         * @param {DOMElement|string}   elm          DOM element or element id
+         * @param {string}              className    class name to add or remove.
+         * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
+         *
+         * @example
+         *      Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
+         *          Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
+         *          Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
+         *      });
+         */
+        addRemoveClassName: function(elm, className, addRemState) {
+            if (addRemState) {
+                return this.addClassName(elm, className);
+            }
+            this.removeClassName(elm, className);
+        },
+
+        /**
+         * add a class to a given element
+         *
+         * @method addClassName
+         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {String}             className
+         */
+        addClassName: function(elm, className) {
+            elm = Ink.i(elm);
+            if (elm && className) {
+                if (typeof elm.classList !== "undefined"){
+                    elm.classList.add(className);
+                }
+                else if (!this.hasClassName(elm, className)) {
+                    elm.className += (elm.className ? ' ' : '') + className;
+                }
+            }
+        },
+
+        /**
+         * removes a class from a given element
+         *
+         * @method removeClassName
+         * @param {DOMElement|String} elm        DOM element or element id
+         * @param {String}            className
+         */
+        removeClassName: function(elm, className) {
+            elm = Ink.i(elm);
+            if (elm && className) {
+                if (typeof elm.classList !== "undefined"){
+                    elm.classList.remove(className);
+                } else {
+                    if (typeof elm.className === "undefined") {
+                        return false;
+                    }
+                    var elmClassName = elm.className,
+                        re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+                    elmClassName = elmClassName.replace(re, ' ');
+                    elmClassName = elmClassName.replace(/^\s+/, '').replace(/\s+$/, '');
+
+                    elm.className = elmClassName;
+                }
+            }
+        },
+
+        /**
+         * Alias to addRemoveClassName. Utility function, saves many if/elses.
+         *
+         * @method setClassName
+         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {String}             className
+         * @param {Boolean}            add        true to add, false to remove
+         */
+        setClassName: function(elm, className, add) {
+            this.addRemoveClassName(elm, className, add || false);
+        },
+
+        /**
+         * @method hasClassName
+         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {String}             className
+         * @return {Boolean} true if a given class is applied to a given element
+         */
+        hasClassName: function(elm, className) {
+            elm = Ink.i(elm);
+            if (elm && className) {
+                if (typeof elm.classList !== "undefined"){
+                    return elm.classList.contains(className);
+                }
+                else {
+                    if (typeof elm.className === "undefined") {
+                        return false;
+                    }
+                    var elmClassName = elm.className;
+
+                    if (typeof elmClassName.length === "undefined") {
+                        return false;
+                    }
+
+                    if (elmClassName.length > 0) {
+                        if (elmClassName === className) {
+                            return true;
+                        }
+                        else {
+                            var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
+                            if (re.test(elmClassName)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        },
+
+        /**
+         * Add and removes the class from the element with a timeout, so it blinks
+         *
+         * @method blinkClass
+         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {String}             className  class name
+         * @param {Boolean}            timeout    timeout in ms between adding and removing, default 100 ms
+         * @param {Boolean}            negate     is true, class is removed then added
+         */
+        blinkClass: function(element, className, timeout, negate){
+            element = Ink.i(element);
+            this.addRemoveClassName(element, className, !negate);
+            setTimeout(Ink.bind(function() {
+                this.addRemoveClassName(element, className, negate);
+            }, this), Number(timeout) || 100);
+            /*
+            var _self = this;
+            setTimeout(function() {
+                    console.log(_self);
+                _self.addRemoveClassName(element, className, negate);
+            }, Number(timeout) || 100);
+            */
+        },
+
+        /**
+         * Add or remove a class name from a given element
+         *
+         * @method toggleClassName
+         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {String}             className  class name
+         * @param {Boolean}            forceAdd   forces the addition of the class if it doesn't exists
+         */
+        toggleClassName: function(elm, className, forceAdd) {
+            if (elm && className){
+                if (typeof elm.classList !== "undefined"){
+                    elm = Ink.i(elm);
+                    if (elm !== null){
+                        elm.classList.toggle(className);
+                    }
+                    return true;
+                }
+            }
+
+            if (typeof forceAdd !== 'undefined') {
+                if (forceAdd === true) {
+                    this.addClassName(elm, className);
+                }
+                else if (forceAdd === false) {
+                    this.removeClassName(elm, className);
+                }
+            } else {
+                if (this.hasClassName(elm, className)) {
+                    this.removeClassName(elm, className);
+                }
+                else {
+                    this.addClassName(elm, className);
+                }
+            }
+        },
+
+        /**
+         * sets the opacity of given client a given element
+         *
+         * @method setOpacity
+         * @param {DOMElement|String}  elm    DOM element or element id
+         * @param {Number}             value  allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)
+         */
+        setOpacity: function(elm, value) {
+            elm = Ink.i(elm);
+            if (elm !== null){
+                var val = 1;
+
+                if (!isNaN(Number(value))){
+                    if      (value <= 0) {   val = 0;           }
+                    else if (value <= 1) {   val = value;       }
+                    else if (value <= 100) { val = value / 100; }
+                    else {                   val = 1;           }
+                }
+
+                if (typeof elm.style.opacity !== 'undefined') {
+                    elm.style.opacity = val;
+                }
+                else {
+                    elm.style.filter = "alpha(opacity:"+(val*100|0)+")";
+                }
+            }
+        },
+
+        /**
+         * Converts a css property name to a string in camelcase to be used with CSSStyleDeclaration.
+         * @method _camelCase
+         * @private
+         * @param {String} str  String to convert
+         * @return {String} Converted string
+         */
+        _camelCase: function(str) {
+            return str ? str.replace(/-(\w)/g, function (_, $1){
+                return $1.toUpperCase();
+            }) : str;
+        },
+
+
+        /**
+         * Gets the value for an element's style attribute
+         *
+         * @method getStyle
+         * @param {DOMElement|String}  elm    DOM element or element id
+         * @param {String}             style  Which css attribute to fetch
+         * @return Style value
+         */
+         getStyle: function(elm, style) {
+             elm = Ink.i(elm);
+             if (elm !== null) {
+                 style = style === 'float' ? 'cssFloat': this._camelCase(style);
+
+                 var value = elm.style[style];
+
+                 if (window.getComputedStyle && (!value || value === 'auto')) {
+                     var css = window.getComputedStyle(elm, null);
+
+                     value = css ? css[style] : null;
+                 }
+                 else if (!value && elm.currentStyle) {
+                      value = elm.currentStyle[style];
+                      if (value === 'auto' && (style === 'width' || style === 'height')) {
+                        value = elm["offset" + style.charAt(0).toUpperCase() + style.slice(1)] + "px";
+                      }
+                 }
+
+                 if (style === 'opacity') {
+                     return value ? parseFloat(value, 10) : 1.0;
+                 }
+                 else if (style === 'borderTopWidth'   || style === 'borderBottomWidth' ||
+                          style === 'borderRightWidth' || style === 'borderLeftWidth'       ) {
+                      if      (value === 'thin') {      return '1px';   }
+                      else if (value === 'medium') {    return '3px';   }
+                      else if (value === 'thick') {     return '5px';   }
+                 }
+
+                 return value === 'auto' ? null : value;
+             }
+         },
+
+
+        /**
+         * Adds CSS rules to an element's style attribute.
+         *
+         * @method setStyle
+         * @param {DOMElement|String}  elm    DOM element or element id
+         * @param {String}             style  Which css attribute to set
+         *
+         * @example
+         *     <a href="#" class="change-color">Change his color</a>
+         *     <p class="him">"He" is me</p>
+         *     <script type="text/javascript">
+         *         Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Css, InkEvent, Selector) {
+         *             var btn = Selector.select('.change-color')[0];
+         *             var other = Selector.select('.him')[0];
+         *             InkEvent.observe(btn, 'click', function () {
+         *                 Css.setStyle(other, 'background-color: black');
+         *                 Css.setStyle(other, 'color: white');
+         *             });
+         *         });
+         *     </script>
+         *
+         */
+        setStyle: function(elm, style) {
+            elm = Ink.i(elm);
+            if (elm !== null) {
+                if (typeof style === 'string') {
+                    elm.style.cssText += '; '+style;
+
+                    if (style.indexOf('opacity') !== -1) {
+                        this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
+                    }
+                }
+                else {
+                    for (var prop in style) {
+                        if (style.hasOwnProperty(prop)){
+                            if (prop === 'opacity') {
+                                this.setOpacity(elm, style[prop]);
+                            }
+                            else {
+                                if (prop === 'float' || prop === 'cssFloat') {
+                                    if (typeof elm.style.styleFloat === 'undefined') {
+                                        elm.style.cssFloat = style[prop];
+                                    }
+                                    else {
+                                        elm.style.styleFloat = style[prop];
+                                    }
+                                } else {
+                                    elm.style[prop] = style[prop];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
+        /**
+         * Makes an element visible
+         *
+         * @method show
+         * @param {DOMElement|String}  elm                   DOM element or element id
+         * @param {String}             forceDisplayProperty  Css display property to apply on show
+         */
+        show: function(elm, forceDisplayProperty) {
+            elm = Ink.i(elm);
+            if (elm !== null) {
+                elm.style.display = (forceDisplayProperty) ? forceDisplayProperty : '';
+            }
+        },
+
+        /**
+         * Hides an element
+         *
+         * @method hide
+         * @param {DOMElement|String}  elm  DOM element or element id
+         */
+        hide: function(elm) {
+            elm = Ink.i(elm);
+            if (elm !== null) {
+                elm.style.display = 'none';
+            }
+        },
+
+        /**
+         * shows or hides according to param show
+         *
+         * @method showHide
+         * @param {DOMElement|String}  elm          DOM element or element id
+         * @param {boolean}            [show=false] Whether to show or hide `elm`.
+         */
+        showHide: function(elm, show) {
+            elm = Ink.i(elm);
+            if (elm) {
+                elm.style.display = show ? '' : 'none';
+            }
+        },
+
+        /**
+         * Shows or hides an element depending on current state
+         * @method toggle
+         * @param {DOMElement|String}  elm        DOM element or element id
+         * @param {Boolean}            forceShow  Forces showing if element is hidden
+         */
+        toggle: function(elm, forceShow) {
+            elm = Ink.i(elm);
+            if (elm !== null) {
+                if (typeof forceShow !== 'undefined') {
+                    if (forceShow === true) {
+                        this.show(elm);
+                    } else {
+                        this.hide(elm);
+                    }
+                } else {
+                    if (elm.style.display === 'none') {
+                        this.show(elm);
+                    }
+                    else {
+                        this.hide(elm);
+                    }
+                }
+            }
+        },
+
+        _getRefTag: function(head){
+            if (head.firstElementChild) {
+                return head.firstElementChild;
+            }
+
+            for (var child = head.firstChild; child; child = child.nextSibling){
+                if (child.nodeType === 1){
+                    return child;
+                }
+            }
+            return null;
+        },
+
+        /**
+         * Adds css style tags to the head section of a page
+         *
+         * @method appendStyleTag
+         * @param {String}  selector  The css selector for the rule
+         * @param {String}  style     The content of the style rule
+         * @param {Object}  options   Options for the tag
+         *    @param {String}  [options.type]   file type
+         *    @param {Boolean} [options.force]  if true, style tag will be appended to end of head
+         */
+        appendStyleTag: function(selector, style, options){
+            options = Ink.extendObj({
+                type: 'text/css',
+                force: false
+            }, options || {});
+
+            var styles = document.getElementsByTagName("style"),
+                oldStyle = false, setStyle = true, i, l;
+
+            for (i=0, l=styles.length; i<l; i++) {
+                oldStyle = styles[i].innerHTML;
+                if (oldStyle.indexOf(selector) >= 0) {
+                    setStyle = false;
+                }
+            }
+
+            if (setStyle) {
+                var defStyle = document.createElement("style"),
+                    head = document.getElementsByTagName("head")[0],
+                    refTag = false, styleStr = '';
+
+                defStyle.type  = options.type;
+
+                styleStr += selector +" {";
+                styleStr += style;
+                styleStr += "} ";
+
+                if (typeof defStyle.styleSheet !== "undefined") {
+                    defStyle.styleSheet.cssText = styleStr;
+                } else {
+                    defStyle.appendChild(document.createTextNode(styleStr));
+                }
+
+                if (options.force){
+                    head.appendChild(defStyle);
+                } else {
+                    refTag = this._getRefTag(head);
+                    if (refTag){
+                        head.insertBefore(defStyle, refTag);
+                    }
+                }
+            }
+        },
+
+        /**
+         * Adds a link tag for a stylesheet to the head section of a page
+         *
+         * @method appendStylesheet
+         * @param {String}  path     File path
+         * @param {Object}  options  Options for the tag
+         *    @param {String}   [options.media='screen']    media type
+         *    @param {String}   [options.type='text/css']   file type
+         *    @param {Boolean}  [options.force=false]       if true, tag will be appended to end of head
+         */
+        appendStylesheet: function(path, options){
+            options = Ink.extendObj({
+                media: 'screen',
+                type: 'text/css',
+                force: false
+            }, options || {});
+
+            var refTag,
+                style = document.createElement("link"),
+                head = document.getElementsByTagName("head")[0];
+
+            style.media = options.media;
+            style.type = options.type;
+            style.href = path;
+            style.rel = "Stylesheet";
+
+            if (options.force){
+                head.appendChild(style);
+            }
+            else {
+                refTag = this._getRefTag(head);
+                if (refTag){
+                    head.insertBefore(style, refTag);
+                }
+            }
+        },
+
+        /**
+         * Loads CSS via LINK element inclusion in HEAD (skips append if already there)
+         *
+         * Works similarly to appendStylesheet but:
+         *   a) supports all browsers;
+         *   b) supports optional callback which gets invoked once the CSS has been applied
+         *
+         * @method appendStylesheetCb
+         * @param {String}            cssURI      URI of the CSS to load, if empty ignores and just calls back directly
+         * @param {Function(cssURI)}  [callback]  optional callback which will be called once the CSS is loaded
+         */
+        _loadingCSSFiles: {},
+        _loadedCSSFiles:  {},
+        appendStylesheetCb: function(url, callback) {
+            if (!url) {
+                return callback(url);
+            }
+
+            if (this._loadedCSSFiles[url]) {
+                return callback(url);
+            }
+
+            var cbs = this._loadingCSSFiles[url];
+            if (cbs) {
+                return cbs.push(callback);
+            }
+
+            this._loadingCSSFiles[url] = [callback];
+
+            var linkEl = document.createElement('link');
+            linkEl.type = 'text/css';
+            linkEl.rel  = 'stylesheet';
+            linkEl.href = url;
+
+            var headEl = document.getElementsByTagName('head')[0];
+            headEl.appendChild(linkEl);
+
+            var imgEl = document.createElement('img');
+            /*
+            var _self = this;
+            (function(_url) {
+                imgEl.onerror = function() {
+                    //var url = this;
+                    var url = _url;
+                    _self._loadedCSSFiles[url] = true;
+                    var callbacks = _self._loadingCSSFiles[url];
+                    for (var i = 0, f = callbacks.length; i < f; ++i) {
+                        callbacks[i](url);
+                    }
+                    delete _self._loadingCSSFiles[url];
+                };
+            })(url);
+            */
+            imgEl.onerror = Ink.bindEvent(function(event, _url) {
+                //var url = this;
+                var url = _url;
+                this._loadedCSSFiles[url] = true;
+                var callbacks = this._loadingCSSFiles[url];
+                for (var i = 0, f = callbacks.length; i < f; ++i) {
+                    callbacks[i](url);
+                }
+                delete this._loadingCSSFiles[url];
+            }, this, url);
+            imgEl.src = url;
+        },
+
+        /**
+         * Converts decimal to hexadecimal values, for use with colors
+         *
+         * @method decToHex
+         * @param {String} dec Either a single decimal value,
+         * an rgb(r, g, b) string or an Object with r, g and b properties
+         * @return Hexadecimal value
+         */
+        decToHex: function(dec) {
+            var normalizeTo2 = function(val) {
+                if (val.length === 1) {
+                    val = '0' + val;
+                }
+                val = val.toUpperCase();
+                return val;
+            };
+
+            if (typeof dec === 'object') {
+                var rDec = normalizeTo2(parseInt(dec.r, 10).toString(16));
+                var gDec = normalizeTo2(parseInt(dec.g, 10).toString(16));
+                var bDec = normalizeTo2(parseInt(dec.b, 10).toString(16));
+                return rDec+gDec+bDec;
+            }
+            else {
+                dec += '';
+                var rgb = dec.match(/\((\d+),\s?(\d+),\s?(\d+)\)/);
+                if (rgb !== null) {
+                    return  normalizeTo2(parseInt(rgb[1], 10).toString(16)) +
+                            normalizeTo2(parseInt(rgb[2], 10).toString(16)) +
+                            normalizeTo2(parseInt(rgb[3], 10).toString(16));
+                }
+                else {
+                    return normalizeTo2(parseInt(dec, 10).toString(16));
+                }
+            }
+        },
+
+        /**
+         * Converts hexadecimal values to decimal, for use with colors
+         *
+         * @method hexToDec
+         * @param {String}  hex  hexadecimal value with 6, 3, 2 or 1 characters
+         * @return {Number} Object with properties r, g, b if length of number is >= 3 or decimal value instead.
+         */
+        hexToDec: function(hex){
+            if (hex.indexOf('#') === 0) {
+                hex = hex.substr(1);
+            }
+            if (hex.length === 6) { // will return object RGB
+                return {
+                    r: parseInt(hex.substr(0,2), 16),
+                    g: parseInt(hex.substr(2,2), 16),
+                    b: parseInt(hex.substr(4,2), 16)
+                };
+            }
+            else if (hex.length === 3) { // will return object RGB
+                return {
+                    r: parseInt(hex.charAt(0) + hex.charAt(0), 16),
+                    g: parseInt(hex.charAt(1) + hex.charAt(1), 16),
+                    b: parseInt(hex.charAt(2) + hex.charAt(2), 16)
+                };
+            }
+            else if (hex.length <= 2) { // will return int
+                return parseInt(hex, 16);
+            }
+        },
+
+        /**
+         * use this to obtain the value of a CSS property (searched from loaded CSS documents)
+         *
+         * @method getPropertyFromStylesheet
+         * @param {String}  selector  a CSS rule. must be an exact match
+         * @param {String}  property  a CSS property
+         * @return {String} value of the found property, or null if it wasn't matched
+         */
+        getPropertyFromStylesheet: function(selector, property) {
+            var rule = this.getRuleFromStylesheet(selector);
+            if (rule) {
+                return rule.style[property];
+            }
+            return null;
+        },
+
+        getPropertyFromStylesheet2: function(selector, property) {
+            var rules = this.getRulesFromStylesheet(selector);
+            /*
+            rules.forEach(function(rule) {
+                var x = rule.style[property];
+                if (x !== null && x !== undefined) {
+                    return x;
+                }
+            });
+            */
+            var x;
+            for(var i=0, t=rules.length; i < t; i++) {
+                x = rules[i].style[property];
+                if (x !== null && x !== undefined) {
+                    return x;
+                }
+            }
+            return null;
+        },
+
+        getRuleFromStylesheet: function(selector) {
+            var sheet, rules, ri, rf, rule;
+            var s = document.styleSheets;
+            if (!s) {
+                return null;
+            }
+
+            for (var si = 0, sf = document.styleSheets.length; si < sf; ++si) {
+                sheet = document.styleSheets[si];
+                rules = sheet.rules ? sheet.rules : sheet.cssRules;
+                if (!rules) { return null; }
+
+                for (ri = 0, rf = rules.length; ri < rf; ++ri) {
+                    rule = rules[ri];
+                    if (!rule.selectorText) { continue; }
+                    if (rule.selectorText === selector) {
+                        return rule;
+                    }
+                }
+            }
+
+            return null;
+        },
+
+        getRulesFromStylesheet: function(selector) {
+            var res = [];
+            var sheet, rules, ri, rf, rule;
+            var s = document.styleSheets;
+            if (!s) { return res; }
+
+            for (var si = 0, sf = document.styleSheets.length; si < sf; ++si) {
+                sheet = document.styleSheets[si];
+                rules = sheet.rules ? sheet.rules : sheet.cssRules;
+                if (!rules) {
+                    return null;
+                }
+
+                for (ri = 0, rf = rules.length; ri < rf; ++ri) {
+                    rule = rules[ri];
+                    if (!rule.selectorText) { continue; }
+                    if (rule.selectorText === selector) {
+                        res.push(rule);
+                    }
+                }
+            }
+
+            return res;
+        },
+
+        getPropertiesFromRule: function(selector) {
+            var rule = this.getRuleFromStylesheet(selector);
+            var props = {};
+            var prop, i, f;
+
+            /*if (typeof rule.style.length === 'snumber') {
+                for (i = 0, f = rule.style.length; i < f; ++i) {
+                    prop = this._camelCase( rule.style[i]   );
+                    props[prop] = rule.style[prop];
+                }
+            }
+            else {  // HANDLES IE 8, FIREFOX RULE JOINING... */
+                rule = rule.style.cssText;
+                var parts = rule.split(';');
+                var steps, val, pre, pos;
+                for (i = 0, f = parts.length; i < f; ++i) {
+                    if (parts[i].charAt(0) === ' ') {
+                        parts[i] = parts[i].substring(1);
+                    }
+                    steps = parts[i].split(':');
+                    prop = this._camelCase( steps[0].toLowerCase()  );
+                    val = steps[1];
+                    if (val) {
+                        val = val.substring(1);
+
+                        if (prop === 'padding' || prop === 'margin' || prop === 'borderWidth') {
+
+                            if (prop === 'borderWidth') {   pre = 'border'; pos = 'Width';  }
+                            else {                          pre = prop;     pos = '';       }
+
+                            if (val.indexOf(' ') !== -1) {
+                                val = val.split(' ');
+                                props[pre + 'Top'   + pos]  = val[0];
+                                props[pre + 'Bottom'+ pos]  = val[0];
+                                props[pre + 'Left'  + pos]  = val[1];
+                                props[pre + 'Right' + pos]  = val[1];
+                            }
+                            else {
+                                props[pre + 'Top'   + pos]  = val;
+                                props[pre + 'Bottom'+ pos]  = val;
+                                props[pre + 'Left'  + pos]  = val;
+                                props[pre + 'Right' + pos]  = val;
+                            }
+                        }
+                        else if (prop === 'borderRadius') {
+                            if (val.indexOf(' ') !== -1) {
+                                val = val.split(' ');
+                                props.borderTopLeftRadius       = val[0];
+                                props.borderBottomRightRadius   = val[0];
+                                props.borderTopRightRadius      = val[1];
+                                props.borderBottomLeftRadius    = val[1];
+                            }
+                            else {
+                                props.borderTopLeftRadius       = val;
+                                props.borderTopRightRadius      = val;
+                                props.borderBottomLeftRadius    = val;
+                                props.borderBottomRightRadius   = val;
+                            }
+                        }
+                        else {
+                            props[prop] = val;
+                        }
+                    }
+                }
+            //}
+            //console.log(props);
+
+            return props;
+        },
+
+        /**
+         * Changes the font size of the elements which match the given CSS rule
+         * For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can't access it.
+         *
+         * @method changeFontSize
+         * @param {String}  selector  CSS selector rule
+         * @param {Number}  delta     number of pixels to change on font-size
+         * @param {String}  [op]      supported operations are '+' and '*'. defaults to '+'
+         * @param {Number}  [minVal]  if result gets smaller than minVal, change does not occurr
+         * @param {Number}  [maxVal]  if result gets bigger  than maxVal, change does not occurr
+         */
+        changeFontSize: function(selector, delta, op, minVal, maxVal) {
+            var that = this;
+            Ink.requireModules(['Ink.Dom.Selector_1'], function(Selector) {
+                var e;
+                if      (typeof selector !== 'string') { e = '1st argument must be a CSS selector rule.'; }
+                else if (typeof delta    !== 'number') { e = '2nd argument must be a number.'; }
+                else if (op !== undefined && op !== '+' && op !== '*') { e = '3rd argument must be one of "+", "*".'; }
+                else if (minVal !== undefined && (typeof minVal !== 'number' || minVal <= 0)) { e = '4th argument must be a positive number.'; }
+                else if (maxVal !== undefined && (typeof maxVal !== 'number' || maxVal < maxVal)) { e = '5th argument must be a positive number greater than minValue.'; }
+                if (e) { throw new TypeError(e); }
+
+                var val, el, els = Selector.select(selector);
+                if (minVal === undefined) { minVal = 1; }
+                op = (op === '*') ? function(a,b){return a*b;} : function(a,b){return a+b;};
+                for (var i = 0, f = els.length; i < f; ++i) {
+                    el = els[i];
+                    val = parseFloat( that.getStyle(el, 'fontSize'));
+                    val = op(val, delta);
+                    if (val < minVal) { continue; }
+                    if (typeof maxVal === 'number' && val > maxVal) { continue; }
+                    el.style.fontSize = val + 'px';
+                }
+            });
+        }
+
+    };
+
+    return DomCss;
+
+});
+
+/**
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Dom.Element', 1, [], function() {
+
+    'use strict';
+
+    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
+
+    var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
+    var browserCreatesTbodies = (function () {
+        var div = document.createElement('div');
+        div.innerHTML = '<table>';
+        return div.getElementsByTagName('tbody').length !== 0;
+    }());
+
+    /**
+     * @module Ink.Dom.Element_1
+     */
+
+    /**
+     * @class Ink.Dom.Element
+     */
+
+    var InkElement = {
+
+        /**
+         * Shortcut for `document.getElementById`
+         *
+         * @method get
+         * @param {String|DOMElement} elm   Either an ID of an element, or an element.
+         * @return {DOMElement|null} The DOM element with the given id or null when it was not found
+         */
+        get: function(elm) {
+            if(typeof elm !== 'undefined') {
+                if(typeof elm === 'string') {
+                    return document.getElementById(elm);
+                }
+                return elm;
+            }
+            return null;
+        },
+
+        /**
+         * Creates a DOM element
+         *
+         * @method create
+         * @param {String} tag        tag name
+         * @param {Object} properties  object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
+         *
+         * @example
+         *
+         *      var myPanel = InkElement.create('div', {
+         *          appendHTML: '<span></span>',
+         *          className: 'classes to add',
+         *          insertAfter: anotherPane
+         *      };
+         *
+         *      myPanel.innerHTML;  // -> '<div class="classes to add"><span></span></div>
+         *      myPanel.parentNode;  // -> anotherPane
+         */
+        create: function(tag, properties) {
+            var el = document.createElement(tag);
+            //Ink.extendObj(el, properties);
+            for(var property in properties) {
+                if(properties.hasOwnProperty(property)) {
+                    if (property in InkElement) {
+                        InkElement[property](el, properties[property]);
+                    } else {
+                        if(property === 'className' || property === 'class') {
+                            el.className = properties.className || properties['class'];
+                        } else {
+                            el.setAttribute(property, properties[property]);
+                        }
+                    }
+                }
+            }
+            return el;
+        },
+
+        /**
+         * Removes a DOM Element from the DOM
+         *
+         * @method remove
+         * @param {DOMElement} elm  The element to remove
+         */
+        remove: function(el) {
+            var parEl;
+            if (el && (parEl = el.parentNode)) {
+                parEl.removeChild(el);
+            }
+        },
+
+        /**
+         * Scrolls the window to an element
+         *
+         * @method scrollTo
+         * @param {DOMElement|String} elm  Element where to scroll
+         */
+        scrollTo: function(elm) {
+            elm = InkElement.get(elm);
+            if(elm) {
+                if (elm.scrollIntoView) {
+                    return elm.scrollIntoView();
+                }
+
+                var elmOffset = {},
+                    elmTop = 0, elmLeft = 0;
+
+                do {
+                    elmTop += elm.offsetTop || 0;
+                    elmLeft += elm.offsetLeft || 0;
+
+                    elm = elm.offsetParent;
+                } while(elm);
+
+                elmOffset = {x: elmLeft, y: elmTop};
+
+                window.scrollTo(elmOffset.x, elmOffset.y);
+            }
+        },
+
+        /**
+         * Gets the top cumulative offset for an element
+         *
+         * Requires Ink.Dom.Browser
+         *
+         * @method offsetTop
+         * @param {DOMElement|String} elm  target element
+         * @return {Number} Offset from the target element to the top of the document
+         */
+        offsetTop: function(elm) {
+            return InkElement.offset(elm)[1];
+        },
+
+        /**
+         * Gets the left cumulative offset for an element
+         *
+         * Requires Ink.Dom.Browser
+         *
+         * @method offsetLeft
+         * @param {DOMElement|String} elm  target element
+         * @return {Number} Offset from the target element to the left of the document
+         */
+        offsetLeft: function(elm) {
+            return InkElement.offset(elm)[0];
+        },
+
+        /**
+        * Gets the element offset relative to its closest positioned ancestor
+        *
+        * @method positionedOffset
+        * @param {DOMElement|String} elm  target element
+        * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
+        */
+        positionedOffset: function(element) {
+            var valueTop = 0, valueLeft = 0;
+            element = InkElement.get(element);
+            do {
+                valueTop  += element.offsetTop  || 0;
+                valueLeft += element.offsetLeft || 0;
+                element = element.offsetParent;
+                if (element) {
+                    if (element.tagName.toLowerCase() === 'body') { break;  }
+
+                    var value = element.style.position;
+                    if (!value && element.currentStyle) {
+                        value = element.currentStyle.position;
+                    }
+                    if ((!value || value === 'auto') && typeof getComputedStyle !== 'undefined') {
+                        var css = getComputedStyle(element, null);
+                        value = css ? css.position : null;
+                    }
+                    if (value === 'relative' || value === 'absolute') { break;  }
+                }
+            } while (element);
+            return [valueLeft, valueTop];
+        },
+
+        /**
+         * Gets the cumulative offset for an element
+         *
+         * Returns the top left position of the element on the page
+         *
+         * Requires Ink.Dom.Browser
+         *
+         * @method offset
+         * @param {DOMElement|String}   elm     Target element
+         * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
+         */
+        offset: function(el) {
+            /*jshint boss:true */
+            el = Ink.i(el);
+            var bProp = ['border-left-width', 'border-top-width'];
+            var res = [0, 0];
+            var dRes, bRes, parent, cs;
+            var getPropPx = InkElement._getPropPx;
+
+            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
+
+            do {
+                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
+                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
+
+                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
+                if( InkBrowser.OPERA ){
+                    res[0] += dRes[0];
+                    res[1] += dRes[1];
+                } else {
+                    res[0] += dRes[0] + bRes[0];
+                    res[1] += dRes[1] + bRes[1];
+                }
+                parent = el.offsetParent;
+            } while (el = parent);
+
+            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
+
+            if (InkBrowser.GECKO) {
+                res[0] += bRes[0];
+                res[1] += bRes[1];
+            }
+            else if( !InkBrowser.OPERA ) {
+                res[0] -= bRes[0];
+                res[1] -= bRes[1];
+            }
+
+            return res;
+        },
+
+        /**
+         * Gets the scroll of the element
+         *
+         * @method scroll
+         * @param {DOMElement|String} [elm] target element or document.body
+         * @returns {Array} offset values for x and y scroll
+         */
+        scroll: function(elm) {
+            elm = elm ? Ink.i(elm) : document.body;
+            return [
+                ( ( !window.pageXOffset ) ? elm.scrollLeft : window.pageXOffset ),
+                ( ( !window.pageYOffset ) ? elm.scrollTop : window.pageYOffset )
+            ];
+        },
+
+        _getPropPx: function(cs, prop) {
+            var n, c;
+            var val = cs.getPropertyValue ? cs.getPropertyValue(prop) : cs[prop];
+            if (!val) { n = 0; }
+            else {
+                c = val.indexOf('px');
+                if (c === -1) { n = 0; }
+                else {
+                    n = parseInt(val, 10);
+                }
+            }
+
+            //console.log([prop, ' "', val, '" ', n].join(''));
+
+            return n;
+        },
+
+        /**
+         * Alias for offset()
+         *
+         * @method offset2
+         * @deprecated Kept for historic reasons. Use offset() instead.
+         */
+        offset2: function(el) {
+            return InkElement.offset(el);
+        },
+
+        /**
+         * Verifies the existence of an attribute
+         *
+         * @method hasAttribute
+         * @param {Object} elm   target element
+         * @param {String} attr  attribute name
+         * @return {Boolean} Boolean based on existance of attribute
+         */
+        hasAttribute: function(elm, attr){
+            return elm.hasAttribute ? elm.hasAttribute(attr) : !!elm.getAttribute(attr);
+        },
+        /**
+         * Inserts a element immediately after a target element
+         *
+         * @method insertAfter
+         * @param {DOMElement}         newElm     element to be inserted
+         * @param {DOMElement|String}  targetElm  key element
+         */
+        insertAfter: function(newElm, targetElm) {
+            /*jshint boss:true */
+            if (targetElm = InkElement.get(targetElm)) {
+                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+            }
+        },
+
+        /**
+         * Inserts an element before a target element
+         *
+         * @method insertBefore
+         * @param {DOMElement}         newElm     element to be inserted
+         * @param {DOMElement|String}  targetElm  key element
+         */
+        insertBefore: function (newElm, targetElm) {
+            /*jshint boss:true */
+            if ( (targetElm = InkElement.get(targetElm)) ) {
+                targetElm.parentNode.insertBefore(newElm, targetElm);
+            }
+        },
+
+        /**
+         * Inserts a element at the top of the childNodes of a target element
+         *
+         * @method insertTop
+         * @param {DOMElement}         newElm     element to be inserted
+         * @param {DOMElement|String}  targetElm  key element
+         */
+        insertTop: function(newElm,targetElm) {
+            /*jshint boss:true */
+            if (targetElm = InkElement.get(targetElm)) {
+                if (targetElm.firstChild) {
+                    targetElm.insertBefore(newElm, targetElm.firstChild);
+                } else {
+                    targetElm.appendChild(newElm);
+                }
+            }
+        },
+
+        /**
+         * Inserts an element after all the child nodes of another element
+         *
+         * @method insertBottom
+         * @param {DOMElement}         newElm     element to be inserted
+         * @param {DOMElement|String}  targetElm  key element
+         */
+        insertBottom: function(newElm,targetElm) {
+            /*jshint boss:true */
+            targetElm.appendChild(newElm);
+        },
+
+        /**
+         * Retrieves textContent from node
+         *
+         * @method innerText
+         * @param {DOMNode} node from which to retreive text from. Can be any node type.
+         * @return {String} the text
+         */
+        textContent: function(node){
+            node = Ink.i(node);
+            var text, k, cs, m;
+
+            switch(node && node.nodeType) {
+            case 9: /*DOCUMENT_NODE*/
+                // IE quirks mode does not have documentElement
+                return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
+
+            case 1: /*ELEMENT_NODE*/
+                text = node.innerText;
+                if (typeof text !== 'undefined') {
+                    return text;
+                }
+                /* falls through */
+            case 11: /*DOCUMENT_FRAGMENT_NODE*/
+                text = node.textContent;
+                if (typeof text !== 'undefined') {
+                    return text;
+                }
+
+                if (node.firstChild === node.lastChild) {
+                    // Common case: 0 or 1 children
+                    return InkElement.textContent(node.firstChild);
+                }
+
+                text = [];
+                cs = node.childNodes;
+                for (k = 0, m = cs.length; k < m; ++k) {
+                    text.push( InkElement.textContent( cs[k] ) );
+                }
+                return text.join('');
+
+            case 3: /*TEXT_NODE*/
+            case 4: /*CDATA_SECTION_NODE*/
+                return node.nodeValue;
+            }
+            return '';
+        },
+
+        /**
+         * Removes all nodes children and adds the text
+         *
+         * @method setTextContent
+         * @param {DOMNode} node    node to add the text to. Can be any node type.
+         * @param {String}  text    text to be appended to the node.
+         */
+        setTextContent: function(node, text){
+            node = Ink.i(node);
+            switch(node && node.nodeType)
+            {
+            case 1: /*ELEMENT_NODE*/
+                if ('innerText' in node) {
+                    node.innerText = text;
+                    break;
+                }
+                /* falls through */
+            case 11: /*DOCUMENT_FRAGMENT_NODE*/
+                if ('textContent' in node) {
+                    node.textContent = text;
+                    break;
+                }
+                /* falls through */
+            case 9: /*DOCUMENT_NODE*/
+                while(node.firstChild) {
+                    node.removeChild(node.firstChild);
+                }
+                if (text !== '') {
+                    var doc = node.ownerDocument || node;
+                    node.appendChild(doc.createTextNode(text));
+                }
+                break;
+
+            case 3: /*TEXT_NODE*/
+            case 4: /*CDATA_SECTION_NODE*/
+                node.nodeValue = text;
+                break;
+            }
+        },
+
+        /**
+         * Tells if element is a clickable link
+         *
+         * @method isLink
+         * @param {DOMNode} node    node to check if it's link
+         * @return {Boolean}
+         */
+        isLink: function(element){
+            var b = element && element.nodeType === 1 && ((/^a|area$/i).test(element.tagName) ||
+                element.hasAttributeNS && element.hasAttributeNS('http://www.w3.org/1999/xlink','href'));
+            return !!b;
+        },
+
+        /**
+         * Tells if ancestor is ancestor of node
+         *
+         * @method isAncestorOf
+         * @param {DOMNode} ancestor  ancestor node
+         * @param {DOMNode} node      descendant node
+         * @return {Boolean}
+         */
+        isAncestorOf: function(ancestor, node){
+            /*jshint boss:true */
+            if (!node || !ancestor) {
+                return false;
+            }
+            if (node.compareDocumentPosition) {
+                return (ancestor.compareDocumentPosition(node) & 0x10) !== 0;/*Node.DOCUMENT_POSITION_CONTAINED_BY*/
+            }
+            while (node = node.parentNode){
+                if (node === ancestor){
+                    return true;
+                }
+            }
+            return false;
+        },
+
+        /**
+         * Tells if descendant is descendant of node
+         *
+         * @method descendantOf
+         * @param {DOMNode} node        the ancestor
+         * @param {DOMNode} descendant  the descendant
+         * @return {Boolean} true if 'descendant' is descendant of 'node'
+         */
+        descendantOf: function(node, descendant){
+            return node !== descendant && InkElement.isAncestorOf(node, descendant);
+        },
+
+        /**
+         * Get first child in document order of node type 1
+         * @method firstElementChild
+         * @param {DOMNode} elm parent node
+         * @return {DOMNode} the element child
+         */
+        firstElementChild: function(elm){
+            if(!elm) {
+                return null;
+            }
+            if ('firstElementChild' in elm) {
+                return elm.firstElementChild;
+            }
+            var child = elm.firstChild;
+            while(child && child.nodeType !== 1) {
+                child = child.nextSibling;
+            }
+            return child;
+        },
+
+        /**
+         * Get last child in document order of node type 1
+         * @method lastElementChild
+         * @param {DOMNode} elm parent node
+         * @return {DOMNode} the element child
+         */
+        lastElementChild: function(elm){
+            if(!elm) {
+                return null;
+            }
+            if ('lastElementChild' in elm) {
+                return elm.lastElementChild;
+            }
+            var child = elm.lastChild;
+            while(child && child.nodeType !== 1) {
+                child = child.previousSibling;
+            }
+            return child;
+        },
+
+        /**
+         * Get the first element sibling after the node
+         *
+         * @method nextElementSibling
+         * @param {DOMNode} node  current node
+         * @return {DOMNode|Null} the first element sibling after node or null if none is found
+         */
+        nextElementSibling: function(node){
+            var sibling = null;
+
+            if(!node){ return sibling; }
+
+            if("nextElementSibling" in node){
+                return node.nextElementSibling;
+            } else {
+                sibling = node.nextSibling;
+
+                // 1 === Node.ELEMENT_NODE
+                while(sibling && sibling.nodeType !== 1){
+                    sibling = sibling.nextSibling;
+                }
+
+                return sibling;
+            }
+        },
+
+        /**
+         * Get the first element sibling before the node
+         *
+         * @method previousElementSibling
+         * @param {DOMNode}        node  current node
+         * @return {DOMNode|Null} the first element sibling before node or null if none is found
+         */
+        previousElementSibling: function(node){
+            var sibling = null;
+
+            if(!node){ return sibling; }
+
+            if("previousElementSibling" in node){
+                return node.previousElementSibling;
+            } else {
+                sibling = node.previousSibling;
+
+                // 1 === Node.ELEMENT_NODE
+                while(sibling && sibling.nodeType !== 1){
+                    sibling = sibling.previousSibling;
+                }
+
+                return sibling;
+            }
+        },
+
+        /**
+         * Returns the width of the given element, in pixels
+         *
+         * @method elementWidth
+         * @param {DOMElement|string} element target DOM element or target ID
+         * @return {Number} the element's width
+         */
+        elementWidth: function(element) {
+            if(typeof element === "string") {
+                element = document.getElementById(element);
+            }
+            return element.offsetWidth;
+        },
+
+        /**
+         * Returns the height of the given element, in pixels
+         *
+         * @method elementHeight
+         * @param {DOMElement|string} element target DOM element or target ID
+         * @return {Number} the element's height
+         */
+        elementHeight: function(element) {
+            if(typeof element === "string") {
+                element = document.getElementById(element);
+            }
+            return element.offsetHeight;
+        },
+
+        /**
+         * Returns the element's left position in pixels
+         *
+         * @method elementLeft
+         * @param {DOMElement|string} element target DOM element or target ID
+         * @return {Number} element's left position
+         */
+        elementLeft: function(element) {
+            if(typeof element === "string") {
+                element = document.getElementById(element);
+            }
+            return element.offsetLeft;
+        },
+
+        /**
+         * Returns the element's top position in pixels
+         *
+         * @method elementTop
+         * @param {DOMElement|string} element target DOM element or target ID
+         * @return {Number} element's top position
+         */
+        elementTop: function(element) {
+            if(typeof element === "string") {
+                element = document.getElementById(element);
+            }
+            return element.offsetTop;
+        },
+
+        /**
+         * Returns the dimensions of the given element, in pixels
+         *
+         * @method elementDimensions
+         * @param {element} element target element
+         * @return {Array} array with element's width and height
+         */
+        elementDimensions: function(element) {
+            element = Ink.i(element);
+            return [element.offsetWidth, element.offsetHeight];
+        },
+
+        /**
+         * Returns the outer (width + margin + padding included) dimensions of an element, in pixels.
+         *
+         * Requires Ink.Dom.Css
+         *
+         * @method outerDimensions
+         * @param {DOMElement} element Target element
+         * @return {Array} Array with element width and height.
+         */
+        outerDimensions: function (element) {
+            var bbox = element.getBoundingClientRect();
+
+            var Css = Ink.getModule('Ink.Dom.Css_1');
+            var getStyle = Ink.bindMethod(Css, 'getStyle', element);
+
+            return [
+                bbox.right - bbox.left + parseFloat(getStyle('marginLeft') || 0) + parseFloat(getStyle('marginRight') || 0),  // w
+                bbox.bottom - bbox.top + parseFloat(getStyle('marginTop') || 0) + parseFloat(getStyle('marginBottom') || 0)  // h
+            ];
+        },
+
+        /**
+         * Check whether an element is inside the viewport
+         *
+         * @method inViewport
+         * @param {DOMElement} element Element to check
+         * @param {Boolean} [partial=false] Return `true` even if it is only partially visible.
+         * @return {Boolean}
+         */
+        inViewport: function (element, partial) {
+            var rect = Ink.i(element).getBoundingClientRect();
+            if (partial) {
+                return  rect.bottom > 0                        && // from the top
+                        rect.left < InkElement.viewportWidth()    && // from the right
+                        rect.top < InkElement.viewportHeight()    && // from the bottom
+                        rect.right  > 0;                          // from the left
+            } else {
+                return  rect.top > 0                           && // from the top
+                        rect.right < InkElement.viewportWidth()   && // from the right
+                        rect.bottom < InkElement.viewportHeight() && // from the bottom
+                        rect.left  > 0;                           // from the left
+            }
+        },
+
+        /**
+         * Applies the cloneFrom's dimensions to cloneTo
+         *
+         * @method clonePosition
+         * @param {DOMElement} cloneTo    element to be position cloned
+         * @param {DOMElement} cloneFrom  element to get the cloned position
+         * @return {DOMElement} the element with positionClone
+         */
+        clonePosition: function(cloneTo, cloneFrom){
+            var pos = InkElement.offset(cloneFrom);
+            cloneTo.style.left = pos[0]+'px';
+            cloneTo.style.top = pos[1]+'px';
+
+            return cloneTo;
+        },
+
+        /**
+         * Slices off a piece of text at the end of the element and adds the ellipsis
+         * so all text fits in the element.
+         *
+         * @method ellipsizeText
+         * @param {DOMElement} element     which text is to add the ellipsis
+         * @param {String}     [ellipsis='\u2026']  String to append to the chopped text
+         */
+        ellipsizeText: function(element, ellipsis){
+            /*jshint boss:true */
+            if (element = Ink.i(element)){
+                while (element && element.scrollHeight > (element.offsetHeight + 8)) {
+                    element.textContent = element.textContent.replace(/(\s+\S+)\s*$/, ellipsis || '\u2026');
+                }
+            }
+        },
+
+        /**
+         * Searches up the DOM tree for an element fulfilling the boolTest function (returning trueish)
+         *
+         * @method findUpwardsHaving
+         * @param {HtmlElement} element
+         * @param {Function}    boolTest
+         * @return {HtmlElement|false} the matched element or false if did not match
+         */
+        findUpwardsHaving: function(element, boolTest) {
+            while (element && element.nodeType === 1) {
+                if (boolTest(element)) {
+                    return element;
+                }
+                element = element.parentNode;
+            }
+            return false;
+        },
+
+        /**
+         * Śearches up the DOM tree for an element of specified class name
+         *
+         * @method findUpwardsByClass
+         * @param {HtmlElement} element
+         * @param {String}      className
+         * @returns {HtmlElement|false} the matched element or false if did not match
+         */
+        findUpwardsByClass: function(element, className) {
+            var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
+            var tst = function(el) {
+                var cls = el.className;
+                return cls && re.test(cls);
+            };
+            return InkElement.findUpwardsHaving(element, tst);
+        },
+
+        /**
+         * Śearches up the DOM tree for an element of specified tag
+         *
+         * @method findUpwardsByTag
+         * @param {HtmlElement} element
+         * @param {String}      tag
+         * @returns {HtmlElement|false} the matched element or false if did not match
+         */
+        findUpwardsByTag: function(element, tag) {
+            tag = tag.toUpperCase();
+            var tst = function(el) {
+                return el.nodeName && el.nodeName.toUpperCase() === tag;
+            };
+            return InkElement.findUpwardsHaving(element, tst);
+        },
+
+        /**
+         * Śearches up the DOM tree for an element of specified id
+         *
+         * @method findUpwardsById
+         * @param {HtmlElement} element
+         * @param {String}      id
+         * @returns {HtmlElement|false} the matched element or false if did not match
+         */
+        findUpwardsById: function(element, id) {
+            var tst = function(el) {
+                return el.id === id;
+            };
+            return InkElement.findUpwardsHaving(element, tst);
+        },
+
+        /**
+         * Śearches up the DOM tree for an element matching the given selector
+         *
+         * @method findUpwardsBySelector
+         * @param {HtmlElement} element
+         * @param {String}      sel
+         * @returns {HtmlElement|false} the matched element or false if did not match
+         */
+        findUpwardsBySelector: function(element, sel) {
+            if (typeof Ink.Dom === 'undefined' || typeof Ink.Dom.Selector === 'undefined') {
+                throw new Error('This method requires Ink.Dom.Selector');
+            }
+            var tst = function(el) {
+                return Ink.Dom.Selector.matchesSelector(el, sel);
+            };
+            return InkElement.findUpwardsHaving(element, tst);
+        },
+
+        /**
+         * Returns trimmed text content of descendants
+         *
+         * @method getChildrenText
+         * @param {DOMElement}  el          element being seeked
+         * @param {Boolean}     [removeIt]  whether to remove the found text nodes or not
+         * @return {String} text found
+         */
+        getChildrenText: function(el, removeIt) {
+            var node,
+                j,
+                part,
+                nodes = el.childNodes,
+                jLen = nodes.length,
+                text = '';
+
+            if (!el) {
+                return text;
+            }
+
+            for (j = 0; j < jLen; ++j) {
+                node = nodes[j];
+                if (!node) {    continue;   }
+                if (node.nodeType === 3) {  // TEXT NODE
+                    part = InkElement._trimString( String(node.data) );
+                    if (part.length > 0) {
+                        text += part;
+                        if (removeIt) { el.removeChild(node);   }
+                    }
+                    else {  el.removeChild(node);   }
+                }
+            }
+
+            return text;
+        },
+
+        /**
+         * String trim implementation
+         * Used by getChildrenText
+         *
+         * function _trimString
+         * param {String} text
+         * return {String} trimmed text
+         */
+        _trimString: function(text) {
+            return (String.prototype.trim) ? text.trim() : text.replace(/^\s*/, '').replace(/\s*$/, '');
+        },
+
+        /**
+         * Returns the values of a select element
+         *
+         * @method getSelectValues
+         * @param {DomElement|String} select element
+         * @return {Array} selected values
+         */
+        getSelectValues: function (select) {
+            var selectEl = Ink.i(select);
+            var values = [];
+            for (var i = 0; i < selectEl.options.length; ++i) {
+                values.push( selectEl.options[i].value );
+            }
+            return values;
+        },
+
+
+        /* used by fills */
+        _normalizeData: function(data) {
+            var d, data2 = [];
+            for (var i = 0, f = data.length; i < f; ++i) {
+                d = data[i];
+
+                if (!(d instanceof Array)) {    // if not array, wraps primitive twice:     val -> [val, val]
+                    d = [d, d];
+                }
+                else if (d.length === 1) {      // if 1 element array:                      [val] -> [val, val]
+                    d.push(d[0]);
+                }
+                data2.push(d);
+            }
+            return data2;
+        },
+
+
+        /**
+         * Fills select element with choices
+         *
+         * @method fillSelect
+         * @param {DomElement|String}  container       select element which will get filled
+         * @param {Array}              data            data which will populate the component
+         * @param {Boolean}            [skipEmpty]     true to skip empty option
+         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
+         */
+        fillSelect: function(container, data, skipEmpty, defaultValue) {
+            var containerEl = Ink.i(container);
+            if (!containerEl) {   return; }
+
+            containerEl.innerHTML = '';
+            var d, optionEl;
+
+            if (!skipEmpty) {
+                // add initial empty option
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', '');
+                containerEl.appendChild(optionEl);
+            }
+
+            data = InkElement._normalizeData(data);
+
+            for (var i = 0, f = data.length; i < f; ++i) {
+                d = data[i];
+
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', d[0]);
+                if (d.length > 2) {
+                    optionEl.setAttribute('extra', d[2]);
+                }
+                optionEl.appendChild( document.createTextNode(d[1]) );
+
+                if (d[0] === defaultValue) {
+                    optionEl.setAttribute('selected', 'selected');
+                }
+
+                containerEl.appendChild(optionEl);
+            }
+        },
+
+
+        /**
+         * Select element on steroids - allows the creation of new values
+         *
+         * @method fillSelect2
+         * @param {DomElement|String} ctn select element which will get filled
+         * @param {Object} opts
+         * @param {Array}                      [opts.data]               data which will populate the component
+         * @param {Boolean}                    [opts.skipEmpty]          if true empty option is not created (defaults to false)
+         * @param {String}                     [opts.emptyLabel]         label to display on empty option
+         * @param {String}                     [opts.createLabel]        label to display on create option
+         * @param {String}                     [opts.optionsGroupLabel]  text to display on group surrounding value options
+         * @param {String}                     [opts.defaultValue]       option to select initially
+         * @param {Function(selEl, addOptFn)}  [opts.onCreate]           callback that gets called once user selects the create option
+         */
+        fillSelect2: function(ctn, opts) {
+            ctn = Ink.i(ctn);
+            ctn.innerHTML = '';
+
+            var defs = {
+                skipEmpty:              false,
+                skipCreate:             false,
+                emptyLabel:             'none',
+                createLabel:            'create',
+                optionsGroupLabel:      'groups',
+                emptyOptionsGroupLabel: 'none exist',
+                defaultValue:           ''
+            };
+            if (!opts) {      throw 'param opts is a requirement!';   }
+            if (!opts.data) { throw 'opts.data is a requirement!';    }
+            opts = Ink.extendObj(defs, opts);
+
+            var optionEl, d;
+
+            var optGroupValuesEl = document.createElement('optgroup');
+            optGroupValuesEl.setAttribute('label', opts.optionsGroupLabel);
+
+            opts.data = InkElement._normalizeData(opts.data);
+
+            if (!opts.skipCreate) {
+                opts.data.unshift(['$create$', opts.createLabel]);
+            }
+
+            if (!opts.skipEmpty) {
+                opts.data.unshift(['', opts.emptyLabel]);
+            }
+
+            for (var i = 0, f = opts.data.length; i < f; ++i) {
+                d = opts.data[i];
+
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', d[0]);
+                optionEl.appendChild( document.createTextNode(d[1]) );
+
+                if (d[0] === opts.defaultValue) {   optionEl.setAttribute('selected', 'selected');  }
+
+                if (d[0] === '' || d[0] === '$create$') {
+                    ctn.appendChild(optionEl);
+                }
+                else {
+                    optGroupValuesEl.appendChild(optionEl);
+                }
+            }
+
+            var lastValIsNotOption = function(data) {
+                var lastVal = data[data.length-1][0];
+                return (lastVal === '' || lastVal === '$create$');
+            };
+
+            if (lastValIsNotOption(opts.data)) {
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', '$dummy$');
+                optionEl.setAttribute('disabled', 'disabled');
+                optionEl.appendChild(   document.createTextNode(opts.emptyOptionsGroupLabel)    );
+                optGroupValuesEl.appendChild(optionEl);
+            }
+
+            ctn.appendChild(optGroupValuesEl);
+
+            var addOption = function(v, l) {
+                var optionEl = ctn.options[ctn.options.length - 1];
+                if (optionEl.getAttribute('disabled')) {
+                    optionEl.parentNode.removeChild(optionEl);
+                }
+
+                // create it
+                optionEl = document.createElement('option');
+                optionEl.setAttribute('value', v);
+                optionEl.appendChild(   document.createTextNode(l)  );
+                optGroupValuesEl.appendChild(optionEl);
+
+                // select it
+                ctn.options[ctn.options.length - 1].setAttribute('selected', true);
+            };
+
+            if (!opts.skipCreate) {
+                ctn.onchange = function() {
+                    if ((ctn.value === '$create$') && (typeof opts.onCreate === 'function')) {  opts.onCreate(ctn, addOption);  }
+                };
+            }
+        },
+
+
+        /**
+         * Creates set of radio buttons, returns wrapper
+         *
+         * @method fillRadios
+         * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
+         * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
+         * @param {Array}              data            data which will populate the component
+         * @param {Boolean}            [skipEmpty]     true to skip empty option
+         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
+         * @param {String}             [splitEl]       name of element to add after each input element (example: 'br')
+         * @return {DOMElement} wrapper element around radio buttons
+         */
+        fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
+            var afterEl = Ink.i(insertAfterEl);
+            afterEl = afterEl.nextSibling;
+            while (afterEl && afterEl.nodeType !== 1) {
+                afterEl = afterEl.nextSibling;
+            }
+            var containerEl = document.createElement('span');
+            if (afterEl) {
+                afterEl.parentNode.insertBefore(containerEl, afterEl);
+            } else {
+                Ink.i(insertAfterEl).appendChild(containerEl);
+            }
+
+            data = InkElement._normalizeData(data);
+
+            if (name.substring(name.length - 1) !== ']') {
+                name += '[]';
+            }
+
+            var d, inputEl;
+
+            if (!skipEmpty) {
+                // add initial empty option
+                inputEl = document.createElement('input');
+                inputEl.setAttribute('type', 'radio');
+                inputEl.setAttribute('name', name);
+                inputEl.setAttribute('value', '');
+                containerEl.appendChild(inputEl);
+                if (splitEl) {  containerEl.appendChild( document.createElement(splitEl) ); }
+            }
+
+            for (var i = 0; i < data.length; ++i) {
+                d = data[i];
+
+                inputEl = document.createElement('input');
+                inputEl.setAttribute('type', 'radio');
+                inputEl.setAttribute('name', name);
+                inputEl.setAttribute('value', d[0]);
+                containerEl.appendChild(inputEl);
+                containerEl.appendChild( document.createTextNode(d[1]) );
+                if (splitEl) {  containerEl.appendChild( document.createElement(splitEl) ); }
+
+                if (d[0] === defaultValue) {
+                    inputEl.checked = true;
+                }
+            }
+
+            return containerEl;
+        },
+
+
+        /**
+         * Creates set of checkbox buttons, returns wrapper
+         *
+         * @method fillChecks
+         * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
+         * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
+         * @param {Array}              data            data which will populate the component
+         * @param {Boolean}            [skipEmpty]     true to skip empty option
+         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
+         * @param {String}             [splitEl]       name of element to add after each input element (example: 'br')
+         * @return {DOMElement} wrapper element around checkboxes
+         */
+        fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
+            var afterEl = Ink.i(insertAfterEl);
+            afterEl = afterEl.nextSibling;
+            while (afterEl && afterEl.nodeType !== 1) {
+                afterEl = afterEl.nextSibling;
+            }
+            var containerEl = document.createElement('span');
+            if (afterEl) {
+                afterEl.parentNode.insertBefore(containerEl, afterEl);
+            } else {
+                Ink.i(insertAfterEl).appendChild(containerEl);
+            }
+
+            data = InkElement._normalizeData(data);
+
+            if (name.substring(name.length - 1) !== ']') {
+                name += '[]';
+            }
+
+            var d, inputEl;
+
+            for (var i = 0; i < data.length; ++i) {
+                d = data[i];
+
+                inputEl = document.createElement('input');
+                inputEl.setAttribute('type', 'checkbox');
+                inputEl.setAttribute('name', name);
+                inputEl.setAttribute('value', d[0]);
+                containerEl.appendChild(inputEl);
+                containerEl.appendChild( document.createTextNode(d[1]) );
+                if (splitEl) {  containerEl.appendChild( document.createElement(splitEl) ); }
+
+                if (d[0] === defaultValue) {
+                    inputEl.checked = true;
+                }
+            }
+
+            return containerEl;
+        },
+
+
+        /**
+         * Returns index of element from parent, -1 if not child of parent...
+         *
+         * @method parentIndexOf
+         * @param {DOMElement}  parentEl  Element to parse
+         * @param {DOMElement}  childEl   Child Element to look for
+         * @return {Number}
+         */
+        parentIndexOf: function(parentEl, childEl) {
+            var node, idx = 0;
+            for (var i = 0, f = parentEl.childNodes.length; i < f; ++i) {
+                node = parentEl.childNodes[i];
+                if (node.nodeType === 1) {  // ELEMENT
+                    if (node === childEl) { return idx; }
+                    ++idx;
+                }
+            }
+            return -1;
+        },
+
+
+        /**
+         * Returns an array of elements - the next siblings
+         *
+         * @method nextSiblings
+         * @param {String|DomElement} elm element
+         * @return {Array} Array of next sibling elements
+         */
+        nextSiblings: function(elm) {
+            if(typeof(elm) === "string") {
+                elm = document.getElementById(elm);
+            }
+            if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
+                var elements = [],
+                    siblings = elm.parentNode.children,
+                    index    = InkElement.parentIndexOf(elm.parentNode, elm);
+
+                for(var i = ++index, len = siblings.length; i<len; i++) {
+                    elements.push(siblings[i]);
+                }
+
+                return elements;
+            }
+            return [];
+        },
+
+
+        /**
+         * Returns an array of elements - the previous siblings
+         *
+         * @method previousSiblings
+         * @param {String|DomElement} elm element
+         * @return {Array} Array of previous sibling elements
+         */
+        previousSiblings: function(elm) {
+            if(typeof(elm) === "string") {
+                elm = document.getElementById(elm);
+            }
+            if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
+                var elements    = [],
+                    siblings    = elm.parentNode.children,
+                    index       = InkElement.parentIndexOf(elm.parentNode, elm);
+
+                for(var i = 0, len = index; i<len; i++) {
+                    elements.push(siblings[i]);
+                }
+
+                return elements;
+            }
+            return [];
+        },
+
+
+        /**
+         * Returns an array of elements - its siblings
+         *
+         * @method siblings
+         * @param {String|DomElement} elm element
+         * @return {Array} Array of sibling elements
+         */
+        siblings: function(elm) {
+            if(typeof(elm) === "string") {
+                elm = document.getElementById(elm);
+            }
+            if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
+                var elements   = [],
+                    siblings   = elm.parentNode.children;
+
+                for(var i = 0, len = siblings.length; i<len; i++) {
+                    if(elm !== siblings[i]) {
+                        elements.push(siblings[i]);
+                    }
+                }
+
+                return elements;
+            }
+            return [];
+        },
+
+        /**
+         * fallback to elem.childElementCount
+         *
+         * @method childElementCount
+         * @param {String|DomElement} elm element
+         * @return {Number} number of child elements
+         */
+        childElementCount: function(elm) {
+            elm = Ink.i(elm);
+            if ('childElementCount' in elm) {
+                return elm.childElementCount;
+            }
+            if (!elm) { return 0; }
+            return InkElement.siblings(elm).length + 1;
+        },
+
+        _wrapElements: {
+            TABLE: function (div, html) {
+                /* If we don't create a tbody, IE7 does that for us. Adding a tbody with a random string and then filtering for that random string is the only way to avoid double insertion of tbodies. */
+                if (browserCreatesTbodies) {
+                    div.innerHTML = "<table>" + html + "<tbody><tr><td>" + deleteThisTbodyToken + "</tr></td></tbody></table>";
+                } else {
+                    div.innerHTML = "<table>" + html + "</table>";
+                }
+                return div.firstChild;
+            },
+            TBODY: function (div, html) {
+                div.innerHTML = '<table><tbody>' + html + '</tbody></table>';
+                return div.firstChild.getElementsByTagName('tbody')[0];
+            },
+            THEAD: function (div, html) {
+                div.innerHTML = '<table><thead>' + html + '</thead><tbody></tbody></table>';
+                return div.firstChild.getElementsByTagName('thead')[0];
+            },
+            TFOOT: function (div, html) {
+                div.innerHTML = '<table><tfoot>' + html + '</tfoot><tbody></tbody></table>';
+                return div.firstChild.getElementsByTagName('tfoot')[0];
+            },
+            TR: function (div, html) {
+                div.innerHTML = '<table><tbody><tr>' + html + '</tr></tbody></table>';
+                return div.firstChild.firstChild.firstChild;
+            }
+        },
+
+        _getWrapper: function (elm, html) {
+            var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
+            var wrapper = document.createElement('div');
+            var wrapFunc = InkElement._wrapElements[nodeName];
+
+            if ( !wrapFunc ) {
+                wrapper.innerHTML = html;
+                return wrapper;
+            }
+            // special cases
+            wrapper = wrapFunc(wrapper, html);
+            // worst case: tbody creation
+            if (browserCreatesTbodies && nodeName === 'TABLE') {
+                // terrible case. Deal with tbody creation too.
+                var tds = wrapper.getElementsByTagName('td');
+                for (var i = 0, len = tds.length; i < len; i++) {
+                    if (tds[i].innerHTML === deleteThisTbodyToken) {
+                        var tbody = tds[i].parentNode.parentNode;
+                        tbody.parentNode.removeChild(tbody);
+                    }
+                }
+            }
+            return wrapper;
+        },
+
+        /**
+         * parses and appends an html string to a container, not destroying its contents
+         *
+         * @method appendHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
+        appendHTML: function(elm, html){
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (wrapper.firstChild) {
+                elm.appendChild(wrapper.firstChild);
+            }
+        },
+
+        /**
+         * parses and prepends an html string to a container, not destroying its contents
+         *
+         * @method prependHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
+        prependHTML: function(elm, html){
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (wrapper.lastChild) {
+                elm.insertBefore(wrapper.lastChild, elm.firstChild);
+            }
+        },
+
+        /**
+         * sets the Inner HTML of an element to the given HTML string
+         *
+         * @method setHTML
+         * @param {String|DomElement} elm   element
+         * @param {String}            html  markup string
+         */
+        setHTML: function (elm, html) {
+            var wrapper = InkElement._getWrapper(elm, html);
+            while (elm.firstChild) {
+                elm.removeChild(elm.firstChild);
+            }
+            InkElement.appendHTML(elm, html);
+        },
+
+        /**
+         * Wraps an element inside a container.
+         *
+         * The container may or may not be in the document yet.
+         *
+         * @method wrap
+         * @param {String|DomElement}   target Element to be wrapped
+         * @param {String|DomElement}   container Element to wrap the target
+         * @return Container element
+         *
+         * @example
+         * before:
+         *
+         *     <div id="target"></div>
+         *
+         * call this function to wrap:
+         *
+         *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
+         * 
+         * after: 
+         *
+         *     <div id="container"><div id="target"></div></div>
+         */
+        wrap: function (target, container) {
+            target = Ink.i(target);
+            container = Ink.i(container);
+            
+            var nextNode = target.nextSibling;
+            var parent = target.parentNode;
+
+            container.appendChild(target);
+
+            if (nextNode !== null) {
+                parent.insertBefore(container, nextNode)
+            } else {
+                parent.appendChild(container);
+            }
+
+            return container;
+        },
+
+        /**
+         * Removes direct children on type text.
+         * Useful to remove nasty layout gaps generated by whitespace on the markup.
+         *
+         * @method removeTextNodeChildren
+         * @param  {DOMElement} el
+         */
+        removeTextNodeChildren: function(el) {
+            var prevEl, toRemove, parent = el;
+            el = el.firstChild;
+            while (el) {
+                toRemove = (el.nodeType === 3);
+                prevEl = el;
+                el = el.nextSibling;
+                if (toRemove) {
+                    parent.removeChild(prevEl);
+                }
+            }
+        },
+
+        /**
+         * Pass an HTML string and receive a documentFragment with the corresponding elements
+         * @method htmlToFragment
+         * @param  {String} html  html string
+         * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
+         */
+        htmlToFragment: (createContextualFragmentSupport ?
+            function(html){
+                var range;
+
+                if(typeof html !== 'string'){ return document.createDocumentFragment(); }
+
+                range = document.createRange();
+
+                // set the context to document.body (firefox does this already, webkit doesn't)
+                range.selectNode(document.body);
+
+                return range.createContextualFragment(html);
+            } : function (html) {
+                var fragment = document.createDocumentFragment(),
+                    tempElement,
+                    current;
+
+                if(typeof html !== 'string'){ return fragment; }
+
+                tempElement = document.createElement('div');
+                tempElement.innerHTML = html;
+
+                // append child removes elements from the original parent
+                while( (current = tempElement.firstChild) ){ // intentional assignment
+                    fragment.appendChild(current);
+                }
+
+                return fragment;
+            }),
+
+        _camelCase: function(str)
+        {
+            return str ? str.replace(/-(\w)/g, function (_, $1){
+                return $1.toUpperCase();
+            }) : str;
+        },
+
+        /**
+         * Gets all of the data attributes from an element
+         *
+         * @method data
+         * @param {String|DomElement} selector Element or CSS selector
+         * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
+        */
+        data: function(selector) {
+            var el;
+            if (typeof selector !== 'object' && typeof selector !== 'string') {
+                throw '[Ink.Dom.Element.data] :: Invalid selector defined';
+            }
+
+            if (typeof selector === 'object') {
+                el = selector;
+            }
+            else {
+                var InkDomSelector = Ink.getModule('Ink.Dom.Selector', 1);
+                if (!InkDomSelector) {
+                    throw "[Ink.Dom.Element.data] :: this method requires Ink.Dom.Selector - v1";
+                }
+                el = InkDomSelector.select(selector);
+                if (el.length <= 0) {
+                    throw "[Ink.Dom.Element.data] :: Can't find any element with the specified selector";
+                }
+                el = el[0];
+            }
+
+            var dataset = {};
+            var attrs = el.attributes || [];
+
+            var curAttr, curAttrName, curAttrValue;
+            if (attrs) {
+                for (var i = 0, total = attrs.length; i < total; ++i) {
+                    curAttr = attrs[i];
+                    curAttrName = curAttr.name;
+                    curAttrValue = curAttr.value;
+                    if (curAttrName && curAttrName.indexOf('data-') === 0) {
+                        dataset[InkElement._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
+                    }
+                }
+            }
+
+            return dataset;
+        },
+
+        /**
+         * @method moveCursorTo
+         * @param  {Input|Textarea}  el
+         * @param  {Number}          t
+         */
+        moveCursorTo: function(el, t) {
+            if (el.setSelectionRange) {
+                el.setSelectionRange(t, t);
+                //el.focus();
+            }
+            else {
+                var range = el.createTextRange();
+                range.collapse(true);
+                range.moveEnd(  'character', t);
+                range.moveStart('character', t);
+                range.select();
+            }
+        },
+
+        /**
+         * @method pageWidth
+         * @return {Number} page width
+         */
+        pageWidth: function() {
+            var xScroll;
+
+            if (window.innerWidth && window.scrollMaxX) {
+                xScroll = window.innerWidth + window.scrollMaxX;
+            } else if (document.body.scrollWidth > document.body.offsetWidth){
+                xScroll = document.body.scrollWidth;
+            } else {
+                xScroll = document.body.offsetWidth;
+            }
+
+            var windowWidth;
+
+            if (window.self.innerWidth) {
+                if(document.documentElement.clientWidth){
+                    windowWidth = document.documentElement.clientWidth;
+                } else {
+                    windowWidth = window.self.innerWidth;
+                }
+            } else if (document.documentElement && document.documentElement.clientWidth) {
+                windowWidth = document.documentElement.clientWidth;
+            } else if (document.body) {
+                windowWidth = document.body.clientWidth;
+            }
+
+            if(xScroll < windowWidth){
+                return xScroll;
+            } else {
+                return windowWidth;
+            }
+        },
+
+        /**
+         * @method pageHeight
+         * @return {Number} page height
+         */
+        pageHeight: function() {
+            var yScroll;
+
+            if (window.innerHeight && window.scrollMaxY) {
+                yScroll = window.innerHeight + window.scrollMaxY;
+            } else if (document.body.scrollHeight > document.body.offsetHeight){
+                yScroll = document.body.scrollHeight;
+            } else {
+                yScroll = document.body.offsetHeight;
+            }
+
+            var windowHeight;
+
+            if (window.self.innerHeight) {
+                windowHeight = window.self.innerHeight;
+            } else if (document.documentElement && document.documentElement.clientHeight) {
+                windowHeight = document.documentElement.clientHeight;
+            } else if (document.body) {
+                windowHeight = document.body.clientHeight;
+            }
+
+            if(yScroll < windowHeight){
+                return windowHeight;
+            } else {
+                return yScroll;
+            }
+        },
+
+       /**
+         * @method viewportWidth
+         * @return {Number} viewport width in pixels
+         */
+        viewportWidth: function() {
+            if(typeof window.innerWidth !== "undefined") {
+                return window.innerWidth;
+            }
+            if (document.documentElement && typeof document.documentElement.offsetWidth !== "undefined") {
+                return document.documentElement.offsetWidth;
+            }
+        },
+
+        /**
+         * @method viewportHeight
+         * @return {Number} viewport height
+         */
+        viewportHeight: function() {
+            if (typeof window.innerHeight !== "undefined") {
+                return window.innerHeight;
+            }
+            if (document.documentElement && typeof document.documentElement.offsetHeight !== "undefined") {
+                return document.documentElement.offsetHeight;
+            }
+        },
+
+        /**
+         * @method scrollWidth
+         * @return {Number} scroll width
+         */
+        scrollWidth: function() {
+            if (typeof window.self.pageXOffset !== 'undefined') {
+                return window.self.pageXOffset;
+            }
+            if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollLeft !== 'undefined') {
+                return document.documentElement.scrollLeft;
+            }
+            return document.body.scrollLeft;
+        },
+
+        /**
+         * @method scrollHeight
+         * @return {Number} scroll height
+         */
+        scrollHeight: function() {
+            if (typeof window.self.pageYOffset !== 'undefined') {
+                return window.self.pageYOffset;
+            }
+            if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
+                return document.documentElement.scrollTop;
+            }
+            return document.body.scrollTop;
+        }
+    };
+
+    return InkElement;
+
+});
+
+/**
+ * @author inkdev AT sapo.pt
+ */
+
 Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     'use strict';
@@ -1582,28 +4068,30 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @example
      *  
-     *  // BEFORE
-     *  InkEvent.observe(window, 'scroll', function () {
-     *      ...
-     *  }); // When scrolling on mobile devices or on firefox's smooth scroll
-     *      // this is expensive because onscroll is called many times
+     * Suppose you are observing the `scroll` event, but your application is lagging because `scroll` is triggered too many times.
      *
-     *  // AFTER
-     *  InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
-     *      ...
-     *  }, 100)); // The event handler is called only every 100ms. Problem solved.
+     *     // BEFORE
+     *     InkEvent.observe(window, 'scroll', function () {
+     *         ...
+     *     }); // When scrolling on mobile devices or on firefox's smooth scroll
+     *         // this is expensive because onscroll is called many times
+     *
+     *     // AFTER
+     *     InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
+     *         ...
+     *     }, 100)); // The event handler is called only every 100ms. Problem solved.
      *
      * @example
-     *  var handler = InkEvent.throttle(function () {
-     *      ...
-     *  }, 100);
+     *     var handler = InkEvent.throttle(function () {
+     *         ...
+     *     }, 100);
      *
-     *  InkEvent.observe(window, 'scroll', handler);
-     *  InkEvent.observe(window, 'resize', handler);
+     *     InkEvent.observe(window, 'scroll', handler);
+     *     InkEvent.observe(window, 'resize', handler);
      *
-     *  // on resize, both the "scroll" and the "resize" events are triggered
-     *  // a LOT of times. This prevents both of them being called a lot of
-     *  // times when the window is being resized by a user.
+     *     // on resize, both the "scroll" and the "resize" events are triggered
+     *     // a LOT of times. This prevents both of them being called a lot of
+     *     // times when the window is being resized by a user.
      *
      **/
     throttle: function (func, wait) {
@@ -1619,10 +4107,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    return throttled.apply(that, args);
-                });
+                if (!timeout) {
+                    timeout = setTimeout(function () {
+                        timeout = null;
+                        return throttled.apply(that, args);
+                    }, wait - timeDiff);
+                }
             }
         };
         return throttled;
@@ -1711,49 +4201,49 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     fire: function(element, eventName, memo)
     {
         element = Ink.i(element);
+        if (!element) { return null; }
+
         var ev;
 
-        if(element !== null && element !== undefined){
-            if (element === document && document.createEvent && !element.dispatchEvent) {
-                element = document.documentElement;
-            }
-
-            if (document.createEvent) {
-                ev = document.createEvent("HTMLEvents");
-                if(typeof nativeEvents[eventName] === "undefined"){
-                    ev.initEvent("dataavailable", true, true);
-                } else {
-                    ev.initEvent(eventName, true, true);
-                }
-
-            } else {
-                ev = document.createEventObject();
-                if(typeof nativeEvents["on"+eventName] === "undefined"){
-                    ev.eventType = "ondataavailable";
-                } else {
-                    ev.eventType = "on"+eventName;
-                }
-            }
-
-            ev.eventName = eventName;
-            ev.memo = memo || { };
-
-            try {
-                if (document.createEvent) {
-                    element.dispatchEvent(ev);
-                } else if(element.fireEvent){
-                    element.fireEvent(ev.eventType, ev);
-                } else {
-                    return;
-                }
-            } catch(ex) {}
-
-            return ev;
+        if (element === document && document.createEvent && !element.dispatchEvent) {
+            element = document.documentElement;
         }
+
+        if (document.createEvent) {
+            ev = document.createEvent("HTMLEvents");
+            if(nativeEvents.indexOf(eventName) === -1) {
+                ev.initEvent("dataavailable", true, true);
+            } else {
+                ev.initEvent(eventName, true, true);
+            }
+
+        } else {
+            ev = document.createEventObject();
+                if (nativeEvents.indexOf("on"+eventName) === -1){
+                ev.eventType = "ondataavailable";
+            } else {
+                ev.eventType = "on"+eventName;
+            }
+        }
+
+        ev.eventName = eventName;
+        ev.memo = memo || { };
+
+        try {
+            if (document.createEvent) {
+                element.dispatchEvent(ev);
+            } else if(element.fireEvent){
+                element.fireEvent(ev.eventType, ev);
+            } else {
+                return;
+            }
+        } catch(ex) {}
+
+        return ev;
     },
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !window.onhashchange;
+        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
         var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
@@ -1821,9 +4311,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * Attaches an event to a selector or array of elements.
      *
-     * Requires Ink.Dom.Selector or a browser with Element.querySelectorAll.
-     *
-     * Ink.Dom.Event.observe
+     * Requires Ink.Dom.Selector
      *
      * @method observeMulti
      * @param {Array|String} elements
@@ -1848,6 +4336,34 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             this.observe(elements[i], eventName, callBack, useCapture);
         }
         return callBack;
+    },
+
+    /**
+     * Observe an event on the given element and every children which matches the selector string (if provided).
+     *
+     * Requires Ink.Dom.Selector if you need to use a selector.
+     *
+     * @method observeDelegated
+     * @param {DOMElement|String} element   Element to observe.
+     * @param {String}            eventName Event name to observe.
+     * @param {String}            selector  Child element selector. When null, finds any element.
+     * @param {Function}          callback  Callback to be called when the event is fired
+     * @return {Function} The used callback, for ceasing to listen to the event later.
+     **/
+    observeDelegated: function (element, eventName, selector, callback) {
+        var delegatedWrapper = function (event, fromElement) {
+            fromElement = fromElement || InkEvent.element(event);
+            if (!fromElement || fromElement === element) { return; }
+
+            var selectResult = Ink.Dom.Selector_1.select(selector, element);
+            if (selectResult.length) {
+                return callback.apply(selectResult[0], [event])
+            } else {
+                delegatedWrapper(event, fromElement.parentNode);
+            }
+        }
+
+        return InkEvent.observe(element, eventName, delegatedWrapper);
     },
 
     /**
@@ -1951,7 +4467,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
+            (ev.pageX) ||
+            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
     },
 
     /**
@@ -1961,7 +4479,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
+            (ev.pageY) ||
+            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
     },
 
     /**
@@ -2040,6 +4560,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     debug: function(){}
 };
+
 
 return InkEvent;
 
@@ -4683,2487 +7204,1304 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 });
 
 /**
+ * @module Ink.Util.Url_1
  * @author inkdev AT sapo.pt
+ * @version 1
  */
-
-Ink.createModule('Ink.Dom.Element', 1, [], function() {
+Ink.createModule('Ink.Util.Url', '1', [], function() {
 
     'use strict';
 
-    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
-
-    var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
-    var browserCreatesTbodies = (function () {
-        var div = document.createElement('div');
-        div.innerHTML = '<table>';
-        return div.getElementsByTagName('tbody').length !== 0;
-    }());
-
     /**
-     * @module Ink.Dom.Element_1
+     * Utility functions to use with URLs
+     *
+     * @class Ink.Util.Url
+     * @version 1
+     * @static
      */
-
-    /**
-     * @class Ink.Dom.Element
-     */
-
-    var InkElement = {
+    var Url = {
 
         /**
-         * Shortcut for `document.getElementById`
+         * Auxiliary string for encoding
          *
-         * @method get
-         * @param {String|DOMElement} elm   Either an ID of an element, or an element.
-         * @return {DOMElement|null} The DOM element with the given id or null when it was not found
+         * @property _keyStr
+         * @type {String}
+         * @readOnly
+         * @private
          */
-        get: function(elm) {
-            if(typeof elm !== 'undefined') {
-                if(typeof elm === 'string') {
-                    return document.getElementById(elm);
-                }
-                return elm;
-            }
-            return null;
+        _keyStr : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+
+
+        /**
+         * Get current URL of page
+         *
+         * @method getUrl
+         * @return {String}    Current URL
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+         *         console.log( InkUrl.getUrl() ); // Will return it's window URL
+         *     });
+         */
+        getUrl: function()
+        {
+            return window.location.href;
         },
 
         /**
-         * Creates a DOM element
+         * Generates an uri with query string based on the parameters object given
          *
-         * @method create
-         * @param {String} tag        tag name
-         * @param {Object} properties  object with properties to be set on the element. You can also call other functions in Ink.Dom.Element like this
-         *
+         * @method genQueryString
+         * @param {String} uri
+         * @param {Object} params
+         * @return {String} URI with query string set
+         * @public
+         * @static
          * @example
+         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+         *         var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
+         *             'param1': 'valueParam1',
+         *             'param2': 'valueParam2'
+         *         });
          *
-         *      var myPanel = InkElement.create('div', {
-         *          appendHTML: '<span></span>',
-         *          className: 'classes to add',
-         *          insertAfter: anotherPane
-         *      };
-         *
-         *      myPanel.innerHTML;  // -> '<div class="classes to add"><span></span></div>
-         *      myPanel.parentNode;  // -> anotherPane
+         *         console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
+         *     });
          */
-        create: function(tag, properties) {
-            var el = document.createElement(tag);
-            //Ink.extendObj(el, properties);
-            for(var property in properties) {
-                if(properties.hasOwnProperty(property)) {
-                    if (property in InkElement) {
-                        InkElement[property](el, properties[property]);
+        genQueryString: function(uri, params) {
+            var hasQuestionMark = uri.indexOf('?') !== -1;
+            var sep, pKey, pValue, parts = [uri];
+
+            for (pKey in params) {
+                if (params.hasOwnProperty(pKey)) {
+                    if (!hasQuestionMark) {
+                        sep = '?';
+                        hasQuestionMark = true;
                     } else {
-                        if(property === 'className' || property === 'class') {
-                            el.className = properties.className || properties['class'];
+                        sep = '&';
+                    }
+                    pValue = params[pKey];
+                    if (typeof pValue !== 'number' && !pValue) {
+                        pValue = '';
+                    }
+                    parts = parts.concat([sep, encodeURIComponent(pKey), '=', encodeURIComponent(pValue)]);
+                }
+            }
+
+            return parts.join('');
+        },
+
+        /**
+         * Get query string of current or passed URL
+         *
+         * @method getQueryString
+         * @param {String} [str] URL String. When not specified it uses the current URL.
+         * @return {Object} Key-Value object with the pairs variable: value
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+         *         var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
+         *         console.log( queryStringParams );
+         *         // Result:
+         *         // {
+         *         //    var1: 'valueVar1',
+         *         //    var2: 'valueVar2'
+         *         // }
+         *     });
+         */
+        getQueryString: function(str)
+        {
+            var url;
+            if(str && typeof(str) !== 'undefined') {
+                url = str;
+            } else {
+                url = this.getUrl();
+            }
+            var aParams = {};
+            if(url.match(/\?(.+)/i)) {
+                var queryStr = url.replace(/^(.*)\?([^\#]+)(\#(.*))?/g, "$2");
+                if(queryStr.length > 0) {
+                    var aQueryStr = queryStr.split(/[;&]/);
+                    for(var i=0; i < aQueryStr.length; i++) {
+                        var pairVar = aQueryStr[i].split('=');
+                        aParams[decodeURIComponent(pairVar[0])] = (typeof(pairVar[1]) !== 'undefined' && pairVar[1]) ? decodeURIComponent(pairVar[1]) : false;
+                    }
+                }
+            }
+            return aParams;
+        },
+
+        /**
+         * Get URL hash
+         *
+         * @method getAnchor
+         * @param {String} [str] URL String. If not set, it will get the current URL.
+         * @return {String|Boolean} Hash in the URL. If there's no hash, returns false.
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+         *         var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
+         *         console.log( anchor ); // Result: TEST
+         *     });
+         */
+        getAnchor: function(str)
+        {
+            var url;
+            if(str && typeof(str) !== 'undefined') {
+                url = str;
+            } else {
+                url = this.getUrl();
+            }
+            var anchor = false;
+            if(url.match(/#(.+)/)) {
+                anchor = url.replace(/([^#]+)#(.*)/, "$2");
+            }
+            return anchor;
+        },
+
+        /**
+         * Get anchor string of current or passed URL
+         *
+         * @method getAnchorString
+         * @param {String} [string] If not provided it uses the current URL.
+         * @return {Object} Returns a key-value object of the 'variables' available in the hashtag of the URL
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+         *         var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
+         *         console.log( hashParams );
+         *         // Result:
+         *         // {
+         *         //    var1: 'valueVar1',
+         *         //    var2: 'valueVar2'
+         *         // }
+         *     });
+         */
+        getAnchorString: function(string)
+        {
+            var url;
+            if(string && typeof(string) !== 'undefined') {
+                url = string;
+            } else {
+                url = this.getUrl();
+            }
+            var aParams = {};
+            if(url.match(/#(.+)/i)) {
+                var anchorStr = url.replace(/^([^#]+)#(.*)?/g, "$2");
+                if(anchorStr.length > 0) {
+                    var aAnchorStr = anchorStr.split(/[;&]/);
+                    for(var i=0; i < aAnchorStr.length; i++) {
+                        var pairVar = aAnchorStr[i].split('=');
+                        aParams[decodeURIComponent(pairVar[0])] = (typeof(pairVar[1]) !== 'undefined' && pairVar[1]) ? decodeURIComponent(pairVar[1]) : false;
+                    }
+                }
+            }
+            return aParams;
+        },
+
+
+        /**
+         * Parse passed URL
+         *
+         * @method parseUrl
+         * @param {String} url URL to be parsed
+         * @return {Object} Parsed URL as a key-value object.
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
+         *         var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
+         *         console.log( parsedURL );
+         *         // Result:
+         *         // {
+         *         //   'scheme'    => 'http',
+         *         //   'host'      => 'www.sapo.pt',
+         *         //   'path'      => '/index.html',
+         *         //   'query'     => 'var1=value1',
+         *         //   'fragment'  => 'anchor'
+         *         // }
+         *     });
+         *
+         */
+        parseUrl: function(url)
+        {
+            var aURL = {};
+            if(url && typeof(url) !== 'undefined' && typeof(url) === 'string') {
+                if(url.match(/^([^:]+):\/\//i)) {
+                    var re = /^([^:]+):\/\/([^\/]*)\/?([^\?#]*)\??([^#]*)#?(.*)/i;
+                    if(url.match(re)) {
+                        aURL.scheme   = url.replace(re, "$1");
+                        aURL.host     = url.replace(re, "$2");
+                        aURL.path     = '/'+url.replace(re, "$3");
+                        aURL.query    = url.replace(re, "$4") || false;
+                        aURL.fragment = url.replace(re, "$5") || false;
+                    }
+                } else {
+                    var re1 = new RegExp("^([^\\?]+)\\?([^#]+)#(.*)", "i");
+                    var re2 = new RegExp("^([^\\?]+)\\?([^#]+)#?", "i");
+                    var re3 = new RegExp("^([^\\?]+)\\??", "i");
+                    if(url.match(re1)) {
+                        aURL.scheme   = false;
+                        aURL.host     = false;
+                        aURL.path     = url.replace(re1, "$1");
+                        aURL.query    = url.replace(re1, "$2");
+                        aURL.fragment = url.replace(re1, "$3");
+                    } else if(url.match(re2)) {
+                        aURL.scheme = false;
+                        aURL.host   = false;
+                        aURL.path   = url.replace(re2, "$1");
+                        aURL.query  = url.replace(re2, "$2");
+                        aURL.fragment = false;
+                    } else if(url.match(re3)) {
+                        aURL.scheme   = false;
+                        aURL.host     = false;
+                        aURL.path     = url.replace(re3, "$1");
+                        aURL.query    = false;
+                        aURL.fragment = false;
+                    }
+                }
+                if(aURL.host) {
+                    var regPort = new RegExp("^(.*)\\:(\\d+)$","i");
+                    // check for port
+                    if(aURL.host.match(regPort)) {
+                        var tmpHost1 = aURL.host;
+                        aURL.host = tmpHost1.replace(regPort, "$1");
+                        aURL.port = tmpHost1.replace(regPort, "$2");
+                    } else {
+                        aURL.port = false;
+                    }
+                    // check for user and pass
+                    if(aURL.host.match(/@/i)) {
+                        var tmpHost2 = aURL.host;
+                        aURL.host = tmpHost2.split('@')[1];
+                        var tmpUserPass = tmpHost2.split('@')[0];
+                        if(tmpUserPass.match(/\:/)) {
+                            aURL.user = tmpUserPass.split(':')[0];
+                            aURL.pass = tmpUserPass.split(':')[1];
                         } else {
-                            el.setAttribute(property, properties[property]);
+                            aURL.user = tmpUserPass;
+                            aURL.pass = false;
                         }
                     }
                 }
             }
-            return el;
+            return aURL;
         },
 
         /**
-         * Removes a DOM Element from the DOM
+         * Get last loaded script element
          *
-         * @method remove
-         * @param {DOMElement} elm  The element to remove
+         * @method currentScriptElement
+         * @param {String} [match] String to match against the script src attribute
+         * @return {DOMElement|Boolean} Returns the <script> DOM Element or false if unable to find it.
+         * @public
+         * @static
          */
-        remove: function(el) {
-            var parEl;
-            if (el && (parEl = el.parentNode)) {
-                parEl.removeChild(el);
-            }
-        },
-
-        /**
-         * Scrolls the window to an element
-         *
-         * @method scrollTo
-         * @param {DOMElement|String} elm  Element where to scroll
-         */
-        scrollTo: function(elm) {
-            elm = InkElement.get(elm);
-            if(elm) {
-                if (elm.scrollIntoView) {
-                    return elm.scrollIntoView();
-                }
-
-                var elmOffset = {},
-                    elmTop = 0, elmLeft = 0;
-
-                do {
-                    elmTop += elm.offsetTop || 0;
-                    elmLeft += elm.offsetLeft || 0;
-
-                    elm = elm.offsetParent;
-                } while(elm);
-
-                elmOffset = {x: elmLeft, y: elmTop};
-
-                window.scrollTo(elmOffset.x, elmOffset.y);
-            }
-        },
-
-        /**
-         * Gets the top cumulative offset for an element
-         *
-         * Requires Ink.Dom.Browser
-         *
-         * @method offsetTop
-         * @param {DOMElement|String} elm  target element
-         * @return {Number} Offset from the target element to the top of the document
-         */
-        offsetTop: function(elm) {
-            return InkElement.offset(elm)[1];
-        },
-
-        /**
-         * Gets the left cumulative offset for an element
-         *
-         * Requires Ink.Dom.Browser
-         *
-         * @method offsetLeft
-         * @param {DOMElement|String} elm  target element
-         * @return {Number} Offset from the target element to the left of the document
-         */
-        offsetLeft: function(elm) {
-            return InkElement.offset(elm)[0];
-        },
-
-        /**
-        * Gets the element offset relative to its closest positioned ancestor
-        *
-        * @method positionedOffset
-        * @param {DOMElement|String} elm  target element
-        * @return {Array} Array with the element offsetleft and offsettop relative to the closest positioned ancestor
-        */
-        positionedOffset: function(element) {
-            var valueTop = 0, valueLeft = 0;
-            element = InkElement.get(element);
-            do {
-                valueTop  += element.offsetTop  || 0;
-                valueLeft += element.offsetLeft || 0;
-                element = element.offsetParent;
-                if (element) {
-                    if (element.tagName.toLowerCase() === 'body') { break;  }
-
-                    var value = element.style.position;
-                    if (!value && element.currentStyle) {
-                        value = element.currentStyle.position;
-                    }
-                    if ((!value || value === 'auto') && typeof getComputedStyle !== 'undefined') {
-                        var css = getComputedStyle(element, null);
-                        value = css ? css.position : null;
-                    }
-                    if (value === 'relative' || value === 'absolute') { break;  }
-                }
-            } while (element);
-            return [valueLeft, valueTop];
-        },
-
-        /**
-         * Gets the cumulative offset for an element
-         *
-         * Returns the top left position of the element on the page
-         *
-         * Requires Ink.Dom.Browser
-         *
-         * @method offset
-         * @param {DOMElement|String}   elm     Target element
-         * @return {[Number, Number]}   Array with pixel distance from the target element to the top left corner of the document
-         */
-        offset: function(el) {
-            /*jshint boss:true */
-            el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
-            var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = InkElement._getPropPx;
-
-            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
-
-            do {
-                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                if( InkBrowser.OPERA ){
-                    res[0] += dRes[0];
-                    res[1] += dRes[1];
+        currentScriptElement: function(match)
+        {
+            var aScripts = document.getElementsByTagName('script');
+            if(typeof(match) === 'undefined') {
+                if(aScripts.length > 0) {
+                    return aScripts[(aScripts.length - 1)];
                 } else {
-                    res[0] += dRes[0] + bRes[0];
-                    res[1] += dRes[1] + bRes[1];
+                    return false;
                 }
-                parent = el.offsetParent;
-            } while (el = parent);
-
-            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-            if (InkBrowser.GECKO) {
-                res[0] += bRes[0];
-                res[1] += bRes[1];
-            }
-            else if( !InkBrowser.OPERA ) {
-                res[0] -= bRes[0];
-                res[1] -= bRes[1];
-            }
-
-            return res;
-        },
-
-        /**
-         * Gets the scroll of the element
-         *
-         * @method scroll
-         * @param {DOMElement|String} [elm] target element or document.body
-         * @returns {Array} offset values for x and y scroll
-         */
-        scroll: function(elm) {
-            elm = elm ? Ink.i(elm) : document.body;
-            return [
-                ( ( !window.pageXOffset ) ? elm.scrollLeft : window.pageXOffset ),
-                ( ( !window.pageYOffset ) ? elm.scrollTop : window.pageYOffset )
-            ];
-        },
-
-        _getPropPx: function(cs, prop) {
-            var n, c;
-            var val = cs.getPropertyValue ? cs.getPropertyValue(prop) : cs[prop];
-            if (!val) { n = 0; }
-            else {
-                c = val.indexOf('px');
-                if (c === -1) { n = 0; }
-                else {
-                    n = parseInt(val, 10);
+            } else {
+                var curScript = false;
+                var re = new RegExp(""+match+"", "i");
+                for(var i=0, total = aScripts.length; i < total; i++) {
+                    curScript = aScripts[i];
+                    if(re.test(curScript.src)) {
+                        return curScript;
+                    }
                 }
-            }
-
-            //console.log([prop, ' "', val, '" ', n].join(''));
-
-            return n;
-        },
-
-        /**
-         * Alias for offset()
-         *
-         * @method offset2
-         * @deprecated Kept for historic reasons. Use offset() instead.
-         */
-        offset2: function(el) {
-            return InkElement.offset(el);
-        },
-
-        /**
-         * Verifies the existence of an attribute
-         *
-         * @method hasAttribute
-         * @param {Object} elm   target element
-         * @param {String} attr  attribute name
-         * @return {Boolean} Boolean based on existance of attribute
-         */
-        hasAttribute: function(elm, attr){
-            return elm.hasAttribute ? elm.hasAttribute(attr) : !!elm.getAttribute(attr);
-        },
-        /**
-         * Inserts a element immediately after a target element
-         *
-         * @method insertAfter
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
-         */
-        insertAfter: function(newElm, targetElm) {
-            /*jshint boss:true */
-            if (targetElm = InkElement.get(targetElm)) {
-                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
-            }
-        },
-
-        /**
-         * Inserts an element before a target element
-         *
-         * @method insertBefore
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
-         */
-        insertBefore: function (newElm, targetElm) {
-            /*jshint boss:true */
-            if ( (targetElm = InkElement.get(targetElm)) ) {
-                targetElm.parentNode.insertBefore(newElm, targetElm);
-            }
-        },
-
-        /**
-         * Inserts a element at the top of the childNodes of a target element
-         *
-         * @method insertTop
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
-         */
-        insertTop: function(newElm,targetElm) {
-            /*jshint boss:true */
-            if (targetElm = InkElement.get(targetElm)) {
-                if (targetElm.firstChild) {
-                    targetElm.insertBefore(newElm, targetElm.firstChild);
-                } else {
-                    targetElm.appendChild(newElm);
-                }
-            }
-        },
-
-        /**
-         * Inserts an element after all the child nodes of another element
-         *
-         * @method insertBottom
-         * @param {DOMElement}         newElm     element to be inserted
-         * @param {DOMElement|String}  targetElm  key element
-         */
-        insertBottom: function(newElm,targetElm) {
-            /*jshint boss:true */
-            targetElm.appendChild(newElm);
-        },
-
-        /**
-         * Retrieves textContent from node
-         *
-         * @method innerText
-         * @param {DOMNode} node from which to retreive text from. Can be any node type.
-         * @return {String} the text
-         */
-        textContent: function(node){
-            node = Ink.i(node);
-            var text, k, cs, m;
-
-            switch(node && node.nodeType) {
-            case 9: /*DOCUMENT_NODE*/
-                // IE quirks mode does not have documentElement
-                return InkElement.textContent(node.documentElement || node.body && node.body.parentNode || node.body);
-
-            case 1: /*ELEMENT_NODE*/
-                text = node.innerText;
-                if (typeof text !== 'undefined') {
-                    return text;
-                }
-                /* falls through */
-            case 11: /*DOCUMENT_FRAGMENT_NODE*/
-                text = node.textContent;
-                if (typeof text !== 'undefined') {
-                    return text;
-                }
-
-                if (node.firstChild === node.lastChild) {
-                    // Common case: 0 or 1 children
-                    return InkElement.textContent(node.firstChild);
-                }
-
-                text = [];
-                cs = node.childNodes;
-                for (k = 0, m = cs.length; k < m; ++k) {
-                    text.push( InkElement.textContent( cs[k] ) );
-                }
-                return text.join('');
-
-            case 3: /*TEXT_NODE*/
-            case 4: /*CDATA_SECTION_NODE*/
-                return node.nodeValue;
-            }
-            return '';
-        },
-
-        /**
-         * Removes all nodes children and adds the text
-         *
-         * @method setTextContent
-         * @param {DOMNode} node    node to add the text to. Can be any node type.
-         * @param {String}  text    text to be appended to the node.
-         */
-        setTextContent: function(node, text){
-            node = Ink.i(node);
-            switch(node && node.nodeType)
-            {
-            case 1: /*ELEMENT_NODE*/
-                if ('innerText' in node) {
-                    node.innerText = text;
-                    break;
-                }
-                /* falls through */
-            case 11: /*DOCUMENT_FRAGMENT_NODE*/
-                if ('textContent' in node) {
-                    node.textContent = text;
-                    break;
-                }
-                /* falls through */
-            case 9: /*DOCUMENT_NODE*/
-                while(node.firstChild) {
-                    node.removeChild(node.firstChild);
-                }
-                if (text !== '') {
-                    var doc = node.ownerDocument || node;
-                    node.appendChild(doc.createTextNode(text));
-                }
-                break;
-
-            case 3: /*TEXT_NODE*/
-            case 4: /*CDATA_SECTION_NODE*/
-                node.nodeValue = text;
-                break;
-            }
-        },
-
-        /**
-         * Tells if element is a clickable link
-         *
-         * @method isLink
-         * @param {DOMNode} node    node to check if it's link
-         * @return {Boolean}
-         */
-        isLink: function(element){
-            var b = element && element.nodeType === 1 && ((/^a|area$/i).test(element.tagName) ||
-                element.hasAttributeNS && element.hasAttributeNS('http://www.w3.org/1999/xlink','href'));
-            return !!b;
-        },
-
-        /**
-         * Tells if ancestor is ancestor of node
-         *
-         * @method isAncestorOf
-         * @param {DOMNode} ancestor  ancestor node
-         * @param {DOMNode} node      descendant node
-         * @return {Boolean}
-         */
-        isAncestorOf: function(ancestor, node){
-            /*jshint boss:true */
-            if (!node || !ancestor) {
                 return false;
             }
-            if (node.compareDocumentPosition) {
-                return (ancestor.compareDocumentPosition(node) & 0x10) !== 0;/*Node.DOCUMENT_POSITION_CONTAINED_BY*/
-            }
-            while (node = node.parentNode){
-                if (node === ancestor){
-                    return true;
-                }
-            }
-            return false;
         },
 
-        /**
-         * Tells if descendant is descendant of node
-         *
-         * @method descendantOf
-         * @param {DOMNode} node        the ancestor
-         * @param {DOMNode} descendant  the descendant
-         * @return {Boolean} true if 'descendant' is descendant of 'node'
-         */
-        descendantOf: function(node, descendant){
-            return node !== descendant && InkElement.isAncestorOf(node, descendant);
-        },
-
-        /**
-         * Get first child in document order of node type 1
-         * @method firstElementChild
-         * @param {DOMNode} elm parent node
-         * @return {DOMNode} the element child
-         */
-        firstElementChild: function(elm){
-            if(!elm) {
-                return null;
-            }
-            if ('firstElementChild' in elm) {
-                return elm.firstElementChild;
-            }
-            var child = elm.firstChild;
-            while(child && child.nodeType !== 1) {
-                child = child.nextSibling;
-            }
-            return child;
-        },
-
-        /**
-         * Get last child in document order of node type 1
-         * @method lastElementChild
-         * @param {DOMNode} elm parent node
-         * @return {DOMNode} the element child
-         */
-        lastElementChild: function(elm){
-            if(!elm) {
-                return null;
-            }
-            if ('lastElementChild' in elm) {
-                return elm.lastElementChild;
-            }
-            var child = elm.lastChild;
-            while(child && child.nodeType !== 1) {
-                child = child.previousSibling;
-            }
-            return child;
-        },
-
-        /**
-         * Get the first element sibling after the node
-         *
-         * @method nextElementSibling
-         * @param {DOMNode} node  current node
-         * @return {DOMNode|Null} the first element sibling after node or null if none is found
-         */
-        nextElementSibling: function(node){
-            var sibling = null;
-
-            if(!node){ return sibling; }
-
-            if("nextElementSibling" in node){
-                return node.nextElementSibling;
-            } else {
-                sibling = node.nextSibling;
-
-                // 1 === Node.ELEMENT_NODE
-                while(sibling && sibling.nodeType !== 1){
-                    sibling = sibling.nextSibling;
-                }
-
-                return sibling;
-            }
-        },
-
-        /**
-         * Get the first element sibling before the node
-         *
-         * @method previousElementSibling
-         * @param {DOMNode}        node  current node
-         * @return {DOMNode|Null} the first element sibling before node or null if none is found
-         */
-        previousElementSibling: function(node){
-            var sibling = null;
-
-            if(!node){ return sibling; }
-
-            if("previousElementSibling" in node){
-                return node.previousElementSibling;
-            } else {
-                sibling = node.previousSibling;
-
-                // 1 === Node.ELEMENT_NODE
-                while(sibling && sibling.nodeType !== 1){
-                    sibling = sibling.previousSibling;
-                }
-
-                return sibling;
-            }
-        },
-
-        /**
-         * Returns the width of the given element, in pixels
-         *
-         * @method elementWidth
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} the element's width
-         */
-        elementWidth: function(element) {
-            if(typeof element === "string") {
-                element = document.getElementById(element);
-            }
-            return element.offsetWidth;
-        },
-
-        /**
-         * Returns the height of the given element, in pixels
-         *
-         * @method elementHeight
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} the element's height
-         */
-        elementHeight: function(element) {
-            if(typeof element === "string") {
-                element = document.getElementById(element);
-            }
-            return element.offsetHeight;
-        },
-
-        /**
-         * Returns the element's left position in pixels
-         *
-         * @method elementLeft
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} element's left position
-         */
-        elementLeft: function(element) {
-            if(typeof element === "string") {
-                element = document.getElementById(element);
-            }
-            return element.offsetLeft;
-        },
-
-        /**
-         * Returns the element's top position in pixels
-         *
-         * @method elementTop
-         * @param {DOMElement|string} element target DOM element or target ID
-         * @return {Number} element's top position
-         */
-        elementTop: function(element) {
-            if(typeof element === "string") {
-                element = document.getElementById(element);
-            }
-            return element.offsetTop;
-        },
-
-        /**
-         * Returns the dimensions of the given element, in pixels
-         *
-         * @method elementDimensions
-         * @param {element} element target element
-         * @return {Array} array with element's width and height
-         */
-        elementDimensions: function(element) {
-            element = Ink.i(element);
-            return [element.offsetWidth, element.offsetHeight];
-        },
-
-        /**
-         * Returns the outer (width + margin + padding included) dimensions of an element, in pixels.
-         *
-         * Requires Ink.Dom.Css
-         *
-         * @method outerDimensions
-         * @param {DOMElement} element Target element
-         * @return {Array} Array with element width and height.
-         */
-        outerDimensions: function (element) {
-            var bbox = Element.elementDimensions(element);
-
-            var Css = Ink.getModule('Ink.Dom.Css_1');
-            
-            return [
-                bbox[0] + parseFloat(Css.getStyle(element, 'marginLeft') || 0) + parseFloat(Css.getStyle(element, 'marginRight') || 0),  // w
-                bbox[1] + parseFloat(Css.getStyle(element, 'marginTop') || 0) + parseFloat(Css.getStyle(element, 'marginBottom') || 0)  // h
-            ];
-        },
-
-        /**
-         * Check whether an element is inside the viewport
-         *
-         * @method inViewport
-         * @param {DOMElement} element Element to check
-         * @param {Boolean} [partial=false] Return `true` even if it is only partially visible.
-         * @return {Boolean}
-         */
-        inViewport: function (element, partial) {
-            var rect = Ink.i(element).getBoundingClientRect();
-            if (partial) {
-                return  rect.bottom > 0                        && // from the top
-                        rect.left < InkElement.viewportWidth()    && // from the right
-                        rect.top < InkElement.viewportHeight()    && // from the bottom
-                        rect.right  > 0;                          // from the left
-            } else {
-                return  rect.top > 0                           && // from the top
-                        rect.right < InkElement.viewportWidth()   && // from the right
-                        rect.bottom < InkElement.viewportHeight() && // from the bottom
-                        rect.left  > 0;                           // from the left
-            }
-        },
-
-        /**
-         * Applies the cloneFrom's dimensions to cloneTo
-         *
-         * @method clonePosition
-         * @param {DOMElement} cloneTo    element to be position cloned
-         * @param {DOMElement} cloneFrom  element to get the cloned position
-         * @return {DOMElement} the element with positionClone
-         */
-        clonePosition: function(cloneTo, cloneFrom){
-            var pos = InkElement.offset(cloneFrom);
-            cloneTo.style.left = pos[0]+'px';
-            cloneTo.style.top = pos[1]+'px';
-
-            return cloneTo;
-        },
-
-        /**
-         * Slices off a piece of text at the end of the element and adds the ellipsis
-         * so all text fits in the element.
-         *
-         * @method ellipsizeText
-         * @param {DOMElement} element     which text is to add the ellipsis
-         * @param {String}     [ellipsis]  String to append to the chopped text
-         */
-        ellipsizeText: function(element, ellipsis){
-            /*jshint boss:true */
-            if (element = Ink.i(element)){
-                while (element && element.scrollHeight > (element.offsetHeight + 8)) {
-                    element.textContent = element.textContent.replace(/(\s+\S+)\s*$/, ellipsis || '\u2026');
-                }
-            }
-        },
-
-        /**
-         * Searches up the DOM tree for an element fulfilling the boolTest function (returning trueish)
-         *
-         * @method findUpwardsHaving
-         * @param {HtmlElement} element
-         * @param {Function}    boolTest
-         * @return {HtmlElement|false} the matched element or false if did not match
-         */
-        findUpwardsHaving: function(element, boolTest) {
-            while (element && element.nodeType === 1) {
-                if (boolTest(element)) {
-                    return element;
-                }
-                element = element.parentNode;
-            }
-            return false;
-        },
-
-        /**
-         * Śearches up the DOM tree for an element of specified class name
-         *
-         * @method findUpwardsByClass
-         * @param {HtmlElement} element
-         * @param {String}      className
-         * @returns {HtmlElement|false} the matched element or false if did not match
-         */
-        findUpwardsByClass: function(element, className) {
-            var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
-            var tst = function(el) {
-                var cls = el.className;
-                return cls && re.test(cls);
-            };
-            return InkElement.findUpwardsHaving(element, tst);
-        },
-
-        /**
-         * Śearches up the DOM tree for an element of specified tag
-         *
-         * @method findUpwardsByTag
-         * @param {HtmlElement} element
-         * @param {String}      tag
-         * @returns {HtmlElement|false} the matched element or false if did not match
-         */
-        findUpwardsByTag: function(element, tag) {
-            tag = tag.toUpperCase();
-            var tst = function(el) {
-                return el.nodeName && el.nodeName.toUpperCase() === tag;
-            };
-            return InkElement.findUpwardsHaving(element, tst);
-        },
-
-        /**
-         * Śearches up the DOM tree for an element of specified id
-         *
-         * @method findUpwardsById
-         * @param {HtmlElement} element
-         * @param {String}      id
-         * @returns {HtmlElement|false} the matched element or false if did not match
-         */
-        findUpwardsById: function(element, id) {
-            var tst = function(el) {
-                return el.id === id;
-            };
-            return InkElement.findUpwardsHaving(element, tst);
-        },
-
-        /**
-         * Śearches up the DOM tree for an element matching the given selector
-         *
-         * @method findUpwardsBySelector
-         * @param {HtmlElement} element
-         * @param {String}      sel
-         * @returns {HtmlElement|false} the matched element or false if did not match
-         */
-        findUpwardsBySelector: function(element, sel) {
-            if (typeof Ink.Dom === 'undefined' || typeof Ink.Dom.Selector === 'undefined') {
-                throw new Error('This method requires Ink.Dom.Selector');
-            }
-            var tst = function(el) {
-                return Ink.Dom.Selector.matchesSelector(el, sel);
-            };
-            return InkElement.findUpwardsHaving(element, tst);
-        },
-
-        /**
-         * Returns trimmed text content of descendants
-         *
-         * @method getChildrenText
-         * @param {DOMElement}  el          element being seeked
-         * @param {Boolean}     [removeIt]  whether to remove the found text nodes or not
-         * @return {String} text found
-         */
-        getChildrenText: function(el, removeIt) {
-            var node,
-                j,
-                part,
-                nodes = el.childNodes,
-                jLen = nodes.length,
-                text = '';
-
-            if (!el) {
-                return text;
-            }
-
-            for (j = 0; j < jLen; ++j) {
-                node = nodes[j];
-                if (!node) {    continue;   }
-                if (node.nodeType === 3) {  // TEXT NODE
-                    part = InkElement._trimString( String(node.data) );
-                    if (part.length > 0) {
-                        text += part;
-                        if (removeIt) { el.removeChild(node);   }
-                    }
-                    else {  el.removeChild(node);   }
-                }
-            }
-
-            return text;
-        },
-
-        /**
-         * String trim implementation
-         * Used by getChildrenText
-         *
-         * function _trimString
-         * param {String} text
-         * return {String} trimmed text
-         */
-        _trimString: function(text) {
-            return (String.prototype.trim) ? text.trim() : text.replace(/^\s*/, '').replace(/\s*$/, '');
-        },
-
-        /**
-         * Returns the values of a select element
-         *
-         * @method getSelectValues
-         * @param {DomElement|String} select element
-         * @return {Array} selected values
-         */
-        getSelectValues: function (select) {
-            var selectEl = Ink.i(select);
-            var values = [];
-            for (var i = 0; i < selectEl.options.length; ++i) {
-                values.push( selectEl.options[i].value );
-            }
-            return values;
-        },
-
-
-        /* used by fills */
-        _normalizeData: function(data) {
-            var d, data2 = [];
-            for (var i = 0, f = data.length; i < f; ++i) {
-                d = data[i];
-
-                if (!(d instanceof Array)) {    // if not array, wraps primitive twice:     val -> [val, val]
-                    d = [d, d];
-                }
-                else if (d.length === 1) {      // if 1 element array:                      [val] -> [val, val]
-                    d.push(d[0]);
-                }
-                data2.push(d);
-            }
-            return data2;
-        },
-
-
-        /**
-         * Fills select element with choices
-         *
-         * @method fillSelect
-         * @param {DomElement|String}  container       select element which will get filled
-         * @param {Array}              data            data which will populate the component
-         * @param {Boolean}            [skipEmpty]     true to skip empty option
-         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
-         */
-        fillSelect: function(container, data, skipEmpty, defaultValue) {
-            var containerEl = Ink.i(container);
-            if (!containerEl) {   return; }
-
-            containerEl.innerHTML = '';
-            var d, optionEl;
-
-            if (!skipEmpty) {
-                // add initial empty option
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', '');
-                containerEl.appendChild(optionEl);
-            }
-
-            data = InkElement._normalizeData(data);
-
-            for (var i = 0, f = data.length; i < f; ++i) {
-                d = data[i];
-
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', d[0]);
-                if (d.length > 2) {
-                    optionEl.setAttribute('extra', d[2]);
-                }
-                optionEl.appendChild( document.createTextNode(d[1]) );
-
-                if (d[0] === defaultValue) {
-                    optionEl.setAttribute('selected', 'selected');
-                }
-
-                containerEl.appendChild(optionEl);
-            }
-        },
-
-
-        /**
-         * Select element on steroids - allows the creation of new values
-         *
-         * @method fillSelect2
-         * @param {DomElement|String} ctn select element which will get filled
-         * @param {Object} opts
-         * @param {Array}                      [opts.data]               data which will populate the component
-         * @param {Boolean}                    [opts.skipEmpty]          if true empty option is not created (defaults to false)
-         * @param {String}                     [opts.emptyLabel]         label to display on empty option
-         * @param {String}                     [opts.createLabel]        label to display on create option
-         * @param {String}                     [opts.optionsGroupLabel]  text to display on group surrounding value options
-         * @param {String}                     [opts.defaultValue]       option to select initially
-         * @param {Function(selEl, addOptFn)}  [opts.onCreate]           callback that gets called once user selects the create option
-         */
-        fillSelect2: function(ctn, opts) {
-            ctn = Ink.i(ctn);
-            ctn.innerHTML = '';
-
-            var defs = {
-                skipEmpty:              false,
-                skipCreate:             false,
-                emptyLabel:             'none',
-                createLabel:            'create',
-                optionsGroupLabel:      'groups',
-                emptyOptionsGroupLabel: 'none exist',
-                defaultValue:           ''
-            };
-            if (!opts) {      throw 'param opts is a requirement!';   }
-            if (!opts.data) { throw 'opts.data is a requirement!';    }
-            opts = Ink.extendObj(defs, opts);
-
-            var optionEl, d;
-
-            var optGroupValuesEl = document.createElement('optgroup');
-            optGroupValuesEl.setAttribute('label', opts.optionsGroupLabel);
-
-            opts.data = InkElement._normalizeData(opts.data);
-
-            if (!opts.skipCreate) {
-                opts.data.unshift(['$create$', opts.createLabel]);
-            }
-
-            if (!opts.skipEmpty) {
-                opts.data.unshift(['', opts.emptyLabel]);
-            }
-
-            for (var i = 0, f = opts.data.length; i < f; ++i) {
-                d = opts.data[i];
-
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', d[0]);
-                optionEl.appendChild( document.createTextNode(d[1]) );
-
-                if (d[0] === opts.defaultValue) {   optionEl.setAttribute('selected', 'selected');  }
-
-                if (d[0] === '' || d[0] === '$create$') {
-                    ctn.appendChild(optionEl);
-                }
-                else {
-                    optGroupValuesEl.appendChild(optionEl);
-                }
-            }
-
-            var lastValIsNotOption = function(data) {
-                var lastVal = data[data.length-1][0];
-                return (lastVal === '' || lastVal === '$create$');
-            };
-
-            if (lastValIsNotOption(opts.data)) {
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', '$dummy$');
-                optionEl.setAttribute('disabled', 'disabled');
-                optionEl.appendChild(   document.createTextNode(opts.emptyOptionsGroupLabel)    );
-                optGroupValuesEl.appendChild(optionEl);
-            }
-
-            ctn.appendChild(optGroupValuesEl);
-
-            var addOption = function(v, l) {
-                var optionEl = ctn.options[ctn.options.length - 1];
-                if (optionEl.getAttribute('disabled')) {
-                    optionEl.parentNode.removeChild(optionEl);
-                }
-
-                // create it
-                optionEl = document.createElement('option');
-                optionEl.setAttribute('value', v);
-                optionEl.appendChild(   document.createTextNode(l)  );
-                optGroupValuesEl.appendChild(optionEl);
-
-                // select it
-                ctn.options[ctn.options.length - 1].setAttribute('selected', true);
-            };
-
-            if (!opts.skipCreate) {
-                ctn.onchange = function() {
-                    if ((ctn.value === '$create$') && (typeof opts.onCreate === 'function')) {  opts.onCreate(ctn, addOption);  }
-                };
-            }
-        },
-
-
-        /**
-         * Creates set of radio buttons, returns wrapper
-         *
-         * @method fillRadios
-         * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
-         * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
-         * @param {Array}              data            data which will populate the component
-         * @param {Boolean}            [skipEmpty]     true to skip empty option
-         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
-         * @param {String}             [splitEl]       name of element to add after each input element (example: 'br')
-         * @return {DOMElement} wrapper element around radio buttons
-         */
-        fillRadios: function(insertAfterEl, name, data, skipEmpty, defaultValue, splitEl) {
-            var afterEl = Ink.i(insertAfterEl);
-            afterEl = afterEl.nextSibling;
-            while (afterEl && afterEl.nodeType !== 1) {
-                afterEl = afterEl.nextSibling;
-            }
-            var containerEl = document.createElement('span');
-            if (afterEl) {
-                afterEl.parentNode.insertBefore(containerEl, afterEl);
-            } else {
-                Ink.i(insertAfterEl).appendChild(containerEl);
-            }
-
-            data = InkElement._normalizeData(data);
-
-            if (name.substring(name.length - 1) !== ']') {
-                name += '[]';
-            }
-
-            var d, inputEl;
-
-            if (!skipEmpty) {
-                // add initial empty option
-                inputEl = document.createElement('input');
-                inputEl.setAttribute('type', 'radio');
-                inputEl.setAttribute('name', name);
-                inputEl.setAttribute('value', '');
-                containerEl.appendChild(inputEl);
-                if (splitEl) {  containerEl.appendChild( document.createElement(splitEl) ); }
-            }
-
-            for (var i = 0; i < data.length; ++i) {
-                d = data[i];
-
-                inputEl = document.createElement('input');
-                inputEl.setAttribute('type', 'radio');
-                inputEl.setAttribute('name', name);
-                inputEl.setAttribute('value', d[0]);
-                containerEl.appendChild(inputEl);
-                containerEl.appendChild( document.createTextNode(d[1]) );
-                if (splitEl) {  containerEl.appendChild( document.createElement(splitEl) ); }
-
-                if (d[0] === defaultValue) {
-                    inputEl.checked = true;
-                }
-            }
-
-            return containerEl;
-        },
-
-
-        /**
-         * Creates set of checkbox buttons, returns wrapper
-         *
-         * @method fillChecks
-         * @param {DomElement|String}  insertAfterEl   element which will precede the input elements
-         * @param {String}             name            name to give to the form field ([] is added if not as suffix already)
-         * @param {Array}              data            data which will populate the component
-         * @param {Boolean}            [skipEmpty]     true to skip empty option
-         * @param {String|Number}      [defaultValue]  primitive value to select at beginning
-         * @param {String}             [splitEl]       name of element to add after each input element (example: 'br')
-         * @return {DOMElement} wrapper element around checkboxes
-         */
-        fillChecks: function(insertAfterEl, name, data, defaultValue, splitEl) {
-            var afterEl = Ink.i(insertAfterEl);
-            afterEl = afterEl.nextSibling;
-            while (afterEl && afterEl.nodeType !== 1) {
-                afterEl = afterEl.nextSibling;
-            }
-            var containerEl = document.createElement('span');
-            if (afterEl) {
-                afterEl.parentNode.insertBefore(containerEl, afterEl);
-            } else {
-                Ink.i(insertAfterEl).appendChild(containerEl);
-            }
-
-            data = InkElement._normalizeData(data);
-
-            if (name.substring(name.length - 1) !== ']') {
-                name += '[]';
-            }
-
-            var d, inputEl;
-
-            for (var i = 0; i < data.length; ++i) {
-                d = data[i];
-
-                inputEl = document.createElement('input');
-                inputEl.setAttribute('type', 'checkbox');
-                inputEl.setAttribute('name', name);
-                inputEl.setAttribute('value', d[0]);
-                containerEl.appendChild(inputEl);
-                containerEl.appendChild( document.createTextNode(d[1]) );
-                if (splitEl) {  containerEl.appendChild( document.createElement(splitEl) ); }
-
-                if (d[0] === defaultValue) {
-                    inputEl.checked = true;
-                }
-            }
-
-            return containerEl;
-        },
-
-
-        /**
-         * Returns index of element from parent, -1 if not child of parent...
-         *
-         * @method parentIndexOf
-         * @param {DOMElement}  parentEl  Element to parse
-         * @param {DOMElement}  childEl   Child Element to look for
-         * @return {Number}
-         */
-        parentIndexOf: function(parentEl, childEl) {
-            var node, idx = 0;
-            for (var i = 0, f = parentEl.childNodes.length; i < f; ++i) {
-                node = parentEl.childNodes[i];
-                if (node.nodeType === 1) {  // ELEMENT
-                    if (node === childEl) { return idx; }
-                    ++idx;
-                }
-            }
-            return -1;
-        },
-
-
-        /**
-         * Returns an array of elements - the next siblings
-         *
-         * @method nextSiblings
-         * @param {String|DomElement} elm element
-         * @return {Array} Array of next sibling elements
-         */
-        nextSiblings: function(elm) {
-            if(typeof(elm) === "string") {
-                elm = document.getElementById(elm);
-            }
-            if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
-                var elements = [],
-                    siblings = elm.parentNode.children,
-                    index    = InkElement.parentIndexOf(elm.parentNode, elm);
-
-                for(var i = ++index, len = siblings.length; i<len; i++) {
-                    elements.push(siblings[i]);
-                }
-
-                return elements;
-            }
-            return [];
-        },
-
-
-        /**
-         * Returns an array of elements - the previous siblings
-         *
-         * @method previousSiblings
-         * @param {String|DomElement} elm element
-         * @return {Array} Array of previous sibling elements
-         */
-        previousSiblings: function(elm) {
-            if(typeof(elm) === "string") {
-                elm = document.getElementById(elm);
-            }
-            if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
-                var elements    = [],
-                    siblings    = elm.parentNode.children,
-                    index       = InkElement.parentIndexOf(elm.parentNode, elm);
-
-                for(var i = 0, len = index; i<len; i++) {
-                    elements.push(siblings[i]);
-                }
-
-                return elements;
-            }
-            return [];
-        },
-
-
-        /**
-         * Returns an array of elements - its siblings
-         *
-         * @method siblings
-         * @param {String|DomElement} elm element
-         * @return {Array} Array of sibling elements
-         */
-        siblings: function(elm) {
-            if(typeof(elm) === "string") {
-                elm = document.getElementById(elm);
-            }
-            if(typeof(elm) === 'object' && elm !== null && elm.nodeType && elm.nodeType === 1) {
-                var elements   = [],
-                    siblings   = elm.parentNode.children;
-
-                for(var i = 0, len = siblings.length; i<len; i++) {
-                    if(elm !== siblings[i]) {
-                        elements.push(siblings[i]);
-                    }
-                }
-
-                return elements;
-            }
-            return [];
-        },
-
-        /**
-         * fallback to elem.childElementCount
-         *
-         * @method childElementCount
-         * @param {String|DomElement} elm element
-         * @return {Number} number of child elements
-         */
-        childElementCount: function(elm) {
-            elm = Ink.i(elm);
-            if ('childElementCount' in elm) {
-                return elm.childElementCount;
-            }
-            if (!elm) { return 0; }
-            return InkElement.siblings(elm).length + 1;
-        },
-
-        _wrapElements: {
-            TABLE: function (div, html) {
-                /* If we don't create a tbody, IE7 does that for us. Adding a tbody with a random string and then filtering for that random string is the only way to avoid double insertion of tbodies. */
-                if (browserCreatesTbodies) {
-                    div.innerHTML = "<table>" + html + "<tbody><tr><td>" + deleteThisTbodyToken + "</tr></td></tbody></table>";
-                } else {
-                    div.innerHTML = "<table>" + html + "</table>";
-                }
-                return div.firstChild;
-            },
-            TBODY: function (div, html) {
-                div.innerHTML = '<table><tbody>' + html + '</tbody></table>';
-                return div.firstChild.getElementsByTagName('tbody')[0];
-            },
-            THEAD: function (div, html) {
-                div.innerHTML = '<table><thead>' + html + '</thead><tbody></tbody></table>';
-                return div.firstChild.getElementsByTagName('thead')[0];
-            },
-            TFOOT: function (div, html) {
-                div.innerHTML = '<table><tfoot>' + html + '</tfoot><tbody></tbody></table>';
-                return div.firstChild.getElementsByTagName('tfoot')[0];
-            },
-            TR: function (div, html) {
-                div.innerHTML = '<table><tbody><tr>' + html + '</tr></tbody></table>';
-                return div.firstChild.firstChild.firstChild;
-            }
-        },
-
-        _getWrapper: function (elm, html) {
-            var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
-            var wrapper = document.createElement('div');
-            var wrapFunc = InkElement._wrapElements[nodeName];
-
-            if ( !wrapFunc ) {
-                wrapper.innerHTML = html;
-                return wrapper;
-            }
-            // special cases
-            wrapper = wrapFunc(wrapper, html);
-            // worst case: tbody creation
-            if (browserCreatesTbodies && nodeName === 'TABLE') {
-                // terrible case. Deal with tbody creation too.
-                var tds = wrapper.getElementsByTagName('td');
-                for (var i = 0, len = tds.length; i < len; i++) {
-                    if (tds[i].innerHTML === deleteThisTbodyToken) {
-                        var tbody = tds[i].parentNode.parentNode;
-                        tbody.parentNode.removeChild(tbody);
-                    }
-                }
-            }
-            return wrapper;
-        },
-
-        /**
-         * parses and appends an html string to a container, not destroying its contents
-         *
-         * @method appendHTML
-         * @param {String|DomElement} elm   element
-         * @param {String}            html  markup string
-         */
-        appendHTML: function(elm, html){
-            var wrapper = InkElement._getWrapper(elm, html);
-            while (wrapper.firstChild) {
-                elm.appendChild(wrapper.firstChild);
-            }
-        },
-
-        /**
-         * parses and prepends an html string to a container, not destroying its contents
-         *
-         * @method prependHTML
-         * @param {String|DomElement} elm   element
-         * @param {String}            html  markup string
-         */
-        prependHTML: function(elm, html){
-            var wrapper = InkElement._getWrapper(elm, html);
-            while (wrapper.lastChild) {
-                elm.insertBefore(wrapper.lastChild, elm.firstChild);
-            }
-        },
-
-        /**
-         * sets the Inner HTML of an element to the given HTML string
-         *
-         * @method setHTML
-         * @param {String|DomElement} elm   element
-         * @param {String}            html  markup string
-         */
-        setHTML: function (elm, html) {
-            var wrapper = InkElement._getWrapper(elm, html);
-            while (elm.firstChild) {
-                elm.removeChild(elm.firstChild);
-            }
-            InkElement.appendHTML(elm, html);
-        },
-
-        /**
-         * Wraps an element inside a container.
-         *
-         * The container may or may not be in the document yet.
-         *
-         * @method wrap
-         * @param {String|DomElement}   target Element to be wrapped
-         * @param {String|DomElement}   container Element to wrap the target
-         * @return Container element
-         *
-         * @example
-         * before:
-         *
-         *     <div id="target"></div>
-         *
-         * call this function to wrap:
-         *
-         *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
-         * 
-         * after: 
-         *
-         *     <div id="container"><div id="target"></div></div>
-         */
-        wrap: function (target, container) {
-            target = Ink.i(target);
-            container = Ink.i(container);
-            
-            var nextNode = target.nextSibling;
-            var parent = target.parentNode;
-
-            container.appendChild(target);
-
-            if (nextNode !== null) {
-                parent.insertBefore(container, nextNode)
-            } else {
-                parent.appendChild(container);
-            }
-
-            return container;
-        },
-
-        /**
-         * Removes direct children on type text.
-         * Useful to remove nasty layout gaps generated by whitespace on the markup.
-         *
-         * @method removeTextNodeChildren
-         * @param  {DOMElement} el
-         */
-        removeTextNodeChildren: function(el) {
-            var prevEl, toRemove, parent = el;
-            el = el.firstChild;
-            while (el) {
-                toRemove = (el.nodeType === 3);
-                prevEl = el;
-                el = el.nextSibling;
-                if (toRemove) {
-                    parent.removeChild(prevEl);
-                }
-            }
-        },
-
-        /**
-         * Pass an HTML string and receive a documentFragment with the corresponding elements
-         * @method htmlToFragment
-         * @param  {String} html  html string
-         * @return {DocumentFragment} DocumentFragment containing all of the elements from the html string
-         */
-        htmlToFragment: (createContextualFragmentSupport ?
-            function(html){
-                var range;
-
-                if(typeof html !== 'string'){ return document.createDocumentFragment(); }
-
-                range = document.createRange();
-
-                // set the context to document.body (firefox does this already, webkit doesn't)
-                range.selectNode(document.body);
-
-                return range.createContextualFragment(html);
-            } : function (html) {
-                var fragment = document.createDocumentFragment(),
-                    tempElement,
-                    current;
-
-                if(typeof html !== 'string'){ return fragment; }
-
-                tempElement = document.createElement('div');
-                tempElement.innerHTML = html;
-
-                // append child removes elements from the original parent
-                while( (current = tempElement.firstChild) ){ // intentional assignment
-                    fragment.appendChild(current);
-                }
-
-                return fragment;
-            }),
-
-        _camelCase: function(str)
+        
+        /*
+        base64Encode: function(string)
         {
-            return str ? str.replace(/-(\w)/g, function (_, $1){
-                return $1.toUpperCase();
-            }) : str;
-        },
-
-        /**
-         * Gets all of the data attributes from an element
+            /**
+         * --function {String} ?
+         * --Convert a string to BASE 64
+         * @param {String} string - string to convert
+         * @return base64 encoded string
          *
-         * @method data
-         * @param {String|DomElement} selector Element or CSS selector
-         * @return {Object} Object with the data-* properties. If no data-attributes are present, an empty object is returned.
+         * 
+            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
+                throw "SAPO.Utility.Url.base64Encode depends of SAPO.Utility.String, which has not been referred.";
+            }
+
+            var output = "";
+            var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+            var i = 0;
+
+            var input = SAPO.Utility.String.utf8Encode(string);
+
+            while (i < input.length) {
+
+                chr1 = input.charCodeAt(i++);
+                chr2 = input.charCodeAt(i++);
+                chr3 = input.charCodeAt(i++);
+
+                enc1 = chr1 >> 2;
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                enc4 = chr3 & 63;
+
+                if (isNaN(chr2)) {
+                    enc3 = enc4 = 64;
+                } else if (isNaN(chr3)) {
+                    enc4 = 64;
+                }
+
+                output = output +
+                this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+                this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+            }
+            return output;
+        },
+        base64Decode: function(string)
+        {
+         * --function {String} ?
+         * Decode a BASE 64 encoded string
+         * --param {String} string base64 encoded string
+         * --return string decoded
+            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
+                throw "SAPO.Utility.Url.base64Decode depends of SAPO.Utility.String, which has not been referred.";
+            }
+
+            var output = "";
+            var chr1, chr2, chr3;
+            var enc1, enc2, enc3, enc4;
+            var i = 0;
+
+            var input = string.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+            while (i < input.length) {
+
+                enc1 = this._keyStr.indexOf(input.charAt(i++));
+                enc2 = this._keyStr.indexOf(input.charAt(i++));
+                enc3 = this._keyStr.indexOf(input.charAt(i++));
+                enc4 = this._keyStr.indexOf(input.charAt(i++));
+
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+
+                output = output + String.fromCharCode(chr1);
+
+                if (enc3 !== 64) {
+                    output = output + String.fromCharCode(chr2);
+                }
+                if (enc4 !== 64) {
+                    output = output + String.fromCharCode(chr3);
+                }
+            }
+            output = SAPO.Utility.String.utf8Decode(output);
+            return output;
+        },
         */
-        data: function(selector) {
-            var el;
-            if (typeof selector !== 'object' && typeof selector !== 'string') {
-                throw '[Ink.Dom.Element.data] :: Invalid selector defined';
-            }
 
-            if (typeof selector === 'object') {
-                el = selector;
-            }
-            else {
-                var InkDomSelector = Ink.getModule('Ink.Dom.Selector', 1);
-                if (!InkDomSelector) {
-                    throw "[Ink.Dom.Element.data] :: this method requires Ink.Dom.Selector - v1";
-                }
-                el = InkDomSelector.select(selector);
-                if (el.length <= 0) {
-                    throw "[Ink.Dom.Element.data] :: Can't find any element with the specified selector";
-                }
-                el = el[0];
-            }
-
-            var dataset = {};
-            var attrs = el.attributes || [];
-
-            var curAttr, curAttrName, curAttrValue;
-            if (attrs) {
-                for (var i = 0, total = attrs.length; i < total; ++i) {
-                    curAttr = attrs[i];
-                    curAttrName = curAttr.name;
-                    curAttrValue = curAttr.value;
-                    if (curAttrName && curAttrName.indexOf('data-') === 0) {
-                        dataset[InkElement._camelCase(curAttrName.replace('data-', ''))] = curAttrValue;
-                    }
-                }
-            }
-
-            return dataset;
-        },
 
         /**
-         * @method moveCursorTo
-         * @param  {Input|Textarea}  el
-         * @param  {Number}          t
+         * Debug function ?
+         *
+         * @method _debug
+         * @private
+         * @static
          */
-        moveCursorTo: function(el, t) {
-            if (el.setSelectionRange) {
-                el.setSelectionRange(t, t);
-                //el.focus();
-            }
-            else {
-                var range = el.createTextRange();
-                range.collapse(true);
-                range.moveEnd(  'character', t);
-                range.moveStart('character', t);
-                range.select();
-            }
-        },
+        _debug: function() {}
 
-        /**
-         * @method pageWidth
-         * @return {Number} page width
-         */
-        pageWidth: function() {
-            var xScroll;
-
-            if (window.innerWidth && window.scrollMaxX) {
-                xScroll = window.innerWidth + window.scrollMaxX;
-            } else if (document.body.scrollWidth > document.body.offsetWidth){
-                xScroll = document.body.scrollWidth;
-            } else {
-                xScroll = document.body.offsetWidth;
-            }
-
-            var windowWidth;
-
-            if (window.self.innerWidth) {
-                if(document.documentElement.clientWidth){
-                    windowWidth = document.documentElement.clientWidth;
-                } else {
-                    windowWidth = window.self.innerWidth;
-                }
-            } else if (document.documentElement && document.documentElement.clientWidth) {
-                windowWidth = document.documentElement.clientWidth;
-            } else if (document.body) {
-                windowWidth = document.body.clientWidth;
-            }
-
-            if(xScroll < windowWidth){
-                return xScroll;
-            } else {
-                return windowWidth;
-            }
-        },
-
-        /**
-         * @method pageHeight
-         * @return {Number} page height
-         */
-        pageHeight: function() {
-            var yScroll;
-
-            if (window.innerHeight && window.scrollMaxY) {
-                yScroll = window.innerHeight + window.scrollMaxY;
-            } else if (document.body.scrollHeight > document.body.offsetHeight){
-                yScroll = document.body.scrollHeight;
-            } else {
-                yScroll = document.body.offsetHeight;
-            }
-
-            var windowHeight;
-
-            if (window.self.innerHeight) {
-                windowHeight = window.self.innerHeight;
-            } else if (document.documentElement && document.documentElement.clientHeight) {
-                windowHeight = document.documentElement.clientHeight;
-            } else if (document.body) {
-                windowHeight = document.body.clientHeight;
-            }
-
-            if(yScroll < windowHeight){
-                return windowHeight;
-            } else {
-                return yScroll;
-            }
-        },
-
-       /**
-         * @method viewportWidth
-         * @return {Number} viewport width in pixels
-         */
-        viewportWidth: function() {
-            if(typeof window.innerWidth !== "undefined") {
-                return window.innerWidth;
-            }
-            if (document.documentElement && typeof document.documentElement.offsetWidth !== "undefined") {
-                return document.documentElement.offsetWidth;
-            }
-        },
-
-        /**
-         * @method viewportHeight
-         * @return {Number} viewport height
-         */
-        viewportHeight: function() {
-            if (typeof window.innerHeight !== "undefined") {
-                return window.innerHeight;
-            }
-            if (document.documentElement && typeof document.documentElement.offsetHeight !== "undefined") {
-                return document.documentElement.offsetHeight;
-            }
-        },
-
-        /**
-         * @method scrollWidth
-         * @return {Number} scroll width
-         */
-        scrollWidth: function() {
-            if (typeof window.self.pageXOffset !== 'undefined') {
-                return window.self.pageXOffset;
-            }
-            if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollLeft !== 'undefined') {
-                return document.documentElement.scrollLeft;
-            }
-            return document.body.scrollLeft;
-        },
-
-        /**
-         * @method scrollHeight
-         * @return {Number} scroll height
-         */
-        scrollHeight: function() {
-            if (typeof window.self.pageYOffset !== 'undefined') {
-                return window.self.pageYOffset;
-            }
-            if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
-                return document.documentElement.scrollTop;
-            }
-            return document.body.scrollTop;
-        }
     };
 
-    return InkElement;
+    return Url;
 
 });
 
 /**
+ * @module Ink.Util.Swipe_1
  * @author inkdev AT sapo.pt
+ * @version 1
  */
-
-Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
+Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
 
     'use strict';
 
     /**
-     * @module Ink.Dom.Css_1
+     * Subscribe swipe gestures!
+     * Supports filtering swipes be any combination of the criteria supported in the options.
+     *
+     * @class Ink.Util.Swipe
+     * @constructor
+     * @version 1
+     *
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options for the Swipe detection
+     *     @param {Function}  [options.callback]        Function to be called when a swipe is detected. Default is undefined.
+     *     @param {Number}    [options.forceAxis]       Specify in which axis the swipe will be detected (x or y). Default is both.
+     *     @param {Number}    [options.maxDist]         maximum allowed distance, in pixels
+     *     @param {Number}    [options.maxDuration]     maximum allowed duration, in seconds
+     *     @param {Number}    [options.minDist]         minimum allowed distance, in pixels
+     *     @param {Number}    [options.minDuration]     minimum allowed duration, in seconds
+     *     @param {Boolean}   [options.stopEvents]      Flag that specifies if it should stop events. Default is true.
+     *     @param {Boolean}   [options.storeGesture]    Stores the gesture to be used for other purposes.
      */
+    var Swipe = function(el, options) {
 
-    /**
-     * @class Ink.Dom.Css
-     * @static
-     */
+        this._options = Ink.extendObj({
+            callback:       undefined,
+            forceAxis:      undefined,       // x | y
+            maxDist:        undefined,
+            maxDuration:    undefined,
+            minDist:        undefined,      // in pixels
+            minDuration:    undefined,      // in seconds
+            stopEvents:     true,
+            storeGesture:   false
+        }, options || {});
 
-    var DomCss = {
+        this._handlers = {
+            down: Ink.bindEvent(this._onDown, this),
+            move: Ink.bindEvent(this._onMove, this),
+            up:   Ink.bindEvent(this._onUp, this)
+        };
+
+        this._element = Ink.i(el);
+
+        this._init();
+
+    };
+
+    Swipe._supported = ('ontouchstart' in document.documentElement);
+
+    Swipe.prototype = {
+
         /**
-         * adds or removes a class to the given element according to addRemState
+         * Initialization function. Called by the constructor.
          *
-         * @method addRemoveClassName
-         * @param {DOMElement|string}   elm          DOM element or element id
-         * @param {string}              className    class name to add or remove.
-         * @param {boolean}             addRemState  Whether to add or remove. `true` to add, `false` to remove.
-         *
-         * @example
-         *      Ink.requireModules(['Ink.Dom.Css_1'], function (Css) {
-         *          Css.addRemoveClassName(myElm, 'classss', true);  // Adds the `classss` class.
-         *          Css.addRemoveClassName(myElm, 'classss', false);  // Removes the `classss` class.
-         *      });
+         * @method _init
+         * @private
          */
-        addRemoveClassName: function(elm, className, addRemState) {
-            if (addRemState) {
-                return this.addClassName(elm, className);
+        _init: function() {
+            var db = document.body;
+            Event.observe(db, 'touchstart', this._handlers.down);
+            if (this._options.storeGesture) {
+                Event.observe(db, 'touchmove', this._handlers.move);
             }
-            this.removeClassName(elm, className);
+            Event.observe(db, 'touchend', this._handlers.up);
+            this._isOn = false;
         },
 
         /**
-         * add a class to a given element
+         * Function to compare/get the parent of an element.
          *
-         * @method addClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
+         * @method _isMeOrParent
+         * @param {DOMElement} el Element to be compared with its parent
+         * @param {DOMElement} parentEl Element to be compared used as reference
+         * @return {DOMElement|Boolean} ParentElement of el or false in case it can't.
+         * @private
          */
-        addClassName: function(elm, className) {
-            elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    elm.classList.add(className);
-                }
-                else if (!this.hasClassName(elm, className)) {
-                    elm.className += (elm.className ? ' ' : '') + className;
-                }
+        _isMeOrParent: function(el, parentEl) {
+            if (!el) {
+                return;
             }
-        },
-
-        /**
-         * removes a class from a given element
-         *
-         * @method removeClassName
-         * @param {DOMElement|String} elm        DOM element or element id
-         * @param {String}            className
-         */
-        removeClassName: function(elm, className) {
-            elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    elm.classList.remove(className);
-                } else {
-                    if (typeof elm.className === "undefined") {
-                        return false;
-                    }
-                    var elmClassName = elm.className,
-                        re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-                    elmClassName = elmClassName.replace(re, ' ');
-                    elmClassName = elmClassName.replace(/^\s+/, '').replace(/\s+$/, '');
-
-                    elm.className = elmClassName;
+            do {
+                if (el === parentEl) {
+                    return true;
                 }
-            }
-        },
-
-        /**
-         * Alias to addRemoveClassName. Utility function, saves many if/elses.
-         *
-         * @method setClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
-         * @param {Boolean}            add        true to add, false to remove
-         */
-        setClassName: function(elm, className, add) {
-            this.addRemoveClassName(elm, className, add || false);
-        },
-
-        /**
-         * @method hasClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
-         * @return {Boolean} true if a given class is applied to a given element
-         */
-        hasClassName: function(elm, className) {
-            elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    return elm.classList.contains(className);
-                }
-                else {
-                    if (typeof elm.className === "undefined") {
-                        return false;
-                    }
-                    var elmClassName = elm.className;
-
-                    if (typeof elmClassName.length === "undefined") {
-                        return false;
-                    }
-
-                    if (elmClassName.length > 0) {
-                        if (elmClassName === className) {
-                            return true;
-                        }
-                        else {
-                            var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
-                            if (re.test(elmClassName)) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
+                el = el.parentNode;
+            } while (el);
             return false;
         },
 
         /**
-         * Add and removes the class from the element with a timeout, so it blinks
+         * MouseDown/TouchStart event handler
          *
-         * @method blinkClass
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className  class name
-         * @param {Boolean}            timeout    timeout in ms between adding and removing, default 100 ms
-         * @param {Boolean}            negate     is true, class is removed then added
-         */
-        blinkClass: function(element, className, timeout, negate){
-            element = Ink.i(element);
-            this.addRemoveClassName(element, className, !negate);
-            setTimeout(Ink.bind(function() {
-                this.addRemoveClassName(element, className, negate);
-            }, this), Number(timeout) || 100);
-            /*
-            var _self = this;
-            setTimeout(function() {
-                    console.log(_self);
-                _self.addRemoveClassName(element, className, negate);
-            }, Number(timeout) || 100);
-            */
-        },
-
-        /**
-         * Add or remove a class name from a given element
-         *
-         * @method toggleClassName
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className  class name
-         * @param {Boolean}            forceAdd   forces the addition of the class if it doesn't exists
-         */
-        toggleClassName: function(elm, className, forceAdd) {
-            if (elm && className){
-                if (typeof elm.classList !== "undefined"){
-                    elm = Ink.i(elm);
-                    if (elm !== null){
-                        elm.classList.toggle(className);
-                    }
-                    return true;
-                }
-            }
-
-            if (typeof forceAdd !== 'undefined') {
-                if (forceAdd === true) {
-                    this.addClassName(elm, className);
-                }
-                else if (forceAdd === false) {
-                    this.removeClassName(elm, className);
-                }
-            } else {
-                if (this.hasClassName(elm, className)) {
-                    this.removeClassName(elm, className);
-                }
-                else {
-                    this.addClassName(elm, className);
-                }
-            }
-        },
-
-        /**
-         * sets the opacity of given client a given element
-         *
-         * @method setOpacity
-         * @param {DOMElement|String}  elm    DOM element or element id
-         * @param {Number}             value  allows 0 to 1(default mode decimal) or percentage (warning using 0 or 1 will reset to default mode)
-         */
-        setOpacity: function(elm, value) {
-            elm = Ink.i(elm);
-            if (elm !== null){
-                var val = 1;
-
-                if (!isNaN(Number(value))){
-                    if      (value <= 0) {   val = 0;           }
-                    else if (value <= 1) {   val = value;       }
-                    else if (value <= 100) { val = value / 100; }
-                    else {                   val = 1;           }
-                }
-
-                if (typeof elm.style.opacity !== 'undefined') {
-                    elm.style.opacity = val;
-                }
-                else {
-                    elm.style.filter = "alpha(opacity:"+(val*100|0)+")";
-                }
-            }
-        },
-
-        /**
-         * Converts a css property name to a string in camelcase to be used with CSSStyleDeclaration.
-         * @method _camelCase
+         * @method _onDown
+         * @param {EventObject} ev window.event object
          * @private
-         * @param {String} str  String to convert
-         * @return {String} Converted string
          */
-        _camelCase: function(str) {
-            return str ? str.replace(/-(\w)/g, function (_, $1){
-                return $1.toUpperCase();
-            }) : str;
-        },
+
+        _onDown: function(ev) {
+            if (event.changedTouches.length !== 1) { return; }
+            if (!this._isMeOrParent(ev.target, this._element)) { return; }
 
 
-        /**
-         * Gets the value for an element's style attribute
-         *
-         * @method getStyle
-         * @param {DOMElement|String}  elm    DOM element or element id
-         * @param {String}             style  Which css attribute to fetch
-         * @return Style value
-         */
-         getStyle: function(elm, style) {
-             elm = Ink.i(elm);
-             if (elm !== null) {
-                 style = style === 'float' ? 'cssFloat': this._camelCase(style);
-
-                 var value = elm.style[style];
-
-                 if (window.getComputedStyle && (!value || value === 'auto')) {
-                     var css = window.getComputedStyle(elm, null);
-
-                     value = css ? css[style] : null;
-                 }
-                 else if (!value && elm.currentStyle) {
-                      value = elm.currentStyle[style];
-                      if (value === 'auto' && (style === 'width' || style === 'height')) {
-                        value = elm["offset" + style.charAt(0).toUpperCase() + style.slice(1)] + "px";
-                      }
-                 }
-
-                 if (style === 'opacity') {
-                     return value ? parseFloat(value, 10) : 1.0;
-                 }
-                 else if (style === 'borderTopWidth'   || style === 'borderBottomWidth' ||
-                          style === 'borderRightWidth' || style === 'borderLeftWidth'       ) {
-                      if      (value === 'thin') {      return '1px';   }
-                      else if (value === 'medium') {    return '3px';   }
-                      else if (value === 'thick') {     return '5px';   }
-                 }
-
-                 return value === 'auto' ? null : value;
-             }
-         },
-
-
-        /**
-         * Adds CSS rules to an element's style attribute.
-         *
-         * @method setStyle
-         * @param {DOMElement|String}  elm    DOM element or element id
-         * @param {String}             style  Which css attribute to set
-         *
-         * @example
-         *     <a href="#" class="change-color">Change his color</a>
-         *     <p class="him">"He" is me</p>
-         *     <script type="text/javascript">
-         *         Ink.requireModules(['Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Selector_1'], function (Css, InkEvent, Selector) {
-         *             var btn = Selector.select('.change-color')[0];
-         *             var other = Selector.select('.him')[0];
-         *             InkEvent.observe(btn, 'click', function () {
-         *                 Css.setStyle(other, 'background-color: black');
-         *                 Css.setStyle(other, 'color: white');
-         *             });
-         *         });
-         *     </script>
-         *
-         */
-        setStyle: function(elm, style) {
-            elm = Ink.i(elm);
-            if (elm !== null) {
-                if (typeof style === 'string') {
-                    elm.style.cssText += '; '+style;
-
-                    if (style.indexOf('opacity') !== -1) {
-                        this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
-                    }
-                }
-                else {
-                    for (var prop in style) {
-                        if (style.hasOwnProperty(prop)){
-                            if (prop === 'opacity') {
-                                this.setOpacity(elm, style[prop]);
-                            }
-                            else {
-                                if (prop === 'float' || prop === 'cssFloat') {
-                                    if (typeof elm.style.styleFloat === 'undefined') {
-                                        elm.style.cssFloat = style[prop];
-                                    }
-                                    else {
-                                        elm.style.styleFloat = style[prop];
-                                    }
-                                } else {
-                                    elm.style[prop] = style[prop];
-                                }
-                            }
-                        }
-                    }
-                }
+            if( this._options.stopEvents === true ){
+                Event.stop(ev);
             }
-        },
+            ev = ev.changedTouches[0];
+            this._isOn = true;
+            this._target = ev.target;
 
+            this._t0 = new Date().valueOf();
+            this._p0 = [ev.pageX, ev.pageY];
 
-        /**
-         * Makes an element visible
-         *
-         * @method show
-         * @param {DOMElement|String}  elm                   DOM element or element id
-         * @param {String}             forceDisplayProperty  Css display property to apply on show
-         */
-        show: function(elm, forceDisplayProperty) {
-            elm = Ink.i(elm);
-            if (elm !== null) {
-                elm.style.display = (forceDisplayProperty) ? forceDisplayProperty : '';
+            if (this._options.storeGesture) {
+                this._gesture = [this._p0];
+                this._time    = [0];
             }
+
         },
 
         /**
-         * Hides an element
+         * MouseMove/TouchMove event handler
          *
-         * @method hide
-         * @param {DOMElement|String}  elm  DOM element or element id
+         * @method _onMove
+         * @param {EventObject} ev window.event object
+         * @private
          */
-        hide: function(elm) {
-            elm = Ink.i(elm);
-            if (elm !== null) {
-                elm.style.display = 'none';
+        _onMove: function(ev) {
+            if (!this._isOn || event.changedTouches.length !== 1) { return; }
+            if( this._options.stopEvents === true ){
+                Event.stop(ev);
             }
+            ev = ev.changedTouches[0];
+            var t1 = new Date().valueOf();
+            var dt = (t1 - this._t0) * 0.001;
+            this._gesture.push([ev.pageX, ev.pageY]);
+            this._time.push(dt);
         },
 
         /**
-         * shows or hides according to param show
+         * MouseUp/TouchEnd event handler
          *
-         * @method showHide
-         * @param {DOMElement|String}  elm          DOM element or element id
-         * @param {boolean}            [show=false] Whether to show or hide `elm`.
+         * @method _onUp
+         * @param {EventObject} ev window.event object
+         * @private
          */
-        showHide: function(elm, show) {
-            elm = Ink.i(elm);
-            if (elm) {
-                elm.style.display = show ? '' : 'none';
+        _onUp: function(ev) {
+            if (!this._isOn || event.changedTouches.length !== 1) { return; }
+
+            if (this._options.stopEvents) {
+                Event.stop(ev);
             }
-        },
+            ev = ev.changedTouches[0];   // TODO SHOULD CHECK IT IS THE SAME TOUCH
+            this._isOn = false;
 
-        /**
-         * Shows or hides an element depending on current state
-         * @method toggle
-         * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {Boolean}            forceShow  Forces showing if element is hidden
-         */
-        toggle: function(elm, forceShow) {
-            elm = Ink.i(elm);
-            if (elm !== null) {
-                if (typeof forceShow !== 'undefined') {
-                    if (forceShow === true) {
-                        this.show(elm);
-                    } else {
-                        this.hide(elm);
-                    }
-                } else {
-                    if (elm.style.display === 'none') {
-                        this.show(elm);
-                    }
-                    else {
-                        this.hide(elm);
-                    }
-                }
-            }
-        },
+            var t1 = new Date().valueOf();
+            var p1 = [ev.pageX, ev.pageY];
+            var dt = (t1 - this._t0) * 0.001;
+            var dr = [
+                p1[0] - this._p0[0],
+                p1[1] - this._p0[1]
+            ];
+            var dist = Math.sqrt(dr[0]*dr[0] + dr[1]*dr[1]);
+            var axis = Math.abs(dr[0]) > Math.abs(dr[1]) ? 'x' : 'y';
 
-        _getRefTag: function(head){
-            if (head.firstElementChild) {
-                return head.firstElementChild;
-            }
+            var o = this._options;
+            if (o.minDist     && dist <   o.minDist) {     return; }
+            if (o.maxDist     && dist >   o.maxDist) {     return; }
+            if (o.minDuration && dt   <   o.minDuration) { return; }
+            if (o.maxDuration && dt   >   o.maxDuration) { return; }
+            if (o.forceAxis   && axis !== o.forceAxis) {   return; }
 
-            for (var child = head.firstChild; child; child = child.nextSibling){
-                if (child.nodeType === 1){
-                    return child;
-                }
-            }
-            return null;
-        },
-
-        /**
-         * Adds css style tags to the head section of a page
-         *
-         * @method appendStyleTag
-         * @param {String}  selector  The css selector for the rule
-         * @param {String}  style     The content of the style rule
-         * @param {Object}  options   Options for the tag
-         *    @param {String}  [options.type]   file type
-         *    @param {Boolean} [options.force]  if true, style tag will be appended to end of head
-         */
-        appendStyleTag: function(selector, style, options){
-            options = Ink.extendObj({
-                type: 'text/css',
-                force: false
-            }, options || {});
-
-            var styles = document.getElementsByTagName("style"),
-                oldStyle = false, setStyle = true, i, l;
-
-            for (i=0, l=styles.length; i<l; i++) {
-                oldStyle = styles[i].innerHTML;
-                if (oldStyle.indexOf(selector) >= 0) {
-                    setStyle = false;
-                }
-            }
-
-            if (setStyle) {
-                var defStyle = document.createElement("style"),
-                    head = document.getElementsByTagName("head")[0],
-                    refTag = false, styleStr = '';
-
-                defStyle.type  = options.type;
-
-                styleStr += selector +" {";
-                styleStr += style;
-                styleStr += "} ";
-
-                if (typeof defStyle.styleSheet !== "undefined") {
-                    defStyle.styleSheet.cssText = styleStr;
-                } else {
-                    defStyle.appendChild(document.createTextNode(styleStr));
-                }
-
-                if (options.force){
-                    head.appendChild(defStyle);
-                } else {
-                    refTag = this._getRefTag(head);
-                    if (refTag){
-                        head.insertBefore(defStyle, refTag);
-                    }
-                }
-            }
-        },
-
-        /**
-         * Adds a link tag for a stylesheet to the head section of a page
-         *
-         * @method appendStylesheet
-         * @param {String}  path     File path
-         * @param {Object}  options  Options for the tag
-         *    @param {String}   [options.media='screen']    media type
-         *    @param {String}   [options.type='text/css']   file type
-         *    @param {Boolean}  [options.force=false]       if true, tag will be appended to end of head
-         */
-        appendStylesheet: function(path, options){
-            options = Ink.extendObj({
-                media: 'screen',
-                type: 'text/css',
-                force: false
-            }, options || {});
-
-            var refTag,
-                style = document.createElement("link"),
-                head = document.getElementsByTagName("head")[0];
-
-            style.media = options.media;
-            style.type = options.type;
-            style.href = path;
-            style.rel = "Stylesheet";
-
-            if (options.force){
-                head.appendChild(style);
-            }
-            else {
-                refTag = this._getRefTag(head);
-                if (refTag){
-                    head.insertBefore(style, refTag);
-                }
-            }
-        },
-
-        /**
-         * Loads CSS via LINK element inclusion in HEAD (skips append if already there)
-         *
-         * Works similarly to appendStylesheet but:
-         *   a) supports all browsers;
-         *   b) supports optional callback which gets invoked once the CSS has been applied
-         *
-         * @method appendStylesheetCb
-         * @param {String}            cssURI      URI of the CSS to load, if empty ignores and just calls back directly
-         * @param {Function(cssURI)}  [callback]  optional callback which will be called once the CSS is loaded
-         */
-        _loadingCSSFiles: {},
-        _loadedCSSFiles:  {},
-        appendStylesheetCb: function(url, callback) {
-            if (!url) {
-                return callback(url);
-            }
-
-            if (this._loadedCSSFiles[url]) {
-                return callback(url);
-            }
-
-            var cbs = this._loadingCSSFiles[url];
-            if (cbs) {
-                return cbs.push(callback);
-            }
-
-            this._loadingCSSFiles[url] = [callback];
-
-            var linkEl = document.createElement('link');
-            linkEl.type = 'text/css';
-            linkEl.rel  = 'stylesheet';
-            linkEl.href = url;
-
-            var headEl = document.getElementsByTagName('head')[0];
-            headEl.appendChild(linkEl);
-
-            var imgEl = document.createElement('img');
-            /*
-            var _self = this;
-            (function(_url) {
-                imgEl.onerror = function() {
-                    //var url = this;
-                    var url = _url;
-                    _self._loadedCSSFiles[url] = true;
-                    var callbacks = _self._loadingCSSFiles[url];
-                    for (var i = 0, f = callbacks.length; i < f; ++i) {
-                        callbacks[i](url);
-                    }
-                    delete _self._loadingCSSFiles[url];
-                };
-            })(url);
-            */
-            imgEl.onerror = Ink.bindEvent(function(event, _url) {
-                //var url = this;
-                var url = _url;
-                this._loadedCSSFiles[url] = true;
-                var callbacks = this._loadingCSSFiles[url];
-                for (var i = 0, f = callbacks.length; i < f; ++i) {
-                    callbacks[i](url);
-                }
-                delete this._loadingCSSFiles[url];
-            }, this, url);
-            imgEl.src = url;
-        },
-
-        /**
-         * Converts decimal to hexadecimal values, for use with colors
-         *
-         * @method decToHex
-         * @param {String} dec Either a single decimal value,
-         * an rgb(r, g, b) string or an Object with r, g and b properties
-         * @return Hexadecimal value
-         */
-        decToHex: function(dec) {
-            var normalizeTo2 = function(val) {
-                if (val.length === 1) {
-                    val = '0' + val;
-                }
-                val = val.toUpperCase();
-                return val;
+            var O = {
+                upEvent:   ev,
+                elementId: this._element.id,
+                duration:  dt,
+                dr:        dr,
+                dist:      dist,
+                axis:      axis,
+                target:    this._target
             };
 
-            if (typeof dec === 'object') {
-                var rDec = normalizeTo2(parseInt(dec.r, 10).toString(16));
-                var gDec = normalizeTo2(parseInt(dec.g, 10).toString(16));
-                var bDec = normalizeTo2(parseInt(dec.b, 10).toString(16));
-                return rDec+gDec+bDec;
-            }
-            else {
-                dec += '';
-                var rgb = dec.match(/\((\d+),\s?(\d+),\s?(\d+)\)/);
-                if (rgb !== null) {
-                    return  normalizeTo2(parseInt(rgb[1], 10).toString(16)) +
-                            normalizeTo2(parseInt(rgb[2], 10).toString(16)) +
-                            normalizeTo2(parseInt(rgb[3], 10).toString(16));
-                }
-                else {
-                    return normalizeTo2(parseInt(dec, 10).toString(16));
-                }
-            }
-        },
-
-        /**
-         * Converts hexadecimal values to decimal, for use with colors
-         *
-         * @method hexToDec
-         * @param {String}  hex  hexadecimal value with 6, 3, 2 or 1 characters
-         * @return {Number} Object with properties r, g, b if length of number is >= 3 or decimal value instead.
-         */
-        hexToDec: function(hex){
-            if (hex.indexOf('#') === 0) {
-                hex = hex.substr(1);
-            }
-            if (hex.length === 6) { // will return object RGB
-                return {
-                    r: parseInt(hex.substr(0,2), 16),
-                    g: parseInt(hex.substr(2,2), 16),
-                    b: parseInt(hex.substr(4,2), 16)
-                };
-            }
-            else if (hex.length === 3) { // will return object RGB
-                return {
-                    r: parseInt(hex.charAt(0) + hex.charAt(0), 16),
-                    g: parseInt(hex.charAt(1) + hex.charAt(1), 16),
-                    b: parseInt(hex.charAt(2) + hex.charAt(2), 16)
-                };
-            }
-            else if (hex.length <= 2) { // will return int
-                return parseInt(hex, 16);
-            }
-        },
-
-        /**
-         * use this to obtain the value of a CSS property (searched from loaded CSS documents)
-         *
-         * @method getPropertyFromStylesheet
-         * @param {String}  selector  a CSS rule. must be an exact match
-         * @param {String}  property  a CSS property
-         * @return {String} value of the found property, or null if it wasn't matched
-         */
-        getPropertyFromStylesheet: function(selector, property) {
-            var rule = this.getRuleFromStylesheet(selector);
-            if (rule) {
-                return rule.style[property];
-            }
-            return null;
-        },
-
-        getPropertyFromStylesheet2: function(selector, property) {
-            var rules = this.getRulesFromStylesheet(selector);
-            /*
-            rules.forEach(function(rule) {
-                var x = rule.style[property];
-                if (x !== null && x !== undefined) {
-                    return x;
-                }
-            });
-            */
-            var x;
-            for(var i=0, t=rules.length; i < t; i++) {
-                x = rules[i].style[property];
-                if (x !== null && x !== undefined) {
-                    return x;
-                }
-            }
-            return null;
-        },
-
-        getRuleFromStylesheet: function(selector) {
-            var sheet, rules, ri, rf, rule;
-            var s = document.styleSheets;
-            if (!s) {
-                return null;
+            if (this._options.storeGesture) {
+                O.gesture = this._gesture;
+                O.time    = this._time;
             }
 
-            for (var si = 0, sf = document.styleSheets.length; si < sf; ++si) {
-                sheet = document.styleSheets[si];
-                rules = sheet.rules ? sheet.rules : sheet.cssRules;
-                if (!rules) { return null; }
-
-                for (ri = 0, rf = rules.length; ri < rf; ++ri) {
-                    rule = rules[ri];
-                    if (!rule.selectorText) { continue; }
-                    if (rule.selectorText === selector) {
-                        return rule;
-                    }
-                }
-            }
-
-            return null;
-        },
-
-        getRulesFromStylesheet: function(selector) {
-            var res = [];
-            var sheet, rules, ri, rf, rule;
-            var s = document.styleSheets;
-            if (!s) { return res; }
-
-            for (var si = 0, sf = document.styleSheets.length; si < sf; ++si) {
-                sheet = document.styleSheets[si];
-                rules = sheet.rules ? sheet.rules : sheet.cssRules;
-                if (!rules) {
-                    return null;
-                }
-
-                for (ri = 0, rf = rules.length; ri < rf; ++ri) {
-                    rule = rules[ri];
-                    if (!rule.selectorText) { continue; }
-                    if (rule.selectorText === selector) {
-                        res.push(rule);
-                    }
-                }
-            }
-
-            return res;
-        },
-
-        getPropertiesFromRule: function(selector) {
-            var rule = this.getRuleFromStylesheet(selector);
-            var props = {};
-            var prop, i, f;
-
-            /*if (typeof rule.style.length === 'snumber') {
-                for (i = 0, f = rule.style.length; i < f; ++i) {
-                    prop = this._camelCase( rule.style[i]   );
-                    props[prop] = rule.style[prop];
-                }
-            }
-            else {  // HANDLES IE 8, FIREFOX RULE JOINING... */
-                rule = rule.style.cssText;
-                var parts = rule.split(';');
-                var steps, val, pre, pos;
-                for (i = 0, f = parts.length; i < f; ++i) {
-                    if (parts[i].charAt(0) === ' ') {
-                        parts[i] = parts[i].substring(1);
-                    }
-                    steps = parts[i].split(':');
-                    prop = this._camelCase( steps[0].toLowerCase()  );
-                    val = steps[1];
-                    if (val) {
-                        val = val.substring(1);
-
-                        if (prop === 'padding' || prop === 'margin' || prop === 'borderWidth') {
-
-                            if (prop === 'borderWidth') {   pre = 'border'; pos = 'Width';  }
-                            else {                          pre = prop;     pos = '';       }
-
-                            if (val.indexOf(' ') !== -1) {
-                                val = val.split(' ');
-                                props[pre + 'Top'   + pos]  = val[0];
-                                props[pre + 'Bottom'+ pos]  = val[0];
-                                props[pre + 'Left'  + pos]  = val[1];
-                                props[pre + 'Right' + pos]  = val[1];
-                            }
-                            else {
-                                props[pre + 'Top'   + pos]  = val;
-                                props[pre + 'Bottom'+ pos]  = val;
-                                props[pre + 'Left'  + pos]  = val;
-                                props[pre + 'Right' + pos]  = val;
-                            }
-                        }
-                        else if (prop === 'borderRadius') {
-                            if (val.indexOf(' ') !== -1) {
-                                val = val.split(' ');
-                                props.borderTopLeftRadius       = val[0];
-                                props.borderBottomRightRadius   = val[0];
-                                props.borderTopRightRadius      = val[1];
-                                props.borderBottomLeftRadius    = val[1];
-                            }
-                            else {
-                                props.borderTopLeftRadius       = val;
-                                props.borderTopRightRadius      = val;
-                                props.borderBottomLeftRadius    = val;
-                                props.borderBottomRightRadius   = val;
-                            }
-                        }
-                        else {
-                            props[prop] = val;
-                        }
-                    }
-                }
-            //}
-            //console.log(props);
-
-            return props;
-        },
-
-        /**
-         * Changes the font size of the elements which match the given CSS rule
-         * For this function to work, the CSS file must be in the same domain than the host page, otherwise JS can't access it.
-         *
-         * @method changeFontSize
-         * @param {String}  selector  CSS selector rule
-         * @param {Number}  delta     number of pixels to change on font-size
-         * @param {String}  [op]      supported operations are '+' and '*'. defaults to '+'
-         * @param {Number}  [minVal]  if result gets smaller than minVal, change does not occurr
-         * @param {Number}  [maxVal]  if result gets bigger  than maxVal, change does not occurr
-         */
-        changeFontSize: function(selector, delta, op, minVal, maxVal) {
-            var that = this;
-            Ink.requireModules(['Ink.Dom.Selector_1'], function(Selector) {
-                var e;
-                if      (typeof selector !== 'string') { e = '1st argument must be a CSS selector rule.'; }
-                else if (typeof delta    !== 'number') { e = '2nd argument must be a number.'; }
-                else if (op !== undefined && op !== '+' && op !== '*') { e = '3rd argument must be one of "+", "*".'; }
-                else if (minVal !== undefined && (typeof minVal !== 'number' || minVal <= 0)) { e = '4th argument must be a positive number.'; }
-                else if (maxVal !== undefined && (typeof maxVal !== 'number' || maxVal < maxVal)) { e = '5th argument must be a positive number greater than minValue.'; }
-                if (e) { throw new TypeError(e); }
-
-                var val, el, els = Selector.select(selector);
-                if (minVal === undefined) { minVal = 1; }
-                op = (op === '*') ? function(a,b){return a*b;} : function(a,b){return a+b;};
-                for (var i = 0, f = els.length; i < f; ++i) {
-                    el = els[i];
-                    val = parseFloat( that.getStyle(el, 'fontSize'));
-                    val = op(val, delta);
-                    if (val < minVal) { continue; }
-                    if (typeof maxVal === 'number' && val > maxVal) { continue; }
-                    el.style.fontSize = val + 'px';
-                }
-            });
+            this._options.callback(this, O);
         }
 
     };
 
-    return DomCss;
+    return Swipe;
+
+});
+
+
+/**
+ * @module Ink.Util.String_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Util.String', '1', [], function() {
+
+    'use strict';
+
+    /**
+     * String Manipulation Utilities
+     *
+     * @class Ink.Util.String
+     * @version 1
+     * @static
+     */
+    var InkUtilString = {
+
+        /**
+         * List of special chars
+         * 
+         * @property _chars
+         * @type {Array}
+         * @private
+         * @readOnly
+         * @static
+         */
+        _chars: ['&','à','á','â','ã','ä','å','æ','ç','è','é',
+                'ê','ë','ì','í','î','ï','ð','ñ','ò','ó','ô',
+                'õ','ö','ø','ù','ú','û','ü','ý','þ','ÿ','À',
+                'Á','Â','Ã','Ä','Å','Æ','Ç','È','É','Ê','Ë',
+                'Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö',
+                'Ø','Ù','Ú','Û','Ü','Ý','Þ','€','\"','ß','<',
+                '>','¢','£','¤','¥','¦','§','¨','©','ª','«',
+                '¬','\xad','®','¯','°','±','²','³','´','µ','¶',
+                '·','¸','¹','º','»','¼','½','¾'],
+
+        /**
+         * List of the special characters' html entities
+         * 
+         * @property _entities
+         * @type {Array}
+         * @private
+         * @readOnly
+         * @static
+         */
+        _entities: ['amp','agrave','aacute','acirc','atilde','auml','aring',
+                    'aelig','ccedil','egrave','eacute','ecirc','euml','igrave',
+                    'iacute','icirc','iuml','eth','ntilde','ograve','oacute',
+                    'ocirc','otilde','ouml','oslash','ugrave','uacute','ucirc',
+                    'uuml','yacute','thorn','yuml','Agrave','Aacute','Acirc',
+                    'Atilde','Auml','Aring','AElig','Ccedil','Egrave','Eacute',
+                    'Ecirc','Euml','Igrave','Iacute','Icirc','Iuml','ETH','Ntilde',
+                    'Ograve','Oacute','Ocirc','Otilde','Ouml','Oslash','Ugrave',
+                    'Uacute','Ucirc','Uuml','Yacute','THORN','euro','quot','szlig',
+                    'lt','gt','cent','pound','curren','yen','brvbar','sect','uml',
+                    'copy','ordf','laquo','not','shy','reg','macr','deg','plusmn',
+                    'sup2','sup3','acute','micro','para','middot','cedil','sup1',
+                    'ordm','raquo','frac14','frac12','frac34'],
+
+        /**
+         * List of accented chars
+         * 
+         * @property _accentedChars
+         * @type {Array}
+         * @private
+         * @readOnly
+         * @static
+         */
+        _accentedChars:['à','á','â','ã','ä','å',
+                        'è','é','ê','ë',
+                        'ì','í','î','ï',
+                        'ò','ó','ô','õ','ö',
+                        'ù','ú','û','ü',
+                        'ç','ñ',
+                        'À','Á','Â','Ã','Ä','Å',
+                        'È','É','Ê','Ë',
+                        'Ì','Í','Î','Ï',
+                        'Ò','Ó','Ô','Õ','Ö',
+                        'Ù','Ú','Û','Ü',
+                        'Ç','Ñ'],
+
+        /**
+         * List of the accented chars (above), but without the accents
+         * 
+         * @property _accentedRemovedChars
+         * @type {Array}
+         * @private
+         * @readOnly
+         * @static
+         */
+        _accentedRemovedChars:['a','a','a','a','a','a',
+                               'e','e','e','e',
+                               'i','i','i','i',
+                               'o','o','o','o','o',
+                               'u','u','u','u',
+                               'c','n',
+                               'A','A','A','A','A','A',
+                               'E','E','E','E',
+                               'I','I','I','I',
+                               'O','O','O','O','O',
+                               'U','U','U','U',
+                               'C','N'],
+        /**
+         * Object that contains the basic HTML unsafe chars, as keys, and their HTML entities as values
+         * 
+         * @property _htmlUnsafeChars
+         * @type {Object}
+         * @private
+         * @readOnly
+         * @static
+         */
+        _htmlUnsafeChars:{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'},
+
+        /**
+         * Convert first letter of a word to upper case <br />
+         * If param as more than one word, it converts first letter of all words that have more than 2 letters
+         *
+         * @method ucFirst
+         * @param {String} string
+         * @param {Boolean} [firstWordOnly=false] capitalize only first word.
+         * @return {String} string camel cased
+         * @public
+         * @static
+         *
+         * @example
+         *      InkString.ucFirst('hello world'); // -> 'Hello World'
+         *      InkString.ucFirst('hello world', true); // -> 'Hello world'
+         */
+        ucFirst: function(string, firstWordOnly) {
+            var replacer = firstWordOnly ? /(^|\s)(\w)(\S{2,})/ : /(^|\s)(\w)(\S{2,})/g;
+            return string ? String(string).replace(replacer, function(_, $1, $2, $3){
+                return $1 + $2.toUpperCase() + $3.toLowerCase();
+            }) : string;
+        },
+
+        /**
+         * Remove spaces and new line from biggin and ends of string
+         *
+         * @method trim
+         * @param {String} string
+         * @return {String} string trimmed
+         * @public
+         * @static
+         */
+        trim: function(string)
+        {
+            if (typeof string === 'string') {
+                return string.replace(/^\s+|\s+$|\n+$/g, '');
+            }
+            return string;
+        },
+
+        /**
+         * Removes HTML tags of string
+         *
+         * @method stripTags
+         * @param {String} string
+         * @param {String} allowed
+         * @return {String} String stripped from HTML tags, leaving only the allowed ones (if any)
+         * @public
+         * @static
+         * @example
+         *     <script>
+         *          var myvar='isto e um texto <b>bold</b> com imagem <img src=""> e br <br /> um <p>paragrafo</p>';
+         *          SAPO.Utility.String.stripTags(myvar, 'b,u');
+         *     </script>
+         */
+        stripTags: function(string, allowed)
+        {
+            if (allowed && typeof allowed === 'string') {
+                var aAllowed = InkUtilString.trim(allowed).split(',');
+                var aNewAllowed = [];
+                var cleanedTag = false;
+                for(var i=0; i < aAllowed.length; i++) {
+                    if(InkUtilString.trim(aAllowed[i]) !== '') {
+                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(\<|\>)/g, '').replace(/\s/, ''));
+                        aNewAllowed.push('(<'+cleanedTag+'\\s[^>]+>|<(\\s|\\/)?(\\s|\\/)?'+cleanedTag+'>)');
+                    }
+                }
+                var strAllowed = aNewAllowed.join('|');
+                var reAllowed = new RegExp(strAllowed, "i");
+
+                var aFoundTags = string.match(new RegExp("<[^>]*>", "g"));
+
+                for(var j=0; j < aFoundTags.length; j++) {
+                    if(!aFoundTags[j].match(reAllowed)) {
+                        string = string.replace((new RegExp(aFoundTags[j], "gm")), '');
+                    }
+                }
+                return string;
+            } else {
+                return string.replace(/\<[^\>]+\>/g, '');
+            }
+        },
+
+        /**
+         * Convert listed characters to HTML entities
+         *
+         * @method htmlEntitiesEncode
+         * @param {String} string
+         * @return {String} string encoded
+         * @public
+         * @static
+         */
+        htmlEntitiesEncode: function(string)
+        {
+            if (string && string.replace) {
+                var re = false;
+                for (var i = 0; i < InkUtilString._chars.length; i++) {
+                    re = new RegExp(InkUtilString._chars[i], "gm");
+                    string = string.replace(re, '&' + InkUtilString._entities[i] + ';');
+                }
+            }
+            return string;
+        },
+
+        /**
+         * Convert listed HTML entities to character
+         *
+         * @method htmlEntitiesDecode
+         * @param {String} string
+         * @return {String} string decoded
+         * @public
+         * @static
+         */
+        htmlEntitiesDecode: function(string)
+        {
+            if (string && string.replace) {
+                var re = false;
+                for (var i = 0; i < InkUtilString._entities.length; i++) {
+                    re = new RegExp("&"+InkUtilString._entities[i]+";", "gm");
+                    string = string.replace(re, InkUtilString._chars[i]);
+                }
+                string = string.replace(/&#[^;]+;?/g, function($0){
+                    if ($0.charAt(2) === 'x') {
+                        return String.fromCharCode(parseInt($0.substring(3), 16));
+                    }
+                    else {
+                        return String.fromCharCode(parseInt($0.substring(2), 10));
+                    }
+                });
+            }
+            return string;
+        },
+
+        /**
+         * Encode a string to UTF8
+         *
+         * @method utf8Encode
+         * @param {String} string
+         * @return {String} string utf8 encoded
+         * @public
+         * @static
+         */
+        utf8Encode: function(string)
+        {
+            string = string.replace(/\r\n/g,"\n");
+            var utfstring = "";
+
+            for (var n = 0; n < string.length; n++) {
+
+                var c = string.charCodeAt(n);
+
+                if (c < 128) {
+                    utfstring += String.fromCharCode(c);
+                }
+                else if((c > 127) && (c < 2048)) {
+                    utfstring += String.fromCharCode((c >> 6) | 192);
+                    utfstring += String.fromCharCode((c & 63) | 128);
+                }
+                else {
+                    utfstring += String.fromCharCode((c >> 12) | 224);
+                    utfstring += String.fromCharCode(((c >> 6) & 63) | 128);
+                    utfstring += String.fromCharCode((c & 63) | 128);
+                }
+
+            }
+            return utfstring;
+        },
+
+        /**
+         * Make a string shorter without cutting words
+         *
+         * @method shortString
+         * @param {String} str
+         * @param {Number} n - number of chars of the short string
+         * @return {String} string shortened
+         * @public
+         * @static
+         */
+        shortString: function(str,n) {
+          var words = str.split(' ');
+          var resultstr = '';
+          for(var i = 0; i < words.length; i++ ){
+            if((resultstr + words[i] + ' ').length>=n){
+              resultstr += '&hellip;';
+              break;
+              }
+            resultstr += words[i] + ' ';
+            }
+          return resultstr;
+        },
+
+        /**
+         * Truncates a string, breaking words and adding ... at the end
+         *
+         * @method truncateString
+         * @param {String} str
+         * @param {Number} length - length limit for the string. String will be
+         *        at most this big, ellipsis included.
+         * @return {String} string truncated
+         * @public
+         * @static
+         */
+        truncateString: function(str, length) {
+            if(str.length - 1 > length) {
+                return str.substr(0, length - 1) + "\u2026";
+            } else {
+                return str;
+            }
+        },
+
+        /**
+         * Decode a string from UTF8
+         *
+         * @method utf8Decode
+         * @param {String} string
+         * @return {String} string utf8 decoded
+         * @public
+         * @static
+         */
+        utf8Decode: function(utfstring)
+        {
+            var string = "";
+            var i = 0, c = 0, c2 = 0, c3 = 0;
+
+            while ( i < utfstring.length ) {
+
+                c = utfstring.charCodeAt(i);
+
+                if (c < 128) {
+                    string += String.fromCharCode(c);
+                    i++;
+                }
+                else if((c > 191) && (c < 224)) {
+                    c2 = utfstring.charCodeAt(i+1);
+                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    i += 2;
+                }
+                else {
+                    c2 = utfstring.charCodeAt(i+1);
+                    c3 = utfstring.charCodeAt(i+2);
+                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    i += 3;
+                }
+
+            }
+            return string;
+        },
+
+        /**
+         * Convert all accented chars to char without accent.
+         *
+         * @method removeAccentedChars
+         * @param {String} string
+         * @return {String} string without accented chars
+         * @public
+         * @static
+         */
+        removeAccentedChars: function(string)
+        {
+            var newString = string;
+            var re = false;
+            for (var i = 0; i < InkUtilString._accentedChars.length; i++) {
+                re = new RegExp(InkUtilString._accentedChars[i], "gm");
+                newString = newString.replace(re, '' + InkUtilString._accentedRemovedChars[i] + '');
+            }
+            return newString;
+        },
+
+        /**
+         * Count the number of occurrences of a specific needle in a haystack
+         *
+         * @method substrCount
+         * @param {String} haystack
+         * @param {String} needle
+         * @return {Number} Number of occurrences
+         * @public
+         * @static
+         */
+        substrCount: function(haystack,needle)
+        {
+            return haystack ? haystack.split(needle).length - 1 : 0;
+        },
+
+        /**
+         * Eval a JSON string to a JS object
+         *
+         * @method evalJSON
+         * @param {String} strJSON
+         * @param {Boolean} sanitize
+         * @return {Object} JS Object
+         * @public
+         * @static
+         */
+        evalJSON: function(strJSON, sanitize) {
+            /* jshint evil:true */
+            if( (typeof sanitize === 'undefined' || sanitize === null) || InkUtilString.isJSON(strJSON)) {
+                try {
+                    if(typeof(JSON) !== "undefined" && typeof(JSON.parse) !== 'undefined'){
+                        return JSON.parse(strJSON);
+                    }
+                    return eval('('+strJSON+')');
+                } catch(e) {
+                    throw new Error('ERROR: Bad JSON string...');
+                }
+            }
+        },
+
+        /**
+         * Checks if a string is a valid JSON object (string encoded)
+         *
+         * @method isJSON
+         * @param {String} str
+         * @return {Boolean}
+         * @public
+         * @static
+         */
+        isJSON: function(str)
+        {
+            str = str.replace(/\\./g, '@').replace(/"[^"\\\n\r]*"/g, '');
+            return (/^[,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t]*$/).test(str);
+        },
+
+        /**
+         * Escapes unsafe html chars to their entities
+         *
+         * @method htmlEscapeUnsafe
+         * @param {String} str String to escape
+         * @return {String} Escaped string
+         * @public
+         * @static
+         */
+        htmlEscapeUnsafe: function(str){
+            var chars = InkUtilString._htmlUnsafeChars;
+            return str != null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
+        },
+
+        /**
+         * Normalizes whitespace in string.
+         * String is trimmed and sequences of many
+         * Whitespaces are collapsed.
+         *
+         * @method normalizeWhitespace
+         * @param {String} str String to normalize
+         * @return {String} string normalized
+         * @public
+         * @static
+         */
+        normalizeWhitespace: function(str){
+            return str != null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
+        },
+
+        /**
+         * Converts string to unicode
+         *
+         * @method toUnicode
+         * @param {String} str
+         * @return {String} string unicoded
+         * @public
+         * @static
+         */
+        toUnicode: function(str)
+        {
+            if (typeof str === 'string') {
+                var unicodeString = '';
+                var inInt = false;
+                var theUnicode = false;
+                var total = str.length;
+                var i=0;
+
+                while(i < total)
+                {
+                    inInt = str.charCodeAt(i);
+                    if( (inInt >= 32 && inInt <= 126) ||
+                            inInt == 8 ||
+                            inInt == 9 ||
+                            inInt == 10 ||
+                            inInt == 12 ||
+                            inInt == 13 ||
+                            inInt == 32 ||
+                            inInt == 34 ||
+                            inInt == 47 ||
+                            inInt == 58 ||
+                            inInt == 92) {
+
+                        /*
+                        if(inInt == 34 || inInt == 92 || inInt == 47) {
+                            theUnicode = '\\'+str.charAt(i);
+                        } else {
+                        }
+                        */
+                        if(inInt == 8) {
+                            theUnicode = '\\b';
+                        } else if(inInt == 9) {
+                            theUnicode = '\\t';
+                        } else if(inInt == 10) {
+                            theUnicode = '\\n';
+                        } else if(inInt == 12) {
+                            theUnicode = '\\f';
+                        } else if(inInt == 13) {
+                            theUnicode = '\\r';
+                        } else {
+                            theUnicode = str.charAt(i);
+                        }
+                    } else {
+                        theUnicode = str.charCodeAt(i).toString(16)+''.toUpperCase();
+                        while (theUnicode.length < 4) {
+                            theUnicode = '0' + theUnicode;
+                        }
+                        theUnicode = '\\u' + theUnicode;
+                    }
+                    unicodeString += theUnicode;
+
+                    i++;
+                }
+                return unicodeString;
+            }
+        },
+
+        /**
+         * Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX
+         *
+         * @method escape
+         * @param {String} c Char
+         * @return {String} escaped char
+         * @public
+         * @static
+         */
+
+        /**
+         * @param {String} c char
+         */
+        escape: function(c) {
+            var hex = (c).charCodeAt(0).toString(16).split('');
+            if (hex.length < 3) {
+                while (hex.length < 2) { hex.unshift('0'); }
+                hex.unshift('x');
+            }
+            else {
+                while (hex.length < 4) { hex.unshift('0'); }
+                hex.unshift('u');
+            }
+
+            hex.unshift('\\');
+            return hex.join('');
+        },
+
+        /**
+         * Unescapes a unicode character escape sequence
+         *
+         * @method unescape
+         * @param {String} es Escape sequence
+         * @return {String} String des-unicoded
+         * @public
+         * @static
+         */
+        unescape: function(es) {
+            var idx = es.lastIndexOf('0');
+            idx = idx === -1 ? 2 : Math.min(idx, 2);
+            //console.log(idx);
+            var hexNum = es.substring(idx);
+            //console.log(hexNum);
+            var num = parseInt(hexNum, 16);
+            return String.fromCharCode(num);
+        },
+
+        /**
+         * Escapes a string to unicode characters
+         *
+         * @method escapeText
+         * @param {String} txt
+         * @param {Array} [whiteList]
+         * @return {String} Escaped to Unicoded string
+         * @public
+         * @static
+         */
+        escapeText: function(txt, whiteList) {
+            if (whiteList === undefined) {
+                whiteList = ['[', ']', '\'', ','];
+            }
+            var txt2 = [];
+            var c, C;
+            for (var i = 0, f = txt.length; i < f; ++i) {
+                c = txt[i];
+                C = c.charCodeAt(0);
+                if (C < 32 || C > 126 && whiteList.indexOf(c) === -1) {
+                    c = InkUtilString.escape(c);
+                }
+                txt2.push(c);
+            }
+            return txt2.join('');
+        },
+
+        /**
+         * Regex to check escaped strings
+         *
+         * @property escapedCharRegex
+         * @type {Regex}
+         * @public
+         * @readOnly
+         * @static
+         */
+        escapedCharRegex: /(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4})/g,
+
+        /**
+         * Unescapes a string
+         *
+         * @method unescapeText
+         * @param {String} txt
+         * @return {String} Unescaped string
+         * @public
+         * @static
+         */
+        unescapeText: function(txt) {
+            /*jshint boss:true */
+            var m;
+            while (m = InkUtilString.escapedCharRegex.exec(txt)) {
+                m = m[0];
+                txt = txt.replace(m, InkUtilString.unescape(m));
+                InkUtilString.escapedCharRegex.lastIndex = 0;
+            }
+            return txt;
+        },
+
+        /**
+         * Compares two strings
+         *
+         * @method strcmp
+         * @param {String} str1
+         * @param {String} str2
+         * @return {Number}
+         * @public
+         * @static
+         */
+        strcmp: function(str1, str2) {
+            return ((str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1));
+        },
+
+        /**
+         * Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,
+         * last can measure maxLen or less)
+         *
+         * @method packetize
+         * @param {String} string string to divide
+         * @param {Number} maxLen packet size
+         * @return {Array} string divided
+         * @public
+         * @static
+         */
+        packetize: function(str, maxLen) {
+            var len = str.length;
+            var parts = new Array( Math.ceil(len / maxLen) );
+            var chars = str.split('');
+            var sz, i = 0;
+            while (len) {
+                sz = Math.min(maxLen, len);
+                parts[i++] = chars.splice(0, sz).join('');
+                len -= sz;
+            }
+            return parts;
+        }
+    };
+
+    return InkUtilString;
 
 });
 
@@ -7483,391 +8821,727 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Array_1
+ * @module Ink.Util.I18n_1
  * @author inkdev AT sapo.pt
- * @version 1
  */
-Ink.createModule('Ink.Util.Array', '1', [], function() {
 
+Ink.createModule('Ink.Util.I18n', '1', [], function () {
     'use strict';
 
-    var arrayProto = Array.prototype;
+    var pattrText = /\{(?:(\{.*?})|(?:%s:)?(\d+)|(?:%s)?|([\w-]+))}/g;
 
-    /**
-     * Utility functions to use with Arrays
-     *
-     * @class Ink.Util.Array
-     * @version 1
-     * @static
-     */
-    var InkArray = {
-
-        /**
-         * Checks if value exists in array
-         *
-         * @method inArray
-         * @param {Mixed} value
-         * @param {Array} arr
-         * @return {Boolean}    True if value exists in the array
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3' ];
-         *         if( InkArray.inArray( 'value2', testArray ) === true ){
-         *             console.log( "Yep it's in the array." );
-         *         } else {
-         *             console.log( "No it's NOT in the array." );
-         *         }
-         *     });
-         */
-        inArray: function(value, arr) {
-            if (typeof arr === 'object') {
-                for (var i = 0, f = arr.length; i < f; ++i) {
-                    if (arr[i] === value) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        },
-
-        /**
-         * Sorts an array of object by an object property
-         *
-         * @method sortMulti
-         * @param {Array} arr array of objects to sort
-         * @param {String} key property to sort by
-         * @return {Array|Boolean} False if it's not an array, returns a sorted array if it's an array.
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [
-         *             { 'myKey': 'value1' },
-         *             { 'myKey': 'value2' },
-         *             { 'myKey': 'value3' }
-         *         ];
-         *
-         *         InkArray.sortMulti( testArray, 'myKey' );
-         *     });
-         */
-        sortMulti: function(arr, key) {
-            if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
-            if (typeof key !== 'string') { return arr.sort(); }
-            if (arr.length > 0) {
-                if (typeof(arr[0][key]) === 'undefined') { return false; }
-                arr.sort(function(a, b){
-                    var x = a[key];
-                    var y = b[key];
-                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-                });
-            }
-            return arr;
-        },
-
-        /**
-         * Returns the associated key of an array value
-         *
-         * @method keyValue
-         * @param {String} value Value to search for
-         * @param {Array} arr Array where the search will run
-         * @param {Boolean} [first] Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes.
-         * @return {Boolean|Number|Array} False if not exists | number if exists and 3rd input param is true | array if exists and 3rd input param is not set or it is !== true
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
-         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
-         *     });
-         */
-        keyValue: function(value, arr, first) {
-            if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
-                var aKeys = [];
-                for (var i = 0, f = arr.length; i < f; ++i) {
-                    if (arr[i] === value) {
-                        if (typeof first !== 'undefined' && first === true) {
-                            return i;
-                        } else {
-                            aKeys.push(i);
-                        }
-                    }
-                }
-                return aKeys;
-            }
-            return false;
-        },
-
-        /**
-         * Returns the array shuffled, false if the param is not an array
-         *
-         * @method shuffle
-         * @param {Array} arr Array to shuffle
-         * @return {Boolean|Number|Array} False if not an array | Array shuffled
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
-         *     });
-         */
-        shuffle: function(arr) {
-            if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
-            var total   = arr.length,
-                tmp1    = false,
-                rnd     = false;
-
-            while (total--) {
-                rnd        = Math.floor(Math.random() * (total + 1));
-                tmp1       = arr[total];
-                arr[total] = arr[rnd];
-                arr[rnd]   = tmp1;
-            }
-            return arr;
-        },
-
-        /**
-         * Runs a function through each of the elements of an array
-         *
-         * @method forEach
-         * @param {Array} arr Array to be cycled/iterated
-         * @param {Function} cb The function receives as arguments the value, index and array.
-         * @return {Array} Array iterated.
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
-         *         InkArray.forEach( testArray, function( value, index, arr ){
-         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
-         *         });
-         *     });
-         */
-        forEach: function(array, callback, context) {
-            if (arrayProto.forEach) {
-                return arrayProto.forEach.call(array, callback, context);
-            }
-            for (var i = 0, len = array.length >>> 0; i < len; i++) {
-                callback.call(context, array[i], i, array);
-            }
-        },
-
-        /**
-         * Alias for backwards compatibility. See forEach
-         *
-         * @method forEach
-         */
-        each: function () {
-            InkArray.forEach.apply(InkArray, [].slice.call(arguments));
-        },
-
-        /**
-         * Run a `map` function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.
-         * @method map
-         * @param {Array} array     The array to map over
-         * @param {Function} map    The map function. Will take `(item, index, array)` and `this` will be the `context` argument.
-         * @param {Object} [context]    Object to be `this` in the map function.
-         *
-         * @example
-         *      InkArray.map([1, 2, 3, 4], function (item) {
-         *          return item + 1;
-         *      }); // -> [2, 3, 4, 5]
-         */
-        map: function (array, callback, context) {
-            if (arrayProto.map) {
-                return arrayProto.map.call(array, callback, context);
-            }
-            var mapped = new Array(len);
-            for (var i = 0, len = array.length >>> 0; i < len; i++) {
-                mapped[i] = callback.call(context, array[i], i, array);
-            }
-            return mapped;
-        },
-
-        /**
-         * Run a test function through all the input array. Items which pass the test function (for which the test function returned `true`) are kept in the array. Other items are removed.
-         * @param {Array} array
-         * @param {Function} test       A test function taking `(item, index, array)`
-         * @param {Object} [context]    Object to be `this` in the test function.
-         * @return filtered array
-         *
-         * @example
-         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
-         *          return val > 2;
-         *      })  // -> [3, 4, 5]
-         */
-        filter: function (array, test, context) {
-            if (arrayProto.filter) {
-                return arrayProto.filter.call(array, test, context);
-            }
-            var filtered = [],
-                val = null;
-            for (var i = 0, len = array.length; i < len; i++) {
-                val = array[i]; // it might be mutated
-                if (test.call(context, val, i, array)) {
-                    filtered.push(val);
-                }
-            }
-            return filtered;
-        },
-
-        /**
-         * Runs a callback function, which should return true or false.
-         * If one of the 'runs' returns true, it will return. Otherwise if none returns true, it will return false.
-         * See more at: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some (MDN)
-         *
-         * @method some
-         * @param {Array} arr The array you walk to iterate through
-         * @param {Function} cb The callback that will be called on the array's elements. It receives the value, the index and the array as arguments.
-         * @param {Object} Context object of the callback function
-         * @return {Boolean} True if the callback returns true at any point, false otherwise
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
-         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
-         *
-         *         function myTestFunction( value, index, arr ){
-         *             if( value > 90 ){
-         *                 return true;
-         *             }
-         *             return false;
-         *         }
-         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
-         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
-         *     });
-         */
-        some: function(arr, cb, context){
-
-            if (arr === null){
-                throw new TypeError('First argument is invalid.');
-            }
-
-            var t = Object(arr);
-            var len = t.length >>> 0;
-            if (typeof cb !== "function"){ throw new TypeError('Second argument must be a function.'); }
-
-            for (var i = 0; i < len; i++) {
-                if (i in t && cb.call(context, t[i], i, t)){ return true; }
-            }
-
-            return false;
-        },
-
-        /**
-         * Returns an array containing every item that is shared between the two given arrays
-         *
-         * @method intersect
-         * @param {Array} arr Array1 to be intersected with Array2
-         * @param {Array} arr Array2 to be intersected with Array1
-         * @return {Array} Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
-         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
-         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
-         *     });
-         */
-        intersect: function(arr1, arr2) {
-            if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
-                return [];
-            }
-
-            var shared = [];
-            for (var i = 0, I = arr1.length; i<I; ++i) {
-                for (var j = 0, J = arr2.length; j < J; ++j) {
-                    if (arr1[i] === arr2[j]) {
-                        shared.push(arr1[i]);
-                    }
-                }
-            }
-
-            return shared;
-        },
-
-        /**
-         * Convert lists type to type array
-         *
-         * @method convert
-         * @param {Array} arr Array to be converted
-         * @return {Array} Array resulting of the conversion
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         testArray.myMethod = function(){
-         *             console.log('stuff');
-         *         }
-         *
-         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
-         *     });
-         */
-        convert: function(arr) {
-            return arrayProto.slice.call(arr || [], 0);
-        },
-
-        /**
-         * Insert value into the array on specified idx
-         *
-         * @method insert
-         * @param {Array} arr Array where the value will be inserted
-         * @param {Number} idx Index of the array where the value should be inserted
-         * @param {Mixed} value Value to be inserted
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2' ];
-         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
-         *     });
-         */
-        insert: function(arr, idx, value) {
-            arr.splice(idx, 0, value);
-        },
-
-        /**
-         * Remove a range of values from the array
-         *
-         * @method remove
-         * @param {Array} arr Array where the value will be inserted
-         * @param {Number} from Index of the array where the removal will start removing.
-         * @param {Number} rLen Number of items to be removed from the index onwards.
-         * @return {Array} An array with the remaining values
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
-         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
-         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
-         *     });
-         */
-        remove: function(arr, from, rLen){
-            var output = [];
-
-            for(var i = 0, iLen = arr.length; i < iLen; i++){
-                if(i >= from && i < from + rLen){
-                    continue;
-                }
-
-                output.push(arr[i]);
-            }
-
-            return output;
+    var funcOrVal = function( ret , args ) {
+        if ( typeof ret === 'function' ) {
+            return ret.apply(this, args);
+        } else if (typeof ret !== undefined) {
+            return ret;
+        } else {
+            return '';
         }
     };
 
-    return InkArray;
+    /**
+     * Creates a new internationalization helper object
+     *
+     * @class Ink.Util.I18n
+     * @constructor
+     *
+     * @param {Object} dict object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
+     *     @param {Object} dict.(dictionaries...) 
+     * @param {String} [lang='pt_PT'] language code of the target language
+     *
+     * @example
+     *      var dictionaries = {    // This could come from a JSONP request from your server
+     *          'pt_PT': {
+     *              'hello': 'olá',
+     *              'me': 'eu',
+     *              'i have a {} for you': 'tenho um {} para ti' // Old syntax using `{%s}` tokens still available
+     *          },
+     *          'pt_BR': {
+     *              'hello': 'oi',
+     *              'me': 'eu',
+     *              'i have a {} for you': 'tenho um {} para você'
+     *          }
+     *      };
+     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
+     *          var i18n = new I18n(dictionaries, 'pt_PT');
+     *          i18n.text('hello');  // returns 'olá'
+     *          i18n.text('i have a {} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
+     *          
+     *          i18n.lang('pt_BR');  // Changes language. pt_BR dictionary is loaded
+     *          i18n.text('hello');  // returns 'oi'
+     *
+     *          i18n.lang('en_US');  // Missing language.
+     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
+     *      });
+     *      
+     *  @example
+     *      // The old {%s} syntax from libsapo's i18n is still supported
+     *      i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
+     */
+    var I18n = function( dict , lang , testMode ) {
+        if ( !( this instanceof I18n ) ) { return new I18n( dict , lang , testMode ); }
 
+        this.reset( )
+            .lang( lang )
+            .testMode( testMode )
+            .append( dict || { } , lang );
+    };
+
+    I18n.prototype = {
+        reset: function( ) {
+            this._dicts    = [ ];
+            this._dict     = { };
+            this._testMode = false;
+            this._lang     = this._gLang;
+
+            return this;
+        },
+        /**
+         * Adds translation strings for this helper to use.
+         *
+         * @method append
+         * @param {Object} dict object containing language objects identified by their language code
+         * @example
+         *     var i18n = new I18n({}, 'pt_PT');
+         *     i18n.append({'pt_PT': {
+         *         'sfraggles': 'braggles'
+         *     }});
+         *     i18n.text('sfraggles') // -> 'braggles'
+         */
+        append: function( dict ) {
+            this._dicts.push( dict );
+
+            this._dict = Ink.extendObj(this._dict , dict[ this._lang ] );
+
+            return this;
+        },
+        /**
+         * Get the language code
+         *
+         * @returns {String} the language code for this instance
+         * @method {String} lang
+         */
+        /**
+         * Set the language. If there are more dictionaries available in cache, they will be loaded.
+         *
+         * @method  lang
+         * @param   lang    {String} Language code to set this instance to.
+         */
+        lang: function( lang ) {
+            if ( !arguments.length ) { return this._lang; }
+
+            if ( lang && this._lang !== lang ) {
+                this._lang = lang;
+
+                this._dict = { };
+
+                for ( var i = 0, l = this._dicts.length; i < l; i++ ) {
+                    this._dict = Ink.extendObj( this._dict , this._dicts[ i ][ lang ] || { } );
+                }
+            }
+
+            return this;
+        },
+        /**
+         * Get the testMode
+         *
+         * @returns {Boolean} the testMode for this instance
+         * @method {Boolean} testMode
+         */
+        /**
+         * Sets or unsets test mode. In test mode, unknown strings are wrapped
+         * in `[ ... ]`. This is useful for debugging your application and
+         * making sure all your translation keys are in place.
+         *
+         * @method testMode
+         * @param {Boolean} bool boolean value to set the test mode to.
+         */
+        testMode: function( bool ) {
+            if ( !arguments.length ) { return !!this._testMode; }
+
+            if ( bool !== undefined  ) { this._testMode = !!bool; }
+
+            return this;
+        },
+
+        /**
+         * Return an arbitrary key from the current language dictionary
+         *
+         * @method getKey
+         * @param {String} key
+         * @return {Any} The object which happened to be in the current language dictionary on the given key.
+         *
+         * @example
+         *      _.getKey('astring'); // -> 'a translated string'
+         *      _.getKey('anobject'); // -> {'a': 'translated object'}
+         *      _.getKey('afunction'); // -> function () { return 'this is a localized function' }
+         */
+        getKey: function( key ) {
+            var ret;
+            var gLang = this._gLang;
+            var lang  = this._lang;
+    
+            if ( key in this._dict ) {
+                ret = this._dict[ key ];
+            } else {
+                I18n.lang( lang );
+    
+                ret = this._gDict[ key ];
+    
+                I18n.lang( gLang );
+            }
+    
+            return ret;
+        },
+
+        /**
+         * Given a translation key, return a translated string, with replaced parameters.
+         * When a translated string is not available, the original string is returned unchanged.
+         *
+         * @method {String} text
+         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
+         * @param {Object} [namedParms] named replacements. Replaces {named} with values in this object.
+         * @param {String} [arg1] replacement #1 (replaces first {} and all {1})
+         * @param {String} [arg2] replacement #2 (replaces second {} and all {2})
+         * @param {String} [argn...] replacement #n (replaces nth {} and all {n})
+         *
+         * @example
+         *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
+         *      // returns 'Gosto muito de carros e o céu é azul.'
+         *
+         * @example
+         *      _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
+         *      // returns 'O carro é azul como azul é o FCP.'
+         *
+         *  @example
+         *      _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
+         *      // -> 'O coisinho dava-se com a coisinha'
+         *
+         *  @example
+         *      // This is a bit more complex
+         *      var i18n = make().lang('pt_PT').append({
+         *          pt_PT: {
+         *              array: [1, 2],
+         *              object: {'a': '-a-', 'b': '-b-'},
+         *              func: function (a, b) {return '[[' + a + ',' + b + ']]';}
+         *          }
+         *      });
+         *      i18n.text('array', 0); // -> '1'
+         *      i18n.text('object', 'a'); // -> '-a-'
+         *      i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
+         */
+        text: function( str /*, replacements...*/ ) {
+            if ( typeof str !== 'string' ) { return; } // Backwards-compat
+
+            var pars = Array.prototype.slice.call( arguments , 1 );
+            var idx = 0;
+            var isObj = typeof pars[ 0 ] === 'object';
+
+            var original = this.getKey( str );
+            if ( original === undefined ) { original = this._testMode ? '[' + str + ']' : str; }
+            if ( typeof original === 'number' ) { original += ''; }
+
+            if (typeof original === 'string') {
+                original = original.replace( pattrText , function( m , $1 , $2 , $3 ) {
+                    var ret =
+                        $1 ? $1 :
+                        $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
+                        $3 ? pars[ 0 ][ $3 ] || '' :
+                             pars[ (idx++) + ( isObj ? 1 : 0 ) ]
+                    return funcOrVal( ret , [idx].concat(pars) );
+                });
+                return original;
+            }
+             
+            return (
+                typeof original === 'function' ? original.apply( this , pars ) :
+                original instanceof Array      ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
+                typeof original === 'object'   ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
+                                                 '');
+        },
+
+        /**
+         * Given a singular string, a plural string, and a number, translates
+         * either the singular or plural string.
+         *
+         * @method ntext
+         * @return {String}
+         *
+         * @param {String} strSin   word to use when count is 1
+         * @param {String} strPlur  word to use otherwise
+         * @param {Number} count    number which defines which word to use
+         * @param [...]             extra arguments, to be passed to `text()`
+         *
+         * @example
+         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
+         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
+         * 
+         * @example
+         *     // The "count" argument is passed to text()
+         *     i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
+         *     i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
+         */
+        ntext: function( strSin , strPlur , count ) {
+            var pars = Array.prototype.slice.apply( arguments );
+            var original;
+
+            if ( pars.length === 2 && typeof strPlur === 'number' ) {
+                original = this.getKey( strSin );
+                if ( !( original instanceof Array ) ) { return ''; }
+
+                pars.splice( 0 , 1 );
+                original = original[ strPlur === 1 ? 0 : 1 ];
+            } else {
+                pars.splice( 0 , 2 );
+                original = count === 1 ? strSin : strPlur;
+            }
+
+            return this.text.apply( this , [ original ].concat( pars ) );
+        },
+
+        /**
+         * Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
+         *
+         * This works by using transforms (in the form of Objects or Functions) passed into the
+         * function or found in the special key `_ordinals` in the active language dictionary.
+         *
+         * @method ordinal
+         *
+         * @param {Number}          num             Input number
+         * 
+         * @param {Object|Function} [options={}]
+         *
+         *    Maps for translating. Each of these options' fallback is found in the current
+         *    language's dictionary. The lookup order is the following:
+         *   
+         *        1. `exceptions`
+         *        2. `byLastDigit`
+         *        3. `default`
+         *   
+         *    Each of these may be either an `Object` or a `Function`. If it's a function, it
+         *    is called (with `number` and `digit` for any function except for byLastDigit,
+         *    which is called with the `lastDigit` of the number in question), and if the
+         *    function returns a string, that is used. If it's an object, the property is
+         *    looked up using `[...]`. If what is found is a string, it is used.
+         *
+         * @param {Object|Function} [options.byLastDigit={}]
+         *    If the language requires the last digit to be considered, mappings of last digits
+         *    to ordinal suffixes can be created here.
+         *
+         * @param {Object|Function} [options.exceptions={}]
+         *    Map unique, special cases to their ordinal suffixes.
+         *
+         * @returns {String}        Ordinal suffix for `num`.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         pt_PT: {  // 1º, 2º, 3º, 4º, ...
+         *             _ordinal: {  // The _ordinals key each translation dictionary is special.
+         *                 'default': "º" // Usually the suffix is "º" in portuguese...
+         *             }
+         *         },
+         *         fr: {  // 1er, 2e, 3e, 4e, ...
+         *             _ordinal: {  // The _ordinals key is special.
+         *                 'default': "e", // Usually the suffix is "e" in french...
+         *                 exceptions: {
+         *                     1: "er"   // ... Except for the number one.
+         *                 }
+         *             }
+         *         },
+         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
+         *             _ordinal: {
+         *                 'default': "th",// Usually the digit is "th" in english...
+         *                 byLastDigit: {
+         *                     1: "st",  // When the last digit is 1, use "th"...
+         *                     2: "nd",  // When the last digit is 2, use "nd"...
+         *                     3: "rd"   // When the last digit is 3, use "rd"...
+         *                 },
+         *                 exceptions: { // But these numbers are special
+         *                     0: "",
+         *                     11: "th",
+         *                     12: "th",
+         *                     13: "th"
+         *                 }
+         *             }
+         *         }
+         *     }, 'pt_PT');
+         *
+         *     i18n.ordinal(1);    // returns 'º'
+         *     i18n.ordinal(2);    // returns 'º'
+         *     i18n.ordinal(11);   // returns 'º'
+         * 
+         *     i18n.lang('fr');
+         *     i18n.ordinal(1);    // returns 'er'
+         *     i18n.ordinal(2);    // returns 'e'
+         *     i18n.ordinal(11);   // returns 'e'
+         *
+         *     i18n.lang('en_US');
+         *     i18n.ordinal(1);    // returns 'st'
+         *     i18n.ordinal(2);    // returns 'nd'
+         *     i18n.ordinal(12);   // returns 'th'
+         *     i18n.ordinal(22);   // returns 'nd'
+         *     i18n.ordinal(3);    // returns 'rd'
+         *     i18n.ordinal(4);    // returns 'th'
+         *     i18n.ordinal(5);    // returns 'th'
+         *
+         **/
+        ordinal: function( num ) {
+            if ( num === undefined ) { return ''; }
+
+            var lastDig = +num.toString( ).slice( -1 );
+
+            var ordDict  = this.getKey( '_ordinals' );
+            if ( ordDict === undefined ) { return ''; }
+
+            if ( typeof ordDict === 'string' ) { return ordDict; }
+
+            var ret;
+
+            if ( typeof ordDict === 'function' ) {
+                ret = ordDict( num , lastDig );
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            if ( 'exceptions' in ordDict ) {
+                ret = typeof ordDict.exceptions === 'function' ? ordDict.exceptions( num , lastDig ) :
+                      num in ordDict.exceptions                ? funcOrVal( ordDict.exceptions[ num ] , [num , lastDig] ) :
+                                                                 undefined;
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            if ( 'byLastDigit' in ordDict ) {
+                ret = typeof ordDict.byLastDigit === 'function' ? ordDict.byLastDigit( lastDig , num ) :
+                      lastDig in ordDict.byLastDigit            ? funcOrVal( ordDict.byLastDigit[ lastDig ] , [lastDig , num] ) :
+                                                                  undefined;
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            if ( 'default' in ordDict ) {
+                ret = funcOrVal( ordDict['default'] , [ num , lastDig ] );
+
+                if ( typeof ret === 'string' ) { return ret; }
+            }
+
+            return '';
+        },
+
+        /**
+         * Returns an alias to `text()`, for convenience. The resulting function is
+         * traditionally assigned to "_".
+         *
+         * @method alias
+         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
+         *
+         * @example
+         *     var i18n = new I18n({
+         *         'pt_PT': {
+         *             'hi': 'olá',
+         *             '{} day': '{} dia',
+         *             '{} days': '{} dias',
+         *             '_ordinals': {
+         *                 'default': 'º'
+         *             }
+         *         }
+         *     }, 'pt_PT');
+         *     var _ = i18n.alias();
+         *     _('hi');  // -> 'olá'
+         *     _('{} days', 3);  // -> '3 dias'
+         *     _.ntext('{} day', '{} days', 2);  // -> '2 dias'
+         *     _.ntext('{} day', '{} days', 1);  // -> '1 dia'
+         *     _.ordinal(3);  // -> 'º'
+         */
+        alias: function( ) {
+            var ret      = Ink.bind( I18n.prototype.text     , this );
+            ret.ntext    = Ink.bind( I18n.prototype.ntext    , this );
+            ret.append   = Ink.bind( I18n.prototype.append   , this );
+            ret.ordinal  = Ink.bind( I18n.prototype.ordinal  , this );
+            ret.testMode = Ink.bind( I18n.prototype.testMode , this );
+
+            return ret;
+        }
+    };
+
+    /**
+     * @static
+     * @method I18n.reset
+     *
+     * Reset I18n global state (global dictionaries, and default language for instances)
+     **/
+    I18n.reset = function( ) {
+        I18n.prototype._gDicts = [ ];
+        I18n.prototype._gDict  = { };
+        I18n.prototype._gLang  = 'pt_PT';
+    };
+    I18n.reset( );
+
+    /**
+     * @static
+     * @method I18n.append
+     *
+     * @param dict {Object}     Dictionary to be added
+     * @param lang {String}     Language to be added to
+     *
+     * Add a dictionary to be used in all I18n instances for the corresponding language
+     */
+    I18n.append = function( dict , lang ) {
+        if ( lang ) {
+            if ( !( lang in dict ) ) {
+                var obj = { };
+
+                obj[ lang ] = dict;
+
+                dict = obj;
+            }
+
+            if ( lang !== I18n.prototype._gLang ) { I18n.lang( lang ); }
+        }
+
+        I18n.prototype._gDicts.push( dict );
+
+        Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
+    };
+
+    /**
+     * @static
+     * @method I18n.lang
+     * 
+     * @param lang {String} String in the format `"pt_PT"`, `"fr"`, etc.
+     *
+     * Set global default language of I18n instances to `lang`
+     */
+    /**
+     * @static
+     * @method I18n.lang
+     *
+     * Get the current default language of I18n instances.
+     *
+     * @return {String} language code
+     */
+    I18n.lang = function( lang ) {
+        if ( !arguments.length ) { return I18n.prototype._gLang; }
+
+        if ( lang && I18n.prototype._gLang !== lang ) {
+            I18n.prototype._gLang = lang;
+
+            I18n.prototype._gDict = { };
+
+            for ( var i = 0, l = I18n.prototype._gDicts.length; i < l; i++ ) {
+                Ink.extendObj( I18n.prototype._gDict , I18n.prototype._gDicts[ i ][ lang ] || { } );
+            }
+        }
+    };
+    
+    return I18n;
 });
 
+/**
+ * @module Ink.Util.Dumper_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.Util.Dumper', '1', [], function() {
 
+    'use strict';
+
+    /**
+     * Dump/Profiling Utilities
+     *
+     * @class Ink.Util.Dumper
+     * @version 1
+     * @static
+     */
+    var Dumper = {
+
+        /**
+         * Hex code for the 'tab'
+         * 
+         * @property _tab
+         * @type {String}
+         * @private
+         * @readOnly
+         * @static
+         *
+         */
+        _tab: '\xA0\xA0\xA0\xA0',
+
+        /**
+         * Function that returns the argument passed formatted
+         *
+         * @method _formatParam
+         * @param {Mixed} param
+         * @return {String} The argument passed formatted
+         * @private
+         * @static
+         */
+        _formatParam: function(param)
+        {
+            var formated = '';
+
+            switch(typeof(param)) {
+                case 'string':
+                    formated = '(string) '+param;
+                    break;
+                case 'number':
+                    formated = '(number) '+param;
+                    break;
+                case 'boolean':
+                    formated = '(boolean) '+param;
+                    break;
+                case 'object':
+                    if(param !== null) {
+                        if(param.constructor === Array) {
+                            formated = 'Array \n{\n' + this._outputFormat(param, 0) + '\n}';
+                        } else {
+                            formated = 'Object \n{\n' + this._outputFormat(param, 0) + '\n}';
+                        }
+                    } else {
+                        formated = 'null';
+                    }
+                    break;
+                default:
+                    formated = false;
+            }
+
+            return formated;
+        },
+
+        /**
+         * Function that returns the tabs concatenated
+         *
+         * @method _getTabs
+         * @param {Number} numberOfTabs Number of Tabs
+         * @return {String} Tabs concatenated
+         * @private
+         * @static
+         */
+        _getTabs: function(numberOfTabs)
+        {
+            var tabs = '';
+            for(var _i = 0; _i < numberOfTabs; _i++) {
+                tabs += this._tab;
+            }
+            return tabs;
+        },
+
+        /**
+         * Function that formats the parameter to display
+         *
+         * @method _outputFormat
+         * @param {Any} param
+         * @param {Number} dim
+         * @return {String} The parameter passed formatted to displat
+         * @private
+         * @static
+         */
+        _outputFormat: function(param, dim)
+        {
+            var formated = '';
+            //var _strVal = false;
+            var _typeof = false;
+            for(var key in param) {
+                if(param[key] !== null) {
+                    if(typeof(param[key]) === 'object' && (param[key].constructor === Array || param[key].constructor === Object)) {
+                        if(param[key].constructor === Array) {
+                            _typeof = 'Array';
+                        } else if(param[key].constructor === Object) {
+                            _typeof = 'Object';
+                        }
+                        formated += this._tab + this._getTabs(dim) + '[' + key + '] => <b>'+_typeof+'</b>\n';
+                        formated += this._tab + this._getTabs(dim) + '{\n';
+                        formated += this._outputFormat(param[key], dim + 1) + this._tab + this._getTabs(dim) + '}\n';
+                    } else if(param[key].constructor === Function) {
+                        continue;
+                    } else {
+                        formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => ' + param[key] + '\n';
+                    }
+                } else {
+                    formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => null \n';
+                }
+            }
+            return formated;
+        },
+
+        /**
+         * Print variable structure. Can be passed an output target
+         *
+         * @method printDump
+         * @param {Object|String|Boolean} param
+         * @param {optional String|Object} target (can be an element ID or an element)
+         * @public
+         * @static
+         */
+        printDump: function(param, target)
+        {
+            if(!target || typeof(target) === 'undefined') {
+                document.write('<pre>'+this._formatParam(param)+'</pre>');
+            } else {
+                if(typeof(target) === 'string') {
+                    document.getElementById(target).innerHTML = '<pre>' + this._formatParam(param) + '</pre>';
+                } else if(typeof(target) === 'object') {
+                    target.innerHTML = '<pre>'+this._formatParam(param)+'</pre>';
+                } else {
+                    throw "TARGET must be an element or an element ID";
+                }
+            }
+        },
+
+        /**
+         * Function that returns the variable's structure
+         *
+         * @method returnDump
+         * @param {Object|String|Boolean} param
+         * @return {String} The variable structure
+         * @public
+         * @static
+         */
+        returnDump: function(param)
+        {
+            return this._formatParam(param);
+        },
+
+        /**
+         * Function that alerts the variable structure
+         *
+         * @method alertDump
+         * @param {Object|String|Boolean} param
+         * @public
+         * @static
+         */
+        alertDump: function(param)
+        {
+            window.alert(this._formatParam(param).replace(/(<b>)(Array|Object)(<\/b>)/g, "$2"));
+        },
+
+        /**
+         * Print to new window the variable structure
+         *
+         * @method windowDump
+         * @param {Object|String|Boolean} param
+         * @public
+         * @static
+         */
+        windowDump: function(param)
+        {
+            var dumperwindow = 'dumperwindow_'+(Math.random() * 10000);
+            var win = window.open('',
+                dumperwindow,
+                'width=400,height=300,left=50,top=50,status,menubar,scrollbars,resizable'
+            );
+            win.document.open();
+            win.document.write('<pre>'+this._formatParam(param)+'</pre>');
+            win.document.close();
+            win.focus();
+        }
+
+    };
+
+    return Dumper;
+
+});
 
 /**
  * @module Ink.Util.Date_1
@@ -8650,729 +10324,6 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.Dumper_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.Util.Dumper', '1', [], function() {
-
-    'use strict';
-
-    /**
-     * Dump/Profiling Utilities
-     *
-     * @class Ink.Util.Dumper
-     * @version 1
-     * @static
-     */
-    var Dumper = {
-
-        /**
-         * Hex code for the 'tab'
-         * 
-         * @property _tab
-         * @type {String}
-         * @private
-         * @readOnly
-         * @static
-         *
-         */
-        _tab: '\xA0\xA0\xA0\xA0',
-
-        /**
-         * Function that returns the argument passed formatted
-         *
-         * @method _formatParam
-         * @param {Mixed} param
-         * @return {String} The argument passed formatted
-         * @private
-         * @static
-         */
-        _formatParam: function(param)
-        {
-            var formated = '';
-
-            switch(typeof(param)) {
-                case 'string':
-                    formated = '(string) '+param;
-                    break;
-                case 'number':
-                    formated = '(number) '+param;
-                    break;
-                case 'boolean':
-                    formated = '(boolean) '+param;
-                    break;
-                case 'object':
-                    if(param !== null) {
-                        if(param.constructor === Array) {
-                            formated = 'Array \n{\n' + this._outputFormat(param, 0) + '\n}';
-                        } else {
-                            formated = 'Object \n{\n' + this._outputFormat(param, 0) + '\n}';
-                        }
-                    } else {
-                        formated = 'null';
-                    }
-                    break;
-                default:
-                    formated = false;
-            }
-
-            return formated;
-        },
-
-        /**
-         * Function that returns the tabs concatenated
-         *
-         * @method _getTabs
-         * @param {Number} numberOfTabs Number of Tabs
-         * @return {String} Tabs concatenated
-         * @private
-         * @static
-         */
-        _getTabs: function(numberOfTabs)
-        {
-            var tabs = '';
-            for(var _i = 0; _i < numberOfTabs; _i++) {
-                tabs += this._tab;
-            }
-            return tabs;
-        },
-
-        /**
-         * Function that formats the parameter to display
-         *
-         * @method _outputFormat
-         * @param {Any} param
-         * @param {Number} dim
-         * @return {String} The parameter passed formatted to displat
-         * @private
-         * @static
-         */
-        _outputFormat: function(param, dim)
-        {
-            var formated = '';
-            //var _strVal = false;
-            var _typeof = false;
-            for(var key in param) {
-                if(param[key] !== null) {
-                    if(typeof(param[key]) === 'object' && (param[key].constructor === Array || param[key].constructor === Object)) {
-                        if(param[key].constructor === Array) {
-                            _typeof = 'Array';
-                        } else if(param[key].constructor === Object) {
-                            _typeof = 'Object';
-                        }
-                        formated += this._tab + this._getTabs(dim) + '[' + key + '] => <b>'+_typeof+'</b>\n';
-                        formated += this._tab + this._getTabs(dim) + '{\n';
-                        formated += this._outputFormat(param[key], dim + 1) + this._tab + this._getTabs(dim) + '}\n';
-                    } else if(param[key].constructor === Function) {
-                        continue;
-                    } else {
-                        formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => ' + param[key] + '\n';
-                    }
-                } else {
-                    formated = formated + this._tab + this._getTabs(dim) + '[' + key + '] => null \n';
-                }
-            }
-            return formated;
-        },
-
-        /**
-         * Print variable structure. Can be passed an output target
-         *
-         * @method printDump
-         * @param {Object|String|Boolean} param
-         * @param {optional String|Object} target (can be an element ID or an element)
-         * @public
-         * @static
-         */
-        printDump: function(param, target)
-        {
-            if(!target || typeof(target) === 'undefined') {
-                document.write('<pre>'+this._formatParam(param)+'</pre>');
-            } else {
-                if(typeof(target) === 'string') {
-                    document.getElementById(target).innerHTML = '<pre>' + this._formatParam(param) + '</pre>';
-                } else if(typeof(target) === 'object') {
-                    target.innerHTML = '<pre>'+this._formatParam(param)+'</pre>';
-                } else {
-                    throw "TARGET must be an element or an element ID";
-                }
-            }
-        },
-
-        /**
-         * Function that returns the variable's structure
-         *
-         * @method returnDump
-         * @param {Object|String|Boolean} param
-         * @return {String} The variable structure
-         * @public
-         * @static
-         */
-        returnDump: function(param)
-        {
-            return this._formatParam(param);
-        },
-
-        /**
-         * Function that alerts the variable structure
-         *
-         * @method alertDump
-         * @param {Object|String|Boolean} param
-         * @public
-         * @static
-         */
-        alertDump: function(param)
-        {
-            window.alert(this._formatParam(param).replace(/(<b>)(Array|Object)(<\/b>)/g, "$2"));
-        },
-
-        /**
-         * Print to new window the variable structure
-         *
-         * @method windowDump
-         * @param {Object|String|Boolean} param
-         * @public
-         * @static
-         */
-        windowDump: function(param)
-        {
-            var dumperwindow = 'dumperwindow_'+(Math.random() * 10000);
-            var win = window.open('',
-                dumperwindow,
-                'width=400,height=300,left=50,top=50,status,menubar,scrollbars,resizable'
-            );
-            win.document.open();
-            win.document.write('<pre>'+this._formatParam(param)+'</pre>');
-            win.document.close();
-            win.focus();
-        }
-
-    };
-
-    return Dumper;
-
-});
-
-/**
- * @module Ink.Util.I18n_1
- * @author inkdev AT sapo.pt
- */
-
-Ink.createModule('Ink.Util.I18n', '1', [], function () {
-    'use strict';
-
-    var pattrText = /\{(?:(\{.*?})|(?:%s:)?(\d+)|(?:%s)?|([\w-]+))}/g;
-
-    var funcOrVal = function( ret , args ) {
-        if ( typeof ret === 'function' ) {
-            return ret.apply(this, args);
-        } else if (typeof ret !== undefined) {
-            return ret;
-        } else {
-            return '';
-        }
-    };
-
-    /**
-     * Creates a new internationalization helper object
-     *
-     * @class Ink.Util.I18n
-     * @constructor
-     *
-     * @param {Object} dict object mapping language codes (in the form of `pt_PT`, `pt_BR`, `fr`, `en_US`, etc.) to their Object dictionaries.
-     *     @param {Object} dict.(dictionaries...) 
-     * @param {String} [lang='pt_PT'] language code of the target language
-     *
-     * @example
-     *      var dictionaries = {    // This could come from a JSONP request from your server
-     *          'pt_PT': {
-     *              'hello': 'olá',
-     *              'me': 'eu',
-     *              'i have a {} for you': 'tenho um {} para ti' // Old syntax using `{%s}` tokens still available
-     *          },
-     *          'pt_BR': {
-     *              'hello': 'oi',
-     *              'me': 'eu',
-     *              'i have a {} for you': 'tenho um {} para você'
-     *          }
-     *      };
-     *      Ink.requireModules(['Ink.Util.I18n_1'], function (I18n) {
-     *          var i18n = new I18n(dictionaries, 'pt_PT');
-     *          i18n.text('hello');  // returns 'olá'
-     *          i18n.text('i have a {} for you', 'IRON SWORD'); // returns 'tenho um IRON SWORD' para ti
-     *          
-     *          i18n.lang('pt_BR');  // Changes language. pt_BR dictionary is loaded
-     *          i18n.text('hello');  // returns 'oi'
-     *
-     *          i18n.lang('en_US');  // Missing language.
-     *          i18n.text('hello');  // returns 'hello'. If testMode is on, returns '[hello]'
-     *      });
-     *      
-     *  @example
-     *      // The old {%s} syntax from libsapo's i18n is still supported
-     *      i18n.text('hello, {%s}!', 'someone'); // -> 'olá, someone!'
-     */
-    var I18n = function( dict , lang , testMode ) {
-        if ( !( this instanceof I18n ) ) { return new I18n( dict , lang , testMode ); }
-
-        this.reset( )
-            .lang( lang )
-            .testMode( testMode )
-            .append( dict || { } , lang );
-    };
-
-    I18n.prototype = {
-        reset: function( ) {
-            this._dicts    = [ ];
-            this._dict     = { };
-            this._testMode = false;
-            this._lang     = this._gLang;
-
-            return this;
-        },
-        /**
-         * Adds translation strings for this helper to use.
-         *
-         * @method append
-         * @param {Object} dict object containing language objects identified by their language code
-         * @example
-         *     var i18n = new I18n({}, 'pt_PT');
-         *     i18n.append({'pt_PT': {
-         *         'sfraggles': 'braggles'
-         *     }});
-         *     i18n.text('sfraggles') // -> 'braggles'
-         */
-        append: function( dict ) {
-            this._dicts.push( dict );
-
-            this._dict = Ink.extendObj(this._dict , dict[ this._lang ] );
-
-            return this;
-        },
-        /**
-         * Get the language code
-         *
-         * @returns {String} the language code for this instance
-         * @method {String} lang
-         */
-        /**
-         * Set the language. If there are more dictionaries available in cache, they will be loaded.
-         *
-         * @method  lang
-         * @param   lang    {String} Language code to set this instance to.
-         */
-        lang: function( lang ) {
-            if ( !arguments.length ) { return this._lang; }
-
-            if ( lang && this._lang !== lang ) {
-                this._lang = lang;
-
-                this._dict = { };
-
-                for ( var i = 0, l = this._dicts.length; i < l; i++ ) {
-                    this._dict = Ink.extendObj( this._dict , this._dicts[ i ][ lang ] || { } );
-                }
-            }
-
-            return this;
-        },
-        /**
-         * Get the testMode
-         *
-         * @returns {Boolean} the testMode for this instance
-         * @method {Boolean} testMode
-         */
-        /**
-         * Sets or unsets test mode. In test mode, unknown strings are wrapped
-         * in `[ ... ]`. This is useful for debugging your application and
-         * making sure all your translation keys are in place.
-         *
-         * @method testMode
-         * @param {Boolean} bool boolean value to set the test mode to.
-         */
-        testMode: function( bool ) {
-            if ( !arguments.length ) { return !!this._testMode; }
-
-            if ( bool !== undefined  ) { this._testMode = !!bool; }
-
-            return this;
-        },
-
-        /**
-         * Return an arbitrary key from the current language dictionary
-         *
-         * @method getKey
-         * @param {String} key
-         * @return {Any} The object which happened to be in the current language dictionary on the given key.
-         *
-         * @example
-         *      _.getKey('astring'); // -> 'a translated string'
-         *      _.getKey('anobject'); // -> {'a': 'translated object'}
-         *      _.getKey('afunction'); // -> function () { return 'this is a localized function' }
-         */
-        getKey: function( key ) {
-            var ret;
-            var gLang = this._gLang;
-            var lang  = this._lang;
-    
-            if ( key in this._dict ) {
-                ret = this._dict[ key ];
-            } else {
-                I18n.lang( lang );
-    
-                ret = this._gDict[ key ];
-    
-                I18n.lang( gLang );
-            }
-    
-            return ret;
-        },
-
-        /**
-         * Given a translation key, return a translated string, with replaced parameters.
-         * When a translated string is not available, the original string is returned unchanged.
-         *
-         * @method {String} text
-         * @param {String} str key to look for in i18n dictionary (which is returned verbatim if unknown)
-         * @param {Object} [namedParms] named replacements. Replaces {named} with values in this object.
-         * @param {String} [arg1] replacement #1 (replaces first {} and all {1})
-         * @param {String} [arg2] replacement #2 (replaces second {} and all {2})
-         * @param {String} [argn...] replacement #n (replaces nth {} and all {n})
-         *
-         * @example
-         *      _('Gosto muito de {} e o céu é {}.', 'carros', 'azul');
-         *      // returns 'Gosto muito de carros e o céu é azul.'
-         *
-         * @example
-         *      _('O {1} é {2} como {2} é a cor do {3}.', 'carro', 'azul', 'FCP');
-         *      // returns 'O carro é azul como azul é o FCP.'
-         *
-         *  @example
-         *      _('O {person1} dava-se com a {person2}', {person1: 'coisinho', person2: 'coisinha'});
-         *      // -> 'O coisinho dava-se com a coisinha'
-         *
-         *  @example
-         *      // This is a bit more complex
-         *      var i18n = make().lang('pt_PT').append({
-         *          pt_PT: {
-         *              array: [1, 2],
-         *              object: {'a': '-a-', 'b': '-b-'},
-         *              func: function (a, b) {return '[[' + a + ',' + b + ']]';}
-         *          }
-         *      });
-         *      i18n.text('array', 0); // -> '1'
-         *      i18n.text('object', 'a'); // -> '-a-'
-         *      i18n.text('func', 'a', 'b'); // -> '[[a,b]]'
-         */
-        text: function( str /*, replacements...*/ ) {
-            if ( typeof str !== 'string' ) { return; } // Backwards-compat
-
-            var pars = Array.prototype.slice.call( arguments , 1 );
-            var idx = 0;
-            var isObj = typeof pars[ 0 ] === 'object';
-
-            var original = this.getKey( str );
-            if ( original === undefined ) { original = this._testMode ? '[' + str + ']' : str; }
-            if ( typeof original === 'number' ) { original += ''; }
-
-            if (typeof original === 'string') {
-                original = original.replace( pattrText , function( m , $1 , $2 , $3 ) {
-                    var ret =
-                        $1 ? $1 :
-                        $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
-                        $3 ? pars[ 0 ][ $3 ] || '' :
-                             pars[ (idx++) + ( isObj ? 1 : 0 ) ]
-                    return funcOrVal( ret , [idx].concat(pars) );
-                });
-                return original;
-            }
-             
-            return (
-                typeof original === 'function' ? original.apply( this , pars ) :
-                original instanceof Array      ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
-                typeof original === 'object'   ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
-                                                 '');
-        },
-
-        /**
-         * Given a singular string, a plural string, and a number, translates
-         * either the singular or plural string.
-         *
-         * @method ntext
-         * @return {String}
-         *
-         * @param {String} strSin   word to use when count is 1
-         * @param {String} strPlur  word to use otherwise
-         * @param {Number} count    number which defines which word to use
-         * @param [...]             extra arguments, to be passed to `text()`
-         *
-         * @example
-         *     i18n.ntext('platypus', 'platypuses', 1); // returns 'ornitorrinco'
-         *     i18n.ntext('platypus', 'platypuses', 2); // returns 'ornitorrincos'
-         * 
-         * @example
-         *     // The "count" argument is passed to text()
-         *     i18n.ntext('{} platypus', '{} platypuses', 1); // returns '1 ornitorrinco'
-         *     i18n.ntext('{} platypus', '{} platypuses', 2); // returns '2 ornitorrincos'
-         */
-        ntext: function( strSin , strPlur , count ) {
-            var pars = Array.prototype.slice.apply( arguments );
-            var original;
-
-            if ( pars.length === 2 && typeof strPlur === 'number' ) {
-                original = this.getKey( strSin );
-                if ( !( original instanceof Array ) ) { return ''; }
-
-                pars.splice( 0 , 1 );
-                original = original[ strPlur === 1 ? 0 : 1 ];
-            } else {
-                pars.splice( 0 , 2 );
-                original = count === 1 ? strSin : strPlur;
-            }
-
-            return this.text.apply( this , [ original ].concat( pars ) );
-        },
-
-        /**
-         * Returns the ordinal suffix of `num` (For example, 1 > 'st', 2 > 'nd', 5 > 'th', ...).
-         *
-         * This works by using transforms (in the form of Objects or Functions) passed into the
-         * function or found in the special key `_ordinals` in the active language dictionary.
-         *
-         * @method ordinal
-         *
-         * @param {Number}          num             Input number
-         * 
-         * @param {Object|Function} [options={}]
-         *
-         *    Maps for translating. Each of these options' fallback is found in the current
-         *    language's dictionary. The lookup order is the following:
-         *   
-         *        1. `exceptions`
-         *        2. `byLastDigit`
-         *        3. `default`
-         *   
-         *    Each of these may be either an `Object` or a `Function`. If it's a function, it
-         *    is called (with `number` and `digit` for any function except for byLastDigit,
-         *    which is called with the `lastDigit` of the number in question), and if the
-         *    function returns a string, that is used. If it's an object, the property is
-         *    looked up using `[...]`. If what is found is a string, it is used.
-         *
-         * @param {Object|Function} [options.byLastDigit={}]
-         *    If the language requires the last digit to be considered, mappings of last digits
-         *    to ordinal suffixes can be created here.
-         *
-         * @param {Object|Function} [options.exceptions={}]
-         *    Map unique, special cases to their ordinal suffixes.
-         *
-         * @returns {String}        Ordinal suffix for `num`.
-         *
-         * @example
-         *     var i18n = new I18n({
-         *         pt_PT: {  // 1º, 2º, 3º, 4º, ...
-         *             _ordinal: {  // The _ordinals key each translation dictionary is special.
-         *                 'default': "º" // Usually the suffix is "º" in portuguese...
-         *             }
-         *         },
-         *         fr: {  // 1er, 2e, 3e, 4e, ...
-         *             _ordinal: {  // The _ordinals key is special.
-         *                 'default': "e", // Usually the suffix is "e" in french...
-         *                 exceptions: {
-         *                     1: "er"   // ... Except for the number one.
-         *                 }
-         *             }
-         *         },
-         *         en_US: {  // 1st, 2nd, 3rd, 4th, ..., 11th, 12th, ... 21st, 22nd...
-         *             _ordinal: {
-         *                 'default': "th",// Usually the digit is "th" in english...
-         *                 byLastDigit: {
-         *                     1: "st",  // When the last digit is 1, use "th"...
-         *                     2: "nd",  // When the last digit is 2, use "nd"...
-         *                     3: "rd"   // When the last digit is 3, use "rd"...
-         *                 },
-         *                 exceptions: { // But these numbers are special
-         *                     0: "",
-         *                     11: "th",
-         *                     12: "th",
-         *                     13: "th"
-         *                 }
-         *             }
-         *         }
-         *     }, 'pt_PT');
-         *
-         *     i18n.ordinal(1);    // returns 'º'
-         *     i18n.ordinal(2);    // returns 'º'
-         *     i18n.ordinal(11);   // returns 'º'
-         * 
-         *     i18n.lang('fr');
-         *     i18n.ordinal(1);    // returns 'er'
-         *     i18n.ordinal(2);    // returns 'e'
-         *     i18n.ordinal(11);   // returns 'e'
-         *
-         *     i18n.lang('en_US');
-         *     i18n.ordinal(1);    // returns 'st'
-         *     i18n.ordinal(2);    // returns 'nd'
-         *     i18n.ordinal(12);   // returns 'th'
-         *     i18n.ordinal(22);   // returns 'nd'
-         *     i18n.ordinal(3);    // returns 'rd'
-         *     i18n.ordinal(4);    // returns 'th'
-         *     i18n.ordinal(5);    // returns 'th'
-         *
-         **/
-        ordinal: function( num ) {
-            if ( num === undefined ) { return ''; }
-
-            var lastDig = +num.toString( ).slice( -1 );
-
-            var ordDict  = this.getKey( '_ordinals' );
-            if ( ordDict === undefined ) { return ''; }
-
-            if ( typeof ordDict === 'string' ) { return ordDict; }
-
-            var ret;
-
-            if ( typeof ordDict === 'function' ) {
-                ret = ordDict( num , lastDig );
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            if ( 'exceptions' in ordDict ) {
-                ret = typeof ordDict.exceptions === 'function' ? ordDict.exceptions( num , lastDig ) :
-                      num in ordDict.exceptions                ? funcOrVal( ordDict.exceptions[ num ] , [num , lastDig] ) :
-                                                                 undefined;
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            if ( 'byLastDigit' in ordDict ) {
-                ret = typeof ordDict.byLastDigit === 'function' ? ordDict.byLastDigit( lastDig , num ) :
-                      lastDig in ordDict.byLastDigit            ? funcOrVal( ordDict.byLastDigit[ lastDig ] , [lastDig , num] ) :
-                                                                  undefined;
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            if ( 'default' in ordDict ) {
-                ret = funcOrVal( ordDict['default'] , [ num , lastDig ] );
-
-                if ( typeof ret === 'string' ) { return ret; }
-            }
-
-            return '';
-        },
-
-        /**
-         * Returns an alias to `text()`, for convenience. The resulting function is
-         * traditionally assigned to "_".
-         *
-         * @method alias
-         * @returns {Function} an alias to `text()`. You can also access the rest of the translation API through this alias.
-         *
-         * @example
-         *     var i18n = new I18n({
-         *         'pt_PT': {
-         *             'hi': 'olá',
-         *             '{} day': '{} dia',
-         *             '{} days': '{} dias',
-         *             '_ordinals': {
-         *                 'default': 'º'
-         *             }
-         *         }
-         *     }, 'pt_PT');
-         *     var _ = i18n.alias();
-         *     _('hi');  // -> 'olá'
-         *     _('{} days', 3);  // -> '3 dias'
-         *     _.ntext('{} day', '{} days', 2);  // -> '2 dias'
-         *     _.ntext('{} day', '{} days', 1);  // -> '1 dia'
-         *     _.ordinal(3);  // -> 'º'
-         */
-        alias: function( ) {
-            var ret      = Ink.bind( I18n.prototype.text     , this );
-            ret.ntext    = Ink.bind( I18n.prototype.ntext    , this );
-            ret.append   = Ink.bind( I18n.prototype.append   , this );
-            ret.ordinal  = Ink.bind( I18n.prototype.ordinal  , this );
-            ret.testMode = Ink.bind( I18n.prototype.testMode , this );
-
-            return ret;
-        }
-    };
-
-    /**
-     * @static
-     * @method I18n.reset
-     *
-     * Reset I18n global state (global dictionaries, and default language for instances)
-     **/
-    I18n.reset = function( ) {
-        I18n.prototype._gDicts = [ ];
-        I18n.prototype._gDict  = { };
-        I18n.prototype._gLang  = 'pt_PT';
-    };
-    I18n.reset( );
-
-    /**
-     * @static
-     * @method I18n.append
-     *
-     * @param dict {Object}     Dictionary to be added
-     * @param lang {String}     Language to be added to
-     *
-     * Add a dictionary to be used in all I18n instances for the corresponding language
-     */
-    I18n.append = function( dict , lang ) {
-        if ( lang ) {
-            if ( !( lang in dict ) ) {
-                var obj = { };
-
-                obj[ lang ] = dict;
-
-                dict = obj;
-            }
-
-            if ( lang !== I18n.prototype._gLang ) { I18n.lang( lang ); }
-        }
-
-        I18n.prototype._gDicts.push( dict );
-
-        Ink.extendObj( I18n.prototype._gDict , dict[ I18n.prototype._gLang ] );
-    };
-
-    /**
-     * @static
-     * @method I18n.lang
-     * 
-     * @param lang {String} String in the format `"pt_PT"`, `"fr"`, etc.
-     *
-     * Set global default language of I18n instances to `lang`
-     */
-    /**
-     * @static
-     * @method I18n.lang
-     *
-     * Get the current default language of I18n instances.
-     *
-     * @return {String} language code
-     */
-    I18n.lang = function( lang ) {
-        if ( !arguments.length ) { return I18n.prototype._gLang; }
-
-        if ( lang && I18n.prototype._gLang !== lang ) {
-            I18n.prototype._gLang = lang;
-
-            I18n.prototype._gDict = { };
-
-            for ( var i = 0, l = I18n.prototype._gDicts.length; i < l; i++ ) {
-                Ink.extendObj( I18n.prototype._gDict , I18n.prototype._gDicts[ i ][ lang ] || { } );
-            }
-        }
-    };
-    
-    return I18n;
-});
-
-/**
  * @module Ink.Util.Cookie_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -9548,1306 +10499,705 @@ Ink.createModule('Ink.Util.Cookie', '1', [], function() {
 });
 
 /**
- * @module Ink.Util.String_1
+ * @module Ink.Util.BinPack_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.Util.String', '1', [], function() {
+Ink.createModule('Ink.Util.BinPack', '1', [], function() {
 
     'use strict';
 
-    /**
-     * String Manipulation Utilities
-     *
-     * @class Ink.Util.String
-     * @version 1
-     * @static
-     */
-    var InkUtilString = {
+    /*jshint boss:true */
 
-        /**
-         * List of special chars
-         * 
-         * @property _chars
-         * @type {Array}
-         * @private
-         * @readOnly
-         * @static
-         */
-        _chars: ['&','à','á','â','ã','ä','å','æ','ç','è','é',
-                'ê','ë','ì','í','î','ï','ð','ñ','ò','ó','ô',
-                'õ','ö','ø','ù','ú','û','ü','ý','þ','ÿ','À',
-                'Á','Â','Ã','Ä','Å','Æ','Ç','È','É','Ê','Ë',
-                'Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö',
-                'Ø','Ù','Ú','Û','Ü','Ý','Þ','€','\"','ß','<',
-                '>','¢','£','¤','¥','¦','§','¨','©','ª','«',
-                '¬','\xad','®','¯','°','±','²','³','´','µ','¶',
-                '·','¸','¹','º','»','¼','½','¾'],
+    // https://github.com/jakesgordon/bin-packing/
 
-        /**
-         * List of the special characters' html entities
-         * 
-         * @property _entities
-         * @type {Array}
-         * @private
-         * @readOnly
-         * @static
-         */
-        _entities: ['amp','agrave','aacute','acirc','atilde','auml','aring',
-                    'aelig','ccedil','egrave','eacute','ecirc','euml','igrave',
-                    'iacute','icirc','iuml','eth','ntilde','ograve','oacute',
-                    'ocirc','otilde','ouml','oslash','ugrave','uacute','ucirc',
-                    'uuml','yacute','thorn','yuml','Agrave','Aacute','Acirc',
-                    'Atilde','Auml','Aring','AElig','Ccedil','Egrave','Eacute',
-                    'Ecirc','Euml','Igrave','Iacute','Icirc','Iuml','ETH','Ntilde',
-                    'Ograve','Oacute','Ocirc','Otilde','Ouml','Oslash','Ugrave',
-                    'Uacute','Ucirc','Uuml','Yacute','THORN','euro','quot','szlig',
-                    'lt','gt','cent','pound','curren','yen','brvbar','sect','uml',
-                    'copy','ordf','laquo','not','shy','reg','macr','deg','plusmn',
-                    'sup2','sup3','acute','micro','para','middot','cedil','sup1',
-                    'ordm','raquo','frac14','frac12','frac34'],
+    /*
+        Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
 
-        /**
-         * List of accented chars
-         * 
-         * @property _accentedChars
-         * @type {Array}
-         * @private
-         * @readOnly
-         * @static
-         */
-        _accentedChars:['à','á','â','ã','ä','å',
-                        'è','é','ê','ë',
-                        'ì','í','î','ï',
-                        'ò','ó','ô','õ','ö',
-                        'ù','ú','û','ü',
-                        'ç','ñ',
-                        'À','Á','Â','Ã','Ä','Å',
-                        'È','É','Ê','Ë',
-                        'Ì','Í','Î','Ï',
-                        'Ò','Ó','Ô','Õ','Ö',
-                        'Ù','Ú','Û','Ü',
-                        'Ç','Ñ'],
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
 
-        /**
-         * List of the accented chars (above), but without the accents
-         * 
-         * @property _accentedRemovedChars
-         * @type {Array}
-         * @private
-         * @readOnly
-         * @static
-         */
-        _accentedRemovedChars:['a','a','a','a','a','a',
-                               'e','e','e','e',
-                               'i','i','i','i',
-                               'o','o','o','o','o',
-                               'u','u','u','u',
-                               'c','n',
-                               'A','A','A','A','A','A',
-                               'E','E','E','E',
-                               'I','I','I','I',
-                               'O','O','O','O','O',
-                               'U','U','U','U',
-                               'C','N'],
-        /**
-         * Object that contains the basic HTML unsafe chars, as keys, and their HTML entities as values
-         * 
-         * @property _htmlUnsafeChars
-         * @type {Object}
-         * @private
-         * @readOnly
-         * @static
-         */
-        _htmlUnsafeChars:{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'},
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
 
-        /**
-         * Convert first letter of a word to upper case <br />
-         * If param as more than one word, it converts first letter of all words that have more than 2 letters
-         *
-         * @method ucFirst
-         * @param {String} string
-         * @param {Boolean} [firstWordOnly=false] capitalize only first word.
-         * @return {String} string camel cased
-         * @public
-         * @static
-         *
-         * @example
-         *      InkString.ucFirst('hello world'); // -> 'Hello World'
-         *      InkString.ucFirst('hello world', true); // -> 'Hello world'
-         */
-        ucFirst: function(string, firstWordOnly) {
-            var replacer = firstWordOnly ? /(^|\s)(\w)(\S{2,})/ : /(^|\s)(\w)(\S{2,})/g;
-            return string ? String(string).replace(replacer, function(_, $1, $2, $3){
-                return $1 + $2.toUpperCase() + $3.toLowerCase();
-            }) : string;
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+    */
+
+
+
+    var Packer = function(w, h) {
+        this.init(w, h);
+    };
+
+    Packer.prototype = {
+
+        init: function(w, h) {
+            this.root = { x: 0, y: 0, w: w, h: h };
         },
 
-        /**
-         * Remove spaces and new line from biggin and ends of string
-         *
-         * @method trim
-         * @param {String} string
-         * @return {String} string trimmed
-         * @public
-         * @static
-         */
-        trim: function(string)
-        {
-            if (typeof string === 'string') {
-                return string.replace(/^\s+|\s+$|\n+$/g, '');
-            }
-            return string;
-        },
-
-        /**
-         * Removes HTML tags of string
-         *
-         * @method stripTags
-         * @param {String} string
-         * @param {String} allowed
-         * @return {String} String stripped from HTML tags, leaving only the allowed ones (if any)
-         * @public
-         * @static
-         * @example
-         *     <script>
-         *          var myvar='isto e um texto <b>bold</b> com imagem <img src=""> e br <br /> um <p>paragrafo</p>';
-         *          SAPO.Utility.String.stripTags(myvar, 'b,u');
-         *     </script>
-         */
-        stripTags: function(string, allowed)
-        {
-            if (allowed && typeof allowed === 'string') {
-                var aAllowed = InkUtilString.trim(allowed).split(',');
-                var aNewAllowed = [];
-                var cleanedTag = false;
-                for(var i=0; i < aAllowed.length; i++) {
-                    if(InkUtilString.trim(aAllowed[i]) !== '') {
-                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(\<|\>)/g, '').replace(/\s/, ''));
-                        aNewAllowed.push('(<'+cleanedTag+'\\s[^>]+>|<(\\s|\\/)?(\\s|\\/)?'+cleanedTag+'>)');
-                    }
-                }
-                var strAllowed = aNewAllowed.join('|');
-                var reAllowed = new RegExp(strAllowed, "i");
-
-                var aFoundTags = string.match(new RegExp("<[^>]*>", "g"));
-
-                for(var j=0; j < aFoundTags.length; j++) {
-                    if(!aFoundTags[j].match(reAllowed)) {
-                        string = string.replace((new RegExp(aFoundTags[j], "gm")), '');
-                    }
-                }
-                return string;
-            } else {
-                return string.replace(/\<[^\>]+\>/g, '');
-            }
-        },
-
-        /**
-         * Convert listed characters to HTML entities
-         *
-         * @method htmlEntitiesEncode
-         * @param {String} string
-         * @return {String} string encoded
-         * @public
-         * @static
-         */
-        htmlEntitiesEncode: function(string)
-        {
-            if (string && string.replace) {
-                var re = false;
-                for (var i = 0; i < InkUtilString._chars.length; i++) {
-                    re = new RegExp(InkUtilString._chars[i], "gm");
-                    string = string.replace(re, '&' + InkUtilString._entities[i] + ';');
-                }
-            }
-            return string;
-        },
-
-        /**
-         * Convert listed HTML entities to character
-         *
-         * @method htmlEntitiesDecode
-         * @param {String} string
-         * @return {String} string decoded
-         * @public
-         * @static
-         */
-        htmlEntitiesDecode: function(string)
-        {
-            if (string && string.replace) {
-                var re = false;
-                for (var i = 0; i < InkUtilString._entities.length; i++) {
-                    re = new RegExp("&"+InkUtilString._entities[i]+";", "gm");
-                    string = string.replace(re, InkUtilString._chars[i]);
-                }
-                string = string.replace(/&#[^;]+;?/g, function($0){
-                    if ($0.charAt(2) === 'x') {
-                        return String.fromCharCode(parseInt($0.substring(3), 16));
-                    }
-                    else {
-                        return String.fromCharCode(parseInt($0.substring(2), 10));
-                    }
-                });
-            }
-            return string;
-        },
-
-        /**
-         * Encode a string to UTF8
-         *
-         * @method utf8Encode
-         * @param {String} string
-         * @return {String} string utf8 encoded
-         * @public
-         * @static
-         */
-        utf8Encode: function(string)
-        {
-            string = string.replace(/\r\n/g,"\n");
-            var utfstring = "";
-
-            for (var n = 0; n < string.length; n++) {
-
-                var c = string.charCodeAt(n);
-
-                if (c < 128) {
-                    utfstring += String.fromCharCode(c);
-                }
-                else if((c > 127) && (c < 2048)) {
-                    utfstring += String.fromCharCode((c >> 6) | 192);
-                    utfstring += String.fromCharCode((c & 63) | 128);
-                }
-                else {
-                    utfstring += String.fromCharCode((c >> 12) | 224);
-                    utfstring += String.fromCharCode(((c >> 6) & 63) | 128);
-                    utfstring += String.fromCharCode((c & 63) | 128);
-                }
-
-            }
-            return utfstring;
-        },
-
-        /**
-         * Make a string shorter without cutting words
-         *
-         * @method shortString
-         * @param {String} str
-         * @param {Number} n - number of chars of the short string
-         * @return {String} string shortened
-         * @public
-         * @static
-         */
-        shortString: function(str,n) {
-          var words = str.split(' ');
-          var resultstr = '';
-          for(var i = 0; i < words.length; i++ ){
-            if((resultstr + words[i] + ' ').length>=n){
-              resultstr += '&hellip;';
-              break;
-              }
-            resultstr += words[i] + ' ';
-            }
-          return resultstr;
-        },
-
-        /**
-         * Truncates a string, breaking words and adding ... at the end
-         *
-         * @method truncateString
-         * @param {String} str
-         * @param {Number} length - length limit for the string. String will be
-         *        at most this big, ellipsis included.
-         * @return {String} string truncated
-         * @public
-         * @static
-         */
-        truncateString: function(str, length) {
-            if(str.length - 1 > length) {
-                return str.substr(0, length - 1) + "\u2026";
-            } else {
-                return str;
-            }
-        },
-
-        /**
-         * Decode a string from UTF8
-         *
-         * @method utf8Decode
-         * @param {String} string
-         * @return {String} string utf8 decoded
-         * @public
-         * @static
-         */
-        utf8Decode: function(utfstring)
-        {
-            var string = "";
-            var i = 0, c = 0, c2 = 0, c3 = 0;
-
-            while ( i < utfstring.length ) {
-
-                c = utfstring.charCodeAt(i);
-
-                if (c < 128) {
-                    string += String.fromCharCode(c);
-                    i++;
-                }
-                else if((c > 191) && (c < 224)) {
-                    c2 = utfstring.charCodeAt(i+1);
-                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-                    i += 2;
-                }
-                else {
-                    c2 = utfstring.charCodeAt(i+1);
-                    c3 = utfstring.charCodeAt(i+2);
-                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-                    i += 3;
-                }
-
-            }
-            return string;
-        },
-
-        /**
-         * Convert all accented chars to char without accent.
-         *
-         * @method removeAccentedChars
-         * @param {String} string
-         * @return {String} string without accented chars
-         * @public
-         * @static
-         */
-        removeAccentedChars: function(string)
-        {
-            var newString = string;
-            var re = false;
-            for (var i = 0; i < InkUtilString._accentedChars.length; i++) {
-                re = new RegExp(InkUtilString._accentedChars[i], "gm");
-                newString = newString.replace(re, '' + InkUtilString._accentedRemovedChars[i] + '');
-            }
-            return newString;
-        },
-
-        /**
-         * Count the number of occurrences of a specific needle in a haystack
-         *
-         * @method substrCount
-         * @param {String} haystack
-         * @param {String} needle
-         * @return {Number} Number of occurrences
-         * @public
-         * @static
-         */
-        substrCount: function(haystack,needle)
-        {
-            return haystack ? haystack.split(needle).length - 1 : 0;
-        },
-
-        /**
-         * Eval a JSON string to a JS object
-         *
-         * @method evalJSON
-         * @param {String} strJSON
-         * @param {Boolean} sanitize
-         * @return {Object} JS Object
-         * @public
-         * @static
-         */
-        evalJSON: function(strJSON, sanitize) {
-            /* jshint evil:true */
-            if( (typeof sanitize === 'undefined' || sanitize === null) || InkUtilString.isJSON(strJSON)) {
-                try {
-                    if(typeof(JSON) !== "undefined" && typeof(JSON.parse) !== 'undefined'){
-                        return JSON.parse(strJSON);
-                    }
-                    return eval('('+strJSON+')');
-                } catch(e) {
-                    throw new Error('ERROR: Bad JSON string...');
+        fit: function(blocks) {
+            var n, node, block;
+            for (n = 0; n < blocks.length; ++n) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
                 }
             }
         },
 
-        /**
-         * Checks if a string is a valid JSON object (string encoded)
-         *
-         * @method isJSON
-         * @param {String} str
-         * @return {Boolean}
-         * @public
-         * @static
-         */
-        isJSON: function(str)
-        {
-            str = str.replace(/\\./g, '@').replace(/"[^"\\\n\r]*"/g, '');
-            return (/^[,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t]*$/).test(str);
-        },
-
-        /**
-         * Escapes unsafe html chars to their entities
-         *
-         * @method htmlEscapeUnsafe
-         * @param {String} str String to escape
-         * @return {String} Escaped string
-         * @public
-         * @static
-         */
-        htmlEscapeUnsafe: function(str){
-            var chars = InkUtilString._htmlUnsafeChars;
-            return str != null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
-        },
-
-        /**
-         * Normalizes whitespace in string.
-         * String is trimmed and sequences of many
-         * Whitespaces are collapsed.
-         *
-         * @method normalizeWhitespace
-         * @param {String} str String to normalize
-         * @return {String} string normalized
-         * @public
-         * @static
-         */
-        normalizeWhitespace: function(str){
-            return str != null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
-        },
-
-        /**
-         * Converts string to unicode
-         *
-         * @method toUnicode
-         * @param {String} str
-         * @return {String} string unicoded
-         * @public
-         * @static
-         */
-        toUnicode: function(str)
-        {
-            if (typeof str === 'string') {
-                var unicodeString = '';
-                var inInt = false;
-                var theUnicode = false;
-                var total = str.length;
-                var i=0;
-
-                while(i < total)
-                {
-                    inInt = str.charCodeAt(i);
-                    if( (inInt >= 32 && inInt <= 126) ||
-                            inInt == 8 ||
-                            inInt == 9 ||
-                            inInt == 10 ||
-                            inInt == 12 ||
-                            inInt == 13 ||
-                            inInt == 32 ||
-                            inInt == 34 ||
-                            inInt == 47 ||
-                            inInt == 58 ||
-                            inInt == 92) {
-
-                        /*
-                        if(inInt == 34 || inInt == 92 || inInt == 47) {
-                            theUnicode = '\\'+str.charAt(i);
-                        } else {
-                        }
-                        */
-                        if(inInt == 8) {
-                            theUnicode = '\\b';
-                        } else if(inInt == 9) {
-                            theUnicode = '\\t';
-                        } else if(inInt == 10) {
-                            theUnicode = '\\n';
-                        } else if(inInt == 12) {
-                            theUnicode = '\\f';
-                        } else if(inInt == 13) {
-                            theUnicode = '\\r';
-                        } else {
-                            theUnicode = str.charAt(i);
-                        }
-                    } else {
-                        theUnicode = str.charCodeAt(i).toString(16)+''.toUpperCase();
-                        while (theUnicode.length < 4) {
-                            theUnicode = '0' + theUnicode;
-                        }
-                        theUnicode = '\\u' + theUnicode;
-                    }
-                    unicodeString += theUnicode;
-
-                    i++;
-                }
-                return unicodeString;
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
             }
-        },
-
-        /**
-         * Escapes a unicode character. returns \xXX if hex smaller than 0x100, otherwise \uXXXX
-         *
-         * @method escape
-         * @param {String} c Char
-         * @return {String} escaped char
-         * @public
-         * @static
-         */
-
-        /**
-         * @param {String} c char
-         */
-        escape: function(c) {
-            var hex = (c).charCodeAt(0).toString(16).split('');
-            if (hex.length < 3) {
-                while (hex.length < 2) { hex.unshift('0'); }
-                hex.unshift('x');
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
             }
             else {
-                while (hex.length < 4) { hex.unshift('0'); }
-                hex.unshift('u');
+                return null;
             }
-
-            hex.unshift('\\');
-            return hex.join('');
         },
 
-        /**
-         * Unescapes a unicode character escape sequence
-         *
-         * @method unescape
-         * @param {String} es Escape sequence
-         * @return {String} String des-unicoded
-         * @public
-         * @static
-         */
-        unescape: function(es) {
-            var idx = es.lastIndexOf('0');
-            idx = idx === -1 ? 2 : Math.min(idx, 2);
-            //console.log(idx);
-            var hexNum = es.substring(idx);
-            //console.log(hexNum);
-            var num = parseInt(hexNum, 16);
-            return String.fromCharCode(num);
-        },
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
+        }
 
-        /**
-         * Escapes a string to unicode characters
-         *
-         * @method escapeText
-         * @param {String} txt
-         * @param {Array} [whiteList]
-         * @return {String} Escaped to Unicoded string
-         * @public
-         * @static
-         */
-        escapeText: function(txt, whiteList) {
-            if (whiteList === undefined) {
-                whiteList = ['[', ']', '\'', ','];
-            }
-            var txt2 = [];
-            var c, C;
-            for (var i = 0, f = txt.length; i < f; ++i) {
-                c = txt[i];
-                C = c.charCodeAt(0);
-                if (C < 32 || C > 126 && whiteList.indexOf(c) === -1) {
-                    c = InkUtilString.escape(c);
+    };
+
+
+
+    var GrowingPacker = function() {};
+
+    GrowingPacker.prototype = {
+
+        fit: function(blocks) {
+            var n, node, block, len = blocks.length;
+            var w = len > 0 ? blocks[0].w : 0;
+            var h = len > 0 ? blocks[0].h : 0;
+            this.root = { x: 0, y: 0, w: w, h: h };
+            for (n = 0; n < len ; n++) {
+                block = blocks[n];
+                if (node = this.findNode(this.root, block.w, block.h)) {
+                    block.fit = this.splitNode(node, block.w, block.h);
                 }
-                txt2.push(c);
+                else {
+                    block.fit = this.growNode(block.w, block.h);
+                }
             }
-            return txt2.join('');
         },
 
-        /**
-         * Regex to check escaped strings
-         *
-         * @property escapedCharRegex
-         * @type {Regex}
-         * @public
-         * @readOnly
-         * @static
-         */
-        escapedCharRegex: /(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4})/g,
-
-        /**
-         * Unescapes a string
-         *
-         * @method unescapeText
-         * @param {String} txt
-         * @return {String} Unescaped string
-         * @public
-         * @static
-         */
-        unescapeText: function(txt) {
-            /*jshint boss:true */
-            var m;
-            while (m = InkUtilString.escapedCharRegex.exec(txt)) {
-                m = m[0];
-                txt = txt.replace(m, InkUtilString.unescape(m));
-                InkUtilString.escapedCharRegex.lastIndex = 0;
+        findNode: function(root, w, h) {
+            if (root.used) {
+                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
             }
-            return txt;
+            else if ((w <= root.w) && (h <= root.h)) {
+                return root;
+            }
+            else {
+                return null;
+            }
         },
 
-        /**
-         * Compares two strings
-         *
-         * @method strcmp
-         * @param {String} str1
-         * @param {String} str2
-         * @return {Number}
-         * @public
-         * @static
-         */
-        strcmp: function(str1, str2) {
-            return ((str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1));
+        splitNode: function(node, w, h) {
+            node.used = true;
+            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
+            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+            return node;
         },
 
-        /**
-         * Splits long string into string of, at most, maxLen (that is, all but last have length maxLen,
-         * last can measure maxLen or less)
-         *
-         * @method packetize
-         * @param {String} string string to divide
-         * @param {Number} maxLen packet size
-         * @return {Array} string divided
-         * @public
-         * @static
-         */
-        packetize: function(str, maxLen) {
-            var len = str.length;
-            var parts = new Array( Math.ceil(len / maxLen) );
-            var chars = str.split('');
-            var sz, i = 0;
-            while (len) {
-                sz = Math.min(maxLen, len);
-                parts[i++] = chars.splice(0, sz).join('');
-                len -= sz;
+        growNode: function(w, h) {
+            var canGrowDown  = (w <= this.root.w);
+            var canGrowRight = (h <= this.root.h);
+
+            var shouldGrowRight = canGrowRight && (this.root.h >= (this.root.w + w)); // attempt to keep square-ish by growing right when height is much greater than width
+            var shouldGrowDown  = canGrowDown  && (this.root.w >= (this.root.h + h)); // attempt to keep square-ish by growing down  when width  is much greater than height
+
+            if (shouldGrowRight) {
+                return this.growRight(w, h);
             }
-            return parts;
+            else if (shouldGrowDown) {
+                return this.growDown(w, h);
+            }
+            else if (canGrowRight) {
+                return this.growRight(w, h);
+            }
+            else if (canGrowDown) {
+                return this.growDown(w, h);
+            }
+            else {
+                return null; // need to ensure sensible root starting size to avoid this happening
+            }
+        },
+
+        growRight: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w + w,
+                h: this.root.h,
+                down: this.root,
+                right: { x: this.root.w, y: 0, w: w, h: this.root.h }
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        },
+
+        growDown: function(w, h) {
+            this.root = {
+                used: true,
+                x: 0,
+                y: 0,
+                w: this.root.w,
+                h: this.root.h + h,
+                down:  { x: 0, y: this.root.h, w: this.root.w, h: h },
+                right: this.root
+            };
+            var node;
+            if (node = this.findNode(this.root, w, h)) {
+                return this.splitNode(node, w, h);
+            }
+            else {
+                return null;
+            }
+        }
+
+    };
+
+
+
+    var sorts = {
+        random:  function() { return Math.random() - 0.5; },
+        w:       function(a, b) { return b.w - a.w; },
+        h:       function(a, b) { return b.h - a.h; },
+        a:       function(a, b) { return b.area - a.area; },
+        max:     function(a, b) { return Math.max(b.w, b.h) - Math.max(a.w, a.h); },
+        min:     function(a, b) { return Math.min(b.w, b.h) - Math.min(a.w, a.h); },
+        height:  function(a, b) { return sorts.msort(a, b, ['h', 'w']);               },
+        width:   function(a, b) { return sorts.msort(a, b, ['w', 'h']);               },
+        area:    function(a, b) { return sorts.msort(a, b, ['a', 'h', 'w']);          },
+        maxside: function(a, b) { return sorts.msort(a, b, ['max', 'min', 'h', 'w']); },
+        msort:   function(a, b, criteria) { /* sort by multiple criteria */
+            var diff, n;
+            for (n = 0; n < criteria.length; ++n) {
+                diff = sorts[ criteria[n] ](a, b);
+                if (diff !== 0) {
+                    return diff;
+                }
+            }
+            return 0;
         }
     };
 
-    return InkUtilString;
+
+
+    // end of Jake's code
+
+
+
+    // aux, used to display blocks in unfitted property
+    var toString = function() {
+      return [this.w, ' x ', this.h].join('');
+    };
+
+
+
+    /**
+     * Binary Packing algorithm implementation
+     *
+     * Based on the work of Jake Gordon
+     *
+     * see https://github.com/jakesgordon/bin-packing/
+     *
+     * @class Ink.Util.BinPack
+     * @version 1
+     * @static
+     */
+    var BinPack = {
+
+        /**
+        * @method binPack
+        * @param {Object}      o              options
+        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
+        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
+        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
+        * @return {Object}
+        *     * {Number[2]} dimensions - resulted container size,
+        *     * {Number}    filled     - filled ratio,
+        *     * {Object[]}  fitted,
+        *     * {Object[]}  unfitted,
+        *     * {Object[]}  blocks
+        * @static
+        */
+        binPack: function(o) {
+            var i, f, bl;
+
+
+
+            // calculate area if not there already
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (! ('area' in bl) ) {
+                    bl.area = bl.w * bl.h;
+                }
+            }
+
+
+
+            // apply algorithm
+            var packer = o.dimensions ? new Packer(o.dimensions[0], o.dimensions[1]) : new GrowingPacker();
+
+            if (!o.sorter) { o.sorter = 'maxside'; }
+
+            o.blocks.sort( sorts[ o.sorter ] );
+
+            packer.fit(o.blocks);
+
+            var dims2 = [packer.root.w, packer.root.h];
+
+
+
+            // layout is done here, generating report data...
+            var fitted   = [];
+            var unfitted = [];
+
+            for (i = 0, f = o.blocks.length; i < f; ++i) {
+                bl = o.blocks[i];
+                if (bl.fit) {
+                    fitted.push(bl);
+                }
+                else {
+                    bl.toString = toString; // TO AID SERIALIZATION
+                    unfitted.push(bl);
+                }
+            }
+
+            var area = dims2[0] * dims2[1];
+            var fit = 0;
+            for (i = 0, f = fitted.length; i < f; ++i) {
+                bl = fitted[i];
+                fit += bl.area;
+            }
+
+            return {
+                dimensions: dims2,
+                filled:     fit / area,
+                blocks:     o.blocks,
+                fitted:     fitted,
+                unfitted:   unfitted
+            };
+        }
+    };
+
+
+
+    return BinPack;
 
 });
 
 /**
- * @module Ink.Util.Swipe_1
+ * @module Ink.Util.Array_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.Util.Swipe', '1', ['Ink.Dom.Event_1'], function(Event) {
+Ink.createModule('Ink.Util.Array', '1', [], function() {
 
     'use strict';
 
+    var arrayProto = Array.prototype;
+
     /**
-     * Subscribe swipe gestures!
-     * Supports filtering swipes be any combination of the criteria supported in the options.
+     * Utility functions to use with Arrays
      *
-     * @class Ink.Util.Swipe
-     * @constructor
+     * @class Ink.Util.Array
      * @version 1
-     *
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options for the Swipe detection
-     *     @param {Function}  [options.callback]        Function to be called when a swipe is detected. Default is undefined.
-     *     @param {Number}    [options.forceAxis]       Specify in which axis the swipe will be detected (x or y). Default is both.
-     *     @param {Number}    [options.maxDist]         maximum allowed distance, in pixels
-     *     @param {Number}    [options.maxDuration]     maximum allowed duration, in seconds
-     *     @param {Number}    [options.minDist]         minimum allowed distance, in pixels
-     *     @param {Number}    [options.minDuration]     minimum allowed duration, in seconds
-     *     @param {Boolean}   [options.stopEvents]      Flag that specifies if it should stop events. Default is true.
-     *     @param {Boolean}   [options.storeGesture]    Stores the gesture to be used for other purposes.
+     * @static
      */
-    var Swipe = function(el, options) {
-
-        this._options = Ink.extendObj({
-            callback:       undefined,
-            forceAxis:      undefined,       // x | y
-            maxDist:        undefined,
-            maxDuration:    undefined,
-            minDist:        undefined,      // in pixels
-            minDuration:    undefined,      // in seconds
-            stopEvents:     true,
-            storeGesture:   false
-        }, options || {});
-
-        this._handlers = {
-            down: Ink.bindEvent(this._onDown, this),
-            move: Ink.bindEvent(this._onMove, this),
-            up:   Ink.bindEvent(this._onUp, this)
-        };
-
-        this._element = Ink.i(el);
-
-        this._init();
-
-    };
-
-    Swipe._supported = ('ontouchstart' in document.documentElement);
-
-    Swipe.prototype = {
+    var InkArray = {
 
         /**
-         * Initialization function. Called by the constructor.
+         * Checks if value exists in array
          *
-         * @method _init
-         * @private
+         * @method inArray
+         * @param {Mixed} value
+         * @param {Array} arr
+         * @return {Boolean}    True if value exists in the array
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3' ];
+         *         if( InkArray.inArray( 'value2', testArray ) === true ){
+         *             console.log( "Yep it's in the array." );
+         *         } else {
+         *             console.log( "No it's NOT in the array." );
+         *         }
+         *     });
          */
-        _init: function() {
-            var db = document.body;
-            Event.observe(db, 'touchstart', this._handlers.down);
-            if (this._options.storeGesture) {
-                Event.observe(db, 'touchmove', this._handlers.move);
-            }
-            Event.observe(db, 'touchend', this._handlers.up);
-            this._isOn = false;
-        },
-
-        /**
-         * Function to compare/get the parent of an element.
-         *
-         * @method _isMeOrParent
-         * @param {DOMElement} el Element to be compared with its parent
-         * @param {DOMElement} parentEl Element to be compared used as reference
-         * @return {DOMElement|Boolean} ParentElement of el or false in case it can't.
-         * @private
-         */
-        _isMeOrParent: function(el, parentEl) {
-            if (!el) {
-                return;
-            }
-            do {
-                if (el === parentEl) {
-                    return true;
+        inArray: function(value, arr) {
+            if (typeof arr === 'object') {
+                for (var i = 0, f = arr.length; i < f; ++i) {
+                    if (arr[i] === value) {
+                        return true;
+                    }
                 }
-                el = el.parentNode;
-            } while (el);
+            }
             return false;
         },
 
         /**
-         * MouseDown/TouchStart event handler
+         * Sorts an array of object by an object property
          *
-         * @method _onDown
-         * @param {EventObject} ev window.event object
-         * @private
-         */
-
-        _onDown: function(ev) {
-            if (event.changedTouches.length !== 1) { return; }
-            if (!this._isMeOrParent(ev.target, this._element)) { return; }
-
-
-            if( this._options.stopEvents === true ){
-                Event.stop(ev);
-            }
-            ev = ev.changedTouches[0];
-            this._isOn = true;
-            this._target = ev.target;
-
-            this._t0 = new Date().valueOf();
-            this._p0 = [ev.pageX, ev.pageY];
-
-            if (this._options.storeGesture) {
-                this._gesture = [this._p0];
-                this._time    = [0];
-            }
-
-        },
-
-        /**
-         * MouseMove/TouchMove event handler
-         *
-         * @method _onMove
-         * @param {EventObject} ev window.event object
-         * @private
-         */
-        _onMove: function(ev) {
-            if (!this._isOn || event.changedTouches.length !== 1) { return; }
-            if( this._options.stopEvents === true ){
-                Event.stop(ev);
-            }
-            ev = ev.changedTouches[0];
-            var t1 = new Date().valueOf();
-            var dt = (t1 - this._t0) * 0.001;
-            this._gesture.push([ev.pageX, ev.pageY]);
-            this._time.push(dt);
-        },
-
-        /**
-         * MouseUp/TouchEnd event handler
-         *
-         * @method _onUp
-         * @param {EventObject} ev window.event object
-         * @private
-         */
-        _onUp: function(ev) {
-            if (!this._isOn || event.changedTouches.length !== 1) { return; }
-
-            if (this._options.stopEvents) {
-                Event.stop(ev);
-            }
-            ev = ev.changedTouches[0];   // TODO SHOULD CHECK IT IS THE SAME TOUCH
-            this._isOn = false;
-
-            var t1 = new Date().valueOf();
-            var p1 = [ev.pageX, ev.pageY];
-            var dt = (t1 - this._t0) * 0.001;
-            var dr = [
-                p1[0] - this._p0[0],
-                p1[1] - this._p0[1]
-            ];
-            var dist = Math.sqrt(dr[0]*dr[0] + dr[1]*dr[1]);
-            var axis = Math.abs(dr[0]) > Math.abs(dr[1]) ? 'x' : 'y';
-
-            var o = this._options;
-            if (o.minDist     && dist <   o.minDist) {     return; }
-            if (o.maxDist     && dist >   o.maxDist) {     return; }
-            if (o.minDuration && dt   <   o.minDuration) { return; }
-            if (o.maxDuration && dt   >   o.maxDuration) { return; }
-            if (o.forceAxis   && axis !== o.forceAxis) {   return; }
-
-            var O = {
-                upEvent:   ev,
-                elementId: this._element.id,
-                duration:  dt,
-                dr:        dr,
-                dist:      dist,
-                axis:      axis,
-                target:    this._target
-            };
-
-            if (this._options.storeGesture) {
-                O.gesture = this._gesture;
-                O.time    = this._time;
-            }
-
-            this._options.callback(this, O);
-        }
-
-    };
-
-    return Swipe;
-
-});
-
-
-/**
- * @module Ink.Util.Url_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.Util.Url', '1', [], function() {
-
-    'use strict';
-
-    /**
-     * Utility functions to use with URLs
-     *
-     * @class Ink.Util.Url
-     * @version 1
-     * @static
-     */
-    var Url = {
-
-        /**
-         * Auxiliary string for encoding
-         *
-         * @property _keyStr
-         * @type {String}
-         * @readOnly
-         * @private
-         */
-        _keyStr : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
-
-
-        /**
-         * Get current URL of page
-         *
-         * @method getUrl
-         * @return {String}    Current URL
+         * @method sortMulti
+         * @param {Array} arr array of objects to sort
+         * @param {String} key property to sort by
+         * @return {Array|Boolean} False if it's not an array, returns a sorted array if it's an array.
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         console.log( InkUrl.getUrl() ); // Will return it's window URL
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [
+         *             { 'myKey': 'value1' },
+         *             { 'myKey': 'value2' },
+         *             { 'myKey': 'value3' }
+         *         ];
+         *
+         *         InkArray.sortMulti( testArray, 'myKey' );
          *     });
          */
-        getUrl: function()
-        {
-            return window.location.href;
+        sortMulti: function(arr, key) {
+            if (typeof arr === 'undefined' || arr.constructor !== Array) { return false; }
+            if (typeof key !== 'string') { return arr.sort(); }
+            if (arr.length > 0) {
+                if (typeof(arr[0][key]) === 'undefined') { return false; }
+                arr.sort(function(a, b){
+                    var x = a[key];
+                    var y = b[key];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                });
+            }
+            return arr;
         },
 
         /**
-         * Generates an uri with query string based on the parameters object given
+         * Returns the associated key of an array value
          *
-         * @method genQueryString
-         * @param {String} uri
-         * @param {Object} params
-         * @return {String} URI with query string set
+         * @method keyValue
+         * @param {String} value Value to search for
+         * @param {Array} arr Array where the search will run
+         * @param {Boolean} [first] Flag that determines if the search stops at first occurrence. It also returns an index number instead of an array of indexes.
+         * @return {Boolean|Number|Array} False if not exists | number if exists and 3rd input param is true | array if exists and 3rd input param is not set or it is !== true
          * @public
          * @static
          * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryString = InkUrl.genQueryString( 'http://www.sapo.pt/', {
-         *             'param1': 'valueParam1',
-         *             'param2': 'valueParam2'
-         *         });
-         *
-         *         console.log( queryString ); // Result: http://www.sapo.pt/?param1=valueParam1&param2=valueParam2
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+         *         console.log( InkArray.keyValue( 'value2', testArray, true ) ); // Result: 1
+         *         console.log( InkArray.keyValue( 'value2', testArray ) ); // Result: [1, 3]
          *     });
          */
-        genQueryString: function(uri, params) {
-            var hasQuestionMark = uri.indexOf('?') !== -1;
-            var sep, pKey, pValue, parts = [uri];
-
-            for (pKey in params) {
-                if (params.hasOwnProperty(pKey)) {
-                    if (!hasQuestionMark) {
-                        sep = '?';
-                        hasQuestionMark = true;
-                    } else {
-                        sep = '&';
-                    }
-                    pValue = params[pKey];
-                    if (typeof pValue !== 'number' && !pValue) {
-                        pValue = '';
-                    }
-                    parts = parts.concat([sep, encodeURIComponent(pKey), '=', encodeURIComponent(pValue)]);
-                }
-            }
-
-            return parts.join('');
-        },
-
-        /**
-         * Get query string of current or passed URL
-         *
-         * @method getQueryString
-         * @param {String} [str] URL String. When not specified it uses the current URL.
-         * @return {Object} Key-Value object with the pairs variable: value
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var queryStringParams = InkUrl.getQueryString( 'http://www.sapo.pt/?var1=valueVar1&var2=valueVar2' );
-         *         console.log( queryStringParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
-         */
-        getQueryString: function(str)
-        {
-            var url;
-            if(str && typeof(str) !== 'undefined') {
-                url = str;
-            } else {
-                url = this.getUrl();
-            }
-            var aParams = {};
-            if(url.match(/\?(.+)/i)) {
-                var queryStr = url.replace(/^(.*)\?([^\#]+)(\#(.*))?/g, "$2");
-                if(queryStr.length > 0) {
-                    var aQueryStr = queryStr.split(/[;&]/);
-                    for(var i=0; i < aQueryStr.length; i++) {
-                        var pairVar = aQueryStr[i].split('=');
-                        aParams[decodeURIComponent(pairVar[0])] = (typeof(pairVar[1]) !== 'undefined' && pairVar[1]) ? decodeURIComponent(pairVar[1]) : false;
-                    }
-                }
-            }
-            return aParams;
-        },
-
-        /**
-         * Get URL hash
-         *
-         * @method getAnchor
-         * @param {String} [str] URL String. If not set, it will get the current URL.
-         * @return {String|Boolean} Hash in the URL. If there's no hash, returns false.
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var anchor = InkUrl.getAnchor( 'http://www.sapo.pt/page.php#TEST' );
-         *         console.log( anchor ); // Result: TEST
-         *     });
-         */
-        getAnchor: function(str)
-        {
-            var url;
-            if(str && typeof(str) !== 'undefined') {
-                url = str;
-            } else {
-                url = this.getUrl();
-            }
-            var anchor = false;
-            if(url.match(/#(.+)/)) {
-                anchor = url.replace(/([^#]+)#(.*)/, "$2");
-            }
-            return anchor;
-        },
-
-        /**
-         * Get anchor string of current or passed URL
-         *
-         * @method getAnchorString
-         * @param {String} [string] If not provided it uses the current URL.
-         * @return {Object} Returns a key-value object of the 'variables' available in the hashtag of the URL
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var hashParams = InkUrl.getAnchorString( 'http://www.sapo.pt/#var1=valueVar1&var2=valueVar2' );
-         *         console.log( hashParams );
-         *         // Result:
-         *         // {
-         *         //    var1: 'valueVar1',
-         *         //    var2: 'valueVar2'
-         *         // }
-         *     });
-         */
-        getAnchorString: function(string)
-        {
-            var url;
-            if(string && typeof(string) !== 'undefined') {
-                url = string;
-            } else {
-                url = this.getUrl();
-            }
-            var aParams = {};
-            if(url.match(/#(.+)/i)) {
-                var anchorStr = url.replace(/^([^#]+)#(.*)?/g, "$2");
-                if(anchorStr.length > 0) {
-                    var aAnchorStr = anchorStr.split(/[;&]/);
-                    for(var i=0; i < aAnchorStr.length; i++) {
-                        var pairVar = aAnchorStr[i].split('=');
-                        aParams[decodeURIComponent(pairVar[0])] = (typeof(pairVar[1]) !== 'undefined' && pairVar[1]) ? decodeURIComponent(pairVar[1]) : false;
-                    }
-                }
-            }
-            return aParams;
-        },
-
-
-        /**
-         * Parse passed URL
-         *
-         * @method parseUrl
-         * @param {String} url URL to be parsed
-         * @return {Object} Parsed URL as a key-value object.
-         * @public
-         * @static
-         * @example
-         *     Ink.requireModules(['Ink.Util.Url_1'], function( InkUrl ){
-         *         var parsedURL = InkUrl.parseUrl( 'http://www.sapo.pt/index.html?var1=value1#anchor' )
-         *         console.log( parsedURL );
-         *         // Result:
-         *         // {
-         *         //   'scheme'    => 'http',
-         *         //   'host'      => 'www.sapo.pt',
-         *         //   'path'      => '/index.html',
-         *         //   'query'     => 'var1=value1',
-         *         //   'fragment'  => 'anchor'
-         *         // }
-         *     });
-         *
-         */
-        parseUrl: function(url)
-        {
-            var aURL = {};
-            if(url && typeof(url) !== 'undefined' && typeof(url) === 'string') {
-                if(url.match(/^([^:]+):\/\//i)) {
-                    var re = /^([^:]+):\/\/([^\/]*)\/?([^\?#]*)\??([^#]*)#?(.*)/i;
-                    if(url.match(re)) {
-                        aURL.scheme   = url.replace(re, "$1");
-                        aURL.host     = url.replace(re, "$2");
-                        aURL.path     = '/'+url.replace(re, "$3");
-                        aURL.query    = url.replace(re, "$4") || false;
-                        aURL.fragment = url.replace(re, "$5") || false;
-                    }
-                } else {
-                    var re1 = new RegExp("^([^\\?]+)\\?([^#]+)#(.*)", "i");
-                    var re2 = new RegExp("^([^\\?]+)\\?([^#]+)#?", "i");
-                    var re3 = new RegExp("^([^\\?]+)\\??", "i");
-                    if(url.match(re1)) {
-                        aURL.scheme   = false;
-                        aURL.host     = false;
-                        aURL.path     = url.replace(re1, "$1");
-                        aURL.query    = url.replace(re1, "$2");
-                        aURL.fragment = url.replace(re1, "$3");
-                    } else if(url.match(re2)) {
-                        aURL.scheme = false;
-                        aURL.host   = false;
-                        aURL.path   = url.replace(re2, "$1");
-                        aURL.query  = url.replace(re2, "$2");
-                        aURL.fragment = false;
-                    } else if(url.match(re3)) {
-                        aURL.scheme   = false;
-                        aURL.host     = false;
-                        aURL.path     = url.replace(re3, "$1");
-                        aURL.query    = false;
-                        aURL.fragment = false;
-                    }
-                }
-                if(aURL.host) {
-                    var regPort = new RegExp("^(.*)\\:(\\d+)$","i");
-                    // check for port
-                    if(aURL.host.match(regPort)) {
-                        var tmpHost1 = aURL.host;
-                        aURL.host = tmpHost1.replace(regPort, "$1");
-                        aURL.port = tmpHost1.replace(regPort, "$2");
-                    } else {
-                        aURL.port = false;
-                    }
-                    // check for user and pass
-                    if(aURL.host.match(/@/i)) {
-                        var tmpHost2 = aURL.host;
-                        aURL.host = tmpHost2.split('@')[1];
-                        var tmpUserPass = tmpHost2.split('@')[0];
-                        if(tmpUserPass.match(/\:/)) {
-                            aURL.user = tmpUserPass.split(':')[0];
-                            aURL.pass = tmpUserPass.split(':')[1];
+        keyValue: function(value, arr, first) {
+            if (typeof value !== 'undefined' && typeof arr === 'object' && this.inArray(value, arr)) {
+                var aKeys = [];
+                for (var i = 0, f = arr.length; i < f; ++i) {
+                    if (arr[i] === value) {
+                        if (typeof first !== 'undefined' && first === true) {
+                            return i;
                         } else {
-                            aURL.user = tmpUserPass;
-                            aURL.pass = false;
+                            aKeys.push(i);
                         }
                     }
                 }
+                return aKeys;
             }
-            return aURL;
+            return false;
         },
 
         /**
-         * Get last loaded script element
+         * Returns the array shuffled, false if the param is not an array
          *
-         * @method currentScriptElement
-         * @param {String} [match] String to match against the script src attribute
-         * @return {DOMElement|Boolean} Returns the <script> DOM Element or false if unable to find it.
+         * @method shuffle
+         * @param {Array} arr Array to shuffle
+         * @return {Boolean|Number|Array} False if not an array | Array shuffled
          * @public
          * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+         *         console.log( InkArray.shuffle( testArray ) ); // Result example: [ 'value3', 'value2', 'value2', 'value1' ]
+         *     });
          */
-        currentScriptElement: function(match)
-        {
-            var aScripts = document.getElementsByTagName('script');
-            if(typeof(match) === 'undefined') {
-                if(aScripts.length > 0) {
-                    return aScripts[(aScripts.length - 1)];
-                } else {
-                    return false;
-                }
-            } else {
-                var curScript = false;
-                var re = new RegExp(""+match+"", "i");
-                for(var i=0, total = aScripts.length; i < total; i++) {
-                    curScript = aScripts[i];
-                    if(re.test(curScript.src)) {
-                        return curScript;
-                    }
-                }
-                return false;
+        shuffle: function(arr) {
+            if (typeof(arr) !== 'undefined' && arr.constructor !== Array) { return false; }
+            var total   = arr.length,
+                tmp1    = false,
+                rnd     = false;
+
+            while (total--) {
+                rnd        = Math.floor(Math.random() * (total + 1));
+                tmp1       = arr[total];
+                arr[total] = arr[rnd];
+                arr[rnd]   = tmp1;
             }
+            return arr;
         },
-
-        
-        /*
-        base64Encode: function(string)
-        {
-            /**
-         * --function {String} ?
-         * --Convert a string to BASE 64
-         * @param {String} string - string to convert
-         * @return base64 encoded string
-         *
-         * 
-            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
-                throw "SAPO.Utility.Url.base64Encode depends of SAPO.Utility.String, which has not been referred.";
-            }
-
-            var output = "";
-            var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-            var i = 0;
-
-            var input = SAPO.Utility.String.utf8Encode(string);
-
-            while (i < input.length) {
-
-                chr1 = input.charCodeAt(i++);
-                chr2 = input.charCodeAt(i++);
-                chr3 = input.charCodeAt(i++);
-
-                enc1 = chr1 >> 2;
-                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-                enc4 = chr3 & 63;
-
-                if (isNaN(chr2)) {
-                    enc3 = enc4 = 64;
-                } else if (isNaN(chr3)) {
-                    enc4 = 64;
-                }
-
-                output = output +
-                this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-                this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-            }
-            return output;
-        },
-        base64Decode: function(string)
-        {
-         * --function {String} ?
-         * Decode a BASE 64 encoded string
-         * --param {String} string base64 encoded string
-         * --return string decoded
-            if(!SAPO.Utility.String || typeof(SAPO.Utility.String) === 'undefined') {
-                throw "SAPO.Utility.Url.base64Decode depends of SAPO.Utility.String, which has not been referred.";
-            }
-
-            var output = "";
-            var chr1, chr2, chr3;
-            var enc1, enc2, enc3, enc4;
-            var i = 0;
-
-            var input = string.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-
-            while (i < input.length) {
-
-                enc1 = this._keyStr.indexOf(input.charAt(i++));
-                enc2 = this._keyStr.indexOf(input.charAt(i++));
-                enc3 = this._keyStr.indexOf(input.charAt(i++));
-                enc4 = this._keyStr.indexOf(input.charAt(i++));
-
-                chr1 = (enc1 << 2) | (enc2 >> 4);
-                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-                chr3 = ((enc3 & 3) << 6) | enc4;
-
-                output = output + String.fromCharCode(chr1);
-
-                if (enc3 !== 64) {
-                    output = output + String.fromCharCode(chr2);
-                }
-                if (enc4 !== 64) {
-                    output = output + String.fromCharCode(chr3);
-                }
-            }
-            output = SAPO.Utility.String.utf8Decode(output);
-            return output;
-        },
-        */
-
 
         /**
-         * Debug function ?
+         * Runs a function through each of the elements of an array
          *
-         * @method _debug
-         * @private
+         * @method forEach
+         * @param {Array} arr Array to be cycled/iterated
+         * @param {Function} cb The function receives as arguments the value, index and array.
+         * @return {Array} Array iterated.
+         * @public
          * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value2' ];
+         *         InkArray.forEach( testArray, function( value, index, arr ){
+         *             console.log( 'The value is: ' + value + ' | The index is: ' + index );
+         *         });
+         *     });
          */
-        _debug: function() {}
+        forEach: function(array, callback, context) {
+            if (arrayProto.forEach) {
+                return arrayProto.forEach.call(array, callback, context);
+            }
+            for (var i = 0, len = array.length >>> 0; i < len; i++) {
+                callback.call(context, array[i], i, array);
+            }
+        },
 
+        /**
+         * Alias for backwards compatibility. See forEach
+         *
+         * @method forEach
+         */
+        each: function () {
+            InkArray.forEach.apply(InkArray, [].slice.call(arguments));
+        },
+
+        /**
+         * Run a `map` function for each item in the array. The function will receive each item as argument and its return value will change the corresponding array item.
+         * @method map
+         * @param {Array} array     The array to map over
+         * @param {Function} map    The map function. Will take `(item, index, array)` and `this` will be the `context` argument.
+         * @param {Object} [context]    Object to be `this` in the map function.
+         *
+         * @example
+         *      InkArray.map([1, 2, 3, 4], function (item) {
+         *          return item + 1;
+         *      }); // -> [2, 3, 4, 5]
+         */
+        map: function (array, callback, context) {
+            if (arrayProto.map) {
+                return arrayProto.map.call(array, callback, context);
+            }
+            var mapped = new Array(len);
+            for (var i = 0, len = array.length >>> 0; i < len; i++) {
+                mapped[i] = callback.call(context, array[i], i, array);
+            }
+            return mapped;
+        },
+
+        /**
+         * Run a test function through all the input array. Items which pass the test function (for which the test function returned `true`) are kept in the array. Other items are removed.
+         * @param {Array} array
+         * @param {Function} test       A test function taking `(item, index, array)`
+         * @param {Object} [context]    Object to be `this` in the test function.
+         * @return filtered array
+         *
+         * @example
+         *      InkArray.filter([1, 2, 3, 4, 5], function (val) {
+         *          return val > 2;
+         *      })  // -> [3, 4, 5]
+         */
+        filter: function (array, test, context) {
+            if (arrayProto.filter) {
+                return arrayProto.filter.call(array, test, context);
+            }
+            var filtered = [],
+                val = null;
+            for (var i = 0, len = array.length; i < len; i++) {
+                val = array[i]; // it might be mutated
+                if (test.call(context, val, i, array)) {
+                    filtered.push(val);
+                }
+            }
+            return filtered;
+        },
+
+        /**
+         * Runs a callback function, which should return true or false.
+         * If one of the 'runs' returns true, it will return. Otherwise if none returns true, it will return false.
+         * See more at: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some (MDN)
+         *
+         * @method some
+         * @param {Array} arr The array you walk to iterate through
+         * @param {Function} cb The callback that will be called on the array's elements. It receives the value, the index and the array as arguments.
+         * @param {Object} Context object of the callback function
+         * @return {Boolean} True if the callback returns true at any point, false otherwise
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray1 = [ 10, 20, 50, 100, 30 ];
+         *         var testArray2 = [ 1, 2, 3, 4, 5 ];
+         *
+         *         function myTestFunction( value, index, arr ){
+         *             if( value > 90 ){
+         *                 return true;
+         *             }
+         *             return false;
+         *         }
+         *         console.log( InkArray.some( testArray1, myTestFunction, null ) ); // Result: true
+         *         console.log( InkArray.some( testArray2, myTestFunction, null ) ); // Result: false
+         *     });
+         */
+        some: function(arr, cb, context){
+
+            if (arr === null){
+                throw new TypeError('First argument is invalid.');
+            }
+
+            var t = Object(arr);
+            var len = t.length >>> 0;
+            if (typeof cb !== "function"){ throw new TypeError('Second argument must be a function.'); }
+
+            for (var i = 0; i < len; i++) {
+                if (i in t && cb.call(context, t[i], i, t)){ return true; }
+            }
+
+            return false;
+        },
+
+        /**
+         * Returns an array containing every item that is shared between the two given arrays
+         *
+         * @method intersect
+         * @param {Array} arr Array1 to be intersected with Array2
+         * @param {Array} arr Array2 to be intersected with Array1
+         * @return {Array} Empty array if one of the arrays is false (or do not intersect) | Array with the intersected values
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray1 = [ 'value1', 'value2', 'value3' ];
+         *         var testArray2 = [ 'value2', 'value3', 'value4', 'value5', 'value6' ];
+         *         console.log( InkArray.intersect( testArray1,testArray2 ) ); // Result: [ 'value2', 'value3' ]
+         *     });
+         */
+        intersect: function(arr1, arr2) {
+            if (!arr1 || !arr2 || arr1 instanceof Array === false || arr2 instanceof Array === false) {
+                return [];
+            }
+
+            var shared = [];
+            for (var i = 0, I = arr1.length; i<I; ++i) {
+                for (var j = 0, J = arr2.length; j < J; ++j) {
+                    if (arr1[i] === arr2[j]) {
+                        shared.push(arr1[i]);
+                    }
+                }
+            }
+
+            return shared;
+        },
+
+        /**
+         * Convert lists type to type array
+         *
+         * @method convert
+         * @param {Array} arr Array to be converted
+         * @return {Array} Array resulting of the conversion
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2' ];
+         *         testArray.myMethod = function(){
+         *             console.log('stuff');
+         *         }
+         *
+         *         console.log( InkArray.convert( testArray ) ); // Result: [ 'value1', 'value2' ]
+         *     });
+         */
+        convert: function(arr) {
+            return arrayProto.slice.call(arr || [], 0);
+        },
+
+        /**
+         * Insert value into the array on specified idx
+         *
+         * @method insert
+         * @param {Array} arr Array where the value will be inserted
+         * @param {Number} idx Index of the array where the value should be inserted
+         * @param {Mixed} value Value to be inserted
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2' ];
+         *         console.log( InkArray.insert( testArray, 1, 'value3' ) ); // Result: [ 'value1', 'value3', 'value2' ]
+         *     });
+         */
+        insert: function(arr, idx, value) {
+            arr.splice(idx, 0, value);
+        },
+
+        /**
+         * Remove a range of values from the array
+         *
+         * @method remove
+         * @param {Array} arr Array where the value will be inserted
+         * @param {Number} from Index of the array where the removal will start removing.
+         * @param {Number} rLen Number of items to be removed from the index onwards.
+         * @return {Array} An array with the remaining values
+         * @public
+         * @static
+         * @example
+         *     Ink.requireModules(['Ink.Util.Array_1'], function( InkArray ){
+         *         var testArray = [ 'value1', 'value2', 'value3', 'value4', 'value5' ];
+         *         console.log( InkArray.remove( testArray, 1, 3 ) ); // Result: [ 'value1', 'value4', 'value5' ]
+         *     });
+         */
+        remove: function(arr, from, rLen){
+            var output = [];
+
+            for(var i = 0, iLen = arr.length; i < iLen; i++){
+                if(i >= from && i < from + rLen){
+                    continue;
+                }
+
+                output.push(arr[i]);
+            }
+
+            return output;
+        }
     };
 
-    return Url;
+    return InkArray;
 
 });
+
+
 
 /**
  * @module Ink.Util.Validator_1
@@ -12164,318 +12514,5 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     };
 
     return Validator;
-
-});
-/**
- * @module Ink.Util.BinPack_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.Util.BinPack', '1', [], function() {
-
-    'use strict';
-
-    /*jshint boss:true */
-
-    // https://github.com/jakesgordon/bin-packing/
-
-    /*
-        Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
-
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:
-
-        The above copyright notice and this permission notice shall be included in all
-        copies or substantial portions of the Software.
-
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.
-    */
-
-
-
-    var Packer = function(w, h) {
-        this.init(w, h);
-    };
-
-    Packer.prototype = {
-
-        init: function(w, h) {
-            this.root = { x: 0, y: 0, w: w, h: h };
-        },
-
-        fit: function(blocks) {
-            var n, node, block;
-            for (n = 0; n < blocks.length; ++n) {
-                block = blocks[n];
-                if (node = this.findNode(this.root, block.w, block.h)) {
-                    block.fit = this.splitNode(node, block.w, block.h);
-                }
-            }
-        },
-
-        findNode: function(root, w, h) {
-            if (root.used) {
-                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
-            }
-            else if ((w <= root.w) && (h <= root.h)) {
-                return root;
-            }
-            else {
-                return null;
-            }
-        },
-
-        splitNode: function(node, w, h) {
-            node.used = true;
-            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
-            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
-            return node;
-        }
-
-    };
-
-
-
-    var GrowingPacker = function() {};
-
-    GrowingPacker.prototype = {
-
-        fit: function(blocks) {
-            var n, node, block, len = blocks.length;
-            var w = len > 0 ? blocks[0].w : 0;
-            var h = len > 0 ? blocks[0].h : 0;
-            this.root = { x: 0, y: 0, w: w, h: h };
-            for (n = 0; n < len ; n++) {
-                block = blocks[n];
-                if (node = this.findNode(this.root, block.w, block.h)) {
-                    block.fit = this.splitNode(node, block.w, block.h);
-                }
-                else {
-                    block.fit = this.growNode(block.w, block.h);
-                }
-            }
-        },
-
-        findNode: function(root, w, h) {
-            if (root.used) {
-                return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
-            }
-            else if ((w <= root.w) && (h <= root.h)) {
-                return root;
-            }
-            else {
-                return null;
-            }
-        },
-
-        splitNode: function(node, w, h) {
-            node.used = true;
-            node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
-            node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
-            return node;
-        },
-
-        growNode: function(w, h) {
-            var canGrowDown  = (w <= this.root.w);
-            var canGrowRight = (h <= this.root.h);
-
-            var shouldGrowRight = canGrowRight && (this.root.h >= (this.root.w + w)); // attempt to keep square-ish by growing right when height is much greater than width
-            var shouldGrowDown  = canGrowDown  && (this.root.w >= (this.root.h + h)); // attempt to keep square-ish by growing down  when width  is much greater than height
-
-            if (shouldGrowRight) {
-                return this.growRight(w, h);
-            }
-            else if (shouldGrowDown) {
-                return this.growDown(w, h);
-            }
-            else if (canGrowRight) {
-                return this.growRight(w, h);
-            }
-            else if (canGrowDown) {
-                return this.growDown(w, h);
-            }
-            else {
-                return null; // need to ensure sensible root starting size to avoid this happening
-            }
-        },
-
-        growRight: function(w, h) {
-            this.root = {
-                used: true,
-                x: 0,
-                y: 0,
-                w: this.root.w + w,
-                h: this.root.h,
-                down: this.root,
-                right: { x: this.root.w, y: 0, w: w, h: this.root.h }
-            };
-            var node;
-            if (node = this.findNode(this.root, w, h)) {
-                return this.splitNode(node, w, h);
-            }
-            else {
-                return null;
-            }
-        },
-
-        growDown: function(w, h) {
-            this.root = {
-                used: true,
-                x: 0,
-                y: 0,
-                w: this.root.w,
-                h: this.root.h + h,
-                down:  { x: 0, y: this.root.h, w: this.root.w, h: h },
-                right: this.root
-            };
-            var node;
-            if (node = this.findNode(this.root, w, h)) {
-                return this.splitNode(node, w, h);
-            }
-            else {
-                return null;
-            }
-        }
-
-    };
-
-
-
-    var sorts = {
-        random:  function() { return Math.random() - 0.5; },
-        w:       function(a, b) { return b.w - a.w; },
-        h:       function(a, b) { return b.h - a.h; },
-        a:       function(a, b) { return b.area - a.area; },
-        max:     function(a, b) { return Math.max(b.w, b.h) - Math.max(a.w, a.h); },
-        min:     function(a, b) { return Math.min(b.w, b.h) - Math.min(a.w, a.h); },
-        height:  function(a, b) { return sorts.msort(a, b, ['h', 'w']);               },
-        width:   function(a, b) { return sorts.msort(a, b, ['w', 'h']);               },
-        area:    function(a, b) { return sorts.msort(a, b, ['a', 'h', 'w']);          },
-        maxside: function(a, b) { return sorts.msort(a, b, ['max', 'min', 'h', 'w']); },
-        msort:   function(a, b, criteria) { /* sort by multiple criteria */
-            var diff, n;
-            for (n = 0; n < criteria.length; ++n) {
-                diff = sorts[ criteria[n] ](a, b);
-                if (diff !== 0) {
-                    return diff;
-                }
-            }
-            return 0;
-        }
-    };
-
-
-
-    // end of Jake's code
-
-
-
-    // aux, used to display blocks in unfitted property
-    var toString = function() {
-      return [this.w, ' x ', this.h].join('');
-    };
-
-
-
-    /**
-     * Binary Packing algorithm implementation
-     *
-     * Based on the work of Jake Gordon
-     *
-     * see https://github.com/jakesgordon/bin-packing/
-     *
-     * @class Ink.Util.BinPack
-     * @version 1
-     * @static
-     */
-    var BinPack = {
-
-        /**
-        * @method binPack
-        * @param {Object}      o              options
-        * @param {Object[]}    o.blocks       array of items with w and h integer attributes.
-        * @param {Number[2]}  [o.dimensions]  if passed, container has fixed dimensions
-        * @param {String}     [o.sorter]      sorter function. one of: random, height, width, area, maxside
-        * @return {Object}
-        *     * {Number[2]} dimensions - resulted container size,
-        *     * {Number}    filled     - filled ratio,
-        *     * {Object[]}  fitted,
-        *     * {Object[]}  unfitted,
-        *     * {Object[]}  blocks
-        * @static
-        */
-        binPack: function(o) {
-            var i, f, bl;
-
-
-
-            // calculate area if not there already
-            for (i = 0, f = o.blocks.length; i < f; ++i) {
-                bl = o.blocks[i];
-                if (! ('area' in bl) ) {
-                    bl.area = bl.w * bl.h;
-                }
-            }
-
-
-
-            // apply algorithm
-            var packer = o.dimensions ? new Packer(o.dimensions[0], o.dimensions[1]) : new GrowingPacker();
-
-            if (!o.sorter) { o.sorter = 'maxside'; }
-
-            o.blocks.sort( sorts[ o.sorter ] );
-
-            packer.fit(o.blocks);
-
-            var dims2 = [packer.root.w, packer.root.h];
-
-
-
-            // layout is done here, generating report data...
-            var fitted   = [];
-            var unfitted = [];
-
-            for (i = 0, f = o.blocks.length; i < f; ++i) {
-                bl = o.blocks[i];
-                if (bl.fit) {
-                    fitted.push(bl);
-                }
-                else {
-                    bl.toString = toString; // TO AID SERIALIZATION
-                    unfitted.push(bl);
-                }
-            }
-
-            var area = dims2[0] * dims2[1];
-            var fit = 0;
-            for (i = 0, f = fitted.length; i < f; ++i) {
-                bl = fitted[i];
-                fit += bl.area;
-            }
-
-            return {
-                dimensions: dims2,
-                filled:     fit / area,
-                blocks:     o.blocks,
-                fitted:     fitted,
-                unfitted:   unfitted
-            };
-        }
-    };
-
-
-
-    return BinPack;
 
 });
