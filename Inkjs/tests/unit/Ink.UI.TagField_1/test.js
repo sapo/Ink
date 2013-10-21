@@ -8,6 +8,7 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
      * @param name,func regular parameters for QUnit test()
      * @param [options] options for TagField
      */
+
     function tfTest(name, options, func) {
         test(name, function () {
             if (!func) {
@@ -77,7 +78,7 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
 
     tfTest('adding tags', function (tagField, view, elem) {
         tagField._input.value = 'tag1 tag2,tag3'
-        var select = Ink.bind(Selector.select, Selector, '>.tag', view);
+        var select = Ink.bind(Selector.select, Selector, '>.ink-tag', view);
         equal(select().length, 0);
         tagField._onKeyUp();
         equal(select().length, 2);  // not tag3, because the user might not have finished typing it.
@@ -108,7 +109,7 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
     tfTest('Input tag monitored for changes', function (tf, view) {
         view.getElementsByTagName('input')[0].value = 'one two tags';
         tf._onKeyUp();
-        equal(Selector.select('>.tag', view).length, 2);
+        equal(Selector.select('>.ink-tag', view).length, 2);
         deepEqual(tf._tags, ['one', 'two']);
         equal(view.getElementsByTagName('input')[0].value, 'tags');
     });
@@ -116,7 +117,7 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
     tfTest('Input tag is placed before the tags', function (tf, view) {
         tf._input.value = 'asd ';
         tf._onKeyUp();
-        deepEqual(InkArray.map(Selector.select('>.tag,>input', view), function (elm) {
+        deepEqual(InkArray.map(Selector.select('>.ink-tag,>input', view), function (elm) {
             return elm.tagName.toLowerCase();
         }), ['span', 'input']);
     });
@@ -124,8 +125,8 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
     tfTest('Tag is removed when "remove" button for it is clicked', function (tf, view) {
         tf._input.value = 'tag1 ';
         tf._onKeyUp();
-        InkEvent.fire(Selector.select('>.tag > .remove', view)[0], 'click');
-        equal(Selector.select('>.tag', view).length, 0)
+        InkEvent.fire(Selector.select('>.ink-tag > .remove', view)[0], 'click');
+        equal(Selector.select('>.ink-tag', view).length, 0)
         deepEqual(tf._tags, []);
     });
 
@@ -133,19 +134,19 @@ Ink.requireModules(['Ink.UI.TagField_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_
         tf._input.value = 'tag1 tag2 tag3 tag4 tag5 tag6 ';
         tf._onKeyUp();
 
-        InkEvent.fire(Selector.select('>.tag > .remove', view)[0], 'click');
+        InkEvent.fire(Selector.select('>.ink-tag > .remove', view)[0], 'click');
 
-        equal(Selector.select('>.tag', view).length, 5)
+        equal(Selector.select('>.ink-tag', view).length, 5)
         deepEqual(tf._tags, ['tag2', 'tag3', 'tag4', 'tag5', 'tag6']);
 
-        InkEvent.fire(Selector.select('>.tag > .remove', view)[3], 'click');
+        InkEvent.fire(Selector.select('>.ink-tag > .remove', view)[3], 'click');
 
-        equal(Selector.select('>.tag', view).length, 4)
+        equal(Selector.select('>.ink-tag', view).length, 4)
         deepEqual(tf._tags, ['tag2', 'tag3', 'tag4', 'tag6']);
 
-        InkEvent.fire(Selector.select('>.tag > .remove', view)[3], 'click');
+        InkEvent.fire(Selector.select('>.ink-tag > .remove', view)[3], 'click');
 
-        equal(Selector.select('>.tag', view).length, 3)
+        equal(Selector.select('>.ink-tag', view).length, 3)
         deepEqual(tf._tags, ['tag2', 'tag3', 'tag4']);
     });
 
