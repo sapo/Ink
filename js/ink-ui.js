@@ -987,6 +987,236 @@ Ink.createModule('Ink.UI.Pagination', '1',
 });
 
 /**
+ * @module Ink.UI.SmoothScroller_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
+    'use strict';
+
+    var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        function (cb) { return setTimeout(cb, 10); };
+
+    var cancelAnimationFrame =
+        window.cancelAnimationFrame ||
+        function (id) { clearTimeout(id); };
+
+    /**
+     * @class Ink.UI.SmoothScroller
+     * @version 1
+     * @static
+     *
+     * @example
+     *
+     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
+     *
+     *      [lots and lots of content...]
+     *
+     *      <h1 id="part1">Part 1</h1>
+     *
+     *      <script>
+     *          // ...Although you don't need to do this if you have autoload.js
+     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
+     *              SmoothScroller.init('.ink-smooth-scroll');
+     *          })
+     *      </script>
+     */
+    var SmoothScroller = {
+
+        /**
+         * Sets the speed of the scrolling
+         *
+         * @property speed
+         * @type {Number}
+         * @readOnly
+         * @static
+         */
+        speed: 10,
+
+        /**
+         * Returns the Y position of an element, relative to the document
+         *
+         * @method getTop
+         * @param  {DOMElement} d DOMElement to get the Y position from
+         * @return {Number}   Y position of div 'd'
+         * @public
+         * @static
+         */
+        getTop: function(d) {
+            return Math.round(
+                SmoothScroller.scrollTop() + d.getBoundingClientRect().top);
+        },
+
+
+        /**
+         * Returns the current scroll position
+         *
+         * @method scrollTop
+         * @return {Number}  Current scroll position
+         * @public
+         * @static
+         */
+        scrollTop: function() {
+            var body = document.body,
+                d = document.documentElement;
+            if (body && body.scrollTop){
+                return body.scrollTop;
+            }
+            if (d && d.scrollTop){
+                return d.scrollTop;
+            }
+            if (window.pageYOffset){
+                return window.pageYOffset;
+            }
+            return 0;
+        },
+
+        /**
+         * Attaches an event for an element
+         *
+         * @method add
+         * @param  {DOMElement} el DOMElement to make the listening of the event
+         * @param  {String} event Event name to be listened
+         * @param  {DOMElement} fn Callback function to run when the event is triggered.
+         * @public
+         * @static
+         */
+        add: function(el, event, fn) {
+            Event.observe(el,event,fn);
+        },
+
+
+        /**
+         * Kill an event of an element
+         *
+         * @method end
+         * @param  {String} e Event to be killed/stopped
+         * @public
+         * @static
+         */
+        // kill an event of an element
+        end: function(e) {
+            if (window.event) {
+                window.event.cancelBubble = true;
+                window.event.returnValue = false;
+                return;
+            }
+            Event.stop(e);
+        },
+
+
+        /**
+         * Moves the scrollbar to the target element. This is the function
+         * which animates the scroll position bit by bit. It calls itself in
+         * the end through requestAnimationFrame
+         *
+         * @method scroll
+         * @param  {Number} d Y coordinate value to stop
+         * @public
+         * @static
+         */
+        scroll: function(d) {
+            var a = SmoothScroller.scrollTop();
+            if (d > a) {
+                a += Math.ceil((d - a) / SmoothScroller.speed);
+            } else {
+                a = a + (d - a) / SmoothScroller.speed;
+            }
+
+            window.scrollTo(0, a);
+
+            cancelAnimationFrame(SmoothScroller.interval);
+
+            if (!((a) === d || SmoothScroller.offsetTop === a)) {
+                SmoothScroller.interval = requestAnimationFrame(
+                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
+            } else {
+                SmoothScroller.onDone();
+            }
+            SmoothScroller.offsetTop = a;
+        },
+
+
+        /**
+         * Has smooth scrolling applied to relevant elements upon page load.
+         *
+         * @method init
+         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
+         * @public
+         * @static
+         */
+        init: function(selector) {
+            Loaded.run(Ink.bindMethod(SmoothScroller, 'render', selector));
+        },
+
+        /**
+         * This method extracts all the anchors and validates them as # and attaches the events
+         *
+         * @method render
+         * @public
+         * @static
+         */
+        render: function(selector) {
+            var a = Selector.select(selector || 'a.scrollableLink,a.ink-smooth-scroll');
+
+            for (var i = 0; i < a.length; i++) {
+                var _elm = a[i];
+                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
+                    Event.observe(_elm,'click', Ink.bindEvent(SmoothScroller.onClick, this, _elm));
+                }
+            }
+        },
+
+
+        /**
+         * Click handler
+         *
+         * @method onClick
+         * @public
+         * @static
+         */
+        onClick: function(event, _elm) {
+            SmoothScroller.end(event);
+            if(_elm !== null && _elm.getAttribute('href') !== null) {
+                var hashIndex = _elm.href.indexOf('#');
+                if (hashIndex === -1) {
+                    return;
+                }
+                var hash = _elm.href.substr((hashIndex + 1));
+                var activeLiSelector = 'ul > li.active > ' + selector;
+
+                var selector = 'a[name="' + hash + '"],#' + hash;
+                var elm = Selector.select(selector)[0];
+                var activeLi = Selector.select(activeLiSelector)[0];
+                activeLi = activeLi && activeLi.parentNode;
+
+                if (typeof(elm) !== 'undefined') {
+                    if (_elm.parentNode.className.indexOf('active') === -1) {
+                        if (activeLi) {
+                            activeLi.className = activeLi.className.replace(/(^|\s+)active($|\s+)/g, '');
+                        }
+                        _elm.parentNode.className += " active";
+                    }
+                    SmoothScroller.hash = hash;
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
+                }
+            }
+        },
+
+        /**
+         * Called when the scroll movement is done. Updates browser address.
+         */
+        onDone: function () {
+            window.location.hash = SmoothScroller.hash;
+        }
+    };
+
+    return SmoothScroller;
+
+});
+
+/**
  * @module Ink.UI.SortableList_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -1582,6 +1812,216 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 });
 
 /**
+ * @module Ink.UI.Swipe
+ * @author ink AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.UI.Common_1'], function(InkEvent, InkElement, Common) {
+    'use strict';
+
+    /**
+     * Subscribe swipe gestures!
+     *
+     * Supports filtering swipes be any combination of the criteria supported in the options.
+     *
+     * @class Ink.UI.Swipe
+     * @constructor
+     * @param {String|DOMElement} el
+     * @param {Object}   options
+     *     @param {Function} [options.onEnd]       callback function for the `touchend` event. Gets all the gesture information, and is filtered by min/max Dist and Duration options (see below)
+     *     @param {Function} [options.onStart]     callback function for `touchstart` event
+     *     @param {Function} [options.onMove]      callback function for every `touchmove` event. Gets current gesture information.
+     *     @param {Number}   [options.minDist]     minimum allowed distance, in pixels
+     *     @param {Number}   [options.maxDist]     maximum allowed distance, in pixels
+     *     @param {Number}   [options.minDuration] minimum allowed duration, in seconds
+     *     @param {Number}   [options.maxDuration] maximum allowed duration, in seconds
+     *     @param {String}   [options.axis]        if either 'x' or 'y' is passed, only swipes where the dominant axis is the given one trigger the callback
+     *     @param {String}   [options.storeGesture=false] store gesture information and provide to the callback
+     *     @param {String}   [options.stopEvents=true] stop (default and propagation) of the received events
+     * 
+     * -----
+     *
+     * Arguments received by the callbacks
+     * -----------------------------------
+     *
+     * `onStart`, `onMove`, and `onEnd` receive as argument an object containing:
+     *
+     *   - `event`: the DOMEvent object
+     *   - `element`: the target element
+     *   - `Instance`: the `Ink.UI.Swipe_1` instance
+     *   - `position`: `Array` with `[x, y]` coordinates of current position
+     *   - `dt`: Time passed between now and the first event (onMove only)
+     *   - `gesture`: an Array containing [x,y] coordinates of every touchmove event received (storeGesture only) (onEnd only)
+     *   - `time`: an Array containing all the `dt` values for every touchmove event (onEnd only)
+     *   - `overallMovement`: X and Y distance traveled by the touch movement (`[x, y]`) (onEnd only)
+     *   - `overallTime`: total time passed (onEnd only)
+     *
+     */
+    function Swipe(el, options) {
+        el = Common.elOrSelector(el, 'Swipe target');
+
+        this._options = Ink.extendObj({
+            onEnd:          undefined,
+            onStart:        undefined,
+            onMove:         undefined,
+            minDist:        undefined,      // in pixels
+            maxDist:        undefined,
+            minDuration:    undefined,      // in seconds
+            maxDuration:    undefined,
+            axis:           undefined,       // x | y
+            storeGesture:   false,
+            stopEvents:     true
+        }, InkElement.data(el), options || {});
+
+        if (typeof options === 'function') {
+            this._options.onEnd = options;
+        }
+
+        this._handlers = {
+            down: Ink.bindEvent(this._onDown, this),
+            move: Ink.bindEvent(this._onMove, this),
+            up:   Ink.bindEvent(this._onUp, this)
+        };
+
+        this._element = el;
+
+        this._init();
+    }
+
+    Swipe.prototype = {
+
+        version: '0.1',
+
+        _supported: ('ontouchstart' in document.documentElement),
+
+        _init: function() {
+            var db = document.body;
+            InkEvent.observe(db, 'touchstart', this._handlers.down);
+            if (this._options.storeGesture || this._options.onMove) {
+                InkEvent.observe(db, 'touchmove', this._handlers.move);
+            }
+            InkEvent.observe(db, 'touchend', this._handlers.up);
+            this._isOn = false;
+        },
+
+        _isMeOrParent: function(el, parentEl) {
+            if (!el) {return;}
+            do {
+                if (el === parentEl) { return true; }
+                el = el.parentNode;
+            } while (el);
+            return false;
+        },
+
+        _pushGesture: function (coords, dt) {
+            if (this._options.storeGesture) {
+                this._gesture.push(coords);
+                this._time.push(dt);
+            }
+        },
+
+        _onDown: function(event) {
+            if (event.changedTouches.length !== 1) { return; }
+            if (!this._isMeOrParent(event.target, this._element)) { return; }
+
+            if( this._options.stopEvents === true ){
+                InkEvent.stop(event);
+            }
+            event = event.changedTouches[0];
+            this._isOn = true;
+            this._target = event.target;
+
+            this._t0 = +new Date();
+            this._p0 = [event.pageX, event.pageY];
+
+            if (this._options.storeGesture) {
+                this._gesture = [];
+                this._time    = [];
+            }
+
+            this._pushGesture(this._p0, 0);
+
+            if (this._options.onStart) {
+                this._options.onStart({
+                    event: event,
+                    element: this._element,
+                    instance: this,
+                    position: this._p0,
+                    dt: 0
+                });
+            }
+        },
+
+        _onMove: function(event) {
+            if (!this._isOn || event.changedTouches.length !== 1) { return; }
+            if( this._options.stopEvents === true ) {
+                InkEvent.stop(event);
+            }
+
+            event = event.changedTouches[0];
+            var t1 = +new Date();
+            var dt = (t1 - this._t0);
+
+            var gesture = [event.pageX, event.pageY];
+
+            this._pushGesture(gesture, dt);
+
+            if (this._options.onMove) {
+                this._options.onMove({
+                    event: event,
+                    element: this._element,
+                    instance: this,
+                    position: gesture,
+                    dt: dt
+                });
+            }
+        },
+
+        _onUp: function(event) {
+            if (!this._isOn || event.changedTouches.length !== 1) { return; }
+
+            if( this._options.stopEvents === true ){
+                InkEvent.stop(event);
+            }
+            event = event.changedTouches[0];   // TODO SHOULD CHECK IT IS THE SAME TOUCH
+            this._isOn = false;
+
+            var t1 = +new Date();
+            var p1 = [event.pageX, event.pageY];
+            var dt = (t1 - this._t0);
+            var dr = [
+                p1[0] - this._p0[0],
+                p1[1] - this._p0[1]
+            ];
+            var dist = Math.sqrt(dr[0]*dr[0] + dr[1]*dr[1]);
+            var axis = Math.abs(dr[0]) > Math.abs(dr[1]) ? 'x' : 'y';
+
+            var o = this._options;
+            if (o.minDist     && dist <   o.minDist) {     return; }
+            if (o.maxDist     && dist >   o.maxDist) {     return; }
+            if (o.minDuration && dt   <   o.minDuration) { return; }
+            if (o.maxDuration && dt   >   o.maxDuration) { return; }
+            if (o.axis        && axis !== o.axis)    {     return; }
+
+            if (this._options.onEnd) {
+                this._options.onEnd({
+                    event: event,
+                    element: this._element,
+                    instance: this,
+                    gesture: this._gesture,
+                    time: this._time,
+                    axis: axis,
+                    overallMovement: dr,
+                    overallTime: dt
+                });
+            }
+        }
+    };
+
+    return Swipe;
+});
+
+/**
  * @module Ink.UI.Table_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -1891,6 +2331,12 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                 }
             },this));
         },
+        _createTooltipElement: function () {
+            var template = this._getOpt('template'),  // User template instead of our HTML
+                templatefield = this._getOpt('templatefield'),
+                
+                tooltip,  // The element we float
+                field;  // Element where we write our message. Child or same as the above
 
         /**
          * Sorts by a specific column.
@@ -2059,6 +2505,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
             this._originalData = this._data.slice(0);
         },
+        _removeTooltip: function() {
+            var tooltip = this.tooltip;
+            if (!tooltip) {return;}
 
         /**
          * Sets the endpoint. Useful for changing the endpoint in runtime.
@@ -2631,239 +3080,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
 });
 
-/*
- * @module Ink.UI.TagField_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
-    'use strict';
-
-    var isTruthy = function (val) {return !!val;};
-
-    /**
-     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
-     *
-     * The markup is as follows:
-     *
-     *           <input class="ink-tagfield" type="text" value="initial,value">
-     *
-     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
-     *
-     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
-     *
-     * @class Ink.UI.TagField
-     * @version 1
-     * @constructor
-     * @param {String|InputElement} element Selector or DOM Input Element.
-     * @param {Object} [options]
-     * @param {String|Array} [options.tags] initial tags in the input
-     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
-     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
-     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
-     * @param {Boolean} [options.autoSplit=true] Whether the 
-     * @example
-     */
-    function TagField(element, options) {
-        this.init(element, options);
-    }
-
-    TagField.prototype = {
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @private
-         */
-        init: function(element, options) {
-            element = this._element = Common.elOrSelector(element);
-            var o = this._options = Ink.extendObj({
-                tags: [],
-                tagQuery: null,
-                tagQueryAsync: null,
-                allowRepeated: false,
-                outSeparator: ',',
-                separator: /[,; ]+/g,
-                autoSplit: true
-            }, options || {}, InkElement.data(element));
-
-            if (typeof o.tags === 'string') {
-                o.tags = this._readInput(o.tags);
-            }
-
-            Css.addClassName(this._element, 'hide-all');
-
-            this._viewElm = InkElement.create('div', {
-                className: 'ink-tagfield',
-                insertAfter: this._element
-            });
-
-            this._input = InkElement.create('input', {
-                type: 'text',
-                className: 'new-tag-input',
-                insertBottom: this._viewElm
-            });
-
-            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
-
-            this._tags = [];
-
-            InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
-
-            InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
-            InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
-            InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
-            InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
-        },
-
-        destroy: function () {
-            InkElement.remove(this._viewElm);
-            Css.removeClassName(this._element, 'hide-all');
-        },
-
-        _tagsFromMarkup: function (element) {
-            var tagname = element.tagName.toLowerCase();
-            if (tagname === 'input') {
-                return this._readInput(element.value);
-            } else if (tagname === 'select') {
-                return InkArray.map(element.getElementsByTagName('option'), function (option) {
-                    return InkElement.textContent(option);
-                });
-            } else {
-                throw new Error('Cannot read tags from a ' + tagname + ' tag. Unknown tag');
-            }
-        },
-
-        _tagsToMarkup: function (tags, element) {
-            var tagname = element.tagName.toLowerCase();
-            if (tagname === 'input') {
-                if (this._options.separator) {
-                    element.value = tags.join(this._options.outSeparator);
-                }
-            } else if (tagname === 'select') {
-                element.innerHTML = '';
-                InkArray.each(tags, function (tag) {
-                    var opt = InkElement.create('option', {selected: 'selected'});
-                    InkElement.setTextContent(opt, tag);
-                    element.appendChild(opt);
-                });
-            } else {
-                throw new Error('TagField: Cannot read tags from a ' + tagname + ' tag. Unknown tag');
-            }
-        },
-
-        _addTag: function (tag) {
-            if ((!this._options.allowRepeated &&
-                    InkArray.inArray(tag, this._tags, tag)) || !tag) {
-                return false;
-            }
-            var elm = InkElement.create('span', {
-                className: 'ink-tag',
-                setTextContent: tag + ' '
-            });
-
-            var remove = InkElement.create('i', {
-                className: 'remove icon-remove',
-                insertBottom: elm
-            });
-            InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
-
-            var spc = document.createTextNode(' ');
-
-            this._tags.push(tag);
-            this._viewElm.insertBefore(elm, this._input);
-            this._viewElm.insertBefore(spc, this._input);
-            this._tagsToMarkup(this._tags, this._element);
-        },
-
-        _readInput: function (text) {
-            if (this._options.separator) {
-                return InkArray.filter(text.split(this._options.separator), isTruthy);
-            } else {
-                return [text];
-            }
-        },
-
-        _onKeyUp: function () {  // TODO control input box size
-            if (!this._options.autoSplit) {
-                return;
-            }
-            var split = this._input.value.split(this._options.separator);
-            if (split.length <= 1) {
-                return;
-            }
-            var last = split[split.length - 1];
-            split = split.splice(0, split.length - 1);
-            split = InkArray.filter(split, isTruthy);
-            
-            InkArray.each(split, Ink.bind(this._addTag, this));
-            this._input.value = last;
-        },
-
-        _onKeyDown: function (event) {
-
-            if (event.which === 13 && this._input.value) {  // enter key
-                this._addTag(this._input.value);
-                this._input.value = '';
-                InkEvent.stop(event);
-                return false;
-            } else if (event.which === 8 && !this._input.value) { // backspace key
-                if (this._removeConfirm) {
-                    this._unsetRemovingVisual(this._tags.length - 1);
-                    this._removeTag(this._tags.length - 1);
-                    this._removeConfirm = null;
-                } else {
-                    this._setRemovingVisual(this._tags.length - 1);
-                }
-            } else {
-                if (this._removeConfirm) {  // pressed another key, cancelling removal
-                    this._unsetRemovingVisual(this._tags.length - 1);
-                }
-            }
-        },
-
-        /* For when the user presses backspace.
-         * Set the style of the tag so that it seems like it's going to be removed
-         * if they press backspace again. */
-        _setRemovingVisual: function (tagIndex) {
-            var elm = this._viewElm.children[tagIndex];
-            Css.addClassName(elm, 'tag-deleting');
-
-            this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
-            InkEvent.observe(this._input, 'blur', Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex));
-            this._removeConfirm = true;
-        },
-        _unsetRemovingVisual: function (tagIndex) {
-            var elm = this._viewElm.children[tagIndex];
-            if (elm) {
-                Css.removeClassName(elm, 'tag-deleting');
-                clearTimeout(this._removeRemovingVisualTimeout);
-            }
-            this._removeConfirm = null;
-        },
-
-        _removeTag: function (event) {
-            var index;
-            if (typeof event === 'object') {  // click event on close button
-                var elm = InkEvent.element(event).parentNode;
-                index = InkElement.parentIndexOf(this._viewElm, elm);
-            } else if (typeof event === 'number') {  // manual removal
-                index = event;
-            }
-            this._tags = InkArray.remove(this._tags, index, 1);
-            InkElement.remove(this._viewElm.children[index]);
-            this._tagsToMarkup(this._tags, this._element);
-        },
-
-        _refocus: function (event) {
-            this._input.focus();
-            InkEvent.stop(event);
-            return false;
-        }
-    };
-    return TagField;
-});
-
 /**
  * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
@@ -3037,6 +3253,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             Event.stop(event);
         },
 
+
         /**
          * Click handler. Will handle clicks outside the toggle component.
          * 
@@ -3065,6 +3282,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
                         return;
                     }
+                    SmoothScroller.hash = hash;
+                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
                 }
             }
 
@@ -3558,406 +3777,795 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 });
 
 /**
- * @module Ink.UI.TreeView_1
+ * @module Ink.UI.Modal_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
-     * @class Ink.UI.TreeView
+     * @class Ink.UI.Modal
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
+     *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
+     *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
+     *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
+     *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
+     *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
+     *      @param {Boolean}   [options.autoDisplay=true]  Display the Modal automatically when constructed.
+     *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
+     *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
+     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.
+     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
+     *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
+     *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
+     *
      * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
-     *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
-     *          </ul>
-     *        </li>
-     *      </ul>
+     *      <div class="ink-shade fade">
+     *          <div id="test" class="ink-modal fade" data-trigger="#bModal" data-width="800px" data-height="400px">
+     *              <div class="modal-header">
+     *                  <button class="modal-close ink-dismiss"></button>
+     *                  <h5>Modal windows can have headers</h5>
+     *              </div>
+     *              <div class="modal-body" id="modalContent">
+     *                  <h3>Please confirm your previous choice</h3>
+     *                  <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
+     *                  <p>
+     *                      <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
+     *                  </p>
+     *                  <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
+     *                  <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
+     *              </div>
+     *              <div class="modal-footer">
+     *                  <div class="push-right">
+     *                      <button class="ink-button info">Confirm</button>
+     *                      <button class="ink-button caution ink-dismiss">Cancel</button>
+     *                  </div>
+     *              </div>
+     *          </div>
+     *      </div>
+     *      <a href="#" id="bModal">Open modal</a>
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
+     *              var modalElement = Ink.s('#test');
+     *              var modalObj = new Modal( modalElement );
      *          });
      *      </script>
      */
-    var TreeView = function(selector, options){
+    var Modal = function(selector, options) {
 
-        /**
-         * Gets the element
-         */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
+            throw 'Invalid Modal selector';
+        } else if(typeof selector === 'string'){
+            if( selector !== '' ){
+                this._element = Selector.select(selector);
+                if( this._element.length === 0 ){
+                    /**
+                     * From a developer's perspective this should be like it is...
+                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
+                     */
+                    throw 'The Modal selector has not returned any elements';
+                } else {
+                    this._element = this._element[0];
+                }
             }
-            this._element = this._element[0];
-        } else {
+        } else if( !!selector ){
             this._element = selector;
         }
 
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul'
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
-
-        this._init();
-    };
-
-    TreeView.prototype = {
-
-        /**
-         * Init function called by the constructor. Sets the necessary event handlers.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
-
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                children
-            ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
-
-                children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
-
-        },
-
-        /**
-         * Handles the click event (as specified in the _init function).
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function(event){
+        this._options = {
+            /**
+             * Width, height and markup really optional, as they can be obtained by the element
+             */
+            width:        undefined,
+            height:       undefined,
 
             /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
+             * Since we allow a callback for this let's run it.
              */
-            var tgtEl = Event.element(event);
-
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            }
-
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
-
-            var child = Selector.select(this._options.child,tgtEl);
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
-            }
-
+            this._options.onLoad.call(this);
         }
 
     };
 
-    return TreeView;
+    return ImageQuery;
 
 });
 
 /**
- * @module Ink.UI.SmoothScroller_1
+ * @module Ink.UI.FormValidator_2
  * @author inkdev AT sapo.pt
- * @version 1
+ * @version 2
  */
-Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Loaded_1'], function(Event, Selector, Loaded) {
+Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Aux, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
-    var requestAnimationFrame =
-        window.requestAnimationFrame ||
-        function (cb) { return setTimeout(cb, 10); };
-
-    var cancelAnimationFrame =
-        window.cancelAnimationFrame ||
-        function (id) { clearTimeout(id); };
-
     /**
-     * @class Ink.UI.SmoothScroller
-     * @version 1
+     * Validation Functions to be used
+     * Some functions are a port from PHP, others are the 'best' solutions available
+     *
+     * @type {Object}
+     * @private
      * @static
-     *
-     * @example
-     *
-     *      <a href="#part1" class="ink-smooth-scroll">go to Part 1</a>
-     *
-     *      [lots and lots of content...]
-     *
-     *      <h1 id="part1">Part 1</h1>
-     *
-     *      <script>
-     *          // ...Although you don't need to do this if you have autoload.js
-     *          Ink.requireModules(['Ink.UI.SmoothScroller_1'], function (SmoothScroller) {
-     *              SmoothScroller.init('.ink-smooth-scroll');
-     *          })
-     *      </script>
      */
-    var SmoothScroller = {
+    var validationFunctions = {
 
         /**
-         * Sets the speed of the scrolling
+         * Checks if the value is actually defined and is not empty
          *
-         * @property speed
-         * @type {Number}
-         * @readOnly
-         * @static
+         * @method validationFunctions.required
+         * @param  {String} value Value to be checked
+         * @return {Boolean}       True case is defined, false if it's empty or not defined.
          */
-        speed: 10,
-
-        /**
-         * Returns the Y position of an element, relative to the document
-         *
-         * @method getTop
-         * @param  {DOMElement} d DOMElement to get the Y position from
-         * @return {Number}   Y position of div 'd'
-         * @public
-         * @static
-         */
-        getTop: function(d) {
-            return Math.round(
-                SmoothScroller.scrollTop() + d.getBoundingClientRect().top);
-        },
-
-
-        /**
-         * Returns the current scroll position
-         *
-         * @method scrollTop
-         * @return {Number}  Current scroll position
-         * @public
-         * @static
-         */
-        scrollTop: function() {
-            var body = document.body,
-                d = document.documentElement;
-            if (body && body.scrollTop){
-                return body.scrollTop;
-            }
-            if (d && d.scrollTop){
-                return d.scrollTop;
-            }
-            if (window.pageYOffset){
-                return window.pageYOffset;
-            }
-            return 0;
+        'required': function( value ){
+            return ( (typeof value !== 'undefined') && ( !(/^\s*$/).test(value) ) );
         },
 
         /**
-         * Attaches an event for an element
+         * Checks if the value has a minimum length
          *
-         * @method add
-         * @param  {DOMElement} el DOMElement to make the listening of the event
-         * @param  {String} event Event name to be listened
-         * @param  {DOMElement} fn Callback function to run when the event is triggered.
-         * @public
-         * @static
+         * @method validationFunctions.min_length
+         * @param  {String} value   Value to be checked
+         * @param  {String|Number} minSize Number of characters that the value at least must have.
+         * @return {Boolean}         True if the length of value is equal or bigger than the minimum chars defined. False if not.
          */
-        add: function(el, event, fn) {
-            Event.observe(el,event,fn);
+        'min_length': function( value, minSize ){
+            return ( (typeof value === 'string') && ( value.length >= parseInt(minSize,10) ) );
         },
 
+        /**
+         * Checks if the value has a maximum length
+         *
+         * @method validationFunctions.max_length
+         * @param  {String} value   Value to be checked
+         * @param  {String|Number} maxSize Number of characters that the value at maximum can have.
+         * @return {Boolean}         True if the length of value is equal or smaller than the maximum chars defined. False if not.
+         */
+        'max_length': function( value, maxSize ){
+            return ( (typeof value === 'string') && ( value.length <= parseInt(maxSize,10) ) );
+        },
 
         /**
-         * Kill an event of an element
+         * Checks if the value has an exact length
          *
-         * @method end
-         * @param  {String} e Event to be killed/stopped
-         * @public
-         * @static
+         * @method validationFunctions.exact_length
+         * @param  {String} value   Value to be checked
+         * @param  {String|Number} exactSize Number of characters that the value must have.
+         * @return {Boolean}         True if the length of value is equal to the size defined. False if not.
          */
-        // kill an event of an element
-        end: function(e) {
-            if (window.event) {
-                window.event.cancelBubble = true;
-                window.event.returnValue = false;
-                return;
+        'exact_length': function( value, exactSize ){
+            return ( (typeof value === 'string') && ( value.length === parseInt(exactSize,10) ) );
+        },
+
+        /**
+         * Checks if the value has a valid e-mail address
+         *
+         * @method validationFunctions.email
+         * @param  {String} value   Value to be checked
+         * @return {Boolean}         True if the value is a valid e-mail address. False if not.
+         */
+        'email': function( value ){
+            return ( ( typeof value === 'string' ) && InkValidator.mail( value ) );
+        },
+
+        /**
+         * Checks if the value has a valid URL
+         *
+         * @method validationFunctions.url
+         * @param  {String} value   Value to be checked
+         * @param  {Boolean} fullCheck Flag that specifies if the value must be validated as a full url (with the protocol) or not.
+         * @return {Boolean}         True if the URL is considered valid. False if not.
+         */
+        'url': function( value, fullCheck ){
+            fullCheck = fullCheck || false;
+            return ( (typeof value === 'string') && InkValidator.url( value, fullCheck ) );
+        },
+
+        /**
+         * Checks if the value is a valid IP. Supports ipv4 and ipv6
+         *
+         * @method validationFunctions.ip
+         * @param  {String} value   Value to be checked
+         * @param  {String} ipType Type of IP to be validated. The values are: ipv4, ipv6. By default is ipv4.
+         * @return {Boolean}         True if the value is a valid IP address. False if not.
+         */
+        'ip': function( value, ipType ){
+            if( typeof value !== 'string' ){
+                return false;
             }
-            Event.stop(e);
+
+            return InkValidator.isIP(value, ipType);
         },
 
-
         /**
-         * Moves the scrollbar to the target element. This is the function
-         * which animates the scroll position bit by bit. It calls itself in
-         * the end through requestAnimationFrame
+         * Checks if the value is a valid phone number. Supports several countries, based in the Ink.Util.Validator class.
          *
-         * @method scroll
-         * @param  {Number} d Y coordinate value to stop
-         * @public
-         * @static
+         * @method validationFunctions.phone
+         * @param  {String} value   Value to be checked
+         * @param  {String} phoneType Country's initials to specify the type of phone number to be validated. Ex: 'AO'.
+         * @return {Boolean}         True if it's a valid phone number. False if not.
          */
-        scroll: function(d) {
-            var a = SmoothScroller.scrollTop();
-            if (d > a) {
-                a += Math.ceil((d - a) / SmoothScroller.speed);
-            } else {
-                a = a + (d - a) / SmoothScroller.speed;
+        'phone': function( value, phoneType ){
+            if( typeof value !== 'string' ){
+                return false;
             }
 
-            window.scrollTo(0, a);
+            var countryCode = phoneType ? phoneType.toUpperCase() : '';
 
-            cancelAnimationFrame(SmoothScroller.interval);
+            return InkValidator['is' + countryCode + 'Phone'](value);
+        },
 
-            if (!((a) === d || SmoothScroller.offsetTop === a)) {
-                SmoothScroller.interval = requestAnimationFrame(
-                    Ink.bindMethod(SmoothScroller, 'scroll', d), document.body);
-            } else {
-                SmoothScroller.onDone();
+        /**
+         * Checks if it's a valid credit card.
+         *
+         * @method validationFunctions.credit_card
+         * @param  {String} value   Value to be checked
+         * @param  {String} cardType Type of credit card to be validated. The card types available are in the Ink.Util.Validator class.
+         * @return {Boolean}         True if the value is a valid credit card number. False if not.
+         */
+        'credit_card': function( value, cardType ){
+            if( typeof value !== 'string' ){
+                return false;
             }
-            SmoothScroller.offsetTop = a;
-        },
 
-
-        /**
-         * Has smooth scrolling applied to relevant elements upon page load.
-         *
-         * @method init
-         * @param [selector='a.scrollableLink,a.ink-smooth-scroll'] Selector string for finding links with smooth scrolling enabled.
-         * @public
-         * @static
-         */
-        init: function(selector) {
-            Loaded.run(Ink.bindMethod(SmoothScroller, 'render', selector));
+            return InkValidator.isCreditCard( value, cardType || 'default' );
         },
 
         /**
-         * This method extracts all the anchors and validates them as # and attaches the events
+         * Checks if the value is a valid date.
          *
-         * @method render
-         * @public
-         * @static
+         * @method validationFunctions.date
+         * @param  {String} value   Value to be checked
+         * @param  {String} format Specific format of the date.
+         * @return {Boolean}         True if the value is a valid date. False if not.
          */
-        render: function(selector) {
-            var a = Selector.select(selector || 'a.scrollableLink,a.ink-smooth-scroll');
-
-            for (var i = 0; i < a.length; i++) {
-                var _elm = a[i];
-                if (_elm.href && _elm.href.indexOf('#') !== -1 && ((_elm.pathname === location.pathname) || ('/' + _elm.pathname === location.pathname))) {
-                    Event.observe(_elm,'click', Ink.bindEvent(SmoothScroller.onClick, this, _elm));
-                }
-            }
+        'date': function( value, format ){
+            return ( (typeof value === 'string' ) && InkValidator.isDate(format, value) );
         },
 
-
         /**
-         * Click handler
+         * Checks if the value only contains alphabetical values.
          *
-         * @method onClick
-         * @public
-         * @static
+         * @method validationFunctions.alpha
+         * @param  {String} value           Value to be checked
+         * @param  {Boolean} supportSpaces  Allow whitespace
+         * @return {Boolean}                True if the value is alphabetical-only. False if not.
          */
-        onClick: function(event, _elm) {
-            SmoothScroller.end(event);
-            if(_elm !== null && _elm.getAttribute('href') !== null) {
-                var hashIndex = _elm.href.indexOf('#');
-                if (hashIndex === -1) {
-                    return;
-                }
-                var hash = _elm.href.substr((hashIndex + 1));
-                var activeLiSelector = 'ul > li.active > ' + selector;
+        'alpha': function( value, supportSpaces ){
+            return InkValidator.ascii(value, {singleLineWhitespace: supportSpaces});
+        },
 
-                var selector = 'a[name="' + hash + '"],#' + hash;
-                var elm = Selector.select(selector)[0];
-                var activeLi = Selector.select(activeLiSelector)[0];
-                activeLi = activeLi && activeLi.parentNode;
-
-                if (typeof(elm) !== 'undefined') {
-                    if (_elm.parentNode.className.indexOf('active') === -1) {
-                        if (activeLi) {
-                            activeLi.className = activeLi.className.replace(/(^|\s+)active($|\s+)/g, '');
-                        }
-                        _elm.parentNode.className += " active";
+        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
+            var triggerElement,i;
+            if( typeof this._options.trigger === 'string' ){
+                triggerElement = Selector.select( this._options.trigger );
+                if( triggerElement.length > 0 ){
+                    for( i=0; i<triggerElement.length; i++ ){
+                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this.open, this) );
                     }
-                    SmoothScroller.hash = hash;
-                    SmoothScroller.scroll(SmoothScroller.getTop(elm));
                 }
             }
-        },
-
-        /**
-         * Called when the scroll movement is done. Updates browser address.
-         */
-        onDone: function () {
-            window.location.hash = SmoothScroller.hash;
+        } else if ( this._options.autoDisplay.toString() === "true" ) {
+            this.open();
         }
     };
 
-    return SmoothScroller;
+        /*
+         * Check that the value contains only printable text characters 
+         * available in the latin-1 encoding.
+         *
+         * Optionally allow punctuation and whitespace
+         *
+         * @method validationFunctions.text
+         * @param {String} value    Value to be checked
+         * @return {Boolean}        Whether the value only contains printable text characters
+         **/
+        'latin': function (value, punctuation, whitespace) {
+            if ( typeof value !== 'string') { return false; }
+            return InkValidator.latin1(value, {latin1Punctuation: punctuation, singleLineWhitespace: whitespace});
+        },
+
+        /**
+         * Checks if the value only contains alphabetical and numerical characters.
+         *
+         * @method validationFunctions.alpha_numeric
+         * @param  {String} value   Value to be checked
+         * @return {Boolean}         True if the value is a valid alphanumerical. False if not.
+         */
+        'alpha_numeric': function( value ){
+            return InkValidator.ascii(value, {numbers: true});
+        },
+
+        /**
+         * Checks if the value only contains alphabetical, dash or underscore characteres.
+         *
+         * @method validationFunctions.alpha_dashes
+         * @param  {String} value   Value to be checked
+         * @return {Boolean}         True if the value is a valid. False if not.
+         */
+        'alpha_dash': function( value ){
+            return InkValidator.ascii(value, {dash: true, underscore: true});
+        },
+
+        /**
+         * Checks if the value is a digit (an integer of length = 1).
+         *
+         * @method validationFunctions.digit
+         * @param  {String} value   Value to be checked
+         * @return {Boolean}         True if the value is a valid digit. False if not.
+         */
+        'digit': function( value ){
+            return ((typeof value === 'string') && /^[0-9]{1}$/.test(value));
+        },
+
+        /**
+         * Checks if the value is a valid integer.
+         *
+         * @method validationFunctions.integer
+         * @param  {String} value   Value to be checked
+         * @param  {String} positive Flag that specifies if the integer is must be positive (unsigned).
+         * @return {Boolean}         True if the value is a valid integer. False if not.
+         */
+        'integer': function( value, positive ){
+            return InkValidator.number(value, {
+                negative: !positive,
+                decimalPlaces: 0
+            });
+        },
+
+        /**
+         * Checks if the value is a valid decimal number.
+         *
+         * @method validationFunctions.decimal
+         * @param  {String} value   Value to be checked
+         * @param  {String} decimalSeparator Character that splits the integer part from the decimal one. By default is '.'.
+         * @param  {String} [decimalPlaces] Maximum number of digits that the decimal part must have.
+         * @param  {String} [leftDigits] Maximum number of digits that the integer part must have, when provided.
+         * @return {Boolean}         True if the value is a valid decimal number. False if not.
+         */
+        'decimal': function( value, decimalSeparator, decimalPlaces, leftDigits ){
+            return InkValidator.number(value, {
+                decimalSep: decimalSeparator || '.',
+                decimalPlaces: +decimalPlaces || null,
+                maxDigits: +leftDigits
+            });
+        },
+
+        /**
+         * Checks if it is a numeric value.
+         *
+         * @method validationFunctions.numeric
+         * @param  {String} value   Value to be checked
+         * @param  {String} decimalSeparator Verifies if it's a valid decimal. Otherwise checks if it's a valid integer.
+         * @param  {String} [decimalPlaces] (when the number is decimal) Maximum number of digits that the decimal part must have.
+         * @param  {String} [leftDigits] (when the number is decimal) Maximum number of digits that the integer part must have, when provided.
+         * @return {Boolean}         True if the value is numeric. False if not.
+         */
+        'numeric': function( value, decimalSeparator, decimalPlaces, leftDigits ){
+            decimalSeparator = decimalSeparator || '.';
+            if( value.indexOf(decimalSeparator) !== -1  ){
+                return validationFunctions.decimal( value, decimalSeparator, decimalPlaces, leftDigits );
+            } else {
+                return validationFunctions.integer( value );
+            }
+        },
+
+        /**
+         * Checks if the value is in a specific range of values. The parameters after the first one are used for specifying the range, and are similar in function to python's range() function.
+         *
+         * @method validationFunctions.range
+         * @param  {String} value   Value to be checked
+         * @param  {String} minValue Left limit of the range.
+         * @param  {String} maxValue Right limit of the range.
+         * @param  {String} [multipleOf] In case you want numbers that are only multiples of another number.
+         * @return {Boolean}         True if the value is within the range. False if not.
+         */
+        'range': function( value, minValue, maxValue, multipleOf ){
+            value = +value;
+            minValue = +minValue;
+            maxValue = +maxValue;
+
+            if (isNaN(value) || isNaN(minValue) || isNaN(maxValue)) {
+                return false;
+            }
+
+            if( value < minValue || value > maxValue ){
+                return false;
+            }
+
+            if (multipleOf) {
+                return (value - minValue) % multipleOf === 0;
+            } else {
+                return true;
+            }
+        },
+
+        /**
+         * Checks if the value is a valid color.
+         *
+         * @method validationFunctions.color
+         * @param  {String} value   Value to be checked
+         * @return {Boolean}         True if the value is a valid color. False if not.
+         */
+        'color': function( value ){
+            return InkValidator.isColor(value);
+        },
+
+        /**
+         * Checks if the value matches the value of a different field.
+         *
+         * @method validationFunctions.matches
+         * @param  {String} value   Value to be checked
+         * @param  {String} fieldToCompare Name or ID of the field to compare.
+         * @return {Boolean}         True if the values match. False if not.
+         */
+        'matches': function( value, fieldToCompare ){
+            return ( value === this.getFormElements()[fieldToCompare][0].getValue() );
+        }
+
+    };
+
+    /**
+     * Error messages for the validation functions above
+     * @type {Object}
+     * @private
+     * @static
+     */
+    var validationMessages = new I18n({
+        en_US: {
+            'formvalidator.required' : 'The {field} filling is mandatory',
+            'formvalidator.min_length': 'The {field} must have a minimum size of {param1} characters',
+            'formvalidator.max_length': 'The {field} must have a maximum size of {param1} characters',
+            'formvalidator.exact_length': 'The {field} must have an exact size of {param1} characters',
+            'formvalidator.email': 'The {field} must have a valid e-mail address',
+            'formvalidator.url': 'The {field} must have a valid URL',
+            'formvalidator.ip': 'The {field} does not contain a valid {param1} IP address',
+            'formvalidator.phone': 'The {field} does not contain a valid {param1} phone number',
+            'formvalidator.credit_card': 'The {field} does not contain a valid {param1} credit card',
+            'formvalidator.date': 'The {field} should contain a date in the {param1} format',
+            'formvalidator.alpha': 'The {field} should only contain letters',
+            'formvalidator.text': 'The {field} should only contain alphabetic characters',
+            'formvalidator.latin': 'The {field} should only contain alphabetic characters',
+            'formvalidator.alpha_numeric': 'The {field} should only contain letters or numbers',
+            'formvalidator.alpha_dashes': 'The {field} should only contain letters or dashes',
+            'formvalidator.digit': 'The {field} should only contain a digit',
+            'formvalidator.integer': 'The {field} should only contain an integer',
+            'formvalidator.decimal': 'The {field} should contain a valid decimal number',
+            'formvalidator.numeric': 'The {field} should contain a number',
+            'formvalidator.range': 'The {field} should contain a number between {param1} and {param2}',
+            'formvalidator.color': 'The {field} should contain a valid color',
+            'formvalidator.matches': 'The {field} should match the field {param1}',
+            'formvalidator.validation_function_not_found': 'The rule {rule} has not been defined'
+        },
+        pt_PT: {
+            'formvalidator.required' : 'Preencher {field} é obrigatório',
+            'formvalidator.min_length': '{field} deve ter no mínimo {param1} caracteres',
+            'formvalidator.max_length': '{field} tem um tamanho máximo de {param1} caracteres',
+            'formvalidator.exact_length': '{field} devia ter exactamente {param1} caracteres',
+            'formvalidator.email': '{field} deve ser um e-mail válido',
+            'formvalidator.url': 'O {field} deve ser um URL válido',
+            'formvalidator.ip': '{field} não tem um endereço IP {param1} válido',
+            'formvalidator.phone': '{field} deve ser preenchido com um número de telefone {param1} válido.',
+            'formvalidator.credit_card': '{field} não tem um cartão de crédito {param1} válido',
+            'formvalidator.date': '{field} deve conter uma data no formato {param1}',
+            'formvalidator.alpha': 'O campo {field} deve conter apenas caracteres alfabéticos',
+            'formvalidator.text': 'O campo {field} deve conter apenas caracteres alfabéticos',
+            'formvalidator.latin': 'O campo {field} deve conter apenas caracteres alfabéticos',
+            'formvalidator.alpha_numeric': '{field} deve conter apenas letras e números',
+            'formvalidator.alpha_dashes': '{field} deve conter apenas letras e traços',
+            'formvalidator.digit': '{field} destina-se a ser preenchido com apenas um dígito',
+            'formvalidator.integer': '{field} deve conter um número inteiro',
+            'formvalidator.decimal': '{field} deve conter um número válido',
+            'formvalidator.numeric': '{field} deve conter um número válido',
+            'formvalidator.range': '{field} deve conter um número entre {param1} e {param2}',
+            'formvalidator.color': '{field} deve conter uma cor válida',
+            'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
+            'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
+        }
+    }, 'en_US');
+
+    /**
+     * Constructor of a FormElement.
+     * This type of object has particular methods to parse rules and validate them in a specific DOM Element.
+     *
+     * @param  {DOMElement} element DOM Element
+     * @param  {Object} options Object with configuration options
+     * @return {FormElement} FormElement object
+     */
+    var FormElement = function( element, options ){
+        this._element = Aux.elOrSelector( element, 'Invalid FormElement' );
+        this._errors = {};
+        this._rules = {};
+        this._value = null;
+
+        this._options = Ink.extendObj( {
+            label: this._getLabel()
+        }, Element.data(this._element) );
+
+        this._options = Ink.extendObj( this._options, options || {} );
+
+    };
+
+    /**
+     * FormElement's prototype
+     */
+    FormElement.prototype = {
+
+        /**
+         * Function to get the label that identifies the field.
+         * If it can't find one, it will use the name or the id
+         * (depending on what is defined)
+         *
+         * @method _getLabel
+         * @return {String} Label to be used in the error messages
+         * @private
+         */
+        _getLabel: function(){
+
+            var controlGroup = Element.findUpwardsByClass(this._element,'control-group');
+            var label = Ink.s('label',controlGroup);
+            if( label ){
+                label = Element.textContent(label);
+            } else {
+                label = this._element.name || this._element.id || '';
+            }
+
+            return label;
+        },
+
+        /**
+         * Function to parse a rules' string.
+         * Ex: required|number|max_length[30]
+         *
+         * @method _parseRules
+         * @param  {String} rules String with the rules
+         * @private
+         */
+        _parseRules: function( rules ){
+            this._rules = {};
+            rules = rules.split("|");
+            var i, rulesLength = rules.length, rule, params, paramStartPos ;
+            if( rulesLength > 0 ){
+                for( i = 0; i < rulesLength; i++ ){
+                    rule = rules[i];
+                    if( !rule ){
+                        continue;
+                    }
+
+                    if( ( paramStartPos = rule.indexOf('[') ) !== -1 ){
+                        params = rule.substr( paramStartPos+1 );
+                        params = params.split(']');
+                        params = params[0];
+                        params = params.split(',');
+                        for (var p = 0, len = params.length; p < len; p++) {
+                            params[p] =
+                                params[p] === 'true' ? true :
+                                params[p] === 'false' ? false :
+                                params[p];
+                        }
+                        params.splice(0,0,this.getValue());
+
+                        rule = rule.substr(0,paramStartPos);
+
+                        this._rules[rule] = params;
+                    } else {
+                        this._rules[rule] = [this.getValue()];
+                    }
+                }
+            }
+        },
+
+        /**
+         * Function to add an error to the FormElement's 'errors' object.
+         * It basically receives the rule where the error occurred, the parameters passed to it (if any)
+         * and the error message.
+         * Then it replaces some tokens in the message for a more 'custom' reading
+         *
+         * @method _addError
+         * @param  {String|null} rule    Rule that failed, or null if no rule was found.
+         * @private
+         * @static
+         */
+        _addError: function(rule){
+            var params = this._rules[rule] || [];
+
+            var paramObj = {
+                field: this._options.label,
+                value: this.getValue()
+            };
+
+            for( var i = 1; i < params.length; i++ ){
+                paramObj['param' + i] = params[i];
+            }
+
+            var i18nKey = 'formvalidator.' + rule;
+
+            this._errors[rule] = validationMessages.text(i18nKey, paramObj);
+
+            if (this._errors[rule] === i18nKey) {
+                this._errors[rule] = 'Validation message not found';
+            }
+        },
+
+        /**
+         * Function to retrieve the element's value
+         *
+         * @method getValue
+         * @return {mixed} The DOM Element's value
+         * @public
+         */
+        getValue: function(){
+
+            switch(this._element.nodeName.toLowerCase()){
+                case 'select':
+                    return Ink.s('option:selected',this._element).value;
+                case 'textarea':
+                    return this._element.innerHTML;
+                case 'input':
+                    if( "type" in this._element ){
+                        if( (this._element.type === 'radio') && (this._element.type === 'checkbox') ){
+                            if( this._element.checked ){
+                                return this._element.value;
+                            }
+                        } else if( this._element.type !== 'file' ){
+                            return this._element.value;
+                        }
+                    } else {
+                        return this._element.value;
+                    }
+                    return;
+                default:
+                    return this._element.innerHTML;
+            }
+        },
+
+        /**
+         * Function that returns the constructed errors object.
+         *
+         * @method getErrors
+         * @return {Object} Errors' object
+         * @public
+         */
+        getErrors: function(){
+            return this._errors;
+        },
+
+        /**
+         * Function that returns the DOM element related to it.
+         *
+         * @method getElement
+         * @return {Object} DOM Element
+         * @public
+         */
+        getElement: function(){
+            return this._element;
+        },
+
+        /**
+         * Get other elements in the same form.
+         *
+         * @method getFormElements
+         * @return {Object} A mapping of keys to other elements in this form.
+         * @public
+         */
+        getFormElements: function () {
+            return this._options.form._formElements;
+        },
+
+        /**
+         * Function used to validate the element based on the rules defined.
+         * It parses the rules defined in the _options.rules property.
+         *
+         * @method validate
+         * @return {Boolean} True if every rule was valid. False if one fails.
+         * @public
+         */
+        validate: function(){
+            this._errors = {};
+
+            if( "rules" in this._options || 1){
+                this._parseRules( this._options.rules );
+            }
+            
+            if( ("required" in this._rules) || (this.getValue() !== '') ){
+                for(var rule in this._rules) {
+                    if (this._rules.hasOwnProperty(rule)) {
+                        if( (typeof validationFunctions[rule] === 'function') ){
+                            if( validationFunctions[rule].apply(this, this._rules[rule] ) === false ){
+
+                                this._addError( rule );
+                                return false;
+
+                            }
+
+                        } else {
+
+                            this._addError( null );
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+
+        }
+    };
+
+
+
+    /**
+     * @class Ink.UI.FormValidator_2
+     * @version 2
+     * @constructor
+     * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
+     * @param {} [varname] [description]
+     * @example
+     *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
+     *         var myValidator = new FormValidator( 'form' );
+     *     });
+     */
+    var FormValidator = function( selector, options ){
+
+        /**
+         * DOMElement of the <form> being validated
+         *
+         * @property _rootElement
+         * @type {DOMElement}
+         */
+        this._rootElement = Aux.elOrSelector( selector );
+
+        /**
+         * Object that will gather the form elements by name
+         *
+         * @property _formElements
+         * @type {Object}
+         */
+        this._formElements = {};
+
+        /**
+         * Error message DOMElements
+         * 
+         * @property _errorMessages
+         */
+        this._errorMessages = [];
+
+        /**
+         * Array of elements marked with validation errors
+         *
+         * @property _markedErrorElements
+         */
+        this._markedErrorElements = [];
+
+                    InkArray.each(tempHeader,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+                    InkArray.each(tempFooter,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+
+                    var body = document.createElement('div');
+                    Css.addClassName(body,'modal-body');
+                    body.innerHTML = this._modalDiv.innerHTML;
+                    this._modalDiv.innerHTML = '';
+
+                    InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    this._modalDiv.appendChild(body);
+                    InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    
+                    this._contentContainer = Selector.select(".modal-body",this._modalDiv);
+                }
+                this._contentContainer = this._contentContainer[0];
+            } else {
+                this._contentContainer.innerHTML = [contentMarkup].join('');
+            }
+            this._contentElement = this._modalDiv;
+            this._resizeContainer();
+        }
+
+    };
+
+    return Modal;
 
 });
 
@@ -4205,7 +4813,16 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
              */
             this._options.onLoad.call(this);
         }
+    };
 
+    /**
+     * Get the i18n object in charge of the error messages
+     *
+     * @method getI18n
+     * @return {Ink.Util.I18n} The i18n object the FormValidator is using.
+     */
+    FormValidator.getI18n = function () {
+        return validationMessages;
     };
 
     return ImageQuery;
@@ -5709,7 +6326,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                     break;
             }
 
-            return false;
+                return false;
+            }
         },
 
         /**
@@ -6190,8 +6808,9 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
     Draggable.prototype = {
 
         /**
-         * Init function called by the constructor
-         * 
+         * Initialization function. Called by the constructor and
+         * receives the same parameters.
+         *
          * @method _init
          * @param {String|DOMElement} element ID of the element or DOM Element.
          * @param {Object} [options] Options object for configuration of the module.
@@ -6406,6 +7025,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 else {
                     InkEvent.observe(document, 'mousemove', this.handlers[dragHandlerName]);
                 }
+            }
 
                 this.element.style.position = 'absolute';
                 this.element.style.zIndex = this.options.zindex;
@@ -7242,6 +7862,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthContainer.style.display = 'block';
         },
 
+
         /**
          * Updates the date shown on the datepicker
          *
@@ -7770,633 +8391,179 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 });
 
 /**
- * @module Ink.UI.Modal_1
+ * @module Ink.UI.TreeView_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * @class Ink.UI.Modal
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * 
+     * @class Ink.UI.TreeView
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *      @param {String}    [options.width]             Default/Initial width. Ex: '600px'
-     *      @param {String}    [options.height]            Default/Initial height. Ex: '400px'
-     *      @param {String}    [options.shadeClass]        Custom class to be added to the div.ink-shade
-     *      @param {String}    [options.modalClass]        Custom class to be added to the div.ink-modal
-     *      @param {String}    [options.trigger]           CSS Selector to target elements that will trigger the Modal.
-     *      @param {String}    [options.triggerEvent]      Trigger's event to be listened. 'click' is the default value. Ex: 'mouseover', 'touchstart'...
-     *      @param {Boolean}   [options.autoDisplay=true]  Display the Modal automatically when constructed.
-     *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
-     *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
-     *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.
-     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
-     *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
-     *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
-     *
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
      * @example
-     *      <div class="ink-shade fade">
-     *          <div id="test" class="ink-modal fade" data-trigger="#bModal" data-width="800px" data-height="400px">
-     *              <div class="modal-header">
-     *                  <button class="modal-close ink-dismiss"></button>
-     *                  <h5>Modal windows can have headers</h5>
-     *              </div>
-     *              <div class="modal-body" id="modalContent">
-     *                  <h3>Please confirm your previous choice</h3>
-     *                  <p>"No," said Peleg, "and he hasn't been baptized right either, or it would have washed some of that devil's blue off his face."</p>
-     *                  <p>
-     *                      <img src="http://placehold.it/800x400" style="width: 100%;" alt="">
-     *                  </p>
-     *                  <p>"Do tell, now," cried Bildad, "is this Philistine a regular member of Deacon Deuteronomy's meeting? I never saw him going there, and I pass it every Lord's day."</p>
-     *                  <p>"I don't know anything about Deacon Deuteronomy or his meeting," said I; "all I know is, that Queequeg here is a born member of the First Congregational Church. He is a deacon himself, Queequeg is."</p>
-     *              </div>
-     *              <div class="modal-footer">
-     *                  <div class="push-right">
-     *                      <button class="ink-button info">Confirm</button>
-     *                      <button class="ink-button caution ink-dismiss">Cancel</button>
-     *                  </div>
-     *              </div>
-     *          </div>
-     *      </div>
-     *      <a href="#" id="bModal">Open modal</a>
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Modal_1'], function( Selector, Modal ){
-     *              var modalElement = Ink.s('#test');
-     *              var modalObj = new Modal( modalElement );
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
      *          });
      *      </script>
      */
-    var Modal = function(selector, options) {
+    var TreeView = function(selector, options){
 
-        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
-            throw 'Invalid Modal selector';
-        } else if(typeof selector === 'string'){
-            if( selector !== '' ){
-                this._element = Selector.select(selector);
-                if( this._element.length === 0 ){
-                    /**
-                     * From a developer's perspective this should be like it is...
-                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
-                     */
-                    throw 'The Modal selector has not returned any elements';
-                } else {
-                    this._element = this._element[0];
-                }
+        /**
+         * Gets the element
+         */
+        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
             }
-        } else if( !!selector ){
+            this._element = this._element[0];
+        } else {
             this._element = selector;
         }
 
-        this._options = {
-            /**
-             * Width, height and markup really optional, as they can be obtained by the element
-             */
-            width:        undefined,
-            height:       undefined,
-
-            /**
-             * To add extra classes
-             */
-            shadeClass: undefined,
-            modalClass: undefined,
-
-            /**
-             * Optional trigger properties
-             */
-            trigger:      undefined,
-            triggerEvent: 'click',
-            autoDisplay:  true,
-
-            /**
-             * Remaining options
-             */
-            markup:       undefined,
-            onShow:       undefined,
-            onDismiss:    undefined,
-            closeOnClick: false,
-            responsive:    true,
-            disableScroll: true
-        };
-
-
-        this._handlers = {
-            click:   Ink.bindEvent(this._onClick, this),
-            keyDown: Ink.bindEvent(this._onKeyDown, this),
-            resize:  Ink.bindEvent(this._onResize, this)
-        };
-
-        this._wasDismissed = false;
-
         /**
-         * Modal Markup
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
          */
-        if( this._element ){
-            this._markupMode = Css.hasClassName(this._element,'ink-modal'); // Check if the full modal comes from the markup
-        } else {
-            this._markupMode = false;
-        }
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul'
+        },Element.data(this._element));
 
+        this._options = Ink.extendObj(this._options, options || {});
 
-
-
-        if( !this._markupMode ){
-
-
-            this._modalShadow      = document.createElement('div');
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._modalDiv         = document.createElement('div');
-            this._modalDivStyle    = this._modalDiv.style;
-
-            if( !!this._element ){
-                this._options.markup = this._element.innerHTML;
-            }
-
-            /**
-             * Not in full markup mode, let's set the classes and css configurations
-             */
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal' );
-            Css.addClassName( this._modalDiv,'ink-space' );
-
-            /**
-             * Applying the main css styles
-             */
-            // this._modalDivStyle.position = 'absolute';
-            this._modalShadow.appendChild( this._modalDiv);
-            document.body.appendChild( this._modalShadow );
-        } else {
-            this._modalDiv         = this._element;
-            this._modalDivStyle    = this._modalDiv.style;
-            this._modalShadow      = this._modalDiv.parentNode;
-            this._modalShadowStyle = this._modalShadow.style;
-
-            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-            if( !this._contentContainer.length ){
-                throw 'Missing div with class "modal-body"';
-            }
-
-            this._contentContainer = this._contentContainer[0];
-            this._options.markup = this._contentContainer.innerHTML;
-
-            /**
-             * First, will handle the least important: The dataset
-             */
-            this._options = Ink.extendObj(this._options,Element.data(this._element));
-
-        }
-
-        /**
-         * Now, the most important, the initialization options
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( !this._markupMode ){
-            this.setContentMarkup(this._options.markup);
-        }
-
-        if( typeof this._options.shadeClass === 'string' ){
-
-            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalShadow, item.trim() );
-            }, this));
-        }
-
-        if( typeof this._options.modalClass === 'string' ){
-            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalDiv, item.trim() );
-            }, this));
-        }
-
-        if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
-            var triggerElement,i;
-            if( typeof this._options.trigger === 'string' ){
-                triggerElement = Selector.select( this._options.trigger );
-                if( triggerElement.length > 0 ){
-                    for( i=0; i<triggerElement.length; i++ ){
-                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this.open, this) );
-                    }
-                }
-            }
-        } else if ( this._options.autoDisplay.toString() === "true" ) {
-            this.open();
-        }
+        this._init();
     };
 
-    Modal.prototype = {
+    TreeView.prototype = {
 
         /**
-         * Responsible for repositioning the modal
+         * Init function called by the constructor. Sets the necessary event handlers.
          * 
-         * @method _reposition
+         * @method _init
          * @private
          */
-        _reposition: function(){
+        _init: function(){
 
-            this._modalDivStyle.top = this._modalDivStyle.left = '50%';
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
 
-            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
-        },
+            Event.observe(this._element, 'click', this._handlers.click);
 
-        /**
-         * Responsible for resizing the modal
-         * 
-         * @method _onResize
-         * @param {Boolean|Event} runNow Its executed in the begining to resize/reposition accordingly to the viewport. But usually it's an event object.
-         * @private
-         */
-        _onResize: function( runNow ){
-
-            if( typeof runNow === 'boolean' ){
-                this._timeoutResizeFunction.call(this);
-            } else if( !this._resizeTimeout && (typeof runNow === 'object') ){
-                this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
-            }
-        },
-
-        /**
-         * Timeout Resize Function
-         * 
-         * @method _timeoutResizeFunction
-         * @private
-         */
-        _timeoutResizeFunction: function(){
-            /**
-             * Getting the current viewport size
-             */
             var
-                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
-                currentViewportHeight = parseInt(elem.clientHeight,10),
-                currentViewportWidth = parseInt(elem.clientWidth,10)
+                nodes = Selector.select(this._options.node,this._element),
+                children
             ;
-
-            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
-                /**
-                 * The viewport width has expanded
-                 */
-                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
-
-            } else {
-                /**
-                 * The viewport width has not changed or reduced
-                 */
-                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
-                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
-            }
-
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
-
-                /**
-                 * The viewport height has expanded
-                 */
-                //this._modalDivStyle.maxHeight =
-                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
-
-            } else {
-                /**
-                 * The viewport height has not changed, or reduced
-                 */
-                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
-            }
-
-            this._resizeContainer();
-            this._reposition();
-            this._resizeTimeout = undefined;
-        },
-
-        /**
-         * Navigation click handler
-         * 
-         * @method _onClick
-         * @param {Event} ev
-         * @private
-         */
-        _onClick: function(ev) {
-            var tgtEl = Event.element(ev);
-
-            if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
-                Element.findUpwardsByClass(tgtEl, 'ink-close') || Element.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
-                (
-                    this._options.closeOnClick &&
-                    (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
-                )
-            ) {
-                var 
-                    alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
-                    alertsLength = alertsInTheModal.length
-                ;
-                for( var i = 0; i < alertsLength; i++ ){
-                    if( Element.descendantOf(alertsInTheModal[i], tgtEl) ){
-                        return;
-                    }
+            InkArray.each(nodes,Ink.bind(function(item){
+                if( Css.hasClassName(item,'open') )
+                {
+                    return;
                 }
 
-                Event.stop(ev);
-                this.dismiss();
-            }
-        },
-
-        /**
-         * Responsible for handling the escape key pressing.
-         *
-         * @method _onKeyDown
-         * @param  {Event} ev
-         * @private
-         */
-        _onKeyDown: function(ev) {
-            if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            this.dismiss();
-        },
-
-        /**
-         * Responsible for setting the size of the modal (and position) based on the viewport.
-         * 
-         * @method _resizeContainer
-         * @private
-         */
-        _resizeContainer: function()
-        {
-
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
-            var containerHeight = Element.elementHeight(this._modalDiv);
-
-            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
-            if( this._modalHeader.length>0 ){
-                this._modalHeader = this._modalHeader[0];
-                containerHeight -= Element.elementHeight(this._modalHeader);
-            }
-
-            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
-            if( this._modalFooter.length>0 ){
-                this._modalFooter = this._modalFooter[0];
-                containerHeight -= Element.elementHeight(this._modalFooter);
-            }
-
-            this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
-            }
-
-            if( this._markupMode ){ return; }
-
-            this._contentContainer.style.overflow = this._contentContainer.style.overflowX = 'hidden';
-            this._contentContainer.style.overflowY = 'auto';
-            this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'visible';
-        },
-
-        /**
-         * Responsible for 'disabling' the page scroll
-         * 
-         * @method _disableScroll
-         * @private
-         */
-        _disableScroll: function()
-        {
-            this._oldScrollPos = Element.scroll();
-            this._onScrollBinded = Ink.bindEvent(function(event) {
-                var tgtEl = Event.element(event);
-
-                if( !Element.descendantOf(this._modalShadow, tgtEl) ){
-                    Event.stop(event);
-                    window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
-                }
-            },this);
-            Event.observe(window, 'scroll', this._onScrollBinded);
-            Event.observe(document, 'touchmove', this._onScrollBinded);
-        },
-
-        /**************
-         * PUBLIC API *
-         **************/
-
-        /**
-         * Display this Modal. Useful if you have initialized the modal
-         * @method open 
-         * @param {Event} [event] (internal) In case its fired by the internal trigger.
-         */
-        open: function(event) {
-
-            if( event ){ Event.stop(event); }
-
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
-
-            this._resizeTimeout    = null;
-
-            Css.addClassName( this._modalShadow,'ink-shade' );
-            this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
-            setTimeout(Ink.bind(function(){
-                Css.addClassName( this._modalShadow,'visible' );
-                Css.addClassName( this._modalDiv,'visible' );
-            }, this),100);
-
-            /**
-             * Fallback to the old one
-             */
-            this._contentElement = this._modalDiv;
-            this._shadeElement   = this._modalShadow;
-
-            if( !this._markupMode ){
-                /**
-                 * Setting the content of the modal
-                 */
-                this.setContentMarkup( this._options.markup );
-            }
-
-            /**
-             * If any size has been user-defined, let's set them as max-width and max-height
-             */
-            if( typeof this._options.width !== 'undefined' ){
-                this._modalDivStyle.width = this._options.width;
-                if( this._options.width.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
-                }
-            } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
-            }
-
-            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
-                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
-            }
-
-            if( typeof this._options.height !== 'undefined' ){
-                this._modalDivStyle.height = this._options.height;
-                if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                if( !Css.hasClassName(item, 'closed') ){
+                    Css.addClassName(item,'closed');
                 }
             } else {
                 this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
             }
 
-            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
-                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
-            }
+                children = Selector.select(this._options.child,item);
+                InkArray.each(children,Ink.bind(function( inner_item ){
+                    if( !Css.hasClassName(inner_item, 'hide-all') ){
+                        Css.addClassName(inner_item,'hide-all');
+                    }
+                },this));
+            },this));
 
-            this.originalStatus = {
-                viewportHeight:     parseInt(elem.clientHeight,10),
-                viewportWidth:      parseInt(elem.clientWidth,10),
-                width:              parseInt(this._modalDivStyle.maxWidth,10),
-                height:             parseInt(this._modalDivStyle.maxHeight,10)
-            };
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
 
             /**
-             * Let's 'resize' it:
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
              */
-            if(this._options.responsive) {
-                this._onResize(true);
-                Event.observe( window,'resize',this._handlers.resize );
+            var tgtEl = Event.element(event);
+
+            if( this._options.node[0] === '.' ) {
+                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
+                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
+            } else if( this._options.node[0] === '#' ){
+                if( tgtEl.id !== this._options.node.substr(1) ){
+                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
+                }
             } else {
-                this._resizeContainer();
-                this._reposition();
-            }
-
-            if (this._options.onShow) {
-                this._options.onShow(this);
-            }
-
-            if(this._options.disableScroll) {
-                this._disableScroll();
-            }
-
-            // subscribe events
-            Event.observe(this._shadeElement, 'click',   this._handlers.click);
-            Event.observe(document,           'keydown', this._handlers.keyDown);
-
-            Aux.registerInstance(this, this._shadeElement, 'modal');
-
-            this._wasDismissed = false;
-        },
-
-        /**
-         * Dismisses the modal
-         * 
-         * @method dismiss
-         * @public
-         */
-        dismiss: function() {
-            if (this._options.onDismiss) {
-                var ret = this._options.onDismiss(this);
-                if (ret === false) { return; }
-            }
-
-            this._wasDismissed = true;
-
-            if(this._options.disableScroll) {
-                Event.stopObserving(window, 'scroll', this._onScrollBinded);
-                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
-            }
-
-            if( this._options.responsive ){
-                Event.stopObserving(window, 'resize', this._handlers.resize);
-            }
-
-            // this._modalShadow.parentNode.removeChild(this._modalShadow);
-
-            if( !this._markupMode ){
-                this._modalShadow.parentNode.removeChild(this._modalShadow);
-                this.destroy();
-            } else {
-                Css.removeClassName( this._modalDiv, 'visible' );
-                Css.removeClassName( this._modalShadow, 'visible' );
-
-                var
-                    dismissInterval,
-                    transitionEndFn = Ink.bindEvent(function(){
-                        if( !dismissInterval ){ return; }
-                        this._modalShadowStyle.display = 'none';
-                        Event.stopObserving(document,'transitionend',transitionEndFn);
-                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
-                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
-                        clearInterval(dismissInterval);
-                        dismissInterval = undefined;
-                    }, this)
-                ;
-
-                Event.observe(document,'transitionend',transitionEndFn);
-                Event.observe(document,'oTransitionEnd',transitionEndFn);
-                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
-
-                if( !dismissInterval ){
-                    dismissInterval = setInterval(Ink.bind(function(){
-                        if( this._modalShadowStyle.opacity > 0 ){
-                            return;
-                        } else {
-                            this._modalShadowStyle.display = 'none';
-                            clearInterval(dismissInterval);
-                            dismissInterval = undefined;
-                        }
-
-                    }, this),500);
+                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
+                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
+                        tgtEl = tgtEl.parentNode;
+                    }
                 }
             }
-        },
 
-        /**
-         * Removes the modal from the DOM
-         * 
-         * @method destroy
-         * @public
-         */
-        destroy: function() {
-            Aux.unregisterInstance(this._instanceId);
+            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
 
-        },
-
-        /**
-         * Returns the content DOM element
-         * 
-         * @method getContentElement
-         * @return {DOMElement} Modal main cointainer.
-         * @public
-         */
-        getContentElement: function() {
-            return this._contentContainer;
-        },
-
-        /**
-         * Replaces the content markup
-         * 
-         * @method setContentMarkup
-         * @param {String} contentMarkup
-         * @public
-         */
-        setContentMarkup: function(contentMarkup) {
-            if( !this._markupMode ){
-                this._modalDiv.innerHTML = [contentMarkup].join('');
-                this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-                if( !this._contentContainer.length ){
-                    // throw 'Missing div with class "modal-body"';
-                    var tempHeader = Selector.select(".modal-header",this._modalDiv);
-                    var tempFooter = Selector.select(".modal-footer",this._modalDiv);
-
-                    InkArray.each(tempHeader,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
-                    InkArray.each(tempFooter,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
-
-                    var body = document.createElement('div');
-                    Css.addClassName(body,'modal-body');
-                    body.innerHTML = this._modalDiv.innerHTML;
-                    this._modalDiv.innerHTML = '';
-
-                    InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    this._modalDiv.appendChild(body);
-                    InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    
-                    this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-                }
-                this._contentContainer = this._contentContainer[0];
-            } else {
-                this._contentContainer.innerHTML = [contentMarkup].join('');
+            var child = Selector.select(this._options.child,tgtEl);
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
+                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
             }
-            this._contentElement = this._modalDiv;
-            this._resizeContainer();
+
         }
 
     };
 
-    return Modal;
+    return TreeView;
 
 });
 
@@ -8614,11 +8781,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _updateHider: function() {
             if (!this._hiderEl) { return; }
-            var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
-            if (this._options.center) {
-                gap /= 2;
+            if ((!this._pagination) || this._pagination.getCurrent() === 0) {
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+                if (this._options.center) {
+                    gap /= 2;
+                }
+                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
+            } else {
+                this._hiderEl.style[ this._isY ? 'height' : 'width' ] = '0px';
             }
-            this._hiderEl.style[ this._isY ? 'height' : 'width' ] = gap + 'px';
         },
         
         /**
@@ -8658,7 +8829,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._onAnimationFrame();
 
             event.preventDefault();
-            event.stopPropagation();  // TODO try to just return false
+            event.stopPropagation();
         },
 
         _onTouchMove: function (event) {
@@ -8733,6 +8904,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (this._options.onChange) {
                 this._options.onChange.call(this, currPage);
             }
+
+            this._updateHider();
         }
     };
 
