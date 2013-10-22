@@ -3087,9 +3087,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
-     *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
-     *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
+     *     @param {String}       options.target                    CSS Selector that specifies the elements that this component will toggle
+     *     @param {String}       [options.triggerEvent='click']    Event that will trigger the toggling.
+     *     @param {Boolean}      [options.closeOnClick=true]       Flag that determines if, when clicking outside of the toggled content, it should hide it.
+     *     @param {Selector}     [options.closeOnInsideClick='a[href]']      Makes the toggle close if a click occurs inside the toggle and the element matches the selector. Default: links
      * @example
      *      <div class="ink-dropdown">
      *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
