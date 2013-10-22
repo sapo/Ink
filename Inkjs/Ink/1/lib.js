@@ -343,11 +343,11 @@
                 else if (modulesRequested[dep]) {
                 }
                 else {
-                    setTimeout(function () {
+                    setTimeout(Ink.bind(function (dep) {
                         if (modules[dep]) { return; }
                         modulesRequested[dep] = true;
                         Ink.loadScript(dep);
-                    }, 0);
+                    }, null, dep), 0);
                 }
                 o.left[dep] = i;
             }
