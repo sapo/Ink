@@ -107,17 +107,8 @@ test('createModule makes the module available immediately when there are no depe
     ok(Ink.getModule('Ink.New.Module_1'));
 });
 
-asyncTest('trying to load TestModule/1/lib.js', function () {
-    expect(1);
-    Ink.setPath('TestModule', './TestModule')
-    Ink.requireModules(['TestModule_1'], function (TestModule) {
-        equal(TestModule.hello, 'world');
-        start();
-    });
-});
-
 asyncTest('trying to load TestModuleWithDependencies/1/lib.js', function () {
-    expect(3);
+    expect(3 /* here */ + 2 /* for each createModules */);
     Ink.setPath('TestModule', './TestModule'); // TestModuleWithDependencies's dependency
     Ink.setPath('TestModuleWithDependencies', './TestModuleWithDependencies')
     Ink.requireModules(['TestModuleWithDependencies_1'], function (TestModuleWithDependencies) {
@@ -146,7 +137,7 @@ asyncTest('Nested requireModules', function () {
 });
 
 asyncTest('requireModules can require a module which does not yet exist. The script tag is only made on the next tick.', function () {
-    expect(1);
+    expect(2);
     Ink.requireModules(['Ink.notYet_1'], function (obj) {
         var scripts = document.getElementsByTagName('script');
         for (var i = 0, len = scripts.length; i < len; i++) {
@@ -161,7 +152,20 @@ asyncTest('requireModules can require a module which does not yet exist. The scr
         return;
     });
     Ink.createModule('Ink.notYet', 1, [], function () {
+        ok(true);
         return {};
     });
 });
 
+asyncTest('createModule also waits a tick for dependencies to be created', function () {
+    expect(2);
+    Ink.createModule('Ink.Test.Wait.Tick.For.Dependencies', 1, ['Ink.Not.Yet.Dependency_1'], function () {
+        ok(true);
+        start();
+        return {};
+    });
+    Ink.createModule('Ink.Not.Yet.Dependency', 1, [], function () {
+        ok(true);
+        return {};
+    });
+});
