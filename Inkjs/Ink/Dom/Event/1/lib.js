@@ -353,22 +353,20 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @return {Function} The used callback, for ceasing to listen to the event later.
      **/
     observeDelegated: function (element, eventName, selector, callback) {
-        var delegatedWrapper = function (event) {
+        return InkEvent.observe(element, eventName, function (event) {
             var fromElement = InkEvent.element(event);
             if (!fromElement || fromElement === element) { return; }
 
             var selectResult = Ink.ss(selector, element);
             var cursor = fromElement;
-            for (var i = 0, len = selectResult.length; i < len; i++) {
-                do {
-                    if (cursor === selectResult[i]) {
-                        return callback.apply(selectResult[0], [event]);
-                    }
-                } while ((cursor = cursor.parentNode));
-            }
-        }
 
-        return InkEvent.observe(element, eventName, delegatedWrapper);
+            while (cursor !== element && cursor) {
+                if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
+                    return callback.call(cursor, event);
+                }
+                cursor = cursor.parentNode;
+            }
+        });
     },
 
     /**

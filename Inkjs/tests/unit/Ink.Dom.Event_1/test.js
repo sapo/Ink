@@ -188,10 +188,6 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
                 ok(false, 'should not find this element');
             });
 
-            InkEvent.observeDelegated(child, 'click', 'ul > li > span', function (event) {
-                ok(false, 'should not be able to select through parents');
-            });
-
             InkEvent.observeDelegated(elem, 'click', 'li > span', function () {
                 ok(true, 'selected by tag name, correctly');
                 start();
