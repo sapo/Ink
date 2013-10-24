@@ -199,9 +199,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *
          * @method currentLayout
          * @static
-         * @return {String}         Returns the value of one of the options of the property Layouts above defined.
+         * @return {String}         'small', 'medium' or 'large'
          * @example
-         *     var inkLayout = Ink.UI.Common.currentLayout();
+         *      var inkLayout = Ink.UI.Common.currentLayout();
+         *      if (inkLayout === 'small') {
+         *          // ...
+         *      }
          */
         currentLayout: function() {
             var i, f, k, v, el, detectorEl = Selector.select('#ink-layout-detector')[0];
@@ -222,7 +225,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
 
             for (i = 0, f = detectorEl.childNodes.length; i < f; ++i) {
                 el = detectorEl.childNodes[i];
-                if (Css.getStyle(el, 'visibility') !== 'hidden') {
+                if (Css.getStyle(el, 'display') === 'block') {
                     return el.getAttribute('data-ink-layout');
                 }
             }
