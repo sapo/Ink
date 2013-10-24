@@ -8,7 +8,7 @@
         'ProgressBar_1' : '.ink-progress-bar',
         'SortableList_1': '.ink-sortable-list',
         'Spy_1'         : '*[data-spy="true"]',
-        'Sticky_1'      : '.ink-sticky, .ink-navigation.sticky',
+        'Sticky_1'      : '.ink-sticky, .ink-navigation',
         'Table_1'       : '.ink-table',
         'Tabs_1'        : '.ink-tabs',
         'TreeView_1'    : '.ink-tree-view',
