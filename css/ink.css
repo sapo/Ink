@@ -6033,6 +6033,7 @@ a .icon-flip-vertical:before {
   cursor: pointer;
   margin: 5px;
   text-decoration: none;
+  text-align: center;
   display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
