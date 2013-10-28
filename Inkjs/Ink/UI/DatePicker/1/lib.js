@@ -128,6 +128,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         this._init();
 
         this._render();
+        this._listenToContainerObjectEvents();
 
         if ( !this._options.startDate ){
             if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
@@ -255,8 +256,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._options.dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
                     this._options.monthField = Common.elOrSelector(this._options.monthField, 'monthField');
                     this._options.yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
-                }
-                else {
+                } else {
                     throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";
                 }
             }
@@ -270,22 +270,42 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else {
                 dom.insertBefore(this._containerObject, dom.childNodes[0]);
             }
+
+            this._showMonth();
+
+            this._monthChanger = document.createElement('a');
+            this._monthChanger.href = '#monthchanger';
+            this._monthChanger.className = 'sapo_cal_link_month';
+            this._monthChanger.innerHTML = this._options.month[this._month + 1];
+
+            this._deText = document.createElement('span');
+            this._deText.innerHTML = this._options._deText;
+
+
+            this._yearChanger = document.createElement('a');
+            this._yearChanger.href = '#yearchanger';
+            this._yearChanger.className = 'sapo_cal_link_year';
+            this._yearChanger.innerHTML = this._year;
+            this._monthDescContainer.innerHTML = '';
+            this._monthDescContainer.appendChild(this._monthChanger);
+            this._monthDescContainer.appendChild(this._deText);
+            this._monthDescContainer.appendChild(this._yearChanger);
+
             // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
 
             if (!this._picker) {
                 Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
 
-                    if ( this._options.position === 'bottom' )
-                    {
-                        this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        this._containerObject.style.left = Element.offset(this._dataField)[0] +'px';
+                    if ( this._options.position === 'bottom' ) {
+                        var top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                        var left = Element.offset(this._dataField)[0] +'px';
+                    } else {
+                        var top = Element.offset(this._dataField)[1] +'px';
+                        var left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
                     }
-                    else
-                    {
-                        this._containerObject.style.top = Element.offset(this._dataField)[1] +'px';
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
-                    }
+                    this._containerObject.style.top = top;
+                    this._containerObject.style.left = left;
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
                     this._showMonth();
@@ -300,6 +320,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._showMonth();
                     this._containerObject.style.display = 'block';
                 },this));
+            }
+            if (this._options.autoOpen) {
+                this._containerObject = Element.clonePosition(this._containerObject, (this._picker || this._dataField));
+                this._updateDate();
+                this._showMonth();
+                this._containerObject.style.display = 'block';
             }
 
             if(!this._options.displayInSelect){
@@ -357,35 +383,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     }
                 },this));
             }
+        },
 
-            this._showMonth();
-
-            this._monthChanger = document.createElement('a');
-            this._monthChanger.href = '#monthchanger';
-            this._monthChanger.className = 'sapo_cal_link_month';
-            this._monthChanger.innerHTML = this._options.month[this._month + 1];
-
-            this._deText = document.createElement('span');
-            this._deText.innerHTML = this._options._deText;
-
-
-            this._yearChanger = document.createElement('a');
-            this._yearChanger.href = '#yearchanger';
-            this._yearChanger.className = 'sapo_cal_link_year';
-            this._yearChanger.innerHTML = this._year;
-            this._monthDescContainer.innerHTML = '';
-            this._monthDescContainer.appendChild(this._monthChanger);
-            this._monthDescContainer.appendChild(this._deText);
-            this._monthDescContainer.appendChild(this._yearChanger);
-
-            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e)
-            {
+        _listenToContainerObjectEvents: function () {
+            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = true;
             },this));
 
-            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e)
-            {
+            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = false;
             },this));
@@ -484,7 +490,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
                 this._updateDescription();
             },this));
-
         },
 
         /**
