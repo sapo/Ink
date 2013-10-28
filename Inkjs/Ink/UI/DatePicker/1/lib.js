@@ -49,7 +49,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     var DatePicker = function(selector, options) {
 
         if (selector) {
-            this._dataField = Common.elOrSelector(selector, '1st argument');
+            this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
         }
 
         this._options = Ink.extendObj({
@@ -58,6 +58,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cssClass:        'sapo_component_datepicker',
             position:        'right',
             onFocus:         true,
+            containerElement: false,
+            closeOnBlur:     true,
             onYearSelected:  undefined,
             onMonthSelected: undefined,
             validDayFn:      undefined,
@@ -97,9 +99,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 5:'Friday',
                 6:'Saturday'
             }
-        }, Element.data(this._dataField) || {});
-
-        this._options = Ink.extendObj(this._options, options || {});
+        }, options || {}, Element.data(this._dataField));
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -156,7 +156,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _render: function() {
-            /*jshint maxstatements:100, maxcomplexity:30 */
+            /*jshint maxstatements:120, maxcomplexity:30 */
+            /*humans brace:"yourselves"*/
             this._containerObject = document.createElement('div');
 
             this._containerObject.id = this._options.instance;
@@ -257,7 +258,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 }
             }
 
-            dom.insertBefore(this._containerObject, dom.childNodes[0]);
+            if(this._options.containerElement) {
+                var container = Ink.i(this._options.containerElement);
+                if (!container) {
+                    throw new Error('[Ink.UI.DatePicker_1]: Container element should be a DOM Element or an ID, got ' + container);
+                }
+                container.appendChild(this._containerObject);
+            } else {
+                dom.insertBefore(this._containerObject, dom.childNodes[0]);
+            }
             // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
 
             if (!this._picker) {
@@ -292,60 +301,59 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if(!this._options.displayInSelect){
                 Event.observe(this._dataField,'change', Ink.bindEvent(function() {
-                        this._updateDate( );
-                        this._showDefaultView( );
-                        this.setDate( );
-                        if ( !this._hoverPicker )
-                        {
-                            this._containerObject.style.display = 'none';
-                        }
-                    },this));
+                    this._updateDate( );
+                    this._showDefaultView( );
+                    this.setDate( );
+                    if ( !this._hoverPicker ) {
+                        this._hide(true);
+                    }
+                },this));
                 Event.observe(this._dataField,'blur', Ink.bindEvent(function() {
-                        if ( !this._hoverPicker )
-                        {
-                            this._containerObject.style.display = 'none';
-                        }
-                    },this));
-            }
-            else {
+                    if ( !this._hoverPicker ) {
+                        this._hide(true);
+                    }
+                },this));
+            } else {
                 Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
-                        var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
-                        if(yearSelected !== '' && yearSelected !== 0) {
-                            this._updateDate();
-                            this._showDefaultView();
-                        }
-                    },this));
-               Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
-                        var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
-                        if(yearSelected !== '' && yearSelected !== 0){
-                            this._updateDate();
-                            this._showDefaultView();
-                        }
-                    },this));
-                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                    if(yearSelected !== '' && yearSelected !== 0) {
                         this._updateDate();
                         this._showDefaultView();
-                    },this));
+                    }
+                },this));
+                Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                    if(yearSelected !== '' && yearSelected !== 0){
+                        this._updateDate();
+                        this._showDefaultView();
+                    }
+                },this));
+                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
+                    this._updateDate();
+                    this._showDefaultView();
+                },this));
             }
 
-            Event.observe(document,'click',Ink.bindEvent(function(e){
-                if (e.target === undefined) {   e.target = e.srcElement;    }
-                if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
-                    if (!this._picker) {
-                        this._containerObject.style.display = 'none';
-                    }
-                    else if (e.target !== this._picker &&
-                             (!this._options.displayInSelect ||
-                              (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
-                        if (!this._options.dayField ||
-                                (!Element.descendantOf(this._options.dayField,   e.target) &&
-                                 !Element.descendantOf(this._options.monthField, e.target) &&
-                                 !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
-                            this._containerObject.style.display = 'none';
+            if (this._options.closeOnBlur) {
+                Event.observe(document,'click',Ink.bindEvent(function(e){
+                    if (e.target === undefined) {   e.target = e.srcElement;    }
+                    if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
+                        if (!this._picker) {
+                            this._hide(true);
+                        }
+                        else if (e.target !== this._picker &&
+                                 (!this._options.displayInSelect ||
+                                  (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
+                            if (!this._options.dayField ||
+                                    (!Element.descendantOf(this._options.dayField,   e.target) &&
+                                     !Element.descendantOf(this._options.monthField, e.target) &&
+                                     !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
+                                this._hide(true);
+                            }
                         }
                     }
-                }
-            },this));
+                },this));
+            }
 
             this._showMonth();
 
@@ -380,100 +388,107 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             },this));
 
             Event.observe(this._containerObject,'click',Ink.bindEvent(function(e){
-                    if(typeof(e.target) === 'undefined'){
-                        e.target = e.srcElement;
+                if(typeof(e.target) === 'undefined'){
+                    e.target = e.srcElement;
+                }
+                var className = e.target.className;
+                var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+
+                Event.stop(e);
+
+                if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
+                    var day = className.substr( 9 , 2 );
+                    if( Number( day ) ) {
+                        this.setDate( [this._year, this._month, day].join('-') );
+                        this._hide();
+                    } else if(className === 'sapo_cal_link_month'){
+                        this._monthContainer.style.display = 'none';
+                        this._yearSelector.style.display = 'none';
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._setActiveMonth();
+                        this._monthSelector.style.display = 'block';
+                    } else if(className === 'sapo_cal_link_year'){
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._monthSelector.style.display = 'none';
+                        this._monthContainer.style.display = 'none';
+                        this._showYearSelector();
+                        this._yearSelector.style.display = 'block';
                     }
-                    var className = e.target.className;
-                    var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+                } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
+                    var month=className.substr(14,2);
+                    if(Number(month)){
+                        this._month = month - 1;
+                        // if( typeof this._options.onMonthSelected === 'function' ){
+                        //     this._options.onMonthSelected(this, {
+                        //         'year': this._year,
+                        //         'month' : this._month
+                        //     });
+                        // }
+                        this._monthSelector.style.display = 'none';
+                        this._monthPrev.childNodes[0].className = 'change_month_prev';
+                        this._monthNext.childNodes[0].className = 'change_month_next';
 
-                    Event.stop(e);
-
-                    if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
-                            var day = className.substr( 9 , 2 );
-                            if( Number( day ) ) {
-                                this.setDate( this._year + '-' + ( this._month + 1 ) + '-' + day );
-                                this._containerObject.style.display = 'none';
-                            } else if(className === 'sapo_cal_link_month'){
-                                this._monthContainer.style.display = 'none';
-                                this._yearSelector.style.display = 'none';
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._setActiveMonth();
-                                this._monthSelector.style.display = 'block';
-                            } else if(className === 'sapo_cal_link_year'){
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._monthSelector.style.display = 'none';
-                                this._monthContainer.style.display = 'none';
-                                this._showYearSelector();
-                                this._yearSelector.style.display = 'block';
-                            }
-                    } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
-                            var month=className.substr(14,2);
-                            if(Number(month)){
-                                this._month = month - 1;
-                                // if( typeof this._options.onMonthSelected === 'function' ){
-                                //     this._options.onMonthSelected(this, {
-                                //         'year': this._year,
-                                //         'month' : this._month
-                                //     });
-                                // }
-                                this._monthSelector.style.display = 'none';
-                                this._monthPrev.childNodes[0].className = 'change_month_prev';
-                                this._monthNext.childNodes[0].className = 'change_month_next';
-
-                                if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
-                                    this._monthPrev.childNodes[0].className = 'action_inactive';
-                                }
-                                else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
-                                    this._monthNext.childNodes[0].className = 'action_inactive';
-                                }
-
-                                this._updateCal();
-                                this._monthContainer.style.display = 'block';
-                            }
-                    } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
-                            var year=className.substr(13,4);
-                            if(Number(year)){
-                                this._year = year;
-                                if( typeof this._options.onYearSelected === 'function' ){
-                                    this._options.onYearSelected(this, {
-                                        'year': this._year
-                                    });
-                                }
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._yearSelector.style.display='none';
-                                this._setActiveMonth();
-                                this._monthSelector.style.display='block';
-                            }
-                    } else if( className.indexOf('change_month_') === 0 && !isInactive ){
-                            if(className === 'change_month_next'){
-                                this._updateCal(1);
-                            } else if(className === 'change_month_prev'){
-                                this._updateCal(-1);
-                            }
-                    } else if( className.indexOf('change_year_') === 0 && !isInactive ){
-                            if(className === 'change_year_next'){
-                                this._showYearSelector(1);
-                            } else if(className === 'change_year_prev'){
-                                this._showYearSelector(-1);
-                            }
-                    } else if(className === 'clean'){
-                        if(this._options.displayInSelect){
-                            this._options.yearField.selectedIndex = 0;
-                            this._options.monthField.selectedIndex = 0;
-                            this._options.dayField.selectedIndex = 0;
-                        } else {
-                            this._dataField.value = '';
+                        if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
+                            this._monthPrev.childNodes[0].className = 'action_inactive';
                         }
-                    } else if(className === 'close'){
-                        this._containerObject.style.display = 'none';
+                        else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
+                            this._monthNext.childNodes[0].className = 'action_inactive';
+                        }
+
+                        this._updateCal();
+                        this._monthContainer.style.display = 'block';
                     }
+                } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
+                    var year=className.substr(13,4);
+                    if(Number(year)){
+                        this._year = year;
+                        if( typeof this._options.onYearSelected === 'function' ){
+                            this._options.onYearSelected(this, {
+                                'year': this._year
+                            });
+                        }
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._yearSelector.style.display='none';
+                        this._setActiveMonth();
+                        this._monthSelector.style.display='block';
+                    }
+                } else if( className.indexOf('change_month_') === 0 && !isInactive ){
+                    if(className === 'change_month_next'){
+                        this._updateCal(1);
+                    } else if(className === 'change_month_prev'){
+                        this._updateCal(-1);
+                    }
+                } else if( className.indexOf('change_year_') === 0 && !isInactive ){
+                    if(className === 'change_year_next'){
+                        this._showYearSelector(1);
+                    } else if(className === 'change_year_prev'){
+                        this._showYearSelector(-1);
+                    }
+                } else if(className === 'clean'){
+                    if(this._options.displayInSelect){
+                        this._options.yearField.selectedIndex = 0;
+                        this._options.monthField.selectedIndex = 0;
+                        this._options.dayField.selectedIndex = 0;
+                    } else {
+                        this._dataField.value = '';
+                    }
+                } else if(className === 'close'){
+                    this._hide(false);
+                }
 
-                    this._updateDescription();
-                },this));
+                this._updateDescription();
+            },this));
 
+        },
+
+        _hide: function(blur) {
+            blur = blur === undefined ? true : blur;
+            if (blur || (!blur && this._options.closeOnBlur === false)) {
+                this._containerObject.style.display = 'none';
+            }
         },
 
         /**
@@ -580,7 +595,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
                 this._yearMax   = Number.MAX_VALUE;
                 this._monthMax  = 12;
-                this._dayMax   = 31;
+                this._dayMax    = 31;
             }
         },
 
@@ -667,8 +682,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDate: function(){
             var dataParsed;
-             if(!this._options.displayInSelect){
-                 if(this._dataField.value !== ''){
+            if(!this._options.displayInSelect){
+                if(this._dataField.value !== ''){
                     if(this._isDate(this._options.format,this._dataField.value)){
                         dataParsed = this._getDataArrayParsed(this._dataField.value);
                         dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
@@ -752,7 +767,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     if ( i && (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
                         str+='<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
                     } else if( (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
-                         str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+                        str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
                     } else {
                         str +='<li>&nbsp;</li>';
                     }
@@ -847,7 +862,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          * @return {String} Returns the current date of the object in the specified format
          */
-       _writeDateInFormat:function(){
+        _writeDateInFormat:function(){
             return InkDate.get( this._options.format , this._data );
         },
 
