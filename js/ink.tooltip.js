@@ -2,7 +2,7 @@
  * @module Ink.UI.Tooltip_1
  * @author inkdev AT sapo.pt
  */
-Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
+Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Common, InkEvent, InkElement, Selector, InkArray, Css) {
     'use strict';
 
     /**
@@ -174,7 +174,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 
             if (template) {  // The user told us of a template to use. We copy it.
                 var temp = document.createElement('DIV');
-                temp.innerHTML = Aux.elOrSelector(template, 'options.template').outerHTML;
+                temp.innerHTML = Common.elOrSelector(template, 'options.template').outerHTML;
                 tooltip = temp.firstChild;
                 
                 if (templatefield) {

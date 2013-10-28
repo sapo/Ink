@@ -12320,21 +12320,30 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(Ajax,Css,Selector,Url) {
+Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(InkElement, Ajax,Css,Selector,Url) {
 
     'use strict';
 
     var instances = {};
     var lastIdNum = 0;
+    var nothing = {} /* a marker, for reference comparison. */;
+
+    var keys = Object.keys || function (obj) {
+        var ret = [];
+        for (var k in obj) if (obj.hasOwnProperty(k)) {
+            ret.push(k);
+        }
+        return ret;
+    };
 
     /**
-     * The Aux class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
+     * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
      * @class Ink.UI.Common
      * @version 1
      * @static
      */
-    var Aux = {
+    var Common = {
 
         /**
          * Supported Ink Layouts
@@ -12393,7 +12402,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *
          * @method elOrSelector
          * @static
-         * @param  {DOMElement|String} elOrSelector Valid DOM Element or CSS Selector
+         * @param  {DOMElement|String} elOrSelector DOM Element or CSS Selector
          * @param  {String}            fieldName    This field is used in the thrown Exception to identify the parameter.
          * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
          * @example
@@ -12409,6 +12418,205 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
             return elOrSelector;
         },
 
+        /**
+         * Does the same as `elOrSelector` but returns an array of elements.
+         *
+         * see elOrSelector
+         *
+         * @method elsOrSelector
+         *
+         * @static
+         *
+         * @param ... (See elOrSelector's params)
+         * @param {Boolean} required If true, accept an empty array as output.
+         * @return {Array} The selected DOM Elements.
+         * @example
+         *     var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');
+         */
+        elsOrSelector: function(elsOrSelector, fieldName, required) {
+            var ret;
+            if (typeof elsOrSelector === 'string') {
+                ret = Selector.select(elsOrSelector);
+            } else if (Common.isDOMElement(elsOrSelector)) {
+                ret = [elsOrSelector];
+            } else if (typeof elsOrSelector === 'object' && typeof elsOrSelector.length === 'number') {
+                ret = elsOrSelector;
+            }
+
+            if (ret && ret.length) {
+                return ret;
+            } else {
+                if (required || arguments.length === 2) {
+                    throw new TypeError(fieldName + ' must either be a DOM Element, an Array of elements, or a selector expression!\nThe script element must also be after the DOM Element itself.');
+                } else {
+                    return [];
+                }
+            }
+        },
+
+        /**
+         * Get options from an "options" object and the Element's data attributes.
+         *
+         * The element's data attributes take precedence.
+         * 
+         * Values from the element's data-atrributes are coerced into the required type.
+         *
+         * Mainly for Ink UI.* modules
+         *
+         * @method options
+         *
+         * @param {Object}     [fieldId=''] Tag used in thrown exceptions: "<fieldId>: ..."
+         * @param {Object}      defaults    Object with arrays of option defaults
+         * @param {Object}      overrides   Object containing options given from user through JavaScript
+         * @param {DOMElement} [element]    Element with data-attributes
+         *
+         * @example
+         *
+         *      this._options = Ink.UI.Common.options('MyComponent', {
+         *          'target': ['Element', null],
+         *          'stuff': ['Number', 0.1],
+         *          'stuff2': ['Integer', 0],
+         *          'doKickFlip': ['Boolean', false],
+         *          'targets': ['Elements'], // Required option
+         *          'onClick': ['Function', null]
+         *      }, options || {}, elm)
+         *
+         * @example
+         *
+         * ### Note about booleans
+         *
+         * Options considered true:
+         *      <div data-required="true"> (and anything else not listed below)
+         *
+         * Options considered false:
+         *      <div data-required="false">
+         *      <div data-required="">
+         *      <div data-required> (due to a quirk in IE7)
+         *
+         * Options which go to default:
+         *      <div>  -> data-required now defaults to the user provided option or the default option.
+         *
+         **/
+        options: function (fieldId, defaults, overrides, element) {
+            if (typeof fieldId !== 'string') {
+                element = overrides;
+                overrides = defaults;
+                defaults = fieldId;
+                fieldId = '';
+            }
+            overrides = overrides || {};
+            var out = {};
+            var dataAttrs = element ? InkElement.data(element) : {};
+            var fromDataAttrs;
+            var type;
+            var lType;
+            var defaultVal;
+            var key;
+
+            var invalid = function (str) {
+                if (fieldId) { str = fieldId + ': ' + str; }
+                throw new Error(str);
+            };
+
+            for (key in defaults) {
+                if (defaults.hasOwnProperty(key)) {
+                    type = defaults[key][0];
+                    lType = type.toLowerCase();
+                    defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
+
+                    if (!type) {
+                        invalid('Ink.UI.Common.options: Always specify a type!');
+                    }
+                    if (!(lType in Common._coerce_funcs)) {
+                        invalid('' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+
+                    }
+                    if (!defaults[key].length || defaults[key].length > 2) {
+                        invalid('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
+                    }
+
+                    if (key in dataAttrs) {
+                        fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key]);
+                    } else {
+                        fromDataAttrs = nothing;
+                    }
+
+                    if (fromDataAttrs !== nothing) {
+                        if (!Common._options_validate(fromDataAttrs, lType)) {
+                            invalid('Invalid ' + lType + ': ' + fromDataAttrs);
+                        }
+                        out[key] = fromDataAttrs;
+                    } else if (key in overrides) {
+                        out[key] = overrides[key];
+                    } else if (defaultVal !== nothing) {
+                        out[key] = defaultVal;
+                    } else {
+                        invalid('Option ' + key + ' is required!');
+                    }
+                }
+            }
+            return out;
+        },
+
+        _coerce_from_string: function (type, val) {
+            if (type in Common._coerce_funcs) {
+                return Common._coerce_funcs[type](val);
+            } else {
+                return val;
+            }
+        },
+
+        _options_validate: function (val, type) {
+            return Common._options_validate_types[type].call(Common, val);
+        },
+
+        _coerce_funcs: (function () {
+            var ret = {
+                element: function (val) {
+                    return Common.elOrSelector(val, '');
+                },
+                elements: function (val) {
+                    return Common.elsOrSelector(val, '', false /*not required*/);
+                },
+                number: function (val) { return +val; },
+                boolean: function (val) {
+                    return !(val === 'false' || val === '' || val === null);
+                },
+                string: function (val) {
+                    return val;
+                },
+                'function': function () {
+                    throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
+                }
+            };
+            ret.float = ret.integer = ret.number;
+            return ret;
+        }()),
+
+        _options_validate_types: (function () {
+            var types = {
+                string: function (val) {
+                    return typeof val === 'string';
+                },
+                number: function (val) {
+                    return typeof val === 'number' && !isNaN(val) && isFinite(val);
+                },
+                integer: function (val) {
+                    return val === Math.round(val);
+                },
+                element: function (val) {
+                    return Common.isDOMElement(val);
+                },
+                elements: function (val) {
+                    return typeof val === 'object' && typeof val.length === 'number' && val.length;
+                },
+                boolean: function (val) {
+                    return typeof val === 'boolean';
+                }
+            };
+            types.float = types.number;
+            return types;
+        }()),
 
         /**
          * Method to make a deep copy (clone) of an object.
@@ -12428,7 +12636,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          */
         clone: function(o) {
             try {
-                if (typeof o !== 'object') { throw new Error('Given argument is not an object!'); }
                 return JSON.parse( JSON.stringify(o) );
             } catch (ex) {
                 throw new Error('Given object cannot have loops!');
@@ -12458,7 +12665,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     </script>
          */
         childIndex: function(childEl) {
-            if( Aux.isDOMElement(childEl) ){
+            if( Common.isDOMElement(childEl) ){
                 var els = Selector.select('> *', childEl.parentNode);
                 for (var i = 0, f = els.length; i < f; ++i) {
                     if (els[i] === childEl) {
@@ -12595,7 +12802,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     <ul id="myUl"></ul>
          */
         cleanChildren: function(parentEl) {
-            if( !Aux.isDOMElement(parentEl) ){
+            if( !Common.isDOMElement(parentEl) ){
                 throw 'Please provide a valid DOMElement';
             }
             var prevEl, el = parentEl.lastChild;
@@ -12627,7 +12834,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     </script>
          */
         storeIdAndClasses: function(fromEl, inObj) {
-            if( !Aux.isDOMElement(fromEl) ){
+            if( !Common.isDOMElement(fromEl) ){
                 throw 'Please provide a valid DOMElement as first parameter';
             }
 
@@ -12667,7 +12874,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          */
         restoreIdAndClasses: function(toEl, inObj) {
 
-            if( !Aux.isDOMElement(toEl) ){
+            if( !Common.isDOMElement(toEl) ){
                 throw 'Please provide a valid DOMElement as first parameter';
             }
 
@@ -12804,20 +13011,20 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
         },
 
         /**
-         * This method is not to supposed to be invoked by the Aux component.
+         * This method is not to supposed to be invoked by the Common component.
          * Components should copy this method as its destroy method.
          *
          * @method destroyComponent
          * @static
          */
         destroyComponent: function() {
-            Ink.Util.Aux.unregisterInstance(this._instanceId);
+            Ink.UI.Common.unregisterInstance(this._instanceId);
             this._element.parentNode.removeChild(this._element);
         }
 
     };
 
-    return Aux;
+    return Common;
 
 });
 
@@ -12828,7 +13035,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
  */
 Ink.createModule('Ink.UI.Pagination', '1',
     ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
-    function(Aux, Event, Css, Element, Selector ) {
+    function(Common, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
@@ -12870,7 +13077,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      */
     var Pagination = function(selector, options) {
 
-        this._element = Aux.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, '1st argument');
 
         this._options = Ink.extendObj(
             {
@@ -12902,15 +13109,15 @@ Ink.createModule('Ink.UI.Pagination', '1',
             click: Ink.bindEvent(this._onClick,this)
         };
 
-        if (!Aux.isInteger(this._options.size)) {
+        if (!Common.isInteger(this._options.size)) {
             throw new TypeError('size option is a required integer!');
         }
 
-        if (!Aux.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
+        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
             throw new TypeError('start option is a required integer between 1 and size!');
         }
 
-        if (this._options.maxSize && !Aux.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
+        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
             throw new TypeError('maxSize option is a positive integer!');
         }
 
@@ -12948,7 +13155,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             // subscribe events
             this._observe();
 
-            Aux.registerInstance(this, this._element, 'pagination');
+            Common.registerInstance(this, this._element, 'pagination');
         },
 
         /**
@@ -13160,7 +13367,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         setSize: function(sz) {
-            if (!Aux.isInteger(sz)) {
+            if (!Common.isInteger(sz)) {
                 throw new TypeError('1st argument must be an integer number!');
             }
 
@@ -13178,7 +13385,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         setCurrent: function(nr, isRelative) {
-            if (!Aux.isInteger(nr)) {
+            if (!Common.isInteger(nr)) {
                 throw new TypeError('1st argument must be an integer number!');
             }
 
@@ -13198,7 +13405,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             /*if (this._options.setHash) {
                 var o = {};
                 o[this._options.hashParameter] = nr;
-                Aux.setHash(o);
+                Common.setHash(o);
             }*/
 
             if (this._options.onChange) { this._options.onChange(this); }
@@ -13298,7 +13505,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
     };
 
     return Pagination;
@@ -13540,7 +13747,7 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -13567,9 +13774,9 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
      */
     var SortableList = function(selector, options) {
 
-        this._element = Aux.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, '1st argument');
 
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[Ink.UI.SortableList] :: Invalid selector';
         } else if( typeof selector === 'string' ){
             this._element = Ink.Dom.Selector.select( selector );
@@ -13646,7 +13853,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             Event.observe(db, this._up,   this._handlers.up);
             this._observe();
 
-            Aux.registerInstance(this, this._element, 'sortableList');
+            Common.registerInstance(this, this._element, 'sortableList');
         },
 
         /**
@@ -13736,7 +13943,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             this._element.parentNode.replaceChild(el, this._element);
             this._element = el;
 
-            Aux.restoreIdAndClasses(this._element, this);
+            Common.restoreIdAndClasses(this._element, this);
 
             this._dragTriggers = Selector.select( this._options.dragObject, this._element );
 
@@ -13776,7 +13983,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             }
             liEl = tgtEl;
 
-            this._index = Aux.childIndex(liEl);
+            this._index = Common.childIndex(liEl);
             this._height = liEl.offsetHeight;
             this._startY = this._getY(ev);
             this._isMoving = true;
@@ -13860,7 +14067,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
 
     };
 
@@ -13873,7 +14080,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -13899,7 +14106,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      */
     var Spy = function( selector, options ){
 
-        this._rootElement = Aux.elOrSelector(selector,'1st argument');
+        this._rootElement = Common.elOrSelector(selector,'1st argument');
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes
@@ -13913,7 +14120,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          */
         this._options = Ink.extendObj(this._options,options || {});
 
-        this._options.target = Aux.elOrSelector( this._options.target, 'Target' );
+        this._options.target = Common.elOrSelector( this._options.target, 'Target' );
 
         this._scrollTimeout = null;
         this._init();
@@ -13991,7 +14198,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
@@ -14047,15 +14254,15 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         this._options = Ink.extendObj(this._options,options || {});
 
         if( typeof( this._options.topElement ) !== 'undefined' ){
-            this._options.topElement = Aux.elOrSelector( this._options.topElement, 'Top Element');
+            this._options.topElement = Common.elOrSelector( this._options.topElement, 'Top Element');
         } else {
-            this._options.topElement = Aux.elOrSelector( 'body', 'Top Element');
+            this._options.topElement = Common.elOrSelector( 'body', 'Top Element');
         }
 
         if( typeof( this._options.bottomElement ) !== 'undefined' ){
-            this._options.bottomElement = Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
+            this._options.bottomElement = Common.elOrSelector( this._options.bottomElement, 'Bottom Element');
         } else {
-            this._options.bottomElement = Aux.elOrSelector( 'body', 'Top Element');
+            this._options.bottomElement = Common.elOrSelector( 'body', 'Top Element');
         }
 
         this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
@@ -14095,7 +14302,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            if( Aux.currentLayout() === 'small' ){
+            if( Common.currentLayout() === 'small' ){
                 if( Element.hasAttribute(this._rootElement,'style') ){
                     this._rootElement.removeAttribute('style');
                 }
@@ -14459,7 +14666,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Ajax, Aux, Event, Css, Element, Selector, InkArray, InkString ) {
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
     'use strict';
 
     /**
@@ -14545,7 +14752,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
         /**
          * Get the root element
          */
-        this._rootElement = Aux.elOrSelector(selector, '1st argument');
+        this._rootElement = Common.elOrSelector(selector, '1st argument');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
             throw '[Ink.UI.Table] :: The element is not a table';
@@ -14738,7 +14945,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
 
                 var tbody = Selector.select('tbody',this._rootElement)[0];
-                Aux.cleanChildren(tbody);
+                Common.cleanChildren(tbody);
                 InkArray.each(this._data,function(item){
                     tbody.appendChild(item);
                 });
@@ -15088,7 +15295,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -15135,7 +15342,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      */
     var Tabs = function(selector, options) {
 
-        if (!Aux.isDOMElement(selector)) {
+        if (!Common.isDOMElement(selector)) {
             selector = Selector.select(selector);
             if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
             this._element = selector[0];
@@ -15189,7 +15396,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             this._handlers.resize();
 
-            Aux.registerInstance(this, this._element, 'tabs');
+            Common.registerInstance(this, this._element, 'tabs');
         },
 
         /**
@@ -15315,12 +15522,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @private
          */
         _onResize: function(){
-            var currentLayout = Aux.currentLayout();
+            var currentLayout = Common.currentLayout();
             if(currentLayout === this._lastLayout){
                 return;
             }
 
-            if(currentLayout === Aux.Layouts.SMALL || currentLayout === Aux.Layouts.MEDIUM){
+            if(currentLayout === Common.Layouts.SMALL || currentLayout === Common.Layouts.MEDIUM){
                 Css.removeClassName(this._menu, 'menu');
                 Css.removeClassName(this._menu, 'horizontal');
                 // Css.addClassName(this._menu, 'pills');
@@ -15497,7 +15704,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
     };
 
     return Tabs;
@@ -15509,7 +15716,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -15744,7 +15951,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
  * @module Ink.UI.Tooltip_1
  * @author inkdev AT sapo.pt
  */
-Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Aux, InkEvent, InkElement, Selector, InkArray, Css) {
+Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1', 'Ink.Dom.Css_1', 'Ink.Dom.Browser_1'], function (Common, InkEvent, InkElement, Selector, InkArray, Css) {
     'use strict';
 
     /**
@@ -15916,7 +16123,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 
             if (template) {  // The user told us of a template to use. We copy it.
                 var temp = document.createElement('DIV');
-                temp.innerHTML = Aux.elOrSelector(template, 'options.template').outerHTML;
+                temp.innerHTML = Common.elOrSelector(template, 'options.template').outerHTML;
                 tooltip = temp.firstChild;
                 
                 if (templatefield) {
@@ -16203,7 +16410,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -16694,7 +16901,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Event.observe(this._shadeElement, 'click',   this._handlers.click);
             Event.observe(document,           'keydown', this._handlers.keyDown);
 
-            Aux.registerInstance(this, this._shadeElement, 'modal');
+            Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
         },
@@ -16770,7 +16977,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         destroy: function() {
-            Aux.unregisterInstance(this._instanceId);
+            Common.unregisterInstance(this._instanceId);
 
         },
 
@@ -16834,7 +17041,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -16883,7 +17090,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * Selector's type checking
          */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[ImageQuery] :: Invalid selector';
         } else if( typeof selector === 'string' ){
             this._element = Selector.select( selector );
@@ -17085,7 +17292,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
  * @author inkdev AT sapo.pt
  * @version 2
  */
-Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Aux, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
     /**
@@ -17481,7 +17688,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @return {FormElement} FormElement object
      */
     var FormElement = function( element, options ){
-        this._element = Aux.elOrSelector( element, 'Invalid FormElement' );
+        this._element = Common.elOrSelector( element, 'Invalid FormElement' );
         this._errors = {};
         this._rules = {};
         this._value = null;
@@ -17721,7 +17928,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @property _rootElement
          * @type {DOMElement}
          */
-        this._rootElement = Aux.elOrSelector( selector );
+        this._rootElement = Common.elOrSelector( selector );
 
         /**
          * Object that will gather the form elements by name
@@ -18705,7 +18912,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.UI.Common_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"], function( InkElement, InkEvent, Css, Aux, InkArray, Selector) {
+Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.UI.Common_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"], function( InkElement, InkEvent, Css, Common, InkArray, Selector) {
     // Higher order functions
     var hAddClassName = function (element) {
         return function (className) {return Css.addClassName(element, className);};
@@ -18795,7 +19002,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          *
          */
         add: function(element, options) {
-            element = Aux.elOrSelector(element, 'Droppable.add target element');
+            element = Common.elOrSelector(element, 'Droppable.add target element');
 
             var opt = Ink.extendObj( {
                 hoverClass:     options.hoverclass /* old name */ || false,
@@ -18931,7 +19138,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @public
          */
         remove: function(el) {
-            el = Aux.elOrSelector(el);
+            el = Common.elOrSelector(el);
             var len = this._droppables.length;
             for (var i = 0; i < len; i++) {
                 if (this._droppables[i].element === el) {
@@ -19014,7 +19221,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Aux) {
+Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Common) {
     var x = 0,
         y = 1;  // For accessing coords in [x, y] arrays
     
@@ -19090,8 +19297,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             }, options || {}, InkElement.data(element));
 
             this.options = o;
-            this.element = Aux.elOrSelector(element);
-            this.constraintElm = o.constraintElm && Aux.elOrSelector(o.constraintElm);
+            this.element = Common.elOrSelector(element);
+            this.constraintElm = o.constraintElm && Common.elOrSelector(o.constraintElm);
 
             this.handle             = false;
             this.elmStartPosition   = false;
@@ -19118,7 +19325,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
             // set handle
             this.handle = (this.options.handle) ?
-                Aux.elOrSelector(this.options.handle) : this.element;
+                Common.elOrSelector(this.options.handle) : this.element;
             this.handle.style.cursor = o.cursor;
 
             InkEvent.observe(this.handle, 'touchstart', this.handlers.start);
@@ -19454,7 +19661,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';    
 
     /**
@@ -19464,29 +19671,31 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *      @param {String}   [options.instance]         unique id for the datepicker
-     *      @param {String}   [options.format]           Date format string
-     *      @param {String}   [options.cssClass]         CSS class to be applied to the datepicker
-     *      @param {String}   [options.position]         position the datepicker. Accept right or bottom, default is right
-     *      @param {Boolean}  [options.onFocus]          if the datepicker should open when the target element is focused
-     *      @param {Function} [options.onYearSelected]   callback function to execute when the year is selected
-     *      @param {Function} [options.onMonthSelected]  callback function to execute when the month is selected
-     *      @param {Function} [options.validDayFn]       callback function to execute when 'rendering' the day (in the month view)
-     *      @param {String}   [options.startDate]        Date to define init month. Must be in yyyy-mm-dd format
-     *      @param {Function} [options.onSetDate]        callback to execute when set date
-     *      @param {Boolean}  [options.displayInSelect]  whether to display the component in a select. defaults to false.
-     *      @param {Boolean}  [options.showClose]        whether to display the close button or not. defaults to true.
-     *      @param {Boolean}  [options.showClean]        whether to display the clean button or not. defaults to true.
-     *      @param {String}   [options.yearRange]        enforce limits to year for the Date, ex: '1990:2020' (deprecated)
-     *      @param {String}   [options.dateRange]        enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
-     *      @param {Number}   [options.startWeekDay]     day to use as first column on the calendar view. Defaults to Monday (1)
-     *      @param {String}   [options.closeText]        text to display on close button. defaults to 'Fechar'
-     *      @param {String}   [options.cleanText]        text to display on clean button. defaults to 'Limpar'
-     *      @param {String}   [options.prevLinkText]     text to display on the previous button. defaults to '«'
-     *      @param {String}   [options.nextLinkText]     text to display on the previous button. defaults to '«'
-     *      @param {String}   [options.ofText]           text to display between month and year. defaults to ' de '
-     *      @param {Object}   [options.month]            Hash of month names. Defaults to portuguese month names. January is 1.
-     *      @param {Object}   [options.wDay]             Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
+     *      @param {Boolean}   [options.autoOpen=false]  set to `true` to automatically open the datepicker.
+     *      @param {String}    [options.cleanText]       text to display on clean button. defaults to 'Limpar'
+     *      @param {String}    [options.closeText]       text to display on close button. defaults to 'Fechar'
+     *      @param {String}    [options.cssClass]        CSS class to be applied to the datepicker
+     *      @param {String}    [options.dateRange]       enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
+     *      @param {Boolean}   [options.displayInSelect] whether to display the component in a select. defaults to false.
+     *      @param {String}    [options.format]          Date format string
+     *      @param {String}    [options.instance]        unique id for the datepicker
+     *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
+     *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
+     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' de '
+     *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
+     *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
+     *      @param {Function}  [options.onSetDate]       callback to execute when set date
+     *      @param {Function}  [options.onYearSelected]  callback function to execute when the year is selected
+     *      @param {String}    [options.position]        position the datepicker. Accept right or bottom, default is right
+     *      @param {String}    [options.prevLinkText]    text to display on the previous button. defaults to '«'
+     *      @param {Boolean}   [options.showClean]       whether to display the clean button or not. defaults to true.
+     *      @param {Boolean}   [options.showClose]       whether to display the close button or not. defaults to true.
+     *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
+     *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
+     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
+     *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
+     *      @param {Object}    [options.wDay]            Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
+     *      @param {String}    [options.yearRange]       enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
      * @example
      *     <input type="text" id="dPicker" />
@@ -19500,31 +19709,34 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     var DatePicker = function(selector, options) {
 
         if (selector) {
-            this._dataField = Aux.elOrSelector(selector, '1st argument');
+            this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
         }
 
         this._options = Ink.extendObj({
-            instance:        'scdp_' + Math.round(99999*Math.random()),
-            format:          'yyyy-mm-dd',
-            cssClass:        'sapo_component_datepicker',
-            position:        'right',
-            onFocus:         true,
-            onYearSelected:  undefined,
-            onMonthSelected: undefined,
-            validDayFn:      undefined,
-            startDate:       false, // format yyyy-mm-dd
-            onSetDate:       false,
-            displayInSelect: false,
-            showClose:       true,
-            showClean:       true,
-            yearRange:       false,
-            dateRange:       false,
-            startWeekDay:    1,
-            closeText:       'Close',
+            autoOpen:        false,
             cleanText:       'Clear',
-            prevLinkText:    '«',
+            closeText:       'Close',
+            containerElement: false,
+            cssClass:        'sapo_component_datepicker',
+            dateRange:       false,
+            displayInSelect: false,
+            format:          'yyyy-mm-dd',
+            instance:        'scdp_' + Math.round(99999*Math.random()),
             nextLinkText:    '»',
             ofText:          '&nbsp;de&nbsp;',
+            onFocus:         true,
+            onMonthSelected: undefined,
+            onSetDate:       false,
+            onYearSelected:  undefined,
+            position:        'right',
+            prevLinkText:    '«',
+            showClean:       true,
+            showClose:       true,
+            shy:             true,
+            startDate:       false, // format yyyy-mm-dd
+            startWeekDay:    1,
+            validDayFn:      undefined,
+            yearRange:       false,
             month: {
                  1:'January',
                  2:'February',
@@ -19548,9 +19760,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 5:'Friday',
                 6:'Saturday'
             }
-        }, Element.data(this._dataField) || {});
-
-        this._options = Ink.extendObj(this._options, options || {});
+        }, options || {}, Element.data(this._dataField));
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -19558,7 +19768,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._picker = null;
         if (this._options.pickerField) {
-            this._picker = Aux.elOrSelector(this._options.pickerField, 'pickerField');
+            this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
         }
 
         this._today = new Date();
@@ -19576,6 +19786,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         this._init();
 
         this._render();
+        this._listenToContainerObjectEvents();
 
         if ( !this._options.startDate ){
             if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
@@ -19583,7 +19794,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         }
 
-        Aux.registerInstance(this, this._containerObject, 'datePicker');
+        Common.registerInstance(this, this._containerObject, 'datePicker');
     };
 
     DatePicker.prototype = {
@@ -19607,7 +19818,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _render: function() {
-            /*jshint maxstatements:100, maxcomplexity:30 */
+            /*jshint maxstatements:120, maxcomplexity:30 */
+            /*humans brace:"yourselves"*/
             this._containerObject = document.createElement('div');
 
             this._containerObject.id = this._options.instance;
@@ -19693,110 +19905,29 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._dataField.parentNode.appendChild(this._picker);
                     this._picker.className = 'sapo_cal_date_picker';
                 } else {
-                    this._picker = Aux.elOrSelector(this._options.pickerField, 'pickerField');
+                    this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
                 }
             }
 
             if(this._options.displayInSelect){
                 if (this._options.dayField && this._options.monthField && this._options.yearField || this._options.pickerField) {
-                    this._options.dayField   = Aux.elOrSelector(this._options.dayField,   'dayField');
-                    this._options.monthField = Aux.elOrSelector(this._options.monthField, 'monthField');
-                    this._options.yearField  = Aux.elOrSelector(this._options.yearField,  'yearField');
-                }
-                else {
+                    this._options.dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
+                    this._options.monthField = Common.elOrSelector(this._options.monthField, 'monthField');
+                    this._options.yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
+                } else {
                     throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";
                 }
             }
 
-            dom.insertBefore(this._containerObject, dom.childNodes[0]);
-            // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
-
-            if (!this._picker) {
-                Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
-                    this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
-
-                    if ( this._options.position === 'bottom' )
-                    {
-                        this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        this._containerObject.style.left = Element.offset(this._dataField)[0] +'px';
-                    }
-                    else
-                    {
-                        this._containerObject.style.top = Element.offset(this._dataField)[1] +'px';
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
-                    }
-                    //dom.appendChild(this._containerObject);
-                    this._updateDate();
-                    this._showMonth();
-                    this._containerObject.style.display = 'block';
-                },this));
-            }
-            else {
-                Event.observe(this._picker,'click',Ink.bindEvent(function(e){
-                    Event.stop(e);
-                    this._containerObject = Element.clonePosition(this._containerObject,this._picker);
-                    this._updateDate();
-                    this._showMonth();
-                    this._containerObject.style.display = 'block';
-                },this));
-            }
-
-            if(!this._options.displayInSelect){
-                Event.observe(this._dataField,'change', Ink.bindEvent(function() {
-                        this._updateDate( );
-                        this._showDefaultView( );
-                        this.setDate( );
-                        if ( !this._hoverPicker )
-                        {
-                            this._containerObject.style.display = 'none';
-                        }
-                    },this));
-                Event.observe(this._dataField,'blur', Ink.bindEvent(function() {
-                        if ( !this._hoverPicker )
-                        {
-                            this._containerObject.style.display = 'none';
-                        }
-                    },this));
-            }
-            else {
-                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
-                        var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
-                        if(yearSelected !== '' && yearSelected !== 0) {
-                            this._updateDate();
-                            this._showDefaultView();
-                        }
-                    },this));
-               Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
-                        var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
-                        if(yearSelected !== '' && yearSelected !== 0){
-                            this._updateDate();
-                            this._showDefaultView();
-                        }
-                    },this));
-                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
-                        this._updateDate();
-                        this._showDefaultView();
-                    },this));
-            }
-
-            Event.observe(document,'click',Ink.bindEvent(function(e){
-                if (e.target === undefined) {   e.target = e.srcElement;    }
-                if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
-                    if (!this._picker) {
-                        this._containerObject.style.display = 'none';
-                    }
-                    else if (e.target !== this._picker &&
-                             (!this._options.displayInSelect ||
-                              (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
-                        if (!this._options.dayField ||
-                                (!Element.descendantOf(this._options.dayField,   e.target) &&
-                                 !Element.descendantOf(this._options.monthField, e.target) &&
-                                 !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
-                            this._containerObject.style.display = 'none';
-                        }
-                    }
+            if(this._options.containerElement) {
+                var container = Ink.i(this._options.containerElement);
+                if (!container) {
+                    throw new Error('[Ink.UI.DatePicker_1]: Container element should be a DOM Element or an ID, got ' + container);
                 }
-            },this));
+                container.appendChild(this._containerObject);
+            } else {
+                dom.insertBefore(this._containerObject, dom.childNodes[0]);
+            }
 
             this._showMonth();
 
@@ -19818,113 +19949,218 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthDescContainer.appendChild(this._deText);
             this._monthDescContainer.appendChild(this._yearChanger);
 
-            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e)
-            {
+            // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
+
+            if (!this._picker) {
+                Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
+                    this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
+
+                    if ( this._options.position === 'bottom' ) {
+                        var top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                        var left = Element.offset(this._dataField)[0] +'px';
+                    } else {
+                        var top = Element.offset(this._dataField)[1] +'px';
+                        var left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
+                    }
+                    this._containerObject.style.top = top;
+                    this._containerObject.style.left = left;
+                    //dom.appendChild(this._containerObject);
+                    this._updateDate();
+                    this._showMonth();
+                    this._containerObject.style.display = 'block';
+                },this));
+            }
+            else {
+                Event.observe(this._picker,'click',Ink.bindEvent(function(e){
+                    Event.stop(e);
+                    this._containerObject = Element.clonePosition(this._containerObject,this._picker);
+                    this._updateDate();
+                    this._showMonth();
+                    this._containerObject.style.display = 'block';
+                },this));
+            }
+            if (this._options.autoOpen) {
+                this._containerObject = Element.clonePosition(this._containerObject, (this._picker || this._dataField));
+                this._updateDate();
+                this._showMonth();
+                this._containerObject.style.display = 'block';
+            }
+
+            if(!this._options.displayInSelect){
+                Event.observe(this._dataField,'change', Ink.bindEvent(function() {
+                    this._updateDate( );
+                    this._showDefaultView( );
+                    this.setDate( );
+                    if ( !this._hoverPicker ) {
+                        this._hide(true);
+                    }
+                },this));
+                Event.observe(this._dataField,'blur', Ink.bindEvent(function() {
+                    if ( !this._hoverPicker ) {
+                        this._hide(true);
+                    }
+                },this));
+            } else {
+                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                    if(yearSelected !== '' && yearSelected !== 0) {
+                        this._updateDate();
+                        this._showDefaultView();
+                    }
+                },this));
+                Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                    if(yearSelected !== '' && yearSelected !== 0){
+                        this._updateDate();
+                        this._showDefaultView();
+                    }
+                },this));
+                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
+                    this._updateDate();
+                    this._showDefaultView();
+                },this));
+            }
+
+            if (this._options.shy) {
+                Event.observe(document,'click',Ink.bindEvent(function(e){
+                    if (e.target === undefined) {   e.target = e.srcElement;    }
+                    if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
+                        if (!this._picker) {
+                            this._hide(true);
+                        }
+                        else if (e.target !== this._picker &&
+                                 (!this._options.displayInSelect ||
+                                  (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
+                            if (!this._options.dayField ||
+                                    (!Element.descendantOf(this._options.dayField,   e.target) &&
+                                     !Element.descendantOf(this._options.monthField, e.target) &&
+                                     !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
+                                this._hide(true);
+                            }
+                        }
+                    }
+                },this));
+            }
+        },
+
+        _listenToContainerObjectEvents: function () {
+            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = true;
             },this));
 
-            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e)
-            {
+            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = false;
             },this));
 
             Event.observe(this._containerObject,'click',Ink.bindEvent(function(e){
-                    if(typeof(e.target) === 'undefined'){
-                        e.target = e.srcElement;
+                if(typeof(e.target) === 'undefined'){
+                    e.target = e.srcElement;
+                }
+                var className = e.target.className;
+                var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+
+                Event.stop(e);
+
+                if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
+                    var day = className.substr( 9 , 2 );
+                    if( Number( day ) ) {
+                        this.setDate( [this._year, this._month, day].join('-') );
+                        this._hide();
+                    } else if(className === 'sapo_cal_link_month'){
+                        this._monthContainer.style.display = 'none';
+                        this._yearSelector.style.display = 'none';
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._setActiveMonth();
+                        this._monthSelector.style.display = 'block';
+                    } else if(className === 'sapo_cal_link_year'){
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._monthSelector.style.display = 'none';
+                        this._monthContainer.style.display = 'none';
+                        this._showYearSelector();
+                        this._yearSelector.style.display = 'block';
                     }
-                    var className = e.target.className;
-                    var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+                } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
+                    var month=className.substr(14,2);
+                    if(Number(month)){
+                        this._month = month - 1;
+                        // if( typeof this._options.onMonthSelected === 'function' ){
+                        //     this._options.onMonthSelected(this, {
+                        //         'year': this._year,
+                        //         'month' : this._month
+                        //     });
+                        // }
+                        this._monthSelector.style.display = 'none';
+                        this._monthPrev.childNodes[0].className = 'change_month_prev';
+                        this._monthNext.childNodes[0].className = 'change_month_next';
 
-                    Event.stop(e);
-
-                    if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
-                            var day = className.substr( 9 , 2 );
-                            if( Number( day ) ) {
-                                this.setDate( this._year + '-' + ( this._month + 1 ) + '-' + day );
-                                this._containerObject.style.display = 'none';
-                            } else if(className === 'sapo_cal_link_month'){
-                                this._monthContainer.style.display = 'none';
-                                this._yearSelector.style.display = 'none';
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._setActiveMonth();
-                                this._monthSelector.style.display = 'block';
-                            } else if(className === 'sapo_cal_link_year'){
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._monthSelector.style.display = 'none';
-                                this._monthContainer.style.display = 'none';
-                                this._showYearSelector();
-                                this._yearSelector.style.display = 'block';
-                            }
-                    } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
-                            var month=className.substr(14,2);
-                            if(Number(month)){
-                                this._month = month - 1;
-                                // if( typeof this._options.onMonthSelected === 'function' ){
-                                //     this._options.onMonthSelected(this, {
-                                //         'year': this._year,
-                                //         'month' : this._month
-                                //     });
-                                // }
-                                this._monthSelector.style.display = 'none';
-                                this._monthPrev.childNodes[0].className = 'change_month_prev';
-                                this._monthNext.childNodes[0].className = 'change_month_next';
-
-                                if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
-                                    this._monthPrev.childNodes[0].className = 'action_inactive';
-                                }
-                                else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
-                                    this._monthNext.childNodes[0].className = 'action_inactive';
-                                }
-
-                                this._updateCal();
-                                this._monthContainer.style.display = 'block';
-                            }
-                    } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
-                            var year=className.substr(13,4);
-                            if(Number(year)){
-                                this._year = year;
-                                if( typeof this._options.onYearSelected === 'function' ){
-                                    this._options.onYearSelected(this, {
-                                        'year': this._year
-                                    });
-                                }
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._yearSelector.style.display='none';
-                                this._setActiveMonth();
-                                this._monthSelector.style.display='block';
-                            }
-                    } else if( className.indexOf('change_month_') === 0 && !isInactive ){
-                            if(className === 'change_month_next'){
-                                this._updateCal(1);
-                            } else if(className === 'change_month_prev'){
-                                this._updateCal(-1);
-                            }
-                    } else if( className.indexOf('change_year_') === 0 && !isInactive ){
-                            if(className === 'change_year_next'){
-                                this._showYearSelector(1);
-                            } else if(className === 'change_year_prev'){
-                                this._showYearSelector(-1);
-                            }
-                    } else if(className === 'clean'){
-                        if(this._options.displayInSelect){
-                            this._options.yearField.selectedIndex = 0;
-                            this._options.monthField.selectedIndex = 0;
-                            this._options.dayField.selectedIndex = 0;
-                        } else {
-                            this._dataField.value = '';
+                        if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
+                            this._monthPrev.childNodes[0].className = 'action_inactive';
                         }
-                    } else if(className === 'close'){
-                        this._containerObject.style.display = 'none';
+                        else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
+                            this._monthNext.childNodes[0].className = 'action_inactive';
+                        }
+
+                        this._updateCal();
+                        this._monthContainer.style.display = 'block';
                     }
+                } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
+                    var year=className.substr(13,4);
+                    if(Number(year)){
+                        this._year = year;
+                        if( typeof this._options.onYearSelected === 'function' ){
+                            this._options.onYearSelected(this, {
+                                'year': this._year
+                            });
+                        }
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._yearSelector.style.display='none';
+                        this._setActiveMonth();
+                        this._monthSelector.style.display='block';
+                    }
+                } else if( className.indexOf('change_month_') === 0 && !isInactive ){
+                    if(className === 'change_month_next'){
+                        this._updateCal(1);
+                    } else if(className === 'change_month_prev'){
+                        this._updateCal(-1);
+                    }
+                } else if( className.indexOf('change_year_') === 0 && !isInactive ){
+                    if(className === 'change_year_next'){
+                        this._showYearSelector(1);
+                    } else if(className === 'change_year_prev'){
+                        this._showYearSelector(-1);
+                    }
+                } else if(className === 'clean'){
+                    if(this._options.displayInSelect){
+                        this._options.yearField.selectedIndex = 0;
+                        this._options.monthField.selectedIndex = 0;
+                        this._options.dayField.selectedIndex = 0;
+                    } else {
+                        this._dataField.value = '';
+                    }
+                } else if(className === 'close'){
+                    this._hide(false);
+                }
 
-                    this._updateDescription();
-                },this));
+                this._updateDescription();
+            },this));
+        },
 
+        /**
+         * Hides the DatePicker. If the component is shy (options.shy), behaves differently.
+         *
+         * @method _hide
+         * @param [blur=true] Set to false to indicate this is not just a blur and force hiding even if the component is shy.
+         */
+        _hide: function(blur) {
+            blur = blur === undefined ? true : blur;
+            if (blur === false || (blur && this._options.shy)) {
+                this._containerObject.style.display = 'none';
+            }
         },
 
         /**
@@ -20031,7 +20267,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
                 this._yearMax   = Number.MAX_VALUE;
                 this._monthMax  = 12;
-                this._dayMax   = 31;
+                this._dayMax    = 31;
             }
         },
 
@@ -20118,8 +20354,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDate: function(){
             var dataParsed;
-             if(!this._options.displayInSelect){
-                 if(this._dataField.value !== ''){
+            if(!this._options.displayInSelect){
+                if(this._dataField.value !== ''){
                     if(this._isDate(this._options.format,this._dataField.value)){
                         dataParsed = this._getDataArrayParsed(this._dataField.value);
                         dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
@@ -20203,7 +20439,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     if ( i && (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
                         str+='<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
                     } else if( (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
-                         str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+                        str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
                     } else {
                         str +='<li>&nbsp;</li>';
                     }
@@ -20298,7 +20534,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          * @return {String} Returns the current date of the object in the specified format
          */
-       _writeDateInFormat:function(){
+        _writeDateInFormat:function(){
             return InkDate.get( this._options.format , this._data );
         },
 
@@ -20642,7 +20878,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -20687,7 +20923,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         /**
          * Gets the element
          */
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[Ink.UI.TreeView] :: Invalid selector';
         } else if( typeof selector === 'string' ){
             this._element = Selector.select( selector );
@@ -20868,7 +21104,7 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
  */
 Ink.createModule('Ink.UI.Carousel', '1',
     ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
-    function(Aux, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
+    function(Common, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
     'use strict';
 
     /*
@@ -20902,7 +21138,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
-        var element = this._element = Aux.elOrSelector(selector, '1st argument');
+        var element = this._element = Common.elOrSelector(selector, '1st argument');
 
         var opts = this._options = Ink.extendObj({
             axis:           'x',
@@ -20912,6 +21148,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             pagination:     null,
             onChange:       null,
             swipe:          true
+            // TODO exponential swipe
+            // TODO specify break point for next slide
         }, options || {}, InkElement.data(element));
 
         this._isY = (opts.axis === 'y');
@@ -20942,7 +21180,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         var pagination;
         if (opts.pagination) {
-            if (Aux.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
+            if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
                     size:     this._numPages,
@@ -20989,7 +21227,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
-            this._numPages = Math.ceil( numItems / this._itemsPerPage );
+
+            var numPages = Math.ceil( numItems / this._itemsPerPage );
+            var numPagesChanged = this._numPages !== numPages;
+            this._numPages = numPages
             this._deltaLength = this._itemsPerPage * this._elLength;
             
             if (this._isY) {
@@ -21003,7 +21244,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._updateHider();
             this._IE7();
             
-            if (this._pagination) {
+            if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
                 this._pagination.setCurrent(0);
             }
@@ -21070,33 +21311,53 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             setTransitionProperty(this._ulEl, 'none');
 
-            this._onAnimationFrame();
+            this._touchMoveIsFirstTouchMove = true;
 
-            event.preventDefault();
+            // event.preventDefault();
             event.stopPropagation();
         },
 
         _onTouchMove: function (event) {
-            if (!this._swipeData) { return; }
+            if (event.touches.length > 1) { return; /* multitouch event, not my problem. */ }
 
-            if (!this._isY) {
-                this._swipeData.pointerPos = InkEvent.pointerX(event);
-            } else {
-                this._swipeData.pointerPos = InkEvent.pointerY(event)
+            var pointerX = InkEvent.pointerX(event);
+            var pointerY = InkEvent.pointerY(event);
+
+            var deltaY = Math.abs(pointerY - this._swipeData.y)
+            var deltaX = Math.abs(pointerX - this._swipeData.x)
+
+            if (this._touchMoveIsFirstTouchMove) {
+                this._touchMoveIsFirstTouchMove = undefined;
+                this._scrolling = this._isY ?
+                    deltaX > deltaY :
+                    deltaY > deltaX ;
+
+                if (!this._scrolling) {
+                    this._onAnimationFrame();
+                }
             }
 
-            event.preventDefault();
+            if (!this._scrolling && this._swipeData) {
+                event.preventDefault();
+
+                if (!this._isY) {
+                    this._swipeData.pointerPos = pointerX;
+                } else {
+                    this._swipeData.pointerPos = pointerY;
+                }
+            }
+
             event.stopPropagation();
         },
 
         _onAnimationFrame: function () {
             var swipeData = this._swipeData;
 
-            if (!swipeData) { return; }
+            if (!swipeData || this._scrolling || this._touchMoveIsFirstTouchMove) { return; }
 
             var elRect = this._element.getBoundingClientRect();
 
-            var newPos
+            var newPos;
 
             if (!this._isY) {
                 newPos = swipeData.pointerPos - swipeData.inUlX - elRect.left;
@@ -21112,34 +21373,36 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onTouchEnd: function (event) {
-            var snapToNext = 0.2;
+            if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
+                var snapToNext = 0.1;  // move 10% of the way to change page
+                var progress = - this._swipeData.lastUlPos;
 
-            setTransitionProperty(this._ulEl, null /* transition: left, top */);
+                var curPage = this._pagination.getCurrent();
+                var estimatedPage = progress / this._elLength / this._itemsPerPage;
 
-            if (!this._swipeData || !this._swipeData.pointerPos) { return; }
-
-            var progress = - this._swipeData.lastUlPos;
-
-            var curPage = this._pagination.getCurrent();
-            var estimatedPage = progress / this._elLength / this._itemsPerPage;
-
-            if (Math.round(estimatedPage) === curPage) {
-                var diff = estimatedPage - curPage;
-                if (Math.abs(diff) > snapToNext) {
-                    diff = diff > 0 ? 1 : -1;
-                    curPage += diff;
+                if (Math.round(estimatedPage) === curPage) {
+                    var diff = estimatedPage - curPage;
+                    if (Math.abs(diff) > snapToNext) {
+                        diff = diff > 0 ? 1 : -1;
+                        curPage += diff;
+                    }
+                } else {
+                    curPage = Math.round(estimatedPage);
                 }
-            } else {
-                curPage = Math.round(estimatedPage);
+
+                // set the left/top positions in _onPaginationChange
+                if (!isNaN(curPage)) {
+                    this._pagination.setCurrent(curPage);
+                }
+
+                event.stopPropagation();
+                // event.preventDefault();
             }
 
-            // set the left/top positions in _onPaginationChange
-            this._pagination.setCurrent(curPage);
-
+            setTransitionProperty(this._ulEl, null /* transition: left, top */);
             this._swipeData = null;
-
-            event.preventDefault();
-            event.stopPropagation();
+            this._touchMoveIsFirstTouchMove = undefined;
+            this._scrolling = undefined;
         },
 
         _onPaginationChange: function(pgn) {

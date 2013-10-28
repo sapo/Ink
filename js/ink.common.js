@@ -3,21 +3,30 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(Ajax,Css,Selector,Url) {
+Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Dom.Selector_1','Ink.Util.Url_1'], function(InkElement, Ajax,Css,Selector,Url) {
 
     'use strict';
 
     var instances = {};
     var lastIdNum = 0;
+    var nothing = {} /* a marker, for reference comparison. */;
+
+    var keys = Object.keys || function (obj) {
+        var ret = [];
+        for (var k in obj) if (obj.hasOwnProperty(k)) {
+            ret.push(k);
+        }
+        return ret;
+    };
 
     /**
-     * The Aux class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
+     * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
      * @class Ink.UI.Common
      * @version 1
      * @static
      */
-    var Aux = {
+    var Common = {
 
         /**
          * Supported Ink Layouts
@@ -76,7 +85,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *
          * @method elOrSelector
          * @static
-         * @param  {DOMElement|String} elOrSelector Valid DOM Element or CSS Selector
+         * @param  {DOMElement|String} elOrSelector DOM Element or CSS Selector
          * @param  {String}            fieldName    This field is used in the thrown Exception to identify the parameter.
          * @return {DOMElement} Returns the DOMElement passed or the first result of the CSS Selector. Otherwise it throws an exception.
          * @example
@@ -92,6 +101,205 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
             return elOrSelector;
         },
 
+        /**
+         * Does the same as `elOrSelector` but returns an array of elements.
+         *
+         * see elOrSelector
+         *
+         * @method elsOrSelector
+         *
+         * @static
+         *
+         * @param ... (See elOrSelector's params)
+         * @param {Boolean} required If true, accept an empty array as output.
+         * @return {Array} The selected DOM Elements.
+         * @example
+         *     var elements = Ink.UI.Common.elsOrSelector('input.my-inputs', 'My Input');
+         */
+        elsOrSelector: function(elsOrSelector, fieldName, required) {
+            var ret;
+            if (typeof elsOrSelector === 'string') {
+                ret = Selector.select(elsOrSelector);
+            } else if (Common.isDOMElement(elsOrSelector)) {
+                ret = [elsOrSelector];
+            } else if (typeof elsOrSelector === 'object' && typeof elsOrSelector.length === 'number') {
+                ret = elsOrSelector;
+            }
+
+            if (ret && ret.length) {
+                return ret;
+            } else {
+                if (required || arguments.length === 2) {
+                    throw new TypeError(fieldName + ' must either be a DOM Element, an Array of elements, or a selector expression!\nThe script element must also be after the DOM Element itself.');
+                } else {
+                    return [];
+                }
+            }
+        },
+
+        /**
+         * Get options from an "options" object and the Element's data attributes.
+         *
+         * The element's data attributes take precedence.
+         * 
+         * Values from the element's data-atrributes are coerced into the required type.
+         *
+         * Mainly for Ink UI.* modules
+         *
+         * @method options
+         *
+         * @param {Object}     [fieldId=''] Tag used in thrown exceptions: "<fieldId>: ..."
+         * @param {Object}      defaults    Object with arrays of option defaults
+         * @param {Object}      overrides   Object containing options given from user through JavaScript
+         * @param {DOMElement} [element]    Element with data-attributes
+         *
+         * @example
+         *
+         *      this._options = Ink.UI.Common.options('MyComponent', {
+         *          'target': ['Element', null],
+         *          'stuff': ['Number', 0.1],
+         *          'stuff2': ['Integer', 0],
+         *          'doKickFlip': ['Boolean', false],
+         *          'targets': ['Elements'], // Required option
+         *          'onClick': ['Function', null]
+         *      }, options || {}, elm)
+         *
+         * @example
+         *
+         * ### Note about booleans
+         *
+         * Options considered true:
+         *      <div data-required="true"> (and anything else not listed below)
+         *
+         * Options considered false:
+         *      <div data-required="false">
+         *      <div data-required="">
+         *      <div data-required> (due to a quirk in IE7)
+         *
+         * Options which go to default:
+         *      <div>  -> data-required now defaults to the user provided option or the default option.
+         *
+         **/
+        options: function (fieldId, defaults, overrides, element) {
+            if (typeof fieldId !== 'string') {
+                element = overrides;
+                overrides = defaults;
+                defaults = fieldId;
+                fieldId = '';
+            }
+            overrides = overrides || {};
+            var out = {};
+            var dataAttrs = element ? InkElement.data(element) : {};
+            var fromDataAttrs;
+            var type;
+            var lType;
+            var defaultVal;
+            var key;
+
+            var invalid = function (str) {
+                if (fieldId) { str = fieldId + ': ' + str; }
+                throw new Error(str);
+            };
+
+            for (key in defaults) {
+                if (defaults.hasOwnProperty(key)) {
+                    type = defaults[key][0];
+                    lType = type.toLowerCase();
+                    defaultVal = defaults[key].length === 2 ? defaults[key][1] : nothing;
+
+                    if (!type) {
+                        invalid('Ink.UI.Common.options: Always specify a type!');
+                    }
+                    if (!(lType in Common._coerce_funcs)) {
+                        invalid('' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+
+                    }
+                    if (!defaults[key].length || defaults[key].length > 2) {
+                        invalid('the "defaults" argument must be an object mapping option names to [typestring, optional] arrays.');
+                    }
+
+                    if (key in dataAttrs) {
+                        fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key]);
+                    } else {
+                        fromDataAttrs = nothing;
+                    }
+
+                    if (fromDataAttrs !== nothing) {
+                        if (!Common._options_validate(fromDataAttrs, lType)) {
+                            invalid('Invalid ' + lType + ': ' + fromDataAttrs);
+                        }
+                        out[key] = fromDataAttrs;
+                    } else if (key in overrides) {
+                        out[key] = overrides[key];
+                    } else if (defaultVal !== nothing) {
+                        out[key] = defaultVal;
+                    } else {
+                        invalid('Option ' + key + ' is required!');
+                    }
+                }
+            }
+            return out;
+        },
+
+        _coerce_from_string: function (type, val) {
+            if (type in Common._coerce_funcs) {
+                return Common._coerce_funcs[type](val);
+            } else {
+                return val;
+            }
+        },
+
+        _options_validate: function (val, type) {
+            return Common._options_validate_types[type].call(Common, val);
+        },
+
+        _coerce_funcs: (function () {
+            var ret = {
+                element: function (val) {
+                    return Common.elOrSelector(val, '');
+                },
+                elements: function (val) {
+                    return Common.elsOrSelector(val, '', false /*not required*/);
+                },
+                number: function (val) { return +val; },
+                boolean: function (val) {
+                    return !(val === 'false' || val === '' || val === null);
+                },
+                string: function (val) {
+                    return val;
+                },
+                'function': function () {
+                    throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
+                }
+            };
+            ret.float = ret.integer = ret.number;
+            return ret;
+        }()),
+
+        _options_validate_types: (function () {
+            var types = {
+                string: function (val) {
+                    return typeof val === 'string';
+                },
+                number: function (val) {
+                    return typeof val === 'number' && !isNaN(val) && isFinite(val);
+                },
+                integer: function (val) {
+                    return val === Math.round(val);
+                },
+                element: function (val) {
+                    return Common.isDOMElement(val);
+                },
+                elements: function (val) {
+                    return typeof val === 'object' && typeof val.length === 'number' && val.length;
+                },
+                boolean: function (val) {
+                    return typeof val === 'boolean';
+                }
+            };
+            types.float = types.number;
+            return types;
+        }()),
 
         /**
          * Method to make a deep copy (clone) of an object.
@@ -111,7 +319,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          */
         clone: function(o) {
             try {
-                if (typeof o !== 'object') { throw new Error('Given argument is not an object!'); }
                 return JSON.parse( JSON.stringify(o) );
             } catch (ex) {
                 throw new Error('Given object cannot have loops!');
@@ -141,7 +348,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     </script>
          */
         childIndex: function(childEl) {
-            if( Aux.isDOMElement(childEl) ){
+            if( Common.isDOMElement(childEl) ){
                 var els = Selector.select('> *', childEl.parentNode);
                 for (var i = 0, f = els.length; i < f; ++i) {
                     if (els[i] === childEl) {
@@ -278,7 +485,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     <ul id="myUl"></ul>
          */
         cleanChildren: function(parentEl) {
-            if( !Aux.isDOMElement(parentEl) ){
+            if( !Common.isDOMElement(parentEl) ){
                 throw 'Please provide a valid DOMElement';
             }
             var prevEl, el = parentEl.lastChild;
@@ -310,7 +517,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     </script>
          */
         storeIdAndClasses: function(fromEl, inObj) {
-            if( !Aux.isDOMElement(fromEl) ){
+            if( !Common.isDOMElement(fromEl) ){
                 throw 'Please provide a valid DOMElement as first parameter';
             }
 
@@ -350,7 +557,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          */
         restoreIdAndClasses: function(toEl, inObj) {
 
-            if( !Aux.isDOMElement(toEl) ){
+            if( !Common.isDOMElement(toEl) ){
                 throw 'Please provide a valid DOMElement as first parameter';
             }
 
@@ -487,19 +694,19 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
         },
 
         /**
-         * This method is not to supposed to be invoked by the Aux component.
+         * This method is not to supposed to be invoked by the Common component.
          * Components should copy this method as its destroy method.
          *
          * @method destroyComponent
          * @static
          */
         destroyComponent: function() {
-            Ink.Util.Aux.unregisterInstance(this._instanceId);
+            Ink.UI.Common.unregisterInstance(this._instanceId);
             this._element.parentNode.removeChild(this._element);
         }
 
     };
 
-    return Aux;
+    return Common;
 
 });

@@ -5,7 +5,7 @@
  */
 Ink.createModule('Ink.UI.Carousel', '1',
     ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
-    function(Aux, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
+    function(Common, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
     'use strict';
 
     /*
@@ -39,7 +39,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
-        var element = this._element = Aux.elOrSelector(selector, '1st argument');
+        var element = this._element = Common.elOrSelector(selector, '1st argument');
 
         var opts = this._options = Ink.extendObj({
             axis:           'x',
@@ -49,6 +49,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             pagination:     null,
             onChange:       null,
             swipe:          true
+            // TODO exponential swipe
+            // TODO specify break point for next slide
         }, options || {}, InkElement.data(element));
 
         this._isY = (opts.axis === 'y');
@@ -79,7 +81,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         var pagination;
         if (opts.pagination) {
-            if (Aux.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
+            if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
                     size:     this._numPages,
@@ -126,7 +128,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
             this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
-            this._numPages = Math.ceil( numItems / this._itemsPerPage );
+
+            var numPages = Math.ceil( numItems / this._itemsPerPage );
+            var numPagesChanged = this._numPages !== numPages;
+            this._numPages = numPages
             this._deltaLength = this._itemsPerPage * this._elLength;
             
             if (this._isY) {
@@ -140,7 +145,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._updateHider();
             this._IE7();
             
-            if (this._pagination) {
+            if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
                 this._pagination.setCurrent(0);
             }
@@ -207,33 +212,53 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             setTransitionProperty(this._ulEl, 'none');
 
-            this._onAnimationFrame();
+            this._touchMoveIsFirstTouchMove = true;
 
-            event.preventDefault();
+            // event.preventDefault();
             event.stopPropagation();
         },
 
         _onTouchMove: function (event) {
-            if (!this._swipeData) { return; }
+            if (event.touches.length > 1) { return; /* multitouch event, not my problem. */ }
 
-            if (!this._isY) {
-                this._swipeData.pointerPos = InkEvent.pointerX(event);
-            } else {
-                this._swipeData.pointerPos = InkEvent.pointerY(event)
+            var pointerX = InkEvent.pointerX(event);
+            var pointerY = InkEvent.pointerY(event);
+
+            var deltaY = Math.abs(pointerY - this._swipeData.y)
+            var deltaX = Math.abs(pointerX - this._swipeData.x)
+
+            if (this._touchMoveIsFirstTouchMove) {
+                this._touchMoveIsFirstTouchMove = undefined;
+                this._scrolling = this._isY ?
+                    deltaX > deltaY :
+                    deltaY > deltaX ;
+
+                if (!this._scrolling) {
+                    this._onAnimationFrame();
+                }
             }
 
-            event.preventDefault();
+            if (!this._scrolling && this._swipeData) {
+                event.preventDefault();
+
+                if (!this._isY) {
+                    this._swipeData.pointerPos = pointerX;
+                } else {
+                    this._swipeData.pointerPos = pointerY;
+                }
+            }
+
             event.stopPropagation();
         },
 
         _onAnimationFrame: function () {
             var swipeData = this._swipeData;
 
-            if (!swipeData) { return; }
+            if (!swipeData || this._scrolling || this._touchMoveIsFirstTouchMove) { return; }
 
             var elRect = this._element.getBoundingClientRect();
 
-            var newPos
+            var newPos;
 
             if (!this._isY) {
                 newPos = swipeData.pointerPos - swipeData.inUlX - elRect.left;
@@ -249,34 +274,36 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onTouchEnd: function (event) {
-            var snapToNext = 0.2;
+            if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
+                var snapToNext = 0.1;  // move 10% of the way to change page
+                var progress = - this._swipeData.lastUlPos;
 
-            setTransitionProperty(this._ulEl, null /* transition: left, top */);
+                var curPage = this._pagination.getCurrent();
+                var estimatedPage = progress / this._elLength / this._itemsPerPage;
 
-            if (!this._swipeData || !this._swipeData.pointerPos) { return; }
-
-            var progress = - this._swipeData.lastUlPos;
-
-            var curPage = this._pagination.getCurrent();
-            var estimatedPage = progress / this._elLength / this._itemsPerPage;
-
-            if (Math.round(estimatedPage) === curPage) {
-                var diff = estimatedPage - curPage;
-                if (Math.abs(diff) > snapToNext) {
-                    diff = diff > 0 ? 1 : -1;
-                    curPage += diff;
+                if (Math.round(estimatedPage) === curPage) {
+                    var diff = estimatedPage - curPage;
+                    if (Math.abs(diff) > snapToNext) {
+                        diff = diff > 0 ? 1 : -1;
+                        curPage += diff;
+                    }
+                } else {
+                    curPage = Math.round(estimatedPage);
                 }
-            } else {
-                curPage = Math.round(estimatedPage);
+
+                // set the left/top positions in _onPaginationChange
+                if (!isNaN(curPage)) {
+                    this._pagination.setCurrent(curPage);
+                }
+
+                event.stopPropagation();
+                // event.preventDefault();
             }
 
-            // set the left/top positions in _onPaginationChange
-            this._pagination.setCurrent(curPage);
-
+            setTransitionProperty(this._ulEl, null /* transition: left, top */);
             this._swipeData = null;
-
-            event.preventDefault();
-            event.stopPropagation();
+            this._touchMoveIsFirstTouchMove = undefined;
+            this._scrolling = undefined;
         },
 
         _onPaginationChange: function(pgn) {

@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -494,7 +494,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Event.observe(this._shadeElement, 'click',   this._handlers.click);
             Event.observe(document,           'keydown', this._handlers.keyDown);
 
-            Aux.registerInstance(this, this._shadeElement, 'modal');
+            Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
         },
@@ -570,7 +570,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         destroy: function() {
-            Aux.unregisterInstance(this._instanceId);
+            Common.unregisterInstance(this._instanceId);
 
         },
 
