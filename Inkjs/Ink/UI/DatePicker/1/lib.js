@@ -13,29 +13,31 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *      @param {String}   [options.instance]         unique id for the datepicker
-     *      @param {String}   [options.format]           Date format string
-     *      @param {String}   [options.cssClass]         CSS class to be applied to the datepicker
-     *      @param {String}   [options.position]         position the datepicker. Accept right or bottom, default is right
-     *      @param {Boolean}  [options.onFocus]          if the datepicker should open when the target element is focused
-     *      @param {Function} [options.onYearSelected]   callback function to execute when the year is selected
-     *      @param {Function} [options.onMonthSelected]  callback function to execute when the month is selected
-     *      @param {Function} [options.validDayFn]       callback function to execute when 'rendering' the day (in the month view)
-     *      @param {String}   [options.startDate]        Date to define init month. Must be in yyyy-mm-dd format
-     *      @param {Function} [options.onSetDate]        callback to execute when set date
-     *      @param {Boolean}  [options.displayInSelect]  whether to display the component in a select. defaults to false.
-     *      @param {Boolean}  [options.showClose]        whether to display the close button or not. defaults to true.
-     *      @param {Boolean}  [options.showClean]        whether to display the clean button or not. defaults to true.
-     *      @param {String}   [options.yearRange]        enforce limits to year for the Date, ex: '1990:2020' (deprecated)
-     *      @param {String}   [options.dateRange]        enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
-     *      @param {Number}   [options.startWeekDay]     day to use as first column on the calendar view. Defaults to Monday (1)
-     *      @param {String}   [options.closeText]        text to display on close button. defaults to 'Fechar'
-     *      @param {String}   [options.cleanText]        text to display on clean button. defaults to 'Limpar'
-     *      @param {String}   [options.prevLinkText]     text to display on the previous button. defaults to '«'
-     *      @param {String}   [options.nextLinkText]     text to display on the previous button. defaults to '«'
-     *      @param {String}   [options.ofText]           text to display between month and year. defaults to ' de '
-     *      @param {Object}   [options.month]            Hash of month names. Defaults to portuguese month names. January is 1.
-     *      @param {Object}   [options.wDay]             Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
+     *      @param {Boolean}   [options.autoOpen=false]  set to `true` to automatically open the datepicker.
+     *      @param {String}    [options.cleanText]       text to display on clean button. defaults to 'Limpar'
+     *      @param {String}    [options.closeText]       text to display on close button. defaults to 'Fechar'
+     *      @param {String}    [options.cssClass]        CSS class to be applied to the datepicker
+     *      @param {String}    [options.dateRange]       enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
+     *      @param {Boolean}   [options.displayInSelect] whether to display the component in a select. defaults to false.
+     *      @param {String}    [options.format]          Date format string
+     *      @param {String}    [options.instance]        unique id for the datepicker
+     *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
+     *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
+     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' de '
+     *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
+     *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
+     *      @param {Function}  [options.onSetDate]       callback to execute when set date
+     *      @param {Function}  [options.onYearSelected]  callback function to execute when the year is selected
+     *      @param {String}    [options.position]        position the datepicker. Accept right or bottom, default is right
+     *      @param {String}    [options.prevLinkText]    text to display on the previous button. defaults to '«'
+     *      @param {Boolean}   [options.showClean]       whether to display the clean button or not. defaults to true.
+     *      @param {Boolean}   [options.showClose]       whether to display the close button or not. defaults to true.
+     *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
+     *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
+     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
+     *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
+     *      @param {Object}    [options.wDay]            Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
+     *      @param {String}    [options.yearRange]       enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
      * @example
      *     <input type="text" id="dPicker" />
@@ -53,29 +55,30 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         }
 
         this._options = Ink.extendObj({
-            instance:        'scdp_' + Math.round(99999*Math.random()),
-            format:          'yyyy-mm-dd',
-            cssClass:        'sapo_component_datepicker',
-            position:        'right',
-            onFocus:         true,
-            containerElement: false,
-            closeOnBlur:     true,
-            onYearSelected:  undefined,
-            onMonthSelected: undefined,
-            validDayFn:      undefined,
-            startDate:       false, // format yyyy-mm-dd
-            onSetDate:       false,
-            displayInSelect: false,
-            showClose:       true,
-            showClean:       true,
-            yearRange:       false,
-            dateRange:       false,
-            startWeekDay:    1,
-            closeText:       'Close',
+            autoOpen:        false,
             cleanText:       'Clear',
-            prevLinkText:    '«',
+            closeText:       'Close',
+            containerElement: false,
+            cssClass:        'sapo_component_datepicker',
+            dateRange:       false,
+            displayInSelect: false,
+            format:          'yyyy-mm-dd',
+            instance:        'scdp_' + Math.round(99999*Math.random()),
             nextLinkText:    '»',
             ofText:          '&nbsp;de&nbsp;',
+            onFocus:         true,
+            onMonthSelected: undefined,
+            onSetDate:       false,
+            onYearSelected:  undefined,
+            position:        'right',
+            prevLinkText:    '«',
+            showClean:       true,
+            showClose:       true,
+            shy:             true,
+            startDate:       false, // format yyyy-mm-dd
+            startWeekDay:    1,
+            validDayFn:      undefined,
+            yearRange:       false,
             month: {
                  1:'January',
                  2:'February',
@@ -334,7 +337,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 },this));
             }
 
-            if (this._options.closeOnBlur) {
+            if (this._options.shy) {
                 Event.observe(document,'click',Ink.bindEvent(function(e){
                     if (e.target === undefined) {   e.target = e.srcElement;    }
                     if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
@@ -484,9 +487,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         },
 
+        /**
+         * Hides the DatePicker. If the component is shy (options.shy), behaves differently.
+         *
+         * @method _hide
+         * @param [blur=true] Set to false to indicate this is not just a blur and force hiding even if the component is shy.
+         */
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
-            if (blur || (!blur && this._options.closeOnBlur === false)) {
+            if (blur === false || (blur && this._options.shy)) {
                 this._containerObject.style.display = 'none';
             }
         },
