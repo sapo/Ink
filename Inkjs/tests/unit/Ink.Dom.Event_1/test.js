@@ -77,7 +77,6 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             start();
         });
 
-
         InkEvent.fire(elem, 'click', {memo: 'check'});
     });
 
@@ -95,6 +94,16 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         });
 
         InkEvent.fire(child, 'click', {memo: 'check'});
+    });
+
+    asyncTest('fire() and the window', function () {
+        expect(1);
+        var cb = InkEvent.observe(window, 'resize', function (event) {
+            ok(true);
+            InkEvent.stopObserving(window, 'resize', cb);
+            start();
+        });
+        InkEvent.fire(window, 'resize');
     });
 
     (function () {
