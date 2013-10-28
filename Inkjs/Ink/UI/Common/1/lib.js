@@ -11,13 +11,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
     var lastIdNum = 0;
 
     /**
-     * The Aux class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
+     * The Common class provides auxiliar methods to ease some of the most common/repetitive UI tasks.
      *
      * @class Ink.UI.Common
      * @version 1
      * @static
      */
-    var Aux = {
+    var Common = {
 
         /**
          * Supported Ink Layouts
@@ -141,7 +141,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     </script>
          */
         childIndex: function(childEl) {
-            if( Aux.isDOMElement(childEl) ){
+            if( Common.isDOMElement(childEl) ){
                 var els = Selector.select('> *', childEl.parentNode);
                 for (var i = 0, f = els.length; i < f; ++i) {
                     if (els[i] === childEl) {
@@ -278,7 +278,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     <ul id="myUl"></ul>
          */
         cleanChildren: function(parentEl) {
-            if( !Aux.isDOMElement(parentEl) ){
+            if( !Common.isDOMElement(parentEl) ){
                 throw 'Please provide a valid DOMElement';
             }
             var prevEl, el = parentEl.lastChild;
@@ -310,7 +310,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          *     </script>
          */
         storeIdAndClasses: function(fromEl, inObj) {
-            if( !Aux.isDOMElement(fromEl) ){
+            if( !Common.isDOMElement(fromEl) ){
                 throw 'Please provide a valid DOMElement as first parameter';
             }
 
@@ -350,7 +350,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
          */
         restoreIdAndClasses: function(toEl, inObj) {
 
-            if( !Aux.isDOMElement(toEl) ){
+            if( !Common.isDOMElement(toEl) ){
                 throw 'Please provide a valid DOMElement as first parameter';
             }
 
@@ -487,19 +487,19 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Net.Ajax_1','Ink.Dom.Css_1','Ink.Do
         },
 
         /**
-         * This method is not to supposed to be invoked by the Aux component.
+         * This method is not to supposed to be invoked by the Common component.
          * Components should copy this method as its destroy method.
          *
          * @method destroyComponent
          * @static
          */
         destroyComponent: function() {
-            Ink.Util.Aux.unregisterInstance(this._instanceId);
+            Ink.UI.Common.unregisterInstance(this._instanceId);
             this._element.parentNode.removeChild(this._element);
         }
 
     };
 
-    return Aux;
+    return Common;
 
 });

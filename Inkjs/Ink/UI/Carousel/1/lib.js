@@ -5,7 +5,7 @@
  */
 Ink.createModule('Ink.UI.Carousel', '1',
     ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1', 'Ink.Dom.Element_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Browser_1', 'Ink.Dom.Selector_1'],
-    function(Aux, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
+    function(Common, InkEvent, Css, InkElement, Pagination, Browser/*, Selector*/) {
     'use strict';
 
     /*
@@ -39,7 +39,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
-        var element = this._element = Aux.elOrSelector(selector, '1st argument');
+        var element = this._element = Common.elOrSelector(selector, '1st argument');
 
         var opts = this._options = Ink.extendObj({
             axis:           'x',
@@ -81,7 +81,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         var pagination;
         if (opts.pagination) {
-            if (Aux.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
+            if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
                     size:     this._numPages,

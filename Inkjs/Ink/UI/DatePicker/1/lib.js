@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';    
 
     /**
@@ -49,7 +49,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     var DatePicker = function(selector, options) {
 
         if (selector) {
-            this._dataField = Aux.elOrSelector(selector, '1st argument');
+            this._dataField = Common.elOrSelector(selector, '1st argument');
         }
 
         this._options = Ink.extendObj({
@@ -107,7 +107,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._picker = null;
         if (this._options.pickerField) {
-            this._picker = Aux.elOrSelector(this._options.pickerField, 'pickerField');
+            this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
         }
 
         this._today = new Date();
@@ -132,7 +132,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         }
 
-        Aux.registerInstance(this, this._containerObject, 'datePicker');
+        Common.registerInstance(this, this._containerObject, 'datePicker');
     };
 
     DatePicker.prototype = {
@@ -242,15 +242,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._dataField.parentNode.appendChild(this._picker);
                     this._picker.className = 'sapo_cal_date_picker';
                 } else {
-                    this._picker = Aux.elOrSelector(this._options.pickerField, 'pickerField');
+                    this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
                 }
             }
 
             if(this._options.displayInSelect){
                 if (this._options.dayField && this._options.monthField && this._options.yearField || this._options.pickerField) {
-                    this._options.dayField   = Aux.elOrSelector(this._options.dayField,   'dayField');
-                    this._options.monthField = Aux.elOrSelector(this._options.monthField, 'monthField');
-                    this._options.yearField  = Aux.elOrSelector(this._options.yearField,  'yearField');
+                    this._options.dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
+                    this._options.monthField = Common.elOrSelector(this._options.monthField, 'monthField');
+                    this._options.yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
                 }
                 else {
                     throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";

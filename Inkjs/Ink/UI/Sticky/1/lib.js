@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Aux, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
@@ -59,15 +59,15 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         this._options = Ink.extendObj(this._options,options || {});
 
         if( typeof( this._options.topElement ) !== 'undefined' ){
-            this._options.topElement = Aux.elOrSelector( this._options.topElement, 'Top Element');
+            this._options.topElement = Common.elOrSelector( this._options.topElement, 'Top Element');
         } else {
-            this._options.topElement = Aux.elOrSelector( 'body', 'Top Element');
+            this._options.topElement = Common.elOrSelector( 'body', 'Top Element');
         }
 
         if( typeof( this._options.bottomElement ) !== 'undefined' ){
-            this._options.bottomElement = Aux.elOrSelector( this._options.bottomElement, 'Bottom Element');
+            this._options.bottomElement = Common.elOrSelector( this._options.bottomElement, 'Bottom Element');
         } else {
-            this._options.bottomElement = Aux.elOrSelector( 'body', 'Top Element');
+            this._options.bottomElement = Common.elOrSelector( 'body', 'Top Element');
         }
 
         this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
@@ -107,7 +107,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
             var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
 
-            if( Aux.currentLayout() === 'small' ){
+            if( Common.currentLayout() === 'small' ){
                 if( Element.hasAttribute(this._rootElement,'style') ){
                     this._rootElement.removeAttribute('style');
                 }
