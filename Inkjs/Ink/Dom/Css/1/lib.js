@@ -72,7 +72,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
                     if (typeof elm.className === "undefined") {
                         return false;
                     }
-                    var elmClassName = elm.getAttribute('class') || '';
+                    var elmClassName = elm.className || '';
                     var re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
                     elmClassName = elmClassName
                         .replace(re, ' ')
