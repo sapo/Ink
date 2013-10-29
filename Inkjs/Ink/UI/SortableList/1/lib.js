@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -30,9 +30,9 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
      */
     var SortableList = function(selector, options) {
 
-        this._element = Aux.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, '1st argument');
 
-        if( !Aux.isDOMElement(selector) && (typeof selector !== 'string') ){
+        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[Ink.UI.SortableList] :: Invalid selector';
         } else if( typeof selector === 'string' ){
             this._element = Ink.Dom.Selector.select( selector );
@@ -109,7 +109,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             Event.observe(db, this._up,   this._handlers.up);
             this._observe();
 
-            Aux.registerInstance(this, this._element, 'sortableList');
+            Common.registerInstance(this, this._element, 'sortableList');
         },
 
         /**
@@ -199,7 +199,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             this._element.parentNode.replaceChild(el, this._element);
             this._element = el;
 
-            Aux.restoreIdAndClasses(this._element, this);
+            Common.restoreIdAndClasses(this._element, this);
 
             this._dragTriggers = Selector.select( this._options.dragObject, this._element );
 
@@ -239,7 +239,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             }
             liEl = tgtEl;
 
-            this._index = Aux.childIndex(liEl);
+            this._index = Common.childIndex(liEl);
             this._height = liEl.offsetHeight;
             this._startY = this._getY(ev);
             this._isMoving = true;
@@ -323,7 +323,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
 
     };
 

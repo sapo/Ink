@@ -1,80 +1,67 @@
-QUnit.config.testTimeout = 4000;
+// QUnit.config.testTimeout = 4000;
 
 Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Browser_1'], function (InkEvent, InkElement, Selector, Browser) {
-
-    var nearEqual = function (a, b, threshold, msg) {
-        threshold = threshold || 250;
-        msg = msg || '';
-        ok( a - threshold < b && a + threshold > b, [msg, ':', a, '~=', b].join(' ') );
-    };
-
     (function () {
         module('throttle');
 
-        var throttledFunc = InkEvent.throttle(function () {
-            ok(true, 'called');
+        var nearEqual = function (a, b, threshold, msg) {
+            threshold = threshold || 250;
+            msg = msg || '';
+            ok( a - threshold < b && a + threshold > b, [msg, ':', a, '~=', b].join(' ') );
+        };
+        var pass = function () { ok(true); };
+        var passStart = function () { ok(true); start(); };
+        var fail = function () { ok(false); };
+        var throttledFunc = InkEvent.throttle(function (cb) {
+            cb && cb();
         }, 100);
 
-        asyncTest('limit amount of calls', function () {
-            throttledFunc();
-            throttledFunc();
-            throttledFunc();
-            throttledFunc();
-            throttledFunc(); // Call this a couple of times, assert called twice.
-            expect(2);
-            setTimeout(start, 300);
+        test('limit amount of calls', function () {
+            expect(2); stop(2);
+            throttledFunc(passStart);
+            throttledFunc(passStart);
+            throttledFunc(fail);
+            throttledFunc(fail);
+            throttledFunc(fail); // Call this a couple of times, assert called twice.
         });
         asyncTest('limit amount of calls (2)', function () {
-            throttledFunc(); // Call this once, assert called once.
+            throttledFunc(passStart); // Call this once, assert called once.
             expect(1);
-            setTimeout(start, 200);
         });
         asyncTest('throttle (context and arguments)', function () {
             expect(2);
-            var withArgs = InkEvent.throttle(function (arg) {
+            InkEvent.throttle(function (arg) {
                 equal(arg, 'arg');
                 equal(this, 'this');
-            }, 0);
-            withArgs.call('this', 'arg');
-            setTimeout(start, 50);
+                start();
+            }, 0).call('this', 'arg');
         });
-        asyncTest('throttle (called few times)', function () {
-            var fewTimes = InkEvent.throttle(function () { ok(true); }, 20);
+        test('throttle (called few times)', function () {
+            var fewTimes = InkEvent.throttle(passStart, 20);
 
             expect(3);
-            setTimeout(fewTimes, 1);
+            stop(3);
+            setTimeout(fewTimes, 0);
+            setTimeout(fewTimes, 50);
             setTimeout(fewTimes, 100);
-            setTimeout(fewTimes, 200);
-
-            setTimeout(start, 300);
         });
 
-        test('throttle called with the correct timing between calls', function () {
-            // Timing of the calls we will barrage throttled() with
-            var cTming = [
-                0,0,0,0,0,100,
-                1000];
-
-            // The times at which throttled() should be called
-            var timing = [0, 500, 1000];
-            var c = -1;
-
-
-            var startTime = +new Date();
+        asyncTest('throttle called with the correct timing between calls', function () {
+            var firstCallTime;
             var throttled = InkEvent.throttle(function () {
-                var theTime = new Date() - startTime;
-                nearEqual(timing[++c], theTime);
-                start();
-            }, 500);
+                if (firstCallTime) {
+                    nearEqual(+new Date() - firstCallTime, 200, 150);
+                    start();
+                } else {
+                    firstCallTime = +new Date();
+                }
+            }, 200);
 
-            for (var i = 0, len = cTming.length; i < len; i++) {
-                setTimeout(throttled, cTming[i]);
-            }
+            expect(1);
 
-            /* stop [timing] times */
-            stop(timing.length);
-            /* expect [timing] assertions */
-            expect(timing.length);
+            throttled();
+            throttled();
+            throttled();
         });
     }());
 
@@ -86,20 +73,46 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
 
         InkEvent.observe(elem, 'click', function (ev) {
             equal(ev.memo.memo, 'check');
+            document.body.removeChild(elem);
             start();
         });
-
-        document.body.removeChild(elem);
 
         InkEvent.fire(elem, 'click', {memo: 'check'});
     });
 
+    asyncTest('fire() and bubbling', function () {
+        var elem = InkElement.create('div', {className: 'elem'});
+        var child = InkElement.create('div', { insertBottom: elem });
+        document.body.appendChild(elem);
+
+        InkEvent.observe(elem, 'click', function (ev) {
+            equal(ev.memo.memo, 'check');
+            ok(InkEvent.element(ev) === child);
+            ok(this === elem);
+            document.body.removeChild(elem);
+            start();
+        });
+
+        InkEvent.fire(child, 'click', {memo: 'check'});
+    });
+
+    asyncTest('fire() and the window', function () {
+        expect(1);
+        var cb = InkEvent.observe(window, 'resize', function (event) {
+            ok(true);
+            InkEvent.stopObserving(window, 'resize', cb);
+            start();
+        });
+        InkEvent.fire(window, 'resize');
+    });
+
     (function () {
+        // TODO DRY this
         var elem,
             child,
             grandChild;
 
-        module('observeDelegated', {
+        module('observeDelegated fired', {
             setup: function () {
                 elem = InkElement.create('ul');
                 child = InkElement.create('li');
@@ -110,56 +123,138 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
                 child.appendChild(grandChild);
                 document.body.appendChild(elem);
             },
-            teardown: function () {
-                document.body.removeChild(elem);
-            }
+            teardown: function () { document.body.removeChild(elem); }
         });
-        asyncTest('observeDelegated', function () {
-            expect(1);
+
+        asyncTest('observeDelegated fired', function () {
+            
+            expect(2);
             InkEvent.observeDelegated(elem, 'click', 'li', function (event) {
                 ok(this === child, '<this> is the selected tag');
-                start();
+                ok(InkEvent.element(event) === grandChild, 'InkEvent.element(event) resolves to the element that the event came from');
+                start( );
             });
 
-            InkEvent.fire(child, 'click');
+            InkEvent.fire(grandChild, 'click');
         });
+    })();
 
-        asyncTest('observeDelegated', function () {
-            expect(0);
+    (function () {
+        var elem,
+            child,
+            grandChild;
+
+        module('observeDelegated not fired' , {
+            setup: function () {
+                elem = InkElement.create('ul');
+                child = InkElement.create('li');
+                grandChild = InkElement.create('span');
+                grandChild.className = 'the-grandchild';
+
+                elem.appendChild(child);
+                child.appendChild(grandChild);
+                document.body.appendChild(elem);
+            },
+            teardown: function () { document.body.removeChild(elem); }
+        });
+        asyncTest('observeDelegated not fired', function () {
+            expect(1);
             InkEvent.observeDelegated(elem, 'click', 'ul', function (event) {
                 ok(false, 'should not fire event on delegation parent');
             });
+            InkEvent.observe(elem, 'click', function (event) {
+                ok(true, 'should fire normal event');
+                start( )
+            });
 
-            InkEvent.fire(child, 'click');
-            setTimeout(start, 100);
+            InkEvent.fire(elem, 'click');
+        });
+    })( );
+
+    (function () {
+        var elem,
+            child,
+            grandChild;
+
+        module('observeDelegated not fired' , {
+            setup: function () {
+                elem = InkElement.create('ul');
+                child = InkElement.create('li');
+                grandChild = InkElement.create('span');
+                grandChild.className = 'the-grandchild';
+
+                elem.appendChild(child);
+                child.appendChild(grandChild);
+                document.body.appendChild(elem);
+            },
+            teardown: function () { document.body.removeChild(elem); }
         });
 
-        asyncTest('observeDelegated + some selectors', function () {
-            
-            expect(1);
+        test('observeDelegated + some selectors', function () {
+            expect(2);
+            stop(2);
             InkEvent.observeDelegated(elem, 'click', 'li > span.classIDontHave', function () {
                 ok(false, 'should not find this element');
             });
 
-            InkEvent.observeDelegated(child, 'click', 'ul > li > span', function (event) {
-                ok(false, 'should not be able to select through parents');
-            });
-
             InkEvent.observeDelegated(elem, 'click', 'li > span', function () {
-                ok(true, 'selected by class, correctly');
+                ok(true, 'selected by tag name, correctly');
+                start();
             });
 
             InkEvent.observeDelegated(elem, 'click', 'li > span.the-grandchild', function () {
                 ok(true, 'selected by class, correctly');
+                start();
             });
 
-            expect(2);
-
             InkEvent.fire(grandChild, 'click');
-
-            setTimeout(start, 100);
         });
     }());
+
+    (function () {
+        var elem,
+            child,
+            grandChild;
+
+        module('observeDelegated on many children' , {
+            setup: function () {
+                elem = InkElement.create('ul');
+                child = InkElement.create('li');
+                grandChild = InkElement.create('span');
+                grandChild2 = InkElement.create('span');
+                grandChild3 = InkElement.create('span');
+                grandChild.className = 'the-grandchild';
+                grandChild2.className = 'the-grandchild-2';
+                grandChild3.className = 'the-grandchild-3';
+
+                elem.appendChild(child);
+                child.appendChild(grandChild);
+                child.appendChild(grandChild2);
+                child.appendChild(grandChild3);
+                document.body.appendChild(elem);
+            },
+            teardown: function () { document.body.removeChild(elem); }
+        });
+
+        asyncTest('observeDelegated on many children', function () {
+            expect(1);
+
+            InkEvent.observeDelegated(elem, 'click', '.the-grandchild', function () {
+                ok(false);
+            });
+
+            InkEvent.observeDelegated(elem, 'click', '.the-grandchild-2', function () {
+                ok(this === grandChild2);
+                start();
+            });
+
+            InkEvent.observeDelegated(elem, 'click', '.the-grandchild-3', function () {
+                ok(false);
+            });
+
+            InkEvent.fire(grandChild2, 'click');
+        });
+    }())
 
     module('hashchange', {
         setup: function () { location.hash = ''; },

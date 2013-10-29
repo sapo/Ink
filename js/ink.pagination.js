@@ -5,7 +5,7 @@
  */
 Ink.createModule('Ink.UI.Pagination', '1',
     ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
-    function(Aux, Event, Css, Element, Selector ) {
+    function(Common, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
@@ -47,7 +47,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      */
     var Pagination = function(selector, options) {
 
-        this._element = Aux.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, '1st argument');
 
         this._options = Ink.extendObj(
             {
@@ -79,15 +79,15 @@ Ink.createModule('Ink.UI.Pagination', '1',
             click: Ink.bindEvent(this._onClick,this)
         };
 
-        if (!Aux.isInteger(this._options.size)) {
+        if (!Common.isInteger(this._options.size)) {
             throw new TypeError('size option is a required integer!');
         }
 
-        if (!Aux.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
+        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
             throw new TypeError('start option is a required integer between 1 and size!');
         }
 
-        if (this._options.maxSize && !Aux.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
+        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
             throw new TypeError('maxSize option is a positive integer!');
         }
 
@@ -125,7 +125,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             // subscribe events
             this._observe();
 
-            Aux.registerInstance(this, this._element, 'pagination');
+            Common.registerInstance(this, this._element, 'pagination');
         },
 
         /**
@@ -337,7 +337,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         setSize: function(sz) {
-            if (!Aux.isInteger(sz)) {
+            if (!Common.isInteger(sz)) {
                 throw new TypeError('1st argument must be an integer number!');
             }
 
@@ -355,7 +355,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         setCurrent: function(nr, isRelative) {
-            if (!Aux.isInteger(nr)) {
+            if (!Common.isInteger(nr)) {
                 throw new TypeError('1st argument must be an integer number!');
             }
 
@@ -375,7 +375,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             /*if (this._options.setHash) {
                 var o = {};
                 o[this._options.hashParameter] = nr;
-                Aux.setHash(o);
+                Common.setHash(o);
             }*/
 
             if (this._options.onChange) { this._options.onChange(this); }
@@ -475,7 +475,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
     };
 
     return Pagination;

@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.UI.Common_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"], function( InkElement, InkEvent, Css, Aux, InkArray, Selector) {
+Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.UI.Common_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"], function( InkElement, InkEvent, Css, Common, InkArray, Selector) {
     // Higher order functions
     var hAddClassName = function (element) {
         return function (className) {return Css.addClassName(element, className);};
@@ -93,7 +93,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          *
          */
         add: function(element, options) {
-            element = Aux.elOrSelector(element, 'Droppable.add target element');
+            element = Common.elOrSelector(element, 'Droppable.add target element');
 
             var opt = Ink.extendObj( {
                 hoverClass:     options.hoverclass /* old name */ || false,
@@ -229,7 +229,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @public
          */
         remove: function(el) {
-            el = Aux.elOrSelector(el);
+            el = Common.elOrSelector(el);
             var len = this._droppables.length;
             for (var i = 0; i < len; i++) {
                 if (this._droppables[i].element === el) {
