@@ -7750,7 +7750,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
                     var day = className.substr( 9 , 2 );
                     if( Number( day ) ) {
-                        this.setDate( [this._year, this._month, day].join('-') );
+                        this.setDate( [this._year, this._month + 1, day].join('-') );
                         this._hide();
                     } else if(className === 'sapo_cal_link_month'){
                         this._monthContainer.style.display = 'none';
