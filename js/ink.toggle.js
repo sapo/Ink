@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -14,9 +14,10 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {String}       options.target                    CSS Selector that specifies the elements that will toggle
-     *     @param {String}       [options.triggerEvent]            Event that will trigger the toggling. Default is 'click'
-     *     @param {Boolean}      [options.closeOnClick]            Flag that determines if, when clicking outside of the toggled content, it should hide it. Default: true.
+     *     @param {String}       options.target                    CSS Selector that specifies the elements that this component will toggle
+     *     @param {String}       [options.triggerEvent='click']    Event that will trigger the toggling.
+     *     @param {Boolean}      [options.closeOnClick=true]       Flag that determines if, when clicking outside of the toggled content, it should hide it.
+     *     @param {Selector}     [options.closeOnInsideClick='a[href]']      Makes the toggle close if a click occurs inside the toggle and the element matches the selector. Default: links
      * @example
      *      <div class="ink-dropdown">
      *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
@@ -70,10 +71,9 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
         this._options = Ink.extendObj({
             target : undefined,
             triggerEvent: 'click',
-            closeOnClick: true
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj(this._options,options || {});
+            closeOnClick: true,
+            closeOnInsideClick: 'a[href]'  // closes the toggle when a target is clicked and it is a link
+        }, options || {}, Element.data(this._rootElement));
 
         this._targets = (function (target) {
             if (typeof target === 'string') {
@@ -84,6 +84,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
                 } else {
                     return [target];
                 }
+            } else {
+                return [];
             }
         }(this._options.target));
 
@@ -109,6 +111,13 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
             if( this._options.closeOnClick.toString() === 'true' ){
                 Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
+            }
+            if( this._options.closeOnInsideClick ) {
+                Event.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
+                    if ( Element.findUpwardsBySelector(Event.element(e), this._options.closeOnInsideClick) ) {
+                        this._dismiss();
+                    }
+                }, this));
             }
         },
 
@@ -159,6 +168,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Do
             } else {
                 Css.removeClassName(this._rootElement,'active');
             }
+
+            Event.stop(event);
         },
 
         /**

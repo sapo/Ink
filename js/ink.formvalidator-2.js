@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 2
  */
-Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Aux_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Aux, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Element_1','Ink.Dom.Event_1','Ink.Dom.Selector_1','Ink.Dom.Css_1','Ink.Util.Array_1','Ink.Util.I18n_1','Ink.Util.Validator_1'], function( Common, Element, Event, Selector, Css, InkArray, I18n, InkValidator ) {
     'use strict';
 
     /**
@@ -387,7 +387,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Aux_1','Ink.Dom.Element_
             'formvalidator.color': '{field} deve conter uma cor válida',
             'formvalidator.matches': '{field} deve corresponder ao campo {param1}',
             'formvalidator.validation_function_not_found': '[A regra {rule} não foi definida]'
-        },
+        }
     }, 'en_US');
 
     /**
@@ -399,7 +399,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Aux_1','Ink.Dom.Element_
      * @return {FormElement} FormElement object
      */
     var FormElement = function( element, options ){
-        this._element = Aux.elOrSelector( element, 'Invalid FormElement' );
+        this._element = Common.elOrSelector( element, 'Invalid FormElement' );
         this._errors = {};
         this._rules = {};
         this._value = null;
@@ -639,7 +639,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Aux_1','Ink.Dom.Element_
          * @property _rootElement
          * @type {DOMElement}
          */
-        this._rootElement = Aux.elOrSelector( selector );
+        this._rootElement = Common.elOrSelector( selector );
 
         /**
          * Object that will gather the form elements by name

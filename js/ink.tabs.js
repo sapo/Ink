@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -17,8 +17,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      *     @param {Boolean}      [options.preventUrlChange]        Flag that determines if follows the link on click or stops the event
      *     @param {String}       [options.active]                  ID of the tab to activate on creation
      *     @param {Array}        [options.disabled]                IDs of the tabs that will be disabled on creation
-     *     @param {Function}     [options.onBeforeChange]          callback to be executed before changing tabs
-     *     @param {Function}     [options.onChange]                callback to be executed after changing tabs
+     *     @param {Function}     [options.onBeforeChange]          Callback to be executed before changing tabs
+     *     @param {Function}     [options.onChange]                Callback to be executed after changing tabs
+     *     @param {Boolean}      [options.triggerEventsOnLoad]     Trigger the above events when the page is loaded.
      * @example
      *      <div class="ink-tabs top"> <!-- replace 'top' with 'bottom', 'left' or 'right' to place navigation -->
      *          
@@ -49,7 +50,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      */
     var Tabs = function(selector, options) {
 
-        if (!Aux.isDOMElement(selector)) {
+        if (!Common.isDOMElement(selector)) {
             selector = Selector.select(selector);
             if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
             this._element = selector[0];
@@ -63,10 +64,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
             active: undefined,
             disabled: [],
             onBeforeChange: undefined,
-            onChange: undefined
-        }, Element.data(selector));
-
-        this._options = Ink.extendObj(this._options,options || {});
+            onChange: undefined,
+            triggerEventsOnLoad: true
+        }, options || {}, Element.data(selector));
 
         this._handlers = {
             tabClicked: Ink.bindEvent(this._onTabClicked,this),
@@ -100,11 +100,11 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
             this._setFirstActive();
 
             //shows the active tab
-            this._changeTab(this._activeMenuLink);
+            this._changeTab(this._activeMenuLink, this._options.triggerEventsOnLoad);
 
             this._handlers.resize();
 
-            Aux.registerInstance(this, this._element, 'tabs');
+            Common.registerInstance(this, this._element, 'tabs');
         },
 
         /**
@@ -230,12 +230,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
          * @private
          */
         _onResize: function(){
-            var currentLayout = Aux.currentLayout();
+            var currentLayout = Common.currentLayout();
             if(currentLayout === this._lastLayout){
                 return;
             }
 
-            if(currentLayout === Aux.Layouts.SMALL || currentLayout === Aux.Layouts.MEDIUM){
+            if(currentLayout === Common.Layouts.SMALL || currentLayout === Common.Layouts.MEDIUM){
                 Css.removeClassName(this._menu, 'menu');
                 Css.removeClassName(this._menu, 'horizontal');
                 // Css.addClassName(this._menu, 'pills');
@@ -412,7 +412,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
     };
 
     return Tabs;

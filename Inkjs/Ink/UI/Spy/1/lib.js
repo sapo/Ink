@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -29,7 +29,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
      */
     var Spy = function( selector, options ){
 
-        this._rootElement = Aux.elOrSelector(selector,'1st argument');
+        this._rootElement = Common.elOrSelector(selector,'1st argument');
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes
@@ -43,7 +43,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.C
          */
         this._options = Ink.extendObj(this._options,options || {});
 
-        this._options.target = Aux.elOrSelector( this._options.target, 'Target' );
+        this._options.target = Common.elOrSelector( this._options.target, 'Target' );
 
         this._scrollTimeout = null;
         this._init();

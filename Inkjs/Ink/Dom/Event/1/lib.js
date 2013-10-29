@@ -7,6 +7,31 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     'use strict';
 
     /**
+     * Instantiate browser native events array
+     */
+
+    var nativeEvents;
+
+    if (document.createEvent) {
+        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+    } else {
+        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+    }
+
+    function isNative(eventName) {
+        if ([].indexOf && 0) {
+            return nativeEvents.indexOf(eventName !== -1);
+        } else {
+            for (var i = 0, len = nativeEvents.length; i < len; i++) {
+                if (nativeEvents[i] === eventName) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    /**
      * @module Ink.Dom.Event_1
      */
 
@@ -14,7 +39,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @class Ink.Dom.Event
      */
 
-    var Event = {
+    var InkEvent = {
 
     KEY_BACKSPACE: 8,
     KEY_TAB:       9,
@@ -45,28 +70,30 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *
      * @example
      *  
-     *  // BEFORE
-     *  InkEvent.observe(window, 'scroll', function () {
-     *      ...
-     *  }); // When scrolling on mobile devices or on firefox's smooth scroll
-     *      // this is expensive because onscroll is called many times
+     * Suppose you are observing the `scroll` event, but your application is lagging because `scroll` is triggered too many times.
      *
-     *  // AFTER
-     *  InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
-     *      ...
-     *  }, 100)); // The event handler is called only every 100ms. Problem solved.
+     *     // BEFORE
+     *     InkEvent.observe(window, 'scroll', function () {
+     *         ...
+     *     }); // When scrolling on mobile devices or on firefox's smooth scroll
+     *         // this is expensive because onscroll is called many times
+     *
+     *     // AFTER
+     *     InkEvent.observe(window, 'scroll', InkEvent.throttle(function () {
+     *         ...
+     *     }, 100)); // The event handler is called only every 100ms. Problem solved.
      *
      * @example
-     *  var handler = InkEvent.throttle(function () {
-     *      ...
-     *  }, 100);
+     *     var handler = InkEvent.throttle(function () {
+     *         ...
+     *     }, 100);
      *
-     *  InkEvent.observe(window, 'scroll', handler);
-     *  InkEvent.observe(window, 'resize', handler);
+     *     InkEvent.observe(window, 'scroll', handler);
+     *     InkEvent.observe(window, 'resize', handler);
      *
-     *  // on resize, both the "scroll" and the "resize" events are triggered
-     *  // a LOT of times. This prevents both of them being called a lot of
-     *  // times when the window is being resized by a user.
+     *     // on resize, both the "scroll" and the "resize" events are triggered
+     *     // a LOT of times. This prevents both of them being called a lot of
+     *     // times when the window is being resized by a user.
      *
      **/
     throttle: function (func, wait) {
@@ -82,10 +109,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    return throttled.apply(that, args);
-                });
+                if (!timeout) {
+                    timeout = setTimeout(function () {
+                        timeout = null;
+                        return throttled.apply(that, args);
+                    }, wait - timeDiff);
+                }
             }
         };
         return throttled;
@@ -174,96 +203,49 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     fire: function(element, eventName, memo)
     {
         element = Ink.i(element);
-        var ev, nativeEvents;
-        if(document.createEvent){
-            nativeEvents = {
-                "DOMActivate": true, "DOMFocusIn": true, "DOMFocusOut": true,
-                "focus": true, "focusin": true, "focusout": true,
-                "blur": true, "load": true, "unload": true, "abort": true,
-                "error": true, "select": true, "change": true, "submit": true,
-                "reset": true, "resize": true, "scroll": true,
-                "click": true, "dblclick": true, "mousedown": true,
-                "mouseenter": true, "mouseleave": true, "mousemove": true, "mouseover": true,
-                "mouseout": true, "mouseup": true, "mousewheel": true, "wheel": true,
-                "textInput": true, "keydown": true, "keypress": true, "keyup": true,
-                "compositionstart": true, "compositionupdate": true, "compositionend": true,
-                "DOMSubtreeModified": true, "DOMNodeInserted": true, "DOMNodeRemoved": true,
-                "DOMNodeInsertedIntoDocument": true, "DOMNodeRemovedFromDocument": true,
-                "DOMAttrModified": true, "DOMCharacterDataModified": true,
-                "DOMAttributeNameChanged": true, "DOMElementNameChanged": true,
-                "hashchange": true
-            };
-        } else {
-            nativeEvents = {
-                "onabort": true, "onactivate": true, "onafterprint": true, "onafterupdate": true,
-                "onbeforeactivate": true, "onbeforecopy": true, "onbeforecut": true,
-                "onbeforedeactivate": true, "onbeforeeditfocus": true, "onbeforepaste": true,
-                "onbeforeprint": true, "onbeforeunload": true, "onbeforeupdate": true, "onblur": true,
-                "onbounce": true, "oncellchange": true, "onchange": true, "onclick": true,
-                "oncontextmenu": true, "oncontrolselect": true, "oncopy": true, "oncut": true,
-                "ondataavailable": true, "ondatasetchanged": true, "ondatasetcomplete": true,
-                "ondblclick": true, "ondeactivate": true, "ondrag": true, "ondragend": true,
-                "ondragenter": true, "ondragleave": true, "ondragover": true, "ondragstart": true,
-                "ondrop": true, "onerror": true, "onerrorupdate": true,
-                "onfilterchange": true, "onfinish": true, "onfocus": true, "onfocusin": true,
-                "onfocusout": true, "onhashchange": true, "onhelp": true, "onkeydown": true,
-                "onkeypress": true, "onkeyup": true, "onlayoutcomplete": true,
-                "onload": true, "onlosecapture": true, "onmessage": true, "onmousedown": true,
-                "onmouseenter": true, "onmouseleave": true, "onmousemove": true, "onmouseout": true,
-                "onmouseover": true, "onmouseup": true, "onmousewheel": true, "onmove": true,
-                "onmoveend": true, "onmovestart": true, "onoffline": true, "ononline": true,
-                "onpage": true, "onpaste": true, "onprogress": true, "onpropertychange": true,
-                "onreadystatechange": true, "onreset": true, "onresize": true,
-                "onresizeend": true, "onresizestart": true, "onrowenter": true, "onrowexit": true,
-                "onrowsdelete": true, "onrowsinserted": true, "onscroll": true, "onselect": true,
-                "onselectionchange": true, "onselectstart": true, "onstart": true,
-                "onstop": true, "onstorage": true, "onstoragecommit": true, "onsubmit": true,
-                "ontimeout": true, "onunload": true
-            };
+        if (!element) { return null; }
+
+        var ev;
+
+        if (element === document && document.createEvent && !element.dispatchEvent) {
+            element = document.documentElement;
         }
 
-
-        if(element !== null && element !== undefined){
-            if (element === document && document.createEvent && !element.dispatchEvent) {
-                element = document.documentElement;
-            }
-
-            if (document.createEvent) {
-                ev = document.createEvent("HTMLEvents");
-                if(typeof nativeEvents[eventName] === "undefined"){
-                    ev.initEvent("dataavailable", true, true);
-                } else {
-                    ev.initEvent(eventName, true, true);
-                }
-
+        if (document.createEvent) {
+            ev = document.createEvent("HTMLEvents");
+            if(!isNative(eventName)) {
+                ev.initEvent("dataavailable", true, true);
             } else {
-                ev = document.createEventObject();
-                if(typeof nativeEvents["on"+eventName] === "undefined"){
-                    ev.eventType = "ondataavailable";
-                } else {
-                    ev.eventType = "on"+eventName;
-                }
+                ev.initEvent(eventName, true, true);
             }
 
-            ev.eventName = eventName;
-            ev.memo = memo || { };
-
-            try {
-                if (document.createEvent) {
-                    element.dispatchEvent(ev);
-                } else if(element.fireEvent){
-                    element.fireEvent(ev.eventType, ev);
-                } else {
-                    return;
-                }
-            } catch(ex) {}
-
-            return ev;
+        } else {
+            ev = document.createEventObject();
+            if (!isNative('on' + eventName)) {
+                ev.eventType = "ondataavailable";
+            } else {
+                ev.eventType = "on"+eventName;
+            }
         }
+
+        ev.eventName = eventName;
+        ev.memo = memo || { };
+
+        try {
+            if (document.createEvent) {
+                element.dispatchEvent(ev);
+            } else if(element.fireEvent){
+                element.fireEvent(ev.eventType, ev);
+            } else {
+                return;
+            }
+        } catch(ex) {}
+
+        return ev;
     },
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !window.onhashchange;
+        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
         var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
@@ -311,7 +293,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observe: function(element, eventName, callBack, useCapture)
     {
         element = Ink.i(element);
-        if(element !== null && element !== undefined) {
+        if(element) {
             /* rare corner case: some events need a different callback to be generated */
             var callbackForCustomEvents = this._callbackForCustomEvents(element, eventName, callBack);
             if (callbackForCustomEvents) {
@@ -322,7 +304,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             if(element.addEventListener) {
                 element.addEventListener(eventName, callBack, !!useCapture);
             } else {
-                element.attachEvent('on' + eventName, callBack);
+                element.attachEvent('on' + eventName, (callBack = Ink.bind(callBack, element)));
             }
             return callBack;
         }
@@ -331,9 +313,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * Attaches an event to a selector or array of elements.
      *
-     * Requires Ink.Dom.Selector or a browser with Element.querySelectorAll.
-     *
-     * Ink.Dom.Event.observe
+     * Requires Ink.Dom.Selector
      *
      * @method observeMulti
      * @param {Array|String} elements
@@ -361,6 +341,35 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
+     * Observe an event on the given element and every children which matches the selector string (if provided).
+     *
+     * Requires Ink.Dom.Selector if you need to use a selector.
+     *
+     * @method observeDelegated
+     * @param {DOMElement|String} element   Element to observe.
+     * @param {String}            eventName Event name to observe.
+     * @param {String}            selector  Child element selector. When null, finds any element.
+     * @param {Function}          callback  Callback to be called when the event is fired
+     * @return {Function} The used callback, for ceasing to listen to the event later.
+     **/
+    observeDelegated: function (element, eventName, selector, callback) {
+        return InkEvent.observe(element, eventName, function (event) {
+            var fromElement = InkEvent.element(event);
+            if (!fromElement || fromElement === element) { return; }
+
+            var selectResult = Ink.ss(selector, element);
+            var cursor = fromElement;
+
+            while (cursor !== element && cursor) {
+                if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
+                    return callback.call(cursor, event);
+                }
+                cursor = cursor.parentNode;
+            }
+        });
+    },
+
+    /**
      * Remove an event attached to an element
      *
      * @method stopObserving
@@ -369,11 +378,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Function}           callBack      callback function
      * @param {Boolean}            [useCapture]  set to true if the event was being observed with useCapture set to true as well.
      */
-    stopObserving: function(element, eventName, callBack, useCapture)
-    {
+    stopObserving: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
 
-        if(element !== null && element !== undefined) {
+        if(element) {
             if(element.removeEventListener) {
                 element.removeEventListener(eventName, callBack, !!useCapture);
             } else {
@@ -449,8 +457,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     pointer: function(ev)
     {
         return {
-            x: ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft)),
-            y: ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop))
+            x: this.pointerX(ev),
+            y: this.pointerY(ev)
         };
     },
 
@@ -461,7 +469,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return ev.pageX || (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
+            (ev.pageX) ||
+            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
     },
 
     /**
@@ -471,7 +481,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return ev.pageY || (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
+            (ev.pageY) ||
+            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
     },
 
     /**
@@ -551,6 +563,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-return Event;
+var i = 0
+
+return InkEvent;
 
 });

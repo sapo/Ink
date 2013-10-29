@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Aux, Event, Css, Element, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';    
 
     /**
@@ -13,29 +13,31 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *      @param {String}   [options.instance]         unique id for the datepicker
-     *      @param {String}   [options.format]           Date format string
-     *      @param {String}   [options.cssClass]         CSS class to be applied to the datepicker
-     *      @param {String}   [options.position]         position the datepicker. Accept right or bottom, default is right
-     *      @param {Boolean}  [options.onFocus]          if the datepicker should open when the target element is focused
-     *      @param {Function} [options.onYearSelected]   callback function to execute when the year is selected
-     *      @param {Function} [options.onMonthSelected]  callback function to execute when the month is selected
-     *      @param {Function} [options.validDayFn]       callback function to execute when 'rendering' the day (in the month view)
-     *      @param {String}   [options.startDate]        Date to define init month. Must be in yyyy-mm-dd format
-     *      @param {Function} [options.onSetDate]        callback to execute when set date
-     *      @param {Boolean}  [options.displayInSelect]  whether to display the component in a select. defaults to false.
-     *      @param {Boolean}  [options.showClose]        whether to display the close button or not. defaults to true.
-     *      @param {Boolean}  [options.showClean]        whether to display the clean button or not. defaults to true.
-     *      @param {String}   [options.yearRange]        enforce limits to year for the Date, ex: '1990:2020' (deprecated)
-     *      @param {String}   [options.dateRange]        enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
-     *      @param {Number}   [options.startWeekDay]     day to use as first column on the calendar view. Defaults to Monday (1)
-     *      @param {String}   [options.closeText]        text to display on close button. defaults to 'Fechar'
-     *      @param {String}   [options.cleanText]        text to display on clean button. defaults to 'Limpar'
-     *      @param {String}   [options.prevLinkText]     text to display on the previous button. defaults to '«'
-     *      @param {String}   [options.nextLinkText]     text to display on the previous button. defaults to '«'
-     *      @param {String}   [options.ofText]           text to display between month and year. defaults to ' de '
-     *      @param {Object}   [options.month]            Hash of month names. Defaults to portuguese month names. January is 1.
-     *      @param {Object}   [options.wDay]             Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
+     *      @param {Boolean}   [options.autoOpen=false]  set to `true` to automatically open the datepicker.
+     *      @param {String}    [options.cleanText]       text to display on clean button. defaults to 'Limpar'
+     *      @param {String}    [options.closeText]       text to display on close button. defaults to 'Fechar'
+     *      @param {String}    [options.cssClass]        CSS class to be applied to the datepicker
+     *      @param {String}    [options.dateRange]       enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
+     *      @param {Boolean}   [options.displayInSelect] whether to display the component in a select. defaults to false.
+     *      @param {String}    [options.format]          Date format string
+     *      @param {String}    [options.instance]        unique id for the datepicker
+     *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
+     *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
+     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' de '
+     *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
+     *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
+     *      @param {Function}  [options.onSetDate]       callback to execute when set date
+     *      @param {Function}  [options.onYearSelected]  callback function to execute when the year is selected
+     *      @param {String}    [options.position]        position the datepicker. Accept right or bottom, default is right
+     *      @param {String}    [options.prevLinkText]    text to display on the previous button. defaults to '«'
+     *      @param {Boolean}   [options.showClean]       whether to display the clean button or not. defaults to true.
+     *      @param {Boolean}   [options.showClose]       whether to display the close button or not. defaults to true.
+     *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
+     *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
+     *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
+     *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
+     *      @param {Object}    [options.wDay]            Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
+     *      @param {String}    [options.yearRange]       enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
      * @example
      *     <input type="text" id="dPicker" />
@@ -49,31 +51,34 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
     var DatePicker = function(selector, options) {
 
         if (selector) {
-            this._dataField = Aux.elOrSelector(selector, '1st argument');
+            this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
         }
 
         this._options = Ink.extendObj({
-            instance:        'scdp_' + Math.round(99999*Math.random()),
-            format:          'yyyy-mm-dd',
-            cssClass:        'sapo_component_datepicker',
-            position:        'right',
-            onFocus:         true,
-            onYearSelected:  undefined,
-            onMonthSelected: undefined,
-            validDayFn:      undefined,
-            startDate:       false, // format yyyy-mm-dd
-            onSetDate:       false,
-            displayInSelect: false,
-            showClose:       true,
-            showClean:       true,
-            yearRange:       false,
-            dateRange:       false,
-            startWeekDay:    1,
-            closeText:       'Close',
+            autoOpen:        false,
             cleanText:       'Clear',
-            prevLinkText:    '«',
+            closeText:       'Close',
+            containerElement: false,
+            cssClass:        'sapo_component_datepicker',
+            dateRange:       false,
+            displayInSelect: false,
+            format:          'yyyy-mm-dd',
+            instance:        'scdp_' + Math.round(99999*Math.random()),
             nextLinkText:    '»',
             ofText:          '&nbsp;de&nbsp;',
+            onFocus:         true,
+            onMonthSelected: undefined,
+            onSetDate:       false,
+            onYearSelected:  undefined,
+            position:        'right',
+            prevLinkText:    '«',
+            showClean:       true,
+            showClose:       true,
+            shy:             true,
+            startDate:       false, // format yyyy-mm-dd
+            startWeekDay:    1,
+            validDayFn:      undefined,
+            yearRange:       false,
             month: {
                  1:'January',
                  2:'February',
@@ -97,9 +102,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                 5:'Friday',
                 6:'Saturday'
             }
-        }, Element.data(this._dataField) || {});
-
-        this._options = Ink.extendObj(this._options, options || {});
+        }, options || {}, Element.data(this._dataField));
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -107,7 +110,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
         this._picker = null;
         if (this._options.pickerField) {
-            this._picker = Aux.elOrSelector(this._options.pickerField, 'pickerField');
+            this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
         }
 
         this._today = new Date();
@@ -125,6 +128,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
         this._init();
 
         this._render();
+        this._listenToContainerObjectEvents();
 
         if ( !this._options.startDate ){
             if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
@@ -132,7 +136,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
             }
         }
 
-        Aux.registerInstance(this, this._containerObject, 'datePicker');
+        Common.registerInstance(this, this._containerObject, 'datePicker');
     };
 
     DatePicker.prototype = {
@@ -156,7 +160,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
          * @private
          */
         _render: function() {
-            /*jshint maxstatements:100, maxcomplexity:30 */
+            /*jshint maxstatements:120, maxcomplexity:30 */
+            /*humans brace:"yourselves"*/
             this._containerObject = document.createElement('div');
 
             this._containerObject.id = this._options.instance;
@@ -242,110 +247,29 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     this._dataField.parentNode.appendChild(this._picker);
                     this._picker.className = 'sapo_cal_date_picker';
                 } else {
-                    this._picker = Aux.elOrSelector(this._options.pickerField, 'pickerField');
+                    this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
                 }
             }
 
             if(this._options.displayInSelect){
                 if (this._options.dayField && this._options.monthField && this._options.yearField || this._options.pickerField) {
-                    this._options.dayField   = Aux.elOrSelector(this._options.dayField,   'dayField');
-                    this._options.monthField = Aux.elOrSelector(this._options.monthField, 'monthField');
-                    this._options.yearField  = Aux.elOrSelector(this._options.yearField,  'yearField');
-                }
-                else {
+                    this._options.dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
+                    this._options.monthField = Common.elOrSelector(this._options.monthField, 'monthField');
+                    this._options.yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
+                } else {
                     throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";
                 }
             }
 
-            dom.insertBefore(this._containerObject, dom.childNodes[0]);
-            // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
-
-            if (!this._picker) {
-                Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
-                    this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
-
-                    if ( this._options.position === 'bottom' )
-                    {
-                        this._containerObject.style.top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        this._containerObject.style.left = Element.offset(this._dataField)[0] +'px';
-                    }
-                    else
-                    {
-                        this._containerObject.style.top = Element.offset(this._dataField)[1] +'px';
-                        this._containerObject.style.left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
-                    }
-                    //dom.appendChild(this._containerObject);
-                    this._updateDate();
-                    this._showMonth();
-                    this._containerObject.style.display = 'block';
-                },this));
-            }
-            else {
-                Event.observe(this._picker,'click',Ink.bindEvent(function(e){
-                    Event.stop(e);
-                    this._containerObject = Element.clonePosition(this._containerObject,this._picker);
-                    this._updateDate();
-                    this._showMonth();
-                    this._containerObject.style.display = 'block';
-                },this));
-            }
-
-            if(!this._options.displayInSelect){
-                Event.observe(this._dataField,'change', Ink.bindEvent(function() {
-                        this._updateDate( );
-                        this._showDefaultView( );
-                        this.setDate( );
-                        if ( !this._hoverPicker )
-                        {
-                            this._containerObject.style.display = 'none';
-                        }
-                    },this));
-                Event.observe(this._dataField,'blur', Ink.bindEvent(function() {
-                        if ( !this._hoverPicker )
-                        {
-                            this._containerObject.style.display = 'none';
-                        }
-                    },this));
-            }
-            else {
-                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
-                        var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
-                        if(yearSelected !== '' && yearSelected !== 0) {
-                            this._updateDate();
-                            this._showDefaultView();
-                        }
-                    },this));
-               Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
-                        var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
-                        if(yearSelected !== '' && yearSelected !== 0){
-                            this._updateDate();
-                            this._showDefaultView();
-                        }
-                    },this));
-                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
-                        this._updateDate();
-                        this._showDefaultView();
-                    },this));
-            }
-
-            Event.observe(document,'click',Ink.bindEvent(function(e){
-                if (e.target === undefined) {   e.target = e.srcElement;    }
-                if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
-                    if (!this._picker) {
-                        this._containerObject.style.display = 'none';
-                    }
-                    else if (e.target !== this._picker &&
-                             (!this._options.displayInSelect ||
-                              (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
-                        if (!this._options.dayField ||
-                                (!Element.descendantOf(this._options.dayField,   e.target) &&
-                                 !Element.descendantOf(this._options.monthField, e.target) &&
-                                 !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
-                            this._containerObject.style.display = 'none';
-                        }
-                    }
+            if(this._options.containerElement) {
+                var container = Ink.i(this._options.containerElement);
+                if (!container) {
+                    throw new Error('[Ink.UI.DatePicker_1]: Container element should be a DOM Element or an ID, got ' + container);
                 }
-            },this));
+                container.appendChild(this._containerObject);
+            } else {
+                dom.insertBefore(this._containerObject, dom.childNodes[0]);
+            }
 
             this._showMonth();
 
@@ -367,113 +291,218 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
             this._monthDescContainer.appendChild(this._deText);
             this._monthDescContainer.appendChild(this._yearChanger);
 
-            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e)
-            {
+            // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
+
+            if (!this._picker) {
+                Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
+                    this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
+
+                    if ( this._options.position === 'bottom' ) {
+                        var top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                        var left = Element.offset(this._dataField)[0] +'px';
+                    } else {
+                        var top = Element.offset(this._dataField)[1] +'px';
+                        var left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
+                    }
+                    this._containerObject.style.top = top;
+                    this._containerObject.style.left = left;
+                    //dom.appendChild(this._containerObject);
+                    this._updateDate();
+                    this._showMonth();
+                    this._containerObject.style.display = 'block';
+                },this));
+            }
+            else {
+                Event.observe(this._picker,'click',Ink.bindEvent(function(e){
+                    Event.stop(e);
+                    this._containerObject = Element.clonePosition(this._containerObject,this._picker);
+                    this._updateDate();
+                    this._showMonth();
+                    this._containerObject.style.display = 'block';
+                },this));
+            }
+            if (this._options.autoOpen) {
+                this._containerObject = Element.clonePosition(this._containerObject, (this._picker || this._dataField));
+                this._updateDate();
+                this._showMonth();
+                this._containerObject.style.display = 'block';
+            }
+
+            if(!this._options.displayInSelect){
+                Event.observe(this._dataField,'change', Ink.bindEvent(function() {
+                    this._updateDate( );
+                    this._showDefaultView( );
+                    this.setDate( );
+                    if ( !this._hoverPicker ) {
+                        this._hide(true);
+                    }
+                },this));
+                Event.observe(this._dataField,'blur', Ink.bindEvent(function() {
+                    if ( !this._hoverPicker ) {
+                        this._hide(true);
+                    }
+                },this));
+            } else {
+                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                    if(yearSelected !== '' && yearSelected !== 0) {
+                        this._updateDate();
+                        this._showDefaultView();
+                    }
+                },this));
+                Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                    if(yearSelected !== '' && yearSelected !== 0){
+                        this._updateDate();
+                        this._showDefaultView();
+                    }
+                },this));
+                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
+                    this._updateDate();
+                    this._showDefaultView();
+                },this));
+            }
+
+            if (this._options.shy) {
+                Event.observe(document,'click',Ink.bindEvent(function(e){
+                    if (e.target === undefined) {   e.target = e.srcElement;    }
+                    if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
+                        if (!this._picker) {
+                            this._hide(true);
+                        }
+                        else if (e.target !== this._picker &&
+                                 (!this._options.displayInSelect ||
+                                  (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
+                            if (!this._options.dayField ||
+                                    (!Element.descendantOf(this._options.dayField,   e.target) &&
+                                     !Element.descendantOf(this._options.monthField, e.target) &&
+                                     !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
+                                this._hide(true);
+                            }
+                        }
+                    }
+                },this));
+            }
+        },
+
+        _listenToContainerObjectEvents: function () {
+            Event.observe(this._containerObject,'mouseover',Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = true;
             },this));
 
-            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e)
-            {
+            Event.observe(this._containerObject,'mouseout',Ink.bindEvent(function(e){
                 Event.stop( e );
                 this._hoverPicker = false;
             },this));
 
             Event.observe(this._containerObject,'click',Ink.bindEvent(function(e){
-                    if(typeof(e.target) === 'undefined'){
-                        e.target = e.srcElement;
+                if(typeof(e.target) === 'undefined'){
+                    e.target = e.srcElement;
+                }
+                var className = e.target.className;
+                var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+
+                Event.stop(e);
+
+                if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
+                    var day = className.substr( 9 , 2 );
+                    if( Number( day ) ) {
+                        this.setDate( [this._year, this._month, day].join('-') );
+                        this._hide();
+                    } else if(className === 'sapo_cal_link_month'){
+                        this._monthContainer.style.display = 'none';
+                        this._yearSelector.style.display = 'none';
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._setActiveMonth();
+                        this._monthSelector.style.display = 'block';
+                    } else if(className === 'sapo_cal_link_year'){
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._monthSelector.style.display = 'none';
+                        this._monthContainer.style.display = 'none';
+                        this._showYearSelector();
+                        this._yearSelector.style.display = 'block';
                     }
-                    var className = e.target.className;
-                    var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+                } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
+                    var month=className.substr(14,2);
+                    if(Number(month)){
+                        this._month = month - 1;
+                        // if( typeof this._options.onMonthSelected === 'function' ){
+                        //     this._options.onMonthSelected(this, {
+                        //         'year': this._year,
+                        //         'month' : this._month
+                        //     });
+                        // }
+                        this._monthSelector.style.display = 'none';
+                        this._monthPrev.childNodes[0].className = 'change_month_prev';
+                        this._monthNext.childNodes[0].className = 'change_month_next';
 
-                    Event.stop(e);
-
-                    if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
-                            var day = className.substr( 9 , 2 );
-                            if( Number( day ) ) {
-                                this.setDate( this._year + '-' + ( this._month + 1 ) + '-' + day );
-                                this._containerObject.style.display = 'none';
-                            } else if(className === 'sapo_cal_link_month'){
-                                this._monthContainer.style.display = 'none';
-                                this._yearSelector.style.display = 'none';
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._setActiveMonth();
-                                this._monthSelector.style.display = 'block';
-                            } else if(className === 'sapo_cal_link_year'){
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._monthSelector.style.display = 'none';
-                                this._monthContainer.style.display = 'none';
-                                this._showYearSelector();
-                                this._yearSelector.style.display = 'block';
-                            }
-                    } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
-                            var month=className.substr(14,2);
-                            if(Number(month)){
-                                this._month = month - 1;
-                                // if( typeof this._options.onMonthSelected === 'function' ){
-                                //     this._options.onMonthSelected(this, {
-                                //         'year': this._year,
-                                //         'month' : this._month
-                                //     });
-                                // }
-                                this._monthSelector.style.display = 'none';
-                                this._monthPrev.childNodes[0].className = 'change_month_prev';
-                                this._monthNext.childNodes[0].className = 'change_month_next';
-
-                                if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
-                                    this._monthPrev.childNodes[0].className = 'action_inactive';
-                                }
-                                else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
-                                    this._monthNext.childNodes[0].className = 'action_inactive';
-                                }
-
-                                this._updateCal();
-                                this._monthContainer.style.display = 'block';
-                            }
-                    } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
-                            var year=className.substr(13,4);
-                            if(Number(year)){
-                                this._year = year;
-                                if( typeof this._options.onYearSelected === 'function' ){
-                                    this._options.onYearSelected(this, {
-                                        'year': this._year
-                                    });
-                                }
-                                this._monthPrev.childNodes[0].className = 'action_inactive';
-                                this._monthNext.childNodes[0].className = 'action_inactive';
-                                this._yearSelector.style.display='none';
-                                this._setActiveMonth();
-                                this._monthSelector.style.display='block';
-                            }
-                    } else if( className.indexOf('change_month_') === 0 && !isInactive ){
-                            if(className === 'change_month_next'){
-                                this._updateCal(1);
-                            } else if(className === 'change_month_prev'){
-                                this._updateCal(-1);
-                            }
-                    } else if( className.indexOf('change_year_') === 0 && !isInactive ){
-                            if(className === 'change_year_next'){
-                                this._showYearSelector(1);
-                            } else if(className === 'change_year_prev'){
-                                this._showYearSelector(-1);
-                            }
-                    } else if(className === 'clean'){
-                        if(this._options.displayInSelect){
-                            this._options.yearField.selectedIndex = 0;
-                            this._options.monthField.selectedIndex = 0;
-                            this._options.dayField.selectedIndex = 0;
-                        } else {
-                            this._dataField.value = '';
+                        if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
+                            this._monthPrev.childNodes[0].className = 'action_inactive';
                         }
-                    } else if(className === 'close'){
-                        this._containerObject.style.display = 'none';
+                        else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
+                            this._monthNext.childNodes[0].className = 'action_inactive';
+                        }
+
+                        this._updateCal();
+                        this._monthContainer.style.display = 'block';
                     }
+                } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
+                    var year=className.substr(13,4);
+                    if(Number(year)){
+                        this._year = year;
+                        if( typeof this._options.onYearSelected === 'function' ){
+                            this._options.onYearSelected(this, {
+                                'year': this._year
+                            });
+                        }
+                        this._monthPrev.childNodes[0].className = 'action_inactive';
+                        this._monthNext.childNodes[0].className = 'action_inactive';
+                        this._yearSelector.style.display='none';
+                        this._setActiveMonth();
+                        this._monthSelector.style.display='block';
+                    }
+                } else if( className.indexOf('change_month_') === 0 && !isInactive ){
+                    if(className === 'change_month_next'){
+                        this._updateCal(1);
+                    } else if(className === 'change_month_prev'){
+                        this._updateCal(-1);
+                    }
+                } else if( className.indexOf('change_year_') === 0 && !isInactive ){
+                    if(className === 'change_year_next'){
+                        this._showYearSelector(1);
+                    } else if(className === 'change_year_prev'){
+                        this._showYearSelector(-1);
+                    }
+                } else if(className === 'clean'){
+                    if(this._options.displayInSelect){
+                        this._options.yearField.selectedIndex = 0;
+                        this._options.monthField.selectedIndex = 0;
+                        this._options.dayField.selectedIndex = 0;
+                    } else {
+                        this._dataField.value = '';
+                    }
+                } else if(className === 'close'){
+                    this._hide(false);
+                }
 
-                    this._updateDescription();
-                },this));
+                this._updateDescription();
+            },this));
+        },
 
+        /**
+         * Hides the DatePicker. If the component is shy (options.shy), behaves differently.
+         *
+         * @method _hide
+         * @param [blur=true] Set to false to indicate this is not just a blur and force hiding even if the component is shy.
+         */
+        _hide: function(blur) {
+            blur = blur === undefined ? true : blur;
+            if (blur === false || (blur && this._options.shy)) {
+                this._containerObject.style.display = 'none';
+            }
         },
 
         /**
@@ -580,7 +609,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
 
                 this._yearMax   = Number.MAX_VALUE;
                 this._monthMax  = 12;
-                this._dayMax   = 31;
+                this._dayMax    = 31;
             }
         },
 
@@ -667,8 +696,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
          */
         _updateDate: function(){
             var dataParsed;
-             if(!this._options.displayInSelect){
-                 if(this._dataField.value !== ''){
+            if(!this._options.displayInSelect){
+                if(this._dataField.value !== ''){
                     if(this._isDate(this._options.format,this._dataField.value)){
                         dataParsed = this._getDataArrayParsed(this._dataField.value);
                         dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
@@ -752,7 +781,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
                     if ( i && (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
                         str+='<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
                     } else if( (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
-                         str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+                        str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
                     } else {
                         str +='<li>&nbsp;</li>';
                     }
@@ -847,7 +876,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','In
          * @private
          * @return {String} Returns the current date of the object in the specified format
          */
-       _writeDateInFormat:function(){
+        _writeDateInFormat:function(){
             return InkDate.get( this._options.format , this._data );
         },
 

@@ -39,6 +39,19 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      *                                             The service must pipe all input and output untouched (some input sanitization is allowed, like clearing cookies).
      *                                             e.g., requesting http://example.org/doc can become /proxy/http%3A%2F%2Fexample.org%2Fdoc The proxy service will
      *                                             be used for cross-domain requests, if set, else a network error is returned as exception.
+     *
+     * @example
+     *     new Ajax('test.json', {
+     *         method: 'get',
+     *         onSuccess: function (ajx, responseJSON) {
+     *             // Do stuff with responseJSON or ajx.responseText
+     *             console.log(responseJSON.something.length);
+     *         },
+     *         onFailure: function (ajx, errorResponse) {
+     *             // Deal with it
+     *             alert(ajx.status);  // The HTTP response code
+     *         }
+     *     });
      */
     var Ajax = function(url, options){
 
@@ -125,20 +138,14 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
             this.safeCall('onInit');
 
-            var urlLocation =  document.createElementNS ?
-                document.createElementNS('http://www.w3.org/1999/xhtml', 'a') :
-                document.createElement('a');
-            urlLocation.href = url;
-
             this.url = url;
-            this.isHTTP = urlLocation.protocol.match(/^https?:$/i) && true;
+
+            var urlLocation = this._locationFromURL(url);
+            this.isHTTP = this._locationIsHTTP(urlLocation);
+            this.isCrossDomain = this._locationIsCrossDomain(urlLocation, location);
+
             this.requestHasBody = options.method.search(/^get|head$/i) < 0;
 
-            if (!this.isHTTP || location.protocol === 'widget:' || typeof window.widget === 'object') {
-                this.isCrossDomain = false;
-            } else {
-                this.isCrossDomain = location.protocol !== urlLocation.protocol || location.host !== urlLocation.host;
-            }
             if(this.options.cors) {
                 this.isCrossDomain = false;
             }
@@ -146,6 +153,49 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             this.transport = this.getTransport();
 
             this.request();
+        },
+
+        /**
+         * Returns a location object from an URL
+         *
+         * @method _locationFromUrl
+         * @param url
+         * @private
+         **/
+        _locationFromURL: function (url) {
+            var urlLocation =  document.createElementNS ?
+                document.createElementNS('http://www.w3.org/1999/xhtml', 'a') :
+                document.createElement('a');
+            urlLocation.href = url;
+            return urlLocation;
+        },
+
+        /**
+         * Checks whether a location is HTTP or HTTPS
+         *
+         * @method locationIsHttp
+         * @param urlLocation
+         * @private
+         */
+        _locationIsHTTP: function (urlLocation) {
+            return urlLocation.protocol.match(/^https?:/i) ? true : false;
+        },
+
+        /**
+         * Checks whether a location is cross-domain from another
+         *
+         * @method _locationIsCrossDomain
+         * @param urlLocation {Location}
+         * @param otherLocation {Location}
+         */
+        _locationIsCrossDomain: function (urlLocation, location) {
+            location = location || window.location;
+            if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
+                return false;
+            } else {
+                return location.protocol !== urlLocation.protocol
+                    || location.host !== urlLocation.host;
+            }
         },
 
         /**
@@ -189,7 +239,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                         "Accept": "text/javascript,text/xml,application/xml,application/xhtml+xml,text/html,application/json;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1",
                         "Accept-Language": navigator.language,
                         "X-Requested-With": "XMLHttpRequest",
-                        "X-Ink-Version": "1"
+                        "X-Ink-Version": "2"
                     };
                     if (this.options.cors) {
                         if (!this.options.signRequest) {

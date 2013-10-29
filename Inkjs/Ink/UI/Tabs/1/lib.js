@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Aux, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -50,7 +50,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
      */
     var Tabs = function(selector, options) {
 
-        if (!Aux.isDOMElement(selector)) {
+        if (!Common.isDOMElement(selector)) {
             selector = Selector.select(selector);
             if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
             this._element = selector[0];
@@ -104,7 +104,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
 
             this._handlers.resize();
 
-            Aux.registerInstance(this, this._element, 'tabs');
+            Common.registerInstance(this, this._element, 'tabs');
         },
 
         /**
@@ -230,12 +230,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
          * @private
          */
         _onResize: function(){
-            var currentLayout = Aux.currentLayout();
+            var currentLayout = Common.currentLayout();
             if(currentLayout === this._lastLayout){
                 return;
             }
 
-            if(currentLayout === Aux.Layouts.SMALL || currentLayout === Aux.Layouts.MEDIUM){
+            if(currentLayout === Common.Layouts.SMALL || currentLayout === Common.Layouts.MEDIUM){
                 Css.removeClassName(this._menu, 'menu');
                 Css.removeClassName(this._menu, 'horizontal');
                 // Css.addClassName(this._menu, 'pills');
@@ -412,7 +412,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Aux_1','Ink.Dom.Event_1','Ink.Dom.
          * @method destroy
          * @public
          */
-        destroy: Aux.destroyComponent
+        destroy: Common.destroyComponent
     };
 
     return Tabs;
