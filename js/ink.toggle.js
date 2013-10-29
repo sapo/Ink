@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, InkEvent, Css, InkElement, Selector, InkArray ) {
     'use strict';
 
     /**
@@ -16,8 +16,9 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @param {Object} [options] Options
      *     @param {String}       options.target                    CSS Selector that specifies the elements that this component will toggle
      *     @param {String}       [options.triggerEvent='click']    Event that will trigger the toggling.
-     *     @param {Boolean}      [options.closeOnClick=true]       Flag that determines if, when clicking outside of the toggled content, it should hide it.
-     *     @param {Selector}     [options.closeOnInsideClick='a[href]']      Makes the toggle close if a click occurs inside the toggle and the element matches the selector. Default: links
+     *     @param {Boolean}      [options.closeOnClick=true]       When clicking outside of the toggled content, it should be hidden.
+     *     @param {Selector}     [options.closeOnInsideClick='a[href]']      Toggle closes if a click occurs inside the toggle and the element matches the selector. Set to null or false to deactivate. Default: links
+     *     @param {Selector}     [options.initialState=null]       Whether to start hidden, shown, or as found in the markup. (false: hidden, true: shown, null: markup)
      * @example
      *      <div class="ink-dropdown">
      *          <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
@@ -52,42 +53,18 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *      </script>
      */
     var Toggle = function( selector, options ){
-
-        if( typeof selector !== 'string' && typeof selector !== 'object' ){
-            throw '[Ink.UI.Toggle] Invalid CSS selector to determine the root element';
-        }
-
-        if( typeof selector === 'string' ){
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0 ){
-                throw '[Ink.UI.Toggle] Root element not found';
-            }
-
-            this._rootElement = this._rootElement[0];
-        } else {
-            this._rootElement = selector;
-        }
+        this._rootElement = Common.elOrSelector(selector, '[Ink.UI.Toggle]: Failed to find root element');
 
         this._options = Ink.extendObj({
             target : undefined,
             triggerEvent: 'click',
             closeOnClick: true,
+            isAccordion: false,
+            initialState: null,
             closeOnInsideClick: 'a[href]'  // closes the toggle when a target is clicked and it is a link
-        }, options || {}, Element.data(this._rootElement));
+        }, options || {}, InkElement.data(this._rootElement));
 
-        this._targets = (function (target) {
-            if (typeof target === 'string') {
-                return Selector.select(target);
-            } else if (typeof target === 'object') {
-                if (target.constructor === Array) {
-                    return target;
-                } else {
-                    return [target];
-                }
-            } else {
-                return [];
-            }
-        }(this._options.target));
+        this._targets = Common.elsOrSelector(this._options.target);
 
         if (!this._targets.length) {
             throw '[Ink.UI.Toggle] Toggle target was not found! Supply a valid selector, array, or element through the `target` option.';
@@ -105,19 +82,35 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _init: function(){
-
             this._accordion = ( Css.hasClassName(this._rootElement.parentNode,'accordion') || Css.hasClassName(this._targets[0].parentNode,'accordion') );
 
-            Event.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
+            this._firstTime = true;
+
+            InkEvent.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
+
             if( this._options.closeOnClick.toString() === 'true' ){
-                Event.observe( document, 'click', Ink.bindEvent(this._onClick,this));
+                InkEvent.observe( document, 'click', Ink.bindEvent(this._onOutsideClick,this));
             }
             if( this._options.closeOnInsideClick ) {
-                Event.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
-                    if ( Element.findUpwardsBySelector(Event.element(e), this._options.closeOnInsideClick) ) {
-                        this._dismiss();
+                InkEvent.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
+                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), this._options.closeOnInsideClick) ) {
+                        this.setState(false);
                     }
                 }, this));
+            }
+
+            if (this._options.initialState !== null) {
+                this.setState(this._options.initialState.toString === 'true');
+            } else {
+                // Add initial classes matching the current "display" of the object.
+                var state = Css.getStyle(this._targets[0], 'display') !== 'none';
+                this.setState(state);
+            }
+            // Aditionally, remove any inline "display" style.
+            for (var i = 0, len = this._targets.length; i < len; i++) {
+                if (this._targets[i].style.display) {
+                    this._targets[i].style.display = '';
+                }
             }
         },
 
@@ -130,7 +123,6 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onTriggerEvent: function( event ){
-
             if( this._accordion ){
                 var elms, i, accordionElement;
                 if( Css.hasClassName(this._targets[0].parentNode,'accordion') ){
@@ -140,96 +132,70 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 }
                 elms = Selector.select('.toggle',accordionElement);
                 for( i=0; i<elms.length; i+=1 ){
-                    var
-                        dataset = Element.data( elms[i] ),
-                        targetElm = Selector.select( dataset.target,accordionElement )
-                    ;
+                    var dataset = InkElement.data( elms[i] ),
+                        targetElm = Selector.select( dataset.target,accordionElement );
+
                     if( (targetElm.length > 0) && (targetElm[0] !== this._targets[0]) ){
                         targetElm[0].style.display = 'none';
                     }
                 }
             }
             
-            var finalClass,
-                finalDisplay;
-
-
-            for (var j = 0, len = this._targets.length; j < len; j++) {
-                finalClass = ( Css.getStyle(this._targets[j],'display') === 'none') ? 'show-all' : 'hide-all';
-                finalDisplay = ( Css.getStyle(this._targets[j],'display') === 'none') ? 'block' : 'none';
-                Css.removeClassName(this._targets[j],'show-all');
-                Css.removeClassName(this._targets[j], 'hide-all');
-                Css.addClassName(this._targets[j], finalClass);
-                this._targets[j].style.display = finalDisplay;
+            var has = Css.hasClassName(this._rootElement, 'active');
+            this.setState(!has);
+            if (!has && this._firstTime) {
+                this._firstTime = false;
             }
 
-            if( finalClass === 'show-all' ){
-                Css.addClassName(this._rootElement,'active');
-            } else {
-                Css.removeClassName(this._rootElement,'active');
-            }
-
-            Event.stop(event);
+            InkEvent.stop(event);
         },
 
         /**
          * Click handler. Will handle clicks outside the toggle component.
          * 
-         * @method _onClick
+         * @method _onOutsideClick
          * @param {Event} event
          * @private
          */
-        _onClick: function( event ){
-            var
-                tgtEl = Event.element(event),
-                shades
-            ;
+        _onOutsideClick: function( event ){
+            var tgtEl = InkEvent.element(event),
+                shades;
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
-                return Element.isAncestorOf(target, tgtEl);
+                return InkElement.isAncestorOf(target, tgtEl);
             });
 
-            if( (this._rootElement === tgtEl) || Element.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets ) {
+            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets || this._firstTime ) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
-                var
-                    shadesLength = shades.length
-                ;
+                var shadesLength = shades.length;
 
                 for( var i = 0; i < shadesLength; i++ ){
-                    if( Element.isAncestorOf(shades[i],tgtEl) && Element.isAncestorOf(shades[i],this._rootElement) ){
+                    if( InkElement.isAncestorOf(shades[i],tgtEl) && InkElement.isAncestorOf(shades[i],this._rootElement) ){
                         return;
                     }
                 }
             }
 
-            if(!Element.findUpwardsByClass(tgtEl, 'toggle')) {
-                return;
-            }
-            
-            this._dismiss( this._rootElement );
+            this.setState(false);  // dismiss
         },
 
         /**
-         * Dismisses the toggling.
+         * Sets the state of the toggle. (Shown/Hidden)
+         *
+         * @param shown {Boolean} New state (Shown/Hidden)
          * 
-         * @method _dismiss
-         * @private
+         * @method setState
          */
-        _dismiss: function(){
-            if( ( Css.getStyle(this._targets[0],'display') === 'none') ){
-                return;
-            }
-            
+        setState: function (shown) {
             for (var i = 0, len = this._targets.length; i < len; i++) {
-                Css.removeClassName(this._targets[i], 'show-all');
-                Css.addClassName(this._targets[i], 'hide-all');
-                this._targets[i].style.display = 'none';
+                Css.addRemoveClassName(this._targets[i], 'show-all', shown);
+                Css.addRemoveClassName(this._targets[i], 'hide-all', !shown);
             }
-            Css.removeClassName(this._rootElement,'active');
+            Css.addRemoveClassName(this._rootElement, 'active', shown);
         }
     };
 
     return Toggle;
-
 });
+
