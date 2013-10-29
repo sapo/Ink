@@ -1,4 +1,4 @@
-// QUnit.config.testTimeout = 4000;
+QUnit.config.testTimeout = 4000;
 
 Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Browser_1'], function (InkEvent, InkElement, Selector, Browser) {
     (function () {
@@ -90,6 +90,20 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             ok(InkEvent.element(ev) === child);
             ok(this === elem);
             document.body.removeChild(elem);
+            start();
+        });
+
+        InkEvent.fire(child, 'click', {memo: 'check'});
+    });
+
+    asyncTest('fire() and bubbling, no appending to document', function () {
+        var elem = InkElement.create('div', {className: 'elem'});
+        var child = InkElement.create('div', { insertBottom: elem });
+
+        InkEvent.observe(elem, 'click', function (ev) {
+            equal(ev.memo.memo, 'check');
+            ok(InkEvent.element(ev) === child);
+            ok(this === elem);
             start();
         });
 
