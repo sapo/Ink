@@ -1,6 +1,7 @@
 {
   "name": "ink",
   "version": "2.2.1",
+  "description": "An HTML5/CSS3 framework used at SAPO for fast and efficient website design and prototyping",
   "main": ["./js/ink-all.js", "./css/ink.css", "./fonts/*"],
   "ignore": [
     "**/.*",
