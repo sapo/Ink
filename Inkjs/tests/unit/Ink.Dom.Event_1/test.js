@@ -1,4 +1,4 @@
-// QUnit.config.testTimeout = 4000;
+QUnit.config.testTimeout = 4000;
 
 Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Browser_1'], function (InkEvent, InkElement, Selector, Browser) {
     (function () {
@@ -28,7 +28,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             throttledFunc(passStart); // Call this once, assert called once.
             expect(1);
         });
-        asyncTest('throttle (context and arguments)', function () {
+        asyncTest('context and arguments', function () {
             expect(2);
             InkEvent.throttle(function (arg) {
                 equal(arg, 'arg');
@@ -36,7 +36,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
                 start();
             }, 0).call('this', 'arg');
         });
-        test('throttle (called few times)', function () {
+        test('called few times', function () {
             var fewTimes = InkEvent.throttle(passStart, 20);
 
             expect(3);
@@ -46,7 +46,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             setTimeout(fewTimes, 100);
         });
 
-        asyncTest('throttle called with the correct timing between calls', function () {
+        asyncTest('called with the correct timing between calls', function () {
             var firstCallTime;
             var throttled = InkEvent.throttle(function () {
                 if (firstCallTime) {
@@ -67,7 +67,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
 
     module('fire');
 
-    asyncTest('firing events', function () {
+    asyncTest('basic', function () {
         var elem = InkElement.create('div');
         document.body.appendChild(elem);
 
@@ -80,7 +80,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         InkEvent.fire(elem, 'click', {memo: 'check'});
     });
 
-    asyncTest('fire() and bubbling', function () {
+    asyncTest('bubbling', function () {
         var elem = InkElement.create('div', {className: 'elem'});
         var child = InkElement.create('div', { insertBottom: elem });
         document.body.appendChild(elem);
@@ -96,7 +96,21 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         InkEvent.fire(child, 'click', {memo: 'check'});
     });
 
-    asyncTest('fire() and the window', function () {
+    asyncTest('fire() and bubbling, no appending to document', function () {
+        var elem = InkElement.create('div', {className: 'elem'});
+        var child = InkElement.create('div', { insertBottom: elem });
+
+        InkEvent.observe(elem, 'click', function (ev) {
+            equal(ev.memo.memo, 'check');
+            ok(InkEvent.element(ev) === child);
+            ok(this === elem);
+            start();
+        });
+
+        InkEvent.fire(child, 'click', {memo: 'check'});
+    });
+
+    asyncTest('events on the window', function () {
         expect(1);
         var cb = InkEvent.observe(window, 'resize', function (event) {
             ok(true);
@@ -104,6 +118,45 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             start();
         });
         InkEvent.fire(window, 'resize');
+    });
+
+    module('observe');
+
+    asyncTest('basic', function () {
+        var div = InkElement.create('div');
+        InkEvent.observe(div, 'click', function () {
+            ok(true);
+            start();
+        });
+        InkEvent.fire(div, 'click');
+    });
+
+    test('return the handler', function () {
+        var handler = function () {};
+        var cb = InkEvent.observe(InkElement.create('div'), 'keyup', handler);
+        ok(cb === handler, 'returned same function');
+    });
+
+    module('observeOnce');
+
+    asyncTest('fire only once', function () {
+        var div = InkElement.create('div');
+        InkEvent.observeOnce(div, 'click', function () {
+            ok(true);
+            start();
+        });
+        expect(1);
+        InkEvent.fire(div, 'click');
+        InkEvent.fire(div, 'click');
+        InkEvent.fire(div, 'click');
+        InkEvent.fire(div, 'click');
+    });
+
+    test('return the handler', function () {
+        var handler = function () {};
+        var cb = InkEvent.observeOnce(InkElement.create('div'), 'keyup', handler);
+        ok(cb !== handler, 'returned the onceBack');
+        ok(typeof cb === 'function', 'returned a function');
     });
 
     (function () {
