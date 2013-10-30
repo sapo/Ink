@@ -392,7 +392,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
                         this.hide(elm);
                     }
                 } else {
-                    if (elm.style.display === 'none') {
+                    if (this.getStyle(elm,'display').toLowerCase() === 'none') {
                         this.show(elm);
                     }
                     else {
