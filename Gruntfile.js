@@ -28,17 +28,17 @@ module.exports = function(grunt) {
           flatten: true,
           cwd: '<%= ink.folders.js.src %>',
           src: [
-            '1/**/lib.js',
-            'Net/**/lib.js',
-            'Dom/**/lib.js',
-            'Util/**/lib.js',
+          '1/**/lib.js',
+          'Net/**/lib.js',
+          'Dom/**/lib.js',
+          'Util/**/lib.js',
           ],
           dest: '<%= ink.folders.js.output %>',
           rename: function(dest, src) {
             return dest + 'ink.js';
           },
         },
-       ],
+        ],
       },
 
       // ink-all.js
@@ -49,49 +49,49 @@ module.exports = function(grunt) {
           flatten: true,
           cwd: '<%= ink.folders.js.src %>',
           src: [
-            '1/**/lib.js',
-            'Net/**/lib.js',
-            'Dom/**/lib.js',
-            'Util/**/lib.js',
-            'UI/Common/lib.js',
-            'UI/**/lib.js'
+          '1/**/lib.js',
+          'Net/**/lib.js',
+          'Dom/**/lib.js',
+          'Util/**/lib.js',
+          'UI/Common/lib.js',
+          'UI/**/lib.js'
           ],
           dest: '<%= ink.folders.js.output %>',
           rename: function(dest, src) {
             return dest + 'ink-all.js';
           },
         },
-       ],
+        ],
       },
 
       // ink-ui.js
       ink_ui: {
         files: [
-          {
-            expand: true,
-            flatten: true,
-            cwd: '<%= ink.folders.js.src %>UI/',
-            src: [
-              'UI/Common/lib.js',
-              '**/lib.js'
-            ],
-            dest: '<%= ink.folders.js.output %>',
-            rename: function(dest, src) {
-              return dest + 'ink-ui.js';
-            },
+        {
+          expand: true,
+          flatten: true,
+          cwd: '<%= ink.folders.js.src %>UI/',
+          src: [
+          'UI/Common/lib.js',
+          '**/lib.js'
+          ],
+          dest: '<%= ink.folders.js.output %>',
+          rename: function(dest, src) {
+            return dest + 'ink-ui.js';
           },
+        },
         ],
       },
 
       // ui components as single files
       ui: {
         files: [
-          {
-            expand: true,
-            cwd: '<%= ink.folders.js.src %>UI/',
-            src: ['**/[0-9]/lib.js'],
-            dest: '<%= ink.folders.js.output %>',
-            rename: function(dest, src) {
+        {
+          expand: true,
+          cwd: '<%= ink.folders.js.src %>UI/',
+          src: ['**/[0-9]/lib.js'],
+          dest: '<%= ink.folders.js.output %>',
+          rename: function(dest, src) {
               // check if this is v1
               if (src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) == 1)
               {
@@ -105,31 +105,51 @@ module.exports = function(grunt) {
               }
             },
           },
-        ],
+          ],
+        },
       },
-    },
 
     // TODO: build on separate folder and move to dist
-    clean: ["<%= ink.folders.js.output %>/ink*.js"],
+    clean: ["<%= ink.folders.js.output %>/ink*.js", "./docs"],
 
 
     qunit: {
-        options: {
-          // inject: 'js/tests/assets/phantom.js',
-          urls: ['http://localhost:8000/js/tests/index.html']
-        },
-        files: ['js/tests/*.html']
+      options: {
+        // inject: 'js/tests/assets/phantom.js',
+        urls: ['http://localhost:8000/js/tests/index.html']
       },
-
-      connect: {
-        server: {
-          options: {
-            port: 8000,
-            debug: true,
-            base: '.'
-          }
+      files: ['js/tests/*.html']
+    },
+    yuidoc: {
+      compile: {
+        name:        'Ink.js',
+        description: 'JavaScript Framework by SAPO',
+        version:     'latest',
+        url:         'http://ink.sapo.pt/',
+        logo:        'http://js.ink.sapo.pt/docs/yuidoclogo.png',
+        options: {
+          paths: ['./src/js'],
+          outdir: './docs'
+        }
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          debug: true,
+          base: '.'
         }
       },
+      docs: {
+        options: {
+          port: 4567,
+          debug: true,
+          base: 'docs',
+          keepalive:true
+        }
+      }
+    },
 
     // CONCATENATE JS
     uglify: {
@@ -190,42 +210,44 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
+grunt.loadNpmTasks('grunt-contrib-less');
+grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-contrib-concat');
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-contrib-connect');
+grunt.loadNpmTasks('grunt-contrib-qunit');
+grunt.loadNpmTasks('grunt-contrib-yuidoc');
 
-  grunt.registerTask('default', ['less','clean','concat','uglify']);
-  grunt.registerTask('test', ['connect', 'qunit']);
-  grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function(fileName){
-    if (arguments.length === 0) {
-      grunt.log.error('You need to specify a file name');
-    }
-    
-    var bundle = grunt.file.readJSON(fileName);
-    var dependencies = bundle.dependencies || [];
-    grunt.config.set('concat.ink_custom', {
-         files: [
-          {
-            expand: true,
-            flatten: true,
-            cwd: '<%= ink.folders.js.src %>',
-            dest: '<%= ink.folders.js.output %>' + bundle['name'] + '/',
-            src: dependencies.map(function(depName){
-                return depName.replace('Ink/', '') + '/lib.js';
-            }),
-            rename: function(dest, src) {
-              return dest + 'ink-custom.js';
-            },
-          },
-        ],       
-    });
-    grunt.config.set('uglify.ink_custom', {
-        src: '<%= ink.folders.js.output %>' + bundle['name'] + '/' + 'ink-custom.js',
-        dest: '<%= ink.folders.js.output %>' + bundle['name'] + '/' + 'ink-custom.min.js'
-    });
-    grunt.task.run(['concat:ink_custom', 'uglify:ink_custom']);
+grunt.registerTask('default', ['less','clean','concat','uglify']);
+grunt.registerTask('test', ['connect:server', 'qunit']);
+grunt.registerTask('liveDocs', ['yuidoc:compile', 'connect:docs'])
+grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function(fileName){
+  if (arguments.length === 0) {
+    grunt.log.error('You need to specify a file name');
+  }
+
+  var bundle = grunt.file.readJSON(fileName);
+  var dependencies = bundle.dependencies || [];
+  grunt.config.set('concat.ink_custom', {
+   files: [
+   {
+    expand: true,
+    flatten: true,
+    cwd: '<%= ink.folders.js.src %>',
+    dest: '<%= ink.folders.js.output %>' + bundle['name'] + '/',
+    src: dependencies.map(function(depName){
+      return depName.replace('Ink/', '') + '/lib.js';
+    }),
+    rename: function(dest, src) {
+      return dest + 'ink-custom.js';
+    },
+  },
+  ],       
+});
+  grunt.config.set('uglify.ink_custom', {
+    src: '<%= ink.folders.js.output %>' + bundle['name'] + '/' + 'ink-custom.js',
+    dest: '<%= ink.folders.js.output %>' + bundle['name'] + '/' + 'ink-custom.min.js'
   });
+  grunt.task.run(['concat:ink_custom', 'uglify:ink_custom']);
+});
 };
