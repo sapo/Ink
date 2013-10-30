@@ -53,7 +53,7 @@ module.exports = function(grunt) {
             'Net/**/lib.js',
             'Dom/**/lib.js',
             'Util/**/lib.js',
-            'UI/Aux/lib.js',
+            'UI/Common/lib.js',
             'UI/**/lib.js'
           ],
           dest: '<%= ink.folders.js.output %>',
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             flatten: true,
             cwd: '<%= ink.folders.js.src %>UI/',
             src: [
-              'UI/Aux/lib.js',
+              'UI/Common/lib.js',
               '**/lib.js'
             ],
             dest: '<%= ink.folders.js.output %>',
