@@ -2,7 +2,9 @@
     var autoload = {
         /* Match module names to element classes (or more complex selectors)
          * which get the UI modules instantiated automatically. */
+        'Carousel_1'    : '.ink-carousel',
         'DatePicker_1'  : '.ink-datepicker',
+        'Dropdown_1'    : '.ink-dropdown',
         'Gallery_1'     : 'ul.ink-gallery-source',
         'Modal_1'       : '.ink-modal',
         'ProgressBar_1' : '.ink-progress-bar',
@@ -11,10 +13,9 @@
         'Sticky_1'      : '.ink-sticky, .sticky',
         'Table_1'       : '.ink-table',
         'Tabs_1'        : '.ink-tabs',
-        'TreeView_1'    : '.ink-tree-view',
         'Toggle_1'      : '.ink-toggle, .toggle',
         'Tooltip_1'     : '.ink-tooltip, .tooltip',
-        'Carousel_1'    : '.ink-carousel'
+        'TreeView_1'    : '.ink-tree-view'
     };
 
     Ink.requireModules(['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'],
