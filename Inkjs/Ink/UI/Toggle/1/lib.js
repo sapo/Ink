@@ -66,11 +66,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             onChangeState: null
         }, options || {}, InkElement.data(this._rootElement));
 
-        this._targets = Common.elsOrSelector(this._options.target);
-
-        if (!this._targets.length) {
-            throw '[Ink.UI.Toggle] Toggle target was not found! Supply a valid selector, array, or element through the `target` option.';
-        }
+        this._targets = Common.elsOrSelector(this._options.target, 'Ink.UI.Toggle target option');
 
         this._init();
     };
@@ -127,8 +123,16 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onTriggerEvent: function( event ){
+            // When the togglee is a child of the toggler, we get the togglee's events here
+            var target = InkEvent.element(event);
+            for (var i = 0, len = this._targets.length; i < len; i++) {
+                if (target === this._targets[i] || InkElement.isAncestorOf(this._targets[i], target)) {
+                    return;
+                }
+            }
+
             if( this._accordion ){
-                var elms, i, accordionElement;
+                var elms, accordionElement;
                 if( Css.hasClassName(this._targets[0].parentNode,'accordion') ){
                     accordionElement = this._targets[0].parentNode;
                 } else {
@@ -144,7 +148,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     }
                 }
             }
-            
+
             var has = this.getState();
             this.setState(!has, true);
             if (!has && this._firstTime) {
