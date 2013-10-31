@@ -251,9 +251,11 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
                  var value = elm.style[style];
 
-                 if (window.getComputedStyle && (!value || value === 'auto')) {
+                 if ( ("defaultView" in document) && ("getComputedStyle" in document.defaultView) && (!value || value === 'auto')) {
+                     var css = document.defaultView.getComputedStyle(elm, null);
+                     value = css ? css[style] : null;
+                 } else if (window.getComputedStyle && (!value || value === 'auto')) {
                      var css = window.getComputedStyle(elm, null);
-
                      value = css ? css[style] : null;
                  }
                  else if (!value && elm.currentStyle) {
