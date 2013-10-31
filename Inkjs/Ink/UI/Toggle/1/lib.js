@@ -88,7 +88,9 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
             this._firstTime = true;
 
-            InkEvent.observe( this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this) );
+            if (this._options.triggerEvent) {
+                InkEvent.observe(this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this));
+            }
 
             if( this._options.closeOnClick.toString() === 'true' ){
                 InkEvent.observe( document, 'click', Ink.bindEvent(this._onOutsideClick,this));
