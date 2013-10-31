@@ -57,7 +57,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *     }
          */
         isDOMElement: function(o) {
-            return (typeof o === 'object' && 'nodeType' in o && o.nodeType === 1);
+            return o && typeof o === 'object' && 'nodeType' in o && o.nodeType === 1;
         },
 
         /**
