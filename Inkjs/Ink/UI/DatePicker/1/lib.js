@@ -297,12 +297,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
 
+                    var top,
+                        left;
+
                     if ( this._options.position === 'bottom' ) {
-                        var top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        var left = Element.offset(this._dataField)[0] +'px';
+                        top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
+                        left = Element.offset(this._dataField)[0] +'px';
                     } else {
-                        var top = Element.offset(this._dataField)[1] +'px';
-                        var left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
+                        top = Element.offset(this._dataField)[1] +'px';
+                        left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
                     }
                     this._containerObject.style.top = top;
                     this._containerObject.style.left = left;
@@ -1045,7 +1048,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _showMonth: function(){
-            /*jshint maxstatements:100, maxcomplexity:20 */
+            /*jshint maxstatements:100, maxcomplexity:30 */
             var i, j;
             var mes = this._month + 1;
             var ano = this._year;

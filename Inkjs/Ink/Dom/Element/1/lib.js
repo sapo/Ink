@@ -1385,7 +1385,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(container, nextNode)
+                parent.insertBefore(container, nextNode);
             } else {
                 parent.appendChild(container);
             }

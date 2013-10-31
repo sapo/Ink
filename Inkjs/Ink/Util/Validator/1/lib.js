@@ -411,7 +411,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             
             if (options.maxDigits!== null) {
                 if (split[0].replace(/-/g, '').length > options.maxDigits) {
-                    return split
+                    return split;
                 }
             }
             
@@ -1271,7 +1271,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             if ( typeof creditCardType === 'undefined' ){
                 creditCardType = 'default';
             }
-            else if ( typeof creditCardType === 'array' ){
+            else if ( creditCardType instanceof Array ){
                 var i, ccLength = creditCardType.length;
                 for ( i=0; i < ccLength; i++ ){
                     // Test each type for validity

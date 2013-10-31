@@ -174,7 +174,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 var cleanedTag = false;
                 for(var i=0; i < aAllowed.length; i++) {
                     if(InkUtilString.trim(aAllowed[i]) !== '') {
-                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(\<|\>)/g, '').replace(/\s/, ''));
+                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(<|\>)/g, '').replace(/\s/, ''));
                         aNewAllowed.push('(<'+cleanedTag+'\\s[^>]+>|<(\\s|\\/)?(\\s|\\/)?'+cleanedTag+'>)');
                     }
                 }
@@ -190,7 +190,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 }
                 return string;
             } else {
-                return string.replace(/\<[^\>]+\>/g, '');
+                return string.replace(/<[^\>]+\>/g, '');
             }
         },
 
@@ -444,7 +444,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          */
         htmlEscapeUnsafe: function(str){
             var chars = InkUtilString._htmlUnsafeChars;
-            return str != null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
+            return str !== null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
         },
 
         /**
@@ -459,7 +459,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @static
          */
         normalizeWhitespace: function(str){
-            return str != null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
+            return str !== null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
         },
 
         /**

@@ -332,6 +332,12 @@
                 throw new Error('Callback should be a function!');
             }
 
+            var depTimeout = function (dep) {
+                if (modules[dep]) { return; }
+                modulesRequested[dep] = true;
+                Ink.loadScript(dep);
+            };
+
             for (i = 0; i < f; ++i) {
                 dep = deps[i];
                 mod = modules[dep];
@@ -343,11 +349,7 @@
                 else if (modulesRequested[dep]) {
                 }
                 else {
-                    setTimeout(Ink.bind(function (dep) {
-                        if (modules[dep]) { return; }
-                        modulesRequested[dep] = true;
-                        Ink.loadScript(dep);
-                    }, null, dep), 0);
+                    setTimeout(Ink.bind( depTimeout , null, dep), 0);
                 }
                 o.left[dep] = i;
             }

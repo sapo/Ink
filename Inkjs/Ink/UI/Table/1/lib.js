@@ -222,9 +222,11 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                 }
             }
 
+            var prop;
+
             if( !this._markupMode && paginated ){
 
-                for( var prop in this._sortableFields ){
+                for( prop in this._sortableFields ){
                     if( prop !== ('col_' + index) ){
                         this._sortableFields[prop] = 'none';
                         this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
@@ -259,7 +261,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     // }
                 } else {
 
-                    for( var prop in this._sortableFields ){
+                    for( prop in this._sortableFields ){
                         if( prop !== ('col_' + index) ){
                             this._sortableFields[prop] = 'none';
                             this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);

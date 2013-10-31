@@ -131,7 +131,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             var numPages = Math.ceil( numItems / this._itemsPerPage );
             var numPagesChanged = this._numPages !== numPages;
-            this._numPages = numPages
+            this._numPages = numPages;
             this._deltaLength = this._itemsPerPage * this._elLength;
             
             if (this._isY) {
@@ -224,8 +224,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var pointerX = InkEvent.pointerX(event);
             var pointerY = InkEvent.pointerY(event);
 
-            var deltaY = Math.abs(pointerY - this._swipeData.y)
-            var deltaX = Math.abs(pointerX - this._swipeData.x)
+            var deltaY = Math.abs(pointerY - this._swipeData.y);
+            var deltaX = Math.abs(pointerX - this._swipeData.x);
 
             if (this._touchMoveIsFirstTouchMove) {
                 this._touchMoveIsFirstTouchMove = undefined;

@@ -584,7 +584,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-var i = 0
+var i = 0;
 
 return InkEvent;
 
