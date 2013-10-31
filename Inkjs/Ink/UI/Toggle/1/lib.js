@@ -197,7 +197,8 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         setState: function (shown, callHandler) {
             if (callHandler && typeof this._options.onChangeState === 'function') {
-                this._options.onChangeState(!!shown);
+                var ret = this._options.onChangeState(!!shown);
+                if (ret === false) { return false; } //  Canceled by the event handler
             }
             for (var i = 0, len = this._targets.length; i < len; i++) {
                 Css.addRemoveClassName(this._targets[i], 'show-all', shown);
