@@ -40,7 +40,7 @@
         #ink > #shadows > .box-shadow (0, 1px, 2px, 0, rgba(0, 0, 0, 0.3));
         font-size: 1em;
 
-        h4 {
+        > h4 {
             padding:1em;
             font-size: .938em;
             line-height: 1.5;
@@ -52,30 +52,30 @@
             border-bottom: 1px solid darken(@alert-bg, 10%);
         }
 
+        &.success > h4 {
+            #ink > #gradients > .gradient (lighten(@green, 5%), @green, 100%);
+            border-bottom: 1px solid darken(@green, 3%);
+            color: @white; 
+        }
+
+        &.error > h4 {
+            #ink > #gradients > .gradient (lighten(@red, 15%), @red, 100%);
+            border-bottom: 1px solid darken(@red, 3%);
+            color: @white; 
+        }
+
+        &.info  > h4 {
+            #ink > #gradients > .gradient (lighten(@blue, 10%), @blue, 100%);
+            border-bottom: 1px solid darken(@blue, 5%);
+            color: @white; 
+        }
+
         p, ul, ol {
             padding: 0 1em 1em;
         }
 
         ul {
             list-style: inside ;
-        }
-
-        &.success h4 {
-            #ink > #gradients > .gradient (lighten(@green, 5%), @green, 100%);
-            border-bottom: 1px solid darken(@green, 3%);
-            color: @white; 
-        }
-
-        &.error h4 {
-            #ink > #gradients > .gradient (lighten(@red, 15%), @red, 100%);
-            border-bottom: 1px solid darken(@red, 3%);
-            color: @white; 
-        }
-
-        &.info  h4 {
-            #ink > #gradients > .gradient (lighten(@blue, 10%), @blue, 100%);
-            border-bottom: 1px solid darken(@blue, 5%);
-            color: @white; 
         }
     }
 
