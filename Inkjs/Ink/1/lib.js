@@ -345,12 +345,6 @@
                 throw new Error('Callback should be a function!');
             }
 
-            var depTimeout = function (dep) {
-                if (modules[dep]) { return; }
-                modulesRequested[dep] = true;
-                Ink.loadScript(dep);
-            };
-
             for (i = 0; i < f; ++i) {
                 dep = deps[i];
                 mod = modules[dep];
