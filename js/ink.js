@@ -4309,6 +4309,27 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     },
 
     /**
+     * Like observe, but listen to the event only once.
+     *
+     * @method observeOnce
+     * @param {DOMElement|String}  element      Element id or element
+     * @param {String}             eventName    Event name
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
+     * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
+     */
+    observeOnce: function (element, eventName, callBack, useCapture) {
+        var onceBack = function () {
+            InkEvent.stopObserving(element, eventName, onceBack);
+            return callBack();
+        };
+        return InkEvent.observe(element, eventName, onceBack, useCapture);
+    },
+
+    /**
      * Attaches an event to a selector or array of elements.
      *
      * Requires Ink.Dom.Selector
