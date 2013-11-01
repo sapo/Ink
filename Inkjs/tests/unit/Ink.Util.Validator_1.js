@@ -74,7 +74,7 @@ var numb = function (numb, options) {
 
 test('integer numbers', function () {
     deepEqual(numb('.'), false);
-    deepEqual(numb('123.123'), false);
+    deepEqual(numb('123.123', {decimalPlaces: 0}), false);
     deepEqual(numb('123'), 123);
     deepEqual(numb(0), 0);
 });
@@ -104,6 +104,7 @@ test('thousand separator', function () {
     deepEqual(numb('1`344`123', {thousandSep: '`'}), 1344123);
     deepEqual(numb('1.344.123'), false);
     deepEqual(numb('1.344.123', {thousandSep: '.'}), 1344123);
+    deepEqual(numb('1344123', {thousandSep: '.'}), 1344123);
     deepEqual(numb('1Thousand344Thousand123', {thousandSep: '`'}), false);
     deepEqual(numb('1Thousand344Thousand123', {thousandSep: 'Thousand'}), 1344123);
     deepEqual(numb('Thousand'), false);
