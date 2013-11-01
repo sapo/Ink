@@ -302,32 +302,29 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         setStyle: function(elm, style) {
             elm = Ink.i(elm);
-            if (elm !== null) {
-                if (typeof style === 'string') {
-                    elm.style.cssText += '; '+style;
+            if (elm === null) { return; }
+            if (typeof style === 'string') {
+                elm.style.cssText += '; '+style;
 
-                    if (style.indexOf('opacity') !== -1) {
-                        this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
-                    }
+                if (style.indexOf('opacity') !== -1) {
+                    this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
                 }
-                else {
-                    for (var prop in style) {
-                        if (style.hasOwnProperty(prop)){
-                            if (prop === 'opacity') {
-                                this.setOpacity(elm, style[prop]);
+            }
+            else {
+                for (var prop in style) {
+                    if (style.hasOwnProperty(prop)){
+                        if (prop === 'opacity') {
+                            this.setOpacity(elm, style[prop]);
+                        }
+                        else if (prop === 'float' || prop === 'cssFloat') {
+                            if (typeof elm.style.styleFloat === 'undefined') {
+                                elm.style.cssFloat = style[prop];
                             }
                             else {
-                                if (prop === 'float' || prop === 'cssFloat') {
-                                    if (typeof elm.style.styleFloat === 'undefined') {
-                                        elm.style.cssFloat = style[prop];
-                                    }
-                                    else {
-                                        elm.style.styleFloat = style[prop];
-                                    }
-                                } else {
-                                    elm.style[prop] = style[prop];
-                                }
+                                elm.style.styleFloat = style[prop];
                             }
+                        } else {
+                            elm.style[prop] = style[prop];
                         }
                     }
                 }

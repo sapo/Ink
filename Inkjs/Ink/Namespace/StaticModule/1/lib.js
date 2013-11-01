@@ -1,3 +1,5 @@
+/* jshint unused:false */
+
 /**
  * @module Ink.Namespace.StaticModule_1
  *

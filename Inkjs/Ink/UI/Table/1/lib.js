@@ -354,11 +354,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
          * @private
          */
         _setHeaders: function( headers, rows ){
-            var
-                field, header,
-                thead, tr, th,
-                index = 0
-            ;
+            var field, header,
+                thead, tr, th;
 
             if( (thead = Selector.select('thead',this._rootElement)).length === 0 ){
                 thead = this._rootElement.createTHead();
@@ -499,7 +496,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
          * @private
          */
         _setPagination: function(){
-            var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
+            // var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
             /**
              * Set pagination if defined
              */
@@ -558,7 +555,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
                     parsedURL.query.push( 'page=' + pageNum );
 
-                    var sortStr = '';
+                    // var sortStr = '';
                     for( var index in this._sortableFields ){
                         if( this._sortableFields[index] !== 'none' ){
                             parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);

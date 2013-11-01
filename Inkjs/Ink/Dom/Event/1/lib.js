@@ -378,7 +378,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             var fromElement = InkEvent.element(event);
             if (!fromElement || fromElement === element) { return; }
 
-            var selectResult = Ink.ss(selector, element);
             var cursor = fromElement;
 
             while (cursor !== element && cursor) {
@@ -583,8 +582,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     debug: function(){}
 };
-
-var i = 0;
 
 return InkEvent;
 
