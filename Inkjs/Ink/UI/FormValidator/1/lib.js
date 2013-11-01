@@ -320,6 +320,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                                     errors.push({elm: curElm, errors:[flag], custom: customErrors});
                                 }
                             } else if(flag === 'ink-fv-confirm'){
+                                continue;
                             }
                         }
                     }

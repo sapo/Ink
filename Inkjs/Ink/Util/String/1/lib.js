@@ -253,8 +253,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        utf8Encode: function(string)
-        {
+        utf8Encode: function(string) {
+            /*jshint bitwise:false*/
             string = string.replace(/\r\n/g,"\n");
             var utfstring = "";
 
@@ -330,8 +330,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        utf8Decode: function(utfstring)
-        {
+        utf8Decode: function(utfstring) {
+            /*jshint bitwise:false*/
             var string = "";
             var i = 0, c = 0, c2 = 0, c3 = 0;
 
@@ -471,8 +471,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        toUnicode: function(str)
-        {
+        toUnicode: function(str) {
             if (typeof str === 'string') {
                 var unicodeString = '';
                 var inInt = false;
@@ -484,16 +483,16 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 {
                     inInt = str.charCodeAt(i);
                     if( (inInt >= 32 && inInt <= 126) ||
-                            inInt == 8 ||
-                            inInt == 9 ||
-                            inInt == 10 ||
-                            inInt == 12 ||
-                            inInt == 13 ||
-                            inInt == 32 ||
-                            inInt == 34 ||
-                            inInt == 47 ||
-                            inInt == 58 ||
-                            inInt == 92) {
+                            inInt === 8 ||
+                            inInt === 9 ||
+                            inInt === 10 ||
+                            inInt === 12 ||
+                            inInt === 13 ||
+                            inInt === 32 ||
+                            inInt === 34 ||
+                            inInt === 47 ||
+                            inInt === 58 ||
+                            inInt === 92) {
 
                         /*
                         if(inInt == 34 || inInt == 92 || inInt == 47) {
@@ -501,15 +500,15 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                         } else {
                         }
                         */
-                        if(inInt == 8) {
+                        if(inInt === 8) {
                             theUnicode = '\\b';
-                        } else if(inInt == 9) {
+                        } else if(inInt === 9) {
                             theUnicode = '\\t';
-                        } else if(inInt == 10) {
+                        } else if(inInt === 10) {
                             theUnicode = '\\n';
-                        } else if(inInt == 12) {
+                        } else if(inInt === 12) {
                             theUnicode = '\\f';
-                        } else if(inInt == 13) {
+                        } else if(inInt === 13) {
                             theUnicode = '\\r';
                         } else {
                             theUnicode = str.charAt(i);

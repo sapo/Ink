@@ -19,7 +19,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
         }
     }
 
-    var date_toISOString = Date.prototype.toISOString ?
+    var dateToISOString = Date.prototype.toISOString ?
         Ink.bind(function_call, Date.prototype.toISOString) :
         function(date) {
             // Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
@@ -166,7 +166,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
             } else if (typeof param === 'function') {
                 return 'null';  // match JSON.stringify
             } else if (param.constructor === Date) {
-                return '"' + this._escape(date_toISOString(param)) + '"';
+                return '"' + this._escape(dateToISOString(param)) + '"';
             } else if (param.constructor === Array) {
                 var arrayString = '';
                 for (var i = 0, len = param.length; i < len; i++) {
