@@ -362,7 +362,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *  @param  [options.decimalSep='.']    Allow decimal separator.
          *  @param  [options.thousandSep=","]   Strip this character from the number.
          *  @param  [options.negative=false]    Allow negative numbers.
-         *  @param  [options.decimalPlaces=0]   Maximum number of decimal places. `0` means integer number.
+         *  @param  [options.decimalPlaces=null]   Maximum number of decimal places. Use `0` for an integer number.
          *  @param  [options.max=null]          Maximum number
          *  @param  [options.min=null]          Minimum number
          *  @param  [options.returnNumber=false] When this option is true, return the number itself when the value is valid.
