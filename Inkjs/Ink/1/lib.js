@@ -410,6 +410,7 @@
         /**
          * Function.prototype.bind alternative.
          * Additional arguments will be sent to the original function as prefix arguments.
+         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bind
          * @param {Function}  fn
@@ -421,7 +422,7 @@
             return function() {
                 var innerArgs = Array.prototype.slice.call(arguments);
                 var finalArgs = args.concat(innerArgs);
-                return fn.apply(context, finalArgs);
+                return fn.apply(context === false ? this : context, finalArgs);
             };
         },
 
@@ -446,7 +447,7 @@
          *  Ink.bindMethod(this, 'remove', myElem);
          */
         bindMethod: function (object, methodName) {
-            return this.bind.apply(this,
+            return Ink.bind.apply(Ink,
                 [object[methodName], object].concat([].slice.call(arguments, 2)));
         },
 
@@ -454,6 +455,7 @@
          * Function.prototype.bind alternative for event handlers.
          * Same as bind but keeps first argument of the call the original event.
          * Additional arguments will be sent to the original function as prefix arguments.
+         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bindEvent
          * @param {Function}  fn
@@ -465,7 +467,7 @@
             return function(event) {
                 var finalArgs = args.slice();
                 finalArgs.unshift(event || window.event);
-                return fn.apply(context, finalArgs);
+                return fn.apply(context === false ? this : context, finalArgs);
             };
         },
 

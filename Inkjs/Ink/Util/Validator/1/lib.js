@@ -495,24 +495,20 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *     });
          */
         _daysInMonth: function(_m,_y){
+            /* jshint eqeqeq:false */
             var nDays=0;
 
-            if(_m===1 || _m===3 || _m===5 || _m===7 || _m===8 || _m===10 || _m===12)
-            {
+            _m = parseInt(_m, 10);
+            _y = parseInt(_y, 10);
+
+            if(_m===1 || _m===3 || _m===5 || _m===7 || _m===8 || _m===10 || _m===12) {
                 nDays= 31;
-            }
-            else if ( _m===4 || _m===6 || _m===9 || _m===11)
-            {
+            } else if ( _m===4 || _m===6 || _m===9 || _m===11) {
                 nDays = 30;
-            }
-            else
-            {
-                if((_y%400===0) || (_y%4===0 && _y%100!==0))
-                {
+            } else if (_m===2) {
+                if((_y%400===0) || (_y%4===0 && _y%100!=0)) {
                     nDays = 29;
-                }
-                else
-                {
+                } else {
                     nDays = 28;
                 }
             }
