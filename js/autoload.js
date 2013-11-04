@@ -27,19 +27,21 @@
                     continue;
                 }
                 // `elements` need to be in a closure because requireModules is async.
-                (function () {
-                    var elements = Selector.select( autoload[mod] );
-                    if( elements.length ){
-                        Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
-                            for (var i = 0, len = elements.length; i < len; i++) {
-                                new Component(elements[i]);
-                            }
-                        });
-                    }
-                }());
+                findElements(mod);
             }
             Scroller.init();
             new Close();
         });
+
+        function findElements(mod) {
+            var elements = Selector.select( autoload[mod] );
+            if( elements.length ){
+                Ink.requireModules( ['Ink.UI.' + mod ], function( Component ) {
+                    for (var i = 0, len = elements.length; i < len; i++) {
+                        new Component(elements[i]);
+                    }
+                });
+            }
+        }
     });
 })();
