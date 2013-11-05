@@ -65,10 +65,19 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * The parameters are:
          * @param {string} node Selector to define which elements are seen as nodes. Default: li
          * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         * @param {string} closedClass Class to be added when a parent is closed. Default: closed
+         * @param {string} openClass Class to be added when a parent is open. Default: open
+         * @param {string} parentClass Class to be added to the parent element. Default: parent
+         * @param {string} hideClass Class to toggle visibility. Default: hide-all
          */
         this._options = Ink.extendObj({
             node:   'li',
-            child:  'ul'
+            child:  'ul',
+            closedClass: 'closed',
+            openClass: 'open',
+            parentClass: 'parent',
+            hideClass: 'hide-all'
+
         },Element.data(this._element));
 
         this._options = Ink.extendObj(this._options, options || {});
@@ -97,20 +106,22 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 children
             ;
             InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
+
+                if( Css.hasClassName(item, this._options.openClass) )
                 {
                     return;
                 }
 
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
+                Css.addClassName(item, this._options.closedClass);
 
                 children = Selector.select(this._options.child,item);
+
+                if(children.length > 0) {
+                    Css.addClassName(item, this._options.parentClass);
+                }
+
                 InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
+                    Css.addClassName(inner_item, this._options.hideClass);
                 },this));
             },this));
 
@@ -134,34 +145,17 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
              */
             var tgtEl = Event.element(event);
 
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            }
+            tgtEl = Element.findUpwardsBySelector(tgtEl, this._options.node);
 
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+            if(tgtEl === false){ return; }
 
-            var child = Selector.select(this._options.child,tgtEl);
+            var child = Selector.select(this._options.child, tgtEl);
             if( child.length > 0 ){
                 Event.stop(event);
                 child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+                Css.toggleClassName(child, this._options.hideClass, true); 
+                Css.toggleClassName(tgtEl, this._options.openClass, true); 
+                Css.toggleClassName(tgtEl, this._options.closedClass, true); 
             }
 
         }
