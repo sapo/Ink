@@ -107,18 +107,18 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             ;
             InkArray.each(nodes,Ink.bind(function(item){
 
+                children = Selector.select(this._options.child,item);
+
+                if(children.length > 0) {
+                    Css.addClassName(item, this._options.parentClass);
+                }
+
                 if( Css.hasClassName(item, this._options.openClass) )
                 {
                     return;
                 }
 
                 Css.addClassName(item, this._options.closedClass);
-
-                children = Selector.select(this._options.child,item);
-
-                if(children.length > 0) {
-                    Css.addClassName(item, this._options.parentClass);
-                }
 
                 InkArray.each(children,Ink.bind(function( inner_item ){
                     Css.addClassName(inner_item, this._options.hideClass);
