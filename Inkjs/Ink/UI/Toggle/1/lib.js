@@ -4,7 +4,6 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, InkEvent, Css, InkElement, Selector, InkArray ) {
-    /* jshint maxcomplexity:5 */
     'use strict';
 
     /**
@@ -58,7 +57,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *      </script>
      */
     var Toggle = function( selector, options ){
-        this._rootElement = Common.elOrSelector(selector, '[Ink.UI.Toggle]: Failed to find root element');
+        this._rootElement = Common.elOrSelector(selector, '[Ink.UI.Toggle root element]:');
 
         this._options = Ink.extendObj({
             target : undefined,
@@ -154,7 +153,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onTriggerEvent: function( event ){
-            // When the togglee is a child of the toggler, we get the togglee's events here
+            // When the togglee is a child of the toggler, we get the togglee's events here. We have to check that this event is for us.
             var target = InkEvent.element(event);
             for (var i = 0, len = this._targets.length; i < len; i++) {
                 if (target === this._targets[i] || InkElement.isAncestorOf(this._targets[i], target)) {
@@ -213,7 +212,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 return InkElement.isAncestorOf(target, tgtEl);
             });
 
-            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets || this._firstTime ) {
+            if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
                 return;
             } else if( (shades = Ink.ss('.ink-shade')).length ) {
                 var shadesLength = shades.length;
@@ -236,6 +235,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method setState
          */
         setState: function (on, callHandler) {
+            if (on === this.getState()) { return; }
             if (callHandler && typeof this._options.onChangeState === 'function') {
                 var ret = this._options.onChangeState(on);
                 if (ret === false) { return false; } //  Canceled by the event handler
