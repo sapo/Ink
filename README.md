@@ -60,9 +60,9 @@ We built Ink by standing on the shoulders of giants, following the opensource ma
 If you wish to contribute with your own code, please submit your pull requests to the **[develop](https://github.com/sapo/Ink/tree/develop)** branch.
 
 
-## Previous versions
+## Versions
 
-* [Ink v2.2.1](https://github.com/sapo/Ink/archive/2.2.1.zip)
+* [Ink v2.2.1](https://github.com/sapo/Ink/archive/2.2.1.zip) (current)
 * [Ink v2.2.0](https://github.com/sapo/Ink/archive/2.2.0.zip)
 * [Ink v2.1.1](https://github.com/sapo/Ink/archive/2.1.1.zip)
 * [Ink v2.1.0](https://github.com/sapo/Ink/archive/2.1.0.zip)
