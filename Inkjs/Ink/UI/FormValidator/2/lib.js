@@ -827,7 +827,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          */
         validate: function( event ) {
 
-            if(this._options.neverSubmit === 'true') {
+            if(this._options.neverSubmit+'' === 'true' && event) {
                 Event.stopDefault(event);
             }
 
