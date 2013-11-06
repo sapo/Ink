@@ -103,28 +103,38 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             var
                 nodes = Selector.select(this._options.node,this._element),
-                children
+                children,
+                is_open,
+                anchor
             ;
-            InkArray.each(nodes,Ink.bind(function(item){
+            InkArray.each(nodes, Ink.bind(function(item){
 
                 children = Selector.select(this._options.child,item);
 
-                if(children.length > 0) {
+                if( children.length > 0 ) {
+                    is_open = Element.data(item)['open'] === 'true';
                     Css.addClassName(item, this._options.parentClass);
+
+                    if( is_open ) {
+                        Css.addClassName(item, this._options.openClass);
+                    }
+
+                    if ( Css.hasClassName(item, this._options.openClass) ) {
+                        item.setAttribute('data-open', true);
+                    } else {
+                        Css.addClassName(item, this._options.closedClass);
+                        item.setAttribute('data-open', false);
+                    }
                 }
 
-                if( Css.hasClassName(item, this._options.openClass) )
-                {
+                if( Css.hasClassName(item, this._options.openClass)) {
                     return;
                 }
-
-                Css.addClassName(item, this._options.closedClass);
 
                 InkArray.each(children,Ink.bind(function( inner_item ){
                     Css.addClassName(inner_item, this._options.hideClass);
                 },this));
             },this));
-
         },
 
         /**
@@ -149,11 +159,21 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             if(tgtEl === false){ return; }
 
-            var child = Selector.select(this._options.child, tgtEl);
+            var child = Selector.select(this._options.child, tgtEl),
+                is_open;
+
             if( child.length > 0 ){
                 Event.stop(event);
                 child = child[0];
-                Css.toggleClassName(child, this._options.hideClass, true); 
+                Css.toggleClassName(child, this._options.hideClass, true);
+                is_open = Element.data(tgtEl)['open'] === 'true';
+
+                if(is_open){
+                    tgtEl.setAttribute('data-open', false);
+                } else {
+                    tgtEl.setAttribute('data-open', true);
+                }
+                
                 Css.toggleClassName(tgtEl, this._options.openClass, true); 
                 Css.toggleClassName(tgtEl, this._options.closedClass, true); 
             }

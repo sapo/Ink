@@ -5,18 +5,19 @@
         list-style-type: none;
     }
     .@{treeview-parent-class} {
-        &.@{treeview-open-class} > a:before {
-            .icon(@openIcon);
-            margin-left: -1.1em;
+
+        &[data-open]:before{
+            margin-left: -1.3em;
             margin-right: .3em;
             text-decoration: none;
         }
 
-        &.@{treeview-closed-class} > a:before {
+        &.@{treeview-open-class}:before {
+            .icon(@openIcon);
+        }
+
+        &.@{treeview-closed-class}:before {
             .icon(@closedIcon);
-            margin-left: -1.1em;
-            margin-right: .3em;
-            text-decoration: none;
         }
     }
 }
