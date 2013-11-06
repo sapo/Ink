@@ -113,28 +113,78 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
                 if( children.length > 0 ) {
                     is_open = Element.data(item)['open'] === 'true';
-                    Css.addClassName(item, this._options.parentClass);
+                    this._addClassNames(item, this._options.parentClass);
 
                     if( is_open ) {
-                        Css.addClassName(item, this._options.openClass);
+                        this._addClassNames(item, this._options.openClass);
                     }
 
-                    if ( Css.hasClassName(item, this._options.openClass) ) {
+                    if ( this._hasClassNames(item, this._options.openClass) ) {
                         item.setAttribute('data-open', true);
                     } else {
-                        Css.addClassName(item, this._options.closedClass);
+                        this._addClassNames(item, this._options.closedClass);
                         item.setAttribute('data-open', false);
                     }
                 }
 
-                if( Css.hasClassName(item, this._options.openClass)) {
+                if( this._hasClassNames(item, this._options.openClass)) {
                     return;
                 }
 
                 InkArray.each(children,Ink.bind(function( inner_item ){
-                    Css.addClassName(inner_item, this._options.hideClass);
+                    this._addClassNames(inner_item, this._options.hideClass);
                 },this));
             },this));
+        },
+
+        /**
+         * Helper method to support adding an array of classes to an element
+         * 
+         * @method _addClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         * @private
+         */
+        _addClassNames: function(elm, classes){
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                Css.addClassName(elm, current_class);
+            });
+        },
+
+        /**
+         * Helper method to check if an element has all the class names
+         * 
+         * @method _hasClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         * @private
+         */
+        _hasClassNames: function(elm, classes){
+            var ret = true;
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                ret = ret && Css.hasClassName(elm, current_class);
+            });
+            return ret;
+        },
+
+        /**
+         * Helper method to toggle every class name
+         * 
+         * @method _toggleClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         */
+        _toggleClassNames: function(elm, classes){
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                if( Css.hasClassName(elm, current_class) ) {
+                    Css.removeClassName(elm, current_class);
+                } else {
+                    Css.addClassName(elm, current_class);
+                }
+            });
         },
 
         /**
@@ -165,7 +215,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             if( child.length > 0 ){
                 Event.stop(event);
                 child = child[0];
-                Css.toggleClassName(child, this._options.hideClass, true);
+                this._toggleClassNames(child, this._options.hideClass);
                 is_open = Element.data(tgtEl)['open'] === 'true';
 
                 if(is_open){
@@ -173,9 +223,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 } else {
                     tgtEl.setAttribute('data-open', true);
                 }
-                
-                Css.toggleClassName(tgtEl, this._options.openClass, true); 
-                Css.toggleClassName(tgtEl, this._options.closedClass, true); 
+                this._toggleClassNames(tgtEl, this._options.openClass); 
+                this._toggleClassNames(tgtEl, this._options.closedClass); 
             }
 
         }
