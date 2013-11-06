@@ -103,9 +103,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             var
                 nodes = Selector.select(this._options.node,this._element),
-                children,
-                is_open,
-                anchor
+                is_open = false,
+                children
             ;
             InkArray.each(nodes, Ink.bind(function(item){
 
@@ -127,7 +126,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                     }
                 }
 
-                if( this._hasClassNames(item, this._options.openClass)) {
+                if( is_open ) {
                     return;
                 }
 
