@@ -1,5 +1,4 @@
-
-var val = Ink.Util.Validator_1;
+Ink.requireModules(['Ink.Util.Validator_1'], function (val) {
 
 var nbsp = '\u00a0';
 var tsu = '\u30C4'; // japanese Tsu character (ツ)
@@ -74,7 +73,7 @@ var numb = function (numb, options) {
 
 test('integer numbers', function () {
     deepEqual(numb('.'), false);
-    deepEqual(numb('123.123'), false);
+    deepEqual(numb('123.123', {decimalPlaces: 0}), false);
     deepEqual(numb('123'), 123);
     deepEqual(numb(0), 0);
 });
@@ -87,8 +86,8 @@ test('decimal numbers', function () {
 });
 
 test('negative numbers', function () {
-    deepEqual(numb('-1.23', {decimalPlaces: 3}), -1.23)
-    deepEqual(numb('-1.23', {decimalPlaces: 3, negative: false}), false)
+    deepEqual(numb('-1.23', {decimalPlaces: 3}), -1.23);
+    deepEqual(numb('-1.23', {decimalPlaces: 3, negative: false}), false);
 });
 
 test('max/min', function () {
@@ -104,6 +103,7 @@ test('thousand separator', function () {
     deepEqual(numb('1`344`123', {thousandSep: '`'}), 1344123);
     deepEqual(numb('1.344.123'), false);
     deepEqual(numb('1.344.123', {thousandSep: '.'}), 1344123);
+    deepEqual(numb('1344123', {thousandSep: '.'}), 1344123);
     deepEqual(numb('1Thousand344Thousand123', {thousandSep: '`'}), false);
     deepEqual(numb('1Thousand344Thousand123', {thousandSep: 'Thousand'}), 1344123);
     deepEqual(numb('Thousand'), false);
@@ -120,3 +120,23 @@ test('NaN, Inf', function () {
     deepEqual(numb('NaN'), false);
 });
 
+module('dates');
+
+test('_daysInMonth', function () {
+    equal(val._daysInMonth( 2, 2004 ), 29, 'february of a leap year');
+    equal(val._daysInMonth( 2, 2001 ), 28, 'february of a common year');
+    equal(val._daysInMonth( 1, 2010 ), 31, 'january');
+    equal(val._daysInMonth( 8, 2010 ), 31, 'august');
+});
+
+test('isDate: basic', function () {
+    ok(val.isDate('dd-mm-yyyy', '1-1-2000'));
+    ok(!val.isDate('dd-mm-yyyy', '1-21-2000'));
+});
+
+test('bug: always february in isDate?', function () {
+    ok(val.isDate('yyyy-mm-dd', '2001-01-28'), 'this passes');
+    ok(val.isDate('yyyy-mm-dd', '2001-01-30'), 'this fails because it\'s always february (???) ');
+});
+
+});

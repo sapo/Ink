@@ -226,7 +226,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
                         $1 ? $1 :
                         $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
                         $3 ? pars[ 0 ][ $3 ] || '' :
-                             pars[ (idx++) + ( isObj ? 1 : 0 ) ]
+                             pars[ (idx++) + ( isObj ? 1 : 0 ) ];
                     return funcOrVal( ret , [idx].concat(pars) );
                 });
                 return original;

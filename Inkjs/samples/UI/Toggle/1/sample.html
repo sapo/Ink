@@ -34,17 +34,17 @@
                     <h2>Toggle #1 - Default Markup</h2>
                 </header>
                 <div class="ink-dropdown">
-                    <button class="ink-button toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
+                    <button class="ink-button ink-toggle" data-target="#dropdown">Dropdown <span class="icon-caret-down"></span></button>
                     <ul id="dropdown" class="dropdown-menu hide-all">
                         <li class="heading">Heading</li>
                         <li class="separator-above"><a href="#">Option</a></li>
                         <li><a href="#">Option</a></li>
                         <li class="separator-above disabled"><a href="#">Disabled option</a></li>
                         <li class="submenu">
-                            <a href="#" class="toggle" data-target="#submenu1">A longer option name</a>
+                            <a href="#" class="ink-toggle" data-target="#submenu1">A longer option name</a>
                             <ul id="submenu1" class="dropdown-menu">
                                 <li class="submenu">
-                                    <a href="#" class="toggle" data-target="#ultrasubmenu">Sub option</a>
+                                    <a href="#" class="ink-toggle" data-target="#ultrasubmenu">Sub option</a>
                                     <ul id="ultrasubmenu" class="dropdown-menu">
                                         <li><a href="#">Sub option</a></li>
                                         <li><a href="#" data-target="ultrasubmenu">Sub option</a></li>
@@ -60,17 +60,17 @@
                 </div>
                 <p>
                     <pre class="prettyprint linenums">&lt;div class="ink-dropdown"&gt;
-    &lt;button class="ink-button toggle" data-target="#dropdown"&gt;Dropdown &lt;span class="icon-caret-down"&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;button class="ink-button ink-toggle" data-target="#dropdown"&gt;Dropdown &lt;span class="icon-caret-down"&gt;&lt;/span&gt;&lt;/button&gt;
     &lt;ul id="dropdown" class="dropdown-menu"&gt;
         &lt;li class="heading"&gt;Heading&lt;/li&gt;
         &lt;li class="separator-above"&gt;&lt;a href="#"&gt;Option&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#"&gt;Option&lt;/a&gt;&lt;/li&gt;
         &lt;li class="separator-above disabled"&gt;&lt;a href="#"&gt;Disabled option&lt;/a&gt;&lt;/li&gt;
         &lt;li class="submenu"&gt;
-            &lt;a href="#" class="toggle" data-target="#submenu1"&gt;A longer option name&lt;/a&gt;
+            &lt;a href="#" class="ink-toggle" data-target="#submenu1"&gt;A longer option name&lt;/a&gt;
             &lt;ul id="submenu1" class="dropdown-menu"&gt;
                 &lt;li class="submenu"&gt;
-                    &lt;a href="#" class="toggle" data-target="#ultrasubmenu"&gt;Sub option&lt;/a&gt;
+                    &lt;a href="#" class="ink-toggle" data-target="#ultrasubmenu"&gt;Sub option&lt;/a&gt;
                     &lt;ul id="ultrasubmenu" class="dropdown-menu"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#" data-target="ultrasubmenu"&gt;Sub option&lt;/a&gt;&lt;/li&gt;
@@ -85,8 +85,9 @@
     &lt;/ul&gt;
 &lt;/div&gt;
 &lt;script&gt;
+    // You don't need this if you use autoload.js
     Ink.requireModules(['Ink.Util.Array_1','Ink.UI.Toggle_1'], function(InkArray, Toggle) {
-        InkArray.each(Ink.ss('.toggle'),function(item){
+        InkArray.each(Ink.ss('.ink-toggle'),function(item){
             new Toggle(item);
         });
     });
@@ -96,7 +97,7 @@
         </div>
         <script type="text/javascript">
             Ink.requireModules(['Ink.Util.Array_1','Ink.UI.Toggle_1'], function(InkArray, Toggle) {
-                InkArray.each(Ink.ss('.toggle'),function(item){
+                InkArray.each(Ink.ss('.ink-toggle'),function(item){
                     new Toggle(item);
                 });
             });

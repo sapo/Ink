@@ -4,6 +4,8 @@
  * @version 1
  */
 Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.UI.Common_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"], function( InkElement, InkEvent, Css, Common, InkArray, Selector) {
+    'use strict';
+
     // Higher order functions
     var hAddClassName = function (element) {
         return function (className) {return Css.addClassName(element, className);};
@@ -112,15 +114,15 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             }
             var that = this;
             var namedEventHandlers = {
-                move: function (draggable, droppable, event) {
+                move: function (draggable, droppable/*, event*/) {
                     cleanStyle(draggable);
                     droppable.appendChild(draggable);
                 },
-                copy: function (draggable, droppable, event) {
+                copy: function (draggable, droppable/*, event*/) {
                     cleanStyle(draggable);
                     droppable.appendChild(draggable.cloneNode);
                 },
-                revert: function (draggable, droppable, event) {
+                revert: function (draggable/*, droppable, event*/) {
                     that._findDraggable(draggable).originalParent.appendChild(draggable);
                     cleanStyle(draggable);
                 }

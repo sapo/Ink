@@ -103,10 +103,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onScroll: function(){
-
-
-            var viewport = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
-
             if( Common.currentLayout() === 'small' ){
                 if( Element.hasAttribute(this._rootElement,'style') ){
                     this._rootElement.removeAttribute('style');

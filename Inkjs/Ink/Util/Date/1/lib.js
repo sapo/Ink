@@ -177,7 +177,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
          *     </script>
          */
         get: function(format, _date){
-            /*jshint maxcomplexity:50 */
+            /*jshint maxcomplexity:65 */
             if(typeof(format) === 'undefined' || format === ''){
                 format = "Y-m-d";
             }

@@ -6,7 +6,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     'use strict';
 
-    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
+    var createContextualFragmentSupport = (
+        typeof document.createRange === 'function' &&
+        typeof window.Range.prototype.createContextualFragment === 'function');
 
     var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
     var browserCreatesTbodies = (function () {
@@ -1284,6 +1286,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
         },
 
+        /**
+         * Gets a wrapper DIV with a certain HTML content for being inserted in `elm`.
+         * Necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.
+         *
+         * Works around IE table quirks
+         * @method _getWrapper
+         * @private
+         * @param elm
+         * @param html
+         */
         _getWrapper: function (elm, html) {
             var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
             var wrapper = document.createElement('div');
@@ -1295,7 +1307,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
             // special cases
             wrapper = wrapFunc(wrapper, html);
-            // worst case: tbody creation
+            // worst case: tbody auto-creation even when our HTML has a tbody.
             if (browserCreatesTbodies && nodeName === 'TABLE') {
                 // terrible case. Deal with tbody creation too.
                 var tds = wrapper.getElementsByTagName('td');
@@ -1345,7 +1357,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            var wrapper = InkElement._getWrapper(elm, html);
             while (elm.firstChild) {
                 elm.removeChild(elm.firstChild);
             }
@@ -1385,7 +1396,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(container, nextNode)
+                parent.insertBefore(container, nextNode);
             } else {
                 parent.appendChild(container);
             }
