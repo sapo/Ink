@@ -139,7 +139,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             this.tooltip = null;
         },
         _makeTooltip: function (mousePosition) {
-            if (!this._getOpt('text')) {
+            if (!this._getOpt('text') && !this._getOpt('html')) {
                 return false;
             }
 
