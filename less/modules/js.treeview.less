@@ -1,37 +1,12 @@
 // Mixin for the treeview
-
-.treeview(@openIcon: "\f056", @closedIcon: "\f055") {
+.ink-tree-view {
     li {
         list-style-type: none;
     }
-    .@{treeview-parent-class} {
 
-        &[data-open]:before{
-            margin-left: -1.3em;
-            margin-right: .3em;
-            text-decoration: none;
-        }
-
-        &.@{treeview-open-class}:before {
-            .icon(@openIcon);
-        }
-
-        &.@{treeview-closed-class}:before {
-            .icon(@closedIcon);
-        }
+    [data-open] >:before{
+        margin-left: -1.3em;
+        margin-right: .4em;
+        text-decoration: none;
     }
-}
-
-// Examples
-
-.ink-tree-view {
-    .treeview;
-}
-
-.ink-folder-view {
-    .treeview("\f115", "\f114");
-}
-
-.ink-tree-caret {
-    .treeview("\f0d7", "\f0da");
 }

@@ -65,18 +65,20 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * The parameters are:
          * @param {string} node Selector to define which elements are seen as nodes. Default: li
          * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         * @param {string} closedClass Class to be added when a parent is closed. Default: closed
-         * @param {string} openClass Class to be added when a parent is open. Default: open
-         * @param {string} parentClass Class to be added to the parent element. Default: parent
-         * @param {string} hideClass Class to toggle visibility. Default: hide-all
+         * @param {string} parentClass Classes to be added to the parent node. Default: parent
+         * @param {string} openClass Classes to be added to the icon when a parent is open. Default: icon-plus-sign
+         * @param {string} closedClass Classes to be added to the icon when a parent is closed. Default: icon-minus-sign
+         * @param {string} hideClass Class to toggle visibility of the children. Default: hide-all
+         * @param {string} iconTag The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Default: i
          */
         this._options = Ink.extendObj({
             node:   'li',
             child:  'ul',
-            closedClass: 'closed',
-            openClass: 'open',
             parentClass: 'parent',
-            hideClass: 'hide-all'
+            openClass: 'icon-minus-sign',
+            closedClass: 'icon-plus-sign',
+            hideClass: 'hide-all',
+            iconTag: 'i'
 
         },Element.data(this._element));
 
@@ -104,6 +106,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             var
                 nodes = Selector.select(this._options.node,this._element),
                 is_open = false,
+                icon,
                 children
             ;
             InkArray.each(nodes, Ink.bind(function(item){
@@ -111,28 +114,28 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 children = Selector.select(this._options.child,item);
 
                 if( children.length > 0 ) {
-                    is_open = Element.data(item)['open'] === 'true';
                     this._addClassNames(item, this._options.parentClass);
 
+                    is_open = Element.data(item)['open'] === 'true';
+                    icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
+                    if( !icon ){
+                        icon = Ink.Dom.Element.create('i');
+                        item.insertBefore(icon, item.children[0]);
+                    }
+
+
                     if( is_open ) {
-                        this._addClassNames(item, this._options.openClass);
-                    }
-
-                    if ( this._hasClassNames(item, this._options.openClass) ) {
-                        item.setAttribute('data-open', true);
+                        this._addClassNames(icon, this._options.openClass);
                     } else {
-                        this._addClassNames(item, this._options.closedClass);
+                        this._addClassNames(icon, this._options.closedClass);
                         item.setAttribute('data-open', false);
+
+                        InkArray.each(children,Ink.bind(function( inner_item ){
+                            this._addClassNames(inner_item, this._options.hideClass);
+                        },this));
                     }
-                }
 
-                if( is_open ) {
-                    return;
                 }
-
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    this._addClassNames(inner_item, this._options.hideClass);
-                },this));
             },this));
         },
 
@@ -149,23 +152,6 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             InkArray.each(classes, function( current_class ){
                 Css.addClassName(elm, current_class);
             });
-        },
-
-        /**
-         * Helper method to check if an element has all the class names
-         * 
-         * @method _hasClassNames
-         * @param {Element} elm
-         * @param {Array|String} classes
-         * @private
-         */
-        _hasClassNames: function(elm, classes){
-            var ret = true;
-            classes = ('' + classes).split(/[ ,]+/);
-            InkArray.each(classes, function( current_class ){
-                ret = ret && Css.hasClassName(elm, current_class);
-            });
-            return ret;
         },
 
         /**
@@ -209,21 +195,22 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             if(tgtEl === false){ return; }
 
             var child = Selector.select(this._options.child, tgtEl),
-                is_open;
+                is_open,
+                icon;
 
             if( child.length > 0 ){
                 Event.stop(event);
                 child = child[0];
                 this._toggleClassNames(child, this._options.hideClass);
                 is_open = Element.data(tgtEl)['open'] === 'true';
-
+                icon = tgtEl.children[0];
                 if(is_open){
                     tgtEl.setAttribute('data-open', false);
                 } else {
                     tgtEl.setAttribute('data-open', true);
                 }
-                this._toggleClassNames(tgtEl, this._options.openClass); 
-                this._toggleClassNames(tgtEl, this._options.closedClass); 
+                this._toggleClassNames(icon, this._options.openClass); 
+                this._toggleClassNames(icon, this._options.closedClass); 
             }
 
         }
