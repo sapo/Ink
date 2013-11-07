@@ -5,8 +5,6 @@
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
     'use strict';
-    /*jshint maxcomplexity: 5 */
-
     /**
      * @class Ink.UI.Modal
      * @constructor
@@ -61,7 +59,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      *      </script>
      */
     var Modal = function(selector, options) {
-        this._element = Common.elOrSelector(selector);
+        if (!selector) {
+            this._element = null;
+        } else {
+            this._element = Common.elOrSelector(selector);
+        }
 
         this._options = {
             /**
@@ -180,7 +182,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
         if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
-            var triggerElement,i;
+            var triggerElement;
             if( typeof this._options.trigger === 'string' ){
                 triggerElement = Selector.select( this._options.trigger );
                 Event.observeMulti(triggerElement, this._options.triggerEvent, Ink.bindEvent(this.open, this));
@@ -199,10 +201,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDivStyle.top = this._modalDivStyle.left = '50%';
-
-            this._modalDivStyle.marginTop = '-' + ( ~~( InkElement.elementHeight(this._modalDiv)/2) ) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( ~~( InkElement.elementWidth(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginTop = '-' + ( InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            this._modalDivStyle.marginLeft = '-' + ( InkElement.elementWidth(this._modalDiv)/2) + 'px';
         },
 
         /**
@@ -359,19 +359,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _disableScroll: function() {
-            this._oldScrollPos = InkElement.scroll();
-            var onScrollHandler = Ink.bindEvent(function(event) {
-                var tgtEl = Event.element(event);
-
-                if( !InkElement.descendantOf(this._modalShadow, tgtEl) ){
-                    Event.stop(event);
-                    window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
-                }
-            },this);
-            /* Sometimes event.observe will create a new callback for compat reasons,
-             * and use that instead, so we need to store both to stopobserving. */
-            this._onScrollHandler = Event.observe(window, 'scroll', onScrollHandler);
-            this._onTouchMoveHandler = Event.observe(document, 'touchmove', onScrollHandler);
+            var htmlEl = document.documentElement;
+            this._oldHtmlOverflows = [ htmlEl.style.overflowX,
+                htmlEl.style.overflowY ];
+            htmlEl.style.overflowX = htmlEl.style.overflowY = 'hidden';
         },
 
         /**************
@@ -462,7 +453,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this._options.onShow(this);
             }
 
-            if(this._options.disableScroll.toString === 'true') {
+            if(this._options.disableScroll.toString() === 'true') {
                 this._disableScroll();
             }
 
@@ -492,8 +483,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._wasDismissed = true;
 
             if(this._options.disableScroll) {
-                Event.stopObserving(window, 'scroll', this._onScrollHandler);
-                Event.stopObserving(document, 'touchmove', this._onTouchMoveHandler);
+                var htmlEl = document.documentElement;
+                htmlEl.style.overflowX = this._oldHtmlOverflows[0];
+                htmlEl.style.overflowY = this._oldHtmlOverflows[1];
             }
 
             if( this._options.responsive ){
@@ -513,22 +505,25 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     transitionEndFn = Ink.bindEvent(function(){
                         if( !dismissInterval ){ return; }
                         this._modalShadowStyle.display = 'none';
-                        Event.stopObserving(document,'transitionend',transitionEndFn);
-                        Event.stopObserving(document,'oTransitionEnd',transitionEndFn);
-                        Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
+                        if (transitionHandler) {
+                            Event.stopObserving(document,'transitionend',transitionHandler);
+                            Event.stopObserving(document,'oTransitionEnd',transitionHandler);
+                            Event.stopObserving(document,'webkitTransitionEnd',transitionHandler);
+                        }
                         clearInterval(dismissInterval);
                         dismissInterval = undefined;
                     }, this);
 
                 /* observe the native transitionend events */
-                Event.observe(document,'transitionend',transitionEndFn);
-                Event.observe(document,'oTransitionEnd',transitionEndFn);
-                Event.observe(document,'webkitTransitionEnd',transitionEndFn);
+                var transitionHandler =
+                    Event.observe(document,'transitionend',transitionEndFn) ||
+                    Event.observe(document,'oTransitionEnd',transitionEndFn) ||
+                    Event.observe(document,'webkitTransitionEnd',transitionEndFn);
 
                 /* in case the native transitionend is not available */
                 var dismisser = Ink.bind(function(){
-                    if( this._modalShadowStyle.opacity > 0 ){
-                        setTimeout(dismisser, 500);
+                    if( +Css.getStyle(this._modalShadow, 'opacity') > 0 ){
+                        dismissInterval = setTimeout(dismisser, 500);
                     } else {
                         transitionEndFn();
                     }
