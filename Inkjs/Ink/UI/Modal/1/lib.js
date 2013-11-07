@@ -3,8 +3,9 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
     'use strict';
+    /*jshint maxcomplexity: 5 */
 
     /**
      * @class Ink.UI.Modal
@@ -22,7 +23,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      *      @param {String}    [options.markup]            Markup to be placed in the Modal when created
      *      @param {Function}  [options.onShow]            Callback function to run when the Modal is opened.
      *      @param {Function}  [options.onDismiss]         Callback function to run when the Modal is closed. Return `false` to cancel dismissing the Modal.
-     *      @param {Boolean}   [options.closeOnClick]      Determines if the Modal should close when clicked outside of it. 'false' by default.
+     *      @param {Boolean}   [options.closeOnClick=false] Determines if the Modal should close when clicked outside of it.
+     *      @param {Boolean}   [options.closeOnEscape=true] Determines if the Modal should close when "Esc" key is pressed.
      *      @param {Boolean}   [options.responsive]        Determines if the Modal should behave responsively (adapt to smaller viewports).
      *      @param {Boolean}   [options.disableScroll]     Determines if the Modal should 'disable' the page's scroll (not the Modal's body).
      *
@@ -59,25 +61,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      *      </script>
      */
     var Modal = function(selector, options) {
-
-        if( (typeof selector !== 'string') && (typeof selector !== 'object') && (typeof options.markup === 'undefined') ){
-            throw 'Invalid Modal selector';
-        } else if(typeof selector === 'string'){
-            if( selector !== '' ){
-                this._element = Selector.select(selector);
-                if( this._element.length === 0 ){
-                    /**
-                     * From a developer's perspective this should be like it is...
-                     * ... from a user's perspective, if it doesn't find elements, should just ignore it, no?
-                     */
-                    throw 'The Modal selector has not returned any elements';
-                } else {
-                    this._element = this._element[0];
-                }
-            }
-        } else if( !!selector ){
-            this._element = selector;
-        }
+        this._element = Common.elOrSelector(selector);
 
         this._options = {
             /**
@@ -106,13 +90,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             onShow:       undefined,
             onDismiss:    undefined,
             closeOnClick: false,
+            closeOnEscape: true,
             responsive:    true,
             disableScroll: true
         };
 
 
         this._handlers = {
-            click:   Ink.bindEvent(this._onClick, this),
+            click:   Ink.bindEvent(this._onShadeClick, this),
             keyDown: Ink.bindEvent(this._onKeyDown, this),
             resize:  Ink.bindEvent(this._onResize, this)
         };
@@ -128,12 +113,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._markupMode = false;
         }
 
-
-
-
         if( !this._markupMode ){
-
-
             this._modalShadow      = document.createElement('div');
             this._modalShadowStyle = this._modalShadow.style;
 
@@ -165,7 +145,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             this._contentContainer = Selector.select(".modal-body",this._modalDiv);
             if( !this._contentContainer.length ){
-                throw 'Missing div with class "modal-body"';
+                throw new Error('Missing div with class "modal-body"');
             }
 
             this._contentContainer = this._contentContainer[0];
@@ -174,7 +154,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * First, will handle the least important: The dataset
              */
-            this._options = Ink.extendObj(this._options,Element.data(this._element));
+            this._options = Ink.extendObj(this._options,InkElement.data(this._element));
 
         }
 
@@ -188,7 +168,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
         if( typeof this._options.shadeClass === 'string' ){
-
             InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
                 Css.addClassName( this._modalShadow, item.trim() );
             }, this));
@@ -204,11 +183,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             var triggerElement,i;
             if( typeof this._options.trigger === 'string' ){
                 triggerElement = Selector.select( this._options.trigger );
-                if( triggerElement.length > 0 ){
-                    for( i=0; i<triggerElement.length; i++ ){
-                        Event.observe( triggerElement[i], this._options.triggerEvent, Ink.bindEvent(this.open, this) );
-                    }
-                }
+                Event.observeMulti(triggerElement, this._options.triggerEvent, Ink.bindEvent(this.open, this));
             }
         } else if ( this._options.autoDisplay.toString() === "true" ) {
             this.open();
@@ -224,11 +199,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-
             this._modalDivStyle.top = this._modalDivStyle.left = '50%';
 
-            this._modalDivStyle.marginTop = '-' + ( ~~( Element.elementHeight(this._modalDiv)/2) ) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( ~~( Element.elementWidth(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginTop = '-' + ( ~~( InkElement.elementHeight(this._modalDiv)/2) ) + 'px';
+            this._modalDivStyle.marginLeft = '-' + ( ~~( InkElement.elementWidth(this._modalDiv)/2) ) + 'px';
         },
 
         /**
@@ -239,10 +213,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( runNow ){
-
             if( typeof runNow === 'boolean' ){
                 this._timeoutResizeFunction.call(this);
-            } else if( !this._resizeTimeout && (typeof runNow === 'object') ){
+            } else if( !this._resizeTimeout && (runNow && typeof runNow === 'object') ){
                 this._resizeTimeout = setTimeout(Ink.bind(this._timeoutResizeFunction, this),250);
             }
         },
@@ -277,7 +250,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
             }
 
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= Element.elementHeight(this._modalDiv) ) ){
+            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= InkElement.elementHeight(this._modalDiv) ) ){
 
                 /**
                  * The viewport height has expanded
@@ -298,20 +271,20 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         /**
-         * Navigation click handler
+         * Handle clicks on the shade element.
          * 
-         * @method _onClick
+         * @method _onShadeClick
          * @param {Event} ev
          * @private
          */
-        _onClick: function(ev) {
+        _onShadeClick: function(ev) {
             var tgtEl = Event.element(ev);
 
             if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
-                Element.findUpwardsByClass(tgtEl, 'ink-close') || Element.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
+                InkElement.findUpwardsByClass(tgtEl, 'ink-close') || InkElement.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
-                    (!Element.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
+                    (!InkElement.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
                 )
             ) {
                 var 
@@ -319,7 +292,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     alertsLength = alertsInTheModal.length
                 ;
                 for( var i = 0; i < alertsLength; i++ ){
-                    if( Element.descendantOf(alertsInTheModal[i], tgtEl) ){
+                    if( InkElement.descendantOf(alertsInTheModal[i], tgtEl) ){
                         return;
                     }
                 }
@@ -338,7 +311,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            this.dismiss();
+            if (this._options.closeOnEscape.toString() === 'true') {
+                this.dismiss();
+            }
         },
 
         /**
@@ -351,23 +326,23 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         {
 
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
-            var containerHeight = Element.elementHeight(this._modalDiv);
+            var containerHeight = InkElement.elementHeight(this._modalDiv);
 
             this._modalHeader = Selector.select('.modal-header',this._modalDiv);
             if( this._modalHeader.length>0 ){
                 this._modalHeader = this._modalHeader[0];
-                containerHeight -= Element.elementHeight(this._modalHeader);
+                containerHeight -= InkElement.elementHeight(this._modalHeader);
             }
 
             this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
             if( this._modalFooter.length>0 ){
                 this._modalFooter = this._modalFooter[0];
-                containerHeight -= Element.elementHeight(this._modalFooter);
+                containerHeight -= InkElement.elementHeight(this._modalFooter);
             }
 
             this._contentContainer.style.height = containerHeight + 'px';
-            if( containerHeight !== Element.elementHeight(this._contentContainer) ){
-                this._contentContainer.style.height = ~~(containerHeight - (Element.elementHeight(this._contentContainer) - containerHeight)) + 'px';
+            if( containerHeight !== InkElement.elementHeight(this._contentContainer) ){
+                this._contentContainer.style.height = ~~(containerHeight - (InkElement.elementHeight(this._contentContainer) - containerHeight)) + 'px';
             }
 
             if( this._markupMode ){ return; }
@@ -383,19 +358,20 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @method _disableScroll
          * @private
          */
-        _disableScroll: function()
-        {
-            this._oldScrollPos = Element.scroll();
-            this._onScrollBinded = Ink.bindEvent(function(event) {
+        _disableScroll: function() {
+            this._oldScrollPos = InkElement.scroll();
+            var onScrollHandler = Ink.bindEvent(function(event) {
                 var tgtEl = Event.element(event);
 
-                if( !Element.descendantOf(this._modalShadow, tgtEl) ){
+                if( !InkElement.descendantOf(this._modalShadow, tgtEl) ){
                     Event.stop(event);
                     window.scrollTo(this._oldScrollPos[0], this._oldScrollPos[1]);
                 }
             },this);
-            Event.observe(window, 'scroll', this._onScrollBinded);
-            Event.observe(document, 'touchmove', this._onScrollBinded);
+            /* Sometimes event.observe will create a new callback for compat reasons,
+             * and use that instead, so we need to store both to stopobserving. */
+            this._onScrollHandler = Event.observe(window, 'scroll', onScrollHandler);
+            this._onTouchMoveHandler = Event.observe(document, 'touchmove', onScrollHandler);
         },
 
         /**************
@@ -417,10 +393,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
-            setTimeout(Ink.bind(function(){
-                Css.addClassName( this._modalShadow,'visible' );
-                Css.addClassName( this._modalDiv,'visible' );
-            }, this),100);
+            setTimeout(Ink.bind(function() {
+                Css.addClassName( this._modalShadow, 'visible' );
+                Css.addClassName( this._modalDiv, 'visible' );
+            }, this), 100);
 
             /**
              * Fallback to the old one
@@ -441,10 +417,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if( typeof this._options.width !== 'undefined' ){
                 this._modalDivStyle.width = this._options.width;
                 if( this._options.width.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxWidth = Element.elementWidth(this._modalDiv) + 'px';
+                    this._modalDivStyle.maxWidth = InkElement.elementWidth(this._modalDiv) + 'px';
                 }
             } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = Element.elementWidth(this._modalDiv)+'px';
+                this._modalDivStyle.maxWidth = this._modalDivStyle.width = InkElement.elementWidth(this._modalDiv)+'px';
             }
 
             if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
@@ -454,10 +430,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if( typeof this._options.height !== 'undefined' ){
                 this._modalDivStyle.height = this._options.height;
                 if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = Element.elementHeight(this._modalDiv) + 'px';
+                    this._modalDivStyle.maxHeight = InkElement.elementHeight(this._modalDiv) + 'px';
                 }
             } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = Element.elementHeight(this._modalDiv) + 'px';
+                this._modalDivStyle.maxHeight = this._modalDivStyle.height = InkElement.elementHeight(this._modalDiv) + 'px';
             }
 
             if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
@@ -474,7 +450,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * Let's 'resize' it:
              */
-            if(this._options.responsive) {
+            if(this._options.responsive.toString() === 'true') {
                 this._onResize(true);
                 Event.observe( window,'resize',this._handlers.resize );
             } else {
@@ -486,13 +462,15 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 this._options.onShow(this);
             }
 
-            if(this._options.disableScroll) {
+            if(this._options.disableScroll.toString === 'true') {
                 this._disableScroll();
             }
 
             // subscribe events
-            Event.observe(this._shadeElement, 'click',   this._handlers.click);
-            Event.observe(document,           'keydown', this._handlers.keyDown);
+            Event.observe(this._shadeElement, 'click', this._handlers.click);
+            if (this._options.closeOnEscape.toString === 'true') {
+                Event.observe(document, 'keydown', this._handlers.keyDown);
+            }
 
             Common.registerInstance(this, this._shadeElement, 'modal');
 
@@ -514,8 +492,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._wasDismissed = true;
 
             if(this._options.disableScroll) {
-                Event.stopObserving(window, 'scroll', this._onScrollBinded);
-                Event.stopObserving(document, 'touchmove', this._onScrollBinded);
+                Event.stopObserving(window, 'scroll', this._onScrollHandler);
+                Event.stopObserving(document, 'touchmove', this._onTouchMoveHandler);
             }
 
             if( this._options.responsive ){
@@ -531,8 +509,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalDiv, 'visible' );
                 Css.removeClassName( this._modalShadow, 'visible' );
 
-                var
-                    dismissInterval,
+                var dismissInterval,
                     transitionEndFn = Ink.bindEvent(function(){
                         if( !dismissInterval ){ return; }
                         this._modalShadowStyle.display = 'none';
@@ -541,25 +518,22 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                         Event.stopObserving(document,'webkitTransitionEnd',transitionEndFn);
                         clearInterval(dismissInterval);
                         dismissInterval = undefined;
-                    }, this)
-                ;
+                    }, this);
 
+                /* observe the native transitionend events */
                 Event.observe(document,'transitionend',transitionEndFn);
                 Event.observe(document,'oTransitionEnd',transitionEndFn);
                 Event.observe(document,'webkitTransitionEnd',transitionEndFn);
 
-                if( !dismissInterval ){
-                    dismissInterval = setInterval(Ink.bind(function(){
-                        if( this._modalShadowStyle.opacity > 0 ){
-                            return;
-                        } else {
-                            this._modalShadowStyle.display = 'none';
-                            clearInterval(dismissInterval);
-                            dismissInterval = undefined;
-                        }
-
-                    }, this),500);
-                }
+                /* in case the native transitionend is not available */
+                var dismisser = Ink.bind(function(){
+                    if( this._modalShadowStyle.opacity > 0 ){
+                        setTimeout(dismisser, 500);
+                    } else {
+                        transitionEndFn();
+                    }
+                }, this);
+                dismisser();
             }
         },
 
@@ -571,7 +545,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         destroy: function() {
             Common.unregisterInstance(this._instanceId);
-
         },
 
         /**
@@ -601,23 +574,26 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     var tempHeader = Selector.select(".modal-header",this._modalDiv);
                     var tempFooter = Selector.select(".modal-footer",this._modalDiv);
 
-                    InkArray.each(tempHeader,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
-                    InkArray.each(tempFooter,Ink.bind(function( element ){ element.parentNode.removeChild(element); },this));
+                    InkArray.each(tempHeader, InkElement.remove);
+                    InkArray.each(tempFooter, InkElement.remove);
 
                     var body = document.createElement('div');
                     Css.addClassName(body,'modal-body');
                     body.innerHTML = this._modalDiv.innerHTML;
                     this._modalDiv.innerHTML = '';
 
-                    InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    this._modalDiv.appendChild(body);
-                    InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
-                    
+                    var toAdd = tempHeader.concat([body]).concat(tempFooter);
+                    InkArray.each(toAdd, Ink.bindMethod(this._modalDiv, 'appendChild'));
+
+                    // InkArray.each(tempHeader,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+                    // this._modalDiv.appendChild(body);
+                    // InkArray.each(tempFooter,Ink.bind(function( element ){ this._modalDiv.appendChild(element); },this));
+
                     this._contentContainer = Selector.select(".modal-body",this._modalDiv);
                 }
                 this._contentContainer = this._contentContainer[0];
             } else {
-                this._contentContainer.innerHTML = [contentMarkup].join('');
+                this._contentContainer.innerHTML = contentMarkup;
             }
             this._contentElement = this._modalDiv;
             this._resizeContainer();
