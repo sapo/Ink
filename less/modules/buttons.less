@@ -17,7 +17,7 @@
     #ink > #buttons > .standard (@btn-bg , #333, @white, true);
 
     &[disabled], 
-    &.ink-disabled {
+    &.disabled {
         #ink > #states > .disabled (@btn-bg);
         filter: none;
     }
@@ -25,7 +25,7 @@
     &.orange {
         #ink > #buttons > .standard (@orange,@white,darken(@orange,25%));
         &[disabled], 
-        &.ink-disabled {
+        &.disabled {
             #ink > #states > .disabled (@orange);
             #ink > #shadows > .no-text-shadow ();
             filter: none;
@@ -35,7 +35,7 @@
     &.red {
         #ink > #buttons > .standard (@red,@white,darken(@red,25%));
         &[disabled], 
-        &.ink-disabled {
+        &.disabled {
             #ink > #states > .disabled (@red);
             #ink > #shadows > .no-text-shadow ();
             filter: none;
@@ -45,7 +45,7 @@
     &.green {
         #ink > #buttons > .standard (@green,@white,darken(@green,25%));
         &[disabled], 
-        &.ink-disabled {
+        &.disabled {
             #ink > #states > .disabled (@green);
             #ink > #shadows > .no-text-shadow ();
             filter: none;
@@ -55,7 +55,7 @@
     &.blue {
         #ink > #buttons > .standard (@blue,@white,darken(@blue,25%));
         &[disabled], 
-        &.ink-disabled {
+        &.disabled {
             #ink > #states > .disabled (@blue);
             #ink > #shadows > .no-text-shadow ();
             filter: none;
