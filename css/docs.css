@@ -124,6 +124,7 @@ h2 span {
   background-color: #FFF;
   padding: 1em;
   margin-top: 1em;
+  *overflow: hidden;
 }
 mark {
   font-family: Ubuntu_monospaced, Monaco, 'Andale Mono', 'Courier New', monospace;
