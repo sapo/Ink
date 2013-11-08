@@ -4,6 +4,7 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
+    /* jshint maxcomplexity:10 */
     'use strict';
     /**
      * @class Ink.UI.Modal
@@ -322,9 +323,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @method _resizeContainer
          * @private
          */
-        _resizeContainer: function()
-        {
-
+        _resizeContainer: function() {
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
@@ -432,16 +431,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this.originalStatus = {
-                viewportHeight:     parseInt(elem.clientHeight,10),
-                viewportWidth:      parseInt(elem.clientWidth,10),
-                width:              parseInt(this._modalDivStyle.maxWidth,10),
-                height:             parseInt(this._modalDivStyle.maxHeight,10)
+                viewportHeight:     InkElement.elementHeight(elem),
+                viewportWidth:      InkElement.elementWidth(elem),
+                height:             InkElement.elementHeight(this._modalDiv),
+                width:              InkElement.elementWidth(this._modalDiv)
             };
 
             /**
              * Let's 'resize' it:
              */
-            if(this._options.responsive.toString() === 'true') {
+            if( this._options.responsive.toString() === 'true' ) {
                 this._onResize(true);
                 Event.observe( window,'resize',this._handlers.resize );
             } else {
@@ -501,16 +500,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalDiv, 'visible' );
                 Css.removeClassName( this._modalShadow, 'visible' );
 
-                var dismissInterval,
-                    transitionEndFn = Ink.bindEvent(function(){
+                var dismissInterval;
+                var transitionEndFn = Ink.bind(function(){
                         if( !dismissInterval ){ return; }
                         this._modalShadowStyle.display = 'none';
                         if (transitionHandler) {
-                            Event.stopObserving(document,'transitionend',transitionHandler);
-                            Event.stopObserving(document,'oTransitionEnd',transitionHandler);
-                            Event.stopObserving(document,'webkitTransitionEnd',transitionHandler);
+                            Event.stopObserving(document,
+                                'transitionend',transitionHandler);
+                            Event.stopObserving(document,
+                                'oTransitionEnd',transitionHandler);
+                            Event.stopObserving(document,
+                                'webkitTransitionEnd',transitionHandler);
                         }
-                        clearInterval(dismissInterval);
+                        clearTimeout(dismissInterval);
                         dismissInterval = undefined;
                     }, this);
 
@@ -528,7 +530,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                         transitionEndFn();
                     }
                 }, this);
-                dismisser();
+                dismissInterval = setTimeout(dismisser, 500);
             }
         },
 
