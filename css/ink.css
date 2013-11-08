@@ -6073,13 +6073,14 @@ a .icon-flip-vertical:before {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25) inset;
 }
 .ink-button[disabled],
-.ink-button .ink-disabled {
+.ink-button.disabled {
   background: #eeeeee;
   box-shadow: none;
   border: none;
+  filter: none;
 }
 .ink-button[disabled]:hover,
-.ink-button .ink-disabled:hover {
+.ink-button.disabled:hover {
   background: #eeeeee;
   cursor: not-allowed;
 }
@@ -6135,14 +6136,15 @@ a .icon-flip-vertical:before {
   background: #cc7d00;
 }
 .ink-button.orange[disabled],
-.ink-button.orange .ink-disabled {
+.ink-button.orange.disabled {
   background: #dfc69f;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.orange[disabled]:hover,
-.ink-button.orange .ink-disabled:hover {
+.ink-button.orange.disabled:hover {
   background: #dfc69f;
   cursor: not-allowed;
 }
@@ -6198,14 +6200,15 @@ a .icon-flip-vertical:before {
   background: #9a0d0d;
 }
 .ink-button.red[disabled],
-.ink-button.red .ink-disabled {
+.ink-button.red.disabled {
   background: #c99090;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.red[disabled]:hover,
-.ink-button.red .ink-disabled:hover {
+.ink-button.red.disabled:hover {
   background: #c99090;
   cursor: not-allowed;
 }
@@ -6261,14 +6264,15 @@ a .icon-flip-vertical:before {
   background: #356f10;
 }
 .ink-button.green[disabled],
-.ink-button.green .ink-disabled {
+.ink-button.green.disabled {
   background: #93b180;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.green[disabled]:hover,
-.ink-button.green .ink-disabled:hover {
+.ink-button.green.disabled:hover {
   background: #93b180;
   cursor: not-allowed;
 }
@@ -6324,14 +6328,15 @@ a .icon-flip-vertical:before {
   background: #0c5baa;
 }
 .ink-button.blue[disabled],
-.ink-button.blue .ink-disabled {
+.ink-button.blue.disabled {
   background: #98b4d0;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.blue[disabled]:hover,
-.ink-button.blue .ink-disabled:hover {
+.ink-button.blue.disabled:hover {
   background: #98b4d0;
   cursor: not-allowed;
 }
