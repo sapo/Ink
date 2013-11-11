@@ -104,7 +104,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *     InkEvent.observe(window, 'scroll', handler);
      *     InkEvent.observe(window, 'resize', handler);
      *
-     *     // on resize, both the "scroll" and the "resize" events are triggered
+     *     // on resize, both the 'scroll' and the 'resize' events are triggered
      *     // a LOT of times. This prevents both of them being called a lot of
      *     // times when the window is being resized by a user.
      *
@@ -222,9 +222,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         }
 
         if (document.createEvent) {
-            ev = document.createEvent("HTMLEvents");
+            ev = document.createEvent('HTMLEvents');
             if(!isNative(eventName)) {
-                ev.initEvent("dataavailable", true, true);
+                ev.initEvent('dataavailable', true, true);
             } else {
                 ev.initEvent(eventName, true, true);
             }
@@ -232,9 +232,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         } else {
             ev = document.createEventObject();
             if (!isNative('on' + eventName)) {
-                ev.eventType = "ondataavailable";
+                ev.eventType = 'ondataavailable';
             } else {
-                ev.eventType = "on"+eventName;
+                ev.eventType = 'on'+eventName;
             }
         }
 
@@ -259,7 +259,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     }),
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
+        var isHashChangeInIE = eventName === 'hashchange' && element.attachEvent && !('onhashchange' in window);
         var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
@@ -434,7 +434,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     /**
      * Subscribe to both click and touch events.
      *
-     * Like just subscribing to "click", but without the 300ms delay mobile browsers put in.
+     * Like just subscribing to 'click', but without the 300ms delay mobile browsers put in.
      *
      * @method pointerTap
      * @param element  {DOMElement|String}
