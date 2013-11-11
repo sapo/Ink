@@ -59,6 +59,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      *          });
      *      </script>
      */
+
+    function upName(dimension) {
+        return dimension[0].toUpperCase() + dimension.replace(/^./, '');
+    }
+    function maxName(dimension) {
+        return 'max' + upName(dimension);
+    }
+
     var Modal = function(selector, options) {
         if (!selector) {
             this._element = null;
@@ -131,8 +139,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
              * Not in full markup mode, let's set the classes and css configurations
              */
             Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal' );
-            Css.addClassName( this._modalDiv,'ink-space' );
+            Css.addClassName( this._modalDiv,'ink-modal ink-space' );
 
             /**
              * Applying the main css styles
@@ -146,12 +153,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._modalShadow      = this._modalDiv.parentNode;
             this._modalShadowStyle = this._modalShadow.style;
 
-            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-            if( !this._contentContainer.length ){
-                throw new Error('Missing div with class "modal-body"');
+            this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
+            if( !this._contentContainer){
+                throw new Error('Ink.UI.Modal: Missing div with class "modal-body"');
             }
 
-            this._contentContainer = this._contentContainer[0];
             this._options.markup = this._contentContainer.innerHTML;
 
             /**
@@ -171,15 +177,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
         if( typeof this._options.shadeClass === 'string' ){
-            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalShadow, item.trim() );
-            }, this));
+            Css.addClassName(this._modalShadow, this._options.shadeClass);
         }
 
         if( typeof this._options.modalClass === 'string' ){
-            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalDiv, item.trim() );
-            }, this));
+            Css.addClassName(this._modalDiv, this._options.modalClass);
         }
 
         if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
@@ -235,19 +237,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 width: ('' + this._options.width).indexOf('%') !== -1,
                 height: ('' + this._options.height).indexOf('%') !== -1
             };
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
             var currentViewport = {
-                height: parseInt(elem.clientHeight,10),
-                width: parseInt(elem.clientWidth,10)
+                height: InkElement.viewportHeight(),
+                width: InkElement.viewportWidth()
             };
 
             InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
-                var maxDimension = 'max' + dimension[0].toUpperCase() + dimension.replace(/^./, '');
+                // Not used for percentage measurements
                 if (isPercentage[dimension]) { return; }
+
                 if (currentViewport[dimension] > this.originalStatus[dimension]) {
-                    this._modalDivStyle[dimension] = this._modalDivStyle[maxDimension];
+                    this._modalDivStyle[dimension] = this._modalDivStyle[maxName(dimension)];
                 } else {
-                    this._modalDivStyle[dimension] = (~~( currentViewport[dimension] * 0.9)) + 'px';
+                    this._modalDivStyle[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
                 }
             }, this));
 
@@ -267,16 +269,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             var tgtEl = Event.element(ev);
 
             if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
-                InkElement.findUpwardsByClass(tgtEl, 'ink-close') || InkElement.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
+                InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
                     (!InkElement.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
                 )
             ) {
-                var 
-                    alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
-                    alertsLength = alertsInTheModal.length
-                ;
+                var alertsInTheModal = Selector.select('.ink-alert', this._shadeElement),
+                    alertsLength = alertsInTheModal.length;
                 for( var i = 0; i < alertsLength; i++ ){
                     if( InkElement.descendantOf(alertsInTheModal[i], tgtEl) ){
                         return;
@@ -395,35 +395,21 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 height: ('' + this._options.height).indexOf('%') !== -1
             };
 
-            // var measurements = ['width', 'height'];
-
-            //InkArray.each(measurements, function () {})
-            if( typeof this._options.width !== 'undefined' ){
-                this._modalDivStyle.width = this._options.width;
-                if( !isPercentage.width ){
-                    this._modalDivStyle.maxWidth = InkElement.elementWidth(this._modalDiv) + 'px';
+            InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
+                if (this._options[dimension] !== undefined) {
+                    this._modalDivStyle[dimension] = this._options[dimension];
+                    if (!isPercentage[dimension]) {
+                        this._modalDivStyle[maxName(dimension)] =
+                            InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
+                    }
+                } else {
+                    this._modalDivStyle[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
                 }
-            } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = InkElement.elementWidth(this._modalDiv)+'px';
-            }
 
-            if( isPercentage.width && parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
-                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
-            }
-
-            if( typeof this._options.height !== 'undefined' ){
-                this._modalDivStyle.height = this._options.height;
-                if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = InkElement.elementHeight(this._modalDiv) + 'px';
+                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDivStyle[dimension], 10) ) {
+                    this._modalDivStyle[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
                 }
-            } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = InkElement.elementHeight(this._modalDiv) + 'px';
-            }
-
-
-            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
-                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
-            }
+            }, this));
 
             this.originalStatus = {
                 viewportHeight:     InkElement.elementHeight(elem),
