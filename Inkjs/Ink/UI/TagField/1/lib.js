@@ -89,6 +89,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
             InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
             InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
+            InkEvent.observe(this._input, 'blur', Ink.bindEvent(this._onBlur, this));
             InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
         },
 
@@ -196,6 +197,11 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                     this._unsetRemovingVisual(this._tags.length - 1);
                 }
             }
+        },
+
+        _onBlur: function (event) {
+            this._addTag(this._input.value);
+            this._input.value = '';
         },
 
         /* For when the user presses backspace.
