@@ -231,40 +231,24 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * Getting the current viewport size
              */
-            var
-                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
-                currentViewportHeight = parseInt(elem.clientHeight,10),
-                currentViewportWidth = parseInt(elem.clientWidth,10)
-            ;
+            var isPercentage = {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
+            };
+            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+            var currentViewport = {
+                height: parseInt(elem.clientHeight,10),
+                width: parseInt(elem.clientWidth,10)
+            };
 
-            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
-                /**
-                 * The viewport width has expanded
-                 */
-                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
-
-            } else {
-                /**
-                 * The viewport width has not changed or reduced
-                 */
-                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
-                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
-            }
-
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= InkElement.elementHeight(this._modalDiv) ) ){
-
-                /**
-                 * The viewport height has expanded
-                 */
-                //this._modalDivStyle.maxHeight =
-                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
-
-            } else {
-                /**
-                 * The viewport height has not changed, or reduced
-                 */
-                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
-            }
+            InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
+                var maxDimension = 'max' + dimension[0].toUpperCase() + dimension.replace(/^./, '');
+                if (currentViewport[dimension] > this.originalStatus[dimension]) {
+                    this._modalDivStyle[dimension] = this._modalDivStyle[maxDimension];
+                } else {
+                    this._modalDivStyle[dimension] = (~~( currentViewport[dimension] * 0.9)) + 'px';
+                }
+            }, this));
 
             this._resizeContainer();
             this._reposition();
@@ -404,16 +388,25 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * If any size has been user-defined, let's set them as max-width and max-height
              */
+
+            var isPercentage = {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
+            };
+
+            // var measurements = ['width', 'height'];
+
+            //InkArray.each(measurements, function () {})
             if( typeof this._options.width !== 'undefined' ){
                 this._modalDivStyle.width = this._options.width;
-                if( this._options.width.indexOf('%') === -1 ){
+                if( !isPercentage.width ){
                     this._modalDivStyle.maxWidth = InkElement.elementWidth(this._modalDiv) + 'px';
                 }
             } else {
                 this._modalDivStyle.maxWidth = this._modalDivStyle.width = InkElement.elementWidth(this._modalDiv)+'px';
             }
 
-            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
+            if( isPercentage.width && parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
                 this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
             }
 
@@ -425,6 +418,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             } else {
                 this._modalDivStyle.maxHeight = this._modalDivStyle.height = InkElement.elementHeight(this._modalDiv) + 'px';
             }
+
 
             if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
                 this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
