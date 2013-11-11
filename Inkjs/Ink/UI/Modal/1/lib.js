@@ -243,6 +243,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
                 var maxDimension = 'max' + dimension[0].toUpperCase() + dimension.replace(/^./, '');
+                if (isPercentage[dimension]) { return; }
                 if (currentViewport[dimension] > this.originalStatus[dimension]) {
                     this._modalDivStyle[dimension] = this._modalDivStyle[maxDimension];
                 } else {
