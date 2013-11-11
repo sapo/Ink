@@ -63,7 +63,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         if (!selector) {
             this._element = null;
         } else {
-            this._element = Common.elOrSelector(selector);
+            this._element = Common.elOrSelector(selector, 'Ink.UI.Modal markup');
         }
 
         this._options = {
@@ -458,7 +458,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             // subscribe events
             Event.observe(this._shadeElement, 'click', this._handlers.click);
-            if (this._options.closeOnEscape.toString === 'true') {
+            if (this._options.closeOnEscape.toString() === 'true') {
                 Event.observe(document, 'keydown', this._handlers.keyDown);
             }
 
