@@ -452,7 +452,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         dismiss: function() {
-            if (!Css.hasClassName(this._modalDiv, 'visible')) { /* Already dismissed. WTF IE. */ return; }
+            if (this._wasDismissed) { /* Already dismissed. WTF IE. */ return; }
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
