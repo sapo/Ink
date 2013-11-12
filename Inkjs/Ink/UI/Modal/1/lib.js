@@ -4,7 +4,6 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
-    /* jshint maxcomplexity:10 */
     'use strict';
     /**
      * @class Ink.UI.Modal
@@ -204,8 +203,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDivStyle.marginTop = '-' + ( InkElement.elementHeight(this._modalDiv)/2) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            this._modalDivStyle.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            this._modalDivStyle.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
         },
 
         /**
@@ -312,15 +311,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
-            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
-            if( this._modalHeader.length>0 ){
-                this._modalHeader = this._modalHeader[0];
+            this._modalHeader = Selector.select('.modal-header',this._modalDiv)[0];
+            if( this._modalHeader ){
                 containerHeight -= InkElement.elementHeight(this._modalHeader);
             }
 
-            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
-            if( this._modalFooter.length>0 ){
-                this._modalFooter = this._modalFooter[0];
+            this._modalFooter = Selector.select('.modal-footer',this._modalDiv)[0];
+            if( this._modalFooter ){
                 containerHeight -= InkElement.elementHeight(this._modalFooter);
             }
 
@@ -455,6 +452,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         dismiss: function() {
+            if (!Css.hasClassName(this._modalDiv, 'visible')) { /* Already dismissed. WTF IE. */ return; }
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
@@ -481,21 +479,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalDiv, 'visible' );
                 Css.removeClassName( this._modalShadow, 'visible' );
 
-                var dismissInterval;
                 var transitionEndFn = Ink.bind(function(){
-                        if( !dismissInterval ){ return; }
-                        this._modalShadowStyle.display = 'none';
-                        if (transitionHandler) {
-                            Event.stopObserving(document,
-                                'transitionend',transitionHandler);
-                            Event.stopObserving(document,
-                                'oTransitionEnd',transitionHandler);
-                            Event.stopObserving(document,
-                                'webkitTransitionEnd',transitionHandler);
-                        }
-                        clearTimeout(dismissInterval);
-                        dismissInterval = undefined;
-                    }, this);
+                    this._modalShadowStyle.display = 'none';
+                    if (transitionHandler) {
+                        Event.stopObserving(document,
+                            'transitionend',transitionHandler);
+                        Event.stopObserving(document,
+                            'oTransitionEnd',transitionHandler);
+                        Event.stopObserving(document,
+                            'webkitTransitionEnd',transitionHandler);
+                    }
+                }, this);
 
                 /* observe the native transitionend events */
                 var transitionHandler =
@@ -504,6 +498,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     Event.observe(document,'webkitTransitionEnd',transitionEndFn);
 
                 /* in case the native transitionend is not available */
+                var dismissInterval;
                 var dismisser = Ink.bind(function(){
                     if( +Css.getStyle(this._modalShadow, 'opacity') > 0 ){
                         dismissInterval = setTimeout(dismisser, 500);
@@ -511,7 +506,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                         transitionEndFn();
                     }
                 }, this);
-                dismissInterval = setTimeout(dismisser, 500);
+                dismisser();
             }
         },
 
