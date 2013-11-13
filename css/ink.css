@@ -6453,6 +6453,9 @@ table.ink-table.bordered tr td:first-child {
 .sapo_component_datepicker li {
   list-style: none inside;
 }
+html.ink-modal-is-open .sapo_component_datepicker {
+  z-index: 101;
+}
 .sapo_cal_top_options {
   padding: 5px;
   font-size: .813em;

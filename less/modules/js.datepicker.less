@@ -16,7 +16,11 @@
     li {
         list-style: none inside;
     }
+}
 
+// When a modal is open...
+html.ink-modal-is-open .sapo_component_datepicker {
+    z-index: @layer-100 + 1;  // 1 plus the z-index of a modal
 }
 
 .sapo_cal_top_options {
