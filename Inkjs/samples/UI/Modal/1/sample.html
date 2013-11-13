@@ -69,7 +69,7 @@
                 </p>
 
                 <div class="ink-shade fade">
-                    <div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%">
+                    <div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%" data-auto-display="">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
                             <h5>This Modal is dislayed as soon as the page is fully available</h5>
@@ -246,6 +246,60 @@
             </section>
 
 
+            <section>
+                <h1>Stuff you can put in your modal</h1>
+
+            	<p>
+                    <button id="openModalWithStuffs">Open Modal</button>
+                    <pre class="prettyprint linenums">
+                    </pre>
+                </p>
+
+                <div class="ink-shade fade">
+                    <div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger-use-this="#openModalWithStuffs">
+                        <div class="modal-header">
+                            <button class="modal-close ink-dismiss"></button>
+                            <h5>This Modal is dislayed as soon as the page is fully available</h5>
+                        </div>
+                        <div class="modal-body">
+                            <h1>A tooltip</h1>
+
+                            <span class="ink-tooltip" data-tip-text="A tooltip!!!!1">A tooltip!</span>
+
+                            <hr>
+
+                            <h1>A video</h1>
+                            <iframe src="http://rd3.videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/hhl0qEyhOad0aNrZYGvQ/mov/1&quality=sd" frameborder="0" scrolling="no" width="640" height="360"></iframe>
+                            <hr>
+
+                            <h1>A datepicker</h1>
+
+                            <input class="ink-datepicker" type="text">
+
+                            <hr>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="push-right">
+                                <button class="ink-button info">Confirm</button>
+                                <button class="ink-button caution ink-dismiss">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    Ink.requireModules(['Ink.UI.Modal_1', 'Ink.UI.DatePicker_1', 'Ink.UI.Tooltip_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1'], function (Modal, DatePicker, Tooltip, Selector, InkArray) {
+                        new Modal('#modalWithStuff');
+                        InkArray.forEach(Selector.select('.ink-tooltip'), function (el) {
+                            new Tooltip(el);
+                        });
+                        InkArray.forEach(Selector.select('.ink-datepicker'), function (el) {
+                            new DatePicker(el);
+                        });
+                    });
+                </script>
+
+            </section>
         </div>
     </body>
 </html>
