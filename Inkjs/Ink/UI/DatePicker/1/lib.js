@@ -4,7 +4,8 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
-    'use strict';    
+    /* jshint maxcomplexity: 7 */
+    'use strict';
 
     /**
      * @class Ink.UI.DatePicker
@@ -297,18 +298,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
 
-                    var top,
-                        left;
+                    var top;
+                    var left;
 
+                    var rect = this._dataField.getBoundingClientRect();
                     if ( this._options.position === 'bottom' ) {
-                        top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        left = Element.offset(this._dataField)[0] +'px';
+                        top = rect.bottom;
+                        left = rect.left;
                     } else {
-                        top = Element.offset(this._dataField)[1] +'px';
-                        left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
+                        top = rect.top;
+                        left = rect.right;
                     }
-                    this._containerObject.style.top = top;
-                    this._containerObject.style.left = left;
+                    top += Element.scrollHeight();
+                    left += Element.scrollWidth();
+
+                    this._containerObject.style.top = top + 'px';
+                    this._containerObject.style.left = left + 'px';
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
                     this._showMonth();
@@ -368,18 +373,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if (this._options.shy) {
                 Event.observe(document,'click',Ink.bindEvent(function(e){
-                    if (e.target === undefined) {   e.target = e.srcElement;    }
-                    if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
+                    var target = e.target || e.srcElement;
+
+                    if (!Element.descendantOf(this._containerObject, target) && target !== this._dataField) {
                         if (!this._picker) {
                             this._hide(true);
                         }
-                        else if (e.target !== this._picker &&
+                        else if (target !== this._picker &&
                                  (!this._options.displayInSelect ||
-                                  (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
+                                  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
                             if (!this._options.dayField ||
-                                    (!Element.descendantOf(this._options.dayField,   e.target) &&
-                                     !Element.descendantOf(this._options.monthField, e.target) &&
-                                     !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
+                                    (!Element.descendantOf(this._options.dayField,   target) &&
+                                     !Element.descendantOf(this._options.monthField, target) &&
+                                     !Element.descendantOf(this._options.yearField,  target)      ) ) {
                                 this._hide(true);
                             }
                         }
