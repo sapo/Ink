@@ -211,10 +211,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method fire
      * @param {DOMElement|String}  element       element id or element
      * @param {String}             eventName     event name
-     * @param {Object}             [memo]        metadata for the event
-     * @param {Boolean}            [_memoExtend] have the memo argument extend the event properties. Used for testing.
+     * @param {Object}             [eventData]        metadata for the event
+     * @param {Boolean}            [_extendEventData] have the eventData argument extend the event properties. Used for testing.
      */
-    fire: i(function(element, eventName, memo, _memoExtend) {
+    fire: i(function(element, eventName, eventData, _extendEventData) {
         var ev;
 
         if (element === document && document.createEvent && !element.dispatchEvent) {
@@ -239,10 +239,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         }
 
         ev.eventName = eventName;
-        if (!_memoExtend) {
-            ev.memo = memo || { };
+        if (!_extendEventData) {
+            ev.eventData = eventData || { };
         } else {
-            Ink.extendObj(ev, memo);
+            Ink.extendObj(ev, eventData);
         }
 
         try {
