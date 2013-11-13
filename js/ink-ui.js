@@ -780,6 +780,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return 'max' + upName(dimension);
     }
 
+    var openModals = 0;
+
     var Modal = function(selector, options) {
         if (!selector) {
             this._element = null;
@@ -1157,6 +1159,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
+            openModals += 1;
+
+            Css.addClassName(document.documentElement, 'ink-modal-is-open');
         },
 
         /**
@@ -1173,12 +1178,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this._wasDismissed = true;
-
-            if(this._options.disableScroll) {
-                var htmlEl = document.documentElement;
-                htmlEl.style.overflowX = this._oldHtmlOverflows[0];
-                htmlEl.style.overflowY = this._oldHtmlOverflows[1];
-            }
 
             if( this._options.responsive ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
@@ -1221,6 +1220,21 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }, this);
                 dismisser();
+            }
+
+            openModals -= 1;
+
+            if (openModals === 0) {  // Document level stuff now there are no modals in play.
+                var htmlEl = document.documentElement;
+
+                // Reenable scroll
+                if(this._options.disableScroll) {
+                    htmlEl.style.overflowX = this._oldHtmlOverflows[0];
+                    htmlEl.style.overflowY = this._oldHtmlOverflows[1];
+                }
+
+                // Remove the class from the HTML element.
+                Css.removeClassName(htmlEl, 'ink-modal-is-open');
             }
         },
 
@@ -6866,7 +6880,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @version 1
  */
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
-    'use strict';    
+    /* jshint maxcomplexity: 7 */
+    'use strict';
 
     /**
      * @class Ink.UI.DatePicker
@@ -6916,32 +6931,32 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
         }
 
-        this._options = Ink.extendObj({
-            autoOpen:        false,
-            cleanText:       'Clear',
-            closeText:       'Close',
-            containerElement: false,
-            cssClass:        'sapo_component_datepicker',
-            dateRange:       false,
-            displayInSelect: false,
-            format:          'yyyy-mm-dd',
-            instance:        'scdp_' + Math.round(99999*Math.random()),
-            nextLinkText:    '»',
-            ofText:          '&nbsp;de&nbsp;',
-            onFocus:         true,
-            onMonthSelected: undefined,
-            onSetDate:       false,
-            onYearSelected:  undefined,
-            position:        'right',
-            prevLinkText:    '«',
-            showClean:       true,
-            showClose:       true,
-            shy:             true,
-            startDate:       false, // format yyyy-mm-dd
-            startWeekDay:    1,
-            validDayFn:      undefined,
-            yearRange:       false,
-            month: {
+        this._options = Common.options('Ink.UI.DatePicker_1', {
+            autoOpen:        ['Boolean', false],
+            cleanText:       ['String', 'Clear'],
+            closeText:       ['String', 'Close'],
+            containerElement:['Element', null],
+            cssClass:        ['String', 'sapo_component_datepicker'],
+            dateRange:       ['String', null],
+            displayInSelect: ['String', null],
+            format:          ['String', 'yyyy-mm-dd'],
+            instance:        ['String', 'scdp_' + Math.round(99999*Math.random())],
+            nextLinkText:    ['String', '»'],
+            ofText:          ['String', '&nbsp;de&nbsp;'],
+            onFocus:         ['Boolean', true],
+            onMonthSelected: ['Function', null],
+            onSetDate:       ['Function', null],
+            onYearSelected:  ['Function', null],
+            position:        ['String', 'right'],
+            prevLinkText:    ['String', '«'],
+            showClean:       ['Boolean', true],
+            showClose:       ['Boolean', true],
+            shy:             ['Boolean', true],
+            startDate:       ['String', null], // format yyyy-mm-dd,
+            startWeekDay:    ['Number', 1],
+            validDayFn:      ['Function', null],
+            yearRange:       ['String', null],
+            month: ['Object', {
                  1:'January',
                  2:'February',
                  3:'March',
@@ -6954,8 +6969,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 10:'October',
                 11:'November',
                 12:'December'
-            },
-            wDay: {
+            }],
+            wDay: ['Object', {
                 0:'Sunday',
                 1:'Monday',
                 2:'Tuesday',
@@ -6963,8 +6978,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 4:'Thursday',
                 5:'Friday',
                 6:'Saturday'
-            }
-        }, options || {}, Element.data(this._dataField));
+            }]
+        }, options || {}, this._dataField);
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -7126,11 +7141,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(this._options.containerElement) {
                 var container = Ink.i(this._options.containerElement);
                 if (!container) {
-                    throw new Error('[Ink.UI.DatePicker_1]: Container element should be a DOM Element or an ID, got ' + container);
+                    container = Common.elOrSelector(this._options.containerElement);  // small backwards compatibility thing
                 }
                 container.appendChild(this._containerObject);
             } else {
-                dom.insertBefore(this._containerObject, dom.childNodes[0]);
+                // We can't do this because of some CSS rules in Ink
+                // dom.insertBefore(this._containerObject, dom.childNodes[0]);
+                dom.appendChild(this._containerObject);
             }
 
             this._showMonth();
@@ -7159,18 +7176,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
 
-                    var top,
-                        left;
+                    var top;
+                    var left;
 
+                    var rect = this._dataField.getBoundingClientRect();
                     if ( this._options.position === 'bottom' ) {
-                        top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        left = Element.offset(this._dataField)[0] +'px';
+                        top = rect.bottom;
+                        left = rect.left;
                     } else {
-                        top = Element.offset(this._dataField)[1] +'px';
-                        left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
+                        top = rect.top;
+                        left = rect.right;
                     }
-                    this._containerObject.style.top = top;
-                    this._containerObject.style.left = left;
+                    top += Element.scrollHeight();
+                    left += Element.scrollWidth();
+
+                    this._containerObject.style.top = top + 'px';
+                    this._containerObject.style.left = left + 'px';
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
                     this._showMonth();
@@ -7230,18 +7251,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if (this._options.shy) {
                 Event.observe(document,'click',Ink.bindEvent(function(e){
-                    if (e.target === undefined) {   e.target = e.srcElement;    }
-                    if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
+                    var target = e.target || e.srcElement;
+
+                    if (!Element.descendantOf(this._containerObject, target) && target !== this._dataField) {
                         if (!this._picker) {
                             this._hide(true);
                         }
-                        else if (e.target !== this._picker &&
+                        else if (target !== this._picker &&
                                  (!this._options.displayInSelect ||
-                                  (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
+                                  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
                             if (!this._options.dayField ||
-                                    (!Element.descendantOf(this._options.dayField,   e.target) &&
-                                     !Element.descendantOf(this._options.monthField, e.target) &&
-                                     !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
+                                    (!Element.descendantOf(this._options.dayField,   target) &&
+                                     !Element.descendantOf(this._options.monthField, target) &&
+                                     !Element.descendantOf(this._options.yearField,  target)      ) ) {
                                 this._hide(true);
                             }
                         }
