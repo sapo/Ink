@@ -702,7 +702,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @static
          */
         destroyComponent: function() {
-            Ink.UI.Common.unregisterInstance(this._instanceId);
+            Common.unregisterInstance(this._instanceId);
             this._element.parentNode.removeChild(this._element);
         }
 
@@ -718,7 +718,6 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
  * @version 1
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
-    /* jshint maxcomplexity:10 */
     'use strict';
     /**
      * @class Ink.UI.Modal
@@ -773,6 +772,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      *          });
      *      </script>
      */
+
+    function upName(dimension) {
+        return dimension[0].toUpperCase() + dimension.replace(/^./, '');
+    }
+    function maxName(dimension) {
+        return 'max' + upName(dimension);
+    }
+
     var Modal = function(selector, options) {
         if (!selector) {
             this._element = null;
@@ -845,8 +852,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
              * Not in full markup mode, let's set the classes and css configurations
              */
             Css.addClassName( this._modalShadow,'ink-shade' );
-            Css.addClassName( this._modalDiv,'ink-modal' );
-            Css.addClassName( this._modalDiv,'ink-space' );
+            Css.addClassName( this._modalDiv,'ink-modal ink-space' );
 
             /**
              * Applying the main css styles
@@ -860,12 +866,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._modalShadow      = this._modalDiv.parentNode;
             this._modalShadowStyle = this._modalShadow.style;
 
-            this._contentContainer = Selector.select(".modal-body",this._modalDiv);
-            if( !this._contentContainer.length ){
-                throw new Error('Missing div with class "modal-body"');
+            this._contentContainer = Selector.select(".modal-body", this._modalDiv)[0];
+            if( !this._contentContainer){
+                throw new Error('Ink.UI.Modal: Missing div with class "modal-body"');
             }
 
-            this._contentContainer = this._contentContainer[0];
             this._options.markup = this._contentContainer.innerHTML;
 
             /**
@@ -885,15 +890,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         }
 
         if( typeof this._options.shadeClass === 'string' ){
-            InkArray.each( this._options.shadeClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalShadow, item.trim() );
-            }, this));
+            Css.addClassName(this._modalShadow, this._options.shadeClass);
         }
 
         if( typeof this._options.modalClass === 'string' ){
-            InkArray.each( this._options.modalClass.split(' '), Ink.bind(function( item ){
-                Css.addClassName( this._modalDiv, item.trim() );
-            }, this));
+            Css.addClassName(this._modalDiv, this._options.modalClass);
         }
 
         if( ("trigger" in this._options) && ( typeof this._options.trigger !== 'undefined' ) ){
@@ -916,8 +917,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _reposition: function(){
-            this._modalDivStyle.marginTop = '-' + ( InkElement.elementHeight(this._modalDiv)/2) + 'px';
-            this._modalDivStyle.marginLeft = '-' + ( InkElement.elementWidth(this._modalDiv)/2) + 'px';
+            this._modalDivStyle.marginTop = (-InkElement.elementHeight(this._modalDiv)/2) + 'px';
+            this._modalDivStyle.marginLeft = (-InkElement.elementWidth(this._modalDiv)/2) + 'px';
         },
 
         /**
@@ -945,40 +946,25 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * Getting the current viewport size
              */
-            var
-                elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body,
-                currentViewportHeight = parseInt(elem.clientHeight,10),
-                currentViewportWidth = parseInt(elem.clientWidth,10)
-            ;
+            var isPercentage = {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
+            };
+            var currentViewport = {
+                height: InkElement.viewportHeight(),
+                width: InkElement.viewportWidth()
+            };
 
-            if( ( currentViewportWidth > this.originalStatus.width ) /* && ( parseInt(this._modalDivStyle.maxWidth,10) >= Element.elementWidth(this._modalDiv) )*/ ){
-                /**
-                 * The viewport width has expanded
-                 */
-                this._modalDivStyle.width = this._modalDivStyle.maxWidth;
+            InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
+                // Not used for percentage measurements
+                if (isPercentage[dimension]) { return; }
 
-            } else {
-                /**
-                 * The viewport width has not changed or reduced
-                 */
-                //this._modalDivStyle.width = (( currentViewportWidth * this.originalStatus.width ) / this.originalStatus.viewportWidth ) + 'px';
-                this._modalDivStyle.width = (~~( currentViewportWidth * 0.9)) + 'px';
-            }
-
-            if( (currentViewportHeight > this.originalStatus.height) && (parseInt(this._modalDivStyle.maxHeight,10) >= InkElement.elementHeight(this._modalDiv) ) ){
-
-                /**
-                 * The viewport height has expanded
-                 */
-                //this._modalDivStyle.maxHeight =
-                this._modalDivStyle.height = this._modalDivStyle.maxHeight;
-
-            } else {
-                /**
-                 * The viewport height has not changed, or reduced
-                 */
-                this._modalDivStyle.height = (~~( currentViewportHeight * 0.9)) + 'px';
-            }
+                if (currentViewport[dimension] > this.originalStatus[dimension]) {
+                    this._modalDivStyle[dimension] = this._modalDivStyle[maxName(dimension)];
+                } else {
+                    this._modalDivStyle[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                }
+            }, this));
 
             this._resizeContainer();
             this._reposition();
@@ -996,16 +982,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             var tgtEl = Event.element(ev);
 
             if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
-                InkElement.findUpwardsByClass(tgtEl, 'ink-close') || InkElement.findUpwardsByClass(tgtEl, 'ink-dismiss') ||
+                InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||
                 (
                     this._options.closeOnClick &&
                     (!InkElement.descendantOf(this._shadeElement, tgtEl) || (tgtEl === this._shadeElement))
                 )
             ) {
-                var 
-                    alertsInTheModal = Selector.select('.ink-alert',this._shadeElement),
-                    alertsLength = alertsInTheModal.length
-                ;
+                var alertsInTheModal = Selector.select('.ink-alert', this._shadeElement),
+                    alertsLength = alertsInTheModal.length;
                 for( var i = 0; i < alertsLength; i++ ){
                     if( InkElement.descendantOf(alertsInTheModal[i], tgtEl) ){
                         return;
@@ -1041,15 +1025,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
-            this._modalHeader = Selector.select('.modal-header',this._modalDiv);
-            if( this._modalHeader.length>0 ){
-                this._modalHeader = this._modalHeader[0];
+            this._modalHeader = Selector.select('.modal-header',this._modalDiv)[0];
+            if( this._modalHeader ){
                 containerHeight -= InkElement.elementHeight(this._modalHeader);
             }
 
-            this._modalFooter = Selector.select('.modal-footer',this._modalDiv);
-            if( this._modalFooter.length>0 ){
-                this._modalFooter = this._modalFooter[0];
+            this._modalFooter = Selector.select('.modal-footer',this._modalDiv)[0];
+            if( this._modalFooter ){
                 containerHeight -= InkElement.elementHeight(this._modalFooter);
             }
 
@@ -1118,31 +1100,27 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             /**
              * If any size has been user-defined, let's set them as max-width and max-height
              */
-            if( typeof this._options.width !== 'undefined' ){
-                this._modalDivStyle.width = this._options.width;
-                if( this._options.width.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxWidth = InkElement.elementWidth(this._modalDiv) + 'px';
+
+            var isPercentage = {
+                width: ('' + this._options.width).indexOf('%') !== -1,
+                height: ('' + this._options.height).indexOf('%') !== -1
+            };
+
+            InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
+                if (this._options[dimension] !== undefined) {
+                    this._modalDivStyle[dimension] = this._options[dimension];
+                    if (!isPercentage[dimension]) {
+                        this._modalDivStyle[maxName(dimension)] =
+                            InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
+                    }
+                } else {
+                    this._modalDivStyle[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
                 }
-            } else {
-                this._modalDivStyle.maxWidth = this._modalDivStyle.width = InkElement.elementWidth(this._modalDiv)+'px';
-            }
 
-            if( parseInt(elem.clientWidth,10) <= parseInt(this._modalDivStyle.width,10) ){
-                this._modalDivStyle.width = (~~(parseInt(elem.clientWidth,10)*0.9))+'px';
-            }
-
-            if( typeof this._options.height !== 'undefined' ){
-                this._modalDivStyle.height = this._options.height;
-                if( this._options.height.indexOf('%') === -1 ){
-                    this._modalDivStyle.maxHeight = InkElement.elementHeight(this._modalDiv) + 'px';
+                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDivStyle[dimension], 10) ) {
+                    this._modalDivStyle[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
                 }
-            } else {
-                this._modalDivStyle.maxHeight = this._modalDivStyle.height = InkElement.elementHeight(this._modalDiv) + 'px';
-            }
-
-            if( parseInt(elem.clientHeight,10) <= parseInt(this._modalDivStyle.height,10) ){
-                this._modalDivStyle.height = (~~(parseInt(elem.clientHeight,10)*0.9))+'px';
-            }
+            }, this));
 
             this.originalStatus = {
                 viewportHeight:     InkElement.elementHeight(elem),
@@ -1188,6 +1166,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         dismiss: function() {
+            if (this._wasDismissed) { /* Already dismissed. WTF IE. */ return; }
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
@@ -1214,21 +1193,17 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalDiv, 'visible' );
                 Css.removeClassName( this._modalShadow, 'visible' );
 
-                var dismissInterval;
                 var transitionEndFn = Ink.bind(function(){
-                        if( !dismissInterval ){ return; }
-                        this._modalShadowStyle.display = 'none';
-                        if (transitionHandler) {
-                            Event.stopObserving(document,
-                                'transitionend',transitionHandler);
-                            Event.stopObserving(document,
-                                'oTransitionEnd',transitionHandler);
-                            Event.stopObserving(document,
-                                'webkitTransitionEnd',transitionHandler);
-                        }
-                        clearTimeout(dismissInterval);
-                        dismissInterval = undefined;
-                    }, this);
+                    this._modalShadowStyle.display = 'none';
+                    if (transitionHandler) {
+                        Event.stopObserving(document,
+                            'transitionend',transitionHandler);
+                        Event.stopObserving(document,
+                            'oTransitionEnd',transitionHandler);
+                        Event.stopObserving(document,
+                            'webkitTransitionEnd',transitionHandler);
+                    }
+                }, this);
 
                 /* observe the native transitionend events */
                 var transitionHandler =
@@ -1237,6 +1212,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     Event.observe(document,'webkitTransitionEnd',transitionEndFn);
 
                 /* in case the native transitionend is not available */
+                var dismissInterval;
                 var dismisser = Ink.bind(function(){
                     if( +Css.getStyle(this._modalShadow, 'opacity') > 0 ){
                         dismissInterval = setTimeout(dismisser, 500);
@@ -1244,7 +1220,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                         transitionEndFn();
                     }
                 }, this);
-                dismissInterval = setTimeout(dismisser, 500);
+                dismisser();
             }
         },
 
@@ -2213,7 +2189,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 return;
             }
 
-            clearTimeout(this._scrollTimeout);
+
+            if( this._scrollTimeout ){
+                clearTimeout(this._scrollTimeout);
+            }
 
             this._scrollTimeout = setTimeout(Ink.bind(function(){
 
@@ -2254,6 +2233,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._rootElement.style.top = this._options.originalOffsetTop + 'px';
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
+
+                this._scrollTimeout = undefined;
             },this), 0);
         },
 
@@ -2264,7 +2245,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-            clearTimeout(this._resizeTimeout);
+
+            if( this._resizeTimeout ){
+                clearTimeout(this._resizeTimeout);
+            }
 
             this._resizeTimeout = setTimeout(Ink.bind(function(){
                 this._rootElement.removeAttribute('style');
@@ -3736,22 +3720,15 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _bindEvents: function () {
-            if ( this._options.triggerEvent ) {
-                InkEvent.observe(
-                    this._rootElement,
-                    this._options.triggerEvent,
-                    Ink.bind(this._onTriggerEvent, this));
+            if (this._options.triggerEvent) {
+                InkEvent.observe(this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this));
             }
             if( this._options.closeOnClick ){
-                InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
+                InkEvent.observe( document, 'click', Ink.bindEvent(this._onOutsideClick,this));
             }
             if( this._options.closeOnInsideClick ) {
-                var sel = this._options.closeOnInsideClick;
-                if (sel.toString() === 'true') {
-                    sel = '*';
-                }
-                InkEvent.observeMulti(this._targets, 'click', Ink.bind(function (e) {
-                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), sel) ) {
+                InkEvent.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
+                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), this._options.closeOnInsideClick) ) {
                         this.setState(false, true);
                     }
                 }, this));
@@ -3824,7 +3801,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 shades;
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
-                return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
+                return InkElement.isAncestorOf(target, tgtEl);
             });
 
             if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
@@ -4977,6 +4954,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          */
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
+            neverSubmit: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
@@ -5129,8 +5107,11 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}
          * @public
          */
-        validate: function( event ){
-            Event.stop(event);
+        validate: function( event ) {
+
+            if(this._options.neverSubmit+'' === 'true' && event) {
+                Event.stopDefault(event);
+            }
 
             if( typeof this._options.beforeValidation === 'function' ){
                 this._options.beforeValidation();
@@ -5156,6 +5137,11 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
                 return true;
             } else {
+
+                if(event) {
+                    Event.stopDefault(event);
+                }
+
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
@@ -8235,7 +8221,9 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             this.tooltip = null;
         },
         _makeTooltip: function (mousePosition) {
-            if (!this._getOpt('text')) {
+            if (!this._getOpt('text') &&
+                    !this._getOpt('html') &&
+                    !InkElement.hasAttribute(this.element, 'title')) {
                 return false;
             }
 
@@ -8296,8 +8284,10 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             
             if (this._getOpt('html')) {
                 field.innerHTML = this._getOpt('html');
-            } else {
+            } else if (this._getOpt('text')) {
                 InkElement.setTextContent(field, this._getOpt('text'));
+            } else {
+                InkElement.setTextContent(field, this.element.getAttribute('title'));
             }
             tooltip.style.display = 'block';
             tooltip.style.position = 'absolute';

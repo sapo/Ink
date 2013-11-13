@@ -110,7 +110,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 return;
             }
 
-            clearTimeout(this._scrollTimeout);
+
+            if( this._scrollTimeout ){
+                clearTimeout(this._scrollTimeout);
+            }
 
             this._scrollTimeout = setTimeout(Ink.bind(function(){
 
@@ -151,6 +154,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._rootElement.style.top = this._options.originalOffsetTop + 'px';
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
+
+                this._scrollTimeout = undefined;
             },this), 0);
         },
 
@@ -161,7 +166,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-            clearTimeout(this._resizeTimeout);
+
+            if( this._resizeTimeout ){
+                clearTimeout(this._resizeTimeout);
+            }
 
             this._resizeTimeout = setTimeout(Ink.bind(function(){
                 this._rootElement.removeAttribute('style');

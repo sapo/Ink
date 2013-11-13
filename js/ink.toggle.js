@@ -128,22 +128,15 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _bindEvents: function () {
-            if ( this._options.triggerEvent ) {
-                InkEvent.observe(
-                    this._rootElement,
-                    this._options.triggerEvent,
-                    Ink.bind(this._onTriggerEvent, this));
+            if (this._options.triggerEvent) {
+                InkEvent.observe(this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this));
             }
             if( this._options.closeOnClick ){
-                InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
+                InkEvent.observe( document, 'click', Ink.bindEvent(this._onOutsideClick,this));
             }
             if( this._options.closeOnInsideClick ) {
-                var sel = this._options.closeOnInsideClick;
-                if (sel.toString() === 'true') {
-                    sel = '*';
-                }
-                InkEvent.observeMulti(this._targets, 'click', Ink.bind(function (e) {
-                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), sel) ) {
+                InkEvent.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
+                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), this._options.closeOnInsideClick) ) {
                         this.setState(false, true);
                     }
                 }, this));
@@ -216,7 +209,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 shades;
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
-                return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
+                return InkElement.isAncestorOf(target, tgtEl);
             });
 
             if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
