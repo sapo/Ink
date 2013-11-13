@@ -320,6 +320,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                                     errors.push({elm: curElm, errors:[flag], custom: customErrors});
                                 }
                             } else if(flag === 'ink-fv-confirm'){
+                                continue;
                             }
                         }
                     }
@@ -602,8 +603,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @param {Array} aFail An array with the errors found.
          * @private
          */
-        _showError: function(formElm, aFail)
-        {
+        _showError: function(formElm, aFail) {
+            /* jshint noempty:false */
             this._clearError(formElm);
 
             //ink-warning-field

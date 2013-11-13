@@ -122,7 +122,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 ret = Selector.select(elsOrSelector);
             } else if (Common.isDOMElement(elsOrSelector)) {
                 ret = [elsOrSelector];
-            } else if (typeof elsOrSelector === 'object' && typeof elsOrSelector.length === 'number') {
+            } else if (elsOrSelector && typeof elsOrSelector === 'object' && typeof elsOrSelector.length === 'number') {
                 ret = elsOrSelector;
             }
 
