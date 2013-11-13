@@ -269,7 +269,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 }
                 container.appendChild(this._containerObject);
             } else {
-                dom.insertBefore(this._containerObject, dom.childNodes[0]);
+                // We can't do this because of some CSS rules in Ink
+                // dom.insertBefore(this._containerObject, dom.childNodes[0]);
+                dom.appendChild(this._containerObject);
             }
 
             this._showMonth();
