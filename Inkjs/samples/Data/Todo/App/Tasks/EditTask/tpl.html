@@ -1,0 +1,46 @@
+<form class="ink-form scroll-area">
+    <fieldset>
+        <div class="control-group required validation error">
+            <label>Subject</label> 
+            <div class="control">
+                <input type="text" placeholder="Please input the task subject..." data-bind="value: subject"></input>
+            </div>
+            <p class="tip" data-bind="visible: invalidSubject">This field is required</p>
+        </div>
+        <div class="control-group">
+            <label>Description</label> 
+            <div class="control">
+                <textarea placeholder="Please input the task description..." data-bind="value: description"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Phone Number</label> 
+            <div class="control">
+                <input type="tel" placeholder="Please input a phone number..." data-bind="value: phoneNumber"></input>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Date</label> 
+            <div class="control">
+                <input type="date" data-bind="value: date"></input>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Task Status</label> 
+            <div class="control">
+                <select data-bind="value: status">
+                	<option value="todo">To-do</option>
+                	<option value="completed">Completed</option>
+                	<option value="incomplete">Incomplete</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<footer>
+    <nav class="ink-navigation">
+        <ul class="menu horizontal black">
+            <li class="large-100 medium-100 small-100"><a href="javascript:void(0)" data-bind="click: saveTask"><i class="icon-save"></i>&nbsp;Save Task</a></li>
+        </ul>
+    </nav>
+</footer>

@@ -1,0 +1,47 @@
+ <table class="ink-table hover alternating bordered">
+     <thead>
+         <tr data-bind="foreach: columns">
+             <th data-bind="css: (typeof headerClass == 'undefined' ? undefined : headerClass)+' '+(typeof headerSortOrder == 'function' ? 'sortable-header':''), click: function() {if (typeof headerSortHandler == 'function') headerSortHandler($data);}">
+                <span data-bind="text: headerText"></span>
+                <!--ko if: typeof headerSortOrder == 'function' -->
+                    <!--ko if: headerSortOrder() == 'asc' -->
+                        <i class="icon-sort-up"></i>
+                    <!--/ko -->
+                    <!--ko if: headerSortOrder() == 'desc' -->
+                        <i class="icon-sort-down"></i>
+                    <!--/ko -->
+                    <!--ko if: headerSortOrder() == 'sort' -->
+                        <i class="icon-sort"></i>
+                <!--/ko -->
+                <!--/ko-->
+             </th>
+         </tr>
+     </thead>
+     <!-- ko if: itemsOnCurrentPage().length > 0 -->
+         <tbody data-bind="foreach: itemsOnCurrentPage">
+            <tr data-bind="foreach: $parent.columns">
+               <td data-bind="css: (typeof cellClass == 'undefined' ? undefined : cellClass)">
+                    <!--ko if: typeof rowHandler == 'function' -->
+                        <a href="javascript:void(0)" data-bind="text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText], click: function() {rowHandler($parent);}"></a>
+                    <!--/ko-->
+                    <!--ko if: typeof rowHandler != 'function' -->
+                        <!--ko if: typeof rowTemplate == 'string' -->
+                            <span data-bind="template: { name: rowTemplate, data: $parent }"></span>
+                        <!--/ko-->
+    
+                        <!--ko if: typeof rowTemplate != 'string' -->
+                            <span data-bind="text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText]"></span>
+                        <!--/ko-->
+                    <!--/ko-->
+               </td>
+            </tr>
+         </tbody>
+     <!-- /ko -->
+     <!-- ko if: itemsOnCurrentPage().length == 0 -->
+        <tbody>
+            <tr>
+                <td data-bind="attr: {colspan: columns.length}">No results</td>
+            </tr>
+        </tbody>
+     <!-- /ko -->
+</table>

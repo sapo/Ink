@@ -1,0 +1,216 @@
+/***************************** 
+ Ink Overrides 
+******************************/
+
+a {
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header>hr {
+    clear: both;
+    top: -1em;
+    position: relative;
+}
+
+.ink-grid {
+    max-width: none !important;
+}
+
+.column-left {
+    padding-left: 2em;
+}
+
+.column-left:nth-of-type(1) {
+    padding-left: 0em;
+}
+
+.pagination {
+    padding-left: 1em !important;
+}
+
+.sapo_component_datepicker {
+    z-index: 9999999;
+}
+
+.ink-button[disabled], .ink-button .ink-disabled {
+    color: #A0A0A0 ! important;
+}
+
+.ink-table>tbody>tr:hover {
+    cursor: auto ! important;
+}
+
+.ink-table>tbody>tr>td>a {
+    display: block;
+}
+
+.ink-form label {
+    cursor: auto ! important;
+}
+
+input[type="checkbox"] {
+    width: auto !important;
+}
+
+/***************************** 
+ Custom syles 
+******************************/
+
+#appContainer {
+}
+
+.menu-title {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0.4em 0;
+    left: 2em;
+    right: 2em;
+}
+
+label {
+    font-weight: bold;
+}
+
+.no-padding {
+    padding: 0px ! important;
+}
+
+
+#mainMenu {
+    margin-bottom: 1em;
+    background-color: #d9d9d9;
+    padding: 1px 1px 0px 1px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nospace {
+    margin-top: -0.2em;
+    margin-left: -0.4em;
+    padding: 0;
+    border: 0;
+}
+
+.sortable-header:hover {
+    background-color: #EAEAEA;
+    cursor: pointer;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+footer>.ink-navigation>ul>li>a {
+	display: block ! important;
+	text-align: center;
+}
+
+#mainMenuContainer {
+    height:0px;
+    overflow: visible;
+}
+
+#mainMenuContainer>ul {
+    position: absolute;
+    left: 0px; 
+    right: 0px;
+    margin-top: -1.5em;
+    z-index: 10000;
+}
+
+.scroll-area {
+	position: absolute;
+	left: 0.9em;
+	top: 2em;
+	right: 0.9em;
+	bottom: 3em;
+	overflow-y: auto;
+}
+
+.task-item {
+	cursor: pointer;	
+}
+
+/*****************************
+  Standby lightbox 
+******************************/
+#standbyLightBox {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0.5;
+    background-color: white;
+    z-index: 1000;
+    display: none;
+}
+
+#standbyLightBox.visible {
+    display: block;
+}
+
+#standbyLightBox {
+    z-index: 10000;
+    opacity: 0.2;
+}
+
+#standbyLightBox>.lightbox-container {
+    position: absolute; 
+    width: 4em;
+    height: 4em;
+    left: 50%;
+    top: 50%;
+    margin-left: -2em;
+    margin-top: -2em;
+}
+
+
+/*****************************
+ HTML 5 Hacks
+*****************************/
+
+/* Disable spin buttons no webkkit */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-spin-btn-container {
+    display: none;
+}
+
+/*****************************
+ Media Queries
+*****************************/
+
+/* LARGE SCREENS */
+@media screen and (min-width: 1371px) {
+}
+
+/* MEDIUM SCREENS */
+@media screen and (min-width: 650px) and (max-width: 1370px) {
+}
+
+/* SMALL SCREENS */
+@media screen and (max-width: 649px) {
+}

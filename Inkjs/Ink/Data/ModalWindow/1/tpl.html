@@ -1,0 +1,24 @@
+<div class="ink-shade fade">
+    <div class="ink-modal" data-trigger="dummy"
+        data-bind="attr: {'data-width': modalWidth, 'data-height': modalHeight}">
+        <div class="modal-header">
+            <button class="modal-close ink-dismiss"></button>
+            <h5 data-bind="text: title"></h5>
+        </div>
+
+        <div class="modal-body" id="modalContent"></div>
+
+        <div class="modal-footer">
+            <div class="push-right">
+                <button class="ink-button blue" data-bind="click: confirm, disable: confirmDisabled, text: confirmCaption"></button>
+                <button class="ink-button red ink-dismiss" data-bind="visible: cancelVisible">Cancel</button>
+            </div>
+            <div class="push-left" data-bind="foreach: taskButtons">
+                <button class="ink-button" data-bind="click: $parent.handleTask.bind($parent, handler), css: cssClass">
+                    <i data-bind="css: icon"></i>
+                    <span data-bind="text: caption"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

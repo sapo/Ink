@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ink App Framework - Tasks Demo</title>
+        
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="apple-touch-startup-image" href="/static/content/imgs/ios-startup-image-landscape.png" media="(orientation:landscape)" />
+        <link rel="apple-touch-startup-image" href="/static/content/imgs/ios-startup-image-portrait.png" media="(orientation:portrait)" />
+        <link rel="apple-touch-icon" href="/static/content/imgs/icon.png"/>
+        
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink-min.css">
+        <link rel="stylesheet" href="tasks.css">
+    </head>
+    <body>
+        <div id="applicationHost" data-bind="module: 'App.Tasks.Shell'"></div>
+        
+        <!-- Load scripts -->        
+        <script src="http://cdn.ink.sapo.pt/2.2.1/js/ink-all.min.js"></script>
+        <script src="App/main.js"></script>
+   </body>
+</html>

@@ -1,0 +1,35 @@
+<!-- App main template -->
+<div id="appContainer" class="ink-grid no-padding">
+    <div id="standbyLightBox">
+        <div class="lightbox-container">
+            <i class="icon-spinner icon-spin icon-4x"></i>
+        </div>
+    </div>
+    <div class="column-group">
+        <nav id="mainMenu" class="ink-navigation">
+            <ul class="menu horizontal white">
+                <li>
+                    <a id="mainMenuTrigger" href="javascript:void(0);" data-target="#mainMenuDropDown"><i class="icon-reorder"></i></a>
+                </li>
+            </ul>
+            <div id="mainMenuContainer">
+                <ul id="mainMenuDropDown" class="menu vertical white hide-all">
+                    <!-- ko foreach:  definedRoutes.visibleRoutes -->
+                        <li data-bind="css: { active: isActive }">
+                            <a data-bind="attr: { href: '#'+hash }, html: caption"></a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+            </div>
+            <h4 class="menu-title" data-bind="text: appTitle"></h4>
+        </nav>
+    
+        <!--ko module: {name: definedRoutes.activeModule, data: definedRoutes.moduleArgs} -->
+        <!--/ko-->
+            
+        <!-- Required modules for Ink modal windows -->
+        <div id="modalWindow" data-bind="module: {name:'Ink.Data.ModalWindow_1', data: {parent: modalModule, modalId: 'modalWindow', title: modalModule.title, contentModule: modalModule.content, modalWidth: modalModule.width, modalHeight: modalModule.height}}"></div>
+        <div id="modalAlert" data-bind="module: {name:'Ink.Data.ModalWindow_1', data: {parent: alertModule, modalId: 'modalAlert', title: alertModule.title, contentModule: 'Ink.Data.ModalWindow.AlertBox_1', modalWidth: '400px', modalHeight: '200px'}}"></div>
+        <div id="modalInfo" data-bind="module: {name:'Ink.Data.ModalWindow_1', data: {parent: infoModule, modalId: 'modalInfo', title: infoModule.title, contentModule: 'Ink.Data.ModalWindow.InfoBox_1', modalWidth: '600px', modalHeight: '300px', cancelVisible: false, confirmCaption: 'Ok'}}"></div>
+    </div>
+</div>

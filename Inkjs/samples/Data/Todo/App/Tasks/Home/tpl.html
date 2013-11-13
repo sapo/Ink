@@ -1,0 +1,17 @@
+<div data-bind="simpleGrid: tasksModel" class="scroll-area"></div>
+
+<footer>
+    <nav class="ink-navigation">
+        <ul class="menu horizontal black">
+            <li class="large-100 medium-100 small-100"><a href="#new"><i class="icon-plus"></i>&nbsp;New Task</a></li>
+        </ul>
+    </nav>
+</footer>
+
+<script type="text/html" id="taskItemTemplate">
+	<div class="task-item" data-bind="click: $root.parentModel.editTask.bind($root.parentModel, $data)">
+    	<div class="push-left" data-bind="text: subject"></div>
+	    <div class="push-right"><i class="icon-chevron-right"></i></div>
+			<div class="clearfix"></div>
+	</div>
+</script>

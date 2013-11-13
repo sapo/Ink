@@ -1,0 +1,16 @@
+<footer>
+    <nav class="ink-navigation">
+        <ul class="pagination">
+            <li class="previous" data-bind="css: {disabled: backDisabled}"><a href="javascript:void" data-bind="click: stepBackward"><span class="icon-chevron-left"></span></a></li>
+            <!-- ko foreach: pages -->  
+                <!-- ko ifnot: dots -->     
+                    <li data-bind="css: {active: active}"><a href="javascript:void" data-bind="text: pageNum, click: goTo"></a></li>
+                <!-- /ko -->
+                <!-- ko if: dots -->        
+                    <li class="pagination-dots" data-bind="text: pageNum"></li>
+                <!-- /ko -->
+            <!-- /ko -->
+            <li class="next" data-bind="css: {disabled: forwardDisabled}"><a href="javascript:void" data-bind="click: stepForward"><span class="icon-chevron-right"></span></a></li>
+        </ul>
+    </nav>              
+</footer>   
