@@ -223,11 +223,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         if (document.createEvent) {
             ev = document.createEvent('HTMLEvents');
-            if(!isNative(eventName)) {
-                ev.initEvent('dataavailable', true, true);
-            } else {
-                ev.initEvent(eventName, true, true);
-            }
+            ev.initEvent(eventName, true, true);
 
         } else {
             ev = document.createEventObject();
