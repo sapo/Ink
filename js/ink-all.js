@@ -12507,11 +12507,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @example
          *
          *      this._options = Ink.UI.Common.options('MyComponent', {
+         *          'anobject': ['Object', null],
          *          'target': ['Element', null],
          *          'stuff': ['Number', 0.1],
          *          'stuff2': ['Integer', 0],
          *          'doKickFlip': ['Boolean', false],
-         *          'targets': ['Elements'], // Required option
+         *          'targets': ['Elements'], // Required option. 1-element array.
          *          'onClick': ['Function', null]
          *      }, options || {}, elm)
          *
@@ -12562,7 +12563,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                         invalid('Ink.UI.Common.options: Always specify a type!');
                     }
                     if (!(lType in Common._coerce_funcs)) {
-                        invalid('' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+                        invalid('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
 
                     }
                     if (!defaults[key].length || defaults[key].length > 2) {
@@ -12571,6 +12572,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
                     if (key in dataAttrs) {
                         fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key]);
+                        // (above can return `nothing`)
                     } else {
                         fromDataAttrs = nothing;
                     }
@@ -12601,7 +12603,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         _options_validate: function (val, type) {
-            return Common._options_validate_types[type].call(Common, val);
+            if (type in Common._options_validate_types) {
+                return Common._options_validate_types[type].call(Common, val);
+            } else {
+                // 'object' options cannot be passed through data-attributes.
+                // Json you say? Not any good to embed in HTML.
+                return false;
+            }
         },
 
         _coerce_funcs: (function () {
@@ -12610,15 +12618,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.elOrSelector(val, '');
                 },
                 elements: function (val) {
-                    return Common.elsOrSelector(val, '', false /*not required*/);
+                    return Common.elsOrSelector(val, '', false /*not required, so don't throw an exception now*/);
                 },
+                object: function (val) { return val; },
                 number: function (val) { return +val; },
                 boolean: function (val) {
                     return !(val === 'false' || val === '' || val === null);
                 },
-                string: function (val) {
-                    return val;
-                },
+                string: function (val) { return val; },
                 'function': function () {
                     throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
                 }
@@ -12642,7 +12649,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.isDOMElement(val);
                 },
                 elements: function (val) {
-                    return typeof val === 'object' && typeof val.length === 'number' && val.length;
+                    return val && typeof val === 'object' && typeof val.length === 'number' && val.length;
                 },
                 boolean: function (val) {
                     return typeof val === 'boolean';
@@ -14553,10 +14560,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 return;
             }
 
-
-            if( this._scrollTimeout ){
-                clearTimeout(this._scrollTimeout);
-            }
+            clearTimeout(this._scrollTimeout);
 
             this._scrollTimeout = setTimeout(Ink.bind(function(){
 
@@ -14597,8 +14601,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._rootElement.style.top = this._options.originalOffsetTop + 'px';
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
-
-                this._scrollTimeout = undefined;
             },this), 0);
         },
 
@@ -14609,10 +14611,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-
-            if( this._resizeTimeout ){
-                clearTimeout(this._resizeTimeout);
-            }
+            clearTimeout(this._resizeTimeout);
 
             this._resizeTimeout = setTimeout(Ink.bind(function(){
                 this._rootElement.removeAttribute('style');
@@ -16084,15 +16083,22 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _bindEvents: function () {
-            if (this._options.triggerEvent) {
-                InkEvent.observe(this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this));
+            if ( this._options.triggerEvent ) {
+                InkEvent.observe(
+                    this._rootElement,
+                    this._options.triggerEvent,
+                    Ink.bind(this._onTriggerEvent, this));
             }
             if( this._options.closeOnClick ){
-                InkEvent.observe( document, 'click', Ink.bindEvent(this._onOutsideClick,this));
+                InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
             if( this._options.closeOnInsideClick ) {
-                InkEvent.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
-                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), this._options.closeOnInsideClick) ) {
+                var sel = this._options.closeOnInsideClick;
+                if (sel.toString() === 'true') {
+                    sel = '*';
+                }
+                InkEvent.observeMulti(this._targets, 'click', Ink.bind(function (e) {
+                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), sel) ) {
                         this.setState(false, true);
                     }
                 }, this));
@@ -16165,7 +16171,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 shades;
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
-                return InkElement.isAncestorOf(target, tgtEl);
+                return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
             });
 
             if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
