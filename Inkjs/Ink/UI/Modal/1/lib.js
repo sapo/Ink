@@ -66,6 +66,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return 'max' + upName(dimension);
     }
 
+    var openModals = 0;
+
     var Modal = function(selector, options) {
         if (!selector) {
             this._element = null;
@@ -443,6 +445,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
+            openModals += 1;
+
+            Css.addClassName(document.documentElement, 'ink-modal-is-open');
         },
 
         /**
@@ -459,12 +464,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this._wasDismissed = true;
-
-            if(this._options.disableScroll) {
-                var htmlEl = document.documentElement;
-                htmlEl.style.overflowX = this._oldHtmlOverflows[0];
-                htmlEl.style.overflowY = this._oldHtmlOverflows[1];
-            }
 
             if( this._options.responsive ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
@@ -507,6 +506,21 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }, this);
                 dismisser();
+            }
+
+            openModals -= 1;
+
+            if (openModals === 0) {  // Document level stuff now there are no modals in play.
+                var htmlEl = document.documentElement;
+
+                // Reenable scroll
+                if(this._options.disableScroll) {
+                    htmlEl.style.overflowX = this._oldHtmlOverflows[0];
+                    htmlEl.style.overflowY = this._oldHtmlOverflows[1];
+                }
+
+                // Remove the class from the HTML element.
+                Css.removeClassName(htmlEl, 'ink-modal-is-open');
             }
         },
 
