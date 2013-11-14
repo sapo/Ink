@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
+Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
     'use strict';
 
     /**
@@ -89,21 +89,18 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
         /**
          * Get the root element
          */
-        this._rootElement = Common.elOrSelector(selector, '1st argument');
+        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
             throw '[Ink.UI.Table] :: The element is not a table';
         }
 
-        this._options = Ink.extendObj({
-            pageSize: undefined,
-            endpoint: undefined,
-            loadMode: 'full',
-            allowResetSorting: false,
-            visibleFields: undefined
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj( this._options, options || {});
+        this._options = Common.options({
+            pageSize: ['Integer', undefined],
+            endpoint: ['String', undefined],
+            allowResetSorting: ['Boolean', false],  // Any idea of what this is?
+            visibleFields: ['String', undefined]  // And this? These should be documented if they're useful.
+        }, options || {}, this._rootElement);
 
         /**
          * Checking if it's in markup mode or endpoint mode
@@ -111,7 +108,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
         this._markupMode = ( typeof this._options.endpoint === 'undefined' );
 
         if( !!this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.split(',');
+            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
         }
 
         /**
@@ -176,8 +173,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                         throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
                     }
 
-                    var Pagination = Ink.getModule('Ink.UI.Pagination',1);
-
                     this._pagination = new Pagination( this._pagination, {
                         size: Math.ceil(this._totalRows/this._options.pageSize),
                         onChange: Ink.bind(function( pagingObj ){
@@ -203,7 +198,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
             var
                 tgtEl = Event.element(event),
                 dataset = Element.data(tgtEl),
-                index,i,
                 paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') )
             ;
             if( (tgtEl.nodeName.toLowerCase() !== 'th') || ( !("sortable" in dataset) || (dataset.sortable.toString() !== 'true') ) ){
@@ -212,15 +206,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
             Event.stop(event);
             
-            index = -1;
-            if( InkArray.inArray( tgtEl,this._headers ) ){
-                for( i=0; i<this._headers.length; i++ ){
-                    if( this._headers[i] === tgtEl ){
-                        index = i;
-                        break;
-                    }
-                }
-            }
+            var index = InkArray.keyValue(tgtEl, this._headers, true) ;
 
             var prop;
 
@@ -233,8 +219,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     }
                 }
 
-                if( this._sortableFields['col_'+index] === 'asc' )
-                {
+                if( this._sortableFields['col_'+index] === 'asc' ) {
                     this._sortableFields['col_'+index] = 'desc';
                     this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
                 } else {
@@ -278,7 +263,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     } else {
                         this._sortableFields['col_'+index] = 'asc';
                         this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
-
                     }
                 }
 
@@ -505,12 +489,15 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                  * Applying the pagination
                  */
                 if( !this._pagination ){
-                    this._pagination = document.createElement('nav');
-                    this._pagination.className = 'ink-navigation';
-                    this._rootElement.parentNode.insertBefore(this._pagination,this._rootElement.nextSibling);
-                    this._pagination.appendChild( document.createElement('ul') ).className = 'pagination';
+                    this._pagination = Element.create('nav', {
+                        className: 'ink-navigation',
+                        insertAfter: this._rootElement
+                    });
 
-                    var Pagination = Ink.getModule('Ink.UI.Pagination',1);
+                    Element.create('ul', {
+                        className: 'pagination',
+                        insertBottom: this._pagination
+                    });
 
                     this._pagination = new Pagination( this._pagination, {
                         size: Math.ceil(this._totalRows/this._options.pageSize),

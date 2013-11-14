@@ -293,7 +293,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
             if (targetElm = InkElement.get(targetElm)) {
-                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                if (targetElm.nextSibling !== null) {
+                    targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                } else {
+                    targetElm.parentNode.appendChild(targetElm);
+                }
             }
         },
 
@@ -789,11 +793,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @returns {HtmlElement|false} the matched element or false if did not match
          */
         findUpwardsBySelector: function(element, sel) {
-            if (typeof Ink.Dom === 'undefined' || typeof Ink.Dom.Selector === 'undefined') {
+            var Selector = Ink.getModule('Ink.Dom.Selector');
+            if (!Selector) {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
             var tst = function(el) {
-                return Ink.Dom.Selector.matchesSelector(el, sel);
+                return Selector.matchesSelector(el, sel);
             };
             return InkElement.findUpwardsHaving(element, tst);
         },
