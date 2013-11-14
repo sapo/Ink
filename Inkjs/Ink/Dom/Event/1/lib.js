@@ -127,9 +127,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object} ev  event object
      * @return {Node} The target
      */
-    element: function(ev)
-    {
-        var node = ev.target ||
+    element: function(ev) {
+        var node = ev.delegationTarget ||
+            ev.target ||
             // IE stuff
             (ev.type === 'mouseout'   && ev.fromElement) ||
             (ev.type === 'mouseleave' && ev.fromElement) ||
@@ -290,8 +290,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
-    observe: function(element, eventName, callBack, useCapture)
-    {
+    observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
         if(element) {
             /* rare corner case: some events need a different callback to be generated */
@@ -382,7 +381,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
             while (cursor !== element && cursor) {
                 if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
-                    return callback.call(cursor, event);
+                    event.delegationTarget = cursor;
+                    return callback(event);
                 }
                 cursor = cursor.parentNode;
             }

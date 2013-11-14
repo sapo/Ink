@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
     'use strict';
 
     /**
@@ -15,8 +15,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}     options.pageSize       Number of rows per page.
-     *     @param {String}     options.endpoint       Endpoint to get the records via AJAX
+     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
+     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
      * @example
      *      <table class="ink-table alternating" data-page-size="6">
      *          <thead>
@@ -96,8 +97,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
         }
 
         this._options = Common.options({
-            pageSize: ['Integer', undefined],
-            endpoint: ['String', undefined],
+            pageSize: ['Integer', null],
+            endpoint: ['String', null],
+            pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],  // Any idea of what this is?
             visibleFields: ['String', undefined]  // And this? These should be documented if they're useful.
         }, options || {}, this._rootElement);
@@ -105,24 +107,33 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
         /**
          * Checking if it's in markup mode or endpoint mode
          */
-        this._markupMode = ( typeof this._options.endpoint === 'undefined' );
+        this._markupMode = !this._options.endpoint;
 
         if( !!this._options.visibleFields ){
             this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
         }
 
+        this._thead = Ink.s('thead', this._rootElement);
+
         /**
          * Initializing variables
          */
         this._handlers = {
-            click: Ink.bindEvent(this._onClick,this)
+            thClick: null
         };
         this._originalFields = [];
-        this._sortableFields = {};
+        this._sortableFields = {
+            // Identifies which columns are sorted and how.
+            // colIndex: 'none'|'asc'|'desc'
+        };
         this._originalData = this._data = [];
         this._headers = [];
         this._pagination = null;
         this._totalRows = 0;
+
+        this._handlers.thClick = Event.observeDelegated(this._thead, 'click',
+                'th[data-sortable="true"]',
+                Ink.bindMethod(this, '_onThClick'));
 
         this._init();
     };
@@ -141,9 +152,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
              * If not is in markup mode, we have to do the initial request
              * to get the first data and the headers
              */
-             if( !this._markupMode ){
+             if( !this._markupMode ) {
+                 /* Endpoint mode */
                 this._getData( this._options.endpoint, true );
-             } else{
+             } else /* Markup mode */ {
                 this._setHeadersHandlers();
 
                 /**
@@ -158,51 +170,25 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
 
                 /**
                  * Set pagination if defined
-                 * 
                  */
-                if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
-                    /**
-                     * Applying the pagination
-                     */
-                    this._pagination = this._rootElement.nextSibling;
-                    while(this._pagination.nodeType !== 1){
-                        this._pagination = this._pagination.nextSibling;
-                    }
+                this._setPagination();
 
-                    if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
-                        throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
-                    }
-
-                    this._pagination = new Pagination( this._pagination, {
-                        size: Math.ceil(this._totalRows/this._options.pageSize),
-                        onChange: Ink.bind(function( pagingObj ){
-                            this._paginate( (pagingObj._current+1) );
-                        },this)
-                    });
-
+                if (this._pagination) {
                     this._paginate(1);
                 }
              }
-
         },
 
         /**
          * Click handler. This will mainly handle the sorting (when you click in the headers)
          * 
-         * @method _onClick
+         * @method _onThClick
          * @param {Event} event Event obj
          * @private
          */
-        _onClick: function( event ){
-            
-            var
-                tgtEl = Event.element(event),
-                dataset = Element.data(tgtEl),
-                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') )
-            ;
-            if( (tgtEl.nodeName.toLowerCase() !== 'th') || ( !("sortable" in dataset) || (dataset.sortable.toString() !== 'true') ) ){
-                return;
-            }
+        _onThClick: function( event ){
+            var tgtEl = Event.element(event),
+                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
 
             Event.stop(event);
             
@@ -255,8 +241,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
 
                     this._sort(index);
 
-                    if( this._sortableFields['col_'+index] === 'asc' )
-                    {
+                    if( this._sortableFields['col_'+index] === 'asc' ) {
                         this._data.reverse();
                         this._sortableFields['col_'+index] = 'desc';
                         this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
@@ -269,7 +254,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
 
                 var tbody = Selector.select('tbody',this._rootElement)[0];
                 Common.cleanChildren(tbody);
-                InkArray.each(this._data,function(item){
+                InkArray.each(this._data, function(item){
                     tbody.appendChild(item);
                 });
 
@@ -286,13 +271,20 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
          * @private
          */
         _paginate: function( page ){
-            InkArray.each(this._data,Ink.bind(function(item, index){
-                if( (index >= ((page-1)*parseInt(this._options.pageSize,10))) && (index < (((page-1)*parseInt(this._options.pageSize,10))+parseInt(this._options.pageSize,10)) ) ){
+            var pageSize = this._options.pageSize;
+
+            // Hide everything except the items between these indices
+            var firstIndex = (page - 1) * pageSize;
+            var lastIndex = firstIndex + pageSize;
+
+            InkArray.each(this._data, function(item, index){
+                if (index >= firstIndex && index < lastIndex) {
                     Css.removeClassName(item,'hide-all');
                 } else {
                     Css.addClassName(item,'hide-all');
                 }
-            },this));
+            });
+
         },
 
         /**
@@ -394,19 +386,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
             /**
              * Setting the sortable columns and its event listeners
              */
-            var theads = Selector.select('thead', this._rootElement);
-            if (!theads.length) {
-                return;
-            }
-            Event.observe(theads[0],'click',this._handlers.click);
-            this._headers = Selector.select('thead tr th',this._rootElement);
-            InkArray.each(this._headers,Ink.bind(function(item, index){
+            if (!this._thead) { return; }
+
+
+            this._headers = Selector.select('th', this._thead);
+            InkArray.each(this._headers, Ink.bind(function(item, index){
                 var dataset = Element.data( item );
-                if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
+                if (dataset.sortable && dataset.sortable.toString() === 'true') {
                     this._sortableFields['col_' + index] = 'none';
                 }
             }, this));
-
         },
 
         /**
@@ -469,44 +458,50 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
-                this._pagination.setCurrent( (!!currentPage) ? parseInt(currentPage,10) : 0 );
+                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
             }
         },
 
         /**
-         * Checks if it needs the pagination and creates the necessary markup to have pagination
+         * Sets the instance's pagination, if necessary.
+         *
+         * Precondition: this._totalRows needs to be known.
          *
          * @method _setPagination
          * @private
          */
         _setPagination: function(){
-            // var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
+            /* If user doesn't say they want pagination, bail. */
+            if( this._options.pageSize == null ){ return; }
+
             /**
-             * Set pagination if defined
+             * Fetch pagination from options. Can be a selector string, an element or a Pagination instance.
              */
-            if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
-                /**
-                 * Applying the pagination
-                 */
-                if( !this._pagination ){
-                    this._pagination = Element.create('nav', {
-                        className: 'ink-navigation',
-                        insertAfter: this._rootElement
-                    });
+            var paginationEl = this._options.pagination;
 
-                    Element.create('ul', {
-                        className: 'pagination',
-                        insertBottom: this._pagination
-                    });
-
-                    this._pagination = new Pagination( this._pagination, {
-                        size: Math.ceil(this._totalRows/this._options.pageSize),
-                        onChange: Ink.bind(function( ){
-                            this._getData( this._options.endpoint );
-                        },this)
-                    }); 
-                }
+            if ( paginationEl instanceof Pagination ) {
+                this._pagination = paginationEl;
+                return;
             }
+
+            if (!paginationEl) {
+                paginationEl = Element.create('nav', {
+                    className: 'ink-navigation',
+                    insertAfter: this._rootElement
+                });
+                Element.create('ul', {
+                    className: 'pagination',
+                    insertBottom: paginationEl
+                });  // TODO this element is pagination's responsibility.
+            }
+
+            this._pagination = new Pagination(paginationEl, {
+                totalItemCount: this._totalRows,
+                itemsPerPage: this._options.pageSize,
+                onChange: Ink.bind(function (_, pageNo) {
+                    this._paginate(pageNo + 1);
+                }, this)
+            });
         },
 
         /**
@@ -520,42 +515,35 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
          * @private
          */
         _getData: function( endpoint ){
+            var parsedURL = InkUrl.parseUrl( endpoint ),
+                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
+                pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1);
 
-            Ink.requireModules(['Ink.Util.Url_1'],Ink.bind(function( InkURL ){
+            if( parsedURL.query ){
+                parsedURL.query = parsedURL.query.split("&");
+            } else {
+                parsedURL.query = [];
+            }
 
-                var
-                    parsedURL = InkURL.parseUrl( endpoint ),
-                    paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
-                    pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1)
-                ;
+            if( !paginated ){            
+                this._getDataViaAjax( endpoint );
+            } else {
 
-                if( parsedURL.query ){
-                    parsedURL.query = parsedURL.query.split("&");
-                } else {
-                    parsedURL.query = [];
-                }
+                parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
+                parsedURL.query.push( 'page=' + pageNum );
 
-                if( !paginated ){            
-                    this._getDataViaAjax( endpoint );
-                } else {
-
-                    parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
-                    parsedURL.query.push( 'page=' + pageNum );
-
-                    // var sortStr = '';
-                    for( var index in this._sortableFields ){
-                        if( this._sortableFields[index] !== 'none' ){
-                            parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
-                            parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
-                            break;
-                        }
+                // var sortStr = '';
+                for( var index in this._sortableFields ){
+                    if( this._sortableFields[index] !== 'none' ){
+                        parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
+                        parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
+                        break;
                     }
-
-                    this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
                 }
 
-            },this));
-
+                // TODO BUG: if the endpoint already has '?', this adds another one.
+                this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
+            }
         },
 
         /**
@@ -605,7 +593,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.UI.Pagination_1','Ink.Net.Ajax_1','I
                     }
 
                 },this)
-            } );
+            });
         }
     };
 

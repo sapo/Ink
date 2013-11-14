@@ -40,17 +40,19 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}   [options.nextPageLabel]     label to display on next page button
      * @param {String}   [options.firstLabel]        label to display on previous page button
      * @param {String}   [options.lastLabel]         label to display on next page button
-     * @param {Function} [options.onChange]          optional callback
+     * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
      * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
      * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
     var Pagination = function(selector, options) {
 
-        this._element = Common.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
 
         this._options = Ink.extendObj({
-            size:          undefined,
+            size:          null,
+            totalItemCount: null,
+            itemsPerPage:  null,
             start:         1,
             firstLabel:    'First',
             lastLabel:     'Last',
@@ -74,12 +76,12 @@ Ink.createModule('Ink.UI.Pagination', '1',
             click: Ink.bindEvent(this._onClick,this)
         };
 
-        if (Common.isInteger(this._options.pageSize)) {
-            this._size = Math.ceil(this._totalRows / this._options.pageSize);
+        if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
+            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
         } else if (Common.isInteger(this._options.size)) {
             this._size = this._options.size;
         } else {
-            throw new TypeError('Ink.UI.Pagination: Please supply a pageSize or size option');
+            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
         }
 
         if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
@@ -94,9 +96,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
             throw new RangeError('size option must be equal or more than 0!');
         }
 
-        if (this._options.onChange !== undefined && typeof this._options.onChange !== 'function') {
-            throw new TypeError('onChange option must be a function!');
-        }
+        this.setOnChange(this._options.onChange);
 
         if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
             this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
@@ -211,10 +211,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var
-                ulEl,liEl,
-                hasUlAlready = false
-            ;
+            var ulEl,liEl,
+                hasUlAlready = false;
             if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
                 ulEl = document.createElement('ul');
                 Css.addClassName(ulEl, 'pagination');
@@ -323,6 +321,18 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
 
+        /**
+         * Allows you to subscribe to the onChange event
+         *
+         * @method setOnChange
+         * @param cb {Function} Callback called with `(thisPaginator, newPageNumber)`.
+         */
+        setOnChange: function (onChange) {
+            if (onChange !== undefined && typeof onChange !== 'function') {
+                throw new TypeError('onChange option must be a function!');
+            }
+            this._onChange = onChange;
+        },
 
         /**************
          * PUBLIC API *
@@ -346,6 +356,18 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
         /**
+         * Calculate the number of pages, then call setSize().
+         *
+         * @param setSizeInItems
+         * @param {Number} totalItems
+         * @param {Number} itemsPerPage
+         */
+        setSizeInItems: function (totalItems, itemsPerPage) {
+            var pageNumber = Math.ceil(totalItems / itemsPerPage);
+            this.setSize(pageNumber);
+        },
+
+        /**
          * Sets the current page
          *
          * @method setCurrent
@@ -362,22 +384,26 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 nr += this._current;
             }
 
+            if (nr > this._size - 1) {
+                nr = this._size - 1;
+            }
+
             if (nr < 0) {
                 nr = 0;
             }
-            else if (nr > this._size - 1) {
-                nr = this._size - 1;
-            }
+
             this._current = nr;
             this._updateItems();
+
+            if (this._onChange) {
+                this._onChange(this, nr);
+            }
 
             /*if (this._options.setHash) {
                 var o = {};
                 o[this._options.hashParameter] = nr;
                 Common.setHash(o);
-            }*/
-
-            if (this._options.onChange) { this._options.onChange(this); }
+            }*/  // undocumented option, removing
         },
 
         /**
