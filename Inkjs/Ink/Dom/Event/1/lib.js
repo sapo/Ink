@@ -13,9 +13,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     var nativeEvents;
 
     if (document.createEvent) {
-        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+        nativeEvents = 'DOMActivate DOMFocusIn DOMFocusOut focus focusin focusout blur load unload abort error select change submit reset resize scroll click dblclick mousedown mouseenter mouseleave mousemove mouseover mouseout mouseup mousewheel wheel textInput keydown keypress keyup compositionstart compositionupdate compositionend DOMSubtreeModified DOMNodeInserted DOMNodeRemoved DOMNodeInsertedIntoDocument DOMNodeRemovedFromDocument DOMAttrModified DOMCharacterDataModified DOMAttributeNameChanged DOMElementNameChanged hashchange'.split(' ');
     } else {
-        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+        nativeEvents = 'onabort onactivate onafterprint onafterupdate onbeforeactivate onbeforecopy onbeforecut onbeforedeactivate onbeforeeditfocus onbeforepaste onbeforeprint onbeforeunload onbeforeupdate onblur onbounce oncellchange onchange onclick oncontextmenu oncontrolselect oncopy oncut ondataavailable ondatasetchanged ondatasetcomplete ondblclick ondeactivate ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop onerror onerrorupdate onfilterchange onfinish onfocus onfocusin onfocusout onhashchange onhelp onkeydown onkeypress onkeyup onlayoutcomplete onload onlosecapture onmessage onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onmousewheel onmove onmoveend onmovestart onoffline ononline onpage onpaste onprogress onpropertychange onreadystatechange onreset onresize onresizeend onresizestart onrowenter onrowexit onrowsdelete onrowsinserted onscroll onselect onselectionchange onselectstart onstart onstop onstorage onstoragecommit onsubmit ontimeout onunload'.split(' ');
     }
 
     function isNative(eventName) {
@@ -29,6 +29,19 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             }
             return false;
         }
+    }
+
+    function i(func) {
+        return function (elem/*, ...*/) {
+            elem = Ink.i(elem);
+            if (elem) {
+                var args = [].slice.call(arguments);
+                args[0] = elem;
+                return func.apply(InkEvent, args);
+            } else {
+                return null;
+            }
+        };
     }
 
     /**
@@ -91,7 +104,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      *     InkEvent.observe(window, 'scroll', handler);
      *     InkEvent.observe(window, 'resize', handler);
      *
-     *     // on resize, both the "scroll" and the "resize" events are triggered
+     *     // on resize, both the 'scroll' and the 'resize' events are triggered
      *     // a LOT of times. This prevents both of them being called a lot of
      *     // times when the window is being resized by a user.
      *
@@ -196,15 +209,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * Dispatches an event to element
      *
      * @method fire
-     * @param {DOMElement|String}  element    element id or element
-     * @param {String}             eventName  event name
-     * @param {Object}             [memo]     metadata for the event
+     * @param {DOMElement|String}  element       element id or element
+     * @param {String}             eventName     event name
+     * @param {Object}             [eventData]        metadata for the event
+     * @param {Boolean}            [_extendEventData] have the eventData argument extend the event properties. Used for testing.
      */
-    fire: function(element, eventName, memo)
-    {
-        element = Ink.i(element);
-        if (!element) { return null; }
-
+    fire: i(function(element, eventName, eventData, _extendEventData) {
         var ev;
 
         if (element === document && document.createEvent && !element.dispatchEvent) {
@@ -212,24 +222,24 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         }
 
         if (document.createEvent) {
-            ev = document.createEvent("HTMLEvents");
-            if(!isNative(eventName)) {
-                ev.initEvent("dataavailable", true, true);
-            } else {
-                ev.initEvent(eventName, true, true);
-            }
+            ev = document.createEvent('HTMLEvents');
+            ev.initEvent(eventName, true, true);
 
         } else {
             ev = document.createEventObject();
             if (!isNative('on' + eventName)) {
-                ev.eventType = "ondataavailable";
+                ev.eventType = 'ondataavailable';
             } else {
-                ev.eventType = "on"+eventName;
+                ev.eventType = 'on'+eventName;
             }
         }
 
         ev.eventName = eventName;
-        ev.memo = memo || { };
+        if (!_extendEventData) {
+            ev.eventData = eventData || { };
+        } else {
+            Ink.extendObj(ev, eventData);
+        }
 
         try {
             if (document.createEvent) {
@@ -242,10 +252,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         } catch(ex) {}
 
         return ev;
-    },
+    }),
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
+        var isHashChangeInIE = eventName === 'hashchange' && element.attachEvent && !('onhashchange' in window);
         var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
@@ -409,6 +419,57 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             }
         }
     },
+
+    /**
+     * Returns whether this browser has touch events
+     * @property touchEnabled
+     */
+    touchEnabled: 'ontouchstart' in window && window.DocumentTouch &&
+        document instanceof window.DocumentTouch,
+
+    /**
+     * Subscribe to both click and touch events.
+     *
+     * Like just subscribing to 'click', but without the 300ms delay mobile browsers put in.
+     *
+     * @method pointerTap
+     * @param element  {DOMElement|String}
+     * @param callback {Function}
+     **/
+    pointerTap: i(function (element, callback) {
+        if (InkEvent.touchEnabled) {
+            (function () {
+                var startTime;  // When did it start?
+                var startPos;  // Where did it start?
+                var nevermind; // Did the user move his finger too much and we should release this to be another event?
+                var cb = function (evType, ev) {
+                    if (ev === 'start') {
+                        startTime = +new Date();
+                        startPos = InkEvent.pointer(ev);
+                        nevermind = false;
+                    } else if (ev === 'move' && !nevermind) {
+                        if (+new Date() - startTime > 1000) {
+                            nevermind = true;
+                        }
+                        var posNow = InkEvent.pointer(ev);
+                        var dist = Math.sqrt(
+                            Math.abs(posNow[0] - startPos[0]) *
+                            Math.abs(posNow[1] - startPos[1]));
+                        if (dist > 50) {
+                            nevermind = true;
+                        }
+                    } else if (ev === 'end' && !nevermind) {
+                        callback();
+                    }
+                    if (!nevermind) { InkEvent.stopDefault(ev); }
+                };
+                InkEvent.observe(element, 'touchstart', Ink.bind(cb, false, 'start'));
+                InkEvent.observe(element, 'touchmove', Ink.bind(cb, false, 'move'));
+                InkEvent.observe(element, 'touchend', Ink.bind(cb, false, 'end'));
+            }());
+        }
+        return InkEvent.observe(element, 'click', callback);
+    }),
 
     /**
      * Stops event propagation and bubbling
