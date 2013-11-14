@@ -139,7 +139,9 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             this.tooltip = null;
         },
         _makeTooltip: function (mousePosition) {
-            if (!this._getOpt('text')) {
+            if (!this._getOpt('text') &&
+                    !this._getOpt('html') &&
+                    !InkElement.hasAttribute(this.element, 'title')) {
                 return false;
             }
 
@@ -200,8 +202,10 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             
             if (this._getOpt('html')) {
                 field.innerHTML = this._getOpt('html');
-            } else {
+            } else if (this._getOpt('text')) {
                 InkElement.setTextContent(field, this._getOpt('text'));
+            } else {
+                InkElement.setTextContent(field, this.element.getAttribute('title'));
             }
             tooltip.style.display = 'block';
             tooltip.style.position = 'absolute';

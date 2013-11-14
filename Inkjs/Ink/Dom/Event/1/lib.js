@@ -266,9 +266,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
               if(ev.eventName === eventName){
                 //fix for FF since it loses the event in case of using a second binObjEvent
                 if(window.addEventListener){
-                  window.event = ev;
+                  try { window.event = ev; } catch (e) { /* IE has this as a readonly property, and in strict mode you can't set readonly properties */ }
                 }
-                cb();
+                cb(ev);
               }
 
             }, this, eventName, argCallback);
@@ -344,7 +344,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observeMulti: function (elements, eventName, callBack, useCapture) {
         if (typeof elements === 'string') {
             elements = Ink.ss(elements);
-        } else if (elements instanceof Element) {
+        } else if ( /* is an element */ elements && elements.nodeType === 1) {
             elements = [elements];
         }
         if (!elements[0]) { return false; }
