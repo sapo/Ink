@@ -256,7 +256,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     _callbackForCustomEvents: function (element, eventName, callBack) {
         var isHashChangeInIE = eventName === 'hashchange' && element.attachEvent && !('onhashchange' in window);
-        var isCustomEvent = eventName.indexOf(':') !== -1 || !isNative(eventName);
+        var isCustomEvent = eventName.indexOf(':') !== -1;
         if (isHashChangeInIE || isCustomEvent) {
             /**
              *
