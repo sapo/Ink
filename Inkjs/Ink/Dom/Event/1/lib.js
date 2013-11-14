@@ -199,12 +199,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
             if (document.createEvent) {
                 ev = document.createEvent("HTMLEvents");
-                if(typeof nativeEvents[eventName] === "undefined"){
-                    ev.initEvent("dataavailable", true, true);
-                } else {
-                    ev.initEvent(eventName, true, true);
-                }
-
+                ev.initEvent(eventName, true, true);
             } else {
                 ev = document.createEventObject();
                 if(typeof nativeEvents["on"+eventName] === "undefined"){
