@@ -197,7 +197,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
             var dRes, bRes, parent, cs;
-            var getPropPx = this._getPropPx;
+            var getPropPx = InkElement._getPropPx;
             var box;
 
             if ( "getBoundingClientRect" in document.documentElement ) {
