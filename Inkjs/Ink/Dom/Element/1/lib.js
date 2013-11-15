@@ -2,7 +2,7 @@
  * @author inkdev AT sapo.pt
  */
 
-Ink.createModule('Ink.Dom.Element', 1, ['Ink.Dom.Browser_1'], function(InkBrowser) {
+Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     'use strict';
 
