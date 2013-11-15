@@ -266,7 +266,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 c = val.indexOf('px');
                 if (c === -1) { n = 0; }
                 else {
-                    n = parseInt(val, 10);
+                    n = parseFloat(val, 10);
                 }
             }
 
