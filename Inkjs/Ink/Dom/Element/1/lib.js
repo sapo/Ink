@@ -2,7 +2,7 @@
  * @author inkdev AT sapo.pt
  */
 
-Ink.createModule('Ink.Dom.Element', 1, [], function() {
+Ink.createModule('Ink.Dom.Element', 1, ['Ink.Dom.Browser_1'], function(InkBrowser) {
 
     'use strict';
 
@@ -194,52 +194,18 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         offset: function(el) {
             /*jshint boss:true */
             el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = InkElement._getPropPx;
-            var box;
-
-            if ( "getBoundingClientRect" in document.documentElement ) {
-                var doc = el.ownerDocument,
-                    docElem = doc.documentElement,
-                    box = el.getBoundingClientRect(),
-                    body = doc.body,
-                    clientTop  = docElem.clientTop  || body.clientTop  || 0,
-                    clientLeft = docElem.clientLeft || body.clientLeft || 0,
-                    scrollTop  = doc.pageYOffset || docElem.scrollTop  || body.scrollTop,
-                    scrollLeft = doc.pageXOffset || docElem.scrollLeft || body.scrollLeft,
-                    top  = box.top  + scrollTop  - clientTop,
-                    left = box.left + scrollLeft - clientLeft;
-                res = [left, top];
-            } else {
-                var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
-                do {
-                    cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                    dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-
-                    bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                    if( InkBrowser.OPERA ){
-                        res[0] += dRes[0];
-                        res[1] += dRes[1];
-                    } else {
-                        res[0] += dRes[0] + bRes[0];
-                        res[1] += dRes[1] + bRes[1];
-                    }
-                    parent = el.offsetParent;
-                } while (el = parent);
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-                if (InkBrowser.GECKO) {
-                    res[0] += bRes[0];
-                    res[1] += bRes[1];
-                }
-                else if( !InkBrowser.OPERA ) {
-                    res[0] -= bRes[0];
-                    res[1] -= bRes[1];
-                }
-            }
-
+            var doc = el.ownerDocument,
+                docElem = doc.documentElement,
+                box = el.getBoundingClientRect(),
+                body = doc.body,
+                clientTop  = docElem.clientTop  || body.clientTop  || 0,
+                clientLeft = docElem.clientLeft || body.clientLeft || 0,
+                scrollTop  = doc.pageYOffset || docElem.scrollTop  || body.scrollTop,
+                scrollLeft = doc.pageXOffset || docElem.scrollLeft || body.scrollLeft,
+                top  = box.top  + scrollTop  - clientTop,
+                left = box.left + scrollLeft - clientLeft;
+            res = [left, top];
             return res;
         },
 
