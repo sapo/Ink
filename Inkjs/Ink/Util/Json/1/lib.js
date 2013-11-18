@@ -19,18 +19,18 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
         }
     }
 
-    var date_toISOString = Date.prototype.toISOString ?
+    var dateToISOString = Date.prototype.toISOString ?
         Ink.bind(function_call, Date.prototype.toISOString) :
         function(date) {
             // Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            return date.getUTCFullYear()
-                + '-' + twoDigits( date.getUTCMonth() + 1 )
-                + '-' + twoDigits( date.getUTCDate() )
-                + 'T' + twoDigits( date.getUTCHours() )
-                + ':' + twoDigits( date.getUTCMinutes() )
-                + ':' + twoDigits( date.getUTCSeconds() )
-                + '.' + String( (date.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
-                + 'Z';
+            return date.getUTCFullYear() +
+                '-' + twoDigits( date.getUTCMonth() + 1 ) +
+                '-' + twoDigits( date.getUTCDate() ) +
+                'T' + twoDigits( date.getUTCHours() ) +
+                ':' + twoDigits( date.getUTCMinutes() ) +
+                ':' + twoDigits( date.getUTCSeconds() ) +
+                '.' + String( (date.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 ) +
+                'Z';
         };
 
     /**
@@ -166,8 +166,7 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
             } else if (typeof param === 'function') {
                 return 'null';  // match JSON.stringify
             } else if (param.constructor === Date) {
-                throw ''
-                return '"' + this._escape(date_toISOString(param)) + '"';
+                return '"' + this._escape(dateToISOString(param)) + '"';
             } else if (param.constructor === Array) {
                 var arrayString = '';
                 for (var i = 0, len = param.length; i < len; i++) {
@@ -299,9 +298,9 @@ Ink.createModule('Ink.Util.Json', '1', [], function() {
 // In the optional fourth stage, we recursively walk the new structure, passing
 // each name/value pair to a reviver function for possible transformation.
 
-                return typeof reviver === 'function'
-                    ? walk({'': j}, '')
-                    : j;
+                return typeof reviver === 'function' ?
+                    walk({'': j}, '') :
+                    j;
             }
 
 // If the text is not JSON parseable, then a SyntaxError is thrown.

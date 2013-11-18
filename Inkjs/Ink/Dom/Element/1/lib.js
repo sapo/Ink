@@ -6,7 +6,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     'use strict';
 
-    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
+    var createContextualFragmentSupport = (
+        typeof document.createRange === 'function' &&
+        typeof window.Range.prototype.createContextualFragment === 'function');
 
     var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
     var browserCreatesTbodies = (function () {
@@ -192,39 +194,18 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         offset: function(el) {
             /*jshint boss:true */
             el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = InkElement._getPropPx;
-
-            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
-
-            do {
-                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                if( InkBrowser.OPERA ){
-                    res[0] += dRes[0];
-                    res[1] += dRes[1];
-                } else {
-                    res[0] += dRes[0] + bRes[0];
-                    res[1] += dRes[1] + bRes[1];
-                }
-                parent = el.offsetParent;
-            } while (el = parent);
-
-            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-            if (InkBrowser.GECKO) {
-                res[0] += bRes[0];
-                res[1] += bRes[1];
-            }
-            else if( !InkBrowser.OPERA ) {
-                res[0] -= bRes[0];
-                res[1] -= bRes[1];
-            }
-
+            var doc = el.ownerDocument,
+                docElem = doc.documentElement,
+                box = el.getBoundingClientRect(),
+                body = doc.body,
+                clientTop  = docElem.clientTop  || body.clientTop  || 0,
+                clientLeft = docElem.clientLeft || body.clientLeft || 0,
+                scrollTop  = doc.pageYOffset || docElem.scrollTop  || body.scrollTop,
+                scrollLeft = doc.pageXOffset || docElem.scrollLeft || body.scrollLeft,
+                top  = box.top  + scrollTop  - clientTop,
+                left = box.left + scrollLeft - clientLeft;
+            res = [left, top];
             return res;
         },
 
@@ -251,7 +232,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 c = val.indexOf('px');
                 if (c === -1) { n = 0; }
                 else {
-                    n = parseInt(val, 10);
+                    n = parseFloat(val, 10);
                 }
             }
 
@@ -291,7 +272,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
             if (targetElm = InkElement.get(targetElm)) {
-                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                if (targetElm.nextSibling !== null) {
+                    targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                } else {
+                    targetElm.parentNode.appendChild(targetElm);
+                }
             }
         },
 
@@ -787,11 +772,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @returns {HtmlElement|false} the matched element or false if did not match
          */
         findUpwardsBySelector: function(element, sel) {
-            if (typeof Ink.Dom === 'undefined' || typeof Ink.Dom.Selector === 'undefined') {
+            var Selector = Ink.getModule('Ink.Dom.Selector');
+            if (!Selector) {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
             var tst = function(el) {
-                return Ink.Dom.Selector.matchesSelector(el, sel);
+                return Selector.matchesSelector(el, sel);
             };
             return InkElement.findUpwardsHaving(element, tst);
         },
@@ -1284,6 +1270,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
         },
 
+        /**
+         * Gets a wrapper DIV with a certain HTML content for being inserted in `elm`.
+         * Necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.
+         *
+         * Works around IE table quirks
+         * @method _getWrapper
+         * @private
+         * @param elm
+         * @param html
+         */
         _getWrapper: function (elm, html) {
             var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
             var wrapper = document.createElement('div');
@@ -1295,7 +1291,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
             // special cases
             wrapper = wrapFunc(wrapper, html);
-            // worst case: tbody creation
+            // worst case: tbody auto-creation even when our HTML has a tbody.
             if (browserCreatesTbodies && nodeName === 'TABLE') {
                 // terrible case. Deal with tbody creation too.
                 var tds = wrapper.getElementsByTagName('td');
@@ -1345,7 +1341,6 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            var wrapper = InkElement._getWrapper(elm, html);
             while (elm.firstChild) {
                 elm.removeChild(elm.firstChild);
             }
@@ -1385,7 +1380,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(container, nextNode)
+                parent.insertBefore(container, nextNode);
             } else {
                 parent.appendChild(container);
             }

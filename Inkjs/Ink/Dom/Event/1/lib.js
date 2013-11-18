@@ -18,6 +18,19 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
     }
 
+    function isNative(eventName) {
+        if ([].indexOf && 0) {
+            return nativeEvents.indexOf(eventName !== -1);
+        } else {
+            for (var i = 0, len = nativeEvents.length; i < len; i++) {
+                if (nativeEvents[i] === eventName) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     /**
      * @module Ink.Dom.Event_1
      */
@@ -114,9 +127,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object} ev  event object
      * @return {Node} The target
      */
-    element: function(ev)
-    {
-        var node = ev.target ||
+    element: function(ev) {
+        var node = ev.delegationTarget ||
+            ev.target ||
             // IE stuff
             (ev.type === 'mouseout'   && ev.fromElement) ||
             (ev.type === 'mouseleave' && ev.fromElement) ||
@@ -200,7 +213,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         if (document.createEvent) {
             ev = document.createEvent("HTMLEvents");
-            if(nativeEvents.indexOf(eventName) === -1) {
+            if(!isNative(eventName)) {
                 ev.initEvent("dataavailable", true, true);
             } else {
                 ev.initEvent(eventName, true, true);
@@ -208,7 +221,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         } else {
             ev = document.createEventObject();
-                if (nativeEvents.indexOf("on"+eventName) === -1){
+            if (!isNative('on' + eventName)) {
                 ev.eventType = "ondataavailable";
             } else {
                 ev.eventType = "on"+eventName;
@@ -253,9 +266,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
               if(ev.eventName === eventName){
                 //fix for FF since it loses the event in case of using a second binObjEvent
                 if(window.addEventListener){
-                  window.event = ev;
+                  try { window.event = ev; } catch (e) { /* IE has this as a readonly property, and in strict mode you can't set readonly properties */ }
                 }
-                cb();
+                cb(ev);
               }
 
             }, this, eventName, argCallback);
@@ -277,10 +290,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
-    observe: function(element, eventName, callBack, useCapture)
-    {
+    observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
-        if(element !== null && element !== undefined) {
+        if(element) {
             /* rare corner case: some events need a different callback to be generated */
             var callbackForCustomEvents = this._callbackForCustomEvents(element, eventName, callBack);
             if (callbackForCustomEvents) {
@@ -291,10 +303,31 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             if(element.addEventListener) {
                 element.addEventListener(eventName, callBack, !!useCapture);
             } else {
-                element.attachEvent('on' + eventName, callBack);
+                element.attachEvent('on' + eventName, (callBack = Ink.bind(callBack, element)));
             }
             return callBack;
         }
+    },
+
+    /**
+     * Like observe, but listen to the event only once.
+     *
+     * @method observeOnce
+     * @param {DOMElement|String}  element      Element id or element
+     * @param {String}             eventName    Event name
+     * @param {Function}           callBack     Receives event object as a
+     * parameter. If you're manually firing custom events, check the
+     * eventName property of the event object to make sure you're handling
+     * the right event.
+     * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
+     * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
+     */
+    observeOnce: function (element, eventName, callBack, useCapture) {
+        var onceBack = function () {
+            InkEvent.stopObserving(element, eventName, onceBack);
+            return callBack();
+        };
+        return InkEvent.observe(element, eventName, onceBack, useCapture);
     },
 
     /**
@@ -310,7 +343,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observeMulti: function (elements, eventName, callBack, useCapture) {
         if (typeof elements === 'string') {
             elements = Ink.ss(elements);
-        } else if (elements instanceof Element) {
+        } else if ( /* is an element */ elements && elements.nodeType === 1) {
             elements = [elements];
         }
         if (!elements[0]) { return false; }
@@ -340,19 +373,20 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @return {Function} The used callback, for ceasing to listen to the event later.
      **/
     observeDelegated: function (element, eventName, selector, callback) {
-        var delegatedWrapper = function (event, fromElement) {
-            fromElement = fromElement || InkEvent.element(event);
+        return InkEvent.observe(element, eventName, function (event) {
+            var fromElement = InkEvent.element(event);
             if (!fromElement || fromElement === element) { return; }
 
-            var selectResult = Ink.Dom.Selector_1.select(selector, element);
-            if (selectResult.length) {
-                return callback.apply(selectResult[0], [event])
-            } else {
-                delegatedWrapper(event, fromElement.parentNode);
-            }
-        }
+            var cursor = fromElement;
 
-        return InkEvent.observe(element, eventName, delegatedWrapper);
+            while (cursor !== element && cursor) {
+                if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
+                    event.delegationTarget = cursor;
+                    return callback(event);
+                }
+                cursor = cursor.parentNode;
+            }
+        });
     },
 
     /**
@@ -364,11 +398,10 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Function}           callBack      callback function
      * @param {Boolean}            [useCapture]  set to true if the event was being observed with useCapture set to true as well.
      */
-    stopObserving: function(element, eventName, callBack, useCapture)
-    {
+    stopObserving: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
 
-        if(element !== null && element !== undefined) {
+        if(element) {
             if(element.removeEventListener) {
                 element.removeEventListener(eventName, callBack, !!useCapture);
             } else {

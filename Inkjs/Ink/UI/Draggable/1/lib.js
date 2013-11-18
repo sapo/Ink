@@ -3,7 +3,9 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Aux) {
+Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Selector, Common) {
+    'use strict';
+
     var x = 0,
         y = 1;  // For accessing coords in [x, y] arrays
     
@@ -79,8 +81,8 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
             }, options || {}, InkElement.data(element));
 
             this.options = o;
-            this.element = Aux.elOrSelector(element);
-            this.constraintElm = o.constraintElm && Aux.elOrSelector(o.constraintElm);
+            this.element = Common.elOrSelector(element);
+            this.constraintElm = o.constraintElm && Common.elOrSelector(o.constraintElm);
 
             this.handle             = false;
             this.elmStartPosition   = false;
@@ -107,7 +109,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 
             // set handle
             this.handle = (this.options.handle) ?
-                Aux.elOrSelector(this.options.handle) : this.element;
+                Common.elOrSelector(this.options.handle) : this.element;
             this.handle.style.cursor = o.cursor;
 
             InkEvent.observe(this.handle, 'touchstart', this.handlers.start);

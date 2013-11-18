@@ -15,7 +15,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
      * @static
      */
 
-    var DomCss = {
+    var Css = {
         /**
          * adds or removes a class to the given element according to addRemState
          *
@@ -46,12 +46,16 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         addClassName: function(elm, className) {
             elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    elm.classList.add(className);
-                }
-                else if (!this.hasClassName(elm, className)) {
-                    elm.className += (elm.className ? ' ' : '') + className;
+            if (!elm || !className) { return null; }
+            className = ('' + className).split(/[, ]+/);
+            var i = 0;
+            var len = className.length;
+
+            for (; i < len; i++) {
+                if (typeof elm.classList !== "undefined") {
+                    elm.classList.add(className[i]);
+                } else if (!Css.hasClassName(elm, className[i])) {
+                    elm.className += (elm.className ? ' ' : '') + className[i];
                 }
             }
         },
@@ -65,20 +69,26 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         removeClassName: function(elm, className) {
             elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    elm.classList.remove(className);
-                } else {
-                    if (typeof elm.className === "undefined") {
-                        return false;
-                    }
-                    var elmClassName = elm.className,
-                        re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-                    elmClassName = elmClassName.replace(re, ' ');
-                    elmClassName = elmClassName.replace(/^\s+/, '').replace(/\s+$/, '');
+            if (!elm || !className) { return null; }
+            
+            className = ('' + className).split(/[, ]+/);
+            var i = 0;
+            var len = className.length;
 
-                    elm.className = elmClassName;
+            if (typeof elm.classList !== "undefined"){
+                for (; i < len; i++) {
+                    elm.classList.remove(className[i]);
                 }
+            } else {
+                var elmClassName = elm.className || '';
+                var re;
+                for (; i < len; i++) {
+                    re = new RegExp("(^|\\s+)" + className[i] + "(\\s+|$)");
+                    elmClassName = elmClassName.replace(re, ' ');
+                }
+                elm.className = (elmClassName
+                    .replace(/^\s+/, '')
+                    .replace(/\s+$/, ''));
             }
         },
 
@@ -97,39 +107,43 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         /**
          * @method hasClassName
          * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
+         * @param {String|Array}       classNames classNames to test
+         * @param {Boolean}            [all=false] if true, return whether all classes in classNames are there. Otherwise, return true if any is present.
          * @return {Boolean} true if a given class is applied to a given element
          */
-        hasClassName: function(elm, className) {
+        hasClassName: function(elm, className, all) {
             elm = Ink.i(elm);
-            if (elm && className) {
+            if (!elm || !className) { return false; }
+
+            className = ('' + className).split(/[, ]+/);
+            var i = 0;
+            var len = className.length;
+            var has;
+            var re;
+
+            for ( ; i < len; i++) {
                 if (typeof elm.classList !== "undefined"){
-                    return elm.classList.contains(className);
-                }
-                else {
-                    if (typeof elm.className === "undefined") {
-                        return false;
-                    }
+                    has = elm.classList.contains(className[i]);
+                } else {
                     var elmClassName = elm.className;
-
-                    if (typeof elmClassName.length === "undefined") {
-                        return false;
-                    }
-
-                    if (elmClassName.length > 0) {
-                        if (elmClassName === className) {
-                            return true;
-                        }
-                        else {
-                            var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
-                            if (re.test(elmClassName)) {
-                                return true;
-                            }
-                        }
+                    if (elmClassName === className[i]) {
+                        has = true;
+                    } else {
+                        re = new RegExp("(^|\\s)" + className[i] + "(\\s|$)");
+                        has = re.test(elmClassName);
                     }
                 }
+                if (has && !all) { return true; }  // return if looking for any class
+                if (!has && all) { return false; }  // return if looking for all classes
             }
-            return false;
+
+            if (all) {
+                // if we got here, all classes were found so far
+                return true;
+            } else {
+                // if we got here with all == false, no class was found
+                return false;
+            }
         },
 
         /**
@@ -143,17 +157,10 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         blinkClass: function(element, className, timeout, negate){
             element = Ink.i(element);
-            this.addRemoveClassName(element, className, !negate);
-            setTimeout(Ink.bind(function() {
-                this.addRemoveClassName(element, className, negate);
-            }, this), Number(timeout) || 100);
-            /*
-            var _self = this;
+            Css.addRemoveClassName(element, className, !negate);
             setTimeout(function() {
-                    console.log(_self);
-                _self.addRemoveClassName(element, className, negate);
+                Css.addRemoveClassName(element, className, negate);
             }, Number(timeout) || 100);
-            */
         },
 
         /**
@@ -166,7 +173,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         toggleClassName: function(elm, className, forceAdd) {
             if (elm && className){
-                if (typeof elm.classList !== "undefined"){
+                if (typeof elm.classList !== "undefined" && !/[, ]/.test(className)){
                     elm = Ink.i(elm);
                     if (elm !== null){
                         elm.classList.toggle(className);
@@ -177,17 +184,16 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
             if (typeof forceAdd !== 'undefined') {
                 if (forceAdd === true) {
-                    this.addClassName(elm, className);
+                    Css.addClassName(elm, className);
                 }
                 else if (forceAdd === false) {
-                    this.removeClassName(elm, className);
+                    Css.removeClassName(elm, className);
                 }
             } else {
-                if (this.hasClassName(elm, className)) {
-                    this.removeClassName(elm, className);
-                }
-                else {
-                    this.addClassName(elm, className);
+                if (Css.hasClassName(elm, className)) {
+                    Css.removeClassName(elm, className);
+                } else {
+                    Css.addClassName(elm, className);
                 }
             }
         },
@@ -228,7 +234,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @return {String} Converted string
          */
         _camelCase: function(str) {
-            return str ? str.replace(/-(\w)/g, function (_, $1){
+            return str ? str.replace(/-(\w)/g, function (_, $1) {
                 return $1.toUpperCase();
             }) : str;
         },
@@ -300,32 +306,29 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         setStyle: function(elm, style) {
             elm = Ink.i(elm);
-            if (elm !== null) {
-                if (typeof style === 'string') {
-                    elm.style.cssText += '; '+style;
+            if (elm === null) { return; }
+            if (typeof style === 'string') {
+                elm.style.cssText += '; '+style;
 
-                    if (style.indexOf('opacity') !== -1) {
-                        this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
-                    }
+                if (style.indexOf('opacity') !== -1) {
+                    this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
                 }
-                else {
-                    for (var prop in style) {
-                        if (style.hasOwnProperty(prop)){
-                            if (prop === 'opacity') {
-                                this.setOpacity(elm, style[prop]);
+            }
+            else {
+                for (var prop in style) {
+                    if (style.hasOwnProperty(prop)){
+                        if (prop === 'opacity') {
+                            this.setOpacity(elm, style[prop]);
+                        }
+                        else if (prop === 'float' || prop === 'cssFloat') {
+                            if (typeof elm.style.styleFloat === 'undefined') {
+                                elm.style.cssFloat = style[prop];
                             }
                             else {
-                                if (prop === 'float' || prop === 'cssFloat') {
-                                    if (typeof elm.style.styleFloat === 'undefined') {
-                                        elm.style.cssFloat = style[prop];
-                                    }
-                                    else {
-                                        elm.style.styleFloat = style[prop];
-                                    }
-                                } else {
-                                    elm.style[prop] = style[prop];
-                                }
+                                elm.style.styleFloat = style[prop];
                             }
+                        } else {
+                            elm.style[prop] = style[prop];
                         }
                     }
                 }
@@ -390,7 +393,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
                         this.hide(elm);
                     }
                 } else {
-                    if (elm.style.display === 'none') {
+                    if (this.getStyle(elm,'display').toLowerCase() === 'none') {
                         this.show(elm);
                     }
                     else {
@@ -830,6 +833,6 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
     };
 
-    return DomCss;
+    return Css;
 
 });

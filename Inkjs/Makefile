@@ -19,11 +19,13 @@ help:
 all: extractTree docs min bundle bundleMin updateJsFolder
 
 
-report: deleteMinFiles
+report: extractTree deleteMinFiles
 	@echo "\ngenerating report..."
+	@mkdir -p report
 	@plato -r -l .jshintrc -d report Ink
-	@google-chrome report/index.html
 
+readReport: report
+	@google-chrome report/index.html
 
 clean: deleteMinFiles removeDirs
 	@echo "clean."

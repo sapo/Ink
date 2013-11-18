@@ -1,4 +1,4 @@
-(function(window, document) {
+;(function(window, document) {
 
     'use strict';
 
@@ -24,11 +24,11 @@
      * invoke Ink.setPath('Ink', '/Ink/'); before requiring local modules
      */
     var paths = {};
-    var staticMode = ('INK_STATICMODE' in window) ? window.INK_STATICMODE : false;
     var modules = {};
     var modulesLoadOrder = [];
     var modulesRequested = {};
     var pendingRMs = [];
+    var modulesWaitingForDeps = {};
 
 
 
@@ -85,19 +85,6 @@
         },
 
         /**
-         * Sets or unsets the static mode.
-         *
-         * Enable static mode to disable dynamic loading of modules and throw an exception.
-         *
-         * @method setStaticMode
-         *
-         * @param {Boolean} staticMode
-         */
-        setStaticMode: function(newStatus) {
-            staticMode = newStatus;
-        },
-        
-        /**
          * Get the path of a certain module by looking up the paths given in setPath (and ultimately the default Ink path)
          *
          * @method getPath
@@ -119,7 +106,7 @@
                 }
             }
             path = paths[root || 'Ink'];
-            if (path[path.length - 1] !== '/') {
+            if (!/\/$/.test(path)) {
                 path += '/';
             }
             if (i < split.length) {
@@ -165,10 +152,6 @@
         loadScript: function(uri) {
             /*jshint evil:true */
 
-            if (staticMode) {
-                throw new Error('Requiring a module to be loaded dynamically while in static mode');
-            }
-
             if (uri.indexOf('/') === -1) {
                 uri = this.getPath(uri);
             }
@@ -187,6 +170,17 @@
                     aHead[0].appendChild(scriptEl);
                 }
             //}
+        },
+
+        _loadLater: function (dep) {
+            setTimeout(function () {
+                if (modules[dep] || modulesRequested[dep] ||
+                        modulesWaitingForDeps[dep]) {
+                    return;
+                }
+                modulesRequested[dep] = true;
+                Ink.loadScript(dep);
+            }, 0);
         },
 
         /**
@@ -248,16 +242,16 @@
             }
 
             // validate version correctness
-            if (typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0)) {
-            } else {
+            if (!(typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0))) {
                 throw new Error('version number missing!');
             }
 
+            var modAll = [mod, '_', ver].join('');
+
+            modulesWaitingForDeps[modAll] = true;
+
             var cb = function() {
                 //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
-
-                var modAll = [mod, '_', ver].join('');
-
 
                 // make sure module in not loaded twice
                 if (modules[modAll]) {
@@ -298,6 +292,7 @@
 
                 // versioned
                 modules[ modAll ] = moduleContent; // in modules
+                delete modulesWaitingForDeps[ modAll ];
 
                 if (isInkModule) {
                     t[0][ t[1] + '_' + ver ] = moduleContent; // in namespace
@@ -311,9 +306,9 @@
                     if (isEmptyObject( t[0][ t[1] ] )) {
                         t[0][ t[1] ] = moduleContent; // in namespace
                     }
-                    else {
+                    // else {
                         // console.warn(['Ink.createModule ', modAll, ': module has been defined already with a different version!'].join(''));
-                    }
+                    // }
                 }
 
 
@@ -358,11 +353,8 @@
                     --o.remaining;
                     continue;
                 }
-                else if (modulesRequested[dep]) {
-                }
-                else {
-                    modulesRequested[dep] = true;
-                    Ink.loadScript(dep);
+                else if (!modulesRequested[dep]) {
+                    Ink._loadLater(dep);
                 }
                 o.left[dep] = i;
             }
@@ -418,6 +410,7 @@
         /**
          * Function.prototype.bind alternative.
          * Additional arguments will be sent to the original function as prefix arguments.
+         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bind
          * @param {Function}  fn
@@ -429,7 +422,7 @@
             return function() {
                 var innerArgs = Array.prototype.slice.call(arguments);
                 var finalArgs = args.concat(innerArgs);
-                return fn.apply(context, finalArgs);
+                return fn.apply(context === false ? this : context, finalArgs);
             };
         },
 
@@ -454,7 +447,7 @@
          *  Ink.bindMethod(this, 'remove', myElem);
          */
         bindMethod: function (object, methodName) {
-            return this.bind.apply(this,
+            return Ink.bind.apply(Ink,
                 [object[methodName], object].concat([].slice.call(arguments, 2)));
         },
 
@@ -462,6 +455,7 @@
          * Function.prototype.bind alternative for event handlers.
          * Same as bind but keeps first argument of the call the original event.
          * Additional arguments will be sent to the original function as prefix arguments.
+         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bindEvent
          * @param {Function}  fn
@@ -473,7 +467,7 @@
             return function(event) {
                 var finalArgs = args.slice();
                 finalArgs.unshift(event || window.event);
-                return fn.apply(context, finalArgs);
+                return fn.apply(context === false ? this : context, finalArgs);
             };
         },
 
@@ -587,5 +581,4 @@
         }
     }, checkDelta*1000);
     */
-
-})(window, document);
+}(window, document));

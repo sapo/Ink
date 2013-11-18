@@ -44,11 +44,12 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          */
         init: function(element, options) {
             element = this._element = Common.elOrSelector(element);
-            var o = this._options = Ink.extendObj({
+            var o = this._options = Common.options({
                 tags: [],
                 tagQuery: null,
                 tagQueryAsync: null,
                 allowRepeated: false,
+                maxTags: -1,
                 outSeparator: ',',
                 separator: /[,; ]+/g,
                 autoSplit: true

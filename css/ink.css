@@ -177,14 +177,14 @@ table {
 @font-face {
   font-family: 'Ubuntu';
   src: url('../font/ubuntu-b-webfont.eot');
-  src: local('Ubuntu'), url('../font/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-b-webfont.woff') format('woff'), url('../font/ubuntu-b-webfont.ttf') format('truetype'), url('../font/ubuntu-b-webfont.svg#ubuntubold') format('svg');
+  src: local('Ubuntu bold') local('Ubuntu'), url('../font/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-b-webfont.woff') format('woff'), url('../font/ubuntu-b-webfont.ttf') format('truetype'), url('../font/ubuntu-b-webfont.svg#ubuntubold') format('svg');
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Ubuntu';
   src: url('../font/ubuntu-bi-webfont.eot');
-  src: local('Ubuntu'), url('../font/ubuntu-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-bi-webfont.woff') format('woff'), url('../font/ubuntu-bi-webfont.ttf') format('truetype'), url('../font/ubuntu-bi-webfont.svg#ubuntubold_italic') format('svg');
+  src: local('Ubuntu bold italic'), local('Ubuntu'), url('../font/ubuntu-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-bi-webfont.woff') format('woff'), url('../font/ubuntu-bi-webfont.ttf') format('truetype'), url('../font/ubuntu-bi-webfont.svg#ubuntubold_italic') format('svg');
   font-weight: 700;
   font-style: italic;
 }
@@ -198,7 +198,7 @@ table {
 @font-face {
   font-family: 'Ubuntu';
   src: url('../font/ubuntu-ri-webfont.eot');
-  src: local('Ubuntu'), url('../font/ubuntu-ri-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-ri-webfont.woff') format('woff'), url('../font/ubuntu-ri-webfont.ttf') format('truetype'), url('../font/ubuntu-ri-webfont.svg#ubuntuitalic') format('svg');
+  src: local('Ubuntu italic'), local('Ubuntu'), url('../font/ubuntu-ri-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-ri-webfont.woff') format('woff'), url('../font/ubuntu-ri-webfont.ttf') format('truetype'), url('../font/ubuntu-ri-webfont.svg#ubuntuitalic') format('svg');
   font-weight: normal;
   font-style: italic;
 }
@@ -467,9 +467,6 @@ body.animated *[class*="large-"] {
 }
 [class*="large-"]:empty:after {
   content: "\00a0";
-}
-*[class*="large-"] > *[class*="large-"] {
-  margin-left: 0;
 }
 .large-push-left {
   float: left;
@@ -784,9 +781,6 @@ body.animated *[class*="large-"] {
   [class*="medium-"]:empty:after {
     content: "\00a0";
   }
-  *[class*="medium-"] > *[class*="medium-"] {
-    margin-left: 0;
-  }
   .medium-push-left {
     float: left;
   }
@@ -1098,9 +1092,6 @@ body.animated *[class*="large-"] {
   }
   [class*="small-"]:empty:after {
     content: "\00a0";
-  }
-  *[class*="small-"] > *[class*="small-"] {
-    margin-left: 0;
   }
   .small-push-left {
     float: left;
@@ -2454,8 +2445,8 @@ footer {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../font//fontawesome-webfont.eot?v=3.2.1');
-  src: url('../font//fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font//fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font//fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font//fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  src: url('../font/fontawesome-webfont.eot?v=3.2.1');
+  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -2466,6 +2457,7 @@ footer {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
+  font-size: 14px;
   text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
   *margin-right: .3em;
@@ -2478,7 +2470,6 @@ footer {
 }
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
-  vertical-align: -10%;
   font-size: 1.3333333333333333em;
 }
 /* makes sure icons active on rollover in links */
@@ -4021,7 +4012,6 @@ a .icon-flip-vertical:before {
   -moz-box-shadow: 0 0 1px 0 rgba(100, 100, 100, 0.3);
   box-shadow: 0 0 1px 0 rgba(100, 100, 100, 0.3);
   padding: 0.3em 0;
-  display: none;
   margin-left: 0px;
   padding: 0.35em 0;
   font-size: 0.85em;
@@ -5761,7 +5751,7 @@ a .icon-flip-vertical:before {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   font-size: 1em;
 }
-.ink-alert.block h4 {
+.ink-alert.block > h4 {
   padding: 1em;
   font-size: .938em;
   line-height: 1.5;
@@ -5784,15 +5774,7 @@ a .icon-flip-vertical:before {
   margin: 0;
   border-bottom: 1px solid #f6d074;
 }
-.ink-alert.block p,
-.ink-alert.block ul,
-.ink-alert.block ol {
-  padding: 0 1em 1em;
-}
-.ink-alert.block ul {
-  list-style: inside ;
-}
-.ink-alert.block.success h4 {
+.ink-alert.block.success > h4 {
   background: #55b11a;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#55b11a', endColorstr='#4a9b17');
   background: -moz-linear-gradient(top, #55b11a 0%, #4a9b17 100%);
@@ -5804,7 +5786,7 @@ a .icon-flip-vertical:before {
   border-bottom: 1px solid #448e15;
   color: #ffffff;
 }
-.ink-alert.block.error h4 {
+.ink-alert.block.error > h4 {
   background: #ee3838;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee3838', endColorstr='#c91111');
   background: -moz-linear-gradient(top, #ee3838 0%, #c91111 100%);
@@ -5816,7 +5798,7 @@ a .icon-flip-vertical:before {
   border-bottom: 1px solid #bb1010;
   color: #ffffff;
 }
-.ink-alert.block.info h4 {
+.ink-alert.block.info > h4 {
   background: #2c8ef0;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c8ef0', endColorstr='#0f75da');
   background: -moz-linear-gradient(top, #2c8ef0 0%, #0f75da 100%);
@@ -5827,6 +5809,14 @@ a .icon-flip-vertical:before {
   background: linear-gradient(to bottom, #2c8ef0 0%, #0f75da 100%);
   border-bottom: 1px solid #0d68c2;
   color: #ffffff;
+}
+.ink-alert.block p,
+.ink-alert.block ul,
+.ink-alert.block ol {
+  padding: 0 1em 1em;
+}
+.ink-alert.block ul {
+  list-style: inside ;
 }
 .ink-alert .ink-dismiss {
   position: absolute;
@@ -6033,6 +6023,7 @@ a .icon-flip-vertical:before {
   cursor: pointer;
   margin: 5px;
   text-decoration: none;
+  text-align: center;
   display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
@@ -6082,13 +6073,14 @@ a .icon-flip-vertical:before {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25) inset;
 }
 .ink-button[disabled],
-.ink-button .ink-disabled {
+.ink-button.disabled {
   background: #eeeeee;
   box-shadow: none;
   border: none;
+  filter: none;
 }
 .ink-button[disabled]:hover,
-.ink-button .ink-disabled:hover {
+.ink-button.disabled:hover {
   background: #eeeeee;
   cursor: not-allowed;
 }
@@ -6144,14 +6136,15 @@ a .icon-flip-vertical:before {
   background: #cc7d00;
 }
 .ink-button.orange[disabled],
-.ink-button.orange .ink-disabled {
+.ink-button.orange.disabled {
   background: #dfc69f;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.orange[disabled]:hover,
-.ink-button.orange .ink-disabled:hover {
+.ink-button.orange.disabled:hover {
   background: #dfc69f;
   cursor: not-allowed;
 }
@@ -6207,14 +6200,15 @@ a .icon-flip-vertical:before {
   background: #9a0d0d;
 }
 .ink-button.red[disabled],
-.ink-button.red .ink-disabled {
+.ink-button.red.disabled {
   background: #c99090;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.red[disabled]:hover,
-.ink-button.red .ink-disabled:hover {
+.ink-button.red.disabled:hover {
   background: #c99090;
   cursor: not-allowed;
 }
@@ -6270,14 +6264,15 @@ a .icon-flip-vertical:before {
   background: #356f10;
 }
 .ink-button.green[disabled],
-.ink-button.green .ink-disabled {
+.ink-button.green.disabled {
   background: #93b180;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.green[disabled]:hover,
-.ink-button.green .ink-disabled:hover {
+.ink-button.green.disabled:hover {
   background: #93b180;
   cursor: not-allowed;
 }
@@ -6333,14 +6328,15 @@ a .icon-flip-vertical:before {
   background: #0c5baa;
 }
 .ink-button.blue[disabled],
-.ink-button.blue .ink-disabled {
+.ink-button.blue.disabled {
   background: #98b4d0;
   box-shadow: none;
   border: none;
   text-shadow: none;
+  filter: none;
 }
 .ink-button.blue[disabled]:hover,
-.ink-button.blue .ink-disabled:hover {
+.ink-button.blue.disabled:hover {
   background: #98b4d0;
   cursor: not-allowed;
 }
@@ -6456,6 +6452,9 @@ table.ink-table.bordered tr td:first-child {
 }
 .sapo_component_datepicker li {
   list-style: none inside;
+}
+html.ink-modal-is-open .sapo_component_datepicker {
+  z-index: 101;
 }
 .sapo_cal_top_options {
   padding: 5px;
@@ -6978,21 +6977,13 @@ table.ink-table.bordered tr td:first-child {
 .ink-sortable-list li .ink-label {
   margin: 0 .8em;
 }
-ul.ink-tree-view li {
+.ink-tree-view li {
   list-style-type: none;
 }
-ul.ink-tree-view li span:before {
-  display: inline-block;
-  margin-right: .3em;
-  font-family: FontAwesome;
-  content: "\f055";
-  margin-left: -1.4em;
-}
-ul.ink-tree-view li.open span:before {
-  content: "\f056";
-}
-ul.ink-tree-view li.closed span:before {
-  content: "\f055";
+.ink-tree-view [data-open] > :before {
+  margin-left: -1.3em;
+  margin-right: .4em;
+  text-decoration: none;
 }
 .ink-carousel {
   width: 100%;
