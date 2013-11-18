@@ -34,7 +34,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             }
         }
         return el;
-    };
+    }
 
     var isTruthy = function (val) {return !!val;};
 
@@ -57,6 +57,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 tags: [],
                 tagQuery: null,
                 tagQueryAsync: null,
+                maxTags: -1,
                 allowRepeated: false,
                 outSeparator: ',',
                 separator: /[,; ]+/g,
@@ -64,6 +65,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             }, options || {}, InkElement.data(element));
 
             if (typeof o.tags === 'string') {
+                // coerce to array using the separator
                 o.tags = this._readInput(o.tags);
             }
 
@@ -130,6 +132,10 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         },
 
         _addTag: function (tag) {
+            if (this._options.maxTags !== -1 &&
+                    this._tags.length > this._options.maxTags) {
+                return;
+            }
             if ((!this._options.allowRepeated &&
                     InkArray.inArray(tag, this._tags, tag)) || !tag) {
                 return false;
@@ -178,28 +184,43 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         },
 
         _onKeyDown: function (event) {
-
-            if (event.which === 13 && this._input.value) {  // enter key
-                this._addTag(this._input.value);
-                this._input.value = '';
-                InkEvent.stop(event);
-                return false;
-            } else if (event.which === 8 && !this._input.value) { // backspace key
-                if (this._removeConfirm) {
-                    this._unsetRemovingVisual(this._tags.length - 1);
-                    this._removeTag(this._tags.length - 1);
-                    this._removeConfirm = null;
-                } else {
-                    this._setRemovingVisual(this._tags.length - 1);
-                }
-            } else {
-                if (this._removeConfirm) {  // pressed another key, cancelling removal
-                    this._unsetRemovingVisual(this._tags.length - 1);
-                }
+            if (event.which === 13) {
+                return this._onEnterKeyDown(event);
+            } else if (event.which === 27) {
+                return this._onBackspaceKeyDown();
+            } else if (this._removeConfirm) {
+                // user pressed another key, cancel removal from a backspace key
+                this._unsetRemovingVisual(this._tags.length - 1);
             }
         },
 
-        _onBlur: function (event) {
+        /**
+         * When the user presses backspace twice on the empty input, we delete the last tag on the field.
+         * @method onBackspaceKeyDown
+         * @private
+         */
+        _onBackspaceKeyDown: function () {
+            if (this._input.value) { return; }
+
+            if (this._removeConfirm) {
+                this._unsetRemovingVisual(this._tags.length - 1);
+                this._removeTag(this._tags.length - 1);
+                this._removeConfirm = null;
+            } else {
+                this._setRemovingVisual(this._tags.length - 1);
+            }
+        },
+
+        _onEnterKeyDown: function (event) {
+            var tag = this._input.value;
+            if (tag) {
+                this._addTag(tag);
+                this._input.value = '';
+            }
+            InkEvent.stopDefault(event);
+        },
+
+        _onBlur: function () {
             this._addTag(this._input.value);
             this._input.value = '';
         },

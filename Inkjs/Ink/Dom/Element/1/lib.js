@@ -291,7 +291,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
             if (targetElm = InkElement.get(targetElm)) {
-                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                if (targetElm.nextSibling !== null) {
+                    targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                } else {
+                    targetElm.parentNode.appendChild(newElm);
+                }
             }
         },
 
@@ -1384,7 +1388,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(container, nextNode)
+                parent.insertBefore(container, nextNode);
             } else {
                 parent.appendChild(container);
             }
