@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Modal samples</title>
+
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink.css" />
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <script type="text/javascript" src="http://js.ink.sapo.pt/Ink/1/lib.js"></script>
+
+        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Pagination Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>Basic example</h2>
+                </header>
+                <p>
+                    <pre class="prettyprint linenums"></pre>
+                </p>
+
+                <nav class="ink-navigation" id="basic1" data-size="10">
+                    <ul class="pagination rounded red"></ul>
+                </nav>
+
+                <p>You can use the maxSize option to limit the amount of pages you can display at any given time.</p>
+                <nav class="ink-navigation" id="basic2" data-size="10" data-max-size="5">
+                    <ul class="pagination rounded red"></ul>
+                </nav>
+
+                <script type="text/javascript">
+                    // Unnecessary with autoload.js
+                    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+                        var basicPag = new Pagination('#basic1');
+                        var basicPag2 = new Pagination('#basic2');
+                    });
+                </script>
+            </section>
+        </div>
+    </body>
+</html>
+
