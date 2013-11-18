@@ -157,12 +157,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @example
          *
          *      this._options = Ink.UI.Common.options('MyComponent', {
-         *          'anobject': ['Object', null],
+         *          'anobject': ['Object', null],  // Defaults to null
          *          'target': ['Element', null],
          *          'stuff': ['Number', 0.1],
          *          'stuff2': ['Integer', 0],
          *          'doKickFlip': ['Boolean', false],
-         *          'targets': ['Elements'], // Required option. 1-element array.
+         *          'targets': ['Elements'], // Required option since no default was given
          *          'onClick': ['Function', null]
          *      }, options || {}, elm)
          *
@@ -170,16 +170,25 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * ### Note about booleans
          *
-         * Options considered true:
-         *      <div data-required="true"> (and anything else not listed below)
+         * Here is how options are read from the markup
+         * data-attributes, for several values`data-a-boolean`.
          *
+         * Options considered true:
+         *
+         *   - `data-a-boolean="true"`
+         *   - (Every other value which is not on the list below.)
+         * 
          * Options considered false:
-         *      <div data-required="false">
-         *      <div data-required="">
-         *      <div data-required> (due to a quirk in IE7)
+         *
+         *   - `data-a-boolean="false"`
+         *   - `data-a-boolean=""`
+         *   - `data-a-boolean`
          *
          * Options which go to default:
-         *      <div>  -> data-required now defaults to the user provided option or the default option.
+         *
+         *   - (no attribute). When `data-a-boolean` is ommitted, the
+         *   option is not considered true nor false, and as such
+         *   defaults to what is in the `defaults` argument.
          *
          **/
         options: function (fieldId, defaults, overrides, element) {
@@ -787,7 +796,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return 'max' + upName(dimension);
     }
 
-    var openModals = 0;
+    var openModals = [];
 
     var Modal = function(selector, options) {
         if (!selector) {
@@ -1005,8 +1014,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }
 
-                Event.stop(ev);
                 this.dismiss();
+
+                // Only stop the event if this dismisses this modal
+                if (this._wasDismissed) {
+                    Event.stop(ev);
+                }
             }
         },
 
@@ -1019,8 +1032,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            if (this._options.closeOnEscape.toString() === 'true') {
+            if (this._options.closeOnEscape.toString() === 'true'
+                    && openModals[openModals.length - 1] === this) {
                 this.dismiss();
+                if (this._wasDismissed) {
+                    Event.stop(ev);
+                }
             }
         },
 
@@ -1166,7 +1183,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
-            openModals += 1;
+            openModals.push(this);
 
             Css.addClassName(document.documentElement, 'ink-modal-is-open');
         },
@@ -1179,6 +1196,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         dismiss: function() {
             if (this._wasDismissed) { /* Already dismissed. WTF IE. */ return; }
+
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
@@ -1199,39 +1217,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalDiv, 'visible' );
                 Css.removeClassName( this._modalShadow, 'visible' );
 
-                var transitionEndFn = Ink.bind(function(){
+                this._waitForFade(this._modalShadow, Ink.bind(function () {
                     this._modalShadowStyle.display = 'none';
-                    if (transitionHandler) {
-                        Event.stopObserving(document,
-                            'transitionend',transitionHandler);
-                        Event.stopObserving(document,
-                            'oTransitionEnd',transitionHandler);
-                        Event.stopObserving(document,
-                            'webkitTransitionEnd',transitionHandler);
-                    }
-                }, this);
-
-                /* observe the native transitionend events */
-                var transitionHandler =
-                    Event.observe(document,'transitionend',transitionEndFn) ||
-                    Event.observe(document,'oTransitionEnd',transitionEndFn) ||
-                    Event.observe(document,'webkitTransitionEnd',transitionEndFn);
-
-                /* in case the native transitionend is not available */
-                var dismissInterval;
-                var dismisser = Ink.bind(function(){
-                    if( +Css.getStyle(this._modalShadow, 'opacity') > 0 ){
-                        dismissInterval = setTimeout(dismisser, 500);
-                    } else {
-                        transitionEndFn();
-                    }
-                }, this);
-                dismisser();
+                }, this));
             }
 
-            openModals -= 1;
+            openModals = InkArray.remove(openModals, InkArray.keyValue(this, openModals), 1);
 
-            if (openModals === 0) {  // Document level stuff now there are no modals in play.
+            if (openModals.length === 0) {  // Document level stuff now there are no modals in play.
                 var htmlEl = document.documentElement;
 
                 // Reenable scroll
@@ -1243,6 +1236,34 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 // Remove the class from the HTML element.
                 Css.removeClassName(htmlEl, 'ink-modal-is-open');
             }
+        },
+
+        /**
+         * Utility function to listen to the onTransmissionEnd event, or wait using setTimeouts
+         *
+         * Specific to this._element
+         */
+        _waitForFade: function (elem, callback) {
+            var transitionEndEventNames = [
+                'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
+            var classicName;
+            var evName;
+            for (var i = 0, len = transitionEndEventNames.length; i < len; i++) {
+                evName = transitionEndEventNames[i];
+                classicName = 'on' + evName.toLowerCase();
+                if (classicName in elem) {
+                    Event.observeOnce(elem, evName, callback);
+                    return;
+                }
+            }
+            var fadeChecker = function () {
+                if( +Css.getStyle(elem, 'opacity') > 0 ){
+                    setTimeout(fadeChecker, 250);
+                } else {
+                    callback();
+                }
+            };
+            setTimeout(fadeChecker, 500);
         },
 
         /**
@@ -3728,6 +3749,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
     'use strict';
 
+    var enterKey = 13;
+    var backspaceKey = 8;
     var isTruthy = function (val) {return !!val;};
 
     /**
@@ -3765,19 +3788,24 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * @private
          */
         init: function(element, options) {
-            element = this._element = Common.elOrSelector(element);
-            var o = this._options = Common.options({
-                tags: [],
-                tagQuery: null,
-                tagQueryAsync: null,
-                allowRepeated: false,
-                maxTags: -1,
-                outSeparator: ',',
-                separator: /[,; ]+/g,
-                autoSplit: true
-            }, options || {}, InkElement.data(element));
+            element = this._element = Common.elOrSelector(element, 'Ink.UI.TagField');
+            var o = this._options = Common.options('Ink.UI.TagField', {
+                tags: ['String', []],
+                tagQuery: ['Object', null],
+                tagQueryAsync: ['Object', null],
+                allowRepeated: ['Boolean', false],
+                maxTags: ['Integer', -1],
+                outSeparator: ['String', ','],
+                separator: ['String', /[,; ]+/g],
+                autoSplit: ['Boolean', true]
+            }, options || {}, this._element);
+
+            if (typeof o.separator === 'string') {
+                o.separator = new RegExp(o.separator, 'g');
+            }
 
             if (typeof o.tags === 'string') {
+                // coerce to array using the separator
                 o.tags = this._readInput(o.tags);
             }
 
@@ -3844,6 +3872,10 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         },
 
         _addTag: function (tag) {
+            if (this._options.maxTags !== -1 &&
+                    this._tags.length > this._options.maxTags) {
+                return;
+            }
             if ((!this._options.allowRepeated &&
                     InkArray.inArray(tag, this._tags, tag)) || !tag) {
                 return false;
@@ -3892,28 +3924,43 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         },
 
         _onKeyDown: function (event) {
-
-            if (event.which === 13 && this._input.value) {  // enter key
-                this._addTag(this._input.value);
-                this._input.value = '';
-                InkEvent.stop(event);
-                return false;
-            } else if (event.which === 8 && !this._input.value) { // backspace key
-                if (this._removeConfirm) {
-                    this._unsetRemovingVisual(this._tags.length - 1);
-                    this._removeTag(this._tags.length - 1);
-                    this._removeConfirm = null;
-                } else {
-                    this._setRemovingVisual(this._tags.length - 1);
-                }
-            } else {
-                if (this._removeConfirm) {  // pressed another key, cancelling removal
-                    this._unsetRemovingVisual(this._tags.length - 1);
-                }
+            if (event.which === enterKey) {
+                return this._onEnterKeyDown(event);
+            } else if (event.which === backspaceKey) {
+                return this._onBackspaceKeyDown();
+            } else if (this._removeConfirm) {
+                // user pressed another key, cancel removal from a backspace key
+                this._unsetRemovingVisual(this._tags.length - 1);
             }
         },
 
-        _onBlur: function (event) {
+        /**
+         * When the user presses backspace twice on the empty input, we delete the last tag on the field.
+         * @method onBackspaceKeyDown
+         * @private
+         */
+        _onBackspaceKeyDown: function () {
+            if (this._input.value) { return; }
+
+            if (this._removeConfirm) {
+                this._unsetRemovingVisual(this._tags.length - 1);
+                this._removeTag(this._tags.length - 1);
+                this._removeConfirm = null;
+            } else {
+                this._setRemovingVisual(this._tags.length - 1);
+            }
+        },
+
+        _onEnterKeyDown: function (event) {
+            var tag = this._input.value;
+            if (tag) {
+                this._addTag(tag);
+                this._input.value = '';
+            }
+            InkEvent.stopDefault(event);
+        },
+
+        _onBlur: function () {
             this._addTag(this._input.value);
             this._input.value = '';
         },
@@ -4276,27 +4323,28 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}   [options.lastLabel]         label to display on next page button
      * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
      * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
-     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
+     * @xparam {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
     var Pagination = function(selector, options) {
 
         this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
 
-        this._options = Ink.extendObj({
-            size:          null,
-            totalItemCount: null,
-            itemsPerPage:  null,
-            start:         1,
-            firstLabel:    'First',
-            lastLabel:     'Last',
-            previousLabel: 'Previous',
-            nextLabel:     'Next',
-            onChange:      undefined,
-            setHash:       false,
-            hashParameter: 'page',
-            numberFormatter: function(i) { return i + 1; }
-        }, options || {}, Element.data(this._element));
+        this._options = Common.options('Ink.UI.Pagination_1', {
+            size:            ['Integer', null],
+            totalItemCount:  ['Integer', null],
+            itemsPerPage:    ['Integer', null],
+            maxSize:         ['Integer', null],
+            start:           ['Integer', 1],
+            firstLabel:      ['String', 'First'],
+            lastLabel:       ['String', 'Last'],
+            previousLabel:   ['String', 'Previous'],
+            nextLabel:       ['String', 'Next'],
+            onChange:        ['Function', undefined],
+            // setHash:         ['Boolean', false],
+            hashParameter:   ['String', 'page'],
+            numberFormatter: ['Function', function(i) { return i + 1; }]
+        }, options || {}, this._element);
 
         if (!this._options.previousPageLabel) {
             this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
@@ -4332,10 +4380,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
         this.setOnChange(this._options.onChange);
 
-        if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
-            this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
-        }
-
         this._current = this._options.start - 1;
         this._itemLiEls = [];
 
@@ -4353,6 +4397,10 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _init: function() {
             // generate and apply DOM
             this._generateMarkup(this._element);
+            if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
+                this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
+            }
+
             this._updateItems();
 
             // subscribe events
@@ -8959,11 +9007,6 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                 var tleft = targetElementPos[0],
                     ttop = targetElementPos[1];
 
-                if (tleft instanceof Array) {  // Work around a bug in Ink.Dom.Element.offsetLeft which made it return the result of offset() instead. TODO remove this check when fix is merged
-                    ttop = tleft[1];
-                    tleft = tleft[0];
-                }
-
                 var centerh = (InkElement.elementWidth(this.element) / 2) - (InkElement.elementWidth(tooltip) / 2),
                     centerv = (InkElement.elementHeight(this.element) / 2) - (InkElement.elementHeight(tooltip) / 2);
                 var spacing = this._getIntOpt('spacing');
@@ -8974,15 +9017,15 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                 var maxX = InkElement.scrollWidth() + InkElement.viewportWidth();
                 var maxY = InkElement.scrollHeight() + InkElement.viewportHeight();
                 
-                if (where === 'left' &&  tleft - tooltipDims[0] < 0) {
-                    where = 'right';
-                } else if (where === 'right' && tleft + tooltipDims[0] > maxX) {
-                    where = 'left';
-                } else if (where === 'up' && ttop - tooltipDims[1] < 0) {
-                    where = 'down';
-                } else if (where === 'down' && ttop + tooltipDims[1] > maxY) {
-                    where = 'up';
-                }
+                where = this._getWhereValueInsideViewport(where, {
+                    left: tleft - tooltipDims[0],
+                    right: tleft + tooltipDims[0],
+                    top: ttop + tooltipDims[1],
+                    bottom: ttop + tooltipDims[1]
+                }, {
+                    right: maxX,
+                    bottom: maxY
+                });
                 
                 if (where === 'up') {
                     ttop -= tooltipDims[1];
@@ -9010,10 +9053,8 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                     tooltip.appendChild(arrow);
                 }
 
-                var scrl = this._getLocalScroll();
-
-                var tooltipLeft = tleft - scrl[0];
-                var tooltipTop = ttop - scrl[1];
+                var tooltipLeft = tleft;
+                var tooltipTop = ttop;
 
                 var toBottom = (tooltipTop + tooltipDims[1]) - maxY;
                 var toRight = (tooltipLeft + tooltipDims[0]) - maxX;
@@ -9037,6 +9078,31 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                 tooltip.style.left = tooltipLeft + 'px';
                 tooltip.style.top = tooltipTop + 'px';
             }
+        },
+
+        /**
+         * Get a value for "where" (left/right/up/down) which doesn't put the
+         * tooltip off the screen
+         *
+         * @method _getWhereValueInsideViewport
+         * @param where {String} "where" value which was given by the user and we might change
+         * @param bbox {BoundingBox} A bounding box like what you get from getBoundingClientRect ({top, bottom, left, right}) with pixel positions from the top left corner of the viewport.
+         * @param viewport {BoundingBox} Bounding box for the viewport. "top" and "left" are omitted because these coordinates are relative to the top-left corner of the viewport so they are zero.
+         *
+         * @note: we can't use getBoundingClientRect in this case because it returns {0,0,0,0} on our uncreated tooltip.
+         */
+        _getWhereValueInsideViewport: function (where, bbox, viewport) {
+            if (where === 'left' && bbox.left < 0) {
+                return 'right';
+            } else if (where === 'right' && bbox.right > viewport.right) {
+                return 'left';
+            } else if (where === 'up' && bbox.top < 0) {
+                return 'down';
+            } else if (where === 'down' && bbox.bottom > viewport.bottom) {
+                return 'up';
+            }
+
+            return where;
         },
         _removeTooltip: function() {
             var tooltip = this.tooltip;
@@ -9155,23 +9221,6 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             } else {
                 return [0, 0];
             }
-        },
-        _getLocalScroll: function () {
-            var cumScroll = [0, 0];
-            var cursor = this.element.parentNode;
-            var left, top;
-            while (cursor && cursor !== document.documentElement && cursor !== document.body) {
-                left = cursor.scrollLeft;
-                top = cursor.scrollTop;
-                if (left) {
-                    cumScroll[0] += left;
-                }
-                if (top) {
-                    cumScroll[1] += top;
-                }
-                cursor = cursor.parentNode;
-            }
-            return cumScroll;
         },
         _getMousePosition: function(e) {
             return [parseInt(InkEvent.pointerX(e), 10), parseInt(InkEvent.pointerY(e), 10)];

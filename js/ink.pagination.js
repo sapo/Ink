@@ -42,27 +42,28 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}   [options.lastLabel]         label to display on next page button
      * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
      * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
-     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
+     * @xparam {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
     var Pagination = function(selector, options) {
 
         this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
 
-        this._options = Ink.extendObj({
-            size:          null,
-            totalItemCount: null,
-            itemsPerPage:  null,
-            start:         1,
-            firstLabel:    'First',
-            lastLabel:     'Last',
-            previousLabel: 'Previous',
-            nextLabel:     'Next',
-            onChange:      undefined,
-            setHash:       false,
-            hashParameter: 'page',
-            numberFormatter: function(i) { return i + 1; }
-        }, options || {}, Element.data(this._element));
+        this._options = Common.options('Ink.UI.Pagination_1', {
+            size:            ['Integer', null],
+            totalItemCount:  ['Integer', null],
+            itemsPerPage:    ['Integer', null],
+            maxSize:         ['Integer', null],
+            start:           ['Integer', 1],
+            firstLabel:      ['String', 'First'],
+            lastLabel:       ['String', 'Last'],
+            previousLabel:   ['String', 'Previous'],
+            nextLabel:       ['String', 'Next'],
+            onChange:        ['Function', undefined],
+            // setHash:         ['Boolean', false],
+            hashParameter:   ['String', 'page'],
+            numberFormatter: ['Function', function(i) { return i + 1; }]
+        }, options || {}, this._element);
 
         if (!this._options.previousPageLabel) {
             this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
@@ -98,10 +99,6 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
         this.setOnChange(this._options.onChange);
 
-        if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
-            this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
-        }
-
         this._current = this._options.start - 1;
         this._itemLiEls = [];
 
@@ -119,6 +116,10 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _init: function() {
             // generate and apply DOM
             this._generateMarkup(this._element);
+            if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
+                this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
+            }
+
             this._updateItems();
 
             // subscribe events

@@ -2633,7 +2633,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 if (targetElm.nextSibling !== null) {
                     targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
                 } else {
-                    targetElm.parentNode.appendChild(targetElm);
+                    targetElm.parentNode.appendChild(newElm);
                 }
             }
         },
