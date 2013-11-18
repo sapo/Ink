@@ -210,7 +210,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }
             }
-        } else if ( this._options.autoDisplay ) {
+        } else if ( this._options.autoDisplay.toString() === "true" ) {
             this.open();
         }
     };
