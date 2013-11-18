@@ -156,12 +156,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @example
          *
          *      this._options = Ink.UI.Common.options('MyComponent', {
-         *          'anobject': ['Object', null],
+         *          'anobject': ['Object', null],  // Defaults to null
          *          'target': ['Element', null],
          *          'stuff': ['Number', 0.1],
          *          'stuff2': ['Integer', 0],
          *          'doKickFlip': ['Boolean', false],
-         *          'targets': ['Elements'], // Required option. 1-element array.
+         *          'targets': ['Elements'], // Required option since no default was given
          *          'onClick': ['Function', null]
          *      }, options || {}, elm)
          *
@@ -169,16 +169,25 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * ### Note about booleans
          *
-         * Options considered true:
-         *      <div data-required="true"> (and anything else not listed below)
+         * Here is how options are read from the markup
+         * data-attributes, for several values`data-a-boolean`.
          *
+         * Options considered true:
+         *
+         *   - `data-a-boolean="true"`
+         *   - (Every other value which is not on the list below.)
+         * 
          * Options considered false:
-         *      <div data-required="false">
-         *      <div data-required="">
-         *      <div data-required> (due to a quirk in IE7)
+         *
+         *   - `data-a-boolean="false"`
+         *   - `data-a-boolean=""`
+         *   - `data-a-boolean`
          *
          * Options which go to default:
-         *      <div>  -> data-required now defaults to the user provided option or the default option.
+         *
+         *   - (no attribute). When `data-a-boolean` is ommitted, the
+         *   option is not considered true nor false, and as such
+         *   defaults to what is in the `defaults` argument.
          *
          **/
         options: function (fieldId, defaults, overrides, element) {
