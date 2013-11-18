@@ -66,7 +66,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return 'max' + upName(dimension);
     }
 
-    var openModals = 0;
+    var openModals = [];
 
     var Modal = function(selector, options) {
         if (!selector) {
@@ -284,8 +284,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }
 
-                Event.stop(ev);
                 this.dismiss();
+
+                // Only stop the event if this dismisses this modal
+                if (this._wasDismissed) {
+                    Event.stop(ev);
+                }
             }
         },
 
@@ -298,8 +302,12 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            if (this._options.closeOnEscape.toString() === 'true') {
+            if (this._options.closeOnEscape.toString() === 'true'
+                    && openModals[openModals.length - 1] === this) {
                 this.dismiss();
+                if (this._wasDismissed) {
+                    Event.stop(ev);
+                }
             }
         },
 
@@ -445,7 +453,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
-            openModals += 1;
+            openModals.push(this);
 
             Css.addClassName(document.documentElement, 'ink-modal-is-open');
         },
@@ -458,6 +466,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         dismiss: function() {
             if (this._wasDismissed) { /* Already dismissed. WTF IE. */ return; }
+
             if (this._options.onDismiss) {
                 var ret = this._options.onDismiss(this);
                 if (ret === false) { return; }
@@ -478,39 +487,14 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 Css.removeClassName( this._modalDiv, 'visible' );
                 Css.removeClassName( this._modalShadow, 'visible' );
 
-                var transitionEndFn = Ink.bind(function(){
+                this._waitForFade(this._modalShadow, Ink.bind(function () {
                     this._modalShadowStyle.display = 'none';
-                    if (transitionHandler) {
-                        Event.stopObserving(document,
-                            'transitionend',transitionHandler);
-                        Event.stopObserving(document,
-                            'oTransitionEnd',transitionHandler);
-                        Event.stopObserving(document,
-                            'webkitTransitionEnd',transitionHandler);
-                    }
-                }, this);
-
-                /* observe the native transitionend events */
-                var transitionHandler =
-                    Event.observe(document,'transitionend',transitionEndFn) ||
-                    Event.observe(document,'oTransitionEnd',transitionEndFn) ||
-                    Event.observe(document,'webkitTransitionEnd',transitionEndFn);
-
-                /* in case the native transitionend is not available */
-                var dismissInterval;
-                var dismisser = Ink.bind(function(){
-                    if( +Css.getStyle(this._modalShadow, 'opacity') > 0 ){
-                        dismissInterval = setTimeout(dismisser, 500);
-                    } else {
-                        transitionEndFn();
-                    }
-                }, this);
-                dismisser();
+                }, this));
             }
 
-            openModals -= 1;
+            openModals = InkArray.remove(openModals, InkArray.keyValue(this, openModals), 1);
 
-            if (openModals === 0) {  // Document level stuff now there are no modals in play.
+            if (openModals.length === 0) {  // Document level stuff now there are no modals in play.
                 var htmlEl = document.documentElement;
 
                 // Reenable scroll
@@ -522,6 +506,34 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 // Remove the class from the HTML element.
                 Css.removeClassName(htmlEl, 'ink-modal-is-open');
             }
+        },
+
+        /**
+         * Utility function to listen to the onTransmissionEnd event, or wait using setTimeouts
+         *
+         * Specific to this._element
+         */
+        _waitForFade: function (elem, callback) {
+            var transitionEndEventNames = [
+                'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
+            var classicName;
+            var evName;
+            for (var i = 0, len = transitionEndEventNames.length; i < len; i++) {
+                evName = transitionEndEventNames[i];
+                classicName = 'on' + evName.toLowerCase();
+                if (classicName in elem) {
+                    Event.observeOnce(elem, evName, callback);
+                    return;
+                }
+            }
+            var fadeChecker = function () {
+                if( +Css.getStyle(elem, 'opacity') > 0 ){
+                    setTimeout(fadeChecker, 250);
+                } else {
+                    callback();
+                }
+            };
+            setTimeout(fadeChecker, 500);
         },
 
         /**
