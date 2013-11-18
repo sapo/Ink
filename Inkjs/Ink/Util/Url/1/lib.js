@@ -221,10 +221,9 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          *     });
          *
          */
-        parseUrl: function(url)
-        {
+        parseUrl: function(url) {
             var aURL = {};
-            if(url && typeof(url) !== 'undefined' && typeof(url) === 'string') {
+            if(url && typeof url === 'string') {
                 if(url.match(/^([^:]+):\/\//i)) {
                     var re = /^([^:]+):\/\/([^\/]*)\/?([^\?#]*)\??([^#]*)#?(.*)/i;
                     if(url.match(re)) {
@@ -259,7 +258,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                     }
                 }
                 if(aURL.host) {
-                    var regPort = new RegExp("^(.*)\\:(\\d+)$","i");
+                    var regPort = /^(.*?)\\:(\\d+)$/i;
                     // check for port
                     if(aURL.host.match(regPort)) {
                         var tmpHost1 = aURL.host;
@@ -284,6 +283,37 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                 }
             }
             return aURL;
+        },
+
+        /**
+         * Take a URL object from Ink.Util.Url.parseUrl or a window.location
+         * object and returns a URL string.
+         *
+         * @method format
+         * @param urlObj window.location, a.href, or parseUrl object to format
+         * @return {String} Full URL.
+         */
+        format: function (urlObj) {
+            var frag = '';
+            var query = '';
+            if (typeof urlObj.query === 'string') {
+                query = urlObj.query;
+            } else if (typeof urlObj.search === 'string') {
+                query = urlObj.search.replace(/^\?/, '');
+            }
+            if (typeof urlObj.fragment === 'string') {
+                frag =  urlObj.fragment;
+            } else if (typeof urlObj.hash === 'string') {
+                frag = urlObj.hash.replace(/#$/, '');
+            }
+            return [
+                urlObj.protocol || urlObj.scheme + ':',
+                '//',
+                urlObj.host || urlObj.hostname,
+                urlObj.path,
+                query && '?' + query,
+                frag && '#' + frag
+            ].join('');
         },
 
         /**

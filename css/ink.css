@@ -6453,6 +6453,9 @@ table.ink-table.bordered tr td:first-child {
 .sapo_component_datepicker li {
   list-style: none inside;
 }
+html.ink-modal-is-open .sapo_component_datepicker {
+  z-index: 101;
+}
 .sapo_cal_top_options {
   padding: 5px;
   font-size: .813em;
@@ -6698,6 +6701,39 @@ table.ink-table.bordered tr td:first-child {
 .ink-modal-open {
   overflow: hidden;
 }
+.ink-tagfield input[type="text"].new-tag-input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  line-height: 1em;
+  margin: 0;
+  padding: 5px;
+  border-radius: 2px;
+}
+.ink-tagfield input[type="text"].new-tag-input:focus {
+  -webkit-box-shadow: 0px 0px 0px 3px #eaeaea;
+  -moz-box-shadow: 0px 0px 0px 3px #eaeaea;
+  box-shadow: 0px 0px 0px 3px #eaeaea;
+  border: 1px solid #c3c3c3;
+}
+.ink-tagfield span.ink-tag {
+  background-color: #1b1b1b;
+  color: #eaeaea;
+  text-shadow: none;
+  font-size: 0.9em;
+  font-weight: normal;
+  border: 1px solid #000;
+  padding: 4px 6px;
+}
+.ink-tagfield span.ink-tag i.icon-remove {
+  color: #ccc;
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-left: 4px;
+}
+.ink-tagfield span.ink-tag i.icon-remove:hover {
+  cursor: pointer;
+  color: red;
+}
 /* Progess bars */
 .ink-progress-bar {
   margin-bottom: 1em;
@@ -6941,21 +6977,13 @@ table.ink-table.bordered tr td:first-child {
 .ink-sortable-list li .ink-label {
   margin: 0 .8em;
 }
-ul.ink-tree-view li {
+.ink-tree-view li {
   list-style-type: none;
 }
-ul.ink-tree-view li span:before {
-  display: inline-block;
-  margin-right: .3em;
-  font-family: FontAwesome;
-  content: "\f055";
-  margin-left: -1.4em;
-}
-ul.ink-tree-view li.open span:before {
-  content: "\f056";
-}
-ul.ink-tree-view li.closed span:before {
-  content: "\f055";
+.ink-tree-view [data-open] > :before {
+  margin-left: -1.3em;
+  margin-right: .4em;
+  text-decoration: none;
 }
 .ink-carousel {
   width: 100%;

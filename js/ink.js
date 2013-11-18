@@ -1912,7 +1912,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
                         this.hide(elm);
                     }
                 } else {
-                    if (elm.style.display === 'none') {
+                    if (this.getStyle(elm,'display').toLowerCase() === 'none') {
                         this.show(elm);
                     }
                     else {
@@ -2552,39 +2552,18 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         offset: function(el) {
             /*jshint boss:true */
             el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = InkElement._getPropPx;
-
-            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
-
-            do {
-                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                if( InkBrowser.OPERA ){
-                    res[0] += dRes[0];
-                    res[1] += dRes[1];
-                } else {
-                    res[0] += dRes[0] + bRes[0];
-                    res[1] += dRes[1] + bRes[1];
-                }
-                parent = el.offsetParent;
-            } while (el = parent);
-
-            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-            if (InkBrowser.GECKO) {
-                res[0] += bRes[0];
-                res[1] += bRes[1];
-            }
-            else if( !InkBrowser.OPERA ) {
-                res[0] -= bRes[0];
-                res[1] -= bRes[1];
-            }
-
+            var doc = el.ownerDocument,
+                docElem = doc.documentElement,
+                box = el.getBoundingClientRect(),
+                body = doc.body,
+                clientTop  = docElem.clientTop  || body.clientTop  || 0,
+                clientLeft = docElem.clientLeft || body.clientLeft || 0,
+                scrollTop  = doc.pageYOffset || docElem.scrollTop  || body.scrollTop,
+                scrollLeft = doc.pageXOffset || docElem.scrollLeft || body.scrollLeft,
+                top  = box.top  + scrollTop  - clientTop,
+                left = box.left + scrollLeft - clientLeft;
+            res = [left, top];
             return res;
         },
 
@@ -2611,7 +2590,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 c = val.indexOf('px');
                 if (c === -1) { n = 0; }
                 else {
-                    n = parseInt(val, 10);
+                    n = parseFloat(val, 10);
                 }
             }
 
@@ -2651,7 +2630,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
             if (targetElm = InkElement.get(targetElm)) {
-                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                if (targetElm.nextSibling !== null) {
+                    targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                } else {
+                    targetElm.parentNode.appendChild(targetElm);
+                }
             }
         },
 
@@ -3147,11 +3130,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @returns {HtmlElement|false} the matched element or false if did not match
          */
         findUpwardsBySelector: function(element, sel) {
-            if (typeof Ink.Dom === 'undefined' || typeof Ink.Dom.Selector === 'undefined') {
+            var Selector = Ink.getModule('Ink.Dom.Selector');
+            if (!Selector) {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
             var tst = function(el) {
-                return Ink.Dom.Selector.matchesSelector(el, sel);
+                return Selector.matchesSelector(el, sel);
             };
             return InkElement.findUpwardsHaving(element, tst);
         },
@@ -4146,9 +4130,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object} ev  event object
      * @return {Node} The target
      */
-    element: function(ev)
-    {
-        var node = ev.target ||
+    element: function(ev) {
+        var node = ev.delegationTarget ||
+            ev.target ||
             // IE stuff
             (ev.type === 'mouseout'   && ev.fromElement) ||
             (ev.type === 'mouseleave' && ev.fromElement) ||
@@ -4309,8 +4293,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
-    observe: function(element, eventName, callBack, useCapture)
-    {
+    observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
         if(element) {
             /* rare corner case: some events need a different callback to be generated */
@@ -4401,7 +4384,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
             while (cursor !== element && cursor) {
                 if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
-                    return callback.call(cursor, event);
+                    event.delegationTarget = cursor;
+                    return callback(event);
                 }
                 cursor = cursor.parentNode;
             }
@@ -4601,6 +4585,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
     debug: function(){}
 };
+
 
 return InkEvent;
 
@@ -7466,10 +7451,9 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          *     });
          *
          */
-        parseUrl: function(url)
-        {
+        parseUrl: function(url) {
             var aURL = {};
-            if(url && typeof(url) !== 'undefined' && typeof(url) === 'string') {
+            if(url && typeof url === 'string') {
                 if(url.match(/^([^:]+):\/\//i)) {
                     var re = /^([^:]+):\/\/([^\/]*)\/?([^\?#]*)\??([^#]*)#?(.*)/i;
                     if(url.match(re)) {
@@ -7504,7 +7488,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                     }
                 }
                 if(aURL.host) {
-                    var regPort = new RegExp("^(.*)\\:(\\d+)$","i");
+                    var regPort = /^(.*?)\\:(\\d+)$/i;
                     // check for port
                     if(aURL.host.match(regPort)) {
                         var tmpHost1 = aURL.host;
@@ -7529,6 +7513,37 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                 }
             }
             return aURL;
+        },
+
+        /**
+         * Take a URL object from Ink.Util.Url.parseUrl or a window.location
+         * object and returns a URL string.
+         *
+         * @method format
+         * @param urlObj window.location, a.href, or parseUrl object to format
+         * @return {String} Full URL.
+         */
+        format: function (urlObj) {
+            var frag = '';
+            var query = '';
+            if (typeof urlObj.query === 'string') {
+                query = urlObj.query;
+            } else if (typeof urlObj.search === 'string') {
+                query = urlObj.search.replace(/^\?/, '');
+            }
+            if (typeof urlObj.fragment === 'string') {
+                frag =  urlObj.fragment;
+            } else if (typeof urlObj.hash === 'string') {
+                frag = urlObj.hash.replace(/#$/, '');
+            }
+            return [
+                urlObj.protocol || urlObj.scheme + ':',
+                '//',
+                urlObj.host || urlObj.hostname,
+                urlObj.path,
+                query && '?' + query,
+                frag && '#' + frag
+            ].join('');
         },
 
         /**
@@ -11533,7 +11548,6 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *     });
          */
         _daysInMonth: function(_m,_y){
-            /* jshint eqeqeq:false */
             var nDays=0;
 
             _m = parseInt(_m, 10);
@@ -11544,7 +11558,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             } else if ( _m===4 || _m===6 || _m===9 || _m===11) {
                 nDays = 30;
             } else if (_m===2) {
-                if((_y%400===0) || (_y%4===0 && _y%100!=0)) {
+                if((_y%400===0) || (_y%4===0 && _y%100!==0)) {
                     nDays = 29;
                 } else {
                     nDays = 28;

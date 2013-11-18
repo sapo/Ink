@@ -157,11 +157,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @example
          *
          *      this._options = Ink.UI.Common.options('MyComponent', {
+         *          'anobject': ['Object', null],
          *          'target': ['Element', null],
          *          'stuff': ['Number', 0.1],
          *          'stuff2': ['Integer', 0],
          *          'doKickFlip': ['Boolean', false],
-         *          'targets': ['Elements'], // Required option
+         *          'targets': ['Elements'], // Required option. 1-element array.
          *          'onClick': ['Function', null]
          *      }, options || {}, elm)
          *
@@ -212,7 +213,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                         invalid('Ink.UI.Common.options: Always specify a type!');
                     }
                     if (!(lType in Common._coerce_funcs)) {
-                        invalid('' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
+                        invalid('Ink.UI.Common.options: ' + defaults[key][0] + ' is not a valid type. Use one of ' + keys(Common._coerce_funcs).join(', '));
 
                     }
                     if (!defaults[key].length || defaults[key].length > 2) {
@@ -221,6 +222,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
 
                     if (key in dataAttrs) {
                         fromDataAttrs = Common._coerce_from_string(lType, dataAttrs[key]);
+                        // (above can return `nothing`)
                     } else {
                         fromDataAttrs = nothing;
                     }
@@ -251,7 +253,13 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
         },
 
         _options_validate: function (val, type) {
-            return Common._options_validate_types[type].call(Common, val);
+            if (type in Common._options_validate_types) {
+                return Common._options_validate_types[type].call(Common, val);
+            } else {
+                // 'object' options cannot be passed through data-attributes.
+                // Json you say? Not any good to embed in HTML.
+                return false;
+            }
         },
 
         _coerce_funcs: (function () {
@@ -260,15 +268,14 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.elOrSelector(val, '');
                 },
                 elements: function (val) {
-                    return Common.elsOrSelector(val, '', false /*not required*/);
+                    return Common.elsOrSelector(val, '', false /*not required, so don't throw an exception now*/);
                 },
+                object: function (val) { return val; },
                 number: function (val) { return +val; },
                 boolean: function (val) {
                     return !(val === 'false' || val === '' || val === null);
                 },
-                string: function (val) {
-                    return val;
-                },
+                string: function (val) { return val; },
                 'function': function () {
                     throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
                 }
@@ -292,7 +299,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.isDOMElement(val);
                 },
                 elements: function (val) {
-                    return typeof val === 'object' && typeof val.length === 'number' && val.length;
+                    return val && typeof val === 'object' && typeof val.length === 'number' && val.length;
                 },
                 boolean: function (val) {
                     return typeof val === 'boolean';
@@ -780,6 +787,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return 'max' + upName(dimension);
     }
 
+    var openModals = 0;
+
     var Modal = function(selector, options) {
         if (!selector) {
             this._element = null;
@@ -1157,6 +1166,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             Common.registerInstance(this, this._shadeElement, 'modal');
 
             this._wasDismissed = false;
+            openModals += 1;
+
+            Css.addClassName(document.documentElement, 'ink-modal-is-open');
         },
 
         /**
@@ -1173,12 +1185,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             this._wasDismissed = true;
-
-            if(this._options.disableScroll) {
-                var htmlEl = document.documentElement;
-                htmlEl.style.overflowX = this._oldHtmlOverflows[0];
-                htmlEl.style.overflowY = this._oldHtmlOverflows[1];
-            }
 
             if( this._options.responsive ){
                 Event.stopObserving(window, 'resize', this._handlers.resize);
@@ -1221,6 +1227,21 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     }
                 }, this);
                 dismisser();
+            }
+
+            openModals -= 1;
+
+            if (openModals === 0) {  // Document level stuff now there are no modals in play.
+                var htmlEl = document.documentElement;
+
+                // Reenable scroll
+                if(this._options.disableScroll) {
+                    htmlEl.style.overflowX = this._oldHtmlOverflows[0];
+                    htmlEl.style.overflowY = this._oldHtmlOverflows[1];
+                }
+
+                // Remove the class from the HTML element.
+                Css.removeClassName(htmlEl, 'ink-modal-is-open');
             }
         },
 
@@ -1293,68 +1314,107 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 });
 
 /**
- * @module Ink.UI.ProgressBar_1
+ * @module Ink.UI.ImageQuery_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
+Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * Associated to a .ink-progress-bar element, it provides the necessary
-     * method - setValue() - for the user to change the element's value.
-     * 
-     * @class Ink.UI.ProgressBar
+     * @class Ink.UI.ImageQuery
      * @constructor
      * @version 1
+     *
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
-     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
-     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
+     *      @param {String|Function}    [options.src]             String or Callback function (that returns a string) with the path to be used to get the images.
+     *      @param {String|Function}    [options.retina]          String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
+     *      @param {Array}              [options.queries]         Array of queries
+     *          @param {String}              [options.queries.label]         Label of the query. Ex. 'small'
+     *          @param {Number}              [options.queries.width]         Min-width to use this query
+     *      @param {Function}           [options.onLoad]          Date format string
      *
      * @example
-     *      <div class="ink-progress-bar grey" data-start-value="70%">
-     *          <span class="caption">I am a grey progress bar</span>
-     *          <div class="bar grey"></div>
+     *      <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
+     *          <img src="/assets/imgs/imagequery/small/image.jpg" />
      *      </div>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
-     *              var progressBarElement = Ink.s('.ink-progress-bar');
-     *              var progressBarObj = new ProgressBar( progressBarElement );
+     *      <script type="text/javascript">
+     *      Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
+     *          var imageQueryElement = Ink.s('.imageQueryExample img');
+     *          var imageQueryObj = new ImageQuery('.imageQueryExample img',{
+     *              src: '/assets/imgs/imagequery/{:label}/{:file}',
+     *              queries: [
+     *                  {
+     *                      label: 'small',
+     *                      width: 480
+     *                  },
+     *                  {
+     *                      label: 'medium',
+     *                      width: 640
+     *                  },
+     *                  {
+     *                      label: 'large',
+     *                      width: 1024
+     *                  }   
+     *              ]
      *          });
+     *      } );
      *      </script>
      */
-    var ProgressBar = function( selector, options ){
+    var ImageQuery = function(selector, options){
 
-        if( typeof selector !== 'object' ){
-            if( typeof selector !== 'string' ){
-                throw '[Ink.UI.ProgressBar] :: Invalid selector';
-            } else {
-                this._element = Selector.select(selector);
-                if( this._element.length < 1 ){
-                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
+        /**
+         * Selector's type checking
+         */
+        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[ImageQuery] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+
+            if( this._element.length < 1 ){
+                throw '[ImageQuery] :: Selector has returned no elements';
+            } else if( this._element.length > 1 ){
+                var i;
+                for( i=1;i<this._element.length;i+=1 ){
+                    new Ink.UI.ImageQuery(this._element[i],options);
                 }
-                this._element = this._element[0];
             }
+            this._element = this._element[0];
+
         } else {
             this._element = selector;
         }
 
 
+        /**
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {array} queries Array of objects that determine the label/name and its min-width to be applied.
+         * @param {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
+         */
         this._options = Ink.extendObj({
-            'startValue': 0,
-            'onStart': function(){},
-            'onEnd': function(){}
+            queries:[],
+            onLoad: null
         },Element.data(this._element));
 
-        this._options = Ink.extendObj( this._options, options || {});
-        this._value = this._options.startValue;
+        this._options = Ink.extendObj(this._options, options || {});
+
+        /**
+         * Determining the original basename (with the querystring) of the file.
+         */
+        var pos;
+        if( (pos=this._element.src.lastIndexOf('?')) !== -1 ){
+            var search = this._element.src.substr(pos);
+            this._filename = this._element.src.replace(search,'').split('/').pop()+search;
+        } else {
+            this._filename = this._element.src.split('/').pop();
+        }
 
         this._init();
     };
 
-    ProgressBar.prototype = {
+    ImageQuery.prototype = {
 
         /**
          * Init function called by the constructor
@@ -1363,41 +1423,144 @@ Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Eleme
          * @private
          */
         _init: function(){
-            this._elementBar = Selector.select('.bar',this._element);
-            if( this._elementBar.length < 1 ){
-                throw '[Ink.UI.ProgressBar] :: Bar element not found';
-            }
-            this._elementBar = this._elementBar[0];
 
-            this._options.onStart = Ink.bind(this._options.onStart,this);
-            this._options.onEnd = Ink.bind(this._options.onEnd,this);
-            this.setValue( this._options.startValue );
+            // Sort queries by width, in descendant order.
+            this._options.queries = InkArray.sortMulti(this._options.queries,'width').reverse();
+
+            // Declaring the event handlers, in this case, the window.resize and the (element) load.
+            this._handlers = {
+                resize: Ink.bindEvent(this._onResize,this),
+                load: Ink.bindEvent(this._onLoad,this)
+            };
+
+            if( typeof this._options.onLoad === 'function' ){
+                Event.observe(this._element, 'onload', this._handlers.load);
+            }
+
+            Event.observe(window, 'resize', this._handlers.resize);
+
+            // Imediate call to apply the right images based on the current viewport
+            this._handlers.resize.call(this);
+
         },
 
         /**
-         * Sets the value of the Progressbar
-         * 
-         * @method setValue
-         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
-         * @public
+         * Handles the resize event (as specified in the _init function)
+         *
+         * @method _onResize
+         * @private
          */
-        setValue: function( newValue ){
-            this._options.onStart( this._value);
+        _onResize: function(){
 
-            newValue = parseInt(newValue,10);
-            if( isNaN(newValue) || (newValue < 0) ){
-                newValue = 0;
-            } else if( newValue>100 ){
-                newValue = 100;
-            }
-            this._value = newValue;
-            this._elementBar.style.width =  this._value + '%';
+            clearTimeout(timeout);
 
-            this._options.onEnd( this._value );
+            var timeout = setTimeout(Ink.bind(function(){
+
+                if( !this._options.queries || (this._options.queries === {}) ){
+                    clearTimeout(timeout);
+                    return;
+                }
+
+                var
+                    query, selected,
+                    viewportWidth
+                ;
+
+                /**
+                 * Gets viewport width
+                 */
+                if( typeof( window.innerWidth ) === 'number' ) {
+                   viewportWidth = window.innerWidth;
+                } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                   viewportWidth = document.documentElement.clientWidth;
+                } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                   viewportWidth = document.body.clientWidth;
+                }
+
+                /**
+                 * Queries are in a descendant order. We want to find the query with the highest width that fits
+                 * the viewport, therefore the first one.
+                 */
+                for( query=0; query < this._options.queries.length; query+=1 ){
+                    if (this._options.queries[query].width <= viewportWidth){
+                        selected = query;
+                        break;
+                    }
+                }
+
+                /**
+                 * If it doesn't find any selectable query (because they don't meet the requirements)
+                 * let's select the one with the smallest width
+                 */
+                if( typeof selected === 'undefined' ){ selected = this._options.queries.length-1; }
+
+                /**
+                 * Choosing the right src. The rule is:
+                 *
+                 *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
+                 *
+                 * The above rule applies to a retina src.
+                 */
+                var src = this._options.queries[selected].src || this._options.src;
+                if ( ("devicePixelRatio" in window && window.devicePixelRatio>1) && ('retina' in this._options ) ) {
+                    src = this._options.queries[selected].retina || this._options.retina;
+                }
+
+                /**
+                 * Injects the file variable for usage in the 'templating system' below
+                 */
+                this._options.queries[selected].file = this._filename;
+
+                /**
+                 * Since we allow the src to be a callback, let's run it and get the results.
+                 * For the inside, we're passing the element (img) being processed and the object of the selected
+                 * query.
+                 */
+                if( typeof src === 'function' ){
+                    src = src.apply(this,[this._element,this._options.queries[selected]]);
+                    if( typeof src !== 'string' ){
+                        throw '[ImageQuery] :: "src" callback does not return a string';
+                    }
+                }
+
+                /**
+                 * Replace the values of the existing properties on the query object (except src and retina) in the
+                 * defined src and/or retina.
+                 */
+                var property;
+                for( property in this._options.queries[selected] ){
+                    if (this._options.queries[selected].hasOwnProperty(property)) {
+                        if( ( property === 'src' ) || ( property === 'retina' ) ){ continue; }
+                        src = src.replace("{:" + property + "}",this._options.queries[selected][property]);
+                    }
+                }
+                this._element.src = src;
+
+                // Removes the injected file property
+                delete this._options.queries[selected].file;
+
+                timeout = undefined;
+
+            },this),300);
+        },
+
+        /**
+         * Handles the element loading (img onload) event
+         *
+         * @method _onLoad
+         * @private
+         */
+        _onLoad: function(){
+
+            /**
+             * Since we allow a callback for this let's run it.
+             */
+            this._options.onLoad.call(this);
         }
+
     };
 
-    return ProgressBar;
+    return ImageQuery;
 
 });
 
@@ -2189,10 +2352,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 return;
             }
 
-
-            if( this._scrollTimeout ){
-                clearTimeout(this._scrollTimeout);
-            }
+            clearTimeout(this._scrollTimeout);
 
             this._scrollTimeout = setTimeout(Ink.bind(function(){
 
@@ -2233,8 +2393,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._rootElement.style.top = this._options.originalOffsetTop + 'px';
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
-
-                this._scrollTimeout = undefined;
             },this), 0);
         },
 
@@ -2245,10 +2403,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-
-            if( this._resizeTimeout ){
-                clearTimeout(this._resizeTimeout);
-            }
+            clearTimeout(this._resizeTimeout);
 
             this._resizeTimeout = setTimeout(Ink.bind(function(){
                 this._rootElement.removeAttribute('style');
@@ -2546,7 +2701,7 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
     'use strict';
 
     /**
@@ -2558,8 +2713,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}     options.pageSize       Number of rows per page.
-     *     @param {String}     options.endpoint       Endpoint to get the records via AJAX
+     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
+     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
      * @example
      *      <table class="ink-table alternating" data-page-size="6">
      *          <thead>
@@ -2632,43 +2788,50 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
         /**
          * Get the root element
          */
-        this._rootElement = Common.elOrSelector(selector, '1st argument');
+        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
             throw '[Ink.UI.Table] :: The element is not a table';
         }
 
-        this._options = Ink.extendObj({
-            pageSize: undefined,
-            endpoint: undefined,
-            loadMode: 'full',
-            allowResetSorting: false,
-            visibleFields: undefined
-        },Element.data(this._rootElement));
-
-        this._options = Ink.extendObj( this._options, options || {});
+        this._options = Common.options({
+            pageSize: ['Integer', null],
+            endpoint: ['String', null],
+            pagination: ['Element', null],
+            allowResetSorting: ['Boolean', false],  // Any idea of what this is?
+            visibleFields: ['String', undefined]  // And this? These should be documented if they're useful.
+        }, options || {}, this._rootElement);
 
         /**
          * Checking if it's in markup mode or endpoint mode
          */
-        this._markupMode = ( typeof this._options.endpoint === 'undefined' );
+        this._markupMode = !this._options.endpoint;
 
         if( !!this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.split(',');
+            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
         }
+
+        this._thead = Ink.s('thead', this._rootElement);
 
         /**
          * Initializing variables
          */
         this._handlers = {
-            click: Ink.bindEvent(this._onClick,this)
+            thClick: null
         };
         this._originalFields = [];
-        this._sortableFields = {};
+        this._sortableFields = {
+            // Identifies which columns are sorted and how.
+            // colIndex: 'none'|'asc'|'desc'
+        };
         this._originalData = this._data = [];
         this._headers = [];
         this._pagination = null;
         this._totalRows = 0;
+
+        this._handlers.thClick = Event.observeDelegated(this._thead, 'click',
+                'th[data-sortable="true"]',
+                Ink.bindMethod(this, '_onThClick'));
 
         this._init();
     };
@@ -2687,9 +2850,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
              * If not is in markup mode, we have to do the initial request
              * to get the first data and the headers
              */
-             if( !this._markupMode ){
+             if( !this._markupMode ) {
+                 /* Endpoint mode */
                 this._getData( this._options.endpoint, true );
-             } else{
+             } else /* Markup mode */ {
                 this._setHeadersHandlers();
 
                 /**
@@ -2704,66 +2868,29 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
                 /**
                  * Set pagination if defined
-                 * 
                  */
-                if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
-                    /**
-                     * Applying the pagination
-                     */
-                    this._pagination = this._rootElement.nextSibling;
-                    while(this._pagination.nodeType !== 1){
-                        this._pagination = this._pagination.nextSibling;
-                    }
+                this._setPagination();
 
-                    if( this._pagination.nodeName.toLowerCase() !== 'nav' ){
-                        throw '[Ink.UI.Table] :: Missing the pagination markup or is mis-positioned';
-                    }
-
-                    var Pagination = Ink.getModule('Ink.UI.Pagination',1);
-
-                    this._pagination = new Pagination( this._pagination, {
-                        size: Math.ceil(this._totalRows/this._options.pageSize),
-                        onChange: Ink.bind(function( pagingObj ){
-                            this._paginate( (pagingObj._current+1) );
-                        },this)
-                    });
-
+                if (this._pagination) {
                     this._paginate(1);
                 }
              }
-
         },
 
         /**
          * Click handler. This will mainly handle the sorting (when you click in the headers)
          * 
-         * @method _onClick
+         * @method _onThClick
          * @param {Event} event Event obj
          * @private
          */
-        _onClick: function( event ){
-            
-            var
-                tgtEl = Event.element(event),
-                dataset = Element.data(tgtEl),
-                index,i,
-                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') )
-            ;
-            if( (tgtEl.nodeName.toLowerCase() !== 'th') || ( !("sortable" in dataset) || (dataset.sortable.toString() !== 'true') ) ){
-                return;
-            }
+        _onThClick: function( event ){
+            var tgtEl = Event.element(event),
+                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
 
             Event.stop(event);
             
-            index = -1;
-            if( InkArray.inArray( tgtEl,this._headers ) ){
-                for( i=0; i<this._headers.length; i++ ){
-                    if( this._headers[i] === tgtEl ){
-                        index = i;
-                        break;
-                    }
-                }
-            }
+            var index = InkArray.keyValue(tgtEl, this._headers, true) ;
 
             var prop;
 
@@ -2776,8 +2903,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     }
                 }
 
-                if( this._sortableFields['col_'+index] === 'asc' )
-                {
+                if( this._sortableFields['col_'+index] === 'asc' ) {
                     this._sortableFields['col_'+index] = 'desc';
                     this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
                 } else {
@@ -2813,22 +2939,20 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
 
                     this._sort(index);
 
-                    if( this._sortableFields['col_'+index] === 'asc' )
-                    {
+                    if( this._sortableFields['col_'+index] === 'asc' ) {
                         this._data.reverse();
                         this._sortableFields['col_'+index] = 'desc';
                         this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
                     } else {
                         this._sortableFields['col_'+index] = 'asc';
                         this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
-
                     }
                 }
 
 
                 var tbody = Selector.select('tbody',this._rootElement)[0];
                 Common.cleanChildren(tbody);
-                InkArray.each(this._data,function(item){
+                InkArray.each(this._data, function(item){
                     tbody.appendChild(item);
                 });
 
@@ -2845,13 +2969,20 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
          * @private
          */
         _paginate: function( page ){
-            InkArray.each(this._data,Ink.bind(function(item, index){
-                if( (index >= ((page-1)*parseInt(this._options.pageSize,10))) && (index < (((page-1)*parseInt(this._options.pageSize,10))+parseInt(this._options.pageSize,10)) ) ){
+            var pageSize = this._options.pageSize;
+
+            // Hide everything except the items between these indices
+            var firstIndex = (page - 1) * pageSize;
+            var lastIndex = firstIndex + pageSize;
+
+            InkArray.each(this._data, function(item, index){
+                if (index >= firstIndex && index < lastIndex) {
                     Css.removeClassName(item,'hide-all');
                 } else {
                     Css.addClassName(item,'hide-all');
                 }
-            },this));
+            });
+
         },
 
         /**
@@ -2953,19 +3084,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
             /**
              * Setting the sortable columns and its event listeners
              */
-            var theads = Selector.select('thead', this._rootElement);
-            if (!theads.length) {
-                return;
-            }
-            Event.observe(theads[0],'click',this._handlers.click);
-            this._headers = Selector.select('thead tr th',this._rootElement);
-            InkArray.each(this._headers,Ink.bind(function(item, index){
+            if (!this._thead) { return; }
+
+
+            this._headers = Selector.select('th', this._thead);
+            InkArray.each(this._headers, Ink.bind(function(item, index){
                 var dataset = Element.data( item );
-                if( ('sortable' in dataset) && (dataset.sortable.toString() === 'true') ){
+                if (dataset.sortable && dataset.sortable.toString() === 'true') {
                     this._sortableFields['col_' + index] = 'none';
                 }
             }, this));
-
         },
 
         /**
@@ -3028,41 +3156,50 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
-                this._pagination.setCurrent( (!!currentPage) ? parseInt(currentPage,10) : 0 );
+                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
             }
         },
 
         /**
-         * Checks if it needs the pagination and creates the necessary markup to have pagination
+         * Sets the instance's pagination, if necessary.
+         *
+         * Precondition: this._totalRows needs to be known.
          *
          * @method _setPagination
          * @private
          */
         _setPagination: function(){
-            // var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
+            /* If user doesn't say they want pagination, bail. */
+            if( this._options.pageSize == null ){ return; }
+
             /**
-             * Set pagination if defined
+             * Fetch pagination from options. Can be a selector string, an element or a Pagination instance.
              */
-            if( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ){
-                /**
-                 * Applying the pagination
-                 */
-                if( !this._pagination ){
-                    this._pagination = document.createElement('nav');
-                    this._pagination.className = 'ink-navigation';
-                    this._rootElement.parentNode.insertBefore(this._pagination,this._rootElement.nextSibling);
-                    this._pagination.appendChild( document.createElement('ul') ).className = 'pagination';
+            var paginationEl = this._options.pagination;
 
-                    var Pagination = Ink.getModule('Ink.UI.Pagination',1);
-
-                    this._pagination = new Pagination( this._pagination, {
-                        size: Math.ceil(this._totalRows/this._options.pageSize),
-                        onChange: Ink.bind(function( ){
-                            this._getData( this._options.endpoint );
-                        },this)
-                    }); 
-                }
+            if ( paginationEl instanceof Pagination ) {
+                this._pagination = paginationEl;
+                return;
             }
+
+            if (!paginationEl) {
+                paginationEl = Element.create('nav', {
+                    className: 'ink-navigation',
+                    insertAfter: this._rootElement
+                });
+                Element.create('ul', {
+                    className: 'pagination',
+                    insertBottom: paginationEl
+                });  // TODO this element is pagination's responsibility.
+            }
+
+            this._pagination = new Pagination(paginationEl, {
+                totalItemCount: this._totalRows,
+                itemsPerPage: this._options.pageSize,
+                onChange: Ink.bind(function (_, pageNo) {
+                    this._paginate(pageNo + 1);
+                }, this)
+            });
         },
 
         /**
@@ -3076,42 +3213,35 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
          * @private
          */
         _getData: function( endpoint ){
+            var parsedURL = InkUrl.parseUrl( endpoint ),
+                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
+                pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1);
 
-            Ink.requireModules(['Ink.Util.Url_1'],Ink.bind(function( InkURL ){
+            if( parsedURL.query ){
+                parsedURL.query = parsedURL.query.split("&");
+            } else {
+                parsedURL.query = [];
+            }
 
-                var
-                    parsedURL = InkURL.parseUrl( endpoint ),
-                    paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
-                    pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1)
-                ;
+            if( !paginated ){            
+                this._getDataViaAjax( endpoint );
+            } else {
 
-                if( parsedURL.query ){
-                    parsedURL.query = parsedURL.query.split("&");
-                } else {
-                    parsedURL.query = [];
-                }
+                parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
+                parsedURL.query.push( 'page=' + pageNum );
 
-                if( !paginated ){            
-                    this._getDataViaAjax( endpoint );
-                } else {
-
-                    parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
-                    parsedURL.query.push( 'page=' + pageNum );
-
-                    // var sortStr = '';
-                    for( var index in this._sortableFields ){
-                        if( this._sortableFields[index] !== 'none' ){
-                            parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
-                            parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
-                            break;
-                        }
+                // var sortStr = '';
+                for( var index in this._sortableFields ){
+                    if( this._sortableFields[index] !== 'none' ){
+                        parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
+                        parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
+                        break;
                     }
-
-                    this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
                 }
 
-            },this));
-
+                // TODO BUG: if the endpoint already has '?', this adds another one.
+                this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
+            }
         },
 
         /**
@@ -3161,7 +3291,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.D
                     }
 
                 },this)
-            } );
+            });
         }
     };
 
@@ -3590,6 +3720,246 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
 });
 
+/*
+ * @module Ink.UI.TagField_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
+    'use strict';
+
+    var isTruthy = function (val) {return !!val;};
+
+    /**
+     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
+     *
+     * The markup is as follows:
+     *
+     *           <input class="ink-tagfield" type="text" value="initial,value">
+     *
+     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
+     *
+     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
+     *
+     * @class Ink.UI.TagField
+     * @version 1
+     * @constructor
+     * @param {String|InputElement} element Selector or DOM Input Element.
+     * @param {Object} [options]
+     * @param {String|Array} [options.tags] initial tags in the input
+     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
+     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
+     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
+     * @param {Boolean} [options.autoSplit=true] Whether the 
+     * @example
+     */
+    function TagField(element, options) {
+        this.init(element, options);
+    }
+
+    TagField.prototype = {
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        init: function(element, options) {
+            element = this._element = Common.elOrSelector(element);
+            var o = this._options = Common.options({
+                tags: [],
+                tagQuery: null,
+                tagQueryAsync: null,
+                allowRepeated: false,
+                maxTags: -1,
+                outSeparator: ',',
+                separator: /[,; ]+/g,
+                autoSplit: true
+            }, options || {}, InkElement.data(element));
+
+            if (typeof o.tags === 'string') {
+                o.tags = this._readInput(o.tags);
+            }
+
+            Css.addClassName(this._element, 'hide-all');
+
+            this._viewElm = InkElement.create('div', {
+                className: 'ink-tagfield',
+                insertAfter: this._element
+            });
+
+            this._input = InkElement.create('input', {
+                type: 'text',
+                className: 'new-tag-input',
+                insertBottom: this._viewElm
+            });
+
+            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
+
+            this._tags = [];
+
+            InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
+
+            InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
+            InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
+            InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
+            InkEvent.observe(this._input, 'blur', Ink.bindEvent(this._onBlur, this));
+            InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
+        },
+
+        destroy: function () {
+            InkElement.remove(this._viewElm);
+            Css.removeClassName(this._element, 'hide-all');
+        },
+
+        _tagsFromMarkup: function (element) {
+            var tagname = element.tagName.toLowerCase();
+            if (tagname === 'input') {
+                return this._readInput(element.value);
+            } else if (tagname === 'select') {
+                return InkArray.map(element.getElementsByTagName('option'), function (option) {
+                    return InkElement.textContent(option);
+                });
+            } else {
+                throw new Error('Cannot read tags from a ' + tagname + ' tag. Unknown tag');
+            }
+        },
+
+        _tagsToMarkup: function (tags, element) {
+            var tagname = element.tagName.toLowerCase();
+            if (tagname === 'input') {
+                if (this._options.separator) {
+                    element.value = tags.join(this._options.outSeparator);
+                }
+            } else if (tagname === 'select') {
+                element.innerHTML = '';
+                InkArray.each(tags, function (tag) {
+                    var opt = InkElement.create('option', {selected: 'selected'});
+                    InkElement.setTextContent(opt, tag);
+                    element.appendChild(opt);
+                });
+            } else {
+                throw new Error('TagField: Cannot read tags from a ' + tagname + ' tag. Unknown tag');
+            }
+        },
+
+        _addTag: function (tag) {
+            if ((!this._options.allowRepeated &&
+                    InkArray.inArray(tag, this._tags, tag)) || !tag) {
+                return false;
+            }
+            var elm = InkElement.create('span', {
+                className: 'ink-tag',
+                setTextContent: tag + ' '
+            });
+
+            var remove = InkElement.create('i', {
+                className: 'remove icon-remove',
+                insertBottom: elm
+            });
+            InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
+
+            var spc = document.createTextNode(' ');
+
+            this._tags.push(tag);
+            this._viewElm.insertBefore(elm, this._input);
+            this._viewElm.insertBefore(spc, this._input);
+            this._tagsToMarkup(this._tags, this._element);
+        },
+
+        _readInput: function (text) {
+            if (this._options.separator) {
+                return InkArray.filter(text.split(this._options.separator), isTruthy);
+            } else {
+                return [text];
+            }
+        },
+
+        _onKeyUp: function () {  // TODO control input box size
+            if (!this._options.autoSplit) {
+                return;
+            }
+            var split = this._input.value.split(this._options.separator);
+            if (split.length <= 1) {
+                return;
+            }
+            var last = split[split.length - 1];
+            split = split.splice(0, split.length - 1);
+            split = InkArray.filter(split, isTruthy);
+            
+            InkArray.each(split, Ink.bind(this._addTag, this));
+            this._input.value = last;
+        },
+
+        _onKeyDown: function (event) {
+
+            if (event.which === 13 && this._input.value) {  // enter key
+                this._addTag(this._input.value);
+                this._input.value = '';
+                InkEvent.stop(event);
+                return false;
+            } else if (event.which === 8 && !this._input.value) { // backspace key
+                if (this._removeConfirm) {
+                    this._unsetRemovingVisual(this._tags.length - 1);
+                    this._removeTag(this._tags.length - 1);
+                    this._removeConfirm = null;
+                } else {
+                    this._setRemovingVisual(this._tags.length - 1);
+                }
+            } else {
+                if (this._removeConfirm) {  // pressed another key, cancelling removal
+                    this._unsetRemovingVisual(this._tags.length - 1);
+                }
+            }
+        },
+
+        _onBlur: function (event) {
+            this._addTag(this._input.value);
+            this._input.value = '';
+        },
+
+        /* For when the user presses backspace.
+         * Set the style of the tag so that it seems like it's going to be removed
+         * if they press backspace again. */
+        _setRemovingVisual: function (tagIndex) {
+            var elm = this._viewElm.children[tagIndex];
+            Css.addClassName(elm, 'tag-deleting');
+
+            this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
+            InkEvent.observe(this._input, 'blur', Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex));
+            this._removeConfirm = true;
+        },
+        _unsetRemovingVisual: function (tagIndex) {
+            var elm = this._viewElm.children[tagIndex];
+            if (elm) {
+                Css.removeClassName(elm, 'tag-deleting');
+                clearTimeout(this._removeRemovingVisualTimeout);
+            }
+            this._removeConfirm = null;
+        },
+
+        _removeTag: function (event) {
+            var index;
+            if (typeof event === 'object') {  // click event on close button
+                var elm = InkEvent.element(event).parentNode;
+                index = InkElement.parentIndexOf(this._viewElm, elm);
+            } else if (typeof event === 'number') {  // manual removal
+                index = event;
+            }
+            this._tags = InkArray.remove(this._tags, index, 1);
+            InkElement.remove(this._viewElm.children[index]);
+            this._tagsToMarkup(this._tags, this._element);
+        },
+
+        _refocus: function (event) {
+            this._input.focus();
+            InkEvent.stop(event);
+            return false;
+        }
+    };
+    return TagField;
+});
+
 /**
  * @module Ink.UI.Toggle_1
  * @author inkdev AT sapo.pt
@@ -3720,15 +4090,22 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _bindEvents: function () {
-            if (this._options.triggerEvent) {
-                InkEvent.observe(this._rootElement, this._options.triggerEvent, Ink.bindEvent(this._onTriggerEvent,this));
+            if ( this._options.triggerEvent ) {
+                InkEvent.observe(
+                    this._rootElement,
+                    this._options.triggerEvent,
+                    Ink.bind(this._onTriggerEvent, this));
             }
             if( this._options.closeOnClick ){
-                InkEvent.observe( document, 'click', Ink.bindEvent(this._onOutsideClick,this));
+                InkEvent.observe( document, 'click', Ink.bind(this._onOutsideClick, this));
             }
             if( this._options.closeOnInsideClick ) {
-                InkEvent.observeMulti(this._targets, 'click', Ink.bindEvent(function (e) {
-                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), this._options.closeOnInsideClick) ) {
+                var sel = this._options.closeOnInsideClick;
+                if (sel.toString() === 'true') {
+                    sel = '*';
+                }
+                InkEvent.observeMulti(this._targets, 'click', Ink.bind(function (e) {
+                    if ( InkElement.findUpwardsBySelector(InkEvent.element(e), sel) ) {
                         this.setState(false, true);
                     }
                 }, this));
@@ -3801,7 +4178,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 shades;
 
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
-                return InkElement.isAncestorOf(target, tgtEl);
+                return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
             });
 
             if( (this._rootElement === tgtEl) || InkElement.isAncestorOf(this._rootElement, tgtEl) || ancestorOfTargets /*|| this._firstTime (I forgot what this last check was for) */) {
@@ -3856,253 +4233,511 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
 
 /**
- * @module Ink.UI.ImageQuery_1
+ * @module Ink.UI.Pagination_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Pagination', '1',
+    ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
+    function(Common, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
-     * @class Ink.UI.ImageQuery
+     * Function to create the pagination anchors
+     *
+     * @method genAel
+     * @param  {String} inner HTML to be placed inside the anchor.
+     * @return {DOMElement}  Anchor created
+     */
+    var genAEl = function(inner, index) {
+        var aEl = document.createElement('a');
+        aEl.setAttribute('href', '#');
+        if (index !== undefined) {
+            aEl.setAttribute('data-index', index);
+        }
+        aEl.innerHTML = inner;
+        return aEl;
+    };
+
+    /**
+     * @class Ink.UI.Pagination
      * @constructor
      * @version 1
-     *
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *      @param {String|Function}    [options.src]             String or Callback function (that returns a string) with the path to be used to get the images.
-     *      @param {String|Function}    [options.retina]          String or Callback function (that returns a string) with the path to be used to get RETINA specific images.
-     *      @param {Array}              [options.queries]         Array of queries
-     *          @param {String}              [options.queries.label]         Label of the query. Ex. 'small'
-     *          @param {Number}              [options.queries.width]         Min-width to use this query
-     *      @param {Function}           [options.onLoad]          Date format string
-     *
-     * @example
-     *      <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
-     *          <img src="/assets/imgs/imagequery/small/image.jpg" />
-     *      </div>
-     *      <script type="text/javascript">
-     *      Ink.requireModules( ['Ink.Dom.Selector_1', 'Ink.UI.ImageQuery_1'], function( Selector, ImageQuery ){
-     *          var imageQueryElement = Ink.s('.imageQueryExample img');
-     *          var imageQueryObj = new ImageQuery('.imageQueryExample img',{
-     *              src: '/assets/imgs/imagequery/{:label}/{:file}',
-     *              queries: [
-     *                  {
-     *                      label: 'small',
-     *                      width: 480
-     *                  },
-     *                  {
-     *                      label: 'medium',
-     *                      width: 640
-     *                  },
-     *                  {
-     *                      label: 'large',
-     *                      width: 1024
-     *                  }   
-     *              ]
-     *          });
-     *      } );
-     *      </script>
+     * @param {Object} options Options
+     * @param {Number}   [options.size]              number of pages.
+     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}   [options.start]             start page. defaults to 1
+     * @param {String}   [options.previousLabel]     label to display on previous page button
+     * @param {String}   [options.nextLabel]         label to display on next page button
+     * @param {String}   [options.previousPageLabel] label to display on previous page button
+     * @param {String}   [options.nextPageLabel]     label to display on next page button
+     * @param {String}   [options.firstLabel]        label to display on previous page button
+     * @param {String}   [options.lastLabel]         label to display on next page button
+     * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
+     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
+     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
+     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
-    var ImageQuery = function(selector, options){
+    var Pagination = function(selector, options) {
 
-        /**
-         * Selector's type checking
-         */
-        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[ImageQuery] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
+        this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
 
-            if( this._element.length < 1 ){
-                throw '[ImageQuery] :: Selector has returned no elements';
-            } else if( this._element.length > 1 ){
-                var i;
-                for( i=1;i<this._element.length;i+=1 ){
-                    new Ink.UI.ImageQuery(this._element[i],options);
-                }
-            }
-            this._element = this._element[0];
-
-        } else {
-            this._element = selector;
-        }
-
-
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {array} queries Array of objects that determine the label/name and its min-width to be applied.
-         * @param {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
-         */
         this._options = Ink.extendObj({
-            queries:[],
-            onLoad: null
-        },Element.data(this._element));
+            size:          null,
+            totalItemCount: null,
+            itemsPerPage:  null,
+            start:         1,
+            firstLabel:    'First',
+            lastLabel:     'Last',
+            previousLabel: 'Previous',
+            nextLabel:     'Next',
+            onChange:      undefined,
+            setHash:       false,
+            hashParameter: 'page',
+            numberFormatter: function(i) { return i + 1; }
+        }, options || {}, Element.data(this._element));
 
-        this._options = Ink.extendObj(this._options, options || {});
-
-        /**
-         * Determining the original basename (with the querystring) of the file.
-         */
-        var pos;
-        if( (pos=this._element.src.lastIndexOf('?')) !== -1 ){
-            var search = this._element.src.substr(pos);
-            this._filename = this._element.src.replace(search,'').split('/').pop()+search;
-        } else {
-            this._filename = this._element.src.split('/').pop();
+        if (!this._options.previousPageLabel) {
+            this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
         }
+
+        if (!this._options.nextPageLabel) {
+            this._options.nextPageLabel = 'Next ' + this._options.maxSize;
+        }
+
+        this._handlers = {
+            click: Ink.bindEvent(this._onClick,this)
+        };
+
+        if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
+            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
+        } else if (Common.isInteger(this._options.size)) {
+            this._size = this._options.size;
+        } else {
+            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
+        }
+
+        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
+            throw new TypeError('start option is a required integer between 1 and size!');
+        }
+
+        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
+            throw new TypeError('maxSize option is a positive integer!');
+        }
+
+        else if (this._size < 0) {
+            throw new RangeError('size option must be equal or more than 0!');
+        }
+
+        this.setOnChange(this._options.onChange);
+
+        if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
+            this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
+        }
+
+        this._current = this._options.start - 1;
+        this._itemLiEls = [];
 
         this._init();
     };
 
-    ImageQuery.prototype = {
+    Pagination.prototype = {
 
         /**
          * Init function called by the constructor
-         * 
+         *
          * @method _init
          * @private
          */
-        _init: function(){
+        _init: function() {
+            // generate and apply DOM
+            this._generateMarkup(this._element);
+            this._updateItems();
 
-            // Sort queries by width, in descendant order.
-            this._options.queries = InkArray.sortMulti(this._options.queries,'width').reverse();
+            // subscribe events
+            this._observe();
 
-            // Declaring the event handlers, in this case, the window.resize and the (element) load.
-            this._handlers = {
-                resize: Ink.bindEvent(this._onResize,this),
-                load: Ink.bindEvent(this._onLoad,this)
-            };
+            Common.registerInstance(this, this._element, 'pagination');
+        },
 
-            if( typeof this._options.onLoad === 'function' ){
-                Event.observe(this._element, 'onload', this._handlers.load);
+        /**
+         * Responsible for setting listener in the 'click' event of the Pagination element.
+         *
+         * @method _observe
+         * @private
+         */
+        _observe: function() {
+            Event.observe(this._element, 'click', this._handlers.click);
+        },
+
+        /**
+         * Updates the markup everytime there's a change in the Pagination object.
+         *
+         * @method _updateItems
+         * @private
+         */
+        _updateItems: function() {
+            var liEls = this._itemLiEls;
+
+            var isSimpleToggle = this._size === liEls.length;
+
+            var i, f, liEl;
+
+            if (isSimpleToggle) {
+                // just toggle active class
+                for (i = 0, f = this._size; i < f; ++i) {
+                    Css.setClassName(liEls[i], 'active', i === this._current);
+                }
+            }
+            else {
+                // remove old items
+                for (i = liEls.length - 1; i >= 0; --i) {
+                    this._ulEl.removeChild(liEls[i]);
+                }
+
+                // add new items
+                liEls = [];
+                for (i = 0, f = this._size; i < f; ++i) {
+                    liEl = document.createElement('li');
+                    liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
+                    Css.setClassName(liEl, 'active', i === this._current);
+                    this._ulEl.insertBefore(liEl, this._nextEl);
+                    liEls.push(liEl);
+                }
+                this._itemLiEls = liEls;
             }
 
-            Event.observe(window, 'resize', this._handlers.resize);
+            if (this._options.maxSize) {
+                // toggle visible items
+                var page = Math.floor( this._current / this._options.maxSize );
+                var pi = this._options.maxSize * page;
+                var pf = pi + this._options.maxSize - 1;
 
-            // Imediate call to apply the right images based on the current viewport
-            this._handlers.resize.call(this);
+                for (i = 0, f = this._size; i < f; ++i) {
+                    liEl = liEls[i];
+                    Css.setClassName(liEl, 'hide-all', i < pi || i > pf);
+                }
 
+                this._pageStart = pi;
+                this._pageEnd = pf;
+                this._page = page;
+
+                Css.setClassName(this._prevPageEl, 'disabled', !this.hasPreviousPage());
+                Css.setClassName(this._nextPageEl, 'disabled', !this.hasNextPage());
+
+                Css.setClassName(this._firstEl, 'disabled', this.isFirst());
+                Css.setClassName(this._lastEl, 'disabled', this.isLast());
+            }
+
+            // update prev and next
+            Css.setClassName(this._prevEl, 'disabled', !this.hasPrevious());
+            Css.setClassName(this._nextEl, 'disabled', !this.hasNext());
         },
 
         /**
-         * Handles the resize event (as specified in the _init function)
+         * Returns the top element for the gallery DOM representation
          *
-         * @method _onResize
+         * @method _generateMarkup
+         * @param {DOMElement} el
          * @private
          */
-        _onResize: function(){
+        _generateMarkup: function(el) {
+            Css.addClassName(el, 'ink-navigation');
 
-            clearTimeout(timeout);
+            var ulEl,liEl,
+                hasUlAlready = false;
+            if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
+                ulEl = document.createElement('ul');
+                Css.addClassName(ulEl, 'pagination');
+            } else {
+                hasUlAlready = true;
+                ulEl = ulEl[0];
+            }
 
-            var timeout = setTimeout(Ink.bind(function(){
+            if (this._options.maxSize) {
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.firstLabel) );
+                this._firstEl = liEl;
+                Css.addClassName(liEl, 'first');
+                ulEl.appendChild(liEl);
 
-                if( !this._options.queries || (this._options.queries === {}) ){
-                    clearTimeout(timeout);
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.previousPageLabel) );
+                this._prevPageEl = liEl;
+                Css.addClassName(liEl, 'previousPage');
+                ulEl.appendChild(liEl);
+            }
+
+            liEl = document.createElement('li');
+            liEl.appendChild( genAEl(this._options.previousLabel) );
+            this._prevEl = liEl;
+            Css.addClassName(liEl, 'previous');
+            ulEl.appendChild(liEl);
+
+            liEl = document.createElement('li');
+            liEl.appendChild( genAEl(this._options.nextLabel) );
+            this._nextEl = liEl;
+            Css.addClassName(liEl, 'next');
+            ulEl.appendChild(liEl);
+
+            if (this._options.maxSize) {
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.nextPageLabel) );
+                this._nextPageEl = liEl;
+                Css.addClassName(liEl, 'nextPage');
+                ulEl.appendChild(liEl);
+
+                liEl = document.createElement('li');
+                liEl.appendChild( genAEl(this._options.lastLabel) );
+                this._lastEl = liEl;
+                Css.addClassName(liEl, 'last');
+                ulEl.appendChild(liEl);
+            }
+
+            if( !hasUlAlready ){
+                el.appendChild(ulEl);
+            }
+
+            this._ulEl = ulEl;
+        },
+
+        /**
+         * Click handler
+         *
+         * @method _onClick
+         * @param {Event} ev
+         * @private
+         */
+        _onClick: function(ev) {
+            Event.stop(ev);
+
+            var tgtEl = Event.element(ev);
+            if (tgtEl.nodeName.toLowerCase() !== 'a') {
+                do{
+                    tgtEl = tgtEl.parentNode;
+                }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
+
+                if( tgtEl === this._element){
                     return;
                 }
+            }
 
-                var
-                    query, selected,
-                    viewportWidth
-                ;
+            var liEl = tgtEl.parentNode;
+            if (liEl.nodeName.toLowerCase() !== 'li') { return; }
 
-                /**
-                 * Gets viewport width
-                 */
-                if( typeof( window.innerWidth ) === 'number' ) {
-                   viewportWidth = window.innerWidth;
-                } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-                   viewportWidth = document.documentElement.clientWidth;
-                } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-                   viewportWidth = document.body.clientWidth;
-                }
+            if ( Css.hasClassName(liEl, 'active') ||
+                 Css.hasClassName(liEl, 'disabled') ) { return; }
 
-                /**
-                 * Queries are in a descendant order. We want to find the query with the highest width that fits
-                 * the viewport, therefore the first one.
-                 */
-                for( query=0; query < this._options.queries.length; query+=1 ){
-                    if (this._options.queries[query].width <= viewportWidth){
-                        selected = query;
-                        break;
-                    }
-                }
+            var isPrev = Css.hasClassName(liEl, 'previous');
+            var isNext = Css.hasClassName(liEl, 'next');
+            var isPrevPage = Css.hasClassName(liEl, 'previousPage');
+            var isNextPage = Css.hasClassName(liEl, 'nextPage');
+            var isFirst = Css.hasClassName(liEl, 'first');
+            var isLast = Css.hasClassName(liEl, 'last');
 
-                /**
-                 * If it doesn't find any selectable query (because they don't meet the requirements)
-                 * let's select the one with the smallest width
-                 */
-                if( typeof selected === 'undefined' ){ selected = this._options.queries.length-1; }
+            if (isFirst) {
+                this.setCurrent(0);
+            }
+            else if (isLast) {
+                this.setCurrent(this._size - 1);
+            }
+            else if (isPrevPage || isNextPage) {
+                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
+            }
+            else if (isPrev || isNext) {
+                this.setCurrent(isPrev ? -1 : 1, true);
+            }
+            else {
+                var nr = parseInt( tgtEl.getAttribute('data-index'), 10);
+                this.setCurrent(nr);
+            }
+        },
 
-                /**
-                 * Choosing the right src. The rule is:
-                 *
-                 *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
-                 *
-                 * The above rule applies to a retina src.
-                 */
-                var src = this._options.queries[selected].src || this._options.src;
-                if ( ("devicePixelRatio" in window && window.devicePixelRatio>1) && ('retina' in this._options ) ) {
-                    src = this._options.queries[selected].retina || this._options.retina;
-                }
 
-                /**
-                 * Injects the file variable for usage in the 'templating system' below
-                 */
-                this._options.queries[selected].file = this._filename;
+        /**
+         * Allows you to subscribe to the onChange event
+         *
+         * @method setOnChange
+         * @param cb {Function} Callback called with `(thisPaginator, newPageNumber)`.
+         */
+        setOnChange: function (onChange) {
+            if (onChange !== undefined && typeof onChange !== 'function') {
+                throw new TypeError('onChange option must be a function!');
+            }
+            this._onChange = onChange;
+        },
 
-                /**
-                 * Since we allow the src to be a callback, let's run it and get the results.
-                 * For the inside, we're passing the element (img) being processed and the object of the selected
-                 * query.
-                 */
-                if( typeof src === 'function' ){
-                    src = src.apply(this,[this._element,this._options.queries[selected]]);
-                    if( typeof src !== 'string' ){
-                        throw '[ImageQuery] :: "src" callback does not return a string';
-                    }
-                }
+        /**************
+         * PUBLIC API *
+         **************/
 
-                /**
-                 * Replace the values of the existing properties on the query object (except src and retina) in the
-                 * defined src and/or retina.
-                 */
-                var property;
-                for( property in this._options.queries[selected] ){
-                    if (this._options.queries[selected].hasOwnProperty(property)) {
-                        if( ( property === 'src' ) || ( property === 'retina' ) ){ continue; }
-                        src = src.replace("{:" + property + "}",this._options.queries[selected][property]);
-                    }
-                }
-                this._element.src = src;
+        /**
+         * Sets the number of pages
+         *
+         * @method setSize
+         * @param {Number} sz number of pages
+         * @public
+         */
+        setSize: function(sz) {
+            if (!Common.isInteger(sz)) {
+                throw new TypeError('1st argument must be an integer number!');
+            }
 
-                // Removes the injected file property
-                delete this._options.queries[selected].file;
-
-                timeout = undefined;
-
-            },this),300);
+            this._size = sz;
+            this._updateItems();
+            this._current = 0;
         },
 
         /**
-         * Handles the element loading (img onload) event
+         * Calculate the number of pages, then call setSize().
          *
-         * @method _onLoad
-         * @private
+         * @param setSizeInItems
+         * @param {Number} totalItems
+         * @param {Number} itemsPerPage
          */
-        _onLoad: function(){
+        setSizeInItems: function (totalItems, itemsPerPage) {
+            var pageNumber = Math.ceil(totalItems / itemsPerPage);
+            this.setSize(pageNumber);
+        },
 
-            /**
-             * Since we allow a callback for this let's run it.
-             */
-            this._options.onLoad.call(this);
-        }
+        /**
+         * Sets the current page
+         *
+         * @method setCurrent
+         * @param {Number} nr sets the current page to given number
+         * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
+         * @public
+         */
+        setCurrent: function(nr, isRelative) {
+            if (!Common.isInteger(nr)) {
+                throw new TypeError('1st argument must be an integer number!');
+            }
 
+            if (isRelative) {
+                nr += this._current;
+            }
+
+            if (nr > this._size - 1) {
+                nr = this._size - 1;
+            }
+
+            if (nr < 0) {
+                nr = 0;
+            }
+
+            this._current = nr;
+            this._updateItems();
+
+            if (this._onChange) {
+                this._onChange(this, nr);
+            }
+
+            /*if (this._options.setHash) {
+                var o = {};
+                o[this._options.hashParameter] = nr;
+                Common.setHash(o);
+            }*/  // undocumented option, removing
+        },
+
+        /**
+         * Returns the number of pages
+         *
+         * @method getSize
+         * @return {Number} Number of pages
+         * @public
+         */
+        getSize: function() {
+            return this._size;
+        },
+
+        /**
+         * Returns current page
+         *
+         * @method getCurrent
+         * @return {Number} Current page
+         * @public
+         */
+        getCurrent: function() {
+            return this._current;
+        },
+
+        /**
+         * Returns true iif at first page
+         *
+         * @method isFirst
+         * @return {Boolean} True if at first page
+         * @public
+         */
+        isFirst: function() {
+            return this._current === 0;
+        },
+
+        /**
+         * Returns true iif at last page
+         *
+         * @method isLast
+         * @return {Boolean} True if at last page
+         * @public
+         */
+        isLast: function() {
+            return this._current === this._size - 1;
+        },
+
+        /**
+         * Returns true iif has prior pages
+         *
+         * @method hasPrevious
+         * @return {Boolean} True if has prior pages
+         * @public
+         */
+        hasPrevious: function() {
+            return this._current > 0;
+        },
+
+        /**
+         * Returns true iif has pages ahead
+         *
+         * @method hasNext
+         * @return {Boolean} True if has pages ahead
+         * @public
+         */
+        hasNext: function() {
+            return this._current < this._size - 1;
+        },
+
+        /**
+         * Returns true iif has prior set of page(s)
+         *
+         * @method hasPreviousPage
+         * @return {Boolean} Returns true iif has prior set of page(s)
+         * @public
+         */
+        hasPreviousPage: function() {
+            return this._options.maxSize && this._current > this._options.maxSize - 1;
+        },
+
+        /**
+         * Returns true iif has set of page(s) ahead
+         *
+         * @method hasNextPage
+         * @return {Boolean} Returns true iif has set of page(s) ahead
+         * @public
+         */
+        hasNextPage: function() {
+            return this._options.maxSize && this._size - this._current >= this._options.maxSize + 1;
+        },
+
+        /**
+         * Unregisters the component and removes its markup from the DOM
+         *
+         * @method destroy
+         * @public
+         */
+        destroy: Common.destroyComponent
     };
 
-    return ImageQuery;
+    return Pagination;
 
 });
 
@@ -4173,10 +4808,21 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * The parameters are:
          * @param {string} node Selector to define which elements are seen as nodes. Default: li
          * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         * @param {string} parentClass Classes to be added to the parent node. Default: parent
+         * @param {string} openClass Classes to be added to the icon when a parent is open. Default: icon-plus-sign
+         * @param {string} closedClass Classes to be added to the icon when a parent is closed. Default: icon-minus-sign
+         * @param {string} hideClass Class to toggle visibility of the children. Default: hide-all
+         * @param {string} iconTag The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Default: i
          */
         this._options = Ink.extendObj({
             node:   'li',
-            child:  'ul'
+            child:  'ul',
+            parentClass: 'parent',
+            openClass: 'icon-minus-sign',
+            closedClass: 'icon-plus-sign',
+            hideClass: 'hide-all',
+            iconTag: 'i'
+
         },Element.data(this._element));
 
         this._options = Ink.extendObj(this._options, options || {});
@@ -4202,26 +4848,71 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
             var
                 nodes = Selector.select(this._options.node,this._element),
+                is_open = false,
+                icon,
                 children
             ;
-            InkArray.each(nodes,Ink.bind(function(item){
-                if( Css.hasClassName(item,'open') )
-                {
-                    return;
-                }
-
-                if( !Css.hasClassName(item, 'closed') ){
-                    Css.addClassName(item,'closed');
-                }
+            InkArray.each(nodes, Ink.bind(function(item){
 
                 children = Selector.select(this._options.child,item);
-                InkArray.each(children,Ink.bind(function( inner_item ){
-                    if( !Css.hasClassName(inner_item, 'hide-all') ){
-                        Css.addClassName(inner_item,'hide-all');
-                    }
-                },this));
-            },this));
 
+                if( children.length > 0 ) {
+                    this._addClassNames(item, this._options.parentClass);
+
+                    is_open = Element.data(item)['open'] === 'true';
+                    icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
+                    if( !icon ){
+                        icon = Ink.Dom.Element.create('i');
+                        item.insertBefore(icon, item.children[0]);
+                    }
+
+
+                    if( is_open ) {
+                        this._addClassNames(icon, this._options.openClass);
+                    } else {
+                        this._addClassNames(icon, this._options.closedClass);
+                        item.setAttribute('data-open', false);
+
+                        InkArray.each(children,Ink.bind(function( inner_item ){
+                            this._addClassNames(inner_item, this._options.hideClass);
+                        },this));
+                    }
+
+                }
+            },this));
+        },
+
+        /**
+         * Helper method to support adding an array of classes to an element
+         * 
+         * @method _addClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         * @private
+         */
+        _addClassNames: function(elm, classes){
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                Css.addClassName(elm, current_class);
+            });
+        },
+
+        /**
+         * Helper method to toggle every class name
+         * 
+         * @method _toggleClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         */
+        _toggleClassNames: function(elm, classes){
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                if( Css.hasClassName(elm, current_class) ) {
+                    Css.removeClassName(elm, current_class);
+                } else {
+                    Css.addClassName(elm, current_class);
+                }
+            });
         },
 
         /**
@@ -4242,34 +4933,27 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
              */
             var tgtEl = Event.element(event);
 
-            if( this._options.node[0] === '.' ) {
-                if( !Css.hasClassName(tgtEl,this._options.node.substr(1)) ){
-                    while( (!Css.hasClassName(tgtEl,this._options.node.substr(1))) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else if( this._options.node[0] === '#' ){
-                if( tgtEl.id !== this._options.node.substr(1) ){
-                    while( (tgtEl.id !== this._options.node.substr(1)) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            } else {
-                if( tgtEl.nodeName.toLowerCase() !== this._options.node ){
-                    while( (tgtEl.nodeName.toLowerCase() !== this._options.node) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                        tgtEl = tgtEl.parentNode;
-                    }
-                }
-            }
+            tgtEl = Element.findUpwardsBySelector(tgtEl, this._options.node);
 
-            if(tgtEl.nodeName.toLowerCase() === 'body'){ return; }
+            if(tgtEl === false){ return; }
 
-            var child = Selector.select(this._options.child,tgtEl);
+            var child = Selector.select(this._options.child, tgtEl),
+                is_open,
+                icon;
+
             if( child.length > 0 ){
                 Event.stop(event);
                 child = child[0];
-                if( Css.hasClassName(child,'hide-all') ){ Css.removeClassName(child,'hide-all'); Css.addClassName(tgtEl,'open'); Css.removeClassName(tgtEl,'closed'); }
-                else { Css.addClassName(child,'hide-all'); Css.removeClassName(tgtEl,'open'); Css.addClassName(tgtEl,'closed'); }
+                this._toggleClassNames(child, this._options.hideClass);
+                is_open = Element.data(tgtEl)['open'] === 'true';
+                icon = tgtEl.children[0];
+                if(is_open){
+                    tgtEl.setAttribute('data-open', false);
+                } else {
+                    tgtEl.setAttribute('data-open', true);
+                }
+                this._toggleClassNames(icon, this._options.openClass); 
+                this._toggleClassNames(icon, this._options.closedClass); 
             }
 
         }
@@ -5198,7 +5882,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validator_1'], function( Css, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1'], function( InkElement, Css, InkValidator ) {
     'use strict';
 
     /**
@@ -5468,7 +6152,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                 }
             }
-            //debugger;
         },
 
         /**
@@ -5477,8 +6160,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @method _validateElements
          * @private
          */
-        _validateElements: function()
-        {
+        _validateElements: function() {
             var oGroups;
             this._getElements();
             //console.log('HAS CONFIRM', this.hasConfirm);
@@ -5627,31 +6309,42 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @private
          * @return {Boolean} The result of the validation.
          */
-        _isValid: function(elm, fieldType)
-        {
+        _isValid: function(elm, fieldType) {
+            var nodeName = elm.nodeName.toLowerCase();
+            var inputType = (elm.getAttribute('type') || '').toLowerCase();
+            var value = this._trim(elm.value);
+
+            // When we're analyzing emails, telephones, etc, and the field is
+            // empty, we check if it is required. If not required, it's valid.
+            if (fieldType !== 'ink-fv-required' &&
+                    inputType !== 'checkbox' && inputType !== 'radio' &&
+                    value === '') {
+                return !Css.hasClassName(elm, 'ink-fv-required');
+            }
+
             switch(fieldType) {
                 case 'ink-fv-required':
-                    if(elm.nodeName.toLowerCase() === 'select') {
+                    if(nodeName === 'select') {
                         if(elm.selectedIndex > 0) {
                             return true;
                         } else {
                             return false;
                         }
                     }
-                    if(elm.getAttribute('type') !== 'checkbox' && elm.getAttribute('type') !== 'radio') {
-                        if(this._trim(elm.value) !== '') {
-                            return true;
-                        }
-                    } else if(elm.getAttribute('type') === 'checkbox') {
+                    if(inputType !== 'checkbox' && inputType !== 'radio' &&
+                            value !== '') {
+                        return true;  // A input type=text,email,etc.
+                    } else if(inputType === 'checkbox') {
                         if(elm.checked === true) {
                             return true;
                         }
-                    } else if(elm.getAttribute('type') === 'radio') { // get top radio
+                    } else if(inputType === 'radio') { // get top radio
                         var aFormRadios = elm.form[elm.name];
                         if(typeof(aFormRadios.length) === 'undefined') {
                             aFormRadios = [aFormRadios];
                         }
                         var isChecked = false;
+                        // check if any input of the radio is checked
                         for(var i=0, totalRadio = aFormRadios.length; i < totalRadio; i++) {
                             if(aFormRadios[i].checked === true) {
                                 isChecked = true;
@@ -5659,130 +6352,53 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         }
                         return isChecked;
                     }
-                    break;
+                    return false;
 
                 case 'ink-fv-email':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.mail(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.mail(elm.value);
+
                 case 'ink-fv-url':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.url(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.url(elm.value);
+
                 case 'ink-fv-number':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(!isNaN(Number(elm.value))) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return !isNaN(Number(elm.value)) && isFinite(Number(elm.value));
+
                 case 'ink-fv-phone_pt':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isPTPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isPTPhone(elm.value);
+
                 case 'ink-fv-phone_cv':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isCVPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isCVPhone(elm.value);
+
                 case 'ink-fv-phone_ao':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isAOPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isAOPhone(elm.value);
+
                 case 'ink-fv-phone_mz':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isMZPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isMZPhone(elm.value);
+
                 case 'ink-fv-date':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        var Element = Ink.getModule('Ink.Dom.Element',1);
-                        var dataset = Element.data( elm );
-                        var validFormat = 'yyyy-mm-dd';
+                    var Element = Ink.getModule('Ink.Dom.Element',1);
+                    var dataset = Element.data( elm );
+                    var validFormat = 'yyyy-mm-dd';
 
-                        if( Css.hasClassName(elm, 'ink-datepicker') && ("format" in dataset) ){
-                            validFormat = dataset.format;
-                        } else if( ("validFormat" in dataset) ){
-                            validFormat = dataset.validFormat;
-                        }
-
-                        if( !(validFormat in InkValidator._dateParsers ) ){
-                            var validValues = [];
-                            for( var val in InkValidator._dateParsers ){
-                                if (InkValidator._dateParsers.hasOwnProperty(val)) {
-                                    validValues.push(val);
-                                }
-                            }
-                            throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
-                        }
-                        
-                        return InkValidator.isDate( validFormat, elm.value );
+                    if( Css.hasClassName(elm, 'ink-datepicker') && ('format' in dataset) ){
+                        validFormat = dataset.format;
+                    } else if( ('validFormat' in dataset) ){
+                        validFormat = dataset.validFormat;
                     }
-                    break;
+
+                    if( !(validFormat in InkValidator._dateParsers ) ){
+                        var validValues = [];
+                        for( var val in InkValidator._dateParsers ){
+                            if (InkValidator._dateParsers.hasOwnProperty(val)) {
+                                validValues.push(val);
+                            }
+                        }
+                        throw new Error(
+                            'The attribute data-valid-format must be one of ' +
+                            'the following values: ' + validValues.join(', '));
+                    }
+                    
+                    return InkValidator.isDate( validFormat, elm.value );
                 case 'ink-fv-custom':
                     break;
             }
@@ -5799,7 +6415,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @private
          */
         _showError: function(formElm, aFail) {
-            /* jshint noempty:false */
             this._clearError(formElm);
 
             //ink-warning-field
@@ -5808,45 +6423,62 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
             var curElm = false;
             for(var i=0, tFail = aFail.length; i < tFail; i++) {
                 curElm = aFail[i].elm;
+                if (curElm) {
+                    this._showAnErrorOnElement(curElm, aFail[i]);
+                }
+            }
+        },
 
-                if(curElm.getAttribute('type') !== 'radio') {
+        _showAnErrorOnElement: function (curElm, error) {
+            /* jshint noempty:false */
 
-                    var newLabel = document.createElement('p');
-                    //newLabel.setAttribute('for',curElm.id);
-                    //newLabel.className = this._errorClassName;
-                    //newLabel.className += ' ' + this._errorTypeErrorClassName;
-                    Css.addClassName(newLabel, this._errorClassName);
-                    Css.addClassName(newLabel, this._errorTypeErrorClassName);
-                    if(aFail[i].errors[0] !== 'ink-fv-custom') {
-                        newLabel.innerHTML = this._flagMap[aFail[i].errors[0]].msg;
+            var controlGroupElm = InkElement.findUpwardsByClass(
+                    curElm, 'control-group');
+            var controlElm = InkElement.findUpwardsByClass(
+                    curElm, 'control');
+
+            var inputType = curElm.getAttribute('type');
+
+            if(inputType !== 'radio') {
+                var errorClasses = [
+                    this._errorClassName,
+                    this._errorTypeClassName].join(' ');
+
+                var errorMsg = InkElement.create('p', {
+                    className: errorClasses
+                });
+
+                if(error.errors[0] !== 'ink-fv-custom') {
+                    errorMsg.innerHTML = this._flagMap[error.errors[0]].msg;
+                } else {
+                    errorMsg.innerHTML = error.custom[0].msg;
+                }
+
+                if(inputType !== 'checkbox') {
+                    if (curElm.nextSibling /* This check will become obsolete after 2.2.2 */) {
+                        InkElement.insertAfter(errorMsg, curElm);
                     } else {
-                        newLabel.innerHTML = aFail[i].custom[0].msg;
+                        curElm.parentNode.appendChild(errorMsg); /* so will this workaround */
                     }
-
-                    if(curElm.getAttribute('type') !== 'checkbox') {
-                        curElm.nextSibling.parentNode.insertBefore(newLabel, curElm.nextSibling);
-                        if(Css.hasClassName(curElm.parentNode, 'control')) {
-                            Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                            if(aFail[i].errors[0] === 'ink-fv-required') {
-                                Css.addClassName(curElm.parentNode.parentNode, 'error');
-                            } else {
-                                Css.addClassName(curElm.parentNode.parentNode, 'warning');
-                            }
+                    if (controlElm) {
+                        if(error.errors[0] === 'ink-fv-required') {
+                            Css.addClassName(controlGroupElm, 'validation error');
+                        } else {
+                            Css.addClassName(controlGroupElm, 'validation warning');
                         }
-                    } else {
-                        /* // TODO checkbox... does not work with this CSS
-                        curElm.parentNode.appendChild(newLabel);
-                        if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
-                            Css.addClassName(curElm.parentNode.parentNode, 'control');
-                            Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                            Css.addClassName(curElm.parentNode.parentNode, 'error');
-                        }*/
                     }
                 } else {
+                    /* // TODO checkbox... does not work with this CSS
+                    curElm.parentNode.appendChild(errorMsg);
                     if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
+                        Css.addClassName(curElm.parentNode.parentNode, 'control');
                         Css.addClassName(curElm.parentNode.parentNode, 'validation');
                         Css.addClassName(curElm.parentNode.parentNode, 'error');
-                    }
+                    }*/
+                }
+            } else {
+                if(controlGroupElm) {
+                    Css.addClassName(controlGroupElm, ['validation', 'error']);
                 }
             }
         },
@@ -6866,7 +7498,7 @@ Ink.createModule("Ink.UI.Draggable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @version 1
  */
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
-    'use strict';    
+    'use strict';
 
     /**
      * @class Ink.UI.DatePicker
@@ -6916,32 +7548,32 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
         }
 
-        this._options = Ink.extendObj({
-            autoOpen:        false,
-            cleanText:       'Clear',
-            closeText:       'Close',
-            containerElement: false,
-            cssClass:        'sapo_component_datepicker',
-            dateRange:       false,
-            displayInSelect: false,
-            format:          'yyyy-mm-dd',
-            instance:        'scdp_' + Math.round(99999*Math.random()),
-            nextLinkText:    '»',
-            ofText:          '&nbsp;de&nbsp;',
-            onFocus:         true,
-            onMonthSelected: undefined,
-            onSetDate:       false,
-            onYearSelected:  undefined,
-            position:        'right',
-            prevLinkText:    '«',
-            showClean:       true,
-            showClose:       true,
-            shy:             true,
-            startDate:       false, // format yyyy-mm-dd
-            startWeekDay:    1,
-            validDayFn:      undefined,
-            yearRange:       false,
-            month: {
+        this._options = Common.options('Ink.UI.DatePicker_1', {
+            autoOpen:        ['Boolean', false],
+            cleanText:       ['String', 'Clear'],
+            closeText:       ['String', 'Close'],
+            containerElement:['Element', null],
+            cssClass:        ['String', 'sapo_component_datepicker'],
+            dateRange:       ['String', null],
+            displayInSelect: ['String', null],
+            format:          ['String', 'yyyy-mm-dd'],
+            instance:        ['String', 'scdp_' + Math.round(99999*Math.random())],
+            nextLinkText:    ['String', '»'],
+            ofText:          ['String', '&nbsp;de&nbsp;'],
+            onFocus:         ['Boolean', true],
+            onMonthSelected: ['Function', null],
+            onSetDate:       ['Function', null],
+            onYearSelected:  ['Function', null],
+            position:        ['String', 'right'],
+            prevLinkText:    ['String', '«'],
+            showClean:       ['Boolean', true],
+            showClose:       ['Boolean', true],
+            shy:             ['Boolean', true],
+            startDate:       ['String', null], // format yyyy-mm-dd,
+            startWeekDay:    ['Number', 1],
+            validDayFn:      ['Function', null],
+            yearRange:       ['String', null],
+            month: ['Object', {
                  1:'January',
                  2:'February',
                  3:'March',
@@ -6954,8 +7586,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 10:'October',
                 11:'November',
                 12:'December'
-            },
-            wDay: {
+            }],
+            wDay: ['Object', {
                 0:'Sunday',
                 1:'Monday',
                 2:'Tuesday',
@@ -6963,8 +7595,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 4:'Thursday',
                 5:'Friday',
                 6:'Saturday'
-            }
-        }, options || {}, Element.data(this._dataField));
+            }]
+        }, options || {}, this._dataField);
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -7126,11 +7758,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(this._options.containerElement) {
                 var container = Ink.i(this._options.containerElement);
                 if (!container) {
-                    throw new Error('[Ink.UI.DatePicker_1]: Container element should be a DOM Element or an ID, got ' + container);
+                    container = Common.elOrSelector(this._options.containerElement);  // small backwards compatibility thing
                 }
                 container.appendChild(this._containerObject);
             } else {
-                dom.insertBefore(this._containerObject, dom.childNodes[0]);
+                // We can't do this because of some CSS rules in Ink
+                // dom.insertBefore(this._containerObject, dom.childNodes[0]);
+                dom.appendChild(this._containerObject);
             }
 
             this._showMonth();
@@ -7159,18 +7793,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
 
-                    var top,
-                        left;
+                    var top;
+                    var left;
 
+                    var rect = this._dataField.getBoundingClientRect();
                     if ( this._options.position === 'bottom' ) {
-                        top = Element.elementHeight(this._dataField) + Element.offsetTop(this._dataField) + 'px';
-                        left = Element.offset(this._dataField)[0] +'px';
+                        top = rect.bottom;
+                        left = rect.left;
                     } else {
-                        top = Element.offset(this._dataField)[1] +'px';
-                        left = Element.elementWidth(this._dataField) + Element.offset(this._dataField)[0] +'px';
+                        top = rect.top;
+                        left = rect.right;
                     }
-                    this._containerObject.style.top = top;
-                    this._containerObject.style.left = left;
+                    top += Element.scrollHeight();
+                    left += Element.scrollWidth();
+
+                    this._containerObject.style.top = top + 'px';
+                    this._containerObject.style.left = left + 'px';
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
                     this._showMonth();
@@ -7230,18 +7868,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             if (this._options.shy) {
                 Event.observe(document,'click',Ink.bindEvent(function(e){
-                    if (e.target === undefined) {   e.target = e.srcElement;    }
-                    if (!Element.descendantOf(this._containerObject, e.target) && e.target !== this._dataField) {
+                    var target = e.target || e.srcElement;
+
+                    if (!Element.descendantOf(this._containerObject, target) && target !== this._dataField) {
                         if (!this._picker) {
                             this._hide(true);
                         }
-                        else if (e.target !== this._picker &&
+                        else if (target !== this._picker &&
                                  (!this._options.displayInSelect ||
-                                  (e.target !== this._options.dayField && e.target !== this._options.monthField && e.target !== this._options.yearField) ) ) {
+                                  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
                             if (!this._options.dayField ||
-                                    (!Element.descendantOf(this._options.dayField,   e.target) &&
-                                     !Element.descendantOf(this._options.monthField, e.target) &&
-                                     !Element.descendantOf(this._options.yearField,  e.target)      ) ) {
+                                    (!Element.descendantOf(this._options.dayField,   target) &&
+                                     !Element.descendantOf(this._options.monthField, target) &&
+                                     !Element.descendantOf(this._options.yearField,  target)      ) ) {
                                 this._hide(true);
                             }
                         }
@@ -8924,485 +9563,110 @@ Ink.createModule('Ink.UI.Carousel', '1',
 });
 
 /**
- * @module Ink.UI.Pagination_1
+ * @module Ink.UI.ProgressBar_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Pagination', '1',
-    ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
-    function(Common, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.ProgressBar', '1', ['Ink.Dom.Selector_1','Ink.Dom.Element_1'], function( Selector, Element ) {
     'use strict';
 
     /**
-     * Function to create the pagination anchors
-     *
-     * @method genAel
-     * @param  {String} inner HTML to be placed inside the anchor.
-     * @return {DOMElement}  Anchor created
-     */
-    var genAEl = function(inner, index) {
-        var aEl = document.createElement('a');
-        aEl.setAttribute('href', '#');
-        if (index !== undefined) {
-            aEl.setAttribute('data-index', index);
-        }
-        aEl.innerHTML = inner;
-        return aEl;
-    };
-
-    /**
-     * @class Ink.UI.Pagination
+     * Associated to a .ink-progress-bar element, it provides the necessary
+     * method - setValue() - for the user to change the element's value.
+     * 
+     * @class Ink.UI.ProgressBar
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
-     * @param {Object} options Options
-     * @param {Number}   options.size                number of pages
-     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
-     * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {String}   [options.previousLabel]     label to display on previous page button
-     * @param {String}   [options.nextLabel]         label to display on next page button
-     * @param {String}   [options.previousPageLabel] label to display on previous page button
-     * @param {String}   [options.nextPageLabel]     label to display on next page button
-     * @param {String}   [options.firstLabel]        label to display on previous page button
-     * @param {String}   [options.lastLabel]         label to display on next page button
-     * @param {Function} [options.onChange]          optional callback
-     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
-     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
-     * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
+     * @param {Object} [options] Options
+     *     @param {Number}     [options.startValue]          Percentage of the bar that is filled. Range between 0 and 100. Default: 0
+     *     @param {Function}   [options.onStart]             Callback that is called when a change of value is started
+     *     @param {Function}   [options.onEnd]               Callback that is called when a change of value ends
+     *
+     * @example
+     *      <div class="ink-progress-bar grey" data-start-value="70%">
+     *          <span class="caption">I am a grey progress bar</span>
+     *          <div class="bar grey"></div>
+     *      </div>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.ProgressBar_1'], function( Selector, ProgressBar ){
+     *              var progressBarElement = Ink.s('.ink-progress-bar');
+     *              var progressBarObj = new ProgressBar( progressBarElement );
+     *          });
+     *      </script>
      */
-    var Pagination = function(selector, options) {
+    var ProgressBar = function( selector, options ){
 
-        this._element = Common.elOrSelector(selector, '1st argument');
-
-        this._options = Ink.extendObj(
-            {
-                size:          undefined,
-            start:         1,
-            firstLabel:    'First',
-            lastLabel:     'Last',
-            previousLabel: 'Previous',
-            nextLabel:     'Next',
-            onChange:      undefined,
-            setHash:       false,
-            hashParameter: 'page',
-            numberFormatter: function(i) { return i + 1; }
-            },
-            options || {},
-            Element.data(this._element)
-        );
-
-        if (!this._options.previousPageLabel) {
-            this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
-        }
-
-        if (!this._options.nextPageLabel) {
-            this._options.nextPageLabel = 'Next ' + this._options.maxSize;
+        if( typeof selector !== 'object' ){
+            if( typeof selector !== 'string' ){
+                throw '[Ink.UI.ProgressBar] :: Invalid selector';
+            } else {
+                this._element = Selector.select(selector);
+                if( this._element.length < 1 ){
+                    throw "[Ink.UI.ProgressBar] :: Selector didn't find any elements";
+                }
+                this._element = this._element[0];
+            }
+        } else {
+            this._element = selector;
         }
 
 
-        this._handlers = {
-            click: Ink.bindEvent(this._onClick,this)
-        };
+        this._options = Ink.extendObj({
+            'startValue': 0,
+            'onStart': function(){},
+            'onEnd': function(){}
+        },Element.data(this._element));
 
-        if (!Common.isInteger(this._options.size)) {
-            throw new TypeError('size option is a required integer!');
-        }
-
-        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
-            throw new TypeError('start option is a required integer between 1 and size!');
-        }
-
-        if (this._options.maxSize && !Common.isInteger(this._options.maxSize) && this._options.maxSize > 0) {
-            throw new TypeError('maxSize option is a positive integer!');
-        }
-
-        else if (this._options.size < 0) {
-            throw new RangeError('size option must be equal or more than 0!');
-        }
-
-        if (this._options.onChange !== undefined && typeof this._options.onChange !== 'function') {
-            throw new TypeError('onChange option must be a function!');
-        }
-
-        if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
-            this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
-        }
-
-        this._current = this._options.start - 1;
-        this._itemLiEls = [];
+        this._options = Ink.extendObj( this._options, options || {});
+        this._value = this._options.startValue;
 
         this._init();
     };
 
-    Pagination.prototype = {
+    ProgressBar.prototype = {
 
         /**
          * Init function called by the constructor
-         *
+         * 
          * @method _init
          * @private
          */
-        _init: function() {
-            // generate and apply DOM
-            this._generateMarkup(this._element);
-            this._updateItems();
+        _init: function(){
+            this._elementBar = Selector.select('.bar',this._element);
+            if( this._elementBar.length < 1 ){
+                throw '[Ink.UI.ProgressBar] :: Bar element not found';
+            }
+            this._elementBar = this._elementBar[0];
 
-            // subscribe events
-            this._observe();
-
-            Common.registerInstance(this, this._element, 'pagination');
+            this._options.onStart = Ink.bind(this._options.onStart,this);
+            this._options.onEnd = Ink.bind(this._options.onEnd,this);
+            this.setValue( this._options.startValue );
         },
 
         /**
-         * Responsible for setting listener in the 'click' event of the Pagination element.
-         *
-         * @method _observe
-         * @private
-         */
-        _observe: function() {
-            Event.observe(this._element, 'click', this._handlers.click);
-        },
-
-        /**
-         * Updates the markup everytime there's a change in the Pagination object.
-         *
-         * @method _updateItems
-         * @private
-         */
-        _updateItems: function() {
-            var liEls = this._itemLiEls;
-
-            var isSimpleToggle = this._options.size === liEls.length;
-
-            var i, f, liEl;
-
-            if (isSimpleToggle) {
-                // just toggle active class
-                for (i = 0, f = this._options.size; i < f; ++i) {
-                    Css.setClassName(liEls[i], 'active', i === this._current);
-                }
-            }
-            else {
-                // remove old items
-                for (i = liEls.length - 1; i >= 0; --i) {
-                    this._ulEl.removeChild(liEls[i]);
-                }
-
-                // add new items
-                liEls = [];
-                for (i = 0, f = this._options.size; i < f; ++i) {
-                    liEl = document.createElement('li');
-                    liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
-                    Css.setClassName(liEl, 'active', i === this._current);
-                    this._ulEl.insertBefore(liEl, this._nextEl);
-                    liEls.push(liEl);
-                }
-                this._itemLiEls = liEls;
-            }
-
-            if (this._options.maxSize) {
-                // toggle visible items
-                var page = Math.floor( this._current / this._options.maxSize );
-                var pi = this._options.maxSize * page;
-                var pf = pi + this._options.maxSize - 1;
-
-                for (i = 0, f = this._options.size; i < f; ++i) {
-                    liEl = liEls[i];
-                    Css.setClassName(liEl, 'hide-all', i < pi || i > pf);
-                }
-
-                this._pageStart = pi;
-                this._pageEnd = pf;
-                this._page = page;
-
-                Css.setClassName(this._prevPageEl, 'disabled', !this.hasPreviousPage());
-                Css.setClassName(this._nextPageEl, 'disabled', !this.hasNextPage());
-
-                Css.setClassName(this._firstEl, 'disabled', this.isFirst());
-                Css.setClassName(this._lastEl, 'disabled', this.isLast());
-            }
-
-            // update prev and next
-            Css.setClassName(this._prevEl, 'disabled', !this.hasPrevious());
-            Css.setClassName(this._nextEl, 'disabled', !this.hasNext());
-        },
-
-        /**
-         * Returns the top element for the gallery DOM representation
-         *
-         * @method _generateMarkup
-         * @param {DOMElement} el
-         * @private
-         */
-        _generateMarkup: function(el) {
-            Css.addClassName(el, 'ink-navigation');
-
-            var
-                ulEl,liEl,
-                hasUlAlready = false
-            ;
-            if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
-                ulEl = document.createElement('ul');
-                Css.addClassName(ulEl, 'pagination');
-            } else {
-                hasUlAlready = true;
-                ulEl = ulEl[0];
-            }
-
-            if (this._options.maxSize) {
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.firstLabel) );
-                this._firstEl = liEl;
-                Css.addClassName(liEl, 'first');
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.previousPageLabel) );
-                this._prevPageEl = liEl;
-                Css.addClassName(liEl, 'previousPage');
-                ulEl.appendChild(liEl);
-            }
-
-            liEl = document.createElement('li');
-            liEl.appendChild( genAEl(this._options.previousLabel) );
-            this._prevEl = liEl;
-            Css.addClassName(liEl, 'previous');
-            ulEl.appendChild(liEl);
-
-            liEl = document.createElement('li');
-            liEl.appendChild( genAEl(this._options.nextLabel) );
-            this._nextEl = liEl;
-            Css.addClassName(liEl, 'next');
-            ulEl.appendChild(liEl);
-
-            if (this._options.maxSize) {
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.nextPageLabel) );
-                this._nextPageEl = liEl;
-                Css.addClassName(liEl, 'nextPage');
-                ulEl.appendChild(liEl);
-
-                liEl = document.createElement('li');
-                liEl.appendChild( genAEl(this._options.lastLabel) );
-                this._lastEl = liEl;
-                Css.addClassName(liEl, 'last');
-                ulEl.appendChild(liEl);
-            }
-
-            if( !hasUlAlready ){
-                el.appendChild(ulEl);
-            }
-
-            this._ulEl = ulEl;
-        },
-
-        /**
-         * Click handler
-         *
-         * @method _onClick
-         * @param {Event} ev
-         * @private
-         */
-        _onClick: function(ev) {
-            Event.stop(ev);
-
-            var tgtEl = Event.element(ev);
-            if (tgtEl.nodeName.toLowerCase() !== 'a') {
-                do{
-                    tgtEl = tgtEl.parentNode;
-                }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
-
-                if( tgtEl === this._element){
-                    return;
-                }
-            }
-
-            var liEl = tgtEl.parentNode;
-            if (liEl.nodeName.toLowerCase() !== 'li') { return; }
-
-            if ( Css.hasClassName(liEl, 'active') ||
-                 Css.hasClassName(liEl, 'disabled') ) { return; }
-
-            var isPrev = Css.hasClassName(liEl, 'previous');
-            var isNext = Css.hasClassName(liEl, 'next');
-            var isPrevPage = Css.hasClassName(liEl, 'previousPage');
-            var isNextPage = Css.hasClassName(liEl, 'nextPage');
-            var isFirst = Css.hasClassName(liEl, 'first');
-            var isLast = Css.hasClassName(liEl, 'last');
-
-            if (isFirst) {
-                this.setCurrent(0);
-            }
-            else if (isLast) {
-                this.setCurrent(this._options.size - 1);
-            }
-            else if (isPrevPage || isNextPage) {
-                this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
-            }
-            else if (isPrev || isNext) {
-                this.setCurrent(isPrev ? -1 : 1, true);
-            }
-            else {
-                var nr = parseInt( tgtEl.getAttribute('data-index'), 10);
-                this.setCurrent(nr);
-            }
-        },
-
-
-
-        /**************
-         * PUBLIC API *
-         **************/
-
-        /**
-         * Sets the number of pages
-         *
-         * @method setSize
-         * @param {Number} sz number of pages
+         * Sets the value of the Progressbar
+         * 
+         * @method setValue
+         * @param {Number} newValue Numeric value, between 0 and 100, that represents the percentage of the bar.
          * @public
          */
-        setSize: function(sz) {
-            if (!Common.isInteger(sz)) {
-                throw new TypeError('1st argument must be an integer number!');
+        setValue: function( newValue ){
+            this._options.onStart( this._value);
+
+            newValue = parseInt(newValue,10);
+            if( isNaN(newValue) || (newValue < 0) ){
+                newValue = 0;
+            } else if( newValue>100 ){
+                newValue = 100;
             }
+            this._value = newValue;
+            this._elementBar.style.width =  this._value + '%';
 
-            this._options.size = sz;
-            this._updateItems();
-            this._current = 0;
-        },
-
-        /**
-         * Sets the current page
-         *
-         * @method setCurrent
-         * @param {Number} nr sets the current page to given number
-         * @param {Boolean} isRelative trueish to set relative change instead of absolute (default)
-         * @public
-         */
-        setCurrent: function(nr, isRelative) {
-            if (!Common.isInteger(nr)) {
-                throw new TypeError('1st argument must be an integer number!');
-            }
-
-            if (isRelative) {
-                nr += this._current;
-            }
-
-            if (nr < 0) {
-                nr = 0;
-            }
-            else if (nr > this._options.size - 1) {
-                nr = this._options.size - 1;
-            }
-            this._current = nr;
-            this._updateItems();
-
-            /*if (this._options.setHash) {
-                var o = {};
-                o[this._options.hashParameter] = nr;
-                Common.setHash(o);
-            }*/
-
-            if (this._options.onChange) { this._options.onChange(this); }
-        },
-
-        /**
-         * Returns the number of pages
-         *
-         * @method getSize
-         * @return {Number} Number of pages
-         * @public
-         */
-        getSize: function() {
-            return this._options.size;
-        },
-
-        /**
-         * Returns current page
-         *
-         * @method getCurrent
-         * @return {Number} Current page
-         * @public
-         */
-        getCurrent: function() {
-            return this._current;
-        },
-
-        /**
-         * Returns true iif at first page
-         *
-         * @method isFirst
-         * @return {Boolean} True if at first page
-         * @public
-         */
-        isFirst: function() {
-            return this._current === 0;
-        },
-
-        /**
-         * Returns true iif at last page
-         *
-         * @method isLast
-         * @return {Boolean} True if at last page
-         * @public
-         */
-        isLast: function() {
-            return this._current === this._options.size - 1;
-        },
-
-        /**
-         * Returns true iif has prior pages
-         *
-         * @method hasPrevious
-         * @return {Boolean} True if has prior pages
-         * @public
-         */
-        hasPrevious: function() {
-            return this._current > 0;
-        },
-
-        /**
-         * Returns true iif has pages ahead
-         *
-         * @method hasNext
-         * @return {Boolean} True if has pages ahead
-         * @public
-         */
-        hasNext: function() {
-            return this._current < this._options.size - 1;
-        },
-
-        /**
-         * Returns true iif has prior set of page(s)
-         *
-         * @method hasPreviousPage
-         * @return {Boolean} Returns true iif has prior set of page(s)
-         * @public
-         */
-        hasPreviousPage: function() {
-            return this._options.maxSize && this._current > this._options.maxSize - 1;
-        },
-
-        /**
-         * Returns true iif has set of page(s) ahead
-         *
-         * @method hasNextPage
-         * @return {Boolean} Returns true iif has set of page(s) ahead
-         * @public
-         */
-        hasNextPage: function() {
-            return this._options.maxSize && this._options.size - this._current >= this._options.maxSize + 1;
-        },
-
-        /**
-         * Unregisters the component and removes its markup from the DOM
-         *
-         * @method destroy
-         * @public
-         */
-        destroy: Common.destroyComponent
+            this._options.onEnd( this._value );
+        }
     };
 
-    return Pagination;
+    return ProgressBar;
 
 });

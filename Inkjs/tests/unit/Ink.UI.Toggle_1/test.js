@@ -143,18 +143,54 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         ok(!toggle.getState());
     });
     bagTest('can be canceled by the onchangestate callback', function (bag, trigger, targets) {
+        var doCancel = false;
         var toggle = new Toggle(trigger, {
             target: targets,
             initialState: true,
             closeOnClick: true,
-            onChangeState: function () { return false; }
+            onChangeState: function () { return doCancel ? false : null; }
         });
+        doCancel = true;
         ok(toggle.getState());
         InkEvent.fire(bag, 'click');
         ok(toggle.getState());
     });
     module('Container/Containee logic.');
-    bagTest('closeOnInsideClick');
-    bagTest('triggering the event on the togglee when the togglee is a child of the toggler.');
+    bagTest('closeOnInsideClick', function (_, trigger, targets) {
+        var toggle = new Toggle(trigger, {
+            target: targets,
+            initialState: true,
+            closeOnInsideClick: true
+        });
+        ok(toggle.getState());
+        InkEvent.fire(targets[1], 'click');
+        ok(!toggle.getState());
+    });
+
+    bagTest('closeOnInsideClick with a selector', function (_, trigger, targets) {
+        var toggle = new Toggle(trigger, {
+            target: targets,
+            initialState: true,
+            closeOnInsideClick: '.targets.target-1'
+        });
+        ok(toggle.getState());
+        InkEvent.fire(targets[1], 'click');  // click on target-2
+        ok(toggle.getState());
+        InkEvent.fire(targets[0], 'click');  // click on target-1
+        ok(!toggle.getState());
+    });
+
+    bagTest('triggering the event on the togglee when the togglee is a child of the toggler.', function (bag) {
+        var trigger = InkElement.create('div', { insertBottom: bag });
+        var target = InkElement.create('div', { insertBottom: trigger});
+        var toggle = new Toggle(trigger, {
+            target: target,
+            initialState: true,
+            closeOnInsideClick: null
+        });
+        ok(toggle.getState());
+        InkEvent.fire(target, 'click');
+        ok(toggle.getState(), 'didnt close even though the event bubbled upwards from the target');
+    });
 });
 

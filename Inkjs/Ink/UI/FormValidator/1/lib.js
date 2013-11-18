@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validator_1'], function( Css, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1'], function( InkElement, Css, InkValidator ) {
     'use strict';
 
     /**
@@ -273,7 +273,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
 
                 }
             }
-            //debugger;
         },
 
         /**
@@ -282,8 +281,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @method _validateElements
          * @private
          */
-        _validateElements: function()
-        {
+        _validateElements: function() {
             var oGroups;
             this._getElements();
             //console.log('HAS CONFIRM', this.hasConfirm);
@@ -432,31 +430,42 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @private
          * @return {Boolean} The result of the validation.
          */
-        _isValid: function(elm, fieldType)
-        {
+        _isValid: function(elm, fieldType) {
+            var nodeName = elm.nodeName.toLowerCase();
+            var inputType = (elm.getAttribute('type') || '').toLowerCase();
+            var value = this._trim(elm.value);
+
+            // When we're analyzing emails, telephones, etc, and the field is
+            // empty, we check if it is required. If not required, it's valid.
+            if (fieldType !== 'ink-fv-required' &&
+                    inputType !== 'checkbox' && inputType !== 'radio' &&
+                    value === '') {
+                return !Css.hasClassName(elm, 'ink-fv-required');
+            }
+
             switch(fieldType) {
                 case 'ink-fv-required':
-                    if(elm.nodeName.toLowerCase() === 'select') {
+                    if(nodeName === 'select') {
                         if(elm.selectedIndex > 0) {
                             return true;
                         } else {
                             return false;
                         }
                     }
-                    if(elm.getAttribute('type') !== 'checkbox' && elm.getAttribute('type') !== 'radio') {
-                        if(this._trim(elm.value) !== '') {
-                            return true;
-                        }
-                    } else if(elm.getAttribute('type') === 'checkbox') {
+                    if(inputType !== 'checkbox' && inputType !== 'radio' &&
+                            value !== '') {
+                        return true;  // A input type=text,email,etc.
+                    } else if(inputType === 'checkbox') {
                         if(elm.checked === true) {
                             return true;
                         }
-                    } else if(elm.getAttribute('type') === 'radio') { // get top radio
+                    } else if(inputType === 'radio') { // get top radio
                         var aFormRadios = elm.form[elm.name];
                         if(typeof(aFormRadios.length) === 'undefined') {
                             aFormRadios = [aFormRadios];
                         }
                         var isChecked = false;
+                        // check if any input of the radio is checked
                         for(var i=0, totalRadio = aFormRadios.length; i < totalRadio; i++) {
                             if(aFormRadios[i].checked === true) {
                                 isChecked = true;
@@ -464,130 +473,53 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
                         }
                         return isChecked;
                     }
-                    break;
+                    return false;
 
                 case 'ink-fv-email':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.mail(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.mail(elm.value);
+
                 case 'ink-fv-url':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.url(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.url(elm.value);
+
                 case 'ink-fv-number':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(!isNaN(Number(elm.value))) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return !isNaN(Number(elm.value)) && isFinite(Number(elm.value));
+
                 case 'ink-fv-phone_pt':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isPTPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isPTPhone(elm.value);
+
                 case 'ink-fv-phone_cv':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isCVPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isCVPhone(elm.value);
+
                 case 'ink-fv-phone_ao':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isAOPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isAOPhone(elm.value);
+
                 case 'ink-fv-phone_mz':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if(InkValidator.isMZPhone(elm.value)) {
-                            return true;
-                        }
-                    }
-                    break;
+                    return InkValidator.isMZPhone(elm.value);
+
                 case 'ink-fv-date':
-                    if(this._trim(elm.value) === '') {
-                        if(Css.hasClassName(elm, 'ink-fv-required')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        var Element = Ink.getModule('Ink.Dom.Element',1);
-                        var dataset = Element.data( elm );
-                        var validFormat = 'yyyy-mm-dd';
+                    var Element = Ink.getModule('Ink.Dom.Element',1);
+                    var dataset = Element.data( elm );
+                    var validFormat = 'yyyy-mm-dd';
 
-                        if( Css.hasClassName(elm, 'ink-datepicker') && ("format" in dataset) ){
-                            validFormat = dataset.format;
-                        } else if( ("validFormat" in dataset) ){
-                            validFormat = dataset.validFormat;
-                        }
-
-                        if( !(validFormat in InkValidator._dateParsers ) ){
-                            var validValues = [];
-                            for( var val in InkValidator._dateParsers ){
-                                if (InkValidator._dateParsers.hasOwnProperty(val)) {
-                                    validValues.push(val);
-                                }
-                            }
-                            throw "The attribute data-valid-format must be one of the following values: " + validValues.join(',');
-                        }
-                        
-                        return InkValidator.isDate( validFormat, elm.value );
+                    if( Css.hasClassName(elm, 'ink-datepicker') && ('format' in dataset) ){
+                        validFormat = dataset.format;
+                    } else if( ('validFormat' in dataset) ){
+                        validFormat = dataset.validFormat;
                     }
-                    break;
+
+                    if( !(validFormat in InkValidator._dateParsers ) ){
+                        var validValues = [];
+                        for( var val in InkValidator._dateParsers ){
+                            if (InkValidator._dateParsers.hasOwnProperty(val)) {
+                                validValues.push(val);
+                            }
+                        }
+                        throw new Error(
+                            'The attribute data-valid-format must be one of ' +
+                            'the following values: ' + validValues.join(', '));
+                    }
+                    
+                    return InkValidator.isDate( validFormat, elm.value );
                 case 'ink-fv-custom':
                     break;
             }
@@ -604,7 +536,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
          * @private
          */
         _showError: function(formElm, aFail) {
-            /* jshint noempty:false */
             this._clearError(formElm);
 
             //ink-warning-field
@@ -613,45 +544,62 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Css_1','Ink.Util.Validat
             var curElm = false;
             for(var i=0, tFail = aFail.length; i < tFail; i++) {
                 curElm = aFail[i].elm;
+                if (curElm) {
+                    this._showAnErrorOnElement(curElm, aFail[i]);
+                }
+            }
+        },
 
-                if(curElm.getAttribute('type') !== 'radio') {
+        _showAnErrorOnElement: function (curElm, error) {
+            /* jshint noempty:false */
 
-                    var newLabel = document.createElement('p');
-                    //newLabel.setAttribute('for',curElm.id);
-                    //newLabel.className = this._errorClassName;
-                    //newLabel.className += ' ' + this._errorTypeErrorClassName;
-                    Css.addClassName(newLabel, this._errorClassName);
-                    Css.addClassName(newLabel, this._errorTypeErrorClassName);
-                    if(aFail[i].errors[0] !== 'ink-fv-custom') {
-                        newLabel.innerHTML = this._flagMap[aFail[i].errors[0]].msg;
+            var controlGroupElm = InkElement.findUpwardsByClass(
+                    curElm, 'control-group');
+            var controlElm = InkElement.findUpwardsByClass(
+                    curElm, 'control');
+
+            var inputType = curElm.getAttribute('type');
+
+            if(inputType !== 'radio') {
+                var errorClasses = [
+                    this._errorClassName,
+                    this._errorTypeClassName].join(' ');
+
+                var errorMsg = InkElement.create('p', {
+                    className: errorClasses
+                });
+
+                if(error.errors[0] !== 'ink-fv-custom') {
+                    errorMsg.innerHTML = this._flagMap[error.errors[0]].msg;
+                } else {
+                    errorMsg.innerHTML = error.custom[0].msg;
+                }
+
+                if(inputType !== 'checkbox') {
+                    if (curElm.nextSibling /* This check will become obsolete after 2.2.2 */) {
+                        InkElement.insertAfter(errorMsg, curElm);
                     } else {
-                        newLabel.innerHTML = aFail[i].custom[0].msg;
+                        curElm.parentNode.appendChild(errorMsg); /* so will this workaround */
                     }
-
-                    if(curElm.getAttribute('type') !== 'checkbox') {
-                        curElm.nextSibling.parentNode.insertBefore(newLabel, curElm.nextSibling);
-                        if(Css.hasClassName(curElm.parentNode, 'control')) {
-                            Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                            if(aFail[i].errors[0] === 'ink-fv-required') {
-                                Css.addClassName(curElm.parentNode.parentNode, 'error');
-                            } else {
-                                Css.addClassName(curElm.parentNode.parentNode, 'warning');
-                            }
+                    if (controlElm) {
+                        if(error.errors[0] === 'ink-fv-required') {
+                            Css.addClassName(controlGroupElm, 'validation error');
+                        } else {
+                            Css.addClassName(controlGroupElm, 'validation warning');
                         }
-                    } else {
-                        /* // TODO checkbox... does not work with this CSS
-                        curElm.parentNode.appendChild(newLabel);
-                        if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
-                            Css.addClassName(curElm.parentNode.parentNode, 'control');
-                            Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                            Css.addClassName(curElm.parentNode.parentNode, 'error');
-                        }*/
                     }
                 } else {
+                    /* // TODO checkbox... does not work with this CSS
+                    curElm.parentNode.appendChild(errorMsg);
                     if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
+                        Css.addClassName(curElm.parentNode.parentNode, 'control');
                         Css.addClassName(curElm.parentNode.parentNode, 'validation');
                         Css.addClassName(curElm.parentNode.parentNode, 'error');
-                    }
+                    }*/
+                }
+            } else {
+                if(controlGroupElm) {
+                    Css.addClassName(controlGroupElm, ['validation', 'error']);
                 }
             }
         },
