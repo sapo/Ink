@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  var jshintFile = './Inkjs/.jshintrc';
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -7,7 +9,9 @@ module.exports = function(grunt) {
     ink: {
       folders: {
         js: {
-          src: './src/js/',
+          srcBase: './Inkjs/',
+          src: './Inkjs/Ink/',
+          tests: './Inkjs/tests/',
           output: './dist/js/'
         },
         css: {
@@ -53,7 +57,6 @@ module.exports = function(grunt) {
             'Net/**/lib.js',
             'Dom/**/lib.js',
             'Util/**/lib.js',
-            'UI/Common/lib.js',
             'UI/**/lib.js'
           ],
           dest: '<%= ink.folders.js.output %>',
@@ -72,7 +75,6 @@ module.exports = function(grunt) {
             flatten: true,
             cwd: '<%= ink.folders.js.src %>UI/',
             src: [
-              'UI/Common/lib.js',
               '**/lib.js'
             ],
             dest: '<%= ink.folders.js.output %>',
@@ -187,6 +189,32 @@ module.exports = function(grunt) {
           '<%= ink.folders.css.output %><%= pkg.name %>-ie7-min.css':'<%= ink.folders.css.src %><%= pkg.name %>-ie7.less'
         }
       }
+    },
+
+    // Runs JSHint on the Ink.js JavaScript source
+    jshint: {
+      inkjs: {
+        options: {
+          jshintrc: '<%= ink.folders.js.srcBase %>.jshintrc'
+        },
+        files: {
+          src: '<%= ink.folders.js.src %>**/lib.js'
+        }
+      }
+    },
+
+    // Creates a plato report
+    plato: {
+      inkjs: {
+        options: {
+          jshint: eval('(' +
+            grunt.file.read(jshintFile, { encoding: 'utf-8'}) +
+            ')')
+        },
+        files: {
+          '<%= ink.folders.js.srcBase %>report': '<%= ink.folders.js.src %>**/lib.js'
+        }
+      }
     }
   });
 
@@ -196,6 +224,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-plato');
 
   grunt.registerTask('default', ['less','clean','concat','uglify']);
   grunt.registerTask('test', ['connect', 'qunit']);
