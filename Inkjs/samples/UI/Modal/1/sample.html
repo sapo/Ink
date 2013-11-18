@@ -6,6 +6,9 @@
         <title>InkJS - Modal samples</title>
 
         <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink.css" />
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
 
         <script type="text/javascript" src="http://js.ink.sapo.pt/Ink/1/lib.js"></script>
 
@@ -69,7 +72,7 @@
                 </p>
 
                 <div class="ink-shade fade">
-                    <div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%" data-auto-display="">
+                    <div id="displayOnStart" class="ink-modal fade" data-width="80%" data-height="60%">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
                             <h5>This Modal is dislayed as soon as the page is fully available</h5>
@@ -250,13 +253,51 @@
                 <h1>Stuff you can put in your modal</h1>
 
             	<p>
-                    <button id="openModalWithStuffs">Open Modal</button>
                     <pre class="prettyprint linenums">
+&lt;div class="ink-shade fade"&gt;
+    &lt;div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger="#openModalWithStuffs"&gt;
+        &lt;div class="modal-header"&gt;
+            &lt;button class="modal-close ink-dismiss"&gt;&lt;/button&gt;
+            &lt;h5&gt;This Modal is dislayed as soon as the page is fully available&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-body"&gt;
+            &lt;h1&gt;A tooltip&lt;/h1&gt;
+
+            &lt;span class="ink-tooltip" data-tip-text="A tooltip!!!!1"&gt;A tooltip!&lt;/span&gt;
+
+            &lt;hr&gt;
+
+            &lt;h1&gt;A video&lt;/h1&gt;
+            &lt;iframe src="http://rd3.videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/hhl0qEyhOad0aNrZYGvQ/mov/1&amp;quality=sd" frameborder="0" scrolling="no" width="640" height="360"&gt;&lt;/iframe&gt;
+            &lt;hr&gt;
+
+            &lt;h1&gt;A datepicker&lt;/h1&gt;
+
+            &lt;input class="ink-datepicker" type="text"&gt;
+
+            &lt;hr&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-footer"&gt;
+            &lt;div class="push-right"&gt;
+                &lt;button class="ink-button info"&gt;Confirm&lt;/button&gt;
+                &lt;button class="ink-button caution ink-dismiss"&gt;Cancel&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button id="openModalWithStuffs"&gt;Open Modal&lt;/button&gt;
+
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Modal_1'], function () {
+        new Modal('#modalWithStuff');
+    });
+&lt;/script&gt;
                     </pre>
                 </p>
 
                 <div class="ink-shade fade">
-                    <div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" x-data-trigger="#openModalWithStuffs">
+                    <div id="modalWithStuff" class="ink-modal fade" data-width="80%" data-height="80%" data-trigger="#openModalWithStuffs">
                         <div class="modal-header">
                             <button class="modal-close ink-dismiss"></button>
                             <h5>This Modal is dislayed as soon as the page is fully available</h5>
@@ -287,9 +328,16 @@
                     </div>
                 </div>
 
+                <button id="openModalWithStuffs">Open Modal</button>
+
+                <script>
+                    Ink.requireModules(['Ink.UI.Modal_1'], function () {
+                        new Modal('#modalWithStuff');
+                    });
+                </script>
+
                 <script>
                     Ink.requireModules(['Ink.UI.Modal_1', 'Ink.UI.DatePicker_1', 'Ink.UI.Tooltip_1', 'Ink.Dom.Selector_1', 'Ink.Util.Array_1'], function (Modal, DatePicker, Tooltip, Selector, InkArray) {
-                        new Modal('#modalWithStuff');
                         InkArray.forEach(Selector.select('.ink-tooltip'), function (el) {
                             new Tooltip(el);
                         });
