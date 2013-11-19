@@ -147,8 +147,8 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _setFirstActive: function() {
             var hash = window.location.hash;
-            this._activeContentTab = Selector.select(hash, this._element)[0] ||
-                                     Selector.select(this._hashify(this._options.active), this._element)[0] ||
+            this._activeContentTab = Selector.select(this._hashify(this._options.active), this._element)[0] ||
+                                     Selector.select(hash, this._element)[0] || 
                                      Selector.select('.tabs-content', this._element)[0];
 
             this._activeMenuLink = this._findLinkByHref(this._activeContentTab.getAttribute('id'));
