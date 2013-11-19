@@ -1,7 +1,7 @@
  <table class="ink-table hover alternating bordered">
      <thead>
          <tr data-bind="foreach: columns">
-             <th data-bind="css: (typeof headerClass == 'undefined' ? undefined : headerClass)+' '+(typeof headerSortOrder == 'function' ? 'sortable-header':''), click: function() {if (typeof headerSortHandler == 'function') headerSortHandler($data);}">
+             <th data-bind="css: (typeof headerClass == 'undefined' ? '' : headerClass+' ')+(typeof headerSortOrder == 'function' ? 'sortable-header':''), click: function() {if (typeof headerSortHandler == 'function') headerSortHandler($data);}, visible: (typeof visible == 'undefined' ? true : visible)">
                 <span data-bind="text: headerText"></span>
                 <!--ko if: typeof headerSortOrder == 'function' -->
                     <!--ko if: headerSortOrder() == 'asc' -->
@@ -20,11 +20,11 @@
      <!-- ko if: itemsOnCurrentPage().length > 0 -->
          <tbody data-bind="foreach: itemsOnCurrentPage">
             <tr data-bind="foreach: $parent.columns">
-               <td data-bind="css: (typeof cellClass == 'undefined' ? undefined : cellClass)">
-                    <!--ko if: typeof rowHandler == 'function' -->
-                        <a href="javascript:void(0)" data-bind="text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText], click: function() {rowHandler($parent);}"></a>
+               <td data-bind="css: (typeof cellClass == 'undefined' ? undefined : cellClass), visible: (typeof visible == 'undefined' ? true : visible)">
+                    <!--ko if: (typeof rowHandler == 'function') || (typeof href == 'function') -->
+                        <a data-bind="attr: {href: (typeof href == 'function' ? href($parent) : 'javascript:void(0);')}, text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText], click: (typeof rowHandler == 'function' ? function() {rowHandler($parent);} : undefined)"></a>
                     <!--/ko-->
-                    <!--ko if: typeof rowHandler != 'function' -->
+                    <!--ko if: (typeof rowHandler != 'function') && (typeof href != 'function') -->
                         <!--ko if: typeof rowTemplate == 'string' -->
                             <span data-bind="template: { name: rowTemplate, data: $parent }"></span>
                         <!--/ko-->

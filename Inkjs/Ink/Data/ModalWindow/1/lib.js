@@ -1,6 +1,6 @@
 /**
  * @module Ink.Data.ModalWindow
- * @desc Application main module class (to be inherited by apps)
+ * @desc Modal window widget
  * @author hlima, ecunha, ttt  AT sapo.pt
  * @version 1
  */    
@@ -84,7 +84,7 @@ Ink.createModule('Ink.Data.ModalWindow', '1', ['Ink.Data.Binding_1', 'Ink.Dom.Se
         
         this.modalEl = Selector.select("#"+this.modalId+" .ink-modal")[0];
         this.modal = new Ink.UI.Modal(this.modalEl, {onDismiss: this._hideModal.bind(this)});
-        this.modal._init();
+        this.modal.open();
         this.taskButtons(params.taskButtons || []);
         this.moduleData.params = params;
         this.moduleData.confirmHandler = undefined;
