@@ -26,6 +26,8 @@ Ink.createModule('Ink.App', '1', ['Ink.Data.Binding_1', 'Ink.Plugin.Router_1', '
         this.infoModule = {
             title: ko.observable()
         };
+
+        this.undefinedRoute = undefined;
     };
 
     /* 
@@ -237,7 +239,7 @@ Ink.createModule('Ink.App', '1', ['Ink.Data.Binding_1', 'Ink.Plugin.Router_1', '
                     argumentsValues = Array.prototype.slice.call(arguments);
 
                     // Create an object with the parameters associated to the respective value
-                    if(argumentsValues) {
+                    if(argumentsValues && parameters) {
                         for(var i = 0; i < argumentsValues.length; i++) {
                             values[parameters[i].replace(":", "")] = argumentsValues[i];
                         }
@@ -261,6 +263,14 @@ Ink.createModule('Ink.App', '1', ['Ink.Data.Binding_1', 'Ink.Plugin.Router_1', '
                     }
                 };
             })();
+        }
+
+        routeHashMap['*'] = function () {
+            if(self.undefinedRoute) {
+                self.navigateTo(self.undefinedRoute, false);
+            } else {
+                self.navigateToStart();
+            }
         };
 
         this._router = new Router(routeHashMap);
