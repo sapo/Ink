@@ -130,7 +130,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
         _addTag: function (tag) {
             if (this._options.maxTags !== -1 &&
-                    this._tags.length > this._options.maxTags) {
+                    this._tags.length >= this._options.maxTags) {
                 return;
             }
             if ((!this._options.allowRepeated &&
