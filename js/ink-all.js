@@ -13396,8 +13396,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            if (this._options.closeOnEscape.toString() === 'true'
-                    && openModals[openModals.length - 1] === this) {
+            if (this._options.closeOnEscape.toString() === 'true' &&
+                    openModals[openModals.length - 1] === this) {
                 this.dismiss();
                 if (this._wasDismissed) {
                     Event.stop(ev);
@@ -16137,7 +16137,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
      * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
      * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
-     * @param {Boolean} [options.autoSplit=true] Whether the 
+     * @param {Boolean} [options.autoSplit=true]
+     * @param {Integer} [options.maxTags=-1] Maximum amount of tags the user can write.
      * @example
      */
     function TagField(element, options) {
@@ -16237,7 +16238,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
         _addTag: function (tag) {
             if (this._options.maxTags !== -1 &&
-                    this._tags.length > this._options.maxTags) {
+                    this._tags.length >= this._options.maxTags) {
                 return;
             }
             if ((!this._options.allowRepeated &&
