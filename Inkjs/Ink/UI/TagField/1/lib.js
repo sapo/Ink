@@ -4,10 +4,33 @@
  * @version 1
  */
 Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector) {
+    'use strict';
+
+    var enterKey = 13;
+    var backspaceKey = 8;
+    var isTruthy = function (val) {return !!val;};
     /**
+     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
+     *
+     * The markup is as follows:
+     *
+     *           <input class="ink-tagfield" type="text" value="initial,value">
+     *
+     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
+     *
+     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
+     *
      * @class Ink.UI.TagField
      * @version 1
      * @constructor
+     * @param {String|InputElement} element Selector or DOM Input Element.
+     * @param {Object} [options]
+     * @param {String|Array} [options.tags] initial tags in the input
+     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
+     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
+     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
+     * @param {Boolean} [options.autoSplit=true]
+     * @param {Integer} [options.maxTags=-1] Maximum amount of tags the user can write.
      * @example
      */
 
@@ -15,7 +38,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
     var Common = Ink.getModule('Ink.UI.Common_1') || Ink.getModule('Ink.UI.Aux_1');
 
     // InkElement.create on steroids, new on Ink@git
-    function createElement(tag, properties) {
+    InkElement.create = function createElement(tag, properties) {
         var el = document.createElement(tag);
         //Ink.extendObj(el, properties);
         for(var property in properties) {
@@ -36,8 +59,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         return el;
     }
 
-    var isTruthy = function (val) {return !!val;};
-
     function TagField(element, options) {
         this.init(element, options);
     }
@@ -47,8 +68,6 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
          * Init function called by the constructor
          * 
          * @method _init
-         * @param {String|DOMElement} Selector or DOM Element.
-         * @param {Object} [options] Options object.
          * @private
          */
         init: function(element, options) {
@@ -71,12 +90,12 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
             Css.addClassName(this._element, 'hide-all');
 
-            this._viewElm = createElement('div', {
+            this._viewElm = InkElement.create('div', {
                 className: 'ink-tagfield',
                 insertAfter: this._element
             });
 
-            this._input = createElement('input', {
+            this._input = InkElement.create('input', {
                 type: 'text',
                 className: 'new-tag-input',
                 insertBottom: this._viewElm
@@ -122,7 +141,7 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
             } else if (tagname === 'select') {
                 element.innerHTML = '';
                 InkArray.each(tags, function (tag) {
-                    var opt = createElement('option', {selected: 'selected'});
+                    var opt = InkElement.create('option', {selected: 'selected'});
                     InkElement.setTextContent(opt, tag);
                     element.appendChild(opt);
                 });
@@ -133,19 +152,19 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
 
         _addTag: function (tag) {
             if (this._options.maxTags !== -1 &&
-                    this._tags.length > this._options.maxTags) {
+                    this._tags.length >= this._options.maxTags) {
                 return;
             }
             if ((!this._options.allowRepeated &&
                     InkArray.inArray(tag, this._tags, tag)) || !tag) {
                 return false;
             }
-            var elm = createElement('span', {
+            var elm = InkElement.create('span', {
                 className: 'ink-tag',
                 setTextContent: tag + ' '
             });
 
-            var remove = createElement('i', {
+            var remove = InkElement.create('i', {
                 className: 'remove icon-remove',
                 insertBottom: elm
             });
@@ -184,9 +203,9 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
         },
 
         _onKeyDown: function (event) {
-            if (event.which === 13) {
+            if (event.which === enterKey) {
                 return this._onEnterKeyDown(event);
-            } else if (event.which === 27) {
+            } else if (event.which === backspaceKey) {
                 return this._onBackspaceKeyDown();
             } else if (this._removeConfirm) {
                 // user pressed another key, cancel removal from a backspace key
