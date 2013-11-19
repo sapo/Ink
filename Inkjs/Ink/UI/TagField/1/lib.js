@@ -30,7 +30,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
      * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
      * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
      * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
-     * @param {Boolean} [options.autoSplit=true] Whether the 
+     * @param {Boolean} [options.autoSplit=true]
+     * @param {Integer} [options.maxTags=-1] Maximum amount of tags the user can write.
      * @example
      */
     function TagField(element, options) {
