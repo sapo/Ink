@@ -3,9 +3,47 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1', 'Ink.Util.Json_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString, Json) {
     'use strict';
 
+    var rNumber = new RegExp(/\d/g);
+    // Turn into a number, if we can. For sorting data which could be numeric or not.
+    function maybeTurnIntoNumber(value) {
+        if( !isNaN(value) && rNumber.test(value) ){
+            return parseInt(value, 10);
+        } else if( !isNaN(value) ){
+            return parseFloat(value);
+        }
+        return value;
+    }
+    // cmp function for comparing data which might be a number.
+    function numberishEnabledCmp (index, a, b) {
+        var aValue = Element.textContent(Selector.select('td',a)[index]),
+            bValue = Element.textContent(Selector.select('td',b)[index]);
+
+        aValue = maybeTurnIntoNumber(aValue);
+        bValue = maybeTurnIntoNumber(bValue);
+
+        if( aValue === bValue ){
+            return 0;
+        } else {
+            return ( ( aValue > bValue ) ? 1 : -1 );
+        }
+    }
+    // Object.keys polyfill
+    function keys(obj) {
+        if (typeof Object.keys !== 'undefined') {
+            return Object.keys(obj);
+        }
+        var ret = [];
+        for (var k in obj) if (obj.hasOwnProperty(k)) {
+            ret.push(k);
+        }
+        return ret;
+    }
+
+    // Most processJSON* functions can just default to this.
+    function sameSame(obj) { return obj; }
     /**
      * The Table component transforms the native/DOM table element into a
      * sortable, paginated component.
@@ -17,7 +55,17 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @param {Object} [options] Options
      *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
      *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *     @param {Function}  [options.createEndpointUrl] Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort ({ order: 'asc' or 'desc', field: fieldname }) and page ({ page: page number, size: items per page })
+     *     @param {Function}  [options.processJSONRows] TODO doc
+     *     @param {Function}  [options.processJSONHeader] TODO doc
+     *     @param {Function}  [options.processJSONHeaders] TODO doc
+     *     @param {Function}  [options.processJSONRow] TODO doc
+     *     @param {Function}  [options.processJSONField] TODO doc
+     *     @param {Function}  [options.processJSONField.(field_name)] TODO doc
+     *     @param {Function}  [options.processJSONTotalRows] TODO doc
      *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
+     *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
+     *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
      * @example
      *      <table class="ink-table alternating" data-page-size="6">
      *          <thead>
@@ -99,9 +147,16 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._options = Common.options({
             pageSize: ['Integer', null],
             endpoint: ['String', null],
+            createEndpointUrl: ['Function', null /* default func uses above option */],
+            processJSONRows: ['Function', sameSame],
+            processJSONRow: ['Function', sameSame],
+            processJSONField: ['Function', sameSame],
+            processJSONHeader: ['Function', sameSame],
+            processJSONHeaders: ['Function', function (dt) { return keys(dt[0]); }],
+            processJSONTotalRows: ['Function', function (dt) { return dt.length; }],
             pagination: ['Element', null],
-            allowResetSorting: ['Boolean', false],  // Any idea of what this is?
-            visibleFields: ['String', undefined]  // And this? These should be documented if they're useful.
+            allowResetSorting: ['Boolean', false],
+            visibleFields: ['String', undefined]
         }, options || {}, this._rootElement);
 
         /**
@@ -113,7 +168,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
         }
 
-        this._thead = Ink.s('thead', this._rootElement);
+        this._thead = this._rootElement.tHead || this._rootElement.createTHead();
 
         /**
          * Initializing variables
@@ -131,8 +186,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._pagination = null;
         this._totalRows = 0;
 
-        this._handlers.thClick = Event.observeDelegated(this._thead, 'click',
-                'th[data-sortable="true"]',
+        this._handlers.thClick = Event.observeDelegated(this._rootElement, 'click',
+                'thead th[data-sortable="true"]',
                 Ink.bindMethod(this, '_onThClick'));
 
         this._init();
@@ -147,32 +202,28 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _init: function(){
-
             /**
              * If not is in markup mode, we have to do the initial request
              * to get the first data and the headers
              */
              if( !this._markupMode ) {
                  /* Endpoint mode */
-                this._getData( this._options.endpoint, true );
+                this._getData(  );
              } else /* Markup mode */ {
-                this._setHeadersHandlers();
+                this._resetSortOrder();
 
                 /**
                  * Getting the table's data
                  */
-                InkArray.each(Selector.select('tbody tr',this._rootElement),Ink.bind(function(tr){
-                    this._data.push(tr);
-                },this));
+                this._data = Selector.select('tbody tr', this._rootElement);
                 this._originalData = this._data.slice(0);
 
                 this._totalRows = this._data.length;
 
                 /**
-                 * Set pagination if defined
+                 * Set pagination if options tell us to
                  */
                 this._setPagination();
-
                 if (this._pagination) {
                     this._paginate(1);
                 }
@@ -188,79 +239,71 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          */
         _onThClick: function( event ){
             var tgtEl = Event.element(event),
-                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
+                paginated = this._options.pageSize !== undefined;
 
             Event.stop(event);
-            
+
             var index = InkArray.keyValue(tgtEl, this._headers, true) ;
 
-            var prop;
+            if( index === false ){
+                return;
+            }
 
             if( !this._markupMode && paginated ){
-
-                for( prop in this._sortableFields ){
-                    if( prop !== ('col_' + index) ){
-                        this._sortableFields[prop] = 'none';
-                        this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
-                    }
-                }
-
-                if( this._sortableFields['col_'+index] === 'asc' ) {
-                    this._sortableFields['col_'+index] = 'desc';
-                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
-                } else {
-                    this._sortableFields['col_'+index] = 'asc';
-                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
-
-                }
-
-                this._pagination.setCurrent(this._pagination._current);
-
+                this._invertSortOrder(index, false);
             } else {
-
-                if( index === -1){
-                    return;
-                }
-
-                if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting && (this._options.allowResetSorting.toString() === 'true')) )
-                {
-                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML);
-                    this._sortableFields['col_'+index] = 'none';
-
-                    // if( !found ){
-                        this._data = this._originalData.slice(0);
-                    // }
+                if ( (this._sortableFields['col_'+index] === 'desc') && this._options.allowResetSorting ) {
+                    this._setSortOrderOfColumn(index, null);
+                    this._data = this._originalData.slice(0);
                 } else {
-
-                    for( prop in this._sortableFields ){
-                        if( prop !== ('col_' + index) ){
-                            this._sortableFields[prop] = 'none';
-                            this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
-                        }
-                    }
-
-                    this._sort(index);
-
-                    if( this._sortableFields['col_'+index] === 'asc' ) {
-                        this._data.reverse();
-                        this._sortableFields['col_'+index] = 'desc';
-                        this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
-                    } else {
-                        this._sortableFields['col_'+index] = 'asc';
-                        this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
-                    }
+                    this._invertSortOrder(index, true);
                 }
-
 
                 var tbody = Selector.select('tbody',this._rootElement)[0];
                 Common.cleanChildren(tbody);
-                InkArray.each(this._data, function(item){
-                    tbody.appendChild(item);
-                });
+                InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
 
                 this._pagination.setCurrent(0);
                 this._paginate(1);
             }
+        },
+
+        _invertSortOrder: function (index, sortAndReverse) {
+            var isAscending = this._sortableFields['col_'+index] === 'asc';
+
+            var len = keys(this._sortableFields).length;
+            for (var i = 0; i < len; i++) {
+                this._setSortOrderOfColumn(i, null);
+            }
+
+            if (sortAndReverse) {
+                this._sort(index);
+            }
+
+            if( isAscending ) {
+                if (sortAndReverse) {
+                    this._data.reverse();
+                }
+                this._setSortOrderOfColumn(index, false);
+            } else {
+                this._setSortOrderOfColumn(index, true);
+            }
+        },
+
+        _setSortOrderOfColumn: function(index, up) {
+            var caretHtml = '';
+            var order = 'none';
+            if (up === true) {
+                caretHtml = '<i class="icon-caret-up"></i>';
+                order = 'asc';
+            } else if (up === false) {
+                caretHtml = '<i class="icon-caret-down"></i>';
+                order = 'desc';
+            }
+
+            this._sortableFields['col_' + index] = order;
+            this._headers[index].innerHTML = InkString.stripTags(
+                    this._headers[index].innerHTML) + caretHtml;
         },
 
         /**
@@ -271,6 +314,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _paginate: function( page ){
+            if (!this._pagination) { return; }
+
             var pageSize = this._options.pageSize;
 
             // Hide everything except the items between these indices
@@ -287,6 +332,27 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         },
 
+        /* register fields into this._originalFields, whether they come from JSON or a table.
+         * @method _registerFieldNames
+         * @private
+         * @param [names] The field names in an array
+         **/
+        _registerFieldNames: function (names) {
+            this._originalFields = [];
+
+            InkArray.forEach(names, Ink.bind(function (field) {
+                if( !this._fieldIsVisible(field) ){
+                    return;  // The user deems this not to be necessary to see.
+                }
+                this._originalFields.push(field);
+            }, this));
+        },
+
+        _fieldIsVisible: function (field) {
+            return !this._options.visibleFields ||
+                (this._options.visibleFields.indexOf(field) !== -1);
+        },
+
         /**
          * Sorts by a specific column.
          * 
@@ -295,99 +361,57 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _sort: function( index ){
-            this._data.sort(Ink.bind(function(a,b){
-                var
-                    aValue = Element.textContent(Selector.select('td',a)[index]),
-                    bValue = Element.textContent(Selector.select('td',b)[index])
-                ;
-
-                var regex = new RegExp(/\d/g);
-                if( !isNaN(aValue) && regex.test(aValue) ){
-                    aValue = parseInt(aValue,10);
-                } else if( !isNaN(aValue) ){
-                    aValue = parseFloat(aValue);
-                }
-
-                if( !isNaN(bValue) && regex.test(bValue) ){
-                    bValue = parseInt(bValue,10);
-                } else if( !isNaN(bValue) ){
-                    bValue = parseFloat(bValue);
-                }
-
-                if( aValue === bValue ){
-                    return 0;
-                } else {
-                    return ( ( aValue>bValue ) ? 1 : -1 );
-                }
-            },this));
+            this._data.sort(Ink.bind(numberishEnabledCmp, false, index));
         },
 
         /**
          * Assembles the headers markup
          *
-         * @method _setHeaders
+         * @method _createHeadersFromJson
          * @param  {Object} headers Key-value object that contains the fields as keys, their configuration (label and sorting ability) as value
          * @private
          */
-        _setHeaders: function( headers, rows ){
-            var field, header,
-                thead, tr, th;
+        _createHeadersFromJson: function( headers ){
+            this._registerFieldNames(keys(headers));
 
-            if( (thead = Selector.select('thead',this._rootElement)).length === 0 ){
-                thead = this._rootElement.createTHead();
-                tr = thead.insertRow(0);
+            if (this._thead.children.length) { return; }
 
-                for( field in headers ){
-                    if (headers.hasOwnProperty(field)) {
+            var tr = this._thead.insertRow(0);
+            var th;
 
-                        if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                            continue;
-                        }
-
-                        // th = tr.insertCell(index++);
-                        th = document.createElement('th');
-                        header = headers[field];
-
-                        if( ("sortable" in header) && (header.sortable.toString() === 'true') ){
-                            th.setAttribute('data-sortable','true');
-                        }
-
-                        if( ("label" in header) ){
-                            Element.setTextContent(th, header.label);
-                        }
-
-                        this._originalFields.push(field);
-                        tr.appendChild(th);
-                    }
-                }
-            } else {
-                var firstLine = rows[0];
-
-                for( field in firstLine ){
-                    if (firstLine.hasOwnProperty(field)) {
-                        if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                            continue;
-                        }
-
-                        this._originalFields.push(field);
-                    }
+            for (var k in headers) if (headers.hasOwnProperty(k)) {
+                if (this._fieldIsVisible(headers[k])) {
+                    th = Element.create('th');
+                    th = this._createSingleHeaderFromJson(headers[k], th);
+                    tr.appendChild(th);
                 }
             }
         },
 
+        _createSingleHeaderFromJson: function (header, th) {
+            header = this._options.processJSONHeader(header);
+
+            if (header.sortable) {
+                th.setAttribute('data-sortable','true');
+            }
+
+            if (header.label){
+                Element.setTextContent(th, header.label);
+            }
+
+            return th;
+        },
+
         /**
-         * Method that sets the handlers for the headers
+         * Method that sets the event handlers for the TH headers
          *
-         * @method _setHeadersHandlers
+         * @method _resetSortOrder
          * @private
          */
-        _setHeadersHandlers: function(){
-
+        _resetSortOrder: function(){
             /**
              * Setting the sortable columns and its event listeners
              */
-            if (!this._thead) { return; }
-
 
             this._headers = Selector.select('th', this._thead);
             InkArray.each(this._headers, Ink.bind(function(item, index){
@@ -401,20 +425,12 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         /**
          * This method gets the rows from AJAX and places them as <tr> and <td>
          *
-         * @method _setData
+         * @method _createRowsFromJSON
          * @param  {Object} rows Array of objects with the data to be showed
          * @private
          */
-        _setData: function( rows ){
-
-            var
-                field,
-                tbody, tr, td,
-                trIndex,
-                tdIndex
-            ;
-
-            tbody = Selector.select('tbody',this._rootElement);
+        _createRowsFromJSON: function( rows ){
+            var tbody = Selector.select('tbody',this._rootElement);
             if( tbody.length === 0){
                 tbody = document.createElement('tbody');
                 this._rootElement.appendChild( tbody );
@@ -424,29 +440,40 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             }
 
             this._data = [];
+            var row;
 
-
-            for( trIndex in rows ){
+            for( var trIndex in rows ){
                 if (rows.hasOwnProperty(trIndex)) {
-                    tr = document.createElement('tr');
-                    tbody.appendChild( tr );
-                    tdIndex = 0;
-                    for( field in rows[trIndex] ){
-                        if (rows[trIndex].hasOwnProperty(field)) {
-
-                            if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                                continue;
-                            }
-
-                            td = tr.insertCell(tdIndex++);
-                            td.innerHTML = rows[trIndex][field];
-                        }
-                    }
-                    this._data.push(tr);
+                    row = this._options.processJSONRow(rows[trIndex]);
+                    this._createSingleRowFromJson(tbody, row, trIndex);
                 }
             }
 
             this._originalData = this._data.slice(0);
+        },
+
+        _createSingleRowFromJson: function (tbody, row, rowIndex) {
+            var tr = document.createElement('tr');
+            tbody.appendChild( tr );
+            for( var field in row ){
+                if (row.hasOwnProperty(field)) {
+                    this._createFieldFromJson(tr, row[field], field, rowIndex);
+                }
+            }
+            this._data.push(tr);
+        },
+
+        _createFieldFromJson: function (tr, column, fieldName, rowIndex) {
+            /* jshint unused: false */
+            if (!this._fieldIsVisible(fieldName)) { return; }
+            /* TODO ask callbacks how to */
+
+            var processor = this._options.processJSONField[column] ||
+                this._options.processJSONField;
+
+            tr.appendChild(Element.create('td', {
+                setHTML: processor(column)
+            }));
         },
 
         /**
@@ -510,40 +537,73 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          *     - JSONP
          *
          * @method _getData
-         * @param  {String} endpoint     Valid endpoint
-         * @param  {Boolean} [firstRequest] If true, will make the request set the headers onSuccess
          * @private
          */
-        _getData: function( endpoint ){
-            var parsedURL = InkUrl.parseUrl( endpoint ),
-                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
-                pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1);
+        _getData: function( ){
+            var sortOrder = this._getSortOrder() || null;
+            var page = null;
 
-            if( parsedURL.query ){
-                parsedURL.query = parsedURL.query.split("&");
-            } else {
-                parsedURL.query = [];
+            if (this._pagination) {
+                page = {
+                    size: this._options.pageSize,
+                    page: this._pagination.getCurrent() + 1
+                };
             }
 
-            if( !paginated ){            
-                this._getDataViaAjax( endpoint );
-            } else {
+            this._getDataViaAjax( this._getUrl( sortOrder, page) );
+        },
 
-                parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
-                parsedURL.query.push( 'page=' + pageNum );
-
-                // var sortStr = '';
-                for( var index in this._sortableFields ){
-                    if( this._sortableFields[index] !== 'none' ){
-                        parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
-                        parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
-                        break;
-                    }
+        /**
+         * Return an object describing sort order { field: [field name] ,
+         * order: either ["asc" or "desc"] }, or null if there is no sorting
+         * going on.
+         * @method _getSortOrder
+         * @private
+         */
+        _getSortOrder: function () {
+            var index;
+            for( index in this._sortableFields ){
+                if( this._sortableFields[index] !== 'none' ){
+                    break;
                 }
-
-                // TODO BUG: if the endpoint already has '?', this adds another one.
-                this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
             }
+            if (!index) {
+                return null; // no sorting going on
+            }
+            return {
+                field: this._originalFields[parseInt(index.replace('col_', ''), 10)],
+                order: this._sortableFields[index]
+            };
+        },
+
+        _getUrl: function (sort, page) {
+            var urlCreator = this._options.createEndpointUrl ||
+                function (endpoint, sort, page
+                        /* TODO implement filters too */) {
+                    endpoint = InkUrl.parseUrl(endpoint);
+                    endpoint.query = endpoint.query || {};
+
+                    if (sort) {
+                        endpoint.query.sortOrder = sort.order;
+                        endpoint.query.sortField = sort.field;
+                    }
+
+                    if (page) {
+                        endpoint.query['rows_per_page'] = page.size;
+                        endpoint.query['page'] = page.page;
+                    }
+
+                    return InkUrl.format(endpoint);
+                };
+
+            var ret = urlCreator(this._options.endpoint, sort, page);
+
+            if (typeof ret !== 'string') {
+                throw new TypeError('Ink.UI.Table_1: ' +
+                    'createEndpointUrl did not return a string!');
+            }
+
+            return ret;
         },
 
         /**
@@ -554,46 +614,41 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @return {[type]}              [description]
          */
         _getDataViaAjax: function( endpoint ){
-
-            var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
-
             new Ajax( endpoint, {
                 method: 'GET',
                 contentType: 'application/json',
                 sanitizeJSON: true,
                 onSuccess: Ink.bind(function( response ){
                     if( response.status === 200 ){
-
-                        var jsonResponse = JSON.parse( response.responseText );
-
-                        if( this._headers.length === 0 ){
-                            this._setHeaders( jsonResponse.headers, jsonResponse.rows );
-                            this._setHeadersHandlers();
-                        }
-
-                        this._setData( jsonResponse.rows );
-
-                        if( paginated ){
-                            if( !!this._totalRows && (parseInt(jsonResponse.totalRows,10) !== parseInt(this._totalRows,10)) ){ 
-                                this._totalRows = jsonResponse.totalRows;
-                                this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
-                            } else {
-                                this._totalRows = jsonResponse.totalRows;
-                            }
-                        } else {
-                            if( !!this._totalRows && (jsonResponse.rows.length !== parseInt(this._totalRows,10)) ){ 
-                                this._totalRows = jsonResponse.rows.length;
-                                this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
-                            } else {
-                                this._totalRows = jsonResponse.rows.length;
-                            }
-                        }
-
-                        this._setPagination( );
+                        this._onAjaxSuccess(Json.parse(response.responseText));
                     }
-
-                },this)
+                }, this)
             });
+        },
+
+        _onAjaxSuccess: function (jsonResponse) {
+            var paginated = this._options.pageSize != null;
+            var rows = this._options.processJSONRows(jsonResponse);
+
+            // If headers not in DOM, get from JSON
+            if( this._headers.length === 0 ) {
+                var headers = this._options.processJSONHeaders(
+                    jsonResponse);
+                if (!headers || !headers.length || !headers[0]) {
+                    throw new Error('Ink.UI.Table: processJSONHeaders option must return an array of objects!');
+                }
+                this._createHeadersFromJson( headers );
+                this._resetSortOrder();
+            }
+
+            this._createRowsFromJSON( rows );
+
+            this._totalRows = this._rowLength = rows.length;
+
+            if( paginated ){
+                this._totalRows = this._options.processJSONTotalRows(jsonResponse);
+                this._setPagination( );
+            }
         }
     };
 
