@@ -1,5 +1,5 @@
 {
-  "name": "ink",
+  "name": "Ink",
   "version": "2.2.1",
   "main": ["./js/ink-all.js", "./css/ink.css", "./fonts/*"],
   "ignore": [
