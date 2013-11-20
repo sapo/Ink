@@ -181,7 +181,7 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 this._firstTime = false;
             }
 
-            InkEvent.stop(event);
+            InkEvent.stopDefault(event);
         },
 
         /**
