@@ -411,7 +411,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 field,
                 tbody, tr, td,
                 trIndex,
-                tdIndex
+                tdIndex,
+                tdOptions
             ;
 
             tbody = Selector.select('tbody',this._rootElement);
@@ -424,7 +425,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             }
 
             this._data = [];
-
 
             for( trIndex in rows ){
                 if (rows.hasOwnProperty(trIndex)) {
@@ -440,6 +440,23 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
                             td = tr.insertCell(tdIndex++);
                             td.innerHTML = rows[trIndex][field];
+
+                            tdOptions = this._options.tdOptions[field];
+
+                            if(typeof tdOptions !== "undefined" && tdOptions !== "") {
+                             
+                                if(tdOptions.class !== "undefined" && tdOptions.class !== "") {
+                                    td.className = tdOptions.class;
+                                }
+
+                                if(tdOptions.attrs !== "undefined" && tdOptions.attrs !== "") { 
+                                    var attrs = tdOptions.attrs;
+
+                                    for (var attrName in attrs) {
+                                         td.setAttribute(attrName, attrs[attrName]);
+                                    };                                  
+                                } 
+                            }
                         }
                     }
                     this._data.push(tr);
