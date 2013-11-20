@@ -23,8 +23,8 @@ Ink.createModule('App.Tasks', '1', ['Ink.App_1', 'Ink.Data.Binding_1', 'Ink.Plug
     Module.prototype.listVisibleRoutes = function() {
         return [
           {isActive: ko.observable(true), caption: 'To-do', hash: 'todo', module: 'App.Tasks.Home', arguments: {filter: 'todo'}},
-          {isActive: ko.observable(true), caption: 'Completed', hash: 'completed', module: 'App.Tasks.Home', arguments: {filter: 'complete'}},
-          {isActive: ko.observable(true), caption: 'Incomplete', hash: 'incomplete', module: 'App.Tasks.Home', arguments: {filter: 'incomplete'}}
+          {isActive: ko.observable(true), caption: 'Incomplete', hash: 'incomplete', module: 'App.Tasks.Home', arguments: {filter: 'incomplete'}},
+          {isActive: ko.observable(true), caption: 'Completed', hash: 'completed', module: 'App.Tasks.Home', arguments: {filter: 'complete'}}
         ];
     };
 

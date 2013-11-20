@@ -1,5 +1,5 @@
 <!-- App main template -->
-<div id="appContainer" class="ink-grid no-padding">
+<div id="appContainer" class="ink-grid toggle no-padding">
     <div id="standbyLightBox">
         <div class="lightbox-container">
             <i class="icon-spinner icon-spin icon-4x"></i>
@@ -7,10 +7,13 @@
     </div>
     <div class="column-group">
         <nav id="mainMenu" class="ink-navigation">
-            <ul class="menu horizontal white">
+            <ul class="hide-large menu horizontal white">
                 <li>
                     <a id="mainMenuTrigger" href="javascript:void(0);" data-target="#mainMenuDropDown"><i class="icon-reorder"></i></a>
                 </li>
+            </ul>
+            <ul class="hide-small hide-medium menu horizontal white">
+                <li><a href="#todo"><i class="icon-home"></i></a></li>
             </ul>
             <div id="mainMenuContainer">
                 <ul id="mainMenuDropDown" class="menu vertical white hide-all">

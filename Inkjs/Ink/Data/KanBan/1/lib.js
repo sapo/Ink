@@ -9,6 +9,7 @@ Ink.createModule('Ink.Data.KanBan', '1', ['Ink.Data.Binding_1', 'Ink.Data.DragDr
     var Module = function(options) {
         this.moduleName = 'Ink.Data.KanBan';
         this.sections = options.sections;
+        this.cardsMovedHandler = options.cardsMovedHandler;
     };
 
     Module.prototype.dragOutHandler = function(source, data) {
@@ -31,9 +32,9 @@ Ink.createModule('Ink.Data.KanBan', '1', ['Ink.Data.Binding_1', 'Ink.Data.DragDr
     };
     
     Module.prototype.dropHandler = function(source, data, index) {
+        var self=this;
     	var i;
         var oldItem = undefined;
-        var newIndex;
 
         if (typeof data.length == 'undefined') {
         	data = [data];
@@ -56,15 +57,23 @@ Ink.createModule('Ink.Data.KanBan', '1', ['Ink.Data.Binding_1', 'Ink.Data.DragDr
         }
         
         window.setTimeout(function() {
-        	if (oldItem !== undefined) {
+            var newIndex;
+            var item;
+
+            if (oldItem !== undefined) {
             	newIndex = source.indexOf(oldItem);
         	} else {
         		newIndex = source().length;
         	}
             
         	for (i=0; i < data.length; i++) {
-        		source.splice(newIndex, 0, data[data.length-1-i]);
+        		item=data[data.length-1-i];
+        		source.splice(newIndex, 0, item);
         	}
+
+        	if (self.cardsMovedHandler) {
+    			self.cardsMovedHandler(source, data);
+    		}
         }, 0);
     };
     

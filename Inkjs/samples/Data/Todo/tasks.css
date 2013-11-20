@@ -141,6 +141,15 @@ footer>.ink-navigation>ul>li>a {
 	cursor: pointer;	
 }
 
+.todo-kanban {
+    position: absolute;
+    left: 0.9em;
+    top: 4em;
+    right: 0.9em;
+    bottom: 3em;
+    overflow-y: auto;
+}
+
 /*****************************
   Standby lightbox 
 ******************************/
@@ -175,6 +184,184 @@ footer>.ink-navigation>ul>li>a {
     top: 50%;
     margin-left: -2em;
     margin-top: -2em;
+}
+
+/***********************************
+    Auto Complete
+************************************/
+
+.auto-complete>input {
+    position: absolute;
+    left: 0px;
+    right: 2.4em;
+}
+
+.auto-complete>button {
+    position: absolute;
+    right: 0px;
+    border-left: 0px;
+    border-top-left-radius: 0px 0px;
+    border-bottom-left-radius: 0px 0px;
+    padding-bottom: 0.6em;
+    padding-top: 0.5em;
+    margin-right: 0px ! important;
+}
+
+.auto-complete-options {
+    display: none; 
+    position: absolute; 
+    top: 2.2em; 
+    left: -1px;
+    right: 0px; 
+    background-color: white; 
+    border-left: 2px solid #E0E0E0; 
+    border-bottom: 2px solid #E0E0E0; 
+    border-right: 2px solid #E0E0E0; 
+    z-index:1000;    
+}
+
+/***********************************
+    Drag & Drop
+************************************/
+.disable-text-selection, .disable-text-selection * {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select: none;
+}
+
+.draggable-container .draggable-selected {
+}
+
+.draggable-proxy {
+    opacity:0.6;
+    filter:alpha(opacity=60);
+    cursor: move ! important;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.drop-panel-active {
+}
+
+.drop-place-hint-before:before {
+    content: '';
+    display: block;
+    height: 1em;
+    border: 1px dashed black;
+    margin-bottom: 0.5em;
+}
+
+.drop-panel-active .drop-place-hint-after:after {
+    content: '';
+    display: block;
+    height: 1em;
+    border: 1px dashed black;
+    margin-top: 0.2em;
+}
+
+/***********************************
+    KanBan
+************************************/
+.kanban {
+}
+
+.kanban .section {
+    float: left;
+    background-color: #e3e3e3;
+    width: 19em;
+    padding: 0.2em; 
+    border-radius: 3px;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.kanban .section:last-child {
+    margin-right: 0px;
+}
+
+.kanban .section .draggable-selected>.card>.selected-icon {
+    display: block; 
+}
+
+.kanban .section .draggable-selected>.card {
+    background-color: #eee;
+}
+
+.kanban .section .card {
+    background-color: #fff;
+    border: 1px solid #b9b9b9;
+    border-bottom-color: #939393;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    max-width: 300px;
+    min-height: 18px;
+    padding: 6px 8px 1px;
+    position: relative;
+}
+
+.kanban .section .card>.selected-icon {
+    position: absolute;
+    left: 0.3em;
+    top: 0.5em;
+    display: none;
+}
+
+.kanban .section .card>.edit-action {
+    position: absolute;
+    right: 0.3em;
+    top: 0.5em;
+    color: blue;
+}
+
+.kanban .section .card>.edit-action:hover {
+    font-size: 1.1em;
+    right: 0.2em;
+    top: 0.4em;
+}
+
+.kanban .section .card>.title {
+    position: absolute;
+    left: 1.5em;
+    right: 1.5em;
+    top: 0.5em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kanban .section .card>.content {
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.kanban .section>.title {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    border-bottom: 1px solid #C0C0C0;
+    padding-bottom: 0.5em;  
+    margin-bottom: 0.5em;   
+}
+
+.kanban .section>.content {
+    min-height: 2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.kanban .drop-panel-active {
+    background-color: #eee;
 }
 
 

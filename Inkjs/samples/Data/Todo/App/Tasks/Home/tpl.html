@@ -1,4 +1,5 @@
-<div data-bind="simpleGrid: tasksModel" class="scroll-area"></div>
+<div class="hide-large scroll-area" data-bind="simpleGrid: tasksModel"></div>
+<div class="hide-small hide-medium  todo-kanban" data-bind="module: {name:'Ink.Data.KanBan_1', data: {sections: sections, cardsMovedHandler: tasksMovedHandler.bind($data)}}"></div>
 
 <footer>
     <nav class="ink-navigation">
