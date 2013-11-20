@@ -4172,10 +4172,13 @@ Ink.createModule('Ink.UI.Toggle', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         _onTriggerEvent: function( event ){
             // When the togglee is a child of the toggler, we get the togglee's events here. We have to check that this event is for us.
             var target = InkEvent.element(event);
-            for (var i = 0, len = this._targets.length; i < len; i++) {
-                if (target === this._targets[i] || InkElement.isAncestorOf(this._targets[i], target)) {
-                    return;
-                }
+
+            var isAncestorOfClickedElement = InkArray.some(this._targets, function (thisOne) {
+                return thisOne === target || InkElement.isAncestorOf(thisOne, target);
+            });
+
+            if (isAncestorOfClickedElement) {
+                return;
             }
 
             if (this._accordion) {
