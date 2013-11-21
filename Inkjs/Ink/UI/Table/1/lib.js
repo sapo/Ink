@@ -469,7 +469,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
             if (Common.isDOMElement(processed)) {
                 elm = processed;
-            } else if (isString && /</.test(processed.trim())) {
+            } else if (isString && /^\s*?</.test(processed)) {
                 Element.setHTML(elm, processed);
             } else if (isString || isNumber) {
                 Element.setTextContent(elm, processed);
