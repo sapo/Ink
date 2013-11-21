@@ -56,13 +56,13 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
      *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
      *     @param {Function}  [options.createEndpointUrl] Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort ({ order: 'asc' or 'desc', field: fieldname }) and page ({ page: page number, size: items per page })
-     *     @param {Function}  [options.processJSONRows] TODO doc
-     *     @param {Function}  [options.processJSONHeader] TODO doc
-     *     @param {Function}  [options.processJSONHeaders] TODO doc
-     *     @param {Function}  [options.processJSONRow] TODO doc
-     *     @param {Function}  [options.processJSONField] TODO doc
-     *     @param {Function}  [options.processJSONField.(field_name)] TODO doc
-     *     @param {Function}  [options.processJSONTotalRows] TODO doc
+     *     @param {Function}  [options.getDataFromEndPoint] Callback to allow the user to retrieve the data himself given an URL. Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
+     *     @param {Function}  [options.processJSONRows] Retrieve an array of rows from the data which came from AJAX.
+     *     @param {Function}  [options.processJSONHeaders] Get an object with all the headers' names as keys, and a { label, sortable } object as value. Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`. Takes an argument, the JSON response.
+     *     @param {Function}  [options.processJSONRow] Process a row object before it gets on the table.
+     *     @param {Function}  [options.processJSONField] Process the field data before putting it on the table. You can return HTML, a DOM element, or a string here. Arguments you receive: `(column, fieldData, rowIndex)`.
+     *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
+     *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
      *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
      *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
      *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
@@ -148,12 +148,12 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             pageSize: ['Integer', null],
             endpoint: ['String', null],
             createEndpointUrl: ['Function', null /* default func uses above option */],
+            getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
             processJSONRows: ['Function', sameSame],
             processJSONRow: ['Function', sameSame],
             processJSONField: ['Function', sameSame],
-            processJSONHeader: ['Function', sameSame],
-            processJSONHeaders: ['Function', function (dt) { return keys(dt[0]); }],
-            processJSONTotalRows: ['Function', function (dt) { return dt.length; }],
+            processJSONHeaders: ['Function', function (dt) { return dt.fields || keys(dt[0]); }],
+            processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
             pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],
             visibleFields: ['String', undefined]
@@ -164,11 +164,12 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          */
         this._markupMode = !this._options.endpoint;
 
-        if( !!this._options.visibleFields ){
+        if( this._options.visibleFields ){
             this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
         }
 
         this._thead = this._rootElement.tHead || this._rootElement.createTHead();
+        this._headers = Selector.select('th', this._thead);
 
         /**
          * Initializing variables
@@ -182,7 +183,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             // colIndex: 'none'|'asc'|'desc'
         };
         this._originalData = this._data = [];
-        this._headers = [];
         this._pagination = null;
         this._totalRows = 0;
 
@@ -243,9 +243,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
             Event.stop(event);
 
-            var index = InkArray.keyValue(tgtEl, this._headers, true) ;
+            var index = InkArray.keyValue(tgtEl, this._headers, true);
+            var sortable = index !== false && ('col_' + index) in this._sortableFields;
 
-            if( index === false ){
+            if( !sortable ){
                 return;
             }
 
@@ -271,28 +272,25 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         _invertSortOrder: function (index, sortAndReverse) {
             var isAscending = this._sortableFields['col_'+index] === 'asc';
 
-            var len = keys(this._sortableFields).length;
-            for (var i = 0; i < len; i++) {
+            for (var i = 0, len = this._headers.length; i < len; i++) {
                 this._setSortOrderOfColumn(i, null);
             }
 
             if (sortAndReverse) {
                 this._sort(index);
-            }
-
-            if( isAscending ) {
-                if (sortAndReverse) {
+                if (isAscending) {
                     this._data.reverse();
                 }
-                this._setSortOrderOfColumn(index, false);
-            } else {
-                this._setSortOrderOfColumn(index, true);
             }
+
+            this._setSortOrderOfColumn(index, !isAscending);
         },
 
         _setSortOrderOfColumn: function(index, up) {
+            var header = this._headers[index];
             var caretHtml = '';
             var order = 'none';
+
             if (up === true) {
                 caretHtml = '<i class="icon-caret-up"></i>';
                 order = 'asc';
@@ -302,8 +300,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             }
 
             this._sortableFields['col_' + index] = order;
-            this._headers[index].innerHTML = InkString.stripTags(
-                    this._headers[index].innerHTML) + caretHtml;
+            header.innerHTML = Element.textContent(header) + caretHtml;
         },
 
         /**
@@ -389,8 +386,6 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         },
 
         _createSingleHeaderFromJson: function (header, th) {
-            header = this._options.processJSONHeader(header);
-
             if (header.sortable) {
                 th.setAttribute('data-sortable','true');
             }
@@ -403,7 +398,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         },
 
         /**
-         * Method that sets the event handlers for the TH headers
+         * Reset the sort order as marked on the table headers to "none"
          *
          * @method _resetSortOrder
          * @private
@@ -412,14 +407,12 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             /**
              * Setting the sortable columns and its event listeners
              */
-
-            this._headers = Selector.select('th', this._thead);
-            InkArray.each(this._headers, Ink.bind(function(item, index){
-                var dataset = Element.data( item );
+            for (var i = 0, len = this._headers.length; i < len; i++) {
+                var dataset = Element.data( this._headers[i] );
                 if (dataset.sortable && dataset.sortable.toString() === 'true') {
-                    this._sortableFields['col_' + index] = 'none';
+                    this._sortableFields['col_' + i ] = 'none';
                 }
-            }, this));
+            }
         },
 
         /**
@@ -430,19 +423,19 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _createRowsFromJSON: function( rows ){
-            var tbody = Selector.select('tbody',this._rootElement);
-            if( tbody.length === 0){
+            var tbody = Selector.select('tbody',this._rootElement)[0];
+
+            if( !tbody ){
                 tbody = document.createElement('tbody');
                 this._rootElement.appendChild( tbody );
             } else {
-                tbody = tbody[0];
-                tbody.innerHTML = '';
+                Element.setHTML(tbody, '');
             }
 
             this._data = [];
             var row;
 
-            for( var trIndex in rows ){
+            for (var trIndex in rows) {
                 if (rows.hasOwnProperty(trIndex)) {
                     row = this._options.processJSONRow(rows[trIndex]);
                     this._createSingleRowFromJson(tbody, row, trIndex);
@@ -463,17 +456,29 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             this._data.push(tr);
         },
 
-        _createFieldFromJson: function (tr, column, fieldName, rowIndex) {
-            /* jshint unused: false */
+        _createFieldFromJson: function (tr, fieldData, fieldName, rowIndex) {
             if (!this._fieldIsVisible(fieldName)) { return; }
-            /* TODO ask callbacks how to */
 
-            var processor = this._options.processJSONField[column] ||
+            var processor = this._options.processJSONField[fieldName] ||
                 this._options.processJSONField;
 
-            tr.appendChild(Element.create('td', {
-                setHTML: processor(column)
-            }));
+            var processed = processor(fieldData, fieldName, rowIndex);
+            var isString = typeof processed === 'string';
+            var isNumber = typeof processed === 'number';
+
+            var elm = Element.create('td');
+
+            if (Common.isDOMElement(processed)) {
+                elm = processed;
+            } else if (isString && /</.test(processed.trim())) {
+                Element.setHTML(elm, processed);
+            } else if (isString || isNumber) {
+                Element.setTextContent(elm, processed);
+            } else {
+                throw new Error('Ink.UI.Table Unknown result from processJSONField: ' + processed);
+            }
+
+            tr.appendChild(elm);
         },
 
         /**
@@ -519,7 +524,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 Element.create('ul', {
                     className: 'pagination',
                     insertBottom: paginationEl
-                });  // TODO this element is pagination's responsibility.
+                });
             }
 
             this._pagination = new Pagination(paginationEl, {
@@ -555,7 +560,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
 
         /**
          * Return an object describing sort order { field: [field name] ,
-         * order: either ["asc" or "desc"] }, or null if there is no sorting
+         * order: ["asc" or "desc"] }, or null if there is no sorting
          * going on.
          * @method _getSortOrder
          * @private
@@ -614,21 +619,27 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @return {[type]}              [description]
          */
         _getDataViaAjax: function( endpoint ){
-            new Ajax( endpoint, {
-                method: 'GET',
-                contentType: 'application/json',
-                sanitizeJSON: true,
-                onSuccess: Ink.bind(function( response ){
-                    if( response.status === 200 ){
-                        this._onAjaxSuccess(Json.parse(response.responseText));
-                    }
-                }, this)
-            });
+            var success = Ink.bind(function( response ){
+                if( response.status === 200 ){
+                    this._onAjaxSuccess(Json.parse(response.responseText));
+                }
+            }, this);
+            if (!this._options.getDataFromEndpoint) {
+                new Ajax( endpoint, {
+                    method: 'GET',
+                    contentType: 'application/json',
+                    sanitizeJSON: true,
+                    onSuccess: success
+                });
+            } else {
+                this._options.getDataFromEndpoint( endpoint, success );
+            }
         },
 
         _onAjaxSuccess: function (jsonResponse) {
             var paginated = this._options.pageSize != null;
             var rows = this._options.processJSONRows(jsonResponse);
+            this._headers = Selector.select('th', this._thead);
 
             // If headers not in DOM, get from JSON
             if( this._headers.length === 0 ) {

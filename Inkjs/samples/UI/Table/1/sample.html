@@ -80,6 +80,49 @@
                 <ul>
                 </ul>
                 </nav>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;table id="table1" class="ink-table" data-page-size="2"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th data-sortable="true" width="75%"&gt;Pepper&lt;/th&gt;
+            &lt;th data-sortable="true" width="25%"&gt;Scoville Rating&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Trinidad Moruga Scorpion&lt;/td&gt;
+            &lt;td&gt;1500000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Bhut Jolokia&lt;/td&gt;
+            &lt;td&gt;1000000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Naga Viper&lt;/td&gt;
+            &lt;td&gt;1463700&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Red Savina Habanero&lt;/td&gt;
+            &lt;td&gt;580000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;THE SECOND TO LAST THING&lt;/td&gt;
+            &lt;td&gt;-1&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;THE LAST THING&lt;/td&gt;
+            &lt;td&gt;0&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;nav class="ink-navigation"&gt;
+&lt;ul&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+                    </pre>
+                </p>
             </section>
 
             <section>
@@ -96,6 +139,20 @@
                     <tbody>
                     </tbody>
                 </table>
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;table id="table1noitems" class="ink-table" data-page-size="2"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th data-sortable="true" width="75%"&gt;Pepper&lt;/th&gt;
+            &lt;th data-sortable="true" width="25%"&gt;Scoville Rating&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                    </pre>
+                </p>
             </section>
 
             <section>
@@ -106,33 +163,57 @@
                     id="table2" class="ink-table"
                     data-endpoint="file.json" data-fields="pepper,scoville"
                     data-labels="Pepper,Scoville Rating" data-sortable="scoville"
+                    data-paginator="#table2-pag" data-page-size="3"
                 >
                 </table>
-                <nav class="ink-navigation">
-                <ul>
-                </ul>
-                </nav>
+                <nav class="ink-navigation" id="table2-pag"><ul></ul></nav>
+                <script>
+                    Ink.requireModules(['Ink.UI.Table_1'],function(Table){
+                        var table2 = new Table('#table2', {
+                            processJSONHeaders: function (responseJSON) {
+                                var row = responseJSON[0];
+                                var ret = [];
+                                for (var k in row) if (row.hasOwnProperty(k)) {
+                                    ret.push({ label: k });
+                                }
+                                return ret;
+                            }
+                        });
+                    });
+                </script>
                 <p>
-                    <pre class="prettyprint linenums"></pre>
+                    <pre class="prettyprint linenums">
+&lt;table
+    id="table2" class="ink-table"
+    data-endpoint="file.json" data-fields="pepper,scoville"
+    data-labels="Pepper,Scoville Rating" data-sortable="scoville"
+    data-paginator="#table2-pag" data-page-size="3"
+&gt;
+&lt;/table&gt;
+&lt;nav class="ink-navigation" id="table2-pag"&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/nav&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.Table_1'],function(Table){
+        var table2 = new Table('#table2', {
+            processJSONHeaders: function (responseJSON) {
+                var row = responseJSON[0];
+                var ret = [];
+                for (var k in row) if (row.hasOwnProperty(k)) {
+                    ret.push({ label: k });
+                }
+                return ret;
+            }
+        });
+    });
+&lt;/script&gt;
+                    </pre>
                 </p>
             </section>
         </div>
-
 
         <script>
             Ink.requireModules(['Ink.UI.Table_1'],function(Table){
                 var table1 = new Table('#table1');
                 var table1noitems = new Table('#table1noitems');
-                var table2 = new Table('#table2', {
-                    processJSONHeaders: function (responseJSON) {
-                        var row = responseJSON[0];
-                        var ret = [];
-                        for (var k in row) if (row.hasOwnProperty(k)) {
-                            ret.push({ label: k, sortable: true });
-                        }
-                        return ret;
-                    }
-                });
             });
         </script>
     </body>
