@@ -51,7 +51,7 @@ navigation:
    url: ./js/core/
  # JAVASCRIPT UI COMPONENTS
  - text: JS UI
-   # url: ./js/ui/
+   url: ./js/ui/
    submenu:
    # BEHAVIOURS
    - text: Behaviours

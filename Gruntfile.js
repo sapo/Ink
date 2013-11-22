@@ -10,8 +10,8 @@ module.exports = function(grunt) {
           yuicompress: false
         },
         files: {
-          "./css/docs.css":"./less/docs.less",
-          "./css/ink-ie7-min.css":"./less/ink-ie7.less"
+          "./assets/css/docs.css":"./less/docs.less",
+          "./assets/css/ink-ie7-min.css":"./less/ink-ie7.less"
         }
       }
     },
@@ -40,5 +40,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['less']);
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('all', ['jekyll','less']);
 };
