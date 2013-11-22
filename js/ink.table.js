@@ -64,6 +64,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
      *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
      *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
+     *     @param {Object}    [options.paginationOptions] Override the options with which we instantiate the Ink.UI.Pagination.
      *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
      *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
      * @example
@@ -156,7 +157,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
             pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],
-            visibleFields: ['String', undefined]
+            visibleFields: ['String', null],
+            paginationOptions: ['Object', null]
         }, options || {}, this._rootElement);
 
         /**
@@ -526,13 +528,15 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 });
             }
 
-            this._pagination = new Pagination(paginationEl, {
+            var paginationOptions = Ink.extendObj({
                 totalItemCount: this._totalRows,
                 itemsPerPage: this._options.pageSize,
                 onChange: Ink.bind(function (_, pageNo) {
                     this._paginate(pageNo + 1);
                 }, this)
-            });
+            }, this._options.paginationOptions || {});
+
+            this._pagination = new Pagination(paginationEl, paginationOptions);
 
             this._paginate(1);
         },
