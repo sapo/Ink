@@ -36,15 +36,39 @@
                 <header>
                     <h2>Basic example</h2>
                 </header>
-                <p>
-                    <pre class="prettyprint linenums"></pre>
-                </p>
+
+                <p>A simple paginator, with 10 pages.</p>
 
                 <nav class="ink-navigation" id="basic1" data-size="10">
                     <ul class="pagination rounded red"></ul>
                 </nav>
 
-                <p>You can use the maxSize option to limit the amount of pages you can display at any given time.</p>
+                <script>
+                    // Unnecessary with autoload.js
+                    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+                        var basicPag = new Pagination('#basic1');
+                    });
+                </script>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;nav class="ink-navigation" id="basic1" data-size="10"&gt;
+    &lt;ul class="pagination rounded red"&gt;&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;script&gt;
+    // Unnecessary with autoload.js
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var basicPag = new Pagination('#basic1');
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
+
+                <hr>
+
+                <p>You can use the <code>maxSize</code> option to limit the amount of page numbers shown.</p>
+
                 <nav class="ink-navigation" id="basic2" data-size="10" data-max-size="5">
                     <ul class="pagination rounded red"></ul>
                 </nav>
@@ -52,10 +76,24 @@
                 <script type="text/javascript">
                     // Unnecessary with autoload.js
                     Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
-                        var basicPag = new Pagination('#basic1');
                         var basicPag2 = new Pagination('#basic2');
                     });
                 </script>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;nav class="ink-navigation" id="basic2" data-size="10" data-max-size="5"&gt;
+    &lt;ul class="pagination rounded red"&gt;&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;script type="text/javascript"&gt;
+    // Unnecessary with autoload.js
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var basicPag2 = new Pagination('#basic2');
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
             </section>
         </div>
     </body>
