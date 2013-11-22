@@ -63,6 +63,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *     @param {Function}  [options.processJSONField] Process the field data before putting it on the table. You can return HTML, a DOM element, or a string here. Arguments you receive: `(column, fieldData, rowIndex)`.
      *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
      *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
+     *     @param {Object}    [options.tdClassNames] An object mapping each field to what classes it gets. Example: `{ name: "large-10", isBoss: "hide-small" }`
      *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
      *     @param {Object}    [options.paginationOptions] Override the options with which we instantiate the Ink.UI.Pagination.
      *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
@@ -153,11 +154,12 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             processJSONRows: ['Function', sameSame],
             processJSONRow: ['Function', sameSame],
             processJSONField: ['Function', sameSame],
-            processJSONHeaders: ['Function', function (dt) { return dt.fields || keys(dt[0]); }],
+            processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
             processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
             pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],
             visibleFields: ['String', null],
+            tdClassNames: ['Object', {}],
             paginationOptions: ['Object', null]
         }, options || {}, this._rootElement);
 
@@ -215,6 +217,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 this._getData(  );
              } else /* Markup mode */ {
                 this._resetSortOrder();
+                this._addHeadersClasses();
 
                 /**
                  * Getting the table's data
@@ -229,6 +232,22 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                  */
                 this._setPagination();
              }
+        },
+
+        /**
+         * Add the classes in this._options.tdClassNames to our table headers.
+         * @method _addHeadersClasses
+         * @private
+         */
+        _addHeadersClasses: function () {
+            var headerLabel;
+            for (var i = 0, len = this._headers.length; i < len; i++) {
+                headerLabel = Element.textContent(this._headers[i]);
+                // TODO do not find header labels this way. But how?
+                if (this._options.tdClassNames[headerLabel]) {
+                    Css.addClassName(this._headers[i], this._options.tdClassNames[headerLabel]);
+                }
+            }
         },
 
         /**
@@ -382,6 +401,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                     th = Element.create('th');
                     th = this._createSingleHeaderFromJson(headers[i], th);
                     tr.appendChild(th);
+                    this._headers.push(th);
                 }
             }
         },
@@ -460,18 +480,36 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         _createFieldFromJson: function (tr, fieldData, fieldName, rowIndex) {
             if (!this._fieldIsVisible(fieldName)) { return; }
 
-            var processor = this._options.processJSONField[fieldName] ||
-                this._options.processJSONField;
+            var processor =
+                this._options.processJSONField[fieldName] ||  // per-field callback
+                this._options.processJSONField;  // generic callback
 
-            var processed = processor(fieldData, fieldName, rowIndex);
+            var result;
+            if (typeof processor === 'function') {
+                result = processor(fieldData, fieldName, rowIndex);
+            } else {
+                result = fieldData;
+            }
+            var elm = this._elOrFieldData(result);
+
+            var className = this._options.tdClassNames[fieldName];
+            if (className) {
+                Css.addClassName(elm, className);
+            }
+
+            tr.appendChild(elm);
+        },
+
+        _elOrFieldData: function (processed) {
+            if (Common.isDOMElement(processed)) {
+                return processed;
+            }
+
             var isString = typeof processed === 'string';
             var isNumber = typeof processed === 'number';
-
             var elm = Element.create('td');
 
-            if (Common.isDOMElement(processed)) {
-                elm = processed;
-            } else if (isString && /^\s*?</.test(processed)) {
+            if (isString && /^\s*?</.test(processed)) {
                 Element.setHTML(elm, processed);
             } else if (isString || isNumber) {
                 Element.setTextContent(elm, processed);
@@ -479,7 +517,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 throw new Error('Ink.UI.Table Unknown result from processJSONField: ' + processed);
             }
 
-            tr.appendChild(elm);
+            return elm;
         },
 
         /**
@@ -658,6 +696,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 }
                 this._createHeadersFromJson( headers );
                 this._resetSortOrder();
+                this._addHeadersClasses();
             }
 
             this._createRowsFromJSON( rows );
