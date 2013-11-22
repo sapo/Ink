@@ -6083,10 +6083,15 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            while (elm.firstChild) {
-                elm.removeChild(elm.firstChild);
+            try {
+                elm.innerHTML = html;
+            } catch (e) {
+                // Tables in IE7
+                while (elm.firstChild) {
+                    elm.removeChild(elm.firstChild);
+                }
+                InkElement.appendHTML(elm, html);
             }
-            InkElement.appendHTML(elm, html);
         },
 
         /**
@@ -10595,8 +10600,21 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {String} Full URL.
          */
         format: function (urlObj) {
+            var protocol = '';
+            var host = '';
+            var path = '';
             var frag = '';
             var query = '';
+
+            if (typeof urlObj.protocol === 'string') {
+                protocol = urlObj.protocol + '//';  // here it comes with the colon
+            } else if (typeof urlObj.scheme === 'string')  {
+                protocol = urlObj.scheme + '://';
+            }
+
+            host = urlObj.host || urlObj.hostname || '';
+            path = urlObj.path || '';
+
             if (typeof urlObj.query === 'string') {
                 query = urlObj.query;
             } else if (typeof urlObj.search === 'string') {
@@ -10607,11 +10625,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
             } else if (typeof urlObj.hash === 'string') {
                 frag = urlObj.hash.replace(/#$/, '');
             }
+
             return [
-                urlObj.protocol || urlObj.scheme + ':',
-                '//',
-                urlObj.host || urlObj.hostname,
-                urlObj.path,
+                protocol,
+                host,
+                path,
                 query && '?' + query,
                 frag && '#' + frag
             ].join('');

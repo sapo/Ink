@@ -779,605 +779,225 @@ Ink.createModule('Ink.UI.Close', '1', ['Ink.Dom.Event_1','Ink.Dom.Element_1'], f
 });
 
 /**
- * @module Ink.UI.Table_1
+ * @module Ink.UI.TreeView_1
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString ) {
+Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
     'use strict';
 
     /**
-     * The Table component transforms the native/DOM table element into a
-     * sortable, paginated component.
+     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
      * 
-     * @class Ink.UI.Table
+     * @class Ink.UI.TreeView
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
-     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
-     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
+     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
+     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
      * @example
-     *      <table class="ink-table alternating" data-page-size="6">
-     *          <thead>
-     *              <tr>
-     *                  <th data-sortable="true" width="75%">Pepper</th>
-     *                  <th data-sortable="true" width="25%">Scoville Rating</th>
-     *              </tr>
-     *          </thead>
-     *          <tbody>
-     *              <tr>
-     *                  <td>Trinidad Moruga Scorpion</td>
-     *                  <td>1500000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Bhut Jolokia</td>
-     *                  <td>1000000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Naga Viper</td>
-     *                  <td>1463700</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Red Savina Habanero</td>
-     *                  <td>580000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Habanero</td>
-     *                  <td>350000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Scotch Bonnet</td>
-     *                  <td>180000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Malagueta</td>
-     *                  <td>50000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Tabasco</td>
-     *                  <td>35000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Serrano Chili</td>
-     *                  <td>27000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Jalapeño</td>
-     *                  <td>8000</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Poblano</td>
-     *                  <td>1500</td>
-     *              </tr>
-     *              <tr>
-     *                  <td>Peperoncino</td>
-     *                  <td>500</td>
-     *              </tr>
-     *          </tbody>
-     *      </table>
-     *      <nav class="ink-navigation"><ul class="pagination"></ul></nav>
+     *      <ul class="ink-tree-view">
+     *        <li class="open"><span></span><a href="#">root</a>
+     *          <ul>
+     *            <li><a href="">child 1</a></li>
+     *            <li><span></span><a href="">child 2</a>
+     *              <ul>
+     *                <li><a href="">grandchild 2a</a></li>
+     *                <li><span></span><a href="">grandchild 2b</a>
+     *                  <ul>
+     *                    <li><a href="">grandgrandchild 1bA</a></li>
+     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                  </ul>
+     *                </li>
+     *              </ul>
+     *            </li>
+     *            <li><a href="">child 3</a></li>
+     *          </ul>
+     *        </li>
+     *      </ul>
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
-     *              var tableElement = Ink.s('.ink-table');
-     *              var tableObj = new Table( tableElement );
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
+     *              var treeViewElement = Ink.s('.ink-tree-view');
+     *              var treeViewObj = new TreeView( treeViewElement );
      *          });
      *      </script>
      */
-    var Table = function( selector, options ){
+    var TreeView = function(selector, options){
 
         /**
-         * Get the root element
+         * Gets the element
          */
-        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
-
-        if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
-            throw '[Ink.UI.Table] :: The element is not a table';
+        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
+            throw '[Ink.UI.TreeView] :: Invalid selector';
+        } else if( typeof selector === 'string' ){
+            this._element = Selector.select( selector );
+            if( this._element.length < 1 ){
+                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
+            }
+            this._element = this._element[0];
+        } else {
+            this._element = selector;
         }
 
-        this._options = Common.options({
-            pageSize: ['Integer', null],
-            endpoint: ['String', null],
-            pagination: ['Element', null],
-            allowResetSorting: ['Boolean', false],  // Any idea of what this is?
-            visibleFields: ['String', undefined]  // And this? These should be documented if they're useful.
-        }, options || {}, this._rootElement);
-
         /**
-         * Checking if it's in markup mode or endpoint mode
+         * Default options and they're overrided by data-attributes if any.
+         * The parameters are:
+         * @param {string} node Selector to define which elements are seen as nodes. Default: li
+         * @param {string} child Selector to define which elements are represented as childs. Default: ul
+         * @param {string} parentClass Classes to be added to the parent node. Default: parent
+         * @param {string} openClass Classes to be added to the icon when a parent is open. Default: icon-plus-sign
+         * @param {string} closedClass Classes to be added to the icon when a parent is closed. Default: icon-minus-sign
+         * @param {string} hideClass Class to toggle visibility of the children. Default: hide-all
+         * @param {string} iconTag The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Default: i
          */
-        this._markupMode = !this._options.endpoint;
+        this._options = Ink.extendObj({
+            node:   'li',
+            child:  'ul',
+            parentClass: 'parent',
+            openClass: 'icon-minus-sign',
+            closedClass: 'icon-plus-sign',
+            hideClass: 'hide-all',
+            iconTag: 'i'
 
-        if( !!this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
-        }
+        },Element.data(this._element));
 
-        this._thead = Ink.s('thead', this._rootElement);
-
-        /**
-         * Initializing variables
-         */
-        this._handlers = {
-            thClick: null
-        };
-        this._originalFields = [];
-        this._sortableFields = {
-            // Identifies which columns are sorted and how.
-            // colIndex: 'none'|'asc'|'desc'
-        };
-        this._originalData = this._data = [];
-        this._headers = [];
-        this._pagination = null;
-        this._totalRows = 0;
-
-        this._handlers.thClick = Event.observeDelegated(this._thead, 'click',
-                'th[data-sortable="true"]',
-                Ink.bindMethod(this, '_onThClick'));
+        this._options = Ink.extendObj(this._options, options || {});
 
         this._init();
     };
 
-    Table.prototype = {
+    TreeView.prototype = {
 
         /**
-         * Init function called by the constructor
+         * Init function called by the constructor. Sets the necessary event handlers.
          * 
          * @method _init
          * @private
          */
         _init: function(){
 
-            /**
-             * If not is in markup mode, we have to do the initial request
-             * to get the first data and the headers
-             */
-             if( !this._markupMode ) {
-                 /* Endpoint mode */
-                this._getData( this._options.endpoint, true );
-             } else /* Markup mode */ {
-                this._setHeadersHandlers();
+            this._handlers = {
+                click: Ink.bindEvent(this._onClick,this)
+            };
 
-                /**
-                 * Getting the table's data
-                 */
-                InkArray.each(Selector.select('tbody tr',this._rootElement),Ink.bind(function(tr){
-                    this._data.push(tr);
-                },this));
-                this._originalData = this._data.slice(0);
+            Event.observe(this._element, 'click', this._handlers.click);
 
-                this._totalRows = this._data.length;
+            var
+                nodes = Selector.select(this._options.node,this._element),
+                is_open = false,
+                icon,
+                children
+            ;
+            InkArray.each(nodes, Ink.bind(function(item){
 
-                /**
-                 * Set pagination if defined
-                 */
-                this._setPagination();
+                children = Selector.select(this._options.child,item);
 
-                if (this._pagination) {
-                    this._paginate(1);
-                }
-             }
-        },
+                if( children.length > 0 ) {
+                    this._addClassNames(item, this._options.parentClass);
 
-        /**
-         * Click handler. This will mainly handle the sorting (when you click in the headers)
-         * 
-         * @method _onThClick
-         * @param {Event} event Event obj
-         * @private
-         */
-        _onThClick: function( event ){
-            var tgtEl = Event.element(event),
-                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
-
-            Event.stop(event);
-            
-            var index = InkArray.keyValue(tgtEl, this._headers, true) ;
-
-            var prop;
-
-            if( !this._markupMode && paginated ){
-
-                for( prop in this._sortableFields ){
-                    if( prop !== ('col_' + index) ){
-                        this._sortableFields[prop] = 'none';
-                        this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
-                    }
-                }
-
-                if( this._sortableFields['col_'+index] === 'asc' ) {
-                    this._sortableFields['col_'+index] = 'desc';
-                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
-                } else {
-                    this._sortableFields['col_'+index] = 'asc';
-                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
-
-                }
-
-                this._pagination.setCurrent(this._pagination._current);
-
-            } else {
-
-                if( index === -1){
-                    return;
-                }
-
-                if( (this._sortableFields['col_'+index] === 'desc') && (this._options.allowResetSorting && (this._options.allowResetSorting.toString() === 'true')) )
-                {
-                    this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML);
-                    this._sortableFields['col_'+index] = 'none';
-
-                    // if( !found ){
-                        this._data = this._originalData.slice(0);
-                    // }
-                } else {
-
-                    for( prop in this._sortableFields ){
-                        if( prop !== ('col_' + index) ){
-                            this._sortableFields[prop] = 'none';
-                            this._headers[prop.replace('col_','')].innerHTML = InkString.stripTags(this._headers[prop.replace('col_','')].innerHTML);
-                        }
+                    is_open = Element.data(item)['open'] === 'true';
+                    icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
+                    if( !icon ){
+                        icon = Ink.Dom.Element.create('i');
+                        item.insertBefore(icon, item.children[0]);
                     }
 
-                    this._sort(index);
 
-                    if( this._sortableFields['col_'+index] === 'asc' ) {
-                        this._data.reverse();
-                        this._sortableFields['col_'+index] = 'desc';
-                        this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-down"></i>';
+                    if( is_open ) {
+                        this._addClassNames(icon, this._options.openClass);
                     } else {
-                        this._sortableFields['col_'+index] = 'asc';
-                        this._headers[index].innerHTML = InkString.stripTags(this._headers[index].innerHTML) + '<i class="icon-caret-up"></i>';
+                        this._addClassNames(icon, this._options.closedClass);
+                        item.setAttribute('data-open', false);
+
+                        InkArray.each(children,Ink.bind(function( inner_item ){
+                            this._addClassNames(inner_item, this._options.hideClass);
+                        },this));
                     }
-                }
 
-
-                var tbody = Selector.select('tbody',this._rootElement)[0];
-                Common.cleanChildren(tbody);
-                InkArray.each(this._data, function(item){
-                    tbody.appendChild(item);
-                });
-
-                this._pagination.setCurrent(0);
-                this._paginate(1);
-            }
-        },
-
-        /**
-         * Applies and/or changes the CSS classes in order to show the right columns
-         * 
-         * @method _paginate
-         * @param {Number} page Current page
-         * @private
-         */
-        _paginate: function( page ){
-            var pageSize = this._options.pageSize;
-
-            // Hide everything except the items between these indices
-            var firstIndex = (page - 1) * pageSize;
-            var lastIndex = firstIndex + pageSize;
-
-            InkArray.each(this._data, function(item, index){
-                if (index >= firstIndex && index < lastIndex) {
-                    Css.removeClassName(item,'hide-all');
-                } else {
-                    Css.addClassName(item,'hide-all');
-                }
-            });
-
-        },
-
-        /**
-         * Sorts by a specific column.
-         * 
-         * @method _sort
-         * @param {Number} index Column number (starting at 0)
-         * @private
-         */
-        _sort: function( index ){
-            this._data.sort(Ink.bind(function(a,b){
-                var
-                    aValue = Element.textContent(Selector.select('td',a)[index]),
-                    bValue = Element.textContent(Selector.select('td',b)[index])
-                ;
-
-                var regex = new RegExp(/\d/g);
-                if( !isNaN(aValue) && regex.test(aValue) ){
-                    aValue = parseInt(aValue,10);
-                } else if( !isNaN(aValue) ){
-                    aValue = parseFloat(aValue);
-                }
-
-                if( !isNaN(bValue) && regex.test(bValue) ){
-                    bValue = parseInt(bValue,10);
-                } else if( !isNaN(bValue) ){
-                    bValue = parseFloat(bValue);
-                }
-
-                if( aValue === bValue ){
-                    return 0;
-                } else {
-                    return ( ( aValue>bValue ) ? 1 : -1 );
                 }
             },this));
         },
 
         /**
-         * Assembles the headers markup
-         *
-         * @method _setHeaders
-         * @param  {Object} headers Key-value object that contains the fields as keys, their configuration (label and sorting ability) as value
-         * @private
-         */
-        _setHeaders: function( headers, rows ){
-            var field, header,
-                thead, tr, th;
-
-            if( (thead = Selector.select('thead',this._rootElement)).length === 0 ){
-                thead = this._rootElement.createTHead();
-                tr = thead.insertRow(0);
-
-                for( field in headers ){
-                    if (headers.hasOwnProperty(field)) {
-
-                        if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                            continue;
-                        }
-
-                        // th = tr.insertCell(index++);
-                        th = document.createElement('th');
-                        header = headers[field];
-
-                        if( ("sortable" in header) && (header.sortable.toString() === 'true') ){
-                            th.setAttribute('data-sortable','true');
-                        }
-
-                        if( ("label" in header) ){
-                            Element.setTextContent(th, header.label);
-                        }
-
-                        this._originalFields.push(field);
-                        tr.appendChild(th);
-                    }
-                }
-            } else {
-                var firstLine = rows[0];
-
-                for( field in firstLine ){
-                    if (firstLine.hasOwnProperty(field)) {
-                        if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                            continue;
-                        }
-
-                        this._originalFields.push(field);
-                    }
-                }
-            }
-        },
-
-        /**
-         * Method that sets the handlers for the headers
-         *
-         * @method _setHeadersHandlers
-         * @private
-         */
-        _setHeadersHandlers: function(){
-
-            /**
-             * Setting the sortable columns and its event listeners
-             */
-            if (!this._thead) { return; }
-
-
-            this._headers = Selector.select('th', this._thead);
-            InkArray.each(this._headers, Ink.bind(function(item, index){
-                var dataset = Element.data( item );
-                if (dataset.sortable && dataset.sortable.toString() === 'true') {
-                    this._sortableFields['col_' + index] = 'none';
-                }
-            }, this));
-        },
-
-        /**
-         * This method gets the rows from AJAX and places them as <tr> and <td>
-         *
-         * @method _setData
-         * @param  {Object} rows Array of objects with the data to be showed
-         * @private
-         */
-        _setData: function( rows ){
-
-            var
-                field,
-                tbody, tr, td,
-                trIndex,
-                tdIndex
-            ;
-
-            tbody = Selector.select('tbody',this._rootElement);
-            if( tbody.length === 0){
-                tbody = document.createElement('tbody');
-                this._rootElement.appendChild( tbody );
-            } else {
-                tbody = tbody[0];
-                tbody.innerHTML = '';
-            }
-
-            this._data = [];
-
-
-            for( trIndex in rows ){
-                if (rows.hasOwnProperty(trIndex)) {
-                    tr = document.createElement('tr');
-                    tbody.appendChild( tr );
-                    tdIndex = 0;
-                    for( field in rows[trIndex] ){
-                        if (rows[trIndex].hasOwnProperty(field)) {
-
-                            if( !!this._options.visibleFields && (this._options.visibleFields.indexOf(field) === -1) ){
-                                continue;
-                            }
-
-                            td = tr.insertCell(tdIndex++);
-                            td.innerHTML = rows[trIndex][field];
-                        }
-                    }
-                    this._data.push(tr);
-                }
-            }
-
-            this._originalData = this._data.slice(0);
-        },
-
-        /**
-         * Sets the endpoint. Useful for changing the endpoint in runtime.
-         *
-         * @method _setEndpoint
-         * @param {String} endpoint New endpoint
-         */
-        setEndpoint: function( endpoint, currentPage ){
-            if( !this._markupMode ){
-                this._options.endpoint = endpoint;
-                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
-            }
-        },
-
-        /**
-         * Sets the instance's pagination, if necessary.
-         *
-         * Precondition: this._totalRows needs to be known.
-         *
-         * @method _setPagination
-         * @private
-         */
-        _setPagination: function(){
-            /* If user doesn't say they want pagination, bail. */
-            if( this._options.pageSize == null ){ return; }
-
-            /**
-             * Fetch pagination from options. Can be a selector string, an element or a Pagination instance.
-             */
-            var paginationEl = this._options.pagination;
-
-            if ( paginationEl instanceof Pagination ) {
-                this._pagination = paginationEl;
-                return;
-            }
-
-            if (!paginationEl) {
-                paginationEl = Element.create('nav', {
-                    className: 'ink-navigation',
-                    insertAfter: this._rootElement
-                });
-                Element.create('ul', {
-                    className: 'pagination',
-                    insertBottom: paginationEl
-                });  // TODO this element is pagination's responsibility.
-            }
-
-            this._pagination = new Pagination(paginationEl, {
-                totalItemCount: this._totalRows,
-                itemsPerPage: this._options.pageSize,
-                onChange: Ink.bind(function (_, pageNo) {
-                    this._paginate(pageNo + 1);
-                }, this)
-            });
-        },
-
-        /**
-         * Method to choose which is the best way to get the data based on the endpoint:
-         *     - AJAX
-         *     - JSONP
-         *
-         * @method _getData
-         * @param  {String} endpoint     Valid endpoint
-         * @param  {Boolean} [firstRequest] If true, will make the request set the headers onSuccess
-         * @private
-         */
-        _getData: function( endpoint ){
-            var parsedURL = InkUrl.parseUrl( endpoint ),
-                paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') ),
-                pageNum = ((!!this._pagination) ? this._pagination._current+1 : 1);
-
-            if( parsedURL.query ){
-                parsedURL.query = parsedURL.query.split("&");
-            } else {
-                parsedURL.query = [];
-            }
-
-            if( !paginated ){            
-                this._getDataViaAjax( endpoint );
-            } else {
-
-                parsedURL.query.push( 'rows_per_page=' + this._options.pageSize );
-                parsedURL.query.push( 'page=' + pageNum );
-
-                // var sortStr = '';
-                for( var index in this._sortableFields ){
-                    if( this._sortableFields[index] !== 'none' ){
-                        parsedURL.query.push('sortField=' + this._originalFields[parseInt(index.replace('col_',''),10)]);
-                        parsedURL.query.push('sortOrder=' + this._sortableFields[index]);
-                        break;
-                    }
-                }
-
-                // TODO BUG: if the endpoint already has '?', this adds another one.
-                this._getDataViaAjax( endpoint + '?' + parsedURL.query.join('&') );
-            }
-        },
-
-        /**
-         * Gets the data via AJAX and triggers the changes in the 
+         * Helper method to support adding an array of classes to an element
          * 
-         * @param  {[type]} endpoint     [description]
-         * @param  {[type]} firstRequest [description]
-         * @return {[type]}              [description]
+         * @method _addClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         * @private
          */
-        _getDataViaAjax: function( endpoint ){
-
-            var paginated = ( ("pageSize" in this._options) && (typeof this._options.pageSize !== 'undefined') );
-
-            new Ajax( endpoint, {
-                method: 'GET',
-                contentType: 'application/json',
-                sanitizeJSON: true,
-                onSuccess: Ink.bind(function( response ){
-                    if( response.status === 200 ){
-
-                        var jsonResponse = JSON.parse( response.responseText );
-
-                        if( this._headers.length === 0 ){
-                            this._setHeaders( jsonResponse.headers, jsonResponse.rows );
-                            this._setHeadersHandlers();
-                        }
-
-                        this._setData( jsonResponse.rows );
-
-                        if( paginated ){
-                            if( !!this._totalRows && (parseInt(jsonResponse.totalRows,10) !== parseInt(this._totalRows,10)) ){ 
-                                this._totalRows = jsonResponse.totalRows;
-                                this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
-                            } else {
-                                this._totalRows = jsonResponse.totalRows;
-                            }
-                        } else {
-                            if( !!this._totalRows && (jsonResponse.rows.length !== parseInt(this._totalRows,10)) ){ 
-                                this._totalRows = jsonResponse.rows.length;
-                                this._pagination.setSize( Math.ceil(this._totalRows/this._options.pageSize) );
-                            } else {
-                                this._totalRows = jsonResponse.rows.length;
-                            }
-                        }
-
-                        this._setPagination( );
-                    }
-
-                },this)
+        _addClassNames: function(elm, classes){
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                Css.addClassName(elm, current_class);
             });
+        },
+
+        /**
+         * Helper method to toggle every class name
+         * 
+         * @method _toggleClassNames
+         * @param {Element} elm
+         * @param {Array|String} classes
+         */
+        _toggleClassNames: function(elm, classes){
+            classes = ('' + classes).split(/[ ,]+/);
+            InkArray.each(classes, function( current_class ){
+                if( Css.hasClassName(elm, current_class) ) {
+                    Css.removeClassName(elm, current_class);
+                } else {
+                    Css.addClassName(elm, current_class);
+                }
+            });
+        },
+
+        /**
+         * Handles the click event (as specified in the _init function).
+         * 
+         * @method _onClick
+         * @param {Event} event
+         * @private
+         */
+        _onClick: function(event){
+
+            /**
+             * Summary:
+             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
+             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
+             * If not, will execute the event's default behavior.
+             *
+             */
+            var tgtEl = Event.element(event);
+
+            tgtEl = Element.findUpwardsBySelector(tgtEl, this._options.node);
+
+            if(tgtEl === false){ return; }
+
+            var child = Selector.select(this._options.child, tgtEl),
+                is_open,
+                icon;
+
+            if( child.length > 0 ){
+                Event.stop(event);
+                child = child[0];
+                this._toggleClassNames(child, this._options.hideClass);
+                is_open = Element.data(tgtEl)['open'] === 'true';
+                icon = tgtEl.children[0];
+                if(is_open){
+                    tgtEl.setAttribute('data-open', false);
+                } else {
+                    tgtEl.setAttribute('data-open', true);
+                }
+                this._toggleClassNames(icon, this._options.openClass); 
+                this._toggleClassNames(icon, this._options.closedClass); 
+            }
+
         }
+
     };
 
-    return Table;
+    return TreeView;
 
 });
 
@@ -7745,6 +7365,679 @@ Ink.createModule('Ink.UI.Swipe', '1', ['Ink.Dom.Event_1', 'Ink.Dom.Element_1', '
 });
 
 /**
+ * @module Ink.UI.Table_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','Ink.Net.Ajax_1','Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.String_1', 'Ink.Util.Json_1'], function(InkUrl,Pagination, Ajax, Common, Event, Css, Element, Selector, InkArray, InkString, Json) {
+    'use strict';
+
+    var rNumber = /\d/g;
+    // Turn into a number, if we can. For sorting data which could be numeric or not.
+    function maybeTurnIntoNumber(value) {
+        if( !isNaN(value) && rNumber.test(value) ){
+            return parseInt(value, 10);
+        } else if( !isNaN(value) ){
+            return parseFloat(value);
+        }
+        return value;
+    }
+    // cmp function for comparing data which might be a number.
+    function numberishEnabledCmp (index, a, b) {
+        var aValue = Element.textContent(Selector.select('td',a)[index]),
+            bValue = Element.textContent(Selector.select('td',b)[index]);
+
+        aValue = maybeTurnIntoNumber(aValue);
+        bValue = maybeTurnIntoNumber(bValue);
+
+        if( aValue === bValue ){
+            return 0;
+        } else {
+            return ( ( aValue > bValue ) ? 1 : -1 );
+        }
+    }
+    // Object.keys polyfill
+    function keys(obj) {
+        if (typeof Object.keys !== 'undefined') {
+            return Object.keys(obj);
+        }
+        var ret = [];
+        for (var k in obj) if (obj.hasOwnProperty(k)) {
+            ret.push(k);
+        }
+        return ret;
+    }
+
+    // Most processJSON* functions can just default to this.
+    function sameSame(obj) { return obj; }
+    /**
+     * The Table component transforms the native/DOM table element into a
+     * sortable, paginated component.
+     * 
+     * @class Ink.UI.Table
+     * @constructor
+     * @version 1
+     * @param {String|DOMElement} selector
+     * @param {Object} [options] Options
+     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
+     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *     @param {Function}  [options.createEndpointUrl] Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort ({ order: 'asc' or 'desc', field: fieldname }) and page ({ page: page number, size: items per page })
+     *     @param {Function}  [options.getDataFromEndPoint] Callback to allow the user to retrieve the data himself given an URL. Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
+     *     @param {Function}  [options.processJSONRows] Retrieve an array of rows from the data which came from AJAX.
+     *     @param {Function}  [options.processJSONHeaders] Get an object with all the headers' names as keys, and a { label, sortable } object as value. Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`. Takes an argument, the JSON response.
+     *     @param {Function}  [options.processJSONRow] Process a row object before it gets on the table.
+     *     @param {Function}  [options.processJSONField] Process the field data before putting it on the table. You can return HTML, a DOM element, or a string here. Arguments you receive: `(column, fieldData, rowIndex)`.
+     *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
+     *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
+     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
+     *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
+     *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
+     * @example
+     *      <table class="ink-table alternating" data-page-size="6">
+     *          <thead>
+     *              <tr>
+     *                  <th data-sortable="true" width="75%">Pepper</th>
+     *                  <th data-sortable="true" width="25%">Scoville Rating</th>
+     *              </tr>
+     *          </thead>
+     *          <tbody>
+     *              <tr>
+     *                  <td>Trinidad Moruga Scorpion</td>
+     *                  <td>1500000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Bhut Jolokia</td>
+     *                  <td>1000000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Naga Viper</td>
+     *                  <td>1463700</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Red Savina Habanero</td>
+     *                  <td>580000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Habanero</td>
+     *                  <td>350000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Scotch Bonnet</td>
+     *                  <td>180000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Malagueta</td>
+     *                  <td>50000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Tabasco</td>
+     *                  <td>35000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Serrano Chili</td>
+     *                  <td>27000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Jalapeño</td>
+     *                  <td>8000</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Poblano</td>
+     *                  <td>1500</td>
+     *              </tr>
+     *              <tr>
+     *                  <td>Peperoncino</td>
+     *                  <td>500</td>
+     *              </tr>
+     *          </tbody>
+     *      </table>
+     *      <nav class="ink-navigation"><ul class="pagination"></ul></nav>
+     *      <script>
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
+     *              var tableElement = Ink.s('.ink-table');
+     *              var tableObj = new Table( tableElement );
+     *          });
+     *      </script>
+     */
+    var Table = function( selector, options ){
+
+        /**
+         * Get the root element
+         */
+        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
+
+        if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
+            throw '[Ink.UI.Table] :: The element is not a table';
+        }
+
+        this._options = Common.options({
+            pageSize: ['Integer', null],
+            endpoint: ['String', null],
+            createEndpointUrl: ['Function', null /* default func uses above option */],
+            getDataFromEndPoint: ['Function', null /* by default use plain ajax for JSON */],
+            processJSONRows: ['Function', sameSame],
+            processJSONRow: ['Function', sameSame],
+            processJSONField: ['Function', sameSame],
+            processJSONHeaders: ['Function', function (dt) { return dt.fields || keys(dt[0]); }],
+            processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
+            pagination: ['Element', null],
+            allowResetSorting: ['Boolean', false],
+            visibleFields: ['String', undefined]
+        }, options || {}, this._rootElement);
+
+        /**
+         * Checking if it's in markup mode or endpoint mode
+         */
+        this._markupMode = !this._options.endpoint;
+
+        if( this._options.visibleFields ){
+            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
+        }
+
+        this._thead = this._rootElement.tHead || this._rootElement.createTHead();
+        this._headers = Selector.select('th', this._thead);
+
+        /**
+         * Initializing variables
+         */
+        this._handlers = {
+            thClick: null
+        };
+        this._originalFields = [
+            // field headers from the DOM
+        ];
+        this._sortableFields = {
+            // Identifies which columns are sorted and how.
+            // columnIndex: 'none'|'asc'|'desc'
+        };
+        this._originalData = this._data = [];
+        this._pagination = null;
+        this._totalRows = 0;
+
+        this._handlers.thClick = Event.observeDelegated(this._rootElement, 'click',
+                'thead th[data-sortable="true"]',
+                Ink.bindMethod(this, '_onThClick'));
+
+        this._init();
+    };
+
+    Table.prototype = {
+
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        _init: function(){
+            /**
+             * If not is in markup mode, we have to do the initial request
+             * to get the first data and the headers
+             */
+             if( !this._markupMode ) {
+                 /* Endpoint mode */
+                this._getData(  );
+             } else /* Markup mode */ {
+                this._resetSortOrder();
+
+                /**
+                 * Getting the table's data
+                 */
+                this._data = Selector.select('tbody tr', this._rootElement);
+                this._originalData = this._data.slice(0);
+
+                this._totalRows = this._data.length;
+
+                /**
+                 * Set pagination if options tell us to
+                 */
+                this._setPagination();
+             }
+        },
+
+        /**
+         * Click handler. This will mainly handle the sorting (when you click in the headers)
+         * 
+         * @method _onThClick
+         * @param {Event} event Event obj
+         * @private
+         */
+        _onThClick: function( event ){
+            var tgtEl = Event.element(event),
+                paginated = this._options.pageSize !== undefined;
+
+            Event.stop(event);
+
+            var index = InkArray.keyValue(tgtEl, this._headers, true);
+            var sortable = index !== false && this._sortableFields[index] !== undefined;
+
+            if( !sortable ){
+                return;
+            }
+
+            if( !this._markupMode && paginated ){
+                this._invertSortOrder(index, false);
+            } else {
+                if ( (this._sortableFields[index] === 'desc') && this._options.allowResetSorting ) {
+                    this._setSortOrderOfColumn(index, null);
+                    this._data = this._originalData.slice(0);
+                } else {
+                    this._invertSortOrder(index, true);
+                }
+
+                var tbody = Selector.select('tbody',this._rootElement)[0];
+                Common.cleanChildren(tbody);
+                InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
+
+                this._pagination.setCurrent(0);
+                this._paginate(1);
+            }
+        },
+
+        _invertSortOrder: function (index, sortAndReverse) {
+            var isAscending = this._sortableFields[index] === 'asc';
+
+            for (var i = 0, len = this._headers.length; i < len; i++) {
+                this._setSortOrderOfColumn(i, null);
+            }
+
+            if (sortAndReverse) {
+                this._sort(index);
+                if (isAscending) {
+                    this._data.reverse();
+                }
+            }
+
+            this._setSortOrderOfColumn(index, !isAscending);
+        },
+
+        _setSortOrderOfColumn: function(index, up) {
+            var header = this._headers[index];
+            var caretHtml = '';
+            var order = 'none';
+
+            if (up === true) {
+                caretHtml = '<i class="icon-caret-up"></i>';
+                order = 'asc';
+            } else if (up === false) {
+                caretHtml = '<i class="icon-caret-down"></i>';
+                order = 'desc';
+            }
+
+            this._sortableFields[index] = order;
+            header.innerHTML = Element.textContent(header) + caretHtml;
+        },
+
+        /**
+         * Applies and/or changes the CSS classes in order to show the right columns
+         * 
+         * @method _paginate
+         * @param {Number} page Current page
+         * @private
+         */
+        _paginate: function( page ){
+            if (!this._pagination) { return; }
+
+            var pageSize = this._options.pageSize;
+
+            // Hide everything except the items between these indices
+            var firstIndex = (page - 1) * pageSize;
+            var lastIndex = firstIndex + pageSize;
+
+            InkArray.each(this._data, function(item, index){
+                if (index >= firstIndex && index < lastIndex) {
+                    Css.removeClassName(item,'hide-all');
+                } else {
+                    Css.addClassName(item,'hide-all');
+                }
+            });
+
+        },
+
+        /* register fields into this._originalFields, whether they come from JSON or a table.
+         * @method _registerFieldNames
+         * @private
+         * @param [names] The field names in an array
+         **/
+        _registerFieldNames: function (names) {
+            this._originalFields = [];
+
+            InkArray.forEach(names, Ink.bind(function (field) {
+                if( !this._fieldIsVisible(field) ){
+                    return;  // The user deems this not to be necessary to see.
+                }
+                this._originalFields.push(field);
+            }, this));
+        },
+
+        _fieldIsVisible: function (field) {
+            return !this._options.visibleFields ||
+                (this._options.visibleFields.indexOf(field) !== -1);
+        },
+
+        /**
+         * Sorts by a specific column.
+         * 
+         * @method _sort
+         * @param {Number} index Column number (starting at 0)
+         * @private
+         */
+        _sort: function( index ){
+            this._data.sort(Ink.bind(numberishEnabledCmp, false, index));
+        },
+
+        /**
+         * Assembles the headers markup
+         *
+         * @method _createHeadersFromJson
+         * @param  {Object} headers Key-value object that contains the fields as keys, their configuration (label and sorting ability) as value
+         * @private
+         */
+        _createHeadersFromJson: function( headers ){
+            this._registerFieldNames(keys(headers));
+
+            if (this._thead.children.length) { return; }
+
+            var tr = this._thead.insertRow(0);
+            var th;
+
+            for (var i = 0, len = headers.length; i < len; i++) {
+                if (this._fieldIsVisible(headers[i])) {
+                    th = Element.create('th');
+                    th = this._createSingleHeaderFromJson(headers[i], th);
+                    tr.appendChild(th);
+                }
+            }
+        },
+
+        _createSingleHeaderFromJson: function (header, th) {
+            if (header.sortable) {
+                th.setAttribute('data-sortable','true');
+            }
+
+            if (header.label){
+                Element.setTextContent(th, header.label);
+            }
+
+            return th;
+        },
+
+        /**
+         * Reset the sort order as marked on the table headers to "none"
+         *
+         * @method _resetSortOrder
+         * @private
+         */
+        _resetSortOrder: function(){
+            /**
+             * Setting the sortable columns and its event listeners
+             */
+            for (var i = 0, len = this._headers.length; i < len; i++) {
+                var dataset = Element.data( this._headers[i] );
+                if (dataset.sortable && dataset.sortable.toString() === 'true') {
+                    this._sortableFields[i] = 'none';
+                }
+            }
+        },
+
+        /**
+         * This method gets the rows from AJAX and places them as <tr> and <td>
+         *
+         * @method _createRowsFromJSON
+         * @param  {Object} rows Array of objects with the data to be showed
+         * @private
+         */
+        _createRowsFromJSON: function( rows ){
+            var tbody = Selector.select('tbody',this._rootElement)[0];
+
+            if( !tbody ){
+                tbody = document.createElement('tbody');
+                this._rootElement.appendChild( tbody );
+            } else {
+                Element.setHTML(tbody, '');
+            }
+
+            this._data = [];
+            var row;
+
+            for (var trIndex in rows) {
+                if (rows.hasOwnProperty(trIndex)) {
+                    row = this._options.processJSONRow(rows[trIndex]);
+                    this._createSingleRowFromJson(tbody, row, trIndex);
+                }
+            }
+
+            this._originalData = this._data.slice(0);
+        },
+
+        _createSingleRowFromJson: function (tbody, row, rowIndex) {
+            var tr = document.createElement('tr');
+            tbody.appendChild( tr );
+            for( var field in row ){
+                if (row.hasOwnProperty(field)) {
+                    this._createFieldFromJson(tr, row[field], field, rowIndex);
+                }
+            }
+            this._data.push(tr);
+        },
+
+        _createFieldFromJson: function (tr, fieldData, fieldName, rowIndex) {
+            if (!this._fieldIsVisible(fieldName)) { return; }
+
+            var processor = this._options.processJSONField[fieldName] ||
+                this._options.processJSONField;
+
+            var processed = processor(fieldData, fieldName, rowIndex);
+            var isString = typeof processed === 'string';
+            var isNumber = typeof processed === 'number';
+
+            var elm = Element.create('td');
+
+            if (Common.isDOMElement(processed)) {
+                elm = processed;
+            } else if (isString && /^\s*?</.test(processed)) {
+                Element.setHTML(elm, processed);
+            } else if (isString || isNumber) {
+                Element.setTextContent(elm, processed);
+            } else {
+                throw new Error('Ink.UI.Table Unknown result from processJSONField: ' + processed);
+            }
+
+            tr.appendChild(elm);
+        },
+
+        /**
+         * Sets the endpoint. Useful for changing the endpoint in runtime.
+         *
+         * @method _setEndpoint
+         * @param {String} endpoint New endpoint
+         */
+        setEndpoint: function( endpoint, currentPage ){
+            if( !this._markupMode ){
+                this._options.endpoint = endpoint;
+                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+            }
+        },
+
+        /**
+         * Sets the instance's pagination, if necessary.
+         *
+         * Precondition: this._totalRows needs to be known.
+         *
+         * @method _setPagination
+         * @private
+         */
+        _setPagination: function(){
+            /* If user doesn't say they want pagination, bail. */
+            if( this._options.pageSize == null ){ return; }
+
+            /**
+             * Fetch pagination from options. Can be a selector string, an element or a Pagination instance.
+             */
+            var paginationEl = this._options.pagination;
+
+            if ( paginationEl instanceof Pagination ) {
+                this._pagination = paginationEl;
+                return;
+            }
+
+            if (!paginationEl) {
+                paginationEl = Element.create('nav', {
+                    className: 'ink-navigation',
+                    insertAfter: this._rootElement
+                });
+                Element.create('ul', {
+                    className: 'pagination',
+                    insertBottom: paginationEl
+                });
+            }
+
+            this._pagination = new Pagination(paginationEl, {
+                totalItemCount: this._totalRows,
+                itemsPerPage: this._options.pageSize,
+                onChange: Ink.bind(function (_, pageNo) {
+                    this._paginate(pageNo + 1);
+                }, this)
+            });
+
+            this._paginate(1);
+        },
+
+        /**
+         * Method to choose which is the best way to get the data based on the endpoint:
+         *     - AJAX
+         *     - JSONP
+         *
+         * @method _getData
+         * @private
+         */
+        _getData: function( ){
+            var sortOrder = this._getSortOrder() || null;
+            var page = null;
+
+            if (this._pagination) {
+                page = {
+                    size: this._options.pageSize,
+                    page: this._pagination.getCurrent() + 1
+                };
+            }
+
+            this._getDataViaAjax( this._getUrl( sortOrder, page) );
+        },
+
+        /**
+         * Return an object describing sort order { field: [field name] ,
+         * order: ["asc" or "desc"] }, or null if there is no sorting
+         * going on.
+         * @method _getSortOrder
+         * @private
+         */
+        _getSortOrder: function () {
+            var index;
+            for (index in this._sortableFields) if (this._sortableFields.hasOwnProperty(index)) {
+                if( this._sortableFields[index] !== 'none' ){
+                    break;
+                }
+            }
+            if (!index) {
+                return null; // no sorting going on
+            }
+            return {
+                field: this._originalFields[index],
+                order: this._sortableFields[index]
+            };
+        },
+
+        _getUrl: function (sort, page) {
+            var urlCreator = this._options.createEndpointUrl ||
+                function (endpoint, sort, page
+                        /* TODO implement filters too */) {
+                    endpoint = InkUrl.parseUrl(endpoint);
+                    endpoint.query = endpoint.query || {};
+
+                    if (sort) {
+                        endpoint.query.sortOrder = sort.order;
+                        endpoint.query.sortField = sort.field;
+                    }
+
+                    if (page) {
+                        endpoint.query['rows_per_page'] = page.size;
+                        endpoint.query['page'] = page.page;
+                    }
+
+                    return InkUrl.format(endpoint);
+                };
+
+            var ret = urlCreator(this._options.endpoint, sort, page);
+
+            if (typeof ret !== 'string') {
+                throw new TypeError('Ink.UI.Table_1: ' +
+                    'createEndpointUrl did not return a string!');
+            }
+
+            return ret;
+        },
+
+        /**
+         * Gets the data via AJAX and calls this._onAjaxSuccess with the response.
+         * 
+         * Will call options.getDataFromEndpoint( Uri, callback ) if available.
+         *
+         * @param  endpointUri Endpoint to get data from, after processing.
+         */
+        _getDataViaAjax: function( endpointUri ){
+            var success = Ink.bind(function( JSONData ){
+                this._onAjaxSuccess( JSONData );
+            }, this);
+
+            if (!this._options.getDataFromEndpoint) {
+                new Ajax( endpointUri, {
+                    method: 'GET',
+                    contentType: 'application/json',
+                    sanitizeJSON: true,
+                    onSuccess: Ink.bind(function( response ){
+                        if( response.status === 200 ){
+                            success(Json.parse(response.responseText));
+                        }
+                    }, this)
+                });
+            } else {
+                this._options.getDataFromEndpoint( endpointUri, success );
+            }
+        },
+
+        _onAjaxSuccess: function (jsonResponse) {
+            var paginated = this._options.pageSize != null;
+            var rows = this._options.processJSONRows(jsonResponse);
+            this._headers = Selector.select('th', this._thead);
+
+            // If headers not in DOM, get from JSON
+            if( this._headers.length === 0 ) {
+                var headers = this._options.processJSONHeaders(
+                    jsonResponse);
+                if (!headers || !headers.length || !headers[0]) {
+                    throw new Error('Ink.UI.Table: processJSONHeaders option must return an array of objects!');
+                }
+                this._createHeadersFromJson( headers );
+                this._resetSortOrder();
+            }
+
+            this._createRowsFromJSON( rows );
+
+            this._totalRows = this._rowLength = rows.length;
+
+            if( paginated ){
+                this._totalRows = this._options.processJSONTotalRows(jsonResponse);
+                this._setPagination( );
+            }
+        }
+    };
+
+    return Table;
+
+});
+
+/**
  * @module Ink.UI.Tabs_1
  * @author inkdev AT sapo.pt
  * @version 1
@@ -8163,6 +8456,273 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
     return Tabs;
 
+});
+
+/*
+ * @module Ink.UI.TagField_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
+    'use strict';
+
+    var enterKey = 13;
+    var backspaceKey = 8;
+    var isTruthy = function (val) {return !!val;};
+
+    /**
+     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
+     *
+     * The markup is as follows:
+     *
+     *           <input class="ink-tagfield" type="text" value="initial,value">
+     *
+     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
+     *
+     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
+     *
+     * @class Ink.UI.TagField
+     * @version 1
+     * @constructor
+     * @param {String|InputElement} element Selector or DOM Input Element.
+     * @param {Object} [options]
+     * @param {String|Array} [options.tags] initial tags in the input
+     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
+     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
+     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
+     * @param {Boolean} [options.autoSplit=true]
+     * @param {Integer} [options.maxTags=-1] Maximum amount of tags the user can write.
+     * @example
+     */
+    function TagField(element, options) {
+        this.init(element, options);
+    }
+
+    TagField.prototype = {
+        /**
+         * Init function called by the constructor
+         * 
+         * @method _init
+         * @private
+         */
+        init: function(element, options) {
+            element = this._element = Common.elOrSelector(element, 'Ink.UI.TagField');
+            var o = this._options = Common.options('Ink.UI.TagField', {
+                tags: ['String', []],
+                tagQuery: ['Object', null],
+                tagQueryAsync: ['Object', null],
+                allowRepeated: ['Boolean', false],
+                maxTags: ['Integer', -1],
+                outSeparator: ['String', ','],
+                separator: ['String', /[,; ]+/g],
+                autoSplit: ['Boolean', true]
+            }, options || {}, this._element);
+
+            if (typeof o.separator === 'string') {
+                o.separator = new RegExp(o.separator, 'g');
+            }
+
+            if (typeof o.tags === 'string') {
+                // coerce to array using the separator
+                o.tags = this._readInput(o.tags);
+            }
+
+            Css.addClassName(this._element, 'hide-all');
+
+            this._viewElm = InkElement.create('div', {
+                className: 'ink-tagfield',
+                insertAfter: this._element
+            });
+
+            this._input = InkElement.create('input', {
+                type: 'text',
+                className: 'new-tag-input',
+                insertBottom: this._viewElm
+            });
+
+            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
+
+            this._tags = [];
+
+            InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
+
+            InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
+            InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
+            InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
+            InkEvent.observe(this._input, 'blur', Ink.bindEvent(this._onBlur, this));
+            InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
+        },
+
+        destroy: function () {
+            InkElement.remove(this._viewElm);
+            Css.removeClassName(this._element, 'hide-all');
+        },
+
+        _tagsFromMarkup: function (element) {
+            var tagname = element.tagName.toLowerCase();
+            if (tagname === 'input') {
+                return this._readInput(element.value);
+            } else if (tagname === 'select') {
+                return InkArray.map(element.getElementsByTagName('option'), function (option) {
+                    return InkElement.textContent(option);
+                });
+            } else {
+                throw new Error('Cannot read tags from a ' + tagname + ' tag. Unknown tag');
+            }
+        },
+
+        _tagsToMarkup: function (tags, element) {
+            var tagname = element.tagName.toLowerCase();
+            if (tagname === 'input') {
+                if (this._options.separator) {
+                    element.value = tags.join(this._options.outSeparator);
+                }
+            } else if (tagname === 'select') {
+                element.innerHTML = '';
+                InkArray.each(tags, function (tag) {
+                    var opt = InkElement.create('option', {selected: 'selected'});
+                    InkElement.setTextContent(opt, tag);
+                    element.appendChild(opt);
+                });
+            } else {
+                throw new Error('TagField: Cannot read tags from a ' + tagname + ' tag. Unknown tag');
+            }
+        },
+
+        _addTag: function (tag) {
+            if (this._options.maxTags !== -1 &&
+                    this._tags.length >= this._options.maxTags) {
+                return;
+            }
+            if ((!this._options.allowRepeated &&
+                    InkArray.inArray(tag, this._tags, tag)) || !tag) {
+                return false;
+            }
+            var elm = InkElement.create('span', {
+                className: 'ink-tag',
+                setTextContent: tag + ' '
+            });
+
+            var remove = InkElement.create('i', {
+                className: 'remove icon-remove',
+                insertBottom: elm
+            });
+            InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
+
+            var spc = document.createTextNode(' ');
+
+            this._tags.push(tag);
+            this._viewElm.insertBefore(elm, this._input);
+            this._viewElm.insertBefore(spc, this._input);
+            this._tagsToMarkup(this._tags, this._element);
+        },
+
+        _readInput: function (text) {
+            if (this._options.separator) {
+                return InkArray.filter(text.split(this._options.separator), isTruthy);
+            } else {
+                return [text];
+            }
+        },
+
+        _onKeyUp: function () {  // TODO control input box size
+            if (!this._options.autoSplit) {
+                return;
+            }
+            var split = this._input.value.split(this._options.separator);
+            if (split.length <= 1) {
+                return;
+            }
+            var last = split[split.length - 1];
+            split = split.splice(0, split.length - 1);
+            split = InkArray.filter(split, isTruthy);
+            
+            InkArray.each(split, Ink.bind(this._addTag, this));
+            this._input.value = last;
+        },
+
+        _onKeyDown: function (event) {
+            if (event.which === enterKey) {
+                return this._onEnterKeyDown(event);
+            } else if (event.which === backspaceKey) {
+                return this._onBackspaceKeyDown();
+            } else if (this._removeConfirm) {
+                // user pressed another key, cancel removal from a backspace key
+                this._unsetRemovingVisual(this._tags.length - 1);
+            }
+        },
+
+        /**
+         * When the user presses backspace twice on the empty input, we delete the last tag on the field.
+         * @method onBackspaceKeyDown
+         * @private
+         */
+        _onBackspaceKeyDown: function () {
+            if (this._input.value) { return; }
+
+            if (this._removeConfirm) {
+                this._unsetRemovingVisual(this._tags.length - 1);
+                this._removeTag(this._tags.length - 1);
+                this._removeConfirm = null;
+            } else {
+                this._setRemovingVisual(this._tags.length - 1);
+            }
+        },
+
+        _onEnterKeyDown: function (event) {
+            var tag = this._input.value;
+            if (tag) {
+                this._addTag(tag);
+                this._input.value = '';
+            }
+            InkEvent.stopDefault(event);
+        },
+
+        _onBlur: function () {
+            this._addTag(this._input.value);
+            this._input.value = '';
+        },
+
+        /* For when the user presses backspace.
+         * Set the style of the tag so that it seems like it's going to be removed
+         * if they press backspace again. */
+        _setRemovingVisual: function (tagIndex) {
+            var elm = this._viewElm.children[tagIndex];
+            Css.addClassName(elm, 'tag-deleting');
+
+            this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
+            InkEvent.observe(this._input, 'blur', Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex));
+            this._removeConfirm = true;
+        },
+        _unsetRemovingVisual: function (tagIndex) {
+            var elm = this._viewElm.children[tagIndex];
+            if (elm) {
+                Css.removeClassName(elm, 'tag-deleting');
+                clearTimeout(this._removeRemovingVisualTimeout);
+            }
+            this._removeConfirm = null;
+        },
+
+        _removeTag: function (event) {
+            var index;
+            if (typeof event === 'object') {  // click event on close button
+                var elm = InkEvent.element(event).parentNode;
+                index = InkElement.parentIndexOf(this._viewElm, elm);
+            } else if (typeof event === 'number') {  // manual removal
+                index = event;
+            }
+            this._tags = InkArray.remove(this._tags, index, 1);
+            InkElement.remove(this._viewElm.children[index]);
+            this._tagsToMarkup(this._tags, this._element);
+        },
+
+        _refocus: function (event) {
+            this._input.focus();
+            InkEvent.stop(event);
+            return false;
+        }
+    };
+    return TagField;
 });
 
 /**
@@ -8901,496 +9461,6 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
     };
 
     return Tooltip;
-});
-
-/*
- * @module Ink.UI.TagField_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", "Ink.Dom.Css_1", "Ink.Dom.Browser_1", "Ink.UI.Droppable_1", "Ink.Util.Array_1", "Ink.Dom.Selector_1", "Ink.UI.Common_1"],function( InkElement, InkEvent, Css, Browser, Droppable, InkArray, Selector, Common) {
-    'use strict';
-
-    var enterKey = 13;
-    var backspaceKey = 8;
-    var isTruthy = function (val) {return !!val;};
-
-    /**
-     * Use this class to have a field where a user can input several tags into a single text field. A good example is allowing the user to describe a blog post or a picture through tags, for later searching.
-     *
-     * The markup is as follows:
-     *
-     *           <input class="ink-tagfield" type="text" value="initial,value">
-     *
-     * By applying this UI class to the above input, you get a tag field with the tags "initial" and "value". The class preserves the original input element. It remains hidden and is updated with new tag information dynamically, so regular HTML form logic still applies.
-     *
-     * Below "input" refers to the current value of the input tag (updated as the user enters text, of course), and "output" refers to the value which this class writes back to said input tag.
-     *
-     * @class Ink.UI.TagField
-     * @version 1
-     * @constructor
-     * @param {String|InputElement} element Selector or DOM Input Element.
-     * @param {Object} [options]
-     * @param {String|Array} [options.tags] initial tags in the input
-     * @param {Boolean} [options.allowRepeated=true] allow user to input several tags
-     * @param {RegExp} [options.separator=/[,;(space)]+/g] Split the input by this RegExp. The default splits by spaces, commas and semicolons
-     * @param {String} [options.outSeparator=','] Use this string to separate each tag from the next in the output.
-     * @param {Boolean} [options.autoSplit=true]
-     * @param {Integer} [options.maxTags=-1] Maximum amount of tags the user can write.
-     * @example
-     */
-    function TagField(element, options) {
-        this.init(element, options);
-    }
-
-    TagField.prototype = {
-        /**
-         * Init function called by the constructor
-         * 
-         * @method _init
-         * @private
-         */
-        init: function(element, options) {
-            element = this._element = Common.elOrSelector(element, 'Ink.UI.TagField');
-            var o = this._options = Common.options('Ink.UI.TagField', {
-                tags: ['String', []],
-                tagQuery: ['Object', null],
-                tagQueryAsync: ['Object', null],
-                allowRepeated: ['Boolean', false],
-                maxTags: ['Integer', -1],
-                outSeparator: ['String', ','],
-                separator: ['String', /[,; ]+/g],
-                autoSplit: ['Boolean', true]
-            }, options || {}, this._element);
-
-            if (typeof o.separator === 'string') {
-                o.separator = new RegExp(o.separator, 'g');
-            }
-
-            if (typeof o.tags === 'string') {
-                // coerce to array using the separator
-                o.tags = this._readInput(o.tags);
-            }
-
-            Css.addClassName(this._element, 'hide-all');
-
-            this._viewElm = InkElement.create('div', {
-                className: 'ink-tagfield',
-                insertAfter: this._element
-            });
-
-            this._input = InkElement.create('input', {
-                type: 'text',
-                className: 'new-tag-input',
-                insertBottom: this._viewElm
-            });
-
-            var tags = [].concat(o.tags, this._tagsFromMarkup(this._element));
-
-            this._tags = [];
-
-            InkArray.each(tags, Ink.bindMethod(this, '_addTag'));
-
-            InkEvent.observe(this._input, 'keyup', Ink.bindEvent(this._onKeyUp, this));
-            InkEvent.observe(this._input, 'change', Ink.bindEvent(this._onKeyUp, this));
-            InkEvent.observe(this._input, 'keydown', Ink.bindEvent(this._onKeyDown, this));
-            InkEvent.observe(this._input, 'blur', Ink.bindEvent(this._onBlur, this));
-            InkEvent.observe(this._viewElm, 'click', Ink.bindEvent(this._refocus, this));
-        },
-
-        destroy: function () {
-            InkElement.remove(this._viewElm);
-            Css.removeClassName(this._element, 'hide-all');
-        },
-
-        _tagsFromMarkup: function (element) {
-            var tagname = element.tagName.toLowerCase();
-            if (tagname === 'input') {
-                return this._readInput(element.value);
-            } else if (tagname === 'select') {
-                return InkArray.map(element.getElementsByTagName('option'), function (option) {
-                    return InkElement.textContent(option);
-                });
-            } else {
-                throw new Error('Cannot read tags from a ' + tagname + ' tag. Unknown tag');
-            }
-        },
-
-        _tagsToMarkup: function (tags, element) {
-            var tagname = element.tagName.toLowerCase();
-            if (tagname === 'input') {
-                if (this._options.separator) {
-                    element.value = tags.join(this._options.outSeparator);
-                }
-            } else if (tagname === 'select') {
-                element.innerHTML = '';
-                InkArray.each(tags, function (tag) {
-                    var opt = InkElement.create('option', {selected: 'selected'});
-                    InkElement.setTextContent(opt, tag);
-                    element.appendChild(opt);
-                });
-            } else {
-                throw new Error('TagField: Cannot read tags from a ' + tagname + ' tag. Unknown tag');
-            }
-        },
-
-        _addTag: function (tag) {
-            if (this._options.maxTags !== -1 &&
-                    this._tags.length >= this._options.maxTags) {
-                return;
-            }
-            if ((!this._options.allowRepeated &&
-                    InkArray.inArray(tag, this._tags, tag)) || !tag) {
-                return false;
-            }
-            var elm = InkElement.create('span', {
-                className: 'ink-tag',
-                setTextContent: tag + ' '
-            });
-
-            var remove = InkElement.create('i', {
-                className: 'remove icon-remove',
-                insertBottom: elm
-            });
-            InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
-
-            var spc = document.createTextNode(' ');
-
-            this._tags.push(tag);
-            this._viewElm.insertBefore(elm, this._input);
-            this._viewElm.insertBefore(spc, this._input);
-            this._tagsToMarkup(this._tags, this._element);
-        },
-
-        _readInput: function (text) {
-            if (this._options.separator) {
-                return InkArray.filter(text.split(this._options.separator), isTruthy);
-            } else {
-                return [text];
-            }
-        },
-
-        _onKeyUp: function () {  // TODO control input box size
-            if (!this._options.autoSplit) {
-                return;
-            }
-            var split = this._input.value.split(this._options.separator);
-            if (split.length <= 1) {
-                return;
-            }
-            var last = split[split.length - 1];
-            split = split.splice(0, split.length - 1);
-            split = InkArray.filter(split, isTruthy);
-            
-            InkArray.each(split, Ink.bind(this._addTag, this));
-            this._input.value = last;
-        },
-
-        _onKeyDown: function (event) {
-            if (event.which === enterKey) {
-                return this._onEnterKeyDown(event);
-            } else if (event.which === backspaceKey) {
-                return this._onBackspaceKeyDown();
-            } else if (this._removeConfirm) {
-                // user pressed another key, cancel removal from a backspace key
-                this._unsetRemovingVisual(this._tags.length - 1);
-            }
-        },
-
-        /**
-         * When the user presses backspace twice on the empty input, we delete the last tag on the field.
-         * @method onBackspaceKeyDown
-         * @private
-         */
-        _onBackspaceKeyDown: function () {
-            if (this._input.value) { return; }
-
-            if (this._removeConfirm) {
-                this._unsetRemovingVisual(this._tags.length - 1);
-                this._removeTag(this._tags.length - 1);
-                this._removeConfirm = null;
-            } else {
-                this._setRemovingVisual(this._tags.length - 1);
-            }
-        },
-
-        _onEnterKeyDown: function (event) {
-            var tag = this._input.value;
-            if (tag) {
-                this._addTag(tag);
-                this._input.value = '';
-            }
-            InkEvent.stopDefault(event);
-        },
-
-        _onBlur: function () {
-            this._addTag(this._input.value);
-            this._input.value = '';
-        },
-
-        /* For when the user presses backspace.
-         * Set the style of the tag so that it seems like it's going to be removed
-         * if they press backspace again. */
-        _setRemovingVisual: function (tagIndex) {
-            var elm = this._viewElm.children[tagIndex];
-            Css.addClassName(elm, 'tag-deleting');
-
-            this._removeRemovingVisualTimeout = setTimeout(Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex), 4000);
-            InkEvent.observe(this._input, 'blur', Ink.bindMethod(this, '_unsetRemovingVisual', tagIndex));
-            this._removeConfirm = true;
-        },
-        _unsetRemovingVisual: function (tagIndex) {
-            var elm = this._viewElm.children[tagIndex];
-            if (elm) {
-                Css.removeClassName(elm, 'tag-deleting');
-                clearTimeout(this._removeRemovingVisualTimeout);
-            }
-            this._removeConfirm = null;
-        },
-
-        _removeTag: function (event) {
-            var index;
-            if (typeof event === 'object') {  // click event on close button
-                var elm = InkEvent.element(event).parentNode;
-                index = InkElement.parentIndexOf(this._viewElm, elm);
-            } else if (typeof event === 'number') {  // manual removal
-                index = event;
-            }
-            this._tags = InkArray.remove(this._tags, index, 1);
-            InkElement.remove(this._viewElm.children[index]);
-            this._tagsToMarkup(this._tags, this._element);
-        },
-
-        _refocus: function (event) {
-            this._input.focus();
-            InkEvent.stop(event);
-            return false;
-        }
-    };
-    return TagField;
-});
-
-/**
- * @module Ink.UI.TreeView_1
- * @author inkdev AT sapo.pt
- * @version 1
- */
-Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
-    'use strict';
-
-    /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
-     * 
-     * @class Ink.UI.TreeView
-     * @constructor
-     * @version 1
-     * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
-     * @example
-     *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
-     *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
-     *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
-     *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
-     *                  </ul>
-     *                </li>
-     *              </ul>
-     *            </li>
-     *            <li><a href="">child 3</a></li>
-     *          </ul>
-     *        </li>
-     *      </ul>
-     *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.TreeView_1'], function( Selector, TreeView ){
-     *              var treeViewElement = Ink.s('.ink-tree-view');
-     *              var treeViewObj = new TreeView( treeViewElement );
-     *          });
-     *      </script>
-     */
-    var TreeView = function(selector, options){
-
-        /**
-         * Gets the element
-         */
-        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.TreeView] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.TreeView] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-        } else {
-            this._element = selector;
-        }
-
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         * @param {string} parentClass Classes to be added to the parent node. Default: parent
-         * @param {string} openClass Classes to be added to the icon when a parent is open. Default: icon-plus-sign
-         * @param {string} closedClass Classes to be added to the icon when a parent is closed. Default: icon-minus-sign
-         * @param {string} hideClass Class to toggle visibility of the children. Default: hide-all
-         * @param {string} iconTag The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Default: i
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul',
-            parentClass: 'parent',
-            openClass: 'icon-minus-sign',
-            closedClass: 'icon-plus-sign',
-            hideClass: 'hide-all',
-            iconTag: 'i'
-
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
-
-        this._init();
-    };
-
-    TreeView.prototype = {
-
-        /**
-         * Init function called by the constructor. Sets the necessary event handlers.
-         * 
-         * @method _init
-         * @private
-         */
-        _init: function(){
-
-            this._handlers = {
-                click: Ink.bindEvent(this._onClick,this)
-            };
-
-            Event.observe(this._element, 'click', this._handlers.click);
-
-            var
-                nodes = Selector.select(this._options.node,this._element),
-                is_open = false,
-                icon,
-                children
-            ;
-            InkArray.each(nodes, Ink.bind(function(item){
-
-                children = Selector.select(this._options.child,item);
-
-                if( children.length > 0 ) {
-                    this._addClassNames(item, this._options.parentClass);
-
-                    is_open = Element.data(item)['open'] === 'true';
-                    icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
-                    if( !icon ){
-                        icon = Ink.Dom.Element.create('i');
-                        item.insertBefore(icon, item.children[0]);
-                    }
-
-
-                    if( is_open ) {
-                        this._addClassNames(icon, this._options.openClass);
-                    } else {
-                        this._addClassNames(icon, this._options.closedClass);
-                        item.setAttribute('data-open', false);
-
-                        InkArray.each(children,Ink.bind(function( inner_item ){
-                            this._addClassNames(inner_item, this._options.hideClass);
-                        },this));
-                    }
-
-                }
-            },this));
-        },
-
-        /**
-         * Helper method to support adding an array of classes to an element
-         * 
-         * @method _addClassNames
-         * @param {Element} elm
-         * @param {Array|String} classes
-         * @private
-         */
-        _addClassNames: function(elm, classes){
-            classes = ('' + classes).split(/[ ,]+/);
-            InkArray.each(classes, function( current_class ){
-                Css.addClassName(elm, current_class);
-            });
-        },
-
-        /**
-         * Helper method to toggle every class name
-         * 
-         * @method _toggleClassNames
-         * @param {Element} elm
-         * @param {Array|String} classes
-         */
-        _toggleClassNames: function(elm, classes){
-            classes = ('' + classes).split(/[ ,]+/);
-            InkArray.each(classes, function( current_class ){
-                if( Css.hasClassName(elm, current_class) ) {
-                    Css.removeClassName(elm, current_class);
-                } else {
-                    Css.addClassName(elm, current_class);
-                }
-            });
-        },
-
-        /**
-         * Handles the click event (as specified in the _init function).
-         * 
-         * @method _onClick
-         * @param {Event} event
-         * @private
-         */
-        _onClick: function(event){
-
-            /**
-             * Summary:
-             * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
-             *
-             */
-            var tgtEl = Event.element(event);
-
-            tgtEl = Element.findUpwardsBySelector(tgtEl, this._options.node);
-
-            if(tgtEl === false){ return; }
-
-            var child = Selector.select(this._options.child, tgtEl),
-                is_open,
-                icon;
-
-            if( child.length > 0 ){
-                Event.stop(event);
-                child = child[0];
-                this._toggleClassNames(child, this._options.hideClass);
-                is_open = Element.data(tgtEl)['open'] === 'true';
-                icon = tgtEl.children[0];
-                if(is_open){
-                    tgtEl.setAttribute('data-open', false);
-                } else {
-                    tgtEl.setAttribute('data-open', true);
-                }
-                this._toggleClassNames(icon, this._options.openClass); 
-                this._toggleClassNames(icon, this._options.closedClass); 
-            }
-
-        }
-
-    };
-
-    return TreeView;
-
 });
 
 /**
