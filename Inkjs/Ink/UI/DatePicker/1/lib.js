@@ -6,8 +6,6 @@
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';
 
-    /* jshint maxcomplexity: 7 */
-
     // Repeat a string. Long version of (new Array(n)).join(str);
     function strRepeat(n, str) {
         var ret = '';
@@ -17,11 +15,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return ret;
     }
 
-    // Pad a number to two or more string characters
-    // TODO this is used to create classes with the name sapo_cal_##, to be read with substr() and Number. This is ugly. Add an assert(false);
-    function pad(n) {
-        return ((String(n).length === 2) ? n : "0" + n);
-    }
     /**
      * @class Ink.UI.DatePicker
      * @constructor
@@ -35,6 +28,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {String}    [options.cssClass]        CSS class to be applied to the datepicker
      *      @param {String}    [options.dateRange]       enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
      *      @param {Boolean}   [options.displayInSelect] whether to display the component in a select. defaults to false.
+     *      @param {String|DOMElement} [options.dayField]   (if using options.displayInSelect) `<select>` field with days.
+     *      @param {String|DOMElement} [options.monthField] (if using options.displayInSelect)  `<select>` field with months.
+     *      @param {String|DOMElement} [options.yearField]  (if using options.displayInSelect)  `<select>` field with years.
      *      @param {String}    [options.format]          Date format string
      *      @param {String}    [options.instance]        unique id for the datepicker
      *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
@@ -76,7 +72,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             containerElement:['Element', null],
             cssClass:        ['String', 'sapo_component_datepicker'],
             dateRange:       ['String', null],
-            displayInSelect: ['String', null],
+            
+            // use this in a <select>
+            displayInSelect: ['Boolean', false],
+            dayField:        ['Element', null],
+            monthField:      ['Element', null],
+            yearField:       ['Element', null],
+
             format:          ['String', 'yyyy-mm-dd'],
             instance:        ['String', 'scdp_' + Math.round(99999*Math.random())],
             nextLinkText:    ['String', '»'],
@@ -123,10 +125,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._hoverPicker = false;
 
-        this._picker = null;
-        if (this._options.pickerField) {
-            this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
-        }
+        this._picker = this._options.pickerField &&
+            Common.elOrSelector(this._options.pickerField, 'pickerField');
 
         this._today = new Date();
         this._day   = this._today.getDate( );
@@ -136,24 +136,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         this._setMinMax( this._options.dateRange || this._options.yearRange );
         this._data = new Date( Date.UTC.apply( this , this._checkDateRange( this._year , this._month , this._day ) ) );
 
-        if(this._options.startDate && typeof this._options.startDate === 'string' && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
+        if(this._options.startDate && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
             this.setDate( this._options.startDate );
         }
 
-        this._init();
-
-        if(this._options.displayInSelect){
-            if (this._options.dayField && this._options.monthField && this._options.yearField || this._options.pickerField) {
-                this._dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
-                this._monthField = Common.elOrSelector(this._options.monthField, 'monthField');
-                this._yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
-            } else {
-                throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";
-            }
+        if(this._options.displayInSelect &&
+                !(this._options.dayField && this._options.monthField && this._options.yearField)){
+            throw new Error(
+                'Ink.UI.DatePicker: displayInSelect option enabled.'+
+                'Please specify dayField, monthField and yearField selectors.');
         }
-
-        this._render();
-        this._listenToContainerObjectEvents();
 
         if ( !this._options.startDate ){
             if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
@@ -161,7 +153,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         }
 
-        Common.registerInstance(this, this._containerObject, 'datePicker');
+        this._init();
     };
 
     DatePicker.prototype = {
@@ -176,6 +168,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _init: function(){
             Ink.extendObj(this._options,this._lang || {});
+
+            this._render();
+            this._listenToContainerObjectEvents();
+
+            Common.registerInstance(this, this._containerObject, 'datePicker');
         },
 
         /**
@@ -320,21 +317,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     }
                 },this));
             } else {
-                Event.observe(this._dayField,'change', Ink.bindEvent(function(){
-                    var yearSelected = this._yearField[this._yearField.selectedIndex].value;
+                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
                     if(yearSelected !== '' && yearSelected !== 0) {
                         this._updateDate();
                         this._showDefaultView();
                     }
                 },this));
-                Event.observe(this._monthField,'change', Ink.bindEvent(function(){
-                    var yearSelected = this._yearField[this._yearField.selectedIndex].value;
+                Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
                     if(yearSelected !== '' && yearSelected !== 0){
                         this._updateDate();
                         this._showDefaultView();
                     }
                 },this));
-                Event.observe(this._yearField,'change', Ink.bindEvent(function(){
+                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
                     this._updateDate();
                     this._showDefaultView();
                 },this));
@@ -350,11 +347,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         }
                         else if (target !== this._picker &&
                                  (!this._options.displayInSelect ||
-                                  (target !== this._dayField && target !== this._monthField && target !== this._yearField) ) ) {
-                            if (!this._dayField ||
-                                    (!Element.descendantOf(this._dayField,   target) &&
-                                     !Element.descendantOf(this._monthField, target) &&
-                                     !Element.descendantOf(this._yearField,  target)      ) ) {
+                                  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
+                            if (!this._options.dayField ||
+                                    (!Element.descendantOf(this._options.dayField,   target) &&
+                                     !Element.descendantOf(this._options.monthField, target) &&
+                                     !Element.descendantOf(this._options.yearField,  target)      ) ) {
                                 this._hide(true);
                             }
                         }
@@ -540,9 +537,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _clean: function () {
             if(this._options.displayInSelect){
-                this._yearField.selectedIndex = 0;
-                this._monthField.selectedIndex = 0;
-                this._dayField.selectedIndex = 0;
+                this._options.yearField.selectedIndex = 0;
+                this._options.monthField.selectedIndex = 0;
+                this._options.dayField.selectedIndex = 0;
             } else {
                 this._dataField.value = '';
             }
@@ -655,20 +652,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 day   = this._today.getDate( );
             }
 
-            if ( year > this._yearMax ) {
+            if ( year > this._yearMax || year === this._yearMax && month + 1 > this._monthMax ) {
                 year  = this._yearMax;
                 month = this._monthMax - 1;
                 day   = this._dayMax;
-            } else if ( year < this._yearMin ) {
+            } else if ( year < this._yearMin || year === this._yearMax && month + 1 < this._monthMin) {
                 year  = this._yearMin;
-                month = this._monthMin - 1;
-                day   = this._dayMin;
-            }
-
-            if ( year === this._yearMax && month + 1 > this._monthMax ) {
-                month = this._monthMax - 1;
-                day   = this._dayMax;
-            } else if ( year === this._yearMin && month + 1 < this._monthMin ) {
                 month = this._monthMin - 1;
                 day   = this._dayMin;
             }
@@ -736,9 +725,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else {
                 dataParsed = [];
                 if(this._isValidDate(
-                    dataParsed[0] = this._yearField[this._yearField.selectedIndex].value,
-                    dataParsed[1] = this._monthField[this._monthField.selectedIndex].value,
-                    dataParsed[2] = this._dayField[this._dayField.selectedIndex].value
+                    dataParsed[0] = this._options.yearField[this._options.yearField.selectedIndex].value,
+                    dataParsed[1] = this._options.monthField[this._options.monthField.selectedIndex].value,
+                    dataParsed[2] = this._options.dayField[this._options.dayField.selectedIndex].value
                 )){
                     dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
 
@@ -894,6 +883,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             return false;
         },
 
+        _acceptableDay: function () {
+            throw 'not implemented';
+        },
+
+        _acceptableMonth: function () {
+            throw 'not implemented';
+        },
+
+        _acceptableYear: function () {
+            throw 'not implemented';
+        },
 
         /**
          * This method returns the date written with the format specified on the options
@@ -944,9 +944,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(!this._options.displayInSelect){
                 this._dataField.value = this._writeDateInFormat();
             } else {
-                this._dayField.value   = this._data.getDate();
-                this._monthField.value = this._data.getMonth()+1;
-                this._yearField.value  = this._data.getFullYear();
+                this._options.dayField.value   = this._data.getDate();
+                this._options.monthField.value = this._data.getMonth()+1;
+                this._options.yearField.value  = this._data.getFullYear();
             }
 
             if(this._options.onSetDate) {
@@ -1139,7 +1139,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _getCalendarDayHtml: function (year, month, day) {
-            var className = 'sapo_cal_' + pad(day);
+            var className = '';
             className += ( year === this._yearMin && month === this._monthMin && day < this._dayMin ||
                 year === this._yearMax && month === this._monthMax && day > this._dayMax ||
                 year === this._yearMin && month < this._monthMin ||
