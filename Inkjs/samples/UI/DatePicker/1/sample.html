@@ -9,9 +9,6 @@
         <link rel="stylesheet" href="/samples/assets/css/docs.css" />
 
         <script type="text/javascript" src="/Ink/1/"></script>
-        <script>
-            Ink.setPath('Ink', '/Ink/');
-        </script>
         <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
         <style>
             pre.prettyprint{
@@ -48,15 +45,48 @@
     &lt;div class="control"&gt;
         &lt;input id="dPicker" class="ink-datepicker" type="text" data-format="dd/mm/yyyy"&gt;&lt;/input&gt;
     &lt;/div&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var dPicker = new Ink.UI.DatePicker('.ink-datepicker');
-&lt;/script&gt;</pre>
+&lt;/div&gt;</pre>
                 </p>
                 </section>
                 <section>
                     <header>
-                        <h2>DatePicker #2 - autoOpen and shy options</h2>
+                        <h2>DatePicker #2 - displayInSelect</h2>
+                    </header>
+                    <select class="DISdays"></select>
+                    <select class="DISmonths"></select>
+                    <select class="DISyears"></select>
+                    <input type="text" class="ink-datepicker"
+                        data-display-in-select="true"
+                        data-day-field=".DISdays"
+                        data-month-field=".DISmonths"
+                        data-year-field=".DISyears">
+                    <script>
+                        Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Element_1'], function (DatePicker, InkElement) {
+                            var i;
+                            for (i = 1; i <= 12; i+=1) {
+                                Ink.s('.DISmonths').appendChild(InkElement.create('option', {
+                                    value: i,
+                                    setTextContent: i
+                                }));
+                            }
+                            for (i = 1; i <= 31; i+=1) {
+                                Ink.s('.DISdays').appendChild(InkElement.create('option', {
+                                    value: i,
+                                    setTextContent: i
+                                }));
+                            }
+                            for (i = 1995; i <= 2013; i+=1) {
+                                Ink.s('.DISyears').appendChild(InkElement.create('option', {
+                                    value: i,
+                                    setTextContent: i
+                                }));
+                            }
+                        });
+                    </script>
+                </section>
+                <section>
+                    <header>
+                        <h2>DatePicker #3 - autoOpen and shy options</h2>
                     </header>
                     <div class="control-group">
                         <label for="dPicker2">A date field with the <code>shy</code> option set to <code>false</code> and <code>autoOpen</code> set to <code>true</code>:</label>
@@ -65,7 +95,8 @@
                         </div>
                     </div>
                     <div id="containerelm"></div>
-                </section>
+                    </section>
+
         </div>
         <script>
             Ink.requireModules(['Ink.Util.Array_1','Ink.UI.DatePicker_1'], function(InkArray, DatePicker) {
