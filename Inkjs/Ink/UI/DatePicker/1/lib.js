@@ -6,6 +6,20 @@
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';
 
+    // Repeat a string. Long version of (new Array(n)).join(str);
+    function strRepeat(n, str) {
+        var ret = '';
+        for (var i = 0; i < n; i++) {
+            ret += str;
+        }
+        return ret;
+    }
+
+    // Pad a number to two or more string characters
+    // TODO this is used to create classes with the name sapo_cal_##, to be read with substr() and Number. This is ugly. Add an assert(false);
+    function pad(n) {
+        return ((String(n).length === 2) ? n : "0" + n);
+    }
     /**
      * @class Ink.UI.DatePicker
      * @constructor
@@ -127,6 +141,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._init();
 
+        if(this._options.displayInSelect){
+            if (this._options.dayField && this._options.monthField && this._options.yearField || this._options.pickerField) {
+                this._dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
+                this._monthField = Common.elOrSelector(this._options.monthField, 'monthField');
+                this._yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
+            } else {
+                throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";
+            }
+        }
+
         this._render();
         this._listenToContainerObjectEvents();
 
@@ -160,8 +184,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _render: function() {
-            /*jshint maxstatements:120, maxcomplexity:30 */
-            /*humans brace:"yourselves"*/
             this._containerObject = document.createElement('div');
 
             this._containerObject.id = this._options.instance;
@@ -169,24 +191,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._containerObject.className = 'sapo_component_datepicker';
             var dom = document.getElementsByTagName('body')[0];
 
-            if(this._options.showClose || this._options.showClean){
-                this._superTopBar = document.createElement("div");
-                this._superTopBar.className = 'sapo_cal_top_options';
-                if(this._options.showClean){
-                    var clean = document.createElement('a');
-                    clean.className = 'clean';
-                    clean.innerHTML = this._options.cleanText;
-                    this._superTopBar.appendChild(clean);
-                }
-                if(this._options.showClose){
-                    var close = document.createElement('a');
-                    close.className = 'close';
-                    close.innerHTML = this._options.closeText;
-                    this._superTopBar.appendChild(close);
-                }
-                this._containerObject.appendChild(this._superTopBar);
-            }
-
+            this._renderSuperTopBar();
 
             var calendarTop = document.createElement("div");
             calendarTop.className = 'sapo_cal_top';
@@ -251,20 +256,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 }
             }
 
-            if(this._options.displayInSelect){
-                if (this._options.dayField && this._options.monthField && this._options.yearField || this._options.pickerField) {
-                    this._options.dayField   = Common.elOrSelector(this._options.dayField,   'dayField');
-                    this._options.monthField = Common.elOrSelector(this._options.monthField, 'monthField');
-                    this._options.yearField  = Common.elOrSelector(this._options.yearField,  'yearField');
-                } else {
-                    throw "To use display in select you *MUST* to set dayField, monthField, yearField and pickerField!";
-                }
-            }
-
             if(this._options.containerElement) {
-                var container = Ink.i(this._options.containerElement);
+                var container = Ink.i(this._options.containerElement);  // small backwards compatibility thing
                 if (!container) {
-                    container = Common.elOrSelector(this._options.containerElement);  // small backwards compatibility thing
+                    container = Common.elOrSelector(this._options.containerElement);
                 }
                 container.appendChild(this._containerObject);
             } else {
@@ -324,7 +319,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             else {
                 Event.observe(this._picker,'click',Ink.bindEvent(function(e){
                     Event.stop(e);
-                    this._containerObject = Element.clonePosition(this._containerObject,this._picker);
+                    this._containerObject = Element.clonePosition(this._containerObject, this._picker);
                     this._updateDate();
                     this._showMonth();
                     this._containerObject.style.display = 'block';
@@ -352,21 +347,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     }
                 },this));
             } else {
-                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
-                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                Event.observe(this._dayField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._yearField[this._yearField.selectedIndex].value;
                     if(yearSelected !== '' && yearSelected !== 0) {
                         this._updateDate();
                         this._showDefaultView();
                     }
                 },this));
-                Event.observe(this._options.monthField,'change', Ink.bindEvent(function(){
-                    var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
+                Event.observe(this._monthField,'change', Ink.bindEvent(function(){
+                    var yearSelected = this._yearField[this._yearField.selectedIndex].value;
                     if(yearSelected !== '' && yearSelected !== 0){
                         this._updateDate();
                         this._showDefaultView();
                     }
                 },this));
-                Event.observe(this._options.yearField,'change', Ink.bindEvent(function(){
+                Event.observe(this._yearField,'change', Ink.bindEvent(function(){
                     this._updateDate();
                     this._showDefaultView();
                 },this));
@@ -382,17 +377,40 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         }
                         else if (target !== this._picker &&
                                  (!this._options.displayInSelect ||
-                                  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
-                            if (!this._options.dayField ||
-                                    (!Element.descendantOf(this._options.dayField,   target) &&
-                                     !Element.descendantOf(this._options.monthField, target) &&
-                                     !Element.descendantOf(this._options.yearField,  target)      ) ) {
+                                  (target !== this._dayField && target !== this._monthField && target !== this._yearField) ) ) {
+                            if (!this._dayField ||
+                                    (!Element.descendantOf(this._dayField,   target) &&
+                                     !Element.descendantOf(this._monthField, target) &&
+                                     !Element.descendantOf(this._yearField,  target)      ) ) {
                                 this._hide(true);
                             }
                         }
                     }
                 },this));
             }
+        },
+
+        /**
+         * Render the topmost bar with the "close" and "clear" buttons.
+         */
+        _renderSuperTopBar: function () {
+            if(this._options.showClose || this._options.showClean){ return; }
+
+            this._superTopBar = document.createElement("div");
+            this._superTopBar.className = 'sapo_cal_top_options';
+            if(this._options.showClean){
+                var clean = document.createElement('a');
+                clean.className = 'clean';
+                clean.innerHTML = this._options.cleanText;
+                this._superTopBar.appendChild(clean);
+            }
+            if(this._options.showClose){
+                var close = document.createElement('a');
+                close.className = 'close';
+                close.innerHTML = this._options.closeText;
+                this._superTopBar.appendChild(close);
+            }
+            this._containerObject.appendChild(this._superTopBar);
         },
 
         _listenToContainerObjectEvents: function () {
@@ -406,100 +424,92 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._hoverPicker = false;
             },this));
 
-            Event.observe(this._containerObject,'click',Ink.bindEvent(function(e){
-                if(typeof(e.target) === 'undefined'){
-                    e.target = e.srcElement;
+            Event.observe(this._containerObject,'click',Ink.bindEvent(this._onClick, this));
+        },
+
+        _onClick: function(e){
+            var elem = Event.element(e);
+            var className = elem.className;
+            var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+
+            Event.stop(e);
+
+            var changeYear = {
+                change_year_next: 1,
+                change_year_prev: -1
+            };
+            var changeMonth = {
+                change_month_next: 1,
+                change_month_prev: -1
+            };
+
+            if (className === 'sapo_cal_link_month') {
+                this._monthContainer.style.display = 'none';
+                this._yearSelector.style.display = 'none';
+                this._monthPrev.childNodes[0].className = 'action_inactive';
+                this._monthNext.childNodes[0].className = 'action_inactive';
+                this._setActiveMonth();
+                this._monthSelector.style.display = 'block';
+            } else if (className === 'sapo_cal_link_year') {
+                this._monthPrev.childNodes[0].className = 'action_inactive';
+                this._monthNext.childNodes[0].className = 'action_inactive';
+                this._monthSelector.style.display = 'none';
+                this._monthContainer.style.display = 'none';
+                this._showYearSelector();
+                this._yearSelector.style.display = 'block';
+            } else if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
+                var day = className.substr( 9 , 2 );
+                if( Number( day ) ) {
+                    this.setDate( [this._year, this._month + 1, day].join('-') );
+                    this._hide();
                 }
-                var className = e.target.className;
-                var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
-
-                Event.stop(e);
-
-                if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
-                    var day = className.substr( 9 , 2 );
-                    if( Number( day ) ) {
-                        this.setDate( [this._year, this._month + 1, day].join('-') );
-                        this._hide();
-                    } else if(className === 'sapo_cal_link_month'){
-                        this._monthContainer.style.display = 'none';
-                        this._yearSelector.style.display = 'none';
-                        this._monthPrev.childNodes[0].className = 'action_inactive';
-                        this._monthNext.childNodes[0].className = 'action_inactive';
-                        this._setActiveMonth();
-                        this._monthSelector.style.display = 'block';
-                    } else if(className === 'sapo_cal_link_year'){
-                        this._monthPrev.childNodes[0].className = 'action_inactive';
-                        this._monthNext.childNodes[0].className = 'action_inactive';
-                        this._monthSelector.style.display = 'none';
-                        this._monthContainer.style.display = 'none';
-                        this._showYearSelector();
-                        this._yearSelector.style.display = 'block';
-                    }
-                } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
-                    var month=className.substr(14,2);
-                    if(Number(month)){
-                        this._month = month - 1;
-                        // if( typeof this._options.onMonthSelected === 'function' ){
-                        //     this._options.onMonthSelected(this, {
-                        //         'year': this._year,
-                        //         'month' : this._month
-                        //     });
-                        // }
-                        this._monthSelector.style.display = 'none';
-                        this._monthPrev.childNodes[0].className = 'change_month_prev';
-                        this._monthNext.childNodes[0].className = 'change_month_next';
-
-                        if ( this._year < this._yearMin || this._year === this._yearMin && this._month <= this._monthMin ){
-                            this._monthPrev.childNodes[0].className = 'action_inactive';
-                        }
-                        else if( this._year > this._yearMax || this._year === this._yearMax && this._month >= this._monthMax ){
-                            this._monthNext.childNodes[0].className = 'action_inactive';
-                        }
-
-                        this._updateCal();
-                        this._monthContainer.style.display = 'block';
-                    }
-                } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
-                    var year=className.substr(13,4);
-                    if(Number(year)){
-                        this._year = year;
-                        if( typeof this._options.onYearSelected === 'function' ){
-                            this._options.onYearSelected(this, {
-                                'year': this._year
-                            });
-                        }
-                        this._monthPrev.childNodes[0].className = 'action_inactive';
-                        this._monthNext.childNodes[0].className = 'action_inactive';
-                        this._yearSelector.style.display='none';
-                        this._setActiveMonth();
-                        this._monthSelector.style.display='block';
-                    }
-                } else if( className.indexOf('change_month_') === 0 && !isInactive ){
-                    if(className === 'change_month_next'){
-                        this._updateCal(1);
-                    } else if(className === 'change_month_prev'){
-                        this._updateCal(-1);
-                    }
-                } else if( className.indexOf('change_year_') === 0 && !isInactive ){
-                    if(className === 'change_year_next'){
-                        this._showYearSelector(1);
-                    } else if(className === 'change_year_prev'){
-                        this._showYearSelector(-1);
-                    }
-                } else if(className === 'clean'){
-                    if(this._options.displayInSelect){
-                        this._options.yearField.selectedIndex = 0;
-                        this._options.monthField.selectedIndex = 0;
-                        this._options.dayField.selectedIndex = 0;
-                    } else {
-                        this._dataField.value = '';
-                    }
-                } else if(className === 'close'){
-                    this._hide(false);
+            } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
+                var month=className.substr(14,2);
+                if(Number(month)){
+                    this._month = month - 1;
+                    this._showDefaultView();
+                    this._updateCal();
                 }
+            } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
+                this._changeYear(Number(className.substr(13, 4)));
+            } else if( (className in changeMonth ) && !isInactive ) {
+                this._updateCal(changeMonth[className]);
+            } else if( (className in changeYear) && !isInactive) {
+                this._showYearSelector(changeYear[className]);
+            } else if(className === 'clean'){
+                this._clean();
+            } else if(className === 'close'){
+                this._hide(false);
+            }
 
-                this._updateDescription();
-            },this));
+            this._updateDescription();
+        },
+
+        _changeYear: function (year) {
+            year = +year;
+            if(year){
+                this._year = year;
+                if( typeof this._options.onYearSelected === 'function' ){
+                    this._options.onYearSelected(this, {
+                        'year': this._year
+                    });
+                }
+                this._monthPrev.childNodes[0].className = 'action_inactive';
+                this._monthNext.childNodes[0].className = 'action_inactive';
+                this._yearSelector.style.display='none';
+                this._setActiveMonth();
+                this._monthSelector.style.display='block';
+            }
+        },
+
+        _clean: function () {
+            if(this._options.displayInSelect){
+                this._yearField.selectedIndex = 0;
+                this._monthField.selectedIndex = 0;
+                this._dayField.selectedIndex = 0;
+            } else {
+                this._dataField.value = '';
+            }
         },
 
         /**
@@ -525,101 +535,68 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _setMinMax : function( dateRange )
         {
             var auxDate;
-            if( dateRange )
-            {
-                var dates = dateRange.split( ':' );
-                var pattern = /^(\d{4})((\-)(\d{1,2})((\-)(\d{1,2}))?)?$/;
-                if ( dates[ 0 ] )
-                {
-                    if ( dates[ 0 ] === 'NOW' )
-                    {
-                        this._yearMin   = this._today.getFullYear( );
-                        this._monthMin  = this._today.getMonth( ) + 1;
-                        this._dayMin    = this._today.getDate( );
-                    }
-                    else if ( pattern.test( dates[ 0 ] ) )
-                    {
-                        auxDate = dates[ 0 ].split( '-' );
-
-                        this._yearMin   = Math.floor( auxDate[ 0 ] );
-                        this._monthMin  = Math.floor( auxDate[ 1 ] ) || 1;
-                        this._dayMin    = Math.floor( auxDate[ 2 ] ) || 1;
-
-                        if ( 1 < this._monthMin && this._monthMin > 12 )
-                        {
-                            this._monthMin = 1;
-                            this._dayMin = 1;
-                        }
-
-                        if ( 1 < this._dayMin && this._dayMin > this._daysInMonth( this._yearMin , this._monthMin ) )
-                        {
-                            this._dayMin = 1;
-                        }
-                    }
-                    else
-                    {
-                        this._yearMin   = Number.MIN_VALUE;
-                        this._monthMin  = 1;
-                        this._dayMin    = 1;
-                    }
-                }
-
-                if ( dates[ 1 ] )
-                {
-                    if ( dates[ 1 ] === 'NOW' )
-                    {
-                        this._yearMax   = this._today.getFullYear( );
-                        this._monthMax  = this._today.getMonth( ) + 1;
-                        this._dayMax    = this._today.getDate( );
-                    }
-                    else if ( pattern.test( dates[ 1 ] ) )
-                    {
-                        auxDate = dates[ 1 ].split( '-' );
-
-                        this._yearMax   = Math.floor( auxDate[ 0 ] );
-                        this._monthMax  = Math.floor( auxDate[ 1 ] ) || 12;
-                        this._dayMax    = Math.floor( auxDate[ 2 ] ) || this._daysInMonth( this._yearMax , this._monthMax );
-
-                        if ( 1 < this._monthMax && this._monthMax > 12 )
-                        {
-                            this._monthMax = 12;
-                            this._dayMax = 31;
-                        }
-
-                        var MDay = this._daysInMonth( this._yearMax , this._monthMax );
-                        if ( 1 < this._dayMax && this._dayMax > MDay )
-                        {
-                            this._dayMax = MDay;
-                        }
-                    }
-                    else
-                    {
-                        this._yearMax   = Number.MAX_VALUE;
-                        this._monthMax  = 12;
-                        this._dayMax   = 31;
-                    }
-                }
-
-                if ( !( this._yearMax >= this._yearMin && (this._monthMax > this._monthMin || ( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) ) ) )
-                {
-                    this._yearMin   = Number.MIN_VALUE;
-                    this._monthMin  = 1;
-                    this._dayMin    = 1;
-
-                    this._yearMax   = Number.MAX_VALUE;
-                    this._monthMax  = 12;
-                    this._dayMaXx   = 31;
-                }
+            var self = this;
+            function minAbs() {
+                self._yearMin   = Number.MIN_VALUE;
+                self._monthMin  = 1;
+                self._dayMin    = 1;
             }
-            else
-            {
-                this._yearMin   = Number.MIN_VALUE;
-                this._monthMin  = 1;
-                this._dayMin    = 1;
+            function maxAbs() {
+                self._yearMax   = Number.MAX_VALUE;
+                self._monthMax  = 12;
+                self._dayMax    = 31;
+            }
+            function noLimits() { minAbs(); maxAbs(); }
 
-                this._yearMax   = Number.MAX_VALUE;
-                this._monthMax  = 12;
-                this._dayMax    = 31;
+            if (!dateRange) { return noLimits(); }
+
+            var dates = dateRange.split( ':' );
+            var rDate = /^(\d{4})((\-)(\d{1,2})((\-)(\d{1,2}))?)?$/;
+
+            InkArray.each([{suf: 'Min', date: dates[0]}, {suf: 'Max', date: dates[1]}], function (data) {
+                if (!data.date) { return; }
+                var yearLim;
+                var monthLim;
+                var dayLim;
+
+                if ( data.date === 'NOW' ) {
+                    yearLim   = this._today.getFullYear( );
+                    monthLim  = this._today.getMonth( ) + 1;
+                    dayLim    = this._today.getDate( );
+                } else if ( rDate.test( data.date ) ) {
+                    auxDate = data.date.split( '-' );
+
+                    yearLim   = Math.floor( auxDate[ 0 ] );
+                    monthLim  = Math.floor( auxDate[ 1 ] ) || 1;
+                    dayLim    = Math.floor( auxDate[ 2 ] ) || 1;
+
+                    if ( 1 < monthLim && monthLim > 12 )
+                    {
+                        monthLim = 1;
+                        dayLim = 1;
+                    }
+
+                    if ( 1 < dayLim && dayLim > this._daysInMonth( yearLim , monthLim ) )
+                    {
+                        dayLim = 1;
+                    }
+                } else {
+                    if (data.suf === 'Min') {
+                        return minAbs();
+                    } else {
+                        return maxAbs();
+                    }
+                }
+
+                this['_year' + data.suf] = yearLim;
+                this['_month' + data.suf] = yearLim;
+                this['_day' + data.suf] = dayLim;
+            });
+
+            // Invalid stuff
+            if ( !( this._yearMax >= this._yearMin && (this._monthMax > this._monthMin || ( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) ) ) )
+            {
+                noLimits();
             }
         },
 
@@ -727,9 +704,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else {
                 dataParsed = [];
                 if(this._isValidDate(
-                    dataParsed[0] = this._options.yearField[this._options.yearField.selectedIndex].value,
-                    dataParsed[1] = this._options.monthField[this._options.monthField.selectedIndex].value,
-                    dataParsed[2] = this._options.dayField[this._options.dayField.selectedIndex].value
+                    dataParsed[0] = this._yearField[this._yearField.selectedIndex].value,
+                    dataParsed[1] = this._monthField[this._monthField.selectedIndex].value,
+                    dataParsed[2] = this._dayField[this._dayField.selectedIndex].value
                 )){
                     dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
 
@@ -927,9 +904,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(!this._options.displayInSelect){
                 this._dataField.value = this._writeDateInFormat();
             } else {
-                this._options.dayField.value   = this._data.getDate();
-                this._options.monthField.value = this._data.getMonth()+1;
-                this._options.yearField.value  = this._data.getFullYear();
+                this._dayField.value   = this._data.getDate();
+                this._monthField.value = this._data.getMonth()+1;
+                this._yearField.value  = this._data.getFullYear();
             }
             if(this._options.onSetDate) {
                 this._options.onSetDate( this , { date : this._data } );
@@ -945,7 +922,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateCal: function(inc){
-            
             if( typeof this._options.onMonthSelected === 'function' ){
                 this._options.onMonthSelected(this, {
                     'year': this._year,
@@ -1055,25 +1031,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _showMonth: function(){
-            /*jshint maxstatements:100, maxcomplexity:30 */
-            var i, j;
+            var i;
+            var day;
             var mes = this._month + 1;
             var ano = this._year;
             var maxDay = this._daysInMonth(ano,mes);
-
+            
+            // Week day of the first day in the month
             var wDayFirst = (new Date( ano , mes - 1 , 1 )).getDay();
 
             var startWeekDay = this._options.startWeekDay || 0;
 
-            this._monthPrev.childNodes[0].className = 'change_month_prev';
-            this._monthNext.childNodes[0].className = 'change_month_next';
-
-            if ( ano < this._yearMin || ano === this._yearMin && mes <= this._monthMin ){
-                this._monthPrev.childNodes[0].className = 'action_inactive';
-            }
-            else if( ano > this._yearMax || ano === this._yearMax && mes >= this._monthMax ){
-                this._monthNext.childNodes[0].className = 'action_inactive';
-            }
+            this._showDefaultView();
 
             if(startWeekDay && Number(startWeekDay)){
                 if(startWeekDay > wDayFirst) {
@@ -1085,55 +1054,65 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var html = '';
 
+            // Write the top bar of the calendar (M T W T F S S)
             html += '<ul class="sapo_cal_header">';
-
+            var wDay;
             for(i=0; i<7; i++){
-                html+='<li>' + this._options.wDay[i + (((startWeekDay+i)>6) ? startWeekDay-7 : startWeekDay )].substring(0,1)  + '</li>';
+                wDay = (startWeekDay + i) % 7;
+                html+='<li>' + this._options.wDay[wDay].substring(0,1)  + '</li>';
             }
             html+='</ul>';
 
             var counter = 0;
             html+='<ul>';
-            if(wDayFirst){
-                for(j = startWeekDay; j < wDayFirst - startWeekDay; j++) {
-                    if (!counter){
-                        html+='<ul>';
-                    }
-                    html+='<li class="sapo_cal_empty">&nbsp;</li>';
-                    counter++;
-                }
+
+            var emptyHtml = '<li class="sapo_cal_empty">&nbsp;</li>';
+
+            // Write the "empties". Days to add padding to the first day of the month if it is not monday.
+            if(wDayFirst !== 0) {
+                var empties = wDayFirst - startWeekDay - 1;
+                counter += empties;
+                html += strRepeat(empties, emptyHtml);
             }
 
-            for (i = 1; i <= maxDay; i++) {
+            for (day = 1; day <= maxDay; day++) {
                 if (counter === 7){
                     counter=0;
                     html+='<ul>';
                 }
-                var idx = 'sapo_cal_' + ((String(i).length === 2) ? i : "0" + i);
-                idx += ( ano === this._yearMin && mes === this._monthMin && i < this._dayMin ||
-                    ano === this._yearMax && mes === this._monthMax && i > this._dayMax ||
-                    ano === this._yearMin && mes < this._monthMin ||
-                    ano === this._yearMax && mes > this._monthMax ||
-                    ano < this._yearMin || ano > this._yearMax || ( this._options.validDayFn && !this._options.validDayFn.call( this, new Date( ano , mes - 1 , i) ) ) ) ? " sapo_cal_off" :
-                    (this._data.getFullYear( ) === ano && this._data.getMonth( ) === mes - 1 && i === this._day) ? " sapo_cal_on" : "";
-                html+='<li><a href="#" class="' + idx + '">' + i + '</a></li>';
+
+                html += this._getCalendarDayHtml(ano, mes, day);
 
                 counter++;
                 if(counter === 7){
                     html+='</ul>';
                 }
             }
-            if (counter !== 7){
-                for(i = counter; i < 7; i++){
-                    html+='<li class="sapo_cal_empty">&nbsp;</li>';
-                }
-                html+='</ul>';
-            }
-            html+='</ul>';
 
+            // Add "empties" to the end of the calendar.
+            html += strRepeat(7 - counter, emptyHtml);
+
+            html+='</ul>';
 
             this._monthContainer.innerHTML = html;
 
+        },
+
+        /**
+         * Get the HTML markup for a single day in month view, given year, month, day.
+         *
+         * @method _getCalendarDayHtml
+         * @private
+         */
+        _getCalendarDayHtml: function (year, month, day) {
+            var className = 'sapo_cal_' + pad(day);
+            className += ( year === this._yearMin && month === this._monthMin && day < this._dayMin ||
+                year === this._yearMax && month === this._monthMax && day > this._dayMax ||
+                year === this._yearMin && month < this._monthMin ||
+                year === this._yearMax && month > this._monthMax ||
+                year < this._yearMin || year > this._yearMax || ( this._options.validDayFn && !this._options.validDayFn.call( this, new Date( year , month - 1 , day) ) ) ) ? " sapo_cal_off" :
+                (this._data.getFullYear( ) === year && this._data.getMonth( ) === month - 1 && day === this._day) ? " sapo_cal_on" : "";
+            return '<li><a href="#" class="' + className + '">' + day + '</a></li>';   
         },
 
         /**
