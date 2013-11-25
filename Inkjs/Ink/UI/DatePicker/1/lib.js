@@ -6,6 +6,8 @@
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';
 
+    /* jshint maxcomplexity: 7 */
+
     // Repeat a string. Long version of (new Array(n)).join(str);
     function strRepeat(n, str) {
         var ret = '';
@@ -63,7 +65,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *     </script>
      */
     var DatePicker = function(selector, options) {
-
         if (selector) {
             this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
         }
@@ -189,7 +190,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._containerObject.id = this._options.instance;
 
             this._containerObject.className = 'sapo_component_datepicker';
-            var dom = document.getElementsByTagName('body')[0];
 
             this._renderSuperTopBar();
 
@@ -217,23 +217,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._containerObject.appendChild(calendarTop);
             this._containerObject.appendChild(this._monthContainer);
 
-            this._monthSelector = document.createElement('ul');
-            this._monthSelector.className = 'sapo_cal_month_selector';
-
-            var ulSelector;
-            var liMonth;
-            for(var i=1; i<=12; i++){
-                if ((i-1) % 4 === 0) {
-                    ulSelector = document.createElement('ul');
-                }
-                liMonth = document.createElement('li');
-                liMonth.innerHTML = '<a href="#" class="sapo_calmonth_' + ( (String(i).length === 2) ? i : "0" + i) + '">' + this._options.month[i].substring(0,3) + '</a>';
-                ulSelector.appendChild(liMonth);
-                if (i % 4 === 0) {
-                    this._monthSelector.appendChild(ulSelector);
-                }
-            }
-
+            this._monthSelector = this._renderMonthSelector();
             this._containerObject.appendChild(this._monthSelector);
 
             this._yearSelector = document.createElement('ul');
@@ -256,19 +240,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 }
             }
 
-            if(this._options.containerElement) {
-                var container = Ink.i(this._options.containerElement);  // small backwards compatibility thing
-                if (!container) {
-                    container = Common.elOrSelector(this._options.containerElement);
-                }
-                container.appendChild(this._containerObject);
-            } else {
-                // We can't do this because of some CSS rules in Ink
-                // dom.insertBefore(this._containerObject, dom.childNodes[0]);
-                dom.appendChild(this._containerObject);
-            }
+			this._appendDatePickerToDom();
 
-            this._showMonth();
+            this._renderMonth();
 
             this._monthChanger = document.createElement('a');
             this._monthChanger.href = '#monthchanger';
@@ -277,7 +251,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._deText = document.createElement('span');
             this._deText.innerHTML = this._options._deText;
-
 
             this._yearChanger = document.createElement('a');
             this._yearChanger.href = '#yearchanger';
@@ -312,7 +285,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._containerObject.style.left = left + 'px';
                     //dom.appendChild(this._containerObject);
                     this._updateDate();
-                    this._showMonth();
+                    this._renderMonth();
                     this._containerObject.style.display = 'block';
                 },this));
             }
@@ -321,14 +294,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     Event.stop(e);
                     this._containerObject = Element.clonePosition(this._containerObject, this._picker);
                     this._updateDate();
-                    this._showMonth();
+                    this._renderMonth();
                     this._containerObject.style.display = 'block';
                 },this));
             }
             if (this._options.autoOpen) {
                 this._containerObject = Element.clonePosition(this._containerObject, (this._picker || this._dataField));
                 this._updateDate();
-                this._showMonth();
+                this._renderMonth();
                 this._containerObject.style.display = 'block';
             }
 
@@ -390,11 +363,49 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         },
 
+		/**
+		 * Create the markup of the view with months.
+		 *
+		 * @method _renderMonthSelector
+		 * @private
+		 */
+		_renderMonthSelector: function () {
+			var selector = document.createElement('ul');
+            selector.className = 'sapo_cal_month_selector';
+
+            var ulSelector = document.createElement('ul');
+            var liMonth;
+			var aMonth;
+            for(var mon=1; mon<=12; mon++){
+                liMonth = document.createElement('li');
+				aMonth = document.createElement('a');
+				aMonth.setAttribute('data-cal-month', mon);
+				aMonth.innerHTML = this._options.month[mon].substring(0,3);
+				liMonth.appendChild(aMonth);
+                ulSelector.appendChild(liMonth);
+                if (mon % 4 === 0) {
+                    selector.appendChild(ulSelector);
+					ulSelector = document.createElement('ul');
+                }
+            }
+			return selector;
+		},
+
+		_appendDatePickerToDom: function () {
+			var appendTarget = document.body;
+            if(this._options.containerElement) {
+                appendTarget =
+					Ink.i(this._options.containerElement) ||  // small backwards compatibility thing
+					Common.elOrSelector(this._options.containerElement);
+            }
+            appendTarget.appendChild(this._containerObject);
+		},
+
         /**
          * Render the topmost bar with the "close" and "clear" buttons.
          */
         _renderSuperTopBar: function () {
-            if(this._options.showClose || this._options.showClean){ return; }
+            if((!this._options.showClose) || (!this._options.showClean)){ return; }
 
             this._superTopBar = document.createElement("div");
             this._superTopBar.className = 'sapo_cal_top_options';
@@ -430,19 +441,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _onClick: function(e){
             var elem = Event.element(e);
             var className = elem.className;
-            var isInactive  = className.indexOf( 'sapo_cal_off' ) !== -1;
+            var isActive = !Css.hasClassName(elem, 'sapo_cal_off');
 
             Event.stop(e);
 
-            var changeYear = {
-                change_year_next: 1,
-                change_year_prev: -1
-            };
-            var changeMonth = {
-                change_month_next: 1,
-                change_month_prev: -1
-            };
+			// Relative changers
+			if (/^change_(year|month)_(next|prev)$/.test(className) && isActive) {
+				return this._onRelativeChangerClick(elem);
+			}
 
+			// Absolute changers
+			if(Selector.matches('[data-cal-month], [data-cal-year], [data-cal-day]', [elem]).length && isActive) {
+				return this._onAbsoluteChangerClick(elem);
+			}
+
+			// Mode changers
             if (className === 'sapo_cal_link_month') {
                 this._monthContainer.style.display = 'none';
                 this._yearSelector.style.display = 'none';
@@ -456,26 +469,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._monthSelector.style.display = 'none';
                 this._monthContainer.style.display = 'none';
                 this._showYearSelector();
-                this._yearSelector.style.display = 'block';
-            } else if( className.indexOf('sapo_cal_') === 0 && !isInactive ){
-                var day = className.substr( 9 , 2 );
-                if( Number( day ) ) {
-                    this.setDate( [this._year, this._month + 1, day].join('-') );
-                    this._hide();
-                }
-            } else if( className.indexOf("sapo_calmonth_") === 0 && !isInactive ){
-                var month=className.substr(14,2);
-                if(Number(month)){
-                    this._month = month - 1;
-                    this._showDefaultView();
-                    this._updateCal();
-                }
-            } else if( className.indexOf("sapo_calyear_") === 0 && !isInactive ){
-                this._changeYear(Number(className.substr(13, 4)));
-            } else if( (className in changeMonth ) && !isInactive ) {
-                this._updateCal(changeMonth[className]);
-            } else if( (className in changeYear) && !isInactive) {
-                this._showYearSelector(changeYear[className]);
             } else if(className === 'clean'){
                 this._clean();
             } else if(className === 'close'){
@@ -484,6 +477,49 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._updateDescription();
         },
+
+		/**
+		 * Handle click events on a changer (« ») for next/prev year/month
+		 * @method _onChangerClick
+		 * @private
+		 **/
+		_onRelativeChangerClick: function (elem) {
+            var changeYear = {
+                change_year_next: 1,
+                change_year_prev: -1
+            };
+            var changeMonth = {
+                change_month_next: 1,
+                change_month_prev: -1
+            };
+
+			if( elem.className in changeMonth ) {
+                this._updateCal(changeMonth[elem.className]);
+            } else if( elem.className in changeYear ) {
+                this._showYearSelector(changeYear[elem.className]);
+            }
+		},
+
+		/**
+		 * Handle click events on an atom-changer (day button, month button, year button)
+		 *
+		 * @method _onAbsoluteChangerClick
+		 * @private
+		 */
+		_onAbsoluteChangerClick: function (elem) {
+			var elemData = Element.data(elem);
+
+			if( Number(elemData.calDay) ){
+				this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
+				this._hide();
+            } else if( Number(elemData.calMonth) ) {
+				this._month = Number(elemData.calMonth) - 1;
+				this._showDefaultView();
+				this._updateCal();
+            } else if( Number(elemData.calYear) ){
+                this._changeYear(Number(elemData.calYear));
+            }
+		},
 
         _changeYear: function (year) {
             year = +year;
@@ -534,19 +570,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _setMinMax : function( dateRange )
         {
-            var auxDate;
             var self = this;
-            function minAbs() {
+            function noMinLimit() {
                 self._yearMin   = Number.MIN_VALUE;
                 self._monthMin  = 1;
                 self._dayMin    = 1;
             }
-            function maxAbs() {
+            function noMaxLimit() {
                 self._yearMax   = Number.MAX_VALUE;
                 self._monthMax  = 12;
                 self._dayMax    = 31;
             }
-            function noLimits() { minAbs(); maxAbs(); }
+            function noLimits() { noMinLimit(); noMaxLimit(); }
 
             if (!dateRange) { return noLimits(); }
 
@@ -559,32 +594,30 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 var monthLim;
                 var dayLim;
 
-                if ( data.date === 'NOW' ) {
+                if ( data.date.toUpperCase() === 'NOW' ) {
                     yearLim   = this._today.getFullYear( );
                     monthLim  = this._today.getMonth( ) + 1;
                     dayLim    = this._today.getDate( );
                 } else if ( rDate.test( data.date ) ) {
-                    auxDate = data.date.split( '-' );
+                    var splitDate = data.date.split( '-' );
 
-                    yearLim   = Math.floor( auxDate[ 0 ] );
-                    monthLim  = Math.floor( auxDate[ 1 ] ) || 1;
-                    dayLim    = Math.floor( auxDate[ 2 ] ) || 1;
+                    yearLim   = Math.floor( splitDate[ 0 ] );
+                    monthLim  = Math.floor( splitDate[ 1 ] ) || 1;
+                    dayLim    = Math.floor( splitDate[ 2 ] ) || 1;
 
-                    if ( 1 < monthLim && monthLim > 12 )
-                    {
+                    if ( 1 < monthLim && monthLim > 12 ) {
                         monthLim = 1;
                         dayLim = 1;
-                    }
+					}
 
-                    if ( 1 < dayLim && dayLim > this._daysInMonth( yearLim , monthLim ) )
-                    {
+                    if ( 1 < dayLim && dayLim > this._daysInMonth( yearLim , monthLim ) ) {
                         dayLim = 1;
                     }
                 } else {
                     if (data.suf === 'Min') {
-                        return minAbs();
+                        return noMinLimit();
                     } else {
-                        return maxAbs();
+                        return noMaxLimit();
                     }
                 }
 
@@ -594,7 +627,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             });
 
             // Invalid stuff
-            if ( !( this._yearMax >= this._yearMin && (this._monthMax > this._monthMin || ( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) ) ) )
+			var valid = this._yearMax >= this._yearMin &&
+				(this._monthMax > this._monthMin ||
+					( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) );
+            if ( !valid )
             {
                 noLimits();
             }
@@ -612,42 +648,38 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {Array}       Array with the final processed date.
          * @private
          */
-        _checkDateRange : function( year , month , day )
-        {
-            if ( !this._isValidDate( year , month + 1 , day ) )
-            {
+        _checkDateRange : function( year , month , day ) {
+            if ( !this._isValidDate( year , month + 1 , day ) ) {
                 year  = this._today.getFullYear( );
                 month = this._today.getMonth( );
                 day   = this._today.getDate( );
             }
 
-            if ( year > this._yearMax )
-            {
+            if ( year > this._yearMax ) {
                 year  = this._yearMax;
                 month = this._monthMax - 1;
                 day   = this._dayMax;
-            }
-            else if ( year < this._yearMin )
-            {
+            } else if ( year < this._yearMin ) {
                 year  = this._yearMin;
                 month = this._monthMin - 1;
                 day   = this._dayMin;
             }
 
-            if ( year === this._yearMax && month + 1 > this._monthMax )
-            {
+            if ( year === this._yearMax && month + 1 > this._monthMax ) {
                 month = this._monthMax - 1;
                 day   = this._dayMax;
-            }
-            else if ( year === this._yearMin && month + 1 < this._monthMin )
-            {
+            } else if ( year === this._yearMin && month + 1 < this._monthMin ) {
                 month = this._monthMin - 1;
                 day   = this._dayMin;
             }
 
-            if ( year === this._yearMax && month + 1 === this._monthMax && day > this._dayMax ){ day = this._dayMax; }
-            else if ( year === this._yearMin && month + 1 === this._monthMin && day < this._dayMin ){ day = this._dayMin; }
-            else if ( day > this._daysInMonth( year , month + 1 ) ){ day = this._daysInMonth( year , month + 1 ); }
+            if ( year === this._yearMax && month + 1 === this._monthMax && day > this._dayMax ) {
+				day = this._dayMax;
+			} else if ( year === this._yearMin && month + 1 === this._monthMin && day < this._dayMin ) {
+				day = this._dayMin;
+			} else if ( day > this._daysInMonth( year , month + 1 ) ) {
+				day = this._daysInMonth( year , month + 1 );
+			}
 
             return [ year , month , day ];
         },
@@ -686,7 +718,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(!this._options.displayInSelect){
                 if(this._dataField.value !== ''){
                     if(this._isDate(this._options.format,this._dataField.value)){
-                        dataParsed = this._getDataArrayParsed(this._dataField.value);
+                        dataParsed = this._getDateArrayParsed(this._dataField.value);
                         dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
 
                         this._year  = dataParsed[ 0 ];
@@ -725,7 +757,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 }
             }
             this._updateDescription();
-            this._showMonth();
+            this._renderMonth();
         },
 
         /**
@@ -756,56 +788,63 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._year = + this._year + arguments[0]*10;
             }
 
-            var str = "<li>";
-            var ano_base = this._year-(this._year%10);
+            var firstYear = this._year - (this._year % 10);
+			var thisYear = firstYear - 1;
+            var str = "<li><ul>";
 
-            for (var i=0; i<=11; i++){
+			if (thisYear >= this._yearMin) {
+				str += '<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+			} else {
+				str += '<li>&nbsp;</li>';
+			}
+
+            for (var i=1; i < 11; i++){
                 if (i % 4 === 0){
-                    str+='<ul>';
+                    str+='</ul><ul>';
                 }
 
-                if (!i || i === 11){
-                    if ( i && (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
-                        str+='<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
-                    } else if( (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
-                        str+='<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
-                    } else {
-                        str +='<li>&nbsp;</li>';
-                    }
-                } else {
-                    if ( (ano_base+i-1)<=this._yearMax && (ano_base+i-1)>=this._yearMin ){
-                        str+='<li><a href="#" class="sapo_calyear_' + (ano_base+i-1)  + (((ano_base+i-1) === this._data.getFullYear()) ? ' sapo_cal_on' : '') + '">' + (ano_base+i-1) +'</a></li>';
-                    } else {
-                        str+='<li><a href="#" class="sapo_cal_off">' + (ano_base+i-1) +'</a></li>';
+				thisYear = firstYear + i - 1;
 
-                    }
-                }
-
-                if ((i+1) % 4 === 0) {
-                    str+='</ul>';
-                }
+				str += this._getYearButtonHtml(thisYear);
             }
 
-            str += "</li>";
+			if( thisYear <= this._yearMax ){
+				str += '<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
+			} else {
+				str += '<li>&nbsp;</li>';
+			}
+
+            str += "</ul></li>";
 
             this._yearSelector.innerHTML = str;
+			this._yearSelector.style.display = 'block';
         },
+
+		_getYearButtonHtml: function (thisYear) {
+			if ( thisYear<=this._yearMax && thisYear>=this._yearMin ){
+				var className = (thisYear === this._data.getFullYear()) ? ' class="sapo_cal_on"' : '';
+				return '<li><a href="#" data-cal-year="' + thisYear + '"' + className + '>' + thisYear +'</a></li>';
+			} else {
+				return '<li><a href="#" class="sapo_cal_off">' + thisYear +'</a></li>';
+
+			}
+		},
 
         /**
          * This function returns the given date in an array format
          *
-         * @method _getDataArrayParsed
+         * @method _getDateArrayParsed
          * @param {String} dateStr A date on a string.
          * @private
          * @return {Array} The given date in an array format
          */
-        _getDataArrayParsed: function(dateStr){
-            var arrData = [];
-            var data = InkDate.set( this._options.format , dateStr );
-            if (data) {
-                arrData = [ data.getFullYear( ) , data.getMonth( ) + 1 , data.getDate( ) ];
+        _getDateArrayParsed: function(dateStr){
+            var arrDate = [];
+            var date = InkDate.set( this._options.format , dateStr );
+            if (date) {
+                arrDate = [ date.getFullYear( ) , date.getMonth( ) + 1 , date.getDate( ) ];
             }
-            return arrData;
+            return arrDate;
         },
 
         /**
@@ -894,11 +933,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @param {DOMElement} objClicked Clicked object inside the DatePicker's calendar.
          * @private
          */
-        _setDate : function( objClicked ){
-            if( typeof objClicked !== 'undefined' && objClicked.className && objClicked.className.indexOf('sapo_cal_') === 0 )
-            {
-                this._day = objClicked.className.substr( 9 , 2 );
-            }
+        _setDate : function( objClicked ) {
+			if (objClicked) {
+				var data = Element.data(objClicked);
+				this._day = (+data.calDay) || this._day;
+			}
+
             this._data.setFullYear.apply( this._data , this._checkDateRange( this._year , this._month , this._day ) );
 
             if(!this._options.displayInSelect){
@@ -908,6 +948,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._monthField.value = this._data.getMonth()+1;
                 this._yearField.value  = this._data.getFullYear();
             }
+
             if(this._options.onSetDate) {
                 this._options.onSetDate( this , { date : this._data } );
             }
@@ -929,7 +970,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 });
             }
             this._updateMonth(inc);
-            this._showMonth();
+            this._renderMonth();
         },
 
         /**
@@ -969,10 +1010,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateMonth: function(incValue){
-            if(typeof incValue === 'undefined') {
-                incValue = "0";
-            }
-
             var mes = this._month + 1;
             var ano = this._year;
             switch(incValue){
@@ -1001,7 +1038,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._month = mes - 1;
                     break;
                 default:
-
             }
         },
 
@@ -1027,10 +1063,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         /**
          * Renders the current month
          *
-         * @method _showMonth
+         * @method _renderMonth
          * @private
          */
-        _showMonth: function(){
+        _renderMonth: function(){
             var i;
             var day;
             var mes = this._month + 1;
@@ -1044,13 +1080,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._showDefaultView();
 
-            if(startWeekDay && Number(startWeekDay)){
-                if(startWeekDay > wDayFirst) {
-                    wDayFirst = 7 + startWeekDay - wDayFirst;
-                } else {
-                    wDayFirst += startWeekDay;
-                }
-            }
+			if(startWeekDay > wDayFirst) {
+				wDayFirst = 7 + startWeekDay - wDayFirst;
+			} else {
+				wDayFirst += startWeekDay;
+			}
 
             var html = '';
 
@@ -1112,7 +1146,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 year === this._yearMax && month > this._monthMax ||
                 year < this._yearMin || year > this._yearMax || ( this._options.validDayFn && !this._options.validDayFn.call( this, new Date( year , month - 1 , day) ) ) ) ? " sapo_cal_off" :
                 (this._data.getFullYear( ) === year && this._data.getMonth( ) === month - 1 && day === this._day) ? " sapo_cal_on" : "";
-            return '<li><a href="#" class="' + className + '">' + day + '</a></li>';   
+            return '<li><a href="#" class="' + className + '" data-cal-day="' + day + '">' + day + '</a></li>';   
         },
 
         /**
@@ -1127,34 +1161,28 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 parent = this._monthSelector;
             }
 
+			var data = Element.data(parent);
             var length = parent.childNodes.length;
 
-            if (parent.className && parent.className.match(/sapo_calmonth_/)) {
+            if (+data.calMonth) {
                 var year = this._year;
-                var month = parent.className.substr( 14 , 2 );
+                var month = +data.calMonth;
 
-                if ( year === this._data.getFullYear( ) && month === this._data.getMonth( ) + 1 )
-                {
+                if ( year === this._data.getFullYear( ) && month === this._data.getMonth( ) + 1 ) {
                     Css.addClassName( parent , 'sapo_cal_on' );
                     Css.removeClassName( parent , 'sapo_cal_off' );
-                }
-                else
-                {
+                } else {
                     Css.removeClassName( parent , 'sapo_cal_on' );
                     if ( year === this._yearMin && month < this._monthMin ||
                         year === this._yearMax && month > this._monthMax ||
                         year < this._yearMin ||
-                        year > this._yearMax )
-                    {
+                        year > this._yearMax ) {
                         Css.addClassName( parent , 'sapo_cal_off' );
-                    }
-                    else
-                    {
+                    } else {
                         Css.removeClassName( parent , 'sapo_cal_off' );
                     }
                 }
-            }
-            else if (length !== 0){
+            } else if (length !== 0){
                 for (var i = 0; i < length; i++) {
                     this._setActiveMonth(parent.childNodes[i]);
                 }
@@ -1184,7 +1212,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @public
          */
         showMonth: function(){
-            this._showMonth();
+            this._renderMonth();
         },
 
         /**
