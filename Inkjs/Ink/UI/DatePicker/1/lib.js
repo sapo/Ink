@@ -134,7 +134,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         this._year  = this._today.getFullYear( );
 
         this._setMinMax( this._options.dateRange || this._options.yearRange );
-        this._data = new Date( Date.UTC.apply( this , this._checkDateRange( this._year , this._month , this._day ) ) );
+        this._data = new Date( Date.UTC.apply( this , this._fitDateToRange( this._year , this._month , this._day ) ) );
 
         if(this._options.startDate && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
             this.setDate( this._options.startDate );
@@ -237,7 +237,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 }
             }
 
-			this._appendDatePickerToDom();
+            this._appendDatePickerToDom();
 
             this._renderMonth();
 
@@ -258,8 +258,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthDescContainer.appendChild(this._deText);
             this._monthDescContainer.appendChild(this._yearChanger);
 
-            // this._dataField.parentNode.appendChild(this._containerObject, dom.childNodes[0]);
+            this._addEventHandlersToPicker();
+        },
 
+        _addEventHandlersToPicker: function () {
             if (!this._picker) {
                 Event.observe(this._dataField,'focus',Ink.bindEvent(function(){
                     this._containerObject = Element.clonePosition(this._containerObject, this._dataField);
@@ -285,8 +287,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._renderMonth();
                     this._containerObject.style.display = 'block';
                 },this));
-            }
-            else {
+            } else {
                 Event.observe(this._picker,'click',Ink.bindEvent(function(e){
                     Event.stop(e);
                     this._containerObject = Element.clonePosition(this._containerObject, this._picker);
@@ -295,6 +296,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._containerObject.style.display = 'block';
                 },this));
             }
+
             if (this._options.autoOpen) {
                 this._containerObject = Element.clonePosition(this._containerObject, (this._picker || this._dataField));
                 this._updateDate();
@@ -317,7 +319,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     }
                 },this));
             } else {
-                Event.observe(this._options.dayField,'change', Ink.bindEvent(function(){
+                Event.observeMulti(this._options.dayField,'change', Ink.bindEvent(function(){
                     var yearSelected = this._options.yearField[this._options.yearField.selectedIndex].value;
                     if(yearSelected !== '' && yearSelected !== 0) {
                         this._updateDate();
@@ -344,8 +346,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     if (!Element.descendantOf(this._containerObject, target) && target !== this._dataField) {
                         if (!this._picker) {
                             this._hide(true);
-                        }
-                        else if (target !== this._picker &&
+                        } else if (target !== this._picker &&
                                  (!this._options.displayInSelect ||
                                   (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
                             if (!this._options.dayField ||
@@ -360,43 +361,49 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         },
 
-		/**
-		 * Create the markup of the view with months.
-		 *
-		 * @method _renderMonthSelector
-		 * @private
-		 */
-		_renderMonthSelector: function () {
-			var selector = document.createElement('ul');
+        /**
+         * Create the markup of the view with months.
+         *
+         * @method _renderMonthSelector
+         * @private
+         */
+        _renderMonthSelector: function () {
+            var selector = document.createElement('ul');
             selector.className = 'sapo_cal_month_selector';
 
             var ulSelector = document.createElement('ul');
-            var liMonth;
-			var aMonth;
             for(var mon=1; mon<=12; mon++){
-                liMonth = document.createElement('li');
-				aMonth = document.createElement('a');
-				aMonth.setAttribute('data-cal-month', mon);
-				aMonth.innerHTML = this._options.month[mon].substring(0,3);
-				liMonth.appendChild(aMonth);
-                ulSelector.appendChild(liMonth);
+                ulSelector.appendChild(this._renderMonthButton(mon));
+
                 if (mon % 4 === 0) {
                     selector.appendChild(ulSelector);
-					ulSelector = document.createElement('ul');
+                    ulSelector = document.createElement('ul');
                 }
             }
-			return selector;
-		},
+            return selector;
+        },
 
-		_appendDatePickerToDom: function () {
-			var appendTarget = document.body;
+        /**
+         * Render a single month button.
+         */
+        _renderMonthButton: function (mon) {
+            var liMonth = document.createElement('li');
+            var aMonth = document.createElement('a');
+            aMonth.setAttribute('data-cal-month', mon);
+            aMonth.innerHTML = this._options.month[mon].substring(0,3);
+            liMonth.appendChild(aMonth);
+            return liMonth;
+        },
+
+        _appendDatePickerToDom: function () {
+            var appendTarget = document.body;
             if(this._options.containerElement) {
                 appendTarget =
-					Ink.i(this._options.containerElement) ||  // small backwards compatibility thing
-					Common.elOrSelector(this._options.containerElement);
+                    Ink.i(this._options.containerElement) ||  // small backwards compatibility thing
+                    Common.elOrSelector(this._options.containerElement);
             }
             appendTarget.appendChild(this._containerObject);
-		},
+        },
 
         /**
          * Render the topmost bar with the "close" and "clear" buttons.
@@ -407,16 +414,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._superTopBar = document.createElement("div");
             this._superTopBar.className = 'sapo_cal_top_options';
             if(this._options.showClean){
-                var clean = document.createElement('a');
-                clean.className = 'clean';
-                clean.innerHTML = this._options.cleanText;
-                this._superTopBar.appendChild(clean);
+                this._superTopBar.appendChild(Element.create('a', {
+                    className: 'clean',
+                    setHTML: this._options.cleanText
+                }));
             }
             if(this._options.showClose){
-                var close = document.createElement('a');
-                close.className = 'close';
-                close.innerHTML = this._options.closeText;
-                this._superTopBar.appendChild(close);
+                this._superTopBar.appendChild(Element.create('a', {
+                    className: 'close',
+                    setHTML: this._options.closeText
+                }));
             }
             this._containerObject.appendChild(this._superTopBar);
         },
@@ -437,50 +444,35 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _onClick: function(e){
             var elem = Event.element(e);
-            var className = elem.className;
-            var isActive = !Css.hasClassName(elem, 'sapo_cal_off');
 
             Event.stop(e);
 
-			// Relative changers
-			if (/^change_(year|month)_(next|prev)$/.test(className) && isActive) {
-				return this._onRelativeChangerClick(elem);
-			}
+            // Relative changers
+            this._onRelativeChangerClick(elem);
 
-			// Absolute changers
-			if(Selector.matches('[data-cal-month], [data-cal-year], [data-cal-day]', [elem]).length && isActive) {
-				return this._onAbsoluteChangerClick(elem);
-			}
+            // Absolute changers
+            this._onAbsoluteChangerClick(elem);
 
-			// Mode changers
-            if (className === 'sapo_cal_link_month') {
-                this._monthContainer.style.display = 'none';
-                this._yearSelector.style.display = 'none';
-                this._monthPrev.childNodes[0].className = 'action_inactive';
-                this._monthNext.childNodes[0].className = 'action_inactive';
-                this._setActiveMonth();
-                this._monthSelector.style.display = 'block';
-            } else if (className === 'sapo_cal_link_year') {
-                this._monthPrev.childNodes[0].className = 'action_inactive';
-                this._monthNext.childNodes[0].className = 'action_inactive';
-                this._monthSelector.style.display = 'none';
-                this._monthContainer.style.display = 'none';
+            // Mode changers
+            if (Css.hasClassName(elem, 'sapo_cal_link_month')) {
+                this._showMonthSelector();
+            } else if (Css.hasClassName(elem, 'sapo_cal_link_year')) {
                 this._showYearSelector();
-            } else if(className === 'clean'){
+            } else if(Css.hasClassName(elem, 'clean')){
                 this._clean();
-            } else if(className === 'close'){
+            } else if(Css.hasClassName(elem, 'close')){
                 this._hide(false);
             }
 
             this._updateDescription();
         },
 
-		/**
-		 * Handle click events on a changer (« ») for next/prev year/month
-		 * @method _onChangerClick
-		 * @private
-		 **/
-		_onRelativeChangerClick: function (elem) {
+        /**
+         * Handle click events on a changer (« ») for next/prev year/month
+         * @method _onChangerClick
+         * @private
+         **/
+        _onRelativeChangerClick: function (elem) {
             var changeYear = {
                 change_year_next: 1,
                 change_year_prev: -1
@@ -490,33 +482,36 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 change_month_prev: -1
             };
 
-			if( elem.className in changeMonth ) {
+            if( elem.className in changeMonth ) {
                 this._updateCal(changeMonth[elem.className]);
             } else if( elem.className in changeYear ) {
                 this._showYearSelector(changeYear[elem.className]);
             }
-		},
+        },
 
-		/**
-		 * Handle click events on an atom-changer (day button, month button, year button)
-		 *
-		 * @method _onAbsoluteChangerClick
-		 * @private
-		 */
-		_onAbsoluteChangerClick: function (elem) {
-			var elemData = Element.data(elem);
+        /**
+         * Handle click events on an atom-changer (day button, month button, year button)
+         *
+         * @method _onAbsoluteChangerClick
+         * @private
+         */
+        _onAbsoluteChangerClick: function (elem) {
+            var elemData = Element.data(elem);
+            if (Css.hasClassName(elem, 'sapo_cal_off')) {
+                return null;
+            }
 
-			if( Number(elemData.calDay) ){
-				this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
-				this._hide();
+            if( Number(elemData.calDay) ){
+                this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
+                this._hide();
             } else if( Number(elemData.calMonth) ) {
-				this._month = Number(elemData.calMonth) - 1;
-				this._showDefaultView();
-				this._updateCal();
+                this._month = Number(elemData.calMonth) - 1;
+                this._showDefaultView();
+                this._updateCal();
             } else if( Number(elemData.calYear) ){
                 this._changeYear(Number(elemData.calYear));
             }
-		},
+        },
 
         _changeYear: function (year) {
             year = +year;
@@ -527,11 +522,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         'year': this._year
                     });
                 }
-                this._monthPrev.childNodes[0].className = 'action_inactive';
-                this._monthNext.childNodes[0].className = 'action_inactive';
-                this._yearSelector.style.display='none';
-                this._setActiveMonth();
-                this._monthSelector.style.display='block';
+                this._showMonthSelector();
             }
         },
 
@@ -565,8 +556,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @param {String} dateRange Two dates separated by a ':'. Example: 2013-01-01:2013-12-12
          * @private
          */
-        _setMinMax : function( dateRange )
-        {
+        _setMinMax: function( dateRange ) {
             var self = this;
             function noMinLimit() {
                 self._yearMin   = Number.MIN_VALUE;
@@ -585,16 +575,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var dates = dateRange.split( ':' );
             var rDate = /^(\d{4})((\-)(\d{1,2})((\-)(\d{1,2}))?)?$/;
 
-            InkArray.each([{suf: 'Min', date: dates[0]}, {suf: 'Max', date: dates[1]}], function (data) {
+            InkArray.each([
+                        {suf: 'Min', date: dates[0], noLim: noMinLimit},
+                        {suf: 'Max', date: dates[1], noLim: noMaxLimit}
+                    ], Ink.bind(function (data) {
                 if (!data.date) { return; }
                 var yearLim;
                 var monthLim;
                 var dayLim;
 
                 if ( data.date.toUpperCase() === 'NOW' ) {
-                    yearLim   = this._today.getFullYear( );
-                    monthLim  = this._today.getMonth( ) + 1;
-                    dayLim    = this._today.getDate( );
+                    yearLim   = this._year;
+                    monthLim  = this._month + 1;
+                    dayLim    = this._day;
                 } else if ( rDate.test( data.date ) ) {
                     var splitDate = data.date.split( '-' );
 
@@ -602,33 +595,26 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     monthLim  = Math.floor( splitDate[ 1 ] ) || 1;
                     dayLim    = Math.floor( splitDate[ 2 ] ) || 1;
 
-                    if ( 1 < monthLim && monthLim > 12 ) {
+                    if ( monthLim < 1 || monthLim > 12 ) {
                         monthLim = 1;
-                        dayLim = 1;
-					}
+                    }
 
-                    if ( 1 < dayLim && dayLim > this._daysInMonth( yearLim , monthLim ) ) {
+                    if ( dayLim < 1 || dayLim > this._daysInMonth( yearLim , monthLim - 1 ) ) {
                         dayLim = 1;
                     }
                 } else {
-                    if (data.suf === 'Min') {
-                        return noMinLimit();
-                    } else {
-                        return noMaxLimit();
-                    }
+                    data.noLim();
+                    return;
                 }
 
                 this['_year' + data.suf] = yearLim;
-                this['_month' + data.suf] = yearLim;
+                this['_month' + data.suf] = monthLim;
                 this['_day' + data.suf] = dayLim;
-            });
+            }, this));
 
-            // Invalid stuff
-			var valid = this._yearMax >= this._yearMin &&
-				(this._monthMax > this._monthMin ||
-					( (this._monthMax === this._monthMin) && (this._dayMax >= this._dayMin) ) );
-            if ( !valid )
-            {
+            var valid = this._dateCmp(this._getMax(), this._getMin()) === 1;
+
+            if (!valid) {
                 noLimits();
             }
         },
@@ -638,15 +624,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Starts by checking if the date passed is valid. If not, will fallback to the 'today' date.
          * Then checks if the all params are inside of the date range specified. If not, it will fallback to the nearest valid date (either Min or Max).
          *
-         * @method _checkDateRange
+         * @method _fitDateToRange
          * @param  {Number} year  Year with 4 digits (yyyy)
          * @param  {Number} month Month
          * @param  {Number} day   Day
          * @return {Array}       Array with the final processed date.
          * @private
          */
-        _checkDateRange : function( year , month , day ) {
-            if ( !this._isValidDate( year , month + 1 , day ) ) {
+        _fitDateToRange: function( year , month , day ) {
+            if ( !this._isValidDate( year , month , day ) ) {
                 year  = this._today.getFullYear( );
                 month = this._today.getMonth( );
                 day   = this._today.getDate( );
@@ -663,14 +649,89 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             if ( year === this._yearMax && month + 1 === this._monthMax && day > this._dayMax ) {
-				day = this._dayMax;
-			} else if ( year === this._yearMin && month + 1 === this._monthMin && day < this._dayMin ) {
-				day = this._dayMin;
-			} else if ( day > this._daysInMonth( year , month + 1 ) ) {
-				day = this._daysInMonth( year , month + 1 );
-			}
+                day = this._dayMax;
+            } else if ( year === this._yearMin && month + 1 === this._monthMin && day < this._dayMin ) {
+                day = this._dayMin;
+            } else if ( day > this._daysInMonth( year , month ) ) {
+                day = this._daysInMonth( year , month );
+            }
 
             return [ year , month , day ];
+        },
+
+        /**
+         * Checks whether a date is within the valid date range
+         * @method _dateWithinRange
+         * @param year
+         * @param month
+         * @param day
+         * @return {Boolean}
+         * @private
+         */
+        _dateWithinRange: function (year, month, day) {
+            if (!arguments.length) {
+                year = this._year;
+                month = this._month;
+                day = this._day;
+            }
+
+            return  (!this._dateAboveMax(year, month, day) &&
+                    (!this._dateBelowMin(year, month, day)));
+        },
+
+        _dateAboveMax: function (year, month, day) {
+            return this._dateCmp({
+                _year: year,
+                _month: month,
+                _day: day
+            }, this._getMax()) === 1;
+        },
+
+        _dateBelowMin: function (year, month, day) {
+            return this._dateCmp({
+                _year: year,
+                _month: month,
+                _day: day
+            }, this._getMin()) === -1;
+        },
+
+        /**
+         * Get maximum date allowed, in a {_year, _month, _day} format
+         */
+        _getMax: function () {
+            return {
+                _year: this._yearMax,
+                _month: this._monthMax - 1,
+                _day: this._dayMax
+            };
+        },
+
+        /**
+         * Get minimum date allowed, in a {_year, _month, _day} format.
+         */
+        _getMin: function () {
+            return {
+                _year: this._yearMin,
+                _month: this._monthMin - 1,
+                _day: this._dayMin
+            };
+        },
+
+        _dateCmp: function (self, oth) {
+            var props = ['_year', '_month', '_day'];
+
+            for (var i = 0; i < 3; i++) {
+                if      (self[props[i]] > oth[props[i]]) { return 1; }
+                else if (self[props[i]] < oth[props[i]]) { return -1; }
+                else {
+                    // Check if there is a next property (we can cmp year +
+                    // month only or the loop could be ending)
+                    if (self[props[i + 1]] === undefined || oth[props[i + 1]] === undefined) {
+                        return 0;
+                    } // if the next prop is known, we can cmp() that.
+                }
+            }
+            throw 'Should not run';
         },
 
         /**
@@ -686,10 +747,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthPrev.childNodes[0].className = 'change_month_prev';
             this._monthNext.childNodes[0].className = 'change_month_next';
 
-            if ( this._year < this._yearMin || this._year === this._yearMin && this._month + 1 <= this._monthMin ){
+            if ( !this._getPrevMonth() ) {
                 this._monthPrev.childNodes[0].className = 'action_inactive';
             }
-            else if( this._year > this._yearMax || this._year === this._yearMax && this._month + 1 >= this._monthMax ){
+
+            if ( !this._getNextMonth() ) {
                 this._monthNext.childNodes[0].className = 'action_inactive';
             }
 
@@ -708,7 +770,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if(this._dataField.value !== ''){
                     if(this._isDate(this._options.format,this._dataField.value)){
                         dataParsed = this._getDateArrayParsed(this._dataField.value);
-                        dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
+                        dataParsed = this._fitDateToRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
 
                         this._year  = dataParsed[ 0 ];
                         this._month = dataParsed[ 1 ];
@@ -729,17 +791,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     dataParsed[1] = this._options.monthField[this._options.monthField.selectedIndex].value,
                     dataParsed[2] = this._options.dayField[this._options.dayField.selectedIndex].value
                 )){
-                    dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
+                    dataParsed = this._fitDateToRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
 
                     this._year  = dataParsed[ 0 ];
                     this._month = dataParsed[ 1 ];
                     this._day   = dataParsed[ 2 ];
                 } else {
-                    dataParsed = this._checkDateRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , 1 );
-                    if(this._isValidDate( dataParsed[ 0 ], dataParsed[ 1 ] + 1 ,dataParsed[ 2 ] )){
+                    dataParsed = this._fitDateToRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , 1 );
+                    if(this._isValidDate( dataParsed[ 0 ], dataParsed[ 1 ] - 1 ,dataParsed[ 2 ] )){
                         this._year  = dataParsed[ 0 ];
                         this._month = dataParsed[ 1 ];
-                        this._day   = this._daysInMonth(dataParsed[0],dataParsed[1]);
+                        this._day   = this._daysInMonth(dataParsed[0],dataParsed[1] - 1);
 
                         this.setDate();
                     }
@@ -751,6 +813,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         /**
          * Updates the date description shown at the top of the datepicker
+         *
+         * EG "12 de November"
          *
          * @method  _updateDescription
          * @private
@@ -778,46 +842,64 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             var firstYear = this._year - (this._year % 10);
-			var thisYear = firstYear - 1;
+            var thisYear = firstYear - 1;
             var str = "<li><ul>";
 
-			if (thisYear >= this._yearMin) {
-				str += '<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
-			} else {
-				str += '<li>&nbsp;</li>';
-			}
+            if (thisYear > this._yearMin) {
+                str += '<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
+            } else {
+                str += '<li>&nbsp;</li>';
+            }
 
             for (var i=1; i < 11; i++){
                 if (i % 4 === 0){
                     str+='</ul><ul>';
                 }
 
-				thisYear = firstYear + i - 1;
+                thisYear = firstYear + i - 1;
 
-				str += this._getYearButtonHtml(thisYear);
+                str += this._getYearButtonHtml(thisYear);
             }
 
-			if( thisYear <= this._yearMax ){
-				str += '<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
-			} else {
-				str += '<li>&nbsp;</li>';
-			}
+            if( thisYear < this._yearMax ){
+                str += '<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
+            } else {
+                str += '<li>&nbsp;</li>';
+            }
 
             str += "</ul></li>";
 
             this._yearSelector.innerHTML = str;
-			this._yearSelector.style.display = 'block';
+            this._monthPrev.childNodes[0].className = 'action_inactive';
+            this._monthNext.childNodes[0].className = 'action_inactive';
+            this._monthSelector.style.display = 'none';
+            this._monthContainer.style.display = 'none';
+            this._yearSelector.style.display = 'block';
         },
 
-		_getYearButtonHtml: function (thisYear) {
-			if ( thisYear<=this._yearMax && thisYear>=this._yearMin ){
-				var className = (thisYear === this._data.getFullYear()) ? ' class="sapo_cal_on"' : '';
-				return '<li><a href="#" data-cal-year="' + thisYear + '"' + className + '>' + thisYear +'</a></li>';
-			} else {
-				return '<li><a href="#" class="sapo_cal_off">' + thisYear +'</a></li>';
+        _getYearButtonHtml: function (thisYear) {
+            if ( thisYear<=this._yearMax && thisYear>=this._yearMin ){
+                var className = (thisYear === this._year) ? ' class="sapo_cal_on"' : '';
+                return '<li><a href="#" data-cal-year="' + thisYear + '"' + className + '>' + thisYear +'</a></li>';
+            } else {
+                return '<li><a href="#" class="sapo_cal_off">' + thisYear +'</a></li>';
 
-			}
-		},
+            }
+        },
+
+        /**
+         * Show the month selector (happens when you click a year, or the "month" link.
+         * @method _showMonthSelector
+         * @private
+         */
+        _showMonthSelector: function () {
+            this._yearSelector.style.display = 'none';
+            this._monthContainer.style.display = 'none';
+            this._monthPrev.childNodes[0].className = 'action_inactive';
+            this._monthNext.childNodes[0].className = 'action_inactive';
+            this._addMonthClassNames();
+            this._monthSelector.style.display = 'block';
+        },
 
         /**
          * This function returns the given date in an array format
@@ -856,7 +938,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 month >= 1  &&
                 month <= 12 &&
                 day   >= 1  &&
-                day   <= this._daysInMonth(year,month)
+                day   <= this._daysInMonth(year,month - 1)
             );
         },
 
@@ -883,16 +965,37 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             return false;
         },
 
-        _acceptableDay: function () {
-            throw 'not implemented';
+        _acceptableDay: function (year, month, day) {
+            if (!this._dateWithinRange(year, month, day)) { return false; }
+            if (this._options.validDayFn) { return this._options.validDayFn(); }
+            return true;
         },
 
-        _acceptableMonth: function () {
-            throw 'not implemented';
+        _acceptableMonth: function (year, month, day) {
+            if (!this._dateWithinRange(year, month, day)) { return false; }
+            if (this._options.validMonthFn) { return this._options.validMonthFn(); }
+            return true;
         },
 
-        _acceptableYear: function () {
-            throw 'not implemented';
+        _acceptableYear: function (year, month, day) {
+            if (!this._dateWithinRange(year, month, day)) { return false; }
+            if (this._options.validYearFn) { return this._options.validYearFn(); }
+            return true;
+        },
+
+        /**
+         * Whether a given date is the day which the user selected - EG the day the user clicked and has on his textbox.
+         *
+         * @method _isSelectedDay
+         * @private
+         * @param year
+         * @param month
+         * @param day
+         */
+        _isSelectedDay: function (year, month, day) {
+            return this._year === +year &&
+                this._month === month - 1 &&
+                this._day === day;
         },
 
         /**
@@ -934,19 +1037,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _setDate : function( objClicked ) {
-			if (objClicked) {
-				var data = Element.data(objClicked);
-				this._day = (+data.calDay) || this._day;
-			}
+            if (objClicked) {
+                var data = Element.data(objClicked);
+                this._day = (+data.calDay) || this._day;
+            }
 
-            this._data.setFullYear.apply( this._data , this._checkDateRange( this._year , this._month , this._day ) );
+            this._data.setFullYear.apply( this._data , this._fitDateToRange( this._year , this._month , this._day ) );
 
             if(!this._options.displayInSelect){
                 this._dataField.value = this._writeDateInFormat();
             } else {
-                this._options.dayField.value   = this._data.getDate();
-                this._options.monthField.value = this._data.getMonth()+1;
-                this._options.yearField.value  = this._data.getFullYear();
+                this._options.dayField.value   = this._day;
+                this._options.monthField.value = this._month;
+                this._options.yearField.value  = this._year;
             }
 
             if(this._options.onSetDate) {
@@ -969,8 +1072,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     'month' : this._month
                 });
             }
-            this._updateMonth(inc);
-            this._renderMonth();
+            if (this._updateMonth(inc) !== null) {
+                this._renderMonth();
+            }
         },
 
         /**
@@ -983,22 +1087,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {Number} The number of days on a given month on a given year
          */
         _daysInMonth: function(_y,_m){
-            var nDays = 31;
+            _m += 1;
 
-            switch (_m) {
-                case 2:
-                    nDays = ((_y % 400 === 0) || (_y % 4 === 0 && _y % 100 !== 0)) ? 29 : 28;
-                    break;
+            var exceptions = {
+                2: ((_y % 400 === 0) || (_y % 4 === 0 && _y % 100 !== 0)),
+                4: 30,
+                6: 30,
+                9: 30,
+                11: 30
+            };
 
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    nDays = 30;
-                    break;
-            }
-
-            return nDays;
+            return exceptions[_m] || 31;
         },
 
 
@@ -1010,35 +1109,66 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateMonth: function(incValue){
-            var mes = this._month + 1;
-            var ano = this._year;
-            switch(incValue){
-                case -1:
-                    if (mes===1){
-                        if(ano === this._yearMin){ return; }
-                        mes=12;
-                        ano--;
-                    }
-                    else {
-                        mes--;
-                    }
-                    this._year  = ano;
-                    this._month = mes - 1;
-                    break;
-                case 1:
-                    if(mes === 12){
-                        if(ano === this._yearMax){ return; }
-                        mes=1;
-                        ano++;
-                    }
-                    else{
-                        mes++;
-                    }
-                    this._year  = ano;
-                    this._month = mes - 1;
-                    break;
-                default:
+            var date;
+            if (incValue > 0) {
+                date = this._getNextMonth();
+            } else {
+                date = this._getPrevMonth();
             }
+            if (!date) { return null; }
+            this._year = date._year;
+            this._month = date._month;
+            this._day = date._day;
+        },
+
+        /**
+         * Get the next month we can show.
+         */
+        _getNextMonth: function (date) {
+            date = date || { _year: this._year, _month: this._month };
+
+            if (this._dateCmp(date, {_year: this._yearMax, _month: this._monthMax - 1}) === 0) {
+                return null;  // We're on the maximum month already.
+            }
+
+            if (this._options.nextValidDateFn) {
+                date = this._options.nextValidDateFn({
+                    year: date._year,
+                    month: date._month,
+                    day: date._day
+                });
+            } else {
+                date._month += 1;
+                if (date._month > 11) {
+                    date._month = 1;
+                    date._year += 1;
+                }
+            }
+
+            return this._acceptableMonth(date) ? date : null;
+        },
+
+        /**
+         * Get the previous month we can show.
+         */
+        _getPrevMonth: function (date) {
+            date = date || { _year: this._year, _month: this._month };
+
+            if (this._dateCmp(date, {_year: this._yearMin, _month: this._monthMin - 1}) === 0) {
+                return null;  // We're on the minimum month already.
+            }
+
+            if (this._options.prevValidDateFn) {
+                date = this._options.prevValidDateFn(date);
+            } else {
+                date._month -= 1;
+                if (date._month < 0) {
+                    date._month = 11;
+                    date._year -= 1;
+                }
+            }
+
+            return this._acceptableMonth(date) ? date : null;
         },
 
         /**
@@ -1069,22 +1199,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _renderMonth: function(){
             var i;
             var day;
-            var mes = this._month + 1;
+            var mes = this._month;
             var ano = this._year;
             var maxDay = this._daysInMonth(ano,mes);
             
             // Week day of the first day in the month
-            var wDayFirst = (new Date( ano , mes - 1 , 1 )).getDay();
+            var wDayFirst = (new Date( ano , mes , 1 )).getDay();
 
             var startWeekDay = this._options.startWeekDay || 0;
 
             this._showDefaultView();
 
-			if(startWeekDay > wDayFirst) {
-				wDayFirst = 7 + startWeekDay - wDayFirst;
-			} else {
-				wDayFirst += startWeekDay;
-			}
+            if(startWeekDay > wDayFirst) {
+                wDayFirst = 7 + startWeekDay - wDayFirst;
+            } else {
+                wDayFirst += startWeekDay;
+            }
 
             var html = '';
 
@@ -1115,7 +1245,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     html+='<ul>';
                 }
 
-                html += this._getCalendarDayHtml(ano, mes, day);
+                html += this._getDayButtonHtml(ano, mes, day);
 
                 counter++;
                 if(counter === 7){
@@ -1129,63 +1259,56 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             html+='</ul>';
 
             this._monthContainer.innerHTML = html;
-
         },
 
         /**
          * Get the HTML markup for a single day in month view, given year, month, day.
          *
-         * @method _getCalendarDayHtml
+         * @method _getDayButtonHtml
          * @private
          */
-        _getCalendarDayHtml: function (year, month, day) {
+        _getDayButtonHtml: function (year, month, day) {
             var className = '';
-            className += ( year === this._yearMin && month === this._monthMin && day < this._dayMin ||
-                year === this._yearMax && month === this._monthMax && day > this._dayMax ||
-                year === this._yearMin && month < this._monthMin ||
-                year === this._yearMax && month > this._monthMax ||
-                year < this._yearMin || year > this._yearMax || ( this._options.validDayFn && !this._options.validDayFn.call( this, new Date( year , month - 1 , day) ) ) ) ? " sapo_cal_off" :
-                (this._data.getFullYear( ) === year && this._data.getMonth( ) === month - 1 && day === this._day) ? " sapo_cal_on" : "";
+            if (this._day && this._dateCmp({_year: year, _month: month, _day: day}, this) === 0) {
+                className = 'sapo_cal_on';
+            } else if (!this._acceptableDay(year, month, day)) {
+                className = 'sapo_cal_off';
+            }
             return '<li><a href="#" class="' + className + '" data-cal-day="' + day + '">' + day + '</a></li>';   
         },
 
         /**
-         * This method sets the active month
+         * This method adds class names to month buttons, to visually distinguish.
          *
-         * @method _setActiveMonth
+         * @method _addMonthClassNames
          * @param {DOMElement} parent DOMElement where all the months are.
          * @private
          */
-        _setActiveMonth: function(parent){
-            if (typeof parent === 'undefined') {
-                parent = this._monthSelector;
-            }
+        _addMonthClassNames: function(parent){
+            InkArray.forEach(
+                (parent || this._monthSelector).getElementsByTagName('a'),
+                Ink.bindMethod(this, '_addMonthButtonClassNames'));
+        },
 
-			var data = Element.data(parent);
-            var length = parent.childNodes.length;
+        /**
+         * Add the sapo_cal_on className if the given button is the current month,
+         * otherwise add the sapo_cal_off className if the given button refers to
+         * an unacceptable month (given dateRange and validMonthFn)
+         */
+        _addMonthButtonClassNames: function (btn) {
+            var data = Element.data(btn);
+            if (!data.calMonth) { throw 'not a calendar month button!'; }
 
-            if (+data.calMonth) {
-                var year = this._year;
-                var month = +data.calMonth;
+            var month = +data.calMonth - 1;
 
-                if ( year === this._data.getFullYear( ) && month === this._data.getMonth( ) + 1 ) {
-                    Css.addClassName( parent , 'sapo_cal_on' );
-                    Css.removeClassName( parent , 'sapo_cal_off' );
-                } else {
-                    Css.removeClassName( parent , 'sapo_cal_on' );
-                    if ( year === this._yearMin && month < this._monthMin ||
-                        year === this._yearMax && month > this._monthMax ||
-                        year < this._yearMin ||
-                        year > this._yearMax ) {
-                        Css.addClassName( parent , 'sapo_cal_off' );
-                    } else {
-                        Css.removeClassName( parent , 'sapo_cal_off' );
-                    }
-                }
-            } else if (length !== 0){
-                for (var i = 0; i < length; i++) {
-                    this._setActiveMonth(parent.childNodes[i]);
-                }
+            if ( month === this._month ) {
+                Css.addClassName( btn, 'sapo_cal_on' );  // This month
+                Css.removeClassName( btn, 'sapo_cal_off' );
+            } else {
+                Css.removeClassName( btn, 'sapo_cal_on' );  // Not this month
+
+                var toDisable = !this._acceptableMonth(this._year, month);
+                Css.addRemoveClassName( btn, 'sapo_cal_off', toDisable);
             }
         },
 
@@ -1222,12 +1345,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @public
          */
         isMonthRendered: function(){
-            var header = Selector.select('.sapo_cal_header',this._containerObject)[0];
+            var header = Selector.select('.sapo_cal_header', this._containerObject)[0];
 
-            return ( (Css.getStyle(header.parentNode,'display') !== 'none') && (Css.getStyle(header.parentNode.parentNode,'display') !== 'none') );
+            return ((Css.getStyle(header.parentNode,'display') !== 'none') &&
+                    (Css.getStyle(header.parentNode.parentNode,'display') !== 'none') );
         }
     };
 
     return DatePicker;
-
 });
