@@ -3,6 +3,9 @@ exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "fonts", "less", "presski
 
 destination: ./_site
 
+name: Ink
+url: http://10.134.132.33:4000
+
 # SITE TITLE
 title: Ink
 
@@ -102,4 +105,3 @@ navigation:
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D
 
-cenas: ["one", "two"]
