@@ -15,6 +15,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return ret;
     }
 
+    function dateishFromYMD(year, month, day) {
+        return {_year: year, _month: month, _day: day};
+    }
+
+    function dateishFromDate(date) {
+        return {_year: date.getFullYear(), _month: date.getMonth(), _day: date.getDate()};
+    }
+
     /**
      * @class Ink.UI.DatePicker
      * @constructor
@@ -128,16 +136,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         this._picker = this._options.pickerField &&
             Common.elOrSelector(this._options.pickerField, 'pickerField');
 
-        this._today = new Date();
-        this._day   = this._today.getDate( );
-        this._month = this._today.getMonth( );
-        this._year  = this._today.getFullYear( );
-
         this._setMinMax( this._options.dateRange || this._options.yearRange );
-        this._data = new Date( Date.UTC.apply( this , this._fitDateToRange( this._year , this._month , this._day ) ) );
 
         if(this._options.startDate && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
             this.setDate( this._options.startDate );
+        } else {
+            var today = new Date();
+            this._day   = today.getDate( );
+            this._month = today.getMonth( );
+            this._year  = today.getFullYear( );
         }
 
         if(this._options.displayInSelect &&
@@ -580,14 +587,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         {suf: 'Max', date: dates[1], noLim: noMaxLimit}
                     ], Ink.bind(function (data) {
                 if (!data.date) { return; }
+
                 var yearLim;
                 var monthLim;
                 var dayLim;
 
                 if ( data.date.toUpperCase() === 'NOW' ) {
-                    yearLim   = this._year;
-                    monthLim  = this._month + 1;
-                    dayLim    = this._day;
+                    var now = new Date();
+                    yearLim   = now.getFullYear();
+                    monthLim  = now.getMonth() + 1;
+                    dayLim    = now.getDate();
                 } else if ( rDate.test( data.date ) ) {
                     var splitDate = data.date.split( '-' );
 
@@ -631,32 +640,20 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {Array}       Array with the final processed date.
          * @private
          */
-        _fitDateToRange: function( year , month , day ) {
-            if ( !this._isValidDate( year , month , day ) ) {
-                year  = this._today.getFullYear( );
-                month = this._today.getMonth( );
-                day   = this._today.getDate( );
+        _fitDateToRange: function( date ) {
+            if ( !this._isValidDate( date ) ) {
+                date = dateishFromDate(new Date());
             }
 
-            if ( year > this._yearMax || year === this._yearMax && month + 1 > this._monthMax ) {
-                year  = this._yearMax;
-                month = this._monthMax - 1;
-                day   = this._dayMax;
-            } else if ( year < this._yearMin || year === this._yearMax && month + 1 < this._monthMin) {
-                year  = this._yearMin;
-                month = this._monthMin - 1;
-                day   = this._dayMin;
+            date = Ink.extendObj({}, date);  // copy;
+
+            if (this._dateCmp(date, this._getMin()) === -1) {
+                date = Ink.extendObj({}, this._getMin());
+            } else if (this._dateCmp(date, this._getMax()) === 1) {
+                date = Ink.extendObj({}, this._getMax());
             }
 
-            if ( year === this._yearMax && month + 1 === this._monthMax && day > this._dayMax ) {
-                day = this._dayMax;
-            } else if ( year === this._yearMin && month + 1 === this._monthMin && day < this._dayMin ) {
-                day = this._dayMin;
-            } else if ( day > this._daysInMonth( year , month ) ) {
-                day = this._daysInMonth( year , month );
-            }
-
-            return [ year , month , day ];
+            return date;
         },
 
         /**
@@ -668,31 +665,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {Boolean}
          * @private
          */
-        _dateWithinRange: function (year, month, day) {
+        _dateWithinRange: function (date) {
             if (!arguments.length) {
-                year = this._year;
-                month = this._month;
-                day = this._day;
+                date = this;
             }
 
-            return  (!this._dateAboveMax(year, month, day) &&
-                    (!this._dateBelowMin(year, month, day)));
+            return  (!this._dateAboveMax(date) &&
+                    (!this._dateBelowMin(date)));
         },
 
-        _dateAboveMax: function (year, month, day) {
-            return this._dateCmp({
-                _year: year,
-                _month: month,
-                _day: day
-            }, this._getMax()) === 1;
+        _dateAboveMax: function (date) {
+            return this._dateCmp(date, this._getMax()) === 1;
         },
 
-        _dateBelowMin: function (year, month, day) {
-            return this._dateCmp({
-                _year: year,
-                _month: month,
-                _day: day
-            }, this._getMin()) === -1;
+        _dateBelowMin: function (date) {
+            return this._dateCmp(date, this._getMin()) === -1;
         },
 
         /**
@@ -768,40 +755,44 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var dataParsed;
             if(!this._options.displayInSelect){
                 if(this._dataField.value !== ''){
+                    var dt = this.getDate(); // TODO remove
                     if(this._isDate(this._options.format,this._dataField.value)){
-                        dataParsed = this._getDateArrayParsed(this._dataField.value);
-                        dataParsed = this._fitDateToRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
+                        dataParsed = this._parseDate(this._dataField.value);
+                        dataParsed = this._fitDateToRange( dataParsed );
 
-                        this._year  = dataParsed[ 0 ];
-                        this._month = dataParsed[ 1 ];
-                        this._day   = dataParsed[ 2 ];
+                        this._year  = dataParsed._year;
+                        this._month = dataParsed._month;
+                        this._day   = dataParsed._day;
                     }else{
                         this._dataField.value = '';
-                        this._year  = this._data.getFullYear( );
-                        this._month = this._data.getMonth( );
-                        this._day   = this._data.getDate( );
+                        this._year  = dt.getFullYear( ); //TODO remove
+                        this._month = dt.getMonth( ); //TODO remove
+                        this._day   = dt.getDate( ); //TODO remove
                     }
-                    this._data.setFullYear( this._year , this._month , this._day );
+                    dt.setFullYear( this._year , this._month , this._day ); //TODO remove
+                    this._year = dt.getFullYear(); //TODO remove
+                    this._month = dt.getMonth(); //TODO remove
+                    this._day = dt.getDate(); //TODO remove
                     this._dataField.value = this._writeDateInFormat( );
                 }
             } else {
-                dataParsed = [];
-                if(this._isValidDate(
-                    dataParsed[0] = this._options.yearField[this._options.yearField.selectedIndex].value,
-                    dataParsed[1] = this._options.monthField[this._options.monthField.selectedIndex].value,
-                    dataParsed[2] = this._options.dayField[this._options.dayField.selectedIndex].value
-                )){
-                    dataParsed = this._fitDateToRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , dataParsed[ 2 ] );
+                dataParsed = {
+                    _year: this._options.yearField[this._options.yearField.selectedIndex].value,
+                    _month: this._options.monthField[this._options.monthField.selectedIndex].value,
+                    _day: this._options.dayField[this._options.dayField.selectedIndex].value
+                };
+                if(this._isValidDate(dataParsed)){
+                    dataParsed = this._fitDateToRange( dataParsed );
 
-                    this._year  = dataParsed[ 0 ];
-                    this._month = dataParsed[ 1 ];
-                    this._day   = dataParsed[ 2 ];
+                    this._year  = dataParsed._year;
+                    this._month = dataParsed._month;
+                    this._day   = dataParsed._day;
                 } else {
-                    dataParsed = this._fitDateToRange( dataParsed[ 0 ] , dataParsed[ 1 ] - 1 , 1 );
-                    if(this._isValidDate( dataParsed[ 0 ], dataParsed[ 1 ] - 1 ,dataParsed[ 2 ] )){
-                        this._year  = dataParsed[ 0 ];
-                        this._month = dataParsed[ 1 ];
-                        this._day   = this._daysInMonth(dataParsed[0],dataParsed[1] - 1);
+                    dataParsed = this._fitDateToRange( dataParsed );
+                    if(this._isValidDate( dataParsed )){
+                        this._year  = dataParsed._year;
+                        this._month = dataParsed._month;
+                        this._day   = this._daysInMonth(dataParsed._year, dataParsed._month);
 
                         this.setDate();
                     }
@@ -831,14 +822,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _showYearSelector
          * @private
          */
-        _showYearSelector: function(){
-            if (arguments.length){
-                var year = + this._year + arguments[0]*10;
-                year=year-year%10;
-                if ( year>this._yearMax || year+9<this._yearMin ){
+        _showYearSelector: function(inc){
+            if (inc !== undefined) {
+                // I don't know..
+                var year = +this._year + inc*10;
+                year = year - year % 10;
+                if ( year > this._yearMax || year + 9 < this._yearMin ){
                     return;
                 }
-                this._year = + this._year + arguments[0]*10;
+                this._year = +this._year + inc*10;
             }
 
             var firstYear = this._year - (this._year % 10);
@@ -878,7 +870,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _getYearButtonHtml: function (thisYear) {
-            if ( thisYear<=this._yearMax && thisYear>=this._yearMin ){
+            if ( this._acceptableYear({_year: thisYear}) ){
                 var className = (thisYear === this._year) ? ' class="sapo_cal_on"' : '';
                 return '<li><a href="#" data-cal-year="' + thisYear + '"' + className + '>' + thisYear +'</a></li>';
             } else {
@@ -902,20 +894,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * This function returns the given date in an array format
+         * This function returns the given date in the dateish format
          *
-         * @method _getDateArrayParsed
+         * @method _parseDate
          * @param {String} dateStr A date on a string.
          * @private
-         * @return {Array} The given date in an array format
          */
-        _getDateArrayParsed: function(dateStr){
-            var arrDate = [];
+        _parseDate: function(dateStr){
             var date = InkDate.set( this._options.format , dateStr );
             if (date) {
-                arrDate = [ date.getFullYear( ) , date.getMonth( ) + 1 , date.getDate( ) ];
+                return dateishFromDate(date);
             }
-            return arrDate;
+            return null;
         },
 
         /**
@@ -928,17 +918,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          * @return {Boolean} True if the date is valid, false otherwise
          */
-        _isValidDate: function(year, month, day){
+        _isValidDate: function(date){
             var yearRegExp = /^\d{4}$/;
             var validOneOrTwo = /^\d{1,2}$/;
             return (
-                yearRegExp.test(year)     &&
-                validOneOrTwo.test(month) &&
-                validOneOrTwo.test(day)   &&
-                month >= 1  &&
-                month <= 12 &&
-                day   >= 1  &&
-                day   <= this._daysInMonth(year,month - 1)
+                yearRegExp.test(date._year)     &&
+                validOneOrTwo.test(date._month) &&
+                validOneOrTwo.test(date._day)   &&
+                +date._month >= 1  &&
+                +date._month <= 12 &&
+                +date._day   >= 1  &&
+                +date._day   <= this._daysInMonth(date._year,date._month - 1)
             );
         },
 
@@ -956,8 +946,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if (typeof format === 'undefined'){
                     return false;
                 }
-                var data = InkDate.set( format , dateStr );
-                if( data && this._isValidDate( data.getFullYear( ) , data.getMonth( ) + 1 , data.getDate( ) ) ){
+                var date = InkDate.set( format , dateStr );
+                if( date && this._isValidDate( dateishFromDate(date) )) {
                     return true;
                 }
             } catch (ex) {}
@@ -965,37 +955,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             return false;
         },
 
-        _acceptableDay: function (year, month, day) {
-            if (!this._dateWithinRange(year, month, day)) { return false; }
-            if (this._options.validDayFn) { return this._options.validDayFn(); }
+        _acceptableDay: function (date) {
+            if (!this._dateWithinRange(date)) { return false; }
+            if (this._options.validDayFn) { return this._options.validDayFn(date._year, date._month, date._day); }
             return true;
         },
 
-        _acceptableMonth: function (year, month, day) {
-            if (!this._dateWithinRange(year, month, day)) { return false; }
-            if (this._options.validMonthFn) { return this._options.validMonthFn(); }
+        _acceptableMonth: function (date) {
+            if (!this._dateWithinRange(date)) { return false; }
+            if (this._options.validMonthFn) { return this._options.validMonthFn(date._year, date._month, date._day); }
             return true;
         },
 
-        _acceptableYear: function (year, month, day) {
-            if (!this._dateWithinRange(year, month, day)) { return false; }
-            if (this._options.validYearFn) { return this._options.validYearFn(); }
+        _acceptableYear: function (date) {
+            if (!this._dateWithinRange(date)) { return false; }
+            if (this._options.validYearFn) { return this._options.validYearFn(date._year, date._month, date._day); }
             return true;
-        },
-
-        /**
-         * Whether a given date is the day which the user selected - EG the day the user clicked and has on his textbox.
-         *
-         * @method _isSelectedDay
-         * @private
-         * @param year
-         * @param month
-         * @param day
-         */
-        _isSelectedDay: function (year, month, day) {
-            return this._year === +year &&
-                this._month === month - 1 &&
-                this._day === day;
         },
 
         /**
@@ -1006,7 +981,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {String} Returns the current date of the object in the specified format
          */
         _writeDateInFormat:function(){
-            return InkDate.get( this._options.format , this._data );
+            return InkDate.get( this._options.format , this.getDate());
         },
 
         /**
@@ -1016,17 +991,27 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @param {String} dateString A date string in yyyy-mm-dd format.
          * @public
          */
-        setDate : function( dateString )
-        {
-            if ( typeof dateString === 'string' && /\d{4}-\d{1,2}-\d{1,2}/.test( dateString ) )
-            {
+        setDate : function( dateString ) {
+            if ( /\d{4}-\d{1,2}-\d{1,2}/.test( dateString ) ) {
                 var auxDate = dateString.split( '-' );
-                this._year  = auxDate[ 0 ];
-                this._month = auxDate[ 1 ] - 1;
-                this._day   = auxDate[ 2 ];
+                this._year  = +auxDate[ 0 ];
+                this._month = +auxDate[ 1 ] - 1;
+                this._day   = +auxDate[ 2 ];
             }
 
             this._setDate( );
+        },
+
+        /**
+         * Get the current date as a JavaScript date.
+         *
+         * @method getDate
+         */
+        getDate: function () {
+            if (!this._day) {
+                throw 'Ink.UI.DatePicker: Still picking a date. Cannot getDate now!';
+            }
+            return new Date(this._year, this._month, this._day);
         },
 
         /**
@@ -1042,7 +1027,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._day = (+data.calDay) || this._day;
             }
 
-            this._data.setFullYear.apply( this._data , this._fitDateToRange( this._year , this._month , this._day ) );
+            var dt = this._fitDateToRange(this);
+
+            this._year = dt._year;
+            this._month = dt._month;
+            this._day = dt._day;
 
             if(!this._options.displayInSelect){
                 this._dataField.value = this._writeDateInFormat();
@@ -1053,7 +1042,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             if(this._options.onSetDate) {
-                this._options.onSetDate( this , { date : this._data } );
+                this._options.onSetDate( this , { date : this.getDate() } );
             }
         },
 
@@ -1199,12 +1188,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _renderMonth: function(){
             var i;
             var day;
-            var mes = this._month;
-            var ano = this._year;
-            var maxDay = this._daysInMonth(ano,mes);
+            var month = this._month;
+            var year = this._year;
+            var maxDay = this._daysInMonth(year,month);
             
             // Week day of the first day in the month
-            var wDayFirst = (new Date( ano , mes , 1 )).getDay();
+            var wDayFirst = (new Date( year , month , 1 )).getDay();
 
             var startWeekDay = this._options.startWeekDay || 0;
 
@@ -1240,12 +1229,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             for (day = 1; day <= maxDay; day++) {
-                if (counter === 7){
+                if (counter === 7){ // new week
                     counter=0;
                     html+='<ul>';
                 }
 
-                html += this._getDayButtonHtml(ano, mes, day);
+                html += this._getDayButtonHtml(year, month, day);
 
                 counter++;
                 if(counter === 7){
@@ -1269,9 +1258,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _getDayButtonHtml: function (year, month, day) {
             var className = '';
-            if (this._day && this._dateCmp({_year: year, _month: month, _day: day}, this) === 0) {
+            var date = dateishFromYMD(year, month, day);
+            if (this._day && this._dateCmp(date, this) === 0) {
                 className = 'sapo_cal_on';
-            } else if (!this._acceptableDay(year, month, day)) {
+            } else if (!this._acceptableDay(date)) {
                 className = 'sapo_cal_off';
             }
             return '<li><a href="#" class="' + className + '" data-cal-day="' + day + '">' + day + '</a></li>';   
@@ -1307,7 +1297,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else {
                 Css.removeClassName( btn, 'sapo_cal_on' );  // Not this month
 
-                var toDisable = !this._acceptableMonth(this._year, month);
+                var toDisable = !this._acceptableMonth({_year: this._year, _month: month});
                 Css.addRemoveClassName( btn, 'sapo_cal_off', toDisable);
             }
         },
