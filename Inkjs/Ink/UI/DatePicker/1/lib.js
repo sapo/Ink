@@ -55,7 +55,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {Boolean}   [options.shy=true]        whether the datepicker starts automatically.
      *      @param {String}    [options.startDate]       Date to define init month. Must be in yyyy-mm-dd format
      *      @param {Number}    [options.startWeekDay]    day to use as first column on the calendar view. Defaults to Monday (1)
+     *      @param {Function}  [options.validYearFn]    callback function to execute when 'rendering' the month (in the month view)
+     *      @param {Function}  [options.validMonthFn]    callback function to execute when 'rendering' the month (in the month view)
      *      @param {Function}  [options.validDayFn]      callback function to execute when 'rendering' the day (in the month view)
+     *      @param {Function}  [options.nextValidDateFn] Find the next valid date, given the current Date. Necessary when the calendar has a lot of "holes", and not many dates are valid and they are separated by many months or years so it doesn't make sense to have the user click the "next" button too many times and not see any valid date.
+     *      @param {Function}  [options.prevValidDateFn] See nextValidDateFn. Find the previous valid date.
      *      @param {Object}    [options.wDay]            Hash of weekdays. Defaults to portuguese month names. Sunday is 0.
      *      @param {String}    [options.yearRange]       enforce limits to year for the Date, ex: '1990:2020' (deprecated)
      *
@@ -102,8 +106,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             shy:             ['Boolean', true],
             startDate:       ['String', null], // format yyyy-mm-dd,
             startWeekDay:    ['Number', 1],
+
+            // Validation
             validDayFn:      ['Function', null],
+            validMonthFn:    ['Function', null],
+            validYearFn:     ['Function', null],
+            nextValidDateFn: ['Function', null],
+            prevValidDateFn: ['Function', null],
             yearRange:       ['String', null],
+
+            // Text
             month: ['Object', {
                  1:'January',
                  2:'February',
@@ -703,6 +715,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _dateCmp: function (self, oth) {
+            return this._dateCmpUntil(self, oth, '_day');
+        },
+
+        /**
+         * _dateCmp with varied precision. You can compare down to the day field, or, just to the month.
+         * // the following two dates are considered equal because we asked
+         * // _dateCmpUntil to just check up to the years.
+         *
+         * _dateCmpUntil({_year: 2000, _month: 10}, {_year: 2000, _month: 11}, '_year') === 0
+         */
+        _dateCmpUntil: function (self, oth, shallowness) {
             var props = ['_year', '_month', '_day'];
 
             for (var i = 0; i < 3; i++) {
@@ -714,6 +737,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     if (self[props[i + 1]] === undefined || oth[props[i + 1]] === undefined) {
                         return 0;
                     } // if the next prop is known, we can cmp() that.
+                }
+                
+                if (shallowness === props[i]) {
+                    return 0 ;
                 }
             }
             throw 'Should not run';
@@ -821,15 +848,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _showYearSelector: function(inc){
-            if (inc !== undefined) {
-                // I don't know..
-                var year = +this._year + inc*10;
-                year = year - year % 10;
-                if ( year > this._yearMax || year + 9 < this._yearMin ){
-                    return;
-                }
-                this._year = +this._year + inc*10;
-            }
+            this._incrementViewingYear(inc);
 
             var firstYear = this._year - (this._year % 10);
             var thisYear = firstYear - 1;
@@ -865,6 +884,22 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthSelector.style.display = 'none';
             this._monthContainer.style.display = 'none';
             this._yearSelector.style.display = 'block';
+        },
+
+        /**
+         * For the year selector.
+         *
+         * Update this._year, to find the next decade or use nextValidDateFn to find it.
+         */
+        _incrementViewingYear: function (inc) {
+            if (!inc) { return; }
+
+            var year = +this._year + inc*10;
+            year = year - year % 10;
+            if ( year > this._yearMax || year + 9 < this._yearMin ){
+                return;
+            }
+            this._year = +this._year + inc*10;
         },
 
         _getYearButtonHtml: function (thisYear) {
@@ -954,20 +989,23 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _acceptableDay: function (date) {
-            if (!this._dateWithinRange(date)) { return false; }
-            if (this._options.validDayFn) { return this._options.validDayFn(date._year, date._month, date._day); }
-            return true;
+            return this._acceptableDateComponent(date, 'validDayFn');
         },
 
         _acceptableMonth: function (date) {
-            if (!this._dateWithinRange(date)) { return false; }
-            if (this._options.validMonthFn) { return this._options.validMonthFn(date._year, date._month, date._day); }
-            return true;
+            return this._acceptableDateComponent(date, 'validMonthFn');
         },
 
         _acceptableYear: function (date) {
+            return this._acceptableDateComponent(date, 'validYearFn');
+        },
+
+        /** DRY base for the above 2 functions */
+        _acceptableDateComponent: function (date, userCb) {
+            if (this._options[userCb]) {
+                return this._callUserCallbackBool(this._options[userCb], date);
+            }
             if (!this._dateWithinRange(date)) { return false; }
-            if (this._options.validYearFn) { return this._options.validYearFn(date._year, date._month, date._day); }
             return true;
         },
 
@@ -1113,54 +1151,116 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Get the next month we can show.
          */
         _getNextMonth: function (date) {
-            date = date || { _year: this._year, _month: this._month, _day: this._day };
-
-            if (this._dateCmp(date, {_year: this._yearMax, _month: this._monthMax - 1}) === 0) {
-                return null;  // We're on the maximum month already.
-            }
-
-            if (this._options.nextValidDateFn) {
-                date = this._options.nextValidDateFn({
-                    year: date._year,
-                    month: date._month,
-                    day: date._day
+            return this._tryLeap( date, 'Month', 'next', function (d) {
+                    d._month += 1;
+                    if (d._month > 11) {
+                        d._month = 0;
+                        d._year += 1;
+                    }
+                    return d;
                 });
-            } else {
-                date._month += 1;
-                if (date._month > 11) {
-                    date._month = 0;
-                    date._year += 1;
-                }
-            }
-
-            date = this._fitDateToRange(date);
-
-            return this._acceptableMonth(date) ? date : null;
         },
 
         /**
          * Get the previous month we can show.
          */
         _getPrevMonth: function (date) {
+            return this._tryLeap( date, 'Month', 'prev', function (d) {
+                    d._month -= 1;
+                    if (d._month < 0) {
+                        d._month = 11;
+                        d._year -= 1;
+                    }
+                    return d;
+                });
+        },
+
+        /**
+         * Get the next year we can show.
+         */
+        _getPrevYear: function (date) {
+            return this._tryLeap( date, 'Year', 'prev', function (d) {
+                    d._year -= 1;
+                    return d;
+                });
+        },
+
+        /**
+         * Get the next year we can show.
+         */
+        _getNextYear: function (date) {
+            return this._tryLeap( date, 'Year', 'next', function (d) {
+                    d._year += 1;
+                    return d;
+                });
+        },
+
+        /**
+         * DRY base for a function which tries to get the next or previous valid year or month.
+         *
+         * It checks if we can go forward by using _dateCmp with atomic
+         * precision (this means, {_year} for leaping years, and
+         * {_year, month} for leaping months), then it tries to get the
+         * result from the user-supplied callback (nextDateFn or prevDateFn),
+         * and when this is not present, advance the date forward using the
+         * `advancer` callback.
+         */
+        _tryLeap: function (date, atomName, directionName, advancer) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
 
-            if (this._dateCmp(date, {_year: this._yearMin, _month: this._monthMin - 1}) === 0) {
-                return null;  // We're on the minimum month already.
+            var maxOrMin = directionName === 'prev' ? 'Min' : 'Max';
+
+            var boundary = this['_get' + maxOrMin]();  // _getMin() or _getMax()
+            var compName = '_' + atomName.toLowerCase();  // _year or _month
+
+            // Check if we're by the boundary of min/max year/month
+            if (this._dateCmpUntil(date, boundary, compName) === 0) {
+                return null;  // We're already at the boundary. Bail.
             }
 
-            if (this._options.prevValidDateFn) {
-                date = this._options.prevValidDateFn(date);
+            var leapUserCb = this._options[directionName + 'ValidDateFn'];
+            if (leapUserCb) {
+                return this._callUserCallbackDate(leapUserCb, date);
             } else {
-                date._month -= 1;
-                if (date._month < 0) {
-                    date._month = 11;
-                    date._year -= 1;
-                }
+                date = advancer(date);
             }
 
             date = this._fitDateToRange(date);
 
-            return this._acceptableMonth(date) ? date : null;
+            return this['_acceptable' + atomName](date) ? date : null;
+        },
+
+        _getNextDecade: function (date) {
+            date = date || { _year: this._year, _month: this._month, _day: this._day };
+            var decade = this._getCurrentDecade(date);
+            if (decade + 10 > this._yearMax) { return null; }
+            return decade + 10;
+        },
+
+        _getPrevDecade: function (date) {
+            date = date || { _year: this._year, _month: this._month, _day: this._day };
+            var decade = this._getCurrentDecade(date);
+            if (decade - 10 < this._yearMin) { return null; }
+            return decade - 10;
+        },
+
+        /** Returns the decade given a date or year*/
+        _getCurrentDecade: function (year) {
+            year = year ? (year._year || year) : this._year;
+            return Math.floor(year / 10) * 10;  // Round to first place
+        },
+
+        _callUserCallbackBase: function (cb, date) {
+            return cb.call(this, date._year, date._month + 1, date._day);
+        },
+
+        _callUserCallbackBool: function (cb, date) {
+            return !!this._callUserCallbackBase(cb, date);
+        },
+
+        _callUserCallbackDate: function (cb, date) {
+            var ret = this._callUserCallbackBase(cb, date);
+            return ret ? dateishFromDate(ret) : null;
         },
 
         /**
@@ -1260,14 +1360,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _getDayButtonHtml: function (year, month, day) {
-            var className = '';
+            var attrs = '';
             var date = dateishFromYMD(year, month, day);
-            if (this._day && this._dateCmp(date, this) === 0) {
-                className = 'sapo_cal_on';
-            } else if (!this._acceptableDay(date)) {
-                className = 'sapo_cal_off';
+            if (!this._acceptableDay(date)) {
+                attrs = ' class="sapo_cal_off"';
+            } else if (this._day && this._dateCmp(date, this) === 0) {
+                attrs = ' class="sapo_cal_on" data-cal-day="' + day + '"';
             }
-            return '<li><a href="#" class="' + className + '" data-cal-day="' + day + '">' + day + '</a></li>';   
+            return '<li><a href="#" ' + attrs + '>' + day + '</a></li>';   
         },
 
         /**
