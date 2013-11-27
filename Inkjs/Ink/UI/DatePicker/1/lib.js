@@ -778,7 +778,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else {
                 dataParsed = {
                     _year: this._options.yearField[this._options.yearField.selectedIndex].value,
-                    _month: this._options.monthField[this._options.monthField.selectedIndex].value,
+                    _month: this._options.monthField[this._options.monthField.selectedIndex].value - 1,
                     _day: this._options.dayField[this._options.dayField.selectedIndex].value
                 };
                 if(this._isValidDate(dataParsed)){
@@ -925,10 +925,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 yearRegExp.test(date._year)     &&
                 validOneOrTwo.test(date._month) &&
                 validOneOrTwo.test(date._day)   &&
-                +date._month >= 1  &&
-                +date._month <= 12 &&
-                +date._day   >= 1  &&
-                +date._day   <= this._daysInMonth(date._year,date._month - 1)
+                +date._month + 1 >= 1  &&
+                +date._month + 1 <= 12 &&
+                +date._day       >= 1  &&
+                +date._day       <= this._daysInMonth(date._year,date._month - 1)
             );
         },
 
@@ -991,7 +991,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @param {String} dateString A date string in yyyy-mm-dd format.
          * @public
          */
-        setDate : function( dateString ) {
+        setDate: function( dateString ) {
             if ( /\d{4}-\d{1,2}-\d{1,2}/.test( dateString ) ) {
                 var auxDate = dateString.split( '-' );
                 this._year  = +auxDate[ 0 ];
