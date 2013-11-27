@@ -1,28 +1,28 @@
-.column-left {
+.push-left {
   float: left;
 }
-.column-center {
+.push-center {
   float: none;
   margin-left: auto;
   margin-right: auto;
 }
-.column-right {
+.push-right {
   float: right;
 }
-.content-left {
+.align-left {
   text-align: left;
 }
-.content-center {
+.align-center {
   text-align: center;
 }
-.content-right {
+.align-right {
   text-align: right;
 }
 .show-all {
-  display: inherit;
+  display: inherit !important;
 }
 .hide-all {
-  display: none;
+  display: none !important;
 }
 .ink-grid {
   width: auto;
@@ -37,7 +37,7 @@
   margin-left: -3%;
 }
 .column-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
