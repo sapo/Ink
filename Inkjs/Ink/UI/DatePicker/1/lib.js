@@ -645,15 +645,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 date = dateishFromDate(new Date());
             }
 
-            date = Ink.extendObj({}, date);  // copy;
-
             if (this._dateCmp(date, this._getMin()) === -1) {
-                date = Ink.extendObj({}, this._getMin());
+                return Ink.extendObj({}, this._getMin());
             } else if (this._dateCmp(date, this._getMax()) === 1) {
-                date = Ink.extendObj({}, this._getMax());
+                return Ink.extendObj({}, this._getMax());
             }
 
-            return date;
+            return Ink.extendObj({}, date);  // date is okay already, just copy it.
         },
 
         /**
@@ -1061,9 +1059,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     'month' : this._month
                 });
             }
-            if (this._updateMonth(inc) !== null) {
-                this._renderMonth();
+            if (inc && this._updateMonth(inc) === null) {
+                return;
             }
+            this._renderMonth();
         },
 
         /**
@@ -1114,7 +1113,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Get the next month we can show.
          */
         _getNextMonth: function (date) {
-            date = date || { _year: this._year, _month: this._month };
+            date = date || { _year: this._year, _month: this._month, _day: this._day };
 
             if (this._dateCmp(date, {_year: this._yearMax, _month: this._monthMax - 1}) === 0) {
                 return null;  // We're on the maximum month already.
@@ -1129,10 +1128,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else {
                 date._month += 1;
                 if (date._month > 11) {
-                    date._month = 1;
+                    date._month = 0;
                     date._year += 1;
                 }
             }
+
+            date = this._fitDateToRange(date);
 
             return this._acceptableMonth(date) ? date : null;
         },
@@ -1141,7 +1142,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Get the previous month we can show.
          */
         _getPrevMonth: function (date) {
-            date = date || { _year: this._year, _month: this._month };
+            date = date || { _year: this._year, _month: this._month, _day: this._day };
 
             if (this._dateCmp(date, {_year: this._yearMin, _month: this._monthMin - 1}) === 0) {
                 return null;  // We're on the minimum month already.
@@ -1156,6 +1157,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     date._year -= 1;
                 }
             }
+
+            date = this._fitDateToRange(date);
 
             return this._acceptableMonth(date) ? date : null;
         },
