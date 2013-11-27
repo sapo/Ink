@@ -34,6 +34,16 @@
     display: none !important;
 }
 
+// show hidden element
+.show-large {
+    display: inherit !important;
+}
+
+// hide visible element
+.hide-large {
+    display: none !important;
+}
+
 // IE7 gets a slightly defferent grid base on the browsers css support, so: no media queries or box-sizing goodness;
 
 // The IE7 grid generation mixin takes two (2) arguments:
@@ -42,4 +52,4 @@
 // 2. The gutter width set in a percentage value
 
 // GENERATE THE GRID FOR IE ( width > 960px )
-#ink > #grid > .ie7-grid (@large-class-prefix,3%);
+#ink > #grid > .ie7-grid (@large-class-prefix, 3%);
