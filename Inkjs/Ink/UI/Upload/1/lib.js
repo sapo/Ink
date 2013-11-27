@@ -335,12 +335,16 @@ Ink.createModule('Ink.UI.Upload', '1', [
     var Upload = function(options) {
         this.Queue = Queue;
         this.init(options);
+        this._events = {};
     };
 
     Upload.prototype = {
-        _events: {},
+        //_events: {},
 
         init: function(options) {
+            if (typeof options === 'string') {
+                options = Element.data(Aux.elOrSelector(options, '1st argument'));
+            }
             this.options = Ink.extendObj({
                 extraData:          {},
                 fileFormName:       'Ink_Filelist',
