@@ -7,8 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-      "less": "1.4.2",
-      "jshint": "*"
+    "less": "1.4.2",
+    "jshint": "*",
+    "async": "~0.2.9",
+    "uglify-js": "~2.3.6",
+    "execSync": "~1.0.1-pre"
   },
   "repository": {
     "type": "git",
