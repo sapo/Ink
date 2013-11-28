@@ -24,6 +24,12 @@
 .hide-all {
   display: none !important;
 }
+.show-large {
+  display: inherit !important;
+}
+.hide-large {
+  display: none !important;
+}
 .ink-grid {
   width: auto;
   max-width: 1200px;

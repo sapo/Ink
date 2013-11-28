@@ -5631,6 +5631,9 @@ a .icon-flip-vertical:before {
   font-size: .75em;
   width: 1.25em;
 }
+.ink-form .control-group.required ul.control label:after {
+  content: "";
+}
 .status-indicator {
   position: relative;
   color: transparent;
