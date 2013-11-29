@@ -275,10 +275,10 @@ table {
   text-align: right;
 }
 .show-all {
-  display: inherit;
+  display: inherit !important;
 }
 .hide-all {
-  display: none;
+  display: none !important;
 }
 .ink-grid {
   width: auto;
@@ -291,7 +291,7 @@ table {
   zoom: 1;
 }
 .column-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -567,29 +567,29 @@ body.animated *[class*="large-"] {
 }
 @media screen and (min-width: 960px) {
   .hide-large {
-    display: none;
+    display: none !important;
   }
   .show-large {
-    display: inherit;
+    display: inherit !important;
   }
   table.show-large {
-    display: table;
+    display: table !important;
   }
   thead.show-large {
-    display: table-header-group;
+    display: table-header-group !important;
   }
   tbody.show-large {
-    display: table-row-group;
+    display: table-row-group !important;
   }
   tfoot.show-large {
-    display: table-footer-group;
+    display: table-footer-group !important;
   }
   tr.show-large {
-    display: table-row;
+    display: table-row !important;
   }
   th.show-large,
   td.show-large {
-    display: table-cell;
+    display: table-cell !important;
   }
 }
 @media screen and (min-width: 650px) and (max-width: 959px) {
@@ -604,7 +604,7 @@ body.animated *[class*="large-"] {
     zoom: 1;
   }
   .column-group:after {
-    content: ".";
+    content: " ";
     display: block;
     height: 0;
     clear: both;
@@ -879,29 +879,29 @@ body.animated *[class*="large-"] {
     margin-left: 0.375em;
   }
   .hide-medium {
-    display: none;
+    display: none !important;
   }
   .show-medium {
-    display: inherit;
+    display: inherit !important;
   }
   table.show-medium {
-    display: table;
+    display: table !important;
   }
   thead.show-medium {
-    display: table-header-group;
+    display: table-header-group !important;
   }
   tbody.show-medium {
-    display: table-row-group;
+    display: table-row-group !important;
   }
   tfoot.show-medium {
-    display: table-footer-group;
+    display: table-footer-group !important;
   }
   tr.show-medium {
-    display: table-row;
+    display: table-row !important;
   }
   th.show-medium,
   td.show-medium {
-    display: table-cell;
+    display: table-cell !important;
   }
 }
 @media screen and (max-width: 649px) {
@@ -916,7 +916,7 @@ body.animated *[class*="large-"] {
     zoom: 1;
   }
   .column-group:after {
-    content: ".";
+    content: " ";
     display: block;
     height: 0;
     clear: both;
@@ -1191,29 +1191,29 @@ body.animated *[class*="large-"] {
     margin-left: 0.25em;
   }
   .hide-small {
-    display: none;
+    display: none !important;
   }
   .show-small {
-    display: inherit;
+    display: inherit !important;
   }
   table.show-small {
-    display: table;
+    display: table !important;
   }
   thead.show-small {
-    display: table-header-group;
+    display: table-header-group !important;
   }
   tbody.show-small {
-    display: table-row-group;
+    display: table-row-group !important;
   }
   tfoot.show-small {
-    display: table-footer-group;
+    display: table-footer-group !important;
   }
   tr.show-small {
-    display: table-row;
+    display: table-row !important;
   }
   th.show-small,
   td.show-small {
-    display: table-cell;
+    display: table-cell !important;
   }
 }
 body {
@@ -3858,7 +3858,7 @@ a .icon-flip-vertical:before {
   float: none;
 }
 .ink-navigation ul.menu:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -3953,7 +3953,7 @@ a .icon-flip-vertical:before {
   text-decoration: none;
 }
 .ink-navigation ul.pagination:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -3988,7 +3988,7 @@ a .icon-flip-vertical:before {
   cursor: default;
 }
 .ink-navigation .pills:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -5432,7 +5432,7 @@ a .icon-flip-vertical:before {
   margin-bottom: 1em;
 }
 .ink-form .control-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -5443,7 +5443,7 @@ a .icon-flip-vertical:before {
   position: relative;
 }
 .ink-form .control-group .control:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6359,7 +6359,7 @@ a .icon-flip-vertical:before {
   border-top-right-radius: 4px;
 }
 .button-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6371,7 +6371,7 @@ a .icon-flip-vertical:before {
   float: left;
 }
 .button-toolbar:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6563,7 +6563,7 @@ html.ink-modal-is-open .sapo_component_datepicker {
 .sapo_component_datepicker:after,
 .sapo_cal_month .sapo_cal_header:after,
 .sapo_cal_month .sapo_cal_middle ul:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6589,7 +6589,7 @@ html.ink-modal-is-open .sapo_component_datepicker {
   overflow: hidden;
 }
 .ink-modal:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6870,7 +6870,7 @@ html.ink-modal-is-open .sapo_component_datepicker {
   border: 1px solid #cccccc;
 }
 .ink-tabs .tabs-nav:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -7157,7 +7157,7 @@ figcaption.dark {
   margin-right: auto;
 }
 .clearfix:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;

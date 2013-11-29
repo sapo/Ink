@@ -10,6 +10,9 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
      * @module Ink.Dom.Css_1
      */
 
+     // getComputedStyle feature detection.
+     var getCs = ("defaultView" in document) && ("getComputedStyle" in document.defaultView) ? document.defaultView.getComputedStyle : window.getComputedStyle;
+
     /**
      * @class Ink.Dom.Css
      * @static
@@ -255,9 +258,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
                  var value = elm.style[style];
 
-                 if (window.getComputedStyle && (!value || value === 'auto')) {
-                     var css = window.getComputedStyle(elm, null);
-
+                 if (getCs && (!value || value === 'auto')) {
+                     var css = getCs(elm, null);
                      value = css ? css[style] : null;
                  }
                  else if (!value && elm.currentStyle) {
