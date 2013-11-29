@@ -7,6 +7,7 @@
     // Enforcing
     //"bitwise" : true, // true: Prohibit bitwise operators (&, |, ^, etc.)
     //"camelcase" : true, // true: Identifiers must be in camelCase
+    "es3": true,
     "curly" : false, // true: Require {} for every new block or scope (disabled because of for-if)
     "eqeqeq" : true, // true: Require triple equals (===) for comparison
     "forin" : true, // true: Require filtering for..in loops with obj.hasOwnProperty()
