@@ -6,6 +6,8 @@
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, Element, Selector, InkArray, InkDate ) {
     'use strict';
 
+    /* jshint maxcomplexity: 4 */
+
     // Repeat a string. Long version of (new Array(n)).join(str);
     function strRepeat(n, str) {
         var ret = '';
@@ -73,9 +75,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *     </script>
      */
     var DatePicker = function(selector, options) {
-        if (selector) {
-            this._dataField = Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
-        }
+        this._dataField = selector &&
+            Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
 
         this._options = Common.options('Ink.UI.DatePicker_1', {
             autoOpen:        ['Boolean', false],
@@ -92,7 +93,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             yearField:       ['Element', null],
 
             format:          ['String', 'yyyy-mm-dd'],
-            instance:        ['String', 'scdp_' + Math.round(99999*Math.random())],
+            instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
             nextLinkText:    ['String', '»'],
             ofText:          ['String', '&nbsp;de&nbsp;'],
             onFocus:         ['Boolean', true],
@@ -150,8 +151,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         this._setMinMax( this._options.dateRange || this._options.yearRange );
 
-        if(this._options.startDate && /\d\d\d\d\-\d\d\-\d\d/.test(this._options.startDate)) {
+        if(this._options.startDate) {
             this.setDate( this._options.startDate );
+        } else if (this._dataField && this._dataField.value) {
+            this.setDate( this._dataField.value );
         } else {
             var today = new Date();
             this._day   = today.getDate( );
@@ -164,12 +167,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             throw new Error(
                 'Ink.UI.DatePicker: displayInSelect option enabled.'+
                 'Please specify dayField, monthField and yearField selectors.');
-        }
-
-        if ( !this._options.startDate ){
-            if( this._dataField && typeof this._dataField.value === 'string' && this._dataField.value){
-                this.setDate( this._dataField.value );
-            }
         }
 
         this._init();
@@ -359,23 +356,23 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             if (this._options.shy) {
+				// Close the picker when clicking elsewhere.
                 Event.observe(document,'click',Ink.bindEvent(function(e){
-                    var target = e.target || e.srcElement;
+                    var target = Event.element(e);
+					if (Element.descendantOf(this._containerObject, target) || target === this._dataField) { return; }
 
-                    if (!Element.descendantOf(this._containerObject, target) && target !== this._dataField) {
-                        if (!this._picker) {
-                            this._hide(true);
-                        } else if (target !== this._picker &&
-                                 (!this._options.displayInSelect ||
-                                  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
-                            if (!this._options.dayField ||
-                                    (!Element.descendantOf(this._options.dayField,   target) &&
-                                     !Element.descendantOf(this._options.monthField, target) &&
-                                     !Element.descendantOf(this._options.yearField,  target)      ) ) {
-                                this._hide(true);
-                            }
-                        }
-                    }
+					if (!this._picker) {
+						this._hide(true);
+					} else if (target !== this._picker &&
+							 (!this._options.displayInSelect ||
+							  (target !== this._options.dayField && target !== this._options.monthField && target !== this._options.yearField) ) ) {
+						if (!this._options.dayField ||
+								(!Element.descendantOf(this._options.dayField,   target) &&
+								 !Element.descendantOf(this._options.monthField, target) &&
+								 !Element.descendantOf(this._options.yearField,  target)      ) ) {
+							this._hide(true);
+						}
+					}
                 },this));
             }
         },
@@ -598,8 +595,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         {suf: 'Min', date: dates[0], noLim: noMinLimit},
                         {suf: 'Max', date: dates[1], noLim: noMaxLimit}
                     ], Ink.bind(function (data) {
-                if (!data.date) { return; }
-
                 var yearLim;
                 var monthLim;
                 var dayLim;
@@ -727,23 +722,16 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _dateCmpUntil: function (self, oth, shallowness) {
             var props = ['_year', '_month', '_day'];
+            var i = -1;
 
-            for (var i = 0; i < 3; i++) {
+            do {
+                i++;
                 if      (self[props[i]] > oth[props[i]]) { return 1; }
                 else if (self[props[i]] < oth[props[i]]) { return -1; }
-                else {
-                    // Check if there is a next property (we can cmp year +
-                    // month only or the loop could be ending)
-                    if (self[props[i + 1]] === undefined || oth[props[i + 1]] === undefined) {
-                        return 0;
-                    } // if the next prop is known, we can cmp() that.
-                }
-                
-                if (shallowness === props[i]) {
-                    return 0 ;
-                }
-            }
-            throw 'Should not run';
+            } while (props[i] !== shallowness && 
+                    self[props[i + 1]] !== undefined && oth[props[i + 1]] !== undefined);
+
+            return 0;
         },
 
         /**
@@ -778,51 +766,23 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDate: function(){
             var dataParsed;
-            if(!this._options.displayInSelect){
-                if(this._dataField.value !== ''){
-                    var dt = this.getDate(); // TODO remove
-                    if(this._isDate(this._options.format,this._dataField.value)){
-                        dataParsed = this._parseDate(this._dataField.value);
-                        dataParsed = this._fitDateToRange( dataParsed );
-
-                        this._year  = dataParsed._year;
-                        this._month = dataParsed._month;
-                        this._day   = dataParsed._day;
-                    }else{
-                        this._dataField.value = '';
-                        this._year  = dt.getFullYear( ); //TODO remove
-                        this._month = dt.getMonth( ); //TODO remove
-                        this._day   = dt.getDate( ); //TODO remove
-                    }
-                    dt.setFullYear( this._year , this._month , this._day ); //TODO remove
-                    this._year = dt.getFullYear(); //TODO remove
-                    this._month = dt.getMonth(); //TODO remove
-                    this._day = dt.getDate(); //TODO remove
-                    this._dataField.value = this._writeDateInFormat( );
-                }
-            } else {
+            if(!this._options.displayInSelect && this._dataField.value){
+                dataParsed = this._parseDate(this._dataField.value);
+            } else if (this._options.displayInSelect) {
                 dataParsed = {
                     _year: this._options.yearField[this._options.yearField.selectedIndex].value,
                     _month: this._options.monthField[this._options.monthField.selectedIndex].value - 1,
                     _day: this._options.dayField[this._options.dayField.selectedIndex].value
                 };
-                if(this._isValidDate(dataParsed)){
-                    dataParsed = this._fitDateToRange( dataParsed );
-
-                    this._year  = dataParsed._year;
-                    this._month = dataParsed._month;
-                    this._day   = dataParsed._day;
-                } else {
-                    dataParsed = this._fitDateToRange( dataParsed );
-                    if(this._isValidDate( dataParsed )){
-                        this._year  = dataParsed._year;
-                        this._month = dataParsed._month;
-                        this._day   = this._daysInMonth(dataParsed._year, dataParsed._month);
-
-                        this.setDate();
-                    }
-                }
             }
+
+            if (dataParsed) {
+                dataParsed = this._fitDateToRange(dataParsed);
+                this._year = dataParsed._year;
+                this._month = dataParsed._month;
+                this._day = dataParsed._day;
+            }
+            this.setDate();
             this._updateDescription();
             this._renderMonth();
         },
@@ -1116,7 +1076,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             _m += 1;
 
             var exceptions = {
-                2: ((_y % 400 === 0) || (_y % 4 === 0 && _y % 100 !== 0)),
+                2: ((_y % 400 === 0) || (_y % 4 === 0 && _y % 100 !== 0)) ? 29 : 28,
                 4: 30,
                 6: 30,
                 9: 30,
@@ -1138,7 +1098,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var date;
             if (incValue > 0) {
                 date = this._getNextMonth();
-            } else {
+            } else if (incValue < 0) {
                 date = this._getPrevMonth();
             }
             if (!date) { return null; }
@@ -1289,11 +1249,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _renderMonth: function(){
-            var i;
-            var day;
             var month = this._month;
             var year = this._year;
-            var maxDay = this._daysInMonth(year,month);
             
             // Week day of the first day in the month
             var wDayFirst = (new Date( year , month , 1 )).getDay();
@@ -1310,47 +1267,44 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var html = '';
 
-            // Write the top bar of the calendar (M T W T F S S)
-            html += '<ul class="sapo_cal_header">';
-            var wDay;
-            for(i=0; i<7; i++){
-                wDay = (startWeekDay + i) % 7;
-                html+='<li>' + this._options.wDay[wDay].substring(0,1)  + '</li>';
-            }
-            html+='</ul>';
+            html += this._getMonthCalendarHeaderHtml(startWeekDay);
 
             var counter = 0;
             html+='<ul>';
 
             var emptyHtml = '<li class="sapo_cal_empty">&nbsp;</li>';
 
-            // Write the "empties". Days to add padding to the first day of the month if it is not monday.
+            // Add padding if the first day of the month is not monday.
             if(wDayFirst !== 0) {
                 var empties = wDayFirst - startWeekDay - 1;
                 counter += empties;
                 html += strRepeat(empties, emptyHtml);
             }
 
-            for (day = 1; day <= maxDay; day++) {
+            html += this._getDayButtonsHtml(counter, year, month);
+
+            html += '</ul>';
+
+            this._monthContainer.innerHTML = html;
+        },
+
+        _getDayButtonsHtml: function (counter, year, month) {
+            var daysInMonth = this._daysInMonth(year, month);
+            var ret = '';
+            for (var day = 1; day <= daysInMonth; day++) {
                 if (counter === 7){ // new week
                     counter=0;
-                    html+='<ul>';
+                    ret += '<ul>';
                 }
 
-                html += this._getDayButtonHtml(year, month, day);
+                ret += this._getDayButtonHtml(year, month, day);
 
                 counter++;
                 if(counter === 7){
-                    html+='</ul>';
+                    ret += '</ul>';
                 }
             }
-
-            // Add "empties" to the end of the calendar.
-            html += strRepeat(7 - counter, emptyHtml);
-
-            html+='</ul>';
-
-            this._monthContainer.innerHTML = html;
+            return ret;
         },
 
         /**
@@ -1360,14 +1314,32 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _getDayButtonHtml: function (year, month, day) {
-            var attrs = '';
+            var attrs = ' ';
             var date = dateishFromYMD(year, month, day);
             if (!this._acceptableDay(date)) {
-                attrs = ' class="sapo_cal_off"';
-            } else if (this._day && this._dateCmp(date, this) === 0) {
-                attrs = ' class="sapo_cal_on" data-cal-day="' + day + '"';
+                attrs += 'class="sapo_cal_off"';
+            } else {
+                attrs += 'data-cal-day="' + day + '"';
             }
+
+            if (this._day && this._dateCmp(date, this) === 0) {
+                attrs += 'class="sapo_cal_on" data-cal-day="' + day + '"';
+            }
+
             return '<li><a href="#" ' + attrs + '>' + day + '</a></li>';   
+        },
+
+        /** Write the top bar of the calendar (M T W T F S S) */
+        _getMonthCalendarHeaderHtml: function (startWeekDay) {
+            var ret = '<ul class="sapo_cal_header">';
+            var wDay;
+            for(var i=0; i<7; i++){
+                wDay = (startWeekDay + i) % 7;
+                ret += '<li>' +
+                    this._options.wDay[wDay].substring(0,1) +
+                    '</li>';
+            }
+            return ret + '</ul>';
         },
 
         /**
