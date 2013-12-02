@@ -4,7 +4,7 @@
  * @version 1
  */
 Ink.createModule('Ink.Dom.Selector', 1, [], function() {
-    /*jshint forin:false, eqnull:true*/
+    /*jshint forin:false, eqnull:true, noempty:false, expr:true, boss:true, maxdepth:false*/
 	'use strict';
 
     /**

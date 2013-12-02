@@ -193,8 +193,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol !== urlLocation.protocol
-                    || location.host !== urlLocation.host;
+                return location.protocol !== urlLocation.protocol ||
+                       location.host     !== urlLocation.host;
             }
         },
 
@@ -257,7 +257,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     }
 
                     if (this.transport.overrideMimeType && (navigator.userAgent.match(/Gecko\/(\d{4})/) || [0,2005])[1] < 2005) {
-                        headers['Connection'] = 'close';
+                        headers.Connection = 'close';
                     }
 
                     for (var headerName in headers) {
@@ -714,6 +714,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     if (typeof JSON  !== "undefined" && typeof JSON.parse !== 'undefined'){
                         return JSON.parse(strJSON);
                     }
+                    /*jshint evil:true */
                     return eval('(' + strJSON + ')');
                 } catch(e) {
                     throw new Error('ERROR: Bad JSON string...');

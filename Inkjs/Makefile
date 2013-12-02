@@ -19,11 +19,13 @@ help:
 all: extractTree docs min bundle bundleMin updateJsFolder
 
 
-report: deleteMinFiles
+report: extractTree deleteMinFiles
 	@echo "\ngenerating report..."
+	@mkdir -p report
 	@plato -r -l .jshintrc -d report Ink
-	@google-chrome report/index.html
 
+readReport: report
+	@google-chrome report/index.html
 
 clean: deleteMinFiles removeDirs
 	@echo "clean."
@@ -36,6 +38,8 @@ extractTree:
 	@echo "\nextracting tree..."
 	@node serverUtils/extractTree.js
 
+builddir:
+	@mkdir -p builds
 
 extractTestsTree:
 	@echo "\nextracting tests tree..."
@@ -72,14 +76,14 @@ min: extractTree
 	@node serverUtils/minFiles.js
 
 
-bundle: extractTree
+bundle: builddir extractTree
 	@echo "\nbundling..."
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).js
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).js "/UI/"
 	@node serverUtils/bundle.js ./builds/ink-$(VERSION).js    "/UI/" negates
 
 
-bundleMin: min
+bundleMin: builddir min
 	@echo "\nbundling minified..."
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).min.js minify
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).min.js  minify "/UI/"

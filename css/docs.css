@@ -10,7 +10,7 @@
   margin-right: auto;
 }
 .clearfix:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -124,6 +124,7 @@ h2 span {
   background-color: #FFF;
   padding: 1em;
   margin-top: 1em;
+  *overflow: hidden;
 }
 mark {
   font-family: Ubuntu_monospaced, Monaco, 'Andale Mono', 'Courier New', monospace;
@@ -470,7 +471,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   box-shadow: none;
 }
 #topbar .ink-navigation ul.vertical li:first-child:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;

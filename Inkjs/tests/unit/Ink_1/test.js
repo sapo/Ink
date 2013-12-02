@@ -63,11 +63,20 @@ test('getPath, setPath', function () {
 });
 
 asyncTest('loadScript', function () {
+    expect(2);
     window.loadScriptWorks = function (sayYeah) {
         equal(sayYeah, 'yeah');
         start();
     };
     Ink.loadScript('./loadscript-test.js');  // This script calls window.loadScriptWorks('yeah')
+    var scripts = document.getElementsByTagName('script');
+    var _a = document.createElement('a');
+    _a.href = './loadscript-test.js';
+    for (var i = 0, len = scripts.length; i < len; i++) {
+        if (scripts[i].src === _a.href) {
+            ok(true, 'script tag inserted as expected');
+        }
+    }
 });
 
 (function () {
@@ -169,3 +178,29 @@ asyncTest('createModule also waits a tick for dependencies to be created', funct
         return {};
     });
 });
+asyncTest('(regression) createModule can work with a requireModule afterwards when it has dependencies', function () {
+    expect(2);
+
+    Ink.setPath('Ink', '.');
+
+    Ink.createModule( 'Ink.UI.SelectFilter' , '1', ['Ink.SomeUnresolvedDependency_1'], function( Common , Selector , InkEvent ) {
+        ok(true);
+        return {};
+    });
+
+    Ink.requireModules( [ 'Ink.UI.SelectFilter_1' ] , function( SF ) {
+        var scripts = document.getElementsByTagName('script');
+        var _a = document.createElement('a');
+        _a.href = Ink.getPath('Ink.UI.SelectFilter_1');
+        for (var i = 0, len = scripts.length; i < len; i++) {
+            if (scripts[i].src === _a.href) {
+                ok(false, 'Ink tried to request the Ink.UI.SelectFilter_1 module using a script tag, even though it was already created but waiting for dependencies!');
+                start();
+                return
+            }
+        }
+        ok(true);
+        start();
+    });
+});
+

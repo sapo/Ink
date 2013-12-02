@@ -13,9 +13,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     var nativeEvents;
 
     if (document.createEvent) {
-        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+        nativeEvents = 'DOMActivate DOMFocusIn DOMFocusOut focus focusin focusout blur load unload abort error select change submit reset resize scroll click dblclick mousedown mouseenter mouseleave mousemove mouseover mouseout mouseup mousewheel wheel textInput keydown keypress keyup compositionstart compositionupdate compositionend DOMSubtreeModified DOMNodeInserted DOMNodeRemoved DOMNodeInsertedIntoDocument DOMNodeRemovedFromDocument DOMAttrModified DOMCharacterDataModified DOMAttributeNameChanged DOMElementNameChanged hashchange'.split(' ');
     } else {
-        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+        nativeEvents = 'onabort onactivate onafterprint onafterupdate onbeforeactivate onbeforecopy onbeforecut onbeforedeactivate onbeforeeditfocus onbeforepaste onbeforeprint onbeforeunload onbeforeupdate onblur onbounce oncellchange onchange onclick oncontextmenu oncontrolselect oncopy oncut ondataavailable ondatasetchanged ondatasetcomplete ondblclick ondeactivate ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop onerror onerrorupdate onfilterchange onfinish onfocus onfocusin onfocusout onhashchange onhelp onkeydown onkeypress onkeyup onlayoutcomplete onload onlosecapture onmessage onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onmousewheel onmove onmoveend onmovestart onoffline ononline onpage onpaste onprogress onpropertychange onreadystatechange onreset onresize onresizeend onresizestart onrowenter onrowexit onrowsdelete onrowsinserted onscroll onselect onselectionchange onselectstart onstart onstop onstorage onstoragecommit onsubmit ontimeout onunload'.split(' ');
     }
 
     function isNative(eventName) {
@@ -127,9 +127,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object} ev  event object
      * @return {Node} The target
      */
-    element: function(ev)
-    {
-        var node = ev.target ||
+    element: function(ev) {
+        var node = ev.delegationTarget ||
+            ev.target ||
             // IE stuff
             (ev.type === 'mouseout'   && ev.fromElement) ||
             (ev.type === 'mouseleave' && ev.fromElement) ||
@@ -213,11 +213,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         if (document.createEvent) {
             ev = document.createEvent("HTMLEvents");
-            if(!isNative(eventName)) {
-                ev.initEvent("dataavailable", true, true);
-            } else {
-                ev.initEvent(eventName, true, true);
-            }
+            ev.initEvent(eventName, true, true);
 
         } else {
             ev = document.createEventObject();
@@ -266,9 +262,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
               if(ev.eventName === eventName){
                 //fix for FF since it loses the event in case of using a second binObjEvent
                 if(window.addEventListener){
-                  window.event = ev;
+                  try { window.event = ev; } catch (e) { /* IE has this as a readonly property, and in strict mode you can't set readonly properties */ }
                 }
-                cb();
+                cb(ev);
               }
 
             }, this, eventName, argCallback);
@@ -290,8 +286,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
-    observe: function(element, eventName, callBack, useCapture)
-    {
+    observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
         if(element) {
             /* rare corner case: some events need a different callback to be generated */
@@ -344,7 +339,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observeMulti: function (elements, eventName, callBack, useCapture) {
         if (typeof elements === 'string') {
             elements = Ink.ss(elements);
-        } else if (elements instanceof Element) {
+        } else if ( /* is an element */ elements && elements.nodeType === 1) {
             elements = [elements];
         }
         if (!elements[0]) { return false; }
@@ -378,12 +373,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             var fromElement = InkEvent.element(event);
             if (!fromElement || fromElement === element) { return; }
 
-            var selectResult = Ink.ss(selector, element);
             var cursor = fromElement;
 
             while (cursor !== element && cursor) {
                 if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
-                    return callback.call(cursor, event);
+                    event.delegationTarget = cursor;
+                    return callback(event);
                 }
                 cursor = cursor.parentNode;
             }
@@ -584,7 +579,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-var i = 0
 
 return InkEvent;
 

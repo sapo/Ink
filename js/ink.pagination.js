@@ -31,7 +31,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} options Options
-     * @param {Number}   options.size                number of pages
+     * @param {Number}   [options.size]              number of pages.
      * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
      * @param {String}   [options.previousLabel]     label to display on previous page button
@@ -40,31 +40,30 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String}   [options.nextPageLabel]     label to display on next page button
      * @param {String}   [options.firstLabel]        label to display on previous page button
      * @param {String}   [options.lastLabel]         label to display on next page button
-     * @param {Function} [options.onChange]          optional callback
+     * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
      * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
-     * @param {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
+     * @xparam {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
      */
     var Pagination = function(selector, options) {
 
-        this._element = Common.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, 'Ink.UI.Pagination element');
 
-        this._options = Ink.extendObj(
-            {
-                size:          undefined,
-            start:         1,
-            firstLabel:    'First',
-            lastLabel:     'Last',
-            previousLabel: 'Previous',
-            nextLabel:     'Next',
-            onChange:      undefined,
-            setHash:       false,
-            hashParameter: 'page',
-            numberFormatter: function(i) { return i + 1; }
-            },
-            options || {},
-            Element.data(this._element)
-        );
+        this._options = Common.options('Ink.UI.Pagination_1', {
+            size:            ['Integer', null],
+            totalItemCount:  ['Integer', null],
+            itemsPerPage:    ['Integer', null],
+            maxSize:         ['Integer', null],
+            start:           ['Integer', 1],
+            firstLabel:      ['String', 'First'],
+            lastLabel:       ['String', 'Last'],
+            previousLabel:   ['String', 'Previous'],
+            nextLabel:       ['String', 'Next'],
+            onChange:        ['Function', undefined],
+            // setHash:         ['Boolean', false],
+            hashParameter:   ['String', 'page'],
+            numberFormatter: ['Function', function(i) { return i + 1; }]
+        }, options || {}, this._element);
 
         if (!this._options.previousPageLabel) {
             this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
@@ -74,16 +73,19 @@ Ink.createModule('Ink.UI.Pagination', '1',
             this._options.nextPageLabel = 'Next ' + this._options.maxSize;
         }
 
-
         this._handlers = {
             click: Ink.bindEvent(this._onClick,this)
         };
 
-        if (!Common.isInteger(this._options.size)) {
-            throw new TypeError('size option is a required integer!');
+        if (Common.isInteger(this._options.totalItemCount) && Common.isInteger(this._options.itemsPerPage)) {
+            this._size = Math.ceil(this._options.totalItemCount / this._options.itemsPerPage);
+        } else if (Common.isInteger(this._options.size)) {
+            this._size = this._options.size;
+        } else {
+            throw new TypeError('Ink.UI.Pagination: Please supply a size option or totalItemCount and itemsPerPage options.');
         }
 
-        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._options.size) {
+        if (!Common.isInteger(this._options.start) && this._options.start > 0 && this._options.start <= this._size) {
             throw new TypeError('start option is a required integer between 1 and size!');
         }
 
@@ -91,17 +93,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
             throw new TypeError('maxSize option is a positive integer!');
         }
 
-        else if (this._options.size < 0) {
+        else if (this._size < 0) {
             throw new RangeError('size option must be equal or more than 0!');
         }
 
-        if (this._options.onChange !== undefined && typeof this._options.onChange !== 'function') {
-            throw new TypeError('onChange option must be a function!');
-        }
-
-        if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
-            this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
-        }
+        this.setOnChange(this._options.onChange);
 
         this._current = this._options.start - 1;
         this._itemLiEls = [];
@@ -120,6 +116,10 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _init: function() {
             // generate and apply DOM
             this._generateMarkup(this._element);
+            if (Css.hasClassName( Ink.s('ul', this._element), 'dotted')) {
+                this._options.numberFormatter = function() { return '<i class="icon-circle"></i>'; };
+            }
+
             this._updateItems();
 
             // subscribe events
@@ -135,7 +135,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @private
          */
         _observe: function() {
-            Event.observe(this._element, 'click', this._handlers.click);
+            Event.observeDelegated(this._element, 'click', '.pagination > li', this._handlers.click);
         },
 
         /**
@@ -147,13 +147,13 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _updateItems: function() {
             var liEls = this._itemLiEls;
 
-            var isSimpleToggle = this._options.size === liEls.length;
+            var isSimpleToggle = this._size === liEls.length;
 
             var i, f, liEl;
 
             if (isSimpleToggle) {
                 // just toggle active class
-                for (i = 0, f = this._options.size; i < f; ++i) {
+                for (i = 0, f = this._size; i < f; ++i) {
                     Css.setClassName(liEls[i], 'active', i === this._current);
                 }
             }
@@ -165,7 +165,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
 
                 // add new items
                 liEls = [];
-                for (i = 0, f = this._options.size; i < f; ++i) {
+                for (i = 0, f = this._size; i < f; ++i) {
                     liEl = document.createElement('li');
                     liEl.appendChild( genAEl( this._options.numberFormatter(i), i) );
                     Css.setClassName(liEl, 'active', i === this._current);
@@ -181,7 +181,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 var pi = this._options.maxSize * page;
                 var pf = pi + this._options.maxSize - 1;
 
-                for (i = 0, f = this._options.size; i < f; ++i) {
+                for (i = 0, f = this._size; i < f; ++i) {
                     liEl = liEls[i];
                     Css.setClassName(liEl, 'hide-all', i < pi || i > pf);
                 }
@@ -212,10 +212,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _generateMarkup: function(el) {
             Css.addClassName(el, 'ink-navigation');
 
-            var
-                ulEl,liEl,
-                hasUlAlready = false
-            ;
+            var ulEl,liEl,
+                hasUlAlready = false;
             if( ( ulEl = Selector.select('ul.pagination',el)).length < 1 ){
                 ulEl = document.createElement('ul');
                 Css.addClassName(ulEl, 'pagination');
@@ -281,20 +279,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _onClick: function(ev) {
             Event.stop(ev);
 
-            var tgtEl = Event.element(ev);
-            if (tgtEl.nodeName.toLowerCase() !== 'a') {
-                do{
-                    tgtEl = tgtEl.parentNode;
-                }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
-
-                if( tgtEl === this._element){
-                    return;
-                }
-            }
-
-            var liEl = tgtEl.parentNode;
-            if (liEl.nodeName.toLowerCase() !== 'li') { return; }
-
+            var liEl = Event.element(ev);
             if ( Css.hasClassName(liEl, 'active') ||
                  Css.hasClassName(liEl, 'disabled') ) { return; }
 
@@ -309,7 +294,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(0);
             }
             else if (isLast) {
-                this.setCurrent(this._options.size - 1);
+                this.setCurrent(this._size - 1);
             }
             else if (isPrevPage || isNextPage) {
                 this.setCurrent( (isPrevPage ? -1 : 1) * this._options.maxSize, true);
@@ -324,6 +309,18 @@ Ink.createModule('Ink.UI.Pagination', '1',
         },
 
 
+        /**
+         * Allows you to subscribe to the onChange event
+         *
+         * @method setOnChange
+         * @param cb {Function} Callback called with `(thisPaginator, newPageNumber)`.
+         */
+        setOnChange: function (onChange) {
+            if (onChange !== undefined && typeof onChange !== 'function') {
+                throw new TypeError('onChange option must be a function!');
+            }
+            this._onChange = onChange;
+        },
 
         /**************
          * PUBLIC API *
@@ -341,9 +338,21 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 throw new TypeError('1st argument must be an integer number!');
             }
 
-            this._options.size = sz;
+            this._size = sz;
             this._updateItems();
             this._current = 0;
+        },
+
+        /**
+         * Calculate the number of pages, then call setSize().
+         *
+         * @param setSizeInItems
+         * @param {Number} totalItems
+         * @param {Number} itemsPerPage
+         */
+        setSizeInItems: function (totalItems, itemsPerPage) {
+            var pageNumber = Math.ceil(totalItems / itemsPerPage);
+            this.setSize(pageNumber);
         },
 
         /**
@@ -363,22 +372,26 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 nr += this._current;
             }
 
+            if (nr > this._size - 1) {
+                nr = this._size - 1;
+            }
+
             if (nr < 0) {
                 nr = 0;
             }
-            else if (nr > this._options.size - 1) {
-                nr = this._options.size - 1;
-            }
+
             this._current = nr;
             this._updateItems();
+
+            if (this._onChange) {
+                this._onChange(this, nr);
+            }
 
             /*if (this._options.setHash) {
                 var o = {};
                 o[this._options.hashParameter] = nr;
                 Common.setHash(o);
-            }*/
-
-            if (this._options.onChange) { this._options.onChange(this); }
+            }*/  // undocumented option, removing
         },
 
         /**
@@ -389,7 +402,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         getSize: function() {
-            return this._options.size;
+            return this._size;
         },
 
         /**
@@ -422,7 +435,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         isLast: function() {
-            return this._current === this._options.size - 1;
+            return this._current === this._size - 1;
         },
 
         /**
@@ -444,7 +457,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         hasNext: function() {
-            return this._current < this._options.size - 1;
+            return this._current < this._size - 1;
         },
 
         /**
@@ -466,7 +479,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @public
          */
         hasNextPage: function() {
-            return this._options.maxSize && this._options.size - this._current >= this._options.maxSize + 1;
+            return this._options.maxSize && this._size - this._current >= this._options.maxSize + 1;
         },
 
         /**

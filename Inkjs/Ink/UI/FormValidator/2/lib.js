@@ -672,6 +672,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          */
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
+            neverSubmit: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
@@ -824,8 +825,11 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
          * @return {Boolean}
          * @public
          */
-        validate: function( event ){
-            Event.stop(event);
+        validate: function( event ) {
+
+            if(this._options.neverSubmit+'' === 'true' && event) {
+                Event.stopDefault(event);
+            }
 
             if( typeof this._options.beforeValidation === 'function' ){
                 this._options.beforeValidation();
@@ -851,6 +855,11 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 }
                 return true;
             } else {
+
+                if(event) {
+                    Event.stopDefault(event);
+                }
+
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }

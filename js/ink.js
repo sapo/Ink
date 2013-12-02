@@ -1,5 +1,5 @@
 
-(function(window, document) {
+;(function(window, document) {
 
     'use strict';
 
@@ -29,6 +29,7 @@
     var modulesLoadOrder = [];
     var modulesRequested = {};
     var pendingRMs = [];
+    var modulesWaitingForDeps = {};
 
 
 
@@ -172,6 +173,17 @@
             //}
         },
 
+        _loadLater: function (dep) {
+            setTimeout(function () {
+                if (modules[dep] || modulesRequested[dep] ||
+                        modulesWaitingForDeps[dep]) {
+                    return;
+                }
+                modulesRequested[dep] = true;
+                Ink.loadScript(dep);
+            }, 0);
+        },
+
         /**
          * defines a namespace.
          *
@@ -231,16 +243,16 @@
             }
 
             // validate version correctness
-            if (typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0)) {
-            } else {
+            if (!(typeof ver === 'number' || (typeof ver === 'string' && ver.length > 0))) {
                 throw new Error('version number missing!');
             }
 
+            var modAll = [mod, '_', ver].join('');
+
+            modulesWaitingForDeps[modAll] = true;
+
             var cb = function() {
                 //console.log(['createModule(', mod, ', ', ver, ', [', deps.join(', '), '], ', !!modFn, ')'].join(''));
-
-                var modAll = [mod, '_', ver].join('');
-
 
                 // make sure module in not loaded twice
                 if (modules[modAll]) {
@@ -281,6 +293,7 @@
 
                 // versioned
                 modules[ modAll ] = moduleContent; // in modules
+                delete modulesWaitingForDeps[ modAll ];
 
                 if (isInkModule) {
                     t[0][ t[1] + '_' + ver ] = moduleContent; // in namespace
@@ -294,9 +307,9 @@
                     if (isEmptyObject( t[0][ t[1] ] )) {
                         t[0][ t[1] ] = moduleContent; // in namespace
                     }
-                    else {
+                    // else {
                         // console.warn(['Ink.createModule ', modAll, ': module has been defined already with a different version!'].join(''));
-                    }
+                    // }
                 }
 
 
@@ -341,14 +354,8 @@
                     --o.remaining;
                     continue;
                 }
-                else if (modulesRequested[dep]) {
-                }
-                else {
-                    setTimeout(Ink.bind(function (dep) {
-                        if (modules[dep]) { return; }
-                        modulesRequested[dep] = true;
-                        Ink.loadScript(dep);
-                    }, null, dep), 0);
+                else if (!modulesRequested[dep]) {
+                    Ink._loadLater(dep);
                 }
                 o.left[dep] = i;
             }
@@ -404,6 +411,7 @@
         /**
          * Function.prototype.bind alternative.
          * Additional arguments will be sent to the original function as prefix arguments.
+         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bind
          * @param {Function}  fn
@@ -415,7 +423,7 @@
             return function() {
                 var innerArgs = Array.prototype.slice.call(arguments);
                 var finalArgs = args.concat(innerArgs);
-                return fn.apply(context, finalArgs);
+                return fn.apply(context === false ? this : context, finalArgs);
             };
         },
 
@@ -440,7 +448,7 @@
          *  Ink.bindMethod(this, 'remove', myElem);
          */
         bindMethod: function (object, methodName) {
-            return this.bind.apply(this,
+            return Ink.bind.apply(Ink,
                 [object[methodName], object].concat([].slice.call(arguments, 2)));
         },
 
@@ -448,6 +456,7 @@
          * Function.prototype.bind alternative for event handlers.
          * Same as bind but keeps first argument of the call the original event.
          * Additional arguments will be sent to the original function as prefix arguments.
+         * Set "context" to `false` to preserve the original context of the function and just bind the arguments.
          *
          * @method bindEvent
          * @param {Function}  fn
@@ -459,7 +468,7 @@
             return function(event) {
                 var finalArgs = args.slice();
                 finalArgs.unshift(event || window.event);
-                return fn.apply(context, finalArgs);
+                return fn.apply(context === false ? this : context, finalArgs);
             };
         },
 
@@ -573,8 +582,7 @@
         }
     }, checkDelta*1000);
     */
-
-})(window, document);
+}(window, document));
 
 /**
  * @author inkdev AT sapo.pt
@@ -771,8 +779,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol !== urlLocation.protocol
-                    || location.host !== urlLocation.host;
+                return location.protocol !== urlLocation.protocol ||
+                       location.host     !== urlLocation.host;
             }
         },
 
@@ -835,7 +843,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     }
 
                     if (this.transport.overrideMimeType && (navigator.userAgent.match(/Gecko\/(\d{4})/) || [0,2005])[1] < 2005) {
-                        headers['Connection'] = 'close';
+                        headers.Connection = 'close';
                     }
 
                     for (var headerName in headers) {
@@ -1292,6 +1300,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                     if (typeof JSON  !== "undefined" && typeof JSON.parse !== 'undefined'){
                         return JSON.parse(strJSON);
                     }
+                    /*jshint evil:true */
                     return eval('(' + strJSON + ')');
                 } catch(e) {
                     throw new Error('ERROR: Bad JSON string...');
@@ -1525,7 +1534,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
      * @static
      */
 
-    var DomCss = {
+    var Css = {
         /**
          * adds or removes a class to the given element according to addRemState
          *
@@ -1556,12 +1565,16 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         addClassName: function(elm, className) {
             elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    elm.classList.add(className);
-                }
-                else if (!this.hasClassName(elm, className)) {
-                    elm.className += (elm.className ? ' ' : '') + className;
+            if (!elm || !className) { return null; }
+            className = ('' + className).split(/[, ]+/);
+            var i = 0;
+            var len = className.length;
+
+            for (; i < len; i++) {
+                if (typeof elm.classList !== "undefined") {
+                    elm.classList.add(className[i]);
+                } else if (!Css.hasClassName(elm, className[i])) {
+                    elm.className += (elm.className ? ' ' : '') + className[i];
                 }
             }
         },
@@ -1575,22 +1588,26 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         removeClassName: function(elm, className) {
             elm = Ink.i(elm);
-            if (elm && className) {
-                if (typeof elm.classList !== "undefined"){
-                    elm.classList.remove(className);
-                } else {
-                    if (typeof elm.className === "undefined") {
-                        return false;
-                    }
-                    var elmClassName = elm.className || '';
-                    var re = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-                    elmClassName = elmClassName
-                        .replace(re, ' ')
-                        .replace(/^\s+/, ' ')
-                        .replace(/\s+$/, '');
+            if (!elm || !className) { return null; }
+            
+            className = ('' + className).split(/[, ]+/);
+            var i = 0;
+            var len = className.length;
 
-                    elm.className = elmClassName;
+            if (typeof elm.classList !== "undefined"){
+                for (; i < len; i++) {
+                    elm.classList.remove(className[i]);
                 }
+            } else {
+                var elmClassName = elm.className || '';
+                var re;
+                for (; i < len; i++) {
+                    re = new RegExp("(^|\\s+)" + className[i] + "(\\s+|$)");
+                    elmClassName = elmClassName.replace(re, ' ');
+                }
+                elm.className = (elmClassName
+                    .replace(/^\s+/, '')
+                    .replace(/\s+$/, ''));
             }
         },
 
@@ -1609,39 +1626,43 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
         /**
          * @method hasClassName
          * @param {DOMElement|String}  elm        DOM element or element id
-         * @param {String}             className
+         * @param {String|Array}       classNames classNames to test
+         * @param {Boolean}            [all=false] if true, return whether all classes in classNames are there. Otherwise, return true if any is present.
          * @return {Boolean} true if a given class is applied to a given element
          */
-        hasClassName: function(elm, className) {
+        hasClassName: function(elm, className, all) {
             elm = Ink.i(elm);
-            if (elm && className) {
+            if (!elm || !className) { return false; }
+
+            className = ('' + className).split(/[, ]+/);
+            var i = 0;
+            var len = className.length;
+            var has;
+            var re;
+
+            for ( ; i < len; i++) {
                 if (typeof elm.classList !== "undefined"){
-                    return elm.classList.contains(className);
-                }
-                else {
-                    if (typeof elm.className === "undefined") {
-                        return false;
-                    }
+                    has = elm.classList.contains(className[i]);
+                } else {
                     var elmClassName = elm.className;
-
-                    if (typeof elmClassName.length === "undefined") {
-                        return false;
-                    }
-
-                    if (elmClassName.length > 0) {
-                        if (elmClassName === className) {
-                            return true;
-                        }
-                        else {
-                            var re = new RegExp("(^|\\s)" + className + "(\\s|$)");
-                            if (re.test(elmClassName)) {
-                                return true;
-                            }
-                        }
+                    if (elmClassName === className[i]) {
+                        has = true;
+                    } else {
+                        re = new RegExp("(^|\\s)" + className[i] + "(\\s|$)");
+                        has = re.test(elmClassName);
                     }
                 }
+                if (has && !all) { return true; }  // return if looking for any class
+                if (!has && all) { return false; }  // return if looking for all classes
             }
-            return false;
+
+            if (all) {
+                // if we got here, all classes were found so far
+                return true;
+            } else {
+                // if we got here with all == false, no class was found
+                return false;
+            }
         },
 
         /**
@@ -1655,17 +1676,10 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         blinkClass: function(element, className, timeout, negate){
             element = Ink.i(element);
-            this.addRemoveClassName(element, className, !negate);
-            setTimeout(Ink.bind(function() {
-                this.addRemoveClassName(element, className, negate);
-            }, this), Number(timeout) || 100);
-            /*
-            var _self = this;
+            Css.addRemoveClassName(element, className, !negate);
             setTimeout(function() {
-                    console.log(_self);
-                _self.addRemoveClassName(element, className, negate);
+                Css.addRemoveClassName(element, className, negate);
             }, Number(timeout) || 100);
-            */
         },
 
         /**
@@ -1678,7 +1692,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         toggleClassName: function(elm, className, forceAdd) {
             if (elm && className){
-                if (typeof elm.classList !== "undefined"){
+                if (typeof elm.classList !== "undefined" && !/[, ]/.test(className)){
                     elm = Ink.i(elm);
                     if (elm !== null){
                         elm.classList.toggle(className);
@@ -1689,17 +1703,16 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
             if (typeof forceAdd !== 'undefined') {
                 if (forceAdd === true) {
-                    this.addClassName(elm, className);
+                    Css.addClassName(elm, className);
                 }
                 else if (forceAdd === false) {
-                    this.removeClassName(elm, className);
+                    Css.removeClassName(elm, className);
                 }
             } else {
-                if (this.hasClassName(elm, className)) {
-                    this.removeClassName(elm, className);
-                }
-                else {
-                    this.addClassName(elm, className);
+                if (Css.hasClassName(elm, className)) {
+                    Css.removeClassName(elm, className);
+                } else {
+                    Css.addClassName(elm, className);
                 }
             }
         },
@@ -1740,7 +1753,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          * @return {String} Converted string
          */
         _camelCase: function(str) {
-            return str ? str.replace(/-(\w)/g, function (_, $1){
+            return str ? str.replace(/-(\w)/g, function (_, $1) {
                 return $1.toUpperCase();
             }) : str;
         },
@@ -1812,32 +1825,29 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
          */
         setStyle: function(elm, style) {
             elm = Ink.i(elm);
-            if (elm !== null) {
-                if (typeof style === 'string') {
-                    elm.style.cssText += '; '+style;
+            if (elm === null) { return; }
+            if (typeof style === 'string') {
+                elm.style.cssText += '; '+style;
 
-                    if (style.indexOf('opacity') !== -1) {
-                        this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
-                    }
+                if (style.indexOf('opacity') !== -1) {
+                    this.setOpacity(elm, style.match(/opacity:\s*(\d?\.?\d*)/)[1]);
                 }
-                else {
-                    for (var prop in style) {
-                        if (style.hasOwnProperty(prop)){
-                            if (prop === 'opacity') {
-                                this.setOpacity(elm, style[prop]);
+            }
+            else {
+                for (var prop in style) {
+                    if (style.hasOwnProperty(prop)){
+                        if (prop === 'opacity') {
+                            this.setOpacity(elm, style[prop]);
+                        }
+                        else if (prop === 'float' || prop === 'cssFloat') {
+                            if (typeof elm.style.styleFloat === 'undefined') {
+                                elm.style.cssFloat = style[prop];
                             }
                             else {
-                                if (prop === 'float' || prop === 'cssFloat') {
-                                    if (typeof elm.style.styleFloat === 'undefined') {
-                                        elm.style.cssFloat = style[prop];
-                                    }
-                                    else {
-                                        elm.style.styleFloat = style[prop];
-                                    }
-                                } else {
-                                    elm.style[prop] = style[prop];
-                                }
+                                elm.style.styleFloat = style[prop];
                             }
+                        } else {
+                            elm.style[prop] = style[prop];
                         }
                     }
                 }
@@ -1902,7 +1912,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
                         this.hide(elm);
                     }
                 } else {
-                    if (elm.style.display === 'none') {
+                    if (this.getStyle(elm,'display').toLowerCase() === 'none') {
                         this.show(elm);
                     }
                     else {
@@ -2342,7 +2352,7 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
     };
 
-    return DomCss;
+    return Css;
 
 });
 
@@ -2354,7 +2364,9 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
 
     'use strict';
 
-    var createContextualFragmentSupport = (typeof document.createRange === 'function' && typeof Range.prototype.createContextualFragment === 'function');
+    var createContextualFragmentSupport = (
+        typeof document.createRange === 'function' &&
+        typeof window.Range.prototype.createContextualFragment === 'function');
 
     var deleteThisTbodyToken = 'Ink.Dom.Element tbody: ' + Math.random();
     var browserCreatesTbodies = (function () {
@@ -2540,39 +2552,18 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         offset: function(el) {
             /*jshint boss:true */
             el = Ink.i(el);
-            var bProp = ['border-left-width', 'border-top-width'];
             var res = [0, 0];
-            var dRes, bRes, parent, cs;
-            var getPropPx = InkElement._getPropPx;
-
-            var InkBrowser = Ink.getModule('Ink.Dom.Browser', 1);
-
-            do {
-                cs = window.getComputedStyle ? window.getComputedStyle(el, null) : el.currentStyle;
-                dRes = [el.offsetLeft | 0, el.offsetTop | 0];
-
-                bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-                if( InkBrowser.OPERA ){
-                    res[0] += dRes[0];
-                    res[1] += dRes[1];
-                } else {
-                    res[0] += dRes[0] + bRes[0];
-                    res[1] += dRes[1] + bRes[1];
-                }
-                parent = el.offsetParent;
-            } while (el = parent);
-
-            bRes = [getPropPx(cs, bProp[0]), getPropPx(cs, bProp[1])];
-
-            if (InkBrowser.GECKO) {
-                res[0] += bRes[0];
-                res[1] += bRes[1];
-            }
-            else if( !InkBrowser.OPERA ) {
-                res[0] -= bRes[0];
-                res[1] -= bRes[1];
-            }
-
+            var doc = el.ownerDocument,
+                docElem = doc.documentElement,
+                box = el.getBoundingClientRect(),
+                body = doc.body,
+                clientTop  = docElem.clientTop  || body.clientTop  || 0,
+                clientLeft = docElem.clientLeft || body.clientLeft || 0,
+                scrollTop  = doc.pageYOffset || docElem.scrollTop  || body.scrollTop,
+                scrollLeft = doc.pageXOffset || docElem.scrollLeft || body.scrollLeft,
+                top  = box.top  + scrollTop  - clientTop,
+                left = box.left + scrollLeft - clientLeft;
+            res = [left, top];
             return res;
         },
 
@@ -2599,7 +2590,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
                 c = val.indexOf('px');
                 if (c === -1) { n = 0; }
                 else {
-                    n = parseInt(val, 10);
+                    n = parseFloat(val, 10);
                 }
             }
 
@@ -2639,7 +2630,11 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         insertAfter: function(newElm, targetElm) {
             /*jshint boss:true */
             if (targetElm = InkElement.get(targetElm)) {
-                targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                if (targetElm.nextSibling !== null) {
+                    targetElm.parentNode.insertBefore(newElm, targetElm.nextSibling);
+                } else {
+                    targetElm.parentNode.appendChild(newElm);
+                }
             }
         },
 
@@ -3135,11 +3130,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @returns {HtmlElement|false} the matched element or false if did not match
          */
         findUpwardsBySelector: function(element, sel) {
-            if (typeof Ink.Dom === 'undefined' || typeof Ink.Dom.Selector === 'undefined') {
+            var Selector = Ink.getModule('Ink.Dom.Selector');
+            if (!Selector) {
                 throw new Error('This method requires Ink.Dom.Selector');
             }
             var tst = function(el) {
-                return Ink.Dom.Selector.matchesSelector(el, sel);
+                return Selector.matchesSelector(el, sel);
             };
             return InkElement.findUpwardsHaving(element, tst);
         },
@@ -3632,6 +3628,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
         },
 
+        /**
+         * Gets a wrapper DIV with a certain HTML content for being inserted in `elm`.
+         * Necessary for appendHTML,prependHTML functions, because they need a container element to copy the children from.
+         *
+         * Works around IE table quirks
+         * @method _getWrapper
+         * @private
+         * @param elm
+         * @param html
+         */
         _getWrapper: function (elm, html) {
             var nodeName = elm.nodeName && elm.nodeName.toUpperCase();
             var wrapper = document.createElement('div');
@@ -3643,7 +3649,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
             // special cases
             wrapper = wrapFunc(wrapper, html);
-            // worst case: tbody creation
+            // worst case: tbody auto-creation even when our HTML has a tbody.
             if (browserCreatesTbodies && nodeName === 'TABLE') {
                 // terrible case. Deal with tbody creation too.
                 var tds = wrapper.getElementsByTagName('td');
@@ -3693,11 +3699,15 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            var wrapper = InkElement._getWrapper(elm, html);
-            while (elm.firstChild) {
-                elm.removeChild(elm.firstChild);
+            try {
+                elm.innerHTML = html;
+            } catch (e) {
+                // Tables in IE7
+                while (elm.firstChild) {
+                    elm.removeChild(elm.firstChild);
+                }
+                InkElement.appendHTML(elm, html);
             }
-            InkElement.appendHTML(elm, html);
         },
 
         /**
@@ -3733,12 +3743,29 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             container.appendChild(target);
 
             if (nextNode !== null) {
-                parent.insertBefore(container, nextNode)
+                parent.insertBefore(container, nextNode);
             } else {
                 parent.appendChild(container);
             }
 
             return container;
+        },
+
+        /**
+         * Replaces an element with another.
+         *
+         * @method replace
+         * @param element The element to be replaced.
+         * @param replacement The new element.
+         *
+         * @example
+         *       var newelement1 = InkElement.create('div');
+         *       // ...
+         *       replace(Ink.i('element1'), newelement1);
+         */
+        replace: function (element, replacement) {
+            InkElement.insertBefore(replacement, element);
+            InkElement.remove(element);
         },
 
         /**
@@ -4011,9 +4038,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     var nativeEvents;
 
     if (document.createEvent) {
-        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+        nativeEvents = 'DOMActivate DOMFocusIn DOMFocusOut focus focusin focusout blur load unload abort error select change submit reset resize scroll click dblclick mousedown mouseenter mouseleave mousemove mouseover mouseout mouseup mousewheel wheel textInput keydown keypress keyup compositionstart compositionupdate compositionend DOMSubtreeModified DOMNodeInserted DOMNodeRemoved DOMNodeInsertedIntoDocument DOMNodeRemovedFromDocument DOMAttrModified DOMCharacterDataModified DOMAttributeNameChanged DOMElementNameChanged hashchange'.split(' ');
     } else {
-        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+        nativeEvents = 'onabort onactivate onafterprint onafterupdate onbeforeactivate onbeforecopy onbeforecut onbeforedeactivate onbeforeeditfocus onbeforepaste onbeforeprint onbeforeunload onbeforeupdate onblur onbounce oncellchange onchange onclick oncontextmenu oncontrolselect oncopy oncut ondataavailable ondatasetchanged ondatasetcomplete ondblclick ondeactivate ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop onerror onerrorupdate onfilterchange onfinish onfocus onfocusin onfocusout onhashchange onhelp onkeydown onkeypress onkeyup onlayoutcomplete onload onlosecapture onmessage onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onmousewheel onmove onmoveend onmovestart onoffline ononline onpage onpaste onprogress onpropertychange onreadystatechange onreset onresize onresizeend onresizestart onrowenter onrowexit onrowsdelete onrowsinserted onscroll onselect onselectionchange onselectstart onstart onstop onstorage onstoragecommit onsubmit ontimeout onunload'.split(' ');
     }
 
     function isNative(eventName) {
@@ -4125,9 +4152,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Object} ev  event object
      * @return {Node} The target
      */
-    element: function(ev)
-    {
-        var node = ev.target ||
+    element: function(ev) {
+        var node = ev.delegationTarget ||
+            ev.target ||
             // IE stuff
             (ev.type === 'mouseout'   && ev.fromElement) ||
             (ev.type === 'mouseleave' && ev.fromElement) ||
@@ -4211,11 +4238,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         if (document.createEvent) {
             ev = document.createEvent("HTMLEvents");
-            if(!isNative(eventName)) {
-                ev.initEvent("dataavailable", true, true);
-            } else {
-                ev.initEvent(eventName, true, true);
-            }
+            ev.initEvent(eventName, true, true);
 
         } else {
             ev = document.createEventObject();
@@ -4264,9 +4287,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
               if(ev.eventName === eventName){
                 //fix for FF since it loses the event in case of using a second binObjEvent
                 if(window.addEventListener){
-                  window.event = ev;
+                  try { window.event = ev; } catch (e) { /* IE has this as a readonly property, and in strict mode you can't set readonly properties */ }
                 }
-                cb();
+                cb(ev);
               }
 
             }, this, eventName, argCallback);
@@ -4288,8 +4311,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @param {Boolean}            [useCapture] Set to true to change event listening from bubbling to capture.
      * @return {Function} The event handler used. Hang on to this if you want to `stopObserving` later.
      */
-    observe: function(element, eventName, callBack, useCapture)
-    {
+    observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
         if(element) {
             /* rare corner case: some events need a different callback to be generated */
@@ -4342,7 +4364,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observeMulti: function (elements, eventName, callBack, useCapture) {
         if (typeof elements === 'string') {
             elements = Ink.ss(elements);
-        } else if (elements instanceof Element) {
+        } else if ( /* is an element */ elements && elements.nodeType === 1) {
             elements = [elements];
         }
         if (!elements[0]) { return false; }
@@ -4376,12 +4398,12 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             var fromElement = InkEvent.element(event);
             if (!fromElement || fromElement === element) { return; }
 
-            var selectResult = Ink.ss(selector, element);
             var cursor = fromElement;
 
             while (cursor !== element && cursor) {
                 if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
-                    return callback.call(cursor, event);
+                    event.delegationTarget = cursor;
+                    return callback(event);
                 }
                 cursor = cursor.parentNode;
             }
@@ -4582,7 +4604,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     debug: function(){}
 };
 
-var i = 0
 
 return InkEvent;
 
@@ -4988,7 +5009,7 @@ Ink.createModule('Ink.Dom.Loaded', 1, [], function() {
  * @version 1
  */
 Ink.createModule('Ink.Dom.Selector', 1, [], function() {
-    /*jshint forin:false, eqnull:true*/
+    /*jshint forin:false, eqnull:true, noempty:false, expr:true, boss:true, maxdepth:false*/
 	'use strict';
 
     /**
@@ -7448,10 +7469,9 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          *     });
          *
          */
-        parseUrl: function(url)
-        {
+        parseUrl: function(url) {
             var aURL = {};
-            if(url && typeof(url) !== 'undefined' && typeof(url) === 'string') {
+            if(url && typeof url === 'string') {
                 if(url.match(/^([^:]+):\/\//i)) {
                     var re = /^([^:]+):\/\/([^\/]*)\/?([^\?#]*)\??([^#]*)#?(.*)/i;
                     if(url.match(re)) {
@@ -7486,7 +7506,7 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                     }
                 }
                 if(aURL.host) {
-                    var regPort = new RegExp("^(.*)\\:(\\d+)$","i");
+                    var regPort = /^(.*?)\\:(\\d+)$/i;
                     // check for port
                     if(aURL.host.match(regPort)) {
                         var tmpHost1 = aURL.host;
@@ -7511,6 +7531,50 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
                 }
             }
             return aURL;
+        },
+
+        /**
+         * Take a URL object from Ink.Util.Url.parseUrl or a window.location
+         * object and returns a URL string.
+         *
+         * @method format
+         * @param urlObj window.location, a.href, or parseUrl object to format
+         * @return {String} Full URL.
+         */
+        format: function (urlObj) {
+            var protocol = '';
+            var host = '';
+            var path = '';
+            var frag = '';
+            var query = '';
+
+            if (typeof urlObj.protocol === 'string') {
+                protocol = urlObj.protocol + '//';  // here it comes with the colon
+            } else if (typeof urlObj.scheme === 'string')  {
+                protocol = urlObj.scheme + '://';
+            }
+
+            host = urlObj.host || urlObj.hostname || '';
+            path = urlObj.path || '';
+
+            if (typeof urlObj.query === 'string') {
+                query = urlObj.query;
+            } else if (typeof urlObj.search === 'string') {
+                query = urlObj.search.replace(/^\?/, '');
+            }
+            if (typeof urlObj.fragment === 'string') {
+                frag =  urlObj.fragment;
+            } else if (typeof urlObj.hash === 'string') {
+                frag = urlObj.hash.replace(/#$/, '');
+            }
+
+            return [
+                protocol,
+                host,
+                path,
+                query && '?' + query,
+                frag && '#' + frag
+            ].join('');
         },
 
         /**
@@ -7644,6 +7708,320 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
 
     return Url;
 
+});
+
+/**
+ * @module Ink.Util.Json_1
+ *
+ * @author inkdev AT sapo.pt
+ */
+
+Ink.createModule('Ink.Util.Json', '1', [], function() {
+    'use strict';
+
+    var function_call = Function.prototype.call;
+    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+
+    function twoDigits(n) {
+        var r = '' + n;
+        if (r.length === 1) {
+            return '0' + r;
+        } else {
+            return r;
+        }
+    }
+
+    var dateToISOString = Date.prototype.toISOString ?
+        Ink.bind(function_call, Date.prototype.toISOString) :
+        function(date) {
+            // Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            return date.getUTCFullYear() +
+                '-' + twoDigits( date.getUTCMonth() + 1 ) +
+                '-' + twoDigits( date.getUTCDate() ) +
+                'T' + twoDigits( date.getUTCHours() ) +
+                ':' + twoDigits( date.getUTCMinutes() ) +
+                ':' + twoDigits( date.getUTCSeconds() ) +
+                '.' + String( (date.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 ) +
+                'Z';
+        };
+
+    /**
+     * Use this class to convert JSON strings to JavaScript objects
+     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
+     * Internally, the standard JSON implementation is used if available
+     * Otherwise, the functions mimic the standard implementation.
+     *
+     * Here's how to produce JSON from an existing object:
+     * 
+     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+     *          var obj = {
+     *              key1: 'value1',
+     *              key2: 'value2',
+     *              keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
+     *          };
+     *          Json.stringify(obj);  // The above object as a JSON string
+     *      });
+     *
+     * And here is how to parse JSON:
+     *
+     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
+     *          var source = '{"key": "value", "array": [true, null, false]}';
+     *          Json.parse(source);  // The above JSON string as an object
+     *      });
+     * @class Ink.Util.Json
+     * @static
+     * 
+     */
+    var InkJson = {
+        _nativeJSON: window.JSON || null,
+
+        _convertToUnicode: false,
+
+        // Escape characters so as to embed them in JSON strings
+        _escape: function (theString) {
+            var _m = { '\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"': '\\"',  '\\': '\\\\' };
+
+            if (/["\\\x00-\x1f]/.test(theString)) {
+                theString = theString.replace(/([\x00-\x1f\\"])/g, function(a, b) {
+                    var c = _m[b];
+                    if (c) {
+                        return c;
+                    }
+                    c = b.charCodeAt();
+                    return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
+                });
+            }
+
+            return theString;
+        },
+
+        // A character conversion map
+        _toUnicode: function (theString)
+        {
+            if(!this._convertToUnicode) {
+                return this._escape(theString);
+            } else {
+                var unicodeString = '';
+                var inInt = false;
+                var theUnicode = false;
+                var i = 0;
+                var total = theString.length;
+                while(i < total) {
+                    inInt = theString.charCodeAt(i);
+                    if( (inInt >= 32 && inInt <= 126) ||
+                            //(inInt >= 48 && inInt <= 57) ||
+                            //(inInt >= 65 && inInt <= 90) ||
+                            //(inInt >= 97 && inInt <= 122) ||
+                            inInt === 8 ||
+                            inInt === 9 ||
+                            inInt === 10 ||
+                            inInt === 12 ||
+                            inInt === 13 ||
+                            inInt === 32 ||
+                            inInt === 34 ||
+                            inInt === 47 ||
+                            inInt === 58 ||
+                            inInt === 92) {
+
+                        if(inInt === 34 || inInt === 92 || inInt === 47) {
+                            theUnicode = '\\'+theString.charAt(i);
+                        } else if(inInt === 8) {
+                            theUnicode = '\\b';
+                        } else if(inInt === 9) {
+                            theUnicode = '\\t';
+                        } else if(inInt === 10) {
+                            theUnicode = '\\n';
+                        } else if(inInt === 12) {
+                            theUnicode = '\\f';
+                        } else if(inInt === 13) {
+                            theUnicode = '\\r';
+                        } else {
+                            theUnicode = theString.charAt(i);
+                        }
+                    } else {
+                        if(this._convertToUnicode) {
+                            theUnicode = theString.charCodeAt(i).toString(16)+''.toUpperCase();
+                            while (theUnicode.length < 4) {
+                                theUnicode = '0' + theUnicode;
+                            }
+                            theUnicode = '\\u' + theUnicode;
+                        } else {
+                            theUnicode = theString.charAt(i);
+                        }
+                    }
+                    unicodeString += theUnicode;
+
+                    i++;
+                }
+
+                return unicodeString;
+            }
+
+        },
+
+        _stringifyValue: function(param) {
+            if (typeof param === 'string') {
+                return '"' + this._toUnicode(param) + '"';
+            } else if (typeof param === 'number' && (isNaN(param) || !isFinite(param))) {  // Unusable numbers go null
+                return 'null';
+            } else if (typeof param === 'undefined' || param === null) {  // And so does undefined
+                return 'null';
+            } else if (typeof param.toJSON === 'function') {
+                var t = param.toJSON();
+                if (typeof t === 'string') {
+                    return '"' + this._escape(t) + '"';
+                } else {
+                    return this._escape(t.toString());
+                }
+            } else if (typeof param === 'number' || typeof param === 'boolean') {  // These ones' toString methods return valid JSON.
+                return '' + param;
+            } else if (typeof param === 'function') {
+                return 'null';  // match JSON.stringify
+            } else if (param.constructor === Date) {
+                return '"' + this._escape(dateToISOString(param)) + '"';
+            } else if (param.constructor === Array) {
+                var arrayString = '';
+                for (var i = 0, len = param.length; i < len; i++) {
+                    if (i > 0) {
+                        arrayString += ',';
+                    }
+                    arrayString += this._stringifyValue(param[i]);
+                }
+                return '[' + arrayString + ']';
+            } else {  // Object
+                var objectString = '';
+                for (var k in param)  {
+                    if ({}.hasOwnProperty.call(param, k)) {
+                        if (objectString !== '') {
+                            objectString += ',';
+                        }
+                        objectString += '"' + this._escape(k) + '": ' + this._stringifyValue(param[k]);
+                    }
+                }
+                return '{' + objectString + '}';
+            }
+        },
+
+        /**
+         * serializes a JSON object into a string.
+         *
+         * @method stringify
+         * @param {Object}      input               Data to be serialized into JSON
+         * @param {Boolean}     convertToUnicode    When `true`, converts string contents to unicode \uXXXX
+         * @return {String}     serialized string
+         *
+         * @example
+         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
+         */
+        stringify: function(input, convertToUnicode) {
+            this._convertToUnicode = !!convertToUnicode;
+            if(!this._convertToUnicode && this._nativeJSON) {
+                return this._nativeJSON.stringify(input);
+            }
+            return this._stringifyValue(input);  // And recurse.
+        },
+        
+        /**
+         * @method parse
+         * @param text      {String}    Input string
+         * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
+         * 
+         * @example
+         * Simple example:
+         *
+         *      Json.parse('{"a": "3","numbers":false}',
+         *          function (key, value) {
+         *              if (!this.numbers && key === 'a') {
+         *                  return "NO NUMBERS";
+         *              } else {
+         *                  return value;
+         *              }
+         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
+         */
+        /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
+        parse: function (text, reviver) {
+            /*jshint evil:true*/
+
+// The parse method takes a text and an optional reviver function, and returns
+// a JavaScript value if the text is a valid JSON text.
+
+            var j;
+
+            function walk(holder, key) {
+
+// The walk method is used to recursively walk the resulting structure so
+// that modifications can be made.
+
+                var k, v, value = holder[key];
+                if (value && typeof value === 'object') {
+                    for (k in value) {
+                        if (Object.prototype.hasOwnProperty.call(value, k)) {
+                            v = walk(value, k);
+                            if (v !== undefined) {
+                                value[k] = v;
+                            } else {
+                                delete value[k];
+                            }
+                        }
+                    }
+                }
+                return reviver.call(holder, key, value);
+            }
+
+
+// Parsing happens in four stages. In the first stage, we replace certain
+// Unicode characters with escape sequences. JavaScript handles many characters
+// incorrectly, either silently deleting them, or treating them as line endings.
+
+            text = String(text);
+            cx.lastIndex = 0;
+            if (cx.test(text)) {
+                text = text.replace(cx, function (a) {
+                    return '\\u' +
+                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                });
+            }
+
+// In the second stage, we run the text against regular expressions that look
+// for non-JSON patterns. We are especially concerned with '()' and 'new'
+// because they can cause invocation, and '=' because it can cause mutation.
+// But just to be safe, we want to reject all unexpected forms.
+
+// We split the second stage into 4 regexp operations in order to work around
+// crippling inefficiencies in IE's and Safari's regexp engines. First we
+// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
+// replace all simple value tokens with ']' characters. Third, we delete all
+// open brackets that follow a colon or comma or that begin the text. Finally,
+// we look to see that the remaining characters are only whitespace or ']' or
+// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+
+            if (/^[\],:{}\s]*$/
+                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+// In the third stage we use the eval function to compile the text into a
+// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
+// in JavaScript: it can begin a block or an object literal. We wrap the text
+// in parens to eliminate the ambiguity.
+
+                j = eval('(' + text + ')');
+
+// In the optional fourth stage, we recursively walk the new structure, passing
+// each name/value pair to a reviver function for possible transformation.
+
+                return typeof reviver === 'function' ?
+                    walk({'': j}, '') :
+                    j;
+            }
+
+// If the text is not JSON parseable, then a SyntaxError is thrown.
+
+            throw new SyntaxError('JSON.parse');
+        }
+    };
+
+    return InkJson;
 });
 
 /**
@@ -7822,7 +8200,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 var cleanedTag = false;
                 for(var i=0; i < aAllowed.length; i++) {
                     if(InkUtilString.trim(aAllowed[i]) !== '') {
-                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(\<|\>)/g, '').replace(/\s/, ''));
+                        cleanedTag = InkUtilString.trim(aAllowed[i].replace(/(<|\>)/g, '').replace(/\s/, ''));
                         aNewAllowed.push('(<'+cleanedTag+'\\s[^>]+>|<(\\s|\\/)?(\\s|\\/)?'+cleanedTag+'>)');
                     }
                 }
@@ -7838,7 +8216,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 }
                 return string;
             } else {
-                return string.replace(/\<[^\>]+\>/g, '');
+                return string.replace(/<[^\>]+\>/g, '');
             }
         },
 
@@ -7901,8 +8279,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        utf8Encode: function(string)
-        {
+        utf8Encode: function(string) {
+            /*jshint bitwise:false*/
             string = string.replace(/\r\n/g,"\n");
             var utfstring = "";
 
@@ -7978,8 +8356,8 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        utf8Decode: function(utfstring)
-        {
+        utf8Decode: function(utfstring) {
+            /*jshint bitwise:false*/
             var string = "";
             var i = 0, c = 0, c2 = 0, c3 = 0;
 
@@ -8092,7 +8470,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          */
         htmlEscapeUnsafe: function(str){
             var chars = InkUtilString._htmlUnsafeChars;
-            return str != null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
+            return str !== null ? String(str).replace(/[<>&'"]/g,function(c){return chars[c];}) : str;
         },
 
         /**
@@ -8107,7 +8485,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @static
          */
         normalizeWhitespace: function(str){
-            return str != null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
+            return str !== null ? InkUtilString.trim(String(str).replace(/\s+/g,' ')) : str;
         },
 
         /**
@@ -8119,8 +8497,7 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
          * @public
          * @static
          */
-        toUnicode: function(str)
-        {
+        toUnicode: function(str) {
             if (typeof str === 'string') {
                 var unicodeString = '';
                 var inInt = false;
@@ -8132,16 +8509,16 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                 {
                     inInt = str.charCodeAt(i);
                     if( (inInt >= 32 && inInt <= 126) ||
-                            inInt == 8 ||
-                            inInt == 9 ||
-                            inInt == 10 ||
-                            inInt == 12 ||
-                            inInt == 13 ||
-                            inInt == 32 ||
-                            inInt == 34 ||
-                            inInt == 47 ||
-                            inInt == 58 ||
-                            inInt == 92) {
+                            inInt === 8 ||
+                            inInt === 9 ||
+                            inInt === 10 ||
+                            inInt === 12 ||
+                            inInt === 13 ||
+                            inInt === 32 ||
+                            inInt === 34 ||
+                            inInt === 47 ||
+                            inInt === 58 ||
+                            inInt === 92) {
 
                         /*
                         if(inInt == 34 || inInt == 92 || inInt == 47) {
@@ -8149,15 +8526,15 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
                         } else {
                         }
                         */
-                        if(inInt == 8) {
+                        if(inInt === 8) {
                             theUnicode = '\\b';
-                        } else if(inInt == 9) {
+                        } else if(inInt === 9) {
                             theUnicode = '\\t';
-                        } else if(inInt == 10) {
+                        } else if(inInt === 10) {
                             theUnicode = '\\n';
-                        } else if(inInt == 12) {
+                        } else if(inInt === 12) {
                             theUnicode = '\\f';
-                        } else if(inInt == 13) {
+                        } else if(inInt === 13) {
                             theUnicode = '\\r';
                         } else {
                             theUnicode = str.charAt(i);
@@ -8323,321 +8700,6 @@ Ink.createModule('Ink.Util.String', '1', [], function() {
 
     return InkUtilString;
 
-});
-
-/**
- * @module Ink.Util.Json_1
- *
- * @author inkdev AT sapo.pt
- */
-
-Ink.createModule('Ink.Util.Json', '1', [], function() {
-    'use strict';
-
-    var function_call = Function.prototype.call;
-    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-
-    function twoDigits(n) {
-        var r = '' + n;
-        if (r.length === 1) {
-            return '0' + r;
-        } else {
-            return r;
-        }
-    }
-
-    var date_toISOString = Date.prototype.toISOString ?
-        Ink.bind(function_call, Date.prototype.toISOString) :
-        function(date) {
-            // Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            return date.getUTCFullYear()
-                + '-' + twoDigits( date.getUTCMonth() + 1 )
-                + '-' + twoDigits( date.getUTCDate() )
-                + 'T' + twoDigits( date.getUTCHours() )
-                + ':' + twoDigits( date.getUTCMinutes() )
-                + ':' + twoDigits( date.getUTCSeconds() )
-                + '.' + String( (date.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
-                + 'Z';
-        };
-
-    /**
-     * Use this class to convert JSON strings to JavaScript objects
-     * `(Json.parse)` and also to do the opposite operation `(Json.stringify)`.
-     * Internally, the standard JSON implementation is used if available
-     * Otherwise, the functions mimic the standard implementation.
-     *
-     * Here's how to produce JSON from an existing object:
-     * 
-     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
-     *          var obj = {
-     *              key1: 'value1',
-     *              key2: 'value2',
-     *              keyArray: ['arrayValue1', 'arrayValue2', 'arrayValue3']
-     *          };
-     *          Json.stringify(obj);  // The above object as a JSON string
-     *      });
-     *
-     * And here is how to parse JSON:
-     *
-     *      Ink.requireModules(['Ink.Util.Json_1'], function (Json) {
-     *          var source = '{"key": "value", "array": [true, null, false]}';
-     *          Json.parse(source);  // The above JSON string as an object
-     *      });
-     * @class Ink.Util.Json
-     * @static
-     * 
-     */
-    var InkJson = {
-        _nativeJSON: window.JSON || null,
-
-        _convertToUnicode: false,
-
-        // Escape characters so as to embed them in JSON strings
-        _escape: function (theString) {
-            var _m = { '\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"': '\\"',  '\\': '\\\\' };
-
-            if (/["\\\x00-\x1f]/.test(theString)) {
-                theString = theString.replace(/([\x00-\x1f\\"])/g, function(a, b) {
-                    var c = _m[b];
-                    if (c) {
-                        return c;
-                    }
-                    c = b.charCodeAt();
-                    return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
-                });
-            }
-
-            return theString;
-        },
-
-        // A character conversion map
-        _toUnicode: function (theString)
-        {
-            if(!this._convertToUnicode) {
-                return this._escape(theString);
-            } else {
-                var unicodeString = '';
-                var inInt = false;
-                var theUnicode = false;
-                var i = 0;
-                var total = theString.length;
-                while(i < total) {
-                    inInt = theString.charCodeAt(i);
-                    if( (inInt >= 32 && inInt <= 126) ||
-                            //(inInt >= 48 && inInt <= 57) ||
-                            //(inInt >= 65 && inInt <= 90) ||
-                            //(inInt >= 97 && inInt <= 122) ||
-                            inInt === 8 ||
-                            inInt === 9 ||
-                            inInt === 10 ||
-                            inInt === 12 ||
-                            inInt === 13 ||
-                            inInt === 32 ||
-                            inInt === 34 ||
-                            inInt === 47 ||
-                            inInt === 58 ||
-                            inInt === 92) {
-
-                        if(inInt === 34 || inInt === 92 || inInt === 47) {
-                            theUnicode = '\\'+theString.charAt(i);
-                        } else if(inInt === 8) {
-                            theUnicode = '\\b';
-                        } else if(inInt === 9) {
-                            theUnicode = '\\t';
-                        } else if(inInt === 10) {
-                            theUnicode = '\\n';
-                        } else if(inInt === 12) {
-                            theUnicode = '\\f';
-                        } else if(inInt === 13) {
-                            theUnicode = '\\r';
-                        } else {
-                            theUnicode = theString.charAt(i);
-                        }
-                    } else {
-                        if(this._convertToUnicode) {
-                            theUnicode = theString.charCodeAt(i).toString(16)+''.toUpperCase();
-                            while (theUnicode.length < 4) {
-                                theUnicode = '0' + theUnicode;
-                            }
-                            theUnicode = '\\u' + theUnicode;
-                        } else {
-                            theUnicode = theString.charAt(i);
-                        }
-                    }
-                    unicodeString += theUnicode;
-
-                    i++;
-                }
-
-                return unicodeString;
-            }
-
-        },
-
-        _stringifyValue: function(param) {
-            if (typeof param === 'string') {
-                return '"' + this._toUnicode(param) + '"';
-            } else if (typeof param === 'number' && (isNaN(param) || !isFinite(param))) {  // Unusable numbers go null
-                return 'null';
-            } else if (typeof param === 'undefined' || param === null) {  // And so does undefined
-                return 'null';
-            } else if (typeof param.toJSON === 'function') {
-                var t = param.toJSON();
-                if (typeof t === 'string') {
-                    return '"' + this._escape(t) + '"';
-                } else {
-                    return this._escape(t.toString());
-                }
-            } else if (typeof param === 'number' || typeof param === 'boolean') {  // These ones' toString methods return valid JSON.
-                return '' + param;
-            } else if (typeof param === 'function') {
-                return 'null';  // match JSON.stringify
-            } else if (param.constructor === Date) {
-                throw ''
-                return '"' + this._escape(date_toISOString(param)) + '"';
-            } else if (param.constructor === Array) {
-                var arrayString = '';
-                for (var i = 0, len = param.length; i < len; i++) {
-                    if (i > 0) {
-                        arrayString += ',';
-                    }
-                    arrayString += this._stringifyValue(param[i]);
-                }
-                return '[' + arrayString + ']';
-            } else {  // Object
-                var objectString = '';
-                for (var k in param)  {
-                    if ({}.hasOwnProperty.call(param, k)) {
-                        if (objectString !== '') {
-                            objectString += ',';
-                        }
-                        objectString += '"' + this._escape(k) + '": ' + this._stringifyValue(param[k]);
-                    }
-                }
-                return '{' + objectString + '}';
-            }
-        },
-
-        /**
-         * serializes a JSON object into a string.
-         *
-         * @method stringify
-         * @param {Object}      input               Data to be serialized into JSON
-         * @param {Boolean}     convertToUnicode    When `true`, converts string contents to unicode \uXXXX
-         * @return {String}     serialized string
-         *
-         * @example
-         *      Json.stringify({a:1.23}); // -> string: '{"a": 1.23}'
-         */
-        stringify: function(input, convertToUnicode) {
-            this._convertToUnicode = !!convertToUnicode;
-            if(!this._convertToUnicode && this._nativeJSON) {
-                return this._nativeJSON.stringify(input);
-            }
-            return this._stringifyValue(input);  // And recurse.
-        },
-        
-        /**
-         * @method parse
-         * @param text      {String}    Input string
-         * @param reviver   {Function}  Function receiving `(key, value)`, and `this`=(containing object), used to walk objects.
-         * 
-         * @example
-         * Simple example:
-         *
-         *      Json.parse('{"a": "3","numbers":false}',
-         *          function (key, value) {
-         *              if (!this.numbers && key === 'a') {
-         *                  return "NO NUMBERS";
-         *              } else {
-         *                  return value;
-         *              }
-         *          }); // -> object: {a: 'NO NUMBERS', numbers: false}
-         */
-        /* From https://github.com/douglascrockford/JSON-js/blob/master/json.js */
-        parse: function (text, reviver) {
-            /*jshint evil:true*/
-
-// The parse method takes a text and an optional reviver function, and returns
-// a JavaScript value if the text is a valid JSON text.
-
-            var j;
-
-            function walk(holder, key) {
-
-// The walk method is used to recursively walk the resulting structure so
-// that modifications can be made.
-
-                var k, v, value = holder[key];
-                if (value && typeof value === 'object') {
-                    for (k in value) {
-                        if (Object.prototype.hasOwnProperty.call(value, k)) {
-                            v = walk(value, k);
-                            if (v !== undefined) {
-                                value[k] = v;
-                            } else {
-                                delete value[k];
-                            }
-                        }
-                    }
-                }
-                return reviver.call(holder, key, value);
-            }
-
-
-// Parsing happens in four stages. In the first stage, we replace certain
-// Unicode characters with escape sequences. JavaScript handles many characters
-// incorrectly, either silently deleting them, or treating them as line endings.
-
-            text = String(text);
-            cx.lastIndex = 0;
-            if (cx.test(text)) {
-                text = text.replace(cx, function (a) {
-                    return '\\u' +
-                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-                });
-            }
-
-// In the second stage, we run the text against regular expressions that look
-// for non-JSON patterns. We are especially concerned with '()' and 'new'
-// because they can cause invocation, and '=' because it can cause mutation.
-// But just to be safe, we want to reject all unexpected forms.
-
-// We split the second stage into 4 regexp operations in order to work around
-// crippling inefficiencies in IE's and Safari's regexp engines. First we
-// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
-// replace all simple value tokens with ']' characters. Third, we delete all
-// open brackets that follow a colon or comma or that begin the text. Finally,
-// we look to see that the remaining characters are only whitespace or ']' or
-// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
-
-            if (/^[\],:{}\s]*$/
-                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-
-// In the third stage we use the eval function to compile the text into a
-// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
-// in JavaScript: it can begin a block or an object literal. We wrap the text
-// in parens to eliminate the ambiguity.
-
-                j = eval('(' + text + ')');
-
-// In the optional fourth stage, we recursively walk the new structure, passing
-// each name/value pair to a reviver function for possible transformation.
-
-                return typeof reviver === 'function'
-                    ? walk({'': j}, '')
-                    : j;
-            }
-
-// If the text is not JSON parseable, then a SyntaxError is thrown.
-
-            throw new SyntaxError('JSON.parse');
-        }
-    };
-
-    return InkJson;
 });
 
 /**
@@ -8868,7 +8930,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
                         $1 ? $1 :
                         $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
                         $3 ? pars[ 0 ][ $3 ] || '' :
-                             pars[ (idx++) + ( isObj ? 1 : 0 ) ]
+                             pars[ (idx++) + ( isObj ? 1 : 0 ) ];
                     return funcOrVal( ret , [idx].concat(pars) );
                 });
                 return original;
@@ -9296,6 +9358,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          */
         printDump: function(param, target)
         {
+            /*jshint evil:true */
             if(!target || typeof(target) === 'undefined') {
                 document.write('<pre>'+this._formatParam(param)+'</pre>');
             } else {
@@ -9542,7 +9605,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
          *     </script>
          */
         get: function(format, _date){
-            /*jshint maxcomplexity:50 */
+            /*jshint maxcomplexity:65 */
             if(typeof(format) === 'undefined' || format === ''){
                 format = "Y-m-d";
             }
@@ -11383,7 +11446,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          *  @param  [options.decimalSep='.']    Allow decimal separator.
          *  @param  [options.thousandSep=","]   Strip this character from the number.
          *  @param  [options.negative=false]    Allow negative numbers.
-         *  @param  [options.decimalPlaces=0]   Maximum number of decimal places. `0` means integer number.
+         *  @param  [options.decimalPlaces=null]   Maximum number of decimal places. Use `0` for an integer number.
          *  @param  [options.max=null]          Maximum number
          *  @param  [options.min=null]          Minimum number
          *  @param  [options.returnNumber=false] When this option is true, return the number itself when the value is valid.
@@ -11432,7 +11495,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             
             if (options.maxDigits!== null) {
                 if (split[0].replace(/-/g, '').length > options.maxDigits) {
-                    return split
+                    return split;
                 }
             }
             
@@ -11518,22 +11581,17 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
         _daysInMonth: function(_m,_y){
             var nDays=0;
 
-            if(_m===1 || _m===3 || _m===5 || _m===7 || _m===8 || _m===10 || _m===12)
-            {
+            _m = parseInt(_m, 10);
+            _y = parseInt(_y, 10);
+
+            if(_m===1 || _m===3 || _m===5 || _m===7 || _m===8 || _m===10 || _m===12) {
                 nDays= 31;
-            }
-            else if ( _m===4 || _m===6 || _m===9 || _m===11)
-            {
+            } else if ( _m===4 || _m===6 || _m===9 || _m===11) {
                 nDays = 30;
-            }
-            else
-            {
-                if((_y%400===0) || (_y%4===0 && _y%100!==0))
-                {
+            } else if (_m===2) {
+                if((_y%400===0) || (_y%4===0 && _y%100!==0)) {
                     nDays = 29;
-                }
-                else
-                {
+                } else {
                     nDays = 28;
                 }
             }
@@ -12292,7 +12350,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             if ( typeof creditCardType === 'undefined' ){
                 creditCardType = 'default';
             }
-            else if ( typeof creditCardType === 'array' ){
+            else if ( creditCardType instanceof Array ){
                 var i, ccLength = creditCardType.length;
                 for ( i=0; i < ccLength; i++ ){
                     // Test each type for validity

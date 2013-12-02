@@ -136,6 +136,7 @@ Ink.createModule('Ink.Util.Dumper', '1', [], function() {
          */
         printDump: function(param, target)
         {
+            /*jshint evil:true */
             if(!target || typeof(target) === 'undefined') {
                 document.write('<pre>'+this._formatParam(param)+'</pre>');
             } else {
