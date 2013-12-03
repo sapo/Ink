@@ -8,7 +8,8 @@ module('main', {
     setup: function () {
         dtElm = InkElement.create('input', { type: 'text', insertBottom: body });
         dt = new DatePicker(dtElm, {
-            startDate: '2000-10-10'
+            startDate: '2000-10-10',
+            format: 'dd/mm/yyyy'
         });
     },
     teardown: function () {
@@ -89,7 +90,7 @@ test('validDayFn', function () {
 
     var findEnabled = function (button) {
         return (/sapo_cal_off/.test(button.className) &&
-            !button.hasAttribute('data-cal-day'));
+            !button.getAttribute('data-cal-day'));
     };
     var buttons = dt._monthContainer.getElementsByTagName('a');
     ok(InkArray.some(buttons, findEnabled),
@@ -199,6 +200,28 @@ test('dateCmpUntil', function () {
     deepEqual(dt._dateCmpUntil(y2k, y2kandamonth, '_year'), 0);
     deepEqual(dt._dateCmpUntil(y2k, y2kandamonth, '_month'), -1);
     deepEqual(dt._dateCmpUntil(y2kandamonth, y2k, '_month'), 1);
+});
+
+test('daysInMonth', function () {
+    equal(dt._daysInMonth(2000, 0), 31);
+    equal(dt._daysInMonth(2000, 1), 29);
+    equal(dt._daysInMonth(2001, 1), 28);
+});
+
+test('updateDate', function () {
+    dt._dataField.value = '11/11/2012';
+    dt._updateDate();
+    equal(dt._year, 2012);
+    equal(dt._month, 10);
+    equal(dt._day, 11);
+});
+
+test('set', function () {
+    // Because it had a bug
+    var dt = Ink.Util.Date_1.set('Y-m-d', '2012-10-10');
+    equal(dt.getFullYear(), 2012);
+    equal(dt.getMonth(), 9);
+    equal(dt.getDate(), 10);
 });
 
 });

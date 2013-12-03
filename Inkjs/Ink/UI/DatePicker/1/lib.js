@@ -964,9 +964,9 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _acceptableDateComponent: function (date, userCb) {
             if (this._options[userCb]) {
                 return this._callUserCallbackBool(this._options[userCb], date);
+            } else {
+                return this._dateWithinRange(date);
             }
-            if (!this._dateWithinRange(date)) { return false; }
-            return true;
         },
 
         /**

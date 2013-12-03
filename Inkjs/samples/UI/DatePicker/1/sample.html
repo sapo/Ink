@@ -14,6 +14,9 @@
             pre.prettyprint{
                 font-size: 0.75em;
             }
+            .sapo_cal_off, .action_inactive {
+                color: #ddd !important;
+            }
         </style>
     </head>
 
@@ -36,7 +39,7 @@
                 <div class="control-group">
                     <label for="dPicker">A date field:</label>
                     <div class="control">
-                        <input id="dPicker" class="ink-datepicker" type="text" data-format="dd/mm/yyyy"></input>
+                        <input data-date-range="2013-10-10:2013-12-12" id="dPicker" class="ink-datepicker" type="text" data-format="dd/mm/yyyy"></input>
                     </div>
                 </div>
                 <p>
@@ -86,6 +89,39 @@
                 </section>
                 <section>
                     <header>
+                        <h2>DatePicker #4 - Having only a valid date every now and then.</h2>
+                    </header>
+                    <div class="control-group">
+                        <div class="control">
+                            <input id="dPicker3" type="text" data-format="dd/mm/yyyy">
+                            <label for="dPicker3">
+                                A datepicker with nextValidDateFn and prevValidDateFn, to help us find holes in the dates. This picker will only let you choose January 1<sup>st</sup> of each year
+                            </label>
+                        </div>
+
+                        <script>
+                            Ink.requireModules(['Ink.UI.DatePicker_1'], function (DatePicker) {
+                                new DatePicker(dPicker3, {
+                                    startDate: '2000-01-01',
+                                    validDayFn: function (year, month, day) {
+                                        return month === 1 && day === 1;
+                                    },
+                                    validMonthFn: function (year, month, day) {
+                                        return month === 1;
+                                    },
+                                    nextValidDateFn: function (year, month, day) {
+                                        return new Date(year + 1, 0, 1);
+                                    },
+                                    prevValidDateFn: function (year, month, day) {
+                                        return new Date(year - 1, 0, 1)
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+                </section>
+                <section>
+                    <header>
                         <h2>DatePicker #3 - autoOpen and shy options</h2>
                     </header>
                     <div class="control-group">
@@ -94,9 +130,7 @@
                             <input id="dPicker2" class="ink-datepicker" type="text" data-format="dd/mm/yyyy" data-shy="" data-auto-open=true></input>
                         </div>
                     </div>
-                    <div id="containerelm"></div>
-                    </section>
-
+                </section>
         </div>
         <script>
             Ink.requireModules(['Ink.Util.Array_1','Ink.UI.DatePicker_1'], function(InkArray, DatePicker) {
