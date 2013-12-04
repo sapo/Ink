@@ -861,11 +861,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onSuccess === 'function' ){
                     this._options.onSuccess();
                 }
-                return true;
 
                 if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
                     Event.stopDefault(event);
+                    return false;
                 }
+
+                return true;
             } else {
 
                 if(event) {
