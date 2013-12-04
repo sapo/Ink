@@ -627,7 +627,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
      * @param {String}   [options.eventTrigger='submit']        What event do we listen for.
      * @param {Boolean}  [options.neverSubmit=false]            Always cancel the event?
-     * @param {Boolean}  [options.cancelEventOnSuccess=true]    Cancel the event even on success?
+     * @param {Boolean}  [options.cancelEventOnSuccess=false]   Cancel the event even on success?
      * @param {Selector} [options.searchForm]                   What inputs do we search for which should have our data-attributes for validation.
      * @param {Function} [options.beforeValidation]             Callback to be executed before validating the form
      * @param {Function} [options.onError]                      Validation error callback
@@ -680,7 +680,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
             neverSubmit: 'false',
-            cancelEventOnSuccess: 'true',
+            cancelEventOnSuccess: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
