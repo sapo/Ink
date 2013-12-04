@@ -14,7 +14,7 @@
             pre.prettyprint{
                 font-size: 0.75em;
             }
-            .sapo_cal_off, .action_inactive {
+            .ink-calendar-off, .action_inactive {
                 color: #ddd !important;
             }
         </style>
@@ -89,7 +89,7 @@
                 </section>
                 <section>
                     <header>
-                        <h2>DatePicker #4 - Having only a valid date every now and then.</h2>
+                        <h2>DatePicker #3 - Having only a valid date every now and then.</h2>
                     </header>
                     <div class="control-group">
                         <div class="control">
@@ -122,12 +122,20 @@
                 </section>
                 <section>
                     <header>
-                        <h2>DatePicker #3 - autoOpen and shy options</h2>
+                        <h2>DatePicker #4 - autoOpen, shy and onFocus</h2>
                     </header>
+                    <p>
+                        The <code>autoOpen</code> option makes the datepicker load automatically. The <code>shy</code> option makes the datepicker close when you click something else, and the <code>onFocus</code> option makes the datepicker load when you click the text box. Otherwise, it creates an "open" button.
+                    </p>
                     <div class="control-group">
-                        <label for="dPicker2">A date field with the <code>shy</code> option set to <code>false</code> and <code>autoOpen</code> set to <code>true</code>:</label>
+                        <label for="dpicker2">a date field with the <code>shy</code> option set to <code>false</code> and <code>autoOpen</code> set to <code>true</code>:</label>
                         <div class="control">
-                            <input id="dPicker2" class="ink-datepicker" type="text" data-format="dd/mm/yyyy" data-shy="" data-auto-open=true></input>
+                            <input id="dpicker2" class="ink-datepicker" type="text" data-format="dd/mm/yyyy" data-shy="false" data-auto-open=true></input>
+                        </div>
+                        <hr>
+                        <label for="dpicker3">A datefield with <code>on-focus</code> set to <code>false</code>:</label>
+                        <div class="control">
+                            <input id="dpicker3" class="ink-datepicker" type="text" data-format="dd/mm/yyyy" data-on-focus="false"></input>
                         </div>
                     </div>
                 </section>

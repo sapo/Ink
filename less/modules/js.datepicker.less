@@ -1,4 +1,6 @@
-.sapo_component_datepicker {
+// For the datepicker and the calendar inside it
+
+.ink-datepicker {
     #ink > #border-radius > .all (@border-radius);
     text-align: center;
     padding: 5px;
@@ -19,11 +21,11 @@
 }
 
 // When a modal is open...
-html.ink-modal-is-open .sapo_component_datepicker {
+html.ink-modal-is-open .ink-datepicker {
     z-index: @layer-100 + 1;  // 1 plus the z-index of a modal
 }
 
-.sapo_cal_top_options {
+.ink-calendar-top-options {
     padding: 5px; 
     font-size: .813em;
     cursor: pointer;
@@ -32,15 +34,15 @@ html.ink-modal-is-open .sapo_component_datepicker {
     .close { float:right; }
 }
     
-.sapo_cal_top {
+.ink-calendar-top {
     line-height: 2em;
     background: @datepicker-header-bg;
     #ink > #border-radius > .all (@border-radius);
 
     div { float:left; }
 
-    .sapo_cal_prev,
-    .sapo_cal_next {
+    .ink-calendar-prev,
+    .ink-calendar-next {
         width: 10%;
 
         a {
@@ -48,14 +50,14 @@ html.ink-modal-is-open .sapo_component_datepicker {
         }
     }
 
-    .sapo_cal_month_desc {
+    .ink-calendar-month_desc {
         width: 80%
     }
 }   
 
-.sapo_cal_month,
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
+.ink-calendar-month,
+.ink-calendar-year-selector,
+.ink-calendar-month-selector {
     margin-top: .5em;
     padding-left: 0;
 
@@ -70,14 +72,14 @@ html.ink-modal-is-open .sapo_component_datepicker {
 
             &:hover { background: @datepicker-cellHover; }
 
-            &.sapo_cal_on, 
-            &.sapo_cal_on:hover {
+            &.ink-calendar-on, 
+            &.ink-calendar-on:hover {
                 background: @datepicker-active-bg;
                 color: @datepicker-active-color;
             }
 
-            &.sapo_cal_off,
-            &.sapo_cal_off:hover {
+            &.ink-calendar-off,
+            &.ink-calendar-off:hover {
                 background: @datepicker-bgColor;
                 color: @datepicker-inactive-color;
                 cursor: default;
@@ -99,27 +101,30 @@ html.ink-modal-is-open .sapo_component_datepicker {
     }
 }
 
-.sapo_cal_year_selector ul li { width: 4em; }
-.sapo_cal_month_selector ul li { width: 3.4em; }
+.ink-calendar-year-selector ul li { width: 4em; }
+.ink-calendar-month-selector ul li { width: 3.4em; }
 
-.sapo_cal_year_selector,
-.sapo_cal_month_selector { 
+.ink-calendar-year-selector,
+.ink-calendar-month-selector { 
     display: none; 
 }
 
+.ink-calendar-off, .action_inactive {
+    color: #ddd !important;
+}
 
-.sapo_cal_month .sapo_cal_header {
+.ink-calendar-month .ink-calendar-header {
     border-bottom: 1px solid rgba(0,0,0,.1); 
     padding-bottom: .5em;
     margin-bottom: .5em;
     color: #aaa;
 }
 
-.sapo_cal_top,
-.sapo_cal_middle,
-.sapo_cal_top_options,
-.sapo_component_datepicker,
-.sapo_cal_month .sapo_cal_header,
-.sapo_cal_month .sapo_cal_middle ul {
+.ink-calendar-top,
+.ink-calendar-middle,
+.ink-calendar-top-options,
+.ink-datepicker,
+.ink-calendar-month .ink-calendar-header,
+.ink-calendar-month .ink-calendar-middle ul {
     #ink > #utils > .clearfix ();
 }
