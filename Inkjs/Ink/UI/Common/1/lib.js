@@ -280,7 +280,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 },
                 object: function (val) { return val; },
                 number: function (val) { return +val; },
-                boolean: function (val) {
+                'boolean': function (val) {
                     return !(val === 'false' || val === '' || val === null);
                 },
                 string: function (val) { return val; },
@@ -288,7 +288,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
                 }
             };
-            ret.float = ret.integer = ret.number;
+            ret['float'] = ret.integer = ret.number;
             return ret;
         }()),
 
@@ -309,11 +309,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 elements: function (val) {
                     return val && typeof val === 'object' && typeof val.length === 'number' && val.length;
                 },
-                boolean: function (val) {
+                'boolean': function (val) {
                     return typeof val === 'boolean';
                 }
             };
-            types.float = types.number;
+            types['float'] = types.number;
             return types;
         }()),
 
