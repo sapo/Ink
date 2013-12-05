@@ -163,15 +163,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _calculateOffsets: function(){
-
             /**
              * Calculating the offset top
              */
             if( this._options.topElement ){
-                var topElementHeight = Element.elementHeight( this._options.topElement ),
-                    topElementTop = Element.elementTop( this._options.topElement );
+                var topElementHeight = Element.elementHeight( this._options.topElement );
+                var topElementTop = Element.elementTop( this._options.topElement );
 
-                this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
+                this._options.offsetTop = topElementHeight + topElementTop + parseInt(this._options.originalOffsetTop,10);
             }
 
             /**
@@ -179,7 +178,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
              */
             if( this._options.bottomElement ){
                 var bottomElementHeight = Element.elementHeight(this._options.bottomElement);
-                this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
+
+                this._options.offsetBottom = bottomElementHeight + this._options.originalOffsetBottom;
             }
 
             this._onScroll();
