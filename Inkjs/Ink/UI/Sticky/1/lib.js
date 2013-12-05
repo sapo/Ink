@@ -6,20 +6,6 @@
 Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1'], function(Common, Event, Css, Element) {
     'use strict';
 
-    /* jshint maxcomplexity: 3 */
-    function arrayContains(haystack, needle) {
-        if (haystack.indexOf) {
-            return haystack.indexOf(needle) !== -1;
-        } else {
-            for (var i = 0, len = haystack.length; i < len; i++) {
-                if (haystack[i] === needle) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     /**
      * The Sticky component takes an element and transforms it's behavior in order to, when the user scrolls he sets its position
      * to fixed and maintain it until the user scrolls back to the same place.
@@ -33,10 +19,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *     @param {Number}     options.offsetTop          Number of pixels of distance from the topElement.
      *     @param {String}     options.topElement         CSS Selector that specifies a top element with which the component could collide.
      *     @param {String}     options.bottomElement      CSS Selector that specifies a bottom element with which the component could collide.
-     *     @param {Array|String} [options.activateInLayouts='medium,large'] Layouts in which the sticky behaviour is present.
+     *     @param {Array|String} [options.activateInLayouts='medium,large'] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
      * @example
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ){
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
      *              var menuElement = Ink.s('#menu');
      *              var stickyObj = new Sticky( menuElement );
      *          });
@@ -45,26 +31,27 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
     var Sticky = function( selector, options ){
         this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Sticky_1');
 
-        /**
-         * Setting default options and - if needed - overriding it with the data attributes
-         */
         this._options = Common.options({
             offsetBottom: ['Integer', 0],
             offsetTop: ['Integer', 0],
-            topElement: ['Element', document.body /* TODO weird */],
-            bottomElement: ['Element', document.body /* TODO weird */],
+            topElement: ['Element', null],
+            bottomElement: ['Element', null],
             activateInLayouts: ['String', 'medium,large']
         }, options || {}, this._rootElement );
 
-
-        this._options.activateInLayouts = this._options.activateInLayouts.toString().split(/[, ]+/g);
+        // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
+        this._options.activateInLayouts = this._options.activateInLayouts.toString();
 
         // Save a reference to getComputedStyle
-        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
+        var computedStyle = window.getComputedStyle ?
+            window.getComputedStyle(this._rootElement, null) :
+            this._rootElement.currentStyle;
+
         this._dims = {
-            height: this._computedStyle.height,
-            width: this._computedStyle.width
+            height: computedStyle.height,
+            width: computedStyle.width
         };
+
         this._init();
     };
 
@@ -93,7 +80,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _isDisabledInLayout: function () {
-            return !arrayContains(this._options.activateInLayouts, Common.currentLayout());
+            return this._options.activateInLayouts.indexOf(Common.currentLayout()) === -1;
         },
 
         /**
@@ -103,27 +90,21 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onScroll: function(){
-            if( this._isDisabledInLayout() ){
+            var scrollHeight = Element.scrollHeight();
+
+            var unstick = this._isDisabledInLayout() ||
+                scrollHeight <= this._options.originalTop-this._options.originalOffsetTop;
+
+            if( unstick ) {
+                // We're on top, no sticking. position:static is the "normal" position.
                 this._unstick();
-                return;
+            } else if(document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10)) >= this._options.offsetBottom ){
+                // Stick to screen!
+                this._stickTo('screen');
+            } else {
+                // Stick to bottom
+                this._stickTo('bottom');
             }
-
-            clearTimeout(this._scrollTimeout);
-
-            this._scrollTimeout = setTimeout(Ink.bind(function(){
-                var scrollHeight = Element.scrollHeight();
-
-                if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                    // We're on top, no sticking. position:static is the "normal" position.
-                    this._unstick();
-                } else if((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom ){
-                    // Stick to screen!
-                    this._stickTo('screen');
-                } else {
-                    // Stick to bottom
-                    this._stickTo('bottom');
-                }
-            },this), 0);
         },
 
         /**
@@ -135,24 +116,20 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         _stickTo: function (where) {
             var scrollHeight = Element.scrollHeight();
 
-            var props = this._rootElement.style;
+            var style = this._rootElement.style;
 
-            if (where === 'screen' || where === 'bottom') {
-                props.position = 'fixed';
-                props.left = this._options.originalLeft + 'px';
-                props.width = this._options.originalWidth + 'px';
-            }
+            style.position = 'fixed';
+            style.left = this._options.originalLeft + 'px';
+            style.width = this._options.originalWidth + 'px';
 
             if (where === 'screen') {
-                props.bottom = 'auto';
-                props.top = this._options.originalOffsetTop + 'px';
-            }
-
-            if (where === 'bottom') {
-                props.top = 'auto';
+                style.bottom = 'auto';
+                style.top = this._options.originalOffsetTop + 'px';
+            } else if (where === 'bottom') {
                 // was: var distanceFromBottomOfScreenToBottomOfDocument
                 var toBottom = document.body.scrollHeight - (document.documentElement.clientHeight + scrollHeight);
-                props.bottom = this._options.offsetBottom - toBottom + 'px';
+                style.bottom = this._options.offsetBottom - toBottom + 'px';
+                style.top = 'auto';
             }
         },
 
@@ -190,23 +167,19 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             /**
              * Calculating the offset top
              */
-            if( this._options.topElement.nodeName.toLowerCase() !== 'body' ){
+            if( this._options.topElement ){
                 var topElementHeight = Element.elementHeight( this._options.topElement ),
                     topElementTop = Element.elementTop( this._options.topElement );
 
                 this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
-            } else {
-                this._options.offsetTop = parseInt(this._options.originalOffsetTop,10);
             }
 
             /**
              * Calculating the offset bottom
              */
-            if( this._options.bottomElement.nodeName.toLowerCase() !== 'body' ){
+            if( this._options.bottomElement ){
                 var bottomElementHeight = Element.elementHeight(this._options.bottomElement);
                 this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
-            } else {
-                this._options.offsetBottom = parseInt(this._options.originalOffsetBottom,10);
             }
 
             this._onScroll();
