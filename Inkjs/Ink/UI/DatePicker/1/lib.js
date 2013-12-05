@@ -6,8 +6,6 @@
 Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate ) {
     'use strict';
 
-    /* jshint maxcomplexity: 4 */
-
     // Repeat a string. Long version of (new Array(n)).join(str);
     function strRepeat(n, str) {
         var ret = '';
@@ -15,6 +13,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             ret += str;
         }
         return ret;
+    }
+
+    // Clamp a number into a min/max limit
+    function clamp(n, min, max) {
+        if (n > max) { n = max; }
+        if (n < min) { n = min; }
+
+        return n;
+    }
+
+    function dateishFromYMDString(YMD) {
+        var split = YMD.split('-');
+        return {_year: +split[0], _month: +split[1] - 1, _day: +split[2]};
     }
 
     function dateishFromYMD(year, month, day) {
@@ -83,7 +94,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-datepicker'],
+            cssClass:        ['String', 'ink-calendar'],
             dateRange:       ['String', null],
             
             // use this in a <select>
@@ -243,9 +254,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._picker = document.createElement('a');
                     this._picker.href = '#open_cal';
                     this._picker.innerHTML = 'open';
-                    this._picker.style.position = 'absolute';
-                    this._picker.style.top = InkElement.elementTop(this._dataField);
-                    this._picker.style.left = InkElement.elementLeft(this._dataField) + (InkElement.elementWidth(this._dataField) || 0) + 5 + 'px';
                     this._dataField.parentNode.appendChild(this._picker);
                     this._picker.className = 'ink-datepicker-picker-field';
                 } else {
@@ -335,7 +343,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
 
             if(!this._options.displayInSelect){
-                Event.observe(this._dataField, 'blur', Ink.bindEvent(function() {
+                Event.observe(opener, 'blur', Ink.bindEvent(function() {
                     if ( !this._hoverPicker ) {
                         this._hide(true);
                     }
@@ -347,7 +355,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 Event.observe(document,'click',Ink.bindEvent(function(e){
                     var target = Event.element(e);
 
-                    // "elsewhere" is where it isn't any of these elements
+                    // "elsewhere" is outside any of these elements:
                     var cannotBe = [
                         this._options.dayField,
                         this._options.monthField,
@@ -357,7 +365,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     ];
 
                     for (var i = 0, len = cannotBe.length; i < len; i++) {
-                        if (cannotBe[i] && InkElement.descendantOf(cannotBe[i])) {
+                        if (cannotBe[i] && InkElement.descendantOf(cannotBe[i], target)) {
                             return;
                         }
                     }
@@ -411,7 +419,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var appendTarget = document.body;
             if(this._options.containerElement) {
                 appendTarget =
-                    Ink.i(this._options.containerElement) ||  // small backwards compatibility thing
+                    Ink.i(this._options.containerElement) ||  // maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
             } else if (this._options.inline) {
                 InkElement.insertAfter(this._containerObject, this._dataField);
@@ -459,6 +467,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _onClick: function(e){
             var elem = Event.element(e);
+
+            if (Css.hasClassName('ink-calendar-off')) {
+                return null;
+            }
 
             Event.stop(e);
 
@@ -512,9 +524,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _onAbsoluteChangerClick: function (elem) {
             var elemData = InkElement.data(elem);
-            if (Css.hasClassName(elem, 'ink-calendar-off')) {
-                return null;
-            }
 
             if( Number(elemData.calDay) ){
                 this.setDate( [this._year, this._month + 1, elemData.calDay].join('-') );
@@ -558,9 +567,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @param [blur=true] Set to false to indicate this is not just a blur and force hiding even if the component is shy.
          */
         _hide: function(blur) {
-            if (this._options.inline) {
-                console.log('hiding an inline thing');
-            }
             blur = blur === undefined ? true : blur;
             if (blur === false || (blur && this._options.shy)) {
                 this._containerObject.style.display = 'none';
@@ -576,17 +582,23 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _setMinMax: function( dateRange ) {
             var self = this;
-            function noMinLimit() {
-                self._yearMin   = Number.MIN_VALUE;
-                self._monthMin  = 1;
-                self._dayMin    = 1;
+
+            var noMinLimit = {
+                _year: Number.MIN_VALUE,
+                _month: 1,
+                _day: 1
+            };
+
+            var noMaxLimit = {
+                _year: Number.MIN_VALUE,
+                _month: 12,
+                _day: 31
+            };
+
+            function noLimits() {
+                self._min = noMinLimit;
+                self._max = noMaxLimit;
             }
-            function noMaxLimit() {
-                self._yearMax   = Number.MAX_VALUE;
-                self._monthMax  = 12;
-                self._dayMax    = 31;
-            }
-            function noLimits() { noMinLimit(); noMaxLimit(); }
 
             if (!dateRange) { return noLimits(); }
 
@@ -594,43 +606,27 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var rDate = /^(\d{4})((\-)(\d{1,2})((\-)(\d{1,2}))?)?$/;
 
             InkArray.each([
-                        {suf: 'Min', date: dates[0], noLim: noMinLimit},
-                        {suf: 'Max', date: dates[1], noLim: noMaxLimit}
+                        {name: '_min', date: dates[0], noLim: noMinLimit},
+                        {name: '_max', date: dates[1], noLim: noMaxLimit}
                     ], Ink.bind(function (data) {
-                var yearLim;
-                var monthLim;
-                var dayLim;
+
+                var lim = data.noLim;
 
                 if ( data.date.toUpperCase() === 'NOW' ) {
                     var now = new Date();
-                    yearLim   = now.getFullYear();
-                    monthLim  = now.getMonth() + 1;
-                    dayLim    = now.getDate();
+                    lim = dateishFromDate(now);
                 } else if ( rDate.test( data.date ) ) {
-                    var splitDate = data.date.split( '-' );
+                    lim = dateishFromYMDString(data.date);
 
-                    yearLim   = Math.floor( splitDate[ 0 ] );
-                    monthLim  = Math.floor( splitDate[ 1 ] ) || 1;
-                    dayLim    = Math.floor( splitDate[ 2 ] ) || 1;
-
-                    if ( monthLim < 1 || monthLim > 12 ) {
-                        monthLim = 1;
-                    }
-
-                    if ( dayLim < 1 || dayLim > this._daysInMonth( yearLim , monthLim - 1 ) ) {
-                        dayLim = 1;
-                    }
-                } else {
-                    data.noLim();
-                    return;
+                    lim._month = clamp(lim._month, 0, 11);
+                    lim._day = clamp(lim._day, 1, this._daysInMonth( lim._year, lim._month ));
                 }
 
-                this['_year' + data.suf] = yearLim;
-                this['_month' + data.suf] = monthLim;
-                this['_day' + data.suf] = dayLim;
+                this[data.name] = lim;
             }, this));
 
-            var valid = this._dateCmp(this._getMax(), this._getMin()) === 1;
+            // Should be equal, or min should be smaller
+            var valid = this._dateCmp(this._max, this._min) !== -1;
 
             if (!valid) {
                 noLimits();
@@ -654,10 +650,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 date = dateishFromDate(new Date());
             }
 
-            if (this._dateCmp(date, this._getMin()) === -1) {
-                return Ink.extendObj({}, this._getMin());
-            } else if (this._dateCmp(date, this._getMax()) === 1) {
-                return Ink.extendObj({}, this._getMax());
+            if (this._dateCmp(date, this._min) === -1) {
+                return Ink.extendObj({}, this._min);
+            } else if (this._dateCmp(date, this._max) === 1) {
+                return Ink.extendObj({}, this._max);
             }
 
             return Ink.extendObj({}, date);  // date is okay already, just copy it.
@@ -682,33 +678,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _dateAboveMax: function (date) {
-            return this._dateCmp(date, this._getMax()) === 1;
+            return this._dateCmp(date, this._max) === 1;
         },
 
         _dateBelowMin: function (date) {
-            return this._dateCmp(date, this._getMin()) === -1;
-        },
-
-        /**
-         * Get maximum date allowed, in a {_year, _month, _day} format
-         */
-        _getMax: function () {
-            return {
-                _year: this._yearMax,
-                _month: this._monthMax - 1,
-                _day: this._dayMax
-            };
-        },
-
-        /**
-         * Get minimum date allowed, in a {_year, _month, _day} format.
-         */
-        _getMin: function () {
-            return {
-                _year: this._yearMin,
-                _month: this._monthMin - 1,
-                _day: this._dayMin
-            };
+            return this._dateCmp(date, this._min) === -1;
         },
 
         _dateCmp: function (self, oth) {
@@ -816,7 +790,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var thisYear = firstYear - 1;
             var str = "<li><ul>";
 
-            if (thisYear > this._yearMin) {
+            if (thisYear > this._min._year) {
                 str += '<li><a href="#year_prev" class="change_year_prev">' + this._options.prevLinkText + '</a></li>';
             } else {
                 str += '<li>&nbsp;</li>';
@@ -832,7 +806,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 str += this._getYearButtonHtml(thisYear);
             }
 
-            if( thisYear < this._yearMax ){
+            if( thisYear < this._max._year){
                 str += '<li><a href="#year_next" class="change_year_next">' + this._options.nextLinkText + '</a></li>';
             } else {
                 str += '<li>&nbsp;</li>';
@@ -858,7 +832,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var year = +this._year + inc*10;
             year = year - year % 10;
-            if ( year > this._yearMax || year + 9 < this._yearMin ){
+            if ( year > this._max._year || year + 9 < this._min._year){
                 return;
             }
             this._year = +this._year + inc*10;
@@ -923,7 +897,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 +date._month + 1 >= 1  &&
                 +date._month + 1 <= 12 &&
                 +date._day       >= 1  &&
-                +date._day       <= this._daysInMonth(date._year,date._month - 1)
+                +date._day       <= this._daysInMonth(date._year, date._month)
             );
         },
 
@@ -1075,8 +1049,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {Number} The number of days on a given month on a given year
          */
         _daysInMonth: function(_y,_m){
-            _m += 1;
-
             var exceptions = {
                 2: ((_y % 400 === 0) || (_y % 4 === 0 && _y % 100 !== 0)) ? 29 : 28,
                 4: 30,
@@ -1170,13 +1142,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _tryLeap: function (date, atomName, directionName, advancer) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
 
-            var maxOrMin = directionName === 'prev' ? 'Min' : 'Max';
-
-            var boundary = this['_get' + maxOrMin]();  // _getMin() or _getMax()
-            var compName = '_' + atomName.toLowerCase();  // _year or _month
+            var maxOrMin = directionName === 'prev' ? '_min' : '_max';
+            var boundary = this[maxOrMin];
 
             // Check if we're by the boundary of min/max year/month
-            if (this._dateCmpUntil(date, boundary, compName) === 0) {
+            if (this._dateCmpUntil(date, boundary, atomName) === 0) {
                 return null;  // We're already at the boundary. Bail.
             }
 
@@ -1195,14 +1165,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _getNextDecade: function (date) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
             var decade = this._getCurrentDecade(date);
-            if (decade + 10 > this._yearMax) { return null; }
+            if (decade + 10 > this._max._year) { return null; }
             return decade + 10;
         },
 
         _getPrevDecade: function (date) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
             var decade = this._getCurrentDecade(date);
-            if (decade - 10 < this._yearMin) { return null; }
+            if (decade - 10 < this._min._year) { return null; }
             return decade - 10;
         },
 

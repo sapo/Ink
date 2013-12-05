@@ -88,13 +88,14 @@ test('validDayFn', function () {
     dt.setDate('2000-01-01');
     dt.showMonth();
 
+    debugger
     var findEnabled = function (button) {
-        return (/sapo_cal_off/.test(button.className) &&
+        return (/ink-datepicker-off/.test(button.className) &&
             !button.getAttribute('data-cal-day'));
     };
     var buttons = dt._monthContainer.getElementsByTagName('a');
     ok(InkArray.some(buttons, findEnabled),
-        'no buttons have sapo_cal_off, or have data-cal-day!!');
+        'no buttons have ink-datepicker-off , or have data-cal-day!!');
 
     var spy = dt._options.validDayFn = sinon.spy(sinon.stub().returns(true));
     dt.showMonth();
