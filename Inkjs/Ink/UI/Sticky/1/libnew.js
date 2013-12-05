@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1'], function(Common, Event, Css, Element) {
     'use strict';
 
     /* jshint maxcomplexity: 6 */
@@ -19,6 +19,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         }
         return false;
     }
+
     /**
      * The Sticky component takes an element and transforms it's behavior in order to, when the user scrolls he sets its position
      * to fixed and maintain it until the user scrolls back to the same place.
@@ -42,19 +43,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *      </script>
      */
     var Sticky = function( selector, options ){
-        if( typeof selector !== 'object' && typeof selector !== 'string'){
-            throw '[Sticky] :: Invalid selector defined';
-        }
-
-        if( typeof selector === 'object' ){
-            this._rootElement = selector;
-        } else {
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0) {
-                throw "[Sticky] :: Can't find any element with the specified selector";
-            }
-            this._rootElement = this._rootElement[0];
-        }
+        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Sticky_1');
 
         /**
          * Setting default options and - if needed - overriding it with the data attributes
@@ -65,13 +54,13 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             topElement: ['Element', document.body /* TODO weird */],
             bottomElement: ['Element', document.body /* TODO weird */],
             activateInLayouts: ['String', 'medium,large']
-        }, options || {}, this._rootElement );
-
+        }, options || {}, Element.data( this._rootElement ) );
 
         this._options.activateInLayouts = this._options.activateInLayouts.toString().split(/[, ]+/g);
 
         // Save a reference to getComputedStyle
-        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
+        this._computedStyle = window.getComputedStyle ?
+            window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
         this._dims = {
             height: this._computedStyle.height,
             width: this._computedStyle.width
@@ -88,8 +77,8 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _init: function(){
-            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
-            Event.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
+            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll, this) );
+            Event.observe( window, 'resize', Ink.bindEvent(this._onResize, this) );
 
             this._calculateOriginalSizes();
 
@@ -121,40 +110,24 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                 return;
             }
 
-            clearTimeout(this._scrollTimeout);
+            var scrollHeight = Element.scrollHeight();
 
-            this._scrollTimeout = setTimeout(Ink.bind(function(){
+            if( Element.hasAttribute(this._rootElement,'style') ){
+                if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
+                    this._rootElement.removeAttribute('style');
+                } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
+                    this._rootElement.style.left = this._options.originalLeft + 'px';
+                    this._rootElement.style.position = 'fixed';
+                    this._rootElement.style.top = 'auto';
 
-                var scrollHeight = Element.scrollHeight();
-
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
-
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-
-                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
-                            this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
-                        } else {
-                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
-                        }
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.bottom = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
+                    if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
+                        this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
+                    } else {
+                        this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
                     }
-                } else {
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        return;
-                    }
+                    this._rootElement.style.width = this._options.originalWidth + 'px';
+
+                } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
                     this._rootElement.style.left = this._options.originalLeft + 'px';
                     this._rootElement.style.position = 'fixed';
                     this._rootElement.style.bottom = 'auto';
@@ -162,7 +135,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
                     this._rootElement.style.top = this._options.originalOffsetTop + 'px';
                     this._rootElement.style.width = this._options.originalWidth + 'px';
                 }
-            },this), 0);
+            } else if (scrollHeight > this._options.originalTop - this._options.originalOffsetTop) {
+                this._rootElement.style.left = this._options.originalLeft + 'px';
+                this._rootElement.style.position = 'fixed';
+                this._rootElement.style.bottom = 'auto';
+                this._rootElement.style.left = this._options.originalLeft + 'px';
+                this._rootElement.style.top = this._options.originalOffsetTop + 'px';
+                this._rootElement.style.width = this._options.originalWidth + 'px';
+            }
         },
 
         /**
@@ -172,14 +152,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-            clearTimeout(this._resizeTimeout);
-
-            this._resizeTimeout = setTimeout(Ink.bind(function(){
-                this._rootElement.removeAttribute('style');
-                this._calculateOriginalSizes();
-                this._calculateOffsets();
-            }, this),0);
-
+            this._rootElement.removeAttribute('style');
+            this._calculateOriginalSizes();
+            this._calculateOffsets();
         },
 
         /**
@@ -225,13 +200,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _calculateOriginalSizes: function(){
-
             if( typeof this._options.originalOffsetTop === 'undefined' ){
                 this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
                 this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             }
+
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
             this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
+
             if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
                 this._options.originalWidth = 0;
             }

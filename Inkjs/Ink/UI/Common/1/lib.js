@@ -279,7 +279,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.elsOrSelector(val, '', false /*not required, so don't throw an exception now*/);
                 },
                 object: function (val) { return val; },
-                number: function (val) { return +val; },
+                number: function (val) { return parseFloat(val); },
                 'boolean': function (val) {
                     return !(val === 'false' || val === '' || val === null);
                 },
