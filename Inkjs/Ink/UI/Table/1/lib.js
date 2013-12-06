@@ -241,11 +241,13 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          */
         _addHeadersClasses: function () {
             var headerLabel;
+            var classNames;
             for (var i = 0, len = this._headers.length; i < len; i++) {
                 headerLabel = Element.textContent(this._headers[i]);
+                classNames = this._options.tdClassNames[headerLabel];
                 // TODO do not find header labels this way. But how?
-                if (this._options.tdClassNames[headerLabel]) {
-                    Css.addClassName(this._headers[i], this._options.tdClassNames[headerLabel]);
+                if (classNames) {
+                    Css.addClassName(this._headers[i], classNames);
                 }
             }
         },
