@@ -6500,7 +6500,7 @@ table.ink-table.bordered tr td {
 table.ink-table.bordered tr td:first-child {
   border-left: none;
 }
-.sapo_component_datepicker {
+.ink-calendar {
   border-radius: 4px;
   text-align: center;
   padding: 5px;
@@ -6513,54 +6513,54 @@ table.ink-table.bordered tr td:first-child {
   display: none;
   z-index: 10;
 }
-.sapo_component_datepicker a {
+.ink-calendar a {
   text-decoration: none;
 }
-.sapo_component_datepicker li {
+.ink-calendar li {
   list-style: none inside;
 }
-html.ink-modal-is-open .sapo_component_datepicker {
+html.ink-modal-is-open .ink-calendar {
   z-index: 101;
 }
-.sapo_cal_top_options {
+.ink-calendar-top-options {
   padding: 5px;
   font-size: .813em;
   cursor: pointer;
 }
-.sapo_cal_top_options .clean {
+.ink-calendar-top-options .clean {
   float: left;
 }
-.sapo_cal_top_options .close {
+.ink-calendar-top-options .close {
   float: right;
 }
-.sapo_cal_top {
+.ink-calendar-top {
   line-height: 2em;
   background: #e6e6e6;
   border-radius: 4px;
 }
-.sapo_cal_top div {
+.ink-calendar-top div {
   float: left;
 }
-.sapo_cal_top .sapo_cal_prev,
-.sapo_cal_top .sapo_cal_next {
+.ink-calendar-top .ink-calendar-prev,
+.ink-calendar-top .ink-calendar-next {
   width: 10%;
 }
-.sapo_cal_top .sapo_cal_prev a,
-.sapo_cal_top .sapo_cal_next a {
+.ink-calendar-top .ink-calendar-prev a,
+.ink-calendar-top .ink-calendar-next a {
   display: block;
 }
-.sapo_cal_top .sapo_cal_month_desc {
+.ink-calendar-top .ink-calendar-month_desc {
   width: 80%;
 }
-.sapo_cal_month,
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
+.ink-calendar-month,
+.ink-calendar-year-selector,
+.ink-calendar-month-selector {
   margin-top: .5em;
   padding-left: 0;
 }
-.sapo_cal_month li a,
-.sapo_cal_year_selector li a,
-.sapo_cal_month_selector li a {
+.ink-calendar-month li a,
+.ink-calendar-year-selector li a,
+.ink-calendar-month-selector li a {
   margin: 0px;
   line-height: 2em;
   vertical-align: middle;
@@ -6568,67 +6568,71 @@ html.ink-modal-is-open .sapo_component_datepicker {
   border-radius: 4px;
   color: #444444;
 }
-.sapo_cal_month li a:hover,
-.sapo_cal_year_selector li a:hover,
-.sapo_cal_month_selector li a:hover {
+.ink-calendar-month li a:hover,
+.ink-calendar-year-selector li a:hover,
+.ink-calendar-month-selector li a:hover {
   background: #e6e6e6;
 }
-.sapo_cal_month li a.sapo_cal_on,
-.sapo_cal_year_selector li a.sapo_cal_on,
-.sapo_cal_month_selector li a.sapo_cal_on,
-.sapo_cal_month li a.sapo_cal_on:hover,
-.sapo_cal_year_selector li a.sapo_cal_on:hover,
-.sapo_cal_month_selector li a.sapo_cal_on:hover {
+.ink-calendar-month li a.ink-calendar-on,
+.ink-calendar-year-selector li a.ink-calendar-on,
+.ink-calendar-month-selector li a.ink-calendar-on,
+.ink-calendar-month li a.ink-calendar-on:hover,
+.ink-calendar-year-selector li a.ink-calendar-on:hover,
+.ink-calendar-month-selector li a.ink-calendar-on:hover {
   background: #0069d6;
   color: #ffffff;
 }
-.sapo_cal_month li a.sapo_cal_off,
-.sapo_cal_year_selector li a.sapo_cal_off,
-.sapo_cal_month_selector li a.sapo_cal_off,
-.sapo_cal_month li a.sapo_cal_off:hover,
-.sapo_cal_year_selector li a.sapo_cal_off:hover,
-.sapo_cal_month_selector li a.sapo_cal_off:hover {
+.ink-calendar-month li a.ink-calendar-off,
+.ink-calendar-year-selector li a.ink-calendar-off,
+.ink-calendar-month-selector li a.ink-calendar-off,
+.ink-calendar-month li a.ink-calendar-off:hover,
+.ink-calendar-year-selector li a.ink-calendar-off:hover,
+.ink-calendar-month-selector li a.ink-calendar-off:hover {
   background: #ffffff;
   color: #aaaaaa;
   cursor: default;
 }
-.sapo_cal_month ul,
-.sapo_cal_year_selector ul,
-.sapo_cal_month_selector ul {
+.ink-calendar-month ul,
+.ink-calendar-year-selector ul,
+.ink-calendar-month-selector ul {
   clear: both;
   padding-left: 0;
 }
-.sapo_cal_month ul li,
-.sapo_cal_year_selector ul li,
-.sapo_cal_month_selector ul li {
+.ink-calendar-month ul li,
+.ink-calendar-year-selector ul li,
+.ink-calendar-month-selector ul li {
   width: 2.4em;
   float: left;
   text-align: center;
   padding: 0;
   margin: 0;
 }
-.sapo_cal_year_selector ul li {
+.ink-calendar-year-selector ul li {
   width: 4em;
 }
-.sapo_cal_month_selector ul li {
+.ink-calendar-month-selector ul li {
   width: 3.4em;
 }
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
+.ink-calendar-year-selector,
+.ink-calendar-month-selector {
   display: none;
 }
-.sapo_cal_month .sapo_cal_header {
+.ink-calendar-off,
+.action_inactive {
+  color: #ddd !important;
+}
+.ink-calendar-month .ink-calendar-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: .5em;
   margin-bottom: .5em;
   color: #aaa;
 }
-.sapo_cal_top:after,
-.sapo_cal_middle:after,
-.sapo_cal_top_options:after,
-.sapo_component_datepicker:after,
-.sapo_cal_month .sapo_cal_header:after,
-.sapo_cal_month .sapo_cal_middle ul:after {
+.ink-calendar-top:after,
+.ink-calendar-middle:after,
+.ink-calendar-top-options:after,
+.ink-calendar:after,
+.ink-calendar-month .ink-calendar-header:after,
+.ink-calendar-month .ink-calendar-middle ul:after {
   content: " ";
   display: block;
   height: 0;

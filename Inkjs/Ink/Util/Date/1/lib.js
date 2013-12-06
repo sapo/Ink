@@ -747,8 +747,6 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
                 day   = _d.getDate( );
             }
 
-            date = year + '-' + ( month + 1 ) + '-' + day + ' ';
-
             if      ( _haveHour12 ) { hour = +mList[ objIndex.hourD.match + 1 ] + ( mList[ objIndex.ampm.match + 1 ] === 'pm' ? 12 : 0 ); }
             else if ( _haveHour24 ) { hour = mList[ objIndex.hour.match + 1 ]; }
             else if ( _noDate     ) { hour = _d.getHours( ); }
@@ -769,7 +767,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
             else if ( _haveDiffM )  { gmt  = String( -1 * mList[ objIndex.diffM.match + 1 ] / 60 * 100 ).replace( /^(\d)/ , '+$1' ).replace( /(^[\-+])(\d{3}$)/ , '$10$2' ); }
             else                    { gmt  = '+0000'; }
 
-            return new Date( date + hour + ':' + min + ':' + sec + '.' + msec + gmt );
+            return new Date( year, month, day, hour, min, sec );
         }
     };
 
