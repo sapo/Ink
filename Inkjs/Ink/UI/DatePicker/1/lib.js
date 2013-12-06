@@ -1009,7 +1009,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._dataField.value = this._writeDateInFormat();
             } else {
                 this._options.dayField.value   = this._day;
-                this._options.monthField.value = this._month;
+                this._options.monthField.value = this._month + 1;
                 this._options.yearField.value  = this._year;
             }
 
