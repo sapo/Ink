@@ -10123,7 +10123,6 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
             var year;
             var month;
             var day;
-            var date;
             var sec;
             var msec;
             var gmt;
