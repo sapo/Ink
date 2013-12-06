@@ -279,7 +279,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.elsOrSelector(val, '', false /*not required, so don't throw an exception now*/);
                 },
                 object: function (val) { return val; },
-                number: function (val) { return +val; },
+                number: function (val) { return parseFloat(val); },
                 'boolean': function (val) {
                     return !(val === 'false' || val === '' || val === null);
                 },
@@ -446,11 +446,20 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 document.body.appendChild(detectorEl);
             }
 
+            var result = '';
+            var resultCount = 0;
             for (i = 0, f = detectorEl.childNodes.length; i < f; ++i) {
                 el = detectorEl.childNodes[i];
                 if (Css.getStyle(el, 'display') === 'block') {
-                    return el.getAttribute('data-ink-layout');
+                    result = el.getAttribute('data-ink-layout');
+                    resultCount += 1;
                 }
+            }
+
+            if (resultCount === 1) {
+                return result;
+            } else {
+                return 'large';
             }
         },
 
