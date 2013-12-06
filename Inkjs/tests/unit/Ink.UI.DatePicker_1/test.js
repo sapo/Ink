@@ -79,7 +79,7 @@ test('_get(Next|Prev)Month when hitting a limit', function () {
     dt.setDate('2000-05-01');
     deepEqual(dt._getPrevMonth(), null);
 
-    dt.setDate('2001-05-01');
+    dt.setDate('2001-05-06');
     deepEqual(dt._getNextMonth(), null);
 });
 
@@ -90,18 +90,18 @@ test('validDayFn', function () {
 
     debugger
     var findEnabled = function (button) {
-        return (/ink-datepicker-off/.test(button.className) &&
-            !button.getAttribute('data-cal-day'));
+        return (/ink-calendar-off/.test(button.className));
     };
     var buttons = dt._monthContainer.getElementsByTagName('a');
     ok(InkArray.some(buttons, findEnabled),
-        'no buttons have ink-datepicker-off , or have data-cal-day!!');
+        'No buttons are disabled');
 
     var spy = dt._options.validDayFn = sinon.spy(sinon.stub().returns(true));
     dt.showMonth();
     buttons = dt._monthContainer.getElementsByTagName('a');
+    ok(!spy.notCalled);
     ok(!InkArray.some(buttons, findEnabled),
-        'no buttons are disabled, I made all days valid with validDayFn');
+        'No buttons are disabled, I made all days valid with validDayFn');
 
     var lastCall = spy.getCall(30);
     ok(lastCall);
@@ -204,9 +204,9 @@ test('dateCmpUntil', function () {
 });
 
 test('daysInMonth', function () {
-    equal(dt._daysInMonth(2000, 0), 31);
-    equal(dt._daysInMonth(2000, 1), 29);
-    equal(dt._daysInMonth(2001, 1), 28);
+    equal(dt._daysInMonth(2000, 1), 31);
+    equal(dt._daysInMonth(2000, 2), 29);
+    equal(dt._daysInMonth(2001, 2), 28);
 });
 
 test('updateDate', function () {

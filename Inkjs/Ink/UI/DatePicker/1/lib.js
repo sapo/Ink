@@ -25,7 +25,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     function dateishFromYMDString(YMD) {
         var split = YMD.split('-');
-        return {_year: +split[0], _month: +split[1] - 1, _day: +split[2]};
+        return dateishFromYMD(+split[0], +split[1] - 1, +split[2]);
     }
 
     function dateishFromYMD(year, month, day) {
@@ -585,13 +585,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             var noMinLimit = {
                 _year: Number.MIN_VALUE,
-                _month: 1,
+                _month: 0,
                 _day: 1
             };
 
             var noMaxLimit = {
-                _year: Number.MIN_VALUE,
-                _month: 12,
+                _year: Number.MAX_VALUE,
+                _month: 11,
                 _day: 31
             };
 
@@ -897,7 +897,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 +date._month + 1 >= 1  &&
                 +date._month + 1 <= 12 &&
                 +date._day       >= 1  &&
-                +date._day       <= this._daysInMonth(date._year, date._month)
+                +date._day       <= this._daysInMonth(date._year, date._month + 1)
             );
         },
 
