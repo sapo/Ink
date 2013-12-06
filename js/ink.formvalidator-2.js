@@ -625,7 +625,14 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @version 2
      * @constructor
      * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
-     * @param {} [varname] [description]
+     * @param {String}   [options.eventTrigger='submit']        What event do we listen for.
+     * @param {Boolean}  [options.neverSubmit=false]            Always cancel the event?
+     * @param {Boolean}  [options.cancelEventOnSuccess=false]   Cancel the event even on success?
+     * @param {Selector} [options.searchForm]                   What inputs do we search for which should have our data-attributes for validation.
+     * @param {Function} [options.beforeValidation]             Callback to be executed before validating the form
+     * @param {Function} [options.onError]                      Validation error callback
+     * @param {Function} [options.onSuccess]                    Validation success callback
+     *
      * @example
      *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
      *         var myValidator = new FormValidator( 'form' );
@@ -673,6 +680,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
             neverSubmit: 'false',
+            cancelEventOnSuccess: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
@@ -853,6 +861,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onSuccess === 'function' ){
                     this._options.onSuccess();
                 }
+
+                if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
+                    Event.stopDefault(event);
+                    return false;
+                }
+
                 return true;
             } else {
 
@@ -863,11 +877,13 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                InkArray.each( this._markedErrorElements, Ink.bind(Css.removeClassName, Css, 'validation'));
-                InkArray.each( this._markedErrorElements, Ink.bind(Css.removeClassName, Css, 'error'));
+                InkArray.each( this._markedErrorElements, function () {
+                    Css.removeClassName(['validation', 'error']);
+                });
                 InkArray.each( this._errorMessages, Element.remove);
                 this._errorMessages = [];
                 this._markedErrorElements = [];
+
                 InkArray.each( errorElements, Ink.bind(function( formElement ){
                     var controlGroupElement;
                     var controlElement;
@@ -882,8 +898,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                         controlElement = controlGroupElement = formElement.getElement();
                     }
 
-                    Css.addClassName( controlGroupElement, 'validation' );
-                    Css.addClassName( controlGroupElement, 'error' );
+                    Css.addClassName( controlGroupElement, ['validation', 'error'] );
                     this._markedErrorElements.push(controlGroupElement);
 
                     var paragraph = document.createElement('p');

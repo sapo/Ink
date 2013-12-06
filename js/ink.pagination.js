@@ -303,7 +303,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(isPrev ? -1 : 1, true);
             }
             else {
-                var nr = parseInt( tgtEl.getAttribute('data-index'), 10);
+                var aElem = Ink.s('[data-index]', liEl);
+                var nr = parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },
