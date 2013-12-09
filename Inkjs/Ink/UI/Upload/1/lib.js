@@ -4,6 +4,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
     'Ink.Dom.Browser_1',
     'Ink.UI.Aux_1'
 ], function(Event, Element, Browser, Aux) {
+    /* global console */
     'use strict';
 
     var DirectoryReader = function(options) {
@@ -43,6 +44,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 running         = false,
                 maxDepth        = 0;
 
+            /* TODO return as tree because much better well */
             var _readEntries = Ink.bind(function(currentEntry) {
                 var dir     = currentEntry.createReader();
                     running = true;
@@ -179,7 +181,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 item = String(item);
             }
 
-            var pid         = parseInt(Math.round(Math.random() * 100000) + "" + Math.round(Math.random() * 100000), 10);
+            var pid = parseInt(Math.round(Math.random() * 100000) + "" + Math.round(Math.random() * 100000), 10);
             priority    = priority || 0;
 
             this.items.push({parentId: parentId, item: item, priority: priority || 0, pid: pid});
@@ -249,7 +251,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
     UI.prototype = {
         init: function() {
-            this._fileButton = this.Upload.options.fileButton,
+            this._fileButton = this.Upload.options.fileButton;
             this._dropzone = this.Upload.options.dropzone;
             this._setDropEvent();
             this._setFileButton();
@@ -315,10 +317,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _fileChangeHandler: function(ev, btn) {
             var files = btn.files,
-                form = Element.findUpwardsByTag(btn, 'form'),
-                file;
+                form = Element.findUpwardsByTag(btn, 'form');
 
-            if(!files || !window.FormData || !'withCredentials' in new XMLHttpRequest()) {
+            if(!files || !window.FormData || !('withCredentials' in new XMLHttpRequest())) {
                 form.parentNode.submit();
                 return false;
             }
@@ -746,6 +747,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
             xhr.onload = Ink.bindEvent(function() {
+                /* jshint boss:true */
                 if(this._supportChunks(file.size) && file.size > file.chunk_offset) {
                     if(xhr.response) {
                         var response = JSON.parse(xhr.response);
