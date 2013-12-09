@@ -253,6 +253,9 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
          * @private
          */
         action: function(coords, type, ev, draggable) {
+            var onDropHandlers = [];
+            var onDropOutHandlers = [];
+            
             // check all droppable elements
             InkArray.each(this._droppables, Ink.bind(function(elementData) {
                 var data = elementData.data;
@@ -274,35 +277,48 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
                 if (coords.x >= data.left && coords.x <= data.right &&
                         coords.y >= data.top && coords.y <= data.bottom) {
                     // INSIDE
-                    if (type === 'drag') {
-                        if (opt.hoverClass) {
-                            InkArray.each(opt.hoverClass,
-                                hAddClassName(element));
+                    onDropHandlers.push(function() {
+                        if (type === 'drag') {
+                            if (opt.hoverClass) {
+                                InkArray.each(opt.hoverClass,
+                                    hAddClassName(element));
+                            }
+                            if (opt.onHover) {
+                                opt.onHover(draggable, element, ev);
+                            }
+                        } else if (type === 'drop') {
+                            if (opt.hoverClass) {
+                                InkArray.each(opt.hoverClass,
+                                    hRemoveClassName(element));
+                            }
+                            if (opt.onDrop) {
+                                opt.onDrop(draggable, element, ev);
+                            }
                         }
-                        if (opt.onHover) {
-                            opt.onHover(draggable, element);
-                        }
-                    } else if (type === 'drop') {
-                        if (opt.hoverClass) {
-                            InkArray.each(opt.hoverClass,
-                                hRemoveClassName(element));
-                        }
-                        if (opt.onDrop) {
-                            opt.onDrop(draggable, element, ev);
-                        }
-                    }
+                    });
                 } else {
                     // OUTSIDE
-
-                    if (type === 'drag' && opt.hoverClass) {
-                        InkArray.each(opt.hoverClass, hRemoveClassName(element));
-                    } else if (type === 'drop') {
-                        if(opt.onDropOut){
-                            opt.onDropOut(draggable, element, ev);
+                    onDropOutHandlers.push(function() {
+                        if (type === 'drag' && opt.hoverClass) {
+                            InkArray.each(opt.hoverClass, hRemoveClassName(element));
+                        } else if (type === 'drop') {
+                            if(opt.onDropOut){
+                                opt.onDropOut(draggable, element, ev);
+                            }
                         }
-                    }
+                    });
                 }
             }, this));
+            
+            // Execute 'outside handlers'
+            for (var i=0; i<onDropOutHandlers.length ; i++) {
+                onDropOutHandlers[i]();
+            }
+
+            // Execute 'inside handlers'
+            for (var i=0; i<onDropHandlers.length ; i++) {
+                onDropHandlers[i]();
+            }
         }
     };
 

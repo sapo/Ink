@@ -1,0 +1,22 @@
+<div class="kanban disable-text-selection" data-bind="foreach: sections">
+	<div class="section">
+		<div class="title" data-bind="text: $data.title"></div>
+		<div class="content" data-bind="droppable: {dropHandler: $parent.dropHandler.bind($parent, $data.items)}, draggableContainer: {source: $data.items, draggableTemplate: 'kanbanCardTemplate', dragOutHandler: $parent.dragOutHandler.bind($parent, $data.items)}">
+		</div>
+	</div>
+</div>
+
+<script type="text/html" id="kanbanCardTemplate">
+    <div class="card">
+		<div class="selected-icon">
+			<i class="icon-ok"></i>
+		</div>
+		<!--ko if: typeof editHandler != 'undefined'-->
+			<div class="edit-action" data-bind="click: editHandler, clickBubble: false">
+				<i class="icon-edit"></i>
+			</div>
+		<!--/ko-->
+		<div class="title" data-bind="text: title"></div>
+		<div class="content" data-bind="text: content"></div>		
+	</div>
+</script>

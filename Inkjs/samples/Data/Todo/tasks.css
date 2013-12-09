@@ -1,0 +1,403 @@
+/***************************** 
+ Ink Overrides 
+******************************/
+
+a {
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header>hr {
+    clear: both;
+    top: -1em;
+    position: relative;
+}
+
+.ink-grid {
+    max-width: none !important;
+}
+
+.column-left {
+    padding-left: 2em;
+}
+
+.column-left:nth-of-type(1) {
+    padding-left: 0em;
+}
+
+.pagination {
+    padding-left: 1em !important;
+}
+
+.sapo_component_datepicker {
+    z-index: 9999999;
+}
+
+.ink-button[disabled], .ink-button .ink-disabled {
+    color: #A0A0A0 ! important;
+}
+
+.ink-table>tbody>tr:hover {
+    cursor: auto ! important;
+}
+
+.ink-table>tbody>tr>td>a {
+    display: block;
+}
+
+.ink-form label {
+    cursor: auto ! important;
+}
+
+input[type="checkbox"] {
+    width: auto !important;
+}
+
+/***************************** 
+ Custom syles 
+******************************/
+
+#appContainer {
+}
+
+.menu-title {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0.4em 0;
+    left: 2em;
+    right: 2em;
+}
+
+label {
+    font-weight: bold;
+}
+
+.no-padding {
+    padding: 0px ! important;
+}
+
+
+#mainMenu {
+    margin-bottom: 1em;
+    background-color: #d9d9d9;
+    padding: 1px 1px 0px 1px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nospace {
+    margin-top: -0.2em;
+    margin-left: -0.4em;
+    padding: 0;
+    border: 0;
+}
+
+.sortable-header:hover {
+    background-color: #EAEAEA;
+    cursor: pointer;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+footer>.ink-navigation>ul>li>a {
+	display: block ! important;
+	text-align: center;
+}
+
+#mainMenuContainer {
+    height:0px;
+    overflow: visible;
+}
+
+#mainMenuContainer>ul {
+    position: absolute;
+    left: 0px; 
+    right: 0px;
+    margin-top: -1.5em;
+    z-index: 10000;
+}
+
+.scroll-area {
+	position: absolute;
+	left: 0.9em;
+	top: 2em;
+	right: 0.9em;
+	bottom: 3em;
+	overflow-y: auto;
+}
+
+.task-item {
+	cursor: pointer;	
+}
+
+.todo-kanban {
+    position: absolute;
+    left: 0.9em;
+    top: 4em;
+    right: 0.9em;
+    bottom: 3em;
+    overflow-y: auto;
+}
+
+/*****************************
+  Standby lightbox 
+******************************/
+#standbyLightBox {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0.5;
+    background-color: white;
+    z-index: 1000;
+    display: none;
+}
+
+#standbyLightBox.visible {
+    display: block;
+}
+
+#standbyLightBox {
+    z-index: 10000;
+    opacity: 0.2;
+}
+
+#standbyLightBox>.lightbox-container {
+    position: absolute; 
+    width: 4em;
+    height: 4em;
+    left: 50%;
+    top: 50%;
+    margin-left: -2em;
+    margin-top: -2em;
+}
+
+/***********************************
+    Auto Complete
+************************************/
+
+.auto-complete>input {
+    position: absolute;
+    left: 0px;
+    right: 2.4em;
+}
+
+.auto-complete>button {
+    position: absolute;
+    right: 0px;
+    border-left: 0px;
+    border-top-left-radius: 0px 0px;
+    border-bottom-left-radius: 0px 0px;
+    padding-bottom: 0.6em;
+    padding-top: 0.5em;
+    margin-right: 0px ! important;
+}
+
+.auto-complete-options {
+    display: none; 
+    position: absolute; 
+    top: 2.2em; 
+    left: -1px;
+    right: 0px; 
+    background-color: white; 
+    border-left: 2px solid #E0E0E0; 
+    border-bottom: 2px solid #E0E0E0; 
+    border-right: 2px solid #E0E0E0; 
+    z-index:1000;    
+}
+
+/***********************************
+    Drag & Drop
+************************************/
+.disable-text-selection, .disable-text-selection * {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select: none;
+}
+
+.draggable-container .draggable-selected {
+}
+
+.draggable-proxy {
+    opacity:0.6;
+    filter:alpha(opacity=60);
+    cursor: move ! important;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.drop-panel-active {
+}
+
+.drop-place-hint-before:before {
+    content: '';
+    display: block;
+    height: 1em;
+    border: 1px dashed black;
+    margin-bottom: 0.5em;
+}
+
+.drop-panel-active .drop-place-hint-after:after {
+    content: '';
+    display: block;
+    height: 1em;
+    border: 1px dashed black;
+    margin-top: 0.2em;
+}
+
+/***********************************
+    KanBan
+************************************/
+.kanban {
+}
+
+.kanban .section {
+    float: left;
+    background-color: #e3e3e3;
+    width: 19em;
+    padding: 0.2em; 
+    border-radius: 3px;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.kanban .section:last-child {
+    margin-right: 0px;
+}
+
+.kanban .section .draggable-selected>.card>.selected-icon {
+    display: block; 
+}
+
+.kanban .section .draggable-selected>.card {
+    background-color: #eee;
+}
+
+.kanban .section .card {
+    background-color: #fff;
+    border: 1px solid #b9b9b9;
+    border-bottom-color: #939393;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    max-width: 300px;
+    min-height: 18px;
+    padding: 6px 8px 1px;
+    position: relative;
+}
+
+.kanban .section .card>.selected-icon {
+    position: absolute;
+    left: 0.3em;
+    top: 0.5em;
+    display: none;
+}
+
+.kanban .section .card>.edit-action {
+    position: absolute;
+    right: 0.3em;
+    top: 0.5em;
+    color: blue;
+}
+
+.kanban .section .card>.edit-action:hover {
+    font-size: 1.1em;
+    right: 0.2em;
+    top: 0.4em;
+}
+
+.kanban .section .card>.title {
+    position: absolute;
+    left: 1.5em;
+    right: 1.5em;
+    top: 0.5em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kanban .section .card>.content {
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.kanban .section>.title {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    border-bottom: 1px solid #C0C0C0;
+    padding-bottom: 0.5em;  
+    margin-bottom: 0.5em;   
+}
+
+.kanban .section>.content {
+    min-height: 2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.kanban .drop-panel-active {
+    background-color: #eee;
+}
+
+
+/*****************************
+ HTML 5 Hacks
+*****************************/
+
+/* Disable spin buttons no webkkit */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-spin-btn-container {
+    display: none;
+}
+
+/*****************************
+ Media Queries
+*****************************/
+
+/* LARGE SCREENS */
+@media screen and (min-width: 1371px) {
+}
+
+/* MEDIUM SCREENS */
+@media screen and (min-width: 650px) and (max-width: 1370px) {
+}
+
+/* SMALL SCREENS */
+@media screen and (max-width: 649px) {
+}
