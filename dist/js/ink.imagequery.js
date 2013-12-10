@@ -4,7 +4,6 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
-    /* jshint maxcomplexity: 6 */
     'use strict';
 
     /**
@@ -51,30 +50,21 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
     var ImageQuery = function(selector, options){
 
         /**
-         * Selector's type checking
+         * Get elements, create more ImageQueries if selector finds more than one
+         *
+         * [improvement] This is a useful pattern. More UI modules could use it.
          */
-        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[ImageQuery] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
+        this._element = Common.elsOrSelector(selector, 'Ink.UI.ImageQuery', /*required=*/true);
 
-            if( this._element.length < 1 ){
-                throw '[ImageQuery] :: Selector has returned no elements';
-            } else if( this._element.length > 1 ){
-                var i;
-                for( i=1;i<this._element.length;i+=1 ){
-                    new ImageQuery(this._element[i],options);
-                }
-            }
-            this._element = this._element[0];
-
-        } else {
-            this._element = selector;
+        // In case we have several elements
+        for (var i = 1 /* start from second element*/; i < this._element.length; i++) {
+            new ImageQuery(this._element[i], options);
         }
 
+        this._element = this._element[0];
 
         /**
-         * Default options and they're overrided by data-attributes if any.
+         * Default options, overriden by data-attributes if any.
          * The parameters are:
          * @param {array} queries Array of objects that determine the label/name and its min-width to be applied.
          * @param {boolean} allowFirstLoad Boolean flag to allow the loading of the first element.
@@ -107,25 +97,17 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _init: function(){
-
             // Sort queries by width, in descendant order.
-            this._options.queries = InkArray.sortMulti(this._options.queries,'width').reverse();
-
-            // Declaring the event handlers, in this case, the window.resize and the (element) load.
-            this._handlers = {
-                resize: Ink.bindEvent(this._onResize,this),
-                load: Ink.bindEvent(this._onLoad,this)
-            };
+            this._options.queries = InkArray.sortMulti(this._options.queries, 'width').reverse();
 
             if( typeof this._options.onLoad === 'function' ){
-                Event.observe(this._element, 'onload', this._handlers.load);
+                Event.observe(this._element, 'onload', Ink.bindEvent(this._onLoad, this));
             }
 
-            Event.observe(window, 'resize', this._handlers.resize);
+            Event.observe(window, 'resize', Ink.bindEvent(this._onResize, this));
 
             // Imediate call to apply the right images based on the current viewport
-            this._handlers.resize.call(this);
-
+            this._onResize();
         },
 
         /**
@@ -149,7 +131,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
              * The above rule applies to a retina src.
              */
             var src = current.src || this._options.src;
-            if ( ("devicePixelRatio" in window && window.devicePixelRatio>1) && ('retina' in this._options ) ) {
+            if ( window.devicePixelRatio > 1 && ('retina' in this._options ) ) {
                 src = current.retina || this._options.retina;
             }
 
@@ -182,7 +164,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             // Removes the injected file property
             delete current.file;
-        }, 300),
+        }, 500),
 
         /**
          * Queries are in a descendant order. We want to find the query with the highest width that fits
@@ -196,19 +178,15 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 document.documentElement.clientWidth ||
                 document.body.clientWidth;
 
-            var query;
-            var selected;
-            for( query=0; query < this._options.queries.length; query+=1 ){
-                if (this._options.queries[query].width <= viewportWidth){
-                    selected = query;
-                    break;
+            var queries = this._options.queries;
+
+            for( var query=0; query < queries.length; query+=1 ){
+                if (queries[query].width <= viewportWidth){
+                    return queries[query];
                 }
             }
-            if (selected === undefined) {
-                selected = this._options.queries.length - 1;
-            }
 
-            return this._options.queries[selected];
+            return queries[queries.length - 1];
         },
 
         /**
