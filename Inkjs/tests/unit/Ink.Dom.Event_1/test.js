@@ -129,6 +129,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
     });
 
     asyncTest('fire() and bubbling, no appending to document', function () {
+        // [bug] This fails in chrome. Why?
         var elem = InkElement.create('div', {className: 'elem'});
         var child = InkElement.create('div', { insertBottom: elem });
 
@@ -166,6 +167,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
     test('return the handler', function () {
         var handler = function () {};
         var cb = InkEvent.observe(InkElement.create('div'), 'keyup', handler);
+        equal(typeof cb, 'function', 'returned a function');
         ok(cb === handler, 'returned same function');
     });
 
@@ -177,7 +179,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             ok(true);
             start();
         });
-        expect(1);
+        expect(1);  // The above ok(true) will break if called more than once.
         InkEvent.fire(div, 'click');
         InkEvent.fire(div, 'click');
         InkEvent.fire(div, 'click');
