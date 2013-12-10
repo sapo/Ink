@@ -3,8 +3,11 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function( Common, Css, Events, Element, Selector ) {
     'use strict';
+    var hasTouch = (('ontouchstart' in window) ||       // html5 browsers
+                    (navigator.maxTouchPoints > 0) ||   // future IE
+                    (navigator.msMaxTouchPoints > 0));
 
     /**
      * Adds sortable behaviour to any list!
@@ -13,20 +16,27 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
+     * @param {String} [options.placeholderClass='placeholder'] CSS class to be added to the "ghost" element being dragged around
+     * @param {String} [options.draggedClass='hide-all'] CSS class added to the original element.
+     * @param {String} [options.draggingClass='dragging'] CSS class added to the html element when the user is dragging.
+     * @param {String} [options.dragSelector='li'] CSS selector for the drag enabled nodes.
+     * @param {String} [options.handleSelector] CSS selector for the drag handle. If present, you can only drag nodes by this selector.
+     * @param {String} [options.moveSelector] CSS selector to validate a node move. If present, you can only move nodes into this selector.
+     * @param {Boolean} [options.swap=false] Flag to swap moving element with target element instead of changing its order.
+     * @param {Boolean} [options.cancelMouseOut=false] Flag to cancel moving if mouse leaves the container element.
+
      * @example
-     *      <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
+     *      <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
+     *          <li><span class="ink-label info">drag here</span>primeiro</li>
+     *          <li><span class="ink-label info">drag here</span>segundo</li>
+     *          <li><span class="ink-label info">drag here</span>terceiro</li>
      *      </ul>
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
      *              var sortableListElement = Ink.s('.ink-sortable-list');
      *              var sortableListObj = new SortableList( sortableListElement );
      *          });
-     *      </script>
+     *      <\/script>
      */
     var SortableList = function(selector, options) {
 
@@ -35,7 +45,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
         if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
             throw '[Ink.UI.SortableList] :: Invalid selector';
         } else if( typeof selector === 'string' ){
-            this._element = Ink.Dom.Selector.select( selector );
+            this._element = Selector.select( selector );
 
             if( this._element.length < 1 ){
                 throw '[Ink.UI.SortableList] :: Selector has returned no elements';
@@ -46,38 +56,27 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
             this._element = selector;
         }
 
-        this._options = Ink.extendObj({
-            dragObject: 'li'
-        }, Ink.Dom.Element.data(this._element));
+        this._options = Common.options('Sortable', {
+            'placeholderClass': ['String', 'placeholder'],
+            'draggedClass': ['String', 'hide-all'],
+            'draggingClass': ['String', 'dragging'],
+            'dragSelector': ['String', 'li'],
+            'dragObject': ['String', false], // Deprecated. Use dragSelector instead
+            'handleSelector': ['String', null],
+            'moveSelector': ['String', false],
+            'swap': ['Boolean', true],
+            'cancelMouseOut': ['Boolean', false]
+        }, options || {}, this._element);
 
-        this._options = Ink.extendObj( this._options, options || {});
+        this._options.dragSelector = this._options.dragObject ? this._options.dragObject : this._options.dragSelector; // Backwards compatibility
 
         this._handlers = {
-            down: Ink.bindEvent(this._onDown,this),
-            move: Ink.bindEvent(this._onMove,this),
-            up:   Ink.bindEvent(this._onUp,this)
+            down: Ink.bind(this._onDown, this),
+            move: Ink.bind(this._onMove, this),
+            up:   Ink.bind(this._onUp, this)
         };
 
-        this._model = [];
-        this._index = undefined;
         this._isMoving = false;
-
-        if (this._options.model instanceof Array) {
-            this._model = this._options.model;
-            this._createdFrom = 'JSON';
-        }
-        else if (this._element.nodeName.toLowerCase() === 'ul') {
-            this._createdFrom = 'DOM';
-        }
-        else {
-            throw new TypeError('You must pass a selector expression/DOM element as 1st option or provide a model on 2nd argument!');
-        }
-
-
-        this._dragTriggers = Selector.select( this._options.dragObject, this._element );
-        if( !this._dragTriggers ){
-            throw "[Ink.UI.SortableList] :: Drag object not found";
-        }
 
         this._init();
     };
@@ -91,24 +90,11 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @private
          */
         _init: function() {
-            // extract model
-            if (this._createdFrom === 'DOM') {
-                this._extractModelFromDOM();
-                this._createdFrom = 'JSON';
-            }
+            this._down = hasTouch ? 'touchstart mousedown' : 'mousedown';
+            this._move = hasTouch ? 'touchmove mousemove' : 'mousemove';
+            this._up   = hasTouch ? 'touchend mouseup' : 'mouseup';
 
-            var isTouch = 'ontouchstart' in document.documentElement;
-
-            this._down = isTouch ? 'touchstart': 'mousedown';
-            this._move = isTouch ? 'touchmove' : 'mousemove';
-            this._up   = isTouch ? 'touchend'  : 'mouseup';
-
-            // subscribe events
-            var db = document.body;
-            Event.observe(db, this._move, this._handlers.move);
-            Event.observe(db, this._up,   this._handlers.up);
             this._observe();
-
             Common.registerInstance(this, this._element, 'sortableList');
         },
 
@@ -119,203 +105,120 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @private
          */
         _observe: function() {
-            Event.observe(this._element, this._down, this._handlers.down);
-        },
-
-        /**
-         * Updates the model from the UL representation
-         * 
-         * @method _extractModelFromDOM
-         * @private
-         */
-        _extractModelFromDOM: function() {
-            this._model = [];
-            var that = this;
-
-            var liEls = Selector.select('> li', this._element);
-
-            InkArray.each(liEls,function(liEl) {
-                //var t = Element.getChildrenText(liEl);
-                var t = liEl.innerHTML;
-                that._model.push(t);
-            });
-        },
-
-        /**
-         * Returns the top element for the gallery DOM representation
-         * 
-         * @method _generateMarkup
-         * @return {DOMElement}
-         * @private
-         */
-        _generateMarkup: function() {
-            var el = document.createElement('ul');
-            el.className = 'unstyled ink-sortable-list';
-            var that = this;
-
-            InkArray.each(this._model,function(label, idx) {
-                var liEl = document.createElement('li');
-                if (idx === that._index) {
-                    liEl.className = 'drag';
-                }
-                liEl.innerHTML = [
-                    // '<span class="ink-label ink-info"><i class="icon-reorder"></i>', that._options.dragLabel, '</span>', label
-                    label
-                ].join('');
-                el.appendChild(liEl);
-            });
-
-            return el;
-        },
-
-        /**
-         * Extracts the Y coordinate of the mouse from the given MouseEvent
-         * 
-         * @method _getY
-         * @param  {Event} ev
-         * @return {Number}
-         * @private
-         */
-        _getY: function(ev) {
-            if (ev.type.indexOf('touch') === 0) {
-                //console.log(ev.type, ev.changedTouches[0].pageY);
-                return ev.changedTouches[0].pageY;
+            Events.on(this._element, this._down, this._options.dragSelector, this._handlers.down);
+            Events.on(this._element, this._move, this._options.dragSelector, this._handlers.move);
+            if(this._options.cancelMouseOut) {
+                Events.on(this._element, 'mouseleave', Ink.bind(this.stopMoving, this));
             }
-            if (typeof ev.pageY === 'number') {
-                return ev.pageY;
-            }
-            return ev.clientY;
+            Events.on(document.documentElement, this._up, this._handlers.up);
         },
 
         /**
-         * Refreshes the markup.
-         * 
-         * @method _refresh
-         * @param {Boolean} skipObs True if needs to set the event handlers, false if not.
-         * @private
-         */
-        _refresh: function(skipObs) {
-            var el = this._generateMarkup();
-            this._element.parentNode.replaceChild(el, this._element);
-            this._element = el;
-
-            Common.restoreIdAndClasses(this._element, this);
-
-            this._dragTriggers = Selector.select( this._options.dragObject, this._element );
-
-            // subscribe events
-            if (!skipObs) { this._observe(); }
-        },
-
-        /**
-         * Mouse down handler
+         * Mousedown or touchstart handler
          * 
          * @method _onDown
          * @param {Event} ev
-         * @return {Boolean|undefined} [description]
          * @private
          */
         _onDown: function(ev) {
-            if (this._isMoving) { return; }
-            var tgtEl = Event.element(ev);
-
-            if( !InkArray.inArray(tgtEl,this._dragTriggers) ){
-                while( !InkArray.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                    tgtEl = tgtEl.parentNode;
-                }
-
-                if( tgtEl.nodeName.toLowerCase() === 'body' ){
-                    return;
-                }
-            }
-
-            Event.stop(ev);
-
-            var liEl;
-            if( tgtEl.nodeName.toLowerCase() !== 'li' ){
-                while( (tgtEl.nodeName.toLowerCase() !== 'li') && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                    tgtEl = tgtEl.parentNode;
-                }
-            }
-            liEl = tgtEl;
-
-            this._index = Common.childIndex(liEl);
-            this._height = liEl.offsetHeight;
-            this._startY = this._getY(ev);
-            this._isMoving = true;
-
-            document.body.style.cursor = 'move';
-
-            this._refresh(false);
-
+            if (this._isMoving || this._placeholder) { return; }
+            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
+            var tgtEl = ev.currentTarget;
+            this._isMoving = tgtEl;
+            this._placeholder = tgtEl.cloneNode(true);
+            this._movePlaceholder(tgtEl);
+            this._addMovingClasses();
             return false;
         },
 
         /**
-         * Mouse move handler
+         * Mousemove or touchmove handler
          * 
          * @method _onMove
          * @param {Event} ev
          * @private
          */
         _onMove: function(ev) {
-            if (!this._isMoving) { return; }
-            Event.stop(ev);
-
-            var y = this._getY(ev);
-            //console.log(y);
-            var dy = y - this._startY;
-            var sign = dy > 0 ? 1 : -1;
-            var di = sign * Math.floor( Math.abs(dy) / this._height );
-            if (di === 0) { return; }
-            di = di / Math.abs(di);
-            if ( (di === -1 && this._index === 0) ||
-                 (di === 1 && this._index === this._model.length - 1) ) { return; }
-
-            var a = di > 0 ? this._index : this._index + di;
-            var b = di < 0 ? this._index : this._index + di;
-            //console.log(a, b);
-            this._model.splice(a, 2, this._model[b], this._model[a]);
-            this._index += di;
-            this._startY = y;
-
-            this._refresh(false);
+            this.validateMove(ev.currentTarget);
+            return false;
         },
 
         /**
-         * Mouse up handler
+         * Mouseup or touchend handler
          * 
          * @method _onUp
          * @param {Event} ev
          * @private
          */
         _onUp: function(ev) {
-            if (!this._isMoving) { return; }
-            Event.stop(ev);
-
-            this._index = undefined;
-            this._isMoving = false;
-            document.body.style.cursor = '';
-
-            this._refresh();
+            if (!this._isMoving || !this._placeholder) { return; }
+            if (ev.currentTarget === this._isMoving) { return; }
+            if (ev.currentTarget === this._placeholder) { return; }
+            Element.insertBefore(this._isMoving, this._placeholder);
+            this.stopMoving();
+            return false;
         },
 
+        /**
+         * Adds the CSS classes to interactive elements
+         * 
+         * @method _addMovingClasses
+         * @private
+         */
+        _addMovingClasses: function(){
+            Css.addClassName(this._placeholder, this._options.placeholderClass);
+            Css.addClassName(this._isMoving, this._options.draggedClass);
+            Css.addClassName(document.documentElement, this._options.draggingClass);
+        },
 
+        /**
+         * Removes the CSS classes from interactive elements
+         * 
+         * @method _removeMovingClasses
+         * @private
+         */
+        _removeMovingClasses: function(){
+            if(this._isMoving) { Css.removeClassName(this._isMoving, this._options.draggedClass); }
+            if(this._placeholder) { Css.removeClassName(this._placeholder, this._options.placeholderClass); }
+            Css.removeClassName(document.documentElement, this._options.draggingClass);
+        },
+
+        /**
+         * Moves the placeholder element relative to the target element
+         * 
+         * @method _movePlaceholder
+         * @param {Element} target_position
+         * @private
+         */
+        _movePlaceholder: function(target){
+            var placeholder = this._placeholder,
+                target_position,
+                placeholder_position,
+                from_top,
+                from_left;
+            if(!placeholder) {
+                Element.insertAfter(placeholder, target);
+            } else if(this._options.swap){
+                Element.insertAfter(placeholder, target);
+                Element.insertBefore(target, this._isMoving);
+                Element.insertBefore(this._isMoving, placeholder);
+            } else {
+                var target_position = Element.offset(target),
+                    placeholder_position = Element.offset(this._placeholder),
+                    from_top = target_position[1] > placeholder_position[1],
+                    from_left = target_position[0] > placeholder_position[0];
+                if( ( from_top && from_left ) || ( !from_top && !from_left ) ) {
+                    Element.insertBefore(placeholder, target);
+                } else {
+                    Element.insertAfter(placeholder, target);
+                }
+                Element.insertBefore(this._isMoving, placeholder);
+            }
+        },
 
         /**************
          * PUBLIC API *
          **************/
-
-        /**
-         * Returns a copy of the model
-         * 
-         * @method getModel
-         * @return {Array} Copy of the model
-         * @public
-         */
-        getModel: function() {
-            return this._model.slice();
-        },
 
         /**
          * Unregisters the component and removes its markup from the DOM
@@ -323,7 +226,38 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @method destroy
          * @public
          */
-        destroy: Common.destroyComponent
+        destroy: Common.destroyComponent,
+
+        /**
+         * Visually stops moving. Removes the placeholder as well as the styling classes.
+         * 
+         * @method _movePlaceholder
+         * @public
+         */
+        stopMoving: function(){
+            this._removeMovingClasses();
+            Element.remove(this._placeholder);
+            this._placeholder = false;
+            this._isMoving = false;
+        },
+
+        /**
+         * Validation method for the move handler
+         * 
+         * @method _movePlaceholder
+         * @param {Element} elem
+         * @public
+         */
+        validateMove: function(elem){
+            if (!this._isMoving || !this._placeholder) { return; }
+            if (elem === this._placeholder) {  return; }
+            if (elem === this._isMoving) { return; }
+            if(!this._options.moveSelector || Selector.matchesSelector(elem, this._options.moveSelector)){
+                this._movePlaceholder(elem);
+            } else {
+                this.stopMoving();  
+            }
+        }
 
     };
 
