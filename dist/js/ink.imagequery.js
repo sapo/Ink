@@ -4,6 +4,7 @@
  * @version 1
  */
 Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+    /* jshint maxcomplexity: 6 */
     'use strict';
 
     /**
@@ -62,7 +63,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             } else if( this._element.length > 1 ){
                 var i;
                 for( i=1;i<this._element.length;i+=1 ){
-                    new Ink.UI.ImageQuery(this._element[i],options);
+                    new ImageQuery(this._element[i],options);
                 }
             }
             this._element = this._element[0];
@@ -81,9 +82,7 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         this._options = Ink.extendObj({
             queries:[],
             onLoad: null
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
+        }, options || {}, Element.data(this._element));
 
         /**
          * Determining the original basename (with the querystring) of the file.
@@ -135,98 +134,81 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _onResize
          * @private
          */
-        _onResize: function(){
+        _onResize: Event.throttle(function(){
+            if( !this._options.queries.length ){
+                return;
+            }
 
-            clearTimeout(timeout);
+            var current = this._findCurrentQuery();
 
-            var timeout = setTimeout(Ink.bind(function(){
+            /**
+             * Choosing the right src. The rule is:
+             *
+             *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
+             *
+             * The above rule applies to a retina src.
+             */
+            var src = current.src || this._options.src;
+            if ( ("devicePixelRatio" in window && window.devicePixelRatio>1) && ('retina' in this._options ) ) {
+                src = current.retina || this._options.retina;
+            }
 
-                if( !this._options.queries || (this._options.queries === {}) ){
-                    clearTimeout(timeout);
-                    return;
+            /**
+             * Injects the file variable for usage in the 'templating system' below
+             */
+            current.file = this._filename;
+
+            /**
+             * Since we allow the src to be a callback, let's run it and get the results.
+             * For the inside, we're passing the element (img) being processed and the object of the selected
+             * query.
+             */
+            if( typeof src === 'function' ){
+                src = src.apply(this,[this._element,current]);
+                if( typeof src !== 'string' ){
+                    throw '[ImageQuery] :: "src" callback does not return a string';
                 }
+            }
 
-                var
-                    query, selected,
-                    viewportWidth
-                ;
+            /**
+             * Replace the values of the existing properties on the query object (except src and retina) in the
+             * defined src and/or retina.
+             */
+            src = src.replace(/{:(.*?)}/g, function(_, prop) {
+                return current[prop];
+            });
 
-                /**
-                 * Gets viewport width
-                 */
-                if( typeof( window.innerWidth ) === 'number' ) {
-                   viewportWidth = window.innerWidth;
-                } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-                   viewportWidth = document.documentElement.clientWidth;
-                } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-                   viewportWidth = document.body.clientWidth;
+            this._element.src = src;
+
+            // Removes the injected file property
+            delete current.file;
+        }, 300),
+
+        /**
+         * Queries are in a descendant order. We want to find the query with the highest width that fits
+         * the viewport, therefore the first one.
+         */
+        _findCurrentQuery: function () {
+            /**
+             * Gets viewport width
+             */
+            var viewportWidth = window.innerWidth ||
+                document.documentElement.clientWidth ||
+                document.body.clientWidth;
+
+            var query;
+            var selected;
+            for( query=0; query < this._options.queries.length; query+=1 ){
+                if (this._options.queries[query].width <= viewportWidth){
+                    selected = query;
+                    break;
                 }
+            }
+            if (selected === undefined) {
+                selected = this._options.queries.length - 1;
+            }
 
-                /**
-                 * Queries are in a descendant order. We want to find the query with the highest width that fits
-                 * the viewport, therefore the first one.
-                 */
-                for( query=0; query < this._options.queries.length; query+=1 ){
-                    if (this._options.queries[query].width <= viewportWidth){
-                        selected = query;
-                        break;
-                    }
-                }
-
-                /**
-                 * If it doesn't find any selectable query (because they don't meet the requirements)
-                 * let's select the one with the smallest width
-                 */
-                if( typeof selected === 'undefined' ){ selected = this._options.queries.length-1; }
-
-                /**
-                 * Choosing the right src. The rule is:
-                 *
-                 *   "If there is specifically defined in the query object, use that. Otherwise uses the global src."
-                 *
-                 * The above rule applies to a retina src.
-                 */
-                var src = this._options.queries[selected].src || this._options.src;
-                if ( ("devicePixelRatio" in window && window.devicePixelRatio>1) && ('retina' in this._options ) ) {
-                    src = this._options.queries[selected].retina || this._options.retina;
-                }
-
-                /**
-                 * Injects the file variable for usage in the 'templating system' below
-                 */
-                this._options.queries[selected].file = this._filename;
-
-                /**
-                 * Since we allow the src to be a callback, let's run it and get the results.
-                 * For the inside, we're passing the element (img) being processed and the object of the selected
-                 * query.
-                 */
-                if( typeof src === 'function' ){
-                    src = src.apply(this,[this._element,this._options.queries[selected]]);
-                    if( typeof src !== 'string' ){
-                        throw '[ImageQuery] :: "src" callback does not return a string';
-                    }
-                }
-
-                /**
-                 * Replace the values of the existing properties on the query object (except src and retina) in the
-                 * defined src and/or retina.
-                 */
-                var property;
-                for( property in this._options.queries[selected] ){
-                    if (this._options.queries[selected].hasOwnProperty(property)) {
-                        if( ( property === 'src' ) || ( property === 'retina' ) ){ continue; }
-                        src = src.replace("{:" + property + "}",this._options.queries[selected][property]);
-                    }
-                }
-                this._element.src = src;
-
-                // Removes the injected file property
-                delete this._options.queries[selected].file;
-
-                timeout = undefined;
-
-            },this),300);
+            return this._options.queries[selected];
         },
 
         /**
