@@ -3,13 +3,6 @@
   "version": "2.2.1",
   "description": "SAPO InK - Interface Toolkit",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "sapo/Ink"
-  },
   "keywords": [
     "css",
     "less",
