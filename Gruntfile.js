@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  var jshintFile = './Inkjs/.jshintrc';
+  var jshintFile = './src/js/.jshintrc';
 
   // Project configuration.
   grunt.initConfig({
@@ -9,13 +9,15 @@ module.exports = function(grunt) {
     ink: {
       folders: {
         js: {
-          srcBase: './Inkjs/',
-          src: './Inkjs/Ink/',
-          tests: './Inkjs/tests/',
+          srcBase: './src/js/',
+          src: './src/js/Ink/',
+          tests: './src/js/tests/',
+
           output: './dist/js/'
         },
         css: {
           src: './src/less/',
+
           output: './dist/css/'
         },
       },
@@ -94,14 +96,12 @@ module.exports = function(grunt) {
             src: ['**/[0-9]/lib.js'],
             dest: '<%= ink.folders.js.output %>',
             rename: function(dest, src) {
+              // [TODO] refactor
               // check if this is v1
-              if (src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) == 1)
-              {
+              if (src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) == 1) {
                 // and it it is discard the version number               
                 return dest + 'ink.' + src.substring(0, src.indexOf('/')).toLowerCase() + '.js';
-              } 
-              else 
-              {
+              } else {
                 // or replace the slash by an underscore and version number and prepend to dest file name 
                 return dest + 'ink.' + src.substring(0, src.lastIndexOf('/')).toLowerCase().replace('/','-') + '.js';                
               }
@@ -114,13 +114,13 @@ module.exports = function(grunt) {
     // TODO: build on separate folder and move to dist
     clean: ["<%= ink.folders.js.output %>/ink*.js"],
 
-
+    // [TODO] check if this works okay
     qunit: {
         options: {
           // inject: 'js/tests/assets/phantom.js',
           urls: ['http://localhost:8000/js/tests/index.html']
         },
-        files: ['js/tests/*.html']
+        files: ['src/js/tests/*.html']
       },
 
       connect: {
