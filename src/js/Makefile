@@ -92,17 +92,17 @@ bundleMin: builddir min
 
 updateUi:
 	@echo "Updating UI modules"
-	@node serverUtils/updateUi.js ./Ink/UI ../js/
+	@node serverUtils/updateUi.js ./Ink/UI ../../dist/js/
 
 
 updateJsFolder: bundle bundleMin updateUi
 	@echo "Moving built modules to js/ folder"
-	@mv ./builds/ink-all-$(VERSION).js ../js/ink-all.js
-	@mv ./builds/ink-ui-$(VERSION).js ../js/ink-ui.js
-	@mv ./builds/ink-$(VERSION).js ../js/ink.js
-	@mv ./builds/ink-all-$(VERSION).min.js ../js/ink-all.min.js
-	@mv ./builds/ink-ui-$(VERSION).min.js ../js/ink-ui.min.js
-	@mv ./builds/ink-$(VERSION).min.js ../js/ink.min.js
+	@mv ./builds/ink-all-$(VERSION).js ../../dist/js/ink-all.js
+	@mv ./builds/ink-ui-$(VERSION).js ../../dist/js/ink-ui.js
+	@mv ./builds/ink-$(VERSION).js ../../dist/js/ink.js
+	@mv ./builds/ink-all-$(VERSION).min.js ../../dist/js/ink-all.min.js
+	@mv ./builds/ink-ui-$(VERSION).min.js ../../dist/js/ink-ui.min.js
+	@mv ./builds/ink-$(VERSION).min.js ../../dist/js/ink.min.js
 
 
 deleteMinFiles:
