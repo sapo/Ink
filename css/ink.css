@@ -275,10 +275,10 @@ table {
   text-align: right;
 }
 .show-all {
-  display: inherit;
+  display: inherit !important;
 }
 .hide-all {
-  display: none;
+  display: none !important;
 }
 .ink-grid {
   width: auto;
@@ -291,7 +291,7 @@ table {
   zoom: 1;
 }
 .column-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -318,86 +318,107 @@ table {
 .large-95 {
   width: 95%;
   float: left;
+  clear: none;
 }
 .large-90 {
   width: 90%;
   float: left;
+  clear: none;
 }
 .large-85 {
   width: 85%;
   float: left;
+  clear: none;
 }
 .large-80 {
   width: 80%;
   float: left;
+  clear: none;
 }
 .large-75 {
   width: 75%;
   float: left;
+  clear: none;
 }
 .large-70 {
   width: 70%;
   float: left;
+  clear: none;
 }
 .large-65 {
   width: 65%;
   float: left;
+  clear: none;
 }
 .large-60 {
   width: 60%;
   float: left;
+  clear: none;
 }
 .large-55 {
   width: 55%;
   float: left;
+  clear: none;
 }
 .large-50 {
   width: 50%;
   float: left;
+  clear: none;
 }
 .large-45 {
   width: 45%;
   float: left;
+  clear: none;
 }
 .large-40 {
   width: 40%;
   float: left;
+  clear: none;
 }
 .large-35 {
   width: 35%;
   float: left;
+  clear: none;
 }
 .large-30 {
   width: 30%;
   float: left;
+  clear: none;
 }
 .large-25 {
   width: 25%;
   float: left;
+  clear: none;
 }
 .large-20 {
   width: 20%;
   float: left;
+  clear: none;
 }
 .large-15 {
   width: 15%;
   float: left;
+  clear: none;
 }
 .large-10 {
   width: 10%;
   float: left;
+  clear: none;
 }
 .large-5 {
   width: 5%;
   float: left;
+  clear: none;
 }
 .large-33 {
   width: 33.33%;
   float: left;
+  clear: none;
 }
 .large-66 {
   width: 66.66%;
   float: left;
+  clear: none;
 }
 .large-100 {
   width: 100%;
@@ -567,29 +588,29 @@ body.animated *[class*="large-"] {
 }
 @media screen and (min-width: 960px) {
   .hide-large {
-    display: none;
+    display: none !important;
   }
   .show-large {
-    display: inherit;
+    display: inherit !important;
   }
   table.show-large {
-    display: table;
+    display: table !important;
   }
   thead.show-large {
-    display: table-header-group;
+    display: table-header-group !important;
   }
   tbody.show-large {
-    display: table-row-group;
+    display: table-row-group !important;
   }
   tfoot.show-large {
-    display: table-footer-group;
+    display: table-footer-group !important;
   }
   tr.show-large {
-    display: table-row;
+    display: table-row !important;
   }
   th.show-large,
   td.show-large {
-    display: table-cell;
+    display: table-cell !important;
   }
 }
 @media screen and (min-width: 650px) and (max-width: 959px) {
@@ -604,7 +625,7 @@ body.animated *[class*="large-"] {
     zoom: 1;
   }
   .column-group:after {
-    content: ".";
+    content: " ";
     display: block;
     height: 0;
     clear: both;
@@ -631,86 +652,107 @@ body.animated *[class*="large-"] {
   .medium-95 {
     width: 95%;
     float: left;
+    clear: none;
   }
   .medium-90 {
     width: 90%;
     float: left;
+    clear: none;
   }
   .medium-85 {
     width: 85%;
     float: left;
+    clear: none;
   }
   .medium-80 {
     width: 80%;
     float: left;
+    clear: none;
   }
   .medium-75 {
     width: 75%;
     float: left;
+    clear: none;
   }
   .medium-70 {
     width: 70%;
     float: left;
+    clear: none;
   }
   .medium-65 {
     width: 65%;
     float: left;
+    clear: none;
   }
   .medium-60 {
     width: 60%;
     float: left;
+    clear: none;
   }
   .medium-55 {
     width: 55%;
     float: left;
+    clear: none;
   }
   .medium-50 {
     width: 50%;
     float: left;
+    clear: none;
   }
   .medium-45 {
     width: 45%;
     float: left;
+    clear: none;
   }
   .medium-40 {
     width: 40%;
     float: left;
+    clear: none;
   }
   .medium-35 {
     width: 35%;
     float: left;
+    clear: none;
   }
   .medium-30 {
     width: 30%;
     float: left;
+    clear: none;
   }
   .medium-25 {
     width: 25%;
     float: left;
+    clear: none;
   }
   .medium-20 {
     width: 20%;
     float: left;
+    clear: none;
   }
   .medium-15 {
     width: 15%;
     float: left;
+    clear: none;
   }
   .medium-10 {
     width: 10%;
     float: left;
+    clear: none;
   }
   .medium-5 {
     width: 5%;
     float: left;
+    clear: none;
   }
   .medium-33 {
     width: 33.33%;
     float: left;
+    clear: none;
   }
   .medium-66 {
     width: 66.66%;
     float: left;
+    clear: none;
   }
   .medium-100 {
     width: 100%;
@@ -879,29 +921,29 @@ body.animated *[class*="large-"] {
     margin-left: 0.375em;
   }
   .hide-medium {
-    display: none;
+    display: none !important;
   }
   .show-medium {
-    display: inherit;
+    display: inherit !important;
   }
   table.show-medium {
-    display: table;
+    display: table !important;
   }
   thead.show-medium {
-    display: table-header-group;
+    display: table-header-group !important;
   }
   tbody.show-medium {
-    display: table-row-group;
+    display: table-row-group !important;
   }
   tfoot.show-medium {
-    display: table-footer-group;
+    display: table-footer-group !important;
   }
   tr.show-medium {
-    display: table-row;
+    display: table-row !important;
   }
   th.show-medium,
   td.show-medium {
-    display: table-cell;
+    display: table-cell !important;
   }
 }
 @media screen and (max-width: 649px) {
@@ -916,7 +958,7 @@ body.animated *[class*="large-"] {
     zoom: 1;
   }
   .column-group:after {
-    content: ".";
+    content: " ";
     display: block;
     height: 0;
     clear: both;
@@ -943,86 +985,107 @@ body.animated *[class*="large-"] {
   .small-95 {
     width: 95%;
     float: left;
+    clear: none;
   }
   .small-90 {
     width: 90%;
     float: left;
+    clear: none;
   }
   .small-85 {
     width: 85%;
     float: left;
+    clear: none;
   }
   .small-80 {
     width: 80%;
     float: left;
+    clear: none;
   }
   .small-75 {
     width: 75%;
     float: left;
+    clear: none;
   }
   .small-70 {
     width: 70%;
     float: left;
+    clear: none;
   }
   .small-65 {
     width: 65%;
     float: left;
+    clear: none;
   }
   .small-60 {
     width: 60%;
     float: left;
+    clear: none;
   }
   .small-55 {
     width: 55%;
     float: left;
+    clear: none;
   }
   .small-50 {
     width: 50%;
     float: left;
+    clear: none;
   }
   .small-45 {
     width: 45%;
     float: left;
+    clear: none;
   }
   .small-40 {
     width: 40%;
     float: left;
+    clear: none;
   }
   .small-35 {
     width: 35%;
     float: left;
+    clear: none;
   }
   .small-30 {
     width: 30%;
     float: left;
+    clear: none;
   }
   .small-25 {
     width: 25%;
     float: left;
+    clear: none;
   }
   .small-20 {
     width: 20%;
     float: left;
+    clear: none;
   }
   .small-15 {
     width: 15%;
     float: left;
+    clear: none;
   }
   .small-10 {
     width: 10%;
     float: left;
+    clear: none;
   }
   .small-5 {
     width: 5%;
     float: left;
+    clear: none;
   }
   .small-33 {
     width: 33.33%;
     float: left;
+    clear: none;
   }
   .small-66 {
     width: 66.66%;
     float: left;
+    clear: none;
   }
   .small-100 {
     width: 100%;
@@ -1191,29 +1254,29 @@ body.animated *[class*="large-"] {
     margin-left: 0.25em;
   }
   .hide-small {
-    display: none;
+    display: none !important;
   }
   .show-small {
-    display: inherit;
+    display: inherit !important;
   }
   table.show-small {
-    display: table;
+    display: table !important;
   }
   thead.show-small {
-    display: table-header-group;
+    display: table-header-group !important;
   }
   tbody.show-small {
-    display: table-row-group;
+    display: table-row-group !important;
   }
   tfoot.show-small {
-    display: table-footer-group;
+    display: table-footer-group !important;
   }
   tr.show-small {
-    display: table-row;
+    display: table-row !important;
   }
   th.show-small,
   td.show-small {
-    display: table-cell;
+    display: table-cell !important;
   }
 }
 body {
@@ -3858,7 +3921,7 @@ a .icon-flip-vertical:before {
   float: none;
 }
 .ink-navigation ul.menu:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -3953,7 +4016,7 @@ a .icon-flip-vertical:before {
   text-decoration: none;
 }
 .ink-navigation ul.pagination:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -3988,7 +4051,7 @@ a .icon-flip-vertical:before {
   cursor: default;
 }
 .ink-navigation .pills:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -5432,7 +5495,7 @@ a .icon-flip-vertical:before {
   margin-bottom: 1em;
 }
 .ink-form .control-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -5443,7 +5506,7 @@ a .icon-flip-vertical:before {
   position: relative;
 }
 .ink-form .control-group .control:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -5630,6 +5693,9 @@ a .icon-flip-vertical:before {
   font-family: FontAwesome;
   font-size: .75em;
   width: 1.25em;
+}
+.ink-form .control-group.required ul.control label:after {
+  content: "";
 }
 .status-indicator {
   position: relative;
@@ -6359,7 +6425,7 @@ a .icon-flip-vertical:before {
   border-top-right-radius: 4px;
 }
 .button-group:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6371,7 +6437,7 @@ a .icon-flip-vertical:before {
   float: left;
 }
 .button-toolbar:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6434,7 +6500,7 @@ table.ink-table.bordered tr td {
 table.ink-table.bordered tr td:first-child {
   border-left: none;
 }
-.sapo_component_datepicker {
+.ink-calendar {
   border-radius: 4px;
   text-align: center;
   padding: 5px;
@@ -6447,54 +6513,54 @@ table.ink-table.bordered tr td:first-child {
   display: none;
   z-index: 10;
 }
-.sapo_component_datepicker a {
+.ink-calendar a {
   text-decoration: none;
 }
-.sapo_component_datepicker li {
+.ink-calendar li {
   list-style: none inside;
 }
-html.ink-modal-is-open .sapo_component_datepicker {
+html.ink-modal-is-open .ink-calendar {
   z-index: 101;
 }
-.sapo_cal_top_options {
+.ink-calendar-top-options {
   padding: 5px;
   font-size: .813em;
   cursor: pointer;
 }
-.sapo_cal_top_options .clean {
+.ink-calendar-top-options .clean {
   float: left;
 }
-.sapo_cal_top_options .close {
+.ink-calendar-top-options .close {
   float: right;
 }
-.sapo_cal_top {
+.ink-calendar-top {
   line-height: 2em;
   background: #e6e6e6;
   border-radius: 4px;
 }
-.sapo_cal_top div {
+.ink-calendar-top div {
   float: left;
 }
-.sapo_cal_top .sapo_cal_prev,
-.sapo_cal_top .sapo_cal_next {
+.ink-calendar-top .ink-calendar-prev,
+.ink-calendar-top .ink-calendar-next {
   width: 10%;
 }
-.sapo_cal_top .sapo_cal_prev a,
-.sapo_cal_top .sapo_cal_next a {
+.ink-calendar-top .ink-calendar-prev a,
+.ink-calendar-top .ink-calendar-next a {
   display: block;
 }
-.sapo_cal_top .sapo_cal_month_desc {
+.ink-calendar-top .ink-calendar-month_desc {
   width: 80%;
 }
-.sapo_cal_month,
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
+.ink-calendar-month,
+.ink-calendar-year-selector,
+.ink-calendar-month-selector {
   margin-top: .5em;
   padding-left: 0;
 }
-.sapo_cal_month li a,
-.sapo_cal_year_selector li a,
-.sapo_cal_month_selector li a {
+.ink-calendar-month li a,
+.ink-calendar-year-selector li a,
+.ink-calendar-month-selector li a {
   margin: 0px;
   line-height: 2em;
   vertical-align: middle;
@@ -6502,68 +6568,72 @@ html.ink-modal-is-open .sapo_component_datepicker {
   border-radius: 4px;
   color: #444444;
 }
-.sapo_cal_month li a:hover,
-.sapo_cal_year_selector li a:hover,
-.sapo_cal_month_selector li a:hover {
+.ink-calendar-month li a:hover,
+.ink-calendar-year-selector li a:hover,
+.ink-calendar-month-selector li a:hover {
   background: #e6e6e6;
 }
-.sapo_cal_month li a.sapo_cal_on,
-.sapo_cal_year_selector li a.sapo_cal_on,
-.sapo_cal_month_selector li a.sapo_cal_on,
-.sapo_cal_month li a.sapo_cal_on:hover,
-.sapo_cal_year_selector li a.sapo_cal_on:hover,
-.sapo_cal_month_selector li a.sapo_cal_on:hover {
+.ink-calendar-month li a.ink-calendar-on,
+.ink-calendar-year-selector li a.ink-calendar-on,
+.ink-calendar-month-selector li a.ink-calendar-on,
+.ink-calendar-month li a.ink-calendar-on:hover,
+.ink-calendar-year-selector li a.ink-calendar-on:hover,
+.ink-calendar-month-selector li a.ink-calendar-on:hover {
   background: #0069d6;
   color: #ffffff;
 }
-.sapo_cal_month li a.sapo_cal_off,
-.sapo_cal_year_selector li a.sapo_cal_off,
-.sapo_cal_month_selector li a.sapo_cal_off,
-.sapo_cal_month li a.sapo_cal_off:hover,
-.sapo_cal_year_selector li a.sapo_cal_off:hover,
-.sapo_cal_month_selector li a.sapo_cal_off:hover {
+.ink-calendar-month li a.ink-calendar-off,
+.ink-calendar-year-selector li a.ink-calendar-off,
+.ink-calendar-month-selector li a.ink-calendar-off,
+.ink-calendar-month li a.ink-calendar-off:hover,
+.ink-calendar-year-selector li a.ink-calendar-off:hover,
+.ink-calendar-month-selector li a.ink-calendar-off:hover {
   background: #ffffff;
   color: #aaaaaa;
   cursor: default;
 }
-.sapo_cal_month ul,
-.sapo_cal_year_selector ul,
-.sapo_cal_month_selector ul {
+.ink-calendar-month ul,
+.ink-calendar-year-selector ul,
+.ink-calendar-month-selector ul {
   clear: both;
   padding-left: 0;
 }
-.sapo_cal_month ul li,
-.sapo_cal_year_selector ul li,
-.sapo_cal_month_selector ul li {
+.ink-calendar-month ul li,
+.ink-calendar-year-selector ul li,
+.ink-calendar-month-selector ul li {
   width: 2.4em;
   float: left;
   text-align: center;
   padding: 0;
   margin: 0;
 }
-.sapo_cal_year_selector ul li {
+.ink-calendar-year-selector ul li {
   width: 4em;
 }
-.sapo_cal_month_selector ul li {
+.ink-calendar-month-selector ul li {
   width: 3.4em;
 }
-.sapo_cal_year_selector,
-.sapo_cal_month_selector {
+.ink-calendar-year-selector,
+.ink-calendar-month-selector {
   display: none;
 }
-.sapo_cal_month .sapo_cal_header {
+.ink-calendar-off,
+.action_inactive {
+  color: #ddd !important;
+}
+.ink-calendar-month .ink-calendar-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: .5em;
   margin-bottom: .5em;
   color: #aaa;
 }
-.sapo_cal_top:after,
-.sapo_cal_middle:after,
-.sapo_cal_top_options:after,
-.sapo_component_datepicker:after,
-.sapo_cal_month .sapo_cal_header:after,
-.sapo_cal_month .sapo_cal_middle ul:after {
-  content: ".";
+.ink-calendar-top:after,
+.ink-calendar-middle:after,
+.ink-calendar-top-options:after,
+.ink-calendar:after,
+.ink-calendar-month .ink-calendar-header:after,
+.ink-calendar-month .ink-calendar-middle ul:after {
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6589,7 +6659,7 @@ html.ink-modal-is-open .sapo_component_datepicker {
   overflow: hidden;
 }
 .ink-modal:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -6870,7 +6940,7 @@ html.ink-modal-is-open .sapo_component_datepicker {
   border: 1px solid #cccccc;
 }
 .ink-tabs .tabs-nav:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -7157,7 +7227,7 @@ figcaption.dark {
   margin-right: auto;
 }
 .clearfix:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;

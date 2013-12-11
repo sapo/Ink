@@ -69,3 +69,6 @@ If you wish to contribute with your own code, please submit your pull requests t
 * [Ink v2.0.0](https://github.com/sapo/Ink/archive/2.0.0.zip)
 * [Ink v1.1.0](https://github.com/sapo/Ink/archive/1.1.0.zip)
 
+## Projects using Ink
+
+You can checkout a list of projects we find around the web that are using Ink in some form [here](https://github.com/sapo/Ink/wiki/Projects-using-Ink).

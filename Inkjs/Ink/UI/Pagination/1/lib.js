@@ -135,7 +135,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
          * @private
          */
         _observe: function() {
-            Event.observe(this._element, 'click', this._handlers.click);
+            Event.observeDelegated(this._element, 'click', '.pagination > li', this._handlers.click);
         },
 
         /**
@@ -279,20 +279,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
         _onClick: function(ev) {
             Event.stop(ev);
 
-            var tgtEl = Event.element(ev);
-            if (tgtEl.nodeName.toLowerCase() !== 'a') {
-                do{
-                    tgtEl = tgtEl.parentNode;
-                }while( (tgtEl.nodeName.toLowerCase() !== 'a') && (tgtEl !== this._element) );
-
-                if( tgtEl === this._element){
-                    return;
-                }
-            }
-
-            var liEl = tgtEl.parentNode;
-            if (liEl.nodeName.toLowerCase() !== 'li') { return; }
-
+            var liEl = Event.element(ev);
             if ( Css.hasClassName(liEl, 'active') ||
                  Css.hasClassName(liEl, 'disabled') ) { return; }
 
@@ -316,7 +303,8 @@ Ink.createModule('Ink.UI.Pagination', '1',
                 this.setCurrent(isPrev ? -1 : 1, true);
             }
             else {
-                var nr = parseInt( tgtEl.getAttribute('data-index'), 10);
+                var aElem = Ink.s('[data-index]', liEl);
+                var nr = parseInt( aElem.getAttribute('data-index'), 10);
                 this.setCurrent(nr);
             }
         },

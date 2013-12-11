@@ -1341,10 +1341,15 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            while (elm.firstChild) {
-                elm.removeChild(elm.firstChild);
+            try {
+                elm.innerHTML = html;
+            } catch (e) {
+                // Tables in IE7
+                while (elm.firstChild) {
+                    elm.removeChild(elm.firstChild);
+                }
+                InkElement.appendHTML(elm, html);
             }
-            InkElement.appendHTML(elm, html);
         },
 
         /**
@@ -1386,6 +1391,23 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             return container;
+        },
+
+        /**
+         * Replaces an element with another.
+         *
+         * @method replace
+         * @param element The element to be replaced.
+         * @param replacement The new element.
+         *
+         * @example
+         *       var newelement1 = InkElement.create('div');
+         *       // ...
+         *       replace(Ink.i('element1'), newelement1);
+         */
+        replace: function (element, replacement) {
+            InkElement.insertBefore(replacement, element);
+            InkElement.remove(element);
         },
 
         /**

@@ -302,8 +302,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          */
         _onKeyDown: function(ev) {
             if (ev.keyCode !== 27 || this._wasDismissed) { return; }
-            if (this._options.closeOnEscape.toString() === 'true'
-                    && openModals[openModals.length - 1] === this) {
+            if (this._options.closeOnEscape.toString() === 'true' &&
+                    openModals[openModals.length - 1] === this) {
                 this.dismiss();
                 if (this._wasDismissed) {
                     Event.stop(ev);

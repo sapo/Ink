@@ -114,7 +114,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 children = Selector.select(this._options.child,item);
 
                 if( children.length > 0 ) {
-                    this._addClassNames(item, this._options.parentClass);
+                    Css.addClassName(item, this._options.parentClass);
 
                     is_open = Element.data(item)['open'] === 'true';
                     icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
@@ -125,33 +125,18 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
 
                     if( is_open ) {
-                        this._addClassNames(icon, this._options.openClass);
+                        Css.addClassName(icon, this._options.openClass);
                     } else {
-                        this._addClassNames(icon, this._options.closedClass);
+                        Css.addClassName(icon, this._options.closedClass);
                         item.setAttribute('data-open', false);
 
                         InkArray.each(children,Ink.bind(function( inner_item ){
-                            this._addClassNames(inner_item, this._options.hideClass);
+                            Css.addClassName(inner_item, this._options.hideClass);
                         },this));
                     }
 
                 }
             },this));
-        },
-
-        /**
-         * Helper method to support adding an array of classes to an element
-         * 
-         * @method _addClassNames
-         * @param {Element} elm
-         * @param {Array|String} classes
-         * @private
-         */
-        _addClassNames: function(elm, classes){
-            classes = ('' + classes).split(/[ ,]+/);
-            InkArray.each(classes, function( current_class ){
-                Css.addClassName(elm, current_class);
-            });
         },
 
         /**

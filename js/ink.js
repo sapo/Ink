@@ -1529,6 +1529,9 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
      * @module Ink.Dom.Css_1
      */
 
+     // getComputedStyle feature detection.
+     var getCs = ("defaultView" in document) && ("getComputedStyle" in document.defaultView) ? document.defaultView.getComputedStyle : window.getComputedStyle;
+
     /**
      * @class Ink.Dom.Css
      * @static
@@ -1774,9 +1777,8 @@ Ink.createModule( 'Ink.Dom.Css', 1, [], function() {
 
                  var value = elm.style[style];
 
-                 if (window.getComputedStyle && (!value || value === 'auto')) {
-                     var css = window.getComputedStyle(elm, null);
-
+                 if (getCs && (!value || value === 'auto')) {
+                     var css = getCs(elm, null);
                      value = css ? css[style] : null;
                  }
                  else if (!value && elm.currentStyle) {
@@ -3699,10 +3701,15 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @param {String}            html  markup string
          */
         setHTML: function (elm, html) {
-            while (elm.firstChild) {
-                elm.removeChild(elm.firstChild);
+            try {
+                elm.innerHTML = html;
+            } catch (e) {
+                // Tables in IE7
+                while (elm.firstChild) {
+                    elm.removeChild(elm.firstChild);
+                }
+                InkElement.appendHTML(elm, html);
             }
-            InkElement.appendHTML(elm, html);
         },
 
         /**
@@ -3744,6 +3751,23 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             return container;
+        },
+
+        /**
+         * Replaces an element with another.
+         *
+         * @method replace
+         * @param element The element to be replaced.
+         * @param replacement The new element.
+         *
+         * @example
+         *       var newelement1 = InkElement.create('div');
+         *       // ...
+         *       replace(Ink.i('element1'), newelement1);
+         */
+        replace: function (element, replacement) {
+            InkElement.insertBefore(replacement, element);
+            InkElement.remove(element);
         },
 
         /**
@@ -4016,9 +4040,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     var nativeEvents;
 
     if (document.createEvent) {
-        nativeEvents = ['DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'focus', 'focusin', 'focusout', 'blur', 'load', 'unload', 'abort', 'error', 'select', 'change', 'submit', 'reset', 'resize', 'scroll', 'click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'wheel', 'textInput', 'keydown', 'keypress', 'keyup', 'compositionstart', 'compositionupdate', 'compositionend', 'DOMSubtreeModified', 'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeInsertedIntoDocument', 'DOMNodeRemovedFromDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMAttributeNameChanged', 'DOMElementNameChanged', 'hashchange'];
+        nativeEvents = 'DOMActivate DOMFocusIn DOMFocusOut focus focusin focusout blur load unload abort error select change submit reset resize scroll click dblclick mousedown mouseenter mouseleave mousemove mouseover mouseout mouseup mousewheel wheel textInput keydown keypress keyup compositionstart compositionupdate compositionend DOMSubtreeModified DOMNodeInserted DOMNodeRemoved DOMNodeInsertedIntoDocument DOMNodeRemovedFromDocument DOMAttrModified DOMCharacterDataModified DOMAttributeNameChanged DOMElementNameChanged hashchange'.split(' ');
     } else {
-        nativeEvents = ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhashchange', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmessage', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onoffline', 'ononline', 'onpage', 'onpaste', 'onprogress', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onstorage', 'onstoragecommit', 'onsubmit', 'ontimeout', 'onunload'];
+        nativeEvents = 'onabort onactivate onafterprint onafterupdate onbeforeactivate onbeforecopy onbeforecut onbeforedeactivate onbeforeeditfocus onbeforepaste onbeforeprint onbeforeunload onbeforeupdate onblur onbounce oncellchange onchange onclick oncontextmenu oncontrolselect oncopy oncut ondataavailable ondatasetchanged ondatasetcomplete ondblclick ondeactivate ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop onerror onerrorupdate onfilterchange onfinish onfocus onfocusin onfocusout onhashchange onhelp onkeydown onkeypress onkeyup onlayoutcomplete onload onlosecapture onmessage onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onmousewheel onmove onmoveend onmovestart onoffline ononline onpage onpaste onprogress onpropertychange onreadystatechange onreset onresize onresizeend onresizestart onrowenter onrowexit onrowsdelete onrowsinserted onscroll onselect onselectionchange onselectstart onstart onstop onstorage onstoragecommit onsubmit ontimeout onunload'.split(' ');
     }
 
     function isNative(eventName) {
@@ -4216,11 +4240,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
         if (document.createEvent) {
             ev = document.createEvent("HTMLEvents");
-            if(!isNative(eventName)) {
-                ev.initEvent("dataavailable", true, true);
-            } else {
-                ev.initEvent(eventName, true, true);
-            }
+            ev.initEvent(eventName, true, true);
 
         } else {
             ev = document.createEventObject();
@@ -7524,8 +7544,21 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
          * @return {String} Full URL.
          */
         format: function (urlObj) {
+            var protocol = '';
+            var host = '';
+            var path = '';
             var frag = '';
             var query = '';
+
+            if (typeof urlObj.protocol === 'string') {
+                protocol = urlObj.protocol + '//';  // here it comes with the colon
+            } else if (typeof urlObj.scheme === 'string')  {
+                protocol = urlObj.scheme + '://';
+            }
+
+            host = urlObj.host || urlObj.hostname || '';
+            path = urlObj.path || '';
+
             if (typeof urlObj.query === 'string') {
                 query = urlObj.query;
             } else if (typeof urlObj.search === 'string') {
@@ -7536,11 +7569,11 @@ Ink.createModule('Ink.Util.Url', '1', [], function() {
             } else if (typeof urlObj.hash === 'string') {
                 frag = urlObj.hash.replace(/#$/, '');
             }
+
             return [
-                urlObj.protocol || urlObj.scheme + ':',
-                '//',
-                urlObj.host || urlObj.hostname,
-                urlObj.path,
+                protocol,
+                host,
+                path,
                 query && '?' + query,
                 frag && '#' + frag
             ].join('');
@@ -10090,7 +10123,6 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
             var year;
             var month;
             var day;
-            var date;
             var sec;
             var msec;
             var gmt;
@@ -10144,8 +10176,6 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
                 day   = _d.getDate( );
             }
 
-            date = year + '-' + ( month + 1 ) + '-' + day + ' ';
-
             if      ( _haveHour12 ) { hour = +mList[ objIndex.hourD.match + 1 ] + ( mList[ objIndex.ampm.match + 1 ] === 'pm' ? 12 : 0 ); }
             else if ( _haveHour24 ) { hour = mList[ objIndex.hour.match + 1 ]; }
             else if ( _noDate     ) { hour = _d.getHours( ); }
@@ -10166,7 +10196,7 @@ Ink.createModule('Ink.Util.Date', '1', [], function() {
             else if ( _haveDiffM )  { gmt  = String( -1 * mList[ objIndex.diffM.match + 1 ] / 60 * 100 ).replace( /^(\d)/ , '+$1' ).replace( /(^[\-+])(\d{3}$)/ , '$10$2' ); }
             else                    { gmt  = '+0000'; }
 
-            return new Date( date + hour + ':' + min + ':' + sec + '.' + msec + gmt );
+            return new Date( year, month, day, hour, min, sec );
         }
     };
 

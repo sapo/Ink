@@ -38,6 +38,8 @@ extractTree:
 	@echo "\nextracting tree..."
 	@node serverUtils/extractTree.js
 
+builddir:
+	@mkdir -p builds
 
 extractTestsTree:
 	@echo "\nextracting tests tree..."
@@ -74,14 +76,14 @@ min: extractTree
 	@node serverUtils/minFiles.js
 
 
-bundle: extractTree
+bundle: builddir extractTree
 	@echo "\nbundling..."
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).js
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).js "/UI/"
 	@node serverUtils/bundle.js ./builds/ink-$(VERSION).js    "/UI/" negates
 
 
-bundleMin: min
+bundleMin: builddir min
 	@echo "\nbundling minified..."
 	@node serverUtils/bundle.js ./builds/ink-all-$(VERSION).min.js minify
 	@node serverUtils/bundle.js ./builds/ink-ui-$(VERSION).min.js  minify "/UI/"

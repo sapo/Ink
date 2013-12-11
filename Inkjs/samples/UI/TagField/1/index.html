@@ -86,5 +86,24 @@
 </script>
 
 <hr>
+
+<h2>Maximum tag count</h2>
+
+<p>Use the <code>maxTags</code> option to set a maximum number of tags the user can input.</p>
+
+<p>Try to insert more than five tags into the below TagField:</p>
+
+<input type="text" name="max-tags" value="no more than five">
+
+<script type="text/javascript">
+    Ink.requireModules(['Ink.UI.TagField_1'], function (TagField) {
+        new TagField('[name="max-tags"]', {
+            maxTags: 5
+        })
+    });
+</script>
+
+<hr>
+
 </body>
 </html>

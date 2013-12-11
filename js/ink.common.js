@@ -156,12 +156,12 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          * @example
          *
          *      this._options = Ink.UI.Common.options('MyComponent', {
-         *          'anobject': ['Object', null],
+         *          'anobject': ['Object', null],  // Defaults to null
          *          'target': ['Element', null],
          *          'stuff': ['Number', 0.1],
          *          'stuff2': ['Integer', 0],
          *          'doKickFlip': ['Boolean', false],
-         *          'targets': ['Elements'], // Required option. 1-element array.
+         *          'targets': ['Elements'], // Required option since no default was given
          *          'onClick': ['Function', null]
          *      }, options || {}, elm)
          *
@@ -169,16 +169,25 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
          *
          * ### Note about booleans
          *
-         * Options considered true:
-         *      <div data-required="true"> (and anything else not listed below)
+         * Here is how options are read from the markup
+         * data-attributes, for several values`data-a-boolean`.
          *
+         * Options considered true:
+         *
+         *   - `data-a-boolean="true"`
+         *   - (Every other value which is not on the list below.)
+         * 
          * Options considered false:
-         *      <div data-required="false">
-         *      <div data-required="">
-         *      <div data-required> (due to a quirk in IE7)
+         *
+         *   - `data-a-boolean="false"`
+         *   - `data-a-boolean=""`
+         *   - `data-a-boolean`
          *
          * Options which go to default:
-         *      <div>  -> data-required now defaults to the user provided option or the default option.
+         *
+         *   - (no attribute). When `data-a-boolean` is ommitted, the
+         *   option is not considered true nor false, and as such
+         *   defaults to what is in the `defaults` argument.
          *
          **/
         options: function (fieldId, defaults, overrides, element) {
@@ -270,8 +279,8 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     return Common.elsOrSelector(val, '', false /*not required, so don't throw an exception now*/);
                 },
                 object: function (val) { return val; },
-                number: function (val) { return +val; },
-                boolean: function (val) {
+                number: function (val) { return parseFloat(val); },
+                'boolean': function (val) {
                     return !(val === 'false' || val === '' || val === null);
                 },
                 string: function (val) { return val; },
@@ -279,7 +288,7 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                     throw new Error('This parameter is a function. Do not specify it through data-attributes! It\'s eval!');
                 }
             };
-            ret.float = ret.integer = ret.number;
+            ret['float'] = ret.integer = ret.number;
             return ret;
         }()),
 
@@ -300,11 +309,11 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 elements: function (val) {
                     return val && typeof val === 'object' && typeof val.length === 'number' && val.length;
                 },
-                boolean: function (val) {
+                'boolean': function (val) {
                     return typeof val === 'boolean';
                 }
             };
-            types.float = types.number;
+            types['float'] = types.number;
             return types;
         }()),
 
@@ -437,11 +446,20 @@ Ink.createModule('Ink.UI.Common', '1', ['Ink.Dom.Element_1', 'Ink.Net.Ajax_1','I
                 document.body.appendChild(detectorEl);
             }
 
+            var result = '';
+            var resultCount = 0;
             for (i = 0, f = detectorEl.childNodes.length; i < f; ++i) {
                 el = detectorEl.childNodes[i];
                 if (Css.getStyle(el, 'display') === 'block') {
-                    return el.getAttribute('data-ink-layout');
+                    result = el.getAttribute('data-ink-layout');
+                    resultCount += 1;
                 }
+            }
+
+            if (resultCount === 1) {
+                return result;
+            } else {
+                return 'large';
             }
         },
 

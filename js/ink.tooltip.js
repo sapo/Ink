@@ -238,11 +238,6 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                 var tleft = targetElementPos[0],
                     ttop = targetElementPos[1];
 
-                if (tleft instanceof Array) {  // Work around a bug in Ink.Dom.Element.offsetLeft which made it return the result of offset() instead. TODO remove this check when fix is merged
-                    ttop = tleft[1];
-                    tleft = tleft[0];
-                }
-
                 var centerh = (InkElement.elementWidth(this.element) / 2) - (InkElement.elementWidth(tooltip) / 2),
                     centerv = (InkElement.elementHeight(this.element) / 2) - (InkElement.elementHeight(tooltip) / 2);
                 var spacing = this._getIntOpt('spacing');
@@ -253,15 +248,15 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                 var maxX = InkElement.scrollWidth() + InkElement.viewportWidth();
                 var maxY = InkElement.scrollHeight() + InkElement.viewportHeight();
                 
-                if (where === 'left' &&  tleft - tooltipDims[0] < 0) {
-                    where = 'right';
-                } else if (where === 'right' && tleft + tooltipDims[0] > maxX) {
-                    where = 'left';
-                } else if (where === 'up' && ttop - tooltipDims[1] < 0) {
-                    where = 'down';
-                } else if (where === 'down' && ttop + tooltipDims[1] > maxY) {
-                    where = 'up';
-                }
+                where = this._getWhereValueInsideViewport(where, {
+                    left: tleft - tooltipDims[0],
+                    right: tleft + tooltipDims[0],
+                    top: ttop + tooltipDims[1],
+                    bottom: ttop + tooltipDims[1]
+                }, {
+                    right: maxX,
+                    bottom: maxY
+                });
                 
                 if (where === 'up') {
                     ttop -= tooltipDims[1];
@@ -289,10 +284,8 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                     tooltip.appendChild(arrow);
                 }
 
-                var scrl = this._getLocalScroll();
-
-                var tooltipLeft = tleft - scrl[0];
-                var tooltipTop = ttop - scrl[1];
+                var tooltipLeft = tleft;
+                var tooltipTop = ttop;
 
                 var toBottom = (tooltipTop + tooltipDims[1]) - maxY;
                 var toRight = (tooltipLeft + tooltipDims[0]) - maxX;
@@ -316,6 +309,31 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
                 tooltip.style.left = tooltipLeft + 'px';
                 tooltip.style.top = tooltipTop + 'px';
             }
+        },
+
+        /**
+         * Get a value for "where" (left/right/up/down) which doesn't put the
+         * tooltip off the screen
+         *
+         * @method _getWhereValueInsideViewport
+         * @param where {String} "where" value which was given by the user and we might change
+         * @param bbox {BoundingBox} A bounding box like what you get from getBoundingClientRect ({top, bottom, left, right}) with pixel positions from the top left corner of the viewport.
+         * @param viewport {BoundingBox} Bounding box for the viewport. "top" and "left" are omitted because these coordinates are relative to the top-left corner of the viewport so they are zero.
+         *
+         * @note: we can't use getBoundingClientRect in this case because it returns {0,0,0,0} on our uncreated tooltip.
+         */
+        _getWhereValueInsideViewport: function (where, bbox, viewport) {
+            if (where === 'left' && bbox.left < 0) {
+                return 'right';
+            } else if (where === 'right' && bbox.right > viewport.right) {
+                return 'left';
+            } else if (where === 'up' && bbox.top < 0) {
+                return 'down';
+            } else if (where === 'down' && bbox.bottom > viewport.bottom) {
+                return 'up';
+            }
+
+            return where;
         },
         _removeTooltip: function() {
             var tooltip = this.tooltip;
@@ -434,23 +452,6 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
             } else {
                 return [0, 0];
             }
-        },
-        _getLocalScroll: function () {
-            var cumScroll = [0, 0];
-            var cursor = this.element.parentNode;
-            var left, top;
-            while (cursor && cursor !== document.documentElement && cursor !== document.body) {
-                left = cursor.scrollLeft;
-                top = cursor.scrollTop;
-                if (left) {
-                    cumScroll[0] += left;
-                }
-                if (top) {
-                    cumScroll[1] += top;
-                }
-                cursor = cursor.parentNode;
-            }
-            return cumScroll;
         },
         _getMousePosition: function(e) {
             return [parseInt(InkEvent.pointerX(e), 10), parseInt(InkEvent.pointerY(e), 10)];

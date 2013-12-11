@@ -4,83 +4,115 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
     (function () {
         module('throttle');
 
-        var nearEqual = function (a, b, threshold, msg) {
-            threshold = threshold || 250;
-            msg = msg || '';
-            ok( a - threshold < b && a + threshold > b, [msg, ':', a, '~=', b].join(' ') );
-        };
         var pass = function () { ok(true); };
-        var passStart = function () { ok(true); start(); };
         var fail = function () { ok(false); };
-        var throttledFunc = InkEvent.throttle(function (cb) {
-            cb && cb();
-        }, 100);
 
-        test('limit amount of calls', function () {
-            expect(2); stop(2);
-            throttledFunc(passStart);
-            throttledFunc(passStart);
-            throttledFunc(fail);
-            throttledFunc(fail);
-            throttledFunc(fail); // Call this a couple of times, assert called twice.
+        function testWithClock(name, testBack) {
+            return test(name, function () {
+                var clock = sinon.useFakeTimers();
+                testBack(clock);
+                clock.restore();
+            });
+        }
+
+        testWithClock('Delay first call', function (clock) {
+            var spy = sinon.spy();
+            var throttledFunc = InkEvent.throttle(spy, 100);
+
+            throttledFunc();
+            ok(spy.notCalled);
+            clock.tick(101);
+            ok(spy.calledOnce);
         });
-        asyncTest('limit amount of calls (2)', function () {
-            throttledFunc(passStart); // Call this once, assert called once.
-            expect(1);
+        testWithClock('Limit amount of calls', function (clock) {
+            var spy = sinon.spy();
+            var throttledFunc = InkEvent.throttle(spy, 100);
+
+            // Call twice, wait
+            throttledFunc();
+            throttledFunc();
+            clock.tick(101);
+
+            ok(spy.calledOnce);
         });
-        asyncTest('context and arguments', function () {
-            expect(2);
+        testWithClock('Order of calls', function (clock) {
+            var spy = sinon.spy();
+            var throttledFunc = InkEvent.throttle(spy, 100);
+
+            throttledFunc(1);
+            throttledFunc(2);  // Ignored
+            clock.tick(101);
+            ok(spy.lastCall.calledWith(1));
+
+            throttledFunc(3);
+            clock.tick(101);
+            ok(spy.lastCall.calledWith(3));
+        });
+        testWithClock('Context and arguments', function (clock) {
             InkEvent.throttle(function (arg) {
                 equal(arg, 'arg');
                 equal(this, 'this');
-                start();
             }, 0).call('this', 'arg');
+            clock.tick(101);
         });
-        test('called few times', function () {
-            var fewTimes = InkEvent.throttle(passStart, 20);
+        testWithClock('Separated calls', function (clock) {
+            var spy = sinon.spy();
+            var fewTimes = InkEvent.throttle(spy, 20);
 
-            expect(3);
-            stop(3);
-            setTimeout(fewTimes, 0);
-            setTimeout(fewTimes, 50);
-            setTimeout(fewTimes, 100);
+            fewTimes(1);
+            clock.tick(21);
+            ok(spy.lastCall.calledWith(1));
+
+            fewTimes(2);
+            clock.tick(20);
+            ok(spy.lastCall.calledWith(2));
+
+            fewTimes(3);
+            clock.tick(20);
+            ok(spy.lastCall.calledWith(3));
         });
 
-        asyncTest('called with the correct timing between calls', function () {
+
+        testWithClock('called with the correct timing between calls', function (clock) {
             var firstCallTime;
-            var throttled = InkEvent.throttle(function () {
+            var spy;
+            var throttled = InkEvent.throttle(spy = sinon.spy(function () {
                 if (firstCallTime) {
-                    nearEqual(+new Date() - firstCallTime, 200, 150);
-                    start();
+                    equal(+new Date() - firstCallTime, 200);
                 } else {
                     firstCallTime = +new Date();
                 }
-            }, 200);
+            }), 200);
 
-            expect(1);
+            expect(2);
 
             throttled();
             throttled();
+            clock.tick(201);
+
             throttled();
+            clock.tick(200);
+
+            ok(spy.calledTwice);
         });
     }());
 
     module('fire');
 
-    asyncTest('basic', function () {
+    test('basic', function () {
         var elem = InkElement.create('div');
         document.body.appendChild(elem);
 
         InkEvent.observe(elem, 'click', function (ev) {
             equal(ev.memo.memo, 'check');
             document.body.removeChild(elem);
-            start();
         });
 
+        expect(1);
         InkEvent.fire(elem, 'click', {memo: 'check'});
     });
 
-    asyncTest('bubbling', function () {
+    test('bubbling', function () {
         var elem = InkElement.create('div', {className: 'elem'});
         var child = InkElement.create('div', { insertBottom: elem });
         document.body.appendChild(elem);
@@ -90,13 +122,14 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             ok(InkEvent.element(ev) === child);
             ok(this === elem);
             document.body.removeChild(elem);
-            start();
         });
 
+        expect(3);
         InkEvent.fire(child, 'click', {memo: 'check'});
     });
 
     asyncTest('fire() and bubbling, no appending to document', function () {
+        // [bug] This fails in chrome. Why?
         var elem = InkElement.create('div', {className: 'elem'});
         var child = InkElement.create('div', { insertBottom: elem });
 
@@ -134,6 +167,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
     test('return the handler', function () {
         var handler = function () {};
         var cb = InkEvent.observe(InkElement.create('div'), 'keyup', handler);
+        equal(typeof cb, 'function', 'returned a function');
         ok(cb === handler, 'returned same function');
     });
 
@@ -145,7 +179,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             ok(true);
             start();
         });
-        expect(1);
+        expect(1);  // The above ok(true) will break if called more than once.
         InkEvent.fire(div, 'click');
         InkEvent.fire(div, 'click');
         InkEvent.fire(div, 'click');
@@ -180,11 +214,9 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         });
 
         asyncTest('observeDelegated fired', function () {
-            
-            expect(2);
+            expect(1);
             InkEvent.observeDelegated(elem, 'click', 'li', function (event) {
-                ok(this === child, '<this> is the selected tag');
-                ok(InkEvent.element(event) === grandChild, 'InkEvent.element(event) resolves to the element that the event came from');
+                ok(InkEvent.element(event) === child, 'InkEvent.element(event) resolves to the selected element');
                 start( );
             });
 
@@ -217,7 +249,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
             });
             InkEvent.observe(elem, 'click', function (event) {
                 ok(true, 'should fire normal event');
-                start( )
+                start( );
             });
 
             InkEvent.fire(elem, 'click');
@@ -296,8 +328,8 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
                 ok(false);
             });
 
-            InkEvent.observeDelegated(elem, 'click', '.the-grandchild-2', function () {
-                ok(this === grandChild2);
+            InkEvent.observeDelegated(elem, 'click', '.the-grandchild-2', function (ev) {
+                ok(InkEvent.element(ev) === grandChild2);
                 start();
             });
 
@@ -307,7 +339,7 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
 
             InkEvent.fire(grandChild2, 'click');
         });
-    }())
+    }());
 
     module('hashchange', {
         setup: function () { location.hash = ''; },

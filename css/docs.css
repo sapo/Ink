@@ -10,7 +10,7 @@
   margin-right: auto;
 }
 .clearfix:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;
@@ -471,7 +471,7 @@ footer .ink-navigation ul.menu.horizontal li a.license {
   box-shadow: none;
 }
 #topbar .ink-navigation ul.vertical li:first-child:after {
-  content: ".";
+  content: " ";
   display: block;
   height: 0;
   clear: both;

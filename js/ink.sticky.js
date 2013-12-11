@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector ) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1'], function(Common, Event, Element) {
     'use strict';
 
     /**
@@ -19,62 +19,39 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      *     @param {Number}     options.offsetTop          Number of pixels of distance from the topElement.
      *     @param {String}     options.topElement         CSS Selector that specifies a top element with which the component could collide.
      *     @param {String}     options.bottomElement      CSS Selector that specifies a bottom element with which the component could collide.
+     *     @param {Array|String} [options.activateInLayouts='medium,large'] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
      * @example
      *      <script>
-     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ){
+     *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Sticky_1'], function( Selector, Sticky ) {
      *              var menuElement = Ink.s('#menu');
      *              var stickyObj = new Sticky( menuElement );
      *          });
      *      </script>
      */
     var Sticky = function( selector, options ){
+        this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Sticky_1');
 
-        if( typeof selector !== 'object' && typeof selector !== 'string'){
-            throw '[Sticky] :: Invalid selector defined';
-        }
+        this._options = Common.options({
+            offsetBottom: ['Integer', 0],
+            offsetTop: ['Integer', 0],
+            topElement: ['Element', null],
+            bottomElement: ['Element', null],
+            activateInLayouts: ['String', 'medium,large']
+        }, options || {}, this._rootElement );
 
-        if( typeof selector === 'object' ){
-            this._rootElement = selector;
-        } else {
-            this._rootElement = Selector.select( selector );
-            if( this._rootElement.length <= 0) {
-                throw "[Sticky] :: Can't find any element with the specified selector";
-            }
-            this._rootElement = this._rootElement[0];
-        }
+        // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
+        this._options.activateInLayouts = this._options.activateInLayouts.toString();
 
-        /**
-         * Setting default options and - if needed - overriding it with the data attributes
-         */
-        this._options = Ink.extendObj({
-            offsetBottom: 0,
-            offsetTop: 0,
-            topElement: undefined,
-            bottomElement: undefined
-        }, Element.data( this._rootElement ) );
+        // Save a reference to getComputedStyle
+        var computedStyle = window.getComputedStyle ?
+            window.getComputedStyle(this._rootElement, null) :
+            this._rootElement.currentStyle;
 
-        /**
-         * In case options have been defined when creating the instance, they've precedence
-         */
-        this._options = Ink.extendObj(this._options,options || {});
-
-        if( typeof( this._options.topElement ) !== 'undefined' ){
-            this._options.topElement = Common.elOrSelector( this._options.topElement, 'Top Element');
-        } else {
-            this._options.topElement = Common.elOrSelector( 'body', 'Top Element');
-        }
-
-        if( typeof( this._options.bottomElement ) !== 'undefined' ){
-            this._options.bottomElement = Common.elOrSelector( this._options.bottomElement, 'Bottom Element');
-        } else {
-            this._options.bottomElement = Common.elOrSelector( 'body', 'Top Element');
-        }
-
-        this._computedStyle = window.getComputedStyle ? window.getComputedStyle(this._rootElement, null) : this._rootElement.currentStyle;
         this._dims = {
-            height: this._computedStyle.height,
-            width: this._computedStyle.width
+            height: computedStyle.height,
+            width: computedStyle.width
         };
+
         this._init();
     };
 
@@ -87,13 +64,23 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _init: function(){
-            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
-            Event.observe( window, 'resize', Ink.bindEvent(this._onResize,this) );
+            Event.observe( document, 'scroll', Ink.bindEvent(Event.throttle(this._onScroll, 100), this) );
+            Event.observe( window, 'resize', Ink.bindEvent(Event.throttle(this._onResize, 100), this) );
 
             this._calculateOriginalSizes();
 
             this._calculateOffsets();
 
+        },
+
+        /**
+         * Returns whether the sticky is disabled in the current view
+         *
+         * @method isDisabledInLayout
+         * @private
+         */
+        _isDisabledInLayout: function () {
+            return this._options.activateInLayouts.indexOf(Common.currentLayout()) === -1;
         },
 
         /**
@@ -103,55 +90,57 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onScroll: function(){
-            if( Common.currentLayout() === 'small' ){
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    this._rootElement.removeAttribute('style');
-                }
-                return;
+            var scrollHeight = Element.scrollHeight();
+
+            var unstick = this._isDisabledInLayout() ||
+                scrollHeight <= this._options.originalTop-this._options.originalOffsetTop;
+
+            if( unstick ) {
+                // We're on top, no sticking. position:static is the "normal" position.
+                this._unstick();
+            } else if(document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10)) >= this._options.offsetBottom ){
+                // Stick to screen!
+                this._stickTo('screen');
+            } else {
+                // Stick to bottom
+                this._stickTo('bottom');
             }
+        },
 
-            clearTimeout(this._scrollTimeout);
+        /**
+         * Have the sticky stick nowhere, to the screen, or to the bottom.
+         *
+         * @method _stickTo
+         * @private
+         */
+        _stickTo: function (where) {
+            var scrollHeight = Element.scrollHeight();
 
-            this._scrollTimeout = setTimeout(Ink.bind(function(){
+            var style = this._rootElement.style;
 
-                var scrollHeight = Element.scrollHeight();
+            style.position = 'fixed';
+            style.left = this._options.originalLeft + 'px';
+            style.width = this._options.originalWidth + 'px';
 
-                if( Element.hasAttribute(this._rootElement,'style') ){
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        this._rootElement.removeAttribute('style');
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) < this._options.offsetBottom) ){
+            if (where === 'screen') {
+                style.bottom = 'auto';
+                style.top = this._options.originalOffsetTop + 'px';
+            } else if (where === 'bottom') {
+                // was: var distanceFromBottomOfScreenToBottomOfDocument
+                var toBottom = document.body.scrollHeight - (document.documentElement.clientHeight + scrollHeight);
+                style.bottom = this._options.offsetBottom - toBottom + 'px';
+                style.top = 'auto';
+            }
+        },
 
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.top = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-
-                        if( this._options.offsetBottom < parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) ){
-                            this._rootElement.style.bottom = this._options.originalOffsetBottom + 'px';
-                        } else {
-                            this._rootElement.style.bottom = this._options.offsetBottom - parseInt(document.body.scrollHeight - (document.documentElement.clientHeight+scrollHeight),10) + 'px';
-                        }
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-
-                    } else if( ((document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10))) >= this._options.offsetBottom) ){
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.position = 'fixed';
-                        this._rootElement.style.bottom = 'auto';
-                        this._rootElement.style.left = this._options.originalLeft + 'px';
-                        this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                        this._rootElement.style.width = this._options.originalWidth + 'px';
-                    }
-                } else {
-                    if( scrollHeight <= (this._options.originalTop-this._options.originalOffsetTop)){
-                        return;
-                    }
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.position = 'fixed';
-                    this._rootElement.style.bottom = 'auto';
-                    this._rootElement.style.left = this._options.originalLeft + 'px';
-                    this._rootElement.style.top = this._options.originalOffsetTop + 'px';
-                    this._rootElement.style.width = this._options.originalWidth + 'px';
-                }
-            },this), 0);
+        /**
+         * "unstick" the sticky from the screen or bottom of the document
+         * @method _unstick
+         * @private
+         */
+        _unstick: function () {
+            this._rootElement.style.position = 'static';
+            this._rootElement.style.width = null;
         },
 
         /**
@@ -161,14 +150,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-            clearTimeout(this._resizeTimeout);
-
-            this._resizeTimeout = setTimeout(Ink.bind(function(){
-                this._rootElement.removeAttribute('style');
-                this._calculateOriginalSizes();
-                this._calculateOffsets();
-            }, this),0);
-
+            this._rootElement.removeAttribute('style');
+            this._calculateOriginalSizes();
+            this._calculateOffsets();
         },
 
         /**
@@ -179,38 +163,23 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _calculateOffsets: function(){
-
             /**
              * Calculating the offset top
              */
-            if( typeof this._options.topElement !== 'undefined' ){
+            if( this._options.topElement ){
+                var topElementHeight = Element.elementHeight( this._options.topElement );
+                var topElementTop = Element.elementTop( this._options.topElement );
 
-
-                if( this._options.topElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        topElementHeight = Element.elementHeight( this._options.topElement ),
-                        topElementTop = Element.elementTop( this._options.topElement )
-                    ;
-
-                    this._options.offsetTop = ( parseInt(topElementHeight,10) + parseInt(topElementTop,10) ) + parseInt(this._options.originalOffsetTop,10);
-                } else {
-                    this._options.offsetTop = parseInt(this._options.originalOffsetTop,10);
-                }
+                this._options.offsetTop = topElementHeight + topElementTop + parseInt(this._options.originalOffsetTop,10);
             }
 
             /**
              * Calculating the offset bottom
              */
-            if( typeof this._options.bottomElement !== 'undefined' ){
+            if( this._options.bottomElement ){
+                var bottomElementHeight = Element.elementHeight(this._options.bottomElement);
 
-                if( this._options.bottomElement.nodeName.toLowerCase() !== 'body' ){
-                    var
-                        bottomElementHeight = Element.elementHeight(this._options.bottomElement)
-                    ;
-                    this._options.offsetBottom = parseInt(bottomElementHeight,10) + parseInt(this._options.originalOffsetBottom,10);
-                } else {
-                    this._options.offsetBottom = parseInt(this._options.originalOffsetBottom,10);
-                }
+                this._options.offsetBottom = bottomElementHeight + this._options.originalOffsetBottom;
             }
 
             this._onScroll();
@@ -225,17 +194,13 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _calculateOriginalSizes: function(){
-
             if( typeof this._options.originalOffsetTop === 'undefined' ){
                 this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
                 this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             }
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
             this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
-            if(isNaN(this._options.originalWidth = parseInt(this._dims.width,10))) {
-                this._options.originalWidth = 0;
-            }
-            this._options.originalWidth = parseInt(this._computedStyle.width,10);
+            this._options.originalWidth = parseInt(this._dims.width, 10) || 0;
         }
 
     };

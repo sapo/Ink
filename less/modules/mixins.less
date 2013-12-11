@@ -11,7 +11,7 @@
                 #ink > #grid > #generators > .grid-column-group ();
                 #ink > #grid > #generators > .grid-divisions ();
                 #ink > #grid > #generators > .grid-helper-classes ();
-                #ink > #grid > #generators > .grid-visibility ();
+                #ink > #grid > #generators > .grid-visibility () !important;
                         
             }
         }
@@ -25,7 +25,7 @@
                 #ink > #grid > #generators > .grid-column-group ();
                 #ink > #grid > #generators > .grid-divisions ();
                 #ink > #grid > #generators > .grid-helper-classes ();
-                #ink > #grid > #generators > .grid-visibility ();
+                #ink > #grid > #generators > .grid-visibility () !important;
 
             }
         }
@@ -39,7 +39,7 @@
                 #ink > #grid > #generators > .grid-column-group ();
                 #ink > #grid > #generators > .grid-divisions ();
                 #ink > #grid > #generators > .grid-helper-classes ();
-                #ink > #grid > #generators > .grid-visibility ();
+                #ink > #grid > #generators > .grid-visibility () !important;
 
             }
         }
@@ -63,7 +63,7 @@
             #ink > #grid > #generators > .grid-helper-classes ();
 
             @media screen and (min-width: @visibility ) {
-                #ink > #grid > #generators > .grid-visibility ();
+                #ink > #grid > #generators > .grid-visibility () !important;
             }
 
         }
@@ -109,7 +109,7 @@
                     clear: both;
                     zoom: 1;
                     &:after {
-                        content: "."; 
+                        content: " "; 
                         display: block;
                         height: 0; 
                         clear: both; 
@@ -157,7 +157,7 @@
                     margin-left: @gutter-width - (@gutter-width * 2);
 
                     &:after {
-                        content: "."; 
+                        content: " "; 
                         display: block;
                         height: 0; 
                         clear: both; 
@@ -214,6 +214,7 @@
                     .@{breakpoint-alias}-@{index} {
                         width: (@index * 1%);
                         float: left;
+                        clear: none;
                     }
 
                     // next iteration
@@ -224,6 +225,7 @@
                     .@{breakpoint-alias}-66 {
                         width: 66.66%;
                         float: left;
+                        clear: none;
                     }
                 }
 
@@ -231,6 +233,7 @@
                     .@{breakpoint-alias}-33 {
                         width: 33.33%;
                         float: left;
+                        clear: none;
                     }
                 }
 
@@ -1024,7 +1027,7 @@
 
         .clearfix () {
             &:after {
-                content: "."; 
+                content: " "; 
                 display: block;
                 height: 0; 
                 clear: both; 

@@ -181,6 +181,21 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         deepEqual(toArray(wrap.children), [child2]);
     });
 
+    test('replace()', function () {
+        var elm = InkElement.create('div');
+        elm.className = 'elm';
+        var elm2 = InkElement.create('div');
+        elm2.className = 'elm2';
+
+        var parent = InkElement.create('div');
+        parent.appendChild(elm);
+
+        InkElement.replace(elm, elm2);
+
+        equal(parent.children.length, 1);
+        equal(parent.children[0].className, 'elm2');
+    });
+
     test('outerDimensions', function () {
         var elm = InkElement.create('div');
         document.body.appendChild(elm);
