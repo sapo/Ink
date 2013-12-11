@@ -28,6 +28,8 @@ ink_to_prod_dir
 /build-docs.sh
 /.sass-cache/
 
+node_modules
+
 Inkjs/builds
 Inkjs/docs
 Inkjs/node_modules
