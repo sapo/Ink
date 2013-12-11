@@ -6,13 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "less": "1.4.2",
-    "jshint": "*",
-    "async": "~0.2.9",
-    "uglify-js": "~2.3.6",
-    "execSync": "~1.0.1-pre"
-  },
   "repository": {
     "type": "git",
     "url": "sapo/Ink"
@@ -25,7 +18,9 @@
   ],
   "devDependencies": {
     "less": "1.4.2",
+    "async": "~0.2.9",
     "jshint": "*",
+    "uglify-js": "~2.3.6",
     "grunt": "~0.4.1",
     "execSync": "~1.0.1-pre",
     "grunt-contrib-uglify": "~0.2.4",
