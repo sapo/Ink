@@ -30,13 +30,7 @@ ink_to_prod_dir
 
 node_modules
 
-Inkjs/builds
-Inkjs/docs
-Inkjs/node_modules
-Inkjs/report
-Inkjs/serverUtils/moduleDirs.json
-Inkjs/serverUtils/moduleFiles.json
-Inkjs/inkjs.sublime-workspace
-Inkjs/samples/tests
-Inkjs/*min.js
-node_modules
+src/js/builds
+src/js/report
+src/js/serverUtils/moduleDirs.json
+src/js/serverUtils/moduleFiles.json
