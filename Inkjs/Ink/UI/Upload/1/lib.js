@@ -99,9 +99,9 @@ Ink.createModule('Ink.UI.Upload', '1', [
         clearArray: function(arr) {
             for(var i = arr.length - 1; i>=0; i--) {
                 if(typeof(arr[i]) === 'undefined' || arr[i] === null || arr[i] === '') {
-                    arr.splice(i, 1); 
-                }   
-            }   
+                    arr.splice(i, 1);
+                }
+            }
             return arr;
         }
     };
@@ -111,7 +111,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
         items:  [],
 
 
-        /** 
+        /**
          * @function {Public} ? Create new queue list
          * @param {String} list name
          * @param {Function} function to iterate on items
@@ -389,7 +389,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _supportChunks: function(size) {
             return this.options.useChunks &&
-                    'Blob' in window && 
+                    'Blob' in window &&
                     (new Blob()).slice &&
                     size > this.options.minSizeToUseChunks;
         },
@@ -687,7 +687,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 endpoint = this.options.endpoint;
                 method = 'POST';
             }
-            
+
             xhr.open(method, endpoint, true);
             xhr.withCredentials = true;
             xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
