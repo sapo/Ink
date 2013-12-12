@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Util.Array_1'], function(Common, Event, Element, InkArray ) {
     'use strict';
 
     /**
@@ -179,14 +179,15 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 document.body.clientWidth;
 
             var queries = this._options.queries;
+            var last = queries.length - 1;
 
-            for( var query=0; query < queries.length; query+=1 ){
+            for( var query=0; query < last; query+=1 ){
                 if (queries[query].width <= viewportWidth){
                     return queries[query];
                 }
             }
 
-            return queries[queries.length - 1];
+            return queries[last];
         },
 
         /**
