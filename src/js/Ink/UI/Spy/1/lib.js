@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function(Common, Event, Css, Element, Selector ) {
     'use strict';
 
     /**
@@ -16,6 +16,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
      *     @param {DOMElement|String}     options.target          Target menu on where the spy will highlight the right option.
+     *     @param {String}                [options.activeClass='active'] Class which marks the "li" as active.
      * @example
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Spy_1'], function( Selector, Spy ){
@@ -35,7 +36,8 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          * Setting default options and - if needed - overriding it with the data attributes
          */
         this._options = Ink.extendObj({
-            target: undefined
+            target: undefined,
+            activeClass: 'active'
         }, Element.data( this._rootElement ) );
 
         /**
@@ -45,7 +47,6 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
 
         this._options.target = Common.elOrSelector( this._options.target, 'Target' );
 
-        this._scrollTimeout = null;
         this._init();
     };
 
@@ -59,7 +60,7 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          * @readOnly
          * 
          */
-        _elements: [],
+        _elements: [],  // [wtf] since arrays are immutable, _elements is the same for every instance. Very weird logic going on here
 
         /**
          * Init function called by the constructor
@@ -68,7 +69,10 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _init: function(){
-            Event.observe( document, 'scroll', Ink.bindEvent(this._onScroll,this) );
+            // Rate limited scroll function
+            var throttledScroll = Event.throttle(Ink.bind(this._onScroll, this), 300);
+            throttledScroll();
+            Event.observe( document, 'scroll', throttledScroll );
             this._elements.push(this._rootElement);
         },
 
@@ -79,37 +83,41 @@ Ink.createModule('Ink.UI.Spy', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Do
          * @private
          */
         _onScroll: function(){
+            var bbox = this._rootElement.getBoundingClientRect();
 
-            var scrollHeight = Element.scrollHeight(); 
-            if( (scrollHeight < this._rootElement.offsetTop) ){
+            // To be the active element, its top must be above the viewport
+            // (so that the content is inside the viewport)
+            if( bbox.top > 0 ) {
                 return;
-            } else {
-                for( var i = 0, total = this._elements.length; i < total; i++ ){
-                    if( (this._elements[i].offsetTop <= scrollHeight) && (this._elements[i] !== this._rootElement) && (this._elements[i].offsetTop > this._rootElement.offsetTop) ){
+            }
+
+            // Find other elements, check if any other element could be the active element
+            var otherBbox;
+            for( var i = 0, total = this._elements.length; i < total; i++ ){
+                if (this._elements[i] !== this._rootElement) {
+                    otherBbox = this._elements[i].getBoundingClientRect();
+                    if (otherBbox.top <= 0 && otherBbox.top > bbox.top) {
                         return;
                     }
                 }
             }
 
-            InkArray.each(
-                Selector.select(
-                    'a',
-                    this._options.target
-                ), Ink.bind(function(item){
+            // This selector finds li's to deactivate
+            var activeLinkSelector = 'li.active';  // [todo] configurable active class
 
-                    var comparisonValue = ( ("name" in this._rootElement) && this._rootElement.name ?
-                        '#' + this._rootElement.name : '#' + this._rootElement.id
-                    );
+            // The link which should be activated has a "href" ending with "#" + name or id of the element
+            var menuLinkSelector = 'a[href$="#' + (this._rootElement.name || this._rootElement.id) + '"]';
 
-                    if( item.href.substr(item.href.indexOf('#')) === comparisonValue ){
-                        Css.addClassName(Element.findUpwardsByTag(item,'li'),'active');
-                    } else {
-                        Css.removeClassName(Element.findUpwardsByTag(item,'li'),'active');
-                    }
-                },this)
-            );
+            var toDeactivate = Selector.select(activeLinkSelector, this._options.target);
+            for (i = 0, total = toDeactivate.length; i < total; i++) {
+                Css.removeClassName(toDeactivate[i], this._options.activeClass);
+            }
+
+            var toActivate = Selector.select(menuLinkSelector, this._options.target);
+            for (i = 0, total = toActivate.length; i < total; i++) {
+                Css.addClassName(Element.findUpwardsByTag(toActivate[i], 'li'), this._options.activeClass);
+            }
         }
-
     };
 
     return Spy;
