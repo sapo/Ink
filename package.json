@@ -3,12 +3,11 @@
   "version": "2.2.1",
   "description": "SAPO InK - Interface Toolkit",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "SAPO",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "sapo/Ink"
+    "url": "http://github.com/sapo/Ink.git"
   },
   "keywords": [
     "css",
@@ -30,15 +29,12 @@
     "grunt-contrib-qunit": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-plato": "~0.2.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/sapo/Ink.git"
+    "grunt-plato": "~0.2.1",
+    "bower": "~1.2.8",
+    "grunt-bower-task": "~0.3.4",
+    "grunt-contrib-copy": "~0.4.1"
   },
   "scripts": {
     "test": "grunt --verbose"
-  },
-  "author": "SAPO",
-  "license": "MIT"
+  }
 }
