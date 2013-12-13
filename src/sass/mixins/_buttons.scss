@@ -1,0 +1,33 @@
+@mixin ink-button($button-color, $text-color, $text-shadow-color) {
+
+    color: $text-color; 
+    border-color: shade($button-color, 15%);
+    border-bottom-color: shade($button-color, 25%);
+
+    @include single-text-shadow(0, -.09em, .03em, $text-shadow-color);
+    @include background-image(linear-gradient(180deg, $button-color, shade($button-color,15%)));
+
+    @include single-box-shadow(rgba(255, 255, 255, 0.2), 0, 1px, 0, inset);
+
+    &:hover {
+        @include background-image (linear-gradient(180deg, tint($button-color, 7%), shade($button-color, 14%))); 
+        @include box-shadow ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+        color: $text-color; // force text color for anchor tags
+        text-decoration: none; // remove underline on anchr tags
+    }
+
+    &:active {
+        @include background-image (linear-gradient, darken($button-color, 7%), lighten($button-color, 7%));
+        @include single-box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
+    }
+
+    &.flat {        
+        background: shade($button-color,5%);
+
+        &:hover {
+            background: shade($button-color,10%);
+        }
+    }
+}
+
+

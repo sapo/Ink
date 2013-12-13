@@ -265,10 +265,20 @@ module.exports = function(grunt) {
     },
 
     compass: {                  // Task
+      dev: {                   // Target
+        options: {              // Target options
+          sassDir: 'src/sass',
+          cssDir: 'dist/css',
+          outputStyle: 'expanded',
+          noLineComments: true,
+        }
+      },
       dist: {                   // Target
         options: {              // Target options
           sassDir: 'src/sass',
           cssDir: 'dist/css',
+          outputStyle: 'compressed',
+          noLineComments: true,
         }
       }
     },
@@ -292,16 +302,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
+  // grunt.loadNpmTasks('grunt-contrib-connect');
+  // grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-plato');
 
-  grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less','clean:js','concat','uglify', 'clean:tmp']);
-  grunt.registerTask('test', ['connect', 'qunit']);
+  grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'compass','clean:js','concat','uglify', 'clean:tmp']);
+  grunt.registerTask('css', ['clean:css', 'compass']);
+  // grunt.registerTask('test', ['connect', 'qunit']);
   grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function(fileName){
     if (arguments.length === 0) {
       grunt.log.error('You need to specify a file name');

@@ -44,7 +44,7 @@ The Ink JavaScript modules used to be in a separate repository. Now they are in 
 If you wish to compile our source code you'll need a couple of things:
 
 + [Node.js](http://nodejs.org/)
-+ [SASS](http://sass-lang.com/install)
++ [Compass](http://compass-style.org/install/)
 + [Grunt](http://gruntjs.com/getting-started)
 
 After installing these dependencies simple run the ```npm install``` and ```grunt``` from your terminal.

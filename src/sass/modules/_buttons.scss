@@ -1,0 +1,48 @@
+.ink-button {
+
+    -webkit-appearance: menuitem;
+    font-weight: bold;
+    font-size: $button-font-size;
+    padding: $button-padding;
+    border: 1px solid #ccc;
+    cursor:pointer; 
+    margin: $button-margin;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button-group {
+
+    & > .ink-button {
+        float: left;
+        margin: $button-margin 0;
+        @include border-radius(none);
+        border-left: none;
+
+        &:first-child {
+            border-bottom-left-radius: ($border-radius);
+            border-top-left-radius: ($border-radius);
+            border-left: 1px solid #ccc;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: ($border-radius);
+            border-top-right-radius: ($border-radius);
+        }
+    }
+
+    @include clearfix;    
+}
+
+.button-toolbar {
+    
+    & > .button-group {
+        margin-right: $button-margin * 2;
+        float: left;
+    }
+
+    @include clearfix;
+}
