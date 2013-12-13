@@ -8,16 +8,22 @@
 //  @link      http://ink.sapo.pt
 //  @since     Version 3.0.0
 
-$cena: "mixins";
-$cena2: "#{$cena}mixins.utils.scss";
+// Import Compass Core
+// @import "contrib/compass/reset";
+@import "contrib/compass/css3";
+// @import "contrib/compass/utilities";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
-@import "config/conf.grid.scss";
+@import "config/grid";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
-@import $cena2;
-// @import "mixins/mixins.grid.scss";
+@import "mixins/utils";
+@import "mixins/grid";
 
 // IMPORT MODULE DEFINITION FILES
-// @import "modules/normalize.scss";
-// @import "modules/grid.scss";
+@import "modules/reset";
+@import "modules/grid";
+
+.merda {
+  @include box-shadow(red 2px 2px 10px);
+}

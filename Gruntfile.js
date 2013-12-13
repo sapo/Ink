@@ -12,8 +12,8 @@ module.exports = function(grunt) {
         options: {
           targetDir: 'tmp',
           layout: 'byType',
-          install: false,
-          verbose: false,
+          install: true,
+          verbose: true,
           cleanTargetDir: false,
           cleanBowerDir: true,
           bowerOptions: {
@@ -25,6 +25,16 @@ module.exports = function(grunt) {
 
     // 
     copy: {
+      compass: {
+        files: [
+          {
+            cwd: 'tmp/bower-compass-core/compass/stylesheets/',
+            src: '**/*.scss', 
+            dest: 'src/sass/contrib/',
+            expand: true,
+          }
+        ]
+      },
       fontAwesome: {
         files: [
           {
@@ -254,6 +264,15 @@ module.exports = function(grunt) {
       }
     },
 
+    compass: {                  // Task
+      dist: {                   // Target
+        options: {              // Target options
+          sassDir: 'src/sass',
+          cssDir: 'dist/css',
+        }
+      }
+    },
+
     // Creates a plato report
     plato: {
       inkjs: {
@@ -278,6 +297,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-plato');
 
   grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less','clean:js','concat','uglify', 'clean:tmp']);
