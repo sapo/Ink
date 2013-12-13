@@ -5,7 +5,7 @@ Ink is an interface kit for quick development of web interfaces, simple to use a
 Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt)
 
 
-## Current Version: 2.2.1
+## Current Version: 3.0.0
 
 We've completely rewritten the grid system and JavaScript components, along with many other changes. Please read our [changelog](http://ink.sapo.pt/changelog) to find out about them.
 
@@ -39,9 +39,15 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 The Ink JavaScript modules used to be in a separate repository. Now they are in the `Inkjs` folder. Check out the `README.md` file inside with further information regarding those modules.
 
 
-## LESS Compiler
+## Building from source
 
-Ink requires the 1.4.2 LESS compiler version.
+If you wish to compile our source code you'll need a couple of things:
+
++ [Node.js](http://nodejs.org/)
++ [SASS](http://sass-lang.com/install)
++ [Grunt](http://gruntjs.com/getting-started)
+
+After installing these dependencies simple run the ```npm install``` and ```grunt``` from your terminal.
 
 
 ## Legal stuff

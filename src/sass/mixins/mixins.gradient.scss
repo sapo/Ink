@@ -1,0 +1,132 @@
+// Ink
+//
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
+
+// ---------------------------------------------------------------------------------------------
+
+// CSS Linear gradient
+// 
+// @package    Ink
+// @subpackage Mixins
+// @category   CSS Gradients
+// @author     Sapo Ink Team
+
+@mixin linear-gradient( $gradient-color-stops, $gradient-angle: 180 )
+{
+
+  // Convert the $gradient-angle to deg
+  $gradient-angle: $gradient-angle * 1deg;
+  
+  // Creates an empty string to contain the color/position portion of the gradient
+  $gradient-colors: '';
+
+  // Defines a numeric index used in the color loop to check for the last iteration
+  $i: 1;
+
+  // Iterates over the $gradient-color-stops
+  @each $gradient-color in $gradient-color-stops {
+
+    // Checks if both color and position was supplied
+    @if length($gradient-color) == 2
+    {
+      // Assigns the values from each element in the $gradient-color-stops list 
+      // to the $color and $position variables.
+      $color: nth($gradient-color,1);
+      $position: nth($gradient-color,2) * 1%;
+      // Check if this is the last iteration so we don't have get a trailing comma.
+      @if $i == length($gradient-color-stops) {
+        $gradient-colors: $gradient-colors + '#{$color} #{$position}';
+      } 
+      @else {
+        $gradient-colors: $gradient-colors + '#{$color} #{$position}, ';
+      }
+    }
+
+    // No position was supplied
+    @else 
+    {
+      $color: nth($gradient-color,1);
+      // Check if this is the last iteration so we don't have get a trailing comma.
+      @if $i == length($gradient-color-stops) {
+        $gradient-colors: $gradient-colors + '#{$color}';
+      } 
+      @else {
+        $gradient-colors: $gradient-colors + '#{$color}, ';
+      }
+    }
+    // Increment the $i variable. Used to check for the last iteration.
+    $i: $i + 1;
+  }
+
+  // get the first color from the $gradient-color-stops as a default for old browsers
+  background-image: nth(nth($gradient-color-stops,1),1);
+  // build the gradient css 
+  background-image: -moz-linear-gradient($gradient-angle, unquote($gradient-colors));
+  background-image: -webkit-linear-gradient($gradient-angle, unquote($gradient-colors));
+  background-image: -o-linear-gradient($gradient-angle, unquote($gradient-colors));
+  background-image: -ms-linear-gradient($gradient-angle, unquote($gradient-colors));
+  background-image: linear-gradient($gradient-angle, unquote($gradient-colors));
+}
+
+// ---------------------------------------------------------------------------------------------
+
+@mixin radial-gradient( $gradient-color-stops, $gradient-shape: elipse cover, $gradient-position: center )
+{
+
+  // Creates an empty string to contain the color/position portion of the gradient
+  $gradient-colors: '';
+
+  // Defines a numeric index used in the color loop to check for the last iteration
+  $i: 1;
+
+  // Iterates over the $gradient-color-stops
+  @each $gradient-color in $gradient-color-stops {
+
+    // Checks if both color and position was supplied
+    @if length($gradient-color) == 2
+    {
+      // Assigns the values from each element in the $gradient-color-stops list 
+      // to the $color and $position variables.
+      $color: nth($gradient-color,1);
+      $position: nth($gradient-color,2) * 1%;
+      // Check if this is the last iteration so we don't have get a trailing comma.
+      @if $i == length($gradient-color-stops) {
+        $gradient-colors: $gradient-colors + '#{$color} #{$position}';
+      } 
+      @else {
+        $gradient-colors: $gradient-colors + '#{$color} #{$position}, ';
+      }
+    }
+
+    // No position was supplied
+    @else 
+    {
+      $color: nth($gradient-color,1);
+      // Check if this is the last iteration so we don't have get a trailing comma.
+      @if $i == length($gradient-color-stops) {
+        $gradient-colors: $gradient-colors + '#{$color}';
+      } 
+      @else {
+        $gradient-colors: $gradient-colors + '#{$color}, ';
+      }
+    }
+    // Increment the $i variable. Used to check for the last iteration.
+    $i: $i + 1;
+  }
+
+  // get the first color from the $gradient-color-stops as a default for old browsers
+  background: nth(nth($gradient-color-stops,1),1);
+  // build the gradient css 
+  background: -moz-radial-gradient($gradient-shape, $gradient-position, unquote($gradient-colors));
+  background: -webkit-radial-gradient($gradient-shape, $gradient-position, unquote($gradient-colors));
+  background: -o-radial-gradient($gradient-shape, $gradient-position, unquote($gradient-colors));
+  background: -ms-radial-gradient($gradient-shape, $gradient-position, unquote($gradient-colors));
+  background: radial-gradient($gradient-shape, $gradient-position, unquote($gradient-colors));
+}
