@@ -20,7 +20,7 @@ Thumbs.db
 
 node_modules
 
-src/sass/.sass-cache/
+.sass-cache
 src/js/builds
 src/js/report
 src/js/serverUtils/moduleDirs.json
