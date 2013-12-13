@@ -1,0 +1,326 @@
+// Ink
+//
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
+
+// ---------------------------------------------------------------------------------------------
+
+// Grid Divisions
+// 
+// @package    Ink
+// @subpackage Mixins
+// @category   Layout grid
+// @author     Sapo Ink Team
+
+@mixin generate-grid-divisions ($class-name) {
+    // iteration counter
+    $i: 5;
+
+    // define the step size (this is the minimum column width percentage)
+    $step-size: 5;
+
+    // iterate to generate the width classes
+    @while $i <= 100 {
+        // generate the 33% width
+        @if $i > 30 and $i <= 35 {
+            .#{$class-name}-33 {
+                width: 33.33%;
+            }
+        }
+        
+        // generate the 66% width
+        @if $i > 65 and $i <= 70 {
+            .#{$class-name}-66 {
+                width: 66.66%;
+            }
+        }
+        
+        // generate the 5% step widths
+        .#{$class-name}-#{$i} {
+            width: $i * 1%;
+        }
+
+        // increment the counter
+        $i: $i + $step-size;
+    }
+}
+
+// generates the grid main container
+@mixin generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width) {
+
+    .#{$grid-container-class-name} {
+        width: auto;
+        max-width: $grid-max-width;
+        margin: 0 auto;
+        // overflow: hidden;
+        padding: 0 $gutter-width;
+    }
+}
+
+// generates the grid column grouping container
+@mixin generate-column-group-container($gutter-width) {
+
+    .#{$grid-column-group-class-name} {        
+        @include clearfix;
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
+        margin-left: -$gutter-width;
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
+        margin-left: -($gutter-width / 2);
+    }
+
+    .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
+        margin-left: -($gutter-width / 4);
+    }
+}
+
+@mixin generate-grid-helper-classes($class-name,$gutter-width) {
+
+    .#{$class-name}-push-left {
+        float: left;
+    }
+    .#{$class-name}-push-center {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .#{$class-name}-push-right {
+        float: right;
+    }
+    .#{$class-name}-align-left {
+        text-align: left;
+    }
+    .#{$class-name}-align-center {
+        text-align: center;
+    }
+    .#{$class-name}-align-right {
+        text-align: right;
+    }
+
+    $space-placements: (
+        ('vertical',
+          (
+            (half,2),
+            ('quarter',4)
+          )
+        ),
+        ('horizontal',
+          (
+            (half,2),
+            ('quarter',4)
+          )
+        ),
+        ('top',
+          (
+            (half,2),
+            ('quarter',4)
+          )
+        ),
+        ('right',
+          (
+            (half,2),
+            ('quarter',4)
+          )
+        ),
+        ('bottom',
+          (
+            (half,2),
+            ('quarter',4)
+          )
+        )
+    );    
+
+    @each $placement in $space-placements {
+        
+        $position: nth($placement,1);
+
+        @if $position == horizontal {
+
+            .#{$class-name}-#{$position}-space {
+                margin-left: $gutter-width;
+                margin-right: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-padding {
+                padding-left: $gutter-width;
+                padding-right: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+                  margin-left: $gutter-width / $sub-division-unit;
+                  margin-right: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+                  padding-left: $gutter-width / $sub-division-unit;
+                  padding-right: $gutter-width / $sub-division-unit;
+                }
+            }
+
+        }
+
+        @if $position == vertical {
+
+            .#{$class-name}-#{$position}-space {
+                margin-top: $gutter-width;
+                margin-bottom: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-padding {
+                padding-top: $gutter-width;
+                padding-bottom: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+                  margin-top: $gutter-width / $sub-division-unit;
+                  margin-bottom: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+                  padding-top: $gutter-width / $sub-division-unit;
+                  padding-bottom: $gutter-width / $sub-division-unit;
+                }
+            }
+
+        }
+
+        @if $position != horizontal and $position != vertical {
+
+            .#{$class-name}-#{$position}-space {
+                margin-#{$position}: $gutter-width;
+            }
+
+            .#{$class-name}-#{$position}-padding {
+                padding-#{$position}: $gutter-width;
+            }
+
+            @each $sub-division in nth($placement,2) {
+                $sub-division-class-name: nth($sub-division,1);
+                $sub-division-unit: nth($sub-division,2);
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+                  margin-#{$position}: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+                  padding-#{$position}: $gutter-width / $sub-division-unit;
+                }
+            }
+
+        }
+        
+    }
+}
+
+@mixin generate-visibility-classes ($class-name) {
+    
+    @each $breakpoint in $breakpoints {
+        $loop-class-name: nth($breakpoint,5);
+          .for-#{$loop-class-name} {
+            @if $loop-class-name == $class-name {
+                display: block;
+            }
+            @else {
+                display: none;
+            }
+          }
+        table {
+            &.for-#{$loop-class-name} {
+                @if $loop-class-name == $class-name {
+                    display: table;
+                }
+                @else {
+                    display: none;
+                }
+              }
+        }
+        tr {
+            &.for-#{$loop-class-name} {
+                @if $loop-class-name == $class-name {
+                    display: table-row;
+                }
+                @else {
+                    display: none;
+                }
+              }
+        }
+
+        th, td {
+            &.for-#{$loop-class-name} {
+                @if $loop-class-name == $class-name {
+                    display: table-cell;
+                }
+                @else {
+                    display: none;
+                }
+              }
+        }
+    }
+}
+
+@mixin generate-grid ($breakpoints) {
+
+    @each $breakpoint in $breakpoints {
+        
+        $min-width: nth($breakpoint,1);
+        $max-width: nth($breakpoint,2);
+        $is-default: nth($breakpoint,3);
+        $gutter-width: nth($breakpoint,4);
+        $class-name: nth($breakpoint,5);
+
+
+        @if $min-width and not $max-width and not $is-default {
+            @media screen and (min-width: $min-width) {
+                @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+                @include generate-grid-divisions ($class-name);
+                @include generate-column-group-container($gutter-width);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
+                @include generate-visibility-classes($class-name);
+            }
+        }
+
+        @if $min-width and $max-width and not $is-default {
+            @media screen and (min-width: $min-width) and (max-width: $max-width) {
+                @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+                @include generate-grid-divisions ($class-name);
+                @include generate-column-group-container($gutter-width);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
+                @include generate-visibility-classes($class-name);                
+            }
+        }
+
+        @if not $min-width and $max-width and not $is-default {
+            @media screen and (max-width: $max-width) {
+                @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+                @include generate-grid-divisions ($class-name);
+                @include generate-column-group-container($gutter-width);
+                @include generate-visibility-classes($class-name);                
+            }
+        }
+
+        @if $is-default {
+            @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+            @include generate-grid-divisions ($class-name);
+            @include generate-column-group-container($gutter-width);
+            @include generate-grid-helper-classes($class-name,$gutter-width);
+            @include generate-visibility-classes($class-name);            
+        }
+    }
+}
