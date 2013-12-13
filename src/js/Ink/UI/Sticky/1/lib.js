@@ -118,9 +118,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
             var style = this._rootElement.style;
 
-            style.position = 'fixed';
-            style.left = this._options.originalLeft + 'px';
-            style.width = this._options.originalWidth + 'px';
+            style.position = 'static'; // [todo] this should be a class toggle
+            style.width = null;
+            var left = this._rootElement.getBoundingClientRect().left;
+            var width = Element.outerDimensions(this._rootElement)[0]
+            style.position = 'fixed'; // [todo] this should be a class toggle
+
+            style.left = left + 'px';
+            style.width = width + 'px';
 
             if (where === 'screen') {
                 style.bottom = 'auto';
@@ -150,7 +155,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
-            this._rootElement.removeAttribute('style');
             this._calculateOriginalSizes();
             this._calculateOffsets();
         },
