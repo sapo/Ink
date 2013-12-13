@@ -1,18 +1,15 @@
 {
   "name": "Ink",
   "version": "2.2.1",
-  "main": ["./js/ink-all.js", "./css/ink.css", "./fonts/*"],
+  "description": "An HTML5/CSS3 framework used at SAPO for fast and efficient website design and prototyping.",
+  "main": ["dist/*"],
   "ignore": [
     "**/.*",
     "node_modules",
-    "less",
-    "img",
-    "documentation",
-    "Inkjs",
-    "cookbook"
+    "src/*"
   ],
   "dependencies": {
     "modernizr": ">=2.6.2",
-    "html5shiv": ">=3.7.0"
+    "font-awesome" : ">=4.0.3"
   }
 }
