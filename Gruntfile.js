@@ -82,8 +82,8 @@ module.exports = function(grunt) {
           rename: function(dest, src) {
             return dest + 'ink.js';
           },
-        },
-        ],
+        }
+        ]
       },
 
       // ink-all.js
@@ -103,9 +103,9 @@ module.exports = function(grunt) {
           dest: '<%= ink.folders.js.dist %>',
           rename: function(dest, src) {
             return dest + 'ink-all.js';
-          },
-        },
-        ],
+          }
+        }
+        ]
       },
 
       // ink-ui.js
@@ -137,7 +137,7 @@ module.exports = function(grunt) {
           rename: function(dest, src) {
               // [TODO] refactor
               // check if this is v1
-              if (src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) == 1) {
+              if (src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'),-1).match(/[0-9]/) === 1) {
                 // and it it is discard the version number               
                 return dest + 'ink.' + src.substring(0, src.indexOf('/')).toLowerCase() + '.js';
               } else {
@@ -152,16 +152,16 @@ module.exports = function(grunt) {
 
       clean: {
         js: {
-          src: ["<%= ink.folders.js.dist %>/ink*.js"]
+          src: ['<%= ink.folders.js.dist %>/ink*.js']
         },
         css: {
-          src: ["<%= ink.folders.css.dist %>/ink*.css"]
+          src: ['<%= ink.folders.css.dist %>/ink*.css']
         },
         fontAwesome: {
-          src: ["<%= ink.folders.css.src %>/less/modules/icons/*.less"]
+          src: ['<%= ink.folders.css.src %>/less/modules/icons/*.less']
         },
         tmp: {
-          src: ["tmp"]
+          src: ['tmp']
         }
       },
 
@@ -187,7 +187,7 @@ module.exports = function(grunt) {
     // CONCATENATE JS
     uglify: {
       options: {
-        report: "min",
+        report: 'min',
         sourceMapRoot: '../..',
         compress: {
           sequences: true,
@@ -329,7 +329,7 @@ grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file'
     expand: true,
     flatten: true,
     cwd: '<%= ink.folders.js.src %>',
-    dest: '<%= ink.folders.js.dist %>' + bundle['name'] + '/',
+    dest: '<%= ink.folders.js.dist %>' + bundle.name + '/',
     src: dependencies.map(function(depName){
       return depName.replace('Ink/', '') + '/lib.js';
     }),
@@ -340,8 +340,8 @@ grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file'
   ]
 });
   grunt.config.set('uglify.ink_custom', {
-    src: '<%= ink.folders.js.dist %>' + bundle['name'] + '/' + 'ink-custom.js',
-    dest: '<%= ink.folders.js.dist %>' + bundle['name'] + '/' + 'ink-custom.min.js'
+    src: '<%= ink.folders.js.dist %>' + bundle.name + '/' + 'ink-custom.js',
+    dest: '<%= ink.folders.js.dist %>' + bundle.name + '/' + 'ink-custom.min.js'
   });
   grunt.task.run(['concat:ink_custom', 'uglify:ink_custom']);
 });
