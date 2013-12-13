@@ -8,10 +8,10 @@
 //  @link      http://ink.sapo.pt
 //  @since     Version 3.0.0
 
-// Import Compass Core
-// @import "contrib/compass/reset";
+// IMPORT COMPASS CORE
+@import "contrib/compass/utilities";
+@import "contrib/compass/typography";
 @import "contrib/compass/css3";
-// @import "contrib/compass/utilities";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
 @import "config/grid";
@@ -23,7 +23,3 @@
 // IMPORT MODULE DEFINITION FILES
 @import "modules/reset";
 @import "modules/grid";
-
-.merda {
-  @include box-shadow(red 2px 2px 10px);
-}
