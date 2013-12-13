@@ -17,6 +17,7 @@
 @import "config/common";
 @import "config/grid";
 @import "config/colors";
+@import "config/forms";
 @import "config/buttons";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
@@ -26,6 +27,7 @@
 
 // IMPORT MODULE DEFINITION FILES
 @import "modules/reset";
+@import "modules/forms";
 @import "modules/grid";
 @import "modules/buttons";
 
