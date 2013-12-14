@@ -1,6 +1,31 @@
-$grid-container-class-name: "ink-grid";
-$grid-column-group-class-name: "column-group";
-$grid-gutters-class-name: "gutters";
-$grid-half-gutters-class-name: "half-gutters";
-$grid-quarter-gutters-class-name: "quarter-gutters";
+/** 
+ * Sets the grids maximum width
+ * @var $grid-max-width (pixels|ems|percentage)
+ */
 $grid-max-width: 1440px;
+
+
+/**
+ * Sets the grids breakpoint
+ * 
+ * To add a new break point you'll need to add an element to the list.
+ * 
+ * Here's an example: ( class-name-prefix, minimum-width, maximum-width, gutter-width, no-media-query).
+ * 
+ * class-name-prefix: this is the prefix used in tons of inks classes i.e.: large-100, small-40, etc.
+ * minimum-width: (pixels|null) the minimum width for the breakpoint 
+ * maximum-width: (pixels|null) the maximum width for the breakpoint 
+ * gutter-width: (ems) the width for the gutters (space between grid columns) for the breakpoint 
+ * no-media-query: (true|false) if you need to support IE8 set this to true on a single breakpoint.
+ *                 Since IE8 does not support the @media statement leaving one of the breakpoints
+ *                 outside a @media query let's you use the grid in IE8.
+ *  
+ */
+
+$grid-breakpoints: (
+    ('tiny', null, 400px, 1.5em, false),
+    ('small', 401px, 599px, 1.75em, false),
+    ('medium', 600px, 960px, 2.25em, false),
+    ('large', 961px, 1159, 2em, true),
+    ('extra-large', 1200px, null, 2.25em, false)
+);

@@ -6,12 +6,14 @@
     padding: $button-padding;
     border: 1px solid #ccc;
     cursor:pointer; 
-    margin: $button-margin;
     text-decoration: none;
     text-align: center;
     display: inline-block;
     vertical-align: middle;
     white-space: nowrap;
+    & + .ink-button {
+        margin-left: $button-margin;
+    }
 }
 
 .button-group {

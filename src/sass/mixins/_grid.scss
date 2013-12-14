@@ -54,11 +54,8 @@
 // generates the grid main container
 @mixin generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width) {
 
-    .#{$grid-container-class-name} {
-        width: auto;
-        max-width: $grid-max-width;
-        margin: 0 auto;
-        // overflow: hidden;
+
+    .#{$grid-container-class-name} { 
         padding: 0 $gutter-width;
     }
 }
@@ -229,10 +226,10 @@
     }
 }
 
-@mixin generate-visibility-classes ($class-name) {
+@mixin generate-visibility-classes ($class-name,$breakpoints) {
     
     @each $breakpoint in $breakpoints {
-        $loop-class-name: nth($breakpoint,5);
+        $loop-class-name: nth($breakpoint,1);
           .for-#{$loop-class-name} {
             @if $loop-class-name == $class-name {
                 display: block;
@@ -277,50 +274,56 @@
 
 @mixin generate-grid ($breakpoints) {
 
+    .#{$grid-class-name} {
+        width: auto;
+        max-width: $grid-max-width;
+        margin: 0 auto;
+    }
+
     @each $breakpoint in $breakpoints {
         
-        $min-width: nth($breakpoint,1);
-        $max-width: nth($breakpoint,2);
-        $is-default: nth($breakpoint,3);
+        $class-name: nth($breakpoint,1);
+        $minimum-width: nth($breakpoint,2);
+        $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
-        $class-name: nth($breakpoint,5);
+        $no-media-query: nth($breakpoint,5);
 
 
-        @if $min-width and not $max-width and not $is-default {
-            @media screen and (min-width: $min-width) {
-                @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+        @if $minimum-width and not $maximum-width and not $no-media-query {
+            @media screen and (min-width: $minimum-width) {
+                @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
                 @include generate-grid-divisions ($class-name);
                 @include generate-column-group-container($gutter-width);
                 @include generate-grid-helper-classes($class-name,$gutter-width);
-                @include generate-visibility-classes($class-name);
+                @include generate-visibility-classes($class-name,$breakpoints);
             }
         }
 
-        @if $min-width and $max-width and not $is-default {
-            @media screen and (min-width: $min-width) and (max-width: $max-width) {
-                @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+        @if $minimum-width and $maximum-width and not $no-media-query {
+            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+                @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
                 @include generate-grid-divisions ($class-name);
                 @include generate-column-group-container($gutter-width);
                 @include generate-grid-helper-classes($class-name,$gutter-width);
-                @include generate-visibility-classes($class-name);                
+                @include generate-visibility-classes($class-name,$breakpoints);                
             }
         }
 
-        @if not $min-width and $max-width and not $is-default {
-            @media screen and (max-width: $max-width) {
-                @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+        @if not $minimum-width and $maximum-width and not $no-media-query {
+            @media screen and (max-width: $maximum-width) {
+                @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
                 @include generate-grid-divisions ($class-name);
                 @include generate-column-group-container($gutter-width);
-                @include generate-visibility-classes($class-name);                
+                @include generate-visibility-classes($class-name,$breakpoints);                
             }
         }
 
-        @if $is-default {
-            @include generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width);
+        @if $no-media-query {
+            @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
             @include generate-grid-divisions ($class-name);
             @include generate-column-group-container($gutter-width);
             @include generate-grid-helper-classes($class-name,$gutter-width);
-            @include generate-visibility-classes($class-name);            
+            @include generate-visibility-classes($class-name,$breakpoints);            
         }
     }
 }

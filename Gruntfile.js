@@ -6,9 +6,25 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    // handle 3rd party dependencies
+
+    ink: {
+      folders: {
+        js: {
+          srcBase: './src/js/',
+          src: './src/js/Ink/',
+          tests: './src/js/tests/',
+          dist: './dist/js/'
+        },
+        css: {
+          src: './src/sass/',
+          dist: './dist/css/'
+        },
+      },
+    },
+    
+    // gets 3rd party dependencies
     bower: {
-      install: {
+      update: {
         options: {
           targetDir: 'tmp',
           layout: 'byType',
@@ -23,7 +39,7 @@ module.exports = function(grunt) {
       }
     },
 
-    // 
+    // copies 3rd party dependencies to the propper places 
     copy: {
       compass: {
         files: [
@@ -55,21 +71,6 @@ module.exports = function(grunt) {
           }
         ]
       }
-    },
-
-    ink: {
-      folders: {
-        js: {
-          srcBase: './src/js/',
-          src: './src/js/Ink/',
-          tests: './src/js/tests/',
-          dist: './dist/js/'
-        },
-        css: {
-          src: './src/less/',
-          dist: './dist/css/'
-        },
-      },
     },
 
     // builds the javascript bundles
@@ -165,7 +166,7 @@ module.exports = function(grunt) {
         src: ["<%= ink.folders.js.dist %>/ink*.js"]
       },
       css: {
-        src: ["<%= ink.folders.css.dist %>/ink*.css"]
+        src: ["<%= ink.folders.css.dist %>/*.css"]
       },
       fontAwesome: {
         src: ["<%= ink.folders.css.src %>/less/modules/icons/*.less"]
@@ -264,21 +265,26 @@ module.exports = function(grunt) {
       }
     },
 
-    compass: {                  // Task
-      dev: {                   // Target
-        options: {              // Target options
+    compass: {                  
+      css: {                   
+        options: {   
           sassDir: 'src/sass',
           cssDir: 'dist/css',
           outputStyle: 'expanded',
           noLineComments: true,
         }
       },
-      dist: {                   // Target
-        options: {              // Target options
-          sassDir: 'src/sass',
-          cssDir: 'dist/css',
-          outputStyle: 'compressed',
-          noLineComments: true,
+    },
+
+    cssmin: {
+      minify: {
+        expand: true,
+        cwd: '<%= ink.folders.css.dist %>',
+        src: ['*.css', '!quick-start.css'],
+        dest: '<%= ink.folders.css.dist %>',
+        ext: '.min.css',
+        options: {
+          report: 'min'
         }
       }
     },
@@ -295,23 +301,49 @@ module.exports = function(grunt) {
           '<%= ink.folders.js.srcBase %>report': '<%= ink.folders.js.src %>**/lib.js'
         }
       }
-    }
+    },
+
+    watch: {
+      css: {
+        files: ['<%= ink.folders.css.src %>**/*.scss'],
+        tasks: ['css'],
+        options: {
+          spawn: false,
+          // interrupt: true,
+        }
+      },
+      js: {
+        files: ['<%= ink.folders.js.src %>/**/*.js'],
+        tasks: ['js'],
+        options: {
+          spawn: false,
+          // interrupt: true,
+        }
+      },
+    },
+
   });
 
-  grunt.loadNpmTasks('grunt-contrib-less');
+  // grunt.loadNpmTasks('grunt-contrib-less');
+  // grunt.loadNpmTasks('grunt-contrib-connect');
+  // grunt.loadNpmTasks('grunt-contrib-qunit');
+  
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  // grunt.loadNpmTasks('grunt-contrib-connect');
-  // grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-plato');
 
-  grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'compass','clean:js','concat','uglify', 'clean:tmp']);
-  grunt.registerTask('css', ['clean:css', 'compass']);
+  grunt.registerTask('js', ['clean:js', 'concat', 'uglify']);
+  grunt.registerTask('css', ['clean:css', 'compass', 'cssmin']);
+  grunt.registerTask('dependencies', ['bower', 'copy', 'clean:tmp']);
+  grunt.registerTask('default', ['dependencies','css','js']);
+
   // grunt.registerTask('test', ['connect', 'qunit']);
   grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function(fileName){
     if (arguments.length === 0) {
