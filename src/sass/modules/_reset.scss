@@ -43,6 +43,10 @@ $legacy-support-for-ie7: false !default; // Override default set in Compass' Sup
 @import "compass/css3/box-sizing";
 @import "compass/typography/vertical_rhythm";
 
+* {
+    @include box-sizing(border-box)
+}
+
 
 /* ==========================================================================
    HTML5 display definitions

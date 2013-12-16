@@ -17,6 +17,7 @@ module.exports = function(grunt) {
         },
         css: {
           src: './src/sass/',
+          distBase: './dist/',
           dist: './dist/css/'
         },
       },
@@ -272,6 +273,8 @@ module.exports = function(grunt) {
           cssDir: 'dist/css',
           outputStyle: 'expanded',
           noLineComments: true,
+          relativeAssets: true,
+          fontsDir: '<%= ink.folders.css.dist %>../fonts'
         }
       },
     },

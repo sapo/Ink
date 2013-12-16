@@ -42,7 +42,7 @@
   }
 
   &.green {
-    @include ink-button($green, $white, shade($green,30%));
+    @include ink-button($green, $white, $green);
   }
   
 }

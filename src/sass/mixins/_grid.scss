@@ -18,6 +18,34 @@
 // @category   Layout grid
 // @author     Sapo Ink Team
 
+// generates the grid main container
+@mixin generate-grid-container ($grid-container-class-name, $gutter-width) {
+
+  .#{$grid-container-class-name} { 
+    padding: 0 $gutter-width;
+  }
+}
+
+// generates the grid column grouping container
+@mixin generate-column-group-container($gutter-width) {
+
+  .#{$grid-column-group-class-name} {        
+    @include clearfix;
+  }
+
+  .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
+    margin-left: -$gutter-width;
+  }
+
+  .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
+    margin-left: -($gutter-width / 2);
+  }
+
+  .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
+    margin-left: -($gutter-width / 4);
+  }
+}
+
 @mixin generate-grid-divisions ($class-name) {
     // iteration counter
     $i: 5;
@@ -25,263 +53,238 @@
     // define the step size (this is the minimum column width percentage)
     $step-size: 5;
 
+    [class*=#{$class-name}-] {
+      float: left;
+    }
+
     // iterate to generate the width classes
     @while $i <= 100 {
         // generate the 33% width
         @if $i > 30 and $i <= 35 {
-            .#{$class-name}-33 {
-                width: 33.33%;
-            }
+          .#{$class-name}-33 {
+            width: 33.33%;
+          }
         }
         
         // generate the 66% width
         @if $i > 65 and $i <= 70 {
-            .#{$class-name}-66 {
-                width: 66.66%;
-            }
+          .#{$class-name}-66 {
+            width: 66.66%;
+          }
         }
         
         // generate the 5% step widths
         .#{$class-name}-#{$i} {
-            width: $i * 1%;
+          width: $i * 1%;
         }
 
         // increment the counter
         $i: $i + $step-size;
-    }
-}
-
-// generates the grid main container
-@mixin generate-grid-container ($grid-container-class-name, $grid-max-width, $gutter-width) {
-
-
-    .#{$grid-container-class-name} { 
-        padding: 0 $gutter-width;
-    }
-}
-
-// generates the grid column grouping container
-@mixin generate-column-group-container($gutter-width) {
-
-    .#{$grid-column-group-class-name} {        
-        @include clearfix;
+      }
     }
 
-    .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
-        margin-left: -$gutter-width;
-    }
+    @mixin generate-grid-helper-classes($class-name,$gutter-width) {
 
-    .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
-        margin-left: -($gutter-width / 2);
-    }
-
-    .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
-        margin-left: -($gutter-width / 4);
-    }
-}
-
-@mixin generate-grid-helper-classes($class-name,$gutter-width) {
-
-    .#{$class-name}-push-left {
+      .#{$class-name}-push-left {
         float: left;
-    }
-    .#{$class-name}-push-center {
+      }
+      .#{$class-name}-push-center {
         float: none;
         margin-left: auto;
         margin-right: auto;
-    }
-    .#{$class-name}-push-right {
+      }
+      .#{$class-name}-push-right {
         float: right;
-    }
-    .#{$class-name}-align-left {
+      }
+      .#{$class-name}-align-left {
         text-align: left;
-    }
-    .#{$class-name}-align-center {
+      }
+      .#{$class-name}-align-center {
         text-align: center;
-    }
-    .#{$class-name}-align-right {
+      }
+      .#{$class-name}-align-right {
         text-align: right;
-    }
+      }
 
-    $space-placements: (
+      $space-placements: (
         ('vertical',
           (
             (half,2),
             ('quarter',4)
-          )
-        ),
+            )
+          ),
         ('horizontal',
           (
             (half,2),
             ('quarter',4)
-          )
-        ),
+            )
+          ),
         ('top',
           (
             (half,2),
             ('quarter',4)
-          )
-        ),
+            )
+          ),
         ('right',
           (
             (half,2),
             ('quarter',4)
-          )
-        ),
+            )
+          ),
         ('bottom',
           (
             (half,2),
             ('quarter',4)
+            )
           )
-        )
-    );    
+        );    
 
-    @each $placement in $space-placements {
-        
+      @each $placement in $space-placements {
+
         $position: nth($placement,1);
 
         @if $position == horizontal {
 
-            .#{$class-name}-#{$position}-space {
-                margin-left: $gutter-width;
-                margin-right: $gutter-width;
+          .#{$class-name}-#{$position}-space {
+            margin-left: $gutter-width;
+            margin-right: $gutter-width;
+          }
+
+          .#{$class-name}-#{$position}-padding {
+            padding-left: $gutter-width;
+            padding-right: $gutter-width;
+          }
+
+          @each $sub-division in nth($placement,2) {
+            $sub-division-class-name: nth($sub-division,1);
+            $sub-division-unit: nth($sub-division,2);
+
+            .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+              margin-left: $gutter-width / $sub-division-unit;
+              margin-right: $gutter-width / $sub-division-unit;
             }
 
-            .#{$class-name}-#{$position}-padding {
-                padding-left: $gutter-width;
-                padding-right: $gutter-width;
+            .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+              padding-left: $gutter-width / $sub-division-unit;
+              padding-right: $gutter-width / $sub-division-unit;
             }
-
-            @each $sub-division in nth($placement,2) {
-                $sub-division-class-name: nth($sub-division,1);
-                $sub-division-unit: nth($sub-division,2);
-
-                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
-                  margin-left: $gutter-width / $sub-division-unit;
-                  margin-right: $gutter-width / $sub-division-unit;
-                }
-
-                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
-                  padding-left: $gutter-width / $sub-division-unit;
-                  padding-right: $gutter-width / $sub-division-unit;
-                }
-            }
+          }
 
         }
 
         @if $position == vertical {
 
-            .#{$class-name}-#{$position}-space {
-                margin-top: $gutter-width;
-                margin-bottom: $gutter-width;
+          .#{$class-name}-#{$position}-space {
+            margin-top: $gutter-width;
+            margin-bottom: $gutter-width;
+          }
+
+          .#{$class-name}-#{$position}-padding {
+            padding-top: $gutter-width;
+            padding-bottom: $gutter-width;
+          }
+
+          @each $sub-division in nth($placement,2) {
+            $sub-division-class-name: nth($sub-division,1);
+            $sub-division-unit: nth($sub-division,2);
+
+            .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+              margin-top: $gutter-width / $sub-division-unit;
+              margin-bottom: $gutter-width / $sub-division-unit;
             }
 
-            .#{$class-name}-#{$position}-padding {
-                padding-top: $gutter-width;
-                padding-bottom: $gutter-width;
+            .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+              padding-top: $gutter-width / $sub-division-unit;
+              padding-bottom: $gutter-width / $sub-division-unit;
             }
-
-            @each $sub-division in nth($placement,2) {
-                $sub-division-class-name: nth($sub-division,1);
-                $sub-division-unit: nth($sub-division,2);
-
-                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
-                  margin-top: $gutter-width / $sub-division-unit;
-                  margin-bottom: $gutter-width / $sub-division-unit;
-                }
-
-                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
-                  padding-top: $gutter-width / $sub-division-unit;
-                  padding-bottom: $gutter-width / $sub-division-unit;
-                }
-            }
+          }
 
         }
 
         @if $position != horizontal and $position != vertical {
 
-            .#{$class-name}-#{$position}-space {
-                margin-#{$position}: $gutter-width;
+          .#{$class-name}-#{$position}-space {
+            margin-#{$position}: $gutter-width;
+          }
+
+          .#{$class-name}-#{$position}-padding {
+            padding-#{$position}: $gutter-width;
+          }
+
+          @each $sub-division in nth($placement,2) {
+            $sub-division-class-name: nth($sub-division,1);
+            $sub-division-unit: nth($sub-division,2);
+
+            .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
+              margin-#{$position}: $gutter-width / $sub-division-unit;
             }
 
-            .#{$class-name}-#{$position}-padding {
-                padding-#{$position}: $gutter-width;
+            .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
+              padding-#{$position}: $gutter-width / $sub-division-unit;
             }
-
-            @each $sub-division in nth($placement,2) {
-                $sub-division-class-name: nth($sub-division,1);
-                $sub-division-unit: nth($sub-division,2);
-
-                .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
-                  margin-#{$position}: $gutter-width / $sub-division-unit;
-                }
-
-                .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
-                  padding-#{$position}: $gutter-width / $sub-division-unit;
-                }
-            }
+          }
 
         }
         
+      }
     }
-}
 
-@mixin generate-visibility-classes ($class-name,$breakpoints) {
-    
-    @each $breakpoint in $breakpoints {
+    @mixin generate-visibility-classes ($class-name,$breakpoints) {
+
+      @each $breakpoint in $breakpoints {
         $loop-class-name: nth($breakpoint,1);
-          .for-#{$loop-class-name} {
+        .for-#{$loop-class-name} {
+          @if $loop-class-name == $class-name {
+            display: block;
+          }
+          @else {
+            display: none;
+          }
+        }
+        table {
+          &.for-#{$loop-class-name} {
             @if $loop-class-name == $class-name {
-                display: block;
+              display: table;
             }
             @else {
-                display: none;
+              display: none;
             }
           }
-        table {
-            &.for-#{$loop-class-name} {
-                @if $loop-class-name == $class-name {
-                    display: table;
-                }
-                @else {
-                    display: none;
-                }
-              }
         }
         tr {
-            &.for-#{$loop-class-name} {
-                @if $loop-class-name == $class-name {
-                    display: table-row;
-                }
-                @else {
-                    display: none;
-                }
-              }
+          &.for-#{$loop-class-name} {
+            @if $loop-class-name == $class-name {
+              display: table-row;
+            }
+            @else {
+              display: none;
+            }
+          }
         }
 
         th, td {
-            &.for-#{$loop-class-name} {
-                @if $loop-class-name == $class-name {
-                    display: table-cell;
-                }
-                @else {
-                    display: none;
-                }
-              }
+          &.for-#{$loop-class-name} {
+            @if $loop-class-name == $class-name {
+              display: table-cell;
+            }
+            @else {
+              display: none;
+            }
+          }
         }
+      }
     }
-}
 
-@mixin generate-grid ($breakpoints) {
+    @mixin generate-grid ($breakpoints) {
 
-    .#{$grid-class-name} {
+      .#{$grid-class-name} {
         width: auto;
         max-width: $grid-max-width;
         margin: 0 auto;
-    }
+      }
 
-    @each $breakpoint in $breakpoints {
-        
+      @each $breakpoint in $breakpoints {
+
         $class-name: nth($breakpoint,1);
         $minimum-width: nth($breakpoint,2);
         $maximum-width: nth($breakpoint,3);
@@ -290,40 +293,189 @@
 
 
         @if $minimum-width and not $maximum-width and not $no-media-query {
-            @media screen and (min-width: $minimum-width) {
-                @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
-                @include generate-grid-divisions ($class-name);
-                @include generate-column-group-container($gutter-width);
-                @include generate-grid-helper-classes($class-name,$gutter-width);
-                @include generate-visibility-classes($class-name,$breakpoints);
-            }
-        }
-
-        @if $minimum-width and $maximum-width and not $no-media-query {
-            @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
-                @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
-                @include generate-grid-divisions ($class-name);
-                @include generate-column-group-container($gutter-width);
-                @include generate-grid-helper-classes($class-name,$gutter-width);
-                @include generate-visibility-classes($class-name,$breakpoints);                
-            }
-        }
-
-        @if not $minimum-width and $maximum-width and not $no-media-query {
-            @media screen and (max-width: $maximum-width) {
-                @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
-                @include generate-grid-divisions ($class-name);
-                @include generate-column-group-container($gutter-width);
-                @include generate-visibility-classes($class-name,$breakpoints);                
-            }
-        }
-
-        @if $no-media-query {
-            @include generate-grid-container ($grid-class-name, $grid-max-width, $gutter-width);
+          @media screen and (min-width: $minimum-width) {
+            @include generate-grid-container ($grid-class-name, $gutter-width);
             @include generate-grid-divisions ($class-name);
             @include generate-column-group-container($gutter-width);
             @include generate-grid-helper-classes($class-name,$gutter-width);
-            @include generate-visibility-classes($class-name,$breakpoints);            
+            @include generate-visibility-classes($class-name,$breakpoints);
+          }
         }
+
+        @if $minimum-width and $maximum-width and not $no-media-query {
+          @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+            @include generate-grid-container ($grid-class-name, $gutter-width);
+            @include generate-grid-divisions ($class-name);
+            @include generate-column-group-container($gutter-width);
+            @include generate-grid-helper-classes($class-name,$gutter-width);
+            @include generate-visibility-classes($class-name,$breakpoints);                
+          }
+        }
+
+        @if not $minimum-width and $maximum-width and not $no-media-query {
+          @media screen and (max-width: $maximum-width) {
+            @include generate-grid-container ($grid-class-name, $gutter-width);
+            @include generate-grid-divisions ($class-name);
+            @include generate-column-group-container($gutter-width);
+            @include generate-visibility-classes($class-name,$breakpoints);                
+          }
+        }
+
+        @if $no-media-query {
+          @include generate-grid-container ($grid-class-name, $gutter-width);
+          @include generate-grid-divisions ($class-name);
+          @include generate-column-group-container($gutter-width);
+          @include generate-grid-helper-classes($class-name,$gutter-width);
+          @include generate-visibility-classes($class-name,$breakpoints);            
+        }
+      }
     }
+
+// --------------------------------------------------------------------------------
+
+// generates the grid column grouping container
+@mixin generate-flex-column-group-container {
+
+  .#{$grid-column-group-class-name} {     
+
+      @include experimental-value(display, flex, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      @include experimental(flex-flow, row wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+
+      &.reverse {
+        @include experimental(flex-flow, row-reverse wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      }
+
+      &.vertical {
+        @include experimental(flex-flow, column wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      }
+
+      &.vertical.reverse {
+        @include experimental(flex-flow, column-reverse wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      }
+  }
 }
+
+@mixin generate-flex-column-group-container-gutters($class-name,$gutter-width) {
+  .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
+      margin-left: $gutter-width * -1;
+    & > [class*=#{$class-name}-],
+    & > .cell-auto {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    }
+  }
+  .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
+      margin-left: ($gutter-width / 2) * -1;
+    & > [class*=#{$class-name}-],
+    & > .cell-auto {
+      padding-left: ($gutter-width / 2);
+      margin-bottom: ($gutter-width / 2);
+    }      
+  }
+  .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
+      margin-left: ($gutter-width / 4) * -1;
+    & > [class*=#{$class-name}-],
+    & > .cell-auto {
+      padding-left: ($gutter-width / 4);
+      margin-bottom: ($gutter-width / 4);
+    }   
+  }
+}
+
+@mixin generate-flex-grid-divisions ($class-name) {
+
+  // iteration counter
+  $i: 5;
+
+  // define the step size (this is the minimum column width percentage)
+  $step-size: 5;
+
+  [class*=#{$class-name}-] {
+    float: none;
+  }
+  .cell-auto,
+  .#{$class-name}-auto
+  {
+    @include experimental(flex-basis, auto, -moz, -webkit, not -o, not -ms, not -khtml, official);        
+  }
+
+  // iterate to generate the width classes
+  @while $i <= 100 {
+    // generate the 33% width
+    @if $i > 30 and $i <= 35 {
+      .#{$class-name}-33 {
+        // width: 33.33%;
+        @include experimental(flex-basis, 33.33%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        min-height: 100%;  
+      }
+    }
+    
+    // generate the 66% width
+    @if $i > 65 and $i <= 70 {
+      .#{$class-name}-66 {
+        // width: 66.66%;
+        @include experimental(flex-basis, 66.66%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        min-height: 100%;
+      }
+    }
+    
+    // generate the 5% step widths
+    .#{$class-name}-#{$i} {
+      // width: $i * 1%;
+      @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      min-height: 100%;      
+    }
+
+    // increment the counter
+    $i: $i + $step-size;
+  }
+}
+// #########
+
+@mixin generate-flex-grid ($breakpoints) {
+
+  html.flexbox {
+
+    .#{$grid-class-name} {
+      width: auto;
+      max-width: $grid-max-width;
+      margin: 0 auto;
+    }
+
+    @include generate-flex-column-group-container;
+
+    @each $breakpoint in $breakpoints {
+
+      $class-name: nth($breakpoint,1);
+      $minimum-width: nth($breakpoint,2);
+      $maximum-width: nth($breakpoint,3);
+      $gutter-width: nth($breakpoint,4);
+      $no-media-query: nth($breakpoint,5);
+
+      @if $minimum-width and not $maximum-width {
+        @media screen and (min-width: $minimum-width) {
+          @include generate-grid-container($grid-class-name, $gutter-width);
+          @include generate-flex-column-group-container-gutters($class-name,$gutter-width);
+          @include generate-flex-grid-divisions($class-name);
+        }
+      }
+
+      @if $minimum-width and $maximum-width {
+        @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+          @include generate-grid-container($grid-class-name, $gutter-width);
+          @include generate-flex-column-group-container-gutters($class-name,$gutter-width);
+          @include generate-flex-grid-divisions($class-name);             
+        }
+      }
+
+      @if not $minimum-width and $maximum-width {
+        @media screen and (max-width: $maximum-width) {
+          @include generate-grid-container($grid-class-name, $gutter-width);
+          @include generate-flex-column-group-container-gutters($class-name,$gutter-width);          
+          @include generate-flex-grid-divisions($class-name);              
+        }
+      }
+    }
+  }
+}
+

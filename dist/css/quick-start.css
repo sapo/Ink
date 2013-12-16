@@ -19,18 +19,18 @@
  *  
  */
 /* for tiny screens */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
   /* your css for tiny screens goes here ... */
 }
 /* for small screens */
-@media screen and (min-width: 401px) and (max-width: 599px) {
+@media screen and (min-width: 321px) and (max-width: 600px) {
   /* your css for small screens goes here ... */
 }
 /* for medium screens */
-@media screen and (min-width: 600px) and (max-width: 960px) {
+@media screen and (min-width: 601px) and (max-width: 960px) {
   /* your css for medium screens goes here ... */
 }
 /* for extra-large screens */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1201px) {
   /* your css for extra-large screens goes here ... */
 }

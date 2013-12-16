@@ -23,9 +23,9 @@ $grid-max-width: 1440px;
  */
 
 $grid-breakpoints: (
-    ('tiny', null, 400px, 1.5em, false),
-    ('small', 401px, 599px, 1.75em, false),
-    ('medium', 600px, 960px, 2.25em, false),
-    ('large', 961px, 1159, 2em, true),
-    ('extra-large', 1200px, null, 2.25em, false)
+    ('tiny', null, 320px, 1em, false),
+    ('small', 321px, 600px, 1.25em, false),
+    ('medium', 601px, 960px, 1.5em, false),
+    ('large', 961px, 1200px, 1.75em, true),
+    ('extra-large', 1201px, null, 2em, false)
 );
