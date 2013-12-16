@@ -2,42 +2,47 @@
  * Ink class names prefix
  * Used in all of Inks components root elements
  */
-$ink-classes-prefix				: ink-;
+$ink-classes-prefix             : ink-;
 
 /**
  * Grid class names
  */
-$grid-class-name				: #{$ink-classes-prefix}grid;
-$grid-column-group-class-name	: "column-group";
-$grid-gutters-class-name		: "gutters";
-$grid-half-gutters-class-name	: "half-gutters";
+$grid-class-name                : #{$ink-classes-prefix}grid;
+$grid-column-group-class-name   : "column-group";
+$grid-gutters-class-name        : "gutters";
+$grid-half-gutters-class-name   : "half-gutters";
 $grid-quarter-gutters-class-name: "quarter-gutters";
 
 /**
  * Alerts class names
  */
-$alert-class-name       		: #{$ink-classes-prefix}alert;
+$alert-class-name               : #{$ink-classes-prefix}alert;
 
 /**
  * Badges class names
  */
-$badge-class-name				: #{$ink-classes-prefix}badge;
+$badge-class-name               : #{$ink-classes-prefix}badge;
 
 /**
  * Buttons class names
  */
-$button-class-name				: #{$ink-classes-prefix}button;
-$button-class-name				: #{$ink-classes-prefix}button;
-$navigation-class-name			: #{$ink-classes-prefix}navigation;
-$form-class-name				: #{$ink-classes-prefix}form;
-$table-class-name				: #{$ink-classes-prefix}table;
+$button-class-name              : #{$ink-classes-prefix}button;
+$button-class-name              : #{$ink-classes-prefix}button;
+$navigation-class-name          : #{$ink-classes-prefix}navigation;
+$form-class-name                : #{$ink-classes-prefix}form;
+$table-class-name               : #{$ink-classes-prefix}table;
 
 /**
  * Forms class names
  */
-$form-class-name            	: #{$ink-classes-prefix}ink-form;
+$form-class-name                : #{$ink-classes-prefix}ink-form;
 
 /**
  * Labels class names
  */
-$label-class-name				: #{$ink-classes-prefix}label;
+$label-class-name               : #{$ink-classes-prefix}label;
+
+/**
+ * Tables class names
+ */
+$table-class-name               : #{$ink-classes-prefix}table

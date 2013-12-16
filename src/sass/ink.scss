@@ -24,6 +24,7 @@
 @import "config/forms";
 @import "config/grid";
 @import "config/labels";
+@import "config/tables";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/buttons";
@@ -35,15 +36,16 @@
 // IMPORT MODULE DEFINITION FILES
 @import "modules/alerts";
 @import "modules/badges";
-@import "modules/forms";
 @import "modules/buttons";
 @import "modules/forms";
 @import "modules/grid";
 @import "modules/labels";
 @import "modules/reset";
+@import "modules/tables";
 
 // IMPORT THEMING FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "theme/alerts";
 @import "theme/badges";
 @import "theme/buttons";
 @import "theme/labels";
+@import "theme/tables";
