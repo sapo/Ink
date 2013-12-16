@@ -58,7 +58,7 @@
         vertical-align: middle;
 
         &:focus {
-            //#ink > #forms > .input_focus ($focusBlurSize, $focusColor);
+            @include input-focus($focusBlurSize, $focusColor);
             outline: 0 none;
         }
     }
@@ -258,7 +258,7 @@
             &.error {
 
                 input, textarea, select {
-                    //#ink > #forms > .input_focus (@focusBlurSize, @errorColor);
+                    @include input-focus($focusBlurSize, $errorColor);
                     border: 1px solid $errorColor;
                 }
 
@@ -271,7 +271,7 @@
 
             &.warning {
                 input, textarea, select {
-                    //#ink > #forms > .input_focus (@focusBlurSize, @warningColor);
+                    @include input-focus($focusBlurSize, $warningColor);
                     border: 1px solid $warningColor;
                 }
 

@@ -1,0 +1,27 @@
+// Ink
+//
+// A set of tools for quick development of web interfaces.
+//
+// @package    Ink
+// @subpackage Mixins
+// @author     Sapo Ink Team
+// @license    http://opensource.org/licenses/MIT MIT
+// @link       http://ink.sapo.pt
+// @since      Version 3.0.0
+
+// ---------------------------------------------------------------------------------------------
+
+// Element spacing
+// 
+// @package    Ink
+// @subpackage Mixins
+// @category   Forms
+// @author     Sapo Ink Team
+
+@mixin input-focus($fb, $fc) {
+
+    outline: none;
+    border-color: opacify($fc, 0.3);
+    @include box-shadow(rgba(0, 0, 0, 0.1) 0 1px 3px inset, $fc  0 0 $fb);
+
+}
