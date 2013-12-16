@@ -35,6 +35,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             offsetBottom: ['Integer', 0],
             offsetTop: ['Integer', 0],
             topElement: ['Element', null],
+            wrapperClass: ['String', 'ink-sticky-wrapper'],
             bottomElement: ['Element', null],
             activateInLayouts: ['String', 'medium,large']
         }, options || {}, this._rootElement );
@@ -42,15 +43,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         // Because String#indexOf is compatible with lt IE8 but not Array#indexOf
         this._options.activateInLayouts = this._options.activateInLayouts.toString();
 
-        // Save a reference to getComputedStyle
-        var computedStyle = window.getComputedStyle ?
-            window.getComputedStyle(this._rootElement, null) :
-            this._rootElement.currentStyle;
+        this._dims = null;  // force a recalculation of the dimensions later
 
-        this._dims = {
-            height: computedStyle.height,
-            width: computedStyle.width
-        };
+        this._wrapper = Element.create('div', { className: this._options.wrapperClass });
+        Element.wrap(this._rootElement, this._wrapper);
 
         this._init();
     };
@@ -63,8 +59,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @method _init
          * @private
          */
-        _init: function(){
-            Event.observe( document, 'scroll', Ink.bindEvent(Event.throttle(this._onScroll, 100), this) );
+        _init: function() {
+            var scrollTarget = document.addEventListener ? document : window;
+            Event.observe( scrollTarget, 'scroll', Ink.bindEvent(Event.throttle(this._onScroll, 100), this) );
             Event.observe( window, 'resize', Ink.bindEvent(Event.throttle(this._onResize, 100), this) );
 
             this._calculateOriginalSizes();
@@ -92,13 +89,15 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
         _onScroll: function(){
             var scrollHeight = Element.scrollHeight();
 
+            var dims = this._getDims();
+
             var unstick = this._isDisabledInLayout() ||
-                scrollHeight <= this._options.originalTop-this._options.originalOffsetTop;
+                scrollHeight <= dims.top - this._options.originalOffsetTop;
 
             if( unstick ) {
                 // We're on top, no sticking. position:static is the "normal" position.
                 this._unstick();
-            } else if(document.body.scrollHeight-(scrollHeight+parseInt(this._dims.height,10)) >= this._options.offsetBottom ){
+            } else if ( document.body.scrollHeight-(scrollHeight+parseInt(dims.height,10)) >= this._options.offsetBottom ){
                 // Stick to screen!
                 this._stickTo('screen');
             } else {
@@ -117,15 +116,13 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             var scrollHeight = Element.scrollHeight();
 
             var style = this._rootElement.style;
+            var dims = this._getDims();
 
-            style.position = 'static'; // [todo] this should be a class toggle
-            style.width = null;
-            var left = this._rootElement.getBoundingClientRect().left;
-            var width = Element.outerDimensions(this._rootElement)[0]
             style.position = 'fixed'; // [todo] this should be a class toggle
-
-            style.left = left + 'px';
-            style.width = width + 'px';
+            this._wrapper.style.height = dims.height + 'px';
+            style.height = dims.height + 'px';
+            style.left = dims.left + 'px';
+            style.width = dims.width + 'px';
 
             if (where === 'screen') {
                 style.bottom = 'auto';
@@ -155,8 +152,44 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onResize: function(){
+            this._dims = null;  // Blow the cache so _getDims recalculates
             this._calculateOriginalSizes();
             this._calculateOffsets();
+        },
+
+        /** TODO better name.
+         * Recalculate the "dims" cache, or get it.
+         *
+         * The "dims" cache is to be set to null when the element is liable to have changed dimensions
+         *
+         * (eg: on resize)
+         *
+         **/
+        _getDims: function () {
+            if (this._dims !== null) { return this._dims; }
+
+            var style = this._rootElement.style;
+
+            // We unstick the sticky so we can measure.
+            var oldPosition = style.position;
+            var oldWidth = style.width;
+
+            style.position = 'static'; // [todo] this should be a class toggle
+            style.width = null;
+
+            var dimensionsInStatic = Element.outerDimensions(this._rootElement);
+            var rect = this._wrapper.getBoundingClientRect();
+            this._dims = {
+                height: dimensionsInStatic[1],
+                width: dimensionsInStatic[0],
+                left: rect.left + Element.scrollWidth(),
+                top: rect.top + Element.scrollHeight()
+            };
+
+            style.position = oldPosition;
+            style.width = oldWidth;
+
+            return this._dims;
         },
 
         /**
@@ -198,13 +231,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _calculateOriginalSizes: function(){
+            var dims = this._getDims();
             if( typeof this._options.originalOffsetTop === 'undefined' ){
                 this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
                 this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
             }
             this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
             this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
-            this._options.originalWidth = parseInt(this._dims.width, 10) || 0;
+            this._options.originalWidth = parseInt(dims.width, 10) || 0;
         }
 
     };
