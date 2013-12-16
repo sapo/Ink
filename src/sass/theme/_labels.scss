@@ -1,0 +1,42 @@
+.#{$label-class-name} {
+    color: $white;
+    font-weight: bold;
+    @include border-radius($border-radius);
+    @include text-shadow(rgba(0, 0, 0, 0.25) 0 1px 0);
+
+    &.success { 
+        background-color: $success-bg;
+        &.invert {
+            color: $success-bg;
+            background-color: transparent;
+            @include text-shadow(none);
+        }
+    }
+
+    &.warning { 
+        background-color: $warning-bg; 
+        &.invert {
+            color: $warning-bg;
+            background-color: transparent;
+            @include text-shadow(none);
+        }
+    }
+
+    &.error { 
+        background-color: $error-bg;
+        &.invert {
+            color: $error-bg;
+            background-color: transparent;
+            @include text-shadow(none);
+        }
+    }
+    
+    &.info { 
+        background-color: $info-bg;
+        &.invert {
+            color: $info-bg;
+            background-color: transparent;
+            @include text-shadow(none);
+        }
+    }
+}
