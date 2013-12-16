@@ -45,6 +45,16 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
         this._dims = null;  // force a recalculation of the dimensions later
 
+        this._options.offsetTop = parseInt(this._options.offsetTop, 10) || 0;
+        this._options.offsetBottom = parseInt(this._options.offsetBottom, 10) || 0;
+
+        if (this._options.topElement) {
+            this._options.topElement = Common.elOrSelector(this._options.topElement, 'Top Element');
+        }
+        if (this._options.bottomElement) {
+            this._options.bottomElement = Common.elOrSelector(this._options.bottomElement, 'Sticky bottom Element');
+        }
+
         this._wrapper = Element.create('div', { className: this._options.wrapperClass });
         Element.wrap(this._rootElement, this._wrapper);
 
@@ -61,13 +71,10 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         _init: function() {
             var scrollTarget = document.addEventListener ? document : window;
-            Event.observe( scrollTarget, 'scroll', Ink.bindEvent(Event.throttle(this._onScroll, 100), this) );
+            this._onScroll = Ink.bind(Event.throttle(this._onScroll, 100), this);  // Because this is called directly.
+            Event.observe( scrollTarget, 'scroll', this._onScroll );
             Event.observe( window, 'resize', Ink.bindEvent(Event.throttle(this._onResize, 100), this) );
-
-            this._calculateOriginalSizes();
-
-            this._calculateOffsets();
-
+            this._onScroll();
         },
 
         /**
@@ -87,17 +94,32 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _onScroll: function(){
+            var dims = this._getDims();
             var scrollHeight = Element.scrollHeight();
 
-            var dims = this._getDims();
-
             var unstick = this._isDisabledInLayout() ||
-                scrollHeight <= dims.top - this._options.originalOffsetTop;
+                scrollHeight <= dims.top - this._options.offsetTop ||
+                (this._options.topElement && this._options.topElement.getBoundingClientRect().bottom + this._options.offsetTop > 0);
 
             if( unstick ) {
                 // We're on top, no sticking. position:static is the "normal" position.
                 this._unstick();
-            } else if ( document.body.scrollHeight-(scrollHeight+parseInt(dims.height,10)) >= this._options.offsetBottom ){
+                return;
+            }
+
+            // If we stick it now, what will be its boundingClientRect.bottom ?
+            var bottomOfSticky = this._options.offsetTop + dims.height + Element.scrollHeight();
+            var maxBottomOfSticky = document.body.scrollHeight;
+
+            if (this._options.bottomElement) {
+                maxBottomOfSticky =
+                    this._options.bottomElement.getBoundingClientRect().top +
+                    Element.scrollHeight();
+            }
+
+            maxBottomOfSticky -= this._options.offsetBottom;
+
+            if ( bottomOfSticky < maxBottomOfSticky ) {
                 // Stick to screen!
                 this._stickTo('screen');
             } else {
@@ -113,8 +135,6 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _stickTo: function (where) {
-            var scrollHeight = Element.scrollHeight();
-
             var style = this._rootElement.style;
             var dims = this._getDims();
 
@@ -126,11 +146,20 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
 
             if (where === 'screen') {
                 style.bottom = 'auto';
-                style.top = this._options.originalOffsetTop + 'px';
+                style.top = this._options.offsetTop + 'px';
             } else if (where === 'bottom') {
-                // was: var distanceFromBottomOfScreenToBottomOfDocument
-                var toBottom = document.body.scrollHeight - (document.documentElement.clientHeight + scrollHeight);
-                style.bottom = this._options.offsetBottom - toBottom + 'px';
+                var bottom = this._options.offsetBottom;
+
+                if (this._options.bottomElement) {
+                    bottom += Element.pageHeight() -
+                        Element.offsetTop(this._options.bottomElement);
+                }
+
+                // Distance between bottom of viewport and bottom of document
+                var bottomOfViewport = Element.scrollHeight() + Element.viewportHeight();
+                var toBottomOfDocument = Element.pageHeight() - bottomOfViewport;
+
+                style.bottom = bottom - toBottomOfDocument + 'px';
                 style.top = 'auto';
             }
         },
@@ -153,8 +182,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         _onResize: function(){
             this._dims = null;  // Blow the cache so _getDims recalculates
-            this._calculateOriginalSizes();
-            this._calculateOffsets();
+            this._onScroll();
         },
 
         /** TODO better name.
@@ -190,57 +218,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             style.width = oldWidth;
 
             return this._dims;
-        },
-
-        /**
-         * On each resizing (and in the beginning) the component recalculates the offsets, since
-         * the top and bottom element heights might have changed.
-         *
-         * @method _calculateOffsets
-         * @private
-         */
-        _calculateOffsets: function(){
-            /**
-             * Calculating the offset top
-             */
-            if( this._options.topElement ){
-                var topElementHeight = Element.elementHeight( this._options.topElement );
-                var topElementTop = Element.elementTop( this._options.topElement );
-
-                this._options.offsetTop = topElementHeight + topElementTop + parseInt(this._options.originalOffsetTop,10);
-            }
-
-            /**
-             * Calculating the offset bottom
-             */
-            if( this._options.bottomElement ){
-                var bottomElementHeight = Element.elementHeight(this._options.bottomElement);
-
-                this._options.offsetBottom = bottomElementHeight + this._options.originalOffsetBottom;
-            }
-
-            this._onScroll();
-
-        },
-
-        /**
-         * Function to calculate the 'original size' of the element.
-         * It's used in the begining (_init method) and when a scroll happens
-         *
-         * @method _calculateOriginalSizes
-         * @private
-         */
-        _calculateOriginalSizes: function(){
-            var dims = this._getDims();
-            if( typeof this._options.originalOffsetTop === 'undefined' ){
-                this._options.originalOffsetTop = parseInt(this._options.offsetTop,10);
-                this._options.originalOffsetBottom = parseInt(this._options.offsetBottom,10);
-            }
-            this._options.originalTop = parseInt(this._rootElement.offsetTop,10);
-            this._options.originalLeft = parseInt(this._rootElement.offsetLeft,10);
-            this._options.originalWidth = parseInt(dims.width, 10) || 0;
         }
-
     };
 
     return Sticky;
