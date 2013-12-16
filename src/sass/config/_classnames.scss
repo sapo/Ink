@@ -19,7 +19,7 @@ $grid-quarter-gutters-class-name: "quarter-gutters";
 $alert-class-name       		: #{$ink-classes-prefix}alert;
 
 /**
- * Alerts class names
+ * Badges class names
  */
 $badge-class-name				: #{$ink-classes-prefix}badge;
 
@@ -32,6 +32,10 @@ $navigation-class-name			: #{$ink-classes-prefix}navigation;
 $form-class-name				: #{$ink-classes-prefix}form;
 $table-class-name				: #{$ink-classes-prefix}table;
 
+/**
+ * Forms class names
+ */
+$form-class-name            	: #{$ink-classes-prefix}ink-form;
 
 /**
  * Labels class names
