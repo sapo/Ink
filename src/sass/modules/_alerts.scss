@@ -1,0 +1,48 @@
+.#{$alert-class-name} {
+    
+    &.basic,
+    &.block {
+        font-size: .938em;
+        margin: 1em 0 ;
+        position:relative;
+    }
+
+    &.basic {
+        padding:1em;
+
+        .ink-close {
+            top:.55em; *top:.2em;
+        }
+    }
+    
+    &.block {
+        font-size: 1em;
+
+        > h4 {
+            padding:1em;
+            font-size: .938em;
+            line-height: 1.5;
+            margin:0; 
+        }
+
+        p, ul, ol {
+            padding: 0 1em 1em;
+        }
+
+        ul {
+            list-style: inside ;
+        }
+    }
+
+    .ink-dismiss {
+        position: absolute;
+        line-height: 0.56em;
+        font-size: 1.8em;
+        padding:5px;
+        border: none;
+        background:none;
+        top:.5em; 
+        *top:.2em; 
+        right:.4em;
+    }
+}
