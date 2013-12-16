@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /**
  * Ink
  *
@@ -64,6 +65,8 @@
  * @param color $button-text-color
  * @param color $button-text-shadow-color
  */
+=======
+>>>>>>> Stashed changes
 /* normalize.css v2.1.3 | MIT License | git.io/normalize */
 /* normalize.scss v2.1.3 | MIT/GPLv2 License | bit.ly/normalize-with-compass */
 /* ==========================================================================
@@ -383,6 +386,7 @@ img {
   border: 0;
   /* Improve image quality when scaled in IE 7. */
   -ms-interpolation-mode: bicubic;
+<<<<<<< Updated upstream
 }
 
 /**
@@ -392,6 +396,17 @@ svg:not(:root) {
   overflow: hidden;
 }
 
+=======
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+>>>>>>> Stashed changes
 /* ==========================================================================
    Figures
    ========================================================================== */
@@ -846,10 +861,66 @@ table {
   content: "";
 }
 
+<<<<<<< Updated upstream
 .ink-grid {
   width: auto;
   max-width: 1440px;
   margin: 0 auto;
+=======
+.status-indicator {
+  position: relative;
+  color: transparent;
+  display: block;
+  float: right;
+  width: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+  font-family: FontAwesome;
+  color: white;
+  margin: 0.4em 0em 0.4em 0.4em;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+.status-indicator.error {
+  background: #c91111;
+}
+.status-indicator.error:after {
+  content: "\f00d";
+  text-shadow: 0 -1px 0 #b40f0f;
+}
+.status-indicator.error:before {
+  border-right: 10px solid #c91111;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.status-indicator.success {
+  background: #4a9b17;
+}
+.status-indicator.success:after {
+  content: "\f00c";
+  text-shadow: 0 -1px 0 #469315;
+}
+.status-indicator.success:before {
+  border-right: 10px solid #4a9b17;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.status-indicator.success:after, .status-indicator.error:after {
+  display: block;
+  width: 104%;
+  text-align: center;
+}
+.status-indicator.success:before, .status-indicator.error:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -6px;
+  top: 0.5em;
+>>>>>>> Stashed changes
 }
 
 @media screen and (max-width: 400px) {
