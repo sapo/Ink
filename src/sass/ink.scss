@@ -57,13 +57,13 @@
 @import "modules/typography";
 
 // IMPORT THEMING FILES (THESE CONTAIN HELPER FUNCTIONS)
-@import "theme/alerts";
-@import "theme/badges";
-@import "theme/buttons";
-@import "theme/labels";
-@import "theme/nav.breadcrumbs";
-@import "theme/nav.dropdown";
-@import "theme/nav.menu";
-@import "theme/nav.pagination";
-@import "theme/nav.pills";
-@import "theme/tables";
+@import "themes/alerts";
+@import "themes/badges";
+@import "themes/buttons";
+@import "themes/labels";
+@import "themes/nav.breadcrumbs";
+@import "themes/nav.dropdown";
+@import "themes/nav.menu";
+@import "themes/nav.pagination";
+@import "themes/nav.pills";
+@import "themes/tables";
