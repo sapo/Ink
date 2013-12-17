@@ -1,0 +1,14 @@
+@mixin ink-font-stack ($style: sans) {
+
+    @if $style == sans {
+
+        font-family: $serif-font-stack;
+
+    }
+
+    @if $style == serif {
+
+        font-family: $sans-serif-font-stack;
+
+    }
+}
