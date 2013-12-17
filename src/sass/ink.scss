@@ -25,6 +25,7 @@
 @import "config/forms";
 @import "config/grid";
 @import "config/labels";
+@import "config/navigation";
 @import "config/tables";
 @import "config/typography";
 
@@ -32,6 +33,7 @@
 @import "mixins/buttons";
 @import "mixins/grid";
 @import "mixins/forms";
+@import "mixins/navigation";
 @import "mixins/spacing";
 @import "mixins/typography";
 @import "mixins/utils";
@@ -44,6 +46,13 @@
 @import "modules/forms";
 @import "modules/grid";
 @import "modules/fonts";
+@import "modules/labels";
+@import "modules/nav.core";
+@import "modules/nav.breadcrumbs";
+@import "modules/nav.dropdown";
+@import "modules/nav.pagination";
+@import "modules/nav.pills";
+@import "modules/nav.menu";
 @import "modules/tables";
 @import "modules/typography";
 
@@ -52,4 +61,9 @@
 @import "theme/badges";
 @import "theme/buttons";
 @import "theme/labels";
+@import "theme/nav.breadcrumbs";
+@import "theme/nav.dropdown";
+@import "theme/nav.menu";
+@import "theme/nav.pagination";
+@import "theme/nav.pills";
 @import "theme/tables";
