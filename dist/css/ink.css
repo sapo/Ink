@@ -1780,57 +1780,6 @@ h6 + div,
 section + div {
   margin-top: 1.5em;
 }
-h1 + h1,
-h1 + h2,
-h1 + h3,
-h1 + h4,
-h1 + h5,
-h1 + h6,
-h1 + section,
-h2 + h1,
-h2 + h2,
-h2 + h3,
-h2 + h4,
-h2 + h5,
-h2 + h6,
-h2 + section,
-h3 + h1,
-h3 + h2,
-h3 + h3,
-h3 + h4,
-h3 + h5,
-h3 + h6,
-h3 + section,
-h4 + h1,
-h4 + h2,
-h4 + h3,
-h4 + h4,
-h4 + h5,
-h4 + h6,
-h4 + section,
-h5 + h1,
-h5 + h2,
-h5 + h3,
-h5 + h4,
-h5 + h5,
-h5 + h6,
-h5 + section,
-h6 + h1,
-h6 + h2,
-h6 + h3,
-h6 + h4,
-h6 + h5,
-h6 + h6,
-h6 + section,
-section + h1,
-section + h2,
-section + h3,
-section + h4,
-section + h5,
-section + h6,
-section + section {
-  margin-top: 1em;
-}
 div + address,
 div + article,
 div + aside,
@@ -7080,8 +7029,6 @@ html.ink-modal-is-open .ink-calendar {
 }
 img {
   width: auto;
-  max-width: 100%;
-  max-height: 100%;
   vertical-align: top;
 }
 figure {
