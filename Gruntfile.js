@@ -269,7 +269,7 @@ module.exports = function(grunt) {
     compass: {                  
       css: {                   
         options: {   
-          config: "compass.config.rb"
+          config: "config.rb"
         }
       },
     },

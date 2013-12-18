@@ -15,6 +15,18 @@ body {
     font-family: $serif-font-stack;
 }
 
+.monospace {
+    font-family: $mono-font-stack;
+}
+
+.condensed {
+    font-family: $condensed-font-stack;
+}
+
+.slab {
+    font-family: $slab-font-stack;
+}
+
 a {
     color: $link-color; 
     text-decoration: none;
