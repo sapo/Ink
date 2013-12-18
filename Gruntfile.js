@@ -269,12 +269,7 @@ module.exports = function(grunt) {
     compass: {                  
       css: {                   
         options: {   
-          sassDir: 'src/sass',
-          cssDir: 'dist/css',
-          outputStyle: 'expanded',
-          noLineComments: true,
-          relativeAssets: true,
-          fontsDir: '<%= ink.folders.css.dist %>../fonts'
+          config: "compass.config.rb"
         }
       },
     },

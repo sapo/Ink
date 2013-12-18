@@ -23,10 +23,11 @@
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/utils";
 @import "mixins/grid";
+@import "mixins/flex-grid";
 
 // IMPORT MODULE DEFINITION FILES
 @import "modules/reset";
-@import "modules/flexgrid";
+@import "modules/flex-grid";
 
 // IMPORT THEMING FILES (THESE CONTAIN HELPER FUNCTIONS)
 // @import "theme/buttons";
