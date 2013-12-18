@@ -3,7 +3,7 @@
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1'], function(Common, Event, Element) {
+Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Dom.Css_1'], function(Common, Event, Element, Css) {
     'use strict';
 
     /**
@@ -15,10 +15,14 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}     options.offsetBottom       Number of pixels of distance from the bottomElement.
-     *     @param {Number}     options.offsetTop          Number of pixels of distance from the topElement.
-     *     @param {String}     options.topElement         CSS Selector that specifies a top element with which the component could collide.
-     *     @param {String}     options.bottomElement      CSS Selector that specifies a bottom element with which the component could collide.
+     *     @param {Number}     [options.offsetBottom=0]    Number of pixels of distance from the bottomElement.
+     *     @param {Number}     [options.offsetTop=0]       Number of pixels of distance from the topElement.
+     *     @param {Boolean}    [options.inlineDimensions=true] Whether to set "style.height" and "style.width" in the stuck element. Turn this off when your `stickyClass` has its own height and width and you don't want this to be dealt with through javascript.
+     *     @param {Boolean}    [options.inlinePosition=true] Whether to set "style.left" in the stuck element. Turn this off when your `stickyClass` has its own "left" position and you don't want this to be dealt with through javascript.
+     *     @param {String}     [options.wrapperClass="ink-sticky-wrapper"] Css class for the wrapper element.
+     *     @param {String}     [options.stickyClass="ink-sticky-stuck"] Css class for sticking the sticky to the screen. Add your own "stuck" class to define your own sticky behaviour.
+     *     @param {String}     [options.topElement]        CSS Selector that specifies a top element with which the component could collide.
+     *     @param {String}     [options.bottomElement]     CSS Selector that specifies a bottom element with which the component could collide.
      *     @param {Array|String} [options.activateInLayouts='medium,large'] Layouts in which the sticky behaviour is present. Pass an array or comma-separated string.
      * @example
      *      <script>
@@ -36,6 +40,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             offsetTop: ['Integer', 0],
             topElement: ['Element', null],
             wrapperClass: ['String', 'ink-sticky-wrapper'],
+            stickyClass: ['String', 'ink-sticky-stuck'],
+            inlineDimensions: ['Boolean', true],
+            inlinePosition: ['Boolean', true],
             bottomElement: ['Element', null],
             activateInLayouts: ['String', 'medium,large']
         }, options || {}, this._rootElement );
@@ -71,7 +78,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          */
         _init: function() {
             var scrollTarget = document.addEventListener ? document : window;
-            this._onScroll = Ink.bind(Event.throttle(this._onScroll, 100), this);  // Because this is called directly.
+            this._onScroll = Ink.bind(Event.throttle(this._onScroll, 33), this);  // Because this is called directly.
             Event.observe( scrollTarget, 'scroll', this._onScroll );
             Event.observe( window, 'resize', Ink.bindEvent(Event.throttle(this._onResize, 100), this) );
             this._onScroll();
@@ -84,7 +91,9 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _isDisabledInLayout: function () {
-            return this._options.activateInLayouts.indexOf(Common.currentLayout()) === -1;
+            var currentLayout = Common.currentLayout();
+            if (!currentLayout) { return false; }
+            return this._options.activateInLayouts.indexOf(currentLayout) === -1;
         },
 
         /**
@@ -138,22 +147,23 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             var style = this._rootElement.style;
             var dims = this._getDims();
 
-            style.position = 'fixed'; // [todo] this should be a class toggle
+            Css.addClassName(this._rootElement, this._options.stickyClass);
             this._wrapper.style.height = dims.height + 'px';
-            style.height = dims.height + 'px';
+
+            this._inlineDimensions(dims.height + 'px', dims.width + 'px');
+
+            if (this._options.inlinePosition === false) {
+                return;
+            }
+
             style.left = dims.left + 'px';
-            style.width = dims.width + 'px';
 
             if (where === 'screen') {
-                style.bottom = 'auto';
+                style.bottom = null;
                 style.top = this._options.offsetTop + 'px';
             } else if (where === 'bottom') {
-                var bottom = this._options.offsetBottom;
-
-                if (this._options.bottomElement) {
-                    bottom += Element.pageHeight() -
-                        Element.offsetTop(this._options.bottomElement);
-                }
+                // Distance between bottom of sticky and bottom of document
+                var bottom = this._getBottomOffset();
 
                 // Distance between bottom of viewport and bottom of document
                 var bottomOfViewport = Element.scrollHeight() + Element.viewportHeight();
@@ -170,8 +180,23 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _unstick: function () {
-            this._rootElement.style.position = 'static';
-            this._rootElement.style.width = null;
+            Css.removeClassName(this._rootElement, this._options.stickyClass);
+            // deinline dimensions of our root element
+            this._inlineDimensions(null, null);
+
+            // deinline the position of our root element
+            if (this._options.inlinePosition) {
+                this._rootElement.style.left = null;
+                this._rootElement.style.top = null;
+                this._rootElement.style.bottom = null;
+            }
+
+            // deinline dimensions of wrapper
+            this._wrapper.style.height = null;
+            this._wrapper.style.width = null;
+
+            // Break the "getDims" cache
+            this._dims = null;
         },
 
         /**
@@ -185,7 +210,7 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             this._onScroll();
         },
 
-        /** TODO better name.
+        /**
          * Recalculate the "dims" cache, or get it.
          *
          * The "dims" cache is to be set to null when the element is liable to have changed dimensions
@@ -218,6 +243,34 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
             style.width = oldWidth;
 
             return this._dims;
+        },
+
+        /**
+         * Set style.height and style.width, but not if options.inlineDimensions === false
+         *
+         * @method _inlineDimensions
+         * @private
+         */
+        _inlineDimensions: function (height, width) {
+            if (this._options.inlineDimensions) {
+                this._rootElement.style.height = height;
+                this._rootElement.style.width = width;
+            }
+        },
+
+        /**
+         * Get the distance between the bottom of the element and the bottom of the page
+         *
+         * @method _getBottomOffset
+         * @private
+         */
+        _getBottomOffset: function () {
+            var bottom = this._options.offsetBottom;
+            if (this._options.bottomElement) {
+                bottom += Element.pageHeight() -
+                    Element.offsetTop(this._options.bottomElement);
+            }
+            return bottom;
         }
     };
 
