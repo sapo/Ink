@@ -19,9 +19,10 @@ Thumbs.db
 
 
 node_modules
-
+npm-debug.log
 .sass-cache
 src/js/builds
 src/js/report
 src/js/serverUtils/moduleDirs.json
 src/js/serverUtils/moduleFiles.json
+
