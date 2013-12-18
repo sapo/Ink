@@ -4,7 +4,7 @@ html {
 
 body {
     color: $text-color;
-    @include ink-font-stack();
+    @include ink-font-stack(sans);
 }
 
 .sans {

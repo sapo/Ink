@@ -1,89 +1,61 @@
-// UBUNTU BOLD
-@include font-face(
-    Ubuntu, 
-    font-files("ubuntu-b-webfont.woff","ubuntu-b-webfont.ttf","ubuntu-b-webfont.svg"),
-    "ubuntu-b-webfont.eot",
-    700,
-    normal
+$fonts: (
+  (
+    Roboto,
+    roboto,
+    (
+      (thin,100),
+      (light,300),
+      (regular,400),
+      (medium,500),
+      (bold,700),
+      (black,900)
+    )
+  ),
+  (
+    Roboto_condensed,
+    robotocondensed,
+    (
+      (light,300),
+      (regular,400),
+      (bold,700)
+    )
+  ),
+  (
+    Roboto_slab,
+    robotoslab,
+    (
+      (thin,100),
+      (light,300),
+      (regular,400),
+      (bold,700)
+    )
+  )
 );
 
-// UBUNTU BOLD ITALIC
-@include font-face(
-    Ubuntu, 
-    font-files("ubuntu-bi-webfont.woff","ubuntu-bi-webfont.ttf","ubuntu-bi-webfont.svg"),
-    "ubuntu-bi-webfont.eot",
-    700,
-    italic
-);
+// // ROBOTO THIN
+// @include font-face(
+//   Roboto, 
+//   font-files("roboto-thin-webfont.woff","roboto-thin-webfont.ttf","roboto-thin-webfont.svg"),
+//   "roboto-thin-webfont.eot",
+//   100,
+//   normal
+//   );
 
-// UBUNTU REGULAR
-@include font-face(
-    Ubuntu, 
-    font-files("ubuntu-r-webfont.woff","ubuntu-r-webfont.ttf","ubuntu-r-webfont.svg"),
-    "ubuntu-r-webfont.eot",
-    400,
-    normal
-);
+@each $font in $fonts {
+  $font-name: nth($font,1);
+  $font-file-prefix: nth($font,2);
+  @each $variant in nth($font,3) {
+    $weight-name: nth($variant,1);
+    $weight: nth($variant,2);
+    /* #{$font-name} #{$weight-name} */
+    @include font-face(
+      #{$font-name}, 
+      font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.ttf","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.svg"),
+      "#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.eot",
+      #{$weight},
+      normal
+    );
+    /* #{$font-name} #{$weight-name} italic */
 
-// UBUNTU REGULAR ITALIC
-@include font-face(
-    Ubuntu, 
-    font-files("ubuntu-ri-webfont.woff","ubuntu-ri-webfont.ttf","ubuntu-ri-webfont.svg"),
-    "ubuntu-ri-webfont.eot",
-    400,
-    italic
-);
-
-// UBUNTU LIGHT
-@include font-face(
-    Ubuntu, 
-    font-files("ubuntu-l-webfont.woff","ubuntu-l-webfont.ttf","ubuntu-l-webfont.svg"),
-    "ubuntu-l-webfont.eot",
-    300,
-    normal
-);
-
-// UBUNTU LIGHT ITALIC
-@include font-face(
-    Ubuntu, 
-    font-files("ubuntu-li-webfont.woff","ubuntu-li-webfont.ttf","ubuntu-li-webfont.svg"),
-    "ubuntu-li-webfont.eot",
-    300,
-    italic
-);
-
-// UBUNTU MONOSPACED BOLD
-@include font-face(
-    Ubuntu_monospaced, 
-    font-files("ubuntumono-b-webfont.woff","ubuntumono-b-webfont.ttf","ubuntumono-b-webfont.svg"),
-    "ubuntumono-b-webfont.eot",
-    700,
-    normal
-);
-
-// UBUNTU MONOSPACED BOLD ITALIC
-@include font-face(
-    Ubuntu_monospaced, 
-    font-files("ubuntumono-bi-webfont.woff","ubuntumono-bi-webfont.ttf","ubuntumono-bi-webfont.svg"),
-    "ubuntumono-bi-webfont.eot",
-    700,
-    italic
-);
-
-// UBUNTU MONOSPACED REGULAR
-@include font-face(
-    Ubuntu_monospaced, 
-    font-files("ubuntumono-r-webfont.woff","ubuntumono-r-webfont.ttf","ubuntumono-r-webfont.svg"),
-    "ubuntumono-r-webfont.eot",
-    400,
-    normal
-);
-
-// UBUNTU MONOSPACED REGULAR ITALIC
-@include font-face(
-    Ubuntu_monospaced, 
-    font-files("ubuntumono-ri-webfont.woff","ubuntumono-ri-webfont.ttf","ubuntumono-ri-webfont.svg"),
-    "ubuntumono-bi-webfont.eot",
-    400,
-    italic
-);
+  }
+}
