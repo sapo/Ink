@@ -43,6 +43,12 @@ $form-class-name                : #{$ink-classes-prefix}ink-form;
 $label-class-name               : #{$ink-classes-prefix}label;
 
 /**
+ * Navigation class names
+ */
+$navigation-class-name          : #{$ink-classes-prefix}navigation;
+$dropdown-class-name            : #{$ink-classes-prefix}dropdown;
+
+/**
  * Tables class names
  */
 $table-class-name               : #{$ink-classes-prefix}table

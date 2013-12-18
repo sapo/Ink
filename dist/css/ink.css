@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Ink
  *
@@ -30,6 +31,9 @@
  */
 /**
  * Labels class names
+ */
+/**
+ * Navigation class names
  */
 /**
  * Tables class names
@@ -3114,85 +3118,84 @@ th.for-extra-large, td.for-extra-large {
 }
 @font-face {
   font-family: "Ubuntu";
-  src: url('../font/ubuntu-b-webfont.eot');
-  src: url('../font/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-b-webfont.woff') format('woff'), url('../font/ubuntu-b-webfont.ttf') format('truetype'), url('../font/ubuntu-b-webfont.svg') format('svg');
+  src: url('../fonts/ubuntu-b-webfont.eot');
+  src: url('../fonts/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-b-webfont.woff') format('woff'), url('../fonts/ubuntu-b-webfont.ttf') format('truetype'), url('../fonts/ubuntu-b-webfont.svg') format('svg');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url('../font/ubuntu-bi-webfont.eot');
-  src: url('../font/ubuntu-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-bi-webfont.woff') format('woff'), url('../font/ubuntu-bi-webfont.ttf') format('truetype'), url('../font/ubuntu-bi-webfont.svg') format('svg');
+  src: url('../fonts/ubuntu-bi-webfont.eot');
+  src: url('../fonts/ubuntu-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-bi-webfont.woff') format('woff'), url('../fonts/ubuntu-bi-webfont.ttf') format('truetype'), url('../fonts/ubuntu-bi-webfont.svg') format('svg');
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url('../font/ubuntu-r-webfont.eot');
-  src: url('../font/ubuntu-r-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-r-webfont.woff') format('woff'), url('../font/ubuntu-r-webfont.ttf') format('truetype'), url('../font/ubuntu-r-webfont.svg') format('svg');
+  src: url('../fonts/ubuntu-r-webfont.eot');
+  src: url('../fonts/ubuntu-r-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-r-webfont.woff') format('woff'), url('../fonts/ubuntu-r-webfont.ttf') format('truetype'), url('../fonts/ubuntu-r-webfont.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url('../font/ubuntu-ri-webfont.eot');
-  src: url('../font/ubuntu-ri-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-ri-webfont.woff') format('woff'), url('../font/ubuntu-ri-webfont.ttf') format('truetype'), url('../font/ubuntu-ri-webfont.svg') format('svg');
+  src: url('../fonts/ubuntu-ri-webfont.eot');
+  src: url('../fonts/ubuntu-ri-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-ri-webfont.woff') format('woff'), url('../fonts/ubuntu-ri-webfont.ttf') format('truetype'), url('../fonts/ubuntu-ri-webfont.svg') format('svg');
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url('../font/ubuntu-l-webfont.eot');
-  src: url('../font/ubuntu-l-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-l-webfont.woff') format('woff'), url('../font/ubuntu-l-webfont.ttf') format('truetype'), url('../font/ubuntu-l-webfont.svg') format('svg');
+  src: url('../fonts/ubuntu-l-webfont.eot');
+  src: url('../fonts/ubuntu-l-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-l-webfont.woff') format('woff'), url('../fonts/ubuntu-l-webfont.ttf') format('truetype'), url('../fonts/ubuntu-l-webfont.svg') format('svg');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Ubuntu";
-  src: url('../font/ubuntu-li-webfont.eot');
-  src: url('../font/ubuntu-li-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-li-webfont.woff') format('woff'), url('../font/ubuntu-li-webfont.ttf') format('truetype'), url('../font/ubuntu-li-webfont.svg') format('svg');
+  src: url('../fonts/ubuntu-li-webfont.eot');
+  src: url('../fonts/ubuntu-li-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-li-webfont.woff') format('woff'), url('../fonts/ubuntu-li-webfont.ttf') format('truetype'), url('../fonts/ubuntu-li-webfont.svg') format('svg');
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Ubuntu_monospaced";
-  src: url('../font/ubuntumono-b-webfont.eot');
-  src: url('../font/ubuntumono-b-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-b-webfont.woff') format('woff'), url('../font/ubuntumono-b-webfont.ttf') format('truetype'), url('../font/ubuntumono-b-webfont.svg') format('svg');
+  src: url('../fonts/ubuntumono-b-webfont.eot');
+  src: url('../fonts/ubuntumono-b-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntumono-b-webfont.woff') format('woff'), url('../fonts/ubuntumono-b-webfont.ttf') format('truetype'), url('../fonts/ubuntumono-b-webfont.svg') format('svg');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Ubuntu_monospaced";
-  src: url('../font/ubuntumono-bi-webfont.eot');
-  src: url('../font/ubuntumono-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-bi-webfont.woff') format('woff'), url('../font/ubuntumono-bi-webfont.ttf') format('truetype'), url('../font/ubuntumono-bi-webfont.svg') format('svg');
+  src: url('../fonts/ubuntumono-bi-webfont.eot');
+  src: url('../fonts/ubuntumono-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntumono-bi-webfont.woff') format('woff'), url('../fonts/ubuntumono-bi-webfont.ttf') format('truetype'), url('../fonts/ubuntumono-bi-webfont.svg') format('svg');
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Ubuntu_monospaced";
-  src: url('../font/ubuntumono-r-webfont.eot');
-  src: url('../font/ubuntumono-r-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-r-webfont.woff') format('woff'), url('../font/ubuntumono-r-webfont.ttf') format('truetype'), url('../font/ubuntumono-r-webfont.svg') format('svg');
+  src: url('../fonts/ubuntumono-r-webfont.eot');
+  src: url('../fonts/ubuntumono-r-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntumono-r-webfont.woff') format('woff'), url('../fonts/ubuntumono-r-webfont.ttf') format('truetype'), url('../fonts/ubuntumono-r-webfont.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Ubuntu_monospaced";
-  src: url('../font/ubuntumono-bi-webfont.eot');
-  src: url('../font/ubuntumono-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-ri-webfont.woff') format('woff'), url('../font/ubuntumono-ri-webfont.ttf') format('truetype'), url('../font/ubuntumono-ri-webfont.svg') format('svg');
+  src: url('../fonts/ubuntumono-bi-webfont.eot');
+  src: url('../fonts/ubuntumono-bi-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntumono-ri-webfont.woff') format('woff'), url('../fonts/ubuntumono-ri-webfont.ttf') format('truetype'), url('../fonts/ubuntumono-ri-webfont.svg') format('svg');
   font-weight: 400;
   font-style: italic;
 }
 
-/* line 3, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
 table .ink-table {
   width: 100%;
   border-collapse: collapse;
@@ -3231,7 +3234,6 @@ table .ink-table.bordered {
   border-collapse: separate;
 }
 
-/* line 4, /Users/pedrocorreia/dev/ink/src/sass/theme/_alerts.scss */
 .ink-alert.basic, .ink-alert.block {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -3632,7 +3634,6 @@ table .ink-table.bordered {
   text-shadow: none;
 }
 
-/* line 3, /Users/pedrocorreia/dev/ink/src/sass/theme/_tables.scss */
 table .ink-table {
   background: none;
 }
