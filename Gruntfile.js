@@ -55,9 +55,9 @@ module.exports = function(grunt) {
       fontAwesome: {
         files: [
           {
-            cwd: 'tmp/font-awesome/less/',
-            src: '*.less', 
-            dest: 'src/less/modules/icons/',
+            cwd: 'tmp/font-awesome/scss/',
+            src: '*.scss', 
+            dest: 'src/sass/contrib/',
             expand: true,
           }
         ]
