@@ -279,8 +279,6 @@
 
       @each $breakpoint in $breakpoints {
 
-        // askjdh
-
       $class-name: nth($breakpoint,1);
       $minimum-width: nth($breakpoint,2);
       $maximum-width: nth($breakpoint,3);
