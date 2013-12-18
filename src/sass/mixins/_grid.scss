@@ -35,26 +35,60 @@
 
   .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
     margin-left: -$gutter-width;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-] {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    } 
   }
 
   .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
-    margin-left: -($gutter-width / 2);
+    $gutter-width: $gutter-width / 2;
+    margin-left: -$gutter-width;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-] {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    } 
   }
 
   .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
-    margin-left: -($gutter-width / 4);
+    $gutter-width: $gutter-width / 4;
+    margin-left: -$gutter-width;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-] {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    } 
   }
 
   .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-gutters-class-name} {
     margin-left: -$gutter-width;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-] {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    } 
   }
 
   .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-gutters-class-name} {
-    margin-left: -($gutter-width / 2);
+    $gutter-width: $gutter-width / 2;
+    margin-left: -$gutter-width;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-] {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    } 
   }
 
   .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-gutters-class-name} {
-    margin-left: -($gutter-width / 4);
+    $gutter-width: $gutter-width / 4;
+    margin-left: -$gutter-width;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-] {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    } 
   }
 
 }
@@ -68,6 +102,7 @@
 
     [class*=#{$class-name}-] {
       float: left;
+      clear: none;
     }
 
     // iterate to generate the width classes
@@ -77,6 +112,9 @@
           .#{$class-name}-33 {
             width: 33.33%;
           }
+          .all-#{$i} {
+            width: 33.33%;
+          }
         }
         
         // generate the 66% width
@@ -84,11 +122,24 @@
           .#{$class-name}-66 {
             width: 66.66%;
           }
+          .all-#{$i} {
+            width: 66.66%;
+          }
         }
         
         // generate the 5% step widths
         .#{$class-name}-#{$i} {
           width: $i * 1%;
+        }
+        .all-#{$i} {
+          width: $i * 1%;            
+        }
+
+        @if $i == 100 {
+          [class*=#{$class-name}-#{$i}] {
+            float: none;
+            clear: both;
+          }
         }
 
         // increment the counter
@@ -99,7 +150,7 @@
     @mixin generate-grid-helper-classes($class-name,$gutter-width) {
 
       .#{$class-name}-push-left {
-        float: left;
+        float: left;        
       }
       .#{$class-name}-push-center {
         float: none;
