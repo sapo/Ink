@@ -57,7 +57,14 @@ module.exports = function(grunt) {
           {
             cwd: 'tmp/font-awesome/scss/',
             src: '*.scss', 
-            dest: 'src/sass/contrib/',
+            dest: 'src/sass/contrib/font-awesome/',
+            expand: true,
+          },
+
+          {
+            cwd: 'tmp/font-awesome/less/',
+            src: '*.less', 
+            dest: 'src/less/contrib/font-awesome/',
             expand: true,
           }
         ]
