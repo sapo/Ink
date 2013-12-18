@@ -2,6 +2,12 @@ module.exports = function (grunt) {
 
     var jshintFile = './src/js/.jshintrc';
 
+    // Folder containing the Ink source files, Ink/*
+    // (Relative to your "js" folder containing ink-all.js)
+    // for source maps.
+    // If you're serving the whole Ink tree on your server, the below works.
+    var sourceMapPathToInkSource = '../../src/js';
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -176,7 +182,7 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 report: 'min',
-                // sourceMapRoot: '../..',
+                sourceMapRoot: sourceMapPathToInkSource,
                 sourceMapPrefix: 3,
                 compress: {
                     sequences: true,
@@ -198,7 +204,12 @@ module.exports = function (grunt) {
                 }
             },
             ink: {
-                src: '<%= ink.folders.js.dist %><%= pkg.name %>.js',
+                src: [
+                    '<%= ink.folders.js.src %>1/**/lib.js',
+                    '<%= ink.folders.js.src %>Net/**/lib.js',
+                    '<%= ink.folders.js.src %>Dom/**/lib.js',
+                    '<%= ink.folders.js.src %>Util/**/lib.js',
+                ],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>.js.map',
                     sourceMappingURL: '<%= pkg.name %>.js.map'
@@ -206,7 +217,7 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.js.dist %><%= pkg.name %>.min.js'
             },
             ink_all: {
-                src: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js',
+                src: ['<%= ink.folders.js.src %>**/lib.js'],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js.map',
                     sourceMappingURL: '<%= pkg.name %>-all.js.map'
@@ -214,7 +225,7 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.js.dist %><%= pkg.name %>-all.min.js'
             },
             ink_ui: {
-                src: '<%= ink.folders.js.dist %><%= pkg.name %>-ui.js',
+                src: ['<%= ink.folders.js.src %>UI/**/lib.js'],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-ui.js.map',
                     sourceMappingURL: '<%= pkg.name %>-ui.js.map'
