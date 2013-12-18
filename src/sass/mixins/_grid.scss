@@ -27,7 +27,7 @@
 }
 
 // generates the grid column grouping container
-@mixin generate-column-group-container($gutter-width) {
+@mixin generate-column-group-container($gutter-width, $class-name) {
 
   .#{$grid-column-group-class-name} {        
     @include clearfix;
@@ -44,6 +44,19 @@
   .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
     margin-left: -($gutter-width / 4);
   }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-gutters-class-name} {
+    margin-left: -$gutter-width;
+  }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-gutters-class-name} {
+    margin-left: -($gutter-width / 2);
+  }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-gutters-class-name} {
+    margin-left: -($gutter-width / 4);
+  }
+
 }
 
 @mixin generate-grid-divisions ($class-name) {
@@ -332,7 +345,7 @@
           @media screen and (min-width: $minimum-width) {
             @include generate-grid-container ($grid-class-name, $gutter-width);
             @include generate-grid-divisions ($class-name);
-            @include generate-column-group-container($gutter-width);
+            @include generate-column-group-container($gutter-width,$class-name);
             @include generate-grid-helper-classes($class-name,$gutter-width);
             @include generate-visibility-classes($class-name,$breakpoints);
           }
@@ -342,7 +355,7 @@
           @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
             @include generate-grid-container ($grid-class-name, $gutter-width);
             @include generate-grid-divisions ($class-name);
-            @include generate-column-group-container($gutter-width);
+            @include generate-column-group-container($gutter-width,$class-name);
             @include generate-grid-helper-classes($class-name,$gutter-width);
             @include generate-visibility-classes($class-name,$breakpoints);
           }
@@ -352,7 +365,7 @@
           @media screen and (max-width: $maximum-width) {
             @include generate-grid-container ($grid-class-name, $gutter-width);
             @include generate-grid-divisions ($class-name);
-            @include generate-column-group-container($gutter-width);
+            @include generate-column-group-container($gutter-width,$class-name);
             @include generate-visibility-classes($class-name,$breakpoints);
 
           }
@@ -361,7 +374,7 @@
         @if $no-media-query {
           @include generate-grid-container ($grid-class-name, $gutter-width);
           @include generate-grid-divisions ($class-name);
-          @include generate-column-group-container($gutter-width);
+          @include generate-column-group-container($gutter-width,$class-name);
           @include generate-grid-helper-classes($class-name,$gutter-width);
           @include generate-visibility-classes($class-name,$breakpoints);
         }
