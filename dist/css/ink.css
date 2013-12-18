@@ -4097,7 +4097,6 @@ footer {
 }
 .ink-dropdown ul.dropdown-menu li.submenu > a:after {
   content: "\f0da";
-  float: right;
   width: auto;
   margin-left: 0.8em;
   font-family: FontAwesome;
@@ -6451,6 +6450,9 @@ table.ink-table.bordered tr td {
 }
 table.ink-table.bordered tr td:first-child {
   border-left: none;
+}
+.ink-sticky-stuck {
+  position: fixed;
 }
 .ink-calendar {
   border-radius: 4px;
