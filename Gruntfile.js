@@ -176,7 +176,8 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 report: 'min',
-                sourceMapRoot: '../..',
+                // sourceMapRoot: '../..',
+                sourceMapPrefix: 3,
                 compress: {
                     sequences: true,
                     properties: true,
