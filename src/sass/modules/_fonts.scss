@@ -38,7 +38,8 @@ $fonts: (
   @each $variant in nth($font,3) {
     $weight-name: nth($variant,1);
     $weight: nth($variant,2);
-    /* #{$font-name} #{$weight-name} */
+
+    /* #{$font-name} #{$weight-name} italic */
     @include font-face(
       #{$font-name}, 
       font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.ttf","#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.svg"),
@@ -46,13 +47,15 @@ $fonts: (
       #{$weight},
       normal
     );
-    /* #{$font-name} #{$weight-name} italic */
+
+    /* #{$font-name} #{$weight-name} */
     @include font-face(
       #{$font-name}, 
-      font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.ttf","#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.svg"),
-      "#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.eot",
+      font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.ttf","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.svg"),
+      "#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.eot",
       #{$weight},
-      italic
+      normal
     );
+
   }
 }
