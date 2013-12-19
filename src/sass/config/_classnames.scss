@@ -12,7 +12,7 @@ $grid-column-group-class-name   : "column-group";
 $grid-gutters-class-name        : "gutters";
 $grid-half-gutters-class-name   : "half-gutters";
 $grid-quarter-gutters-class-name: "quarter-gutters";
-$grid-no-gutters-class-name: "no-gutters";
+$grid-no-gutters-class-name     : "no-gutters";
 
 /**
  * Alerts class names
@@ -36,7 +36,7 @@ $table-class-name               : #{$ink-classes-prefix}table;
 /**
  * Forms class names
  */
-$form-class-name                : #{$ink-classes-prefix}ink-form;
+$form-class-name                : #{$ink-classes-prefix}form;
 
 /**
  * Labels class names
