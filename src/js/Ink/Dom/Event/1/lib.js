@@ -937,13 +937,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
         if(element) {
-            /* rare corner case: some events need a different callback to be generated */
-            var callbackForCustomEvents = this._callbackForCustomEvents(element, eventName, callBack);
-            if (callbackForCustomEvents) {
-                callBack = callbackForCustomEvents;
-                eventName = 'dataavailable';
-            }
-
             if(element.addEventListener) {
                 element.addEventListener(eventName, callBack, !!useCapture);
             } else {
@@ -991,12 +984,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             elements = [elements];
         }
         if (!elements[0]) { return false; }
-
-        var callbackForCustomEvents = this._callbackForCustomEvents(elements[0], eventName, callBack);
-        if (callbackForCustomEvents) {
-            callBack = callbackForCustomEvents;
-            eventName = 'dataavailable';
-        }
 
         for (var i = 0, len = elements.length; i < len; i++) {
             this.observe(elements[i], eventName, callBack, useCapture);
