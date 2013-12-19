@@ -2,10 +2,15 @@ Ink.createModule('Ink.UI.Upload', '1', [
     'Ink.Dom.Event_1',
     'Ink.Dom.Element_1',
     'Ink.Dom.Browser_1',
-    'Ink.UI.Aux_1'
-], function(Event, Element, Browser, Aux) {
-    /* global console */
+    'Ink.UI.Common_1'
+], function(Event, Element, Browser, Common) {
     'use strict';
+
+    function logError(message) {
+        if (window.console && window.console.error) {
+            window.console.error(message);
+        }
+    }
 
     var DirectoryReader = function(options) {
         this.init(options);
@@ -21,7 +26,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
             try {
                 this._read();
             } catch(e) {
-                console.error(e);
+                logError(e);
             }
         },
 
@@ -34,7 +39,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
             try {
                 this._readDirectories();
             } catch(e) {
-                console.error(e);
+                logError(e);
             }
         },
 
@@ -161,7 +166,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 }
                 return true;
             } catch(e) {
-                console.error('Purge: invalid id');
+                logError('Purge: invalid id');
                 return false;
             }
         },
@@ -218,7 +223,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 this.items.splice(id, 1);
                 return true;
             } catch(e) {
-                console.error('Remove: invalid id');
+                logError('Remove: invalid id');
                 return false;
             }
         },
@@ -309,9 +314,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _setFileButton: function() {
             var btns = this._fileButton;
-            for(var i = 0, len = btns.length; i<len; i++) {
-                Event.observe(btns[i], 'change', Ink.bindEvent(this._fileChangeHandler, this, btns[i]));
-            }
+            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this, btns[i]));
         },
 
 
@@ -344,7 +347,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         init: function(options) {
             if (typeof options === 'string') {
-                options = Element.data(Aux.elOrSelector(options, '1st argument'));
+                options = Element.data(Common.elOrSelector(options, '1st argument'));
             }
             this.options = Ink.extendObj({
                 extraData:          {},
@@ -369,11 +372,11 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
             if(this.options.dropzone) {
-                Aux.elOrSelector(this.options.dropzone, 'Upload - dropzone');
+                Common.elOrSelector(this.options.dropzone, 'Upload - dropzone');
             }
 
             if(this.options.fileButton) {
-                Aux.elOrSelector(this.options.fileButton, 'Upload - fileButton');
+                Common.elOrSelector(this.options.fileButton, 'Upload - fileButton');
             }
 
             if(!this.options.dropzone && ! this.options.fileButton) {
@@ -859,7 +862,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 try {
                     events[i].apply(this, args.splice(1, args.length));
                 } catch(err) {
-                    console.error(eventName + ": " + err);
+                    logError(eventName + ": " + err);
                 }
             }
         }
