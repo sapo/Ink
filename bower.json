@@ -2,7 +2,9 @@
   "name": "Ink",
   "version": "2.2.1",
   "description": "An HTML5/CSS3 framework used at SAPO for fast and efficient website design and prototyping.",
-  "main": ["dist/*"],
+  "main": [
+    "dist/*"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
@@ -10,6 +12,9 @@
   ],
   "dependencies": {
     "modernizr": ">=2.6.2",
-    "font-awesome" : ">=4.0.3"
+    "font-awesome": ">=4.0.3"
+  },
+  "devDependencies": {
+    "syn": "~3.3.1"
   }
 }
