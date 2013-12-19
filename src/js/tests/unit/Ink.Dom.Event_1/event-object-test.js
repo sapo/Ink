@@ -97,7 +97,6 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
                 };
 
                 trigger.after(function() {
-                    console.log(parentSpy.called);
                     ok(!parentSpy.called, 'parent should not receive event');
                     ok(!txt.value.length, 'input is has no text after keypress');
                     start();
