@@ -68,7 +68,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             'cancelMouseOut': ['Boolean', false]
         }, options || {}, this._element);
 
-        this._options.dragSelector = this._options.dragObject ? this._options.dragObject : this._options.dragSelector; // Backwards compatibility
+        this._options.dragSelector = this._options.dragObject || this._options.dragSelector; // Backwards compatibility
 
         this._handlers = {
             down: Ink.bind(this._onDown, this),
