@@ -203,10 +203,10 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
                 Element.insertBefore(target, this._isMoving);
                 Element.insertBefore(this._isMoving, placeholder);
             } else {
-                var target_position = Element.offset(target),
-                    placeholder_position = Element.offset(this._placeholder),
-                    from_top = target_position[1] > placeholder_position[1],
-                    from_left = target_position[0] > placeholder_position[0];
+                target_position = Element.offset(target);
+                placeholder_position = Element.offset(this._placeholder);
+                from_top = target_position[1] > placeholder_position[1];
+                from_left = target_position[0] > placeholder_position[0];
                 if( ( from_top && from_left ) || ( !from_top && !from_left ) ) {
                     Element.insertBefore(placeholder, target);
                 } else {
