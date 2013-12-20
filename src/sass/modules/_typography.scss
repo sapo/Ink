@@ -5,6 +5,7 @@ html {
 body {
     color: $text-color;
     @include ink-font-stack(sans);
+    line-height: $line-height
 }
 
 .sans {
@@ -221,7 +222,7 @@ abbr {
 
 blockquote {
     border-left: 4px solid #ddd; 
-    padding-left: 1em; 
+    padding-left: $list-indent; 
     margin:1em 0; 
     font-weight: 200; 
     font-size: 1.1em;
@@ -234,31 +235,6 @@ blockquote {
             content: ' — ';
         }
     } 
-}
-
-ul, ol, dl      { padding-left: 1.4em; margin:0; }
-ul.unstyled     { list-style:none; padding-left: 0em; }
-ul.unstyled ul  { list-style:disc outside; padding-left: 1.4em; }
-ol > li         { list-style: decimal outside; }
-dl              { padding: 0em; }
-dl dt           { font-weight: bold; margin-top: .7em; }
-dl dd           { padding-left: 1em; margin: .5em 0; }
-
-
-ul, ol {
-    line-height:1.4;
-    margin:0;
-    padding-left: 1.4em;
-
-    li {
-        margin:.5em 0; 
-    }
-
-    &.inline {
-        li {
-            float:left;
-        }
-    }
 }
 
 .note {
@@ -282,4 +258,65 @@ hr {
 .lead {
     font-size: 1.1em; 
     font-weight: bold; 
+}
+
+ul, ol {
+    line-height:1.4;
+    padding: 0 0 0 $list-indent;
+    margin: 1em 0;
+
+    li {
+        margin: .5em 0;
+    }
+}
+
+ul {
+
+    &.unstyled {
+        list-style: none; 
+        padding-left: 0em;
+
+        ul  { 
+            list-style:disc outside;
+        }
+    }
+
+    &.inline {
+        list-style: none; 
+
+        li {
+            display: inline-block;
+            padding: 0 .5em;
+            &:first-child {
+                padding: 0 .5em 0 0;
+            }
+        }
+    }
+}
+
+dl { 
+    margin: 1em 0;
+    dt { 
+        font-weight: bold; 
+        margin: .5em 0;
+    }
+
+    dd { margin: .5em 0 .5em $list-indent; }
+
+    &.inline {
+        dt {
+            float: left;
+            clear: left;
+            text-align: right;
+            width: 180px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        dd {
+            margin: .5em 0 .5em 200px;
+        }
+    }
 }
