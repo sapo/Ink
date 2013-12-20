@@ -49,15 +49,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      *      </script>
      */
     var Tabs = function(selector, options) {
-
-        if (!Common.isDOMElement(selector)) {
-            selector = Selector.select(selector);
-            if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
-            this._element = selector[0];
-        } else {
-            this._element = selector;
-        }
-
+        this._element = Common.elOrSelector(selector, 'Ink.UI.Tabs tab container');
 
         this._options = Ink.extendObj({
             preventUrlChange: false,
@@ -66,12 +58,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             onBeforeChange: undefined,
             onChange: undefined,
             triggerEventsOnLoad: true
-        }, options || {}, Element.data(selector));
+        }, options || {}, Element.data(this._element));
 
         this._handlers = {
             tabClicked: Ink.bindEvent(this._onTabClicked,this),
             disabledTabClicked: Ink.bindEvent(this._onDisabledTabClicked,this),
-            resize: Ink.bindEvent(this._onResize,this)
+            resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
         };
 
         this._init();
@@ -87,7 +79,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _init: function() {
             this._menu = Selector.select('.tabs-nav', this._element)[0];
-            this._menuTabs = this._getChildElements(this._menu);
+            this._menuTabs = this._menu.children;
             this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
@@ -276,33 +268,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _findLinkByHref: function(href){
             href = this._hashify(href);
-            var ret;
-            InkArray.each(this._menuTabs,Ink.bind(function(elem){
-                var link = Selector.select('a', elem)[0];
-                if( (link.getAttribute('href').indexOf('#') !== -1) && ( link.getAttribute('href').substr(link.getAttribute('href').indexOf('#')) === href ) ){
-                    ret = link;
-                }
-            },this));
-            return ret;
-        },
 
-        /**
-         * Returns the child elements of a given parent element
-         * 
-         * @method _getChildElements
-         * @param {DOMElement} parent  DOMElement to fetch the child elements from.
-         * @return {Array}  Child elements of the given parent.
-         * @private
-         */
-        _getChildElements: function(parent){
-            var childNodes = [];
-            var children = parent.children;
-            for(var i = 0; i < children.length; i++){
-                if(children[i].nodeType === 1){
-                    childNodes.push(children[i]);
-                }
-            }
-            return childNodes;
+            // Find a link which has a href ending with...
+            return Selector.select('a[href$="' + href + '"]', this._menu)[0];
         },
 
         /**************
