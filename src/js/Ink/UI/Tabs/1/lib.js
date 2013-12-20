@@ -91,9 +91,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             //sets the first active tab
             this._setFirstActive();
 
-            //shows the active tab
-            this._changeTab(this._activeMenuLink, this._options.triggerEventsOnLoad);
-
             this._handlers.resize();
 
             Common.registerInstance(this, this._element, 'tabs');
@@ -107,7 +104,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _initializeDom: function(){
             for(var i = 0; i < this._contentTabs.length; i++){
-                Css.hide(this._contentTabs[i]);
+                Css.addClassName(this._contentTabs[i], 'hide-all');
             }
         },
 
@@ -139,12 +136,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _setFirstActive: function() {
             var hash = window.location.hash;
-            this._activeContentTab = Selector.select(hash, this._element)[0] ||
-                                     Selector.select(this._hashify(this._options.active), this._element)[0] ||
-                                     Selector.select('.tabs-content', this._element)[0];
 
-            this._activeMenuLink = this._findLinkByHref(this._activeContentTab.getAttribute('id'));
-            this._activeMenuTab = this._activeMenuLink.parentNode;
+            var activeMenuLink = this._findLinkByHref(hash) ||
+                                 (this._options.active && this._findLinkByHref(this._options.active)) ||
+                                 Selector.select('a', this._menu)[0];
+
+            this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
         },
 
         /**
@@ -161,18 +158,24 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             }
 
             var selector = link.getAttribute('href');
-            Css.removeClassName(this._activeMenuTab, 'active');
-            Css.removeClassName(this._activeContentTab, 'active');
-            Css.addClassName(this._activeContentTab, 'hide-all');
+            if (this._activeMenuTab) {
+                Css.removeClassName(this._activeMenuTab, 'active');
+                Css.removeClassName(this._activeContentTab, 'active');
+                Css.addClassName(this._activeContentTab, 'hide-all');
+            }
 
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
             this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
 
+            if (!this._activeContentTab) {
+                this._activeMenuLink = this._activeMenuTab = this._activeContentTab = null;
+                return;
+            }
+
             Css.addClassName(this._activeMenuTab, 'active');
             Css.addClassName(this._activeContentTab, 'active');
             Css.removeClassName(this._activeContentTab, 'hide-all');
-            Css.show(this._activeContentTab);
 
             if(runCallbacks && typeof(this._options.onChange) !== 'undefined'){
                 this._options.onChange(this);
