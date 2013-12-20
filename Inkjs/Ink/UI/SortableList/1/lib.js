@@ -64,7 +64,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             'dragObject': ['String', false], // Deprecated. Use dragSelector instead
             'handleSelector': ['String', null],
             'moveSelector': ['String', false],
-            'swap': ['Boolean', true],
+            'swap': ['Boolean', false],
             'cancelMouseOut': ['Boolean', false]
         }, options || {}, this._element);
 
