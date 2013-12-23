@@ -30,7 +30,8 @@ ink_to_prod_dir
 /build-docs.sh
 /.sass-cache/
 
-node_modules
+node_modules/*
+bower_components/*
 
 src/js/builds
 src/js/report
