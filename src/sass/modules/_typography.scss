@@ -5,7 +5,7 @@ html {
 body {
     color: $text-color;
     @include ink-font-stack(sans);
-    line-height: $line-height
+    line-height: $base-line-height;
 }
 
 .sans {
@@ -31,6 +31,7 @@ body {
 a {
     color: $link-color; 
     text-decoration: none;
+    cursor: pointer;
     
     &:hover {
         color: $link-hover-color; 
@@ -41,14 +42,15 @@ a {
 /* Headings  */
 h1, h2, h3, h4, h5, h6 {
     color: $headings-color;
+    margin: 0;
 }
 
-h1 {font-size: 2.5em;}
-h2 {font-size: 2em;}
-h3 {font-size: 1.715em;}
-h4 {font-size: 1.438em;}
-h5 {font-size: 1.250em;}
-h6 {font-size: 1em;}      
+//h1 {font-size: 2.5em;}
+//h2 {font-size: 2em;}
+//h3 {font-size: 1.715em;}
+//h4 {font-size: 1.438em;}
+//h5 {font-size: 1.250em;}
+//h6 {font-size: 1em;}      
 
 h3, h4, h5, h6 {
     line-height: 1.3;
@@ -62,7 +64,7 @@ h1 small {
 
 small {
     color: tint($text-color, 30%); 
-    font-size: .6em;
+    //font-size: .6em;
 }
 
 /* Paragraphs  */
@@ -222,7 +224,7 @@ abbr {
 
 blockquote {
     border-left: 4px solid #ddd; 
-    padding-left: $list-indent; 
+    padding-left: $indent-amount; 
     margin:1em 0; 
     font-weight: 200; 
     font-size: 1.1em;
@@ -262,7 +264,7 @@ hr {
 
 ul, ol {
     line-height:1.4;
-    padding: 0 0 0 $list-indent;
+    padding: 0 0 0 $base-line-height;
     margin: 1em 0;
 
     li {
@@ -301,7 +303,7 @@ dl {
         margin: .5em 0;
     }
 
-    dd { margin: .5em 0 .5em $list-indent; }
+    dd { margin: .5em 0 .5em $indent-amount; }
 
     &.inline {
         dt {

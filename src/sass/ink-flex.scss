@@ -14,11 +14,14 @@
 @import "contrib/compass/css3";
 @import "contrib/compass/utilities";
 @import "contrib/compass/typography";
+@import "compass/typography/vertical_rhythm";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
 @import "config/common";
 @import "config/classnames";
 @import "config/grid";
+@import "config/reset";
+@import "config/typography";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)
 @import "mixins/utils";
