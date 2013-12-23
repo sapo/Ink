@@ -1,3 +1,8 @@
+## Note about this branch
+
+The default branch of this repository is `develop`. This is a development branch, which is usable and has the latest features, but is not so stable as `master`, our release branch. Bugfixes are to be pushed to `develop`, where development takes place.
+
+
 # Welcome to [Ink](http://ink.sapo.pt)
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
