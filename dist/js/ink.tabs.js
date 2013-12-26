@@ -49,15 +49,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      *      </script>
      */
     var Tabs = function(selector, options) {
-
-        if (!Common.isDOMElement(selector)) {
-            selector = Selector.select(selector);
-            if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
-            this._element = selector[0];
-        } else {
-            this._element = selector;
-        }
-
+        this._element = Common.elOrSelector(selector, 'Ink.UI.Tabs tab container');
 
         this._options = Ink.extendObj({
             preventUrlChange: false,
@@ -66,12 +58,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             onBeforeChange: undefined,
             onChange: undefined,
             triggerEventsOnLoad: true
-        }, options || {}, Element.data(selector));
+        }, options || {}, Element.data(this._element));
 
         this._handlers = {
             tabClicked: Ink.bindEvent(this._onTabClicked,this),
             disabledTabClicked: Ink.bindEvent(this._onDisabledTabClicked,this),
-            resize: Ink.bindEvent(this._onResize,this)
+            resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
         };
 
         this._init();
@@ -87,7 +79,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _init: function() {
             this._menu = Selector.select('.tabs-nav', this._element)[0];
-            this._menuTabs = this._getChildElements(this._menu);
+            this._menuTabs = this._menu.children;
             this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
@@ -98,9 +90,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             //sets the first active tab
             this._setFirstActive();
-
-            //shows the active tab
-            this._changeTab(this._activeMenuLink, this._options.triggerEventsOnLoad);
 
             this._handlers.resize();
 
@@ -115,7 +104,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _initializeDom: function(){
             for(var i = 0; i < this._contentTabs.length; i++){
-                Css.hide(this._contentTabs[i]);
+                Css.addClassName(this._contentTabs[i], 'hide-all');
             }
         },
 
@@ -147,12 +136,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _setFirstActive: function() {
             var hash = window.location.hash;
-            this._activeContentTab = Selector.select(hash, this._element)[0] ||
-                                     Selector.select(this._hashify(this._options.active), this._element)[0] ||
-                                     Selector.select('.tabs-content', this._element)[0];
 
-            this._activeMenuLink = this._findLinkByHref(this._activeContentTab.getAttribute('id'));
-            this._activeMenuTab = this._activeMenuLink.parentNode;
+            var activeMenuLink = this._findLinkByHref(hash) ||
+                                 (this._options.active && this._findLinkByHref(this._options.active)) ||
+                                 Selector.select('a', this._menu)[0];
+
+            this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
         },
 
         /**
@@ -169,18 +158,24 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             }
 
             var selector = link.getAttribute('href');
-            Css.removeClassName(this._activeMenuTab, 'active');
-            Css.removeClassName(this._activeContentTab, 'active');
-            Css.addClassName(this._activeContentTab, 'hide-all');
+            if (this._activeMenuTab) {
+                Css.removeClassName(this._activeMenuTab, 'active');
+                Css.removeClassName(this._activeContentTab, 'active');
+                Css.addClassName(this._activeContentTab, 'hide-all');
+            }
 
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
             this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
 
+            if (!this._activeContentTab) {
+                this._activeMenuLink = this._activeMenuTab = this._activeContentTab = null;
+                return;
+            }
+
             Css.addClassName(this._activeMenuTab, 'active');
             Css.addClassName(this._activeContentTab, 'active');
             Css.removeClassName(this._activeContentTab, 'hide-all');
-            Css.show(this._activeContentTab);
 
             if(runCallbacks && typeof(this._options.onChange) !== 'undefined'){
                 this._options.onChange(this);
@@ -276,33 +271,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _findLinkByHref: function(href){
             href = this._hashify(href);
-            var ret;
-            InkArray.each(this._menuTabs,Ink.bind(function(elem){
-                var link = Selector.select('a', elem)[0];
-                if( (link.getAttribute('href').indexOf('#') !== -1) && ( link.getAttribute('href').substr(link.getAttribute('href').indexOf('#')) === href ) ){
-                    ret = link;
-                }
-            },this));
-            return ret;
-        },
 
-        /**
-         * Returns the child elements of a given parent element
-         * 
-         * @method _getChildElements
-         * @param {DOMElement} parent  DOMElement to fetch the child elements from.
-         * @return {Array}  Child elements of the given parent.
-         * @private
-         */
-        _getChildElements: function(parent){
-            var childNodes = [];
-            var children = parent.children;
-            for(var i = 0; i < children.length; i++){
-                if(children[i].nodeType === 1){
-                    childNodes.push(children[i]);
-                }
-            }
-            return childNodes;
+            // Find a link which has a href ending with...
+            return Selector.select('a[href$="' + href + '"]', this._menu)[0];
         },
 
         /**************
