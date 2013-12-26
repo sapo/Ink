@@ -18,10 +18,9 @@ module.exports = function (grunt) {
                 options: {
                     targetDir: 'tmp',
                     layout: 'byType',
-                    install: false,
+                    install: true,
                     verbose: false,
                     cleanTargetDir: false,
-                    cleanBowerDir: true,
                     bowerOptions: {
                         forceLatest: true
                     }
