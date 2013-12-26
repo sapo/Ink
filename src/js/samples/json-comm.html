@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        // In normal browsers
+        // document.styleSheets[0].cssRules[0].style.content
+
+        // In IE 7-9
+        // document.styleSheets[0].rules[0].style.content
+
+        setTimeout(function () {
+            console.log('HEY')
+            console.log(getComputedStyle(document.documentElement, ':after')['content'])
+            console.log('window.urmom: ' + window.urmom)
+        }, 0)
+        /*
+        var layoutIndicator = document.createElement('div');
+        layoutIndicator.className = 'layout-indicator'
+        document.documentElement.appendChild(layoutIndicator);
+        console.log(layoutIndicator.currentStyle('font-family'));
+
+        console.log(document.documentElement.currentStyle['font-family'])*/
+    </script>
+    <style>
+        html:after {
+            content: 'YOUR MOM';
+        }
+
+        html {
+            content: 'whateverLayout'
+        }
+        @media screen and (min-width: 601px) and (max-width: 960px) {
+            html {
+                content: 'somethingLayout'
+            }
+        }
+        body {
+            content: 'helvetica!'
+        }
+    </style>
+    <script>
+        window.urmom = 'asd'
+    </script>
+</body>
+</html>
