@@ -3,8 +3,8 @@
 <head>
 </head>
 <body>
-    <script type="text/javascript" src="/Ink/1/"></script>
-    <script type="text/javascript" src="/Ink/Dom/Loaded/1/"></script>
+    <script type="text/javascript" src="../../../Ink/1/lib.js"></script>
+    <script type="text/javascript" src="../../../Ink/Dom/Loaded/1/lib.js"></script>
     <?php
         usleep((float)$_GET["w"] * 1000000);
     ?>

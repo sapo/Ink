@@ -183,11 +183,13 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
 
     Ink.setPath('Ink', '.');
 
+    debugger
     Ink.createModule( 'Ink.UI.SelectFilter' , '1', ['Ink.SomeUnresolvedDependency_1'], function( Common , Selector , InkEvent ) {
         ok(true);
         return {};
     });
 
+    debugger
     Ink.requireModules( [ 'Ink.UI.SelectFilter_1' ] , function( SF ) {
         var scripts = document.getElementsByTagName('script');
         var _a = document.createElement('a');
