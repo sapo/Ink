@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <title>Ink Json unit tests</title>
 
-        <link type="text/css"           href="../../../../../../bower_components/qunit/qunit/qunit.css" rel="stylesheet"/>
-        <script type="text/javascript"   src="../../../../../../bower_components/qunit/qunit/qunit.js"></script>
+        <link type="text/css"           href="../../../../bower_components/qunit/qunit/qunit.css" rel="stylesheet"/>
+        <script type="text/javascript"   src="../../../../bower_components/qunit/qunit/qunit.js"></script>
 
         <!-- test dependencies here -->
-        <script type="text/javascript" src="../../../Ink/1/lib.js"></script>
-        <script type="text/javascript" src="../../../Ink/Util/Json/1/lib.js"></script>
+        <script type="text/javascript" src="../../../src/js/Ink/1/lib.js"></script>
+        <script type="text/javascript" src="../../../src/js/Ink/Util/Json/1/lib.js"></script>
 
         <!-- Test object -->
         <script type="text/javascript" src="hugeObject.js"></script>
@@ -19,6 +19,9 @@
             window.JSON = undefined;
         </script>
         <script type="text/javascript" src="json.js"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '../../../src/js/Ink/');
+        </script>
     </head>
 
     <body>
