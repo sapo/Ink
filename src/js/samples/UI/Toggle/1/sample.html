@@ -5,11 +5,13 @@
 
         <title>InkJS - Toggle samples</title>
 
-        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink.css" />
-        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/docs.css" />
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
 
-        <script type="text/javascript" src="/Ink/1/lib.js"></script>
-        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
         <style>
             pre.prettyprint{
                 font-size: 0.75em;
@@ -81,6 +83,10 @@
                 <header>
                     <h2>Usage with the dropdown menu</h2>
                 </header>
+                <p>
+                    <span class="ink-label warning">Warning</span>
+                    Don't do this. You should use Ink.UI.Dropdown instead.
+                </p>
                 <div class="ink-dropdown">
                     <button class="ink-button ink-toggle" data-target="#dropdown">
                         Dropdown <span class="icon-caret-down"></span>
@@ -165,7 +171,7 @@
 
                 <p>
                     Click
-                    <button id="2cls" data-target=".ink-label.success" data-class-name-on="success" data-class-name-off="error" data-close-on-click="false">here</button>
+                    <button id="2cls" class="ink-button" data-target=".ink-label.success" data-class-name-on="success" data-class-name-off="error" data-close-on-click="false">here</button>
                     to toggle <span class="ink-label success">this label's color</span>
                 </p>
 

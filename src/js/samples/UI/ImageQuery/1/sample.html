@@ -5,11 +5,13 @@
 
         <title>InkJS - ImageQuery samples</title>
 
-        <link rel="stylesheet" href="/samples/assets/css/ink.css" />
-        <link rel="stylesheet" href="/samples/assets/css/docs.css" />
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
 
-        <script type="text/javascript" src="/Ink/1/lib.js"></script>
-        <script type="text/javascript" src="http://imgs.sapo.pt/ink/assets/js/prettify.js"></script>
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
         <style>
             pre.prettyprint{
                 font-size: 0.75em;
@@ -34,17 +36,17 @@
                     <h2>ImageQuery #1 - Default Markup</h2>
                 </header>
                 <div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace">
-                    <img src="/samples/assets/imgs/imagequery/small/image.jpg" />
+                    <img src="../../../assets/imgs/imagequery/small/image.jpg" />
                 </div>
                 <p>
                     <pre class="prettyprint linenums">&lt;div class="imageQueryExample large-100 medium-100 small-100 content-center clearfix vspace"&gt;
-    &lt;img src="/samples/assets/imgs/imagequery/small/image.jpg" /&gt;
+    &lt;img src="../../../assets/imgs/imagequery/small/image.jpg" /&gt;
 &lt;/div&gt;
 &lt;script&gt;
 Ink.requireModules(['Ink.Util.Array_1','Ink.UI.ImageQuery_1'], function(InkArray, ImageQuery) {
     InkArray.each(Ink.ss('.imageQueryExample img'),function(item){
         new ImageQuery(item,{
-            src: '/samples/assets/imgs/imagequery/{:label}/{:file}',
+            src: '../../../assets/imgs/imagequery/{:label}/{:file}',
             queries: [
                 {
                     label: 'small',
@@ -70,7 +72,7 @@ Ink.requireModules(['Ink.Util.Array_1','Ink.UI.ImageQuery_1'], function(InkArray
             Ink.requireModules(['Ink.Util.Array_1','Ink.UI.ImageQuery_1'], function(InkArray, ImageQuery) {
                 InkArray.each(Ink.ss('.imageQueryExample img'),function(item){
                     new ImageQuery(item,{
-                        src: '/samples/assets/imgs/imagequery/{:label}/{:file}',
+                        src: '../../../assets/imgs/imagequery/{:label}/{:file}',
                         queries: [
                             {
                                 label: 'small',
