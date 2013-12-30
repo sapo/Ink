@@ -69,8 +69,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'node':   ['String', 'li'],
             'child':  ['String','ul'],
             'parentClass': ['String','parent'],
-            'openClass': ['String','fa fa-minus-circle'],
-            'closedClass': ['String','fa fa-plus-circle'],
+            'openClass': ['String','icon icon-minus-circle'],
+            'closedClass': ['String','icon icon-plus-circle'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
