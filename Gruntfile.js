@@ -1,4 +1,5 @@
 module.exports = function (grunt) {
+    var path = require('path');
 
     var jshintFile = './src/js/.jshintrc';
 
@@ -18,10 +19,9 @@ module.exports = function (grunt) {
                 options: {
                     targetDir: 'tmp',
                     layout: 'byType',
-                    install: false,
+                    install: true,
                     verbose: false,
                     cleanTargetDir: false,
-                    cleanBowerDir: true,
                     bowerOptions: {
                         forceLatest: true
                     }
@@ -129,14 +129,18 @@ module.exports = function (grunt) {
                     src: ['**/[0-9]/lib.js'],
                     dest: '<%= ink.folders.js.dist %>',
                     rename: function (dest, src) {
-                        // [TODO] refactor
                         // check if this is v1
-                        if (src.substring(src.lastIndexOf('/'), -1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'), -1).match(/[0-9]/) === 1) {
+                        // Here data is in the form of [UIComponent]/[ver]/lib.js
+                        var split = src.split(/\//);
+                        var modName = split[0].toLowerCase();
+                        var version = split[1];
+
+                        if (version === '1') {
                             // and it it is discard the version number               
-                            return dest + 'ink.' + src.substring(0, src.indexOf('/')).toLowerCase() + '.js';
+                            return dest + 'ink.' + modName + '.js';
                         } else {
                             // or replace the slash by an underscore and version number and prepend to dest file name 
-                            return dest + 'ink.' + src.substring(0, src.lastIndexOf('/')).toLowerCase().replace('/', '-') + '.js';
+                            return dest + 'ink.' + modName + '-' + version + '.js';
                         }
                     }
                 }
