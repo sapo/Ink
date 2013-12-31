@@ -91,7 +91,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * @readOnly
          * @private
          */
-        _errorClassName: 'tip',
+        _errorClassName: 'tip error',
 
         /**
          * @property _errorValidationClassName
@@ -638,11 +638,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 }
 
                 if(inputType !== 'checkbox') {
-                    if (curElm.nextSibling /* This check will become obsolete after 2.2.2 */) {
-                        InkElement.insertAfter(errorMsg, curElm);
-                    } else {
-                        curElm.parentNode.appendChild(errorMsg); /* so will this workaround */
-                    }
+                    InkElement.insertAfter(errorMsg, curElm);
                     if (controlElm) {
                         if(error.errors[0] === 'ink-fv-required') {
                             Css.addClassName(controlGroupElm, 'validation error');
@@ -673,8 +669,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * @param {DOMElement} formElm Form element to be cleared.
          * @private
          */
-        _clearError: function(formElm)
-        {
+        _clearError: function(formElm) {
             //return;
             var aErrorLabel = formElm.getElementsByTagName('p');
 
@@ -683,12 +678,10 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 curElm = aErrorLabel[i];
                 if(Css.hasClassName(curElm, this._errorClassName)) {
                     if(Css.hasClassName(curElm.parentNode, 'control')) {
-                        Css.removeClassName(curElm.parentNode.parentNode, 'validation');
-                        Css.removeClassName(curElm.parentNode.parentNode, 'error');
-                        Css.removeClassName(curElm.parentNode.parentNode, 'warning');
+                        Css.removeClassName(curElm.parentNode.parentNode, 'validation error warning');
                     }
 
-                    if(Css.hasClassName(curElm,'tip') && Css.hasClassName(curElm,'error')){
+                    if(Css.hasClassName(curElm,'tip error', true /*both*/)) {
                         curElm.parentNode.removeChild(curElm);
                     }
                 }
@@ -698,8 +691,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             for(i = (aErrorLabel2.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel2[i];
                 if(Css.hasClassName(curElm, 'control-group')) {
-                    Css.removeClassName(curElm, 'validation');
-                    Css.removeClassName(curElm, 'error');
+                    Css.removeClassName(curElm, 'validation error');
                 }
             }
         },

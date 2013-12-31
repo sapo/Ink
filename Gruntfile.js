@@ -177,7 +177,8 @@ module.exports = function (grunt) {
                 options: {
                     port: 8000,
                     debug: true,
-                    base: '.'
+                    base: '.',
+                    keepalive: true
                 }
             }
         },
