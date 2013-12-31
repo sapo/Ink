@@ -14,10 +14,11 @@ It all starts with __Ink__, from there you will find our main module, __the core
 * Ink/ - It's where you can find all the source code 
 
 ## Ink Namespaces 
- * Dom - provides modules to work with DOM and Events 
- * Net - provides communication modules to make AJAX requests or JsonP
- * Util - provides utility modules 
- * UI - Where all [UI modules](http://ink.sapo.pt/js/ui) are made 
+ * Dom - modules to work with the DOM and Events 
+ * Net - provides communication modules to make AJAX and JSONP requests
+ * Util - random utility modules 
+ * UI - Where all [UI modules](http://ink.sapo.pt/js/ui) live
+ * Ext - Your extensions created with `Ink.createExt()` go here
 
 A global variable named __Ink__ provides the methods to create and load all of the modules. 
  
@@ -34,8 +35,9 @@ Ex:
 ## Using modules 
  
 There may be times when you need to use an older version of a component in the same instance that a newer one has been loaded. Ink provides a couple of methods that mitigate problems involving namespace collisions when loading modules, namely:
-`Ink.requireModule()` - request a module if it's not loaded yet
-`Ink.getModule()` - return a module that has already been loaded
+
+`Ink.requireModule()` - request a module if it's not loaded yet.
+`Ink.getModule()` - return a module that has already been loaded (not recommended)
 
 Ex: 
 ```javascript
@@ -53,6 +55,8 @@ ModuleName.moduleMethod('arg1', 'arg2');
 
 
 ## Creating modules 
+
+To create a module, use the `Ink.createModule` function. It takes the module name, its version and dependencies, and a function which takes your dependencies, and from which you return the module. You need this function because Ink may load your dependencies asynchronously.
 
 Take a look at our samples on __/Ink/Namespace/ClassModule/__ and __/Ink/Namespace/StaticModule/__
 
@@ -73,28 +77,15 @@ Ink.createModule(
 );
 ```
 
+Put your module in your server tree, in the `src/js/Ink/` folder (see below how to tell Ink where to find your module in other folders), in its namespace folder(s), inside a folder with the version number, in a file named `lib.js`.
 
+Example: If your module is `Ink.Foo.Bar.Baz` version `1`, put it in `Ink/Foo/Bar/Baz/1/lib.js`.
 
-## Other important files on the repo: 
-* Makefile - Running "make all" will minify all modules, create bundles (in builds directory) and documentation files (in docs directory) 
-* builds - It's the place where bundles are created (ink-v.v.v.js, ink-all.v.v.v.js and ink-ui.v.v.v.js) 
-* serverUtils - The place with node.js scripts and config files to run make 
+### How to tell Ink where to find my custom modules?
 
+__Ink__ can be instructed to find specific modules or namespaces in specific paths. Meet `Ink.setPath()`.
 
-# Install Ink.js on your machine - How To
+Example: you create a module named `Ink.Foo.Bar.Baz`, version 1, and store it in `/path/to/InkFooModules/Bar/Baz/1/lib.js` on your server. You can call `Ink.setPath('Ink.Foo', '/path/to/InkFooModules/')` to tell Ink where to find every module under the `Ink.Foo` namespace.
 
-## Requirements
-
-* makefile
-* node.js    http://nodejs.org/
-* java (jenkins ci)
-
-
-
-## Install
-
-    [sudo] npm -g install yuidocjs plato
-    npm install uglify-js async
-
-
+After calling `Ink.setPath`, you can use Ink.requireModules, and __Ink__ will go to the correct directory.
 
