@@ -35,5 +35,8 @@
   },
   "scripts": {
     "test": "grunt --verbose"
+  },
+  "dependencies": {
+    "fs-extra": "~0.8.1"
   }
 }
