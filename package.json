@@ -18,6 +18,7 @@
   "devDependencies": {
     "less": "~1.5.1",
     "async": "~0.2.9",
+    "fs-extra": "~0.8.1",
     "jshint": "~2.3.0",
     "uglify-js": "~2.4.7",
     "grunt": "~0.4.2",
@@ -35,8 +36,5 @@
   },
   "scripts": {
     "test": "grunt --verbose"
-  },
-  "dependencies": {
-    "fs-extra": "~0.8.1"
   }
 }
