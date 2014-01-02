@@ -13,11 +13,27 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        ink: {
+            folders: {
+                bower: './bower_components/',
+                js: {
+                    srcBase: './src/js/',
+                    src: './src/js/Ink/',
+                    tests: './src/js/tests/',
+                    dist: './dist/js/'
+                },
+                css: {
+                    src: './src/less/',
+                    dist: './dist/css/'
+                }
+            }
+        },
         // handle 3rd party dependencies
         bower: {
             install: {
                 options: {
-                    targetDir: 'tmp',
+                    copy: false,
+                    targetDir: '<%= ink.folders.bower %>',
                     layout: 'byType',
                     install: true,
                     verbose: false,
@@ -32,15 +48,18 @@ module.exports = function (grunt) {
         copy: {
             fontAwesome: {
                 files: [{
-                    cwd: 'tmp/font-awesome/less/',
-                    src: '*.less',
-                    dest: 'src/less/modules/icons/',
+                    cwd: '<%= ink.folders.bower %>font-awesome/less/',
+                    src: [
+                        '*.less',
+                        '!variables.less',
+                    ],
+                    dest: '<%= ink.folders.css.src %>modules/icons/',
                     expand: true
                 }]
             },
             modernizr: {
                 files: [{
-                    cwd: 'tmp/modernizr',
+                    cwd: '<%= ink.folders.bower %>modernizr',
                     src: 'modernizr.js',
                     dest: '<%= ink.folders.js.dist %>',
                     expand: true
@@ -48,20 +67,6 @@ module.exports = function (grunt) {
             }
         },
 
-        ink: {
-            folders: {
-                js: {
-                    srcBase: './src/js/',
-                    src: './src/js/Ink/',
-                    tests: './src/js/tests/',
-                    dist: './dist/js/'
-                },
-                css: {
-                    src: './src/less/',
-                    dist: './dist/css/'
-                }
-            }
-        },
 
         // builds the javascript bundles
         concat: {
@@ -150,13 +155,19 @@ module.exports = function (grunt) {
 
         clean: {
             js: {
-                src: ['<%= ink.folders.js.dist %>/ink*.js']
+                src: [
+                    '<%= ink.folders.js.dist %>/ink*.js',
+                    '<%= ink.folders.js.dist %>/ink*.js.map',
+                ]
             },
             css: {
                 src: ['<%= ink.folders.css.dist %>/ink*.css']
             },
             fontAwesome: {
-                src: ['<%= ink.folders.css.src %>/less/modules/icons/*.less']
+                src: [
+                    '<%= ink.folders.css.src %>modules/icons/*',
+                    '!<%= ink.folders.css.src %>modules/icons/variables.less'
+                ]
             },
             tmp: {
                 src: ['tmp']

@@ -11,8 +11,8 @@
     "src/*"
   ],
   "dependencies": {
-    "modernizr": ">=2.6.2",
-    "font-awesome": ">=4.0.3",
+    "modernizr": "~2.6.2",
+    "font-awesome": "~4.0.3",
     "animate.css": "~3.0.0"
   },
   "devDependencies": {
