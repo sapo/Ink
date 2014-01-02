@@ -1,28 +1,17 @@
 Ink.createModule('Ink.UI.Animate', 1, ['Ink.Dom.Css_1'], function (Css) {
-    /* TODO maybe?
-    var animationDurationSupport = (function (el) {
-        var options = [
-            'animation-duration',
-            'o-animation-duration',
-            'ms-animation-duration',
-            'webkit-animation-duration'
-        ];
-        for (var i = 0; i < options.length; i++) {
-            if (typeof Css.getStyle(el, options[i]) === 'string') {
-                return options[i];
-            }
-        }
-    }(document.createElement('div')));
-    */
-
     function cssDurationToMs(duration) {
         duration = duration
-            .replace(/ms$/, '')
-            .replace(/s$/, '000');
+            .replace(/ms$/, '');
 
-        duration = +duration;
+        if (/s$/.test(duration)) {
+            return parseFloat(duration) * 1000;
+        }
 
-        return duration;
+        return parseFloat(duration);
+    }
+
+    function isNumber(n) {
+        return typeof n === 'number' && !isNaN(n);
     }
 
     var Animate = {
@@ -34,15 +23,13 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.Dom.Css_1'], function (Css) {
 
             Css.addClassName(element, ['animate', animation || 'fadeOut']);
 
-            options = Ink.extendObj({
-                duration: 400
-            }, options || {});
-
-            /* TODO maybe ?
-            if (animationDurationSupport) {
-                duration = cssDurationToMs(Css.getStyle(element, 'animation-duration'));
+            if (typeof options.duration === 'string') {
+                options.duration = cssDurationToMs(options.duration);
             }
-            */
+
+            if (!isNumber(options.duration)) {
+                options.duration = 400;
+            }
 
             setTimeout(function () {
                 if (options.onEnd) {
