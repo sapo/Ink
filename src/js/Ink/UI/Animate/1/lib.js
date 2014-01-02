@@ -1,35 +1,19 @@
 Ink.createModule('Ink.UI.Animate', 1, ['Ink.Dom.Css_1'], function (Css) {
-    function cssDurationToMs(duration) {
-        duration = duration
-            .replace(/ms$/, '');
-
-        if (/s$/.test(duration)) {
-            return parseFloat(duration) * 1000;
-        }
-
-        return parseFloat(duration);
-    }
-
-    function isNumber(n) {
-        return typeof n === 'number' && !isNaN(n);
-    }
-
     var Animate = {
         animate: function (element, animation, options) {
-            if (arguments.length === 2) {
-                options = animation;
-                animation = options.animation
+            if (typeof options === 'number') {
+                options = { duration: options };
             }
 
-            Css.addClassName(element, ['animate', animation || 'fadeOut']);
-
-            if (typeof options.duration === 'string') {
-                options.duration = cssDurationToMs(options.duration);
+            if (typeof arguments[3] === 'function') {
+                options.onEnd = arguments[3];
             }
 
-            if (!isNumber(options.duration)) {
+            if (typeof options.duration !== 'number') {
                 options.duration = 400;
             }
+
+            Css.addClassName(element, ['animate', animation]);
 
             setTimeout(function () {
                 if (options.onEnd) {

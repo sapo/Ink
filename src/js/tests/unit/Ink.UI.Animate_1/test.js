@@ -11,21 +11,24 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1'], f
         ok(Css.hasClassName(el, 'animate'));
     });
 
-    test('duration can be a string ending in "ms" or "s"', function () {
-        var clock = sinon.useFakeTimers();
-        var spy1 = sinon.spy();
-        var spy2 = sinon.spy();
+    test('duration and onEnd can be passed as last arguments', function () {
         var el = InkElement.create('div');
+        var el2 = InkElement.create('div');
+        var onEnd = sinon.spy();
+        var clock = sinon.useFakeTimers();
 
-        Animate.animate(el, 'someanimation', { duration: '120ms', onEnd: spy1 });
-        Animate.animate(el, 'someanimation', { duration: '0.120s', onEnd: spy2 });
-        
-        clock.tick(100);
-        ok(spy1.notCalled);
-        ok(spy2.notCalled);
-        clock.tick(21);
-        ok(spy1.called);
-        ok(spy2.called);
+        // Just pass onEnd...
+        Animate.animate(el, 'someanimation', 200, onEnd);
+
+        clock.tick(199);
+        ok(!onEnd.called);
+        clock.tick(1);
+        ok(onEnd.called, 'onEnd called at the correct time');
+
+        // Just pass the duration...
+        Animate.animate(el2, 'someotheranimation', 100);
+
+        // looks like this is untestable.
 
         clock.restore();
     });
@@ -55,7 +58,7 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1'], f
 
         clock.tick(100);
         ok(Css.hasClassName(el, 'someanimation'));
-        clock.tick(101);
+        clock.tick(2);
         ok(!Css.hasClassName(el, 'someanimation'));
 
         clock.restore();
