@@ -44,7 +44,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        // 
+        //
         copy: {
             fontAwesome: {
                 files: [{
@@ -141,10 +141,10 @@ module.exports = function (grunt) {
                         var version = split[1];
 
                         if (version === '1') {
-                            // and it it is discard the version number               
+                            // and it it is discard the version number
                             return dest + 'ink.' + modName + '.js';
                         } else {
-                            // or replace the slash by an underscore and version number and prepend to dest file name 
+                            // or replace the slash by an underscore and version number and prepend to dest file name
                             return dest + 'ink.' + modName + '-' + version + '.js';
                         }
                     }
@@ -319,16 +319,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-plato');
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify', 'clean:tmp']);
     grunt.registerTask('test', ['connect', 'qunit']);
