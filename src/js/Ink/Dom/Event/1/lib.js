@@ -3,6 +3,17 @@
  */
 
 Ink.createModule('Ink.Dom.Event', 1, [], function() {
+    /* jshint
+           asi:true,
+           strict:false,
+           laxcomma:true,
+           eqeqeq:false,
+           laxbreak:true,
+           boss:true,
+           curly:false,
+           expr:true
+           */
+
     /*!
       * Bean - copyright (c) Jacob Thornton 2011-2012
       * https://github.com/fat/bean
@@ -753,14 +764,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * Instantiate browser native events array
      */
 
-    var nativeEvents;
-
-    if (document.createEvent) {
-        nativeEvents = 'DOMActivate DOMFocusIn DOMFocusOut focus focusin focusout blur load unload abort error select change submit reset resize scroll click dblclick mousedown mouseenter mouseleave mousemove mouseover mouseout mouseup mousewheel wheel textInput keydown keypress keyup compositionstart compositionupdate compositionend DOMSubtreeModified DOMNodeInserted DOMNodeRemoved DOMNodeInsertedIntoDocument DOMNodeRemovedFromDocument DOMAttrModified DOMCharacterDataModified DOMAttributeNameChanged DOMElementNameChanged hashchange'.split(' ');
-    } else {
-        nativeEvents = 'onabort onactivate onafterprint onafterupdate onbeforeactivate onbeforecopy onbeforecut onbeforedeactivate onbeforeeditfocus onbeforepaste onbeforeprint onbeforeunload onbeforeupdate onblur onbounce oncellchange onchange onclick oncontextmenu oncontrolselect oncopy oncut ondataavailable ondatasetchanged ondatasetcomplete ondblclick ondeactivate ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop onerror onerrorupdate onfilterchange onfinish onfocus onfocusin onfocusout onhashchange onhelp onkeydown onkeypress onkeyup onlayoutcomplete onload onlosecapture onmessage onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onmousewheel onmove onmoveend onmovestart onoffline ononline onpage onpaste onprogress onpropertychange onreadystatechange onreset onresize onresizeend onresizestart onrowenter onrowexit onrowsdelete onrowsinserted onscroll onselect onselectionchange onselectstart onstart onstop onstorage onstoragecommit onsubmit ontimeout onunload'.split(' ');
-    }
-
     /**
      * @module Ink.Dom.Event_1
      */
@@ -1147,8 +1150,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         if (window.addEventListener) {
             if(ev.button === 0){
                 return true;
-            }
-            else if(ev.type.substring(0,5) === 'touch' && ev.button === null){
+            } else if(ev.type === 'touchend' && ev.button === null){
+                // [todo] do the above check for pointerEvents too
                 return true;
             }
         }
