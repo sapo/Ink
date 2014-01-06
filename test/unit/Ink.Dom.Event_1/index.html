@@ -1,21 +1,20 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Ink.Dom.Event unit tests</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Ink.Dom.Event unit tests</title>
 
 		<link type="text/css"           href="../../../bower_components/qunit/qunit/qunit.css" rel="stylesheet"/>
-        <script type="text/javascript"   src="../../../bower_components/qunit/qunit/qunit.js"></script>
-        <script type="text/javascript" src="http://sinonjs.org/releases/sinon-1.7.3.js"></script>
+        <script type="text/javascript"  src="../../../bower_components/qunit/qunit/qunit.js"></script>
+        <script type="text/javascript"  src="../../../bower_components/syn/dist/syn.js"></script>
+        <script type="text/javascript"  src="../../../bower_components/sinonjs-built/pkg/sinon.js"></script>
         <!--[if IE]>
-            <script src="http://sinonjs.org/releases/sinon-ie-1.7.3.js"></script>
-            <script src="http://sinonjs.org/releases/sinon-timers-ie-1.7.3.js"></script>
+            <script src="../../../bower_components/sinonjs-built/pkg/sinon-ie.js"></script>
+            <script src="../../../bower_components/sinonjs-built/pkg/sinon-timers-ie.js"></script>
         <![endif]-->
-
-
-		<!-- test dependencies here -->
+        <script type="text/javascript" src="../../../bower_components/sinon-qunit/lib/sinon-qunit.js"></script>
+        <!-- test dependencies here -->
 		<script type="text/javascript" src="../../../src/js/Ink/1/lib.js"></script>
-		<script type="text/javascript" src="../../../src/js/Ink/Dom/Event/1/lib.js"></script>
 		<script type="text/javascript">
 		    Ink.setPath('Ink', '../../../src/js/Ink/');
 		</script>
@@ -27,6 +26,19 @@
 		<h2 id="qunit-userAgent"></h2>
 		<ol id="qunit-tests"></ol>
 
+        <script type="text/javascript" src="common.js"></script>
+
+        <!-- old API test -->
         <script type="text/javascript" src="test.js"></script>
-	</body>
+
+        <script type="text/javascript" src="add-test.js"></script>
+        <script type="text/javascript" src="clone-test.js"></script>
+        <script type="text/javascript" src="custom-test.js"></script>
+        <script type="text/javascript" src="custom-types-test.js"></script>
+        <script type="text/javascript" src="delegate-test.js"></script>
+        <script type="text/javascript" src="event-object-test.js"></script>
+        <script type="text/javascript" src="fire-test.js"></script>
+        <script type="text/javascript" src="namespace-test.js"></script>
+        <script type="text/javascript" src="remove-test.js"></script>
+    </body>
 </html>
