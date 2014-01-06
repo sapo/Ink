@@ -375,7 +375,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
             var cursor = fromElement;
 
-            while (cursor !== element && cursor) {
+            // Go up the document tree until we hit the element itself.
+            while (cursor !== element && cursor !== document && cursor) {
                 if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
                     event.delegationTarget = cursor;
                     return callback(event);
