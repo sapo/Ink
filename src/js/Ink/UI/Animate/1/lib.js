@@ -1,6 +1,8 @@
-Ink.createModule('Ink.UI.Animate', 1, ['Ink.Dom.Css_1'], function (Css) {
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1'], function (Common, Css, InkEvent) {
     var Animate = {
         animate: function (element, animation, options) {
+            element = Common.elOrSelector(element);
+
             if (typeof options === 'number') {
                 options = { duration: options };
             }
@@ -13,18 +15,23 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.Dom.Css_1'], function (Css) {
                 options.duration = 400;
             }
 
-            Css.addClassName(element, ['animate', animation]);
+            Css.addClassName(element, ['animated', animation]);
+            // element.style.
 
+            /*
             setTimeout(function () {
                 if (options.onEnd) {
                     if (options.onEnd() === false) {
                         return;
                     }
                 }
-                if (options.revert) {
-                    Css.removeClassName(element, ['animate', animation]);
-                }
+                Css.removeClassName(element, ['animated', animation]);
             }, options.duration);
+            */
+
+            element.addEventListener('animationend', function () {
+                alert(arguments[0])
+            })
         }
     }
 

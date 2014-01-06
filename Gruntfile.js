@@ -57,6 +57,14 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             },
+            animate: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>animate.css',
+                    src: ['animate.css'],
+                    dest: '<%= ink.folders.css.src %>modules/animations/',
+                    expand: true,
+                }]
+            },
             modernizr: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>modernizr',
