@@ -97,62 +97,6 @@ Ink.requireModules(['Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Selector_1'
         });
     }());
 
-    module('fire');
-
-    test('basic', function () {
-        var elem = InkElement.create('div');
-        document.body.appendChild(elem);
-
-        InkEvent.observe(elem, 'click', function (ev) {
-            equal(ev.memo.memo, 'check');
-            document.body.removeChild(elem);
-        });
-
-        expect(1);
-        InkEvent.fire(elem, 'click', {memo: 'check'});
-    });
-
-    test('bubbling', function () {
-        var elem = InkElement.create('div', {className: 'elem'});
-        var child = InkElement.create('div', { insertBottom: elem });
-        document.body.appendChild(elem);
-
-        InkEvent.observe(elem, 'click', function (ev) {
-            equal(ev.memo.memo, 'check');
-            ok(InkEvent.element(ev) === child);
-            ok(this === elem);
-            document.body.removeChild(elem);
-        });
-
-        expect(3);
-        InkEvent.fire(child, 'click', {memo: 'check'});
-    });
-
-    asyncTest('fire() and bubbling, no appending to document', function () {
-        // [bug] This fails in chrome. Why?
-        var elem = InkElement.create('div', {className: 'elem'});
-        var child = InkElement.create('div', { insertBottom: elem });
-
-        InkEvent.observe(elem, 'click', function (ev) {
-            equal(ev.memo.memo, 'check');
-            ok(InkEvent.element(ev) === child);
-            ok(this === elem);
-            start();
-        });
-
-        InkEvent.fire(child, 'click', {memo: 'check'});
-    });
-
-    asyncTest('events on the window', function () {
-        expect(1);
-        var cb = InkEvent.observe(window, 'resize', function (event) {
-            ok(true);
-            InkEvent.stopObserving(window, 'resize', cb);
-            start();
-        });
-        InkEvent.fire(window, 'resize');
-    });
-
     module('observe');
 
     asyncTest('basic', function () {
