@@ -119,8 +119,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * @method init
          * @public
          */
-        init: function()
-        {
+        init: function() {
             this.detectBrowser();
             this.setDimensions();
             this.setReferrer();
@@ -132,8 +131,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * @method setDimensions
          * @public
          */
-        setDimensions: function()
-        {
+        setDimensions: function() {
             //this.windowWidth=window.innerWidth !== null? window.innerWidth : document.documentElement && document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body !== null ? document.body.clientWidth : null;
             //this.windowHeight=window.innerHeight != null? window.innerHeight : document.documentElement && document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body != null? document.body.clientHeight : null;
             var myWidth = 0, myHeight = 0;
@@ -157,9 +155,12 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * @method setReferrer
          * @public
          */
-        setReferrer: function()
-        {
-            this.referrer = document.referrer !== undefined? document.referrer.length > 0 ? window.escape(document.referrer) : false : false;
+        setReferrer: function() {
+            if (document.referrer && document.referrer.length) {
+                this.referrer = window.escape(document.referrer);
+            } else {
+                this.referrer = false;
+            }
         },
 
         /**
@@ -168,73 +169,80 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          * @method detectBrowser
          * @public
          */
-        detectBrowser: function()
-        {
-            var sAgent = navigator.userAgent;
+        detectBrowser: function() {
+            this._sniffUserAgent(navigator.userAgent);
+        },
 
+        _sniffUserAgent: function (sAgent) {
             this.userAgent = sAgent;
 
             sAgent = sAgent.toLowerCase();
 
-            if((new RegExp("applewebkit\/")).test(sAgent)) {
-
-                if((new RegExp("chrome\/")).test(sAgent)) {
+            if (/applewebkit\//.test(sAgent)) {
+                this.cssPrefix = '-webkit-';
+                this.domPrefix = 'Webkit';
+                if(/(chrome|crios)\//.test(sAgent)) {
                     // Chrome
                     this.CHROME = true;
                     this.model = 'chrome';
-                    this.version = sAgent.replace(new RegExp("(.*)chrome\/([^\\s]+)(.*)"), "$2");
-                    this.cssPrefix = '-webkit-';
-                    this.domPrefix = 'Webkit';
+                    this.version = sAgent.replace(/(.*)chrome\/([^\s]+)(.*)/, "$2");
                 } else {
                     // Safari
                     this.SAFARI = true;
                     this.model = 'safari';
-                    this.version = sAgent.replace(new RegExp("(.*)applewebkit\/([^\\s]+)(.*)"), "$2");
-                    this.cssPrefix = '-webkit-';
-                    this.domPrefix = 'Webkit';
+                    var rVersion = /version\/([^) ]+)/;
+                    if (rVersion.test(sAgent)) {
+                        this.version = sAgent.match(rVersion)[1];
+                    } else {
+                        this.version = sAgent.replace(/(.*)applewebkit\/([^\s]+)(.*)/, "$2");
+                    }
                 }
-            } else if((new RegExp("opera")).test(sAgent)) {
+            } else if (/opera/.test(sAgent)) {
                 // Opera
                 this.OPERA = true;
                 this.model = 'opera';
-                this.version = sAgent.replace(new RegExp("(.*)opera.([^\\s$]+)(.*)"), "$2");
+                this.version = sAgent.replace(/(.*)opera.([^\s$]+)(.*)/, "$2");
                 this.cssPrefix = '-o-';
                 this.domPrefix = 'O';
-            } else if((new RegExp("konqueror")).test(sAgent)) {
-                // Konqueror
+            } else if (/konqueror/.test(sAgent)) {
+                // Konqueroh
                 this.KONQUEROR = true;
                 this.model = 'konqueror';
-                this.version = sAgent.replace(new RegExp("(.*)konqueror\/([^;]+);(.*)"), "$2");
+                this.version = sAgent.replace(/(.*)konqueror\/([^;]+);(.*)/, "$2");
                 this.cssPrefix = '-khtml-';
                 this.domPrefix = 'Khtml';
-            } else if((new RegExp("msie\\ ")).test(sAgent)) {
+            } else if (/(msie|trident)/i.test(sAgent)) {
                 // MSIE
                 this.IE = true;
                 this.model = 'ie';
-                this.version = sAgent.replace(new RegExp("(.*)\\smsie\\s([^;]+);(.*)"), "$2");
+                if (/rv:((?:\d|\.)+)/.test(sAgent)) {  // IE 11
+                    this.version = sAgent.match(/rv:((?:\d|\.)+)/)[1];
+                } else {
+                    this.version = sAgent.replace(/(.*)\smsie\s([^;]+);(.*)/, "$2");
+                }
                 this.cssPrefix = '-ms-';
                 this.domPrefix = 'ms';
-            } else if((new RegExp("gecko")).test(sAgent)) {
+            } else if (/gecko/.test(sAgent)) {
                 // GECKO
                 // Supports only:
                 // Camino, Chimera, Epiphany, Minefield (firefox 3), Firefox, Firebird, Phoenix, Galeon,
                 // Iceweasel, K-Meleon, SeaMonkey, Netscape, Songbird, Sylera,
+                this.cssPrefix = '-moz-';
+                this.domPrefix = 'Moz';
+
                 this.GECKO = true;
-                var re = new RegExp("(camino|chimera|epiphany|minefield|firefox|firebird|phoenix|galeon|iceweasel|k\\-meleon|seamonkey|netscape|songbird|sylera)");
+
+                var re = /(camino|chimera|epiphany|minefield|firefox|firebird|phoenix|galeon|iceweasel|k\-meleon|seamonkey|netscape|songbird|sylera)/;
                 if(re.test(sAgent)) {
                     this.model = sAgent.match(re)[1];
                     this.version = sAgent.replace(new RegExp("(.*)"+this.model+"\/([^;\\s$]+)(.*)"), "$2");
-                    this.cssPrefix = '-moz-';
-                    this.domPrefix = 'Moz';
                 } else {
                     // probably is mozilla
                     this.model = 'mozilla';
-                    var reVersion = new RegExp("(.*)rv:([^)]+)(.*)");
+                    var reVersion = /(.*)rv:([^)]+)(.*)/;
                     if(reVersion.test(sAgent)) {
                         this.version = sAgent.replace(reVersion, "$2");
                     }
-                    this.cssPrefix = '-moz-';
-                    this.domPrefix = 'Moz';
                 }
             }
         },
@@ -262,8 +270,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
          *      
          *      original UA -> Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0
          */
-        debug: function()
-        {
+        debug: function() {
             /*global alert:false */
             var str = "known browsers: (ie, gecko, opera, safari, konqueror) \n";
                 str += [this.IE, this.GECKO, this.OPERA, this.SAFARI, this.KONQUEROR] +"\n";
@@ -272,7 +279,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
                 str += "\n";
                 str += "original UA -> "+this.userAgent;
 
-                alert(str);
+            alert(str);
         }
     };
 

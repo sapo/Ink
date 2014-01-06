@@ -2982,9 +2982,9 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
             this._options = Common.options('Ink.UI.Dropdown_1', {
                 'target':           ['Element'],
                 'hoverOpen':        ['Number', null],
-                'dismissOnInsideClick': ['Boolean', true],
+                'dismissOnInsideClick': ['Boolean', false],
                 'dismissOnOutsideClick': ['Boolean', true],
-                'dismissAfter':        ['Number', null],
+                'dismissAfter':     ['Number', null],
                 'onInsideClick':    ['Function', null],
                 'onOutsideClick':   ['Function', null],
                 'onOpen':           ['Function', null],
@@ -3011,7 +3011,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
             // to call dismissOnInsideClick and onInsideClick
             InkEvent.observe(this._options.target, 'click', Ink.bindMethod(this, '_onInsideClick'));
             // to call dismissOnOutsideClick and onOutsideClick
-            InkEvent.observe(document.body, 'click', Ink.bindMethod(this, '_onOutsideClick'));
+            InkEvent.observe(document, 'click', Ink.bindMethod(this, '_onOutsideClick'));
         },
 
         /**
@@ -3022,13 +3022,13 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @private
          **/
         _onMouseOver: function () {
-            if (this._options.hoverOpen && this._toggle.getState() === false) {
+            if (typeof this._options.hoverOpen === 'number' && this._toggle.getState() === false) {
                 clearTimeout(this._openTimeout);
                 this._openTimeout = setTimeout(
                     Ink.bindMethod(this, 'open', true),
                     this._options.hoverOpen * 1000);
             }
-            if (this._options.dismissAfter) {
+            if (typeof this._options.dismissAfter === 'number') {
                 clearTimeout(this._dismissTimeout);
             }
         },
@@ -3041,13 +3041,13 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @private
          **/
         _onMouseOut: function () {
-            if (this._options.dismissAfter && this._toggle.getState() === true) {
+            if (typeof this._options.dismissAfter === 'number' && this._toggle.getState() === true) {
                 clearTimeout(this._dismissTimeout);
                 this._dismissTimeout = setTimeout(
                     Ink.bindMethod(this, 'dismiss', true),
                     this._options.dismissAfter * 1000);
             }
-            if (this._options.hoverOpen) {
+            if (typeof this._options.hoverOpen === 'number') {
                 clearTimeout(this._openTimeout);
             }
         },
@@ -3554,7 +3554,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * @readOnly
          * @private
          */
-        _errorClassName: 'tip',
+        _errorClassName: 'tip error',
 
         /**
          * @property _errorValidationClassName
@@ -4101,11 +4101,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 }
 
                 if(inputType !== 'checkbox') {
-                    if (curElm.nextSibling /* This check will become obsolete after 2.2.2 */) {
-                        InkElement.insertAfter(errorMsg, curElm);
-                    } else {
-                        curElm.parentNode.appendChild(errorMsg); /* so will this workaround */
-                    }
+                    InkElement.insertAfter(errorMsg, curElm);
                     if (controlElm) {
                         if(error.errors[0] === 'ink-fv-required') {
                             Css.addClassName(controlGroupElm, 'validation error');
@@ -4136,8 +4132,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * @param {DOMElement} formElm Form element to be cleared.
          * @private
          */
-        _clearError: function(formElm)
-        {
+        _clearError: function(formElm) {
             //return;
             var aErrorLabel = formElm.getElementsByTagName('p');
 
@@ -4146,12 +4141,10 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 curElm = aErrorLabel[i];
                 if(Css.hasClassName(curElm, this._errorClassName)) {
                     if(Css.hasClassName(curElm.parentNode, 'control')) {
-                        Css.removeClassName(curElm.parentNode.parentNode, 'validation');
-                        Css.removeClassName(curElm.parentNode.parentNode, 'error');
-                        Css.removeClassName(curElm.parentNode.parentNode, 'warning');
+                        Css.removeClassName(curElm.parentNode.parentNode, 'validation error warning');
                     }
 
-                    if(Css.hasClassName(curElm,'tip') && Css.hasClassName(curElm,'error')){
+                    if(Css.hasClassName(curElm,'tip error', true /*both*/)) {
                         curElm.parentNode.removeChild(curElm);
                     }
                 }
@@ -4161,8 +4154,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             for(i = (aErrorLabel2.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel2[i];
                 if(Css.hasClassName(curElm, 'control-group')) {
-                    Css.removeClassName(curElm, 'validation');
-                    Css.removeClassName(curElm, 'error');
+                    Css.removeClassName(curElm, 'validation error');
                 }
             }
         },
@@ -5067,8 +5059,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                InkArray.each( this._markedErrorElements, function () {
-                    Css.removeClassName(['validation', 'error']);
+                InkArray.each( this._markedErrorElements, function (errorElement) {
+                    Css.removeClassName(errorElement,  ['validation', 'error']);
                 });
                 InkArray.each( this._errorMessages, Element.remove);
                 this._errorMessages = [];
@@ -5648,6 +5640,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _resizeContainer: function() {
+            // [3.0.0] drop this because everyone should have the new CSS now, which has this rule already with .ink-modal-is-open.
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
@@ -8524,15 +8517,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      *      </script>
      */
     var Tabs = function(selector, options) {
-
-        if (!Common.isDOMElement(selector)) {
-            selector = Selector.select(selector);
-            if (selector.length === 0) { throw new TypeError('1st argument must either be a DOM Element or a selector expression!'); }
-            this._element = selector[0];
-        } else {
-            this._element = selector;
-        }
-
+        this._element = Common.elOrSelector(selector, 'Ink.UI.Tabs tab container');
 
         this._options = Ink.extendObj({
             preventUrlChange: false,
@@ -8541,12 +8526,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             onBeforeChange: undefined,
             onChange: undefined,
             triggerEventsOnLoad: true
-        }, options || {}, Element.data(selector));
+        }, options || {}, Element.data(this._element));
 
         this._handlers = {
             tabClicked: Ink.bindEvent(this._onTabClicked,this),
             disabledTabClicked: Ink.bindEvent(this._onDisabledTabClicked,this),
-            resize: Ink.bindEvent(this._onResize,this)
+            resize: Ink.bindEvent(Event.throttle(this._onResize, 100),this)
         };
 
         this._init();
@@ -8562,7 +8547,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _init: function() {
             this._menu = Selector.select('.tabs-nav', this._element)[0];
-            this._menuTabs = this._getChildElements(this._menu);
+            this._menuTabs = this._menu.children;
             this._contentTabs = Selector.select('.tabs-content', this._element);
 
             //initialization of the tabs, hides all content before setting the active tab
@@ -8573,9 +8558,6 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
 
             //sets the first active tab
             this._setFirstActive();
-
-            //shows the active tab
-            this._changeTab(this._activeMenuLink, this._options.triggerEventsOnLoad);
 
             this._handlers.resize();
 
@@ -8590,7 +8572,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _initializeDom: function(){
             for(var i = 0; i < this._contentTabs.length; i++){
-                Css.hide(this._contentTabs[i]);
+                Css.addClassName(this._contentTabs[i], 'hide-all');
             }
         },
 
@@ -8622,12 +8604,12 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _setFirstActive: function() {
             var hash = window.location.hash;
-            this._activeContentTab = Selector.select(hash, this._element)[0] ||
-                                     Selector.select(this._hashify(this._options.active), this._element)[0] ||
-                                     Selector.select('.tabs-content', this._element)[0];
 
-            this._activeMenuLink = this._findLinkByHref(this._activeContentTab.getAttribute('id'));
-            this._activeMenuTab = this._activeMenuLink.parentNode;
+            var activeMenuLink = this._findLinkByHref(hash) ||
+                                 (this._options.active && this._findLinkByHref(this._options.active)) ||
+                                 Selector.select('a', this._menu)[0];
+
+            this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
         },
 
         /**
@@ -8644,18 +8626,24 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             }
 
             var selector = link.getAttribute('href');
-            Css.removeClassName(this._activeMenuTab, 'active');
-            Css.removeClassName(this._activeContentTab, 'active');
-            Css.addClassName(this._activeContentTab, 'hide-all');
+            if (this._activeMenuTab) {
+                Css.removeClassName(this._activeMenuTab, 'active');
+                Css.removeClassName(this._activeContentTab, 'active');
+                Css.addClassName(this._activeContentTab, 'hide-all');
+            }
 
             this._activeMenuLink = link;
             this._activeMenuTab = this._activeMenuLink.parentNode;
             this._activeContentTab = Selector.select(selector.substr(selector.indexOf('#')), this._element)[0];
 
+            if (!this._activeContentTab) {
+                this._activeMenuLink = this._activeMenuTab = this._activeContentTab = null;
+                return;
+            }
+
             Css.addClassName(this._activeMenuTab, 'active');
             Css.addClassName(this._activeContentTab, 'active');
             Css.removeClassName(this._activeContentTab, 'hide-all');
-            Css.show(this._activeContentTab);
 
             if(runCallbacks && typeof(this._options.onChange) !== 'undefined'){
                 this._options.onChange(this);
@@ -8751,33 +8739,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
          */
         _findLinkByHref: function(href){
             href = this._hashify(href);
-            var ret;
-            InkArray.each(this._menuTabs,Ink.bind(function(elem){
-                var link = Selector.select('a', elem)[0];
-                if( (link.getAttribute('href').indexOf('#') !== -1) && ( link.getAttribute('href').substr(link.getAttribute('href').indexOf('#')) === href ) ){
-                    ret = link;
-                }
-            },this));
-            return ret;
-        },
 
-        /**
-         * Returns the child elements of a given parent element
-         * 
-         * @method _getChildElements
-         * @param {DOMElement} parent  DOMElement to fetch the child elements from.
-         * @return {Array}  Child elements of the given parent.
-         * @private
-         */
-        _getChildElements: function(parent){
-            var childNodes = [];
-            var children = parent.children;
-            for(var i = 0; i < children.length; i++){
-                if(children[i].nodeType === 1){
-                    childNodes.push(children[i]);
-                }
-            }
-            return childNodes;
+            // Find a link which has a href ending with...
+            return Selector.select('a[href$="' + href + '"]', this._menu)[0];
         },
 
         /**************
@@ -9039,8 +9003,8 @@ Ink.createModule("Ink.UI.TagField","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1", 
                 setTextContent: tag + ' '
             });
 
-            var remove = InkElement.create('i', {
-                className: 'remove icon-remove',
+            var remove = InkElement.create('span', {
+                className: 'remove icon icon-remove icon-times',  // fontawesome 3 changed icon-remove's name to icon-times
                 insertBottom: elm
             });
             InkEvent.observe(remove, 'click', Ink.bindEvent(this._removeTag, this, null));
@@ -9914,26 +9878,31 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
+     * @param {String} [options.child='ul'] Selector to define which elements are represented as childs.
+     * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
+     * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
+     * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
+     * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
+     * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
+     * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
      * @example
      *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
+     *        <li class="open"><a href="#">root</a>
      *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
+     *            <li><a href="#">child 1</a></li>
+     *            <li><a href="#">child 2</a>
      *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
+     *                <li><a href="#">grandchild 2a</a></li>
+     *                <li><a href="#">grandchild 2b</a>
      *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                    <li><a href="#">grandgrandchild 1bA</a></li>
+     *                    <li><a href="#">grandgrandchild 1bB</a></li>
      *                  </ul>
      *                </li>
      *              </ul>
      *            </li>
-     *            <li><a href="">child 3</a></li>
+     *            <li><a href="#">child 3</a></li>
      *          </ul>
      *        </li>
      *      </ul>
@@ -9961,29 +9930,16 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             this._element = selector;
         }
 
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         * @param {string} parentClass Classes to be added to the parent node. Default: parent
-         * @param {string} openClass Classes to be added to the icon when a parent is open. Default: icon-plus-sign
-         * @param {string} closedClass Classes to be added to the icon when a parent is closed. Default: icon-minus-sign
-         * @param {string} hideClass Class to toggle visibility of the children. Default: hide-all
-         * @param {string} iconTag The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Default: i
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul',
-            parentClass: 'parent',
-            openClass: 'icon-minus-sign',
-            closedClass: 'icon-plus-sign',
-            hideClass: 'hide-all',
-            iconTag: 'i'
-
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
+        this._options = Common.options('Treeview', {
+            'node':   ['String', 'li'],
+            'child':  ['String','ul'],
+            'parentClass': ['String','parent'],
+            'openClass': ['String','icon icon-minus-circle'],
+            'closedClass': ['String','icon icon-plus-circle'],
+            'hideClass': ['String','hide-all'],
+            'iconTag': ['String', 'i'],
+            'stopDefault' : ['Boolean', true]
+        }, options || {}, this._element);
 
         this._init();
     };
@@ -10017,10 +9973,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 if( children.length > 0 ) {
                     Css.addClassName(item, this._options.parentClass);
 
-                    is_open = Element.data(item)['open'] === 'true';
-                    icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
+                    is_open = Element.data(item).open === 'true';
+                    icon = Selector.select('> ' + this._options.iconTag, item)[0];
                     if( !icon ){
-                        icon = Ink.Dom.Element.create('i');
+                        icon = Element.create('i');
                         item.insertBefore(icon, item.children[0]);
                     }
 
@@ -10070,8 +10026,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             /**
              * Summary:
              * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
+             * If so, will toggle its state and stop the event's default behavior if the stopDefault option is true.
              *
              */
             var tgtEl = Event.element(event);
@@ -10085,10 +10040,13 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 icon;
 
             if( child.length > 0 ){
-                Event.stop(event);
+
+                if(this._options.stopDefault){
+                    Event.stop(event);
+                }
                 child = child[0];
                 this._toggleClassNames(child, this._options.hideClass);
-                is_open = Element.data(tgtEl)['open'] === 'true';
+                is_open = Element.data(tgtEl).open === 'true';
                 icon = tgtEl.children[0];
                 if(is_open){
                     tgtEl.setAttribute('data-open', false);

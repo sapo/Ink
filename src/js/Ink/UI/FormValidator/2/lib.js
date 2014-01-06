@@ -877,8 +877,8 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                InkArray.each( this._markedErrorElements, function () {
-                    Css.removeClassName(['validation', 'error']);
+                InkArray.each( this._markedErrorElements, function (errorElement) {
+                    Css.removeClassName(errorElement,  ['validation', 'error']);
                 });
                 InkArray.each( this._errorMessages, Element.remove);
                 this._errorMessages = [];

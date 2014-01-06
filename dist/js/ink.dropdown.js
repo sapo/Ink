@@ -27,9 +27,9 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
             this._options = Common.options('Ink.UI.Dropdown_1', {
                 'target':           ['Element'],
                 'hoverOpen':        ['Number', null],
-                'dismissOnInsideClick': ['Boolean', true],
+                'dismissOnInsideClick': ['Boolean', false],
                 'dismissOnOutsideClick': ['Boolean', true],
-                'dismissAfter':        ['Number', null],
+                'dismissAfter':     ['Number', null],
                 'onInsideClick':    ['Function', null],
                 'onOutsideClick':   ['Function', null],
                 'onOpen':           ['Function', null],
@@ -56,7 +56,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
             // to call dismissOnInsideClick and onInsideClick
             InkEvent.observe(this._options.target, 'click', Ink.bindMethod(this, '_onInsideClick'));
             // to call dismissOnOutsideClick and onOutsideClick
-            InkEvent.observe(document.body, 'click', Ink.bindMethod(this, '_onOutsideClick'));
+            InkEvent.observe(document, 'click', Ink.bindMethod(this, '_onOutsideClick'));
         },
 
         /**
@@ -67,13 +67,13 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @private
          **/
         _onMouseOver: function () {
-            if (this._options.hoverOpen && this._toggle.getState() === false) {
+            if (typeof this._options.hoverOpen === 'number' && this._toggle.getState() === false) {
                 clearTimeout(this._openTimeout);
                 this._openTimeout = setTimeout(
                     Ink.bindMethod(this, 'open', true),
                     this._options.hoverOpen * 1000);
             }
-            if (this._options.dismissAfter) {
+            if (typeof this._options.dismissAfter === 'number') {
                 clearTimeout(this._dismissTimeout);
             }
         },
@@ -86,13 +86,13 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @private
          **/
         _onMouseOut: function () {
-            if (this._options.dismissAfter && this._toggle.getState() === true) {
+            if (typeof this._options.dismissAfter === 'number' && this._toggle.getState() === true) {
                 clearTimeout(this._dismissTimeout);
                 this._dismissTimeout = setTimeout(
                     Ink.bindMethod(this, 'dismiss', true),
                     this._options.dismissAfter * 1000);
             }
-            if (this._options.hoverOpen) {
+            if (typeof this._options.hoverOpen === 'number') {
                 clearTimeout(this._openTimeout);
             }
         },

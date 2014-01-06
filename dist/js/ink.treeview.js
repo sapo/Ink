@@ -13,26 +13,31 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} options.node        CSS selector that identifies the elements that are considered nodes.
-     *     @param {String} options.child       CSS selector that identifies the elements that are children of those nodes.
+     * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
+     * @param {String} [options.child='ul'] Selector to define which elements are represented as childs.
+     * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
+     * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
+     * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
+     * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
+     * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
+     * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
      * @example
      *      <ul class="ink-tree-view">
-     *        <li class="open"><span></span><a href="#">root</a>
+     *        <li class="open"><a href="#">root</a>
      *          <ul>
-     *            <li><a href="">child 1</a></li>
-     *            <li><span></span><a href="">child 2</a>
+     *            <li><a href="#">child 1</a></li>
+     *            <li><a href="#">child 2</a>
      *              <ul>
-     *                <li><a href="">grandchild 2a</a></li>
-     *                <li><span></span><a href="">grandchild 2b</a>
+     *                <li><a href="#">grandchild 2a</a></li>
+     *                <li><a href="#">grandchild 2b</a>
      *                  <ul>
-     *                    <li><a href="">grandgrandchild 1bA</a></li>
-     *                    <li><a href="">grandgrandchild 1bB</a></li>
+     *                    <li><a href="#">grandgrandchild 1bA</a></li>
+     *                    <li><a href="#">grandgrandchild 1bB</a></li>
      *                  </ul>
      *                </li>
      *              </ul>
      *            </li>
-     *            <li><a href="">child 3</a></li>
+     *            <li><a href="#">child 3</a></li>
      *          </ul>
      *        </li>
      *      </ul>
@@ -60,29 +65,16 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             this._element = selector;
         }
 
-        /**
-         * Default options and they're overrided by data-attributes if any.
-         * The parameters are:
-         * @param {string} node Selector to define which elements are seen as nodes. Default: li
-         * @param {string} child Selector to define which elements are represented as childs. Default: ul
-         * @param {string} parentClass Classes to be added to the parent node. Default: parent
-         * @param {string} openClass Classes to be added to the icon when a parent is open. Default: icon-plus-sign
-         * @param {string} closedClass Classes to be added to the icon when a parent is closed. Default: icon-minus-sign
-         * @param {string} hideClass Class to toggle visibility of the children. Default: hide-all
-         * @param {string} iconTag The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it. Default: i
-         */
-        this._options = Ink.extendObj({
-            node:   'li',
-            child:  'ul',
-            parentClass: 'parent',
-            openClass: 'icon-minus-sign',
-            closedClass: 'icon-plus-sign',
-            hideClass: 'hide-all',
-            iconTag: 'i'
-
-        },Element.data(this._element));
-
-        this._options = Ink.extendObj(this._options, options || {});
+        this._options = Common.options('Treeview', {
+            'node':   ['String', 'li'],
+            'child':  ['String','ul'],
+            'parentClass': ['String','parent'],
+            'openClass': ['String','icon icon-minus-circle'],
+            'closedClass': ['String','icon icon-plus-circle'],
+            'hideClass': ['String','hide-all'],
+            'iconTag': ['String', 'i'],
+            'stopDefault' : ['Boolean', true]
+        }, options || {}, this._element);
 
         this._init();
     };
@@ -116,10 +108,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 if( children.length > 0 ) {
                     Css.addClassName(item, this._options.parentClass);
 
-                    is_open = Element.data(item)['open'] === 'true';
-                    icon = Ink.Dom.Selector.select('> ' + this._options.iconTag, item)[0];
+                    is_open = Element.data(item).open === 'true';
+                    icon = Selector.select('> ' + this._options.iconTag, item)[0];
                     if( !icon ){
-                        icon = Ink.Dom.Element.create('i');
+                        icon = Element.create('i');
                         item.insertBefore(icon, item.children[0]);
                     }
 
@@ -169,8 +161,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             /**
              * Summary:
              * If the clicked element is a "node" as defined in the options, will check if it has any "child".
-             * If so, will show it or hide it, depending on its current state. And will stop the event's default behavior.
-             * If not, will execute the event's default behavior.
+             * If so, will toggle its state and stop the event's default behavior if the stopDefault option is true.
              *
              */
             var tgtEl = Event.element(event);
@@ -184,10 +175,13 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 icon;
 
             if( child.length > 0 ){
-                Event.stop(event);
+
+                if(this._options.stopDefault){
+                    Event.stop(event);
+                }
                 child = child[0];
                 this._toggleClassNames(child, this._options.hideClass);
-                is_open = Element.data(tgtEl)['open'] === 'true';
+                is_open = Element.data(tgtEl).open === 'true';
                 icon = tgtEl.children[0];
                 if(is_open){
                     tgtEl.setAttribute('data-open', false);

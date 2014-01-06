@@ -1,49 +1,21 @@
 module.exports = function (grunt) {
+    var path = require('path');
 
     var jshintFile = './src/js/.jshintrc';
+
+    // Folder containing the Ink source files, Ink/*
+    // (Relative to your "js" folder containing ink-all.js)
+    // for source maps.
+    // If you're serving the whole Ink tree on your server, the below works.
+    var sourceMapPathToInkSource = '../../src/js';
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // handle 3rd party dependencies
-        bower: {
-            install: {
-                options: {
-                    targetDir: 'tmp',
-                    layout: 'byType',
-                    install: false,
-                    verbose: false,
-                    cleanTargetDir: false,
-                    cleanBowerDir: true,
-                    bowerOptions: {
-                        forceLatest: true
-                    }
-                }
-            }
-        },
-        // 
-        copy: {
-            fontAwesome: {
-                files: [{
-                    cwd: 'tmp/font-awesome/less/',
-                    src: '*.less',
-                    dest: 'src/less/modules/icons/',
-                    expand: true
-                }]
-            },
-            modernizr: {
-                files: [{
-                    cwd: 'tmp/modernizr',
-                    src: 'modernizr.js',
-                    dest: '<%= ink.folders.js.dist %>',
-                    expand: true
-                }]
-            }
-        },
-
         ink: {
             folders: {
+                bower: './bower_components/',
                 js: {
                     srcBase: './src/js/',
                     src: './src/js/Ink/',
@@ -56,6 +28,45 @@ module.exports = function (grunt) {
                 }
             }
         },
+        // handle 3rd party dependencies
+        bower: {
+            install: {
+                options: {
+                    copy: false,
+                    targetDir: '<%= ink.folders.bower %>',
+                    layout: 'byType',
+                    install: true,
+                    verbose: false,
+                    cleanTargetDir: false,
+                    bowerOptions: {
+                        forceLatest: true
+                    }
+                }
+            }
+        },
+        // 
+        copy: {
+            fontAwesome: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>font-awesome/less/',
+                    src: [
+                        '*.less',
+                        '!variables.less',
+                    ],
+                    dest: '<%= ink.folders.css.src %>modules/icons/',
+                    expand: true
+                }]
+            },
+            modernizr: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>modernizr',
+                    src: 'modernizr.js',
+                    dest: '<%= ink.folders.js.dist %>',
+                    expand: true
+                }]
+            }
+        },
+
 
         // builds the javascript bundles
         concat: {
@@ -123,14 +134,18 @@ module.exports = function (grunt) {
                     src: ['**/[0-9]/lib.js'],
                     dest: '<%= ink.folders.js.dist %>',
                     rename: function (dest, src) {
-                        // [TODO] refactor
                         // check if this is v1
-                        if (src.substring(src.lastIndexOf('/'), -1).match(/[0-9]/) && src.substring(src.lastIndexOf('/'), -1).match(/[0-9]/) === 1) {
+                        // Here data is in the form of [UIComponent]/[ver]/lib.js
+                        var split = src.split(/\//);
+                        var modName = split[0].toLowerCase();
+                        var version = split[1];
+
+                        if (version === '1') {
                             // and it it is discard the version number               
-                            return dest + 'ink.' + src.substring(0, src.indexOf('/')).toLowerCase() + '.js';
+                            return dest + 'ink.' + modName + '.js';
                         } else {
                             // or replace the slash by an underscore and version number and prepend to dest file name 
-                            return dest + 'ink.' + src.substring(0, src.lastIndexOf('/')).toLowerCase().replace('/', '-') + '.js';
+                            return dest + 'ink.' + modName + '-' + version + '.js';
                         }
                     }
                 }
@@ -140,13 +155,19 @@ module.exports = function (grunt) {
 
         clean: {
             js: {
-                src: ['<%= ink.folders.js.dist %>/ink*.js']
+                src: [
+                    '<%= ink.folders.js.dist %>/ink*.js',
+                    '<%= ink.folders.js.dist %>/ink*.js.map',
+                ]
             },
             css: {
                 src: ['<%= ink.folders.css.dist %>/ink*.css']
             },
             fontAwesome: {
-                src: ['<%= ink.folders.css.src %>/less/modules/icons/*.less']
+                src: [
+                    '<%= ink.folders.css.src %>modules/icons/*',
+                    '!<%= ink.folders.css.src %>modules/icons/variables.less'
+                ]
             },
             tmp: {
                 src: ['tmp']
@@ -167,7 +188,8 @@ module.exports = function (grunt) {
                 options: {
                     port: 8000,
                     debug: true,
-                    base: '.'
+                    base: '.',
+                    keepalive: true
                 }
             }
         },
@@ -176,7 +198,8 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 report: 'min',
-                sourceMapRoot: '../..',
+                sourceMapRoot: sourceMapPathToInkSource,
+                sourceMapPrefix: 3,
                 compress: {
                     sequences: true,
                     properties: true,
@@ -197,7 +220,12 @@ module.exports = function (grunt) {
                 }
             },
             ink: {
-                src: '<%= ink.folders.js.dist %><%= pkg.name %>.js',
+                src: [
+                    '<%= ink.folders.js.src %>1/**/lib.js',
+                    '<%= ink.folders.js.src %>Net/**/lib.js',
+                    '<%= ink.folders.js.src %>Dom/**/lib.js',
+                    '<%= ink.folders.js.src %>Util/**/lib.js',
+                ],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>.js.map',
                     sourceMappingURL: '<%= pkg.name %>.js.map'
@@ -205,7 +233,7 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.js.dist %><%= pkg.name %>.min.js'
             },
             ink_all: {
-                src: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js',
+                src: ['<%= ink.folders.js.src %>**/lib.js'],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js.map',
                     sourceMappingURL: '<%= pkg.name %>-all.js.map'
@@ -213,7 +241,7 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.js.dist %><%= pkg.name %>-all.min.js'
             },
             ink_ui: {
-                src: '<%= ink.folders.js.dist %><%= pkg.name %>-ui.js',
+                src: ['<%= ink.folders.js.src %>UI/**/lib.js'],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-ui.js.map',
                     sourceMappingURL: '<%= pkg.name %>-ui.js.map'
