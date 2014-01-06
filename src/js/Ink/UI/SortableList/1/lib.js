@@ -20,8 +20,8 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      * @param {String} [options.draggedClass='hide-all'] CSS class added to the original element.
      * @param {String} [options.draggingClass='dragging'] CSS class added to the html element when the user is dragging.
      * @param {String} [options.dragSelector='li'] CSS selector for the drag enabled nodes.
-     * @param {String} [options.handleSelector] CSS selector for the drag handle. If present, you can only drag nodes by this selector.
-     * @param {String} [options.moveSelector] CSS selector to validate a node move. If present, you can only move nodes into this selector.
+     * @param {String} [options.handleSelector=null] CSS selector for the drag handle. If present, you can only drag nodes by this selector.
+     * @param {String} [options.moveSelector=null] CSS selector to validate a node move. If present, you can only move nodes into this selector.
      * @param {Boolean} [options.swap=false] Flag to swap moving element with target element instead of changing its order.
      * @param {Boolean} [options.cancelMouseOut=false] Flag to cancel moving if mouse leaves the container element.
 
@@ -40,21 +40,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
      */
     var SortableList = function(selector, options) {
 
-        this._element = Common.elOrSelector(selector, '1st argument');
-
-        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.SortableList] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Selector.select( selector );
-
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.SortableList] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-
-        } else {
-            this._element = selector;
-        }
+        this._element = Common.elOrSelector(selector, 'Ink.UI.SortableList');
 
         this._options = Common.options('Sortable', {
             'placeholderClass': ['String', 'placeholder'],
@@ -262,5 +248,4 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
     };
 
     return SortableList;
-
 });
