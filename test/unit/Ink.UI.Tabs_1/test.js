@@ -91,11 +91,9 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         tabs.appendChild(invalidIDLi);
         var tabComponent = new Tabs(cont);
         var changeTab = sinon.spy(tabComponent, '_changeTab');
-        var onTabClicked = sinon.spy(tabComponent, '_onTabClicked');
         stop();
         Syn.click(invalidIDTab, function () {
-            ok(changeTab.called);
-            ok(onTabClicked.notCalled);
+            ok(changeTab.notCalled);
             start();
         });
     })

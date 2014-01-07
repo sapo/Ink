@@ -197,8 +197,13 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                 return;
             }
 
-            if( this._options.preventUrlChange.toString() !== 'true') {
-                var href = target.getAttribute('href').substr(target.getAttribute('href').indexOf('#'))
+            var href = target.getAttribute('href').substr(target.getAttribute('href').indexOf('#'));
+
+            if (!href || Ink.i(href.replace(/^#/, '')) === null) {
+                return;
+            }
+
+            if (this._options.preventUrlChange.toString() !== 'true') {
                 window.location.hash = href;
             }
 
