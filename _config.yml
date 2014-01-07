@@ -1,5 +1,5 @@
 # JEKYLL
-exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "fonts", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
+exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
 
 destination: ./_site
 
@@ -18,7 +18,7 @@ github_url: https://github.com/sapo/Ink
 images_url: assets/img/
 js_url: assets/js/
 css_url: assets/css/
-fonts_url: assets/font/
+fonts_url: assets/fonts/
 
 # SITE PAGES
 navigation:
