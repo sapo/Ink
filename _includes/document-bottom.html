@@ -1,23 +1,31 @@
-<!-- 
-<script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
-</script>
-<script>
-        SAPO.WebAnalytics.track({
-            swakt: "{{ site.analytics }}"
+  <!-- 
+  <script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/">
+  </script>
+  <script>
+          SAPO.WebAnalytics.track({
+              swakt: "{{ site.analytics }}"
+          });
+          SAPO.WebAnalytics.registerClick();
+  </script>
+  <script>
+  (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+   -->
+  <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}lunr.min.js"></script>
+    <script>
+    Ink.requireModules(['Ink.Net.Ajax_1'],function(Ajax){
+      console.log('{{ site.url }}/search.json');
+        Ajax.load( '{{ site.url }}/search.json', function( response ){
+            var res = Ajax.evalJSON(response,true);
         });
-        SAPO.WebAnalytics.registerClick();
-</script>
-<script>
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=166477916796652";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
- -->
+    });
+  </script>
 </body>
-
 </html>

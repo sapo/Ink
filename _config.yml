@@ -1,10 +1,10 @@
 # JEKYLL
-exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "fonts", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
+exclude: [".gitignore", "Gruntfile.js", ".travis.yml", "src", "fonts", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules", "_site"]
 
 destination: ./_site
 
 name: Ink
-url: http://10.134.132.33:4000
+url: http://localhost:4000
 
 # SITE TITLE
 title: Ink
@@ -18,10 +18,10 @@ download_url: 234
 github_url: https://github.com/sapo/Ink
 
 # ASSETS PATHS
-images_url: assets/img/
-js_url: assets/js/
-css_url: assets/css/
-fonts_url: assets/font/
+images_path: assets/img/
+js_path: assets/js/
+css_path: assets/css/
+# fonts_path: assets/font/
 
 # SITE PAGES
 navigation:

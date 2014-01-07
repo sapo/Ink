@@ -1,0 +1,286 @@
+.@{navigation-class-name} {
+    
+    ul {
+
+        &.pagination {
+            
+            //defaults
+            li {
+                
+                &.active a { text-decoration: underline; }
+                
+                &.disabled {
+                    a {
+                        color: @grey-30;
+                        #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+
+                        &:hover {
+                            background: none;
+                        }
+                    }
+                }
+            }
+
+            // white
+            &.white {
+                li {
+                    
+                    #ink > #navigation > #gradients > .white;
+
+                    &.active a { background: lighten(@black,85%); }
+
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                        }
+                    }
+
+                    a {
+                        color: @text-color;
+                        text-decoration: none;
+
+                        &:hover {                            
+                            background: lighten(@black,85%);
+                        }
+                    }
+                }
+            }
+
+            // grey theme
+            &.grey {
+                li {
+                    
+                    #ink > #navigation > #gradients > .grey;
+
+                    &.active {
+                        a { 
+                            background: lighten(@black,70%);
+                            color: @text-color;
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                        }
+                    }
+                    
+                    a {
+                        color: @text-color;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,70%);                                              
+                        }
+                    }
+                }
+            }
+
+            // black theme
+            &.black {
+                li {
+                    
+                    #ink > #navigation > #gradients > .black;
+
+                    &.active a { background: lighten(@black,20%); }
+
+                    &.disabled {
+                        a {
+                            color: @grey-60;
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, -1px, 0, @black);
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,20%);                                        
+                        }
+                    }
+                }
+            }
+
+            // orange theme
+            &.orange {
+                li {
+
+                    #ink > #navigation > #gradients > .orange;
+                    
+                    &.active a { background: darken(@orange,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@orange,20%);
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@orange,15%);
+                        }
+                    }
+                }
+            }
+
+            // blue theme
+            &.blue {
+                li {
+
+                    #ink > #navigation > #gradients > .blue;
+
+                    &.active a { background: darken(@blue,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@blue,20%); 
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@blue,15%);
+                        }
+                    }
+                }
+            }
+
+            // green theme
+            &.green {
+                li {
+                    
+                    #ink > #navigation > #gradients > .green;
+                    
+                    &.active a { background: darken(@green,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@green,20%);
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@green,15%);
+                        }
+                    }
+                }
+            }
+
+            // red theme
+            &.red {
+                li {
+                    
+                    #ink > #navigation > #gradients > .red;
+                    
+                    &.active a { background: darken(@red,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@red,25%); 
+                            background: fade(@black,0%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@red,15%);
+                        }
+                    }
+                }
+            }
+
+            // remove gradients
+            &.flat {
+                // white theme
+                &.white li  { 
+                    background: @white; 
+                    filter: none;
+                }
+                
+                // grey theme
+                &.grey li   { 
+                    background: @grey-15; 
+                    filter: none;
+                }
+
+                // black theme
+                &.black li  { 
+                    background: @black; 
+                    filter: none;
+                }
+
+                // blue theme
+                &.orange li { 
+                    background: desaturate(@orange,10%); 
+                    filter: none;
+                }
+
+                // blue theme
+                &.blue li   { 
+                    background: desaturate(@blue,10%); 
+                    filter: none;
+                }
+
+                // green theme
+                &.green li  { 
+                    background: desaturate(@green,10%); 
+                    filter: none;
+                }
+
+                // red theme
+                &.red li    { 
+                    background: desaturate(@red,10%); 
+                    filter: none;
+                }
+            }
+                
+
+            // adds rounded corners
+            &.rounded {
+                li {
+                    &:first-child,
+                    &:first-child a {
+                        #ink > #border-radius > .left (@navigation-border-radius);
+                    }
+                    &:last-child, 
+                    &:last-child a {
+                        #ink > #border-radius > .right (@navigation-border-radius);
+                    }
+                }
+            }
+
+            // adds shadow
+            &.shadowed {
+                li a {
+                    #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                }
+            }
+        }
+    }
+}

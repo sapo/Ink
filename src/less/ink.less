@@ -1,0 +1,85 @@
+// ink.less
+
+// Sets assets default paths
+@img-path                   	: "../img/";
+@fonts-path  					: "../font/";
+@config-path                   	: "./config/";
+@modules-path                   : "./modules/";
+
+// imports the config files
+// config file names start with __ (double underscore) and are located in the config directory.
+@import (less) "@{config-path}__grid.less";
+@import (less) "@{config-path}__colors.less";
+@import (less) "@{config-path}__typography.less";
+@import (less) "@{config-path}__navigation.less";
+@import (less) "@{config-path}__forms.less";
+@import (less) "@{config-path}__alerts.less";
+@import (less) "@{config-path}__tooltips.less";
+@import (less) "@{config-path}__labels.less";
+@import (less) "@{config-path}__tables.less";
+@import (less) "@{config-path}__widgets.less";
+@import (less) "@{config-path}__footer.less";
+
+// the mixins file
+// this file contains all the {LESS} functions (mixins) that are used within INK to make things a little easier
+@import (less) "@{modules-path}mixins.less";
+
+// the CSS reset file. 
+// thanks to Nicolas Gallagher and Jonathan Neal for normalize.css (http://necolas.github.com/normalize.css/)
+@import (less) "@{modules-path}reset.less";
+
+// import the webfont stuff
+@import (less) "@{modules-path}fonts.less";
+
+// the grid
+@import (less) "@{modules-path}grid.less";
+
+// typography
+@import (less) "@{modules-path}typography.less";
+
+// labels
+@import (less) "@{modules-path}labels.less";
+
+// footer
+@import (less) "@{modules-path}footer.less";
+
+// FontAwsome icons
+// thanks to Dave Gandy - http://fortawesome.github.com/Font-Awesome)
+@import (less) "@{modules-path}icons.less";
+
+// navigation
+@import (less) "@{modules-path}navigation.less";
+
+// forms
+@import (less) "@{modules-path}forms.less";
+
+// alerts
+@import (less) "@{modules-path}alerts.less";
+
+// badges
+@import (less) "@{modules-path}badges.less";
+
+// alerts
+@import (less) "@{modules-path}tooltips.less";
+
+// buttons
+@import (less) "@{modules-path}buttons.less";
+
+// tables
+@import (less) "@{modules-path}tables.less";
+
+// widgets
+@import (less) "@{modules-path}js.datepicker.less";
+@import (less) "@{modules-path}js.modal.less";
+@import (less) "@{modules-path}js.tagfield.less";
+@import (less) "@{modules-path}js.progressbar.less";
+@import (less) "@{modules-path}js.tabs.less";
+@import (less) "@{modules-path}js.sortable.list.less";
+@import (less) "@{modules-path}js.treeview.less";
+@import (less) "@{modules-path}js.carousel.less";
+
+// images
+@import (less) "@{modules-path}images.less";
+
+// utilities
+@import (less) "@{modules-path}utilities.less";

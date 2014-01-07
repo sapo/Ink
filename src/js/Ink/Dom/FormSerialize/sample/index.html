@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>FormSerialize sample</title>
+        
+        <style type="text/css">
+            body {
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                padding: 20px 30px;
+            }
+            
+            h1 {
+                margin: 0px;
+            }
+            
+            form {
+                display: inline-block;
+                padding: 10px;
+                border: 1px dotted #CCC;
+            }
+            
+            #frm label {
+                display: inline-block;
+                font-weight: bold;
+                width: 130px;
+            }
+        </style>
+        
+        <script type="text/javascript" src="/SAPO/0.1/"></script>
+        <script type="text/javascript" src="/SAPO/Utility/FormSerialize/0.1/"></script>
+    </head>
+    
+    <body>
+        <h1>FormSerialize sample</h1>
+        
+        <form id="frm" action="#" onsubmit="return false">
+            <p>
+                <label>Fields with name fieldname[]</label><br />
+                <input type="text" name="fieldname[]" value="aaa" /><br />
+                <input type="text" name="fieldname[]" value="bbb" /><br />
+                <input type="text" name="fieldname[]" value="ccc" /><br />
+            </p>
+            <hr />
+            <fieldset>
+                <legend>this fieldset is here just to enforce ignoring it</legend>
+                <p>
+                    <label for="f_te">input text</label>
+                    <input type="text" name="f_te" id="f_te">
+                </p>
+            </fieldset>
+            <p>
+                <label for="f_ta">textarea</label>
+                <textarea name="f_ta" id="f_ta" cols="18" rows="1"></textarea>
+            </p>
+            
+            <p>
+                <label for="f_cb1">input checkbox</label>
+                <input type="checkbox" name="f_cb1">asd
+            </p>
+            
+            <p>
+                <label for="f_ra1">input radio</label>
+                <input type="radio" name="f_ra1">zxc
+            </p>
+            
+            <p>
+                <label for="f_cb">input checkbox multiple</label>
+                <input type="checkbox" name="f_cb[]" id="f_cb" value="1">um
+                <input type="checkbox" name="f_cb[]" id="f_cb" value="2">dois
+            </p>
+            
+            <p>
+                <label for="f_ra">input radio multiple</label>
+                <input type="radio" name="f_ra[]" id="f_ra" value="3">três
+                <input type="radio" name="f_ra[]" id="f_ra" value="4">quatro
+            </p>
+            
+            <p>
+                <label for="f_se">select</label>
+                <select name="f_se" id="f_se">
+                    <option value="5">cinco</option>
+                    <option value="6">seis</option>
+                </select>
+            </p>
+            
+            <p>
+                <label for="f_se2">select multiple</label>
+                <select name="f_se2" id="f_se2" multiple="multiple" size="3">
+                    <option value="7">sete</option>
+                    <option value="8">oito</option>
+                    <option value="9">nove</option>
+                </select>
+            </p>
+            
+            <p>
+                <label for="f_fi">input file</label>
+                <input type="file" name="f_fi" id="f_fi">
+            </p>
+        </form>
+        
+        <p>
+            <button onclick="serialize()">serialize</button>
+            <button onclick="fillIn()"   >fillIn</button><br/><br/>
+            <i>(check console for serialize's result...)</i>
+        </p>
+        <script type="text/javascript" src="/Ink/1/"></script>
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/');
+        </script>
+        <script type="text/javascript">
+            Ink.requireModules(['Ink.Dom.FormSerialize_1'], function (FormSerialize) {
+                window.serialize = function () {
+                    var o = FormSerialize.serialize(document.forms[0]);    // same as 'frm'
+                    console.log(o);
+                }
+
+                window.fillIn = function () {
+                    var o = {
+                        f_te:        'a',
+                        f_ta:        'b',
+                        f_cb1:        true,
+                        'f_cb[]':    ['1', '2'],
+                        f_ra1:        false,
+                        'f_ra[]':    '3',
+                        f_se:        '6',
+                        f_se2:        ['7','8'],
+                        f_fi:        'C:\\fakepath\\090909_AB_695TributoFerrari_02.jpeg'
+                    };
+                    FormSerialize.fillIn(document.forms[0], o);
+                }
+            })
+        </script>
+    </body>
+</html>

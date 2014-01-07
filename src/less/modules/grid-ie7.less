@@ -1,0 +1,55 @@
+// grid-ie7.less
+
+// HELPER CLASSES
+
+
+.push-left {
+    float: left;
+}
+
+
+.push-center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.push-right {
+    float: right;
+}
+
+// set content alignment
+.align-left { text-align: left; }
+.align-center { text-align: center;}
+.align-right { text-align: right; }
+
+// show hidden element
+.show-all {
+    display: inherit !important;
+}
+
+// hide visible element
+.hide-all {
+    display: none !important;
+}
+
+// show hidden element
+.show-large {
+    display: inherit !important;
+}
+
+// hide visible element
+.hide-large {
+    display: none !important;
+}
+
+// IE7 gets a slightly defferent grid base on the browsers css support, so: no media queries or box-sizing goodness;
+
+// The IE7 grid generation mixin takes two (2) arguments:
+
+// 1. A breakpoint classname prefix to help identify the css classes. (set in _grid.less)
+// 2. The gutter width set in a percentage value
+
+// GENERATE THE GRID FOR IE ( width > 960px )
+#ink > #grid > .ie7-grid (@large-class-prefix, 3%);

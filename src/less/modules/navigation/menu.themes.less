@@ -1,0 +1,652 @@
+.@{navigation-class-name} {
+
+    ul {
+
+        // INK:NAVIGATION:MENU
+        &.menu {
+
+            // default theme
+            li {
+
+                &.active {
+                    a { 
+                        text-decoration: underline;
+                    }
+                }
+
+                 &.heading {
+                    font-weight: 700;
+                }
+
+                &.disabled {
+                    a {
+                        color: @grey-30;
+                        #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+
+                        &:hover {
+                            cursor: default;
+                            background: none;
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                ul.submenu { 
+
+                    background: @white;
+
+                    li {
+                        a {
+                            border-bottom: 1px solid fade(@black,15%);
+                            
+                            &:hover { background: lighten(@black,90%); }
+
+                            &:last-child a { border: none; }
+                        }
+                    }
+
+                    &.dropdown {
+                        li {
+                            a {
+                                border-bottom: 1px solid fade(@black,15%);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // INK:NAVIGATION:MENU:VERTICAL
+            &.vertical {
+                li {
+                    a {
+                        border-bottom: 1px solid fade(@black,15%);
+                    }
+                    
+                    &:last-child a { 
+                        border: none; 
+                    }
+
+                    .dropdown {
+                        background: none;
+                        
+                        li {
+                            a {
+                                border-bottom: 1px solid fade(@black,15%);
+                                &:hover { background: none; }
+                            }
+                        }
+                    }
+                    
+                    &:last-child {
+                        .dropdown {
+                            
+                            li:first-child {
+                                a {
+                                    border-top: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }                        
+                    }
+                }
+            }
+
+            // white theme
+            &.white {
+                
+                #ink > #navigation > #gradients > .white;
+                
+                li {
+
+                    a {
+                        color: @text-color;
+                        text-decoration: none;
+
+                        &:hover {                            
+                            background: lighten(@black,85%);
+                        }
+                    }
+
+                    &.active {
+                        background: lighten(@black,85%);
+                    }
+
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    ul.submenu { 
+                        
+                        li {
+
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,20%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // grey theme
+            &.grey {
+                
+                #ink > #navigation > #gradients > .grey;
+                
+                li {
+
+                    &.active { background: lighten(@black,70%); }
+
+                    &.disabled {
+                        a {
+                            color: @grey-40;
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    a {
+                        color: @text-color;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,70%);                                              
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+
+                            &:hover { background: fade(@black,10%); }
+
+                            a { color: @text-color; }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // black theme
+            &.black {
+                
+                #ink > #navigation > #gradients > .black;
+                
+                li {
+
+                    &.active { background: lighten(@black,20%); }
+
+                    &.disabled {
+                        a {
+                            color: @grey-60;
+                            #ink > #shadows > .text-shadow (0, -1px, 0, @black);
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: lighten(@black,20%);                                        
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: lighten(@black,90%); }
+
+                            a { 
+                                color: @text-color; 
+                                &:hover {
+                                    background: lighten(@black,30%);
+                                    color: @white;
+                                }
+                            }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // orange theme
+            &.orange {
+                
+                #ink > #navigation > #gradients > .orange;
+
+                li {
+                    
+                    &.active { background: darken(@orange,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@orange,20%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@orange,8%));
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@orange,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { 
+                                color: @text-color; 
+                                &:hover { 
+                                    background: darken(desaturate(@orange,10%),5%);
+                                    color: @white; 
+                                }
+                            }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // blue theme
+            &.blue {
+                
+                #ink > #navigation > #gradients > .blue;
+                
+                li {
+
+                    &.active { background: darken(@blue,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@blue,20%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@blue,8%));
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@blue,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { 
+                                color: @text-color; 
+                                &:hover {
+                                    background: darken(desaturate(@blue,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // green theme
+            &.green {
+
+                #ink > #navigation > #gradients > .green;
+                
+                li {
+
+                    &.active { background: darken(@green,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@green,20%);
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@green,6%));
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@green,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { 
+                                color: @text-color; 
+                                &:hover {
+                                    background: darken(desaturate(@green,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // red  theme
+            &.red {
+
+                #ink > #navigation > #gradients > .red;
+                
+                li {
+
+                    &.active { background: darken(@red,15%); }
+
+                    &.disabled {
+                        a {
+                            color: darken(@red,25%); 
+                            #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@red,8%));
+                            &:hover { background: fade(@black,0%); }
+                        }
+                    }
+
+                    a {
+                        color: @white;
+                        text-decoration: none;
+
+                        &:hover {
+                            background: darken(@red,15%);
+                        }
+                    }
+
+                    ul.submenu {
+
+                        li {
+                            &:hover { background: fade(@black,10%); }
+
+                            a { 
+                                color: @text-color; 
+                                &:hover {
+                                    background: darken(desaturate(@red,10%),5%);
+                                    color: @white;
+                                }
+                            }
+                        }
+
+                        &.dropdown {
+                            background: @white;
+                            li {
+                                a {
+                                    border-bottom: 1px solid fade(@black,15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // removes background gradients
+            &.flat {
+
+                filter: none;
+
+                // white theme
+                &.white { background: @white; }
+                
+                // grey theme
+                &.grey { background: @grey-15; }
+
+                // black theme
+                &.black { background: @black; }
+
+                // blue theme
+                &.orange { background: desaturate(@orange,10%); }
+
+                // blue theme
+                &.blue { background: desaturate(@blue,10%); }
+
+                // green theme
+                &.green { background: desaturate(@green,10%); }
+
+                // red theme
+                &.red { background: desaturate(@red,10%); }
+            }
+            
+            // adds rounded corners
+            &.rounded {
+
+                &.horizontal {
+                    
+                    #ink > #border-radius > .all (@navigation-border-radius);
+
+                    li {
+
+                        &:first-child {
+
+                            #ink > #border-radius > .left (@navigation-border-radius);
+
+                            a { #ink > #border-radius > .left (@navigation-border-radius); }
+                        }
+
+                        ul {
+
+                            &.submenu {
+
+                                #ink > #border-radius > .bottom (@navigation-border-radius);
+
+                                li {
+
+                                    &:last-child {
+
+                                        #ink > #border-radius > .bottom (@navigation-border-radius);
+                                    }
+
+                                    #ink > #border-radius > .none ();
+
+                                    a {
+
+                                        #ink > #border-radius > .none ();
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.vertical {
+                    
+                    #ink > #border-radius > .all (@navigation-border-radius);
+
+                    li {
+                        
+                        &:first-child {
+                            
+                            #ink > #border-radius > .top (@navigation-border-radius);
+
+                            a { #ink > #border-radius > .top (@navigation-border-radius); }
+
+                            .submenu {
+                                &.dropdown {
+                                    
+                                    #ink > #border-radius > .none ();
+                                
+                                    li {
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                        &:first-child,
+                                        &:last-child {
+                                            #ink > #border-radius > .none ();
+                                            a {
+                                                #ink > #border-radius > .none ();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &:last-child {
+                            #ink > #border-radius > .bottom (@navigation-border-radius);
+
+                            a { #ink > #border-radius > .bottom (@navigation-border-radius); }
+
+                            .submenu {
+                                &.dropdown {
+                                    #ink > #border-radius > .bottom (@navigation-border-radius);
+                                
+                                    li {
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                        &:first-child {
+                                            #ink > #border-radius > .none ();
+                                            a {
+                                                #ink > #border-radius > .none ();
+                                            }
+                                        }
+                                        &:last-child {
+                                            #ink > #border-radius > .bottom (@navigation-border-radius);
+                                            a {
+                                                #ink > #border-radius > .bottom (@navigation-border-radius);
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        }
+
+                        .submenu {
+                            
+                            &.dropdown {
+                                
+                                #ink > #border-radius > .none ();
+                            
+                                li {
+                                    #ink > #border-radius > .none ();
+                                    a {
+                                        #ink > #border-radius > .none ();
+                                    }
+                                    &:first-child {
+                                        #ink > #border-radius > .none ();
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                    }
+                                    &:last-child {
+                                        #ink > #border-radius > .none ();
+                                        a {
+                                            #ink > #border-radius > .none ();
+                                        }
+                                    }
+                                }
+                            }
+
+                            #ink > #border-radius > .all (0, @navigation-border-radius, @navigation-border-radius, @navigation-border-radius);
+                            
+                            li {
+                                a {
+                                    #ink > #border-radius > .none ();
+                                }
+                                
+                                &:first-child {
+                                    #ink > #border-radius > .all (0, @navigation-border-radius, 0, 0);
+                                    a {
+                                        #ink > #border-radius > .all (0, @navigation-border-radius, 0, 0);
+                                    }
+                                }
+                                
+                                &:last-child {
+                                    #ink > #border-radius > .bottom (@navigation-border-radius);
+                                    a {
+                                        #ink > #border-radius > .bottom (@navigation-border-radius);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // adds shadows
+            &.shadowed {
+                
+                #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                
+                li {
+                
+                    ul.submenu {
+                        
+                        #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, fade(@black,30%));
+                        
+                        &.dropdown {
+                            #ink > #shadows > .no-box-shadow ();    
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

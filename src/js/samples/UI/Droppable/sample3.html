@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Droppable - 3</title>
+        
+        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.1.1/css/ink.css">
+        <link rel="stylesheet" type="text/css" href="http://ink.local/css/ink.css"/>
+
+        <script type="text/javascript" src="/Ink/1/"></script> 
+        <script type="text/javascript">
+            Ink.setPath('Ink', '/Ink/');
+        </script> 
+        
+        <style type="text/css">
+            .draggable.ink-button {
+                display: block;
+                background-color: #DDD;
+                width:  200px;
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .draggable_handler {
+                height:  20px;
+                width:  100%;
+                background-color: #CCF;
+            }
+
+            .drops {
+                margin-left:    25%;
+                margin-top:        10%
+            }
+
+            .droppable {
+                color: #777;
+                border: 1px dotted #777;
+                width: 50%;
+                height: 200px;
+            }
+
+            .droppable_hover {
+                border: 2px solid #FAA;
+            }
+        </style>
+    </head>
+
+<body>
+    <h1>Droppable - 3</h1>
+    <h2>Enabling and disabling a droppable</h2>
+    
+    <div class="drops">
+        <div id="drop1" class="droppable ink-alert block">
+            <h4>Drop #1</h4>
+        </div>
+    </div>
+    <button type="button" class="toggle">Toggle</button>
+    
+    <div id="drag0" class="draggable ink-button">
+        <div id="handler" class="draggable_handler">without anchor</div>
+        <p>
+            The Quick Brown Fox
+            jumps over the lazy dog
+        </p>
+    </div>
+    <script type="text/javascript">
+        Ink.requireModules(['Ink.UI.Draggable_1', 'Ink.UI.Droppable_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Event_1'], function (Draggable, Droppable, Selector, InkEvent) {
+            var fps = 100;
+            var dbg = true;
+
+            new Draggable('#drag0', {
+                    fps:fps, debug:dbg, revert:true
+                });
+
+            function onDrop(draggable, element, event) {
+                if (typeof console !== 'undefined') {
+                    console.log(['dropped', draggable.id, element.id]);
+                }
+            }
+            
+            var options = {
+                    hoverClass: 'droppable_hover',
+                    accept: '.draggable',
+                    onDrop: onDrop
+                };
+            Droppable.add('#drop1', options);
+
+            var enabled = true;
+            InkEvent.observe(Selector.select('.toggle')[0], 'click', function () {
+                enabled = !enabled;
+                if (!enabled) {
+                    Droppable.remove('#drop1');
+                    console && console.log('disabled')
+                } else {
+                    Droppable.add('#drop1', options);
+                    console && console.log('enabled');
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

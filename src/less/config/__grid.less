@@ -1,0 +1,52 @@
+// INK:GRID
+
+// Grid top class name (the class used to define the grids' top element)
+@grid-class-name: ink-grid;
+
+// Grid column group class name (This class is used to define the element used to wrap multiple columns)
+@grid-column-group-class-name: column-group;
+
+// Grid column gutters class name (This class is applied to the column groups and adds gutters to the contained columns)
+@grid-gutters-class-name: gutters;
+@grid-half-gutters-class-name: half-gutters;
+@grid-quarter-gutters-class-name: quarter-gutters;
+
+@grid-horizontal-gutters-class-name: horizontal-gutters;
+@grid-half-horizontal-gutters-class-name: half-horizontal-gutters;
+@grid-quarter-horizontal-gutters-class-name: quarter-horizontal-gutters;
+
+@grid-vertical-gutters-class-name: vertical-gutters;
+@grid-half-vertical-gutters-class-name: half-vertical-gutters;
+@grid-quarter-vertical-gutters-class-name: half-vertical-gutters;
+
+// site width
+@site-width: 1200px ;
+
+// subpixel rounding for IE
+@subpixel-rounding: (0.5 / (@site-width * 100 * 1%));
+
+// @correction: 0.5 / @min-width * 100 * 1%;
+
+// gutter width
+@gutter-width: 2em;
+
+// grid for large screens
+@large-class-prefix: large;
+@large-min-width: 0px;
+@large-max-width: 0px;
+@large-gutter-width: @gutter-width;
+
+// grid for medium screens
+@medium-class-prefix: medium;
+@medium-min-width: 650px;
+@medium-max-width: 959px;
+@medium-gutter-width: @gutter-width * 0.75;
+
+// grid for small screens
+@small-class-prefix: small;
+@small-min-width: 0px;
+@small-max-width: 649px;
+@small-gutter-width: @gutter-width * 0.5;
+
+// STUFF
+@border-radius: 4px;

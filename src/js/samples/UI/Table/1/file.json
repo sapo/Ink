@@ -1,0 +1,22 @@
+[
+    {
+        "pepper": "Trinidad Moruga Scorpion",
+        "scoville": 1500000,
+        "anotherField": "something"
+    },
+    {
+        "pepper": "Bhut Jolokia",
+        "scoville": 1000000,
+        "anotherField": "bla"
+    },
+    {
+        "pepper": "Naga Viper",
+        "scoville": 1463700,
+        "anotherField": "bam"
+    },
+    {
+        "pepper": "Red Savina Habanero",
+        "scoville": 580000,
+        "anotherField": "puff"
+    }
+]
