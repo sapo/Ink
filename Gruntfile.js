@@ -72,6 +72,14 @@ module.exports = function (grunt) {
                     dest: '<%= ink.folders.js.dist %>',
                     expand: true
                 }]
+            },
+            html5shiv: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>html5shiv/dist',
+                    src: '*',
+                    dest: '<%= ink.folders.js.dist %>',
+                    expand: true,
+                }]
             }
         },
 
