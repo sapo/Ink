@@ -57,7 +57,7 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         deepEqual(spy.lastCall.args, [Ink.s('a[href$="#home"]', container), true]);
     });
 
-    testTabs('... but not new tab is ', function (tabComponent) {
+    testTabs('... but not when new tab is invalid', function (tabComponent) {
         var spy = sinon.spy(tabComponent, '_changeTab');
         tabComponent.changeTab('hoem');
         ok(!spy.called);
@@ -81,6 +81,24 @@ Ink.requireModules(['Ink.UI.Tabs_1', 'Ink.UI.Common_1', 'Ink.Dom.Element_1', 'In
         new Tabs(cont, { active: 'hoem' });
         ok(true, 'creating a tabs object didn\'t raise an exception');
     });
+
+    test('regression test: #257', function () {
+        var cont = makeContainer();
+        var tabs = Ink.s('.tabs-nav', cont);
+        var invalidIDTab = InkElement.create('a', { href: '#invalid-id' });
+        var invalidIDLi = InkElement.create('li');
+        invalidIDLi.appendChild(invalidIDTab);
+        tabs.appendChild(invalidIDLi);
+        var tabComponent = new Tabs(cont);
+        var changeTab = sinon.spy(tabComponent, '_changeTab');
+        var onTabClicked = sinon.spy(tabComponent, '_onTabClicked');
+        stop();
+        Syn.click(invalidIDTab, function () {
+            ok(changeTab.called);
+            ok(onTabClicked.notCalled);
+            start();
+        });
+    })
 
     module('change the hash in the URL', {
         setup: function () { window.location.hash = '#original-hash'; },
