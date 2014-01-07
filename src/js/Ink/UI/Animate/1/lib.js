@@ -63,12 +63,6 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
                 options.duration = 400;
             }
 
-            if (typeof options.duration === 'number') {
-                element.style[animationPrefix + 'Duration'] = options.duration + 'ms';
-            } else if (typeof options.duration === 'string') {
-                Css.addClassName(element, options.duration);
-            }
-
             if (!Animate.animationSupported) {
                 if (options.onEnd) {
                     setTimeout(function () {
@@ -78,15 +72,26 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
                 return;
             }
 
+            if (typeof options.duration === 'number') {
+                element.style[animationPrefix + 'Duration'] = options.duration + 'ms';
+            } else if (typeof options.duration === 'string') {
+                Css.addClassName(element, options.duration);
+            }
+
             Css.addClassName(element, ['animated', animation]);
 
-            element.addEventListener(animationEndEventName, function onAnimationEnd(event) {
+            function onAnimationEnd(event) {
                 if (event.target !== element) { return; }
                 if (event.animationName !== animation) { return; }
                 if (options.onEnd) { options.onEnd(event); }
-                Css.removeClassName(element, ['animated', animation]);
+                Css.removeClassName(element, [animation]);
+                if (typeof options.duration === 'string') {
+                    Css.removeClassName(element, options.duration);
+                }
                 element.removeEventListener(animationEndEventName, onAnimationEnd, false);
-            }, false);
+            }
+
+            element.addEventListener(animationEndEventName, onAnimationEnd, false);
         }
     };
 

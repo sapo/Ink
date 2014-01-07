@@ -40,14 +40,36 @@
         <div class="ink-grid">
             <h1>Ink.UI.Animate_1 samples</h1>
 
+            <p>The main method of this UI module is "animate". Call it with the target element (or a selector), the animation name (see below), a duration (in milliseconds or 'slow', 'medium', 'fast'), and a callback. You can also send an object with the <code>{duration, onEnd}</code> parameters after the animation name.</p>
+
+            <p>This method still works on old browsers without CSS3 animation support. When support is not detected, no animation occurs, and the callback is called immediately.</p>
+
             <div>
                 <img src="holder.js/350x200/ink/" id="target" class="push-center" style="display:block">
             </div>
 
-            <ul id="animation-menu">
-                <li class="to-animate" data-animate-class="fadeOut">fadeIn</li>
-                <li class="to-animate" data-animate-class="fadeIn">fadeOut</li>
-            </ul>
+            <p id="animation-menu">
+                Some animation names:
+                <span class="ink-button" data-animate-class="fadeIn">fadeIn</span>
+                <span class="ink-button" data-animate-class="fadeOut">fadeOut</span>
+                <span class="ink-button" data-animate-class="shake">shake</span>
+                <span class="ink-button" data-animate-class="bounce">bounce</span>
+            </p>
+
+            <p>For the full animation name list, visit <a href="http://daneden.me/animate/">http://daneden.me/animate/</a></p>
+
+            <h2>Fade out and remove an element:</h2>
+<pre><code>
+var toAnimate = Ink.i('element_id');
+Animate.animate(toAnimate, 'fadeOut', 'slow', function () {
+    InkElement.remove(toAnimate);
+})
+</code></pre>
+
+            <h2>Call attention to an element</h2>
+<pre><code>
+Animate.animate('#to-animate', 'bounce', 'slow');
+</code></pre>
 
             <script type="text/javascript">
                 Ink.requireModules(['Ink.UI.Animate_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1'], function (Animate, InkEvent, InkElement) {
@@ -55,7 +77,7 @@
                     InkEvent.observeDelegated(Ink.i('animation-menu'), 'click', '[data-animate-class]', function (ev) {
                         var animateClass = InkElement.data(InkEvent.element(ev)).animateClass;
                         animating = true;
-                        Animate.animate('#target', animateClass, 200, function onEnd() {
+                        Animate.animate('#target', animateClass, 'slow', function onEnd() {
                             animating = false;
                         })
                     });
