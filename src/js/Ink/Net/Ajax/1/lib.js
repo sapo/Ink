@@ -726,18 +726,33 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
     /**
      * Loads content from a given url through a XMLHttpRequest.
+     *
      * Shortcut function for simple AJAX use cases.
+     *
+     * Works with JSON, XML and plain text.
      *
      * @method load
      * @param {String}   url       request url
      * @param {Function} callback  callback to be executed if the request is successful
      * @return {Object} XMLHttpRequest object
+     *
+     * @example
+     *      Ajax.load('some/text/file', function (responseText) {
+     *          doSomething(responseText);
+     *      });
+     *      Ajax.load('some/xml/file', function (responseXML) {
+     *          doSomething(responseXML);
+     *      });
+     *      Ajax.load('some/json/file', function (responseJSON) {
+     *          doSomething(responseJSON);
+     *      });
+     *
      */
     Ajax.load = function(url, callback){
         return new Ajax(url, {
             method: 'GET',
             onSuccess: function(response){
-                callback(response.responseText, response);
+                callback(response.responseJSON || response.responseText, response);
             }
         });
     };
@@ -764,5 +779,4 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
 
     return Ajax;
-
 });

@@ -1,4 +1,4 @@
-
+QUnit.config.testTimeout = 4000;
 Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
     var statics = Ajax.prototype;
 
@@ -62,7 +62,7 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
                 ok(false);
                 start();
             }
-        })
+        });
     });
 
     test('request test.json', function () {
@@ -93,6 +93,28 @@ Ink.requireModules(['Ink.Net.Ajax_1'], function (Ajax) {
                 equal(ajx.status, 404);
                 start();
             }
+        });
+    });
+
+    test('isJSON', function () {
+        var isJSON = Ajax.prototype.isJSON;
+        ok(isJSON('{"hello": "world"}'));
+        ok(!isJSON('{hi: "world"}'));
+        ok(!isJSON('alert("hi!")'));
+    });
+
+    test('Ajax.load helper function', function () {
+        stop();
+        stop();
+
+        Ajax.load('test.json', function (responseJSON) {
+            strictEqual(responseJSON.responded_okay, true);
+            start();
+        });
+
+        Ajax.load('test.html', function (responseText) {
+            ok(/this is a random string in the response html/i.test(responseText));
+            start();
         });
     });
 });
