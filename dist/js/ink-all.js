@@ -1311,18 +1311,33 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
     /**
      * Loads content from a given url through a XMLHttpRequest.
+     *
      * Shortcut function for simple AJAX use cases.
+     *
+     * Works with JSON, XML and plain text.
      *
      * @method load
      * @param {String}   url       request url
      * @param {Function} callback  callback to be executed if the request is successful
      * @return {Object} XMLHttpRequest object
+     *
+     * @example
+     *      Ajax.load('some/text/file', function (responseText) {
+     *          doSomething(responseText);
+     *      });
+     *      Ajax.load('some/xml/file', function (responseXML) {
+     *          doSomething(responseXML);
+     *      });
+     *      Ajax.load('some/json/file', function (responseJSON) {
+     *          doSomething(responseJSON);
+     *      });
+     *
      */
     Ajax.load = function(url, callback){
         return new Ajax(url, {
             method: 'GET',
             onSuccess: function(response){
-                callback(response.responseText, response);
+                callback(response.responseJSON || response.responseText, response);
             }
         });
     };
@@ -1349,7 +1364,6 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
 
 
     return Ajax;
-
 });
 
 /**
@@ -4319,33 +4333,766 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
  */
 
 Ink.createModule('Ink.Dom.Event', 1, [], function() {
+    /* jshint
+           asi:true,
+           strict:false,
+           laxcomma:true,
+           eqeqeq:false,
+           laxbreak:true,
+           boss:true,
+           curly:false,
+           expr:true
+           */
 
+    /*!
+      * Bean - copyright (c) Jacob Thornton 2011-2012
+      * https://github.com/fat/bean
+      * MIT license
+      */
+    var bean = (function (name, context, definition) {
+      return definition()
+    })('bean', this, function (name, context) {
+      name    = name    || 'bean'
+      context = context || this
+
+      var win            = window
+        , old            = context[name]
+        , namespaceRegex = /[^\.]*(?=\..*)\.|.*/
+        , nameRegex      = /\..*/
+        , addEvent       = 'addEventListener'
+        , removeEvent    = 'removeEventListener'
+        , doc            = document || {}
+        , root           = doc.documentElement || {}
+        , W3C_MODEL      = root[addEvent]
+        , eventSupport   = W3C_MODEL ? addEvent : 'attachEvent'
+        , ONE            = {} // singleton for quick matching making add() do one()
+
+        , slice          = Array.prototype.slice
+        , str2arr        = function (s, d) { return s.split(d || ' ') }
+        , isString       = function (o) { return typeof o == 'string' }
+        , isFunction     = function (o) { return typeof o == 'function' }
+
+          // events that we consider to be 'native', anything not in this list will
+          // be treated as a custom event
+        , standardNativeEvents =
+            'click dblclick mouseup mousedown contextmenu '                  + // mouse buttons
+            'mousewheel mousemultiwheel DOMMouseScroll '                     + // mouse wheel
+            'mouseover mouseout mousemove selectstart selectend '            + // mouse movement
+            'keydown keypress keyup '                                        + // keyboard
+            'orientationchange '                                             + // mobile
+            'focus blur change reset select submit '                         + // form elements
+            'load unload beforeunload resize move DOMContentLoaded '         + // window
+            'readystatechange message '                                      + // window
+            'error abort scroll '                                              // misc
+          // element.fireEvent('onXYZ'... is not forgiving if we try to fire an event
+          // that doesn't actually exist, so make sure we only do these on newer browsers
+        , w3cNativeEvents =
+            'show '                                                          + // mouse buttons
+            'input invalid '                                                 + // form elements
+            'touchstart touchmove touchend touchcancel '                     + // touch
+            'gesturestart gesturechange gestureend '                         + // gesture
+            'textinput'                                                      + // TextEvent
+            'readystatechange pageshow pagehide popstate '                   + // window
+            'hashchange offline online '                                     + // window
+            'afterprint beforeprint '                                        + // printing
+            'dragstart dragenter dragover dragleave drag drop dragend '      + // dnd
+            'loadstart progress suspend emptied stalled loadmetadata '       + // media
+            'loadeddata canplay canplaythrough playing waiting seeking '     + // media
+            'seeked ended durationchange timeupdate play pause ratechange '  + // media
+            'volumechange cuechange '                                        + // media
+            'checking noupdate downloading cached updateready obsolete '       // appcache
+
+          // convert to a hash for quick lookups
+        , nativeEvents = (function (hash, events, i) {
+            for (i = 0; i < events.length; i++) events[i] && (hash[events[i]] = 1)
+            return hash
+          }({}, str2arr(standardNativeEvents + (W3C_MODEL ? w3cNativeEvents : ''))))
+
+          // custom events are events that we *fake*, they are not provided natively but
+          // we can use native events to generate them
+        , customEvents = (function () {
+            var isAncestor = 'compareDocumentPosition' in root
+                  ? function (element, container) {
+                      return container.compareDocumentPosition && (container.compareDocumentPosition(element) & 16) === 16
+                    }
+                  : 'contains' in root
+                    ? function (element, container) {
+                        container = container.nodeType === 9 || container === window ? root : container
+                        return container !== element && container.contains(element)
+                      }
+                    : function (element, container) {
+                        while (element = element.parentNode) if (element === container) return 1
+                        return 0
+                      }
+              , check = function (event) {
+                  var related = event.relatedTarget
+                  return !related
+                    ? related == null
+                    : (related !== this && related.prefix !== 'xul' && !/document/.test(this.toString())
+                        && !isAncestor(related, this))
+                }
+
+            return {
+                mouseenter: { base: 'mouseover', condition: check }
+              , mouseleave: { base: 'mouseout', condition: check }
+              , mousewheel: { base: /Firefox/.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel' }
+            }
+          }())
+
+          // we provide a consistent Event object across browsers by taking the actual DOM
+          // event object and generating a new one from its properties.
+        , Event = (function () {
+                // a whitelist of properties (for different event types) tells us what to check for and copy
+            var commonProps  = str2arr('altKey attrChange attrName bubbles cancelable ctrlKey currentTarget ' +
+                  'detail eventPhase getModifierState isTrusted metaKey relatedNode relatedTarget shiftKey '  +
+                  'srcElement target timeStamp type view which propertyName')
+              , mouseProps   = commonProps.concat(str2arr('button buttons clientX clientY dataTransfer '      +
+                  'fromElement offsetX offsetY pageX pageY screenX screenY toElement'))
+              , mouseWheelProps = mouseProps.concat(str2arr('wheelDelta wheelDeltaX wheelDeltaY wheelDeltaZ ' +
+                  'axis')) // 'axis' is FF specific
+              , keyProps     = commonProps.concat(str2arr('char charCode key keyCode keyIdentifier '          +
+                  'keyLocation location'))
+              , textProps    = commonProps.concat(str2arr('data'))
+              , touchProps   = commonProps.concat(str2arr('touches targetTouches changedTouches scale rotation'))
+              , messageProps = commonProps.concat(str2arr('data origin source'))
+              , stateProps   = commonProps.concat(str2arr('state'))
+              , overOutRegex = /over|out/
+                // some event types need special handling and some need special properties, do that all here
+              , typeFixers   = [
+                    { // key events
+                        reg: /key/i
+                      , fix: function (event, newEvent) {
+                          newEvent.keyCode = event.keyCode || event.which
+                          return keyProps
+                        }
+                    }
+                  , { // mouse events
+                        reg: /click|mouse(?!(.*wheel|scroll))|menu|drag|drop/i
+                      , fix: function (event, newEvent, type) {
+                          newEvent.rightClick = event.which === 3 || event.button === 2
+                          newEvent.pos = { x: 0, y: 0 }
+                          if (event.pageX || event.pageY) {
+                            newEvent.clientX = event.pageX
+                            newEvent.clientY = event.pageY
+                          } else if (event.clientX || event.clientY) {
+                            newEvent.clientX = event.clientX + doc.body.scrollLeft + root.scrollLeft
+                            newEvent.clientY = event.clientY + doc.body.scrollTop + root.scrollTop
+                          }
+                          if (overOutRegex.test(type)) {
+                            newEvent.relatedTarget = event.relatedTarget
+                              || event[(type == 'mouseover' ? 'from' : 'to') + 'Element']
+                          }
+                          return mouseProps
+                        }
+                    }
+                  , { // mouse wheel events
+                        reg: /mouse.*(wheel|scroll)/i
+                      , fix: function () { return mouseWheelProps }
+                    }
+                  , { // TextEvent
+                        reg: /^text/i
+                      , fix: function () { return textProps }
+                    }
+                  , { // touch and gesture events
+                        reg: /^touch|^gesture/i
+                      , fix: function () { return touchProps }
+                    }
+                  , { // message events
+                        reg: /^message$/i
+                      , fix: function () { return messageProps }
+                    }
+                  , { // popstate events
+                        reg: /^popstate$/i
+                      , fix: function () { return stateProps }
+                    }
+                  , { // everything else
+                        reg: /.*/
+                      , fix: function () { return commonProps }
+                    }
+                ]
+              , typeFixerMap = {} // used to map event types to fixer functions (above), a basic cache mechanism
+
+              , Event = function (event, element, isNative) {
+                  if (!arguments.length) return
+                  event = event || ((element.ownerDocument || element.document || element).parentWindow || win).event
+                  this.originalEvent = event
+                  this.isNative       = isNative
+                  this.isBean         = true
+
+                  if (!event) return
+
+                  var type   = event.type
+                    , target = event.target || event.srcElement
+                    , i, l, p, props, fixer
+
+                  this.target = target && target.nodeType === 3 ? target.parentNode : target
+
+                  if (isNative) { // we only need basic augmentation on custom events, the rest expensive & pointless
+                    fixer = typeFixerMap[type]
+                    if (!fixer) { // haven't encountered this event type before, map a fixer function for it
+                      for (i = 0, l = typeFixers.length; i < l; i++) {
+                        if (typeFixers[i].reg.test(type)) { // guaranteed to match at least one, last is .*
+                          typeFixerMap[type] = fixer = typeFixers[i].fix
+                          break
+                        }
+                      }
+                    }
+
+                    props = fixer(event, this, type)
+                    for (i = props.length; i--;) {
+                      if (!((p = props[i]) in this) && p in event) this[p] = event[p]
+                    }
+                  }
+                }
+
+            // preventDefault() and stopPropagation() are a consistent interface to those functions
+            // on the DOM, stop() is an alias for both of them together
+            Event.prototype.preventDefault = function () {
+              if (this.originalEvent.preventDefault) this.originalEvent.preventDefault()
+              else this.originalEvent.returnValue = false
+            }
+            Event.prototype.stopPropagation = function () {
+              if (this.originalEvent.stopPropagation) this.originalEvent.stopPropagation()
+              else this.originalEvent.cancelBubble = true
+            }
+            Event.prototype.stop = function () {
+              this.preventDefault()
+              this.stopPropagation()
+              this.stopped = true
+            }
+            // stopImmediatePropagation() has to be handled internally because we manage the event list for
+            // each element
+            // note that originalElement may be a Bean#Event object in some situations
+            Event.prototype.stopImmediatePropagation = function () {
+              if (this.originalEvent.stopImmediatePropagation) this.originalEvent.stopImmediatePropagation()
+              this.isImmediatePropagationStopped = function () { return true }
+            }
+            Event.prototype.isImmediatePropagationStopped = function () {
+              return this.originalEvent.isImmediatePropagationStopped && this.originalEvent.isImmediatePropagationStopped()
+            }
+            Event.prototype.clone = function (currentTarget) {
+              //TODO: this is ripe for optimisation, new events are *expensive*
+              // improving this will speed up delegated events
+              var ne = new Event(this, this.element, this.isNative)
+              ne.currentTarget = currentTarget
+              return ne
+            }
+
+            return Event
+          }())
+
+          // if we're in old IE we can't do onpropertychange on doc or win so we use doc.documentElement for both
+        , targetElement = function (element, isNative) {
+            return !W3C_MODEL && !isNative && (element === doc || element === win) ? root : element
+          }
+
+          /**
+            * Bean maintains an internal registry for event listeners. We don't touch elements, objects
+            * or functions to identify them, instead we store everything in the registry.
+            * Each event listener has a RegEntry object, we have one 'registry' for the whole instance.
+            */
+        , RegEntry = (function () {
+            // each handler is wrapped so we can handle delegation and custom events
+            var wrappedHandler = function (element, fn, condition, args) {
+                var call = function (event, eargs) {
+                      return fn.apply(element, args ? slice.call(eargs, event ? 0 : 1).concat(args) : eargs)
+                    }
+                  , findTarget = function (event, eventElement) {
+                      return fn.__beanDel ? fn.__beanDel.ft(event.target, element) : eventElement
+                    }
+                  , handler = condition
+                      ? function (event) {
+                          var target = findTarget(event, this) // deleated event
+                          if (condition.apply(target, arguments)) {
+                            if (event) event.currentTarget = target
+                            return call(event, arguments)
+                          }
+                        }
+                      : function (event) {
+                          if (fn.__beanDel) event = event.clone(findTarget(event)) // delegated event, fix the fix
+                          return call(event, arguments)
+                        }
+                handler.__beanDel = fn.__beanDel
+                return handler
+              }
+
+            , RegEntry = function (element, type, handler, original, namespaces, args, root) {
+                var customType     = customEvents[type]
+                  , isNative
+
+                if (type == 'unload') {
+                  // self clean-up
+                  handler = once(removeListener, element, type, handler, original)
+                }
+
+                if (customType) {
+                  if (customType.condition) {
+                    handler = wrappedHandler(element, handler, customType.condition, args)
+                  }
+                  type = customType.base || type
+                }
+
+                this.isNative      = isNative = nativeEvents[type] && !!element[eventSupport]
+                this.customType    = !W3C_MODEL && !isNative && type
+                this.element       = element
+                this.type          = type
+                this.original      = original
+                this.namespaces    = namespaces
+                this.eventType     = W3C_MODEL || isNative ? type : 'propertychange'
+                this.target        = targetElement(element, isNative)
+                this[eventSupport] = !!this.target[eventSupport]
+                this.root          = root
+                this.handler       = wrappedHandler(element, handler, null, args)
+              }
+
+            // given a list of namespaces, is our entry in any of them?
+            RegEntry.prototype.inNamespaces = function (checkNamespaces) {
+              var i, j, c = 0
+              if (!checkNamespaces) return true
+              if (!this.namespaces) return false
+              for (i = checkNamespaces.length; i--;) {
+                for (j = this.namespaces.length; j--;) {
+                  if (checkNamespaces[i] == this.namespaces[j]) c++
+                }
+              }
+              return checkNamespaces.length === c
+            }
+
+            // match by element, original fn (opt), handler fn (opt)
+            RegEntry.prototype.matches = function (checkElement, checkOriginal, checkHandler) {
+              return this.element === checkElement &&
+                (!checkOriginal || this.original === checkOriginal) &&
+                (!checkHandler || this.handler === checkHandler)
+            }
+
+            return RegEntry
+          }())
+
+        , registry = (function () {
+            // our map stores arrays by event type, just because it's better than storing
+            // everything in a single array.
+            // uses '$' as a prefix for the keys for safety and 'r' as a special prefix for
+            // rootListeners so we can look them up fast
+            var map = {}
+
+              // generic functional search of our registry for matching listeners,
+              // `fn` returns false to break out of the loop
+              , forAll = function (element, type, original, handler, root, fn) {
+                  var pfx = root ? 'r' : '$'
+                  if (!type || type == '*') {
+                    // search the whole registry
+                    for (var t in map) {
+                      if (t.charAt(0) == pfx) {
+                        forAll(element, t.substr(1), original, handler, root, fn)
+                      }
+                    }
+                  } else {
+                    var i = 0, l, list = map[pfx + type], all = element == '*'
+                    if (!list) return
+                    for (l = list.length; i < l; i++) {
+                      if ((all || list[i].matches(element, original, handler)) && !fn(list[i], list, i, type)) return
+                    }
+                  }
+                }
+
+              , has = function (element, type, original, root) {
+                  // we're not using forAll here simply because it's a bit slower and this
+                  // needs to be fast
+                  var i, list = map[(root ? 'r' : '$') + type]
+                  if (list) {
+                    for (i = list.length; i--;) {
+                      if (!list[i].root && list[i].matches(element, original, null)) return true
+                    }
+                  }
+                  return false
+                }
+
+              , get = function (element, type, original, root) {
+                  var entries = []
+                  forAll(element, type, original, null, root, function (entry) {
+                    return entries.push(entry)
+                  })
+                  return entries
+                }
+
+              , put = function (entry) {
+                  var has = !entry.root && !this.has(entry.element, entry.type, null, false)
+                    , key = (entry.root ? 'r' : '$') + entry.type
+                  ;(map[key] || (map[key] = [])).push(entry)
+                  return has
+                }
+
+              , del = function (entry) {
+                  forAll(entry.element, entry.type, null, entry.handler, entry.root, function (entry, list, i) {
+                    list.splice(i, 1)
+                    entry.removed = true
+                    if (list.length === 0) delete map[(entry.root ? 'r' : '$') + entry.type]
+                    return false
+                  })
+                }
+
+                // dump all entries, used for onunload
+              , entries = function () {
+                  var t, entries = []
+                  for (t in map) {
+                    if (t.charAt(0) == '$') entries = entries.concat(map[t])
+                  }
+                  return entries
+                }
+
+            return { has: has, get: get, put: put, del: del, entries: entries }
+          }())
+
+          // we need a selector engine for delegated events, use querySelectorAll if it exists
+          // but for older browsers we need Qwery, Sizzle or similar
+        , selectorEngine
+        , setSelectorEngine = function (e) {
+            if (!arguments.length) {
+              selectorEngine = doc.querySelectorAll
+                ? function (s, r) {
+                    return r.querySelectorAll(s)
+                  }
+                : function () {
+                    throw new Error('Bean: No selector engine installed') // eeek
+                  }
+            } else {
+              selectorEngine = e
+            }
+          }
+
+          // we attach this listener to each DOM event that we need to listen to, only once
+          // per event type per DOM element
+        , rootListener = function (event, type) {
+            if (!W3C_MODEL && type && event && event.propertyName != '_on' + type) return
+
+            var listeners = registry.get(this, type || event.type, null, false)
+              , l = listeners.length
+              , i = 0
+
+            event = new Event(event, this, true)
+            if (type) event.type = type
+
+            // iterate through all handlers registered for this type, calling them unless they have
+            // been removed by a previous handler or stopImmediatePropagation() has been called
+            for (; i < l && !event.isImmediatePropagationStopped(); i++) {
+              if (!listeners[i].removed) listeners[i].handler.call(this, event)
+            }
+          }
+
+          // add and remove listeners to DOM elements
+        , listener = W3C_MODEL
+            ? function (element, type, add) {
+                // new browsers
+                element[add ? addEvent : removeEvent](type, rootListener, false)
+              }
+            : function (element, type, add, custom) {
+                // IE8 and below, use attachEvent/detachEvent and we have to piggy-back propertychange events
+                // to simulate event bubbling etc.
+                var entry
+                if (add) {
+                  registry.put(entry = new RegEntry(
+                      element
+                    , custom || type
+                    , function (event) { // handler
+                        rootListener.call(element, event, custom)
+                      }
+                    , rootListener
+                    , null
+                    , null
+                    , true // is root
+                  ))
+                  if (custom && element['_on' + custom] == null) element['_on' + custom] = 0
+                  entry.target.attachEvent('on' + entry.eventType, entry.handler)
+                } else {
+                  entry = registry.get(element, custom || type, rootListener, true)[0]
+                  if (entry) {
+                    entry.target.detachEvent('on' + entry.eventType, entry.handler)
+                    registry.del(entry)
+                  }
+                }
+              }
+
+        , once = function (rm, element, type, fn, originalFn) {
+            // wrap the handler in a handler that does a remove as well
+            return function () {
+              fn.apply(this, arguments)
+              rm(element, type, originalFn)
+            }
+          }
+
+        , removeListener = function (element, orgType, handler, namespaces) {
+            var type     = orgType && orgType.replace(nameRegex, '')
+              , handlers = registry.get(element, type, null, false)
+              , removed  = {}
+              , i, l
+
+            for (i = 0, l = handlers.length; i < l; i++) {
+              if ((!handler || handlers[i].original === handler) && handlers[i].inNamespaces(namespaces)) {
+                // TODO: this is problematic, we have a registry.get() and registry.del() that
+                // both do registry searches so we waste cycles doing this. Needs to be rolled into
+                // a single registry.forAll(fn) that removes while finding, but the catch is that
+                // we'll be splicing the arrays that we're iterating over. Needs extra tests to
+                // make sure we don't screw it up. @rvagg
+                registry.del(handlers[i])
+                if (!removed[handlers[i].eventType] && handlers[i][eventSupport])
+                  removed[handlers[i].eventType] = { t: handlers[i].eventType, c: handlers[i].type }
+              }
+            }
+            // check each type/element for removed listeners and remove the rootListener where it's no longer needed
+            for (i in removed) {
+              if (!registry.has(element, removed[i].t, null, false)) {
+                // last listener of this type, remove the rootListener
+                listener(element, removed[i].t, false, removed[i].c)
+              }
+            }
+          }
+
+          // set up a delegate helper using the given selector, wrap the handler function
+        , delegate = function (selector, fn) {
+            //TODO: findTarget (therefore $) is called twice, once for match and once for
+            // setting e.currentTarget, fix this so it's only needed once
+            var findTarget = function (target, root) {
+                  var i, array = isString(selector) ? selectorEngine(selector, root) : selector
+                  for (; target && target !== root; target = target.parentNode) {
+                    for (i = array.length; i--;) {
+                      if (array[i] === target) return target
+                    }
+                  }
+                }
+              , handler = function (e) {
+                  var match = findTarget(e.target, this)
+                  if (match) fn.apply(match, arguments)
+                }
+
+            // __beanDel isn't pleasant but it's a private function, not exposed outside of Bean
+            handler.__beanDel = {
+                ft       : findTarget // attach it here for customEvents to use too
+              , selector : selector
+            }
+            return handler
+          }
+
+        , fireListener = W3C_MODEL ? function (isNative, type, element) {
+            // modern browsers, do a proper dispatchEvent()
+            var evt = doc.createEvent(isNative ? 'HTMLEvents' : 'UIEvents')
+            evt[isNative ? 'initEvent' : 'initUIEvent'](type, true, true, win, 1)
+            element.dispatchEvent(evt)
+          } : function (isNative, type, element) {
+            // old browser use onpropertychange, just increment a custom property to trigger the event
+            element = targetElement(element, isNative)
+            isNative ? element.fireEvent('on' + type, doc.createEventObject()) : element['_on' + type]++
+          }
+
+          /**
+            * Public API: off(), on(), add(), (remove()), one(), fire(), clone()
+            */
+
+          /**
+            * off(element[, eventType(s)[, handler ]])
+            */
+        , off = function (element, typeSpec, fn) {
+            var isTypeStr = isString(typeSpec)
+              , k, type, namespaces, i
+
+            if (isTypeStr && typeSpec.indexOf(' ') > 0) {
+              // off(el, 't1 t2 t3', fn) or off(el, 't1 t2 t3')
+              typeSpec = str2arr(typeSpec)
+              for (i = typeSpec.length; i--;)
+                off(element, typeSpec[i], fn)
+              return element
+            }
+
+            type = isTypeStr && typeSpec.replace(nameRegex, '')
+            if (type && customEvents[type]) type = customEvents[type].base
+
+            if (!typeSpec || isTypeStr) {
+              // off(el) or off(el, t1.ns) or off(el, .ns) or off(el, .ns1.ns2.ns3)
+              if (namespaces = isTypeStr && typeSpec.replace(namespaceRegex, '')) namespaces = str2arr(namespaces, '.')
+              removeListener(element, type, fn, namespaces)
+            } else if (isFunction(typeSpec)) {
+              // off(el, fn)
+              removeListener(element, null, typeSpec)
+            } else {
+              // off(el, { t1: fn1, t2, fn2 })
+              for (k in typeSpec) {
+                if (typeSpec.hasOwnProperty(k)) off(element, k, typeSpec[k])
+              }
+            }
+
+            return element
+          }
+
+          /**
+            * on(element, eventType(s)[, selector], handler[, args ])
+            */
+        , on = function(element, events, selector, fn) {
+            var originalFn, type, types, i, args, entry, first
+
+            //TODO: the undefined check means you can't pass an 'args' argument, fix this perhaps?
+            if (selector === undefined && typeof events == 'object') {
+              //TODO: this can't handle delegated events
+              for (type in events) {
+                if (events.hasOwnProperty(type)) {
+                  on.call(this, element, type, events[type])
+                }
+              }
+              return
+            }
+
+            if (!isFunction(selector)) {
+              // delegated event
+              originalFn = fn
+              args       = slice.call(arguments, 4)
+              fn         = delegate(selector, originalFn, selectorEngine)
+            } else {
+              args       = slice.call(arguments, 3)
+              fn         = originalFn = selector
+            }
+
+            types = str2arr(events)
+
+            // special case for one(), wrap in a self-removing handler
+            if (this === ONE) {
+              fn = once(off, element, events, fn, originalFn)
+            }
+
+            for (i = types.length; i--;) {
+              // add new handler to the registry and check if it's the first for this element/type
+              first = registry.put(entry = new RegEntry(
+                  element
+                , types[i].replace(nameRegex, '') // event type
+                , fn
+                , originalFn
+                , str2arr(types[i].replace(namespaceRegex, ''), '.') // namespaces
+                , args
+                , false // not root
+              ))
+              if (entry[eventSupport] && first) {
+                // first event of this type on this element, add root listener
+                listener(element, entry.eventType, true, entry.customType)
+              }
+            }
+
+            return element
+          }
+
+          /**
+            * add(element[, selector], eventType(s), handler[, args ])
+            *
+            * Deprecated: kept (for now) for backward-compatibility
+            */
+        , add = function (element, events, fn, delfn) {
+            return on.apply(
+                null
+              , !isString(fn)
+                  ? slice.call(arguments)
+                  : [ element, fn, events, delfn ].concat(arguments.length > 3 ? slice.call(arguments, 5) : [])
+            )
+          }
+
+          /**
+            * one(element, eventType(s)[, selector], handler[, args ])
+            */
+        , one = function () {
+            return on.apply(ONE, arguments)
+          }
+
+          /**
+            * fire(element, eventType(s)[, args ])
+            *
+            * The optional 'args' argument must be an array, if no 'args' argument is provided
+            * then we can use the browser's DOM event system, otherwise we trigger handlers manually
+            */
+        , fire = function (element, type, args) {
+            var types = str2arr(type)
+              , i, j, l, names, handlers
+
+            for (i = types.length; i--;) {
+              type = types[i].replace(nameRegex, '')
+              if (names = types[i].replace(namespaceRegex, '')) names = str2arr(names, '.')
+              if (!names && !args && element[eventSupport]) {
+                fireListener(nativeEvents[type], type, element)
+              } else {
+                // non-native event, either because of a namespace, arguments or a non DOM element
+                // iterate over all listeners and manually 'fire'
+                handlers = registry.get(element, type, null, false)
+                args = [false].concat(args)
+                for (j = 0, l = handlers.length; j < l; j++) {
+                  if (handlers[j].inNamespaces(names)) {
+                    handlers[j].handler.apply(element, args)
+                  }
+                }
+              }
+            }
+            return element
+          }
+
+          /**
+            * clone(dstElement, srcElement[, eventType ])
+            *
+            * TODO: perhaps for consistency we should allow the same flexibility in type specifiers?
+            */
+        , clone = function (element, from, type) {
+            var handlers = registry.get(from, type, null, false)
+              , l = handlers.length
+              , i = 0
+              , args, beanDel
+
+            for (; i < l; i++) {
+              if (handlers[i].original) {
+                args = [ element, handlers[i].type ]
+                if (beanDel = handlers[i].handler.__beanDel) args.push(beanDel.selector)
+                args.push(handlers[i].original)
+                on.apply(null, args)
+              }
+            }
+            return element
+          }
+
+        , bean = {
+              'on'                : on
+            , 'add'               : add
+            , 'one'               : one
+            , 'off'               : off
+            , 'remove'            : off
+            , 'clone'             : clone
+            , 'fire'              : fire
+            , 'Event'             : Event
+            , 'setSelectorEngine' : setSelectorEngine
+            , 'noConflict'        : function () {
+                context[name] = old
+                return this
+              }
+          }
+
+      // for IE, clean up on unload to avoid leaks
+      if (win.attachEvent) {
+        var cleanup = function () {
+          var i, entries = registry.entries()
+          for (i in entries) {
+            if (entries[i].type && entries[i].type !== 'unload') off(entries[i].element, entries[i].type)
+          }
+          win.detachEvent('onunload', cleanup)
+          win.CollectGarbage && win.CollectGarbage()
+        }
+        win.attachEvent('onunload', cleanup)
+      }
+
+      // initialize selector engine to internal default (qSA or throw Error)
+      setSelectorEngine(Ink.ss)
+
+      return bean
+    });
+
+    /**
+     * Keep this declaration here and off Bean as it extends the Event
+     * object and some properties are readonly in strict mode
+     */
     'use strict';
 
     /**
      * Instantiate browser native events array
      */
-
-    var nativeEvents;
-
-    if (document.createEvent) {
-        nativeEvents = 'DOMActivate DOMFocusIn DOMFocusOut focus focusin focusout blur load unload abort error select change submit reset resize scroll click dblclick mousedown mouseenter mouseleave mousemove mouseover mouseout mouseup mousewheel wheel textInput keydown keypress keyup compositionstart compositionupdate compositionend DOMSubtreeModified DOMNodeInserted DOMNodeRemoved DOMNodeInsertedIntoDocument DOMNodeRemovedFromDocument DOMAttrModified DOMCharacterDataModified DOMAttributeNameChanged DOMElementNameChanged hashchange'.split(' ');
-    } else {
-        nativeEvents = 'onabort onactivate onafterprint onafterupdate onbeforeactivate onbeforecopy onbeforecut onbeforedeactivate onbeforeeditfocus onbeforepaste onbeforeprint onbeforeunload onbeforeupdate onblur onbounce oncellchange onchange onclick oncontextmenu oncontrolselect oncopy oncut ondataavailable ondatasetchanged ondatasetcomplete ondblclick ondeactivate ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop onerror onerrorupdate onfilterchange onfinish onfocus onfocusin onfocusout onhashchange onhelp onkeydown onkeypress onkeyup onlayoutcomplete onload onlosecapture onmessage onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onmousewheel onmove onmoveend onmovestart onoffline ononline onpage onpaste onprogress onpropertychange onreadystatechange onreset onresize onresizeend onresizestart onrowenter onrowexit onrowsdelete onrowsinserted onscroll onselect onselectionchange onselectstart onstart onstop onstorage onstoragecommit onsubmit ontimeout onunload'.split(' ');
-    }
-
-    function isNative(eventName) {
-        if ([].indexOf && 0) {
-            return nativeEvents.indexOf(eventName !== -1);
-        } else {
-            for (var i = 0, len = nativeEvents.length; i < len; i++) {
-                if (nativeEvents[i] === eventName) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
 
     /**
      * @module Ink.Dom.Event_1
@@ -4507,88 +5254,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         }
     },
 
-
-    /**
-     * Dispatches an event to element
-     *
-     * @method fire
-     * @param {DOMElement|String}  element    element id or element
-     * @param {String}             eventName  event name
-     * @param {Object}             [memo]     metadata for the event
-     */
-    fire: function(element, eventName, memo)
-    {
-        element = Ink.i(element);
-        if (!element) { return null; }
-
-        var ev;
-
-        if (element === document && document.createEvent && !element.dispatchEvent) {
-            element = document.documentElement;
-        }
-
-        if (document.createEvent) {
-            ev = document.createEvent("HTMLEvents");
-            ev.initEvent(eventName, true, true);
-
-        } else {
-            ev = document.createEventObject();
-            if (!isNative('on' + eventName)) {
-                ev.eventType = "ondataavailable";
-            } else {
-                ev.eventType = "on"+eventName;
-            }
-        }
-
-        ev.eventName = eventName;
-        ev.memo = memo || { };
-
-        try {
-            if (document.createEvent) {
-                element.dispatchEvent(ev);
-            } else if(element.fireEvent){
-                element.fireEvent(ev.eventType, ev);
-            } else {
-                return;
-            }
-        } catch(ex) {}
-
-        return ev;
-    },
-
-    _callbackForCustomEvents: function (element, eventName, callBack) {
-        var isHashChangeInIE = eventName === "hashchange" && element.attachEvent && !('onhashchange' in window);
-        var isCustomEvent = eventName.indexOf(':') !== -1;
-        if (isHashChangeInIE || isCustomEvent) {
-            /**
-             *
-             * prevent that each custom event fire without any test
-             * This prevents that if you have multiple custom events
-             * on dataavailable to trigger the callback event if it
-             * is a different custom event
-             *
-             */
-            var argCallback = callBack;
-            return Ink.bindEvent(function(ev, eventName, cb){
-
-              //tests if it is our event and if not
-              //check if it is IE and our dom:loaded was overrided (IE only supports one ondatavailable)
-              //- fix /opera also supports attachEvent and was firing two events
-              // if(ev.eventName === eventName || (Ink.Browser.IE && eventName === 'dom:loaded')){
-              if(ev.eventName === eventName){
-                //fix for FF since it loses the event in case of using a second binObjEvent
-                if(window.addEventListener){
-                    try { window.event = ev; } catch (e) { /* IE has this as a readonly property, and in strict mode you can't set readonly properties */ }
-                }
-                cb(ev);
-              }
-
-            }, this, eventName, argCallback);
-        } else {
-            return null;
-        }
-    },
-
     /**
      * Attaches an event to element
      *
@@ -4605,13 +5270,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
     observe: function(element, eventName, callBack, useCapture) {
         element = Ink.i(element);
         if(element) {
-            /* rare corner case: some events need a different callback to be generated */
-            var callbackForCustomEvents = this._callbackForCustomEvents(element, eventName, callBack);
-            if (callbackForCustomEvents) {
-                callBack = callbackForCustomEvents;
-                eventName = 'dataavailable';
-            }
-
             if(element.addEventListener) {
                 element.addEventListener(eventName, callBack, !!useCapture);
             } else {
@@ -4660,12 +5318,6 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         }
         if (!elements[0]) { return false; }
 
-        var callbackForCustomEvents = this._callbackForCustomEvents(elements[0], eventName, callBack);
-        if (callbackForCustomEvents) {
-            callBack = callbackForCustomEvents;
-            eventName = 'dataavailable';
-        }
-
         for (var i = 0, len = elements.length; i < len; i++) {
             this.observe(elements[i], eventName, callBack, useCapture);
         }
@@ -4691,7 +5343,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 
             var cursor = fromElement;
 
-            while (cursor !== element && cursor) {
+            // Go up the document tree until we hit the element itself.
+            while (cursor !== element && cursor !== document && cursor) {
                 if (Ink.Dom.Selector_1.matchesSelector(cursor, selector)) {
                     event.delegationTarget = cursor;
                     return callback(event);
@@ -4827,8 +5480,8 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
         if (window.addEventListener) {
             if(ev.button === 0){
                 return true;
-            }
-            else if(ev.type.substring(0,5) === 'touch' && ev.button === null){
+            } else if(ev.type === 'touchend' && ev.button === null){
+                // [todo] do the above check for pointerEvents too
                 return true;
             }
         }
@@ -4896,7 +5549,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
 };
 
 
-return InkEvent;
+return Ink.extendObj(InkEvent, bean);
 
 });
 
@@ -12399,6 +13052,107 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     return Validator;
 
 });
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], function (Common, Css) {
+    'use strict';
+
+    var animationPrefix = (function (el) {
+        return ('animationName' in el.style) ? 'animation' :
+               ('oAnimationName' in el.style) ? 'oAnimation' :
+               ('msAnimationName' in el.style) ? 'msAnimation' :
+               ('webkitAnimationName' in el.style) ? 'webkitAnimation' : null;
+    }(document.createElement('div')));
+
+    var animationEndEventName = {
+        animation: 'animationend',
+        oAnimation: 'oanimationend',
+        msAnimation: 'MSAnimationEnd',
+        webkitAnimation: 'webkitAnimationEnd'
+    }[animationPrefix];
+
+    var Animate = {
+        /**
+         * Prefix for CSS animation-related properties in this browser.
+         *
+         * @property _animationPrefix
+         * @private
+         **/
+        _animationPrefix: animationPrefix,
+
+        /**
+         * Whether CSS3 animation is supported in this browser.
+         *
+         * @property {Boolean} animationSupported
+         **/
+        animationSupported: !!animationPrefix,
+
+        /**
+         * The prefix for animation{start,iteration,end} events
+         *
+         * @property {String} animationEndEventName
+         **/
+        animationEndEventName: animationEndEventName,
+
+        /**
+         * Animate a div using one of the animate.css classes
+         *
+         * @method animate
+         * @param element {DOMElement} animated element
+         * @param animation {String} animation string
+         * @param [options] {Object}
+         *     @param [options.onEnd=null] {Function} callback for animation end
+         *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+         **/
+        animate: function (element, animation, options) {
+            element = Common.elOrSelector(element);
+
+            if (typeof options === 'number' || typeof options === 'string') {
+                options = { duration: options };
+            }
+
+            if (typeof arguments[3] === 'function') {
+                options.onEnd = arguments[3];
+            }
+
+            if (typeof options.duration !== 'number' && typeof options.duration !== 'string') {
+                options.duration = 400;
+            }
+
+            if (!Animate.animationSupported) {
+                if (options.onEnd) {
+                    setTimeout(function () {
+                        options.onEnd(null);
+                    }, 0);
+                }
+                return;
+            }
+
+            if (typeof options.duration === 'number') {
+                element.style[animationPrefix + 'Duration'] = options.duration + 'ms';
+            } else if (typeof options.duration === 'string') {
+                Css.addClassName(element, options.duration);
+            }
+
+            Css.addClassName(element, ['animated', animation]);
+
+            function onAnimationEnd(event) {
+                if (event.target !== element) { return; }
+                if (event.animationName !== animation) { return; }
+                if (options.onEnd) { options.onEnd(event); }
+                Css.removeClassName(element, [animation]);
+                if (typeof options.duration === 'string') {
+                    Css.removeClassName(element, options.duration);
+                }
+                element.removeEventListener(animationEndEventName, onAnimationEnd, false);
+            }
+
+            element.addEventListener(animationEndEventName, onAnimationEnd, false);
+        }
+    };
+
+    return Animate;
+});
+
+
 /**
  * @module Ink.UI.Carousel_1
  * @author inkdev AT sapo.pt
@@ -19165,8 +19919,11 @@ Ink.createModule('Ink.UI.SmoothScroller', '1', ['Ink.Dom.Event_1','Ink.Dom.Selec
  * @author inkdev AT sapo.pt
  * @version 1
  */
-Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, Element, Selector, InkArray ) {
+Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1','Ink.Dom.Event_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'], function( Common, Css, Events, Element, Selector ) {
     'use strict';
+    var hasTouch = (('ontouchstart' in window) ||       // html5 browsers
+                    (navigator.maxTouchPoints > 0) ||   // future IE
+                    (navigator.msMaxTouchPoints > 0));
 
     /**
      * Adds sortable behaviour to any list!
@@ -19175,71 +19932,53 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
-     * @param {Object} [options] Options
-     *     @param {String} [options.dragObject] CSS Selector. The element that will trigger the dragging in the list. Default is 'li'.
+     * @param {String} [options.placeholderClass='placeholder'] CSS class to be added to the "ghost" element being dragged around
+     * @param {String} [options.draggedClass='hide-all'] CSS class added to the original element.
+     * @param {String} [options.draggingClass='dragging'] CSS class added to the html element when the user is dragging.
+     * @param {String} [options.dragSelector='li'] CSS selector for the drag enabled nodes.
+     * @param {String} [options.handleSelector=null] CSS selector for the drag handle. If present, you can only drag nodes by this selector.
+     * @param {String} [options.moveSelector=null] CSS selector to validate a node move. If present, you can only move nodes into this selector.
+     * @param {Boolean} [options.swap=false] Flag to swap moving element with target element instead of changing its order.
+     * @param {Boolean} [options.cancelMouseOut=false] Flag to cancel moving if mouse leaves the container element.
+
      * @example
-     *      <ul class="unstyled ink-sortable-list" id="slist" data-instance="sortableList9">
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>primeiro</li>
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>segundo</li>
-     *          <li><span class="ink-label info"><i class="icon-reorder"></i>drag here</span>terceiro</li>
+     *      <ul class="unstyled ink-sortable-list" id="slist" data-handle-selector=".ink-label">
+     *          <li><span class="ink-label info">drag here</span>primeiro</li>
+     *          <li><span class="ink-label info">drag here</span>segundo</li>
+     *          <li><span class="ink-label info">drag here</span>terceiro</li>
      *      </ul>
      *      <script>
      *          Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.SortableList_1'], function( Selector, SortableList ){
      *              var sortableListElement = Ink.s('.ink-sortable-list');
      *              var sortableListObj = new SortableList( sortableListElement );
      *          });
-     *      </script>
+     *      <\/script>
      */
     var SortableList = function(selector, options) {
 
-        this._element = Common.elOrSelector(selector, '1st argument');
+        this._element = Common.elOrSelector(selector, 'Ink.UI.SortableList');
 
-        if( !Common.isDOMElement(selector) && (typeof selector !== 'string') ){
-            throw '[Ink.UI.SortableList] :: Invalid selector';
-        } else if( typeof selector === 'string' ){
-            this._element = Ink.Dom.Selector.select( selector );
+        this._options = Common.options('Sortable', {
+            'placeholderClass': ['String', 'placeholder'],
+            'draggedClass': ['String', 'hide-all'],
+            'draggingClass': ['String', 'dragging'],
+            'dragSelector': ['String', 'li'],
+            'dragObject': ['String', false], // Deprecated. Use dragSelector instead
+            'handleSelector': ['String', null],
+            'moveSelector': ['String', false],
+            'swap': ['Boolean', false],
+            'cancelMouseOut': ['Boolean', false]
+        }, options || {}, this._element);
 
-            if( this._element.length < 1 ){
-                throw '[Ink.UI.SortableList] :: Selector has returned no elements';
-            }
-            this._element = this._element[0];
-
-        } else {
-            this._element = selector;
-        }
-
-        this._options = Ink.extendObj({
-            dragObject: 'li'
-        }, Ink.Dom.Element.data(this._element));
-
-        this._options = Ink.extendObj( this._options, options || {});
+        this._options.dragSelector = this._options.dragObject || this._options.dragSelector; // Backwards compatibility
 
         this._handlers = {
-            down: Ink.bindEvent(this._onDown,this),
-            move: Ink.bindEvent(this._onMove,this),
-            up:   Ink.bindEvent(this._onUp,this)
+            down: Ink.bind(this._onDown, this),
+            move: Ink.bind(this._onMove, this),
+            up:   Ink.bind(this._onUp, this)
         };
 
-        this._model = [];
-        this._index = undefined;
         this._isMoving = false;
-
-        if (this._options.model instanceof Array) {
-            this._model = this._options.model;
-            this._createdFrom = 'JSON';
-        }
-        else if (this._element.nodeName.toLowerCase() === 'ul') {
-            this._createdFrom = 'DOM';
-        }
-        else {
-            throw new TypeError('You must pass a selector expression/DOM element as 1st option or provide a model on 2nd argument!');
-        }
-
-
-        this._dragTriggers = Selector.select( this._options.dragObject, this._element );
-        if( !this._dragTriggers ){
-            throw "[Ink.UI.SortableList] :: Drag object not found";
-        }
 
         this._init();
     };
@@ -19253,24 +19992,11 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @private
          */
         _init: function() {
-            // extract model
-            if (this._createdFrom === 'DOM') {
-                this._extractModelFromDOM();
-                this._createdFrom = 'JSON';
-            }
+            this._down = hasTouch ? 'touchstart mousedown' : 'mousedown';
+            this._move = hasTouch ? 'touchmove mousemove' : 'mousemove';
+            this._up   = hasTouch ? 'touchend mouseup' : 'mouseup';
 
-            var isTouch = 'ontouchstart' in document.documentElement;
-
-            this._down = isTouch ? 'touchstart': 'mousedown';
-            this._move = isTouch ? 'touchmove' : 'mousemove';
-            this._up   = isTouch ? 'touchend'  : 'mouseup';
-
-            // subscribe events
-            var db = document.body;
-            Event.observe(db, this._move, this._handlers.move);
-            Event.observe(db, this._up,   this._handlers.up);
             this._observe();
-
             Common.registerInstance(this, this._element, 'sortableList');
         },
 
@@ -19281,203 +20007,120 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @private
          */
         _observe: function() {
-            Event.observe(this._element, this._down, this._handlers.down);
-        },
-
-        /**
-         * Updates the model from the UL representation
-         * 
-         * @method _extractModelFromDOM
-         * @private
-         */
-        _extractModelFromDOM: function() {
-            this._model = [];
-            var that = this;
-
-            var liEls = Selector.select('> li', this._element);
-
-            InkArray.each(liEls,function(liEl) {
-                //var t = Element.getChildrenText(liEl);
-                var t = liEl.innerHTML;
-                that._model.push(t);
-            });
-        },
-
-        /**
-         * Returns the top element for the gallery DOM representation
-         * 
-         * @method _generateMarkup
-         * @return {DOMElement}
-         * @private
-         */
-        _generateMarkup: function() {
-            var el = document.createElement('ul');
-            el.className = 'unstyled ink-sortable-list';
-            var that = this;
-
-            InkArray.each(this._model,function(label, idx) {
-                var liEl = document.createElement('li');
-                if (idx === that._index) {
-                    liEl.className = 'drag';
-                }
-                liEl.innerHTML = [
-                    // '<span class="ink-label ink-info"><i class="icon-reorder"></i>', that._options.dragLabel, '</span>', label
-                    label
-                ].join('');
-                el.appendChild(liEl);
-            });
-
-            return el;
-        },
-
-        /**
-         * Extracts the Y coordinate of the mouse from the given MouseEvent
-         * 
-         * @method _getY
-         * @param  {Event} ev
-         * @return {Number}
-         * @private
-         */
-        _getY: function(ev) {
-            if (ev.type.indexOf('touch') === 0) {
-                //console.log(ev.type, ev.changedTouches[0].pageY);
-                return ev.changedTouches[0].pageY;
+            Events.on(this._element, this._down, this._options.dragSelector, this._handlers.down);
+            Events.on(this._element, this._move, this._options.dragSelector, this._handlers.move);
+            if(this._options.cancelMouseOut) {
+                Events.on(this._element, 'mouseleave', Ink.bind(this.stopMoving, this));
             }
-            if (typeof ev.pageY === 'number') {
-                return ev.pageY;
-            }
-            return ev.clientY;
+            Events.on(document.documentElement, this._up, this._handlers.up);
         },
 
         /**
-         * Refreshes the markup.
-         * 
-         * @method _refresh
-         * @param {Boolean} skipObs True if needs to set the event handlers, false if not.
-         * @private
-         */
-        _refresh: function(skipObs) {
-            var el = this._generateMarkup();
-            this._element.parentNode.replaceChild(el, this._element);
-            this._element = el;
-
-            Common.restoreIdAndClasses(this._element, this);
-
-            this._dragTriggers = Selector.select( this._options.dragObject, this._element );
-
-            // subscribe events
-            if (!skipObs) { this._observe(); }
-        },
-
-        /**
-         * Mouse down handler
+         * Mousedown or touchstart handler
          * 
          * @method _onDown
          * @param {Event} ev
-         * @return {Boolean|undefined} [description]
          * @private
          */
         _onDown: function(ev) {
-            if (this._isMoving) { return; }
-            var tgtEl = Event.element(ev);
-
-            if( !InkArray.inArray(tgtEl,this._dragTriggers) ){
-                while( !InkArray.inArray(tgtEl,this._dragTriggers) && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                    tgtEl = tgtEl.parentNode;
-                }
-
-                if( tgtEl.nodeName.toLowerCase() === 'body' ){
-                    return;
-                }
-            }
-
-            Event.stop(ev);
-
-            var liEl;
-            if( tgtEl.nodeName.toLowerCase() !== 'li' ){
-                while( (tgtEl.nodeName.toLowerCase() !== 'li') && (tgtEl.nodeName.toLowerCase() !== 'body') ){
-                    tgtEl = tgtEl.parentNode;
-                }
-            }
-            liEl = tgtEl;
-
-            this._index = Common.childIndex(liEl);
-            this._height = liEl.offsetHeight;
-            this._startY = this._getY(ev);
-            this._isMoving = true;
-
-            document.body.style.cursor = 'move';
-
-            this._refresh(false);
-
+            if (this._isMoving || this._placeholder) { return; }
+            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
+            var tgtEl = ev.currentTarget;
+            this._isMoving = tgtEl;
+            this._placeholder = tgtEl.cloneNode(true);
+            this._movePlaceholder(tgtEl);
+            this._addMovingClasses();
             return false;
         },
 
         /**
-         * Mouse move handler
+         * Mousemove or touchmove handler
          * 
          * @method _onMove
          * @param {Event} ev
          * @private
          */
         _onMove: function(ev) {
-            if (!this._isMoving) { return; }
-            Event.stop(ev);
-
-            var y = this._getY(ev);
-            //console.log(y);
-            var dy = y - this._startY;
-            var sign = dy > 0 ? 1 : -1;
-            var di = sign * Math.floor( Math.abs(dy) / this._height );
-            if (di === 0) { return; }
-            di = di / Math.abs(di);
-            if ( (di === -1 && this._index === 0) ||
-                 (di === 1 && this._index === this._model.length - 1) ) { return; }
-
-            var a = di > 0 ? this._index : this._index + di;
-            var b = di < 0 ? this._index : this._index + di;
-            //console.log(a, b);
-            this._model.splice(a, 2, this._model[b], this._model[a]);
-            this._index += di;
-            this._startY = y;
-
-            this._refresh(false);
+            this.validateMove(ev.currentTarget);
+            return false;
         },
 
         /**
-         * Mouse up handler
+         * Mouseup or touchend handler
          * 
          * @method _onUp
          * @param {Event} ev
          * @private
          */
         _onUp: function(ev) {
-            if (!this._isMoving) { return; }
-            Event.stop(ev);
-
-            this._index = undefined;
-            this._isMoving = false;
-            document.body.style.cursor = '';
-
-            this._refresh();
+            if (!this._isMoving || !this._placeholder) { return; }
+            if (ev.currentTarget === this._isMoving) { return; }
+            if (ev.currentTarget === this._placeholder) { return; }
+            Element.insertBefore(this._isMoving, this._placeholder);
+            this.stopMoving();
+            return false;
         },
 
+        /**
+         * Adds the CSS classes to interactive elements
+         * 
+         * @method _addMovingClasses
+         * @private
+         */
+        _addMovingClasses: function(){
+            Css.addClassName(this._placeholder, this._options.placeholderClass);
+            Css.addClassName(this._isMoving, this._options.draggedClass);
+            Css.addClassName(document.documentElement, this._options.draggingClass);
+        },
 
+        /**
+         * Removes the CSS classes from interactive elements
+         * 
+         * @method _removeMovingClasses
+         * @private
+         */
+        _removeMovingClasses: function(){
+            if(this._isMoving) { Css.removeClassName(this._isMoving, this._options.draggedClass); }
+            if(this._placeholder) { Css.removeClassName(this._placeholder, this._options.placeholderClass); }
+            Css.removeClassName(document.documentElement, this._options.draggingClass);
+        },
+
+        /**
+         * Moves the placeholder element relative to the target element
+         * 
+         * @method _movePlaceholder
+         * @param {Element} target_position
+         * @private
+         */
+        _movePlaceholder: function(target){
+            var placeholder = this._placeholder,
+                target_position,
+                placeholder_position,
+                from_top,
+                from_left;
+            if(!placeholder) {
+                Element.insertAfter(placeholder, target);
+            } else if(this._options.swap){
+                Element.insertAfter(placeholder, target);
+                Element.insertBefore(target, this._isMoving);
+                Element.insertBefore(this._isMoving, placeholder);
+            } else {
+                target_position = Element.offset(target);
+                placeholder_position = Element.offset(this._placeholder);
+                from_top = target_position[1] > placeholder_position[1];
+                from_left = target_position[0] > placeholder_position[0];
+                if( ( from_top && from_left ) || ( !from_top && !from_left ) ) {
+                    Element.insertBefore(placeholder, target);
+                } else {
+                    Element.insertAfter(placeholder, target);
+                }
+                Element.insertBefore(this._isMoving, placeholder);
+            }
+        },
 
         /**************
          * PUBLIC API *
          **************/
-
-        /**
-         * Returns a copy of the model
-         * 
-         * @method getModel
-         * @return {Array} Copy of the model
-         * @public
-         */
-        getModel: function() {
-            return this._model.slice();
-        },
 
         /**
          * Unregisters the component and removes its markup from the DOM
@@ -19485,12 +20128,42 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1
          * @method destroy
          * @public
          */
-        destroy: Common.destroyComponent
+        destroy: Common.destroyComponent,
+
+        /**
+         * Visually stops moving. Removes the placeholder as well as the styling classes.
+         * 
+         * @method _movePlaceholder
+         * @public
+         */
+        stopMoving: function(){
+            this._removeMovingClasses();
+            Element.remove(this._placeholder);
+            this._placeholder = false;
+            this._isMoving = false;
+        },
+
+        /**
+         * Validation method for the move handler
+         * 
+         * @method _movePlaceholder
+         * @param {Element} elem
+         * @public
+         */
+        validateMove: function(elem){
+            if (!this._isMoving || !this._placeholder) { return; }
+            if (elem === this._placeholder) {  return; }
+            if (elem === this._isMoving) { return; }
+            if(!this._options.moveSelector || Selector.matchesSelector(elem, this._options.moveSelector)){
+                this._movePlaceholder(elem);
+            } else {
+                this.stopMoving();  
+            }
+        }
 
     };
 
     return SortableList;
-
 });
 
 /**
