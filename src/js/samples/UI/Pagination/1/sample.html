@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>InkJS - Modal samples</title>
+
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css" />
+        <!--[if IE 7 ]>
+            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.2.1/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <script type="text/javascript" src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+
+        <script type="text/javascript" src="../../../../../../dist/js/prettify.js"></script>
+        <style>
+            pre.prettyprint{
+                font-size: 0.75em;
+            }
+        </style>
+    </head>
+
+    <body onload="prettyPrint()">
+        <nav class="ink-navigation ink-container">
+            <ul class="menu horizontal black flat">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+        <div class="ink-container ink-grid">
+            <h1>Pagination Samples - InkJS</h1>
+
+            <section>
+                <header>
+                    <h2>Basic example</h2>
+                </header>
+
+                <p>A simple paginator, with 10 pages.</p>
+
+                <nav class="ink-navigation" id="basic1" data-size="10">
+                    <ul class="pagination rounded red"></ul>
+                </nav>
+
+                <script>
+                    // Unnecessary with autoload.js
+                    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+                        var basicPag = new Pagination('#basic1');
+                    });
+                </script>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;nav class="ink-navigation" id="basic1" data-size="10"&gt;
+    &lt;ul class="pagination rounded red"&gt;&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;script&gt;
+    // Unnecessary with autoload.js
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var basicPag = new Pagination('#basic1');
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
+
+                <hr>
+
+                <p>You can use the <code>maxSize</code> option to limit the amount of page numbers shown.</p>
+
+                <nav class="ink-navigation" id="basic2" data-size="10" data-max-size="5">
+                    <ul class="pagination rounded red"></ul>
+                </nav>
+
+                <script type="text/javascript">
+                    // Unnecessary with autoload.js
+                    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+                        var basicPag2 = new Pagination('#basic2');
+                    });
+                </script>
+
+                <p>
+                    <pre class="prettyprint linenums">
+&lt;nav class="ink-navigation" id="basic2" data-size="10" data-max-size="5"&gt;
+    &lt;ul class="pagination rounded red"&gt;&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;script type="text/javascript"&gt;
+    // Unnecessary with autoload.js
+    Ink.requireModules(['Ink.UI.Pagination_1'], function(Pagination){
+        var basicPag2 = new Pagination('#basic2');
+    });
+&lt;/script&gt;
+                    </pre>
+                </p>
+            </section>
+        </div>
+    </body>
+</html>
+

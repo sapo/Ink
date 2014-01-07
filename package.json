@@ -1,18 +1,13 @@
 {
-  "name": "Ink",
+  "name": "ink",
   "version": "2.2.1",
   "description": "SAPO InK - Interface Toolkit",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-      "less": "1.4.2",
-      "jshint": "*"
-  },
+  "author": "SAPO",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "sapo/Ink"
+    "url": "http://github.com/sapo/Ink.git"
   },
   "keywords": [
     "css",
@@ -20,6 +15,27 @@
     "js",
     "framework"
   ],
-  "author": "SAPO",
-  "license": "MIT"
+  "devDependencies": {
+    "less": "~1.5.1",
+    "async": "~0.2.9",
+    "fs-extra": "~0.8.1",
+    "jshint": "~2.3.0",
+    "uglify-js": "~2.4.7",
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-less": "~0.8.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-qunit": "~0.3.0",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-plato": "~0.2.1",
+    "bower": "~1.2.8",
+    "grunt-bower-task": "~0.3.4",
+    "grunt-contrib-copy": "~0.4.1",
+    "matchdep": "~0.3.0"
+  },
+  "scripts": {
+    "test": "grunt --verbose"
+  }
 }

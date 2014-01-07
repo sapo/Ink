@@ -1,8 +1,15 @@
+## Note about this branch
+
+The default branch of this repository is `develop`. This is a development branch, which is usable and has the latest features, but is not so stable as `master`, our release branch. Bugfixes are to be pushed to `develop`, where development takes place.
+
+This branch contains built files in the `dist/` folder.
+
+
 # Welcome to [Ink](http://ink.sapo.pt)
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
-Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt)
+Read the full documentation here: [http://ink.sapo.pt](http://ink.sapo.pt). The Ink.js documentation is in [http://js.ink.sapo.pt/docs/](http://js.ink.sapo.pt/docs/) (note: this documentation is for the most recent release, but the development version may have additions).
 
 
 ## Current Version: 2.2.1
@@ -34,9 +41,22 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 7. That's it! You'll see how easy it is once you pick it up.
 
 
+# Installation instructions for hacking on Ink
+
+Do this process if you'd like to build your own Ink and hack on the Ink source.
+
+Make sure you have `node` installed. Then, on the root Ink folder of this repo:
+
+    [sudo] npm install -g bower
+    [sudo] npm install -g grunt
+    bower install
+    npm install
+    grunt
+
+
 ## JavaScript modules
 
-The Ink JavaScript modules used to be in a separate repository. Now they are in the `Inkjs` folder. Check out the `README.md` file inside with further information regarding those modules.
+The Ink JavaScript modules used to be in a separate repository. Now they are in the `src/js` folder. Check out the `README.md` file inside with further information regarding those modules.
 
 
 ## LESS Compiler
@@ -69,3 +89,6 @@ If you wish to contribute with your own code, please submit your pull requests t
 * [Ink v2.0.0](https://github.com/sapo/Ink/archive/2.0.0.zip)
 * [Ink v1.1.0](https://github.com/sapo/Ink/archive/1.1.0.zip)
 
+## Projects using Ink
+
+You can check out a list of projects we find around the web that are using Ink in some form [here](https://github.com/sapo/Ink/wiki/Projects-using-Ink).
