@@ -29,6 +29,19 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1'], f
         ok(Css.hasClassName(el, 'animated'));
     });
 
+    test('when duration is a string, adds the class with the same name', function () {
+        var el = InkElement.create('div');
+        Animate.animate(el, 'fadeIn', { duration: 'slow' });
+        ok(Css.hasClassName(el, 'slow'));
+    });
+
+    test('when duration is not a string, default to setting CSS animation-duration property', function () {
+        var el = InkElement.create('div');
+        Animate.animate(el, 'fadeIn', { duration: 100 });
+        ok(Animate._animationPrefix, 'sanity check');
+        strictEqual(el.style[Animate._animationPrefix + 'Duration'], '100ms');
+    });
+
     test('duration and onEnd can be passed as last arguments', function () {
         var el = InkElement.create('div');
         var el2 = InkElement.create('div');
@@ -86,11 +99,6 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1'], f
         stop();
     });
 
-    /*
-     unsupported because we're listening to animationEnd
-     
-     [decide] support several animations at once?
-     */
     test('several animations at once', function () {
         var first = sinon.spy();
         var second = sinon.spy();

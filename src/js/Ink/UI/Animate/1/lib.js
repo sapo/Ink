@@ -17,6 +17,14 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
 
     var Animate = {
         /**
+         * Prefix for CSS animation-related properties in this browser.
+         *
+         * @property _animationPrefix
+         * @private
+         **/
+        _animationPrefix: animationPrefix,
+
+        /**
          * Whether CSS3 animation is supported in this browser.
          *
          * @property {Boolean} animationSupported
@@ -57,6 +65,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
 
             if (typeof options.duration === 'number') {
                 element.style[animationPrefix + 'Duration'] = options.duration + 'ms';
+            } else if (typeof options.duration === 'string') {
+                Css.addClassName(element, options.duration);
             }
 
             if (!Animate.animationSupported) {
