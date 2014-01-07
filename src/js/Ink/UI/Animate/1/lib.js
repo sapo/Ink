@@ -1,9 +1,49 @@
-Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1'], function (Common, Css, InkEvent) {
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], function (Common, Css) {
+    'use strict';
+
+    var animationPrefix = (function (el) {
+        return ('animationName' in el.style) ? 'animation' :
+               ('oAnimationName' in el.style) ? 'oAnimation' :
+               ('msAnimationName' in el.style) ? 'msAnimation' :
+               ('webkitAnimationName' in el.style) ? 'webkitAnimation' : null;
+    }(document.createElement('div')));
+
+    var animationEndEventName = {
+        animation: 'animationend',
+        oAnimation: 'oanimationend',
+        msAnimation: 'MSAnimationEnd',
+        webkitAnimation: 'webkitAnimationEnd'
+    }[animationPrefix];
+
     var Animate = {
+        /**
+         * Whether CSS3 animation is supported in this browser.
+         *
+         * @property {Boolean} animationSupported
+         **/
+        animationSupported: !!animationPrefix,
+
+        /**
+         * The prefix for animation{start,iteration,end} events
+         *
+         * @property {String} animationEndEventName
+         **/
+        animationEndEventName: animationEndEventName,
+
+        /**
+         * Animate a div using one of the animate.css classes
+         *
+         * @method animate
+         * @param element {DOMElement} animated element
+         * @param animation {String} animation string
+         * @param [options] {Object}
+         *     @param [options.onEnd=null] {Function} callback for animation end
+         *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+         **/
         animate: function (element, animation, options) {
             element = Common.elOrSelector(element);
 
-            if (typeof options === 'number') {
+            if (typeof options === 'number' || typeof options === 'string') {
                 options = { duration: options };
             }
 
@@ -11,29 +51,35 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1', 'Ink.
                 options.onEnd = arguments[3];
             }
 
-            if (typeof options.duration !== 'number') {
+            if (typeof options.duration !== 'number' && typeof options.duration !== 'string') {
                 options.duration = 400;
             }
 
-            Css.addClassName(element, ['animated', animation]);
-            // element.style.
+            if (typeof options.duration === 'number') {
+                element.style[animationPrefix + 'Duration'] = options.duration + 'ms';
+            }
 
-            /*
-            setTimeout(function () {
+            if (!Animate.animationSupported) {
                 if (options.onEnd) {
-                    if (options.onEnd() === false) {
-                        return;
-                    }
+                    setTimeout(function () {
+                        options.onEnd(null);
+                    }, 0);
                 }
-                Css.removeClassName(element, ['animated', animation]);
-            }, options.duration);
-            */
+                return;
+            }
 
-            element.addEventListener('animationend', function () {
-                alert(arguments[0])
-            })
+            Css.addClassName(element, ['animated', animation]);
+
+            element.addEventListener(animationEndEventName, function onAnimationEnd(event) {
+                if (event.target !== element) { return; }
+                if (event.animationName !== animation) { return; }
+                if (options.onEnd) { options.onEnd(event); }
+                Css.removeClassName(element, ['animated', animation]);
+                element.removeEventListener(animationEndEventName, onAnimationEnd, false);
+            }, false);
         }
-    }
+    };
 
     return Animate;
 });
+
