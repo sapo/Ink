@@ -5,7 +5,7 @@
             {% for link in site.navigation %}
             {% assign clean_url = page.url|remove:'index.html' %}
             {% if link.url %}
-            <li {% if clean_url == link.url %}class="active"{% endif %}>            
+            <li {% if clean_url == link.url %}class="active for-large for-extra-large"{% else %}class="for-large for-extra-large"{% endif %}>            
                 <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
                 {% if link.submenu %}
                 <ul class="submenu">
@@ -16,7 +16,7 @@
                 {% endif %}
             </li>
             {% else %}
-            <li {% if clean_url == link.url %}class="active"{% endif %}>            
+            <li {% if clean_url == link.url %}class="active for-large for-extra-large"{% else %}class="for-large for-extra-large"{% endif %}>            
                 <a href="#" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
                 {% if link.submenu %}
                 <ul class="submenu">
@@ -34,7 +34,7 @@
         </li>
         </ul>
     </nav>
-    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+    <nav class="ink-navigation ink-grid for-medium for-small">
         <ul class="menu vertical flat black">
             <li class="title">
                 <a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a>

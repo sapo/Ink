@@ -29,8 +29,8 @@ navigation:
  - text: Getting started
    url: ./getting_started/
  # LAYOUT
- - text: Layout
-   url: ./layout/
+ - text: Grid
+   url: ./grid/
  # NAVIGATION
  - text: Navigation
    url: ./navigation/

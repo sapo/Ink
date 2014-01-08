@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
     watch: {
       css: {
-        files: ['<%= ink.folders.css.src %>**/*.scss'],
+        files: ['src/**/*.scss'],
         tasks: ['css'],
         options: {
           spawn: false,
@@ -59,15 +59,17 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: {
-      scripts: {
-        files: ['less/**/*.less'],
-        tasks: ['less'],
-        options: {
-          spawn: false,
-        },
-      },
+    shell: {
+        src: {
+          options: {
+            stdout: true,
+            stderr: true,
+            failOnError: true
+          },
+          command: 'git checkout 3.0.0-wip -- src'
+        }
     }
+
   });
 
   grunt.loadNpmTasks('grunt-jekyll');
@@ -75,8 +77,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task(s).
-  grunt.registerTask('default', ['compass','cssmin']);
+  grunt.registerTask('css', ['compass','cssmin']);
+  grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('dev', ['watch']);
+  grunt.registerTask('default', ['update','css']);
 };

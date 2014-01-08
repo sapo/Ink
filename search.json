@@ -6,7 +6,8 @@
     {
      "url":"{{ page.url | remove:'index.html' }}",
      "tags":"{{ page.tags }}",
-     "title":"{{ page.title }}"
+     "title":"{{ page.title }}",
+     "content":"{{ page.content | strip_html | strip_newlines | remove: "\" | remove: '"' | remove: "  " | remove: "   " | remove: "    " | remove: "     " | remove: "      " | remove: "       " | remove: "        " }}"
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}]
 ]
