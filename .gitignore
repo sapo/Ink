@@ -24,3 +24,4 @@ Thumbs.db
 node_modules
 _site
 .sass-cache
+src
