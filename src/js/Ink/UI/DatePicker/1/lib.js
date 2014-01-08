@@ -468,7 +468,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _onClick: function(e){
             var elem = Event.element(e);
 
-            if (Css.hasClassName('ink-calendar-off')) {
+            if (Css.hasClassName(elem, 'ink-calendar-off')) {
+                Event.stopDefault(e);
                 return null;
             }
 
