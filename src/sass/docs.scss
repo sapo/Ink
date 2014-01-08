@@ -1,0 +1,121 @@
+// Import Compass Core
+@import "contrib/compass/css3";
+@import "contrib/compass/utilities";
+@import "contrib/compass/typography";
+
+
+// Import Ink
+@import "config/common";
+@import "config/colors"; 
+
+// Variables
+$themeBackground            : #DEEDF1;
+$topbar-fontSize            : 14px;      
+$topbar-bgColor             : #222;
+$topbar-color               : #BBB;
+$topbar-colorHover          : $white;
+$img-path                   : "../img/";
+
+#topbar {   
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: $topbar-bgColor;
+    z-index: $layer-100;
+    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+    
+    .ink-navigation {
+    
+        ul {
+        
+            li {
+                font-size: $topbar-fontSize;
+                a {
+                    *height:auto;
+                    color:$topbar-color;
+                    padding: .7em 1em;
+                    line-height: $base-line-height;
+                    @include transition-property(color);
+                    @include transition-duration(140ms);
+                    @include transition-timing-function(ease-in);
+
+                    &:hover {
+                        color:$topbar-colorHover;
+                    }
+
+                    &.logoPlaceholder {
+                        font-size: 1.8em;
+                        font-weight: bold;
+                        padding: .4em 0;
+                        margin-right: .5em;
+
+                        &:hover {
+                            background: none;
+                        }                            
+                    }
+                }
+
+                &.search {
+                
+                    float: right;
+                    position: relative;
+                    
+                    input[type=search] {
+                        border:none;
+                        max-width: 160px;
+                        margin: .5em 0;
+                        padding: .4em .6em .4em 1.9em;
+                        font-size: 14px;
+                        @include border-radius($border-radius);
+
+                        &::-webkit-input-placeholder,
+                        &:-moz-placeholder, 
+                        &::-moz-placeholder,
+                        &:-ms-input-placeholder { color: red; }
+                    }
+
+                    .fa-search {
+                        font-size: 14px;
+                        position: absolute;
+                        top: 1.1em;
+                        left: .6em;
+                    }
+                }
+
+                &.active {
+                    a {
+                        @include background-image(linear-gradient(darken($topbar-bgColor, 10%), lighten($topbar-bgColor, 10%) 100%));
+                        @include box-shadow(rgba(255, 255, 255, 0.3) 0 0 2px 0);
+                        color:$white;
+                    }
+                }
+            }
+            
+            &.black {
+                &.flat {
+                    background:$topbar-bgColor;
+                    filter:none;
+                    @include box-shadow(none);
+                }
+            }
+        }
+    
+    }
+
+    .border {
+        height:.3em;
+        background: url("#{$img-path}home_bkg.png") center 0px;
+        @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
+        margin: 0;
+    }
+}
+
+.panel {
+    @include border-radius($border-radius);
+    @include box-shadow(#DDD 0 2px 3px 0);
+    border:1px solid #BBB;
+    background-color: #FFF;
+    padding: 1em;
+    margin-top:1em;
+}
