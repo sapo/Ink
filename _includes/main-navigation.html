@@ -28,6 +28,10 @@
             </li>
             {% endif %}
             {% endfor %}
+            <li class="search push-right" style="position: relative;">
+            <input type="search" id="search" name="search" placeholder="search">
+            <ul id="resultsList" style="display: none; position: absolute; background: #fff;"></ul>
+        </li>
         </ul>
     </nav>
     <nav class="ink-navigation ink-grid hide-all show-medium show-small">
@@ -57,8 +61,9 @@
                 </ul>
             </li>
             {% endif %}        
-        {% endfor %}
+        {% endfor %}        
         </ul>
+
     </nav>
     <div class="border">
     </div>

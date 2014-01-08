@@ -1,0 +1,14 @@
+---
+---
+[
+  {"ts":"{{site.time | date: '%d-%m-%Y'}}"},
+  [{% for page in site.pages %}
+    {
+     "url":"{{ page.url | remove:'index.html' }}",
+     "tags":"{{ page.tags }}",
+     "title":"{{ page.title }}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}]
+]
+
+
