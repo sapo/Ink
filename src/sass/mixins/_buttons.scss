@@ -1,0 +1,62 @@
+/**
+ * Ink
+ *
+ * A set of tools for quick development of web interfaces.
+ *
+ * @package    Ink
+ * @author     Sapo Ink Team
+ * @license    http://opensource.org/licenses/MIT MIT
+ * @link       http://ink.sapo.pt
+ * @version    3.0.0
+ */
+
+// ------------------------------------------------------------
+
+/**
+ * Ink-button
+ *
+ * Creates css for a button
+ *
+ * @package    Ink
+ * @subpackage Mixins
+ * @category   Buttons
+ * @since      3.0.0
+ *
+ * @param color $button-background-color
+ * @param color $button-text-color
+ * @param color $button-text-shadow-color
+ */
+
+@mixin ink-button($button-background-color, $button-text-color, $button-text-shadow-color) {
+
+    color: $button-text-color; 
+    border-color: shade($button-background-color, 15%);
+    border-bottom-color: shade($button-background-color, 25%);
+
+    @include single-text-shadow(0, -.09em, .03em, $button-text-shadow-color);
+    @include background-image(linear-gradient(180deg, $button-background-color, shade($button-background-color,15%)));
+
+    @include single-box-shadow(rgba(255, 255, 255, 0.2), 0, 1px, 0, inset);
+
+    &:hover {
+        @include background-image (linear-gradient(180deg, tint($button-background-color, 10%), shade($button-background-color, 25%))); 
+        @include box-shadow ('0 1px 5px rgba(0, 0, 0, 0.1),  inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0em .5em rgba(255, 255, 255, 0.5)');
+        color: $button-text-color; // force text color for anchor tags
+        text-decoration: none; // remove underline on anchr tags
+    }
+
+    &:active {
+        @include background-image (linear-gradient, darken($button-background-color, 7%), lighten($button-background-color, 7%));
+        @include single-box-shadow (0, 3px, 5px, 0, rgba(0,0,0,0.25), inset);
+    }
+
+    &.flat {        
+        background: shade($button-background-color,5%);
+
+        &:hover {
+            background: shade($button-background-color,10%);
+        }
+    }
+}
+
+

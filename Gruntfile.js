@@ -38,9 +38,9 @@ module.exports = function(grunt) {
     cssmin: {
       minify: {
         expand: true,
-        cwd: '<%= ink.folders.css.dist %>',
-        src: ['*.css', '!quick-start.css'],
-        dest: '<%= ink.folders.css.dist %>',
+        cwd: 'assets/css/',
+        src: ['*.css'],
+        dest: 'assets/css/',
         ext: '.min.css',
         options: {
           report: 'min'
@@ -77,6 +77,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['watch']);
-  grunt.registerTask('all', ['compass','less']);
+  grunt.registerTask('default', ['compass','cssmin']);
+  grunt.registerTask('dev', ['watch']);
 };

@@ -1,0 +1,18 @@
+// sans-serif font stack
+$sans-serif-font-stack		: "Roboto", Arial, sans-serif;
+
+// serif font stack
+$serif-font-stack			: Times, "Times New Roman", serif;
+
+// mono font stack
+$mono-font-stack			: Monaco, 'Andale Mono', 'Courier New', monospace;
+
+// condensed font stack
+$condensed-font-stack		: Roboto_condensed, Arial, sans-serif;
+
+// condensed font stack
+$slab-font-stack			: Roboto_slab, Arial, sans-serif;
+
+// if this variable to a positive integer it gets set as the base font size for the whole framework.
+// by default the font-size is provided by the browsers default value.
+//$base-font-size: 16px;

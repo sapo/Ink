@@ -1,0 +1,48 @@
+/**
+ * Ink
+ *
+ * A set of tools for quick development of web interfaces.
+ *
+ * @package    Ink
+ * @author     Sapo Ink Team
+ * @license    http://opensource.org/licenses/MIT MIT
+ * @link       http://ink.sapo.pt
+ * @version    3.0.0
+ */
+
+// ------------------------------------------------------------
+
+/**
+ * Ink
+ *
+ * A set of tools for quick development of web interfaces.
+ *
+ * @package    Ink
+ * @subpackage Theme
+ * @category   Buttons
+ * @since      3.0.0
+ */
+
+.#{$button-class-name} {
+
+  &.rounded {
+    @include border-radius($border-radius);
+  }
+
+  &.red {
+    @include ink-button($red, $white, shade($red,30%));
+  }
+
+  &.blue {
+    @include ink-button($blue, $white, shade($blue,30%));
+  }
+
+  &.orange {
+    @include ink-button($orange, $white, shade($orange,30%));
+  }
+
+  &.green {
+    @include ink-button($green, $white, $green);
+  }
+  
+}

@@ -1,0 +1,61 @@
+$fonts: (
+  (
+    Roboto,
+    roboto,
+    (
+      (thin,100),
+      (light,300),
+      (regular,400),
+      (medium,500),
+      (bold,700),
+      (black,900)
+    )
+  ),
+  (
+    Roboto_condensed,
+    robotocondensed,
+    (
+      (light,300),
+      (regular,400),
+      (bold,700)
+    )
+  ),
+  (
+    Roboto_slab,
+    robotoslab,
+    (
+      (thin,100),
+      (light,300),
+      (regular,400),
+      (bold,700)
+    )
+  )
+);
+
+@each $font in $fonts {
+    $font-name: nth($font,1);
+    $font-file-prefix: nth($font,2);
+    @each $variant in nth($font,3) {
+    $weight-name: nth($variant,1);
+    $weight: nth($variant,2);
+
+    /* #{$font-name} #{$weight-name} italic */
+    @include font-face(
+        #{$font-name}, 
+        font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.ttf","#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.svg"),
+        "#{$font-name}/#{$font-file-prefix}-#{$weight-name}italic-webfont.eot",
+        #{$weight},
+        normal
+    );
+
+    /* #{$font-name} #{$weight-name} */
+    @include font-face(
+        #{$font-name}, 
+        font-files("#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.woff","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.ttf","#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.svg"),
+        "#{$font-name}/#{$font-file-prefix}-#{$weight-name}-webfont.eot",
+        #{$weight},
+        normal
+    );
+
+    }
+}

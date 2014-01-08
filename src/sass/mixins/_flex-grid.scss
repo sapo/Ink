@@ -1,0 +1,245 @@
+// generates the grid column grouping container
+@mixin generate-flex-column-group {
+
+  .#{$grid-column-group-class-name} {
+      flex: 100%;   
+      @include experimental-value(display, flex, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      @include experimental(flex-flow, row wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+
+      &.right-to-left {
+        @include experimental(flex-direction, row-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official);        
+      }
+      &.bottom-to-top {
+        @include experimental(flex-wrap, wrap-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official);        
+
+      }
+
+      &.reverse {
+        @include experimental(flex-flow, row-reverse wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      }
+
+      &.vertical {
+        @include experimental(flex-flow, column wrap, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      }
+
+      &.vertical.reverse {
+        @include experimental(flex-flow, column wrap-reverse, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      }
+  }
+}
+
+@mixin generate-flex-grid-utils ($class-name) {
+  .#{$grid-column-group-class-name} {
+    .#{$class-name}-auto {
+      @include experimental(flex-basis, auto, -moz, -webkit, not -o, not -ms, not -khtml, official);   
+      @include experimental(flex-grow, 1, -moz, -webkit, not -o, not -ms, not -khtml, official);   
+    }
+  }
+}
+
+@mixin grid-flex-order($class-name) {
+  $i: 1; 
+  @while $i < 10 {
+    .#{$class-name}-order-#{$i} {
+      order: #{$i};
+      $i: $i + 1;
+      .box {
+        background: adjust-hue(blue,$i * 50 * 1%);
+        color: shade(black,$i * 10 * 1%);
+        text-align: center;
+      }
+    }
+  }
+}
+
+.grid-order {
+  flex: 100%;
+}
+
+@mixin generate-flex-column-group-gutters($class-name,$gutter-width) {
+  .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
+    margin-left: $gutter-width * -1;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: $gutter-width;
+      margin-bottom: $gutter-width;
+    }
+  }
+
+  .#{$grid-column-group-class-name}.#{$grid-half-gutters-class-name} {
+    margin-left: ( $gutter-width / 2 ) * -1;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: ( $gutter-width / 2);
+      margin-bottom: ( $gutter-width / 2);
+    } 
+  }
+
+  .#{$grid-column-group-class-name}.#{$grid-quarter-gutters-class-name} {
+    margin-left: ( $gutter-width / 4 ) * -1;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: ( $gutter-width / 4);
+      margin-bottom: ( $gutter-width / 4);
+    } 
+  }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-gutters-class-name} {
+    margin-left: $gutter-width * -1;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: ( $gutter-width / 4);
+      margin-bottom: ( $gutter-width / 4);
+    } 
+  }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-half-gutters-class-name} {
+    margin-left: ( $gutter-width / 2 ) * -1;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: ( $gutter-width / 2);
+      margin-bottom: ( $gutter-width / 2);
+    } 
+  }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-quarter-gutters-class-name} {
+    margin-left: ( $gutter-width / 4 ) * -1;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: ( $gutter-width / 4);
+      margin-bottom: ( $gutter-width / 4);
+    } 
+  }
+
+  .#{$grid-column-group-class-name}.#{$class-name}-#{$grid-no-gutters-class-name} {
+    margin-left: 0;
+    & > [class*=#{$class-name}-],
+    & > [class*=all-],
+    & > .width-auto {
+      padding-left: 0;
+      margin-bottom: 0;
+    } 
+  }
+}
+
+@mixin generate-flex-grid-divisions ($class-name) {
+
+  // iteration counter
+  $i: 5;
+
+  // define the step size (this is the minimum column width percentage)
+  $step-size: 5;
+
+  [class*=#{$class-name}-] {
+    float: none;
+  }
+  .cell-auto,
+  .#{$class-name}-auto
+  {
+    @include experimental(flex, 1 0 auto, -moz, -webkit, not -o, not -ms, not -khtml, official);        
+  }
+
+  // iterate to generate the width classes
+  @while $i <= 100 {
+    // generate the 33% width
+    @if $i > 30 and $i <= 35 {
+      .#{$class-name}-33 {
+        // width: 33.33%;
+        @include experimental(flex-basis, 33.33%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        min-height: 100%;  
+      }
+      .all-#{$i} {
+        width: 33.33%;
+      }
+    }
+    
+    // generate the 66% width
+    @if $i > 65 and $i <= 70 {
+      .#{$class-name}-66 {
+        // width: 66.66%;
+        @include experimental(flex-basis, 66.66%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+        min-height: 100%;
+      }
+      .all-#{$i} {
+        width: 66.66%;
+      }
+    }
+    
+    // generate the 5% step widths
+    .#{$class-name}-#{$i} {
+      // width: $i * 1%;
+      @include experimental(flex-basis, $i * 1%, -moz, -webkit, not -o, not -ms, not -khtml, official);
+      min-height: 100%;      
+    }
+    .all-#{$i} {
+      width: $i * 1%;
+    }
+
+    // increment the counter
+    $i: $i + $step-size;
+  }
+}
+
+// ######### 
+
+@mixin generate-flex-grid ($breakpoints) {
+
+  html.flexbox {
+
+    .#{$grid-class-name} {
+      width: auto;
+      max-width: $grid-max-width;
+      margin: 0 auto;
+    }
+
+    @include generate-flex-column-group;
+
+    $all-class-names: '';
+
+    @each $breakpoint in $breakpoints {
+
+      $class-name: nth($breakpoint,1);
+      $minimum-width: nth($breakpoint,2);
+      $maximum-width: nth($breakpoint,3);
+      $gutter-width: nth($breakpoint,4);
+      $no-media-query: nth($breakpoint,6);
+      $all-class-names: ".#{$class-name}, #{$all-class-names}"; 
+
+      @if $minimum-width and not $maximum-width {
+        @media screen and (min-width: $minimum-width) {
+          @include generate-grid-container($grid-class-name, $gutter-width);
+          @include generate-flex-column-group-gutters($class-name,$gutter-width);
+          @include generate-flex-grid-divisions($class-name);
+          @include grid-flex-order($class-name);
+          @include generate-flex-grid-utils($class-name);
+        }
+      }
+
+      @if $minimum-width and $maximum-width {
+        @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
+          @include generate-grid-container($grid-class-name, $gutter-width);
+          @include generate-flex-column-group-gutters($class-name,$gutter-width);
+          @include generate-flex-grid-divisions($class-name);
+          @include grid-flex-order($class-name);
+          @include generate-flex-grid-utils($class-name);
+        }
+      }
+
+      @if not $minimum-width and $maximum-width {
+        @media screen and (max-width: $maximum-width) {
+          @include generate-grid-container($grid-class-name, $gutter-width);
+          @include generate-flex-column-group-gutters($class-name,$gutter-width);          
+          @include generate-flex-grid-divisions($class-name);
+          @include grid-flex-order($class-name);
+          @include generate-flex-grid-utils($class-name);
+        }
+      }
+    }
+  }
+}

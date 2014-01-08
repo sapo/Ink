@@ -1,0 +1,11 @@
+.#{$label-class-name} {
+    padding: $label-padding;
+    white-space: nowrap;
+    
+    &.success.invert,
+    &.warning.invert,
+    &.error.invert,
+    &.info.invert { 
+        padding: 0; 
+    }
+}

@@ -1,0 +1,64 @@
+table {
+
+    .#{$table-class-name} {
+
+        background: none;
+
+        tr {
+            th, td { 
+                border-bottom: $table-cell-borderColor 1px solid; 
+                background:none
+            }
+        }
+
+        &.alternating {
+
+            tbody {
+
+                tr:nth-child(odd) {
+                    background-color: $table-alternating-rowColor;
+                }
+
+            }
+        }
+
+        &.hover {
+
+            tbody {
+
+                tr:hover {
+                    background: $table-row-hoverColor;
+                }
+            }
+        }
+
+        &.bordered {
+
+            border: $table-cell-borderColor 1px solid;
+            @include border-radius($border-radius);
+
+            tr {
+                
+                th {
+                    border-left: $table-cell-borderColor 1px solid;
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+
+                &:last-child {
+                    td {
+                        border-bottom: none;
+                    }
+                }
+
+                td {
+                    border-left: $table-cell-borderColor 1px solid;
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
+}
