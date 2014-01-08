@@ -9,7 +9,8 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-compass": "~0.7.0",
     "grunt-contrib-cssmin": "~0.7.0",
-    "grunt-shell": "~0.6.1"
+    "grunt-shell": "~0.6.1",
+    "grunt-contrib-clean": "~0.5.0"
   },
   "repository": {
     "type": "git",

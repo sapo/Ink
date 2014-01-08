@@ -6456,8 +6456,8 @@ th.for-extra-large, td.for-extra-large {
 /* Roboto regular italic */
 @font-face {
   font-family: "Roboto";
-  src: url('../fonts/Roboto/roboto-regularitalic-webfont.eot');
-  src: url('../fonts/Roboto/roboto-regularitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-regularitalic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-regularitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-regularitalic-webfont.svg') format('svg');
+  src: url('../fonts/Roboto/roboto-italic-webfont.eot');
+  src: url('../fonts/Roboto/roboto-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto/roboto-italic-webfont.woff') format('woff'), url('../fonts/Roboto/roboto-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto/roboto-italic-webfont.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -6546,8 +6546,8 @@ th.for-extra-large, td.for-extra-large {
 /* Roboto_condensed regular italic */
 @font-face {
   font-family: "Roboto_condensed";
-  src: url('../fonts/Roboto_condensed/robotocondensed-regularitalic-webfont.eot');
-  src: url('../fonts/Roboto_condensed/robotocondensed-regularitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-regularitalic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-regularitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-regularitalic-webfont.svg') format('svg');
+  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot');
+  src: url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.woff') format('woff'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto_condensed/robotocondensed-italic-webfont.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -6618,8 +6618,8 @@ th.for-extra-large, td.for-extra-large {
 /* Roboto_slab regular italic */
 @font-face {
   font-family: "Roboto_slab";
-  src: url('../fonts/Roboto_slab/robotoslab-regularitalic-webfont.eot');
-  src: url('../fonts/Roboto_slab/robotoslab-regularitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-regularitalic-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-regularitalic-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-regularitalic-webfont.svg') format('svg');
+  src: url('../fonts/Roboto_slab/robotoslab-italic-webfont.eot');
+  src: url('../fonts/Roboto_slab/robotoslab-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto_slab/robotoslab-italic-webfont.woff') format('woff'), url('../fonts/Roboto_slab/robotoslab-italic-webfont.ttf') format('truetype'), url('../fonts/Roboto_slab/robotoslab-italic-webfont.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }

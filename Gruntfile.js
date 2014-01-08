@@ -27,6 +27,12 @@ module.exports = function(grunt) {
       }
     },
 
+    clean: {
+      css: {
+        src: ["assets/css/*.css"]
+      }
+    },
+
     compass: {                  
       css: {                   
         options: {   
@@ -66,7 +72,7 @@ module.exports = function(grunt) {
             stderr: true,
             failOnError: true
           },
-          command: 'git checkout 3.0.0-wip -- src'
+          command: 'git checkout 3.0.0-wip -- src/sass src/js'
         }
     }
 
@@ -74,13 +80,14 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-jekyll');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-shell');
 
   // Default task(s).
-  grunt.registerTask('css', ['compass','cssmin']);
+  grunt.registerTask('css', ['clean','compass','cssmin']);
   grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css']);

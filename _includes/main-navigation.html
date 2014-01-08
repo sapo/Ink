@@ -1,11 +1,12 @@
 <div id="topbar">
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
-        <ul class="menu horizontal flat black shadowed">
-        <li class="logoPlaceholder"><a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a></li>            
+        <ul class="menu horizontal flat black">
+            
+            <li class="for-tiny for-small for-medium"><span class="fa fa-bars"></span></li>
+            <li class="logoPlaceholder"><a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a></li>            
             {% for link in site.navigation %}
             {% assign clean_url = page.url|remove:'index.html' %}
-            {% if link.url %}
-            <li {% if clean_url == link.url %}class="active for-large for-extra-large"{% else %}class="for-large for-extra-large"{% endif %}>            
+            <li {% if clean_url == link.url %}class="active"{% else %}class="for-large for-extra-large"{% endif %}>            
                 <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
                 {% if link.submenu %}
                 <ul class="submenu">
@@ -15,55 +16,15 @@
                 </ul>
                 {% endif %}
             </li>
-            {% else %}
-            <li {% if clean_url == link.url %}class="active for-large for-extra-large"{% else %}class="for-large for-extra-large"{% endif %}>            
-                <a href="#" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
-                {% if link.submenu %}
-                <ul class="submenu">
-                {% for link in link.submenu %}
-                    <li><a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a></li>
-                {% endfor %}
-                </ul>
-                {% endif %}
-            </li>
-            {% endif %}
             {% endfor %}
-            <li class="search push-right" style="position: relative;">
-            <input type="search" id="search" name="search" placeholder="search">
-            <ul id="resultsList" style="display: none; position: absolute; background: #fff;"></ul>
+
+            <li class="search">
+                <input placeholder="Search..." id="search" type="search"><span class="fa fa-search"></span>
+                <ul id="resultsList" style="display: none; position: absolute; background: #fff;"></ul>
+            </li>
+            
         </li>
         </ul>
-    </nav>
-    <nav class="ink-navigation ink-grid for-medium for-small">
-        <ul class="menu vertical flat black">
-            <li class="title">
-                <a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a>
-                <button class="toggle" data-target="#topbar_menu">
-                    <span class="icon-reorder">
-                    </span>
-                </button>
-            </li>
-        </ul>
-        <ul class="menu vertical flat black hide-all" id="topbar_menu">
-        {% for link in site.navigation %}
-        {% assign clean_url = page.url|remove:'index.html' %}
-            {% if link.url != '/' and link.url %}
-            <li {% if clean_url == link.url %}class="active"{% endif %}>
-                <a href="{{ page.base_path }}{{ link.url }}">{{ link.text }}</a>
-            </li>
-            {% elsif link.submenu %}
-            <li>
-                <a class="toggle" data-target="#inkjs" href="#">{{link.text}}&nbsp;<i class="icon-caret-down"></i></a>
-                <ul class="submenu hide-all" id="inkjs">
-                {% for link in link.submenu %}
-                    <li><a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a></li>
-                {% endfor %}
-                </ul>
-            </li>
-            {% endif %}        
-        {% endfor %}        
-        </ul>
-
     </nav>
     <div class="border">
     </div>
