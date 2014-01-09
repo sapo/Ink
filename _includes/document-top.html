@@ -7,12 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="SAPO WEB & MEDIA DESIGN">
 
-<meta property="og:title" content="Ink - Interface Kit"/>
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="http://ink.sapo.pt/"/>
-<meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
-<meta property="og:site_name" content="Ink"/>
-<meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
+    <meta property="og:title" content="Ink - Interface Kit"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://ink.sapo.pt/"/>
+    <meta property="og:image" content="http://imgs.sapo.pt/ink/assets/imgs/ink_opengraph.png"/>
+    <meta property="og:site_name" content="Ink"/>
+    <meta property="og:description" content="Ink is a set of tools for quick development of web interfaces.  It offers a fluid and responsive grid, common interface elements, interactive components, a design-first approach with ease of use and simplicity at its core. Start integrating Ink in your projects and remove the hassle of building the basics, staying free to focus on what's important. "/>
     
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -28,7 +28,8 @@
         
     <!-- Load Documentation site CSS -->
     <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}docs.css">  
-    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}ink.css">  
+    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}ink.css">
+    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}snap.css">  
     <!-- <link rel="stylesheet/less" type="text/css" href="slider.less" /> -->
 
     <!--[if lte IE 7 ]>
@@ -40,8 +41,28 @@
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}prettify.js"></script>
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}test/ink-all.min.js"></script>
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}autoload.js"></script>
+    
    
 
 </head>
 <body onload="prettyPrint()">
-    <div id="fb-root"></div>
+    
+    <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-left">
+            <ul>
+                <li><a href="default.html">Getting started</a></li>
+                <li><a href="noDrag.html">Grid</a></li>
+                <li><a href="dragElement.html">Navigation</a></li>
+                <li><a href="rightDisabled.html">Typography</a></li>
+                <li><a href="hyperextend.html">Icons</a></li>
+                <li><a href="skinnyThreshold.html">Forms</a></li>
+                <li><a href="toggles.html">Alerts</a></li>
+                <li><a href="classNames.html">Tables</a></li>
+                <li><a href="expand.html">JS</a></li>
+                <li><a href="settings.html">Glossary</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content" class="snap-content">
+        <div id="fb-root"></div>

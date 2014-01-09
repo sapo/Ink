@@ -2,8 +2,8 @@
     <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
         <ul class="menu horizontal flat black">
             
-            <li class="for-tiny for-small for-medium"><span class="fa fa-bars"></span></li>
-            <li class="logoPlaceholder"><a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a></li>            
+            <li class="for-medium for-small for-tiny"><a href="#" id="open-left" class="fa fa-bars"></a></li>
+            <li class="logoPlaceholder"><a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a></li>
             {% for link in site.navigation %}
             {% assign clean_url = page.url|remove:'index.html' %}
             <li {% if clean_url == link.url %}class="active"{% else %}class="for-large for-extra-large"{% endif %}>            

@@ -16,6 +16,16 @@ $topbar-color               : #BBB;
 $topbar-colorHover          : $white;
 $img-path                   : "../img/";
 
+.page-header {
+    
+    margin: 3.6em 0 2em;
+    font-size: 1.25em;
+
+    p {
+        margin-top:.5em;
+    }
+}
+
 #topbar {   
     position: fixed;
     top: 0;
@@ -57,6 +67,15 @@ $img-path                   : "../img/";
                             background: none;
                         }                            
                     }
+
+                    &.fa-bars {
+                        font-size: 21px;
+                        padding: .46em 0;
+
+                        &:hover {
+                            background: none;
+                        }           
+                    }
                 }
 
                 &.search {
@@ -70,7 +89,7 @@ $img-path                   : "../img/";
                         margin: .5em 0;
                         padding: .4em .6em .4em 1.9em;
                         font-size: 14px;
-                        @include border-radius($border-radius);
+                        @include border-radius(2px);
 
                         &::-webkit-input-placeholder,
                         &:-moz-placeholder, 
@@ -107,7 +126,7 @@ $img-path                   : "../img/";
             
             &.black {
                 &.flat {
-                    background:$topbar-bgColor;
+                    background:$topbar-bgColor;  
                     filter:none;
                     @include box-shadow(none);
                 }
@@ -121,16 +140,6 @@ $img-path                   : "../img/";
         background: url("#{$img-path}home_bkg.png") center 0px;
         @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
         margin: 0;
-    }
-}
-
-.page-header {
-    
-    margin: 3.6em 0 2em;
-    font-size: 1.25em;
-
-    p {
-        margin-top:.5em;
     }
 }
 
