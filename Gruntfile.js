@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             stderr: true,
             failOnError: true
           },
-          command: 'git checkout 3.0.0-wip -- src/sass src/js'
+          command: 'git fetch && git checkout origin/3.0.0-wip -- src'
         }
     }
 
