@@ -342,7 +342,7 @@
         
         .for-#{$loop-class-name} {
             @if $loop-class-name == $class-name {
-                display: block;
+                display: block !important;
             }
             @else {
                 display: none;
