@@ -61,9 +61,9 @@ Stacker.prototype = {
      *
      * Html:
      *
-     *     <div id="stacker-container">
-     *         <div class="large-33 medium-50 small-100 stacker-column">
-     *             <div id="a" class="stacker-item">a</div>
+     *     <div id="stacker-container">  <!-- Stacker element -->
+     *         <div class="large-33 medium-50 small-100 stacker-column"> <!-- Column element ('.stacker-column' is the default selector) -->
+     *             <div id="a" class="stacker-item">a</div> <!-- Item ('.stacker-item' is the default selector) -->
      *             <div id="d" class="stacker-item">d</div>
      *             <div id="g" class="stacker-item">g</div>
      *         </div>
@@ -82,7 +82,8 @@ Stacker.prototype = {
      * Javascript:
      *
      *     Ink.requireModules(['Ink.UI.Stacker_1'], function (Stacker) {
-     *         var stacker = new Stacker('')
+     *         var stacker = new Stacker('#stacker-container');
+     *         // Keep the "stacker" variable around if you want to call addItem and reloadItems
      *     });
      **/
     _init: function(selector, options) {
@@ -137,7 +138,9 @@ Stacker.prototype = {
     },
 
     /**
-     * Add an 
+     * Add an item to the end of your stacks. Call `reloadItems()` when you are done adding items.
+     * @method addItem
+     * @param {DOMElement} item
      **/
     addItem: function(item) {
         this._aList.push(item);
@@ -145,6 +148,13 @@ Stacker.prototype = {
 
     /**
      * Update the layout of your items.
+     *
+     * Call this when:
+     *
+     *  - The width has changed, but not because of the window resizing.
+     *  - You used addItem to add some items
+     *
+     * @method reloadItems
      **/
     reloadItems: function() {
         this._applyLayoutChange();
@@ -267,9 +277,7 @@ Stacker.prototype = {
                 }
             }
         }
-    },
-
-    _debug: function() {}
+    }
 };
 
 return Stacker;
