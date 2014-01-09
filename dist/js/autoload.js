@@ -1,4 +1,4 @@
-( function(){
+;(function(){
     var autoload = {
         /* Match module names to element classes (or more complex selectors)
          * which get the UI modules instantiated automatically. */
@@ -8,7 +8,8 @@
         'Modal_1'       : '.ink-modal',
         'ProgressBar_1' : '.ink-progress-bar',
         'SortableList_1': '.ink-sortable-list',
-        'Spy_1'         : '*[data-spy="true"]',
+        'Spy_1'         : '[data-spy="true"]',
+        'Stacker_1'     : '.ink-stacker',
         'Sticky_1'      : '.ink-sticky, .sticky',
         'Table_1'       : '.ink-table',
         'Tabs_1'        : '.ink-tabs',
@@ -43,4 +44,4 @@
             }
         }
     });
-})();
+}());
