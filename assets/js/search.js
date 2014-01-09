@@ -29,6 +29,7 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css','Ink.Dom.Element','Ink.Dom.Se
 
   var searchElm = Ink.s('#search');
   var resultList = Ink.s('#resultsList');
+  var resultsDropdown = Ink.s('#search-dropdown');
 
   ev.observe(searchElm,'keyup',function(evElm){
 
@@ -46,7 +47,7 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css','Ink.Dom.Element','Ink.Dom.Se
                 if (jsonIndex[i][searchField] == searchVal) {
                     var resultUrl = jsonIndex[i].url;
                     var resultTitle = jsonIndex[i].title;                          
-                    var resultItem = el.create('li');
+                    var resultItem = el.create('li',{'class':'separator-below'});
                     var resultLink = el.create('a',{'href':resultUrl});
                     resultLink.innerHTML = resultTitle;
                     resultItem.appendChild(resultLink);
@@ -54,9 +55,9 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css','Ink.Dom.Element','Ink.Dom.Se
                 }
             }
         });            
-        resultList.style.display = 'block';
+        resultsDropdown.style.display = 'block';
       } else {
-        resultList.style.display = 'block';
+        resultsDropdown.style.display = 'none';
       }
   });
 
