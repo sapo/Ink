@@ -1,3 +1,13 @@
+// show hidden element
+.show-all {
+    display: inherit;
+}
+
+// hide visible element
+.hide-all {
+    display: none;
+}
+
 .push-left {
   float: left;        
 }
