@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             stderr: true,
             failOnError: true
           },
-          command: 'git fetch && git checkout origin/3.0.0-wip -- src/*'
+          command: 'git checkout 3.0.0-wip -- src/* && git add src && git commit -m "Updates src from the 3.0.0-wip branch"'
         }
     }
 

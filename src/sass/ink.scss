@@ -60,8 +60,7 @@
 @import "modules/tables";
 @import "modules/typography";
 
-// IMPORT THEMING FILES (THESE CONTAIN HELPER FUNCTIONS)
-@import "themes/alerts";
+// IMPORT THEMING FILES
 @import "themes/badges";
 @import "themes/buttons";
 @import "themes/labels";
@@ -71,3 +70,6 @@
 @import "themes/nav.pagination";
 @import "themes/nav.pills";
 @import "themes/tables";
+
+// IMPORT JS COMPONENTS STYLING
+@import "modules/js/drawer";

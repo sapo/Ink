@@ -1,0 +1,37 @@
+body {
+    &.ink-drawer {
+
+        .left-drawer,
+        .right-drawer {
+          background: red; 
+          width: 300px; 
+          position: absolute;
+          top: 0;
+          height: 100%;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+
+        .left-drawer {
+            left: -300px;
+            &.open {
+                left: 0px;
+            }
+        }
+        .right-drawer {
+            right: -300px;
+            &.open {
+                right: 0px;
+            }
+        }
+        .content-drawer {
+            width: 100%;
+            &.open-left {
+                margin-left: 300px;
+            }
+            &.open-right {
+                margin-left: -300px;
+            }
+        }
+    }
+}
