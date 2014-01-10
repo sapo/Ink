@@ -1,12 +1,14 @@
 <div id="topbar">
-    <nav class="ink-navigation ink-grid hide-small hide-medium ie7">
-        <ul class="menu horizontal flat black">
-            
-            <li class="for-medium for-small for-tiny"><a href="#" id="open-left" class="fa fa-bars"></a></li>
+    <nav class="ink-navigation ink-grid ie7">
+        <ul class="menu horizontal flat black push-left">
+            <li class="hide-all show-tiny show-small show-medium"><a href="#" id="open-left" class="fa fa-bars"></a></li>
             <li class="logoPlaceholder"><a href="{{ page.base_path }}" class="logoPlaceholder">Ink</a></li>
+        </ul>
+
+        <ul class="menu horizontal flat black push-right">
             {% for link in site.navigation %}
             {% assign clean_url = page.url|remove:'index.html' %}
-            <li {% if clean_url == link.url %}class="active"{% else %}class="for-large for-extra-large"{% endif %}>            
+            <li {% if clean_url == link.url %}class="active"{% else %}class="hide-tiny hide-small push-right"{% endif %}>            
                 <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
                 {% if link.submenu %}
                 <ul class="submenu">
@@ -17,16 +19,6 @@
                 {% endif %}
             </li>
             {% endfor %}
-
-            <li class="search">
-                <input placeholder="Search..." id="search" type="search"><span class="fa fa-search"></span>
-                <div class="ink-dropdown red" id="search-dropdown" style="display: none;">
-                    <ul id="resultsList" class="dropdown-menu">
-                        
-                    </ul>
-                </div>
-            </li>
-            
         </ul>
     </nav>
     <div class="border">

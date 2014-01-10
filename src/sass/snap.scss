@@ -155,14 +155,60 @@
 
     li {
         display: block;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         margin: 0;
+
+        &.search {
+                
+            position: relative;
+            margin: 15px;
+            
+            input[type=search] {
+                width: 100%;
+                border: 1px solid #DDD;
+                padding: .4em .6em .4em 1.9em;
+                font-size: 14px;
+                @include border-radius(2px);
+                @include box-sizing(border-box);
+            }
+
+            .fa-search {
+                font-size: 14px;
+                position: absolute;
+                top: .7em;
+                left: .6em;
+            }
+
+            #search-dropdown {
+                width: 100%;
+                .dropdown-menu {                            
+                    li {
+                        float: none;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        &.heading {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            color: #f0f0f0;
+            font-size: 1.125em;
+            padding: 15px;
+            margin-top: 1em;
+
+            &:first-child {
+                border-top: none;
+                margin-top: 0;
+            }
+        }
         
         & > a {
             display: block;
-            padding: 15px;
+            padding: 6px 15px;
             text-shadow: 0 1px 0 #000;
             text-decoration: none;
+            text-transform: uppercase;
             color: #bbb;
             @include transition-property(color, background);
             @include transition-duration(140ms);
