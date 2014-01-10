@@ -1149,87 +1149,87 @@ html.flexbox .column-group.vertical.reverse {
     flex-grow: 1;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 1201px) {
   /* line 24, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html.flexbox .ink-grid {
-    padding: 0 1em;
+    padding: 0 2em;
   }
   /* line 60, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
   html.flexbox .column-group.gutters {
-    margin-left: -1em;
+    margin-left: -2em;
   }
   /* line 64, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.gutters > [class*=tiny-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .width-auto {
+  html.flexbox .column-group.gutters > [class*=extra-large-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .width-auto {
+    padding-left: 2em;
+    margin-bottom: 2em;
+  }
+  /* line 70, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.half-gutters {
+    margin-left: -1em;
+  }
+  /* line 74, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.half-gutters > [class*=extra-large-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .width-auto {
     padding-left: 1em;
     margin-bottom: 1em;
   }
-  /* line 70, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.half-gutters {
+  /* line 80, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.quarter-gutters {
     margin-left: -0.5em;
   }
-  /* line 74, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.half-gutters > [class*=tiny-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .width-auto {
+  /* line 84, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.quarter-gutters > [class*=extra-large-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .width-auto {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  /* line 80, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.quarter-gutters {
-    margin-left: -0.25em;
-  }
-  /* line 84, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.quarter-gutters > [class*=tiny-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .width-auto {
-    padding-left: 0.25em;
-    margin-bottom: 0.25em;
-  }
   /* line 90, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-gutters {
+  html.flexbox .column-group.extra-large-gutters {
+    margin-left: -2em;
+  }
+  /* line 94, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.extra-large-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-gutters > [class*=all-], html.flexbox .column-group.extra-large-gutters > .width-auto {
+    padding-left: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  /* line 100, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.extra-large-half-gutters {
     margin-left: -1em;
   }
-  /* line 94, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-gutters > [class*=tiny-], html.flexbox .column-group.tiny-gutters > [class*=all-], html.flexbox .column-group.tiny-gutters > .width-auto {
-    padding-left: 0.25em;
-    margin-bottom: 0.25em;
+  /* line 104, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.extra-large-half-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-half-gutters > [class*=all-], html.flexbox .column-group.extra-large-half-gutters > .width-auto {
+    padding-left: 1em;
+    margin-bottom: 1em;
   }
-  /* line 100, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-half-gutters {
+  /* line 110, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.extra-large-quarter-gutters {
     margin-left: -0.5em;
   }
-  /* line 104, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-half-gutters > [class*=tiny-], html.flexbox .column-group.tiny-half-gutters > [class*=all-], html.flexbox .column-group.tiny-half-gutters > .width-auto {
+  /* line 114, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.extra-large-quarter-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-quarter-gutters > [class*=all-], html.flexbox .column-group.extra-large-quarter-gutters > .width-auto {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
   }
-  /* line 110, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-quarter-gutters {
-    margin-left: -0.25em;
-  }
-  /* line 114, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-quarter-gutters > [class*=tiny-], html.flexbox .column-group.tiny-quarter-gutters > [class*=all-], html.flexbox .column-group.tiny-quarter-gutters > .width-auto {
-    padding-left: 0.25em;
-    margin-bottom: 0.25em;
-  }
   /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-no-gutters {
+  html.flexbox .column-group.extra-large-no-gutters {
     margin-left: 0;
   }
   /* line 124, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.tiny-no-gutters > [class*=tiny-], html.flexbox .column-group.tiny-no-gutters > [class*=all-], html.flexbox .column-group.tiny-no-gutters > .width-auto {
+  html.flexbox .column-group.extra-large-no-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-no-gutters > [class*=all-], html.flexbox .column-group.extra-large-no-gutters > .width-auto {
     padding-left: 0;
     margin-bottom: 0;
   }
   /* line 139, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox [class*=tiny-] {
+  html.flexbox [class*=extra-large-] {
     float: none;
   }
   /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
   html.flexbox .cell-auto,
-  html.flexbox .tiny-auto {
+  html.flexbox .extra-large-auto {
     -webkit-flex: 1 0 auto;
     -moz-flex: 1 0 auto;
     flex: 1 0 auto;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-5 {
+  html.flexbox .extra-large-5 {
     -webkit-flex-basis: 5%;
     -moz-flex-basis: 5%;
     flex-basis: 5%;
@@ -1240,7 +1240,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 5%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-10 {
+  html.flexbox .extra-large-10 {
     -webkit-flex-basis: 10%;
     -moz-flex-basis: 10%;
     flex-basis: 10%;
@@ -1251,7 +1251,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 10%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-15 {
+  html.flexbox .extra-large-15 {
     -webkit-flex-basis: 15%;
     -moz-flex-basis: 15%;
     flex-basis: 15%;
@@ -1262,7 +1262,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 15%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-20 {
+  html.flexbox .extra-large-20 {
     -webkit-flex-basis: 20%;
     -moz-flex-basis: 20%;
     flex-basis: 20%;
@@ -1273,7 +1273,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 20%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-25 {
+  html.flexbox .extra-large-25 {
     -webkit-flex-basis: 25%;
     -moz-flex-basis: 25%;
     flex-basis: 25%;
@@ -1284,7 +1284,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 25%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-30 {
+  html.flexbox .extra-large-30 {
     -webkit-flex-basis: 30%;
     -moz-flex-basis: 30%;
     flex-basis: 30%;
@@ -1295,7 +1295,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 30%;
   }
   /* line 152, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-33 {
+  html.flexbox .extra-large-33 {
     -webkit-flex-basis: 33.33%;
     -moz-flex-basis: 33.33%;
     flex-basis: 33.33%;
@@ -1306,7 +1306,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 33.33%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-35 {
+  html.flexbox .extra-large-35 {
     -webkit-flex-basis: 35%;
     -moz-flex-basis: 35%;
     flex-basis: 35%;
@@ -1317,7 +1317,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 35%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-40 {
+  html.flexbox .extra-large-40 {
     -webkit-flex-basis: 40%;
     -moz-flex-basis: 40%;
     flex-basis: 40%;
@@ -1328,7 +1328,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 40%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-45 {
+  html.flexbox .extra-large-45 {
     -webkit-flex-basis: 45%;
     -moz-flex-basis: 45%;
     flex-basis: 45%;
@@ -1339,7 +1339,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 45%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-50 {
+  html.flexbox .extra-large-50 {
     -webkit-flex-basis: 50%;
     -moz-flex-basis: 50%;
     flex-basis: 50%;
@@ -1350,7 +1350,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 50%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-55 {
+  html.flexbox .extra-large-55 {
     -webkit-flex-basis: 55%;
     -moz-flex-basis: 55%;
     flex-basis: 55%;
@@ -1361,7 +1361,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 55%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-60 {
+  html.flexbox .extra-large-60 {
     -webkit-flex-basis: 60%;
     -moz-flex-basis: 60%;
     flex-basis: 60%;
@@ -1372,7 +1372,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 60%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-65 {
+  html.flexbox .extra-large-65 {
     -webkit-flex-basis: 65%;
     -moz-flex-basis: 65%;
     flex-basis: 65%;
@@ -1383,7 +1383,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 65%;
   }
   /* line 164, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-66 {
+  html.flexbox .extra-large-66 {
     -webkit-flex-basis: 66.66%;
     -moz-flex-basis: 66.66%;
     flex-basis: 66.66%;
@@ -1394,7 +1394,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 66.66%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-70 {
+  html.flexbox .extra-large-70 {
     -webkit-flex-basis: 70%;
     -moz-flex-basis: 70%;
     flex-basis: 70%;
@@ -1405,7 +1405,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 70%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-75 {
+  html.flexbox .extra-large-75 {
     -webkit-flex-basis: 75%;
     -moz-flex-basis: 75%;
     flex-basis: 75%;
@@ -1416,7 +1416,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 75%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-80 {
+  html.flexbox .extra-large-80 {
     -webkit-flex-basis: 80%;
     -moz-flex-basis: 80%;
     flex-basis: 80%;
@@ -1427,7 +1427,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 80%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-85 {
+  html.flexbox .extra-large-85 {
     -webkit-flex-basis: 85%;
     -moz-flex-basis: 85%;
     flex-basis: 85%;
@@ -1438,7 +1438,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 85%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-90 {
+  html.flexbox .extra-large-90 {
     -webkit-flex-basis: 90%;
     -moz-flex-basis: 90%;
     flex-basis: 90%;
@@ -1449,7 +1449,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 90%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-95 {
+  html.flexbox .extra-large-95 {
     -webkit-flex-basis: 95%;
     -moz-flex-basis: 95%;
     flex-basis: 95%;
@@ -1460,7 +1460,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 95%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-100 {
+  html.flexbox .extra-large-100 {
     -webkit-flex-basis: 100%;
     -moz-flex-basis: 100%;
     flex-basis: 100%;
@@ -1471,518 +1471,97 @@ html.flexbox .column-group.vertical.reverse {
     width: 100%;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-1 {
+  html.flexbox .extra-large-order-1 {
     order: 1;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-1 .box {
+  html.flexbox .extra-large-order-1 .box {
     background: #ff0055;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-2 {
+  html.flexbox .extra-large-order-2 {
     order: 2;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-2 .box {
+  html.flexbox .extra-large-order-2 .box {
     background: #ff8000;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-3 {
+  html.flexbox .extra-large-order-3 {
     order: 3;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-3 .box {
+  html.flexbox .extra-large-order-3 .box {
     background: #aaff00;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-4 {
+  html.flexbox .extra-large-order-4 {
     order: 4;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-4 .box {
+  html.flexbox .extra-large-order-4 .box {
     background: #00ff2b;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-5 {
+  html.flexbox .extra-large-order-5 {
     order: 5;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-5 .box {
+  html.flexbox .extra-large-order-5 .box {
     background: cyan;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-6 {
+  html.flexbox .extra-large-order-6 {
     order: 6;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-6 .box {
+  html.flexbox .extra-large-order-6 .box {
     background: #002bff;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-7 {
+  html.flexbox .extra-large-order-7 {
     order: 7;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-7 .box {
+  html.flexbox .extra-large-order-7 .box {
     background: #aa00ff;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-8 {
+  html.flexbox .extra-large-order-8 {
     order: 8;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-8 .box {
+  html.flexbox .extra-large-order-8 .box {
     background: #ff0080;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-9 {
+  html.flexbox .extra-large-order-9 {
     order: 9;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .tiny-order-9 .box {
+  html.flexbox .extra-large-order-9 .box {
     background: #ff5500;
     color: black;
     text-align: center;
   }
   /* line 33, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group .tiny-auto {
-    -webkit-flex-basis: auto;
-    -moz-flex-basis: auto;
-    flex-basis: auto;
-    -webkit-flex-grow: 1;
-    -moz-flex-grow: 1;
-    flex-grow: 1;
-  }
-}
-@media screen and (min-width: 321px) and (max-width: 600px) {
-  /* line 24, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  html.flexbox .ink-grid {
-    padding: 0 1.25em;
-  }
-  /* line 60, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.gutters {
-    margin-left: -1.25em;
-  }
-  /* line 64, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.gutters > [class*=small-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .width-auto {
-    padding-left: 1.25em;
-    margin-bottom: 1.25em;
-  }
-  /* line 70, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.half-gutters {
-    margin-left: -0.625em;
-  }
-  /* line 74, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.half-gutters > [class*=small-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .width-auto {
-    padding-left: 0.625em;
-    margin-bottom: 0.625em;
-  }
-  /* line 80, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.quarter-gutters {
-    margin-left: -0.3125em;
-  }
-  /* line 84, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.quarter-gutters > [class*=small-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .width-auto {
-    padding-left: 0.3125em;
-    margin-bottom: 0.3125em;
-  }
-  /* line 90, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-gutters {
-    margin-left: -1.25em;
-  }
-  /* line 94, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-gutters > [class*=small-], html.flexbox .column-group.small-gutters > [class*=all-], html.flexbox .column-group.small-gutters > .width-auto {
-    padding-left: 0.3125em;
-    margin-bottom: 0.3125em;
-  }
-  /* line 100, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-half-gutters {
-    margin-left: -0.625em;
-  }
-  /* line 104, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-half-gutters > [class*=small-], html.flexbox .column-group.small-half-gutters > [class*=all-], html.flexbox .column-group.small-half-gutters > .width-auto {
-    padding-left: 0.625em;
-    margin-bottom: 0.625em;
-  }
-  /* line 110, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-quarter-gutters {
-    margin-left: -0.3125em;
-  }
-  /* line 114, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-quarter-gutters > [class*=small-], html.flexbox .column-group.small-quarter-gutters > [class*=all-], html.flexbox .column-group.small-quarter-gutters > .width-auto {
-    padding-left: 0.3125em;
-    margin-bottom: 0.3125em;
-  }
-  /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-no-gutters {
-    margin-left: 0;
-  }
-  /* line 124, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.small-no-gutters > [class*=small-], html.flexbox .column-group.small-no-gutters > [class*=all-], html.flexbox .column-group.small-no-gutters > .width-auto {
-    padding-left: 0;
-    margin-bottom: 0;
-  }
-  /* line 139, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox [class*=small-] {
-    float: none;
-  }
-  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .cell-auto,
-  html.flexbox .small-auto {
-    -webkit-flex: 1 0 auto;
-    -moz-flex: 1 0 auto;
-    flex: 1 0 auto;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-5 {
-    -webkit-flex-basis: 5%;
-    -moz-flex-basis: 5%;
-    flex-basis: 5%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-5 {
-    width: 5%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-10 {
-    -webkit-flex-basis: 10%;
-    -moz-flex-basis: 10%;
-    flex-basis: 10%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-10 {
-    width: 10%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-15 {
-    -webkit-flex-basis: 15%;
-    -moz-flex-basis: 15%;
-    flex-basis: 15%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-15 {
-    width: 15%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-20 {
-    -webkit-flex-basis: 20%;
-    -moz-flex-basis: 20%;
-    flex-basis: 20%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-20 {
-    width: 20%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-25 {
-    -webkit-flex-basis: 25%;
-    -moz-flex-basis: 25%;
-    flex-basis: 25%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-25 {
-    width: 25%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-30 {
-    -webkit-flex-basis: 30%;
-    -moz-flex-basis: 30%;
-    flex-basis: 30%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-30 {
-    width: 30%;
-  }
-  /* line 152, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-33 {
-    -webkit-flex-basis: 33.33%;
-    -moz-flex-basis: 33.33%;
-    flex-basis: 33.33%;
-    min-height: 100%;
-  }
-  /* line 157, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-35 {
-    width: 33.33%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-35 {
-    -webkit-flex-basis: 35%;
-    -moz-flex-basis: 35%;
-    flex-basis: 35%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-35 {
-    width: 35%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-40 {
-    -webkit-flex-basis: 40%;
-    -moz-flex-basis: 40%;
-    flex-basis: 40%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-40 {
-    width: 40%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-45 {
-    -webkit-flex-basis: 45%;
-    -moz-flex-basis: 45%;
-    flex-basis: 45%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-45 {
-    width: 45%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-50 {
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    flex-basis: 50%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-50 {
-    width: 50%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-55 {
-    -webkit-flex-basis: 55%;
-    -moz-flex-basis: 55%;
-    flex-basis: 55%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-55 {
-    width: 55%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-60 {
-    -webkit-flex-basis: 60%;
-    -moz-flex-basis: 60%;
-    flex-basis: 60%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-60 {
-    width: 60%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-65 {
-    -webkit-flex-basis: 65%;
-    -moz-flex-basis: 65%;
-    flex-basis: 65%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-65 {
-    width: 65%;
-  }
-  /* line 164, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-66 {
-    -webkit-flex-basis: 66.66%;
-    -moz-flex-basis: 66.66%;
-    flex-basis: 66.66%;
-    min-height: 100%;
-  }
-  /* line 169, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-70 {
-    width: 66.66%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-70 {
-    -webkit-flex-basis: 70%;
-    -moz-flex-basis: 70%;
-    flex-basis: 70%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-70 {
-    width: 70%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-75 {
-    -webkit-flex-basis: 75%;
-    -moz-flex-basis: 75%;
-    flex-basis: 75%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-75 {
-    width: 75%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-80 {
-    -webkit-flex-basis: 80%;
-    -moz-flex-basis: 80%;
-    flex-basis: 80%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-80 {
-    width: 80%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-85 {
-    -webkit-flex-basis: 85%;
-    -moz-flex-basis: 85%;
-    flex-basis: 85%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-85 {
-    width: 85%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-90 {
-    -webkit-flex-basis: 90%;
-    -moz-flex-basis: 90%;
-    flex-basis: 90%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-90 {
-    width: 90%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-95 {
-    -webkit-flex-basis: 95%;
-    -moz-flex-basis: 95%;
-    flex-basis: 95%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-95 {
-    width: 95%;
-  }
-  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-100 {
-    -webkit-flex-basis: 100%;
-    -moz-flex-basis: 100%;
-    flex-basis: 100%;
-    min-height: 100%;
-  }
-  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .all-100 {
-    width: 100%;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-1 {
-    order: 1;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-1 .box {
-    background: #ff0055;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-2 {
-    order: 2;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-2 .box {
-    background: #ff8000;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-3 {
-    order: 3;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-3 .box {
-    background: #aaff00;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-4 {
-    order: 4;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-4 .box {
-    background: #00ff2b;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-5 {
-    order: 5;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-5 .box {
-    background: cyan;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-6 {
-    order: 6;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-6 .box {
-    background: #002bff;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-7 {
-    order: 7;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-7 .box {
-    background: #aa00ff;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-8 {
-    order: 8;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-8 .box {
-    background: #ff0080;
-    color: black;
-    text-align: center;
-  }
-  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-9 {
-    order: 9;
-  }
-  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .small-order-9 .box {
-    background: #ff5500;
-    color: black;
-    text-align: center;
-  }
-  /* line 33, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group .small-auto {
+  html.flexbox .column-group .extra-large-auto {
     -webkit-flex-basis: auto;
     -moz-flex-basis: auto;
     flex-basis: auto;
@@ -2412,87 +1991,87 @@ html.flexbox .column-group.vertical.reverse {
     flex-grow: 1;
   }
 }
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 321px) and (max-width: 600px) {
   /* line 24, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html.flexbox .ink-grid {
-    padding: 0 2em;
+    padding: 0 1.25em;
   }
   /* line 60, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
   html.flexbox .column-group.gutters {
-    margin-left: -2em;
+    margin-left: -1.25em;
   }
   /* line 64, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.gutters > [class*=extra-large-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .width-auto {
-    padding-left: 2em;
-    margin-bottom: 2em;
+  html.flexbox .column-group.gutters > [class*=small-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .width-auto {
+    padding-left: 1.25em;
+    margin-bottom: 1.25em;
   }
   /* line 70, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
   html.flexbox .column-group.half-gutters {
-    margin-left: -1em;
+    margin-left: -0.625em;
   }
   /* line 74, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.half-gutters > [class*=extra-large-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .width-auto {
-    padding-left: 1em;
-    margin-bottom: 1em;
+  html.flexbox .column-group.half-gutters > [class*=small-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .width-auto {
+    padding-left: 0.625em;
+    margin-bottom: 0.625em;
   }
   /* line 80, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
   html.flexbox .column-group.quarter-gutters {
-    margin-left: -0.5em;
+    margin-left: -0.3125em;
   }
   /* line 84, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.quarter-gutters > [class*=extra-large-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .width-auto {
-    padding-left: 0.5em;
-    margin-bottom: 0.5em;
+  html.flexbox .column-group.quarter-gutters > [class*=small-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .width-auto {
+    padding-left: 0.3125em;
+    margin-bottom: 0.3125em;
   }
   /* line 90, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-gutters {
-    margin-left: -2em;
+  html.flexbox .column-group.small-gutters {
+    margin-left: -1.25em;
   }
   /* line 94, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-gutters > [class*=all-], html.flexbox .column-group.extra-large-gutters > .width-auto {
-    padding-left: 0.5em;
-    margin-bottom: 0.5em;
+  html.flexbox .column-group.small-gutters > [class*=small-], html.flexbox .column-group.small-gutters > [class*=all-], html.flexbox .column-group.small-gutters > .width-auto {
+    padding-left: 0.3125em;
+    margin-bottom: 0.3125em;
   }
   /* line 100, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-half-gutters {
-    margin-left: -1em;
+  html.flexbox .column-group.small-half-gutters {
+    margin-left: -0.625em;
   }
   /* line 104, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-half-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-half-gutters > [class*=all-], html.flexbox .column-group.extra-large-half-gutters > .width-auto {
-    padding-left: 1em;
-    margin-bottom: 1em;
+  html.flexbox .column-group.small-half-gutters > [class*=small-], html.flexbox .column-group.small-half-gutters > [class*=all-], html.flexbox .column-group.small-half-gutters > .width-auto {
+    padding-left: 0.625em;
+    margin-bottom: 0.625em;
   }
   /* line 110, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-quarter-gutters {
-    margin-left: -0.5em;
+  html.flexbox .column-group.small-quarter-gutters {
+    margin-left: -0.3125em;
   }
   /* line 114, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-quarter-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-quarter-gutters > [class*=all-], html.flexbox .column-group.extra-large-quarter-gutters > .width-auto {
-    padding-left: 0.5em;
-    margin-bottom: 0.5em;
+  html.flexbox .column-group.small-quarter-gutters > [class*=small-], html.flexbox .column-group.small-quarter-gutters > [class*=all-], html.flexbox .column-group.small-quarter-gutters > .width-auto {
+    padding-left: 0.3125em;
+    margin-bottom: 0.3125em;
   }
   /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-no-gutters {
+  html.flexbox .column-group.small-no-gutters {
     margin-left: 0;
   }
   /* line 124, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group.extra-large-no-gutters > [class*=extra-large-], html.flexbox .column-group.extra-large-no-gutters > [class*=all-], html.flexbox .column-group.extra-large-no-gutters > .width-auto {
+  html.flexbox .column-group.small-no-gutters > [class*=small-], html.flexbox .column-group.small-no-gutters > [class*=all-], html.flexbox .column-group.small-no-gutters > .width-auto {
     padding-left: 0;
     margin-bottom: 0;
   }
   /* line 139, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox [class*=extra-large-] {
+  html.flexbox [class*=small-] {
     float: none;
   }
   /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
   html.flexbox .cell-auto,
-  html.flexbox .extra-large-auto {
+  html.flexbox .small-auto {
     -webkit-flex: 1 0 auto;
     -moz-flex: 1 0 auto;
     flex: 1 0 auto;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-5 {
+  html.flexbox .small-5 {
     -webkit-flex-basis: 5%;
     -moz-flex-basis: 5%;
     flex-basis: 5%;
@@ -2503,7 +2082,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 5%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-10 {
+  html.flexbox .small-10 {
     -webkit-flex-basis: 10%;
     -moz-flex-basis: 10%;
     flex-basis: 10%;
@@ -2514,7 +2093,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 10%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-15 {
+  html.flexbox .small-15 {
     -webkit-flex-basis: 15%;
     -moz-flex-basis: 15%;
     flex-basis: 15%;
@@ -2525,7 +2104,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 15%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-20 {
+  html.flexbox .small-20 {
     -webkit-flex-basis: 20%;
     -moz-flex-basis: 20%;
     flex-basis: 20%;
@@ -2536,7 +2115,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 20%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-25 {
+  html.flexbox .small-25 {
     -webkit-flex-basis: 25%;
     -moz-flex-basis: 25%;
     flex-basis: 25%;
@@ -2547,7 +2126,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 25%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-30 {
+  html.flexbox .small-30 {
     -webkit-flex-basis: 30%;
     -moz-flex-basis: 30%;
     flex-basis: 30%;
@@ -2558,7 +2137,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 30%;
   }
   /* line 152, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-33 {
+  html.flexbox .small-33 {
     -webkit-flex-basis: 33.33%;
     -moz-flex-basis: 33.33%;
     flex-basis: 33.33%;
@@ -2569,7 +2148,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 33.33%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-35 {
+  html.flexbox .small-35 {
     -webkit-flex-basis: 35%;
     -moz-flex-basis: 35%;
     flex-basis: 35%;
@@ -2580,7 +2159,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 35%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-40 {
+  html.flexbox .small-40 {
     -webkit-flex-basis: 40%;
     -moz-flex-basis: 40%;
     flex-basis: 40%;
@@ -2591,7 +2170,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 40%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-45 {
+  html.flexbox .small-45 {
     -webkit-flex-basis: 45%;
     -moz-flex-basis: 45%;
     flex-basis: 45%;
@@ -2602,7 +2181,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 45%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-50 {
+  html.flexbox .small-50 {
     -webkit-flex-basis: 50%;
     -moz-flex-basis: 50%;
     flex-basis: 50%;
@@ -2613,7 +2192,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 50%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-55 {
+  html.flexbox .small-55 {
     -webkit-flex-basis: 55%;
     -moz-flex-basis: 55%;
     flex-basis: 55%;
@@ -2624,7 +2203,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 55%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-60 {
+  html.flexbox .small-60 {
     -webkit-flex-basis: 60%;
     -moz-flex-basis: 60%;
     flex-basis: 60%;
@@ -2635,7 +2214,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 60%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-65 {
+  html.flexbox .small-65 {
     -webkit-flex-basis: 65%;
     -moz-flex-basis: 65%;
     flex-basis: 65%;
@@ -2646,7 +2225,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 65%;
   }
   /* line 164, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-66 {
+  html.flexbox .small-66 {
     -webkit-flex-basis: 66.66%;
     -moz-flex-basis: 66.66%;
     flex-basis: 66.66%;
@@ -2657,7 +2236,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 66.66%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-70 {
+  html.flexbox .small-70 {
     -webkit-flex-basis: 70%;
     -moz-flex-basis: 70%;
     flex-basis: 70%;
@@ -2668,7 +2247,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 70%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-75 {
+  html.flexbox .small-75 {
     -webkit-flex-basis: 75%;
     -moz-flex-basis: 75%;
     flex-basis: 75%;
@@ -2679,7 +2258,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 75%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-80 {
+  html.flexbox .small-80 {
     -webkit-flex-basis: 80%;
     -moz-flex-basis: 80%;
     flex-basis: 80%;
@@ -2690,7 +2269,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 80%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-85 {
+  html.flexbox .small-85 {
     -webkit-flex-basis: 85%;
     -moz-flex-basis: 85%;
     flex-basis: 85%;
@@ -2701,7 +2280,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 85%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-90 {
+  html.flexbox .small-90 {
     -webkit-flex-basis: 90%;
     -moz-flex-basis: 90%;
     flex-basis: 90%;
@@ -2712,7 +2291,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 90%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-95 {
+  html.flexbox .small-95 {
     -webkit-flex-basis: 95%;
     -moz-flex-basis: 95%;
     flex-basis: 95%;
@@ -2723,7 +2302,7 @@ html.flexbox .column-group.vertical.reverse {
     width: 95%;
   }
   /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-100 {
+  html.flexbox .small-100 {
     -webkit-flex-basis: 100%;
     -moz-flex-basis: 100%;
     flex-basis: 100%;
@@ -2734,97 +2313,518 @@ html.flexbox .column-group.vertical.reverse {
     width: 100%;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-1 {
+  html.flexbox .small-order-1 {
     order: 1;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-1 .box {
+  html.flexbox .small-order-1 .box {
     background: #ff0055;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-2 {
+  html.flexbox .small-order-2 {
     order: 2;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-2 .box {
+  html.flexbox .small-order-2 .box {
     background: #ff8000;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-3 {
+  html.flexbox .small-order-3 {
     order: 3;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-3 .box {
+  html.flexbox .small-order-3 .box {
     background: #aaff00;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-4 {
+  html.flexbox .small-order-4 {
     order: 4;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-4 .box {
+  html.flexbox .small-order-4 .box {
     background: #00ff2b;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-5 {
+  html.flexbox .small-order-5 {
     order: 5;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-5 .box {
+  html.flexbox .small-order-5 .box {
     background: cyan;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-6 {
+  html.flexbox .small-order-6 {
     order: 6;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-6 .box {
+  html.flexbox .small-order-6 .box {
     background: #002bff;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-7 {
+  html.flexbox .small-order-7 {
     order: 7;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-7 .box {
+  html.flexbox .small-order-7 .box {
     background: #aa00ff;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-8 {
+  html.flexbox .small-order-8 {
     order: 8;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-8 .box {
+  html.flexbox .small-order-8 .box {
     background: #ff0080;
     color: black;
     text-align: center;
   }
   /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-9 {
+  html.flexbox .small-order-9 {
     order: 9;
   }
   /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .extra-large-order-9 .box {
+  html.flexbox .small-order-9 .box {
     background: #ff5500;
     color: black;
     text-align: center;
   }
   /* line 33, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
-  html.flexbox .column-group .extra-large-auto {
+  html.flexbox .column-group .small-auto {
+    -webkit-flex-basis: auto;
+    -moz-flex-basis: auto;
+    flex-basis: auto;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    flex-grow: 1;
+  }
+}
+@media screen and (max-width: 320px) {
+  /* line 24, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  html.flexbox .ink-grid {
+    padding: 0 1em;
+  }
+  /* line 60, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.gutters {
+    margin-left: -1em;
+  }
+  /* line 64, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.gutters > [class*=tiny-], html.flexbox .column-group.gutters > [class*=all-], html.flexbox .column-group.gutters > .width-auto {
+    padding-left: 1em;
+    margin-bottom: 1em;
+  }
+  /* line 70, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.half-gutters {
+    margin-left: -0.5em;
+  }
+  /* line 74, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.half-gutters > [class*=tiny-], html.flexbox .column-group.half-gutters > [class*=all-], html.flexbox .column-group.half-gutters > .width-auto {
+    padding-left: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  /* line 80, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.quarter-gutters {
+    margin-left: -0.25em;
+  }
+  /* line 84, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.quarter-gutters > [class*=tiny-], html.flexbox .column-group.quarter-gutters > [class*=all-], html.flexbox .column-group.quarter-gutters > .width-auto {
+    padding-left: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  /* line 90, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-gutters {
+    margin-left: -1em;
+  }
+  /* line 94, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-gutters > [class*=tiny-], html.flexbox .column-group.tiny-gutters > [class*=all-], html.flexbox .column-group.tiny-gutters > .width-auto {
+    padding-left: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  /* line 100, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-half-gutters {
+    margin-left: -0.5em;
+  }
+  /* line 104, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-half-gutters > [class*=tiny-], html.flexbox .column-group.tiny-half-gutters > [class*=all-], html.flexbox .column-group.tiny-half-gutters > .width-auto {
+    padding-left: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  /* line 110, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-quarter-gutters {
+    margin-left: -0.25em;
+  }
+  /* line 114, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-quarter-gutters > [class*=tiny-], html.flexbox .column-group.tiny-quarter-gutters > [class*=all-], html.flexbox .column-group.tiny-quarter-gutters > .width-auto {
+    padding-left: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-no-gutters {
+    margin-left: 0;
+  }
+  /* line 124, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group.tiny-no-gutters > [class*=tiny-], html.flexbox .column-group.tiny-no-gutters > [class*=all-], html.flexbox .column-group.tiny-no-gutters > .width-auto {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  /* line 139, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox [class*=tiny-] {
+    float: none;
+  }
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .cell-auto,
+  html.flexbox .tiny-auto {
+    -webkit-flex: 1 0 auto;
+    -moz-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-5 {
+    -webkit-flex-basis: 5%;
+    -moz-flex-basis: 5%;
+    flex-basis: 5%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-5 {
+    width: 5%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-10 {
+    -webkit-flex-basis: 10%;
+    -moz-flex-basis: 10%;
+    flex-basis: 10%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-10 {
+    width: 10%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-15 {
+    -webkit-flex-basis: 15%;
+    -moz-flex-basis: 15%;
+    flex-basis: 15%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-15 {
+    width: 15%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-20 {
+    -webkit-flex-basis: 20%;
+    -moz-flex-basis: 20%;
+    flex-basis: 20%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-20 {
+    width: 20%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-25 {
+    -webkit-flex-basis: 25%;
+    -moz-flex-basis: 25%;
+    flex-basis: 25%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-25 {
+    width: 25%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-30 {
+    -webkit-flex-basis: 30%;
+    -moz-flex-basis: 30%;
+    flex-basis: 30%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-30 {
+    width: 30%;
+  }
+  /* line 152, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-33 {
+    -webkit-flex-basis: 33.33%;
+    -moz-flex-basis: 33.33%;
+    flex-basis: 33.33%;
+    min-height: 100%;
+  }
+  /* line 157, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-35 {
+    width: 33.33%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-35 {
+    -webkit-flex-basis: 35%;
+    -moz-flex-basis: 35%;
+    flex-basis: 35%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-35 {
+    width: 35%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-40 {
+    -webkit-flex-basis: 40%;
+    -moz-flex-basis: 40%;
+    flex-basis: 40%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-40 {
+    width: 40%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-45 {
+    -webkit-flex-basis: 45%;
+    -moz-flex-basis: 45%;
+    flex-basis: 45%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-45 {
+    width: 45%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-50 {
+    -webkit-flex-basis: 50%;
+    -moz-flex-basis: 50%;
+    flex-basis: 50%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-50 {
+    width: 50%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-55 {
+    -webkit-flex-basis: 55%;
+    -moz-flex-basis: 55%;
+    flex-basis: 55%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-55 {
+    width: 55%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-60 {
+    -webkit-flex-basis: 60%;
+    -moz-flex-basis: 60%;
+    flex-basis: 60%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-60 {
+    width: 60%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-65 {
+    -webkit-flex-basis: 65%;
+    -moz-flex-basis: 65%;
+    flex-basis: 65%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-65 {
+    width: 65%;
+  }
+  /* line 164, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-66 {
+    -webkit-flex-basis: 66.66%;
+    -moz-flex-basis: 66.66%;
+    flex-basis: 66.66%;
+    min-height: 100%;
+  }
+  /* line 169, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-70 {
+    width: 66.66%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-70 {
+    -webkit-flex-basis: 70%;
+    -moz-flex-basis: 70%;
+    flex-basis: 70%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-70 {
+    width: 70%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-75 {
+    -webkit-flex-basis: 75%;
+    -moz-flex-basis: 75%;
+    flex-basis: 75%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-75 {
+    width: 75%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-80 {
+    -webkit-flex-basis: 80%;
+    -moz-flex-basis: 80%;
+    flex-basis: 80%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-80 {
+    width: 80%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-85 {
+    -webkit-flex-basis: 85%;
+    -moz-flex-basis: 85%;
+    flex-basis: 85%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-85 {
+    width: 85%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-90 {
+    -webkit-flex-basis: 90%;
+    -moz-flex-basis: 90%;
+    flex-basis: 90%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-90 {
+    width: 90%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-95 {
+    -webkit-flex-basis: 95%;
+    -moz-flex-basis: 95%;
+    flex-basis: 95%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-95 {
+    width: 95%;
+  }
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-100 {
+    -webkit-flex-basis: 100%;
+    -moz-flex-basis: 100%;
+    flex-basis: 100%;
+    min-height: 100%;
+  }
+  /* line 180, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .all-100 {
+    width: 100%;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-1 {
+    order: 1;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-1 .box {
+    background: #ff0055;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-2 {
+    order: 2;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-2 .box {
+    background: #ff8000;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-3 {
+    order: 3;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-3 .box {
+    background: #aaff00;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-4 {
+    order: 4;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-4 .box {
+    background: #00ff2b;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-5 {
+    order: 5;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-5 .box {
+    background: cyan;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-6 {
+    order: 6;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-6 .box {
+    background: #002bff;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-7 {
+    order: 7;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-7 .box {
+    background: #aa00ff;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-8 {
+    order: 8;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-8 .box {
+    background: #ff0080;
+    color: black;
+    text-align: center;
+  }
+  /* line 43, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-9 {
+    order: 9;
+  }
+  /* line 46, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .tiny-order-9 .box {
+    background: #ff5500;
+    color: black;
+    text-align: center;
+  }
+  /* line 33, /Users/pedrocorreia/dev/ink/src/sass/mixins/_flex-grid.scss */
+  html.flexbox .column-group .tiny-auto {
     -webkit-flex-basis: auto;
     -moz-flex-basis: auto;
     flex-basis: auto;
@@ -2844,24 +2844,14 @@ html.flexbox .column-group.vertical.reverse {
     font-family: '{"name":"large",{"min":"961px","max":"1200px"}}';
   }
 }
-@media screen and (max-width: 320px) {
-  /* line 422, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+@media screen and (min-width: 1201px) {
+  /* line 400, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
-    font-size: 0.7em;
+    font-size: 1.25em;
   }
-  /* line 423, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 401, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
-    font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
-  }
-}
-@media screen and (min-width: 321px) and (max-width: 600px) {
-  /* line 411, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  html {
-    font-size: 0.8em;
-  }
-  /* line 412, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  html:after {
-    font-family: '{"name":"small",{"min":"321px","max":"600px"}}';
+    font-family: '{"name":"extra-large",{"min":"1201px","max":""}}';
   }
 }
 @media screen and (min-width: 601px) and (max-width: 960px) {
@@ -2874,13 +2864,23 @@ html.flexbox .column-group.vertical.reverse {
     font-family: '{"name":"medium",{"min":"601px","max":"960px"}}';
   }
 }
-@media screen and (min-width: 1201px) {
-  /* line 400, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+@media screen and (min-width: 321px) and (max-width: 600px) {
+  /* line 411, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
-    font-size: 1.25em;
+    font-size: 0.8em;
   }
-  /* line 401, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 412, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
-    font-family: '{"name":"extra-large",{"min":"1201px","max":""}}';
+    font-family: '{"name":"small",{"min":"321px","max":"600px"}}';
+  }
+}
+@media screen and (max-width: 320px) {
+  /* line 422, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  html {
+    font-size: 0.7em;
+  }
+  /* line 423, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  html:after {
+    font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
   }
 }
