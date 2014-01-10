@@ -28,76 +28,9 @@ navigation:
  # GETTING STARTED
  - text: Getting started
    url: ./getting_started/
- # LAYOUT
- - text: Grid
-   url: ./grid/
- # NAVIGATION
- - text: Navigation
-   url: ./navigation/
- # TYPOGRAPHY
- - text: Typography
-   url: ./typography/
- # ICONS
- - text: Icons
-   url: ./icons/
- # FORMS
- - text: Forms
-   url: ./forms/
- # ALERTS
- - text: Alerts
-   url: ./alerts/
- # TABLES
- - text: Tables
-   url: ./tables/
  # JAVASCRIPT CORE
- - text: JS Core
+ - text: JS
    url: ./js/core/
- # JAVASCRIPT UI COMPONENTS
- - text: JS UI
-   url: ./js/ui/
-   submenu:
-   # BEHAVIOURS
-   - text: Behaviours
-     url: ./js/ui/behaviours/
-   # CAROUSEL
-   - text: Carousel
-     url: ./js/ui/carousel/
-   # DATE PICKER
-   - text: Date picker
-     url: ./js/ui/date-picker/
-   # DRAGGABLES
-   - text: Draggables
-     url: ./js/ui/draggables/
-   # DROPPABLES
-   - text: Droppables
-     url: ./js/ui/droppables/
-   # FORM VALIDATOR
-   - text: Form validator
-     url: ./js/ui/form-validator/
-   # IMAGE QUERY
-   - text: Image query
-     url: ./js/ui/image-query/
-   # MODAL WINDOW
-   - text: Modal
-     url: ./js/ui/modal/
-   # PROGRESS BAR
-   - text: Progress bar
-     url: ./js/ui/progress-bar/
-   # SORTABLE LIST
-   - text: Sortable list
-     url: ./js/ui/sortable-list/
-   # TABLE
-   - text: Table
-     url: ./js/ui/table/
-   # TABS
-   - text: Tabs
-     url: ./js/ui/tabs/
-   # TOOLTIPS
-   - text: Tooltips
-     url: ./js/ui/tooltips/
-   # TREE VIEW
-   - text: Tree view
-     url: ./js/ui/tree-view/
  # GLOSSARY
  - text: Glossary
    url: ./glossary/
