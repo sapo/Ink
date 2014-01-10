@@ -2232,34 +2232,44 @@
  * @param color $button-text-color
  * @param color $button-text-shadow-color
  */
-/* line 1, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+/* line 2, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+.show-all {
+  display: inherit;
+}
+
+/* line 7, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+.hide-all {
+  display: none;
+}
+
+/* line 11, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
 .push-left {
   float: left;
 }
 
-/* line 4, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+/* line 14, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
 .push-center {
   float: none;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 9, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+/* line 19, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
 .push-right {
   float: right;
 }
 
-/* line 12, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+/* line 22, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
 .align-left {
   text-align: left;
 }
 
-/* line 15, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+/* line 25, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
 .align-center {
   text-align: center;
 }
 
-/* line 18, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
+/* line 28, /Users/pedrocorreia/dev/ink/src/sass/mixins/_utils.scss */
 .align-right {
   text-align: right;
 }
@@ -3275,7 +3285,7 @@ table {
   content: "";
 }
 
-/* line 435, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 417, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .ink-grid {
   width: auto;
   max-width: 1440px;
@@ -3849,104 +3859,45 @@ table {
   padding-left: 0.4375em;
 }
 
-/* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-.for-large {
-  display: block !important;
+/* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+.hide-large {
+  display: none;
 }
 
-/* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-table.for-large {
+/* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+.show-large {
+  display: inherit;
+}
+
+/* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+table.show-large {
   display: table;
 }
 
-/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-tr.for-large {
+/* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+thead.show-large {
+  display: table-header-group;
+}
+
+/* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+tbody.show-large {
+  display: table-row-group;
+}
+
+/* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+tfoot.show-large {
+  display: table-footer-group;
+}
+
+/* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+tr.show-large {
   display: table-row;
 }
 
-/* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-th.for-large, td.for-large {
+/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+th.show-large,
+td.show-large {
   display: table-cell;
-}
-
-/* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-.for-extra-large {
-  display: none;
-}
-
-/* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-table.for-extra-large {
-  display: none;
-}
-
-/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-tr.for-extra-large {
-  display: none;
-}
-
-/* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-th.for-extra-large, td.for-extra-large {
-  display: none;
-}
-
-/* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-.for-medium {
-  display: none;
-}
-
-/* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-table.for-medium {
-  display: none;
-}
-
-/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-tr.for-medium {
-  display: none;
-}
-
-/* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-th.for-medium, td.for-medium {
-  display: none;
-}
-
-/* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-.for-small {
-  display: none;
-}
-
-/* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-table.for-small {
-  display: none;
-}
-
-/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-tr.for-small {
-  display: none;
-}
-
-/* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-th.for-small, td.for-small {
-  display: none;
-}
-
-/* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-.for-tiny {
-  display: none;
-}
-
-/* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-table.for-tiny {
-  display: none;
-}
-
-/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-tr.for-tiny {
-  display: none;
-}
-
-/* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-th.for-tiny, td.for-tiny {
-  display: none;
 }
 
 @media screen and (min-width: 1201px) {
@@ -4517,104 +4468,45 @@ th.for-tiny, td.for-tiny {
     padding-left: 0.5em;
   }
 
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-large {
+  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .hide-extra-large {
     display: none;
   }
 
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-large {
-    display: none;
+  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .show-extra-large {
+    display: inherit;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-large, td.for-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-extra-large {
-    display: block !important;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-extra-large {
+  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  table.show-extra-large {
     display: table;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-extra-large {
+  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  thead.show-extra-large {
+    display: table-header-group;
+  }
+
+  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tbody.show-extra-large {
+    display: table-row-group;
+  }
+
+  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tfoot.show-extra-large {
+    display: table-footer-group;
+  }
+
+  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tr.show-extra-large {
     display: table-row;
   }
 
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-extra-large, td.for-extra-large {
+  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  th.show-extra-large,
+  td.show-extra-large {
     display: table-cell;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-medium {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-medium {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-medium {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-medium, td.for-medium {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-small {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-small {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-small {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-small, td.for-small {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-tiny {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-tiny {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-tiny {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-tiny, td.for-tiny {
-    display: none;
   }
 }
 @media screen and (min-width: 601px) and (max-width: 960px) {
@@ -5185,104 +5077,45 @@ th.for-tiny, td.for-tiny {
     padding-left: 0.375em;
   }
 
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-large {
+  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .hide-medium {
     display: none;
   }
 
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-large {
-    display: none;
+  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .show-medium {
+    display: inherit;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-large, td.for-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-extra-large {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-extra-large {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-extra-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-extra-large, td.for-extra-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-medium {
-    display: block !important;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-medium {
+  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  table.show-medium {
     display: table;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-medium {
+  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  thead.show-medium {
+    display: table-header-group;
+  }
+
+  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tbody.show-medium {
+    display: table-row-group;
+  }
+
+  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tfoot.show-medium {
+    display: table-footer-group;
+  }
+
+  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tr.show-medium {
     display: table-row;
   }
 
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-medium, td.for-medium {
+  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  th.show-medium,
+  td.show-medium {
     display: table-cell;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-small {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-small {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-small {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-small, td.for-small {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-tiny {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-tiny {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-tiny {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-tiny, td.for-tiny {
-    display: none;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 600px) {
@@ -5853,104 +5686,45 @@ th.for-tiny, td.for-tiny {
     padding-left: 0.3125em;
   }
 
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-large {
+  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .hide-small {
     display: none;
   }
 
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-large {
-    display: none;
+  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .show-small {
+    display: inherit;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-large, td.for-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-extra-large {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-extra-large {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-extra-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-extra-large, td.for-extra-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-medium {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-medium {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-medium {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-medium, td.for-medium {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-small {
-    display: block !important;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-small {
+  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  table.show-small {
     display: table;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-small {
+  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  thead.show-small {
+    display: table-header-group;
+  }
+
+  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tbody.show-small {
+    display: table-row-group;
+  }
+
+  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tfoot.show-small {
+    display: table-footer-group;
+  }
+
+  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tr.show-small {
     display: table-row;
   }
 
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-small, td.for-small {
-    display: table-cell;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-tiny {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-tiny {
-    display: none;
-  }
-
   /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-tiny {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-tiny, td.for-tiny {
-    display: none;
+  th.show-small,
+  td.show-small {
+    display: table-cell;
   }
 }
 @media screen and (max-width: 320px) {
@@ -6267,152 +6041,93 @@ th.for-tiny, td.for-tiny {
     margin-bottom: 0;
   }
 
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-large {
+  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .hide-tiny {
     display: none;
   }
 
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-large {
-    display: none;
+  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .show-tiny {
+    display: inherit;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-large, td.for-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-extra-large {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-extra-large {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-extra-large {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-extra-large, td.for-extra-large {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-medium {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-medium {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-medium {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-medium, td.for-medium {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-small {
-    display: none;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-small {
-    display: none;
-  }
-
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-small {
-    display: none;
-  }
-
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-small, td.for-small {
-    display: none;
-  }
-
-  /* line 343, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  .for-tiny {
-    display: block !important;
-  }
-
-  /* line 353, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  table.for-tiny {
+  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  table.show-tiny {
     display: table;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  tr.for-tiny {
+  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  thead.show-tiny {
+    display: table-header-group;
+  }
+
+  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tbody.show-tiny {
+    display: table-row-group;
+  }
+
+  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tfoot.show-tiny {
+    display: table-footer-group;
+  }
+
+  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  tr.show-tiny {
     display: table-row;
   }
 
-  /* line 375, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
-  th.for-tiny, td.for-tiny {
+  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  th.show-tiny,
+  td.show-tiny {
     display: table-cell;
   }
 }
 @media screen and (min-width: 961px) and (max-width: 1200px) {
-  /* line 411, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 393, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 1em;
   }
-  /* line 412, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 394, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"large",{"min":"961px","max":"1200px"}}';
   }
 }
 @media screen and (min-width: 1201px) {
-  /* line 400, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 382, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 1.25em;
   }
-  /* line 401, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 383, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"extra-large",{"min":"1201px","max":""}}';
   }
 }
 @media screen and (min-width: 601px) and (max-width: 960px) {
-  /* line 411, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 393, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 0.9em;
   }
-  /* line 412, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 394, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"medium",{"min":"601px","max":"960px"}}';
   }
 }
 @media screen and (min-width: 321px) and (max-width: 600px) {
-  /* line 411, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 393, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 0.8em;
   }
-  /* line 412, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 394, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"small",{"min":"321px","max":"600px"}}';
   }
 }
 @media screen and (max-width: 320px) {
-  /* line 422, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 404, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 0.7em;
   }
-  /* line 423, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 405, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
   }
@@ -9369,38 +9084,39 @@ table .ink-table.bordered tr td:first-child {
 /* line 5, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
+  background: red;
   width: 300px;
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-/* line 14, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 15, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer {
   left: -300px;
 }
-/* line 16, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 17, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer.open {
   left: 0px;
 }
-/* line 20, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 21, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer {
   right: -300px;
 }
-/* line 22, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 23, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer.open {
   right: 0px;
 }
-/* line 26, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 27, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer {
   width: 100%;
 }
-/* line 28, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 29, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer.open-left {
   margin-left: 300px;
 }
-/* line 31, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 32, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer.open-right {
   margin-left: -300px;
 }
