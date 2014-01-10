@@ -1,6 +1,6 @@
 /* line 19, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .page-header {
-  margin: 3.6em 0 2em;
+  padding: 3em 0 2em;
   font-size: 1.25em;
 }
 /* line 24, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
@@ -41,69 +41,32 @@
   font-weight: 300;
   text-transform: uppercase;
 }
-/* line 54, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 53, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a:hover {
   color: white;
 }
-/* line 58, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 57, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.logoPlaceholder {
   font-size: 1.8em;
   font-weight: bold;
   padding: .4em 0;
   margin-right: .5em;
 }
-/* line 64, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 63, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.logoPlaceholder:hover {
   background: none;
 }
-/* line 69, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 68, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.fa-bars {
   font-size: 21px;
   padding: .46em 0;
+  margin-right: .8em;
 }
 /* line 73, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.fa-bars:hover {
   background: none;
 }
-/* line 79, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
-#topbar .ink-navigation ul li.search {
-  float: right;
-  position: relative;
-}
-/* line 84, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
-#topbar .ink-navigation ul li.search input[type=search] {
-  border: none;
-  max-width: 160px;
-  margin: .5em 0;
-  padding: .4em .6em .4em 1.9em;
-  font-size: 14px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-}
-/* line 95, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
-#topbar .ink-navigation ul li.search input[type=search]::-webkit-input-placeholder, #topbar .ink-navigation ul li.search input[type=search]:-moz-placeholder, #topbar .ink-navigation ul li.search input[type=search]::-moz-placeholder, #topbar .ink-navigation ul li.search input[type=search]:-ms-input-placeholder {
-  color: red;
-}
-/* line 98, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
-#topbar .ink-navigation ul li.search .fa-search {
-  font-size: 14px;
-  position: absolute;
-  top: 1.1em;
-  left: .6em;
-}
-/* line 105, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
-#topbar .ink-navigation ul li.search #search-dropdown {
-  width: 100%;
-}
-/* line 108, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
-#topbar .ink-navigation ul li.search #search-dropdown .dropdown-menu li {
-  float: none;
-  width: 100%;
-}
-/* line 117, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 80, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li.active a {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #090909), color-stop(100%, #3c3c3c));
   background-image: -webkit-linear-gradient(#090909, #3c3c3c 100%);
@@ -115,7 +78,7 @@
   box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px 0;
   color: white;
 }
-/* line 126, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 89, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul.black.flat {
   background: #222222;
   filter: none;
@@ -123,7 +86,7 @@
   -moz-box-shadow: none;
   box-shadow: none;
 }
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 99, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .border {
   height: .3em;
   background: url("../img/home_bkg.png") center 0px;
@@ -133,20 +96,180 @@
   background-image: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background-image: linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   margin: 0;
+  clear: both;
 }
 
-/* line 144, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 111, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li {
+  text-transform: uppercase;
+}
+/* line 115, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.heading {
+  font-weight: normal;
+  margin-top: 1em;
+  padding: 1em 0 .3em;
+  border-top: 1px solid #ddd;
+}
+/* line 122, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.search {
+  position: relative;
+}
+/* line 126, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
+  width: 100%;
+  border: 1px solid #DDD;
+  padding: .4em .6em .4em 1.9em;
+  font-size: 14px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 135, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.search .fa-search {
+  font-size: 14px;
+  position: absolute;
+  top: .7em;
+  left: .6em;
+}
+/* line 142, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown {
+  width: 100%;
+}
+/* line 145, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown .dropdown-menu li {
+  float: none;
+  width: 100%;
+}
+/* line 153, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li a {
+  font-size: .875em;
+  padding: .3em 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: none;
+}
+
+/* line 165, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .panel {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: #dddddd 0 2px 3px 0;
-  -moz-box-shadow: #dddddd 0 2px 3px 0;
-  box-shadow: #dddddd 0 2px 3px 0;
+  -webkit-box-shadow: #dddddd 0 1px 1px 0;
+  -moz-box-shadow: #dddddd 0 1px 1px 0;
+  box-shadow: #dddddd 0 1px 1px 0;
   border: 1px solid #BBB;
   background-color: #FFF;
   padding: 1em;
   margin-top: 1em;
+}
+
+/* line 176, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer,
+body.ink-drawer .right-drawer {
+  background: #222;
+}
+/* line 179, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer ul,
+body.ink-drawer .right-drawer ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+/* line 185, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li,
+body.ink-drawer .right-drawer li {
+  display: block;
+  margin: 0;
+}
+/* line 189, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.search,
+body.ink-drawer .right-drawer li.search {
+  position: relative;
+  margin: 15px;
+}
+/* line 194, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.search input[type=search],
+body.ink-drawer .right-drawer li.search input[type=search] {
+  width: 100%;
+  border: 1px solid #DDD;
+  padding: .4em .6em .4em 1.9em;
+  font-size: 14px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 203, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.search .fa-search,
+body.ink-drawer .right-drawer li.search .fa-search {
+  font-size: 14px;
+  position: absolute;
+  top: .7em;
+  left: .6em;
+}
+/* line 210, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.search #search-dropdown,
+body.ink-drawer .right-drawer li.search #search-dropdown {
+  width: 100%;
+}
+/* line 213, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.search #search-dropdown .dropdown-menu li,
+body.ink-drawer .right-drawer li.search #search-dropdown .dropdown-menu li {
+  float: none;
+  width: 100%;
+}
+/* line 221, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.heading,
+body.ink-drawer .right-drawer li.heading {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  color: #f0f0f0;
+  font-size: 1.125em;
+  padding: 15px;
+  margin-top: 1em;
+}
+/* line 229, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li.heading:first-child,
+body.ink-drawer .right-drawer li.heading:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+/* line 235, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li > a,
+body.ink-drawer .right-drawer li > a {
+  display: block;
+  padding: 6px 15px;
+  text-shadow: 0 1px 0 #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #bbb;
+  -webkit-transition-property: color, background;
+  -moz-transition-property: color, background;
+  -o-transition-property: color, background;
+  transition-property: color, background;
+  -webkit-transition-duration: 140ms;
+  -moz-transition-duration: 140ms;
+  -o-transition-duration: 140ms;
+  transition-duration: 140ms;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+/* line 246, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+body.ink-drawer .left-drawer li > a:hover,
+body.ink-drawer .right-drawer li > a:hover {
+  color: #FFF;
+  background: #333;
 }

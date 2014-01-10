@@ -145,33 +145,5 @@
 }
 
 .snap-drawer {
-    background: #222;
-
-    ul {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-    }
-
-    li {
-        display: block;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin: 0;
-        
-        & > a {
-            display: block;
-            padding: 15px;
-            text-shadow: 0 1px 0 #000;
-            text-decoration: none;
-            color: #bbb;
-            @include transition-property(color, background);
-            @include transition-duration(140ms);
-            @include transition-timing-function(ease-in);
-
-            &:hover {
-                color: #FFF;
-                background: #333;
-            }
-        }
-    }
+    
 }

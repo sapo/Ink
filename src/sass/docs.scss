@@ -18,7 +18,7 @@ $img-path                   : "../img/";
 
 .page-header {
     
-    margin: 3.6em 0 2em;
+    padding: 3em 0 2em;
     font-size: 1.25em;
 
     p {
@@ -50,7 +50,6 @@ $img-path                   : "../img/";
                     font-weight: 300;
                     text-transform: uppercase;
                     
-
                     &:hover {
                         color:$topbar-colorHover;
                     }
@@ -69,47 +68,11 @@ $img-path                   : "../img/";
                     &.fa-bars {
                         font-size: 21px;
                         padding: .46em 0;
+                        margin-right: .8em;
 
                         &:hover {
                             background: none;
                         }           
-                    }
-                }
-
-                &.search {
-                
-                    float: right;
-                    position: relative;
-                    
-                    input[type=search] {
-                        border:none;
-                        max-width: 160px;
-                        margin: .5em 0;
-                        padding: .4em .6em .4em 1.9em;
-                        font-size: 14px;
-                        @include border-radius(2px);
-
-                        &::-webkit-input-placeholder,
-                        &:-moz-placeholder, 
-                        &::-moz-placeholder,
-                        &:-ms-input-placeholder { color: red; }
-                    }
-
-                    .fa-search {
-                        font-size: 14px;
-                        position: absolute;
-                        top: 1.1em;
-                        left: .6em;
-                    }
-
-                    #search-dropdown {
-                        width: 100%;
-                        .dropdown-menu {                            
-                            li {
-                                float: none;
-                                width: 100%;
-                            }
-                        }
                     }
                 }
 
@@ -138,14 +101,153 @@ $img-path                   : "../img/";
         background: url("#{$img-path}home_bkg.png") center 0px;
         @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
         margin: 0;
+        clear: both;
+    }
+}
+
+.sidebar {
+    &.ink-navigation {
+        ul.menu.vertical {
+            li {
+
+                text-transform: uppercase;
+                
+                &.heading {
+                    font-weight: normal;
+                    margin-top: 1em;
+                    padding: 1em 0 .3em;
+                    border-top: 1px solid #ddd;
+                }
+
+                &.search {
+                
+                    position: relative;
+                    
+                    input[type=search] {
+                        width: 100%;
+                        border: 1px solid #DDD;
+                        padding: .4em .6em .4em 1.9em;
+                        font-size: 14px;
+                        @include border-radius(2px);
+                        @include box-sizing(border-box);
+                    }
+
+                    .fa-search {
+                        font-size: 14px;
+                        position: absolute;
+                        top: .7em;
+                        left: .6em;
+                    }
+
+                    #search-dropdown {
+                        width: 100%;
+                        .dropdown-menu {                            
+                            li {
+                                float: none;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                a {
+                    font-size: .875em;
+                    padding: .3em 0;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    border-bottom: none;
+                }
+            }
+        }
     }
 }
 
 .panel {
     @include border-radius($border-radius);
-    @include box-shadow(#DDD 0 2px 3px 0);
+    @include box-shadow(#DDD 0 1px 1px 0);
     border:1px solid #BBB;
     background-color: #FFF;
     padding: 1em;
     margin-top:1em;
+}
+
+body.ink-drawer {
+    .left-drawer,
+    .right-drawer {
+        background: #222;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    li {
+        display: block;
+        margin: 0;
+
+        &.search {
+                
+            position: relative;
+            margin: 15px;
+            
+            input[type=search] {
+                width: 100%;
+                border: 1px solid #DDD;
+                padding: .4em .6em .4em 1.9em;
+                font-size: 14px;
+                @include border-radius(2px);
+                @include box-sizing(border-box);
+            }
+
+            .fa-search {
+                font-size: 14px;
+                position: absolute;
+                top: .7em;
+                left: .6em;
+            }
+
+            #search-dropdown {
+                width: 100%;
+                .dropdown-menu {                            
+                    li {
+                        float: none;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        &.heading {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            color: #f0f0f0;
+            font-size: 1.125em;
+            padding: 15px;
+            margin-top: 1em;
+
+            &:first-child {
+                border-top: none;
+                margin-top: 0;
+            }
+        }
+        
+        & > a {
+            display: block;
+            padding: 6px 15px;
+            text-shadow: 0 1px 0 #000;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #bbb;
+            @include transition-property(color, background);
+            @include transition-duration(140ms);
+            @include transition-timing-function(ease-in);
+
+            &:hover {
+                color: #FFF;
+                background: #333;
+            }
+        }
+    }
+    }
 }
