@@ -9081,6 +9081,10 @@ table .ink-table.bordered tr td:first-child {
   border-left: none;
 }
 
+/* line 2, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer {
+  overflow-x: hidden;
+}
 /* line 5, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
