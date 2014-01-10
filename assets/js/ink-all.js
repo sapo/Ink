@@ -16007,7 +16007,8 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             drawerWidth: '300',
             duration: '200',
             easing: 'cubic-bezier(0.500, 0.000, 0.500, 1.000)',
-            mode: 'over'
+            mode: 'push',
+            sides: 'both',
           }, 
           arguments[0] || {}
         );
@@ -16023,15 +16024,25 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       },
 
       _addCssTransitions: function(){
-        var content = Ink.s(this._options.parentSelector + ' ' + this._options.contentDrawer);
-        var left = Ink.s(this._options.parentSelector + ' ' + this._options.leftDrawer);
-        var right = Ink.s(this._options.parentSelector + ' ' + this._options.rightDrawer);   
-
+        var content = Ink.ss(this._options.parentSelector + ' ' + this._options.contentDrawer);
         var transition = 'transition: all ' + this._options.duration + 'ms ' + this._options.easing;
+        
+        if(this._options.sides == 'both') {
+          var left = Ink.s(this._options.parentSelector + ' ' + this._options.leftDrawer);
+          var right = Ink.s(this._options.parentSelector + ' ' + this._options.rightDrawer);  
+          Css.setStyle(left, transition);
+          Css.setStyle(right, transition);
+        } else if (this._options.sides == 'left') {
+          var left = Ink.s(this._options.parentSelector + ' ' + this._options.leftDrawer);
+          Css.setStyle(left, transition);
+        } else if (this._options.sides == 'right') {
+          var right = Ink.s(this._options.parentSelector + ' ' + this._options.rightDrawer);  
+          Css.setStyle(right, transition);          
+        }
 
-        Css.setStyle(content, transition);
-        Css.setStyle(left, transition);
-        Css.setStyle(right, transition);
+        for(var i=0; i<content.length; i++){
+          Css.setStyle(content[i], transition);
+        }
       }, 
 
       _onClick: function(ev){                
@@ -16058,12 +16069,19 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       },
       
       _addEvents: function(){
-        Event.on(document.body, 'click', this._options.rightTrigger + ',' + this._options.leftTrigger + ',' + this._options.contentDrawer, this._handlers.click);
+        if(this._options.sides == 'both') {          
+          Event.on(document.body, 'click', this._options.rightTrigger + ',' + this._options.leftTrigger + ',' + this._options.contentDrawer, this._handlers.click);
+        } else if (this._options.sides == 'left') {
+          Event.on(document.body, 'click', this._options.leftTrigger + ',' + this._options.contentDrawer, this._handlers.click);
+        } else if (this._options.sides == 'right') {
+          Event.on(document.body, 'click', this._options.rightTrigger + ',' + this._options.contentDrawer, this._handlers.click);
+        }
+
       },
 
       openDrawer: function(direction) {
         
-        var content = Ink.s(this._options.contentDrawer);
+        var content = Ink.ss(this._options.contentDrawer);
         this._isOpen = true;
         this._direction = direction;
 
@@ -16074,7 +16092,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         }
 
         if(this._options.mode == 'push') {
-            Css.addClassName(content,'open-' + direction);
+            for (var i=0; i<content.length; i++){
+              Css.addClassName(content[i],'open-' + direction);
+            }
             Css.addClassName(open,'open');
         } else if (this._options.mode == 'over') {
           Css.addClassName(open,'open');
@@ -16085,7 +16105,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       closeDrawer: function(direction) {
         
-        var content = Ink.s(this._options.contentDrawer);
+        var content = Ink.ss(this._options.contentDrawer);
         this._isOpen = false;
         this._direction = direction;
 
@@ -16096,7 +16116,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         }
 
         if(this._options.mode == 'push') {
-            Css.addClassName(content,'open-' + direction);
+          for (var i=0; i<content.length; i++){
+              Css.removeClassName(content[i],'open-' + direction);
+            }
             Css.removeClassName(close,'open');
         } else if (this._options.mode == 'over'){
           Css.removeClassName(close,'open');

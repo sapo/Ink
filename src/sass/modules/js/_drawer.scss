@@ -1,6 +1,6 @@
 body {
     &.ink-drawer {
-
+        overflow-x: hidden;
         .left-drawer,
         .right-drawer {
           width: 300px; 
