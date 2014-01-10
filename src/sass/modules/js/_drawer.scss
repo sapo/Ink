@@ -3,8 +3,9 @@ body {
 
         .left-drawer,
         .right-drawer {
+          background: red; 
           width: 300px; 
-          position: fixed;
+          position: absolute;
           top: 0;
           height: 100%;
           overflow-y: auto;

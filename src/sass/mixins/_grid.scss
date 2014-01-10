@@ -335,52 +335,34 @@
     }
 }
 
-@mixin generate-visibility-classes ($class-name,$breakpoints) {
 
-    @each $breakpoint in $breakpoints {
-        $loop-class-name: nth($breakpoint,1);
-        
-        .for-#{$loop-class-name} {
-            @if $loop-class-name == $class-name {
-                display: block !important;
-            }
-            @else {
-                display: none;
-            }
-        }
-        
-        table {
-            &.for-#{$loop-class-name} {
-                @if $loop-class-name == $class-name {
-                    display: table;
-                }
-                @else {
-                    display: none;
-                }
-            }
-        }
+@mixin generate-visibility-classes ($breakpoint) {
 
-        tr {
-            &.for-#{$loop-class-name} {
-                @if $loop-class-name == $class-name {
-                    display: table-row;
-                }
-                @else {
-                    display: none;
-                }
-            }
-        }
-
-        th, td {
-            &.for-#{$loop-class-name} {
-                @if $loop-class-name == $class-name {
-                    display: table-cell;
-                }
-                @else {
-                    display: none;
-                }
-            }
-        }
+    .hide-#{$breakpoint} {
+        display: none;
+    }
+    .show-#{$breakpoint} {
+        display: inherit;
+    }
+    
+    table.show-#{$breakpoint} {
+        display: table;
+    }
+    thead.show-#{$breakpoint} {
+        display: table-header-group;
+    }
+    tbody.show-#{$breakpoint} {
+        display: table-row-group;
+    }
+    tfoot.show-#{$breakpoint} {
+        display: table-footer-group;
+    }
+    tr.show-#{$breakpoint} {
+        display: table-row;
+    }
+    th.show-#{$breakpoint},
+    td.show-#{$breakpoint} {
+        display: table-cell;
     }
 }
 
@@ -453,7 +435,7 @@
                 @include generate-grid-divisions($class-name);
                 @include generate-column-group-container($gutter-width,$class-name);
                 @include generate-grid-helper-classes($class-name,$gutter-width);
-                @include generate-visibility-classes($class-name,$breakpoints);
+                @include generate-visibility-classes($class-name);
             }
         }
 
@@ -463,7 +445,7 @@
                 @include generate-grid-divisions($class-name);
                 @include generate-column-group-container($gutter-width,$class-name);
                 @include generate-grid-helper-classes($class-name,$gutter-width);
-                @include generate-visibility-classes($class-name,$breakpoints);
+                @include generate-visibility-classes($class-name);
             }
         }
 
@@ -472,7 +454,7 @@
                 @include generate-grid-container($grid-class-name, $gutter-width);
                 @include generate-grid-divisions($class-name);
                 @include generate-column-group-container($gutter-width,$class-name);
-                @include generate-visibility-classes($class-name,$breakpoints);
+                @include generate-visibility-classes($class-name);
             }
         }
 
@@ -481,7 +463,7 @@
               @include generate-grid-divisions($class-name);
               @include generate-column-group-container($gutter-width,$class-name);
               @include generate-grid-helper-classes($class-name,$gutter-width);
-              @include generate-visibility-classes($class-name,$breakpoints);
+              @include generate-visibility-classes($class-name);
         }
     }
 }
