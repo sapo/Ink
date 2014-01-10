@@ -111,6 +111,14 @@ module.exports = function(grunt) {
           spawn: false,
           // interrupt: true,
         }
+      },
+      js: {
+        files: ['src/js/**/*.js'],
+        tasks: ['js'],
+        options: {
+          spawn: false,
+          // interrupt: true,
+        }
       }
     },
 
@@ -138,8 +146,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('js', ['concat','uglify']);
-  grunt.registerTask('css', ['clean','compass','cssmin']);
+  grunt.registerTask('js', ['clean:js','concat','uglify']);
+  grunt.registerTask('css', ['clean:css','compass','cssmin']);
   grunt.registerTask('update', ['shell:src']);
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['update','css','js']);

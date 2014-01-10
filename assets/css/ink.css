@@ -9369,39 +9369,38 @@ table .ink-table.bordered tr td:first-child {
 /* line 5, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
-  background: red;
   width: 300px;
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-/* line 15, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 14, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer {
   left: -300px;
 }
-/* line 17, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 16, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer.open {
   left: 0px;
 }
-/* line 21, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 20, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer {
   right: -300px;
 }
-/* line 23, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 22, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer.open {
   right: 0px;
 }
-/* line 27, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 26, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer {
   width: 100%;
 }
-/* line 29, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 28, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer.open-left {
   margin-left: 300px;
 }
-/* line 32, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 31, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer.open-right {
   margin-left: -300px;
 }

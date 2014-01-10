@@ -28,9 +28,7 @@ $img-path                   : "../img/";
 
 #topbar {   
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     background: $topbar-bgColor;
     z-index: $layer-100;
     -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.

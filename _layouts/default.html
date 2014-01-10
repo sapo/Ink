@@ -2,9 +2,12 @@
 
 {% include main-navigation.html %}
 
-<div class="left-drawer"></div>
+{% include left-drawer.html %}
+
 <div class="content-drawer">
   {{ content }}
 </div>
-<div class="right-drawer"></div>
+
+{% include right-drawer.html %}
+
 {% include document-bottom.html %}
