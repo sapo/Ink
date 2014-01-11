@@ -16019,13 +16019,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         this._handlers = {
             click:   Ink.bindEvent(this._onClick, this)
         };
-        this._addCssTransitions();
+        // this._addCssTransitions();
         this._addEvents();
       },
 
       _addCssTransitions: function(){
         var content = Ink.ss(this._options.parentSelector + ' ' + this._options.contentDrawer);
-        var transition = 'transition: all ' + this._options.duration + 'ms ' + this._options.easing;
+        var transition = 'transition: transform ' + this._options.duration + 'ms ' + this._options.easing;
         
         if(this._options.sides == 'both') {
           var left = Ink.s(this._options.parentSelector + ' ' + this._options.leftDrawer);

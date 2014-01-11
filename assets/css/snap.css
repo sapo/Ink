@@ -1,4 +1,4 @@
-/* line 3, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 3, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-content {
   position: absolute;
   top: 0;
@@ -17,7 +17,7 @@
   transform: translate3d(0, 0, 0);
 }
 
-/* line 21, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 21, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-drawers {
   position: absolute;
   top: 0;
@@ -28,7 +28,7 @@
   height: auto;
 }
 
-/* line 31, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 31, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-drawer {
   position: absolute;
   top: 0;
@@ -46,32 +46,32 @@
   transition: width 0.3s ease;
 }
 
-/* line 48, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 48, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-drawer-left {
   left: 0;
   z-index: 1;
 }
 
-/* line 53, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 53, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-drawer-right {
   right: 0;
   z-index: 1;
 }
 
-/* line 59, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 59, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snapjs-left .snap-drawer-right,
 .snapjs-right .snap-drawer-left {
   display: none;
 }
 
-/* line 64, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 64, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snapjs-expand-left .snap-drawer-left,
 .snapjs-expand-right .snap-drawer-right {
   width: 100%;
 }
 
 /* Show "Left" drawer for the "Right" drawer in the demo */
-/* line 68, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 68, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snapjs-right .snap-drawer-left {
   display: block;
   right: 0;
@@ -79,13 +79,13 @@
 }
 
 /* Hide the actual "Right" drawer in the demo */
-/* line 75, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 75, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snapjs-right .snap-drawer-right {
   display: none;
 }
 
 /* Show the red "No Drag" box in the demo */
-/* line 81, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 81, /Users/pedro/dev/ink/src/sass/snap.scss */
 #no-drag,
 #do-drag {
   position: absolute;
@@ -101,13 +101,13 @@
   line-height: 100px;
 }
 
-/* line 94, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 94, /Users/pedro/dev/ink/src/sass/snap.scss */
 #do-drag {
   background: green;
 }
 
 /* Show the translucent white "Toggle" boxes in the demo */
-/* line 99, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 99, /Users/pedro/dev/ink/src/sass/snap.scss */
 .toggler {
   width: 80%;
   background: rgba(255, 255, 255, 0.5);
@@ -120,7 +120,7 @@
 }
 
 /* Styles for fading out the drawer content in the "Expanding" demo */
-/* line 111, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 111, /Users/pedro/dev/ink/src/sass/snap.scss */
 .drawer-inner {
   -webkit-transition: opacity 0.3s ease;
   -moz-transition: opacity 0.3s ease;
@@ -129,20 +129,20 @@
   transition: opacity 0.3s ease;
 }
 
-/* line 120, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 120, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snapjs-expand-left .drawer-inner,
 .snapjs-expand-right .drawer-inner {
   opacity: 0;
 }
 
 /* Styles for the "Settings" demo */
-/* line 125, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 125, /Users/pedro/dev/ink/src/sass/snap.scss */
 .opt {
   padding: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 130, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 130, /Users/pedro/dev/ink/src/sass/snap.scss */
 .opt p {
   font-weight: bold;
   margin-top: 0;
@@ -152,12 +152,12 @@
 }
 
 /* Default demo styles */
-/* line 139, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 139, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-content {
   background: #f7f7f7;
 }
 
-/* line 143, /Users/pedrocorreia/dev/ink/src/sass/snap.scss */
+/* line 143, /Users/pedro/dev/ink/src/sass/snap.scss */
 .snap-drawers {
   background: #222;
 }

@@ -1,4 +1,8 @@
 body {
+
+    $speed: 300ms;
+    $drawer-width: 300px;
+
     &.ink-drawer {
         overflow-x: hidden;
         .left-drawer,
@@ -11,25 +15,33 @@ body {
           overflow-x: hidden;
         }
 
+        .left-drawer,
+        .right-drawer,
+        .content-drawer {
+            @include transition-property(translate3d);
+            @include transition-duration($speed);
+            @include transition-timing-function(cubic-bezier(0.860, 0.000, 0.070, 1.000));
+        }
+        
         .left-drawer {
             left: -300px;
             &.open {
-                left: 0px;
+                @include translate3d(300px,0,0);
             }
         }
         .right-drawer {
             right: -300px;
             &.open {
-                right: 0px;
+                @include translate3d(-300px,0,0);
             }
         }
         .content-drawer {
             width: 100%;
             &.open-left {
-                margin-left: 300px;
+                @include translate3d(300px,0,0);
             }
             &.open-right {
-                margin-left: -300px;
+                @include translate3d(-300px,0,0);
             }
         }
     }
