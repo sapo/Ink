@@ -185,6 +185,7 @@ body.ink-drawer {
     li {
         display: block;
         margin: 0;
+        font-weight: 300;
 
         &.search {
                 
@@ -225,6 +226,7 @@ body.ink-drawer {
             font-size: 1.125em;
             padding: 15px;
             margin-top: 1em;
+            font-weight: 400;
 
             &:first-child {
                 border-top: none;

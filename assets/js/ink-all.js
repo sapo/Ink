@@ -16005,7 +16005,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             contentDrawer: '.content-drawer',
             closeOnContentClick: true,
             drawerWidth: '300',
-            duration: '200',
+            duration: '300',
             easing: 'cubic-bezier(0.500, 0.000, 0.500, 1.000)',
             mode: 'push',
             sides: 'both',
@@ -16019,31 +16019,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         this._handlers = {
             click:   Ink.bindEvent(this._onClick, this)
         };
-        // this._addCssTransitions();
         this._addEvents();
+        this._delay = 10;
       },
-
-      _addCssTransitions: function(){
-        var content = Ink.ss(this._options.parentSelector + ' ' + this._options.contentDrawer);
-        var transition = 'transition: transform ' + this._options.duration + 'ms ' + this._options.easing;
-        
-        if(this._options.sides == 'both') {
-          var left = Ink.s(this._options.parentSelector + ' ' + this._options.leftDrawer);
-          var right = Ink.s(this._options.parentSelector + ' ' + this._options.rightDrawer);  
-          Css.setStyle(left, transition);
-          Css.setStyle(right, transition);
-        } else if (this._options.sides == 'left') {
-          var left = Ink.s(this._options.parentSelector + ' ' + this._options.leftDrawer);
-          Css.setStyle(left, transition);
-        } else if (this._options.sides == 'right') {
-          var right = Ink.s(this._options.parentSelector + ' ' + this._options.rightDrawer);  
-          Css.setStyle(right, transition);          
-        }
-
-        for(var i=0; i<content.length; i++){
-          Css.setStyle(content[i], transition);
-        }
-      }, 
 
       _onClick: function(ev){                
         
@@ -16091,13 +16069,21 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
           var open = Ink.s(this._options.rightDrawer);
         }
 
-        if(this._options.mode == 'push') {
-            for (var i=0; i<content.length; i++){
-              Css.addClassName(content[i],'open-' + direction);
-            }
-            Css.addClassName(open,'open');
+        if(this._options.mode == 'push') {            
+            Css.addClassName(open,'show');
+            setTimeout(function(){
+                for (var i=0; i<content.length; i++){
+                  Css.addClassName(content[i],'open-' + direction);
+                  content[i].style.overflowY = 'auto';
+                  content[i].style.overflowY = '';
+                }                
+                Css.addClassName(open,'open');
+            },this._delay);
         } else if (this._options.mode == 'over') {
-          Css.addClassName(open,'open');
+          Css.addClassName(open,'show');
+          setTimeout(function(){                
+              Css.addClassName(open,'open');
+          },this._delay);
         }
 
 
@@ -16116,12 +16102,18 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         }
 
         if(this._options.mode == 'push') {
+          Css.removeClassName(close,'open');
           for (var i=0; i<content.length; i++){
-              Css.removeClassName(content[i],'open-' + direction);
-            }
-            Css.removeClassName(close,'open');
+            Css.removeClassName(content[i],'open-' + direction);
+          }
+          setTimeout(function(){
+            Css.removeClassName(close,'show');            
+          },this._options.duration);
         } else if (this._options.mode == 'over'){
           Css.removeClassName(close,'open');
+          setTimeout(function(){                
+            Css.removeClassName(close,'show');              
+          },this._options.duration);
         }
 
       },

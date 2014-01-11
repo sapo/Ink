@@ -4,7 +4,7 @@ body {
     $drawer-width: 300px;
 
     &.ink-drawer {
-        overflow-x: hidden;
+        max-width: 100%;
         .left-drawer,
         .right-drawer {
           width: 300px; 
@@ -13,6 +13,10 @@ body {
           height: 100%;
           overflow-y: auto;
           overflow-x: hidden;
+          display: none;
+          &.show {
+            display: block;
+          }
         }
 
         .left-drawer,

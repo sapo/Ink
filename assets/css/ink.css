@@ -9084,8 +9084,9 @@ table .ink-table.bordered tr td:first-child {
 /* line 6, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer {
   overflow-x: hidden;
+  max-width: 100%;
 }
-/* line 9, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 10, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
   width: 300px;
@@ -9094,8 +9095,14 @@ body.ink-drawer .right-drawer {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  display: none;
 }
-/* line 20, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 18, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer .left-drawer.show,
+body.ink-drawer .right-drawer.show {
+  display: block;
+}
+/* line 25, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer,
 body.ink-drawer .content-drawer {
@@ -9112,11 +9119,11 @@ body.ink-drawer .content-drawer {
   -o-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
   transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
 }
-/* line 26, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 31, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer {
   left: -300px;
 }
-/* line 28, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 33, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer.open {
   -webkit-transform: translate3d(300px, 0, 0);
   -moz-transform: translate3d(300px, 0, 0);
@@ -9124,11 +9131,11 @@ body.ink-drawer .left-drawer.open {
   -o-transform: translate3d(300px, 0, 0);
   transform: translate3d(300px, 0, 0);
 }
-/* line 32, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 37, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer {
   right: -300px;
 }
-/* line 34, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 39, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer.open {
   -webkit-transform: translate3d(-300px, 0, 0);
   -moz-transform: translate3d(-300px, 0, 0);
@@ -9136,11 +9143,11 @@ body.ink-drawer .right-drawer.open {
   -o-transform: translate3d(-300px, 0, 0);
   transform: translate3d(-300px, 0, 0);
 }
-/* line 38, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 43, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer {
   width: 100%;
 }
-/* line 40, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 45, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer.open-left {
   -webkit-transform: translate3d(300px, 0, 0);
   -moz-transform: translate3d(300px, 0, 0);
@@ -9148,7 +9155,7 @@ body.ink-drawer .content-drawer.open-left {
   -o-transform: translate3d(300px, 0, 0);
   transform: translate3d(300px, 0, 0);
 }
-/* line 43, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 48, /Users/pedro/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer.open-right {
   -webkit-transform: translate3d(-300px, 0, 0);
   -moz-transform: translate3d(-300px, 0, 0);

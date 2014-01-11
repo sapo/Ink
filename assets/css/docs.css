@@ -187,14 +187,15 @@ body.ink-drawer .left-drawer li,
 body.ink-drawer .right-drawer li {
   display: block;
   margin: 0;
+  font-weight: 300;
 }
-/* line 189, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 190, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search,
 body.ink-drawer .right-drawer li.search {
   position: relative;
   margin: 15px;
 }
-/* line 194, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 195, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   width: 100%;
@@ -210,7 +211,7 @@ body.ink-drawer .right-drawer li.search input[type=search] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 203, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 204, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search .fa-search,
 body.ink-drawer .right-drawer li.search .fa-search {
   font-size: 14px;
@@ -218,18 +219,18 @@ body.ink-drawer .right-drawer li.search .fa-search {
   top: .7em;
   left: .6em;
 }
-/* line 210, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 211, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown,
 body.ink-drawer .right-drawer li.search #search-dropdown {
   width: 100%;
 }
-/* line 213, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 214, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown .dropdown-menu li,
 body.ink-drawer .right-drawer li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
-/* line 221, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 222, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading,
 body.ink-drawer .right-drawer li.heading {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -238,14 +239,15 @@ body.ink-drawer .right-drawer li.heading {
   font-size: 1.125em;
   padding: 15px;
   margin-top: 1em;
+  font-weight: 400;
 }
-/* line 229, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 231, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading:first-child,
 body.ink-drawer .right-drawer li.heading:first-child {
   border-top: none;
   margin-top: 0;
 }
-/* line 235, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 237, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a,
 body.ink-drawer .right-drawer li > a {
   display: block;
@@ -267,7 +269,7 @@ body.ink-drawer .right-drawer li > a {
   -o-transition-timing-function: ease-in;
   transition-timing-function: ease-in;
 }
-/* line 246, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 248, /Users/pedro/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a:hover,
 body.ink-drawer .right-drawer li > a:hover {
   color: #FFF;
