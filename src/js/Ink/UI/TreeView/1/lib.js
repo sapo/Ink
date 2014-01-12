@@ -16,8 +16,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
      * @param {String} [options.child='ul'] Selector to define which elements are represented as childs.
      * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
-     * @param {String} [options.openClass='fa-minus-circle'] Classes to be added to the icon when a parent is open.
-     * @param {String} [options.closedClass='fa-plus-circle'] Classes to be added to the icon when a parent is closed.
+     * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
+     * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
      * @param {String} [options.hideClass='hide-all'] Class to toggle visibility of the children.
      * @param {String} [options.iconTag='i'] The name of icon tag. The component tries to find a tag with that name as a direct child of the node. If it doesn't find it, it creates it.
      * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
@@ -69,8 +69,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'node':   ['String', 'li'],
             'child':  ['String','ul'],
             'parentClass': ['String','parent'],
-            'openClass': ['String','fa fa-minus-circle'],
-            'closedClass': ['String','fa fa-plus-circle'],
+            'openClass': ['String','icon icon-minus-circle'],
+            'closedClass': ['String','icon icon-plus-circle'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]

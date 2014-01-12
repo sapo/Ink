@@ -193,15 +193,21 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             Event.stop(ev);
 
             var target = Event.findElement(ev, 'A');
-            if(target.nodeName.toLowerCase() !== 'a') {
+            if(!target || target.nodeName.toLowerCase() !== 'a') {
                 return;
             }
 
-            if( this._options.preventUrlChange.toString() !== 'true'){
-                window.location.hash = target.getAttribute('href').substr(target.getAttribute('href').indexOf('#'));
+            var href = target.getAttribute('href').substr(target.getAttribute('href').indexOf('#'));
+
+            if (!href || Ink.i(href.replace(/^#/, '')) === null) {
+                return;
             }
 
-            if(target === this._activeMenuLink){
+            if (this._options.preventUrlChange.toString() !== 'true') {
+                window.location.hash = href;
+            }
+
+            if (target === this._activeMenuLink) {
                 return;
             }
             this.changeTab(target);

@@ -23,18 +23,20 @@
         <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="../../../../../css/ink.css">
+        <link rel="stylesheet" href="../../../../../../dist/css/ink.css">
         
         <!--[if IE 7 ]>
             <link rel="stylesheet" href="../css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
 
         <!-- Javascripts -->
-        <script type="text/javascript" src="../../../../../js/holder.js"></script>
-        <script type="text/javascript" src="../../../../../js/ink.js"></script>
-        <script type="text/javascript" src="../../../../../js/ink-ui.js"></script>
-        <script type="text/javascript" src="../../../../../js/autoload.js"></script>
-        <script type="text/javascript" src="../../../../../js/html5shiv.js"></script>
+        <script src="../../../../Ink/1/lib.js"></script>
+        <script>
+            Ink.setPath('Ink', '../../../../Ink/');
+        </script>
+        <script type="text/javascript" src="../../../../../../dist/js/holder.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/autoload.js"></script>
+        <script type="text/javascript" src="../../../../../../dist/js/html5shiv.js"></script>
         
         
     </head>
@@ -50,7 +52,10 @@
         </style>
 
         <div class="ink-grid">
-            <h1>Swipe sample</h1>
+            <h1>Ink.UI.Swipe sample</h1>
+            <p>You will need a touch-enabled device.</p>
+
+            <hr>
 
             <p>Swipe vertically:</p>
             <div class="swipe swipe-vertical push-center vspace large-33 medium-50 small-100"></div>
@@ -94,12 +99,6 @@
                     },
                     onEnd: function (o) {
                         o.element.style.position = 'static'
-                    }
-                })
-
-                new Swipe('.swipe-paint', {
-                    storeGesture: true,
-                    callback: function (elm, o) {
                     }
                 })
             });

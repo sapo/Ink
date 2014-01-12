@@ -13,43 +13,9 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // handle 3rd party dependencies
-        bower: {
-            install: {
-                options: {
-                    targetDir: 'tmp',
-                    layout: 'byType',
-                    install: true,
-                    verbose: false,
-                    cleanTargetDir: false,
-                    bowerOptions: {
-                        forceLatest: true
-                    }
-                }
-            }
-        },
-        // 
-        copy: {
-            fontAwesome: {
-                files: [{
-                    cwd: 'tmp/font-awesome/less/',
-                    src: '*.less',
-                    dest: 'src/less/modules/icons/',
-                    expand: true
-                }]
-            },
-            modernizr: {
-                files: [{
-                    cwd: 'tmp/modernizr',
-                    src: 'modernizr.js',
-                    dest: '<%= ink.folders.js.dist %>',
-                    expand: true
-                }]
-            }
-        },
-
         ink: {
             folders: {
+                bower: './bower_components/',
                 js: {
                     srcBase: './src/js/',
                     src: './src/js/Ink/',
@@ -62,6 +28,61 @@ module.exports = function (grunt) {
                 }
             }
         },
+        // handle 3rd party dependencies
+        bower: {
+            install: {
+                options: {
+                    copy: false,
+                    targetDir: '<%= ink.folders.bower %>',
+                    layout: 'byType',
+                    install: true,
+                    verbose: false,
+                    cleanTargetDir: false,
+                    bowerOptions: {
+                        forceLatest: true
+                    }
+                }
+            }
+        },
+        //
+        copy: {
+            fontAwesome: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>font-awesome/less/',
+                    src: [
+                        '*.less',
+                        '!variables.less',
+                    ],
+                    dest: '<%= ink.folders.css.src %>modules/icons/',
+                    expand: true
+                }]
+            },
+            animate: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>animate.css',
+                    src: ['animate.css'],
+                    dest: '<%= ink.folders.css.src %>modules/animations/',
+                    expand: true,
+                }]
+            },
+            modernizr: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>modernizr',
+                    src: 'modernizr.js',
+                    dest: '<%= ink.folders.js.dist %>',
+                    expand: true
+                }]
+            },
+            html5shiv: {
+                files: [{
+                    cwd: '<%= ink.folders.bower %>html5shiv/dist',
+                    src: '*',
+                    dest: '<%= ink.folders.js.dist %>',
+                    expand: true,
+                }]
+            }
+        },
+
 
         // builds the javascript bundles
         concat: {
@@ -136,10 +157,10 @@ module.exports = function (grunt) {
                         var version = split[1];
 
                         if (version === '1') {
-                            // and it it is discard the version number               
+                            // and it it is discard the version number
                             return dest + 'ink.' + modName + '.js';
                         } else {
-                            // or replace the slash by an underscore and version number and prepend to dest file name 
+                            // or replace the slash by an underscore and version number and prepend to dest file name
                             return dest + 'ink.' + modName + '-' + version + '.js';
                         }
                     }
@@ -150,13 +171,19 @@ module.exports = function (grunt) {
 
         clean: {
             js: {
-                src: ['<%= ink.folders.js.dist %>/ink*.js']
+                src: [
+                    '<%= ink.folders.js.dist %>/ink*.js',
+                    '<%= ink.folders.js.dist %>/ink*.js.map',
+                ]
             },
             css: {
                 src: ['<%= ink.folders.css.dist %>/ink*.css']
             },
             fontAwesome: {
-                src: ['<%= ink.folders.css.src %>/less/modules/icons/*.less']
+                src: [
+                    '<%= ink.folders.css.src %>modules/icons/*',
+                    '!<%= ink.folders.css.src %>modules/icons/variables.less'
+                ]
             },
             tmp: {
                 src: ['tmp']
@@ -177,7 +204,8 @@ module.exports = function (grunt) {
                 options: {
                     port: 8000,
                     debug: true,
-                    base: '.'
+                    base: '.',
+                    keepalive: true
                 }
             }
         },
@@ -307,16 +335,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-plato');
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify', 'clean:tmp']);
     grunt.registerTask('test', ['connect', 'qunit']);
