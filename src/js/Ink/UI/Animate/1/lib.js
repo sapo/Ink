@@ -1,4 +1,4 @@
-Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], function (Common, Css) {
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function (Common, InkEvent, Css) {
     'use strict';
 
     var animationPrefix = (function (el) {
@@ -15,7 +15,31 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         webkitAnimation: 'webkitAnimationEnd'
     }[animationPrefix];
 
-    var Animate = {
+    function Animate(elOrSelector, options) {
+        this._element = Common.elOrSelector(elOrSelector);
+        this._options = Common.options({
+            trigger: ['Element', null],
+            duration: ['Object', 'slow'],  // Actually a string with a duration name, or a number of ms
+            animation: ['String', 'fadeOut'],
+            onEnd: ['Function', function () {}]
+        }, options || {}, this._element);
+
+        if (!isNaN(parseInt(this._options.duration, 10))) {
+            this._options.duration = parseInt(this._options.duration, 10);
+        }
+
+        if (this._options.trigger) {
+            InkEvent.observe(this._options.trigger, 'click', Ink.bind(function () {
+                this.animate();
+            }, this));  // later
+        }
+    }
+
+    Animate.prototype.animate = function () {
+        Animate.animate(this._element, this._options.animation, this._options);
+    }
+
+    Ink.extendObj(Animate, {
         /**
          * Prefix for CSS animation-related properties in this browser.
          *
@@ -93,7 +117,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
 
             element.addEventListener(animationEndEventName, onAnimationEnd, false);
         }
-    };
+    });
 
     return Animate;
 });
