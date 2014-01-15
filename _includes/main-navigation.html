@@ -9,15 +9,8 @@
             <ul class="menu horizontal flat black push-right">
                 {% for link in site.navigation %}
                 {% assign clean_url = page.url|remove:'index.html' %}
-                <li {% if clean_url == link.url %}class="active"{% else %}class="hide-tiny hide-small push-right"{% endif %}>            
-                    <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}{% if link.submenu %}&nbsp;<i class="icon-caret-down"></i>{% endif %}</a>
-                    {% if link.submenu %}
-                    <ul class="submenu">
-                    {% for link in link.submenu %}
-                        <li><a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a></li>
-                    {% endfor %}
-                    </ul>
-                    {% endif %}
+                <li class="{% if clean_url == link.url %}active {% else %}hide-tiny hide-small push-right{% endif %}">
+                    <a href="{{ page.base_path }}{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
                 </li>
                 {% endfor %}
             </ul>
