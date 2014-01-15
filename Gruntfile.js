@@ -185,9 +185,6 @@ module.exports = function (grunt) {
                     '!<%= ink.folders.css.src %>modules/icons/variables.less'
                 ]
             },
-            tmp: {
-                src: ['tmp']
-            }
         },
 
         // [TODO] check if this works okay
@@ -337,7 +334,7 @@ module.exports = function (grunt) {
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-    grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify', 'clean:tmp']);
+    grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
     grunt.registerTask('test', ['connect', 'qunit']);
     grunt.registerTask('custom_bundle', 'Create your custom bundle from a json file', function (fileName) {
         if (arguments.length === 0) {
