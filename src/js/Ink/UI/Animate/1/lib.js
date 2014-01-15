@@ -19,8 +19,9 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
         this._element = Common.elOrSelector(elOrSelector);
         this._options = Common.options({
             trigger: ['Element', null],
-            duration: ['Object', 'slow'],  // Actually a string with a duration name, or a number of ms
+            duration: ['String', 'slow'],  // Actually a string with a duration name, or a number of ms
             animation: ['String', 'fadeOut'],
+            revert: ['Boolean', true],
             onEnd: ['Function', function () {}]
         }, options || {}, this._element);
 
@@ -32,6 +33,8 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
             InkEvent.observe(this._options.trigger, 'click', Ink.bind(function () {
                 this.animate();
             }, this));  // later
+        } else {
+            this.animate();
         }
     }
 
@@ -108,7 +111,9 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
                 if (event.target !== element) { return; }
                 if (event.animationName !== animation) { return; }
                 if (options.onEnd) { options.onEnd(event); }
-                Css.removeClassName(element, [animation]);
+                if (options.revert) {
+                    Css.removeClassName(element, animation);
+                }
                 if (typeof options.duration === 'string') {
                     Css.removeClassName(element, options.duration);
                 }

@@ -2,6 +2,8 @@
 Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'Ink.UI.Common_1'], function (InkElement, Css, Animate, Common) {
     'use strict';
 
+    QUnit.testTimeout = 4000;
+
     module('Ink.UI.Animate_1 basic usage as class');
 
     if (Animate.animationSupported) {
@@ -180,20 +182,20 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'Ink.UI.Animate_1', 'I
         var el = InkElement.create('div');
         document.body.appendChild(el);
 
-        Animate.animate(el, 'fadeIn', { duration: 100, onEnd: first });
-        Animate.animate(el, 'fadeOut', { duration: 200, onEnd: second });
+        Animate.animate(el, 'fadeIn', { duration: 100, onEnd: first, revert: true});
+        Animate.animate(el, 'shake', { duration: 200, onEnd: second, revert: true});
 
         var firstCall = true;
 
-        el.addEventListener(Animate.animationEndEventName, function() {
-            if(firstCall){
-                firstCall = false;
-            } else {
-                ok(first.called && second.called, 'both onEnd callbacks were called when the animations ended');
-            }
+        setTimeout(function () {
+            if (first.called && second.called) {
+                equal(first.lastCall.args[0].animationName, 'fadeIn');
+                equal(second.lastCall.args[0].animationName, 'shake');
+            } else { ok(false, 'not both callbacks were called as expected'); }
             start();
-        });
-        stop(2);
+        }, 800)
+
+        stop(1);
     });
 });
 
