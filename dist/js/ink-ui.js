@@ -1,4 +1,10 @@
-Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], function (Common, Css) {
+/**
+ * @module Ink.UI.Animate_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function (Common, InkEvent, Css) {
     'use strict';
 
     var animationPrefix = (function (el) {
@@ -15,7 +21,62 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         webkitAnimation: 'webkitAnimationEnd'
     }[animationPrefix];
 
-    var Animate = {
+    /**
+     * @class Ink.UI.Animate_1
+     * @constructor
+     *
+     * @param element {DOMElement} animated element
+     * @param options {Object} options object
+     * @param options.animation {String} animation name
+     * @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+     * @param [options.removeClass=true] {Boolean} Whether to remove the `animation` class when finished animating
+     * @param [options.onEnd=null] {Function} callback for animation end
+     *
+     * @example
+     *
+     *     <button id="animate-me" class="ink-button">Animate me!</button>
+     *     <span class="ink-label info ink-animate"
+     *         id="animated"
+     *         data-trigger="#animate-me"
+     *         data-animation="fadeOut"
+     *         data-removeClass="false">Hi!</span>    
+     *
+     *     <script type="text/javascript">
+     *         // Note: this step is not necessary if you are using autoload.js
+     *         Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
+     *             new Animate('#animated');
+     *         });
+     *     </script>
+     *
+     **/
+    function Animate(elOrSelector, options) {
+        this._element = Common.elOrSelector(elOrSelector);
+        this._options = Common.options({
+            trigger: ['Element', null],
+            duration: ['String', 'slow'],  // Actually a string with a duration name, or a number of ms
+            animation: ['String'],
+            removeClass: ['Boolean', true],
+            onEnd: ['Function', function () {}]
+        }, options || {}, this._element);
+
+        if (!isNaN(parseInt(this._options.duration, 10))) {
+            this._options.duration = parseInt(this._options.duration, 10);
+        }
+
+        if (this._options.trigger) {
+            InkEvent.observe(this._options.trigger, 'click', Ink.bind(function () {
+                this.animate();
+            }, this));  // later
+        } else {
+            this.animate();
+        }
+    }
+
+    Animate.prototype.animate = function () {
+        Animate.animate(this._element, this._options.animation, this._options);
+    };
+
+    Ink.extendObj(Animate, {
         /**
          * Prefix for CSS animation-related properties in this browser.
          *
@@ -32,7 +93,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         animationSupported: !!animationPrefix,
 
         /**
-         * The prefix for animation{start,iteration,end} events
+         * The correct event for the animationend event in this browser, with the correct prefix
          *
          * @property {String} animationEndEventName
          **/
@@ -41,11 +102,23 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         /**
          * Animate a div using one of the animate.css classes
          *
+         * **Note: This is a utility method inside the `Animate` class, which you can access through `Animate.animate()`. Do not mix these up.**
+         *
+         * @example
+         *
+         *      Animate.animate(myDiv, 'shake', {
+         *          onEnd: function () {
+         *              alert('Finished shaking!');
+         *          }
+         *      });
+         *
+         * @static
          * @method animate
          * @param element {DOMElement} animated element
-         * @param animation {String} animation string
+         * @param animation {String} animation name
          * @param [options] {Object}
          *     @param [options.onEnd=null] {Function} callback for animation end
+         *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
          *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
          **/
         animate: function (element, animation, options) {
@@ -84,7 +157,9 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
                 if (event.target !== element) { return; }
                 if (event.animationName !== animation) { return; }
                 if (options.onEnd) { options.onEnd(event); }
-                Css.removeClassName(element, [animation]);
+                if (options.removeClass) {
+                    Css.removeClassName(element, animation);
+                }
                 if (typeof options.duration === 'string') {
                     Css.removeClassName(element, options.duration);
                 }
@@ -93,7 +168,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
 
             element.addEventListener(animationEndEventName, onAnimationEnd, false);
         }
-    };
+    });
 
     return Animate;
 });
@@ -1276,7 +1351,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {String}    [options.instance]        unique id for the datepicker
      *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
      *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' de '
+     *      @param {String}    [options.ofText=' of ']   text to display between month and year. defaults to ' de '
      *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
      *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
      *      @param {Function}  [options.onSetDate]       callback to execute when set date
@@ -1306,7 +1381,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *     </script>
      */
     var DatePicker = function(selector, options) {
-        this._dataField = selector &&
+        this._element = selector &&
             Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
 
         this._options = Common.options('Ink.UI.DatePicker_1', {
@@ -1326,7 +1401,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             format:          ['String', 'yyyy-mm-dd'],
             instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
             nextLinkText:    ['String', '»'],
-            ofText:          ['String', '&nbsp;de&nbsp;'],
+            ofText:          ['String', ' of '],
             onFocus:         ['Boolean', true],
             onMonthSelected: ['Function', null],
             onSetDate:       ['Function', null],
@@ -1371,7 +1446,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 5:'Friday',
                 6:'Saturday'
             }]
-        }, options || {}, this._dataField);
+        }, options || {}, this._element);
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -1384,8 +1459,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         if(this._options.startDate) {
             this.setDate( this._options.startDate );
-        } else if (this._dataField && this._dataField.value) {
-            this.setDate( this._dataField.value );
+        } else if (this._element && this._element.value) {
+            this.setDate( this._element.value );
         } else {
             var today = new Date();
             this._day   = today.getDate( );
@@ -1433,7 +1508,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass;
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
 
             this._renderSuperTopBar();
 
@@ -1474,7 +1549,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._picker = document.createElement('a');
                     this._picker.href = '#open_cal';
                     this._picker.innerHTML = 'open';
-                    this._dataField.parentNode.appendChild(this._picker);
+                    this._element.parentNode.appendChild(this._picker);
                     this._picker.className = 'ink-datepicker-picker-field';
                 } else {
                     this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
@@ -1490,8 +1565,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthChanger.className = 'ink-calendar-link-month';
             this._monthChanger.innerHTML = this._options.month[this._month + 1];
 
-            this._deText = document.createElement('span');
-            this._deText.innerHTML = this._options._deText;
+            this._ofText = document.createElement('span');
+            this._ofText.innerHTML = this._options.ofText;
 
             this._yearChanger = document.createElement('a');
             this._yearChanger.href = '#yearchanger';
@@ -1499,19 +1574,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._yearChanger.innerHTML = this._year;
             this._monthDescContainer.innerHTML = '';
             this._monthDescContainer.appendChild(this._monthChanger);
-            this._monthDescContainer.appendChild(this._deText);
+            this._monthDescContainer.appendChild(this._ofText);
             this._monthDescContainer.appendChild(this._yearChanger);
 
             if (!this._options.inline) {
                 this._addOpenCloseEvents();
             } else {
-                this._openInline();
+                this.show();
             }
             this._addDateChangeHandlersToInputs();
         },
 
         _addDateChangeHandlersToInputs: function () {
-            var fields = this._dataField;
+            var fields = this._element;
             if (this._options.displayInSelect) {
                 fields = [
                     this._options.dayField,
@@ -1528,38 +1603,27 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             },this));
         },
 
+        /**
+         * Shows the calendar
+         *
+         * @method show
+         **/
+        show: function () {
+            this._updateDate();
+            this._renderMonth();
+            this._containerObject.style.display = 'block';
+        },
+
         _addOpenCloseEvents: function () {
-            var opener = this._picker || this._dataField;
+            var opener = this._picker || this._element;
 
             Event.observe(opener, 'click', Ink.bindEvent(function(e){
                 Event.stop(e);
-                this._containerObject = InkElement.clonePosition(this._containerObject, opener);
-                var top;
-                var left;
-
-                var rect = opener.getBoundingClientRect();
-                if ( this._options.position === 'bottom' ) {
-                    top = rect.bottom;
-                    left = rect.left;
-                } else {
-                    top = rect.top;
-                    left = rect.right;
-                }
-                top += InkElement.scrollHeight();
-                left += InkElement.scrollWidth();
-
-                this._containerObject.style.top = top + 'px';
-                this._containerObject.style.left = left + 'px';
-                this._updateDate();
-                this._renderMonth();
-                this._containerObject.style.display = 'block';
+                this.show();
             },this));
 
             if (this._options.autoOpen) {
-                this._containerObject = InkElement.clonePosition(this._containerObject, opener);
-                this._updateDate();
-                this._renderMonth();
-                this._containerObject.style.display = 'block';
+                this.show();
             }
 
             if(!this._options.displayInSelect){
@@ -1581,7 +1645,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         this._options.monthField,
                         this._options.yearField,
                         this._picker,
-                        this._dataField
+                        this._element
                     ];
 
                     for (var i = 0, len = cannotBe.length; i < len; i++) {
@@ -1593,12 +1657,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._hide(true);
                 },this));
             }
-        },
-
-        _openInline: function () {
-            this._updateDate();
-            this._renderMonth();
-            this._containerObject.style.display = 'block';
         },
 
         /**
@@ -1636,16 +1694,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            var appendTarget = document.body;
+            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
-                appendTarget =
-                    Ink.i(this._options.containerElement) ||  // maybe id; small backwards compatibility thing
+                var appendTarget =
+                    Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
-            } else if (this._options.inline) {
-                InkElement.insertAfter(this._containerObject, this._dataField);
-                return;
+                appendTarget.appendChild(this._containerObject);
             }
-            appendTarget.appendChild(this._containerObject);
+            InkElement.wrap(this._element, this._wrapper);
+            InkElement.insertAfter(this._containerObject, this._element);
         },
 
         /**
@@ -1777,7 +1834,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._options.monthField.selectedIndex = 0;
                 this._options.dayField.selectedIndex = 0;
             } else {
-                this._dataField.value = '';
+                this._element.value = '';
             }
         },
 
@@ -1963,8 +2020,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDate: function(){
             var dataParsed;
-            if(!this._options.displayInSelect && this._dataField.value){
-                dataParsed = this._parseDate(this._dataField.value);
+            if(!this._options.displayInSelect && this._element.value){
+                dataParsed = this._parseDate(this._element.value);
             } else if (this._options.displayInSelect) {
                 dataParsed = {
                     _year: this._options.yearField[this._options.yearField.selectedIndex].value,
@@ -1994,7 +2051,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDescription: function(){
             this._monthChanger.innerHTML = this._options.month[ this._month + 1 ];
-            this._deText.innerHTML = this._options.ofText;
+            this._ofText.innerHTML = this._options.ofText;
             this._yearChanger.innerHTML = this._year;
         },
 
@@ -2227,7 +2284,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._day = dt._day;
 
             if(!this._options.displayInSelect){
-                this._dataField.value = this._writeDateInFormat();
+                this._element.value = this._writeDateInFormat();
             } else {
                 this._options.dayField.value   = this._day;
                 this._options.monthField.value = this._month + 1;
@@ -2587,7 +2644,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * This calls the rendering of the selected month.
+         * This calls the rendering of the selected month. (Deprecated: use show() instead)
          *
          * @method showMonth
          * @public
@@ -2607,6 +2664,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             return ((Css.getStyle(header.parentNode,'display') !== 'none') &&
                     (Css.getStyle(header.parentNode.parentNode,'display') !== 'none') );
+        },
+
+        /**
+         * Destroys this datepicker, removing it from the page.
+         *
+         * @public
+         **/
+        destroy: function () {
+            InkElement.unwrap(this._element);
+            InkElement.remove(this._wrapper);
+            InkElement.remove(this._containerObject);
+            Common.unregisterInstance.call(this);
         }
     };
 
