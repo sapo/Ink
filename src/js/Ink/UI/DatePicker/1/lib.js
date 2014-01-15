@@ -56,7 +56,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {String}    [options.instance]        unique id for the datepicker
      *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
      *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {String}    [options.ofText=' de ']   text to display between month and year. defaults to ' de '
+     *      @param {String}    [options.ofText=' of ']   text to display between month and year. defaults to ' de '
      *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
      *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
      *      @param {Function}  [options.onSetDate]       callback to execute when set date
@@ -106,7 +106,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             format:          ['String', 'yyyy-mm-dd'],
             instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
             nextLinkText:    ['String', '»'],
-            ofText:          ['String', '&nbsp;de&nbsp;'],
+            ofText:          ['String', ' of '],
             onFocus:         ['Boolean', true],
             onMonthSelected: ['Function', null],
             onSetDate:       ['Function', null],
@@ -199,7 +199,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._render();
             this._listenToContainerObjectEvents();
 
-            Common.registerInstance(this, this._wrapper, 'datePicker');
+            Common.registerInstance(this, this._containerObject, 'datePicker');
         },
 
         /**
@@ -213,7 +213,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass;
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
 
             this._renderSuperTopBar();
 
@@ -270,8 +270,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthChanger.className = 'ink-calendar-link-month';
             this._monthChanger.innerHTML = this._options.month[this._month + 1];
 
-            this._deText = document.createElement('span');
-            this._deText.innerHTML = this._options._deText;
+            this._ofText = document.createElement('span');
+            this._ofText.innerHTML = this._options.ofText;
 
             this._yearChanger = document.createElement('a');
             this._yearChanger.href = '#yearchanger';
@@ -279,7 +279,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._yearChanger.innerHTML = this._year;
             this._monthDescContainer.innerHTML = '';
             this._monthDescContainer.appendChild(this._monthChanger);
-            this._monthDescContainer.appendChild(this._deText);
+            this._monthDescContainer.appendChild(this._ofText);
             this._monthDescContainer.appendChild(this._yearChanger);
 
             if (!this._options.inline) {
@@ -316,7 +316,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         show: function () {
             this._updateDate();
             this._renderMonth();
-            this._wrapper.style.display = 'block';
+            this._containerObject.style.display = 'block';
         },
 
         _addOpenCloseEvents: function () {
@@ -399,20 +399,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            this._wrapper = InkElement.create('div', {
-                className: 'ink-datepicker-wrapper',
-                style: 'position: absolute'  // [todo] remove when in css
-            });
-            this._containerObject.style.position = 'relative';  // [todo] remove when in css
+            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
                 var appendTarget =
                     Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
+            InkElement.wrap(this._element, this._wrapper);
             InkElement.insertAfter(this._containerObject, this._element);
-
-            InkElement.wrap(this._containerObject, this._wrapper);
         },
 
         /**
@@ -557,7 +552,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
             if (blur === false || (blur && this._options.shy)) {
-                this._wrapper.style.display = 'none';
+                this._containerObject.style.display = 'none';
             }
         },
 
@@ -761,7 +756,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDescription: function(){
             this._monthChanger.innerHTML = this._options.month[ this._month + 1 ];
-            this._deText.innerHTML = this._options.ofText;
+            this._ofText.innerHTML = this._options.ofText;
             this._yearChanger.innerHTML = this._year;
         },
 
