@@ -1,14 +1,14 @@
-/* line 19, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 19, I:/work/ink.site/src/sass/docs.scss */
 .page-header {
   padding: 3em 0 2em;
   font-size: 1.25em;
 }
-/* line 24, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 24, I:/work/ink.site/src/sass/docs.scss */
 .page-header p {
-  margin-top: .5em;
+  margin-top: 0;
 }
 
-/* line 29, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 29, I:/work/ink.site/src/sass/docs.scss */
 #topbar {
   position: fixed;
   width: 100%;
@@ -16,11 +16,11 @@
   z-index: 100;
   -webkit-transform: scale3d(1, 1, 1);
 }
-/* line 40, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 40, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li {
   font-size: 14px;
 }
-/* line 42, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 42, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li a {
   *height: auto;
   color: #bbbbbb;
@@ -41,32 +41,32 @@
   font-weight: 300;
   text-transform: uppercase;
 }
-/* line 53, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 53, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li a:hover {
   color: white;
 }
-/* line 57, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 57, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.logoPlaceholder {
   font-size: 1.8em;
   font-weight: bold;
   padding: .4em 0;
   margin-right: .5em;
 }
-/* line 63, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 63, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.logoPlaceholder:hover {
   background: none;
 }
-/* line 68, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 68, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.fa-bars {
   font-size: 21px;
   padding: .46em 0;
   margin-right: .8em;
 }
-/* line 73, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 73, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.fa-bars:hover {
   background: none;
 }
-/* line 80, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 80, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul li.active a {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #090909), color-stop(100%, #3c3c3c));
   background-image: -webkit-linear-gradient(#090909, #3c3c3c 100%);
@@ -78,7 +78,7 @@
   box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px 0;
   color: white;
 }
-/* line 89, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 89, I:/work/ink.site/src/sass/docs.scss */
 #topbar .ink-navigation ul.black.flat {
   background: #222222;
   filter: none;
@@ -86,7 +86,7 @@
   -moz-box-shadow: none;
   box-shadow: none;
 }
-/* line 99, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 99, I:/work/ink.site/src/sass/docs.scss */
 #topbar .border {
   height: .3em;
   background: url("../img/home_bkg.png") center 0px;
@@ -99,22 +99,22 @@
   clear: both;
 }
 
-/* line 111, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 111, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li {
   text-transform: uppercase;
 }
-/* line 115, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 115, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   font-weight: normal;
   margin-top: 1em;
   padding: 1em 0 .3em;
   border-top: 1px solid #ddd;
 }
-/* line 122, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 122, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;
 }
-/* line 126, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 126, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   width: 100%;
   border: 1px solid #DDD;
@@ -129,23 +129,23 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 135, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 135, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search .fa-search {
   font-size: 14px;
   position: absolute;
   top: .7em;
   left: .6em;
 }
-/* line 142, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 142, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown {
   width: 100%;
 }
-/* line 145, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 145, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
-/* line 153, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 153, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li a {
   font-size: .875em;
   padding: .3em 0;
@@ -154,7 +154,7 @@
   border-bottom: none;
 }
 
-/* line 165, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 165, I:/work/ink.site/src/sass/docs.scss */
 .panel {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -170,32 +170,32 @@
   margin-top: 1em;
 }
 
-/* line 176, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 176, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
   background: #222;
 }
-/* line 179, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 179, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer ul,
 body.ink-drawer .right-drawer ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
-/* line 185, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 185, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li,
 body.ink-drawer .right-drawer li {
   display: block;
   margin: 0;
   font-weight: 300;
 }
-/* line 190, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 190, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search,
 body.ink-drawer .right-drawer li.search {
   position: relative;
   margin: 15px;
 }
-/* line 195, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 195, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   width: 100%;
@@ -211,7 +211,7 @@ body.ink-drawer .right-drawer li.search input[type=search] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 204, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 204, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search .fa-search,
 body.ink-drawer .right-drawer li.search .fa-search {
   font-size: 14px;
@@ -219,18 +219,18 @@ body.ink-drawer .right-drawer li.search .fa-search {
   top: .7em;
   left: .6em;
 }
-/* line 211, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 211, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown,
 body.ink-drawer .right-drawer li.search #search-dropdown {
   width: 100%;
 }
-/* line 214, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 214, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown .dropdown-menu li,
 body.ink-drawer .right-drawer li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
-/* line 222, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 222, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading,
 body.ink-drawer .right-drawer li.heading {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -241,13 +241,13 @@ body.ink-drawer .right-drawer li.heading {
   margin-top: 1em;
   font-weight: 400;
 }
-/* line 231, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 231, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading:first-child,
 body.ink-drawer .right-drawer li.heading:first-child {
   border-top: none;
   margin-top: 0;
 }
-/* line 237, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 237, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a,
 body.ink-drawer .right-drawer li > a {
   display: block;
@@ -269,7 +269,7 @@ body.ink-drawer .right-drawer li > a {
   -o-transition-timing-function: ease-in;
   transition-timing-function: ease-in;
 }
-/* line 248, /Users/pedro/dev/ink/src/sass/docs.scss */
+/* line 248, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a:hover,
 body.ink-drawer .right-drawer li > a:hover {
   color: #FFF;
