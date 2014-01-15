@@ -74,7 +74,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 
     Animate.prototype.animate = function () {
         Animate.animate(this._element, this._options.animation, this._options);
-    }
+    };
 
     Ink.extendObj(Animate, {
         /**
