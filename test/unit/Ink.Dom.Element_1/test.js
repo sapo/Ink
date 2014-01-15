@@ -181,6 +181,32 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
         deepEqual(toArray(wrap.children), [child2]);
     });
 
+    test('unwrap()', function () {
+        var theParent = InkElement.create('div');
+        var wrapper = InkElement.create('div', { insertBottom: theParent });
+        var child = InkElement.create('div', { insertBottom: wrapper });
+        
+        InkElement.unwrap(child);
+
+        strictEqual(child.parentNode, theParent)
+        strictEqual(child.nextSibling, wrapper);
+        strictEqual(wrapper.firstChild, null)
+    });
+
+    test('unwrap(elem, selector)', function () {
+        var theParent = InkElement.create('div');
+        var wrapper = InkElement.create('div', { insertBottom: theParent, className: 'outer-wrapper'});
+        var anotherWrapper = InkElement.create('div', { insertBottom: wrapper, className: 'another-wrapper'});
+        var child = InkElement.create('div', { insertBottom: wrapper });
+
+        InkElement.unwrap(child, '.outer-wrapper');
+
+        strictEqual(child.parentNode, theParent);
+        strictEqual(child.nextSibling, wrapper);
+        strictEqual(wrapper.firstChild, anotherWrapper);
+        strictEqual(anotherWrapper.firstChild, null);
+    });
+
     test('replace()', function () {
         var elm = InkElement.create('div');
         elm.className = 'elm';
