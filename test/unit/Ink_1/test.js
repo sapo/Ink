@@ -63,6 +63,11 @@ test('getPath, setPath', function () {
     equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/lib.js');
 });
 
+test('setPath supports using no trailing slash', function () {
+    Ink.setPath('Abc.Def', '/baz');
+    equal(Ink.getPath('Abc.Def_1'), '/baz/1/lib.js');
+});
+
 test('loadScript', function () {
     stop();
     expect(2);
