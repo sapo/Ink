@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1'], function (DatePicker, InkEvent, InkElement, InkArray) {
+Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1'], function (DatePicker, Css, InkEvent, InkElement, InkArray) {
 
 var body = document.body;
 var dtElm;
@@ -6,14 +6,15 @@ var dt;
 
 module('main', {
     setup: function () {
-        dtElm = InkElement.create('input', { type: 'text', insertBottom: body });
+        testWrapper = InkElement.create('div', { insertBottom: body })
+        dtElm = InkElement.create('input', { type: 'text', insertBottom: testWrapper });
         dt = new DatePicker(dtElm, {
             startDate: '2000-10-10',
             format: 'dd/mm/yyyy'
         });
     },
     teardown: function () {
-        InkElement.remove(dtElm);
+        InkElement.remove(testWrapper);
     }
 });
 
@@ -88,7 +89,6 @@ test('validDayFn', function () {
     dt.setDate('2000-01-01');
     dt.showMonth();
 
-    debugger
     var findEnabled = function (button) {
         return (/ink-calendar-off/.test(button.className));
     };
@@ -210,7 +210,7 @@ test('daysInMonth', function () {
 });
 
 test('updateDate', function () {
-    dt._dataField.value = '11/11/2012';
+    dt._element.value = '11/11/2012';
     dt._updateDate();
     equal(dt._year, 2012);
     equal(dt._month, 10);
@@ -223,6 +223,19 @@ test('set', function () {
     equal(dt.getFullYear(), 2012);
     equal(dt.getMonth(), 9);
     equal(dt.getDate(), 10);
+});
+
+test('show', function () {
+    equal(Css.getStyle(dt._containerObject, 'display'), 'none');
+    dt.show();
+    equal(Css.getStyle(dt._containerObject, 'display'), 'block');
+});
+
+test('destroy', function () {
+    ok(testWrapper.children.length > 1 || testWrapper.firstChild !== dtElm, 'sanity check. if this fails, review the test because you\'ve changed the DOM structure of this component');
+    dt.destroy();
+    equal(testWrapper.children.length, 1, 'destroyed remaining instances');
+    strictEqual(testWrapper.firstChild, dtElm, 'the only element there is our original input');
 });
 
 });

@@ -1349,7 +1349,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * This calls the rendering of the selected month.
+         * This calls the rendering of the selected month. (Deprecated: use show() instead)
          *
          * @method showMonth
          * @public
@@ -1369,6 +1369,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             return ((Css.getStyle(header.parentNode,'display') !== 'none') &&
                     (Css.getStyle(header.parentNode.parentNode,'display') !== 'none') );
+        },
+
+        /**
+         * Destroys this datepicker, removing it from the page.
+         *
+         * @public
+         **/
+        destroy: function () {
+            InkElement.unwrap(this._element);
+            InkElement.remove(this._wrapper);
+            InkElement.remove(this._containerObject);
+            Common.unregisterInstance.call(this);
         }
     };
 
