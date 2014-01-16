@@ -189,6 +189,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *  keyboardSupport
      */
 
+    function limitRange(n, min, max) {
+        return Math.min(max, Math.max(min, n));
+    }
+
     var requestAnimationFrame = window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -202,6 +206,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Object} [options]
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
+     *  @param {Number} [options.initialSlide=null] If set to a number, set the corresponding slide immediately.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
      *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
@@ -219,6 +224,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         var opts = this._options = Ink.extendObj({
             axis:           'x',
+            initialSlide:    null,
             hideLast:       false,
             center:         false,
             keyboardSupport:false,
@@ -228,6 +234,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             // TODO exponential swipe
             // TODO specify break point for next slide
         }, options || {}, InkElement.data(element));
+
+        opts.initialSlide = parseInt(opts.initialSlide);
 
         this._isY = (opts.axis === 'y');
 
@@ -260,16 +268,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numPages,
+                    size:     this._numSlides,
                     onChange: this._handlers.paginationChange
                 });
             } else {
                 // assumes instantiated pagination
                 pagination = this._pagination = opts.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
+                this._pagination.setSize(this._numSlides);
+                this._pagination.setCurrent(opts.initialSlide || 0);
             }
+        } else {
+            this._currentSlide = opts.initialSlide || 0;
         }
 
         if (opts.swipe) {
@@ -303,12 +313,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var numItems = this._liEls.length;
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
-            this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
+            this._itemsPerSlide = Math.floor( this._ctnLength / this._elLength  );
 
-            var numPages = Math.ceil( numItems / this._itemsPerPage );
-            var numPagesChanged = this._numPages !== numPages;
-            this._numPages = numPages;
-            this._deltaLength = this._itemsPerPage * this._elLength;
+            var numSlides = Math.ceil( numItems / this._itemsPerSlide );
+            var numSlidesChanged = this._numSlides !== numSlides;
+            this._numSlides = numSlides;
+            this._deltaLength = this._itemsPerSlide * this._elLength;
             
             if (this._isY) {
                 this._element.style.width = size(this._liEls[0], true) + 'px';
@@ -321,15 +331,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._updateHider();
             this._IE7();
             
-            if (this._pagination && numPagesChanged) {
-                this._pagination.setSize(this._numPages);
+            if (this._pagination && numSlidesChanged) {
+                this._pagination.setSize(this._numSlides);
                 this._pagination.setCurrent(0);
             }
         },
 
         _center: function() {
             if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
+            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerSlide) ) / 2 );
 
             var pad;
             if (this._isY) {
@@ -344,7 +354,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if ((!this._pagination) || this._pagination.getCurrent() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerSlide) );
                 if (this._options.center) {
                     gap /= 2;
                 }
@@ -362,7 +372,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          */
         _IE7: function () {
             if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
-                // var numPages = this._numPages;
+                // var numSlides = this._numSlides;
                 var slides = Ink.ss('li.slide', this._ulEl);
                 var stl = function (prop, val) {slides[i].style[prop] = val; };
                 for (var i = 0, len = slides.length; i < len; i++) {
@@ -451,26 +461,23 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _onTouchEnd: function (event) {
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
-                var snapToNext = 0.1;  // move 10% of the way to change page
+                var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
-                var curPage = this._pagination.getCurrent();
-                var estimatedPage = progress / this._elLength / this._itemsPerPage;
+                var curSlide = this._pagination.getCurrent();
+                var estimatedSlide = progress / this._elLength / this._itemsPerSlide;
 
-                if (Math.round(estimatedPage) === curPage) {
-                    var diff = estimatedPage - curPage;
+                if (Math.round(estimatedSlide) === curSlide) {
+                    var diff = estimatedSlide - curSlide;
                     if (Math.abs(diff) > snapToNext) {
                         diff = diff > 0 ? 1 : -1;
-                        curPage += diff;
+                        curSlide += diff;
                     }
                 } else {
-                    curPage = Math.round(estimatedPage);
+                    curSlide = Math.round(estimatedSlide);
                 }
 
-                // set the left/top positions in _onPaginationChange
-                if (!isNaN(curPage)) {
-                    this._pagination.setCurrent(curPage);
-                }
+                this.setSlide(curSlide);
 
                 event.stopPropagation();
                 // event.preventDefault();
@@ -483,14 +490,46 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-            var currPage = pgn.getCurrent();
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
+            var currSlide = pgn.getCurrent();
+            this.setSlide(currSlide);
+        },
+
+        getSlide: function () {
+            if (this._pagination) {
+                return this._pagination.getCurrent();
+            } else {
+                return this._currentSlide;
+            }
+        },
+
+        /**
+         * Set the current slide to `page`
+         * @method setSlide
+         * @param slide
+         **/
+        setSlide: function (slide) {
+            slide = limitRange(slide, 0, this._numSlides - 1);
+            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', slide * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
-                this._options.onChange.call(this, currPage);
+                this._options.onChange.call(this, slide);
             }
 
+            this._currentSlide = slide;
+
             this._updateHider();
-        }
+        },
+
+        /**
+         * Change to the next page
+         * @method nextSlide
+         **/
+        nextSlide: function () { this.setSlide(this.getSlide() + 1); },
+
+        /**
+         * Change to the previous page
+         * @method previousSlide
+         **/
+        previousSlide: function () { this.setSlide(this.getSlide() - 1); }
     };
 
     function setTransitionProperty(el, newTransition) {
