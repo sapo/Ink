@@ -30,7 +30,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Object} [options]
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
-     *  @param {Number} [options.initialSlide=null] If set to a number, set the corresponding slide immediately.
+     *  @param {Number} [options.initialSlide=0] When initialized, set the slide to this.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
      *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
@@ -39,27 +39,25 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
-            windowResize:     Ink.bindMethod(this, 'refit')
+            windowResize:     InkEvent.throttle(Ink.bindMethod(this, 'refit'), 200)
         };
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
         var element = this._element = Common.elOrSelector(selector, '1st argument');
 
-        var opts = this._options = Ink.extendObj({
-            axis:           'x',
-            initialSlide:    null,
-            hideLast:       false,
-            center:         false,
-            keyboardSupport:false,
-            pagination:     null,
-            onChange:       null,
-            swipe:          true
+        var opts = this._options = Common.options({
+            axis:           ['String', 'x'],
+            initialSlide:   ['Integer', 0],
+            hideLast:       ['Boolean', false],
+            center:         ['Boolean', false],
+            keyboardSupport:['Boolean', false],
+            pagination:     ['Object', null],
+            onChange:       ['Function', null],
+            swipe:          ['Boolean', true]
             // TODO exponential swipe
-            // TODO specify break point for next slide
-        }, options || {}, InkElement.data(element));
-
-        opts.initialSlide = parseInt(opts.initialSlide);
+            // TODO specify break point for next slide when moving finger
+        }, options || {}, element);
 
         this._isY = (opts.axis === 'y');
 
@@ -157,8 +155,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             
             if (this._pagination && numSlidesChanged) {
                 this._pagination.setSize(this._numSlides);
-                this._pagination.setCurrent(0);
             }
+            this.setSlide(limitRange(this.getSlide(), 1, this._numSlides));
         },
 
         _center: function() {
@@ -330,8 +328,14 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * Set the current slide to `page`
          * @method setSlide
          * @param slide
+         * @param [wrap=false] Wrap over the first and last slides. (For example, going to the 5th slide when there are only 4 slides goes to the 1st slide)
          **/
-        setSlide: function (slide) {
+        setSlide: function (slide, wrap) {
+            if (wrap) {
+                // Slides outside the range [0..this._numSlides] are wrapped.
+                slide = slide % this._numSlides;
+                if (slide < 0) { slide = this._numSlides - slide; }
+            }
             slide = limitRange(slide, 0, this._numSlides - 1);
             this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', slide * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
@@ -346,14 +350,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
         /**
          * Change to the next page
          * @method nextSlide
+         * @param {Boolean} [wrap=false] If true, going to the slide after the last slide takes you to the first slide.
          **/
-        nextSlide: function () { this.setSlide(this.getSlide() + 1); },
+        nextSlide: function (wrap) {
+            this.setSlide(this.getSlide() + 1, wrap);
+        },
 
         /**
          * Change to the previous page
          * @method previousSlide
+         * @param {Boolean} [wrap=false] If true, going to the slide after the last slide takes you to the first slide.
          **/
-        previousSlide: function () { this.setSlide(this.getSlide() - 1); }
+        previousSlide: function (wrap) { this.setSlide(this.getSlide() - 1, wrap); }
     };
 
     function setTransitionProperty(el, newTransition) {
