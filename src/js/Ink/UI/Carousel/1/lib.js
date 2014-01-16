@@ -332,8 +332,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          * @param slide
          **/
         setSlide: function (slide) {
-            slide = limitRange(slide, 0, this._liEls.length - 1);
-            if (slide === this.getSlide()) { return false; }
+            slide = limitRange(slide, 0, this._numSlides - 1);
             this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', slide * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
                 this._options.onChange.call(this, slide);
