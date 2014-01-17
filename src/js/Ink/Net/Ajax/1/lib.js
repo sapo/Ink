@@ -19,6 +19,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {String}  url      request url
      * @param {Object}  options  request options
      * @param {Boolean}        [options.asynchronous]    if the request should be asynchronous. true by default.
+     * @param {Boolean}        [options.cors]            set this to true if you're doing a cross-origin request
      * @param {String}         [options.method]          HTTP request method. POST by default.
      * @param {Object|String}  [options.parameters]      Request parameters which should be sent with the request
      * @param {Number}         [options.timeout]         Request timeout
@@ -194,7 +195,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
                 return false;
             } else {
                 return location.protocol !== urlLocation.protocol ||
-                       location.host     !== urlLocation.host;
+                       location.host     !== urlLocation.host.split(':')[0];
             }
         },
 
