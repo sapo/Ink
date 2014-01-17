@@ -194,8 +194,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol !== urlLocation.protocol ||
-                       location.host     !== urlLocation.host.split(':')[0];
+                return location.protocol           !== urlLocation.protocol ||
+                       location.host.split(':')[0] !== urlLocation.host.split(':')[0];
             }
         },
 
