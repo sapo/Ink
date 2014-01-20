@@ -1,16 +1,25 @@
 <div class="left-drawer">
     <ul>
         <li class="search">
-            <input placeholder="Search..." id="search" type="search"><span class="fa fa-search"></span>
-            <div class="ink-dropdown red" id="search-dropdown" style="display: none;">
-                <ul id="resultsList" class="dropdown-menu">
+            <input placeholder="Search..." class="side-search-input" value="" type="search"><span class="fa fa-search"></span>
+            <div class="ink-dropdown red side-search-results" style="display: none;">
+                <ul class="dropdown-menu side-search-results-list">
 
                 </ul>
             </div>
         </li>
 
-        <li class="heading">Getting started</li>
-        <li><a href="#">Foundation</a></li>
+        {% for link in site.navigation %}
+        {% assign clean_url = page.url|remove:'index.html' %}
+        <li class="heading">{{link.text}}</li>
+        {% if link.sections %}
+        {% for section in link.sections %}
+        <li><a href="{{ section.url }}">{{section.text}}</a></li>        
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+        <!-- <li class="heading">Getting started</li>
         <li><a href="#">Practical Usage</a></li>
         <li><a href="#">Adding space</a></li>
         <li><a href="#">Aligning</a></li>
@@ -25,17 +34,9 @@
         <li><a href="#">Utility Classes</a></li>
         <li><a href="#">Additional elements</a></li>
 
-        <li class="heading">Navigation</li>
-        <li><a href="#">Navigation basics</a></li>
-        <li><a href="#">Submenus</a></li>
-        <li><a href="#">Navigation styling</a></li>
-        <li><a href="#">Horizontal menu</a></li>
-        <li><a href="#">Vertical menu</a></li>
-        <li><a href="#">Pagination</a></li>
-        <li><a href="#">Pills</a></li>
-        <li><a href="#">Breadcrumbs</a></li>
-        <li><a href="#">Footer</a></li>
-        <li><a href="#">Dropdowns</a></li>
+        <li class="heading">Glossary</li>
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">Javascript</a></li>
 
         <li class="heading">Forms</li>
         <li><a href="#">Form building</a></li>
@@ -55,6 +56,6 @@
         <li><a href="#">Highlight</a></li>
         <li><a href="#">Full borders</a></li>
         <li><a href="#">Combined</a></li> 
-        <li><a href="#">Special</a></li> 
+        <li><a href="#">Special</a></li>  -->
     </ul>
 </div>
