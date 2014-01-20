@@ -1,0 +1,16 @@
+{% for link in site.navigation %}
+{% if link.text == 'JS' %}
+{% if link.sections %}
+{% for section in link.sections %}
+    <li class="heading">{{ section.text }}</li>
+    
+    {% if section.components %}
+    {% for component in section.components %}    
+        <li><a href="{{ page.base_path }}{{ component.url }}" title="{{ link.text }}">{{ component.text }}</a></li>
+    {% endfor %}
+    {% endif %}
+
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}
