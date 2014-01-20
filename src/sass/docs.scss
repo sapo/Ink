@@ -18,11 +18,11 @@ $img-path                   : "../img/";
 
 .page-header {
     
-    padding: 3em 0 2em;
+    padding-top: 3em;
     font-size: 1.25em;
 
     p {
-        margin-top:.5em;
+        margin-top:0;
     }
 }
 
@@ -111,12 +111,39 @@ $img-path                   : "../img/";
             li {
 
                 text-transform: uppercase;
+
+                a { 
+                    border-bottom: none; 
+                    padding: 0;
+                }
                 
+                //ul { display: none; }
+
                 &.heading {
                     font-weight: normal;
                     margin-top: 1em;
-                    padding: 1em 0 .3em;
+                    padding: 1em 0 0;
                     border-top: 1px solid #ddd;
+
+                    a { 
+                        color: $text-color; 
+                        &:hover { text-decoration: none; }
+                    }
+
+                    &.active ul {
+                        display: block;
+                    }
+
+                    ul {
+                        a {
+                            color: $link-color;
+                            font-size: .875em;
+                            padding: .3em 0;
+                            text-decoration: none;
+                            text-transform: uppercase;
+                            border-bottom: none;
+                        }
+                    }
                 }
 
                 &.search {
@@ -150,13 +177,6 @@ $img-path                   : "../img/";
                     }
                 }
 
-                a {
-                    font-size: .875em;
-                    padding: .3em 0;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    border-bottom: none;
-                }
             }
         }
     }
