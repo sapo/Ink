@@ -1,6 +1,6 @@
 /* line 19, I:/work/ink.site/src/sass/docs.scss */
 .page-header {
-  padding: 3em 0 2em;
+  padding-top: 3em;
   font-size: 1.25em;
 }
 /* line 24, I:/work/ink.site/src/sass/docs.scss */
@@ -104,17 +104,43 @@
   text-transform: uppercase;
 }
 /* line 115, I:/work/ink.site/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li a {
+  border-bottom: none;
+  padding: 0;
+}
+/* line 122, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   font-weight: normal;
   margin-top: 1em;
-  padding: 1em 0 .3em;
+  padding: 1em 0 0;
   border-top: 1px solid #ddd;
 }
-/* line 122, I:/work/ink.site/src/sass/docs.scss */
+/* line 128, I:/work/ink.site/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.heading a {
+  color: #555555;
+}
+/* line 130, I:/work/ink.site/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.heading a:hover {
+  text-decoration: none;
+}
+/* line 133, I:/work/ink.site/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.heading.active ul {
+  display: block;
+}
+/* line 138, I:/work/ink.site/src/sass/docs.scss */
+.sidebar.ink-navigation ul.menu.vertical li.heading ul a {
+  color: #0069d6;
+  font-size: .875em;
+  padding: .3em 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: none;
+}
+/* line 149, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;
 }
-/* line 126, I:/work/ink.site/src/sass/docs.scss */
+/* line 153, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   width: 100%;
   border: 1px solid #DDD;
@@ -129,32 +155,24 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 135, I:/work/ink.site/src/sass/docs.scss */
+/* line 162, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search .fa-search {
   font-size: 14px;
   position: absolute;
   top: .7em;
   left: .6em;
 }
-/* line 142, I:/work/ink.site/src/sass/docs.scss */
+/* line 169, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown {
   width: 100%;
 }
-/* line 145, I:/work/ink.site/src/sass/docs.scss */
+/* line 172, I:/work/ink.site/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
-/* line 153, I:/work/ink.site/src/sass/docs.scss */
-.sidebar.ink-navigation ul.menu.vertical li a {
-  font-size: .875em;
-  padding: .3em 0;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-bottom: none;
-}
 
-/* line 165, I:/work/ink.site/src/sass/docs.scss */
+/* line 185, I:/work/ink.site/src/sass/docs.scss */
 .panel {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -170,32 +188,32 @@
   margin-top: 1em;
 }
 
-/* line 176, I:/work/ink.site/src/sass/docs.scss */
+/* line 196, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
   background: #222;
 }
-/* line 179, I:/work/ink.site/src/sass/docs.scss */
+/* line 199, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer ul,
 body.ink-drawer .right-drawer ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
-/* line 185, I:/work/ink.site/src/sass/docs.scss */
+/* line 205, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li,
 body.ink-drawer .right-drawer li {
   display: block;
   margin: 0;
   font-weight: 300;
 }
-/* line 190, I:/work/ink.site/src/sass/docs.scss */
+/* line 210, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search,
 body.ink-drawer .right-drawer li.search {
   position: relative;
   margin: 15px;
 }
-/* line 195, I:/work/ink.site/src/sass/docs.scss */
+/* line 215, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   width: 100%;
@@ -211,7 +229,7 @@ body.ink-drawer .right-drawer li.search input[type=search] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 204, I:/work/ink.site/src/sass/docs.scss */
+/* line 224, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search .fa-search,
 body.ink-drawer .right-drawer li.search .fa-search {
   font-size: 14px;
@@ -219,18 +237,18 @@ body.ink-drawer .right-drawer li.search .fa-search {
   top: .7em;
   left: .6em;
 }
-/* line 211, I:/work/ink.site/src/sass/docs.scss */
+/* line 231, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown,
 body.ink-drawer .right-drawer li.search #search-dropdown {
   width: 100%;
 }
-/* line 214, I:/work/ink.site/src/sass/docs.scss */
+/* line 234, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown .dropdown-menu li,
 body.ink-drawer .right-drawer li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
-/* line 222, I:/work/ink.site/src/sass/docs.scss */
+/* line 242, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading,
 body.ink-drawer .right-drawer li.heading {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -241,13 +259,13 @@ body.ink-drawer .right-drawer li.heading {
   margin-top: 1em;
   font-weight: 400;
 }
-/* line 231, I:/work/ink.site/src/sass/docs.scss */
+/* line 251, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading:first-child,
 body.ink-drawer .right-drawer li.heading:first-child {
   border-top: none;
   margin-top: 0;
 }
-/* line 237, I:/work/ink.site/src/sass/docs.scss */
+/* line 257, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a,
 body.ink-drawer .right-drawer li > a {
   display: block;
@@ -269,7 +287,7 @@ body.ink-drawer .right-drawer li > a {
   -o-transition-timing-function: ease-in;
   transition-timing-function: ease-in;
 }
-/* line 248, I:/work/ink.site/src/sass/docs.scss */
+/* line 268, I:/work/ink.site/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a:hover,
 body.ink-drawer .right-drawer li > a:hover {
   color: #FFF;
