@@ -27,7 +27,7 @@ css_path: assets/css/
 navigation:
  # COMPONENTS
  - text: Components
-   url: /components/
+   url: components/
    sections:
     # GETTING STARTED
     - text: Getting Started

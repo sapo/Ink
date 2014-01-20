@@ -1,22 +1,31 @@
 body {
 
     $speed: 300ms;
-    $drawer-width: 300px;
+    $width: 250px;
+    $easing: cubic-bezier(0.860, 0.000, 0.070, 1.000);
 
     &.ink-drawer {
         max-width: 100%;
+
         .left-drawer,
         .right-drawer {
-          width: 300px; 
+
+          width: $width; 
           position: absolute;
           top: 0;
           height: 100%;
           overflow-y: auto;
           overflow-x: hidden;
           display: none;
+
           &.show {
             display: block;
           }
+
+          &:after {
+            content: "";
+          }
+
         }
 
         .left-drawer,
@@ -24,28 +33,28 @@ body {
         .content-drawer {
             @include transition-property(translate3d);
             @include transition-duration($speed);
-            @include transition-timing-function(cubic-bezier(0.860, 0.000, 0.070, 1.000));
+            @include transition-timing-function($easing);
         }
         
         .left-drawer {
-            left: -300px;
+            left: ($width * -1);
             &.open {
-                @include translate3d(300px,0,0);
+                @include translate3d($width,0,0);
             }
         }
         .right-drawer {
-            right: -300px;
+            right: ($width * -1);
             &.open {
-                @include translate3d(-300px,0,0);
+                @include translate3d(($width * -1),0,0);
             }
         }
         .content-drawer {
             width: 100%;
             &.open-left {
-                @include translate3d(300px,0,0);
+                @include translate3d($width,0,0);
             }
             &.open-right {
-                @include translate3d(-300px,0,0);
+                @include translate3d(($width * -1),0,0);
             }
         }
     }
