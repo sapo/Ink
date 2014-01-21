@@ -7,6 +7,10 @@ body {
     &.ink-drawer {
         max-width: 100%;
 
+        &.open {
+          overflow-y: hidden;
+        }
+
         .left-drawer,
         .right-drawer {
 
@@ -31,9 +35,9 @@ body {
         .left-drawer,
         .right-drawer,
         .content-drawer {
-            @include transition-property(translate3d);
-            @include transition-duration($speed);
-            @include transition-timing-function($easing);
+          @include transition-property(translate3d);
+          @include transition-duration($speed);
+          @include transition-timing-function($easing);
         }
         
         .left-drawer {
@@ -56,6 +60,14 @@ body {
             &.open-right {
                 @include translate3d(($width * -1),0,0);
             }
+        }
+
+        .left-drawer {
+                   
+        }
+
+        .right-drawer {
+          @include translate3d($width,0,0);
         }
     }
 }

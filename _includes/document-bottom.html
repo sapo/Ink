@@ -20,22 +20,7 @@
    -->
    <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}search.js"></script>
    <script>
-   var drawer = new Ink.UI.Drawer_1(
-    {
-            parentSelector: '.ink-drawer',
-            leftDrawer: '.left-drawer',
-            leftTrigger: '.left-drawer-trigger',
-            rightDrawer: '.right-drawer',
-            rightTrigger: '.right-drawer-trigger',
-            contentDrawer: '.content-drawer',
-            closeOnContentClick: true,
-            drawerWidth: '300',
-            duration: '300',
-            easing: 'cubic-bezier(0.860, 0.000, 0.070, 1.000)',
-            mode: 'push',
-            sides: 'left',
-          }
-   );
+   var drawer = new Ink.UI.Drawer_1({ mode: 'over', sides: 'left' });
    </script>
 </body>
 </html>
