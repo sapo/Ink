@@ -31,28 +31,32 @@ navigation:
    sections:
     # GETTING STARTED
     - text: Getting Started
+      id: getting-started
+      url: /components/getting-started/
       components:
        # FOUNDATION
        - text: Foundation
-         url: ./components/foundation/
+         id: foundation
        # PRACTICAL USAGE
        - text: Practical Usage
-         url: ./components/practical_usage/
+         id: practical-usage
        # ADDING SPACE
        - text: Adding Space
-         url: ./components/spacing/
+         id: adding-space
        # ALIGNING
        - text: Aligning
-         url: ./components/aligning/
+         id: aligning
        # MULTIPLE SCREENS
        - text: Multiple Screens
-         url: ./components/multiple_screens/
+         id: multiple-screens
        # SHOWING AND HIDDING
        - text: Showing and Hidding
-         url: ./components/show_hide/
+         id: show-hide
 
     # NAVIGATION
     - text: Navigation
+      id: navigation
+      url: /components/navigation/
       components:
        # NAVIGATION BASICS
        - text: Navigation Basics
@@ -87,6 +91,8 @@ navigation:
 
     # TYPOGRAPHY
     - text: Typography
+      id: typography
+      url: /components/typography/
       components:
        # FONTS
        - text: Fonts
@@ -109,6 +115,8 @@ navigation:
 
     # FORMS
     - text: Forms
+      id: forms
+      url: /components/forms/
       components:
        # FORM BUILDING
        - text: Form Building
@@ -128,6 +136,8 @@ navigation:
 
     # ALERTS
     - text: Alerts
+      id: alerts
+      url: /components/alerts/
       components:
        # BASIC ALERTS 
        - text: Basic Alerts
@@ -138,6 +148,8 @@ navigation:
 
     # TABLES
     - text: Tables
+      id: tables
+      url: /components/tables/
       components:
        # TABLE BASICS
        - text: Table Basics
@@ -160,7 +172,7 @@ navigation:
 
 # JAVASCRIPT
  - text: JS
-   url: /js/
+   url: js/
    sections:
     # CLASSES
     - text: Classes
@@ -346,7 +358,7 @@ navigation:
 
  # GLOSSARY
  - text: Glossary
-   url: /glossary/
+   url: glossary/
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D

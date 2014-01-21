@@ -1,0 +1,20 @@
+<ul id="components-nav" class="menu vertical">
+{% for link in site.navigation %}
+{% if link.text == 'Components' %}
+{% if link.sections %}
+{% for section in link.sections %}
+    <li class="heading"><a href="{{ section.url }}" title="{{ section.text }}">{{ section.text }}</a>
+        
+        <ul id="{{ section.id }}-subnav">
+        {% if section.components %}
+        {% for component in section.components %}    
+            <li><a href="#{{ component.id }}" title="{{ component.text }}">{{ component.text }}</a></li>
+        {% endfor %}
+        {% endif %}
+        </ul>
+
+    </li>
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}
