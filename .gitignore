@@ -25,4 +25,7 @@ src/js/builds
 src/js/report
 src/js/serverUtils/moduleDirs.json
 src/js/serverUtils/moduleFiles.json
-
+src/sass/docs.scss
+dist/css/docs.css
+dist/css/docs.min.css
+dist/css/contrib/font-awesome/font-awesome.css
