@@ -32,7 +32,10 @@ $img-path                   : "../img/";
     width: 100%;
     background: $topbar-bgColor;
     z-index: $layer-100;
-    -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+    // -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
+    &:after {
+            @include clearfix;
+        }
     
     .ink-navigation {
     
@@ -94,7 +97,11 @@ $img-path                   : "../img/";
                 }
             }
         }
-    
+
+        &:after {
+            @include clearfix;
+        }
+
     }
 
     .border {

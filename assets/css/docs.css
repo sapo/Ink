@@ -15,13 +15,17 @@
   width: 100%;
   background: #222222;
   z-index: 100;
-  -webkit-transform: scale3d(1, 1, 1);
 }
-/* line 41, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 36, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+#topbar:after {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 44, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li {
   font-size: 14px;
 }
-/* line 43, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 46, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a {
   *height: auto;
   color: #bbbbbb;
@@ -42,32 +46,32 @@
   font-weight: 300;
   text-transform: uppercase;
 }
-/* line 54, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 57, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a:hover {
   color: white;
 }
-/* line 58, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 61, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.logoPlaceholder {
   font-size: 1.8em;
   font-weight: bold;
   padding: .4em 0;
   margin-right: .5em;
 }
-/* line 64, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 67, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.logoPlaceholder:hover {
   background: none;
 }
-/* line 69, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 72, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.fa-bars {
   font-size: 21px;
   padding: .46em 0;
   margin-right: .8em;
 }
-/* line 74, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 77, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li a.fa-bars:hover {
   background: none;
 }
-/* line 81, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 84, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul li.active a {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #090909), color-stop(100%, #3c3c3c));
   background-image: -webkit-linear-gradient(#090909, #3c3c3c 100%);
@@ -79,7 +83,7 @@
   box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px 0;
   color: white;
 }
-/* line 90, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 93, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .ink-navigation ul.black.flat {
   background: #222222;
   filter: none;
@@ -87,7 +91,12 @@
   -moz-box-shadow: none;
   box-shadow: none;
 }
-/* line 100, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 101, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+#topbar .ink-navigation:after {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 107, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 #topbar .border {
   height: .3em;
   background: url("../img/home_bkg.png") center 0px;
@@ -100,35 +109,35 @@
   clear: both;
 }
 
-/* line 112, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 119, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li {
   text-transform: uppercase;
 }
-/* line 116, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 123, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li a {
   border-bottom: none;
   padding: 0;
 }
-/* line 123, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 130, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   font-weight: normal;
   margin-top: 1em;
   padding: 1em 0 0;
   border-top: 1px solid #ddd;
 }
-/* line 129, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 136, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading a {
   color: #555555;
 }
-/* line 131, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 138, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading a:hover {
   text-decoration: none;
 }
-/* line 134, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 141, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading.active ul {
   display: block;
 }
-/* line 139, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 146, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
   color: #0069d6;
   font-size: .875em;
@@ -137,11 +146,11 @@
   text-transform: uppercase;
   border-bottom: none;
 }
-/* line 150, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 157, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;
 }
-/* line 154, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 161, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search input[type=search] {
   width: 100%;
   border: 1px solid #DDD;
@@ -156,24 +165,24 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 163, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 170, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search .fa-search {
   font-size: 14px;
   position: absolute;
   top: .7em;
   left: .6em;
 }
-/* line 170, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 177, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown {
   width: 100%;
 }
-/* line 173, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 180, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .sidebar.ink-navigation ul.menu.vertical li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
 
-/* line 186, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 193, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .panel {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -188,32 +197,32 @@
   padding: 1em;
 }
 
-/* line 196, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 203, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
   background: #222;
 }
-/* line 199, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 206, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer ul,
 body.ink-drawer .right-drawer ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
-/* line 205, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 212, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li,
 body.ink-drawer .right-drawer li {
   display: block;
   margin: 0;
   font-weight: 300;
 }
-/* line 210, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 217, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search,
 body.ink-drawer .right-drawer li.search {
   position: relative;
   margin: 15px;
 }
-/* line 215, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 222, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search input[type=search],
 body.ink-drawer .right-drawer li.search input[type=search] {
   width: 100%;
@@ -229,7 +238,7 @@ body.ink-drawer .right-drawer li.search input[type=search] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 224, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 231, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search .fa-search,
 body.ink-drawer .right-drawer li.search .fa-search {
   font-size: 14px;
@@ -237,18 +246,18 @@ body.ink-drawer .right-drawer li.search .fa-search {
   top: .7em;
   left: .6em;
 }
-/* line 231, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 238, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown,
 body.ink-drawer .right-drawer li.search #search-dropdown {
   width: 100%;
 }
-/* line 234, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 241, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.search #search-dropdown .dropdown-menu li,
 body.ink-drawer .right-drawer li.search #search-dropdown .dropdown-menu li {
   float: none;
   width: 100%;
 }
-/* line 242, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 249, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading,
 body.ink-drawer .right-drawer li.heading {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -259,13 +268,13 @@ body.ink-drawer .right-drawer li.heading {
   margin-top: 1em;
   font-weight: 400;
 }
-/* line 251, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 258, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li.heading:first-child,
 body.ink-drawer .right-drawer li.heading:first-child {
   border-top: none;
   margin-top: 0;
 }
-/* line 257, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 264, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a,
 body.ink-drawer .right-drawer li > a {
   display: block;
@@ -287,72 +296,72 @@ body.ink-drawer .right-drawer li > a {
   -o-transition-timing-function: ease-in;
   transition-timing-function: ease-in;
 }
-/* line 268, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 275, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 body.ink-drawer .left-drawer li > a:hover,
 body.ink-drawer .right-drawer li > a:hover {
   color: #FFF;
   background: #333;
 }
 
-/* line 283, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 290, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight {
   background: #ffffff;
   padding: 1em;
 }
 
-/* line 284, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 291, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight pre {
   margin: 0;
 }
 
-/* line 285, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 292, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .c {
   color: #999988;
   font-style: italic;
 }
 
 /* Comment */
-/* line 286, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 293, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .err {
   color: #a61717;
   background-color: #e3d2d2;
 }
 
 /* Error */
-/* line 287, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 294, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .k {
   font-weight: bold;
 }
 
 /* Keyword */
-/* line 288, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 295, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .o {
   font-weight: bold;
 }
 
 /* Operator */
-/* line 289, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 296, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .cm {
   color: #999988;
   font-style: italic;
 }
 
 /* Comment.Multiline */
-/* line 290, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 297, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .cp {
   color: #999999;
   font-weight: bold;
 }
 
 /* Comment.Preproc */
-/* line 291, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 298, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .c1 {
   color: #999988;
   font-style: italic;
 }
 
 /* Comment.Single */
-/* line 292, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 299, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .cs {
   color: #999999;
   font-weight: bold;
@@ -360,321 +369,321 @@ body.ink-drawer .right-drawer li > a:hover {
 }
 
 /* Comment.Special */
-/* line 293, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 300, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gd {
   color: #000000;
   background-color: #ffdddd;
 }
 
 /* Generic.Deleted */
-/* line 294, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 301, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gd .x {
   color: #000000;
   background-color: #ffaaaa;
 }
 
 /* Generic.Deleted.Specific */
-/* line 295, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 302, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .ge {
   font-style: italic;
 }
 
 /* Generic.Emph */
-/* line 296, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 303, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gr {
   color: #aa0000;
 }
 
 /* Generic.Error */
-/* line 297, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 304, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gh {
   color: #999999;
 }
 
 /* Generic.Heading */
-/* line 298, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 305, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gi {
   color: #000000;
   background-color: #ddffdd;
 }
 
 /* Generic.Inserted */
-/* line 299, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 306, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gi .x {
   color: #000000;
   background-color: #aaffaa;
 }
 
 /* Generic.Inserted.Specific */
-/* line 300, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 307, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .go {
   color: #888888;
 }
 
 /* Generic.Output */
-/* line 301, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 308, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gp {
   color: #555555;
 }
 
 /* Generic.Prompt */
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 309, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gs {
   font-weight: bold;
 }
 
 /* Generic.Strong */
-/* line 303, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gu {
   color: #aaaaaa;
 }
 
 /* Generic.Subheading */
-/* line 304, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 311, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .gt {
   color: #aa0000;
 }
 
 /* Generic.Traceback */
-/* line 305, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 312, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .kc {
   font-weight: bold;
 }
 
 /* Keyword.Constant */
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 313, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .kd {
   font-weight: bold;
 }
 
 /* Keyword.Declaration */
-/* line 307, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .kp {
   font-weight: bold;
 }
 
 /* Keyword.Pseudo */
-/* line 308, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 315, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .kr {
   font-weight: bold;
 }
 
 /* Keyword.Reserved */
-/* line 309, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 316, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .kt {
   color: #445588;
   font-weight: bold;
 }
 
 /* Keyword.Type */
-/* line 310, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 317, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .m {
   color: #009999;
 }
 
 /* Literal.Number */
-/* line 311, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 318, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .s {
   color: #dd1144;
 }
 
 /* Literal.String */
-/* line 312, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 319, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .na {
   color: teal;
 }
 
 /* Name.Attribute */
-/* line 313, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 320, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .nb {
   color: #0086b3;
 }
 
 /* Name.Builtin */
-/* line 314, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 321, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .nc {
   color: #445588;
   font-weight: bold;
 }
 
 /* Name.Class */
-/* line 315, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 322, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .no {
   color: teal;
 }
 
 /* Name.Constant */
-/* line 316, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 323, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .ni {
   color: purple;
 }
 
 /* Name.Entity */
-/* line 317, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 324, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .ne {
   color: #990000;
   font-weight: bold;
 }
 
 /* Name.Exception */
-/* line 318, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 325, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .nf {
   color: #990000;
   font-weight: bold;
 }
 
 /* Name.Function */
-/* line 319, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 326, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .nn {
   color: #555555;
 }
 
 /* Name.Namespace */
-/* line 320, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 327, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .nt {
   color: navy;
 }
 
 /* Name.Tag */
-/* line 321, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 328, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .nv {
   color: teal;
 }
 
 /* Name.Variable */
-/* line 322, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 329, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .ow {
   font-weight: bold;
 }
 
 /* Operator.Word */
-/* line 323, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 330, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .w {
   color: #bbbbbb;
 }
 
 /* Text.Whitespace */
-/* line 324, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 331, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .mf {
   color: #009999;
 }
 
 /* Literal.Number.Float */
-/* line 325, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 332, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .mh {
   color: #009999;
 }
 
 /* Literal.Number.Hex */
-/* line 326, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 333, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .mi {
   color: #009999;
 }
 
 /* Literal.Number.Integer */
-/* line 327, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 334, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .mo {
   color: #009999;
 }
 
 /* Literal.Number.Oct */
-/* line 328, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 335, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .sb {
   color: #dd1144;
 }
 
 /* Literal.String.Backtick */
-/* line 329, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 336, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .sc {
   color: #dd1144;
 }
 
 /* Literal.String.Char */
-/* line 330, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 337, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .sd {
   color: #dd1144;
 }
 
 /* Literal.String.Doc */
-/* line 331, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 338, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .s2 {
   color: #dd1144;
 }
 
 /* Literal.String.Double */
-/* line 332, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 339, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .se {
   color: #dd1144;
 }
 
 /* Literal.String.Escape */
-/* line 333, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 340, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .sh {
   color: #dd1144;
 }
 
 /* Literal.String.Heredoc */
-/* line 334, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 341, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .si {
   color: #dd1144;
 }
 
 /* Literal.String.Interpol */
-/* line 335, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 342, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .sx {
   color: #dd1144;
 }
 
 /* Literal.String.Other */
-/* line 336, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 343, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .sr {
   color: #009926;
 }
 
 /* Literal.String.Regex */
-/* line 337, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 344, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .s1 {
   color: #dd1144;
 }
 
 /* Literal.String.Single */
-/* line 338, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 345, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .ss {
   color: #990073;
 }
 
 /* Literal.String.Symbol */
-/* line 339, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 346, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .bp {
   color: #999999;
 }
 
 /* Name.Builtin.Pseudo */
-/* line 340, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 347, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .vc {
   color: teal;
 }
 
 /* Name.Variable.Class */
-/* line 341, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 348, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .vg {
   color: teal;
 }
 
 /* Name.Variable.Global */
-/* line 342, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 349, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .vi {
   color: teal;
 }
 
 /* Name.Variable.Instance */
-/* line 343, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 350, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .il {
   color: #009999;
 }
 
 /* Literal.Number.Integer.Long */
-/* line 344, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
+/* line 351, /Users/pedrocorreia/dev/ink/src/sass/docs.scss */
 .highlight .lineno {
   color: #cccccc;
 }
