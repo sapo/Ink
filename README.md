@@ -15,7 +15,7 @@ If you find any inaccuracies or problems in our documentation this is the place 
 - [Install node.js](http://nodejs.org/) This is required to run our build scripts.
 - Install the [Compass](http://compass-style.org/) ruby gem by running following command on the command line ``gem install compass``
 - Install the [grunt-cli](https://github.com/gruntjs/grunt-cli) by running the following command on the command line ``npm install -g grunt-cli``
-- Install all other dependencies by running the ``npm install`` command inside Inks folder.
+- Install all other dependencies by running the ``npm install`` command **inside Inks folder**.
 
 ------
 
@@ -25,7 +25,7 @@ If you find any inaccuracies or problems in our documentation this is the place 
 - Install [Jekyll](http://jekyllrb.com/) by running this command on a terminal: ``gem install jekyll``
 - Install the [Compass](http://compass-style.org/) ruby gem by running following command a terminal ``gem install compass``
 - Install the [grunt-cli](https://github.com/gruntjs/grunt-cli) by running the following command a terminal ``npm install -g grunt-cli``
-- Install all other dependencies by running the ``npm install`` command inside Inks folder.
+- Install all other dependencies by running the ``npm install`` command **inside Inks folder**.
 
 ------
 
