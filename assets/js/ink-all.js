@@ -16057,6 +16057,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             afterTransition: Ink.bindEvent(this._afterTransition, this)
         };
 
+        this._transitionEvent = this._whichTransitionEvent();
         this._addEvents();
         this._delay = 10;
       },
@@ -16080,6 +16081,23 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
             this.closeDrawer(this._direction);
           }
         }        
+      },
+
+      _whichTransitionEvent: function (){
+          var t, r;
+          var el = document.createElement('span');
+          var transitions = {
+            'transition':'transitionend',
+            'OTransition':'oTransitionEnd',
+            'MozTransition':'transitionend',
+            'WebkitTransition':'webkitTransitionEnd'
+          }
+
+          for(t in transitions){
+              if( el.style[t] !== undefined ){
+                  return transitions[t];
+              }
+          }
       },
 
       _afterTransition: function(){
@@ -16120,7 +16138,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
           var open = Ink.s(this._options.rightDrawer);
         }
 
-        Event.on(document.body, 'transitionend', this._handlers.afterTransition);        
+        Event.one(document.body, this._transitionEvent, this._handlers.afterTransition);        
 
         if(this._options.mode == 'push') {            
             Css.addClassName(open,'show');
@@ -16150,7 +16168,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
           var close = Ink.s(this._options.rightDrawer);
         }
         
-        Event.on(document.body, 'transitionend', this._handlers.afterTransition);
+        Event.one(document.body, this._transitionEvent, this._handlers.afterTransition);
 
         if(this._options.mode == 'push') {
           Css.removeClassName(close,'open');
