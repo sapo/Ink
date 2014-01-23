@@ -289,6 +289,8 @@
 
             <p>You can use the <code>setSlide()</code>, <code>nextSlide()</code> and <code>previousSlide()</code> methods to change pages, as seen in the below example:</p>
 
+            <p>The <code>wrap</code> argument is used to make the slides "wrap around" both ends. If you are on the first slide, and call <code>previousSlide()</code>, this takes you to the last slide.</p>
+
             <div class="ink-carousel" id="controlled-carousel">
                 <ul class="untitled stage">
                     <li class="slide large-100 medium-100 small-100"><h1>Slide 1</h1></li>
@@ -298,9 +300,8 @@
                 </ul>
             </div>
 
-
-
             <p>
+                <label>Wrap <input type="checkbox" checked id="byob-wrap"></label>
                 <button id="byob-prev">previousSlide()</button>
                 <button id="byob-next">nextSlide()</button>
                 setSlide(<select id="byob-pages" name="">
@@ -316,10 +317,10 @@
                     var controlledCarousel = new Carousel('#controlled-carousel', {});
                     controlledCarousel.setSlide(Ink.i('byob-pages').value - 1);
                     InkEvent.observe(Ink.i('byob-next'), 'click', function () {
-                        controlledCarousel.nextSlide();
+                        controlledCarousel.nextSlide(Ink.i('byob-wrap').checked);
                     })
                     InkEvent.observe(Ink.i('byob-prev'), 'click', function () {
-                        controlledCarousel.previousSlide();
+                        controlledCarousel.previousSlide(Ink.i('byob-wrap').checked);
                     })
                     InkEvent.observe(Ink.i('byob-pages'), 'change', function () {
                         controlledCarousel.setSlide(Ink.i('byob-pages').value - 1);
