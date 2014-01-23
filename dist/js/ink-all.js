@@ -614,6 +614,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {String}  url      request url
      * @param {Object}  options  request options
      * @param {Boolean}        [options.asynchronous]    if the request should be asynchronous. true by default.
+     * @param {Boolean}        [options.cors]            set this to true if you're doing a cross-origin request
      * @param {String}         [options.method]          HTTP request method. POST by default.
      * @param {Object|String}  [options.parameters]      Request parameters which should be sent with the request
      * @param {Number}         [options.timeout]         Request timeout
@@ -788,8 +789,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol !== urlLocation.protocol ||
-                       location.host     !== urlLocation.host;
+                return location.protocol           !== urlLocation.protocol ||
+                       location.host.split(':')[0] !== urlLocation.host.split(':')[0];
             }
         },
 
@@ -16778,7 +16779,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @author inkdev AT sapo.pt
  * @version 1
  **/
-Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1'], function( InkElement, Css, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1','Ink.Dom.Selector_1'], function( InkElement, Css, InkValidator , Selector) {
     'use strict';
 
     /**
@@ -17073,7 +17074,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             this.confirmElms[this.element.id] = [];
             //console.log(this.element);
             //console.log(this.element.elements);
-            var formElms = this.element.elements;
+            var formElms = Selector.select(':input', this.element);
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
                 curElm = formElms[i];
@@ -17491,7 +17492,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
     return FormValidator;
 
 });
-
 /**
  * @module Ink.UI.FormValidator_2
  * @author inkdev AT sapo.pt

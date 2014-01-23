@@ -47,8 +47,7 @@ Do this process if you'd like to build your own Ink and hack on the Ink source.
 
 Make sure you have `node` installed. Then, on the root Ink folder of this repo:
 
-    [sudo] npm install -g bower
-    [sudo] npm install -g grunt-cli
+    [sudo] npm install -g bower grunt-cli
     bower install
     npm install
     grunt
