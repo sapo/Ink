@@ -35,62 +35,102 @@
                 <header>
                     <h2>DatePicker #1 - Default Markup</h2>
                 </header>
-                <div class="control-group">
-                    <label for="dPicker">A date field:</label>
-                    <div class="control">
-                        <input data-date-range="2013-10-10:2013-12-12" id="dPicker" class="ink-datepicker" type="text" data-format="dd/mm/yyyy"></input>
-                    </div>
-                </div>
                 <p>
-                    <pre class="prettyprint linenums">&lt;div class="control-group"&gt;
-    &lt;label for="dPicker"&gt;A date field:&lt;/label&gt;
-    &lt;div class="control"&gt;
-        &lt;input id="dPicker" class="ink-datepicker" type="text" data-format="dd/mm/yyyy"&gt;&lt;/input&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</pre>
+                    <div class="control">
+                        <label for="dPicker">A date field:</label>
+                        <input
+                            type="text"
+                            id="dPicker"
+                            class="ink-datepicker"
+                            data-date-range="2013-10-10:NOW"
+                            data-format="dd/mm/yyyy"></input>
+                    </div>
                 </p>
+
+                <pre class="prettyprint linenums">&lt;div class="control"&gt;
+    &lt;label for="dPicker"&gt;A date field:&lt;/label&gt;
+    &lt;input
+        type="text"
+        id="dPicker"
+        class="ink-datepicker"
+        data-date-range="2013-10-10:NOW"
+        data-format="dd/mm/yyyy"&gt;&lt;/input&gt;
+&lt;/div&gt;</pre>
                 </section>
                 <section>
                     <header>
                         <h2>DatePicker #2 - displayInSelect</h2>
-                    </header>
-                    <select class="DISdays"></select>
-                    <select class="DISmonths"></select>
-                    <select class="DISyears"></select>
-                    <input type="text" class="ink-datepicker"
-                        data-display-in-select="true"
-                        data-day-field=".DISdays"
-                        data-month-field=".DISmonths"
-                        data-year-field=".DISyears">
-                    <script>
-                        Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Element_1'], function (DatePicker, InkElement) {
-                            var i;
-                            for (i = 1; i <= 12; i+=1) {
-                                Ink.s('.DISmonths').appendChild(InkElement.create('option', {
-                                    value: i,
-                                    setTextContent: i
-                                }));
-                            }
-                            for (i = 1; i <= 31; i+=1) {
-                                Ink.s('.DISdays').appendChild(InkElement.create('option', {
-                                    value: i,
-                                    setTextContent: i
-                                }));
-                            }
-                            for (i = 1995; i <= 2013; i+=1) {
-                                Ink.s('.DISyears').appendChild(InkElement.create('option', {
-                                    value: i,
-                                    setTextContent: i
-                                }));
-                            }
-                        });
-                    </script>
+                        </header>
+                    <p class="ink-example">
+                        <select class="DISdays"></select>
+                        <select class="DISmonths"></select>
+                        <select class="DISyears"></select>
+                        <input type="text" class="ink-datepicker"
+                            data-display-in-select="true"
+                            data-day-field=".DISdays"
+                            data-month-field=".DISmonths"
+                            data-year-field=".DISyears">
+                        <script>
+                            Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Element_1'], function (DatePicker, InkElement) {
+                                var i;
+                                for (i = 1; i <= 12; i+=1) {
+                                    Ink.s('.DISmonths').appendChild(InkElement.create('option', {
+                                        value: i,
+                                        setTextContent: i
+                                    }));
+                                }
+                                for (i = 1; i <= 31; i+=1) {
+                                    Ink.s('.DISdays').appendChild(InkElement.create('option', {
+                                        value: i,
+                                        setTextContent: i
+                                    }));
+                                }
+                                for (i = 1995; i <= 2013; i+=1) {
+                                    Ink.s('.DISyears').appendChild(InkElement.create('option', {
+                                        value: i,
+                                        setTextContent: i
+                                    }));
+                                }
+                            });
+                        </script>
+                    </p>
+                    <pre class="prettyprint linenums">&lt;select class="DISdays"&gt;&lt;/select&gt;
+&lt;select class="DISmonths"&gt;&lt;/select&gt;
+&lt;select class="DISyears"&gt;&lt;/select&gt;
+&lt;input type="text" class="ink-datepicker"
+    data-display-in-select="true"
+    data-day-field=".DISdays"
+    data-month-field=".DISmonths"
+    data-year-field=".DISyears"&gt;
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Element_1'], function (DatePicker, InkElement) {
+        var i;
+        for (i = 1; i &lt;= 12; i+=1) {
+            Ink.s('.DISmonths').appendChild(InkElement.create('option', {
+                value: i,
+                setTextContent: i
+            }));
+        }
+        for (i = 1; i &lt;= 31; i+=1) {
+            Ink.s('.DISdays').appendChild(InkElement.create('option', {
+                value: i,
+                setTextContent: i
+            }));
+        }
+        for (i = 1995; i &lt;= 2013; i+=1) {
+            Ink.s('.DISyears').appendChild(InkElement.create('option', {
+                value: i,
+                setTextContent: i
+            }));
+        }
+    });
+&lt;/script&gt;</pre>
                 </section>
                 <section>
                     <header>
                         <h2>DatePicker #3 - Having only a valid date every now and then.</h2>
                     </header>
-                    <div class="control-group">
+                    <div class="control-group ink-example">
                         <div class="control">
                             <input id="dPicker3" type="text" data-format="dd/mm/yyyy">
                             <label for="dPicker3">
@@ -118,6 +158,32 @@
                             });
                         </script>
                     </div>
+                    <pre class="prettyprint linenums"><code>&lt;div class="control"&gt;
+    &lt;input id="dPicker3" type="text" data-format="dd/mm/yyyy"&gt;
+    &lt;label for="dPicker3"&gt;
+        A datepicker with nextValidDateFn and prevValidDateFn, to help us find holes in the dates. This picker will only let you choose January 1&lt;sup&gt;st&lt;/sup&gt; of each year
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    Ink.requireModules(['Ink.UI.DatePicker_1'], function (DatePicker) {
+        new DatePicker(dPicker3, {
+            startDate: '2000-01-01',
+            validDayFn: function (year, month, day) {
+                return month === 1 &amp;&amp; day === 1;
+            },
+            validMonthFn: function (year, month, day) {
+                return month === 1;
+            },
+            nextValidDateFn: function (year, month, day) {
+                return new Date(year + 1, 0, 1);
+            },
+            prevValidDateFn: function (year, month, day) {
+                return new Date(year - 1, 0, 1)
+            }
+        });
+    });
+&lt;/script&gt;</code></pre>
                 </section>
                 <section>
                     <header>
@@ -136,6 +202,12 @@
                         <div class="control">
                             <input id="dpicker3" class="ink-datepicker" type="text" data-format="dd/mm/yyyy" data-on-focus="false"></input>
                         </div>
+                        <!-- Some space for the autoOpen to work correctly -->
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
                     </div>
                 </section>
         </div>

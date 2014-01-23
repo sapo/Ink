@@ -44,7 +44,7 @@
         return true;
     };
 
-
+    var console = window.console || undefined;
 
     window.Ink = {
 
@@ -160,6 +160,16 @@
             scriptEl.setAttribute('type', 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
+            if (console && console.error) {
+                scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
+                    err = err || window.event;
+                    if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+                        // if not readyState == 'loaded' it's not an error.
+                        return;
+                    }
+                    console.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+                };
+            }
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
                 document.write( scriptEl.outerHTML );
@@ -604,6 +614,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {String}  url      request url
      * @param {Object}  options  request options
      * @param {Boolean}        [options.asynchronous]    if the request should be asynchronous. true by default.
+     * @param {Boolean}        [options.cors]            set this to true if you're doing a cross-origin request
      * @param {String}         [options.method]          HTTP request method. POST by default.
      * @param {Object|String}  [options.parameters]      Request parameters which should be sent with the request
      * @param {Number}         [options.timeout]         Request timeout
@@ -778,8 +789,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol !== urlLocation.protocol ||
-                       location.host     !== urlLocation.host;
+                return location.protocol           !== urlLocation.protocol ||
+                       location.host.split(':')[0] !== urlLocation.host.split(':')[0];
             }
         },
 
@@ -4030,7 +4041,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          *     <div id="target"></div>
          *
-         * call this function to wrap:
+         * call this function to wrap #target with a wrapper div.
          *
          *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
          * 
@@ -4054,6 +4065,44 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             return container;
+        },
+
+        /**
+         * Pulls an element out of its wrapper.
+         *
+         * @method unwrap
+         * @param elem The element you're trying to unwrap. This should be a child of the wrapper.
+         * @param {String} [wrapperSelector] Use this if you want to find your wrapper (if `elem` is inside several layers of wrappers).
+         *
+         * @example
+         *
+         * When you have this:
+         *
+         *      <div id="wrapper">
+         *          <div id="unwrapMe"></div>
+         *      </div>
+         *
+         * If you do this:
+         *
+         *      InkElement.unwrap('unwrapMe');
+         *
+         * You get this:
+         *
+         *      <div id="unwrapMe"></div>
+         *      <div id="wrapper"></div>
+         *      
+         **/
+        unwrap: function (elem, wrapperSelector) {
+            elem = Ink.i(elem);
+            var wrapper;
+            if (wrapperSelector) {
+                wrapper = InkElement.findUpwardsBySelector(elem, wrapperSelector);
+            } else {
+                wrapper = elem.parentNode;
+            }
+            if (!wrapper || !wrapper.parentNode) { return; }
+
+            InkElement.insertBefore(elem, wrapper);
         },
 
         /**
@@ -13052,7 +13101,13 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
     return Validator;
 
 });
-Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], function (Common, Css) {
+/**
+ * @module Ink.UI.Animate_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function (Common, InkEvent, Css) {
     'use strict';
 
     var animationPrefix = (function (el) {
@@ -13069,7 +13124,62 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         webkitAnimation: 'webkitAnimationEnd'
     }[animationPrefix];
 
-    var Animate = {
+    /**
+     * @class Ink.UI.Animate_1
+     * @constructor
+     *
+     * @param element {DOMElement} animated element
+     * @param options {Object} options object
+     * @param options.animation {String} animation name
+     * @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+     * @param [options.removeClass=true] {Boolean} Whether to remove the `animation` class when finished animating
+     * @param [options.onEnd=null] {Function} callback for animation end
+     *
+     * @example
+     *
+     *     <button id="animate-me" class="ink-button">Animate me!</button>
+     *     <span class="ink-label info ink-animate"
+     *         id="animated"
+     *         data-trigger="#animate-me"
+     *         data-animation="fadeOut"
+     *         data-removeClass="false">Hi!</span>    
+     *
+     *     <script type="text/javascript">
+     *         // Note: this step is not necessary if you are using autoload.js
+     *         Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
+     *             new Animate('#animated');
+     *         });
+     *     </script>
+     *
+     **/
+    function Animate(elOrSelector, options) {
+        this._element = Common.elOrSelector(elOrSelector);
+        this._options = Common.options({
+            trigger: ['Element', null],
+            duration: ['String', 'slow'],  // Actually a string with a duration name, or a number of ms
+            animation: ['String'],
+            removeClass: ['Boolean', true],
+            onEnd: ['Function', function () {}]
+        }, options || {}, this._element);
+
+        if (!isNaN(parseInt(this._options.duration, 10))) {
+            this._options.duration = parseInt(this._options.duration, 10);
+        }
+
+        if (this._options.trigger) {
+            InkEvent.observe(this._options.trigger, 'click', Ink.bind(function () {
+                this.animate();
+            }, this));  // later
+        } else {
+            this.animate();
+        }
+    }
+
+    Animate.prototype.animate = function () {
+        Animate.animate(this._element, this._options.animation, this._options);
+    };
+
+    Ink.extendObj(Animate, {
         /**
          * Prefix for CSS animation-related properties in this browser.
          *
@@ -13086,7 +13196,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         animationSupported: !!animationPrefix,
 
         /**
-         * The prefix for animation{start,iteration,end} events
+         * The correct event for the animationend event in this browser, with the correct prefix
          *
          * @property {String} animationEndEventName
          **/
@@ -13095,11 +13205,23 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         /**
          * Animate a div using one of the animate.css classes
          *
+         * **Note: This is a utility method inside the `Animate` class, which you can access through `Animate.animate()`. Do not mix these up.**
+         *
+         * @example
+         *
+         *      Animate.animate(myDiv, 'shake', {
+         *          onEnd: function () {
+         *              alert('Finished shaking!');
+         *          }
+         *      });
+         *
+         * @static
          * @method animate
          * @param element {DOMElement} animated element
-         * @param animation {String} animation string
+         * @param animation {String} animation name
          * @param [options] {Object}
          *     @param [options.onEnd=null] {Function} callback for animation end
+         *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
          *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
          **/
         animate: function (element, animation, options) {
@@ -13138,7 +13260,9 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
                 if (event.target !== element) { return; }
                 if (event.animationName !== animation) { return; }
                 if (options.onEnd) { options.onEnd(event); }
-                Css.removeClassName(element, [animation]);
+                if (options.removeClass) {
+                    Css.removeClassName(element, animation);
+                }
                 if (typeof options.duration === 'string') {
                     Css.removeClassName(element, options.duration);
                 }
@@ -13147,7 +13271,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
 
             element.addEventListener(animationEndEventName, onAnimationEnd, false);
         }
-    };
+    });
 
     return Animate;
 });
@@ -13168,6 +13292,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *  keyboardSupport
      */
 
+    function limitRange(n, min, max) {
+        return Math.min(max, Math.max(min, n));
+    }
+
     var requestAnimationFrame = window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -13181,6 +13309,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      * @param {Object} [options]
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
+     *  @param {Number} [options.initialSlide=null] If set to a number, set the corresponding slide immediately.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
      *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
@@ -13198,6 +13327,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         var opts = this._options = Ink.extendObj({
             axis:           'x',
+            initialSlide:    null,
             hideLast:       false,
             center:         false,
             keyboardSupport:false,
@@ -13207,6 +13337,8 @@ Ink.createModule('Ink.UI.Carousel', '1',
             // TODO exponential swipe
             // TODO specify break point for next slide
         }, options || {}, InkElement.data(element));
+
+        opts.initialSlide = parseInt(opts.initialSlide);
 
         this._isY = (opts.axis === 'y');
 
@@ -13239,16 +13371,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numPages,
+                    size:     this._numSlides,
                     onChange: this._handlers.paginationChange
                 });
             } else {
                 // assumes instantiated pagination
                 pagination = this._pagination = opts.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
+                this._pagination.setSize(this._numSlides);
+                this._pagination.setCurrent(opts.initialSlide || 0);
             }
+        } else {
+            this._currentSlide = opts.initialSlide || 0;
         }
 
         if (opts.swipe) {
@@ -13282,12 +13416,12 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var numItems = this._liEls.length;
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
-            this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
+            this._itemsPerSlide = Math.floor( this._ctnLength / this._elLength  );
 
-            var numPages = Math.ceil( numItems / this._itemsPerPage );
-            var numPagesChanged = this._numPages !== numPages;
-            this._numPages = numPages;
-            this._deltaLength = this._itemsPerPage * this._elLength;
+            var numSlides = Math.ceil( numItems / this._itemsPerSlide );
+            var numSlidesChanged = this._numSlides !== numSlides;
+            this._numSlides = numSlides;
+            this._deltaLength = this._itemsPerSlide * this._elLength;
             
             if (this._isY) {
                 this._element.style.width = size(this._liEls[0], true) + 'px';
@@ -13300,15 +13434,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._updateHider();
             this._IE7();
             
-            if (this._pagination && numPagesChanged) {
-                this._pagination.setSize(this._numPages);
+            if (this._pagination && numSlidesChanged) {
+                this._pagination.setSize(this._numSlides);
                 this._pagination.setCurrent(0);
             }
         },
 
         _center: function() {
             if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
+            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerSlide) ) / 2 );
 
             var pad;
             if (this._isY) {
@@ -13323,7 +13457,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if ((!this._pagination) || this._pagination.getCurrent() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerSlide) );
                 if (this._options.center) {
                     gap /= 2;
                 }
@@ -13341,7 +13475,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          */
         _IE7: function () {
             if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
-                // var numPages = this._numPages;
+                // var numSlides = this._numSlides;
                 var slides = Ink.ss('li.slide', this._ulEl);
                 var stl = function (prop, val) {slides[i].style[prop] = val; };
                 for (var i = 0, len = slides.length; i < len; i++) {
@@ -13430,26 +13564,23 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _onTouchEnd: function (event) {
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
-                var snapToNext = 0.1;  // move 10% of the way to change page
+                var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
-                var curPage = this._pagination.getCurrent();
-                var estimatedPage = progress / this._elLength / this._itemsPerPage;
+                var curSlide = this._pagination.getCurrent();
+                var estimatedSlide = progress / this._elLength / this._itemsPerSlide;
 
-                if (Math.round(estimatedPage) === curPage) {
-                    var diff = estimatedPage - curPage;
+                if (Math.round(estimatedSlide) === curSlide) {
+                    var diff = estimatedSlide - curSlide;
                     if (Math.abs(diff) > snapToNext) {
                         diff = diff > 0 ? 1 : -1;
-                        curPage += diff;
+                        curSlide += diff;
                     }
                 } else {
-                    curPage = Math.round(estimatedPage);
+                    curSlide = Math.round(estimatedSlide);
                 }
 
-                // set the left/top positions in _onPaginationChange
-                if (!isNaN(curPage)) {
-                    this._pagination.setCurrent(curPage);
-                }
+                this.setSlide(curSlide);
 
                 event.stopPropagation();
                 // event.preventDefault();
@@ -13462,14 +13593,46 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-            var currPage = pgn.getCurrent();
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
+            var currSlide = pgn.getCurrent();
+            this.setSlide(currSlide);
+        },
+
+        getSlide: function () {
+            if (this._pagination) {
+                return this._pagination.getCurrent();
+            } else {
+                return this._currentSlide;
+            }
+        },
+
+        /**
+         * Set the current slide to `page`
+         * @method setSlide
+         * @param slide
+         **/
+        setSlide: function (slide) {
+            slide = limitRange(slide, 0, this._numSlides - 1);
+            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', slide * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
-                this._options.onChange.call(this, currPage);
+                this._options.onChange.call(this, slide);
             }
 
+            this._currentSlide = slide;
+
             this._updateHider();
-        }
+        },
+
+        /**
+         * Change to the next page
+         * @method nextSlide
+         **/
+        nextSlide: function () { this.setSlide(this.getSlide() + 1); },
+
+        /**
+         * Change to the previous page
+         * @method previousSlide
+         **/
+        previousSlide: function () { this.setSlide(this.getSlide() - 1); }
     };
 
     function setTransitionProperty(el, newTransition) {
@@ -14330,7 +14493,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *      @param {String}    [options.instance]        unique id for the datepicker
      *      @param {Object}    [options.month]           Hash of month names. Defaults to portuguese month names. January is 1.
      *      @param {String}    [options.nextLinkText]    text to display on the previous button. defaults to '«'
-     *      @param {String}    [options.ofText]          text to display between month and year. defaults to ' de '
+     *      @param {String}    [options.ofText=' of ']   text to display between month and year. defaults to ' de '
      *      @param {Boolean}   [options.onFocus=true]    if the datepicker should open when the target element is focused
      *      @param {Function}  [options.onMonthSelected] callback function to execute when the month is selected
      *      @param {Function}  [options.onSetDate]       callback to execute when set date
@@ -14360,7 +14523,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *     </script>
      */
     var DatePicker = function(selector, options) {
-        this._dataField = selector &&
+        this._element = selector &&
             Common.elOrSelector(selector, '[Ink.UI.DatePicker_1]: selector argument');
 
         this._options = Common.options('Ink.UI.DatePicker_1', {
@@ -14380,7 +14543,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             format:          ['String', 'yyyy-mm-dd'],
             instance:        ['String', 'scdp_' + Math.round(99999 * Math.random())],
             nextLinkText:    ['String', '»'],
-            ofText:          ['String', '&nbsp;de&nbsp;'],
+            ofText:          ['String', ' of '],
             onFocus:         ['Boolean', true],
             onMonthSelected: ['Function', null],
             onSetDate:       ['Function', null],
@@ -14425,7 +14588,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 5:'Friday',
                 6:'Saturday'
             }]
-        }, options || {}, this._dataField);
+        }, options || {}, this._element);
 
         this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
@@ -14438,8 +14601,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         if(this._options.startDate) {
             this.setDate( this._options.startDate );
-        } else if (this._dataField && this._dataField.value) {
-            this.setDate( this._dataField.value );
+        } else if (this._element && this._element.value) {
+            this.setDate( this._element.value );
         } else {
             var today = new Date();
             this._day   = today.getDate( );
@@ -14487,7 +14650,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass;
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
 
             this._renderSuperTopBar();
 
@@ -14528,7 +14691,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._picker = document.createElement('a');
                     this._picker.href = '#open_cal';
                     this._picker.innerHTML = 'open';
-                    this._dataField.parentNode.appendChild(this._picker);
+                    this._element.parentNode.appendChild(this._picker);
                     this._picker.className = 'ink-datepicker-picker-field';
                 } else {
                     this._picker = Common.elOrSelector(this._options.pickerField, 'pickerField');
@@ -14544,8 +14707,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthChanger.className = 'ink-calendar-link-month';
             this._monthChanger.innerHTML = this._options.month[this._month + 1];
 
-            this._deText = document.createElement('span');
-            this._deText.innerHTML = this._options._deText;
+            this._ofText = document.createElement('span');
+            this._ofText.innerHTML = this._options.ofText;
 
             this._yearChanger = document.createElement('a');
             this._yearChanger.href = '#yearchanger';
@@ -14553,19 +14716,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._yearChanger.innerHTML = this._year;
             this._monthDescContainer.innerHTML = '';
             this._monthDescContainer.appendChild(this._monthChanger);
-            this._monthDescContainer.appendChild(this._deText);
+            this._monthDescContainer.appendChild(this._ofText);
             this._monthDescContainer.appendChild(this._yearChanger);
 
             if (!this._options.inline) {
                 this._addOpenCloseEvents();
             } else {
-                this._openInline();
+                this.show();
             }
             this._addDateChangeHandlersToInputs();
         },
 
         _addDateChangeHandlersToInputs: function () {
-            var fields = this._dataField;
+            var fields = this._element;
             if (this._options.displayInSelect) {
                 fields = [
                     this._options.dayField,
@@ -14582,38 +14745,27 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             },this));
         },
 
+        /**
+         * Shows the calendar
+         *
+         * @method show
+         **/
+        show: function () {
+            this._updateDate();
+            this._renderMonth();
+            this._containerObject.style.display = 'block';
+        },
+
         _addOpenCloseEvents: function () {
-            var opener = this._picker || this._dataField;
+            var opener = this._picker || this._element;
 
             Event.observe(opener, 'click', Ink.bindEvent(function(e){
                 Event.stop(e);
-                this._containerObject = InkElement.clonePosition(this._containerObject, opener);
-                var top;
-                var left;
-
-                var rect = opener.getBoundingClientRect();
-                if ( this._options.position === 'bottom' ) {
-                    top = rect.bottom;
-                    left = rect.left;
-                } else {
-                    top = rect.top;
-                    left = rect.right;
-                }
-                top += InkElement.scrollHeight();
-                left += InkElement.scrollWidth();
-
-                this._containerObject.style.top = top + 'px';
-                this._containerObject.style.left = left + 'px';
-                this._updateDate();
-                this._renderMonth();
-                this._containerObject.style.display = 'block';
+                this.show();
             },this));
 
             if (this._options.autoOpen) {
-                this._containerObject = InkElement.clonePosition(this._containerObject, opener);
-                this._updateDate();
-                this._renderMonth();
-                this._containerObject.style.display = 'block';
+                this.show();
             }
 
             if(!this._options.displayInSelect){
@@ -14635,7 +14787,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         this._options.monthField,
                         this._options.yearField,
                         this._picker,
-                        this._dataField
+                        this._element
                     ];
 
                     for (var i = 0, len = cannotBe.length; i < len; i++) {
@@ -14647,12 +14799,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                     this._hide(true);
                 },this));
             }
-        },
-
-        _openInline: function () {
-            this._updateDate();
-            this._renderMonth();
-            this._containerObject.style.display = 'block';
         },
 
         /**
@@ -14690,16 +14836,15 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            var appendTarget = document.body;
+            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
-                appendTarget =
-                    Ink.i(this._options.containerElement) ||  // maybe id; small backwards compatibility thing
+                var appendTarget =
+                    Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
-            } else if (this._options.inline) {
-                InkElement.insertAfter(this._containerObject, this._dataField);
-                return;
+                appendTarget.appendChild(this._containerObject);
             }
-            appendTarget.appendChild(this._containerObject);
+            InkElement.wrap(this._element, this._wrapper);
+            InkElement.insertAfter(this._containerObject, this._element);
         },
 
         /**
@@ -14831,7 +14976,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._options.monthField.selectedIndex = 0;
                 this._options.dayField.selectedIndex = 0;
             } else {
-                this._dataField.value = '';
+                this._element.value = '';
             }
         },
 
@@ -15017,8 +15162,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDate: function(){
             var dataParsed;
-            if(!this._options.displayInSelect && this._dataField.value){
-                dataParsed = this._parseDate(this._dataField.value);
+            if(!this._options.displayInSelect && this._element.value){
+                dataParsed = this._parseDate(this._element.value);
             } else if (this._options.displayInSelect) {
                 dataParsed = {
                     _year: this._options.yearField[this._options.yearField.selectedIndex].value,
@@ -15048,7 +15193,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          */
         _updateDescription: function(){
             this._monthChanger.innerHTML = this._options.month[ this._month + 1 ];
-            this._deText.innerHTML = this._options.ofText;
+            this._ofText.innerHTML = this._options.ofText;
             this._yearChanger.innerHTML = this._year;
         },
 
@@ -15281,7 +15426,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._day = dt._day;
 
             if(!this._options.displayInSelect){
-                this._dataField.value = this._writeDateInFormat();
+                this._element.value = this._writeDateInFormat();
             } else {
                 this._options.dayField.value   = this._day;
                 this._options.monthField.value = this._month + 1;
@@ -15641,7 +15786,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         /**
-         * This calls the rendering of the selected month.
+         * This calls the rendering of the selected month. (Deprecated: use show() instead)
          *
          * @method showMonth
          * @public
@@ -15661,6 +15806,18 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             return ((Css.getStyle(header.parentNode,'display') !== 'none') &&
                     (Css.getStyle(header.parentNode.parentNode,'display') !== 'none') );
+        },
+
+        /**
+         * Destroys this datepicker, removing it from the page.
+         *
+         * @public
+         **/
+        destroy: function () {
+            InkElement.unwrap(this._element);
+            InkElement.remove(this._wrapper);
+            InkElement.remove(this._containerObject);
+            Common.unregisterInstance.call(this);
         }
     };
 
@@ -16622,7 +16779,7 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
  * @author inkdev AT sapo.pt
  * @version 1
  **/
-Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1'], function( InkElement, Css, InkValidator ) {
+Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1','Ink.Dom.Selector_1'], function( InkElement, Css, InkValidator , Selector) {
     'use strict';
 
     /**
@@ -16917,7 +17074,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             this.confirmElms[this.element.id] = [];
             //console.log(this.element);
             //console.log(this.element.elements);
-            var formElms = this.element.elements;
+            var formElms = Selector.select(':input', this.element);
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
                 curElm = formElms[i];
@@ -17335,7 +17492,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
     return FormValidator;
 
 });
-
 /**
  * @module Ink.UI.FormValidator_2
  * @author inkdev AT sapo.pt

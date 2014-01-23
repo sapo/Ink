@@ -73,7 +73,58 @@
                 }
             </style>
 
+            <h2>Intro and basic concepts</h2>
+
+            <p><code>Ink.UI.Carousel</code> is a generic component for showing partial content, given that you have a way to "advance" and reveal the rest of your content. You can use this for a slideshow, showing one <code>slide</code> at a time, or for some kind of gallery or link collection, by showing more than one <code>slide</code> at a time.</p>
+
+            <p>There are two important elements involved: the <code>stage</code> element, which contains slides and is important because of slide sizing, and the <code>slide</code>s, which are direct children of the stage. Slides are organized into <code>page</code>s. When the carousel changes pages, this is unrelated to the slides inside.</p>
+
+            <hr>
+
+
+            <h2>Controlling how many slides exist on a single page</h2>
+
+            <p>The size of the slides affects the slide count per page. By setting the size of the <code>slide</code>s to 100% of the width (or height, if it's a vertical carousel), you get one slide per page. By setting your slides to 50% of the width, you get 2 slides per page, and so on.</p>
+
+            <p>Just use Ink's <code>large-*</code>, <code>medium-*</code>, <code>small-*</code> in each of your slides to make your carousel responsive. A slideshow in mobile, and a gallery in desktop and tablet.</p>
+
+            <p>Setting width to 100% in all slides:</p>
+
+            <div id="pages-are-slides" class="ink-carousel" data-paginator="#page-paginator">
+                <ul class="stage">
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 1</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 2</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 3</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 4</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+
+            <p>Setting width to less than 100% in all slides:</p>
+
+            <div id="more-slides-than-pages" class="ink-carousel">
+                <ul class="stage">
+                    <li class="slide large-33 medium-50 small-50"><em>This is slide 1</em></li>
+                    <li class="slide large-33 medium-50 small-50"><em>This is slide 2</em></li>
+                    <li class="slide large-33 medium-50 small-50"><em>This is slide 3</em></li>
+                    <li class="slide large-33 medium-50 small-50"><em>This is slide 4</em></li>
+                    <li class="slide large-33 medium-50 small-50"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                    new Carousel('#pages-are-slides', { autoAdvance: 3000 });
+                    new Carousel('#more-slides-than-pages', { autoAdvance: 2000 });
+                });
+            </script>
+
+            <hr>
+
             <h2>Centered items</h2>
+
+            <p>By enabling the <code>center</code> option, the pages in the slide show are centered. Additionaly, in the first page, the first slide of the second page is hidden.</p>
 
             <div id="car1" class="ink-carousel">
                 <ul class="unstyled stage">
@@ -284,6 +335,77 @@
             <nav id="p2" class="ink-navigation" data-previous-label="" data-next-label="">
                 <ul class="pagination dotted"></ul>
             </nav>
+
+            <hr>
+
+            <h2>Change pages through Javascript, or BYOB (Bring Your Own Buttons)</h2>
+
+            <p>You can use the <code>setPage()</code>, <code>nextPage()</code> and <code>previousPage()</code> methods to change pages, as seen in the below example:</p>
+
+            <p>The <code>wrap</code> argument is used to make the pages "wrap around" both ends. If you are on the first page, and call <code>previousPage()</code>, this takes you to the last page.</p>
+
+            <div class="ink-carousel" id="controlled-carousel">
+                <ul class="untitled stage">
+                    <li class="slide large-100 medium-100 small-100"><em>Page 1</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Page 2</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Page 3</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Page 4</em></li>
+                </ul>
+            </div>
+
+            <p>
+                <label>Wrap <input type="checkbox" checked id="byob-wrap"></label>
+                <button id="byob-prev">previousPage()</button>
+                <button id="byob-next">nextPage()</button>
+                setPage(<select id="byob-pages" name="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>)
+            </p>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.Dom.Event_1'], function(Carousel, InkEvent) {
+                    var controlledCarousel = new Carousel('#controlled-carousel', {});
+                    controlledCarousel.setPage(Ink.i('byob-pages').value - 1);
+                    InkEvent.observe(Ink.i('byob-next'), 'click', function () {
+                        controlledCarousel.nextPage(Ink.i('byob-wrap').checked);
+                    })
+                    InkEvent.observe(Ink.i('byob-prev'), 'click', function () {
+                        controlledCarousel.previousPage(Ink.i('byob-wrap').checked);
+                    })
+                    InkEvent.observe(Ink.i('byob-pages'), 'change', function () {
+                        controlledCarousel.setPage(Ink.i('byob-pages').value - 1);
+                    })
+                });
+            </script>
+
+            <hr>
+
+            <h2>Auto-advance</h2>
+
+            <p>This is the Carousel that shouldn't really be used on the web, but is unfortunately everywhere, so we need to have one.</p>
+
+            <p>Use the <code>autoAdvance</code> option to set how many milliseconds pass before advancing a page.</p>
+
+            <div id="auto-advance" class="ink-carousel">
+                <ul class="stage">
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 1</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 2</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 3</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 4</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                    new Carousel('#auto-advance', { autoAdvance: 2000 });
+                });
+            </script>
+
+            <hr>
         </div>
 
         <script type="text/javascript">

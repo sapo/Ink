@@ -1,4 +1,5 @@
 /*globals equal,test,asyncTest,stop,start,ok,expect*/
+QUnit.config.testTimeout = 4000
 test('bindMethod', function () {
     var obj = {
         test0: function () {
@@ -62,10 +63,16 @@ test('getPath, setPath', function () {
     equal(Ink.getPath('Plug.Sub.Sub'), 'http://example.com/subsubplug/lib.js');
 });
 
-asyncTest('loadScript', function () {
+test('setPath supports using no trailing slash', function () {
+    Ink.setPath('Abc.Def', '/baz');
+    equal(Ink.getPath('Abc.Def_1'), '/baz/1/lib.js');
+});
+
+test('loadScript', function () {
+    stop();
     expect(2);
     window.loadScriptWorks = function (sayYeah) {
-        equal(sayYeah, 'yeah');
+        equal(sayYeah, 'yeah', 'yeah said');
         start();
     };
     Ink.loadScript('./loadscript-test.js');  // This script calls window.loadScriptWorks('yeah')
@@ -78,6 +85,23 @@ asyncTest('loadScript', function () {
         }
     }
 });
+
+if (window.console && window.console.error) {
+    if (typeof window.console.error === 'object') {
+        var _consoleError = window.console.error;
+        window.console.error = function (s) { _consoleError(s); };
+    }
+    test('loadScript + 404', function () {
+        expect(1);
+        stop();
+        var consoleError = sinon.stub(console, 'error', function () {
+            ok(true, 'console.error called');
+            consoleError.restore();
+            start();
+        });
+        Ink.loadScript('./not-exists-should-be-a-404.js');
+    });
+}
 
 (function () {
     Ink.createModule('My.Module', 1, [], function () {
@@ -119,21 +143,21 @@ test('createModule makes the module available immediately when there are no depe
 asyncTest('trying to load TestModuleWithDependencies/1/lib.js', function () {
     expect(3 /* here */ + 2 /* for each createModules */);
     Ink.setPath('TestModule', './TestModule'); // TestModuleWithDependencies's dependency
-    Ink.setPath('TestModuleWithDependencies', './TestModuleWithDependencies')
+    Ink.setPath('TestModuleWithDependencies', './TestModuleWithDependencies');
     Ink.requireModules(['TestModuleWithDependencies_1'], function (TestModuleWithDependencies) {
         equal(TestModuleWithDependencies.hello, 'dependencies');
         ok(TestModuleWithDependencies.TestModule);
         equal(TestModuleWithDependencies.TestModule.hello, 'world');
         start();
-        return {}
+        return {};
     });
 });
 
 asyncTest('Nested requireModules', function () {
     expect(2);// expecting all the callbacks to run
 
-    Ink.createModule('Ink.nest1', 1, [], function () { return {} });
-    Ink.createModule('Ink.nest2', 1, [], function () { return {} });
+    Ink.createModule('Ink.nest1', 1, [], function () { return {}; });
+    Ink.createModule('Ink.nest2', 1, [], function () { return {}; });
 
     Ink.requireModules(['Ink.nest1_1'], function () {
         ok(true, 'first callback run');
@@ -153,7 +177,7 @@ asyncTest('requireModules can require a module which does not yet exist. The scr
             if (scripts[i].src === Ink.getPath('Ink.notYet_1')) {
                 ok(false, 'Ink tried to load the module and did not wait a tick!');
                 start();
-                return
+                return;
             }
         }
         ok(true, 'Ink did not try to load the module before waiting a tick');
@@ -196,11 +220,13 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
             if (scripts[i].src === _a.href) {
                 ok(false, 'Ink tried to request the Ink.UI.SelectFilter_1 module using a script tag, even though it was already created but waiting for dependencies!');
                 start();
-                return
+                return;
             }
         }
         ok(true);
         start();
     });
+
+    Ink.createModule( 'Ink.SomeUnresolvedDependency', 1, [], function () { return {}; });
 });
 

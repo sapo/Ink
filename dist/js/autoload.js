@@ -2,6 +2,7 @@
     var autoload = {
         /* Match module names to element classes (or more complex selectors)
          * which get the UI modules instantiated automatically. */
+        'Animate_1'     : '.ink-animate',
         'Carousel_1'    : '.ink-carousel',
         'DatePicker_1'  : '.ink-datepicker',
         'Gallery_1'     : 'ul.ink-gallery-source',
