@@ -558,19 +558,9 @@
          **/
 
         /**
-         * @property debugMode
-         **/
-
-        debugMode: 1,
-
-        DEBUG_DEVELOPMENT: 0,
-        DEBUG_PRODUCTION: 1,
-
-        /**
          * @method log
          **/
         log: function () {
-            if (Ink.debugMode === 1) { return; }
             var console = window.console;
             if (console && console.log) {
                 console.log.apply(console, arguments);
@@ -595,30 +585,6 @@
             if (console && console.error) {
                 console.error(err);
             }
-            if (Ink.debugMode === 0) {
-                throw err;
-            }
-        },
-
-        /**
-         * @method logIf
-         **/
-        logIf: function (cond/*, msg ...*/) {
-            if (cond) { Ink.log.apply(Ink, [].slice.call(arguments, 1)); }
-        },
-
-        /**
-         * @method warnIf
-         **/
-        warnIf: function (cond/*, msg...*/) {
-            if (cond) { Ink.warn.apply(Ink, [].slice.call(arguments, 1)); }
-        },
-
-        /**
-         * @method errorIf
-         **/
-        errorIf: function (cond/*, msg...*/) {
-            if (cond) { Ink.error.apply(Ink, [].slice.call(arguments, 1)); }
         }
     };
 
