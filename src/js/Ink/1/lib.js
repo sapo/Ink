@@ -539,8 +539,7 @@
          * @param {Object...} sources
          * @return destination object, enriched with defaults from the sources
          */
-        extendObj: function(destination, source)
-        {
+        extendObj: function(destination, source) {
             if (arguments.length > 2) {
                 source = Ink.extendObj.apply(this, [].slice.call(arguments, 1));
             }
@@ -552,8 +551,75 @@
                 }
             }
             return destination;
-        }
+        },
 
+        /**
+         * @class Ink debug mechanisms
+         **/
+
+        /**
+         * @property debugMode
+         **/
+
+        debugMode: 1,
+
+        DEBUG_DEVELOPMENT: 0,
+        DEBUG_PRODUCTION: 1,
+
+        /**
+         * @method log
+         **/
+        log: function () {
+            if (Ink.debugMode === 1) { return; }
+            var console = window.console;
+            if (console && console.log) {
+                console.log.apply(console, arguments);
+            }
+        },
+
+        /**
+         * @method warn
+         **/
+        warn: function () {
+            var console = window.console;
+            if (console && console.warn) {
+                console.warn.apply(console, arguments);
+            }
+        },
+
+        /**
+         * @method error
+         **/
+        error: function (err) {
+            var console = window.console;
+            if (console && console.error) {
+                console.error(err);
+            }
+            if (Ink.debugMode === 0) {
+                throw err;
+            }
+        },
+
+        /**
+         * @method logIf
+         **/
+        logIf: function (cond/*, msg ...*/) {
+            if (cond) { Ink.log.apply(Ink, [].slice.call(arguments, 1)); }
+        },
+
+        /**
+         * @method warnIf
+         **/
+        warnIf: function (cond/*, msg...*/) {
+            if (cond) { Ink.warn.apply(Ink, [].slice.call(arguments, 1)); }
+        },
+
+        /**
+         * @method errorIf
+         **/
+        errorIf: function (cond/*, msg...*/) {
+            if (cond) { Ink.error.apply(Ink, [].slice.call(arguments, 1)); }
+        }
     };
 
     Ink.setPath('Ink',

@@ -1,4 +1,6 @@
 /*globals equal,test,asyncTest,stop,start,ok,expect*/
+(function () {
+
 QUnit.config.testTimeout = 4000
 test('bindMethod', function () {
     var obj = {
@@ -88,6 +90,7 @@ test('loadScript', function () {
 
 if (window.console && window.console.error) {
     if (typeof window.console.error === 'object') {
+        // TODO just mock Ink.warn
         var _consoleError = window.console.error;
         window.console.error = function (s) { _consoleError(s); };
     }
@@ -229,4 +232,104 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
 
     Ink.createModule( 'Ink.SomeUnresolvedDependency', 1, [], function () { return {}; });
 });
+
+
+module('Debug mechanisms');
+
+var console = window.console;
+
+if (window.console && window.console.log) {
+    // Fix ie7-9, where console.* has typeof 'object'
+    if (typeof window.console.log === 'object') {
+        var _consoleError = window.console.error;
+        var _consoleLog = window.console.log;
+        window.console.error = function (s) { _consoleError(s) }
+        window.console.log = function (s) { _consoleLog(s) }
+    }
+
+    Ink.debugMode = Ink.DEBUG_DEVELOPMENT;
+
+    test('Ink.log', function () {
+        var log = sinon.spy(console, 'log');
+        Ink.log('log!');
+        ok(log.calledOnce, 'console.log was called');
+        deepEqual(log.lastCall.args, ['log!']);
+        log.restore()
+    });
+    test('Ink.warn', function () {
+        var warn = sinon.spy(console, 'warn');
+        Ink.warn('warn!');
+        ok(warn.calledOnce, 'console.warn was called');
+        deepEqual(warn.lastCall.args, ['warn!']);
+        warn.restore()
+    });
+    test('Ink.error', function () {
+        raises(function () {
+            Ink.error('hi!');
+        }, /hi!/);
+    });
+
+    test('Ink.debugLevel', function () {
+        Ink.debugMode = Ink.DEBUG_PRODUCTION;
+        var spy = sinon.spy(console, 'log');
+        Ink.log('ignore me!');
+        ok(spy.notCalled);
+        spy.restore();
+
+        try {
+            Ink.error('an error has occurred');
+        } catch (e) {
+            ok(false, 'Ink.error should not raise an error when Ink.debugMode === Ink.DEBUG_PRODUCTION');
+        }
+
+        Ink.debugMode = Ink.DEBUG_DEVELOPMENT
+    });
+
+    test('Ink.logIf', function () {
+        var spy = sinon.spy(Ink, 'log');
+        
+        Ink.logIf(1 === 1, 'an exceptional condition has occurred.');
+        Ink.logIf(1 === 0, 'no, this won\'t occur ever.');
+
+        ok(spy.calledOnce);
+        ok(spy.calledWith('an exceptional condition has occurred.'));
+
+        spy.restore();
+    });
+
+    test('Ink.warnIf', function () {
+        var spy = sinon.spy(Ink, 'warn');
+        
+        Ink.warnIf(1 === 1, 'an exceptional condition has occurred.');
+        Ink.warnIf(1 === 0, 'no, this won\'t occur ever.');
+
+        ok(spy.calledOnce);
+        ok(spy.calledWith('an exceptional condition has occurred.'));
+
+        spy.restore();
+    });
+
+    test('Ink.errorIf', function () {
+        var stub = sinon.stub(Ink, 'error');
+
+        Ink.errorIf(1 === 1, 'an exceptional condition has occurred.');
+        Ink.errorIf(1 === 0, 'no, this won\'t occur ever.');
+
+        ok(stub.calledOnce);
+        ok(stub.calledWith('an exceptional condition has occurred.'));
+
+        stub.restore();
+    });
+} else {
+    // If window.console.log don't exist, trying to call Ink.log and Ink.warn, and asserting that nothing is raised will be our test.
+
+    test('Ink.warn and Ink.error when no console object present', function () {
+        notRaises(function () {
+            Ink.warn('hi!');
+            Ink.log('hi!');
+        });
+    });
+}
+
+}());
 
