@@ -44,7 +44,7 @@
         return true;
     };
 
-
+    var console = window.console || undefined;
 
     window.Ink = {
 
@@ -160,6 +160,16 @@
             scriptEl.setAttribute('type', 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
+            if (console && console.error) {
+                scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
+                    err = err || window.event;
+                    if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+                        // if not readyState == 'loaded' it's not an error.
+                        return;
+                    }
+                    console.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+                };
+            }
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
                 document.write( scriptEl.outerHTML );
@@ -604,6 +614,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
      * @param {String}  url      request url
      * @param {Object}  options  request options
      * @param {Boolean}        [options.asynchronous]    if the request should be asynchronous. true by default.
+     * @param {Boolean}        [options.cors]            set this to true if you're doing a cross-origin request
      * @param {String}         [options.method]          HTTP request method. POST by default.
      * @param {Object|String}  [options.parameters]      Request parameters which should be sent with the request
      * @param {Number}         [options.timeout]         Request timeout
@@ -778,8 +789,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (!Ajax.prototype._locationIsHTTP(urlLocation) || location.protocol === 'widget:' || typeof window.widget === 'object') {
                 return false;
             } else {
-                return location.protocol !== urlLocation.protocol ||
-                       location.host     !== urlLocation.host;
+                return location.protocol           !== urlLocation.protocol ||
+                       location.host.split(':')[0] !== urlLocation.host.split(':')[0];
             }
         },
 
@@ -4030,7 +4041,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          *     <div id="target"></div>
          *
-         * call this function to wrap:
+         * call this function to wrap #target with a wrapper div.
          *
          *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
          * 
@@ -4054,6 +4065,44 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             return container;
+        },
+
+        /**
+         * Pulls an element out of its wrapper.
+         *
+         * @method unwrap
+         * @param elem The element you're trying to unwrap. This should be a child of the wrapper.
+         * @param {String} [wrapperSelector] Use this if you want to find your wrapper (if `elem` is inside several layers of wrappers).
+         *
+         * @example
+         *
+         * When you have this:
+         *
+         *      <div id="wrapper">
+         *          <div id="unwrapMe"></div>
+         *      </div>
+         *
+         * If you do this:
+         *
+         *      InkElement.unwrap('unwrapMe');
+         *
+         * You get this:
+         *
+         *      <div id="unwrapMe"></div>
+         *      <div id="wrapper"></div>
+         *      
+         **/
+        unwrap: function (elem, wrapperSelector) {
+            elem = Ink.i(elem);
+            var wrapper;
+            if (wrapperSelector) {
+                wrapper = InkElement.findUpwardsBySelector(elem, wrapperSelector);
+            } else {
+                wrapper = elem.parentNode;
+            }
+            if (!wrapper || !wrapper.parentNode) { return; }
+
+            InkElement.insertBefore(elem, wrapper);
         },
 
         /**

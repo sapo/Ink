@@ -44,7 +44,7 @@
         return true;
     };
 
-
+    var console = window.console || undefined;
 
     window.Ink = {
 
@@ -160,6 +160,16 @@
             scriptEl.setAttribute('type', 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
+            if (console && console.error) {
+                scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
+                    err = err || window.event;
+                    if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+                        // if not readyState == 'loaded' it's not an error.
+                        return;
+                    }
+                    console.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+                };
+            }
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
                 document.write( scriptEl.outerHTML );

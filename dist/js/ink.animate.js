@@ -1,4 +1,10 @@
-Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], function (Common, Css) {
+/**
+ * @module Ink.UI.Animate_1
+ * @author inkdev AT sapo.pt
+ * @version 1
+ */
+
+Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'Ink.Dom.Css_1'], function (Common, InkEvent, Css) {
     'use strict';
 
     var animationPrefix = (function (el) {
@@ -15,7 +21,62 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         webkitAnimation: 'webkitAnimationEnd'
     }[animationPrefix];
 
-    var Animate = {
+    /**
+     * @class Ink.UI.Animate_1
+     * @constructor
+     *
+     * @param element {DOMElement} animated element
+     * @param options {Object} options object
+     * @param options.animation {String} animation name
+     * @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
+     * @param [options.removeClass=true] {Boolean} Whether to remove the `animation` class when finished animating
+     * @param [options.onEnd=null] {Function} callback for animation end
+     *
+     * @example
+     *
+     *     <button id="animate-me" class="ink-button">Animate me!</button>
+     *     <span class="ink-label info ink-animate"
+     *         id="animated"
+     *         data-trigger="#animate-me"
+     *         data-animation="fadeOut"
+     *         data-removeClass="false">Hi!</span>    
+     *
+     *     <script type="text/javascript">
+     *         // Note: this step is not necessary if you are using autoload.js
+     *         Ink.requireModules(['Ink.UI.Animate_1'], function (Animate) {
+     *             new Animate('#animated');
+     *         });
+     *     </script>
+     *
+     **/
+    function Animate(elOrSelector, options) {
+        this._element = Common.elOrSelector(elOrSelector);
+        this._options = Common.options({
+            trigger: ['Element', null],
+            duration: ['String', 'slow'],  // Actually a string with a duration name, or a number of ms
+            animation: ['String'],
+            removeClass: ['Boolean', true],
+            onEnd: ['Function', function () {}]
+        }, options || {}, this._element);
+
+        if (!isNaN(parseInt(this._options.duration, 10))) {
+            this._options.duration = parseInt(this._options.duration, 10);
+        }
+
+        if (this._options.trigger) {
+            InkEvent.observe(this._options.trigger, 'click', Ink.bind(function () {
+                this.animate();
+            }, this));  // later
+        } else {
+            this.animate();
+        }
+    }
+
+    Animate.prototype.animate = function () {
+        Animate.animate(this._element, this._options.animation, this._options);
+    };
+
+    Ink.extendObj(Animate, {
         /**
          * Prefix for CSS animation-related properties in this browser.
          *
@@ -32,7 +93,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         animationSupported: !!animationPrefix,
 
         /**
-         * The prefix for animation{start,iteration,end} events
+         * The correct event for the animationend event in this browser, with the correct prefix
          *
          * @property {String} animationEndEventName
          **/
@@ -41,11 +102,23 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
         /**
          * Animate a div using one of the animate.css classes
          *
+         * **Note: This is a utility method inside the `Animate` class, which you can access through `Animate.animate()`. Do not mix these up.**
+         *
+         * @example
+         *
+         *      Animate.animate(myDiv, 'shake', {
+         *          onEnd: function () {
+         *              alert('Finished shaking!');
+         *          }
+         *      });
+         *
+         * @static
          * @method animate
          * @param element {DOMElement} animated element
-         * @param animation {String} animation string
+         * @param animation {String} animation name
          * @param [options] {Object}
          *     @param [options.onEnd=null] {Function} callback for animation end
+         *     @param [options.removeClass=false] {Boolean} whether to remove the Css class when finished
          *     @param [options.duration=medium] {String|Number} duration name (fast|medium|slow) or duration in ms
          **/
         animate: function (element, animation, options) {
@@ -84,7 +157,9 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
                 if (event.target !== element) { return; }
                 if (event.animationName !== animation) { return; }
                 if (options.onEnd) { options.onEnd(event); }
-                Css.removeClassName(element, [animation]);
+                if (options.removeClass) {
+                    Css.removeClassName(element, animation);
+                }
                 if (typeof options.duration === 'string') {
                     Css.removeClassName(element, options.duration);
                 }
@@ -93,7 +168,7 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Css_1'], func
 
             element.addEventListener(animationEndEventName, onAnimationEnd, false);
         }
-    };
+    });
 
     return Animate;
 });
