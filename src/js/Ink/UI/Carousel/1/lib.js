@@ -28,6 +28,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
+     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing slides. Set to 0 to disable auto-advance.
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
      *  @param {Number} [options.initialSlide=0] When initialized, set the slide to this.
@@ -47,6 +48,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         var element = this._element = Common.elOrSelector(selector, '1st argument');
 
         var opts = this._options = Common.options({
+            autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
             initialSlide:   ['Integer', 0],
             hideLast:       ['Boolean', false],
@@ -54,7 +56,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             keyboardSupport:['Boolean', false],
             pagination:     ['Object', null],
             onChange:       ['Function', null],
-            swipe:          ['Boolean', true]
+            swipe:          ['Boolean', true],
             // TODO exponential swipe
             // TODO specify break point for next slide when moving finger
         }, options || {}, element);
@@ -109,6 +111,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
             InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
         }
+
+        if (opts.autoAdvance) {
+            this._setUpAutoAdvance();
+        }
     };
 
     Carousel.prototype = {
@@ -157,6 +163,16 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 this._pagination.setSize(this._numSlides);
             }
             this.setSlide(limitRange(this.getSlide(), 1, this._numSlides));
+        },
+
+        _setUpAutoAdvance: function () {
+            var self = this;
+            function autoAdvance() {
+                self.nextSlide(true /* wrap */);
+                setTimeout(autoAdvance, self._options.autoAdvance);
+            }
+
+            setTimeout(autoAdvance, this._options.autoAdvance);
         },
 
         _center: function() {

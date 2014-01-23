@@ -73,7 +73,19 @@
                 }
             </style>
 
+            <h2>Intro and basic concepts</h2>
+
+            <p><code>Ink.UI.Carousel</code> is a generic component for showing partial content, given that you have a way to "advance" and reveal the rest of your content. You can use this for a slideshow, showing one <code>slide</code> at a time, or for some kind of gallery or link collection, by showing more than one <code>slide</code> at a time.</p>
+
+            <p>There are two important elements involved: the <code>stage</code> element, which contains slides and is important because of slide sizing, and the <code>slide</code>s, which are direct children of the stage. Slides are organized into <code>page</code>s. When the carousel changes pages, this is unrelated to the slides inside.</p>
+
+            <p>The size of the slides affects the slide count per page. By setting the size of the <code>slide</code>s to 100% of the width (or height, if it's a vertical carousel), you get one slide per page. By setting your slides to 50% of the width, you get 2 slides per page, and so on.</p>
+
+            <p>Just use Ink's <code>large-*</code>, <code>medium-*</code>, <code>small-*</code> in each of your slides to make your carousel responsive. A slideshow in mobile, and a gallery in desktop and tablet.</p>
+
             <h2>Centered items</h2>
+
+            <p>By enabling the <code>center</code> option, the pages in the slide show are centered. Additionaly, in the first page, the first slide of the second page is hidden.</p>
 
             <div id="car1" class="ink-carousel">
                 <ul class="unstyled stage">
@@ -285,6 +297,8 @@
                 <ul class="pagination dotted"></ul>
             </nav>
 
+            <hr>
+
             <h2>Change slides through Javascript, or BYOB (Bring Your Own Buttons)</h2>
 
             <p>You can use the <code>setSlide()</code>, <code>nextSlide()</code> and <code>previousSlide()</code> methods to change pages, as seen in the below example:</p>
@@ -293,10 +307,10 @@
 
             <div class="ink-carousel" id="controlled-carousel">
                 <ul class="untitled stage">
-                    <li class="slide large-100 medium-100 small-100"><h1>Slide 1</h1></li>
-                    <li class="slide large-100 medium-100 small-100"><h1>Slide 2</h1></li>
-                    <li class="slide large-100 medium-100 small-100"><h1>Slide 3</h1></li>
-                    <li class="slide large-100 medium-100 small-100"><h1>Slide 4</h1></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Slide 1</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Slide 2</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Slide 3</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>Slide 4</em></li>
                 </ul>
             </div>
 
@@ -327,6 +341,32 @@
                     })
                 });
             </script>
+
+            <hr>
+
+            <h2>Auto-advance</h2>
+
+            <p>This is the Carousel that shouldn't really be used on the web, but is unfortunately everywhere, so we need to have one.</p>
+
+            <p>Use the <code>autoAdvance</code> option to set how many milliseconds pass before advancing a slide.</p>
+
+            <div id="auto-advance" class="ink-carousel">
+                <ul class="stage">
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 1</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 2</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 3</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 4</em></li>
+                    <li class="slide large-100 medium-100 small-100"><em>This is slide 5</em></li>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                Ink.requireModules(['Ink.UI.Carousel_1'], function(Carousel) {
+                    new Carousel('#auto-advance', { autoAdvance: 2000 });
+                });
+            </script>
+
+            <hr>
         </div>
 
         <script type="text/javascript">
