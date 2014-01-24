@@ -30,7 +30,7 @@
     var pendingRMs = [];
     var modulesWaitingForDeps = {};
 
-
+    var apply = Function.prototype.apply;
 
     // auxiliary fns
     var isEmptyObject = function(o) {
@@ -43,8 +43,6 @@
         }
         return true;
     };
-
-    var console = window.console || undefined;
 
     window.Ink = {
 
@@ -160,16 +158,14 @@
             scriptEl.setAttribute('type', 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            if (console && console.error) {
-                scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
-                    err = err || window.event;
-                    if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
-                        // if not readyState == 'loaded' it's not an error.
-                        return;
-                    }
-                    console.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
-                };
-            }
+            scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
+                err = err || window.event;
+                if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+                    // if not readyState == 'loaded' it's not an error.
+                    return;
+                }
+                Ink.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+            };
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
                 document.write( scriptEl.outerHTML );
@@ -561,9 +557,10 @@
          * @method log
          **/
         log: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
             var console = window.console;
             if (console && console.log) {
-                console.log.apply(console, arguments);
+                apply.call(console.log, console, arguments);
             }
         },
 
@@ -571,19 +568,21 @@
          * @method warn
          **/
         warn: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
             var console = window.console;
             if (console && console.warn) {
-                console.warn.apply(console, arguments);
+                apply.call(console.warn, console, arguments);
             }
         },
 
         /**
          * @method error
          **/
-        error: function (err) {
+        error: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
             var console = window.console;
             if (console && console.error) {
-                console.error(err);
+                apply.call(console.error, console, arguments);
             }
         }
     };

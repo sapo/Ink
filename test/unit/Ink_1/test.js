@@ -236,17 +236,15 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
 
 module('Debug mechanisms');
 
-var console = window.console;
-
 if (window.console && window.console.log) {
-    // Fix ie7-9, where console.* has typeof 'object'
-    if (typeof window.console.log === 'object') {
-        var _consoleLog = window.console.log;
-        var _consoleWarn = window.console.warn;
-        var _consoleError = window.console.error;
-        window.console.log = function (s) { _consoleLog(s) }
-        window.console.warn = function (s) { _consoleWarn(s) }
-        window.console.error = function (s) { _consoleError(s) }
+    // Fix ie7-9, where console.* functions have typeof 'object'
+    // Because of that we can't use a sinon stub, so we fake one.
+    function stubObject(obj, methodName) {
+        var old = obj[methodName];
+        obj[methodName] = function () {};
+        obj[methodName].restore = function () {
+            obj[methodName] = old;
+        };
     }
 
     test('console.* stubs/shortcuts', function () {
@@ -254,11 +252,17 @@ if (window.console && window.console.log) {
         var spy;
 
         for (var i = 0, len = functions.length; i < len; i++) {
-            spy = sinon.spy(console, functions[i]);
-            Ink[functions[i]]('log!');
+            stubObject(window.console, functions[i]);
+
+            spy = sinon.spy(window.console, functions[i]);
+            Ink[functions[i]]('log!', 'log2!');
             ok(spy.calledOnce, 'console.' + functions[i] + ' called once');
-            deepEqual(spy.lastCall.args, ['log!'], '(called with \'log!\')');
+            deepEqual(
+                spy.lastCall.args, ['log!', 'log2!'],
+                '(called with arguments given to console.' + functions[i] + ')');
+
             spy.restore();
+            window.console[functions[i]].restore();
         }
     });
 } else {
