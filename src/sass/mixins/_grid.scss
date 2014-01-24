@@ -96,6 +96,14 @@
         } 
     }
 
+    .#{$table-class-name} {
+        td,th,tr,thead,tbody,tfoot {
+            &[class*=#{$class-name}-] {
+                float: none;
+            }
+        }
+    }
+
 }
 
 @mixin generate-grid-divisions ($class-name) {
@@ -156,7 +164,7 @@
 @mixin generate-grid-helper-classes($class-name,$gutter-width) {
 
     .#{$class-name}-push-left {
-        float: left;
+        float: left;        
     }
     
     .#{$class-name}-push-center {
@@ -229,19 +237,9 @@
 
         @if $position == horizontal {
 
-            .#{$position}-space {
-                margin-left: $gutter-width;
-                margin-right: $gutter-width;
-            }
-
             .#{$class-name}-#{$position}-space {
                 margin-left: $gutter-width;
                 margin-right: $gutter-width;
-            }
-
-            .#{$position}-padding {
-                padding-left: $gutter-width;
-                padding-right: $gutter-width;
             }
 
             .#{$class-name}-#{$position}-padding {
@@ -268,19 +266,9 @@
 
         @if $position == vertical {
 
-            .#{$position}-space {
-                margin-top: $gutter-width;
-                margin-bottom: $gutter-width;
-            }
-
             .#{$class-name}-#{$position}-space {
                 margin-top: $gutter-width;
                 margin-bottom: $gutter-width;
-            }
-
-            .#{$position}-padding {
-                padding-top: $gutter-width;
-                padding-bottom: $gutter-width;
             }
 
             .#{$class-name}-#{$position}-padding {
@@ -307,16 +295,8 @@
 
         @if $position != horizontal and $position != vertical and $position != null {
 
-            .#{$position}-space {
-                margin-#{$position}: $gutter-width;
-            }
-
             .#{$class-name}-#{$position}-space {
                 margin-#{$position}: $gutter-width;
-            }
-
-            .#{$position}-padding {
-                padding-#{$position}: $gutter-width;
             }
 
             .#{$class-name}-#{$position}-padding {
@@ -339,18 +319,10 @@
 
         @if $position == null {
 
-            .space {
-                margin: $gutter-width;
-            }
-
             .#{$class-name}-space {
                 margin: $gutter-width;
             }
 
-            .padding {
-                padding: $gutter-width;
-            }
-            
             .#{$class-name}-padding {
                 padding: $gutter-width;
             }

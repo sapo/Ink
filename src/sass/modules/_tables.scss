@@ -1,6 +1,6 @@
 table {
 
-    .#{$table-class-name} {
+    &.#{$table-class-name} {
 
         width: 100%;
         border-collapse: collapse;

@@ -128,6 +128,36 @@
   }
 }
 
+@mixin generate-visibility-classes ($breakpoint) {
+
+    .hide-#{$breakpoint} {
+        display: none;
+    }
+    .show-#{$breakpoint} {
+        display: inherit;
+    }
+    
+    table.show-#{$breakpoint} {
+        display: table;
+    }
+    thead.show-#{$breakpoint} {
+        display: table-header-group;
+    }
+    tbody.show-#{$breakpoint} {
+        display: table-row-group;
+    }
+    tfoot.show-#{$breakpoint} {
+        display: table-footer-group;
+    }
+    tr.show-#{$breakpoint} {
+        display: table-row;
+    }
+    th.show-#{$breakpoint},
+    td.show-#{$breakpoint} {
+        display: table-cell;
+    }
+}
+
 @mixin generate-flex-grid-divisions ($class-name) {
 
   // iteration counter
@@ -218,6 +248,7 @@
           @include generate-flex-grid-divisions($class-name);
           @include grid-flex-order($class-name);
           @include generate-flex-grid-utils($class-name);
+          @include generate-visibility-classes($class-name);
         }
       }
 
@@ -228,6 +259,7 @@
           @include generate-flex-grid-divisions($class-name);
           @include grid-flex-order($class-name);
           @include generate-flex-grid-utils($class-name);
+          @include generate-visibility-classes($class-name);
         }
       }
 
@@ -238,6 +270,7 @@
           @include generate-flex-grid-divisions($class-name);
           @include grid-flex-order($class-name);
           @include generate-flex-grid-utils($class-name);
+          @include generate-visibility-classes($class-name);
         }
       }
     }

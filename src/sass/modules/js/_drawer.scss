@@ -1,37 +1,81 @@
 body {
+
+    $speed: 300ms;
+    $width: 220px;
+    $easing: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+
     &.ink-drawer {
+
+        max-width: 100%;
+
+        .left-drawer,
+        .right-drawer,
+        .content-drawer {
+          @include transition-property(translate3d);
+          @include transition-duration($speed);
+          @include transition-timing-function($easing);
+        }
+        
+        .left-drawer {
+            left: ($width * -1);
+        }
+        .right-drawer {
+            right: ($width * -1);
+        }
+        .content-drawer {
+            width: 100%;
+        }
 
         .left-drawer,
         .right-drawer {
-          background: red; 
-          width: 300px; 
+
+          width: $width; 
           position: absolute;
           top: 0;
           height: 100%;
           overflow-y: auto;
           overflow-x: hidden;
+          display: none;
+
+          &.show {
+            display: block;
+          }
+
+          @include clearfix;
+
+        }  
+
+        &.push {
+          overflow-y: hidden;
+
+          &.left {
+            .left-drawer, .content-drawer {
+              @include translate3d($width,0,0);
+            }
+          }
+
+          &.right {
+            .right-drawer, .content-drawer {
+              @include translate3d(($width * -1),0,0);
+            }
+          }
+
         }
 
-        .left-drawer {
-            left: -300px;
-            &.open {
-                left: 0px;
+        &.over {
+          overflow-y: hidden;
+          &.left {
+            .left-drawer {
+              @include translate3d($width,0,0);
             }
-        }
-        .right-drawer {
-            right: -300px;
-            &.open {
-                right: 0px;
+          }
+
+          &.right {
+            .right-drawer {
+              @include translate3d(($width * -1),0,0);
             }
-        }
-        .content-drawer {
-            width: 100%;
-            &.open-left {
-                margin-left: 300px;
-            }
-            &.open-right {
-                margin-left: -300px;
-            }
-        }
+          }
+
+        }            
     }
 }
