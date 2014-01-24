@@ -27,8 +27,9 @@
     <link rel="apple-touch-startup-image" href="{{ page.base_path }}{{  site.images_path  }}splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
         
     <!-- Load Documentation site CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}docs.css">
-    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}ink.css">
+    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}docs.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ page.base_path }}{{  site.css_path  }}ink.min.css">
+    
 
     <!--[if lte IE 7 ]>
         <link rel="stylesheet" href="{{ page.base_path }}{{  site.css_path  }}ink-ie7-min.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -36,12 +37,16 @@
 
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}modernizr.js"></script>
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}lunr.min.js"></script>
-    <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}prettify.js"></script>
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}ink-all.js"></script>
     <script type="text/javascript" src="{{ page.base_path }}{{ site.js_path }}autoload.js"></script>
     
-   
+    <script type="text/javascript">
+        Modernizr.load({
+          test: Modernizr.flexbox,
+          yep : '{{ page.base_path }}{{  site.css_path  }}ink-flex.min.css'
+        });
+    </script>
 
 </head>
-<body onload="prettyPrint()" class="ink-drawer">
+<body class="ink-drawer">
 <div id="fb-root"></div>

@@ -3285,7 +3285,7 @@ table {
   content: "";
 }
 
-/* line 417, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 425, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .ink-grid {
   width: auto;
   max-width: 1440px;
@@ -3297,233 +3297,233 @@ table {
   padding: 0 1.75em;
 }
 
-/* line 108, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 116, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .column-group > [class*=large-] {
   float: left;
   clear: none;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-5 {
   width: 5%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-5 {
   width: 5%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-10 {
   width: 10%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-10 {
   width: 10%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-15 {
   width: 15%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-15 {
   width: 15%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-20 {
   width: 20%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-20 {
   width: 20%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-25 {
   width: 25%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-25 {
   width: 25%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-30 {
   width: 30%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-30 {
   width: 30%;
 }
 
-/* line 117, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 125, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-33 {
   width: 33.33%;
 }
 
-/* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 128, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-35 {
   width: 33.33%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-35 {
   width: 35%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-35 {
   width: 35%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-40 {
   width: 40%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-40 {
   width: 40%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-45 {
   width: 45%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-45 {
   width: 45%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-50 {
   width: 50%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-50 {
   width: 50%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-55 {
   width: 55%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-55 {
   width: 55%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-60 {
   width: 60%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-60 {
   width: 60%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-65 {
   width: 65%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-65 {
   width: 65%;
 }
 
-/* line 127, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 135, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-66 {
   width: 66.66%;
 }
 
-/* line 130, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 138, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-70 {
   width: 66.66%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-70 {
   width: 70%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-70 {
   width: 70%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-75 {
   width: 75%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-75 {
   width: 75%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-80 {
   width: 80%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-80 {
   width: 80%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-85 {
   width: 85%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-85 {
   width: 85%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-90 {
   width: 90%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-90 {
   width: 90%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-95 {
   width: 95%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-95 {
   width: 95%;
 }
 
-/* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-100 {
   width: 100%;
 }
 
-/* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .all-100 {
   width: 100%;
 }
 
-/* line 145, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 153, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 [class*=large-100] {
   float: none;
   clear: both;
@@ -3605,534 +3605,539 @@ table {
   margin-bottom: 0;
 }
 
-/* line 158, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 101, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+.ink-table td[class*=large-], .ink-table th[class*=large-], .ink-table tr[class*=large-], .ink-table thead[class*=large-], .ink-table tbody[class*=large-], .ink-table tfoot[class*=large-] {
+  float: none;
+}
+
+/* line 166, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-push-left {
   float: left;
 }
 
-/* line 162, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-push-center {
   float: none;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 167, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-push-right {
   float: right;
 }
 
-/* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 178, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-align-left {
   text-align: left;
 }
 
-/* line 173, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 181, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-align-center {
   text-align: center;
 }
 
-/* line 176, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 184, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-align-right {
   text-align: right;
 }
 
-/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 322, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-space {
   margin: 1.75em;
 }
 
-/* line 318, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-padding {
   padding: 1.75em;
 }
 
-/* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-space {
   margin: 0.875em;
 }
 
-/* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-padding {
   padding: 0.875em;
 }
 
-/* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-space {
   margin: 0.4375em;
 }
 
-/* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-padding {
   padding: 0.4375em;
 }
 
-/* line 261, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 269, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-vertical-space {
   margin-top: 1.75em;
   margin-bottom: 1.75em;
 }
 
-/* line 266, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 274, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-vertical-padding {
   padding-top: 1.75em;
   padding-bottom: 1.75em;
 }
 
-/* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-vertical-space {
   margin-top: 0.875em;
   margin-bottom: 0.875em;
 }
 
-/* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-vertical-padding {
   padding-top: 0.875em;
   padding-bottom: 0.875em;
 }
 
-/* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-vertical-space {
   margin-top: 0.4375em;
   margin-bottom: 0.4375em;
 }
 
-/* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-vertical-padding {
   padding-top: 0.4375em;
   padding-bottom: 0.4375em;
 }
 
-/* line 232, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 240, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-horizontal-space {
   margin-left: 1.75em;
   margin-right: 1.75em;
 }
 
-/* line 237, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 245, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-horizontal-padding {
   padding-left: 1.75em;
   padding-right: 1.75em;
 }
 
-/* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-horizontal-space {
   margin-left: 0.875em;
   margin-right: 0.875em;
 }
 
-/* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-horizontal-padding {
   padding-left: 0.875em;
   padding-right: 0.875em;
 }
 
-/* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-horizontal-space {
   margin-left: 0.4375em;
   margin-right: 0.4375em;
 }
 
-/* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-horizontal-padding {
   padding-left: 0.4375em;
   padding-right: 0.4375em;
 }
 
-/* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-top-space {
   margin-top: 1.75em;
 }
 
-/* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-top-padding {
   padding-top: 1.75em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-top-space {
   margin-top: 0.875em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-top-padding {
   padding-top: 0.875em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-top-space {
   margin-top: 0.4375em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-top-padding {
   padding-top: 0.4375em;
 }
 
-/* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-right-space {
   margin-right: 1.75em;
 }
 
-/* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-right-padding {
   padding-right: 1.75em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-right-space {
   margin-right: 0.875em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-right-padding {
   padding-right: 0.875em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-right-space {
   margin-right: 0.4375em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-right-padding {
   padding-right: 0.4375em;
 }
 
-/* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-bottom-space {
   margin-bottom: 1.75em;
 }
 
-/* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-bottom-padding {
   padding-bottom: 1.75em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-bottom-space {
   margin-bottom: 0.875em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-bottom-padding {
   padding-bottom: 0.875em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-bottom-space {
   margin-bottom: 0.4375em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-bottom-padding {
   padding-bottom: 0.4375em;
 }
 
-/* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-left-space {
   margin-left: 1.75em;
 }
 
-/* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-left-padding {
   padding-left: 1.75em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-left-space {
   margin-left: 0.875em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-half-left-padding {
   padding-left: 0.875em;
 }
 
-/* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-left-space {
   margin-left: 0.4375em;
 }
 
-/* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .large-quarter-left-padding {
   padding-left: 0.4375em;
 }
 
-/* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 349, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .hide-large {
   display: none;
 }
 
-/* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 352, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 .show-large {
   display: inherit;
 }
 
-/* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 356, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 table.show-large {
   display: table;
 }
 
-/* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 359, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 thead.show-large {
   display: table-header-group;
 }
 
-/* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 362, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 tbody.show-large {
   display: table-row-group;
 }
 
-/* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 365, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 tfoot.show-large {
   display: table-footer-group;
 }
 
-/* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 368, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 tr.show-large {
   display: table-row;
 }
 
-/* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+/* line 372, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
 th.show-large,
 td.show-large {
   display: table-cell;
 }
 
-@media screen and (min-width: 1441px) {
+@media screen and (min-width: 1201px) {
   /* line 24, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .ink-grid {
     padding: 0 2em;
   }
 
-  /* line 108, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 116, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .column-group > [class*=extra-large-] {
     float: left;
     clear: none;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-5 {
     width: 5%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-5 {
     width: 5%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-10 {
     width: 10%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-10 {
     width: 10%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-15 {
     width: 15%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-15 {
     width: 15%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-20 {
     width: 20%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-20 {
     width: 20%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-25 {
     width: 25%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-25 {
     width: 25%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-30 {
     width: 30%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-30 {
     width: 30%;
   }
 
-  /* line 117, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 125, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-33 {
     width: 33.33%;
   }
 
-  /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 128, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 33.33%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-35 {
     width: 35%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 35%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-40 {
     width: 40%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-40 {
     width: 40%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-45 {
     width: 45%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-45 {
     width: 45%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-50 {
     width: 50%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-50 {
     width: 50%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-55 {
     width: 55%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-55 {
     width: 55%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-60 {
     width: 60%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-60 {
     width: 60%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-65 {
     width: 65%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-65 {
     width: 65%;
   }
 
-  /* line 127, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 135, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-66 {
     width: 66.66%;
   }
 
-  /* line 130, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 138, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 66.66%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-70 {
     width: 70%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 70%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-75 {
     width: 75%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-75 {
     width: 75%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-80 {
     width: 80%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-80 {
     width: 80%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-85 {
     width: 85%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-85 {
     width: 85%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-90 {
     width: 90%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-90 {
     width: 90%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-95 {
     width: 95%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-95 {
     width: 95%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-100 {
     width: 100%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-100 {
     width: 100%;
   }
 
-  /* line 145, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 153, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   [class*=extra-large-100] {
     float: none;
     clear: both;
@@ -4214,296 +4219,301 @@ td.show-large {
     margin-bottom: 0;
   }
 
-  /* line 158, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 101, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .ink-table td[class*=extra-large-], .ink-table th[class*=extra-large-], .ink-table tr[class*=extra-large-], .ink-table thead[class*=extra-large-], .ink-table tbody[class*=extra-large-], .ink-table tfoot[class*=extra-large-] {
+    float: none;
+  }
+
+  /* line 166, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-push-left {
     float: left;
   }
 
-  /* line 162, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-push-center {
     float: none;
     margin-left: auto;
     margin-right: auto;
   }
 
-  /* line 167, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-push-right {
     float: right;
   }
 
-  /* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 178, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-align-left {
     text-align: left;
   }
 
-  /* line 173, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 181, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-align-center {
     text-align: center;
   }
 
-  /* line 176, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 184, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-align-right {
     text-align: right;
   }
 
-  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 322, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-space {
     margin: 2em;
   }
 
-  /* line 318, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-padding {
     padding: 2em;
   }
 
-  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-space {
     margin: 1em;
   }
 
-  /* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-padding {
     padding: 1em;
   }
 
-  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-space {
     margin: 0.5em;
   }
 
-  /* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-padding {
     padding: 0.5em;
   }
 
-  /* line 261, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 269, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-vertical-space {
     margin-top: 2em;
     margin-bottom: 2em;
   }
 
-  /* line 266, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 274, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-vertical-padding {
     padding-top: 2em;
     padding-bottom: 2em;
   }
 
-  /* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-vertical-space {
     margin-top: 1em;
     margin-bottom: 1em;
   }
 
-  /* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-vertical-padding {
     padding-top: 1em;
     padding-bottom: 1em;
   }
 
-  /* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-vertical-space {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
 
-  /* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-vertical-padding {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
 
-  /* line 232, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 240, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-horizontal-space {
     margin-left: 2em;
     margin-right: 2em;
   }
 
-  /* line 237, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 245, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-horizontal-padding {
     padding-left: 2em;
     padding-right: 2em;
   }
 
-  /* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-horizontal-space {
     margin-left: 1em;
     margin-right: 1em;
   }
 
-  /* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-horizontal-padding {
     padding-left: 1em;
     padding-right: 1em;
   }
 
-  /* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-horizontal-space {
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
 
-  /* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-horizontal-padding {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-top-space {
     margin-top: 2em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-top-padding {
     padding-top: 2em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-top-space {
     margin-top: 1em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-top-padding {
     padding-top: 1em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-top-space {
     margin-top: 0.5em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-top-padding {
     padding-top: 0.5em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-right-space {
     margin-right: 2em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-right-padding {
     padding-right: 2em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-right-space {
     margin-right: 1em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-right-padding {
     padding-right: 1em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-right-space {
     margin-right: 0.5em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-right-padding {
     padding-right: 0.5em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-bottom-space {
     margin-bottom: 2em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-bottom-padding {
     padding-bottom: 2em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-bottom-space {
     margin-bottom: 1em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-bottom-padding {
     padding-bottom: 1em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-bottom-space {
     margin-bottom: 0.5em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-bottom-padding {
     padding-bottom: 0.5em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-left-space {
     margin-left: 2em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-left-padding {
     padding-left: 2em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-left-space {
     margin-left: 1em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-half-left-padding {
     padding-left: 1em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-left-space {
     margin-left: 0.5em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .extra-large-quarter-left-padding {
     padding-left: 0.5em;
   }
 
-  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 349, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .hide-extra-large {
     display: none;
   }
 
-  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 352, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .show-extra-large {
     display: inherit;
   }
 
-  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 356, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   table.show-extra-large {
     display: table;
   }
 
-  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 359, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   thead.show-extra-large {
     display: table-header-group;
   }
 
-  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 362, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tbody.show-extra-large {
     display: table-row-group;
   }
 
-  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 365, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tfoot.show-extra-large {
     display: table-footer-group;
   }
 
-  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 368, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tr.show-extra-large {
     display: table-row;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 372, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   th.show-extra-large,
   td.show-extra-large {
     display: table-cell;
@@ -4515,233 +4525,233 @@ td.show-large {
     padding: 0 1.5em;
   }
 
-  /* line 108, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 116, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .column-group > [class*=medium-] {
     float: left;
     clear: none;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-5 {
     width: 5%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-5 {
     width: 5%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-10 {
     width: 10%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-10 {
     width: 10%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-15 {
     width: 15%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-15 {
     width: 15%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-20 {
     width: 20%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-20 {
     width: 20%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-25 {
     width: 25%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-25 {
     width: 25%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-30 {
     width: 30%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-30 {
     width: 30%;
   }
 
-  /* line 117, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 125, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-33 {
     width: 33.33%;
   }
 
-  /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 128, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 33.33%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-35 {
     width: 35%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 35%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-40 {
     width: 40%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-40 {
     width: 40%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-45 {
     width: 45%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-45 {
     width: 45%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-50 {
     width: 50%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-50 {
     width: 50%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-55 {
     width: 55%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-55 {
     width: 55%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-60 {
     width: 60%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-60 {
     width: 60%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-65 {
     width: 65%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-65 {
     width: 65%;
   }
 
-  /* line 127, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 135, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-66 {
     width: 66.66%;
   }
 
-  /* line 130, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 138, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 66.66%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-70 {
     width: 70%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 70%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-75 {
     width: 75%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-75 {
     width: 75%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-80 {
     width: 80%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-80 {
     width: 80%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-85 {
     width: 85%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-85 {
     width: 85%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-90 {
     width: 90%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-90 {
     width: 90%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-95 {
     width: 95%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-95 {
     width: 95%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-100 {
     width: 100%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-100 {
     width: 100%;
   }
 
-  /* line 145, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 153, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   [class*=medium-100] {
     float: none;
     clear: both;
@@ -4823,296 +4833,301 @@ td.show-large {
     margin-bottom: 0;
   }
 
-  /* line 158, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 101, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .ink-table td[class*=medium-], .ink-table th[class*=medium-], .ink-table tr[class*=medium-], .ink-table thead[class*=medium-], .ink-table tbody[class*=medium-], .ink-table tfoot[class*=medium-] {
+    float: none;
+  }
+
+  /* line 166, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-push-left {
     float: left;
   }
 
-  /* line 162, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-push-center {
     float: none;
     margin-left: auto;
     margin-right: auto;
   }
 
-  /* line 167, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-push-right {
     float: right;
   }
 
-  /* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 178, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-align-left {
     text-align: left;
   }
 
-  /* line 173, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 181, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-align-center {
     text-align: center;
   }
 
-  /* line 176, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 184, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-align-right {
     text-align: right;
   }
 
-  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 322, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-space {
     margin: 1.5em;
   }
 
-  /* line 318, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-padding {
     padding: 1.5em;
   }
 
-  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-space {
     margin: 0.75em;
   }
 
-  /* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-padding {
     padding: 0.75em;
   }
 
-  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-space {
     margin: 0.375em;
   }
 
-  /* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-padding {
     padding: 0.375em;
   }
 
-  /* line 261, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 269, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-vertical-space {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
   }
 
-  /* line 266, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 274, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-vertical-padding {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
   }
 
-  /* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-vertical-space {
     margin-top: 0.75em;
     margin-bottom: 0.75em;
   }
 
-  /* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-vertical-padding {
     padding-top: 0.75em;
     padding-bottom: 0.75em;
   }
 
-  /* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-vertical-space {
     margin-top: 0.375em;
     margin-bottom: 0.375em;
   }
 
-  /* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-vertical-padding {
     padding-top: 0.375em;
     padding-bottom: 0.375em;
   }
 
-  /* line 232, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 240, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-horizontal-space {
     margin-left: 1.5em;
     margin-right: 1.5em;
   }
 
-  /* line 237, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 245, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-horizontal-padding {
     padding-left: 1.5em;
     padding-right: 1.5em;
   }
 
-  /* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-horizontal-space {
     margin-left: 0.75em;
     margin-right: 0.75em;
   }
 
-  /* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-horizontal-padding {
     padding-left: 0.75em;
     padding-right: 0.75em;
   }
 
-  /* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-horizontal-space {
     margin-left: 0.375em;
     margin-right: 0.375em;
   }
 
-  /* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-horizontal-padding {
     padding-left: 0.375em;
     padding-right: 0.375em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-top-space {
     margin-top: 1.5em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-top-padding {
     padding-top: 1.5em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-top-space {
     margin-top: 0.75em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-top-padding {
     padding-top: 0.75em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-top-space {
     margin-top: 0.375em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-top-padding {
     padding-top: 0.375em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-right-space {
     margin-right: 1.5em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-right-padding {
     padding-right: 1.5em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-right-space {
     margin-right: 0.75em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-right-padding {
     padding-right: 0.75em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-right-space {
     margin-right: 0.375em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-right-padding {
     padding-right: 0.375em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-bottom-space {
     margin-bottom: 1.5em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-bottom-padding {
     padding-bottom: 1.5em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-bottom-space {
     margin-bottom: 0.75em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-bottom-padding {
     padding-bottom: 0.75em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-bottom-space {
     margin-bottom: 0.375em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-bottom-padding {
     padding-bottom: 0.375em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-left-space {
     margin-left: 1.5em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-left-padding {
     padding-left: 1.5em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-left-space {
     margin-left: 0.75em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-half-left-padding {
     padding-left: 0.75em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-left-space {
     margin-left: 0.375em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .medium-quarter-left-padding {
     padding-left: 0.375em;
   }
 
-  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 349, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .hide-medium {
     display: none;
   }
 
-  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 352, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .show-medium {
     display: inherit;
   }
 
-  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 356, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   table.show-medium {
     display: table;
   }
 
-  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 359, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   thead.show-medium {
     display: table-header-group;
   }
 
-  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 362, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tbody.show-medium {
     display: table-row-group;
   }
 
-  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 365, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tfoot.show-medium {
     display: table-footer-group;
   }
 
-  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 368, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tr.show-medium {
     display: table-row;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 372, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   th.show-medium,
   td.show-medium {
     display: table-cell;
@@ -5124,233 +5139,233 @@ td.show-large {
     padding: 0 1.25em;
   }
 
-  /* line 108, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 116, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .column-group > [class*=small-] {
     float: left;
     clear: none;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-5 {
     width: 5%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-5 {
     width: 5%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-10 {
     width: 10%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-10 {
     width: 10%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-15 {
     width: 15%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-15 {
     width: 15%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-20 {
     width: 20%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-20 {
     width: 20%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-25 {
     width: 25%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-25 {
     width: 25%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-30 {
     width: 30%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-30 {
     width: 30%;
   }
 
-  /* line 117, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 125, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-33 {
     width: 33.33%;
   }
 
-  /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 128, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 33.33%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-35 {
     width: 35%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 35%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-40 {
     width: 40%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-40 {
     width: 40%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-45 {
     width: 45%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-45 {
     width: 45%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-50 {
     width: 50%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-50 {
     width: 50%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-55 {
     width: 55%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-55 {
     width: 55%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-60 {
     width: 60%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-60 {
     width: 60%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-65 {
     width: 65%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-65 {
     width: 65%;
   }
 
-  /* line 127, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 135, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-66 {
     width: 66.66%;
   }
 
-  /* line 130, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 138, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 66.66%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-70 {
     width: 70%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 70%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-75 {
     width: 75%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-75 {
     width: 75%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-80 {
     width: 80%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-80 {
     width: 80%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-85 {
     width: 85%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-85 {
     width: 85%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-90 {
     width: 90%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-90 {
     width: 90%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-95 {
     width: 95%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-95 {
     width: 95%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-100 {
     width: 100%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-100 {
     width: 100%;
   }
 
-  /* line 145, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 153, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   [class*=small-100] {
     float: none;
     clear: both;
@@ -5432,296 +5447,301 @@ td.show-large {
     margin-bottom: 0;
   }
 
-  /* line 158, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 101, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .ink-table td[class*=small-], .ink-table th[class*=small-], .ink-table tr[class*=small-], .ink-table thead[class*=small-], .ink-table tbody[class*=small-], .ink-table tfoot[class*=small-] {
+    float: none;
+  }
+
+  /* line 166, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-push-left {
     float: left;
   }
 
-  /* line 162, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-push-center {
     float: none;
     margin-left: auto;
     margin-right: auto;
   }
 
-  /* line 167, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 175, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-push-right {
     float: right;
   }
 
-  /* line 170, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 178, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-align-left {
     text-align: left;
   }
 
-  /* line 173, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 181, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-align-center {
     text-align: center;
   }
 
-  /* line 176, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 184, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-align-right {
     text-align: right;
   }
 
-  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 322, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-space {
     margin: 1.25em;
   }
 
-  /* line 318, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-padding {
     padding: 1.25em;
   }
 
-  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-space {
     margin: 0.625em;
   }
 
-  /* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-padding {
     padding: 0.625em;
   }
 
-  /* line 326, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 334, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-space {
     margin: 0.3125em;
   }
 
-  /* line 330, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 338, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-padding {
     padding: 0.3125em;
   }
 
-  /* line 261, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 269, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-vertical-space {
     margin-top: 1.25em;
     margin-bottom: 1.25em;
   }
 
-  /* line 266, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 274, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-vertical-padding {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
   }
 
-  /* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-vertical-space {
     margin-top: 0.625em;
     margin-bottom: 0.625em;
   }
 
-  /* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-vertical-padding {
     padding-top: 0.625em;
     padding-bottom: 0.625em;
   }
 
-  /* line 275, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 283, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-vertical-space {
     margin-top: 0.3125em;
     margin-bottom: 0.3125em;
   }
 
-  /* line 280, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 288, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-vertical-padding {
     padding-top: 0.3125em;
     padding-bottom: 0.3125em;
   }
 
-  /* line 232, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 240, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-horizontal-space {
     margin-left: 1.25em;
     margin-right: 1.25em;
   }
 
-  /* line 237, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 245, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-horizontal-padding {
     padding-left: 1.25em;
     padding-right: 1.25em;
   }
 
-  /* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-horizontal-space {
     margin-left: 0.625em;
     margin-right: 0.625em;
   }
 
-  /* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-horizontal-padding {
     padding-left: 0.625em;
     padding-right: 0.625em;
   }
 
-  /* line 246, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 254, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-horizontal-space {
     margin-left: 0.3125em;
     margin-right: 0.3125em;
   }
 
-  /* line 251, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 259, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-horizontal-padding {
     padding-left: 0.3125em;
     padding-right: 0.3125em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-top-space {
     margin-top: 1.25em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-top-padding {
     padding-top: 1.25em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-top-space {
     margin-top: 0.625em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-top-padding {
     padding-top: 0.625em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-top-space {
     margin-top: 0.3125em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-top-padding {
     padding-top: 0.3125em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-right-space {
     margin-right: 1.25em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-right-padding {
     padding-right: 1.25em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-right-space {
     margin-right: 0.625em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-right-padding {
     padding-right: 0.625em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-right-space {
     margin-right: 0.3125em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-right-padding {
     padding-right: 0.3125em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-bottom-space {
     margin-bottom: 1.25em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-bottom-padding {
     padding-bottom: 1.25em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-bottom-space {
     margin-bottom: 0.625em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-bottom-padding {
     padding-bottom: 0.625em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-bottom-space {
     margin-bottom: 0.3125em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-bottom-padding {
     padding-bottom: 0.3125em;
   }
 
-  /* line 290, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 298, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-left-space {
     margin-left: 1.25em;
   }
 
-  /* line 294, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-left-padding {
     padding-left: 1.25em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-left-space {
     margin-left: 0.625em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-half-left-padding {
     padding-left: 0.625em;
   }
 
-  /* line 302, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 310, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-left-space {
     margin-left: 0.3125em;
   }
 
-  /* line 306, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 314, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .small-quarter-left-padding {
     padding-left: 0.3125em;
   }
 
-  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 349, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .hide-small {
     display: none;
   }
 
-  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 352, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .show-small {
     display: inherit;
   }
 
-  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 356, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   table.show-small {
     display: table;
   }
 
-  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 359, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   thead.show-small {
     display: table-header-group;
   }
 
-  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 362, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tbody.show-small {
     display: table-row-group;
   }
 
-  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 365, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tfoot.show-small {
     display: table-footer-group;
   }
 
-  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 368, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tr.show-small {
     display: table-row;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 372, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   th.show-small,
   td.show-small {
     display: table-cell;
@@ -5733,233 +5753,233 @@ td.show-large {
     padding: 0 1em;
   }
 
-  /* line 108, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 116, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .column-group > [class*=tiny-] {
     float: left;
     clear: none;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-5 {
     width: 5%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-5 {
     width: 5%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-10 {
     width: 10%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-10 {
     width: 10%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-15 {
     width: 15%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-15 {
     width: 15%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-20 {
     width: 20%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-20 {
     width: 20%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-25 {
     width: 25%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-25 {
     width: 25%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-30 {
     width: 30%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-30 {
     width: 30%;
   }
 
-  /* line 117, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 125, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-33 {
     width: 33.33%;
   }
 
-  /* line 120, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 128, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 33.33%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-35 {
     width: 35%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-35 {
     width: 35%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-40 {
     width: 40%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-40 {
     width: 40%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-45 {
     width: 45%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-45 {
     width: 45%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-50 {
     width: 50%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-50 {
     width: 50%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-55 {
     width: 55%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-55 {
     width: 55%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-60 {
     width: 60%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-60 {
     width: 60%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-65 {
     width: 65%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-65 {
     width: 65%;
   }
 
-  /* line 127, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 135, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-66 {
     width: 66.66%;
   }
 
-  /* line 130, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 138, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 66.66%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-70 {
     width: 70%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-70 {
     width: 70%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-75 {
     width: 75%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-75 {
     width: 75%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-80 {
     width: 80%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-80 {
     width: 80%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-85 {
     width: 85%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-85 {
     width: 85%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-90 {
     width: 90%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-90 {
     width: 90%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-95 {
     width: 95%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-95 {
     width: 95%;
   }
 
-  /* line 136, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 144, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .tiny-100 {
     width: 100%;
   }
 
-  /* line 140, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 148, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .all-100 {
     width: 100%;
   }
 
-  /* line 145, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 153, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   [class*=tiny-100] {
     float: none;
     clear: both;
@@ -6041,93 +6061,98 @@ td.show-large {
     margin-bottom: 0;
   }
 
-  /* line 341, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 101, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  .ink-table td[class*=tiny-], .ink-table th[class*=tiny-], .ink-table tr[class*=tiny-], .ink-table thead[class*=tiny-], .ink-table tbody[class*=tiny-], .ink-table tfoot[class*=tiny-] {
+    float: none;
+  }
+
+  /* line 349, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .hide-tiny {
     display: none;
   }
 
-  /* line 344, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 352, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   .show-tiny {
     display: inherit;
   }
 
-  /* line 348, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 356, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   table.show-tiny {
     display: table;
   }
 
-  /* line 351, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 359, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   thead.show-tiny {
     display: table-header-group;
   }
 
-  /* line 354, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 362, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tbody.show-tiny {
     display: table-row-group;
   }
 
-  /* line 357, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 365, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tfoot.show-tiny {
     display: table-footer-group;
   }
 
-  /* line 360, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 368, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   tr.show-tiny {
     display: table-row;
   }
 
-  /* line 364, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 372, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   th.show-tiny,
   td.show-tiny {
     display: table-cell;
   }
 }
-@media screen and (min-width: 961px) and (max-width: 1440px) {
-  /* line 393, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+@media screen and (min-width: 961px) and (max-width: 1200px) {
+  /* line 401, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 1em;
   }
-  /* line 394, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 402, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
-    font-family: '{"name":"large",{"min":"961px","max":"1440px"}}';
+    font-family: '{"name":"large",{"min":"961px","max":"1200px"}}';
   }
 }
-@media screen and (min-width: 1441px) {
-  /* line 382, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+@media screen and (min-width: 1201px) {
+  /* line 390, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
-    font-size: 1em;
+    font-size: 1.1em;
   }
-  /* line 383, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 391, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
-    font-family: '{"name":"extra-large",{"min":"1441px","max":""}}';
+    font-family: '{"name":"extra-large",{"min":"1201px","max":""}}';
   }
 }
 @media screen and (min-width: 601px) and (max-width: 960px) {
-  /* line 393, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 401, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 0.9em;
   }
-  /* line 394, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 402, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"medium",{"min":"601px","max":"960px"}}';
   }
 }
 @media screen and (min-width: 321px) and (max-width: 600px) {
-  /* line 393, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 401, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 0.8em;
   }
-  /* line 394, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 402, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"small",{"min":"321px","max":"600px"}}';
   }
 }
 @media screen and (max-width: 320px) {
-  /* line 404, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 412, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html {
     font-size: 0.7em;
   }
-  /* line 405, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
+  /* line 413, /Users/pedrocorreia/dev/ink/src/sass/mixins/_grid.scss */
   html:after {
     font-family: '{"name":"tiny",{"min":"","max":"320px"}}';
   }
@@ -6673,41 +6698,41 @@ td.show-large {
 }
 
 /* line 3, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table {
+table.ink-table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
 /* line 10, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table tr th {
+table.ink-table tr th {
   padding: 5px 10px;
   font-weight: 700;
   line-height: 2;
 }
 /* line 16, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table tr th[data-sortable="true"]:hover {
+table.ink-table tr th[data-sortable="true"]:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 /* line 19, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table tr th[data-sortable="true"]:hover i {
+table.ink-table tr th[data-sortable="true"]:hover i {
   text-decoration: none;
 }
 /* line 24, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table tr th[data-sortable="true"] i {
+table.ink-table tr th[data-sortable="true"] i {
   padding-left: 0.5em;
 }
 /* line 31, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table tr td {
+table.ink-table tr td {
   padding: 5px 10px;
   line-height: 2;
 }
 /* line 41, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table.hover tbody tr:hover {
+table.ink-table.hover tbody tr:hover {
   cursor: pointer;
 }
 /* line 46, /Users/pedrocorreia/dev/ink/src/sass/modules/_tables.scss */
-table .ink-table.bordered {
+table.ink-table.bordered {
   border-collapse: separate;
 }
 
@@ -8822,69 +8847,7 @@ table .ink-table.bordered tr td:first-child {
 body.ink-drawer {
   max-width: 100%;
 }
-/* line 10, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer.push {
-  overflow-y: hidden;
-}
-/* line 14, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
-  -webkit-transform: translate3d(220px, 0, 0);
-  -moz-transform: translate3d(220px, 0, 0);
-  -ms-transform: translate3d(220px, 0, 0);
-  -o-transform: translate3d(220px, 0, 0);
-  transform: translate3d(220px, 0, 0);
-}
-/* line 20, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer.push.right .right-drawer, body.ink-drawer.push.right .content-drawer {
-  -webkit-transform: translate3d(-220px, 0, 0);
-  -moz-transform: translate3d(-220px, 0, 0);
-  -ms-transform: translate3d(-220px, 0, 0);
-  -o-transform: translate3d(-220px, 0, 0);
-  transform: translate3d(-220px, 0, 0);
-}
-/* line 27, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer.over {
-  overflow-y: hidden;
-}
-/* line 30, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer.over.left .left-drawer {
-  -webkit-transform: translate3d(220px, 0, 0);
-  -moz-transform: translate3d(220px, 0, 0);
-  -ms-transform: translate3d(220px, 0, 0);
-  -o-transform: translate3d(220px, 0, 0);
-  transform: translate3d(220px, 0, 0);
-}
-/* line 36, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer.over.right .right-drawer {
-  -webkit-transform: translate3d(-220px, 0, 0);
-  -moz-transform: translate3d(-220px, 0, 0);
-  -ms-transform: translate3d(-220px, 0, 0);
-  -o-transform: translate3d(-220px, 0, 0);
-  transform: translate3d(-220px, 0, 0);
-}
-/* line 44, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer .left-drawer,
-body.ink-drawer .right-drawer {
-  width: 220px;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: none;
-}
-/* line 54, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer .left-drawer.show,
-body.ink-drawer .right-drawer.show {
-  display: block;
-}
-/* line 58, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
-body.ink-drawer .left-drawer:after,
-body.ink-drawer .right-drawer:after {
-  overflow: hidden;
-  *zoom: 1;
-}
-/* line 66, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 13, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer,
 body.ink-drawer .content-drawer {
@@ -8901,15 +8864,73 @@ body.ink-drawer .content-drawer {
   -o-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
   transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
 }
-/* line 72, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 19, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .left-drawer {
   left: -220px;
 }
-/* line 75, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 22, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .right-drawer {
   right: -220px;
 }
-/* line 78, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+/* line 25, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
 body.ink-drawer .content-drawer {
   width: 100%;
+}
+/* line 30, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer .left-drawer,
+body.ink-drawer .right-drawer {
+  width: 220px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: none;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 40, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer .left-drawer.show,
+body.ink-drawer .right-drawer.show {
+  display: block;
+}
+/* line 48, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer.push {
+  overflow-y: hidden;
+}
+/* line 52, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
+  -webkit-transform: translate3d(220px, 0, 0);
+  -moz-transform: translate3d(220px, 0, 0);
+  -ms-transform: translate3d(220px, 0, 0);
+  -o-transform: translate3d(220px, 0, 0);
+  transform: translate3d(220px, 0, 0);
+}
+/* line 58, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer.push.right .right-drawer, body.ink-drawer.push.right .content-drawer {
+  -webkit-transform: translate3d(-220px, 0, 0);
+  -moz-transform: translate3d(-220px, 0, 0);
+  -ms-transform: translate3d(-220px, 0, 0);
+  -o-transform: translate3d(-220px, 0, 0);
+  transform: translate3d(-220px, 0, 0);
+}
+/* line 65, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer.over {
+  overflow-y: hidden;
+}
+/* line 68, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer.over.left .left-drawer {
+  -webkit-transform: translate3d(220px, 0, 0);
+  -moz-transform: translate3d(220px, 0, 0);
+  -ms-transform: translate3d(220px, 0, 0);
+  -o-transform: translate3d(220px, 0, 0);
+  transform: translate3d(220px, 0, 0);
+}
+/* line 74, /Users/pedrocorreia/dev/ink/src/sass/modules/js/_drawer.scss */
+body.ink-drawer.over.right .right-drawer {
+  -webkit-transform: translate3d(-220px, 0, 0);
+  -moz-transform: translate3d(-220px, 0, 0);
+  -ms-transform: translate3d(-220px, 0, 0);
+  -o-transform: translate3d(-220px, 0, 0);
+  transform: translate3d(-220px, 0, 0);
 }
