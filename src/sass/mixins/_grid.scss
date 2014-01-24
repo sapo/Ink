@@ -96,6 +96,14 @@
         } 
     }
 
+    .#{$table-class-name} {
+        td,th,tr,thead,tbody,tfoot {
+            &[class*=#{$class-name}-] {
+                float: none;
+            }
+        }
+    }
+
 }
 
 @mixin generate-grid-divisions ($class-name) {
