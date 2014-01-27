@@ -94,7 +94,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar'],
+            cssClass:        ['String', 'ink-calendar right'],
             dateRange:       ['String', null],
             
             // use this in a <select>

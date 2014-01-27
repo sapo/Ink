@@ -894,16 +894,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                         controlGroupElement = Element.findUpwardsByClass(formElement.getElement(),'control-group');
                         controlElement = Element.findUpwardsByClass(formElement.getElement(),'control');
                     }
-                    if (!controlElement || !controlGroupElement) {
-                        controlElement = controlGroupElement = formElement.getElement();
-                    }
 
-                    Css.addClassName( controlGroupElement, ['validation', 'error'] );
-                    this._markedErrorElements.push(controlGroupElement);
+                    if(controlGroupElement) {
+                        Css.addClassName( controlGroupElement, ['validation', 'error'] );
+                        this._markedErrorElements.push(controlGroupElement);
+                    }
 
                     var paragraph = document.createElement('p');
                     Css.addClassName(paragraph,'tip');
-                    Element.insertAfter(paragraph, controlElement);
+                    if (controlGroupElement && !controlElement) {
+                        controlGroupElement.appendChild(paragraph);
+                    } else {
+                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
+                    }
                     var errors = formElement.getErrors();
                     var errorArr = [];
                     for (var k in errors) {

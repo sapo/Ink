@@ -8813,6 +8813,22 @@ table.ink-table.bordered tr td:first-child {
 .ink-datepicker-calendar {
   position: absolute;
 }
+.ink-datepicker-calendar.right {
+  left: 100%;
+  top: 0;
+}
+.ink-datepicker-calendar.left {
+  right: 100%;
+  top: 0;
+}
+.ink-datepicker-calendar.bottom {
+  top: 100%;
+  left: 0;
+}
+.ink-datepicker-calendar.top {
+  bottom: 100%;
+  left: 0;
+}
 .ink-datepicker-wrapper,
 .ink-datepicker-calendar {
   display: inline;
