@@ -174,6 +174,369 @@ Ink.createModule('Ink.UI.Animate', 1, ['Ink.UI.Common_1', 'Ink.Dom.Event_1', 'In
 });
 
 
+
+Ink.createModule('Ink.UI.AutoComplete', '1', ['Ink.UI.Common_1', 'Ink.Dom.Element_1', 'Ink.Dom.Event_1', 'Ink.Net.Ajax_1'], function (Common, InkElement, InkEvent, Ajax) {
+'use strict';
+
+/**
+ * @module Ink.UI.AutoComplete_1
+ */
+function AutoComplete(elem, options) {
+    this._init(elem, options);
+}
+
+AutoComplete.prototype = {
+    /**
+     * @class Ink.UI.AutoComplete_1
+     * @constructor
+     *
+     * @param {String|DOMElement} elem String or DOMElement for the input field
+     */
+    _init: function(elem, options) {
+        this._options = Ink.extendObj({
+            inputField: elem || /* [todo] this is not an option */ false,
+            target: false,
+            suggestionsURI: false,
+            classNameSelected:'selected',
+            suggestionsObject: false,
+            resultLimit: 10,
+            minLength: 1,
+            debug: false
+        }, options || {});
+
+        if (!(this._options.suggestionsURI || !this._options.suggestionsObject)) {
+            Ink.error("É obrigatório especificar o endpoint ou o objecto global para carregamento das sugestões!");
+            return;
+        }
+
+        this._element = Common.elOrSelector(elem);
+        this._options.target = Common.elOrSelector(this._options.target);
+
+        this._element = Ink.s(this._options.inputField);
+        this.suggestPlaceElm = Ink.s(this._options.suggestPlace) || InkElement.create('div');
+
+        this._addEvents();
+    },
+
+    _setElmVars: function() {
+    },
+
+    _addEvents: function() {
+        this._handlers = {
+            keyup: InkEvent.observe(this._element, 'keyup', Ink.bindEvent(this._onTypeInput, this)),
+            focus: InkEvent.observe(this._element, 'focus', Ink.bindEvent(this._onFocusInput, this)),
+            windowclick: InkEvent.observe(window, 'click', Ink.bindEvent(this._onClickWindow, this))
+        }
+    },
+
+    _onTypeInput: function(e) {
+        var keycode = e.keyCode;
+
+        if(
+                keycode != InkEvent.KEY_DOWN &&
+                keycode != InkEvent.KEY_UP &&
+                keycode != InkEvent.KEY_ESC &&
+                keycode != InkEvent.KEY_TAB &&
+                keycode != InkEvent.KEY_LEFT &&
+                keycode != InkEvent.KEY_RIGHT
+                ) {
+            var value = this._getInputValue();
+
+            if (value.length >= this._options.minLength) {
+                // get suggestions based on name
+                this.suggestPlaceElm.innerHTML = '';
+                this._submitData(value);
+            } else {
+                if (this._isSuggestActive()) {
+                    this._closeSuggester();
+                }
+            }
+            InkEvent.stop(e);
+        }
+
+        return;
+    },
+
+    _onFocusInput: function() {
+        // for now... do nothing
+        return;
+    },
+
+
+    _getInputValue: function() {
+        return this._element.value.trim();
+    },
+
+    _isSuggestActive: function() {
+        return !!this.suggestActive;
+    },
+
+    _submitData: function(param) {
+        if(this.ajaxRequest) {
+            // close connection
+            try { this.ajaxRequest.transport.abort(); } catch (e) {}
+            this.ajaxRequest = null;
+        }
+
+        var input = this._getInputValue();
+
+        if(!this._options.suggestionsObject){
+            this.ajaxRequest = new Ajax(this._options.suggestionsURI, {
+                method: 'get',
+                parameters: 'name='+encodeURIComponent(input)+'',
+                onSuccess: Ink.bindMethod(this, '_onSubmitSuccess'),
+                onFailure: Ink.bindMethod(this, '_onSubmitFailure')
+            });
+        } else {
+           this._searchSuggestions(input);
+        }
+    },
+
+    _searchSuggestions: function(str) {
+        if(str != '') {
+
+            var re = new RegExp("^"+str+"", "i");
+
+            var indexStr = 0;
+            var found = false;
+            var endLoop = false;
+
+            var obj = this._options.suggestionsObject;
+
+            var result = [];
+
+            var totalSuggestions = obj.length;
+            for(var i=0; i < totalSuggestions; i++) {
+                curSuggest = obj[i];
+
+                //if(re.test(curPath)) {
+                if(curSuggest.match(re)) {
+                    result.push(curSuggest);
+                }
+            }
+
+            if(result.length>0) {
+                this._writeResult(result);
+            } else {
+                this._closeSuggester();
+            }
+        } else {
+            this._closeSuggester();
+        }
+    },
+
+    _onSubmitSuccess: function(obj) {
+        if(obj != null) {
+            var req = obj.responseText.evalJSON();
+
+            //Ink.ss('debug').innerHTML = '<pre>'+SAPO.Utility.Dumper.returnDump(req)+'</pre>';
+            if(!req.error) {
+                this._writeResult(req.suggestions);
+            }
+        }
+    },
+
+    _onSubmitFailure: function(err) {
+        Ink.error('[Ink.UI.AutoComplete_1] Submit failure: ', err);
+    },
+
+    _clearResults: function() {
+        var aUl = this.suggestPlaceElm.getElementsByTagName('ul');
+        if(aUl.length > 0) {
+            aUl[0].parentNode.removeChild(ul);
+        }
+    },
+
+    _writeResult: function(aSuggestions) {
+        this._clearResults();
+        var i = 0;
+        var limit = this._options.resultLimit;
+        var total = aSuggestions.length;
+
+        //var str = '';
+        var ul = document.createElement('ul');
+
+        var li = false;
+        var a = false;
+
+        if(total > 0) {
+            while(i < total) {
+                li = document.createElement('li');
+
+                a = document.createElement('a');
+                a.href = '#'+aSuggestions[i];
+                a.title = aSuggestions[i];
+
+                a.onclick = Ink.bind(function(value) {
+                    this.setChoosedValue(value);
+                    this._closeSuggester();
+                    return false;
+                }, this, aSuggestions[i]);
+
+                a.onmouseover = Ink.bind(function(value) {
+                    this.setMouseSelected(value);
+                }, this, aSuggestions[i]);
+
+                a.innerHTML = aSuggestions[i];
+                if(i === 0) {
+                    a.className = this._options.classNameSelected;
+                }
+
+                li.appendChild(a);
+                ul.appendChild(li);
+
+                /*
+                str += '<input name="checkbox2" type="radio" class="formRegistocheckbox" value="checkbox" />';
+                str += '<label>'+aEmails[i]+'</label><br clear="all"/>';
+                i++;
+                */
+                i++;
+                if(i == limit) {
+                    break;
+                }
+            }
+
+            this._openSuggester();
+        }
+
+        //this.suggestPlaceElm.innerHTML = str;
+        this.suggestPlaceElm.appendChild(ul);
+    },
+
+    _closeSuggester: function() {
+        this.suggestPlaceElm.style.display = 'none';
+        this.suggestActive = false;
+    },
+
+    _openSuggester: function() {
+        this.suggestPlaceElm.style.display = 'block';
+        this.suggestActive = true;
+    },
+
+    _onSuggesterEnter: function() {
+        if(this._isSuggestActive()) {
+            var ul = this.suggestPlaceElm.getElementsByTagName('UL')[0] || false;
+            if(ul) {
+                var aLi = ul.getElementsByTagName('LI');
+                var total = aLi.length;
+                var i=0;
+                while(i < total) {
+                    if(aLi[i].childNodes[0].className == this._options.classNameSelected) {
+                        aLi[i].childNodes[0].className = '';
+                        var value = aLi[i].childNodes[0].innerHTML;
+                        this.setChoosedValue(value);
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+    },
+
+    _onClickWindow: function(e) {
+        if(this._isSuggestActive()) {
+            this._closeSuggester();
+        }
+    },
+
+    setMouseSelected: function(value) {
+        if(this._isSuggestActive()) {
+            var ul = this.suggestPlaceElm.getElementsByTagName('UL')[0] || false;
+            if(ul) {
+                var aLi = ul.getElementsByTagName('LI');
+                var total = aLi.length;
+                var i = 0;
+                while(i < total) {
+                    if(aLi[i].childNodes[0].className == this._options.classNameSelected) {
+                        aLi[i].childNodes[0].className = '';
+                    }
+                    if(aLi[i].childNodes[0].title == value) {
+                        aLi[i].childNodes[0].className = this._options.classNameSelected;
+                    }
+                    i++;
+                }
+            }
+        }
+    },
+
+    setChoosedValue: function(value) {
+        //value = value.replace(/([^@]+)@(.*)/, "$1");
+        this._element.value = value;
+    },
+
+    _goSuggesterDown: function() {
+        if(this._isSuggestActive()) {
+            var ul = this.suggestPlaceElm.getElementsByTagName('UL')[0] || false;
+            if(ul) {
+                var aLi = ul.getElementsByTagName('LI');
+                var total = aLi.length;
+                var i=0;
+                var j=0;
+                var selectedPosition = false;
+                var nextSelected = 0;
+                while(i < total) {
+                    if(aLi[i].childNodes[0].className == this._options.classNameSelected) {
+                        selectedPosition = i;
+                        aLi[i].childNodes[0].className = '';
+                        break;
+                    }
+                    i++;
+                }
+                if(selectedPosition == (total - 1)) {
+                    nextSelected = 0;
+                } else {
+                    nextSelected = (selectedPosition + 1);
+                }
+
+                while(j < total) {
+                    if(j == nextSelected) {
+                        aLi[j].childNodes[0].className = this._options.classNameSelected;
+                    }
+                    j++;
+                }
+            }
+        }
+    },
+
+    _goSuggesterUp: function() {
+        if(this._isSuggestActive()) {
+            var ul = this.suggestPlaceElm.getElementsByTagName('UL')[0] || false;
+            if(ul) {
+                var aLi = ul.getElementsByTagName('LI');
+                var total = aLi.length;
+                var i=0;
+                var j=0;
+                var selectedPosition = false;
+                var nextSelected = 0;
+                while(i < total) {
+                    if(aLi[i].childNodes[0].className == this._options.classNameSelected) {
+                        selectedPosition = i;
+                        aLi[i].childNodes[0].className = '';
+                        break;
+                    }
+                    i++;
+                }
+                if(selectedPosition == 0) {
+                    nextSelected = (total - 1);
+                } else {
+                    nextSelected = (selectedPosition - 1);
+                }
+
+                while(j < total) {
+                    if(j == nextSelected) {
+                        aLi[j].childNodes[0].className = this._options.classNameSelected;
+                    }
+                    j++;
+                }
+            }
+        }
+    }
+};
+
+return AutoComplete;
+
+});
+
 /**
  * @module Ink.UI.Carousel_1
  * @author inkdev AT sapo.pt
@@ -204,9 +567,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
+     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
-     *  @param {Number} [options.initialSlide=null] If set to a number, set the corresponding slide immediately.
+     *  @param {Number} [options.initialPage=0] When initialized, set the page to this.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
      *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
@@ -215,27 +579,26 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
-            windowResize:     Ink.bindMethod(this, 'refit')
+            windowResize:     InkEvent.throttle(Ink.bindMethod(this, 'refit'), 200)
         };
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
         var element = this._element = Common.elOrSelector(selector, '1st argument');
 
-        var opts = this._options = Ink.extendObj({
-            axis:           'x',
-            initialSlide:    null,
-            hideLast:       false,
-            center:         false,
-            keyboardSupport:false,
-            pagination:     null,
-            onChange:       null,
-            swipe:          true
+        var opts = this._options = Common.options({
+            autoAdvance:    ['Integer', 0],
+            axis:           ['String', 'x'],
+            initialPage:   ['Integer', 0],
+            hideLast:       ['Boolean', false],
+            center:         ['Boolean', false],
+            keyboardSupport:['Boolean', false],
+            pagination:     ['Object', null],
+            onChange:       ['Function', null],
+            swipe:          ['Boolean', true]
             // TODO exponential swipe
-            // TODO specify break point for next slide
-        }, options || {}, InkElement.data(element));
-
-        opts.initialSlide = parseInt(opts.initialSlide);
+            // TODO specify break point for next page when moving finger
+        }, options || {}, element);
 
         this._isY = (opts.axis === 'y');
 
@@ -268,24 +631,28 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numSlides,
+                    size:     this._numPages,
                     onChange: this._handlers.paginationChange
                 });
             } else {
                 // assumes instantiated pagination
                 pagination = this._pagination = opts.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numSlides);
-                this._pagination.setCurrent(opts.initialSlide || 0);
+                this._pagination.setSize(this._numPages);
+                this._pagination.setCurrent(opts.initialPage || 0);
             }
         } else {
-            this._currentSlide = opts.initialSlide || 0;
+            this._currentPage = opts.initialPage || 0;
         }
 
         if (opts.swipe) {
             InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
             InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
+        }
+
+        if (opts.autoAdvance) {
+            this._setUpAutoAdvance();
         }
     };
 
@@ -310,15 +677,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
             };
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
-            var numItems = this._liEls.length;
+            var numSlides = this._liEls.length;
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
-            this._itemsPerSlide = Math.floor( this._ctnLength / this._elLength  );
+            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  );
 
-            var numSlides = Math.ceil( numItems / this._itemsPerSlide );
-            var numSlidesChanged = this._numSlides !== numSlides;
-            this._numSlides = numSlides;
-            this._deltaLength = this._itemsPerSlide * this._elLength;
+            var numPages = Math.ceil( numSlides / this._slidesPerPage );
+            var numPagesChanged = this._numPages !== numPages;
+            this._numPages = numPages;
+            this._deltaLength = this._slidesPerPage * this._elLength;
             
             if (this._isY) {
                 this._element.style.width = size(this._liEls[0], true) + 'px';
@@ -331,15 +698,25 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._updateHider();
             this._IE7();
             
-            if (this._pagination && numSlidesChanged) {
-                this._pagination.setSize(this._numSlides);
-                this._pagination.setCurrent(0);
+            if (this._pagination && numPagesChanged) {
+                this._pagination.setSize(this._numPages);
             }
+            this.setPage(limitRange(this.getPage(), 1, this._numPages));
+        },
+
+        _setUpAutoAdvance: function () {
+            var self = this;
+            function autoAdvance() {
+                self.nextPage(true /* wrap */);
+                setTimeout(autoAdvance, self._options.autoAdvance);
+            }
+
+            setTimeout(autoAdvance, this._options.autoAdvance);
         },
 
         _center: function() {
             if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerSlide) ) / 2 );
+            var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
 
             var pad;
             if (this._isY) {
@@ -354,7 +731,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if ((!this._pagination) || this._pagination.getCurrent() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerSlide) );
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
                 if (this._options.center) {
                     gap /= 2;
                 }
@@ -372,7 +749,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          */
         _IE7: function () {
             if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
-                // var numSlides = this._numSlides;
+                // var numPages = this._numPages;
                 var slides = Ink.ss('li.slide', this._ulEl);
                 var stl = function (prop, val) {slides[i].style[prop] = val; };
                 for (var i = 0, len = slides.length; i < len; i++) {
@@ -464,20 +841,20 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
-                var curSlide = this._pagination.getCurrent();
-                var estimatedSlide = progress / this._elLength / this._itemsPerSlide;
+                var curPage = this._pagination.getCurrent();
+                var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
-                if (Math.round(estimatedSlide) === curSlide) {
-                    var diff = estimatedSlide - curSlide;
+                if (Math.round(estimatedPage) === curPage) {
+                    var diff = estimatedPage - curPage;
                     if (Math.abs(diff) > snapToNext) {
                         diff = diff > 0 ? 1 : -1;
-                        curSlide += diff;
+                        curPage += diff;
                     }
                 } else {
-                    curSlide = Math.round(estimatedSlide);
+                    curPage = Math.round(estimatedPage);
                 }
 
-                this.setSlide(curSlide);
+                this.setPage(curPage);
 
                 event.stopPropagation();
                 // event.preventDefault();
@@ -490,46 +867,60 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-            var currSlide = pgn.getCurrent();
-            this.setSlide(currSlide);
+            var currPage = pgn.getCurrent();
+            this.setPage(currPage);
         },
 
-        getSlide: function () {
+        /**
+         * Get the currently displayed page.
+         * @method getPage
+         **/
+        getPage: function () {
             if (this._pagination) {
                 return this._pagination.getCurrent();
             } else {
-                return this._currentSlide;
+                return this._currentPage;
             }
         },
 
         /**
-         * Set the current slide to `page`
-         * @method setSlide
-         * @param slide
+         * Set the current page to `page`
+         * @method setPage
+         * @param page
+         * @param [wrap=false] Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
          **/
-        setSlide: function (slide) {
-            slide = limitRange(slide, 0, this._numSlides - 1);
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', slide * this._deltaLength, 'px'].join('');
+        setPage: function (page, wrap) {
+            if (wrap) {
+                // Pages outside the range [0..this._numPages] are wrapped.
+                page = page % this._numPages;
+                if (page < 0) { page = this._numPages - page; }
+            }
+            page = limitRange(page, 0, this._numPages - 1);
+            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', page * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
-                this._options.onChange.call(this, slide);
+                this._options.onChange.call(this, page);
             }
 
-            this._currentSlide = slide;
+            this._currentPage = page;
 
             this._updateHider();
         },
 
         /**
          * Change to the next page
-         * @method nextSlide
+         * @method nextPage
+         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
          **/
-        nextSlide: function () { this.setSlide(this.getSlide() + 1); },
+        nextPage: function (wrap) {
+            this.setPage(this.getPage() + 1, wrap);
+        },
 
         /**
          * Change to the previous page
-         * @method previousSlide
+         * @method previousPage
+         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
          **/
-        previousSlide: function () { this.setSlide(this.getSlide() - 1); }
+        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); }
     };
 
     function setTransitionProperty(el, newTransition) {
@@ -9893,7 +10284,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 
     // Body or documentElement
     var bodies = document.getElementsByTagName('body');
-    var body = bodies && bodies.length ? bodies[0] : document.documentElement;
+    var body = bodies.length ? bodies[0] : document.documentElement;
 
     Tooltip.prototype = {
         _init: function(element, options) {
@@ -10483,4 +10874,877 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
     return TreeView;
 
+});
+
+Ink.createModule('Ink.UI.Upload', '1', [
+    'Ink.Dom.Event_1',
+    'Ink.Dom.Element_1',
+    'Ink.Dom.Browser_1',
+    'Ink.UI.Common_1'
+], function(Event, Element, Browser, Common) {
+    'use strict';
+
+    function logError(message) {
+        if (window.console && window.console.error) {
+            window.console.error(message);
+        }
+    }
+
+    var DirectoryReader = function(options) {
+        this.init(options);
+    };
+
+    DirectoryReader.prototype = {
+        init: function(options) {
+            this.options = Ink.extendObj({
+                entry:      undefined,
+                maxDepth:   10
+            }, options || {});
+
+            try {
+                this._read();
+            } catch(e) {
+                logError(e);
+            }
+        },
+
+
+        _read: function() {
+            if(!this.options.entry) {
+                throw("The entry specify you must");
+            }
+
+            try {
+                this._readDirectories();
+            } catch(e) {
+                logError(e);
+            }
+        },
+
+
+        _readDirectories: function() {
+            var entries         = [],
+                running         = false,
+                maxDepth        = 0;
+
+            /* TODO return as tree because much better well */
+            var _readEntries = Ink.bind(function(currentEntry) {
+                var dir     = currentEntry.createReader();
+                    running = true;
+
+                dir.readEntries(Ink.bind(function(res) {
+                    if(res.length > 0) {
+                        for(var i = 0, len = res.length; i<len; i++) {
+                            entries.push(res[i]);
+                            if(!res[i].isDirectory) {
+                                continue;
+                            }
+                            maxDepth = this.clearArray(res[i].fullPath.split('/'));
+                            maxDepth.shift();
+                            maxDepth = maxDepth.length;
+                            if(maxDepth <= this.options.maxDepth) {
+                                _readEntries(res[i]);
+                            }
+                        }
+                        if(this._stopActivityTimeout) {
+                            clearTimeout(this._stopActivityTimeout);
+                        }
+                        this._stopActivityTimeout = setTimeout(function() {
+                            running = false;
+                        }, 250);
+                    }
+                    if(!res.length) {
+                        running = false;
+                    }
+                }, this), Ink.bind(function(err) {
+                    this.options.readError(err, currentEntry);
+                }, this));
+            }, this);
+
+            _readEntries(this.options.entry);
+
+            var activity;
+            var checkActivity = function() {
+                if(running) {
+                    return false;
+                }
+                clearInterval(activity);
+                if(this.options.readComplete && typeof this.options.readComplete === 'function') {
+                    this.options.readComplete(entries);
+                }
+                return true;
+            };
+
+            activity = setInterval(Ink.bind(checkActivity, this), 250);
+        },
+
+
+        clearArray: function(arr) {
+            for(var i = arr.length - 1; i>=0; i--) {
+                if(typeof(arr[i]) === 'undefined' || arr[i] === null || arr[i] === '') {
+                    arr.splice(i, 1);
+                }
+            }
+            return arr;
+        }
+    };
+
+    var Queue = {
+        lists:  [],
+        items:  [],
+
+
+        /**
+         * @function {Public} ? Create new queue list
+         * @param {String} list name
+         * @param {Function} function to iterate on items
+         * @return {Object} list id
+        */
+        create: function(name) {
+            var id;
+                name = String(name);
+            this.lists.push({name: name});
+            id = this.lists.length - 1;
+            return id;
+        },
+
+
+        getItems: function(parentId) {
+            if(!parentId) {
+                return this.items;
+            }
+            var items = [];
+            for(var i = 0, len = this.items.length; i<len; i++) {
+                if(this.items[i].parentId === parentId) {
+                    items.push(this.items[i]);
+                }
+            }
+
+            return items;
+        },
+
+
+        /**
+         * @function {Public} ? Delete list
+         * @param {String} List name
+         * @return {Object} removed list
+        */
+        purge: function(id, keepList) {
+            if(typeof(id) !== 'number' || isNaN(Number(id))) {
+                return false;
+            }
+            try {
+                for(var i = this.items.length; i>=0; i--) {
+                    if(this.items[i] && id === this.items[i].parentId) {
+                        this.remove(this.items[i].parentId, this.items[i].pid);
+                    }
+                }
+                if(!keepList) {
+                    this.lists.splice(id, 1);
+                }
+                return true;
+            } catch(e) {
+                logError('Purge: invalid id');
+                return false;
+            }
+        },
+
+
+        /**
+         * @function {Public} ? add an item to a list
+         * @param {String} name
+         * @param {Object} item
+         * @return {Number} pid
+        */
+        add: function(parentId, item, priority) {
+            if(!this.lists[parentId]) {
+                return false;
+            }
+            if(typeof(item) !== 'object') {
+                item = String(item);
+            }
+
+            var pid = parseInt(Math.round(Math.random() * 100000) + "" + Math.round(Math.random() * 100000), 10);
+            priority    = priority || 0;
+
+            this.items.push({parentId: parentId, item: item, priority: priority || 0, pid: pid});
+            return pid;
+        },
+
+
+        /**
+         * @function {Public} ? view list
+         * @param {Number} list id
+         * @param {Number} process id
+         * @return {Object} item
+        */
+        view: function(parentId, pid) {
+            var id = this._searchByPid(parentId, pid);
+            if(id === false) {
+                return false;
+            }
+            return this.items[id];
+        },
+
+
+        /**
+         * @function {Public} ? remove an item
+         * @param {Object} item
+         * @return {Object|Boolean} removed item or false if not found
+        */
+        remove: function(parentId, pid) {
+            try {
+                var id = this._searchByPid(parentId, pid);
+                if(id === false) {
+                    return false;
+                }
+                this.items.splice(id, 1);
+                return true;
+            } catch(e) {
+                logError('Remove: invalid id');
+                return false;
+            }
+        },
+
+        _searchByPid: function(parentId, pid) {
+            if(!parentId && typeof(parentId) === 'boolean' || !pid) {
+                return false;
+            }
+
+            parentId    = parseInt(parentId, 10);
+            pid         = parseInt(pid, 10);
+
+            if(isNaN(parentId) || isNaN(pid)) {
+                return false;
+            }
+
+            for(var i = 0, len = this.items.length; i<len; i++) {
+                if(this.items[i].parentId === parentId && this.items[i].pid === pid) {
+                    return i;
+                }
+            }
+            return false;
+        }
+    };
+
+    var UI = function(Upload) {
+        this.Upload = Upload;
+        this.init();
+    };
+
+    UI.prototype = {
+        init: function() {
+            this._fileButton = this.Upload.options.fileButton;
+            this._dropzone = this.Upload.options.dropzone;
+            this._setDropEvent();
+            this._setFileButton();
+        },
+
+
+        _setDropEvent: function() {
+            var dropzones = this._dropzone;
+            for(var i = 0, len = dropzones.length; i<len; i++) {
+                dropzones[i].ondrop        = Ink.bindEvent(this.Upload._dropEventHandler, this.Upload);
+                dropzones[i].ondragleave   = Ink.bindEvent(this._onDragLeave, this);
+                dropzones[i].ondragend     = Ink.bindEvent(this._onDragEndEventHandler, this);
+                dropzones[i].ondragenter   = Ink.bindEvent(this._onDragEnterHandler, this);
+                dropzones[i].ondragover    = Ink.bindEvent(this._onDragOverHandler, this);
+            }
+        },
+
+
+        _onDragEnterHandler: function(ev) {
+            if(ev && ev.stopPropagation) {
+                ev.stopPropagation();
+            }
+            if(ev && ev.preventDefault) {
+                ev.preventDefault();
+            }
+            if(ev) {
+                ev.returnValue = false;
+            }
+
+            this.Upload.publish('DragEnter', ev);
+            return false;
+        },
+
+
+        _onDragOverHandler: function(ev) {
+            if(!ev) {
+                return false;
+            }
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev.returnValue = false;
+            return true;
+        },
+
+
+        _onDragLeave: function(ev) {
+            return this.Upload.publish('DragLeave', ev);
+        },
+
+
+        _onDragEndEventHandler: function(ev) {
+            return this.Upload.publish('DragEnd', ev);
+        },
+
+
+        _setFileButton: function() {
+            var btns = this._fileButton;
+            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this, btns[i]));
+        },
+
+
+        _fileChangeHandler: function(ev, btn) {
+            var files = btn.files,
+                form = Element.findUpwardsByTag(btn, 'form');
+
+            if(!files || !window.FormData || !('withCredentials' in new XMLHttpRequest())) {
+                form.parentNode.submit();
+                return false;
+            }
+            this.Upload._addFilesToQueue(files);
+            btn.value = "";
+        }
+    };
+
+
+
+
+
+
+    var Upload = function(options) {
+        this.Queue = Queue;
+        this.init(options);
+        this._events = {};
+    };
+
+    Upload.prototype = {
+        //_events: {},
+
+        init: function(options) {
+            if (typeof options === 'string') {
+                options = Element.data(Common.elOrSelector(options, '1st argument'));
+            }
+            this.options = Ink.extendObj({
+                extraData:          {},
+                fileFormName:       'Ink_Filelist',
+                dropzone:           undefined,
+                fileButton:         undefined,
+                endpoint:           '',
+                endpointChunk:      '',
+                endpointChunkCommit:'',
+                maxFilesize:        300 << 20, //300mb
+                chunkSize:          4194304,  // 4MB
+                minSizeToUseChunks: 20971520, // 20mb
+                INVALID_FILE_NAME:  undefined,
+                foldersEnabled:     true,
+                useChunks:          true,
+                directoryMaxDepth:  10
+            }, options || {});
+
+            this._queueId           = Queue.create('Ink_UPLOAD');
+            this._queueRunning      = false;
+            this._folders           = {};
+
+
+            if(this.options.dropzone) {
+                Common.elOrSelector(this.options.dropzone, 'Upload - dropzone');
+            }
+
+            if(this.options.fileButton) {
+                Common.elOrSelector(this.options.fileButton, 'Upload - fileButton');
+            }
+
+            if(!this.options.dropzone && ! this.options.fileButton) {
+                throw new TypeError('A file button or dropzone, specify you must, my young padawan');
+            }
+
+            this.options.dropzone = Ink.ss(this.options.dropzone);
+            this.options.fileButton= Ink.ss(this.options.fileButton);
+
+            new UI(this);
+        },
+
+
+        _supportChunks: function(size) {
+            return this.options.useChunks &&
+                    'Blob' in window &&
+                    (new Blob()).slice &&
+                    size > this.options.minSizeToUseChunks;
+        },
+
+
+        _dropEventHandler: function(ev) {
+            if(ev && ev.stopPropagation) {
+                ev.stopPropagation();
+            }
+            if(ev && ev.preventDefault) {
+                ev.preventDefault();
+            }
+            if(ev) {
+                ev.returnValue = false;
+            }
+
+            this.publish('DropComplete', ev.dataTransfer);
+
+            var data = ev.dataTransfer;
+
+            if(!data || !data.files || !data.files.length) {
+                return false;
+            }
+
+            this._files = data.files;
+            this._files = Array.prototype.slice.call(this._files || [], 0);
+
+            // check if webkitGetAsEntry exists on first item
+            if(data.items && data.items[0] && data.items[0].webkitGetAsEntry) {
+                if(!this.options.foldersEnabled) {
+                    return setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
+                }
+                var entry, folders = [];
+                for(var i = ev.dataTransfer.items.length-1; i>=0; i--) {
+                    entry = ev.dataTransfer.items[i].webkitGetAsEntry();
+                    if(entry && entry.isDirectory) {
+                        folders.push(entry);
+                        this._files[i].isDirectory = true;
+                        this._files.splice(i, 1);
+                    }
+                }
+                // starting callback hell
+                this._addFolderToQueue(folders, Ink.bind(function() {
+                    setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
+                }, this));
+            } else {
+                setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
+            }
+
+            return true;
+        },
+
+
+        _addFolderToQueue: function(folders, cb) {
+            var files = [], invalidFolders = {};
+
+            if(!folders || !folders.length) {
+                cb();
+                return files;
+            }
+
+            var getFiles = function(entries) {
+                var files = [];
+                for(var i = 0, len = entries.length; i<len; i++) {
+                    if(entries[i].isFile) {
+                        files.push(entries[i]);
+                    }
+                }
+                return files;
+            };
+
+            var convertToFile = function(cb, index) {
+                var fullPath;
+                index = index || 0;
+                if(!this._files[index]) {
+                    cb();
+                    return files;
+                }
+                if(this._files[index].constructor.name.toLowerCase() !== 'fileentry') {
+                    return convertToFile.apply(this, [cb, ++index]);
+                }
+                this._files[index].file(Ink.bind(function(res) {
+                    fullPath = this._files[index].fullPath; // bug
+                    this._files[index]              = res;
+                    this._files[index].hasParent    = true;
+
+                    // if browser don't have it natively, set it
+                    if(!this._files[index].fullPath) {
+                        this._files[index].fullPath = fullPath;
+                    }
+                    convertToFile.apply(this, [cb, ++index]);
+                }, this), Ink.bind(function() {
+                    this._files.splice(index, 1);
+                    convertToFile.apply(this, [cb, index]);
+                }, this));
+            };
+
+            var getSubDirs = Ink.bind(function(index) {
+                if(!folders[index]) {
+                    this._files = this._files.concat(files);
+                    convertToFile.call(this, cb);
+                    return false;
+                }
+
+                new DirectoryReader({
+                    entry:      folders[index],
+                    maxDepth:   this.options.directoryMaxDepth,
+                    readComplete: Ink.bind(function(entries) {
+                        files = files.concat(getFiles(entries));
+                        // adding root dirs
+                        if(!folders[index] || folders[index].fullPath in this._folders) {
+                            return;
+                        }
+
+                        this._folders[folders[index].fullPath] = {
+                            items:      entries,
+                            files:      files,
+                            length:     entries.length,
+                            created:    false,
+                            root:       true
+                        };
+
+                        // adding sub dirs
+                        for(var i = 0, len = entries.length; i<len; i++) {
+                            if(entries[i].isFile) {
+                                continue;
+                            }
+                            if(entries[i].fullPath in invalidFolders) {
+                                delete invalidFolders[entries[i].fullPath];
+                                continue;
+                            }
+                            this._folders[entries[i].fullPath] = {
+                                created:    false,
+                                root:       false
+                            };
+                        }
+                        getSubDirs(++index);
+                    }, this),
+                    readError: Ink.bind(function(err, dir) {
+                        invalidFolders[dir.fullPath] = {};
+                        invalidFolders[dir.fullPath].error = err;
+                    }, this)
+                });
+            }, this);
+
+            getSubDirs(0);
+            return files;
+        },
+
+
+        _addFilesToQueue: function(files) {
+            var file, fileID, o;
+            for(var i = 0, len = files.length; i<len; i++) {
+                file = files[i];
+
+                if(!file.isDirectory) {
+                    // dirty hack to allow 0B files avoiding folders on GECKO
+                    if(file === null || (!file.type && file.size % 4096 === 0 && (!Browser.CHROME || !this.options.foldersEnabled))) {
+                        this.publish('InvalidFile', file, 'size');
+                        continue;
+                    }
+                }
+
+                if(file.size > this.options.maxFilesize) {
+                    this.publish('MaxSizeFailure', file, this.options.maxFilesize);
+                    continue;
+                }
+
+                fileID = parseInt(Math.round(Math.random() * 100000) + "" + Math.round(Math.random() * 100000), 10);
+                o = { id: i, data: file, fileID: fileID, directory: file.isDirectory };
+                Queue.add(this._queueId, o);
+
+                this.publish('FileAddedToQueue', o);
+            }
+            this._processQueue(true);
+            this._files = [];
+        },
+
+
+        _processQueue: function(internalUpload) {
+            if(this._queueRunning) {
+                return false;
+            }
+
+            this.running = 0;
+            var max = 1, i = 0, items,
+                queueLen = Queue.items.length;
+            this._queueRunning = true;
+
+            this.interval = setInterval(Ink.bind(function() {
+                if(Queue.items.length === i && this.running === 0) {
+                    Queue.purge(this._queueId, true);
+                    this._queueRunning = false;
+                    clearInterval(this.interval);
+                    this.publish('QueueEnd', this._queueId, queueLen);
+                }
+
+                items = Queue.getItems(this._queueId);
+
+                if(this.running < max && items[i]) {
+                    if(!items[i].canceled) {
+                        _doRequest.call(this, items[i].pid, items[i].item.data, items[i].item.fileID, items[i].item.directory, internalUpload);
+                        this.running++;
+                        i++;
+                    } else {
+                        var j = i;
+                        while(items[j] && items[j].canceled) {
+                            i++;
+                            j++;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }, this), 100);
+
+
+            var _doRequest = function(pid, data, fileID, directory, internalUpload) {
+                var o = {
+                    file:   data,
+                    fileID: fileID,
+                    cb: Ink.bind(function() {
+                        this.running--;
+                    }, this)
+                };
+                if(internalUpload) {
+                    if(directory) {
+                        // do magic
+                        o.cb();
+                    } else {
+                        this._upload(o);
+                    }
+                }
+            };
+
+            return true;
+        },
+
+
+        _upload: function(o) {
+            var file = o.file,
+                xhr = new XMLHttpRequest(),
+                fileID = o.fileID;
+
+            this.publish('BeforeUpload', file, this.options.extraData, fileID, xhr, this._supportChunks(file.size));
+
+            var forceAbort = function(showError) {
+                if(o.cb && typeof(o.cb === 'function')) {
+                    o.cb();
+                }
+
+                this.publish('OnProgress', {
+                    length: file.size,
+                    lengthComputable: true,
+                    loaded: file.size,
+                    total: file.size
+                }, file, fileID);
+                this.publish('EndUpload', file, fileID, (showError ? { error: true } : true));
+                this.publish('InvalidFile', file, 'name');
+                xhr.abort();
+            };
+
+            if(this.options.INVALID_FILE_NAME && this.options.INVALID_FILE_NAME instanceof RegExp) {
+                if(this.options.INVALID_FILE_NAME.test(o.file.name)) {
+                    forceAbort.call(this);
+                    return;
+                }
+            }
+
+            // If file was renamed, abort it
+            // FU OPERA: Opera always return lastModified date as null
+            if(!file.lastModifiedDate && !Ink.Dom.Browser.OPERA) {
+                forceAbort.call(this, true);
+                return;
+            }
+
+            xhr.upload.onprogress = Ink.bind(this.publish, this, 'OnProgress', file, fileID);
+
+            var endpoint, method;
+            if(this._supportChunks(file.size)) {
+                if(file.size <= file.chunk_offset) {
+                    endpoint = this.options.endpointChunkCommit;
+                    method = 'POST';
+                } else {
+                    endpoint = this.options.endpointChunk;
+                    if(file.chunk_upload_id) {
+                        endpoint += '?upload_id=' + file.chunk_upload_id;
+                    }
+                    if(file.chunk_offset) {
+                        endpoint += '&offset=' + file.chunk_offset;
+                    }
+                    method = 'PUT';
+                }
+            } else {
+                endpoint = this.options.endpoint;
+                method = 'POST';
+            }
+
+            xhr.open(method, endpoint, true);
+            xhr.withCredentials = true;
+            xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
+            if(this._supportChunks(file.size)) {
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            }
+
+            var fd = new FormData(),
+                blob;
+
+            if("Blob" in window && typeof Blob === 'function') {
+                blob = new Blob([file], { type: file.type });
+                if(this._supportChunks(file.size)) {
+                    file.chunk_offset = file.chunk_offset || 0;
+                    blob = blob.slice(file.chunk_offset, file.chunk_offset + this.options.chunkSize);
+                } else {
+                    fd.append(this.options.fileFormName, blob, file.name);
+                }
+            } else {
+                fd.append(this.options.fileFormName, file);
+            }
+
+            if(!this._supportChunks(file.size)) {
+                for(var k in this.options.extraData) {
+                    if(this.options.extraData.hasOwnProperty(k)) {
+                        fd.append(k, this.options.extraData[k]);
+                    }
+                }
+            } else {
+                fd.append('upload_id', file.chunk_upload_id);
+                fd.append('path', file.upload_path);
+            }
+
+            if(!file.hasParent) {
+                if(!this._supportChunks(file.size)) {
+                    xhr.send(fd);
+                } else {
+                    if(file.size <= file.chunk_offset) {
+                        xhr.send('upload_id=' + file.chunk_upload_id + '&path=' + file.upload_path + '/' + file.name);
+                    } else {
+                        xhr.send(blob);
+                    }
+                }
+            } else {
+                this.publish('cbCreateFolder', file.parentID, file.fullPath, this.options.extraData, this._folders, file.rootPath, Ink.bind(function() {
+                    if(!this._supportChunks(file.size)) {
+                        xhr.send(fd);
+                    } else {
+                        if(file.size <= file.chunk_offset) {
+                            xhr.send('upload_id=' + file.chunk_upload_id + '&path=' + file.upload_path + '/' + file.name);
+                        } else {
+                            xhr.send(blob);
+                        }
+                    }
+                }, this));
+            }
+
+
+            xhr.onload = Ink.bindEvent(function() {
+                /* jshint boss:true */
+                if(this._supportChunks(file.size) && file.size > file.chunk_offset) {
+                    if(xhr.response) {
+                        var response = JSON.parse(xhr.response);
+
+                        // check expected offset
+                        var invalidOffset = file.chunk_offset && response.offset !== (file.chunk_offset + this.options.chunkSize) && file.size !== response.offset;
+                        if(invalidOffset) {
+                            if(o.cb) {
+                                o.cb();
+                            }
+                            this.publish('ErrorUpload', file, fileID);
+                        } else {
+                            file.chunk_upload_id = response.upload_id;
+                            file.chunk_offset = response.offset;
+                            file.chunk_expires = response.expires;
+                            this._upload(o);
+                        }
+                    } else {
+                        if(o.cb) {
+                            o.cb();
+                        }
+                        this.publish('ErrorUpload', file, fileID);
+                    }
+                    return (xhr = null);
+                }
+
+                if(o.cb) {
+                    o.cb();
+                }
+
+                if(xhr.responseText && xhr['status'] < 400) {
+                    this.publish('EndUpload', file, fileID, xhr.responseText);
+                } else {
+                    this.publish('ErrorUpload', file, fileID);
+                }
+                return (xhr = null);
+            }, this);
+
+
+            xhr.onerror = Ink.bindEvent(function() {
+                if(o.cb) {
+                    o.cb();
+                }
+                this.publish('ErrorUpload', file, fileID);
+            }, this);
+
+            xhr.onabort = Ink.bindEvent(function() {
+                if(o.cb) {
+                    o.cb();
+                }
+                this.publish('AbortUpload', file, fileID, {
+                    abortAll: Ink.bind(this.abortAll, this),
+                    abortOne: Ink.bind(this.abortOne, this)
+                });
+            }, this);
+        },
+
+
+        abortAll: function() {
+            if(!this._queueRunning) {
+                return false;
+            }
+            clearInterval(this.interval);
+            this._queueRunning = false;
+            Queue.purge(this._queueId, true);
+            return true;
+        },
+
+        abortOne: function(id, cb) {
+            var items = Queue.getItems(0),
+                o;
+            for(var i = 0, len = items.length; i<len; i++) {
+                if(items[i].item.fileID === id) {
+                    o = {
+                        id:         items[i].item.fileID,
+                        name:       items[i].item.data.name,
+                        size:       items[i].item.data.size,
+                        hasParent:  items[i].item.data.hasParent
+                    };
+                    Queue.remove(0, items[i].pid);
+                    if(cb) {
+                        cb(o);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        },
+
+
+        subscribe: function(eventName, fn) {
+            if(!this._events[eventName]) {
+                this._events[eventName] = [];
+            }
+            this._events[eventName].push(fn);
+            return this._events[eventName];
+        },
+
+
+        publish: function(eventName) {
+            var events = this._events[eventName],
+                args = Array.prototype.slice.call(arguments || [], 0);
+
+            if(!events) {
+                return;
+            }
+
+            for(var i = 0, len = events.length; i<len; i++) {
+                try {
+                    events[i].apply(this, args.splice(1, args.length));
+                } catch(err) {
+                    logError(eventName + ": " + err);
+                }
+            }
+        }
+    };
+
+    return Upload;
 });

@@ -8819,7 +8819,8 @@ table.ink-table.bordered tr td:first-child {
 .ink-calendar {
   border-radius: 4px;
   text-align: center;
-  padding: 5px;
+  padding: 0.3em;
+  min-width: 17.400000000000002em;
   font-size: 13px;
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
@@ -8922,10 +8923,10 @@ html.ink-modal-is-open .ink-calendar {
   margin: 0;
 }
 .ink-calendar-year-selector ul li {
-  width: 4em;
+  width: 25%;
 }
 .ink-calendar-month-selector ul li {
-  width: 3.4em;
+  width: 25%;
 }
 .ink-calendar-year-selector,
 .ink-calendar-month-selector {
