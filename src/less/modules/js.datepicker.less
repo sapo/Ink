@@ -2,13 +2,15 @@
 
 .ink-datepicker-wrapper {
     position: relative;
-    display: inline;
-    display: inline-block;
 }
 
 .ink-datepicker-calendar {
     position: absolute;
-    display: none;
+}
+
+.ink-datepicker-wrapper, .ink-datepicker-calendar {
+    display: inline;
+    display: inline-block;
 }
 
 .ink-calendar {
@@ -134,7 +136,6 @@ html.ink-modal-is-open .ink-calendar {
 .ink-calendar-top,
 .ink-calendar-middle,
 .ink-calendar-top-options,
-.ink-calendar,
 .ink-calendar-month .ink-calendar-header,
 .ink-calendar-month .ink-calendar-middle ul {
     #ink > #utils > .clearfix ();

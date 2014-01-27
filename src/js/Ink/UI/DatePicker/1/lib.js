@@ -213,7 +213,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
             this._renderSuperTopBar();
 
@@ -316,7 +316,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         show: function () {
             this._updateDate();
             this._renderMonth();
-            this._containerObject.style.display = 'block';
+            Css.removeClassName(this._containerObject, 'hide-all');
         },
 
         _addOpenCloseEvents: function () {
@@ -552,7 +552,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
             if (blur === false || (blur && this._options.shy)) {
-                this._containerObject.style.display = 'none';
+                Css.addClassName(this._containerObject, 'hide-all');
             }
         },
 
