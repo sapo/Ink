@@ -6,12 +6,6 @@ Ink.createModule('Ink.UI.Upload', '1', [
 ], function(Event, Element, Browser, Common) {
     'use strict';
 
-    function logError(message) {
-        if (window.console && window.console.error) {
-            window.console.error(message);
-        }
-    }
-
     var DirectoryReader = function(options) {
         this.init(options);
     };
@@ -26,7 +20,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
             try {
                 this._read();
             } catch(e) {
-                logError(e);
+                Ink.error(e);
             }
         },
 
@@ -39,7 +33,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
             try {
                 this._readDirectories();
             } catch(e) {
-                logError(e);
+                Ink.error(e);
             }
         },
 
@@ -166,7 +160,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 }
                 return true;
             } catch(e) {
-                logError('Purge: invalid id');
+                Ink.error('Purge: invalid id');
                 return false;
             }
         },
@@ -223,7 +217,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 this.items.splice(id, 1);
                 return true;
             } catch(e) {
-                logError('Remove: invalid id');
+                Ink.error('Remove: invalid id');
                 return false;
             }
         },
@@ -314,13 +308,14 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _setFileButton: function() {
             var btns = this._fileButton;
-            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this, btns[i]));
+            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this));
         },
 
 
-        _fileChangeHandler: function(ev, btn) {
-            var files = btn.files,
-                form = Element.findUpwardsByTag(btn, 'form');
+        _fileChangeHandler: function(ev) {
+            var btn = Event.element(ev);
+            var files = btn.files;
+            var form = Element.findUpwardsByTag(btn, 'form');
 
             if(!files || !window.FormData || !('withCredentials' in new XMLHttpRequest())) {
                 form.parentNode.submit();
@@ -862,7 +857,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 try {
                     events[i].apply(this, args.splice(1, args.length));
                 } catch(err) {
-                    logError(eventName + ": " + err);
+                    Ink.error(eventName + ": " + err);
                 }
             }
         }

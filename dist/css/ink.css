@@ -8809,12 +8809,14 @@ table.ink-table.bordered tr td:first-child {
 }
 .ink-datepicker-wrapper {
   position: relative;
-  display: inline;
-  display: inline-block;
 }
 .ink-datepicker-calendar {
   position: absolute;
-  display: none;
+}
+.ink-datepicker-wrapper,
+.ink-datepicker-calendar {
+  display: inline;
+  display: inline-block;
 }
 .ink-calendar {
   border-radius: 4px;
@@ -8945,7 +8947,6 @@ html.ink-modal-is-open .ink-calendar {
 .ink-calendar-top:after,
 .ink-calendar-middle:after,
 .ink-calendar-top-options:after,
-.ink-calendar:after,
 .ink-calendar-month .ink-calendar-header:after,
 .ink-calendar-month .ink-calendar-middle ul:after {
   content: " ";

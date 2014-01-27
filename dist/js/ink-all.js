@@ -142,12 +142,15 @@
         },
 
         /**
-         * loads a javascript script in the head.
+         * Loads a script by creating a `<script>` tag in the `<head>` of the document.
+         *
+         * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
-         * @param  {String}   uri  can be an http URI or a module name
+         * @param {String}   uri  can be an http URI or an Ink module name, which gets resolved.
+         * @param {String}  [contentType='text/javascript'] the `type` attribute of the new script tag.
          */
-        loadScript: function(uri) {
+        loadScript: function(uri, contentType) {
             /*jshint evil:true */
 
             if (uri.indexOf('/') === -1) {
@@ -155,7 +158,7 @@
             }
 
             var scriptEl = document.createElement('script');
-            scriptEl.setAttribute('type', 'text/javascript');
+            scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
             scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
@@ -550,11 +553,10 @@
         },
 
         /**
-         * @class Ink debug mechanisms
-         **/
-
-        /**
+         * Calls console.log if available.
+         *
          * @method log
+         * @param args...
          **/
         log: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -565,7 +567,10 @@
         },
 
         /**
+         * Calls console.warn if available.
+         *
          * @method warn
+         * @param args...
          **/
         warn: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -576,7 +581,10 @@
         },
 
         /**
+         * Calls console.error if available.
+         *
          * @method error
+         * @param args...
          **/
         error: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -15072,7 +15080,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
             this._renderSuperTopBar();
 
@@ -15175,7 +15183,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         show: function () {
             this._updateDate();
             this._renderMonth();
-            this._containerObject.style.display = 'block';
+            Css.removeClassName(this._containerObject, 'hide-all');
         },
 
         _addOpenCloseEvents: function () {
@@ -15411,7 +15419,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
             if (blur === false || (blur && this._options.shy)) {
-                this._containerObject.style.display = 'none';
+                Css.addClassName(this._containerObject, 'hide-all');
             }
         },
 
@@ -15426,7 +15434,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var self = this;
 
             var noMinLimit = {
-                _year: Number.MIN_VALUE,
+                _year: -Number.MAX_VALUE,
                 _month: 0,
                 _day: 1
             };
@@ -15457,6 +15465,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if ( data.date.toUpperCase() === 'NOW' ) {
                     var now = new Date();
                     lim = dateishFromDate(now);
+                } else if (data.date.toUpperCase() === 'EVER') {
+                    lim = data.noLim;
                 } else if ( rDate.test( data.date ) ) {
                     lim = dateishFromYMDString(data.date);
 
@@ -15538,7 +15548,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          *
          * _dateCmpUntil({_year: 2000, _month: 10}, {_year: 2000, _month: 11}, '_year') === 0
          */
-        _dateCmpUntil: function (self, oth, shallowness) {
+        _dateCmpUntil: function (self, oth, depth) {
             var props = ['_year', '_month', '_day'];
             var i = -1;
 
@@ -15546,7 +15556,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 i++;
                 if      (self[props[i]] > oth[props[i]]) { return 1; }
                 else if (self[props[i]] < oth[props[i]]) { return -1; }
-            } while (props[i] !== shallowness && 
+            } while (props[i] !== depth &&
                     self[props[i + 1]] !== undefined && oth[props[i + 1]] !== undefined);
 
             return 0;
@@ -15723,9 +15733,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Checks if a date is valid
          *
          * @method _isValidDate
-         * @param {Number} year
-         * @param {Number} month
-         * @param {Number} day
+         * @param {Dateish} date
          * @private
          * @return {Boolean} True if the date is valid, false otherwise
          */
@@ -24018,12 +24026,6 @@ Ink.createModule('Ink.UI.Upload', '1', [
 ], function(Event, Element, Browser, Common) {
     'use strict';
 
-    function logError(message) {
-        if (window.console && window.console.error) {
-            window.console.error(message);
-        }
-    }
-
     var DirectoryReader = function(options) {
         this.init(options);
     };
@@ -24038,7 +24040,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
             try {
                 this._read();
             } catch(e) {
-                logError(e);
+                Ink.error(e);
             }
         },
 
@@ -24051,7 +24053,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
             try {
                 this._readDirectories();
             } catch(e) {
-                logError(e);
+                Ink.error(e);
             }
         },
 
@@ -24178,7 +24180,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 }
                 return true;
             } catch(e) {
-                logError('Purge: invalid id');
+                Ink.error('Purge: invalid id');
                 return false;
             }
         },
@@ -24235,7 +24237,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 this.items.splice(id, 1);
                 return true;
             } catch(e) {
-                logError('Remove: invalid id');
+                Ink.error('Remove: invalid id');
                 return false;
             }
         },
@@ -24326,13 +24328,14 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
         _setFileButton: function() {
             var btns = this._fileButton;
-            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this, btns[i]));
+            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this));
         },
 
 
-        _fileChangeHandler: function(ev, btn) {
-            var files = btn.files,
-                form = Element.findUpwardsByTag(btn, 'form');
+        _fileChangeHandler: function(ev) {
+            var btn = Event.element(ev);
+            var files = btn.files;
+            var form = Element.findUpwardsByTag(btn, 'form');
 
             if(!files || !window.FormData || !('withCredentials' in new XMLHttpRequest())) {
                 form.parentNode.submit();
@@ -24874,7 +24877,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
                 try {
                     events[i].apply(this, args.splice(1, args.length));
                 } catch(err) {
-                    logError(eventName + ": " + err);
+                    Ink.error(eventName + ": " + err);
                 }
             }
         }
