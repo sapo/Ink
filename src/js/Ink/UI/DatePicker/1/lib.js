@@ -567,7 +567,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var self = this;
 
             var noMinLimit = {
-                _year: Number.MIN_VALUE,
+                _year: -Number.MAX_VALUE,
                 _month: 0,
                 _day: 1
             };
@@ -598,6 +598,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if ( data.date.toUpperCase() === 'NOW' ) {
                     var now = new Date();
                     lim = dateishFromDate(now);
+                } else if (data.date.toUpperCase() === 'EVER') {
+                    lim = data.noLim;
                 } else if ( rDate.test( data.date ) ) {
                     lim = dateishFromYMDString(data.date);
 
@@ -679,7 +681,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          *
          * _dateCmpUntil({_year: 2000, _month: 10}, {_year: 2000, _month: 11}, '_year') === 0
          */
-        _dateCmpUntil: function (self, oth, shallowness) {
+        _dateCmpUntil: function (self, oth, depth) {
             var props = ['_year', '_month', '_day'];
             var i = -1;
 
@@ -687,7 +689,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 i++;
                 if      (self[props[i]] > oth[props[i]]) { return 1; }
                 else if (self[props[i]] < oth[props[i]]) { return -1; }
-            } while (props[i] !== shallowness && 
+            } while (props[i] !== depth &&
                     self[props[i + 1]] !== undefined && oth[props[i + 1]] !== undefined);
 
             return 0;
@@ -864,9 +866,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Checks if a date is valid
          *
          * @method _isValidDate
-         * @param {Number} year
-         * @param {Number} month
-         * @param {Number} day
+         * @param {Dateish} date
          * @private
          * @return {Boolean} True if the date is valid, false otherwise
          */
