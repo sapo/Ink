@@ -46,6 +46,8 @@ module.exports = function (grunt) {
         },
         //
         copy: {
+            /*
+            [3.0.0]: uncomment this
             fontAwesome: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>font-awesome/less/',
@@ -57,6 +59,7 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             },
+            */
             animate: {
                 files: [{
                     cwd: '<%= ink.folders.bower %>animate.css',
@@ -179,12 +182,15 @@ module.exports = function (grunt) {
             css: {
                 src: ['<%= ink.folders.css.dist %>/ink*.css']
             },
+            /*
+            [3.0.0]: uncomment this
             fontAwesome: {
                 src: [
                     '<%= ink.folders.css.src %>modules/icons/*',
                     '!<%= ink.folders.css.src %>modules/icons/variables.less'
                 ]
             },
+            */
         },
 
         // [TODO] check if this works okay
