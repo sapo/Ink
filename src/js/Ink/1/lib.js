@@ -142,12 +142,15 @@
         },
 
         /**
-         * loads a javascript script in the head.
+         * Loads a script by creating a `<script>` tag in the `<head>` of the document.
+         *
+         * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
-         * @param  {String}   uri  can be an http URI or a module name
+         * @param {String}   uri  can be an http URI or an Ink module name, which gets resolved.
+         * @param {String}  [contentType='text/javascript'] the `type` attribute of the new script tag.
          */
-        loadScript: function(uri) {
+        loadScript: function(uri, contentType) {
             /*jshint evil:true */
 
             if (uri.indexOf('/') === -1) {
@@ -155,7 +158,7 @@
             }
 
             var scriptEl = document.createElement('script');
-            scriptEl.setAttribute('type', 'text/javascript');
+            scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
             scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
@@ -550,11 +553,10 @@
         },
 
         /**
-         * @class Ink debug mechanisms
-         **/
-
-        /**
+         * Calls console.log if available.
+         *
          * @method log
+         * @param args...
          **/
         log: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -565,7 +567,10 @@
         },
 
         /**
+         * Calls console.warn if available.
+         *
          * @method warn
+         * @param args...
          **/
         warn: function () {
             // IE does not have console.log.apply in IE10 emulated mode
@@ -576,7 +581,10 @@
         },
 
         /**
+         * Calls console.error if available.
+         *
          * @method error
+         * @param args...
          **/
         error: function () {
             // IE does not have console.log.apply in IE10 emulated mode
