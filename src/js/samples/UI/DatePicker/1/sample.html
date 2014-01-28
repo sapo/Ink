@@ -210,6 +210,28 @@
                         <p>&nbsp;</p>
                     </div>
                 </section>
+
+
+
+            <h2>Interoperability with FormValidator</h2>
+
+
+            <form class="ink-form" id="form-interop">
+                <div class="control-group required">
+                    <div class="control">
+                        <label for="mail">Email:</label>
+                        <input type="text" name="mail" id="mail" data-rules="requiredemail" class="ink-datepicker">
+                    </div>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <script>
+                Ink.requireModules(['Ink.UI.FormValidator_2'], function(FormValidator) {
+                    new FormValidator('#form-interop')
+                });
+            </script>
         </div>
         <script>
             Ink.requireModules(['Ink.Util.Array_1','Ink.UI.DatePicker_1'], function(InkArray, DatePicker) {
@@ -218,5 +240,7 @@
                 });
             });
         </script>
+
+
     </body>
 </html>

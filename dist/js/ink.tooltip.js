@@ -71,7 +71,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 
     // Body or documentElement
     var bodies = document.getElementsByTagName('body');
-    var body = bodies && bodies.length ? bodies[0] : document.documentElement;
+    var body = bodies.length ? bodies[0] : document.documentElement;
 
     Tooltip.prototype = {
         _init: function(element, options) {

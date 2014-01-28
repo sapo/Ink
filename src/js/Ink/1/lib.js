@@ -30,7 +30,7 @@
     var pendingRMs = [];
     var modulesWaitingForDeps = {};
 
-
+    var apply = Function.prototype.apply;
 
     // auxiliary fns
     var isEmptyObject = function(o) {
@@ -43,8 +43,6 @@
         }
         return true;
     };
-
-    var console = window.console || undefined;
 
     window.Ink = {
 
@@ -144,12 +142,15 @@
         },
 
         /**
-         * loads a javascript script in the head.
+         * Loads a script by creating a `<script>` tag in the `<head>` of the document.
+         *
+         * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
-         * @param  {String}   uri  can be an http URI or a module name
+         * @param {String}   uri  can be an http URI or an Ink module name, which gets resolved.
+         * @param {String}  [contentType='text/javascript'] the `type` attribute of the new script tag.
          */
-        loadScript: function(uri) {
+        loadScript: function(uri, contentType) {
             /*jshint evil:true */
 
             if (uri.indexOf('/') === -1) {
@@ -157,19 +158,17 @@
             }
 
             var scriptEl = document.createElement('script');
-            scriptEl.setAttribute('type', 'text/javascript');
+            scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            if (console && console.error) {
-                scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
-                    err = err || window.event;
-                    if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
-                        // if not readyState == 'loaded' it's not an error.
-                        return;
-                    }
-                    console.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
-                };
-            }
+            scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
+                err = err || window.event;
+                if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+                    // if not readyState == 'loaded' it's not an error.
+                    return;
+                }
+                Ink.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+            };
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
                 document.write( scriptEl.outerHTML );
@@ -539,8 +538,7 @@
          * @param {Object...} sources
          * @return destination object, enriched with defaults from the sources
          */
-        extendObj: function(destination, source)
-        {
+        extendObj: function(destination, source) {
             if (arguments.length > 2) {
                 source = Ink.extendObj.apply(this, [].slice.call(arguments, 1));
             }
@@ -552,8 +550,49 @@
                 }
             }
             return destination;
-        }
+        },
 
+        /**
+         * Calls console.log if available.
+         *
+         * @method log
+         * @param args...
+         **/
+        log: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
+            var console = window.console;
+            if (console && console.log) {
+                apply.call(console.log, console, arguments);
+            }
+        },
+
+        /**
+         * Calls console.warn if available.
+         *
+         * @method warn
+         * @param args...
+         **/
+        warn: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
+            var console = window.console;
+            if (console && console.warn) {
+                apply.call(console.warn, console, arguments);
+            }
+        },
+
+        /**
+         * Calls console.error if available.
+         *
+         * @method error
+         * @param args...
+         **/
+        error: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
+            var console = window.console;
+            if (console && console.error) {
+                apply.call(console.error, console, arguments);
+            }
+        }
     };
 
     Ink.setPath('Ink',

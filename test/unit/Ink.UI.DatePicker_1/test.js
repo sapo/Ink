@@ -69,6 +69,30 @@ test('_getPrevMonth', function () {
     deepEqual(dt._getPrevMonth(), { _year: 1999, _month: 11, _day: 1 });
 });
 
+test('no start limit date', function () {
+    dt._setMinMax('EVER:2000-01-01');
+    deepEqual(dt._min, {
+        _year: -Number.MAX_VALUE,
+        _month: 0,
+        _day: 1
+    });
+
+    ok(dt._dateWithinRange({_year: -1000, _month: 1, _day: 1}));
+    ok(dt._dateWithinRange({_year: 2000, _month: 0, _day: 1}));
+    ok(!dt._dateWithinRange({_year: 2001, _month: 1, _day: 1}));
+});
+test('no end limit date', function () {
+    dt._setMinMax('2000-01-01:EVER');
+    deepEqual(dt._max, {
+        _year: Number.MAX_VALUE,
+        _month: 11,
+        _day: 31
+    });
+
+    ok(!dt._dateWithinRange({_year: -1000, _month: 1, _day: 1}));
+    ok(dt._dateWithinRange({_year: 2001, _month: 1, _day: 1}));
+});
+
 test('_get(Next|Prev)Month when hitting a limit', function () {
     dt._setMinMax('2000-05-05:2001-05-05');
 
