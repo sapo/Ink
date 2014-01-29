@@ -1,19 +1,28 @@
 .#{$navigation-class-name} {
+    
     ul {
+        
         *height: 100%;
+        
         &.menu {
+
+            @include pie-clearfix;
+
             li {
                 *height: 100%;
+
                 a {
                     @include transition-property(background);
                     @include transition-duration(140ms);
                     @include transition-timing-function(ease-in-out);
                 }
+
                 &:hover {
                     ul.submenu {
                         display: block;
                     }
                 }
+
                 ul.submenu {
                     display: none;
                     position: absolute;
@@ -28,8 +37,7 @@
                     }
                 }
             }
-            /*cão*/
-            @include pie-clearfix;
+            
             // horizontal menus
             &.horizontal {
                 li {
@@ -44,15 +52,13 @@
                         //line-height: $navigation-line-height * 1.45;
                         margin-top: .3em;
                     }
-                    ul {
-                        &.submenu {
-                            width: 8em;
-                            top: $navigation-line-height + $navigation-v-padding * 2;
-                            left: 0;
-                            z-index: $layer-50;
-                            li {
-                                float: none;
-                            }
+                    ul.submenu {
+                        min-width: inherit;
+                        top: $navigation-line-height + $navigation-v-padding * 2;
+                        left: 0;
+                        z-index: $layer-50;
+                        li {
+                            float: none;
                         }
                     }
                 }
@@ -66,21 +72,15 @@
                         padding: $navigation-padding;
                         display: block;
                     }
-                    ul {
-                        &.submenu {
+                    ul.submenu {
+                        position: relative;
+                        top: auto;
+                        left: auto;
+                        &.flyout {
+                            position: absolute;
+                            min-width: 8em;
                             top: 0;
                             left: 100%;
-                            min-width: 8em;
-                            li {
-                                line-height: $navigation-line-height;
-                                float: none;
-                                position: static;
-                            }
-                            &.dropdown {
-                                position: relative;
-                                top: auto;
-                                left: auto;
-                            }
                         }
                     }
                 }

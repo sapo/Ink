@@ -1,12 +1,17 @@
+// INK:NAVIGATION:MENU
 .#{$navigation-class-name} {
 
     ul {
-
-        // INK:NAVIGATION:MENU
+        
         &.menu {
 
             // default theme
-            li {
+
+            @include border-radius($navigation-border-radius);
+            
+            > li {
+
+                font-weight: $navigation-font-weight;
 
                 &.active {
                     a { 
@@ -14,8 +19,8 @@
                     }
                 }
 
-                 &.heading {
-                    font-weight: 700;
+                &.heading {
+                    font-weight: $navigation-heading-font-weight;
                 }
 
                 &.disabled {
@@ -33,59 +38,89 @@
 
                 ul.submenu { 
 
-                    background: $white;
-
                     li {
-                        a {
-                            border-bottom: 1px solid transparentize($black,0.15);
-                            
-                            &:hover { background: lighten($black,90%); }
-
-                            &:last-child a { border: none; }
-                        }
-                    }
-
-                    &.dropdown {
-                        li {
-                            a {
-                                border-bottom: 1px solid transparentize($black,0.15);
-                            }
-                        }
+                        font-size: .875em;
+                        a { border-bottom: 1px solid rgba($black, 0.1); }
                     }
                 }
             }
 
             // INK:NAVIGATION:MENU:VERTICAL
             &.vertical {
+
                 li {
                     a {
                         border-bottom: 1px solid rgba($black,0.15);
                     }
                     
-                    &:last-child a { 
-                        border: none; 
+                    &:first-child {
+                        
+                        @include border-top-radius($navigation-border-radius);
+
+                        > a { @include border-top-radius($navigation-border-radius); }
                     }
 
-                    .dropdown {
-                        background: none;
-                        
-                        li {
-                            a {
-                                border-bottom: 1px solid rgba($black,0.15);
-                                &:hover { background: none; }
+                    &:last-child {
+                        @include border-bottom-radius($navigation-border-radius);
+
+                        > a { 
+                            border-bottom: none;
+                            @include border-bottom-radius($navigation-border-radius); 
+                        }
+
+                        .submenu {
+                            
+                            @include border-bottom-radius($navigation-border-radius);
+
+                            &.flyout  {
+                                @include border-radius($navigation-border-radius);    
+                            }
+
+                            li {
+
+                                &:last-child {
+                                    @include border-bottom-radius($navigation-border-radius);
+                                    a { @include border-bottom-radius($navigation-border-radius); }
+                                }
                             }
                         }
                     }
-                    
+                }
+            }
+
+            &.horizontal {
+
+                > li {
+
+                    &:first-child {
+
+                        @include border-left-radius($navigation-border-radius);
+
+                        a { @include border-left-radius($navigation-border-radius); }
+                    }
+
                     &:last-child {
-                        .dropdown {
-                            
-                            li:first-child {
-                                a {
-                                    border-top: 1px solid rgba($black,0.15);
+
+                        @include border-right-radius($navigation-border-radius);
+
+                        a { @include border-right-radius($navigation-border-radius); }
+                    }
+
+                    ul {
+
+                        &.submenu {
+
+                            @include border-bottom-radius($navigation-border-radius);
+
+                            li {
+
+                                &:last-child {
+
+                                    @include border-bottom-radius($navigation-border-radius);
+                                    a { border-bottom: none; }
                                 }
                             }
-                        }                        
+                        }
                     }
                 }
             }
@@ -93,7 +128,7 @@
             // white theme
             &.white {
                 
-                @include navigation(white);
+                background: $white;
                 
                 li {
 
@@ -102,12 +137,12 @@
                         text-decoration: none;
 
                         &:hover {                            
-                            background: lighten($black,85%);
+                            background: lighten($black,90%);
                         }
                     }
 
                     &.active {
-                        background: lighten($black,85%);
+                        background: lighten($black,90%);
                     }
 
                     &.disabled {
@@ -117,32 +152,13 @@
                             &:hover { background: rgba($black,0); }
                         }
                     }
-
-                    ul.submenu { 
-                        
-                        li {
-
-                            &:hover { background: rgba($black,0.1); }
-
-                            a { color: $text-color; }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black,0.2);
-                                }
-                            }
-                        }
-                    }
                 }
             }
             
             // grey theme
             &.grey {
                 
-                @include navigation(grey);
+                background: $grey-15;
                 
                 li {
 
@@ -162,26 +178,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: lighten($black,70%);                                              
-                        }
-                    }
-
-                    ul.submenu {
-
-                        li {
-
-                            &:hover { background: rgba($black,0.1); }
-
-                            a { color: $text-color; }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black,0.15);
-                                }
-                            }
+                            background: darken($grey-15,10%);                                              
                         }
                     }
                 }
@@ -190,11 +187,11 @@
             // black theme
             &.black {
                 
-                @include navigation(black);
+                background: $grey-90;
                 
                 li {
 
-                    &.active { background: lighten($black,20%); }
+                    &.active { background: lighten($black,10%); }
 
                     &.disabled {
                         a {
@@ -209,31 +206,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: lighten($black,20%);                                        
-                        }
-                    }
-
-                    ul.submenu {
-
-                        li {
-                            &:hover { background: lighten($black,90%); }
-
-                            a { 
-                                color: $text-color; 
-                                &:hover {
-                                    background: lighten($black,30%);
-                                    color: $white;
-                                }
-                            }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black, 0.15);
-                                }
-                            }
+                            background: lighten($grey-90,10%);                                        
                         }
                     }
                 }
@@ -242,7 +215,7 @@
             // orange theme
             &.orange {
                 
-                @include navigation(orange);
+                background: desaturate($orange,10%);
 
                 li {
                     
@@ -261,31 +234,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($orange,15%);
-                        }
-                    }
-
-                    ul.submenu {
-
-                        li {
-                            &:hover { background: rgba($black,0.1); }
-
-                            a { 
-                                color: $text-color; 
-                                &:hover { 
-                                    background: darken(desaturate($orange,10%),5%);
-                                    color: $white; 
-                                }
-                            }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black,0.15);
-                                }
-                            }
+                            background: darken($orange,10%);
                         }
                     }
                 }
@@ -294,7 +243,7 @@
             // blue theme
             &.blue {
                 
-                @include navigation(blue);
+                background: desaturate($blue,10%);
                 
                 li {
 
@@ -313,31 +262,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($blue,15%);
-                        }
-                    }
-
-                    ul.submenu {
-
-                        li {
-                            &:hover { background: rgba($black,0.10); }
-
-                            a { 
-                                color: $text-color; 
-                                &:hover {
-                                    background: darken(desaturate($blue,10%),5%);
-                                    color: $white;
-                                }
-                            }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black,0.15);
-                                }
-                            }
+                            background: darken($blue,10%);
                         }
                     }
                 }
@@ -346,7 +271,7 @@
             // green theme
             &.green {
 
-                @include navigation(green);
+                background: desaturate($green,10%);
                 
                 li {
 
@@ -365,40 +290,16 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($green,15%);
-                        }
-                    }
-
-                    ul.submenu {
-
-                        li {
-                            &:hover { background: rgba($black,0.1); }
-
-                            a { 
-                                color: $text-color; 
-                                &:hover {
-                                    background: darken(desaturate($green,10%),5%);
-                                    color: $white;
-                                }
-                            }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black,0.15);
-                                }
-                            }
+                            background: darken($green,10%);
                         }
                     }
                 }
             }
 
-            // red  theme
+            // red theme
             &.red {
 
-                @include navigation(red);
+                background: desaturate($red,10%);
                 
                 li {
 
@@ -417,244 +318,25 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($red,15%);
-                        }
-                    }
-
-                    ul.submenu {
-
-                        li {
-                            &:hover { background: rgba($black,0.1); }
-
-                            a { 
-                                color: $text-color; 
-                                &:hover {
-                                    background: darken(desaturate($red,10%),5%);
-                                    color: $white;
-                                }
-                            }
-                        }
-
-                        &.dropdown {
-                            background: $white;
-                            li {
-                                a {
-                                    border-bottom: 1px solid rgba($black,0.15);
-                                }
-                            }
+                            background: darken($red,10%);
                         }
                     }
                 }
             }
-            
-            // removes background gradients
-            &.flat {
 
-                filter: none;
+            // submenu for themes
 
-                // white theme
-                &.white { background: $white; }
-                
-                // grey theme
-                &.grey { background: $grey-15; }
+            &.black, &.grey, &.white, &.blue, &.green, &.orange, &.red {
 
-                // black theme
-                &.black { background: $black; }
-
-                // blue theme
-                &.orange { background: desaturate($orange,10%); }
-
-                // blue theme
-                &.blue { background: desaturate($blue,10%); }
-
-                // green theme
-                &.green { background: desaturate($green,10%); }
-
-                // red theme
-                &.red { background: desaturate($red,10%); }
-            }
-            
-            // adds rounded corners
-            &.rounded {
-
-                &.horizontal {
+                li {    
                     
-                    @include border-radius($navigation-border-radius);
+                    ul.submenu { 
 
-                    li {
-
-                        &:first-child {
-
-                            @include border-left-radius($navigation-border-radius);
-
-                            a { @include border-left-radius($navigation-border-radius); }
-                        }
-
-                        ul {
-
-                            &.submenu {
-
-                                @include border-bottom-radius($navigation-border-radius);
-
-                                li {
-
-                                    &:last-child {
-
-                                        @include border-bottom-radius($navigation-border-radius);
-                                    }
-
-                                    @include border-radius(none);
-
-                                    a {
-
-                                        @include border-radius(none);
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                &.vertical {
-                    
-                    @include border-radius($navigation-border-radius);
-
-                    li {
-                        
-                        &:first-child {
-                            
-                            @include border-top-radius($navigation-border-radius);
-
-                            a { @include border-top-radius($navigation-border-radius); }
-
-                            .submenu {
-                                &.dropdown {
-                                    
-                                    @include border-radius(none);
-                                
-                                    li {
-                                        a {
-                                            @include border-radius(none);
-                                        }
-                                        &:first-child,
-                                        &:last-child {
-                                            @include border-radius(none);
-                                            a {
-                                                @include border-radius(none);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        &:last-child {
-                            @include border-bottom-radius($navigation-border-radius);
-
-                            a { @include border-bottom-radius($navigation-border-radius); }
-
-                            .submenu {
-                                &.dropdown {
-                                    @include border-bottom-radius($navigation-border-radius);
-                                
-                                    li {
-                                        a {
-                                            @include border-radius(none);
-                                        }
-                                        &:first-child {
-                                            @include border-radius(none);
-                                            a {
-                                                @include border-radius(none);
-                                            }
-                                        }
-                                        &:last-child {
-                                            @include border-bottom-radius($navigation-border-radius);
-                                            a {
-                                                @include border-bottom-radius($navigation-border-radius);
-                                            }
-                                        }
-                                    }    
-                                }
-                            }
-                        }
-
-                        .submenu {
-                            
-                            &.dropdown {
-                                
-                                @include border-radius(none);
-                            
-                                li {
-                                    @include border-radius(none);
-                                    a {
-                                        @include border-radius(none);
-                                    }
-                                    &:first-child {
-                                        @include border-radius(none);
-                                        a {
-                                            @include border-radius(none);
-                                        }
-                                    }
-                                    &:last-child {
-                                        @include border-radius(none);
-                                        a {
-                                            @include border-radius(none);
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            @include border-top-left-radius(0);
-                            @include border-top-right-radius($navigation-border-radius);
-                            @include border-bottom-left-radius($navigation-border-radius);
-                            @include border-bottom-right-radius($navigation-border-radius);
-                            
-                            li {
-                                a {
-                                    @include border-radius(none);
-                                }
-                                
-                                &:first-child {
-                                    
-                                    @include border-top-left-radius(0);
-                                    @include border-top-right-radius($navigation-border-radius);
-                                    @include border-bottom-left-radius(0);
-                                    @include border-bottom-right-radius(0);
-
-                                    a {
-                                        @include border-top-left-radius(0);
-                                        @include border-top-right-radius($navigation-border-radius);
-                                        @include border-bottom-left-radius(0);
-                                        @include border-bottom-right-radius(0);
-                                    }
-                                }
-                                
-                                &:last-child {
-                                    @include border-bottom-radius($navigation-border-radius);
-                                    a {
-                                        @include border-bottom-radius($navigation-border-radius);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // adds shadows
-            &.shadowed {
-                
-                @include box-shadow(rgba($black,0.3) 0px 1px 2px 0);
-                
-                li {
-                
-                    ul.submenu {
-                        
-                        @include box-shadow(rgba($black,0.3) 0px 1px 2px 0);
-                        
-                        &.dropdown {
-                            @include box-shadow(none);
+                        background: $white;
+                        border: 1px solid rgba($black, 0.1);
+                        li a { 
+                            color: $text-color; 
+                            &:hover { background: rgba($black, 0.05); }
                         }
                     }
                 }
