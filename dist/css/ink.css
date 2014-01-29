@@ -8848,6 +8848,7 @@ table.ink-table.bordered tr td:first-child {
   position: relative;
 }
 .ink-datepicker-calendar {
+  margin-top: 0;
   position: absolute;
 }
 .ink-datepicker-calendar.right {

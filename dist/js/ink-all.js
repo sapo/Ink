@@ -14598,7 +14598,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar right'],
+            cssClass:        ['String', 'ink-calendar bottom'],
             dateRange:       ['String', null],
             
             // use this in a <select>
@@ -14903,14 +14903,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
                 var appendTarget =
                     Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
-            InkElement.wrap(this._element, this._wrapper);
+
+            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
+                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+                this._wrapper = this._element.parentNode;
+                this._wrapperIsControl = true;
+            } else {
+                this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
+                InkElement.wrap(this._element, this._wrapper);
+            }
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
@@ -17516,16 +17523,19 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             //return;
             var aErrorLabel = formElm.getElementsByTagName('p');
 
-            var curElm = false;
+            var curElm;
+            var control;
+
             for(var i = (aErrorLabel.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel[i];
                 if(Css.hasClassName(curElm, this._errorClassName)) {
-                    if(Css.hasClassName(curElm.parentNode, 'control')) {
-                        Css.removeClassName(curElm.parentNode.parentNode, 'validation error warning');
+                    control = InkElement.findUpwardsBySelector(curElm, '.control-group');
+                    if (control) {
+                        Css.removeClassName(control, ['validation', 'error', 'warning']);
                     }
 
                     if(Css.hasClassName(curElm,'tip error', true /*both*/)) {
-                        curElm.parentNode.removeChild(curElm);
+                        InkElement.remove(curElm);
                     }
                 }
             }
@@ -18186,17 +18196,16 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @version 2
      * @constructor
      * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
-     * @param {String}   [options.eventTrigger='submit']        What event do we listen for.
-     * @param {Boolean}  [options.neverSubmit=false]            Always cancel the event?
-     * @param {Boolean}  [options.cancelEventOnSuccess=false]   Cancel the event even on success?
-     * @param {Selector} [options.searchForm]                   What inputs do we search for which should have our data-attributes for validation.
-     * @param {Function} [options.beforeValidation]             Callback to be executed before validating the form
-     * @param {Function} [options.onError]                      Validation error callback
-     * @param {Function} [options.onSuccess]                    Validation success callback
+     * @param {String}   [options.eventTrigger='submit'] What event do we listen for.
+     * @param {Boolean}  [options.neverSubmit=false]     Always cancel the event? Use this to avoid submitting the form.
+     * @param {Selector} [options.searchFor='input, select, textarea, .control-group'] Look in these inputs for validation data-attributes.
+     * @param {Function} [options.beforeValidation]      Callback to be executed before validating the form
+     * @param {Function} [options.onError]               Validation error callback
+     * @param {Function} [options.onSuccess]             Validation success callback
      *
      * @example
      *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
-     *         var myValidator = new FormValidator( 'form' );
+     *         var myValidator = new FormValidator( '#my-form' );
      *     });
      */
     var FormValidator = function( selector, options ){
@@ -18241,7 +18250,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
             neverSubmit: 'false',
-            cancelEventOnSuccess: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
@@ -18404,8 +18412,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 this._options.beforeValidation();
             }
 
-            this.getElements();
+            InkArray.each( this._markedErrorElements, function (errorElement) {
+                Css.removeClassName(errorElement,  ['validation', 'error']);
+            });
+            InkArray.each( this._errorMessages, Element.remove);
 
+            this.getElements();
             var errorElements = [];
 
             for( var key in this._formElements ){
@@ -18423,6 +18435,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     this._options.onSuccess();
                 }
 
+                // [3.0.0] remove this, it's a little backwards compat quirk
                 if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
                     Event.stopDefault(event);
                     return false;
@@ -18438,10 +18451,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                InkArray.each( this._markedErrorElements, function (errorElement) {
-                    Css.removeClassName(errorElement,  ['validation', 'error']);
-                });
-                InkArray.each( this._errorMessages, Element.remove);
                 this._errorMessages = [];
                 this._markedErrorElements = [];
 
