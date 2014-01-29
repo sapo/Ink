@@ -94,7 +94,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar right'],
+            cssClass:        ['String', 'ink-calendar bottom'],
             dateRange:       ['String', null],
             
             // use this in a <select>
@@ -399,14 +399,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
                 var appendTarget =
                     Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
-            InkElement.wrap(this._element, this._wrapper);
+
+            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
+                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+                this._wrapper = this._element.parentNode;
+                this._wrapperIsControl = true;
+            } else {
+                this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
+                InkElement.wrap(this._element, this._wrapper);
+            }
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
