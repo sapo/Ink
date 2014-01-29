@@ -4,180 +4,162 @@
 
         &.pills {
 
-            // defaults
+            // defines default theme
             li {
-
-                @include navigation (white);
+                background: $white;
+                font-weight: $navigation-font-weight;
+                @include border-radius($navigation-border-radius);
 
                 a {
                     color: $text-color;
                     background: none;
-                    &:hover { background: lighten($black,85%); }
+                    &:hover { background: lighten($black,90%); }
                 } 
 
-                &.active a { background: lighten($black,85%); }
+                &.active a { background: lighten($black,90%); }
 
                 &.disabled {
                     a {
                         color: $grey-40;
-                        background: fade($black,0%);
                         @include text-shadow(lighten($grey-40,40%) 0 1px 0);
+                        &:hover { background: none; }
                     }
                 }
 
             }
 
+            // defines grey theme
             &.grey {
                 li {
-                    @include navigation(grey);
+                    background: $grey-15;
 
-                    a { 
-                        color: $text-color; 
-                        &:hover { background: lighten($black,70%); }
-                    }
-
-                    &.active a { background: lighten($black,70%); }
+                    &.active a { background: darken($grey-15,10%); }
 
                     &.disabled {
                         a {
                             color: $grey-40;
-                            background: fade($black,0%);
                             @include text-shadow(lighten($grey-40,40%) 0 1px 0);
+                            &:hover { background: none; }
                         }
                     }                    
+                    
+                    a { 
+                        color: $text-color; 
+                        &:hover { background: darken($grey-15,10%); }
+                    }
                 }
             }
 
+            // defines black theme
             &.black {
 
                 li {
-                    @include navigation (black);
+                    background: $grey-90;
 
-                    a { 
-                        color: $white; 
-                        &:hover { background: lighten($black,20%); }
-                    }
-
-                    &.active a { background: lighten($black,20%); }
+                    &.active a { background: lighten($grey-90,10%); }
 
                     &.disabled {
                         a {
                             color: $grey-60;
-                            background: fade($black,0%);
                             @include text-shadow($black 0 -1px 0);
+                            &:hover { background: none; }
                         }
+                    }
+                    
+                    a { 
+                        color: $white; 
+                        &:hover { background: lighten($grey-90,10%); }
                     }
                 }
             }
 
+            // defines orange theme
             &.orange {
                 li {
-                    @include navigation(orange);
+                    background: desaturate($orange,10%);
 
-                    a { 
-                        color: $white; 
-                        &:hover { background: darken($orange,15%); }
-                    }
-
-                    &.active a { background: darken($orange,15%); }
+                    &.active a { background: darken($orange,10%); }
                     
                     &.disabled {
                         a {
                             color: darken($orange,20%);
-                            background: fade($black,0%);
                             @include text-shadow(lighten($orange,8%) 0 1px 0);
+                            &:hover { background: none; }
                         }
+                    }
+                    
+                    a { 
+                        color: $white; 
+                        &:hover { background: darken($orange,10%); }
                     }
                 }
             }
 
+            // defines blue theme
             &.blue {
                 li {
-                    @include navigation(blue);
+                    background: desaturate($blue,10%);
 
-                    a { 
-                        color: $white;
-                        &:hover { background: darken($blue,15%); }
-                    }
-                    
-                    &.active a { background: darken($blue,15%); }
+                    &.active a { background: darken($blue,10%); }
                     
                     &.disabled {
                         a {
                             color: darken($blue,20%);
-                            background: fade($black,0%);
                             @include text-shadow(lighten($blue,8%) 0 1px 0);
+                            &:hover { background: none; }
                         }
+                    }
+                    
+                    a { 
+                        color: $white;
+                        &:hover { background: darken($blue,10%); }
                     }
                 }
             }
 
+            // defines green theme
             &.green {
                 li {
-                    @include navigation(green);
+                    background: desaturate($green,10%);
 
-                    a { 
-                        color: $white; 
-                        &:hover { background: darken($green,15%); }
-                    }
-
-                    &.active a { background: darken($green,15%); }
+                    &.active a { background: darken($green,10%); }
 
                     &.disabled {
                         a {
                             color: darken($green,20%);
-                            background: fade($black,0%);
                             @include text-shadow(lighten($green,6%) 0 1px 0);
+                            &:hover { background: none; }
                         }
+                    }
+                    
+                    a { 
+                        color: $white; 
+                        &:hover { background: darken($green,10%); }
                     }
                 }
             }
 
+            // defines red theme
             &.red {
                 li {
-                    @include navigation(red);
+                    background: desaturate($red,10%);
 
-                    a { 
-                        color: $white;
-                        &:hover { background: darken($red,15%); }
-                    }
-                    
-                    &.active a { background: darken($red,15%); }
+                    &.active a { background: darken($red,10%); }
 
                     &.disabled {
                         a {
                             color: darken($red,25%);
-                            background: fade($black,0%);
                             @include text-shadow(lighten($red,8%) 0 1px 0);
+                            &:hover { background: none; }
                         }
+                    }
+                    
+                    a { 
+                        color: $white;
+                        &:hover { background: darken($red,10%); }
                     }
                 }
             }
-            
-            // removes gradients
-            &.flat {
-
-                // default
-                li { background: $white; }
-                
-                // themes
-                &.grey li   { background: $grey-15; filter: none; }
-                &.black li  { background: $black; filter: none; }
-                &.orange li { background: desaturate($orange,10%); filter: none; }
-                &.blue li   { background: desaturate($blue,10%); filter: none; }
-                &.green li  { background: desaturate($green,10%); filter: none; }
-                &.red li    { background: desaturate($red,10%); filter: none; }  
-            }
-
-            // adds rounded corners
-            &.rounded li { 
-                @include border-radius($navigation-border-radius); 
-                a { @include border-radius($navigation-border-radius); }
-            }
-
-            // adds shadow
-            &.shadowed li { @include box-shadow(fade($black,30%) 0 1px 2px 0); }
-            
         }
     }
 }
