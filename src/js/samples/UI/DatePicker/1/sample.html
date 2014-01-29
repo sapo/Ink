@@ -251,11 +251,15 @@
                     var form = Ink.s('#form-interop-legacy');
                     Event.observe(form, 'submit', function (event) {
                         if(!FormValidator.validate(form)) {
-                            Event.stop(event);
+                            Event.stopDefault(event);
                         } else {
                             // Success
                         }
+                        Event.stopDefault(event);
                     });
+                    Event.observe(Ink.s('#form-interop'), 'submit', function (event) {
+                        Event.stopDefault(event);
+                    })
                 });
             </script>
 
