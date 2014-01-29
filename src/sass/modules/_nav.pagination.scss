@@ -14,21 +14,6 @@
                     display: block;
                     float: left;
                 }
-
-                &:last-child {
-                    a {
-                        border: none;
-                    }
-                }
-
-                &.disabled {
-                    a {
-                        &:hover {
-                            cursor: default;
-                            text-decoration: none;                  
-                        }
-                    }
-                }
             }
 
             @include clearfix;
@@ -38,7 +23,7 @@
 
 @media screen and (max-width: 650px) {
 
-    html body .ink-navigation {
+    html body .#{$navigation-class-name} {
         
         .pagination {
         

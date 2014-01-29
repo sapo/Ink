@@ -4,8 +4,13 @@
 
         &.pagination {
             
-            //defaults
+            // defines default theme
+            
+            @include border-radius($navigation-border-radius);
+
             li {
+
+                font-weight: $navigation-font-weight;
                 
                 &.active a { text-decoration: underline; }
                 
@@ -15,19 +20,30 @@
                         @include text-shadow(lighten($grey-40,40%) 0 1px 0);
 
                         &:hover {
+                            cursor: default;
                             background: none;
+                            text-decoration: none;
                         }
                     }
                 }
+
+                &:first-child,
+                &:first-child a {
+                    @include border-left-radius($navigation-border-radius);
+                }
+                &:last-child, 
+                &:last-child a {
+                    @include border-right-radius($navigation-border-radius);
+                }
             }
 
-            // white
+            // defines white theme
             &.white {
                 li {
                     
-                    @include navigation (white);
+                    background: $white;
 
-                    &.active a { background: lighten($black,85%); }
+                    &.active a { background: lighten($black,90%); }
 
                     &.disabled {
                         a {
@@ -42,21 +58,21 @@
                         text-decoration: none;
 
                         &:hover {                            
-                            background: lighten($black,85%);
+                            background: lighten($black,90%);
                         }
                     }
                 }
             }
 
-            // grey theme
+            // defines grey theme
             &.grey {
                 li {
                     
-                    @include navigation(grey);
+                    background: $grey-15;
 
                     &.active {
                         a { 
-                            background: lighten($black,70%);
+                            background: darken($grey-15,10%);
                             color: $text-color;
                         }
                     }
@@ -74,19 +90,19 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: lighten($black,70%);                                              
+                            background: darken($grey-15,10%);
                         }
                     }
                 }
             }
 
-            // black theme
+            // defines black theme
             &.black {
                 li {
                     
-                    @include navigation (black);
+                    background: $grey-90;
 
-                    &.active a { background: lighten($black,20%); }
+                    &.active a { background: lighten($black,10%); }
 
                     &.disabled {
                         a {
@@ -101,19 +117,19 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: lighten($black,20%);                                        
+                            background: lighten($grey-90,10%);                                        
                         }
                     }
                 }
             }
 
-            // orange theme
+            // defines orange theme
             &.orange {
                 li {
 
-                    @include navigation(orange);
+                    background: desaturate($orange,10%);
                     
-                    &.active a { background: darken($orange,15%); }
+                    &.active a { background: darken($orange,10%); }
 
                     &.disabled {
                         a {
@@ -128,19 +144,19 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($orange,15%);
+                            background: darken($orange,10%);
                         }
                     }
                 }
             }
 
-            // blue theme
+            // defines blue theme
             &.blue {
                 li {
 
-                    @include navigation(blue);
+                    background: desaturate($blue,10%);
 
-                    &.active a { background: darken($blue,15%); }
+                    &.active a { background: darken($blue,10%); }
 
                     &.disabled {
                         a {
@@ -155,19 +171,19 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($blue,15%);
+                            background: darken($blue,10%);
                         }
                     }
                 }
             }
 
-            // green theme
+            // defines green theme
             &.green {
                 li {
                     
-                    @include navigation (green);
+                    background: desaturate($green,10%);
                     
-                    &.active a { background: darken($green,15%); }
+                    &.active a { background: darken($green,10%); }
 
                     &.disabled {
                         a {
@@ -182,19 +198,19 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($green,15%);
+                            background: darken($green,10%);
                         }
                     }
                 }
             }
 
-            // red theme
+            // defines red theme
             &.red {
                 li {
                     
-                    @include navigation (red);
+                    background: desaturate($red,10%);
                     
-                    &.active a { background: darken($red,15%); }
+                    &.active a { background: darken($red,10%); }
 
                     &.disabled {
                         a {
@@ -209,76 +225,18 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($red,15%);
+                            background: darken($red,10%);
                         }
                     }
                 }
             }
 
-            // remove gradients
-            &.flat {
-                // white theme
-                &.white li  { 
-                    background: $white; 
-                    filter: none;
-                }
-                
-                // grey theme
-                &.grey li   { 
-                    background: $grey-15; 
-                    filter: none;
-                }
 
-                // black theme
-                &.black li  { 
-                    background: $black; 
-                    filter: none;
-                }
-
-                // blue theme
-                &.orange li { 
-                    background: desaturate($orange,10%); 
-                    filter: none;
-                }
-
-                // blue theme
-                &.blue li   { 
-                    background: desaturate($blue,10%); 
-                    filter: none;
-                }
-
-                // green theme
-                &.green li  { 
-                    background: desaturate($green,10%); 
-                    filter: none;
-                }
-
-                // red theme
-                &.red li    { 
-                    background: desaturate($red,10%); 
-                    filter: none;
-                }
-            }
-                
-
-            // adds rounded corners
-            &.rounded {
+            &.black, &.grey, &.white, &.blue, &.green, &.orange, &.red {
                 li {
-                    &:first-child,
-                    &:first-child a {
-                        @include border-left-radius($navigation-border-radius);
+                    &.disabled a {
+                        &:hover { background: none; }
                     }
-                    &:last-child, 
-                    &:last-child a {
-                        @include border-right-radius($navigation-border-radius);
-                    }
-                }
-            }
-
-            // adds shadow
-            &.shadowed {
-                li a {
-                    @include box-shadow(fade($black,30%) 0px 1px 2px 0);
                 }
             }
         }
