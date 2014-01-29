@@ -6120,7 +6120,7 @@ td.show-large {
 @media screen and (min-width: 1201px) {
   /* line 390, /Users/goncalofonseca/Documents/Ink/src/sass/mixins/_grid.scss */
   html {
-    font-size: 1.1em;
+    font-size: 1em;
   }
   /* line 391, /Users/goncalofonseca/Documents/Ink/src/sass/mixins/_grid.scss */
   html:after {
@@ -6130,7 +6130,7 @@ td.show-large {
 @media screen and (min-width: 601px) and (max-width: 960px) {
   /* line 401, /Users/goncalofonseca/Documents/Ink/src/sass/mixins/_grid.scss */
   html {
-    font-size: 0.9em;
+    font-size: 1em;
   }
   /* line 402, /Users/goncalofonseca/Documents/Ink/src/sass/mixins/_grid.scss */
   html:after {
@@ -6150,7 +6150,7 @@ td.show-large {
 @media screen and (max-width: 320px) {
   /* line 412, /Users/goncalofonseca/Documents/Ink/src/sass/mixins/_grid.scss */
   html {
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
   /* line 413, /Users/goncalofonseca/Documents/Ink/src/sass/mixins/_grid.scss */
   html:after {
@@ -6541,22 +6541,13 @@ td.show-large {
   display: block;
   float: left;
 }
-/* line 19, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.pagination.scss */
-.ink-navigation ul.pagination li:last-child a {
-  border: none;
-}
-/* line 26, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.pagination.scss */
-.ink-navigation ul.pagination li.disabled a:hover {
-  cursor: default;
-  text-decoration: none;
-}
 
 @media screen and (max-width: 650px) {
-  /* line 47, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.pagination.scss */
+  /* line 32, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.pagination.scss */
   html body .ink-navigation .pagination li a {
     display: none;
   }
-  /* line 52, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.pagination.scss */
+  /* line 37, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.pagination.scss */
   html body .ink-navigation .pagination li:first-child a, html body .ink-navigation .pagination li:last-child a {
     display: block;
   }
@@ -6588,20 +6579,25 @@ td.show-large {
   cursor: default;
 }
 
-/* line 2, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 3, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul {
   *height: 100%;
 }
-/* line 4, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 7, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu {
-  /*cão*/
   *zoom: 1;
 }
-/* line 5, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 38, /Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.ink-navigation ul.menu:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 11, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu li {
   *height: 100%;
 }
-/* line 7, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 14, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu li a {
   -webkit-transition-property: background;
   -moz-transition-property: background;
@@ -6616,85 +6612,74 @@ td.show-large {
   -o-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 13, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 21, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu li:hover ul.submenu {
   display: block;
 }
-/* line 17, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 26, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu li ul.submenu {
   display: none;
   position: absolute;
   z-index: 10;
 }
-/* line 21, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 30, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu li ul.submenu li {
   overflow: hidden;
 }
-/* line 23, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 32, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu li ul.submenu li a {
   padding: 0.5em 1em;
   display: block;
   float: none;
 }
-/* line 38, /Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
-.ink-navigation ul.menu:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-/* line 35, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 43, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.horizontal li {
   float: left;
   position: relative;
 }
-/* line 38, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 46, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.horizontal li a {
   padding: 0.5em 1em;
   display: block;
   line-height: 1.7;
 }
-/* line 43, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 51, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.horizontal li .control {
   margin-top: .3em;
 }
-/* line 48, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 55, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.horizontal li ul.submenu {
-  width: 8em;
+  min-width: inherit;
   top: 2.7em;
   left: 0;
   z-index: 50;
 }
-/* line 53, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 60, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.horizontal li ul.submenu li {
   float: none;
 }
-/* line 62, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 68, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.vertical li {
   line-height: 1.7;
   position: relative;
 }
-/* line 65, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 71, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.vertical li a {
   padding: 0.5em 1em;
   display: block;
 }
-/* line 70, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+/* line 75, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
 .ink-navigation ul.menu.vertical li ul.submenu {
-  top: 0;
-  left: 100%;
-  min-width: 8em;
-}
-/* line 74, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li ul.submenu li {
-  line-height: 1.7;
-  float: none;
-  position: static;
-}
-/* line 79, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li ul.submenu.dropdown {
   position: relative;
   top: auto;
   left: auto;
+}
+/* line 79, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li ul.submenu.flyout {
+  position: absolute;
+  min-width: 8em;
+  top: 0;
+  left: 100%;
 }
 
 /* line 3, /Users/goncalofonseca/Documents/Ink/src/sass/modules/_tables.scss */
@@ -7286,210 +7271,120 @@ dl.inline dd {
   text-shadow: none;
 }
 
-/* line 11, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 6, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs {
+  font-weight: 300;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 14, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs li.active a {
   background: none;
   color: #999999;
 }
-/* line 14, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 17, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs li.active a:hover {
   cursor: default;
   text-decoration: none;
 }
-/* line 21, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 24, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs li a:hover {
   background: none;
   text-decoration: underline;
 }
-/* line 29, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.white {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(150%, #f2f2f2));
-  background-image: -webkit-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -moz-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -o-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: linear-gradient(#ffffff, #f2f2f2 150%);
-}
 /* line 32, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.white li a {
+.ink-navigation ul.breadcrumbs.white {
+  background: white;
+}
+/* line 36, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.white li a, .ink-navigation ul.breadcrumbs.white li:after {
   color: #555555;
 }
-/* line 35, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.white li:after {
-  color: #555555;
-}
-/* line 38, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 39, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs.white li.active a {
   color: #999999;
-  text-shadow: #c1c1c1 0 1px 0;
+  text-shadow: white 0 1px, 0;
 }
-/* line 46, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 47, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs.grey {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e5e5e5), color-stop(150%, #cccccc));
-  background-image: -webkit-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -moz-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -o-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: linear-gradient(#e5e5e5, #cccccc 150%);
+  background: #d8d8d8;
 }
-/* line 49, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.grey li a {
+/* line 51, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.grey li a, .ink-navigation ul.breadcrumbs.grey li:after {
   color: #555555;
 }
-/* line 52, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.grey li:after {
-  color: #555555;
-}
-/* line 55, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 54, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs.grey li.active a {
   color: #999999;
-  text-shadow: #c1c1c1 0 1px 0;
+  text-shadow: white 0 1px, 0;
 }
-/* line 63, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 62, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs.black {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #191919), color-stop(150%, #0c0c0c));
-  background-image: -webkit-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -moz-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -o-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: linear-gradient(#191919, #0c0c0c 150%);
+  background: #191919;
 }
 /* line 66, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.black li a {
+.ink-navigation ul.breadcrumbs.black li a, .ink-navigation ul.breadcrumbs.black li:after {
   color: white;
 }
 /* line 69, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.black li:after {
-  color: white;
-}
-/* line 72, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs.black li.active a {
   color: #666666;
   text-shadow: black 0 -1px 0;
 }
-/* line 80, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+/* line 77, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
 .ink-navigation ul.breadcrumbs.orange {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2990d), color-stop(150%, #d9890b));
-  background-image: -webkit-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -moz-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -o-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: linear-gradient(#f2990d, #d9890b 150%);
-}
-/* line 83, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.orange li a {
-  color: white;
-}
-/* line 86, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.orange li:after {
-  color: white;
-}
-/* line 89, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.orange li.active a {
-  color: #cc7c00;
-  text-shadow: #ffa314 0 1px 0;
-}
-/* line 97, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.blue {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1b75ce), color-stop(150%, #1869b9));
-  background-image: -webkit-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -moz-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -o-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: linear-gradient(#1b75ce, #1869b9 150%);
-}
-/* line 100, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.blue li a {
-  color: white;
-}
-/* line 103, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.blue li:after {
-  color: white;
-}
-/* line 106, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.blue li.active a {
-  color: #0c5dae;
-  text-shadow: #2280dc 0 1px 0;
-}
-/* line 114, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.green {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4c9220), color-stop(150%, #44831c));
-  background-image: -webkit-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -moz-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -o-linear-gradient(#4c9220, #44831c 150%);
-  background-image: linear-gradient(#4c9220, #44831c 150%);
-}
-/* line 117, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.green li a {
-  color: white;
-}
-/* line 120, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.green li:after {
-  color: white;
-}
-/* line 123, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.green li.active a {
-  color: #3b7c12;
-  text-shadow: #54a124 0 1px 0;
-}
-/* line 131, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.red {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #be1c1c), color-stop(150%, #ab1919));
-  background-image: -webkit-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -moz-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -o-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: linear-gradient(#be1c1c, #ab1919 150%);
-}
-/* line 134, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.red li a {
-  color: white;
-}
-/* line 137, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.red li:after {
-  color: white;
-}
-/* line 140, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.red li.active a {
-  color: #960c0c;
-  text-shadow: #cd2424 0 1px 0;
-}
-/* line 148, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat {
-  background: white;
-  filter: none;
-}
-/* line 154, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat.grey {
-  background: #d8d8d8;
-}
-/* line 157, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat.black {
-  background: black;
-}
-/* line 160, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat.orange {
   background: #f2990d;
 }
-/* line 163, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat.blue {
+/* line 81, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.orange li a, .ink-navigation ul.breadcrumbs.orange li:after {
+  color: white;
+}
+/* line 84, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.orange li.active a {
+  color: #995e00;
+  text-shadow: #ffac29 0 1px 0;
+}
+/* line 92, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.blue {
   background: #1b75ce;
 }
-/* line 166, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat.green {
+/* line 96, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.blue li a, .ink-navigation ul.breadcrumbs.blue li:after {
+  color: white;
+}
+/* line 99, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.blue li.active a {
+  color: #08427b;
+  text-shadow: #2289f0 0 1px 0;
+}
+/* line 107, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.green {
   background: #4c9220;
 }
-/* line 169, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.flat.red {
+/* line 111, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.green li a, .ink-navigation ul.breadcrumbs.green li:after {
+  color: white;
+}
+/* line 114, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.green li.active a {
+  color: #20420a;
+  text-shadow: #57b61b 0 1px 0;
+}
+/* line 122, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.red {
   background: #be1c1c;
 }
-/* line 173, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.rounded {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
+/* line 126, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.red li a, .ink-navigation ul.breadcrumbs.red li:after {
+  color: white;
 }
-/* line 178, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
-.ink-navigation ul.breadcrumbs.shadowed {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 1px 2px 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 1px 2px 0;
-  box-shadow: rgba(0, 0, 0, 0.7) 0 1px 2px 0;
+/* line 129, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.breadcrumbs.scss */
+.ink-navigation ul.breadcrumbs.red li.active a {
+  color: #530707;
+  text-shadow: #eb1717 0 1px 0;
 }
 
 /* line 9, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.dropdown.scss */
@@ -7518,1282 +7413,759 @@ dl.inline dd {
   color: white;
 }
 
+/* line 6, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
 /* line 12, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li.active a {
-  text-decoration: underline;
+.ink-navigation ul.menu > li {
+  font-weight: 300;
 }
 /* line 17, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li.heading {
-  font-weight: 700;
+.ink-navigation ul.menu > li.active a {
+  text-decoration: underline;
 }
 /* line 22, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li.disabled a {
+.ink-navigation ul.menu > li.heading {
+  font-weight: 500;
+}
+/* line 27, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu > li.disabled a {
   color: #b2b2b2;
   text-shadow: white 0 1px 0;
 }
-/* line 26, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li.disabled a:hover {
+/* line 31, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu > li.disabled a:hover {
   cursor: default;
   background: none;
   text-decoration: none;
 }
-/* line 34, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li ul.submenu {
-  background: white;
+/* line 41, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu > li ul.submenu li {
+  font-size: .875em;
 }
-/* line 39, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li ul.submenu li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.85);
+/* line 43, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu > li ul.submenu li a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-/* line 42, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li ul.submenu li a:hover {
-  background: #e6e6e6;
-}
-/* line 44, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li ul.submenu li a:last-child a {
-  border: none;
-}
-/* line 50, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.85);
-}
-/* line 61, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 51, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.vertical li a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
+/* line 55, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:first-child {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+/* line 59, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:first-child > a {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+/* line 62, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:last-child {
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
 /* line 65, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li:last-child a {
-  border: none;
+.ink-navigation ul.menu.vertical li:last-child > a {
+  border-bottom: none;
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
-/* line 69, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li .dropdown {
-  background: none;
+/* line 70, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:last-child .submenu {
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
-/* line 73, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li .dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+/* line 74, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:last-child .submenu.flyout {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
-/* line 75, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li .dropdown li a:hover {
-  background: none;
+/* line 80, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:last-child .submenu li:last-child {
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
-/* line 84, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.vertical li:last-child .dropdown li:first-child a {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
+/* line 82, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.vertical li:last-child .submenu li:last-child a {
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 /* line 94, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.white {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(150%, #f2f2f2));
-  background-image: -webkit-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -moz-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -o-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: linear-gradient(#ffffff, #f2f2f2 150%);
+.ink-navigation ul.menu.horizontal > li:first-child {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
-/* line 100, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 98, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.horizontal > li:first-child a {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+/* line 101, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.horizontal > li:last-child {
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+/* line 105, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.horizontal > li:last-child a {
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+/* line 110, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.horizontal > li ul.submenu {
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+/* line 116, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.horizontal > li ul.submenu li:last-child {
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+/* line 119, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.horizontal > li ul.submenu li:last-child a {
+  border-bottom: none;
+}
+/* line 128, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.white {
+  background: white;
+}
+/* line 134, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.white li a {
   color: #555555;
   text-decoration: none;
 }
-/* line 104, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 138, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.white li a:hover {
-  background: #d9d9d9;
+  background: #e6e6e6;
 }
-/* line 109, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 143, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.white li.active {
-  background: #d9d9d9;
+  background: #e6e6e6;
 }
-/* line 114, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 148, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.white li.disabled a {
   color: #999999;
   text-shadow: white 0 1px, 0;
 }
-/* line 117, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.white li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 125, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.white li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 127, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.white li ul.submenu li a {
-  color: #555555;
-}
-/* line 130, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.white li ul.submenu.dropdown {
-  background: white;
-}
-/* line 133, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.white li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-/* line 143, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 157, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.grey {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e5e5e5), color-stop(150%, #cccccc));
-  background-image: -webkit-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -moz-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -o-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: linear-gradient(#e5e5e5, #cccccc 150%);
+  background: #d8d8d8;
 }
-/* line 149, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 163, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.grey li.active {
-  background: #b3b3b3;
+  background: #bfbfbf;
 }
-/* line 152, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 166, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.grey li.disabled a {
   color: #999999;
   text-shadow: white 0 1px 0;
 }
-/* line 156, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.grey li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 160, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 173, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.grey li a {
   color: #555555;
   text-decoration: none;
 }
-/* line 164, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 177, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.grey li a:hover {
-  background: #b3b3b3;
+  background: #bfbfbf;
 }
-/* line 173, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.grey li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 175, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.grey li ul.submenu li a {
-  color: #555555;
-}
-/* line 178, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.grey li ul.submenu.dropdown {
-  background: white;
-}
-/* line 181, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.grey li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+/* line 185, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.black {
+  background: #191919;
 }
 /* line 191, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #191919), color-stop(150%, #0c0c0c));
-  background-image: -webkit-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -moz-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -o-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: linear-gradient(#191919, #0c0c0c 150%);
-}
-/* line 197, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.black li.active {
   background: #333333;
 }
-/* line 200, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 194, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.black li.disabled a {
   color: #666666;
   text-shadow: black 0 -1px 0;
 }
-/* line 203, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 207, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 200, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.black li a {
   color: white;
   text-decoration: none;
 }
-/* line 211, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 204, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.black li a:hover {
   background: #333333;
 }
-/* line 219, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black li ul.submenu li:hover {
-  background: #e6e6e6;
+/* line 212, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.orange {
+  background: #f2990d;
+}
+/* line 218, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.orange li.active {
+  background: #cc7d00;
 }
 /* line 221, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black li ul.submenu li a {
-  color: #555555;
-}
-/* line 223, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black li ul.submenu li a:hover {
-  background: #4d4d4d;
-  color: white;
-}
-/* line 230, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black li ul.submenu.dropdown {
-  background: white;
-}
-/* line 233, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.black li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-/* line 243, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2990d), color-stop(150%, #d9890b));
-  background-image: -webkit-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -moz-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -o-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: linear-gradient(#f2990d, #d9890b 150%);
-}
-/* line 249, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li.active {
-  background: #b36d00;
-}
-/* line 252, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.orange li.disabled a {
   color: #995e00;
   text-shadow: #ffac29 0 1px 0;
 }
-/* line 255, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 259, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 227, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.orange li a {
   color: white;
   text-decoration: none;
 }
-/* line 263, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 231, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.orange li a:hover {
-  background: #b36d00;
+  background: #cc7d00;
 }
-/* line 271, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 273, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li ul.submenu li a {
-  color: #555555;
-}
-/* line 275, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li ul.submenu li a:hover {
-  background: #da8a0b;
-  color: white;
-}
-/* line 282, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li ul.submenu.dropdown {
-  background: white;
-}
-/* line 285, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.orange li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-/* line 295, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 239, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.blue {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1b75ce), color-stop(150%, #1869b9));
-  background-image: -webkit-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -moz-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -o-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: linear-gradient(#1b75ce, #1869b9 150%);
+  background: #1b75ce;
 }
-/* line 301, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 245, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.blue li.active {
-  background: #0a4f92;
+  background: #0c5baa;
 }
-/* line 304, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 248, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.blue li.disabled a {
   color: #08427b;
   text-shadow: #2289f0 0 1px 0;
 }
-/* line 307, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.blue li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 311, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 254, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.blue li a {
   color: white;
   text-decoration: none;
 }
-/* line 315, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 258, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.blue li a:hover {
-  background: #0a4f92;
+  background: #0c5baa;
 }
-/* line 323, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.blue li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 325, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.blue li ul.submenu li a {
-  color: #555555;
-}
-/* line 327, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.blue li ul.submenu li a:hover {
-  background: #1868b8;
-  color: white;
-}
-/* line 334, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.blue li ul.submenu.dropdown {
-  background: white;
-}
-/* line 337, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.blue li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-/* line 347, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 266, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.green {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4c9220), color-stop(150%, #44831c));
-  background-image: -webkit-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -moz-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -o-linear-gradient(#4c9220, #44831c 150%);
-  background-image: linear-gradient(#4c9220, #44831c 150%);
+  background: #4c9220;
 }
-/* line 353, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 272, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.green li.active {
-  background: #2a580d;
+  background: #356f10;
 }
-/* line 356, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 275, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.green li.disabled a {
   color: #20420a;
   text-shadow: #57b61b 0 1px 0;
 }
-/* line 359, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.green li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 363, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 281, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.green li a {
   color: white;
   text-decoration: none;
 }
-/* line 367, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 285, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.green li a:hover {
-  background: #2a580d;
+  background: #356f10;
 }
-/* line 375, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.green li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 377, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.green li ul.submenu li a {
-  color: #555555;
-}
-/* line 379, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.green li ul.submenu li a:hover {
-  background: #417d1b;
-  color: white;
-}
-/* line 386, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.green li ul.submenu.dropdown {
-  background: white;
-}
-/* line 389, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.green li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-/* line 399, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 293, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.red {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #be1c1c), color-stop(150%, #ab1919));
-  background-image: -webkit-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -moz-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -o-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: linear-gradient(#be1c1c, #ab1919 150%);
+  background: #be1c1c;
 }
-/* line 405, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 299, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.red li.active {
-  background: #820b0b;
+  background: #9a0d0d;
 }
-/* line 408, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 302, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.red li.disabled a {
   color: #530707;
   text-shadow: #eb1717 0 1px 0;
 }
-/* line 411, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.red li.disabled a:hover {
-  background: rgba(0, 0, 0, 0);
-}
-/* line 415, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 308, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.red li a {
   color: white;
   text-decoration: none;
 }
-/* line 419, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+/* line 312, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
 .ink-navigation ul.menu.red li a:hover {
-  background: #820b0b;
+  background: #9a0d0d;
 }
-/* line 427, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.red li ul.submenu li:hover {
-  background: rgba(0, 0, 0, 0.1);
+/* line 325, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.black li ul.submenu, .ink-navigation ul.menu.grey li ul.submenu, .ink-navigation ul.menu.white li ul.submenu, .ink-navigation ul.menu.blue li ul.submenu, .ink-navigation ul.menu.green li ul.submenu, .ink-navigation ul.menu.orange li ul.submenu, .ink-navigation ul.menu.red li ul.submenu {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
-/* line 429, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.red li ul.submenu li a {
+/* line 329, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.black li ul.submenu li a, .ink-navigation ul.menu.grey li ul.submenu li a, .ink-navigation ul.menu.white li ul.submenu li a, .ink-navigation ul.menu.blue li ul.submenu li a, .ink-navigation ul.menu.green li ul.submenu li a, .ink-navigation ul.menu.orange li ul.submenu li a, .ink-navigation ul.menu.red li ul.submenu li a {
   color: #555555;
 }
-/* line 431, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.red li ul.submenu li a:hover {
-  background: #a81919;
-  color: white;
+/* line 331, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.black li ul.submenu li a:hover, .ink-navigation ul.menu.grey li ul.submenu li a:hover, .ink-navigation ul.menu.white li ul.submenu li a:hover, .ink-navigation ul.menu.blue li ul.submenu li a:hover, .ink-navigation ul.menu.green li ul.submenu li a:hover, .ink-navigation ul.menu.orange li ul.submenu li a:hover, .ink-navigation ul.menu.red li ul.submenu li a:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
-/* line 438, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.red li ul.submenu.dropdown {
-  background: white;
-}
-/* line 441, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.red li ul.submenu.dropdown li a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-/* line 451, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat {
-  filter: none;
-}
-/* line 456, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.white {
-  background: white;
-}
-/* line 459, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.grey {
-  background: #d8d8d8;
-}
-/* line 462, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.black {
-  background: black;
-}
-/* line 465, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.orange {
-  background: #f2990d;
-}
-/* line 468, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.blue {
-  background: #1b75ce;
-}
-/* line 471, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.green {
-  background: #4c9220;
-}
-/* line 474, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.flat.red {
-  background: #be1c1c;
-}
-/* line 480, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-}
-/* line 486, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal li:first-child {
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-/* line 490, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal li:first-child a {
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-/* line 495, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal li ul.submenu {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 499, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal li ul.submenu li {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 501, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal li ul.submenu li:last-child {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 508, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.horizontal li ul.submenu li a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 519, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-}
-/* line 525, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:first-child {
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
-}
-/* line 529, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:first-child a {
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
-}
-/* line 532, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:first-child .submenu.dropdown {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 537, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:first-child .submenu.dropdown li a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 541, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:first-child .submenu.dropdown li:first-child, .ink-navigation ul.menu.rounded.vertical li:first-child .submenu.dropdown li:last-child {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 543, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:first-child .submenu.dropdown li:first-child a, .ink-navigation ul.menu.rounded.vertical li:first-child .submenu.dropdown li:last-child a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 552, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 555, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child a {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 558, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child .submenu.dropdown {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 562, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child .submenu.dropdown li a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 565, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child .submenu.dropdown li:first-child {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 567, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child .submenu.dropdown li:first-child a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 571, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child .submenu.dropdown li:last-child {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 573, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li:last-child .submenu.dropdown li:last-child a {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 582, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu {
-  -moz-border-radius-topleft: 0;
-  -webkit-border-top-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 584, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 588, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown li {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 590, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown li a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 593, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown li:first-child {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 595, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown li:first-child a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 599, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown li:last-child {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 601, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu.dropdown li:last-child a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 614, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu li a {
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-}
-/* line 618, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu li:first-child {
-  -moz-border-radius-topleft: 0;
-  -webkit-border-top-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
-  -moz-border-radius-bottomleft: 0;
-  -webkit-border-bottom-left-radius: 0;
-  border-bottom-left-radius: 0;
-  -moz-border-radius-bottomright: 0;
-  -webkit-border-bottom-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-/* line 625, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu li:first-child a {
-  -moz-border-radius-topleft: 0;
-  -webkit-border-top-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
-  -moz-border-radius-bottomleft: 0;
-  -webkit-border-bottom-left-radius: 0;
-  border-bottom-left-radius: 0;
-  -moz-border-radius-bottomright: 0;
-  -webkit-border-bottom-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-/* line 633, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu li:last-child {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 635, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.rounded.vertical li .submenu li:last-child a {
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 646, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.shadowed {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0;
-}
-/* line 652, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.shadowed li ul.submenu {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0;
-}
-/* line 656, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
-.ink-navigation ul.menu.shadowed li ul.submenu.dropdown {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+/* line 335, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.menu.scss */
+.ink-navigation ul.menu.black li.disabled a:hover, .ink-navigation ul.menu.grey li.disabled a:hover, .ink-navigation ul.menu.white li.disabled a:hover, .ink-navigation ul.menu.blue li.disabled a:hover, .ink-navigation ul.menu.green li.disabled a:hover, .ink-navigation ul.menu.orange li.disabled a:hover, .ink-navigation ul.menu.red li.disabled a:hover {
+  background: none;
 }
 
-/* line 10, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 5, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 11, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination li {
+  font-weight: 300;
+}
+/* line 15, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination li.active a {
   text-decoration: underline;
 }
-/* line 13, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 18, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination li.disabled a {
   color: #b2b2b2;
   text-shadow: white 0 1px 0;
 }
-/* line 17, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 22, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination li.disabled a:hover {
+  cursor: default;
   background: none;
-}
-/* line 26, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.white li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(150%, #f2f2f2));
-  background-image: -webkit-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -moz-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -o-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: linear-gradient(#ffffff, #f2f2f2 150%);
+  text-decoration: none;
 }
 /* line 30, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.white li.active a {
-  background: #d9d9d9;
+.ink-navigation ul.pagination li a {
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  -o-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 140ms;
+  -moz-transition-duration: 140ms;
+  -o-transition-duration: 140ms;
+  transition-duration: 140ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
-/* line 33, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 37, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination li:first-child, .ink-navigation ul.pagination li:first-child a {
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+/* line 41, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination li:last-child, .ink-navigation ul.pagination li:last-child a {
+  -moz-border-radius-topright: 2px;
+  -webkit-border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-radius-bottomright: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+/* line 48, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination.white li {
+  background: white;
+}
+/* line 52, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination.white li.active a {
+  background: #e6e6e6;
+}
+/* line 55, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.white li.disabled a {
   color: #999999;
   background: fade(black, 0%);
   text-shadow: white 0 1px 0;
 }
-/* line 40, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 62, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.white li a {
   color: #555555;
   text-decoration: none;
 }
-/* line 44, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 66, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.white li a:hover {
-  background: #d9d9d9;
+  background: #e6e6e6;
 }
-/* line 53, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 75, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.grey li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e5e5e5), color-stop(150%, #cccccc));
-  background-image: -webkit-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -moz-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -o-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: linear-gradient(#e5e5e5, #cccccc 150%);
+  background: #d8d8d8;
 }
-/* line 58, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 80, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.grey li.active a {
-  background: #b3b3b3;
+  background: #bfbfbf;
   color: #555555;
 }
-/* line 65, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 87, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.grey li.disabled a {
   color: #999999;
   background: fade(black, 0%);
   text-shadow: white 0 1px 0;
 }
-/* line 72, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 94, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.grey li a {
   color: #555555;
   text-decoration: none;
 }
-/* line 76, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 98, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.grey li a:hover {
-  background: #b3b3b3;
+  background: #bfbfbf;
 }
-/* line 85, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 107, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.black li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #191919), color-stop(150%, #0c0c0c));
-  background-image: -webkit-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -moz-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -o-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: linear-gradient(#191919, #0c0c0c 150%);
+  background: #191919;
 }
-/* line 89, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 111, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.black li.active a {
   background: #333333;
 }
-/* line 92, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 114, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.black li.disabled a {
   color: #666666;
   background: fade(black, 0%);
   text-shadow: black 0 -1px 0;
 }
-/* line 99, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 121, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.black li a {
   color: white;
   text-decoration: none;
 }
-/* line 103, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 125, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.black li a:hover {
   background: #333333;
 }
-/* line 112, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 134, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.orange li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2990d), color-stop(150%, #d9890b));
-  background-image: -webkit-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -moz-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -o-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: linear-gradient(#f2990d, #d9890b 150%);
+  background: #f2990d;
 }
-/* line 116, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 138, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.orange li.active a {
-  background: #b36d00;
+  background: #cc7d00;
 }
-/* line 119, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 141, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.orange li.disabled a {
   color: #995e00;
   background: fade(black, 0%);
   text-shadow: #ffac29 0 1px 0;
 }
-/* line 126, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 148, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.orange li a {
   color: white;
   text-decoration: none;
 }
-/* line 130, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 152, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.orange li a:hover {
-  background: #b36d00;
+  background: #cc7d00;
 }
-/* line 139, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 161, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.blue li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1b75ce), color-stop(150%, #1869b9));
-  background-image: -webkit-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -moz-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -o-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: linear-gradient(#1b75ce, #1869b9 150%);
+  background: #1b75ce;
 }
-/* line 143, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 165, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.blue li.active a {
-  background: #0a4f92;
+  background: #0c5baa;
 }
-/* line 146, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 168, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.blue li.disabled a {
   color: #08427b;
   background: fade(black, 0%);
   text-shadow: #2289f0 0 1px 0;
 }
-/* line 153, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 175, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.blue li a {
   color: white;
   text-decoration: none;
 }
-/* line 157, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 179, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.blue li a:hover {
-  background: #0a4f92;
+  background: #0c5baa;
 }
-/* line 166, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 188, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.green li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4c9220), color-stop(150%, #44831c));
-  background-image: -webkit-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -moz-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -o-linear-gradient(#4c9220, #44831c 150%);
-  background-image: linear-gradient(#4c9220, #44831c 150%);
+  background: #4c9220;
 }
-/* line 170, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 192, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.green li.active a {
-  background: #2a580d;
+  background: #356f10;
 }
-/* line 173, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 195, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.green li.disabled a {
   color: #20420a;
   background: fade(black, 0%);
   text-shadow: #57b61b 0 1px 0;
 }
-/* line 180, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 202, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.green li a {
   color: white;
   text-decoration: none;
 }
-/* line 184, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 206, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.green li a:hover {
-  background: #2a580d;
+  background: #356f10;
 }
-/* line 193, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 215, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.red li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #be1c1c), color-stop(150%, #ab1919));
-  background-image: -webkit-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -moz-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -o-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: linear-gradient(#be1c1c, #ab1919 150%);
+  background: #be1c1c;
 }
-/* line 197, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 219, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.red li.active a {
-  background: #820b0b;
+  background: #9a0d0d;
 }
-/* line 200, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 222, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.red li.disabled a {
   color: #530707;
   background: fade(black, 0%);
   text-shadow: #eb1717 0 1px 0;
 }
-/* line 207, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+/* line 229, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
 .ink-navigation ul.pagination.red li a {
   color: white;
   text-decoration: none;
 }
-/* line 211, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.red li a:hover {
-  background: #820b0b;
-}
-/* line 221, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.white li {
-  background: white;
-  filter: none;
-}
-/* line 227, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.grey li {
-  background: #d8d8d8;
-  filter: none;
-}
 /* line 233, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.black li {
-  background: black;
-  filter: none;
+.ink-navigation ul.pagination.red li a:hover {
+  background: #9a0d0d;
 }
-/* line 239, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.orange li {
-  background: #f2990d;
-  filter: none;
-}
-/* line 245, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.blue li {
-  background: #1b75ce;
-  filter: none;
-}
-/* line 251, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.green li {
-  background: #4c9220;
-  filter: none;
-}
-/* line 257, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.flat.red li {
-  background: #be1c1c;
-  filter: none;
-}
-/* line 268, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.rounded li:first-child, .ink-navigation ul.pagination.rounded li:first-child a {
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-/* line 272, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.rounded li:last-child, .ink-navigation ul.pagination.rounded li:last-child a {
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/* line 280, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
-.ink-navigation ul.pagination.shadowed li a {
-  -webkit-box-shadow: fade(black, 30%) 0px 1px 2px 0;
-  -moz-box-shadow: fade(black, 30%) 0px 1px 2px 0;
-  box-shadow: fade(black, 30%) 0px 1px 2px 0;
+/* line 244, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pagination.scss */
+.ink-navigation ul.pagination.black li.disabled a:hover, .ink-navigation ul.pagination.grey li.disabled a:hover, .ink-navigation ul.pagination.white li.disabled a:hover, .ink-navigation ul.pagination.blue li.disabled a:hover, .ink-navigation ul.pagination.green li.disabled a:hover, .ink-navigation ul.pagination.orange li.disabled a:hover, .ink-navigation ul.pagination.red li.disabled a:hover {
+  background: none;
 }
 
 /* line 8, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(150%, #f2f2f2));
-  background-image: -webkit-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -moz-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: -o-linear-gradient(#ffffff, #f2f2f2 150%);
-  background-image: linear-gradient(#ffffff, #f2f2f2 150%);
+  background: white;
+  font-weight: 300;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
-/* line 12, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 13, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills li a {
   color: #555555;
   background: none;
 }
-/* line 15, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 16, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills li a:hover {
-  background: #d9d9d9;
+  background: #e6e6e6;
 }
-/* line 18, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 19, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills li.active a {
-  background: #d9d9d9;
+  background: #e6e6e6;
 }
-/* line 21, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 22, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills li.disabled a {
   color: #999999;
-  background: fade(black, 0%);
   text-shadow: white 0 1px 0;
 }
-/* line 31, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.grey li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e5e5e5), color-stop(150%, #cccccc));
-  background-image: -webkit-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -moz-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: -o-linear-gradient(#e5e5e5, #cccccc 150%);
-  background-image: linear-gradient(#e5e5e5, #cccccc 150%);
+/* line 25, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills li.disabled a:hover {
+  background: none;
 }
-/* line 34, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 33, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.grey li {
+  background: #d8d8d8;
+}
+/* line 36, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.grey li.active a {
+  background: #bfbfbf;
+}
+/* line 39, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.grey li.disabled a {
+  color: #999999;
+  text-shadow: white 0 1px 0;
+}
+/* line 42, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.grey li.disabled a:hover {
+  background: none;
+}
+/* line 46, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.grey li a {
   color: #555555;
 }
-/* line 36, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 48, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.grey li a:hover {
-  background: #b3b3b3;
-}
-/* line 39, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.grey li.active a {
-  background: #b3b3b3;
-}
-/* line 42, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.grey li.disabled a {
-  color: #999999;
-  background: fade(black, 0%);
-  text-shadow: white 0 1px 0;
-}
-/* line 53, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.black li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #191919), color-stop(150%, #0c0c0c));
-  background-image: -webkit-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -moz-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: -o-linear-gradient(#191919, #0c0c0c 150%);
-  background-image: linear-gradient(#191919, #0c0c0c 150%);
+  background: #bfbfbf;
 }
 /* line 56, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.black li a {
-  color: white;
+.ink-navigation ul.pills.black li {
+  background: #191919;
 }
-/* line 58, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.black li a:hover {
-  background: #333333;
-}
-/* line 61, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 59, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.black li.active a {
   background: #333333;
 }
-/* line 64, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 62, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.black li.disabled a {
   color: #666666;
-  background: fade(black, 0%);
   text-shadow: black 0 -1px 0;
 }
-/* line 74, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.orange li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2990d), color-stop(150%, #d9890b));
-  background-image: -webkit-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -moz-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: -o-linear-gradient(#f2990d, #d9890b 150%);
-  background-image: linear-gradient(#f2990d, #d9890b 150%);
+/* line 65, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.black li.disabled a:hover {
+  background: none;
 }
-/* line 77, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 69, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.black li a {
+  color: white;
+}
+/* line 71, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.black li a:hover {
+  background: #333333;
+}
+/* line 78, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.orange li {
+  background: #f2990d;
+}
+/* line 81, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.orange li.active a {
+  background: #cc7d00;
+}
+/* line 84, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.orange li.disabled a {
+  color: #995e00;
+  text-shadow: #ffac29 0 1px 0;
+}
+/* line 87, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.orange li.disabled a:hover {
+  background: none;
+}
+/* line 91, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.orange li a {
   color: white;
 }
-/* line 79, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 93, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.orange li a:hover {
-  background: #b36d00;
-}
-/* line 82, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.orange li.active a {
-  background: #b36d00;
-}
-/* line 85, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.orange li.disabled a {
-  color: #995e00;
-  background: fade(black, 0%);
-  text-shadow: #ffac29 0 1px 0;
-}
-/* line 95, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.blue li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1b75ce), color-stop(150%, #1869b9));
-  background-image: -webkit-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -moz-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: -o-linear-gradient(#1b75ce, #1869b9 150%);
-  background-image: linear-gradient(#1b75ce, #1869b9 150%);
-}
-/* line 98, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.blue li a {
-  color: white;
+  background: #cc7d00;
 }
 /* line 100, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.blue li a:hover {
-  background: #0a4f92;
+.ink-navigation ul.pills.blue li {
+  background: #1b75ce;
 }
 /* line 103, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.blue li.active a {
-  background: #0a4f92;
+  background: #0c5baa;
 }
 /* line 106, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.blue li.disabled a {
   color: #08427b;
-  background: fade(black, 0%);
   text-shadow: #2289f0 0 1px 0;
 }
-/* line 116, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.green li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4c9220), color-stop(150%, #44831c));
-  background-image: -webkit-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -moz-linear-gradient(#4c9220, #44831c 150%);
-  background-image: -o-linear-gradient(#4c9220, #44831c 150%);
-  background-image: linear-gradient(#4c9220, #44831c 150%);
+/* line 109, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.blue li.disabled a:hover {
+  background: none;
 }
-/* line 119, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 113, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.blue li a {
+  color: white;
+}
+/* line 115, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.blue li a:hover {
+  background: #0c5baa;
+}
+/* line 122, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.green li {
+  background: #4c9220;
+}
+/* line 125, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.green li.active a {
+  background: #356f10;
+}
+/* line 128, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.green li.disabled a {
+  color: #20420a;
+  text-shadow: #57b61b 0 1px 0;
+}
+/* line 131, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.green li.disabled a:hover {
+  background: none;
+}
+/* line 135, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.green li a {
   color: white;
 }
-/* line 121, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.green li a:hover {
-  background: #2a580d;
-}
-/* line 124, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.green li.active a {
-  background: #2a580d;
-}
-/* line 127, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.green li.disabled a {
-  color: #20420a;
-  background: fade(black, 0%);
-  text-shadow: #57b61b 0 1px 0;
-}
 /* line 137, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.red li {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #be1c1c), color-stop(150%, #ab1919));
-  background-image: -webkit-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -moz-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: -o-linear-gradient(#be1c1c, #ab1919 150%);
-  background-image: linear-gradient(#be1c1c, #ab1919 150%);
+.ink-navigation ul.pills.green li a:hover {
+  background: #356f10;
 }
-/* line 140, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 144, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.red li {
+  background: #be1c1c;
+}
+/* line 147, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.red li.active a {
+  background: #9a0d0d;
+}
+/* line 150, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.red li.disabled a {
+  color: #530707;
+  text-shadow: #eb1717 0 1px 0;
+}
+/* line 153, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+.ink-navigation ul.pills.red li.disabled a:hover {
+  background: none;
+}
+/* line 157, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.red li a {
   color: white;
 }
-/* line 142, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
+/* line 159, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
 .ink-navigation ul.pills.red li a:hover {
-  background: #820b0b;
-}
-/* line 145, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.red li.active a {
-  background: #820b0b;
-}
-/* line 148, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.red li.disabled a {
-  color: #530707;
-  background: fade(black, 0%);
-  text-shadow: #eb1717 0 1px 0;
-}
-/* line 161, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat li {
-  background: white;
-}
-/* line 164, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat.grey li {
-  background: #d8d8d8;
-  filter: none;
-}
-/* line 165, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat.black li {
-  background: black;
-  filter: none;
-}
-/* line 166, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat.orange li {
-  background: #f2990d;
-  filter: none;
-}
-/* line 167, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat.blue li {
-  background: #1b75ce;
-  filter: none;
-}
-/* line 168, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat.green li {
-  background: #4c9220;
-  filter: none;
-}
-/* line 169, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.flat.red li {
-  background: #be1c1c;
-  filter: none;
-}
-/* line 173, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.rounded li {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-}
-/* line 175, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.rounded li a {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-}
-/* line 179, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_nav.pills.scss */
-.ink-navigation ul.pills.shadowed li {
-  -webkit-box-shadow: fade(black, 30%) 0 1px 2px 0;
-  -moz-box-shadow: fade(black, 30%) 0 1px 2px 0;
-  box-shadow: fade(black, 30%) 0 1px 2px 0;
+  background: #9a0d0d;
 }
 
 /* line 3, /Users/goncalofonseca/Documents/Ink/src/sass/themes/_tables.scss */
