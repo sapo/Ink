@@ -673,16 +673,19 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             //return;
             var aErrorLabel = formElm.getElementsByTagName('p');
 
-            var curElm = false;
+            var curElm;
+            var control;
+
             for(var i = (aErrorLabel.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel[i];
                 if(Css.hasClassName(curElm, this._errorClassName)) {
-                    if(Css.hasClassName(curElm.parentNode, 'control')) {
-                        Css.removeClassName(curElm.parentNode.parentNode, 'validation error warning');
+                    control = InkElement.findUpwardsBySelector(curElm, '.control-group');
+                    if (control) {
+                        Css.removeClassName(control, ['validation', 'error', 'warning']);
                     }
 
                     if(Css.hasClassName(curElm,'tip error', true /*both*/)) {
-                        curElm.parentNode.removeChild(curElm);
+                        InkElement.remove(curElm);
                     }
                 }
             }
