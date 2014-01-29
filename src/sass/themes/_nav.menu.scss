@@ -5,7 +5,7 @@
         
         &.menu {
 
-            // default theme
+            // defines default theme
 
             @include border-radius($navigation-border-radius);
             
@@ -45,7 +45,6 @@
                 }
             }
 
-            // INK:NAVIGATION:MENU:VERTICAL
             &.vertical {
 
                 li {
@@ -125,7 +124,7 @@
                 }
             }
 
-            // white theme
+            // defines white theme
             &.white {
                 
                 background: $white;
@@ -149,27 +148,25 @@
                         a {
                             color: $grey-40;
                             @include text-shadow(lighten($grey-40,40%) 0 1px, 0);
-                            &:hover { background: rgba($black,0); }
                         }
                     }
                 }
             }
             
-            // grey theme
+            // defines grey theme
             &.grey {
                 
                 background: $grey-15;
                 
                 li {
 
-                    &.active { background: lighten($black,70%); }
+                    &.active { background: darken($grey-15,10%); }
 
                     &.disabled {
                         a {
                             color: $grey-40;
                             @include text-shadow(lighten($grey-40,40%) 0 1px 0);
 
-                            &:hover { background: rgba($black,0); }
                         }
                     }
 
@@ -178,13 +175,13 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: darken($grey-15,10%);                                              
+                            background: darken($grey-15,10%);
                         }
                     }
                 }
             }
 
-            // black theme
+            // defines black theme
             &.black {
                 
                 background: $grey-90;
@@ -197,7 +194,6 @@
                         a {
                             color: $grey-60;
                             @include text-shadow($black 0 -1px 0);
-                            &:hover { background: rgba($black,0); }
                         }
                     }
 
@@ -212,20 +208,19 @@
                 }
             }
 
-            // orange theme
+            // defines orange theme
             &.orange {
                 
                 background: desaturate($orange,10%);
 
                 li {
                     
-                    &.active { background: darken($orange,15%); }
+                    &.active { background: darken($orange,10%); }
 
                     &.disabled {
                         a {
                             color: darken($orange,20%);
                             @include text-shadow(lighten($orange,8%) 0 1px 0);
-                            &:hover { background: rgba($black,0); }
                         }
                     }
 
@@ -240,20 +235,19 @@
                 }
             }
 
-            // blue theme
+            // defines blue theme
             &.blue {
                 
                 background: desaturate($blue,10%);
                 
                 li {
 
-                    &.active { background: darken($blue,15%); }
+                    &.active { background: darken($blue,10%); }
 
                     &.disabled {
                         a {
                             color: darken($blue,20%); 
                             @include text-shadow(lighten($blue,8%) 0 1px 0);
-                            &:hover { background: rgba($black,0); }
                         }
                     }
 
@@ -268,20 +262,19 @@
                 }
             }
 
-            // green theme
+            // defines green theme
             &.green {
 
                 background: desaturate($green,10%);
                 
                 li {
 
-                    &.active { background: darken($green,15%); }
+                    &.active { background: darken($green,10%); }
 
                     &.disabled {
                         a {
                             color: darken($green,20%);
                             @include text-shadow(lighten($green,6%) 0 1px 0);
-                            &:hover { background: rgba($black,0); }
                         }
                     }
 
@@ -296,20 +289,19 @@
                 }
             }
 
-            // red theme
+            // defines red theme
             &.red {
 
                 background: desaturate($red,10%);
                 
                 li {
 
-                    &.active { background: darken($red,15%); }
+                    &.active { background: darken($red,10%); }
 
                     &.disabled {
                         a {
                             color: darken($red,25%); 
                             @include text-shadow(lighten($red,8%) 0 1px 0);
-                            &:hover { background: rgba($black,0); }
                         }
                     }
 
@@ -324,7 +316,7 @@
                 }
             }
 
-            // submenu for themes
+            // defines submenu for themes
 
             &.black, &.grey, &.white, &.blue, &.green, &.orange, &.red {
 
@@ -339,6 +331,8 @@
                             &:hover { background: rgba($black, 0.05); }
                         }
                     }
+
+                    &.disabled a:hover { background: none; }
                 }
             }
         }
