@@ -4,8 +4,6 @@
 # ignore compiled css files
 !prettify.css
 !demo.css
-# ignore sourcemaps
-*.map
 # ignore CI log files
 */logs/log-*.php
 */logs/!index.html
