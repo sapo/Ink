@@ -188,7 +188,7 @@
                 
                 li {
 
-                    &.active { background: lighten($black,10%); }
+                    &.active { background: lighten($grey-90,10%); }
 
                     &.disabled {
                         a {
@@ -202,7 +202,7 @@
                         text-decoration: none;
 
                         &:hover {
-                            background: lighten($grey-90,10%);                                        
+                            background: lighten($grey-90,10%);
                         }
                     }
                 }

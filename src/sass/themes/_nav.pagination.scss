@@ -27,6 +27,12 @@
                     }
                 }
 
+                a {
+                    @include transition-property(background);
+                    @include transition-duration(140ms);
+                    @include transition-timing-function(ease-in-out);
+                }
+
                 &:first-child,
                 &:first-child a {
                     @include border-left-radius($navigation-border-radius);
@@ -102,7 +108,7 @@
                     
                     background: $grey-90;
 
-                    &.active a { background: lighten($black,10%); }
+                    &.active a { background: lighten($grey-90,10%); }
 
                     &.disabled {
                         a {
