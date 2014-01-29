@@ -219,13 +219,16 @@
             <form class="ink-form" id="form-interop">
                 <div class="control-group required">
                     <div class="control">
-                        <label for="mail">Email:</label>
-                        <input type="text" name="mail" id="mail" data-rules="requiredemail" class="ink-datepicker">
+                        <label for="date">Date:</label>
+                        <input type="text" name="date" id="date" data-rules="required" class="ink-datepicker">
                     </div>
                 </div>
 
                 <button type="submit">Submit</button>
             </form>
+
+            <p class="vspace">&nbsp;</p>
+            <p class="vspace">&nbsp;</p>
 
             <script>
                 Ink.requireModules(['Ink.UI.FormValidator_2'], function(FormValidator) {
