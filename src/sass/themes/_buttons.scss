@@ -25,24 +25,46 @@
 
 .#{$button-class-name} {
 
-  &.rounded {
-    @include border-radius($border-radius);
-  }
+    background: $grey-15;
+    border: 1px solid darken($grey-15,10%);
+    @include border-radius($button-border-radius);
+    @include transition-property(all);
+    @include transition-duration(140ms);
+    @include transition-timing-function(ease-in-out);
 
-  &.red {
-    @include ink-button($red, $white, shade($red,30%));
-  }
+    &:hover,
+    &:active {
+        background: darken($grey-15, 5%);
+        border: 1px solid darken($grey-15,15%);
+        @include box-shadow(rgba(0,0,0,0.2) 0 1px 1px)
+    }
 
-  &.blue {
-    @include ink-button($blue, $white, shade($blue,30%));
-  }
+    &[disabled]{
+        background: lighten($grey-15,5%);
+        border: 1px solid lighten(darken($grey-15,10%),5%);
+        &:hover {
+            @include box-shadow(none);
+        }
+    }
+    
+    &.blue {
+        @include ink-button($blue, $white);
+    }
 
-  &.orange {
-    @include ink-button($orange, $white, shade($orange,30%));
-  }
+    &.green {
+        @include ink-button($green, $white);
+    }
+    
+    &.orange {
+        @include ink-button($orange, $white);
+    }
 
-  &.green {
-    @include ink-button($green, $white, $green);
-  }
+    &.red {
+        @include ink-button($red, $white);
+    }
+
+    &.black {
+        @include ink-button($grey-90, $white);
+    }
   
 }
