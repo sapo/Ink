@@ -22,8 +22,8 @@ We've completely rewritten the grid system and JavaScript components, along with
 We have three branches on our github repository:
 
 * The **[master](https://github.com/sapo/Ink/tree/master)** branch contains the latest release as its HEAD and all previous releases as tags.
-* The **[develop](https://github.com/sapo/Ink/tree/develop)** branch contains our latest code that will eventually lead to a new release and tag on **[master](https://github.com/sapo/Ink/tree/master)**. This branch is likely to contain code that is not fully functional or documented. Use at your own risk.
 * The **[staging](https://github.com/sapo/Ink/tree/staging)** branch is a semi-stable branch containing code from the develop branch which is going to go into the next release.
+* The **[develop](https://github.com/sapo/Ink/tree/develop)** branch contains our latest code that will eventually lead to a new release and tag on **[master](https://github.com/sapo/Ink/tree/master). This branch is likely to contain code that is not fully functional or documented. Use at your own risk.**
 
 To get a specific release clone the repository and use, e.g. `git checkout 1.0.0`.
 
