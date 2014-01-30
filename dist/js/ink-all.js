@@ -17477,7 +17477,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 errorMsg.innerHTML = error.custom[0].msg;
             }
 
-            InkElement.insertAfter(errorMsg, curElm);
+            InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
             if (controlElm) {
                 if(error.errors[0] === 'ink-fv-required') {
                     Css.addClassName(controlGroupElm, 'validation error');
@@ -18450,7 +18450,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     if (controlGroupElement && !controlElement) {
                         controlGroupElement.appendChild(paragraph);
                     } else {
-                        Element.insertAfter(paragraph, formElement.getElement());
+                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
                     }
                     var errors = formElement.getErrors();
                     var errorArr = [];
