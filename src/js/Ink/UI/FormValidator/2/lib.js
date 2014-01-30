@@ -904,7 +904,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     if (controlGroupElement && !controlElement) {
                         controlGroupElement.appendChild(paragraph);
                     } else {
-                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
+                        Element.insertAfter(paragraph, formElement.getElement());
                     }
                     var errors = formElement.getErrors();
                     var errorArr = [];
