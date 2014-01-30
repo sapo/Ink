@@ -22,6 +22,7 @@
 
     outline: none;
     border-color: opacify($fc, 0.3);
-    @include box-shadow(rgba(0, 0, 0, 0.1) 0 1px 3px inset, $fc  0 0 $fb);
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0 1px 1px inset);
+
 
 }
