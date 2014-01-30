@@ -30,7 +30,7 @@
 @mixin generate-column-group-container($gutter-width, $class-name) {
 
     .#{$grid-column-group-class-name} {        
-        @include clearfix;
+        @include pie-clearfix;
     }
 
     .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {

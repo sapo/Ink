@@ -4,6 +4,7 @@
         border: none;
         margin-bottom: 1.5em;
         padding: 0;
+        margin: 0;
 
         legend {
             font-size: 1.438em;
@@ -100,11 +101,11 @@
     .control-group {
         line-height: 2;
         margin-bottom: 1em;
-        @include clearfix;
+        @include pie-clearfix;
 
         .control {
             position: relative;
-            @include clearfix;
+            @include pie-clearfix;
 
             & > input,
             & > select,
