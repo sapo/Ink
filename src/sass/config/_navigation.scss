@@ -3,6 +3,6 @@ $navigation-line-height     	: 1.7;
 $navigation-h-padding       	: 1em;
 $navigation-v-padding       	: .5em;
 $navigation-padding         	: $navigation-v-padding $navigation-h-padding;
-$navigation-border-radius   	: 2px;
+$navigation-border-radius   	: $border-radius;
 $navigation-font-weight			: 300;
 $navigation-heading-font-weight	: 500;
