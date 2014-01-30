@@ -15,7 +15,7 @@ If you find any inaccuracies or problems in our documentation this is the place 
 - [Install node.js](http://nodejs.org/) This is required to run our build scripts.
 - Install the [Compass](http://compass-style.org/) ruby gem by running following command on the command line ``gem install compass``
 - Install the [grunt-cli](https://github.com/gruntjs/grunt-cli) by running the following command on the command line ``npm install -g grunt-cli``
-- Install all other dependencies by running the ``npm install`` command inside Inks folder.
+- Install all other dependencies by running the ``npm install`` command **inside Inks folder**.
 
 ------
 
@@ -25,11 +25,21 @@ If you find any inaccuracies or problems in our documentation this is the place 
 - Install [Jekyll](http://jekyllrb.com/) by running this command on a terminal: ``gem install jekyll``
 - Install the [Compass](http://compass-style.org/) ruby gem by running following command a terminal ``gem install compass``
 - Install the [grunt-cli](https://github.com/gruntjs/grunt-cli) by running the following command a terminal ``npm install -g grunt-cli``
-- Install all other dependencies by running the ``npm install`` command inside Inks folder.
+- Install all other dependencies by running the ``npm install`` command **inside Inks folder**.
 
 ------
 
 ## Getting stuff running
 
-Inside Inks folder (this would be wherever you cloned the project to), run ``jekyll serve`` and you'll get your own local instance of our documentation site running on [http://localhost:4000](http://localhost:4000)
-You can get Jekyll to watch for changes on the sites files and update the local instance by running ``jekyll serve --watch``. 
+**All these commands must be ran inside Inks folder**
+
+Run ``jekyll serve`` and you'll get your own local instance of our documentation site running on [http://localhost:4000](http://localhost:4000)
+You can get Jekyll to watch for changes on the sites files and update the local instance by running ``jekyll serve --watch``.
+
+We also have quite a few usefull grunt tasks:
+
+- ``grunt css`` will compile the scss src into css
+- ``grunt js`` will build the js portion of ink
+- ``grunt watch`` will watch the src/ folder for changes on eiher js or scss files and rebuild the lot.
+- ``grunt watch:css`` will watch the src/ folder for changes on js files and rebuild.
+- ``grunt watch:js`` will watch the src/ folder for changes on scss files and rebuild.
