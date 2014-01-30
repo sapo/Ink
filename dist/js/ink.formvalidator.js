@@ -6,6 +6,17 @@
 Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1','Ink.Dom.Selector_1'], function( InkElement, Css, InkValidator , Selector) {
     'use strict';
 
+    function elementsWithSameName(elm) {
+        if (!elm.name) { return []; }
+        if (!elm.form) {
+            return Selector.select('name="' + elm.name + '"');
+        }
+        var ret = elm.form[elm.name];
+        if(typeof(ret.length) === 'undefined') {
+            ret = [ret];
+        }
+        return ret;
+    }
     /**
      * @class Ink.UI.FormValidator
      * @version 1
@@ -191,8 +202,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          *             ]
          *         });
          */
-        validate: function(elm, options)
-        {
+        validate: function(elm, options) {
             this._free();
 
             options = Ink.extendObj({
@@ -212,6 +222,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
 
             if(typeof(this.element.id) === 'undefined' || this.element.id === null || this.element.id === '') {
                 // generate a random ID
+                // TODO ugly and potentially problematic, and you know Murphy's law.
                 this.element.id = 'ink-fv_randomid_'+(Math.round(Math.random() * 99999));
             }
 
@@ -294,7 +305,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             //     return;
             // }
 
-            this.elements[this.element.id] = [];
+            var elements = this.elements[this.element.id] = [];
             this.confirmElms[this.element.id] = [];
             //console.log(this.element);
             //console.log(this.element.elements);
@@ -302,16 +313,17 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
                 curElm = formElms[i];
+                var type = (curElm.getAttribute('type') + '').toLowerCase();
 
-                if(curElm.getAttribute('type') !== null && curElm.getAttribute('type').toLowerCase() === 'radio') {
-                    if(this.elements[this.element.id].length === 0 ||
+                if (type === 'radio' || type === 'checkbox') {
+                    if(elements.length === 0 ||
                             (
-                             curElm.getAttribute('type') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('type') &&
-                            curElm.getAttribute('name') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('name')
+                             curElm.getAttribute('type') !== elements[elements.length - 1].getAttribute('type') &&
+                            curElm.getAttribute('name') !== elements[elements.length - 1].getAttribute('name')
                             )) {
                         for(var flag in this._flagMap) {
                             if(Css.hasClassName(curElm, flag)) {
-                                this.elements[this.element.id].push(curElm);
+                                elements.push(curElm);
                                 break;
                             }
                         }
@@ -323,7 +335,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                                 this.confirmElms[this.element.id].push(curElm);
                                 this.hasConfirm[this.element.id] = true;
                             }*/
-                            this.elements[this.element.id].push(curElm);
+                            elements.push(curElm);
                             break;
                         }
                     }
@@ -346,8 +358,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         _validateElements: function() {
             var oGroups;
             this._getElements();
-            //console.log('HAS CONFIRM', this.hasConfirm);
-            if(typeof(this.hasConfirm[this.element.id]) !== 'undefined' && this.hasConfirm[this.element.id] === true) {
+            if(this.hasConfirm[this.element.id] === true) {
                 oGroups = this._makeConfirmGroups();
             }
 
@@ -363,10 +374,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 if(!curElm.disabled) {
                     for(var flag in this._flagMap) {
                         if(Css.hasClassName(curElm, flag)) {
-
                             if(flag !== 'ink-fv-custom' && flag !== 'ink-fv-confirm') {
                                 if(!this._isValid(curElm, flag)) {
-
                                     if(!inArray) {
                                         errors.push({elm: curElm, errors:[flag]});
                                         inArray = true;
@@ -400,17 +409,14 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * @private
          * @return {Array} Array of errors that was passed as 2nd parameter (either changed, or not, depending if errors were found).
          */
-        _validateConfirmGroups: function(oGroups, errors)
-        {
+        _validateConfirmGroups: function(oGroups, errors) {
             //console.log(oGroups);
             var curGroup = false;
-            for(var i in oGroups) {
-                if (oGroups.hasOwnProperty(i)) {
-                    curGroup = oGroups[i];
-                    if(curGroup.length === 2) {
-                        if(curGroup[0].value !== curGroup[1].value) {
-                            errors.push({elm:curGroup[1], errors:['ink-fv-confirm']});
-                        }
+            for(var i in oGroups) if (oGroups.hasOwnProperty(i)) {
+                curGroup = oGroups[i];
+                if(curGroup.length === 2) {
+                    if(curGroup[0].value !== curGroup[1].value) {
+                        errors.push({elm:curGroup[1], errors:['ink-fv-confirm']});
                     }
                 }
             }
@@ -450,9 +456,9 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 if(this.confirmElms[this.element.id].length === 2) {
                     oGroups = {
                         "ink-fv-confirm": [
-                                this.confirmElms[this.element.id][0],
-                                this.confirmElms[this.element.id][1]
-                            ]
+                            this.confirmElms[this.element.id][0],
+                            this.confirmElms[this.element.id][1]
+                        ]
                     };
                 }
                 return oGroups;
@@ -497,13 +503,6 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var inputType = (elm.getAttribute('type') || '').toLowerCase();
             var value = this._trim(elm.value);
 
-            // When we're analyzing emails, telephones, etc, and the field is
-            // empty, we check if it is required. If not required, it's valid.
-            if (fieldType !== 'ink-fv-required' &&
-                    inputType !== 'checkbox' && inputType !== 'radio' &&
-                    value === '') {
-                return !Css.hasClassName(elm, 'ink-fv-required');
-            }
 
             switch(fieldType) {
                 case 'ink-fv-required':
@@ -517,20 +516,14 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                     if(inputType !== 'checkbox' && inputType !== 'radio' &&
                             value !== '') {
                         return true;  // A input type=text,email,etc.
-                    } else if(inputType === 'checkbox') {
-                        if(elm.checked === true) {
-                            return true;
-                        }
-                    } else if(inputType === 'radio') { // get top radio
-                        var aFormRadios = elm.form[elm.name];
-                        if(typeof(aFormRadios.length) === 'undefined') {
-                            aFormRadios = [aFormRadios];
-                        }
+                    } else if(inputType === 'checkbox' || inputType === 'radio') {
+                        var aFormRadios = elementsWithSameName(elm);
                         var isChecked = false;
                         // check if any input of the radio is checked
                         for(var i=0, totalRadio = aFormRadios.length; i < totalRadio; i++) {
                             if(aFormRadios[i].checked === true) {
                                 isChecked = true;
+                                break;
                             }
                         }
                         return isChecked;
@@ -620,44 +613,26 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var controlElm = InkElement.findUpwardsByClass(
                     curElm, 'control');
 
-            var inputType = curElm.getAttribute('type');
+            var errorClasses = [
+                this._errorClassName,
+                this._errorTypeClassName].join(' ');
 
-            if(inputType !== 'radio') {
-                var errorClasses = [
-                    this._errorClassName,
-                    this._errorTypeClassName].join(' ');
+            var errorMsg = InkElement.create('p', {
+                className: errorClasses
+            });
 
-                var errorMsg = InkElement.create('p', {
-                    className: errorClasses
-                });
-
-                if(error.errors[0] !== 'ink-fv-custom') {
-                    errorMsg.innerHTML = this._flagMap[error.errors[0]].msg;
-                } else {
-                    errorMsg.innerHTML = error.custom[0].msg;
-                }
-
-                if(inputType !== 'checkbox') {
-                    InkElement.insertAfter(errorMsg, curElm);
-                    if (controlElm) {
-                        if(error.errors[0] === 'ink-fv-required') {
-                            Css.addClassName(controlGroupElm, 'validation error');
-                        } else {
-                            Css.addClassName(controlGroupElm, 'validation warning');
-                        }
-                    }
-                } else {
-                    /* // TODO checkbox... does not work with this CSS
-                    curElm.parentNode.appendChild(errorMsg);
-                    if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
-                        Css.addClassName(curElm.parentNode.parentNode, 'control');
-                        Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                        Css.addClassName(curElm.parentNode.parentNode, 'error');
-                    }*/
-                }
+            if(error.errors[0] !== 'ink-fv-custom') {
+                errorMsg.innerHTML = this._flagMap[error.errors[0]].msg;
             } else {
-                if(controlGroupElm) {
-                    Css.addClassName(controlGroupElm, ['validation', 'error']);
+                errorMsg.innerHTML = error.custom[0].msg;
+            }
+
+            InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
+            if (controlElm) {
+                if(error.errors[0] === 'ink-fv-required') {
+                    Css.addClassName(controlGroupElm, 'validation error');
+                } else {
+                    Css.addClassName(controlGroupElm, 'validation warning');
                 }
             }
         },
@@ -684,7 +659,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                         Css.removeClassName(control, ['validation', 'error', 'warning']);
                     }
 
-                    if(Css.hasClassName(curElm,'tip error', true /*both*/)) {
+                    if(Css.hasClassName(curElm, this._errorClassName, true /*both*/)) {
                         InkElement.remove(curElm);
                     }
                 }
