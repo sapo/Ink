@@ -627,7 +627,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 errorMsg.innerHTML = error.custom[0].msg;
             }
 
-            InkElement.insertAfter(errorMsg, curElm);
+            InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
             if (controlElm) {
                 if(error.errors[0] === 'ink-fv-required') {
                     Css.addClassName(controlGroupElm, 'validation error');
