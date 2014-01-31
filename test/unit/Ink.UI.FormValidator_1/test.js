@@ -10,6 +10,14 @@ Ink.requireModules(['Ink.UI.FormValidator_1', 'Ink.Dom.Element_1', 'Ink.Dom.Sele
         ok(FormValidator._isValid(txt, 'ink-fv-required'));
     });
 
+    test('(regression) not required email', function () {
+        var txt = InkElement.create('input', { type: 'text', className: 'ink-fv-email' });
+        txt.value = '';
+        ok(FormValidator._isValid(txt, 'ink-fv-email'));
+        txt.value = 'my@email.com';
+        ok(FormValidator._isValid(txt, 'ink-fv-email'));
+    });
+
     test('required to select at least one radio button', function () {
         var radios = [
             InkElement.create('input', { type: 'radio', className: 'ink-fv-required', name: 'radioinpt', value: '1' }),
