@@ -19,18 +19,18 @@
     & > .ink-button {
         float: left;
         margin: $button-margin 0;
-        @include border-radius(none);
+        @include border-radius(0);
         border-left: none;
 
         &:first-child {
-            border-bottom-left-radius: ($button-border-radius);
-            border-top-left-radius: ($button-border-radius);
+            @include border-right-radius(0);
+            @include border-left-radius($button-border-radius);
             border-left: 1px solid #ccc;
         }
 
         &:last-child {
-            border-bottom-right-radius: ($button-border-radius);
-            border-top-right-radius: ($button-border-radius);
+            @include border-right-radius($button-border-radius);
+            @include border-left-radius(0);
         }
     }
 
