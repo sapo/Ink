@@ -43,8 +43,9 @@
 
     &[disabled]{
         background: transparentize($button-background-color,0.4);
-        border: 1px solid transparentize($button-background-color,0.7);
+        border: none;
         &:hover {
+            border: none;
             @include box-shadow(none);
         }
     }

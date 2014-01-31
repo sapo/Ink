@@ -41,8 +41,9 @@
 
     &[disabled]{
         background: lighten($grey-15,5%);
-        border: 1px solid lighten(darken($grey-15,10%),5%);
+        border: none;
         &:hover {
+            border: none;
             @include box-shadow(none);
         }
     }

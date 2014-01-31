@@ -54,7 +54,6 @@
         padding: $form-field-padding;
         border: 1px solid shade($form-field-borderColor,10%);
         resize: none;
-        font-size: $form-field-fontSize;
         background: $form-field-bg;
         vertical-align: middle;
 
@@ -81,7 +80,7 @@
         }
     }
 
-    .ink-button {
+    .#{$button-class-name} {
         margin: 0 5px;
     }
 
@@ -153,12 +152,14 @@
                     & > select,
                     & > textarea {
                         @include border-left-radius($border-radius);
+                        @include border-right-radius(0);
                     }
                 }
                 
-                .ink-button {
+                .#{$button-class-name} {
                     margin: 0;
                     @include border-right-radius($border-radius);
+                    @include border-left-radius(0);
                     border-left: none;
                 }
             }
@@ -175,12 +176,14 @@
                     & > select,
                     & > textarea {
                         @include border-right-radius($border-radius);
+                        @include border-left-radius(0);
                     }
                 }
                 
-                .ink-button {
+                .#{$button-class-name} {
                     margin: 0;
                     @include border-left-radius($border-radius);
+                    @include border-right-radius(0);
                     border-right: none;
                 }
             }
