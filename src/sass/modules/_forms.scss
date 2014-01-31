@@ -235,25 +235,32 @@
 
         input[type="radio"],
         input[type="checkbox"] {
-            line-height: 2;
+            //line-height: 2;
             padding: 0;
+            margin: .55em 0;
             border: none;
-            margin-top: 0.55em;
+            //margin-top: 0.55em;
             clear: left;
             float: left;
             cursor: pointer;
 
             & + label {
                 float: left;
-                line-height: 2.5;
-                margin-left: 0.55em;
-                margin-top: -.4em;
+                //line-height: 2.5;
+                //margin-left: 0.55em;
+                //margin-top: -.4em;
+                margin: .25em 0 .25em .4em;
             }
         }
 
         .inline {
-            label {
-                margin-right: 1em;
+
+            li {
+                padding: 0;
+                
+                label {
+                    margin-right: 1em;
+                }
             }
         }
 
