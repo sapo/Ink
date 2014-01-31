@@ -56,7 +56,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             keyboardSupport:['Boolean', false],
             pagination:     ['Object', null],
             onChange:       ['Function', null],
-            swipe:          ['Boolean', true],
+            swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
         }, options || {}, element);

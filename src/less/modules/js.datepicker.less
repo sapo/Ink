@@ -2,19 +2,44 @@
 
 .ink-datepicker-wrapper {
     position: relative;
-    display: inline;
-    display: inline-block;
 }
 
 .ink-datepicker-calendar {
+    margin-top: 0;  // because of the * + * rule
     position: absolute;
-    display: none;
+
+    &.right {
+        left: 100%;
+        top: 0;
+    }
+
+    &.left {
+        right: 100%;
+        top: 0;
+    }
+
+    &.bottom {
+        top: 100%;
+        left: 0;
+    }
+
+    &.top {
+        bottom: 100%;
+        left: 0;
+    }
+}
+
+.ink-datepicker-wrapper, .ink-datepicker-calendar {
+    display: inline;
+    display: inline-block;
 }
 
 .ink-calendar {
     #ink > #border-radius > .all (@border-radius);
     text-align: center;
-    padding: 5px;
+    padding: @calendar-padding;
+    min-width: @calendar-total-width;
+
     font-size: @datepicker-fontSize;
     #ink > #shadows > .box-shadow (0px, 1px, 2px, 0, rgba(0,0,0,0.4));
     background: @datepicker-bgColor;
@@ -101,7 +126,7 @@ html.ink-modal-is-open .ink-calendar {
         padding-left:0;
 
         li {
-            width: 2.4em; 
+            width: @calendar-cell-width; 
             float: left; 
             text-align: center;
             padding: 0;
@@ -110,8 +135,8 @@ html.ink-modal-is-open .ink-calendar {
     }
 }
 
-.ink-calendar-year-selector ul li { width: 4em; }
-.ink-calendar-month-selector ul li { width: 3.4em; }
+.ink-calendar-year-selector ul li { width: 25%; }
+.ink-calendar-month-selector ul li { width: 25%; }
 
 .ink-calendar-year-selector,
 .ink-calendar-month-selector { 
@@ -132,7 +157,6 @@ html.ink-modal-is-open .ink-calendar {
 .ink-calendar-top,
 .ink-calendar-middle,
 .ink-calendar-top-options,
-.ink-calendar,
 .ink-calendar-month .ink-calendar-header,
 .ink-calendar-month .ink-calendar-middle ul {
     #ink > #utils > .clearfix ();

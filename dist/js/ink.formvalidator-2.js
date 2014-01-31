@@ -625,17 +625,16 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @version 2
      * @constructor
      * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
-     * @param {String}   [options.eventTrigger='submit']        What event do we listen for.
-     * @param {Boolean}  [options.neverSubmit=false]            Always cancel the event?
-     * @param {Boolean}  [options.cancelEventOnSuccess=false]   Cancel the event even on success?
-     * @param {Selector} [options.searchForm]                   What inputs do we search for which should have our data-attributes for validation.
-     * @param {Function} [options.beforeValidation]             Callback to be executed before validating the form
-     * @param {Function} [options.onError]                      Validation error callback
-     * @param {Function} [options.onSuccess]                    Validation success callback
+     * @param {String}   [options.eventTrigger='submit'] What event do we listen for.
+     * @param {Boolean}  [options.neverSubmit=false]     Always cancel the event? Use this to avoid submitting the form.
+     * @param {Selector} [options.searchFor='input, select, textarea, .control-group'] Look in these inputs for validation data-attributes.
+     * @param {Function} [options.beforeValidation]      Callback to be executed before validating the form
+     * @param {Function} [options.onError]               Validation error callback
+     * @param {Function} [options.onSuccess]             Validation success callback
      *
      * @example
      *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
-     *         var myValidator = new FormValidator( 'form' );
+     *         var myValidator = new FormValidator( '#my-form' );
      *     });
      */
     var FormValidator = function( selector, options ){
@@ -680,7 +679,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
             neverSubmit: 'false',
-            cancelEventOnSuccess: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
@@ -843,8 +841,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 this._options.beforeValidation();
             }
 
-            this.getElements();
+            InkArray.each( this._markedErrorElements, function (errorElement) {
+                Css.removeClassName(errorElement,  ['validation', 'error']);
+            });
+            InkArray.each( this._errorMessages, Element.remove);
 
+            this.getElements();
             var errorElements = [];
 
             for( var key in this._formElements ){
@@ -862,6 +864,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     this._options.onSuccess();
                 }
 
+                // [3.0.0] remove this, it's a little backwards compat quirk
                 if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
                     Event.stopDefault(event);
                     return false;
@@ -877,10 +880,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                InkArray.each( this._markedErrorElements, function (errorElement) {
-                    Css.removeClassName(errorElement,  ['validation', 'error']);
-                });
-                InkArray.each( this._errorMessages, Element.remove);
                 this._errorMessages = [];
                 this._markedErrorElements = [];
 
@@ -894,16 +893,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                         controlGroupElement = Element.findUpwardsByClass(formElement.getElement(),'control-group');
                         controlElement = Element.findUpwardsByClass(formElement.getElement(),'control');
                     }
-                    if (!controlElement || !controlGroupElement) {
-                        controlElement = controlGroupElement = formElement.getElement();
-                    }
 
-                    Css.addClassName( controlGroupElement, ['validation', 'error'] );
-                    this._markedErrorElements.push(controlGroupElement);
+                    if(controlGroupElement) {
+                        Css.addClassName( controlGroupElement, ['validation', 'error'] );
+                        this._markedErrorElements.push(controlGroupElement);
+                    }
 
                     var paragraph = document.createElement('p');
                     Css.addClassName(paragraph,'tip');
-                    Element.insertAfter(paragraph, controlElement);
+                    if (controlGroupElement && !controlElement) {
+                        controlGroupElement.appendChild(paragraph);
+                    } else {
+                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
+                    }
                     var errors = formElement.getErrors();
                     var errorArr = [];
                     for (var k in errors) {

@@ -210,6 +210,61 @@
                         <p>&nbsp;</p>
                     </div>
                 </section>
+
+
+
+            <h2>Interoperability with FormValidator</h2>
+
+            <form class="ink-form" id="form-interop">
+                <div class="control-group required">
+                    <div class="control">
+                        <label for="date">Date:</label>
+                        <input type="text" name="date" id="date" data-rules="required" class="ink-datepicker">
+                    </div>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <script>
+                Ink.requireModules(['Ink.UI.FormValidator_2'], function(FormValidator) {
+                    new FormValidator('#form-interop')
+                });
+            </script>
+
+
+            <h2>Interoperability with legacy FormValidator</h2>
+
+            <form class="ink-form" id="form-interop-legacy">
+                <div class="control-group required">
+                    <div class="control">
+                        <label for="date2">Date:</label>
+                        <input type="text" name="date" id="date2" data-rules="required" class="ink-datepicker ink-fv-required">
+                    </div>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <script>
+                Ink.requireModules(['Ink.Dom.Selector_1','Ink.Dom.Event_1','Ink.UI.FormValidator_1'],function(Selector,Event,FormValidator){
+                    var form = Ink.s('#form-interop-legacy');
+                    Event.observe(form, 'submit', function (event) {
+                        if(!FormValidator.validate(form)) {
+                            Event.stopDefault(event);
+                        } else {
+                            // Success
+                        }
+                        Event.stopDefault(event);
+                    });
+                    Event.observe(Ink.s('#form-interop'), 'submit', function (event) {
+                        Event.stopDefault(event);
+                    })
+                });
+            </script>
+
+            <p class="vspace">&nbsp;</p>
+            <p class="vspace">&nbsp;</p>
         </div>
         <script>
             Ink.requireModules(['Ink.Util.Array_1','Ink.UI.DatePicker_1'], function(InkArray, DatePicker) {
@@ -218,5 +273,7 @@
                 });
             });
         </script>
+
+
     </body>
 </html>

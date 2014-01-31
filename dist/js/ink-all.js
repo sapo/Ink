@@ -30,7 +30,7 @@
     var pendingRMs = [];
     var modulesWaitingForDeps = {};
 
-
+    var apply = Function.prototype.apply;
 
     // auxiliary fns
     var isEmptyObject = function(o) {
@@ -43,8 +43,6 @@
         }
         return true;
     };
-
-    var console = window.console || undefined;
 
     window.Ink = {
 
@@ -144,12 +142,15 @@
         },
 
         /**
-         * loads a javascript script in the head.
+         * Loads a script by creating a `<script>` tag in the `<head>` of the document.
+         *
+         * Reports errors by listening to 'error' and 'readystatechange' events.
          *
          * @method loadScript
-         * @param  {String}   uri  can be an http URI or a module name
+         * @param {String}   uri  can be an http URI or an Ink module name, which gets resolved.
+         * @param {String}  [contentType='text/javascript'] the `type` attribute of the new script tag.
          */
-        loadScript: function(uri) {
+        loadScript: function(uri, contentType) {
             /*jshint evil:true */
 
             if (uri.indexOf('/') === -1) {
@@ -157,19 +158,17 @@
             }
 
             var scriptEl = document.createElement('script');
-            scriptEl.setAttribute('type', 'text/javascript');
+            scriptEl.setAttribute('type', contentType || 'text/javascript');
             scriptEl.setAttribute('src', uri);
 
-            if (console && console.error) {
-                scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
-                    err = err || window.event;
-                    if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
-                        // if not readyState == 'loaded' it's not an error.
-                        return;
-                    }
-                    console.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
-                };
-            }
+            scriptEl.onerror = scriptEl.onreadystatechange = function (err) {
+                err = err || window.event;
+                if (err.type === 'readystatechange' && scriptEl.readyState !== 'loaded') {
+                    // if not readyState == 'loaded' it's not an error.
+                    return;
+                }
+                Ink.error(['Failed to load script ', uri, '. (', err || 'unspecified error', ')'].join(''));
+            };
             // CHECK ON ALL BROWSERS
             /*if (document.readyState !== 'complete' && !document.body) {
                 document.write( scriptEl.outerHTML );
@@ -539,8 +538,7 @@
          * @param {Object...} sources
          * @return destination object, enriched with defaults from the sources
          */
-        extendObj: function(destination, source)
-        {
+        extendObj: function(destination, source) {
             if (arguments.length > 2) {
                 source = Ink.extendObj.apply(this, [].slice.call(arguments, 1));
             }
@@ -552,8 +550,49 @@
                 }
             }
             return destination;
-        }
+        },
 
+        /**
+         * Calls console.log if available.
+         *
+         * @method log
+         * @param args...
+         **/
+        log: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
+            var console = window.console;
+            if (console && console.log) {
+                apply.call(console.log, console, arguments);
+            }
+        },
+
+        /**
+         * Calls console.warn if available.
+         *
+         * @method warn
+         * @param args...
+         **/
+        warn: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
+            var console = window.console;
+            if (console && console.warn) {
+                apply.call(console.warn, console, arguments);
+            }
+        },
+
+        /**
+         * Calls console.error if available.
+         *
+         * @method error
+         * @param args...
+         **/
+        error: function () {
+            // IE does not have console.log.apply in IE10 emulated mode
+            var console = window.console;
+            if (console && console.error) {
+                apply.call(console.error, console, arguments);
+            }
+        }
     };
 
     Ink.setPath('Ink',
@@ -13307,9 +13346,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
+     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
-     *  @param {Number} [options.initialSlide=null] If set to a number, set the corresponding slide immediately.
+     *  @param {Number} [options.initialPage=0] When initialized, set the page to this.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
      *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
@@ -13318,27 +13358,26 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
-            windowResize:     Ink.bindMethod(this, 'refit')
+            windowResize:     InkEvent.throttle(Ink.bindMethod(this, 'refit'), 200)
         };
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
         var element = this._element = Common.elOrSelector(selector, '1st argument');
 
-        var opts = this._options = Ink.extendObj({
-            axis:           'x',
-            initialSlide:    null,
-            hideLast:       false,
-            center:         false,
-            keyboardSupport:false,
-            pagination:     null,
-            onChange:       null,
-            swipe:          true
+        var opts = this._options = Common.options({
+            autoAdvance:    ['Integer', 0],
+            axis:           ['String', 'x'],
+            initialPage:   ['Integer', 0],
+            hideLast:       ['Boolean', false],
+            center:         ['Boolean', false],
+            keyboardSupport:['Boolean', false],
+            pagination:     ['Object', null],
+            onChange:       ['Function', null],
+            swipe:          ['Boolean', true]
             // TODO exponential swipe
-            // TODO specify break point for next slide
-        }, options || {}, InkElement.data(element));
-
-        opts.initialSlide = parseInt(opts.initialSlide);
+            // TODO specify break point for next page when moving finger
+        }, options || {}, element);
 
         this._isY = (opts.axis === 'y');
 
@@ -13371,24 +13410,28 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
                 // if dom element or css selector string...
                 pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numSlides,
+                    size:     this._numPages,
                     onChange: this._handlers.paginationChange
                 });
             } else {
                 // assumes instantiated pagination
                 pagination = this._pagination = opts.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numSlides);
-                this._pagination.setCurrent(opts.initialSlide || 0);
+                this._pagination.setSize(this._numPages);
+                this._pagination.setCurrent(opts.initialPage || 0);
             }
         } else {
-            this._currentSlide = opts.initialSlide || 0;
+            this._currentPage = opts.initialPage || 0;
         }
 
         if (opts.swipe) {
             InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
             InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
+        }
+
+        if (opts.autoAdvance) {
+            this._setUpAutoAdvance();
         }
     };
 
@@ -13413,15 +13456,15 @@ Ink.createModule('Ink.UI.Carousel', '1',
             };
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
-            var numItems = this._liEls.length;
+            var numSlides = this._liEls.length;
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
-            this._itemsPerSlide = Math.floor( this._ctnLength / this._elLength  );
+            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  );
 
-            var numSlides = Math.ceil( numItems / this._itemsPerSlide );
-            var numSlidesChanged = this._numSlides !== numSlides;
-            this._numSlides = numSlides;
-            this._deltaLength = this._itemsPerSlide * this._elLength;
+            var numPages = Math.ceil( numSlides / this._slidesPerPage );
+            var numPagesChanged = this._numPages !== numPages;
+            this._numPages = numPages;
+            this._deltaLength = this._slidesPerPage * this._elLength;
             
             if (this._isY) {
                 this._element.style.width = size(this._liEls[0], true) + 'px';
@@ -13434,15 +13477,25 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._updateHider();
             this._IE7();
             
-            if (this._pagination && numSlidesChanged) {
-                this._pagination.setSize(this._numSlides);
-                this._pagination.setCurrent(0);
+            if (this._pagination && numPagesChanged) {
+                this._pagination.setSize(this._numPages);
             }
+            this.setPage(limitRange(this.getPage(), 1, this._numPages));
+        },
+
+        _setUpAutoAdvance: function () {
+            var self = this;
+            function autoAdvance() {
+                self.nextPage(true /* wrap */);
+                setTimeout(autoAdvance, self._options.autoAdvance);
+            }
+
+            setTimeout(autoAdvance, this._options.autoAdvance);
         },
 
         _center: function() {
             if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerSlide) ) / 2 );
+            var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
 
             var pad;
             if (this._isY) {
@@ -13457,7 +13510,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if ((!this._pagination) || this._pagination.getCurrent() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerSlide) );
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
                 if (this._options.center) {
                     gap /= 2;
                 }
@@ -13475,7 +13528,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
          */
         _IE7: function () {
             if (Browser.IE && '' + Browser.version.split('.')[0] === '7') {
-                // var numSlides = this._numSlides;
+                // var numPages = this._numPages;
                 var slides = Ink.ss('li.slide', this._ulEl);
                 var stl = function (prop, val) {slides[i].style[prop] = val; };
                 for (var i = 0, len = slides.length; i < len; i++) {
@@ -13567,20 +13620,20 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
-                var curSlide = this._pagination.getCurrent();
-                var estimatedSlide = progress / this._elLength / this._itemsPerSlide;
+                var curPage = this._pagination.getCurrent();
+                var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
-                if (Math.round(estimatedSlide) === curSlide) {
-                    var diff = estimatedSlide - curSlide;
+                if (Math.round(estimatedPage) === curPage) {
+                    var diff = estimatedPage - curPage;
                     if (Math.abs(diff) > snapToNext) {
                         diff = diff > 0 ? 1 : -1;
-                        curSlide += diff;
+                        curPage += diff;
                     }
                 } else {
-                    curSlide = Math.round(estimatedSlide);
+                    curPage = Math.round(estimatedPage);
                 }
 
-                this.setSlide(curSlide);
+                this.setPage(curPage);
 
                 event.stopPropagation();
                 // event.preventDefault();
@@ -13593,46 +13646,60 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-            var currSlide = pgn.getCurrent();
-            this.setSlide(currSlide);
+            var currPage = pgn.getCurrent();
+            this.setPage(currPage);
         },
 
-        getSlide: function () {
+        /**
+         * Get the currently displayed page.
+         * @method getPage
+         **/
+        getPage: function () {
             if (this._pagination) {
                 return this._pagination.getCurrent();
             } else {
-                return this._currentSlide;
+                return this._currentPage;
             }
         },
 
         /**
-         * Set the current slide to `page`
-         * @method setSlide
-         * @param slide
+         * Set the current page to `page`
+         * @method setPage
+         * @param page
+         * @param [wrap=false] Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
          **/
-        setSlide: function (slide) {
-            slide = limitRange(slide, 0, this._numSlides - 1);
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', slide * this._deltaLength, 'px'].join('');
+        setPage: function (page, wrap) {
+            if (wrap) {
+                // Pages outside the range [0..this._numPages] are wrapped.
+                page = page % this._numPages;
+                if (page < 0) { page = this._numPages - page; }
+            }
+            page = limitRange(page, 0, this._numPages - 1);
+            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', page * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
-                this._options.onChange.call(this, slide);
+                this._options.onChange.call(this, page);
             }
 
-            this._currentSlide = slide;
+            this._currentPage = page;
 
             this._updateHider();
         },
 
         /**
          * Change to the next page
-         * @method nextSlide
+         * @method nextPage
+         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
          **/
-        nextSlide: function () { this.setSlide(this.getSlide() + 1); },
+        nextPage: function (wrap) {
+            this.setPage(this.getPage() + 1, wrap);
+        },
 
         /**
          * Change to the previous page
-         * @method previousSlide
+         * @method previousPage
+         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
          **/
-        previousSlide: function () { this.setSlide(this.getSlide() - 1); }
+        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); }
     };
 
     function setTransitionProperty(el, newTransition) {
@@ -14531,7 +14598,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar'],
+            cssClass:        ['String', 'ink-calendar bottom'],
             dateRange:       ['String', null],
             
             // use this in a <select>
@@ -14650,7 +14717,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
             this._renderSuperTopBar();
 
@@ -14753,7 +14820,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         show: function () {
             this._updateDate();
             this._renderMonth();
-            this._containerObject.style.display = 'block';
+            Css.removeClassName(this._containerObject, 'hide-all');
         },
 
         _addOpenCloseEvents: function () {
@@ -14836,14 +14903,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
                 var appendTarget =
                     Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
-            InkElement.wrap(this._element, this._wrapper);
+
+            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
+                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+                this._wrapper = this._element.parentNode;
+                this._wrapperIsControl = true;
+            } else {
+                this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
+                InkElement.wrap(this._element, this._wrapper);
+            }
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
@@ -14989,7 +15063,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
             if (blur === false || (blur && this._options.shy)) {
-                this._containerObject.style.display = 'none';
+                Css.addClassName(this._containerObject, 'hide-all');
             }
         },
 
@@ -15004,7 +15078,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var self = this;
 
             var noMinLimit = {
-                _year: Number.MIN_VALUE,
+                _year: -Number.MAX_VALUE,
                 _month: 0,
                 _day: 1
             };
@@ -15035,6 +15109,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if ( data.date.toUpperCase() === 'NOW' ) {
                     var now = new Date();
                     lim = dateishFromDate(now);
+                } else if (data.date.toUpperCase() === 'EVER') {
+                    lim = data.noLim;
                 } else if ( rDate.test( data.date ) ) {
                     lim = dateishFromYMDString(data.date);
 
@@ -15116,7 +15192,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          *
          * _dateCmpUntil({_year: 2000, _month: 10}, {_year: 2000, _month: 11}, '_year') === 0
          */
-        _dateCmpUntil: function (self, oth, shallowness) {
+        _dateCmpUntil: function (self, oth, depth) {
             var props = ['_year', '_month', '_day'];
             var i = -1;
 
@@ -15124,7 +15200,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 i++;
                 if      (self[props[i]] > oth[props[i]]) { return 1; }
                 else if (self[props[i]] < oth[props[i]]) { return -1; }
-            } while (props[i] !== shallowness && 
+            } while (props[i] !== depth &&
                     self[props[i + 1]] !== undefined && oth[props[i + 1]] !== undefined);
 
             return 0;
@@ -15301,9 +15377,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Checks if a date is valid
          *
          * @method _isValidDate
-         * @param {Number} year
-         * @param {Number} month
-         * @param {Number} day
+         * @param {Dateish} date
          * @private
          * @return {Boolean} True if the date is valid, false otherwise
          */
@@ -16782,6 +16856,17 @@ Ink.createModule("Ink.UI.Droppable","1",["Ink.Dom.Element_1", "Ink.Dom.Event_1",
 Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css_1','Ink.Util.Validator_1','Ink.Dom.Selector_1'], function( InkElement, Css, InkValidator , Selector) {
     'use strict';
 
+    function elementsWithSameName(elm) {
+        if (!elm.name) { return []; }
+        if (!elm.form) {
+            return Selector.select('name="' + elm.name + '"');
+        }
+        var ret = elm.form[elm.name];
+        if(typeof(ret.length) === 'undefined') {
+            ret = [ret];
+        }
+        return ret;
+    }
     /**
      * @class Ink.UI.FormValidator
      * @version 1
@@ -16967,8 +17052,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          *             ]
          *         });
          */
-        validate: function(elm, options)
-        {
+        validate: function(elm, options) {
             this._free();
 
             options = Ink.extendObj({
@@ -16988,6 +17072,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
 
             if(typeof(this.element.id) === 'undefined' || this.element.id === null || this.element.id === '') {
                 // generate a random ID
+                // TODO ugly and potentially problematic, and you know Murphy's law.
                 this.element.id = 'ink-fv_randomid_'+(Math.round(Math.random() * 99999));
             }
 
@@ -17070,7 +17155,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             //     return;
             // }
 
-            this.elements[this.element.id] = [];
+            var elements = this.elements[this.element.id] = [];
             this.confirmElms[this.element.id] = [];
             //console.log(this.element);
             //console.log(this.element.elements);
@@ -17078,16 +17163,17 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var curElm = false;
             for(var i=0, totalElm = formElms.length; i < totalElm; i++) {
                 curElm = formElms[i];
+                var type = (curElm.getAttribute('type') + '').toLowerCase();
 
-                if(curElm.getAttribute('type') !== null && curElm.getAttribute('type').toLowerCase() === 'radio') {
-                    if(this.elements[this.element.id].length === 0 ||
+                if (type === 'radio' || type === 'checkbox') {
+                    if(elements.length === 0 ||
                             (
-                             curElm.getAttribute('type') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('type') &&
-                            curElm.getAttribute('name') !== this.elements[this.element.id][(this.elements[this.element.id].length - 1)].getAttribute('name')
+                             curElm.getAttribute('type') !== elements[elements.length - 1].getAttribute('type') &&
+                            curElm.getAttribute('name') !== elements[elements.length - 1].getAttribute('name')
                             )) {
                         for(var flag in this._flagMap) {
                             if(Css.hasClassName(curElm, flag)) {
-                                this.elements[this.element.id].push(curElm);
+                                elements.push(curElm);
                                 break;
                             }
                         }
@@ -17099,7 +17185,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                                 this.confirmElms[this.element.id].push(curElm);
                                 this.hasConfirm[this.element.id] = true;
                             }*/
-                            this.elements[this.element.id].push(curElm);
+                            elements.push(curElm);
                             break;
                         }
                     }
@@ -17122,8 +17208,7 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
         _validateElements: function() {
             var oGroups;
             this._getElements();
-            //console.log('HAS CONFIRM', this.hasConfirm);
-            if(typeof(this.hasConfirm[this.element.id]) !== 'undefined' && this.hasConfirm[this.element.id] === true) {
+            if(this.hasConfirm[this.element.id] === true) {
                 oGroups = this._makeConfirmGroups();
             }
 
@@ -17139,10 +17224,8 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 if(!curElm.disabled) {
                     for(var flag in this._flagMap) {
                         if(Css.hasClassName(curElm, flag)) {
-
                             if(flag !== 'ink-fv-custom' && flag !== 'ink-fv-confirm') {
                                 if(!this._isValid(curElm, flag)) {
-
                                     if(!inArray) {
                                         errors.push({elm: curElm, errors:[flag]});
                                         inArray = true;
@@ -17176,17 +17259,14 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
          * @private
          * @return {Array} Array of errors that was passed as 2nd parameter (either changed, or not, depending if errors were found).
          */
-        _validateConfirmGroups: function(oGroups, errors)
-        {
+        _validateConfirmGroups: function(oGroups, errors) {
             //console.log(oGroups);
             var curGroup = false;
-            for(var i in oGroups) {
-                if (oGroups.hasOwnProperty(i)) {
-                    curGroup = oGroups[i];
-                    if(curGroup.length === 2) {
-                        if(curGroup[0].value !== curGroup[1].value) {
-                            errors.push({elm:curGroup[1], errors:['ink-fv-confirm']});
-                        }
+            for(var i in oGroups) if (oGroups.hasOwnProperty(i)) {
+                curGroup = oGroups[i];
+                if(curGroup.length === 2) {
+                    if(curGroup[0].value !== curGroup[1].value) {
+                        errors.push({elm:curGroup[1], errors:['ink-fv-confirm']});
                     }
                 }
             }
@@ -17226,9 +17306,9 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 if(this.confirmElms[this.element.id].length === 2) {
                     oGroups = {
                         "ink-fv-confirm": [
-                                this.confirmElms[this.element.id][0],
-                                this.confirmElms[this.element.id][1]
-                            ]
+                            this.confirmElms[this.element.id][0],
+                            this.confirmElms[this.element.id][1]
+                        ]
                     };
                 }
                 return oGroups;
@@ -17293,20 +17373,14 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                     if(inputType !== 'checkbox' && inputType !== 'radio' &&
                             value !== '') {
                         return true;  // A input type=text,email,etc.
-                    } else if(inputType === 'checkbox') {
-                        if(elm.checked === true) {
-                            return true;
-                        }
-                    } else if(inputType === 'radio') { // get top radio
-                        var aFormRadios = elm.form[elm.name];
-                        if(typeof(aFormRadios.length) === 'undefined') {
-                            aFormRadios = [aFormRadios];
-                        }
+                    } else if(inputType === 'checkbox' || inputType === 'radio') {
+                        var aFormRadios = elementsWithSameName(elm);
                         var isChecked = false;
                         // check if any input of the radio is checked
                         for(var i=0, totalRadio = aFormRadios.length; i < totalRadio; i++) {
                             if(aFormRadios[i].checked === true) {
                                 isChecked = true;
+                                break;
                             }
                         }
                         return isChecked;
@@ -17396,44 +17470,36 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var controlElm = InkElement.findUpwardsByClass(
                     curElm, 'control');
 
-            var inputType = curElm.getAttribute('type');
+            var errorClasses = [
+                this._errorClassName,
+                this._errorTypeClassName].join(' ');
 
-            if(inputType !== 'radio') {
-                var errorClasses = [
-                    this._errorClassName,
-                    this._errorTypeClassName].join(' ');
+            var errorMsg = InkElement.create('p', {
+                className: errorClasses
+            });
 
-                var errorMsg = InkElement.create('p', {
-                    className: errorClasses
-                });
-
-                if(error.errors[0] !== 'ink-fv-custom') {
-                    errorMsg.innerHTML = this._flagMap[error.errors[0]].msg;
-                } else {
-                    errorMsg.innerHTML = error.custom[0].msg;
-                }
-
-                if(inputType !== 'checkbox') {
-                    InkElement.insertAfter(errorMsg, curElm);
-                    if (controlElm) {
-                        if(error.errors[0] === 'ink-fv-required') {
-                            Css.addClassName(controlGroupElm, 'validation error');
-                        } else {
-                            Css.addClassName(controlGroupElm, 'validation warning');
-                        }
-                    }
-                } else {
-                    /* // TODO checkbox... does not work with this CSS
-                    curElm.parentNode.appendChild(errorMsg);
-                    if(Css.hasClassName(curElm.parentNode.parentNode, 'control-group')) {
-                        Css.addClassName(curElm.parentNode.parentNode, 'control');
-                        Css.addClassName(curElm.parentNode.parentNode, 'validation');
-                        Css.addClassName(curElm.parentNode.parentNode, 'error');
-                    }*/
-                }
+            if(error.errors[0] !== 'ink-fv-custom') {
+                errorMsg.innerHTML = this._flagMap[error.errors[0]].msg;
             } else {
-                if(controlGroupElm) {
-                    Css.addClassName(controlGroupElm, ['validation', 'error']);
+                errorMsg.innerHTML = error.custom[0].msg;
+            }
+
+            // TODO stop not inserting the error message when we can get CSS to work with us.
+            // This is terrible. CSS should be fixed instead
+            // This check should be removed.
+            // The lines after this add the "validation error" classes, so that the radios and checkboxes still appear in red.
+            // But that won't be removed because _clearError will iterate the error messages.
+            // var type = (curElm.getAttribute('type') + '').toLowerCase();
+            // if (type !== 'radio' && type !== 'checkbox') {
+                InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
+            // }
+            // Whatever
+
+            if (controlElm) {
+                if(error.errors[0] === 'ink-fv-required') {
+                    Css.addClassName(controlGroupElm, 'validation error');
+                } else {
+                    Css.addClassName(controlGroupElm, 'validation warning');
                 }
             }
         },
@@ -17449,16 +17515,19 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             //return;
             var aErrorLabel = formElm.getElementsByTagName('p');
 
-            var curElm = false;
+            var curElm;
+            var control;
+
             for(var i = (aErrorLabel.length - 1); i >= 0; i--) {
                 curElm = aErrorLabel[i];
                 if(Css.hasClassName(curElm, this._errorClassName)) {
-                    if(Css.hasClassName(curElm.parentNode, 'control')) {
-                        Css.removeClassName(curElm.parentNode.parentNode, 'validation error warning');
+                    control = InkElement.findUpwardsBySelector(curElm, '.control-group');
+                    if (control) {
+                        Css.removeClassName(control, ['validation', 'error', 'warning']);
                     }
 
-                    if(Css.hasClassName(curElm,'tip error', true /*both*/)) {
-                        curElm.parentNode.removeChild(curElm);
+                    if(Css.hasClassName(curElm, this._errorClassName, true /*both*/)) {
+                        InkElement.remove(curElm);
                     }
                 }
             }
@@ -18119,17 +18188,16 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
      * @version 2
      * @constructor
      * @param {String|DOMElement} selector Either a CSS Selector string, or the form's DOMElement
-     * @param {String}   [options.eventTrigger='submit']        What event do we listen for.
-     * @param {Boolean}  [options.neverSubmit=false]            Always cancel the event?
-     * @param {Boolean}  [options.cancelEventOnSuccess=false]   Cancel the event even on success?
-     * @param {Selector} [options.searchForm]                   What inputs do we search for which should have our data-attributes for validation.
-     * @param {Function} [options.beforeValidation]             Callback to be executed before validating the form
-     * @param {Function} [options.onError]                      Validation error callback
-     * @param {Function} [options.onSuccess]                    Validation success callback
+     * @param {String}   [options.eventTrigger='submit'] What event do we listen for.
+     * @param {Boolean}  [options.neverSubmit=false]     Always cancel the event? Use this to avoid submitting the form.
+     * @param {Selector} [options.searchFor='input, select, textarea, .control-group'] Look in these inputs for validation data-attributes.
+     * @param {Function} [options.beforeValidation]      Callback to be executed before validating the form
+     * @param {Function} [options.onError]               Validation error callback
+     * @param {Function} [options.onSuccess]             Validation success callback
      *
      * @example
      *     Ink.requireModules( ['Ink.UI.FormValidator_2'], function( FormValidator ){
-     *         var myValidator = new FormValidator( 'form' );
+     *         var myValidator = new FormValidator( '#my-form' );
      *     });
      */
     var FormValidator = function( selector, options ){
@@ -18174,7 +18242,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
         this._options = Ink.extendObj({
             eventTrigger: 'submit',
             neverSubmit: 'false',
-            cancelEventOnSuccess: 'false',
             searchFor: 'input, select, textarea, .control-group',
             beforeValidation: undefined,
             onError: undefined,
@@ -18337,8 +18404,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 this._options.beforeValidation();
             }
 
-            this.getElements();
+            InkArray.each( this._markedErrorElements, function (errorElement) {
+                Css.removeClassName(errorElement,  ['validation', 'error']);
+            });
+            InkArray.each( this._errorMessages, Element.remove);
 
+            this.getElements();
             var errorElements = [];
 
             for( var key in this._formElements ){
@@ -18356,6 +18427,7 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                     this._options.onSuccess();
                 }
 
+                // [3.0.0] remove this, it's a little backwards compat quirk
                 if(event && this._options.cancelEventOnSuccess.toString() === 'true') {
                     Event.stopDefault(event);
                     return false;
@@ -18371,10 +18443,6 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                 if( typeof this._options.onError === 'function' ){
                     this._options.onError( errorElements );
                 }
-                InkArray.each( this._markedErrorElements, function (errorElement) {
-                    Css.removeClassName(errorElement,  ['validation', 'error']);
-                });
-                InkArray.each( this._errorMessages, Element.remove);
                 this._errorMessages = [];
                 this._markedErrorElements = [];
 
@@ -18388,16 +18456,19 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
                         controlGroupElement = Element.findUpwardsByClass(formElement.getElement(),'control-group');
                         controlElement = Element.findUpwardsByClass(formElement.getElement(),'control');
                     }
-                    if (!controlElement || !controlGroupElement) {
-                        controlElement = controlGroupElement = formElement.getElement();
-                    }
 
-                    Css.addClassName( controlGroupElement, ['validation', 'error'] );
-                    this._markedErrorElements.push(controlGroupElement);
+                    if(controlGroupElement) {
+                        Css.addClassName( controlGroupElement, ['validation', 'error'] );
+                        this._markedErrorElements.push(controlGroupElement);
+                    }
 
                     var paragraph = document.createElement('p');
                     Css.addClassName(paragraph,'tip');
-                    Element.insertAfter(paragraph, controlElement);
+                    if (controlGroupElement && !controlElement) {
+                        controlGroupElement.appendChild(paragraph);
+                    } else {
+                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
+                    }
                     var errors = formElement.getErrors();
                     var errorArr = [];
                     for (var k in errors) {
@@ -22996,7 +23067,7 @@ Ink.createModule('Ink.UI.Tooltip', '1', ['Ink.UI.Common_1', 'Ink.Dom.Event_1', '
 
     // Body or documentElement
     var bodies = document.getElementsByTagName('body');
-    var body = bodies && bodies.length ? bodies[0] : document.documentElement;
+    var body = bodies.length ? bodies[0] : document.documentElement;
 
     Tooltip.prototype = {
         _init: function(element, options) {
@@ -23586,4 +23657,872 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
     return TreeView;
 
+});
+
+Ink.createModule('Ink.UI.Upload', '1', [
+    'Ink.Dom.Event_1',
+    'Ink.Dom.Element_1',
+    'Ink.Dom.Browser_1',
+    'Ink.UI.Common_1'
+], function(Event, Element, Browser, Common) {
+    'use strict';
+
+    var DirectoryReader = function(options) {
+        this.init(options);
+    };
+
+    DirectoryReader.prototype = {
+        init: function(options) {
+            this.options = Ink.extendObj({
+                entry:      undefined,
+                maxDepth:   10
+            }, options || {});
+
+            try {
+                this._read();
+            } catch(e) {
+                Ink.error(e);
+            }
+        },
+
+
+        _read: function() {
+            if(!this.options.entry) {
+                throw("The entry specify you must");
+            }
+
+            try {
+                this._readDirectories();
+            } catch(e) {
+                Ink.error(e);
+            }
+        },
+
+
+        _readDirectories: function() {
+            var entries         = [],
+                running         = false,
+                maxDepth        = 0;
+
+            /* TODO return as tree because much better well */
+            var _readEntries = Ink.bind(function(currentEntry) {
+                var dir     = currentEntry.createReader();
+                    running = true;
+
+                dir.readEntries(Ink.bind(function(res) {
+                    if(res.length > 0) {
+                        for(var i = 0, len = res.length; i<len; i++) {
+                            entries.push(res[i]);
+                            if(!res[i].isDirectory) {
+                                continue;
+                            }
+                            maxDepth = this.clearArray(res[i].fullPath.split('/'));
+                            maxDepth.shift();
+                            maxDepth = maxDepth.length;
+                            if(maxDepth <= this.options.maxDepth) {
+                                _readEntries(res[i]);
+                            }
+                        }
+                        if(this._stopActivityTimeout) {
+                            clearTimeout(this._stopActivityTimeout);
+                        }
+                        this._stopActivityTimeout = setTimeout(function() {
+                            running = false;
+                        }, 250);
+                    }
+                    if(!res.length) {
+                        running = false;
+                    }
+                }, this), Ink.bind(function(err) {
+                    this.options.readError(err, currentEntry);
+                }, this));
+            }, this);
+
+            _readEntries(this.options.entry);
+
+            var activity;
+            var checkActivity = function() {
+                if(running) {
+                    return false;
+                }
+                clearInterval(activity);
+                if(this.options.readComplete && typeof this.options.readComplete === 'function') {
+                    this.options.readComplete(entries);
+                }
+                return true;
+            };
+
+            activity = setInterval(Ink.bind(checkActivity, this), 250);
+        },
+
+
+        clearArray: function(arr) {
+            for(var i = arr.length - 1; i>=0; i--) {
+                if(typeof(arr[i]) === 'undefined' || arr[i] === null || arr[i] === '') {
+                    arr.splice(i, 1);
+                }
+            }
+            return arr;
+        }
+    };
+
+    var Queue = {
+        lists:  [],
+        items:  [],
+
+
+        /**
+         * @function {Public} ? Create new queue list
+         * @param {String} list name
+         * @param {Function} function to iterate on items
+         * @return {Object} list id
+        */
+        create: function(name) {
+            var id;
+                name = String(name);
+            this.lists.push({name: name});
+            id = this.lists.length - 1;
+            return id;
+        },
+
+
+        getItems: function(parentId) {
+            if(!parentId) {
+                return this.items;
+            }
+            var items = [];
+            for(var i = 0, len = this.items.length; i<len; i++) {
+                if(this.items[i].parentId === parentId) {
+                    items.push(this.items[i]);
+                }
+            }
+
+            return items;
+        },
+
+
+        /**
+         * @function {Public} ? Delete list
+         * @param {String} List name
+         * @return {Object} removed list
+        */
+        purge: function(id, keepList) {
+            if(typeof(id) !== 'number' || isNaN(Number(id))) {
+                return false;
+            }
+            try {
+                for(var i = this.items.length; i>=0; i--) {
+                    if(this.items[i] && id === this.items[i].parentId) {
+                        this.remove(this.items[i].parentId, this.items[i].pid);
+                    }
+                }
+                if(!keepList) {
+                    this.lists.splice(id, 1);
+                }
+                return true;
+            } catch(e) {
+                Ink.error('Purge: invalid id');
+                return false;
+            }
+        },
+
+
+        /**
+         * @function {Public} ? add an item to a list
+         * @param {String} name
+         * @param {Object} item
+         * @return {Number} pid
+        */
+        add: function(parentId, item, priority) {
+            if(!this.lists[parentId]) {
+                return false;
+            }
+            if(typeof(item) !== 'object') {
+                item = String(item);
+            }
+
+            var pid = parseInt(Math.round(Math.random() * 100000) + "" + Math.round(Math.random() * 100000), 10);
+            priority    = priority || 0;
+
+            this.items.push({parentId: parentId, item: item, priority: priority || 0, pid: pid});
+            return pid;
+        },
+
+
+        /**
+         * @function {Public} ? view list
+         * @param {Number} list id
+         * @param {Number} process id
+         * @return {Object} item
+        */
+        view: function(parentId, pid) {
+            var id = this._searchByPid(parentId, pid);
+            if(id === false) {
+                return false;
+            }
+            return this.items[id];
+        },
+
+
+        /**
+         * @function {Public} ? remove an item
+         * @param {Object} item
+         * @return {Object|Boolean} removed item or false if not found
+        */
+        remove: function(parentId, pid) {
+            try {
+                var id = this._searchByPid(parentId, pid);
+                if(id === false) {
+                    return false;
+                }
+                this.items.splice(id, 1);
+                return true;
+            } catch(e) {
+                Ink.error('Remove: invalid id');
+                return false;
+            }
+        },
+
+        _searchByPid: function(parentId, pid) {
+            if(!parentId && typeof(parentId) === 'boolean' || !pid) {
+                return false;
+            }
+
+            parentId    = parseInt(parentId, 10);
+            pid         = parseInt(pid, 10);
+
+            if(isNaN(parentId) || isNaN(pid)) {
+                return false;
+            }
+
+            for(var i = 0, len = this.items.length; i<len; i++) {
+                if(this.items[i].parentId === parentId && this.items[i].pid === pid) {
+                    return i;
+                }
+            }
+            return false;
+        }
+    };
+
+    var UI = function(Upload) {
+        this.Upload = Upload;
+        this.init();
+    };
+
+    UI.prototype = {
+        init: function() {
+            this._fileButton = this.Upload.options.fileButton;
+            this._dropzone = this.Upload.options.dropzone;
+            this._setDropEvent();
+            this._setFileButton();
+        },
+
+
+        _setDropEvent: function() {
+            var dropzones = this._dropzone;
+            for(var i = 0, len = dropzones.length; i<len; i++) {
+                dropzones[i].ondrop        = Ink.bindEvent(this.Upload._dropEventHandler, this.Upload);
+                dropzones[i].ondragleave   = Ink.bindEvent(this._onDragLeave, this);
+                dropzones[i].ondragend     = Ink.bindEvent(this._onDragEndEventHandler, this);
+                dropzones[i].ondragenter   = Ink.bindEvent(this._onDragEnterHandler, this);
+                dropzones[i].ondragover    = Ink.bindEvent(this._onDragOverHandler, this);
+            }
+        },
+
+
+        _onDragEnterHandler: function(ev) {
+            if(ev && ev.stopPropagation) {
+                ev.stopPropagation();
+            }
+            if(ev && ev.preventDefault) {
+                ev.preventDefault();
+            }
+            if(ev) {
+                ev.returnValue = false;
+            }
+
+            this.Upload.publish('DragEnter', ev);
+            return false;
+        },
+
+
+        _onDragOverHandler: function(ev) {
+            if(!ev) {
+                return false;
+            }
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev.returnValue = false;
+            return true;
+        },
+
+
+        _onDragLeave: function(ev) {
+            return this.Upload.publish('DragLeave', ev);
+        },
+
+
+        _onDragEndEventHandler: function(ev) {
+            return this.Upload.publish('DragEnd', ev);
+        },
+
+
+        _setFileButton: function() {
+            var btns = this._fileButton;
+            Event.observeMulti(btns, 'change', Ink.bindEvent(this._fileChangeHandler, this));
+        },
+
+
+        _fileChangeHandler: function(ev) {
+            var btn = Event.element(ev);
+            var files = btn.files;
+            var form = Element.findUpwardsByTag(btn, 'form');
+
+            if(!files || !window.FormData || !('withCredentials' in new XMLHttpRequest())) {
+                form.parentNode.submit();
+                return false;
+            }
+            this.Upload._addFilesToQueue(files);
+            btn.value = "";
+        }
+    };
+
+
+
+
+
+
+    var Upload = function(options) {
+        this.Queue = Queue;
+        this.init(options);
+        this._events = {};
+    };
+
+    Upload.prototype = {
+        //_events: {},
+
+        init: function(options) {
+            if (typeof options === 'string') {
+                options = Element.data(Common.elOrSelector(options, '1st argument'));
+            }
+            this.options = Ink.extendObj({
+                extraData:          {},
+                fileFormName:       'Ink_Filelist',
+                dropzone:           undefined,
+                fileButton:         undefined,
+                endpoint:           '',
+                endpointChunk:      '',
+                endpointChunkCommit:'',
+                maxFilesize:        300 << 20, //300mb
+                chunkSize:          4194304,  // 4MB
+                minSizeToUseChunks: 20971520, // 20mb
+                INVALID_FILE_NAME:  undefined,
+                foldersEnabled:     true,
+                useChunks:          true,
+                directoryMaxDepth:  10
+            }, options || {});
+
+            this._queueId           = Queue.create('Ink_UPLOAD');
+            this._queueRunning      = false;
+            this._folders           = {};
+
+
+            if(this.options.dropzone) {
+                Common.elOrSelector(this.options.dropzone, 'Upload - dropzone');
+            }
+
+            if(this.options.fileButton) {
+                Common.elOrSelector(this.options.fileButton, 'Upload - fileButton');
+            }
+
+            if(!this.options.dropzone && ! this.options.fileButton) {
+                throw new TypeError('A file button or dropzone, specify you must, my young padawan');
+            }
+
+            this.options.dropzone = Ink.ss(this.options.dropzone);
+            this.options.fileButton= Ink.ss(this.options.fileButton);
+
+            new UI(this);
+        },
+
+
+        _supportChunks: function(size) {
+            return this.options.useChunks &&
+                    'Blob' in window &&
+                    (new Blob()).slice &&
+                    size > this.options.minSizeToUseChunks;
+        },
+
+
+        _dropEventHandler: function(ev) {
+            if(ev && ev.stopPropagation) {
+                ev.stopPropagation();
+            }
+            if(ev && ev.preventDefault) {
+                ev.preventDefault();
+            }
+            if(ev) {
+                ev.returnValue = false;
+            }
+
+            this.publish('DropComplete', ev.dataTransfer);
+
+            var data = ev.dataTransfer;
+
+            if(!data || !data.files || !data.files.length) {
+                return false;
+            }
+
+            this._files = data.files;
+            this._files = Array.prototype.slice.call(this._files || [], 0);
+
+            // check if webkitGetAsEntry exists on first item
+            if(data.items && data.items[0] && data.items[0].webkitGetAsEntry) {
+                if(!this.options.foldersEnabled) {
+                    return setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
+                }
+                var entry, folders = [];
+                for(var i = ev.dataTransfer.items.length-1; i>=0; i--) {
+                    entry = ev.dataTransfer.items[i].webkitGetAsEntry();
+                    if(entry && entry.isDirectory) {
+                        folders.push(entry);
+                        this._files[i].isDirectory = true;
+                        this._files.splice(i, 1);
+                    }
+                }
+                // starting callback hell
+                this._addFolderToQueue(folders, Ink.bind(function() {
+                    setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
+                }, this));
+            } else {
+                setTimeout(Ink.bind(this._addFilesToQueue, this, this._files), 0);
+            }
+
+            return true;
+        },
+
+
+        _addFolderToQueue: function(folders, cb) {
+            var files = [], invalidFolders = {};
+
+            if(!folders || !folders.length) {
+                cb();
+                return files;
+            }
+
+            var getFiles = function(entries) {
+                var files = [];
+                for(var i = 0, len = entries.length; i<len; i++) {
+                    if(entries[i].isFile) {
+                        files.push(entries[i]);
+                    }
+                }
+                return files;
+            };
+
+            var convertToFile = function(cb, index) {
+                var fullPath;
+                index = index || 0;
+                if(!this._files[index]) {
+                    cb();
+                    return files;
+                }
+                if(this._files[index].constructor.name.toLowerCase() !== 'fileentry') {
+                    return convertToFile.apply(this, [cb, ++index]);
+                }
+                this._files[index].file(Ink.bind(function(res) {
+                    fullPath = this._files[index].fullPath; // bug
+                    this._files[index]              = res;
+                    this._files[index].hasParent    = true;
+
+                    // if browser don't have it natively, set it
+                    if(!this._files[index].fullPath) {
+                        this._files[index].fullPath = fullPath;
+                    }
+                    convertToFile.apply(this, [cb, ++index]);
+                }, this), Ink.bind(function() {
+                    this._files.splice(index, 1);
+                    convertToFile.apply(this, [cb, index]);
+                }, this));
+            };
+
+            var getSubDirs = Ink.bind(function(index) {
+                if(!folders[index]) {
+                    this._files = this._files.concat(files);
+                    convertToFile.call(this, cb);
+                    return false;
+                }
+
+                new DirectoryReader({
+                    entry:      folders[index],
+                    maxDepth:   this.options.directoryMaxDepth,
+                    readComplete: Ink.bind(function(entries) {
+                        files = files.concat(getFiles(entries));
+                        // adding root dirs
+                        if(!folders[index] || folders[index].fullPath in this._folders) {
+                            return;
+                        }
+
+                        this._folders[folders[index].fullPath] = {
+                            items:      entries,
+                            files:      files,
+                            length:     entries.length,
+                            created:    false,
+                            root:       true
+                        };
+
+                        // adding sub dirs
+                        for(var i = 0, len = entries.length; i<len; i++) {
+                            if(entries[i].isFile) {
+                                continue;
+                            }
+                            if(entries[i].fullPath in invalidFolders) {
+                                delete invalidFolders[entries[i].fullPath];
+                                continue;
+                            }
+                            this._folders[entries[i].fullPath] = {
+                                created:    false,
+                                root:       false
+                            };
+                        }
+                        getSubDirs(++index);
+                    }, this),
+                    readError: Ink.bind(function(err, dir) {
+                        invalidFolders[dir.fullPath] = {};
+                        invalidFolders[dir.fullPath].error = err;
+                    }, this)
+                });
+            }, this);
+
+            getSubDirs(0);
+            return files;
+        },
+
+
+        _addFilesToQueue: function(files) {
+            var file, fileID, o;
+            for(var i = 0, len = files.length; i<len; i++) {
+                file = files[i];
+
+                if(!file.isDirectory) {
+                    // dirty hack to allow 0B files avoiding folders on GECKO
+                    if(file === null || (!file.type && file.size % 4096 === 0 && (!Browser.CHROME || !this.options.foldersEnabled))) {
+                        this.publish('InvalidFile', file, 'size');
+                        continue;
+                    }
+                }
+
+                if(file.size > this.options.maxFilesize) {
+                    this.publish('MaxSizeFailure', file, this.options.maxFilesize);
+                    continue;
+                }
+
+                fileID = parseInt(Math.round(Math.random() * 100000) + "" + Math.round(Math.random() * 100000), 10);
+                o = { id: i, data: file, fileID: fileID, directory: file.isDirectory };
+                Queue.add(this._queueId, o);
+
+                this.publish('FileAddedToQueue', o);
+            }
+            this._processQueue(true);
+            this._files = [];
+        },
+
+
+        _processQueue: function(internalUpload) {
+            if(this._queueRunning) {
+                return false;
+            }
+
+            this.running = 0;
+            var max = 1, i = 0, items,
+                queueLen = Queue.items.length;
+            this._queueRunning = true;
+
+            this.interval = setInterval(Ink.bind(function() {
+                if(Queue.items.length === i && this.running === 0) {
+                    Queue.purge(this._queueId, true);
+                    this._queueRunning = false;
+                    clearInterval(this.interval);
+                    this.publish('QueueEnd', this._queueId, queueLen);
+                }
+
+                items = Queue.getItems(this._queueId);
+
+                if(this.running < max && items[i]) {
+                    if(!items[i].canceled) {
+                        _doRequest.call(this, items[i].pid, items[i].item.data, items[i].item.fileID, items[i].item.directory, internalUpload);
+                        this.running++;
+                        i++;
+                    } else {
+                        var j = i;
+                        while(items[j] && items[j].canceled) {
+                            i++;
+                            j++;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }, this), 100);
+
+
+            var _doRequest = function(pid, data, fileID, directory, internalUpload) {
+                var o = {
+                    file:   data,
+                    fileID: fileID,
+                    cb: Ink.bind(function() {
+                        this.running--;
+                    }, this)
+                };
+                if(internalUpload) {
+                    if(directory) {
+                        // do magic
+                        o.cb();
+                    } else {
+                        this._upload(o);
+                    }
+                }
+            };
+
+            return true;
+        },
+
+
+        _upload: function(o) {
+            var file = o.file,
+                xhr = new XMLHttpRequest(),
+                fileID = o.fileID;
+
+            this.publish('BeforeUpload', file, this.options.extraData, fileID, xhr, this._supportChunks(file.size));
+
+            var forceAbort = function(showError) {
+                if(o.cb && typeof(o.cb === 'function')) {
+                    o.cb();
+                }
+
+                this.publish('OnProgress', {
+                    length: file.size,
+                    lengthComputable: true,
+                    loaded: file.size,
+                    total: file.size
+                }, file, fileID);
+                this.publish('EndUpload', file, fileID, (showError ? { error: true } : true));
+                this.publish('InvalidFile', file, 'name');
+                xhr.abort();
+            };
+
+            if(this.options.INVALID_FILE_NAME && this.options.INVALID_FILE_NAME instanceof RegExp) {
+                if(this.options.INVALID_FILE_NAME.test(o.file.name)) {
+                    forceAbort.call(this);
+                    return;
+                }
+            }
+
+            // If file was renamed, abort it
+            // FU OPERA: Opera always return lastModified date as null
+            if(!file.lastModifiedDate && !Ink.Dom.Browser.OPERA) {
+                forceAbort.call(this, true);
+                return;
+            }
+
+            xhr.upload.onprogress = Ink.bind(this.publish, this, 'OnProgress', file, fileID);
+
+            var endpoint, method;
+            if(this._supportChunks(file.size)) {
+                if(file.size <= file.chunk_offset) {
+                    endpoint = this.options.endpointChunkCommit;
+                    method = 'POST';
+                } else {
+                    endpoint = this.options.endpointChunk;
+                    if(file.chunk_upload_id) {
+                        endpoint += '?upload_id=' + file.chunk_upload_id;
+                    }
+                    if(file.chunk_offset) {
+                        endpoint += '&offset=' + file.chunk_offset;
+                    }
+                    method = 'PUT';
+                }
+            } else {
+                endpoint = this.options.endpoint;
+                method = 'POST';
+            }
+
+            xhr.open(method, endpoint, true);
+            xhr.withCredentials = true;
+            xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
+            if(this._supportChunks(file.size)) {
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            }
+
+            var fd = new FormData(),
+                blob;
+
+            if("Blob" in window && typeof Blob === 'function') {
+                blob = new Blob([file], { type: file.type });
+                if(this._supportChunks(file.size)) {
+                    file.chunk_offset = file.chunk_offset || 0;
+                    blob = blob.slice(file.chunk_offset, file.chunk_offset + this.options.chunkSize);
+                } else {
+                    fd.append(this.options.fileFormName, blob, file.name);
+                }
+            } else {
+                fd.append(this.options.fileFormName, file);
+            }
+
+            if(!this._supportChunks(file.size)) {
+                for(var k in this.options.extraData) {
+                    if(this.options.extraData.hasOwnProperty(k)) {
+                        fd.append(k, this.options.extraData[k]);
+                    }
+                }
+            } else {
+                fd.append('upload_id', file.chunk_upload_id);
+                fd.append('path', file.upload_path);
+            }
+
+            if(!file.hasParent) {
+                if(!this._supportChunks(file.size)) {
+                    xhr.send(fd);
+                } else {
+                    if(file.size <= file.chunk_offset) {
+                        xhr.send('upload_id=' + file.chunk_upload_id + '&path=' + file.upload_path + '/' + file.name);
+                    } else {
+                        xhr.send(blob);
+                    }
+                }
+            } else {
+                this.publish('cbCreateFolder', file.parentID, file.fullPath, this.options.extraData, this._folders, file.rootPath, Ink.bind(function() {
+                    if(!this._supportChunks(file.size)) {
+                        xhr.send(fd);
+                    } else {
+                        if(file.size <= file.chunk_offset) {
+                            xhr.send('upload_id=' + file.chunk_upload_id + '&path=' + file.upload_path + '/' + file.name);
+                        } else {
+                            xhr.send(blob);
+                        }
+                    }
+                }, this));
+            }
+
+
+            xhr.onload = Ink.bindEvent(function() {
+                /* jshint boss:true */
+                if(this._supportChunks(file.size) && file.size > file.chunk_offset) {
+                    if(xhr.response) {
+                        var response = JSON.parse(xhr.response);
+
+                        // check expected offset
+                        var invalidOffset = file.chunk_offset && response.offset !== (file.chunk_offset + this.options.chunkSize) && file.size !== response.offset;
+                        if(invalidOffset) {
+                            if(o.cb) {
+                                o.cb();
+                            }
+                            this.publish('ErrorUpload', file, fileID);
+                        } else {
+                            file.chunk_upload_id = response.upload_id;
+                            file.chunk_offset = response.offset;
+                            file.chunk_expires = response.expires;
+                            this._upload(o);
+                        }
+                    } else {
+                        if(o.cb) {
+                            o.cb();
+                        }
+                        this.publish('ErrorUpload', file, fileID);
+                    }
+                    return (xhr = null);
+                }
+
+                if(o.cb) {
+                    o.cb();
+                }
+
+                if(xhr.responseText && xhr['status'] < 400) {
+                    this.publish('EndUpload', file, fileID, xhr.responseText);
+                } else {
+                    this.publish('ErrorUpload', file, fileID);
+                }
+                return (xhr = null);
+            }, this);
+
+
+            xhr.onerror = Ink.bindEvent(function() {
+                if(o.cb) {
+                    o.cb();
+                }
+                this.publish('ErrorUpload', file, fileID);
+            }, this);
+
+            xhr.onabort = Ink.bindEvent(function() {
+                if(o.cb) {
+                    o.cb();
+                }
+                this.publish('AbortUpload', file, fileID, {
+                    abortAll: Ink.bind(this.abortAll, this),
+                    abortOne: Ink.bind(this.abortOne, this)
+                });
+            }, this);
+        },
+
+
+        abortAll: function() {
+            if(!this._queueRunning) {
+                return false;
+            }
+            clearInterval(this.interval);
+            this._queueRunning = false;
+            Queue.purge(this._queueId, true);
+            return true;
+        },
+
+        abortOne: function(id, cb) {
+            var items = Queue.getItems(0),
+                o;
+            for(var i = 0, len = items.length; i<len; i++) {
+                if(items[i].item.fileID === id) {
+                    o = {
+                        id:         items[i].item.fileID,
+                        name:       items[i].item.data.name,
+                        size:       items[i].item.data.size,
+                        hasParent:  items[i].item.data.hasParent
+                    };
+                    Queue.remove(0, items[i].pid);
+                    if(cb) {
+                        cb(o);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        },
+
+
+        subscribe: function(eventName, fn) {
+            if(!this._events[eventName]) {
+                this._events[eventName] = [];
+            }
+            this._events[eventName].push(fn);
+            return this._events[eventName];
+        },
+
+
+        publish: function(eventName) {
+            var events = this._events[eventName],
+                args = Array.prototype.slice.call(arguments || [], 0);
+
+            if(!events) {
+                return;
+            }
+
+            for(var i = 0, len = events.length; i<len; i++) {
+                try {
+                    events[i].apply(this, args.splice(1, args.length));
+                } catch(err) {
+                    Ink.error(eventName + ": " + err);
+                }
+            }
+        }
+    };
+
+    return Upload;
 });

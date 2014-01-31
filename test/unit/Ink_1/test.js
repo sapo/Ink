@@ -1,4 +1,6 @@
 /*globals equal,test,asyncTest,stop,start,ok,expect*/
+(function () {
+
 QUnit.config.testTimeout = 4000
 test('bindMethod', function () {
     var obj = {
@@ -88,6 +90,7 @@ test('loadScript', function () {
 
 if (window.console && window.console.error) {
     if (typeof window.console.error === 'object') {
+        // TODO just mock Ink.warn
         var _consoleError = window.console.error;
         window.console.error = function (s) { _consoleError(s); };
     }
@@ -229,4 +232,48 @@ asyncTest('(regression) createModule can work with a requireModule afterwards wh
 
     Ink.createModule( 'Ink.SomeUnresolvedDependency', 1, [], function () { return {}; });
 });
+
+
+module('Debug mechanisms');
+
+if (window.console && window.console.log) {
+    // Fix ie7-9, where console.* functions have typeof 'object'
+    // Because of that we can't use a sinon stub, so we fake one.
+    function stubObject(obj, methodName) {
+        var old = obj[methodName];
+        obj[methodName] = function () {};
+        obj[methodName].restore = function () {
+            obj[methodName] = old;
+        };
+    }
+
+    test('console.* stubs/shortcuts', function () {
+        var functions = ['log', 'warn', 'error'];
+        var spy;
+
+        for (var i = 0, len = functions.length; i < len; i++) {
+            stubObject(window.console, functions[i]);
+
+            spy = sinon.spy(window.console, functions[i]);
+            Ink[functions[i]]('log!', 'log2!');
+            ok(spy.calledOnce, 'console.' + functions[i] + ' called once');
+            deepEqual(
+                spy.lastCall.args, ['log!', 'log2!'],
+                '(called with arguments given to console.' + functions[i] + ')');
+
+            spy.restore();
+            window.console[functions[i]].restore();
+        }
+    });
+} else {
+    // If window.console.log don't exist, trying to call Ink.log and Ink.warn, and asserting that nothing is raised will be our test.
+
+    test('Ink.warn and Ink.error when no console object present', function () {
+        expect(0);
+        Ink.warn('hi!');
+        Ink.log('hi!');
+    });
+}
+
+}());
 

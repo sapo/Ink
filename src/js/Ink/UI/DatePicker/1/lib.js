@@ -94,7 +94,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             cleanText:       ['String', 'Clear'],
             closeText:       ['String', 'Close'],
             containerElement:['Element', null],
-            cssClass:        ['String', 'ink-calendar'],
+            cssClass:        ['String', 'ink-calendar bottom'],
             dateRange:       ['String', null],
             
             // use this in a <select>
@@ -213,7 +213,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
             this._containerObject.id = this._options.instance;
 
-            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar';
+            this._containerObject.className = this._options.cssClass + ' ink-datepicker-calendar hide-all';
 
             this._renderSuperTopBar();
 
@@ -316,7 +316,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         show: function () {
             this._updateDate();
             this._renderMonth();
-            this._containerObject.style.display = 'block';
+            Css.removeClassName(this._containerObject, 'hide-all');
         },
 
         _addOpenCloseEvents: function () {
@@ -399,14 +399,21 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         },
 
         _appendDatePickerToDom: function () {
-            this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
             if(this._options.containerElement) {
                 var appendTarget =
                     Ink.i(this._options.containerElement) ||  // [2.3.0] maybe id; small backwards compatibility thing
                     Common.elOrSelector(this._options.containerElement);
                 appendTarget.appendChild(this._containerObject);
             }
-            InkElement.wrap(this._element, this._wrapper);
+
+            if (InkElement.findUpwardsBySelector(this._element, '.ink-form .control-group .control') === this._element.parentNode) {
+                // [3.0.0] Check if the <input> must be a direct child of .control, and if not, remove this block.
+                this._wrapper = this._element.parentNode;
+                this._wrapperIsControl = true;
+            } else {
+                this._wrapper = InkElement.create('div', { className: 'ink-datepicker-wrapper' });
+                InkElement.wrap(this._element, this._wrapper);
+            }
             InkElement.insertAfter(this._containerObject, this._element);
         },
 
@@ -552,7 +559,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _hide: function(blur) {
             blur = blur === undefined ? true : blur;
             if (blur === false || (blur && this._options.shy)) {
-                this._containerObject.style.display = 'none';
+                Css.addClassName(this._containerObject, 'hide-all');
             }
         },
 
@@ -567,7 +574,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var self = this;
 
             var noMinLimit = {
-                _year: Number.MIN_VALUE,
+                _year: -Number.MAX_VALUE,
                 _month: 0,
                 _day: 1
             };
@@ -598,6 +605,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 if ( data.date.toUpperCase() === 'NOW' ) {
                     var now = new Date();
                     lim = dateishFromDate(now);
+                } else if (data.date.toUpperCase() === 'EVER') {
+                    lim = data.noLim;
                 } else if ( rDate.test( data.date ) ) {
                     lim = dateishFromYMDString(data.date);
 
@@ -679,7 +688,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          *
          * _dateCmpUntil({_year: 2000, _month: 10}, {_year: 2000, _month: 11}, '_year') === 0
          */
-        _dateCmpUntil: function (self, oth, shallowness) {
+        _dateCmpUntil: function (self, oth, depth) {
             var props = ['_year', '_month', '_day'];
             var i = -1;
 
@@ -687,7 +696,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 i++;
                 if      (self[props[i]] > oth[props[i]]) { return 1; }
                 else if (self[props[i]] < oth[props[i]]) { return -1; }
-            } while (props[i] !== shallowness && 
+            } while (props[i] !== depth &&
                     self[props[i + 1]] !== undefined && oth[props[i + 1]] !== undefined);
 
             return 0;
@@ -864,9 +873,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * Checks if a date is valid
          *
          * @method _isValidDate
-         * @param {Number} year
-         * @param {Number} month
-         * @param {Number} day
+         * @param {Dateish} date
          * @private
          * @return {Boolean} True if the date is valid, false otherwise
          */
