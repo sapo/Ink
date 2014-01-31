@@ -1870,9 +1870,9 @@ input[type="radio"] {
   /* 1 */
   padding: 0;
   /* 2 */
-  *height: 13px;
+  width: 13px;
   /* 3 */
-  *width: 13px;
+  height: 13px;
   /* 3 */ }
 
 /**
@@ -2215,21 +2215,20 @@ table {
         pointer-events: none; }
   .ink-form .control-group input[type="radio"],
   .ink-form .control-group input[type="checkbox"] {
-    line-height: 2;
     padding: 0;
+    margin: .55em 0;
     border: none;
-    margin-top: 0.55em;
     clear: left;
     float: left;
     cursor: pointer; }
     .ink-form .control-group input[type="radio"] + label,
     .ink-form .control-group input[type="checkbox"] + label {
       float: left;
-      line-height: 2.5;
-      margin-left: 0.55em;
-      margin-top: -.4em; }
-  .ink-form .control-group .inline label {
-    margin-right: 1em; }
+      margin: .25em 0 .25em .4em; }
+  .ink-form .control-group .inline li {
+    padding: 0; }
+    .ink-form .control-group .inline li label {
+      margin-right: 1em; }
   .ink-form .control-group.validation.error input, .ink-form .control-group.validation.error textarea, .ink-form .control-group.validation.error select {
     outline: none;
     border-color: rgba(200, 10, 16, 0.8);
