@@ -13,6 +13,9 @@
             a {
                 display: block;
                 padding: $navigation-padding;
+                @include transition-property(background);
+                @include transition-duration(140ms);
+                @include transition-timing-function(ease-in-out);
 
                 &:hover {
                     text-decoration: none;
