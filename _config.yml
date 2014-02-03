@@ -23,342 +23,75 @@ js_path: assets/js/
 css_path: assets/css/
 # fonts_path: assets/font/
 
-# SITE PAGES
-navigation:
- # COMPONENTS
- - text: Components
-   url: components/
-   sections:
-    # GETTING STARTED
-    - text: Getting Started
-      id: getting-started
-      url: /components/getting-started/
-      components:
-       # FOUNDATION
-       - text: Foundation
-         id: foundation
-       # PRACTICAL USAGE
-       - text: Practical Usage
-         id: practical-usage
-       # ADDING SPACE
-       - text: Adding Space
-         id: adding-space
-       # ALIGNING
-       - text: Aligning
-         id: aligning
-       # MULTIPLE SCREENS
-       - text: Multiple Screens
-         id: multiple-screens
-       # SHOWING AND HIDDING
-       - text: Showing and Hidding
-         id: show-hide
 
-    # NAVIGATION
-    - text: Navigation
-      id: navigation
-      url: /components/navigation/
-      components:
-       # NAVIGATION BASICS
-       - text: Navigation Basics
-         url: ./components/show_hide/
-       # SUBMENUS
-       - text: Submenus
-         url: ./components/submenus/
-       # NAVIGATION STYLING
-       - text: Navigation Styling
-         url: ./components/nav_styling/
-       # HORIZONTAL MENU
-       - text: Horizontal Menu
-         url: ./components/horizontal_menu/
-       # VERTICAL MENU
-       - text: Vertical Menu
-         url: ./components/vertical_menu/
-       # PAGINATION
-       - text: Pagination
-         url: ./components/pagination/
-       # PILLS
-       - text: Pills
-         url: ./components/pills/
-       # BREADCRUMBS
-       - text: Breadcrumbs
-         url: ./components/breadcrumbs/
-       # FOOTER
-       - text: Footer
-         url: ./components/footer/
-       # DROPDOWNS
-       - text: Dropdowns
-         url: ./components/dropdowns/
-
-    # TYPOGRAPHY
-    - text: Typography
-      id: typography
-      url: /components/typography/
-      components:
-       # FONTS
-       - text: Fonts
-         url: ./components/fonts/
-       # HEADINGS
-       - text: Headings
-         url: ./components/headings/
-       # BODY AND HYPERTEXT
-       - text: Body and Hypertext
-         url: ./components/body_hypertext/
-       # LISTS
-       - text: Lists
-         url: ./components/lists/
-       # UTILITY CLASSES
-       - text: Utility Classes
-         url: ./components/utility_classes/
-       # ADDITIONAL ELEMENTS
-       - text: Additional Elements
-         url: ./components/additional_elements/
-
-    # FORMS
-    - text: Forms
-      id: forms
-      url: /components/forms/
-      components:
-       # FORM BUILDING
-       - text: Form Building
-         url: ./components/form_building/
-       # INLINE FORM
-       - text: Inline Form
-         url: ./components/inline_form/
-       # REQUIRED FIELDS & WARNINGS
-       - text: Required fields and Warnings
-         url: ./components/required_fields/
-       # CHECKBOXES & RADIO BUTTONS
-       - text: Checkboxes and Radio Buttons
-         url: ./components/radio_checkbox_buttons/
-       # PREPENDED & APPENDED INPUTS
-       - text: Prepended and Appended Inputs
-         url: ./components/pre_app_inputs/
-
-    # ALERTS
-    - text: Alerts
-      id: alerts
-      url: /components/alerts/
-      components:
-       # BASIC ALERTS 
-       - text: Basic Alerts
-         url: ./components/basic_alerts/
-       # BLOCK ALERTS 
-       - text: Block Alerts
-         url: ./components/block_alerts/
-
-    # TABLES
-    - text: Tables
-      id: tables
-      url: /components/tables/
-      components:
-       # TABLE BASICS
-       - text: Table Basics
-         url: ./components/table_basics/
-       # ALTERNATING
-       - text: Alternating
-         url: ./components/alternating/
-       # HIGHLIGHT
-       - text: Highlight
-         url: ./components/highlight/
-       # FULL BORDERS
-       - text: Full Borders
-         url: ./components/full_borders/
-       # COMBINED
-       - text: Combined
-         url: ./components/combined/
-       # SPECIAL
-       - text: Special
-         url: ./components/special/
-
-# JAVASCRIPT
- - text: JS
-   url: js/
-   sections:
-    # CLASSES
-    - text: Classes
-      components:
-       - text: Ink
-         url: ./js/Ink
-       - text: Ink.Dom.Browser
-         url: ./js/Ink.Dom.Browser/
-       - text: Ink.Dom.Css
-         url: ./js/Ink.Dom.Css/
-       - text: Ink.Dom.Element
-         url: ./js/Ink.Dom.Element/
-       - text: Ink.Dom.Event
-         url: ./js/Ink.Dom.Event/
-       - text: Ink.Dom.FormSerialize
-         url: ./js/Ink.Dom.FormSerialize/
-       - text: Ink.Dom.Loaded
-         url: ./js/Ink.Dom.Loaded/
-       - text: Ink.Dom.Selector
-         url: ./js/Ink.Dom.Selector/
-       - text: Ink.Namespace.ClassModule
-         url: ./js/Ink.Namespace.ClassModule/
-       - text: Ink.Namespace.StaticModule
-         url: ./js/Ink.Namespace.StaticModule/
-       - text: Ink.Net.Ajax
-         url: ./js/Ink.Net.Ajax/
-       - text: Ink.Net.JsonP
-         url: ./js/Ink.Net.JsonP/
-       - text: Ink.UI.Aux
-         url: ./js/Ink.UI.Aux/
-       - text: Ink.UI.Carousel_1
-         url: ./js/Ink.UI.Carousel_1/
-       - text: Ink.UI.Close
-         url: ./js/Ink.UI.Close/
-       - text: Ink.UI.DatePicker
-         url: ./js/Ink.UI.DatePicker/
-       - text: Ink.UI.Draggable
-         url: ./js/Ink.UI.Draggable/
-       - text: Ink.UI.Droppable
-         url: ./js/Ink.UI.Droppable/
-       - text: Ink.UI.FormValidator
-         url: ./js/Ink.UI.FormValidator/
-       - text: Ink.UI.FormValidator_2
-         url: ./js/Ink.UI.FormValidator_2/
-       - text: Ink.UI.ImageQuery
-         url: ./js/Ink.UI.ImageQuery/
-       - text: Ink.UI.Modal
-         url: ./js/Ink.UI.Modal/
-       - text: Ink.UI.Pagination
-         url: ./js/Ink.UI.Pagination/
-       - text: Ink.UI.ProgressBar
-         url: ./js/Ink.UI.ProgressBar/
-       - text: Ink.UI.SmoothScroller
-         url: ./js/Ink.UI.SmoothScroller/
-       - text: Ink.UI.SortableList
-         url: ./js/Ink.UI.SortableList/
-       - text: Ink.UI.Spy
-         url: ./js/Ink.UI.Spy/
-       - text: Ink.UI.Sticky
-         url: ./js/Ink.UI.Sticky/
-       - text: Ink.UI.Table
-         url: ./js/Ink.UI.Table/
-       - text: Ink.UI.Tabs
-         url: ./js/Ink.UI.Tabs/
-       - text: Ink.UI.Toggle
-         url: ./js/Ink.UI.Toggle/
-       - text: Ink.UI.Tooltip
-         url: ./js/Ink.UI.Tooltip/
-       - text: Ink.UI.TreeView
-         url: ./js/Ink.UI.TreeView/
-       - text: Ink.Util.Array
-         url: ./js/Ink.Util.Array/
-       - text: Ink.Util.BinPack
-         url: ./js/Ink.Util.BinPack/
-       - text: Ink.Util.Cookie
-         url: ./js/Ink.Util.Cookie/
-       - text: Ink.Util.Date
-         url: ./js/Ink.Util.Date/
-       - text: Ink.Util.Dumper
-         url: ./js/Ink.Util.Dumper/
-       - text: Ink.Util.I18n
-         url: ./js/Ink.Util.I18n/
-       - text: Ink.Util.Json
-         url: ./js/Ink.Util.Json/
-       - text: Ink.Util.String
-         url: ./js/Ink.Util.String/
-       - text: Ink.Util.Swipe
-         url: ./js/Ink.Util.Swipe/
-       - text: Ink.Util.Url
-         url: ./js/Ink.Util.Url/
-       - text: Ink.Util.Validator
-         url: ./js/Ink.Util.Validator/
-
-    # MODULES  
-    - text: Modules
-      components:
-       - text: Ink.Dom.Browser_1
-         url: ./js/Ink.Dom.Browser_1/
-       - text: Ink.Dom.Css_1
-         url: ./js/Ink.Dom.Css_1/
-       - text: Ink.Dom.Element_1
-         url: ./js/Ink.Dom.Element_1/
-       - text: Ink.Dom.Event_1
-         url: ./js/Ink.Dom.Event_1/
-       - text: Ink.Dom.FormSerialize
-         url: ./js/Ink.Dom.FormSerialize/
-       - text: Ink.Dom.Loaded_1
-         url: ./js/Ink.Dom.Loaded_1/
-       - text: Ink.Dom.Selector_1
-         url: ./js/Ink.Dom.Selector_1/
-       - text: Ink.Namespace.ClassModule_1
-         url: ./js/Ink.Namespace.ClassModule_1/
-       - text: Ink.Namespace.StaticModule_1
-         url: ./js/Ink.Namespace.StaticModule_1/
-       - text: Ink.Net.Ajax_1
-         url: ./js/Ink.Net.Ajax_1/
-       - text: Ink.Net.JsonP_1
-         url: ./js/Ink.Net.JsonP_1/
-       - text: Ink.UI.Aux_1
-         url: ./js/Ink.UI.Aux_1/
-       - text: Ink.UI.Carousel_1
-         url: ./js/Ink.UI.Carousel_1/
-       - text: Ink.UI.Close_1
-         url: ./js/Ink.UI.Close_1/
-       - text: Ink.UI.DatePicker_1
-         url: ./js/Ink.UI.DatePicker_1/
-       - text: Ink.UI.Droppable_1
-         url: ./js/Ink.UI.Droppable_1/
-       - text: Ink.UI.FormValidator_1
-         url: ./js/Ink.UI.FormValidator_1/
-       - text: Ink.UI.FormValidator_2
-         url: ./js/Ink.UI.FormValidator_2/
-       - text: Ink.UI.ImageQuery_1
-         url: ./js/Ink.UI.ImageQuery_1/
-       - text: Ink.UI.Modal_1
-         url: ./js/Ink.UI.Modal_1/
-       - text: Ink.UI.Pagination_1
-         url: ./js/Ink.UI.Pagination_1/
-       - text: Ink.UI.ProgressBar_1
-         url: ./js/Ink.UI.ProgressBar_1/
-       - text: Ink.UI.SmoothScroller_1
-         url: ./js/Ink.UI.SmoothScroller_1/
-       - text: Ink.UI.SortableList_1
-         url: ./js/Ink.UI.SortableList_1/
-       - text: Ink.UI.Spy_1
-         url: ./js/Ink.UI.Spy_1/
-       - text: Ink.UI.Sticky_1
-         url: ./js/Ink.UI.Sticky_1/
-       - text: Ink.UI.Table_1
-         url: ./js/Ink.UI.Table_1/
-       - text: Ink.UI.Tabs_1
-         url: ./js/Ink.UI.Tabs_1/
-       - text: Ink.UI.Toggle_1
-         url: ./js/Ink.UI.Toggle_1/
-       - text: Ink.UI.Tooltip_1
-         url: ./js/Ink.UI.Tooltip_1/
-       - text: Ink.UI.TreeView_1
-         url: ./js/Ink.UI.TreeView_1/
-       - text: Ink.Util.Array_1
-         url: ./js/Ink.Util.Array_1/
-       - text: Ink.Util.BinPack_1
-         url: ./js/Ink.Util.BinPack_1/
-       - text: Ink.Util.Cookie_1
-         url: ./js/Ink.Util.Cookie_1/
-       - text: Ink.Util.Date_1
-         url: ./js/Ink.Util.Date_1/
-       - text: Ink.Util.Dumper_1
-         url: ./js/Ink.Util.Dumper_1/
-       - text: Ink.Util.I18n_1
-         url: ./js/Ink.Util.I18n_1/
-       - text: Ink.Util.Json_1
-         url: ./js/Ink.Util.Json_1/
-       - text: Ink.Util.String_1
-         url: ./js/Ink.Util.String_1/
-       - text: Ink.Util.Swipe_1
-         url: ./js/Ink.Util.Swipe_1/
-       - text: Ink.Util.Url_1
-         url: ./js/Ink.Util.Url_1/
-       - text: Ink.Util.Validator_1
-         url: ./js/Ink.Util.Validator_1/
-       - text: Ink_1
-         url: ./js/Ink_1/
-
- # GLOSSARY
- - text: Glossary
-   url: glossary/
+sections:
+  - title: UI Elements
+    components: 
+      - title: Grid
+        topics:
+          - title: Introduction
+          - title: Dividing space
+          - title: Gutters
+          - title: Vertical spacing
+          - title: Multiple screen sizes
+          - title: Customizations
+      - title: Navigation
+        topics:
+          - title: Introduction
+          - title: Dividing space
+          - title: Gutters
+          - title: Vertical spacing
+          - title: Multiple screen sizes
+  - title: Javascript
+    components: 
+      - title: Dom
+        topics:
+          - title: Browser
+          - title: Css
+          - title: Element
+          - title: Event
+          - title: Loaded
+          - title: Selector
+      - title: Net
+        topics:
+          - title: Ajax
+          - title: JsonP
+      - title: UI
+        topics:
+          - title: Aux
+          - title: Carousel
+          - title: Close
+          - title: DatePicker
+          - title: Draggable
+          - title: Droppable
+          - title: FormValidator
+          - title: ImageQuery
+          - title: Modal
+          - title: Pagination
+          - title: ProgressBar
+          - title: SortableList
+          - title: Spy
+          - title: Sticky
+          - title: Table
+          - title: Tabs
+          - title: Toggle
+          - title: Tooltip
+          - title: TreeView
+      - title:
+        topics:
+          - title: Array
+          - title: BinPack
+          - title: Cookie
+          - title: Date
+          - title: Dumper
+          - title: I18n
+          - title: Json
+          - title: String
+          - title: Swipe
+          - title: Url
+          - title: Validator
+  - title: Cookbook
+  - title: Glossary
 
 # ANALYTICS
 # analytics: FC2C65EF-D60C-4BC2-9D76-251A50DADC3D

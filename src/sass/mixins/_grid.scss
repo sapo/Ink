@@ -462,6 +462,7 @@
                 @include generate-grid-container($grid-class-name, $gutter-width);
                 @include generate-grid-divisions($class-name);
                 @include generate-column-group-container($gutter-width,$class-name);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
                 @include generate-visibility-classes($class-name);
             }
         }

@@ -6,7 +6,7 @@
     
     {% if section.components %}
     {% for component in section.components %}    
-        <li><a href="{{ page.base_path }}{{ component.url }}" title="{{ link.text }}">{{ component.text }}</a></li>
+        <li><a href="{{ page.site_root }}{{ component.url }}" title="{{ link.text }}">{{ component.text }}</a></li>
     {% endfor %}
     {% endif %}
 

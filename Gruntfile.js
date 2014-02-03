@@ -131,7 +131,22 @@ module.exports = function(grunt) {
           },
           command: 'git checkout 3.0.0-wip -- src && git add src && git commit -m "Updates src from the 3.0.0-wip branch"'
         }
-    }
+    },
+
+    text_grab: {
+      glossary: {
+        options: {
+          pattern: '\\.[a-zA-Z][a-zA-Z0-9-]+',
+          templateStart: '<table class="ink-table bordered alternating content-left">\n<tr><th class="large-30">Class</th><th>Description</th></tr>\n',
+          templateRow: '<tr><td>%s</td><td></td><td></td></tr>\n',
+          templateEnd: '</table>\n',
+          exceptions: ['\\.fa','ttf','otf','svg','eot','woff','jpg','jpeg','png'],
+        },
+       files: {
+         'glossary/g.html': ['assets/css/ink.css']
+       }
+      },
+    },
 
   });
 
@@ -144,6 +159,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-text-grab');
 
   // Default task(s).
   grunt.registerTask('js', ['clean:js','concat','uglify']);

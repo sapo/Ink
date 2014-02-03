@@ -86,7 +86,6 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         break;
       }
 
-
       this._isOpen = false;
       this._direction = undefined;
 

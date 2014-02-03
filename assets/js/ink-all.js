@@ -16138,7 +16138,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     },
 
-    close: function(direction) {
+    close: function() {
       this._isOpen = false;   
       Event.one(document.body, 'transitionend oTransitionEnd transitionend webkitTransitionEnd', this._handlers.afterTransition);
       Css.removeClassName(document.body, this._options.mode + ' ' + this._direction);

@@ -1,0 +1,32 @@
+---
+layout: documentation
+title: Grid
+description: Ink provides a layout grid system that is completely flexible. By using a human readable syntax, creating complex layouts that adapt to multiple screen size becomes incredibly simple and intuitive.
+tags: grid
+site_root: ../../
+---
+
+<section id="introduction">
+  <h1 class="fw-300">Introduction</h1>
+  <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this we use percentages as our base units and css @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
+  <p class="fw-300">Our default layout breakpoints are:</p>
+  <ul class="unstyled">
+    <li><code>tiny</code> for screens widths up to 320px.</li>
+    <li><code>small</code> for screen widths between 321 and 600 pixels.</li>
+    <li><code>medium</code> for screen widths between 601 and 960 pixels.</li>
+    <li><code>large</code> for screen widths between 961 and 1200 pixels.</li>
+    <li><code>extra-large</code> for screen widths above 1201 pixels.</li>
+  </ul>
+  <p>In many situations in Ink you'll find that you can use the breakpoint name as a css class prefix to apply a certain behavior based on screen size, e.g. <code>.large-align-right</code> will cause text to be aligned to the right when the screen width is between 961 and 1200 pixels.</p>
+  <p><i class="fa fa-leaf"></i> To use the grid you'll need a block level element, usually a div, with the <code>.ink-grid</code> class.</p>
+</section>
+<section>
+  <h1>Dividing space</h1>
+  <p>We have 22 width units, that we'll call columns, ranging from <code>5%</code> to <code>100%</code> in 5% increments as well as <code>33%</code> and <code>66%</code> for one and two thirds respectively.</p>
+  <p>Additionally we have a grid class that is used to group columns so they always stay together and don't get tangled with other layout elements. All these grid units are available as css classes that are prefixed with the breakpoints names:</p>
+{% highlight html %}
+<div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
+  ...
+</div>
+{% endhighlight %}
+</section>

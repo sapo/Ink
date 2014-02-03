@@ -1,0 +1,80 @@
+---
+layout: default 
+title: Javascript UI - Tree view
+site_root: ../../../
+---
+<div class="ink-grid">
+    <section id="tree_view">
+    <h2>Tree View</h2>
+    <p class="note"><a href="#treeviewCode">Skip to the code</a></p>
+    <p>The Tree View component takes a structure of nested lists and transforms it into an interactive tree with expandable and collapsible branches.</p>
+    <p>Although we recommend you use primarily unordered or ordered lists, this component can be applied to any
+        structured group of DOM elements.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.treeview.js and autoload.js if you want your module to be initialized with no hassle.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.treeview.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/autoload.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the Modal component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">    </span><span class="com">// There are two ways to run the code...</span></li><li class="L2"><span class="pln">    </span><span class="com">// 1 - If you know you have the component and its dependencies already loaded, just do:</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> treeview </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">TreeView</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tree-view'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    </span><span class="com">// 2 - If you're not sure the component or its dependencies are loaded at runtime, do:</span></li><li class="L6"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="str">'Ink.UI.TreeView_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="typ">TreeView</span><span class="pun">){</span></li><li class="L7"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TreeView</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tree-view'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L8"><span class="pln">    </span><span class="pun">});</span></li><li class="L9"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+
+    <h3>Building a tree view</h3>
+    <p>To make a tree view, you need to create a list, with sub lists and make sure your first parent list has the <code>.ink-tree-view</code> class.</p>
+    <p>To add a small state icon, indicating if a node is opened or closed, you need to add an empty <code>&lt;span&gt;</code> in the corresponding list element. The Javascript will write the correct icon into that <code>&lt;span&gt;</code> as required.</p>
+    <p>To make your lists expand and collapse, make sure you envelop each interactive node in and anchor element with an empty href, like so: <code>&lt;a href=""&gt;</code>.</p>
+    <p>Finally, you can indicate whether each node starts out closed, which is the default, or open, for which you need to simply add the <code>.open</code> class in the corresponding <code>&lt;li&gt;</code>.</p>
+    <p>If you check the example below, you'll see how the lists are nested, with the first branch being open by defult, then, hit the view source code button to get it. Keep reading below for more details and configurations.</p>
+    <p id="treeviewCode"><span class="ink-label success">Example</span></p>
+    <div class="box">
+        <ul class="ink-tree-view" id="tview1">
+            <li class="open">
+                <span></span>
+                <a href="#">root</a>
+
+                <ul>
+                    <li class="closed">
+                        <a href="">child 1</a>
+                    </li>
+                    
+                    <li class="closed">
+                        <span></span>
+                        <a href="">child 2</a>
+
+                        <ul class="hide-all">
+                            <li class="closed"><a href="">grandchild 2a</a></li>
+                            <li class="closed">
+                                <span></span>
+                                <a href="">grandchild 2b</a>
+
+                                <ul class="hide-all">
+                                    <li class="closed">
+                                        
+                                        <a href="">grandgrandchild 1bA</a>
+                                    </li>
+                                    <li class="closed">
+                                        
+                                        <a href="">grandgrandchild 1bB</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="closed"><a href="">child 3</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <p><button data-target="#treeview_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="treeview_sourcecode" class="hide-all prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;ul</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-tree-view"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;li</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"open"</span><span class="tag">&gt;&lt;span&gt;&lt;/span&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">root</span><span class="tag">&lt;/a&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;ul&gt;</span></li><li class="L3"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">child 1</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L4"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;span&gt;&lt;/span&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">child 2</span><span class="tag">&lt;/a&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;ul&gt;</span></li><li class="L6"><span class="pln">          </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">grandchild 2a</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L7"><span class="pln">          </span><span class="tag">&lt;li&gt;&lt;span&gt;&lt;/span&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">grandchild 2b</span><span class="tag">&lt;/a&gt;</span></li><li class="L8"><span class="pln">            </span><span class="tag">&lt;ul&gt;</span></li><li class="L9"><span class="pln">              </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">grandgrandchild 1bA</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L0"><span class="pln">              </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">grandgrandchild 1bB</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L1"><span class="pln">            </span><span class="tag">&lt;/ul&gt;</span></li><li class="L2"><span class="pln">          </span><span class="tag">&lt;/li&gt;</span></li><li class="L3"><span class="pln">        </span><span class="tag">&lt;/ul&gt;</span></li><li class="L4"><span class="pln">      </span><span class="tag">&lt;/li&gt;</span></li><li class="L5"><span class="pln">      </span><span class="tag">&lt;li&gt;&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span><span class="pln">child 3</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span></li><li class="L6"><span class="pln">    </span><span class="tag">&lt;/ul&gt;</span></li><li class="L7"><span class="pln">  </span><span class="tag">&lt;/li&gt;</span></li><li class="L8"><span class="tag">&lt;/ul&gt;</span></li><li class="L9"><span class="tag">&lt;script&gt;</span></li><li class="L0"><span class="pln">    </span><span class="com">// There are two ways to run the code...</span></li><li class="L1"><span class="pln">    </span><span class="com">// 1 - If you know you have the component and its dependencies already loaded, just do:</span></li><li class="L2"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> treeview </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">TreeView</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tree-view'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    </span><span class="com">// 2 - If you're not sure the component or its dependencies are loaded at runtime, do:</span></li><li class="L5"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="str">'Ink.UI.TreeView_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="typ">TreeView</span><span class="pun">){</span></li><li class="L6"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TreeView</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-tree-view'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span><span class="pun">});</span></li><li class="L8"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h3>Configurable data attributes</h3>
+    <p>If by any chance you need the functionality of a tree view, with expandable and collapsible branches, but can't use a list, you can still create a functioning structure by using two data-attributes that will define which are the trigger elements and which are the interactive children.</p>
+    <ul>
+        <li><strong>data-node</strong> Identifies which of your elements are considered nodes, that can be expanded and collapsed. Value must be a valid CSS selector. The default value is <code>li</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myNode"</code></li>
+        <li><strong>data-child</strong> Identifies which of your elements are condidered children elements within your structure. value must be a valid CSS selector. The default value is <code>ul</code>, meaning you don't need this attribute if you're using a nested list. Example: <code>data-node=".myChild"</code></li>
+    </ul>
+    <p><span class="ink-label info">Note</span> If you need to build a tree view with elements other than lists, then you will not benefit from Ink's defaul styling for this component and you'll have to add your own style.</p>
+    <p>Specifications and other examples, available in the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.TreeView.html">technical documentation</a>.</p>
+</section>
+</div>

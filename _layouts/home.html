@@ -1,0 +1,42 @@
+{% include document-top.html %}
+
+{% include top-navigation.html %}
+
+{% include left-drawer.html %}
+
+<div class="ink-grid content-drawer">
+    <div class="page-header">
+        <h1 class="slab">{{ page.title }}</h1>
+        <p>{{ page.description }}</p>
+    </div>
+
+    <div class="column-group gutters">
+        <div class="extra-large-20 large-20 hide-medium hide-small hide-tiny">
+            <nav class="ink-navigation sidebar small">
+                <ul class="menu vertical">
+                    <li class="search">
+                        <input placeholder="Search..." id="search" type="search"><span class="fa fa-search"></span>
+                        <div class="ink-dropdown red" id="search-dropdown" style="display: none;">
+                            <ul id="resultsList" class="dropdown-menu">
+                                
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                
+                {% include side-nav.html %}
+                
+            </nav>
+        </div>
+
+        <div class="extra-large-80 large-80 medium-100 small-100 tiny-100">
+            
+            {{ content }}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% include document-bottom.html %}

@@ -1,0 +1,75 @@
+---
+layout: default 
+title: Javascript UI - Date picker
+site_root: ../../../
+---
+<div class="ink-grid">
+    <section id="date_picker">
+    <h2>Date Picker</h2>
+    <p class="note"><a href="#datepickerCode">Skip to the code</a></p>
+    <p>The date picker component adds a flyout calendar to a textbox, within a form, so your users can just click the box and pick a date, visually, instead of having to guess the date format or you having to print specific instructions to explain that format.</p>
+    <p>Using the date picker also guarantees that you get your dates in the format you need, without extra form validation.</p>
+    <h3>Necessary JS modules</h3>
+    <p>Before you begin, make sure you're including the necessary Javascript inside your <code>&lt;head&gt;</code>, you'll need ink.js, ink.datepicker.js and autoload.js.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/ink.datepicker.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L2"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/autoload.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+    <p>If you opted for not using the autoload feature, then you'll need to initialize the component by hand. Simply include the following code, at the end of your page, before the closing <code>&lt;body&gt;</code></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">    </span><span class="com">// There are two ways to run the code...</span></li><li class="L2"><span class="pln">    </span><span class="com">// 1 - If you know you have the component and its dependencies already loaded, just do:</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> datepicker </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">DatePicker</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-date-picker'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    </span><span class="com">// 2 - If you're not sure the component or its dependencies are loaded at runtime, do:</span></li><li class="L6"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="str">'Ink.UI.DatePicker_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="typ">DatePicker</span><span class="pun">){</span></li><li class="L7"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DatePicker</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-date-picker'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L8"><span class="pln">    </span><span class="pun">});</span></li><li class="L9"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h3>Getting started</h3>
+    <p>Creating a date picker couldn't be easier. All you need is a text input in your form, tagged with the <code>.ink-datepicker</code> class. And that is all.</p>
+    <p>Like other Ink Javascript components, the date picker is configurable by using data-attributes, which we will detail below. For now, let's see what your code should look like. Remember, you are within a form, so go read up on Ink <a href="/forms">forms</a>, if you need to.</p>
+    <p><span class="ink-label info">Code</span></p>
+    <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"date"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-datepicker"</span><span class="tag">&gt;</span></li></ol></pre>
+    <p id="datepickerCode">That is the basic of basics for getting a date picker, but there is a more complete example below, grab the code by hitting the view code button. Then, you can read up on all the ways you can configure your date picker, using data-attributes.</p>
+    <form class="ink-form vspace">
+        
+        <div class="control-group column-group gutters">
+            <label for="dPicker" class="large-15 medium-20 small-30">A date field:</label>
+            <div class="control large-20 medium-40 small-70">
+                <input id="dPicker" data-format="dd-mm-yyyy" data-position="bottom" class="ink-datepicker" type="text">
+            </div>
+        </div>
+        
+    </form>
+    <p><button href="#" data-target="#datepicker_sourcecode" class="ink-button toggle">View Source Code</button></p>
+    <pre id="datepicker_sourcecode" class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"control-group"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"dPicker"</span><span class="tag">&gt;</span><span class="pln">A date field:</span><span class="tag">&lt;/label&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"control"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">        </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dPicker"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ink-datepicker"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="tag">&gt;&lt;/input&gt;</span></li><li class="L4"><span class="pln">    </span><span class="tag">&lt;/div&gt;</span></li><li class="L5"><span class="tag">&lt;/div&gt;</span></li><li class="L6"><span class="tag">&lt;script&gt;</span></li><li class="L7"><span class="pln">    </span><span class="com">// There are two ways to run the code...</span></li><li class="L8"><span class="pln">    </span><span class="com">// 1 - If you know you have the component and its dependencies already loaded, just do:</span></li><li class="L9"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> datepicker </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">DatePicker</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-date-picker'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">    </span><span class="com">// 2 - If you're not sure the component or its dependencies are loaded at runtime, do:</span></li><li class="L2"><span class="pln">    </span><span class="typ">Ink</span><span class="pun">.</span><span class="pln">requireModules</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="str">'Ink.UI.DatePicker_1'</span><span class="pun">],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="typ">DatePicker</span><span class="pun">){</span></li><li class="L3"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DatePicker</span><span class="pun">(</span><span class="pln"> </span><span class="str">'.ink-date-picker'</span><span class="pln"> </span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="pun">});</span></li><li class="L5"><span class="tag">&lt;/script&gt;</span></li></ol></pre>
+    <h3>Using the calendar</h3>
+    <p>The calendar has some really useful features you might want to be aware of. On the top left corner you have a link to clear the input box, in case you've entered a wrong date, and on the top right, you can click to close the calendar.</p>
+    <p>On the next line, you have navigation chevrons on either side, that will allow you to navigate by month and in the center, you can click either the month name to directly pick another month, or the year, to pick a different year, without having to navigate by hand to those dates. When you click a day, the date gets written into the input field. Just click the above example and try it out.</p>
+    <h3>Configurable data attributes</h3>
+    <p>To further configure your date picker, just add data-attributes to your text input field. Here's a comprehensive list of all the attributes you can use on the date picker.</p>
+    <ul>
+        <li>
+            <p><strong>data-format</strong> sets the date format which will be written into the text input and submitted with the form. The default value is <code>data-format="yyyy-mm-dd"</code> but there are many different options as you can see below:</p>
+            <ul>
+                <li><strong>yyyy-mm-dd</strong> - Ex: 2013-09-30 (default)</li>
+                <li><strong>yyyy/mm/dd</strong> - Ex: 2013/09/30</li>
+                <li><strong>yy-mm-dd</strong> Ex: 13-09-30</li>
+                <li><strong>yy/mm/dd</strong> Ex: 13/09/30</li>
+                <li><strong>dd-mm-yyyy</strong> - Ex: 30-09-2013</li>
+                <li><strong>dd/mm/yyyy</strong> - Ex: 30/09/2013</li>
+                <li><strong>dd-mm-yy</strong> Ex: 30-09-13</li>
+                <li><strong>dd/mm/yy</strong> Ex: 30/09/13</li>
+                <li><strong>mm-dd-yyyy</strong> - Ex: 09-30-2013</li>
+                <li><strong>mm/dd/yyyy</strong> - Ex: 09/30/2013</li>
+            </ul>
+            <p></p>
+        </li>
+        <li>
+            <p><strong>data-position</strong> specifies where the calendar will appear, relative to the input field. Example: <code>data-position="bottom"</code>. Possible values are:</p>
+            <ul>
+                <li><strong>bottom</strong></li>
+                <li><strong>left</strong></li>
+            </ul>
+            <p></p>
+        </li>
+        <li>
+            <p><strong>data-css-class</strong> sets a class for the calendar. The default value is <code>data-css-class="sapo_component_datepicker"</code>, but you can change it to any class you need to use in your project to style the calendar.
+        </p></li>
+        <li>
+            <p><strong>data-start-date</strong> sets a start date, that will be selected when you open the calendar. It must be defined in the following format: <code>yyyy-mm-dd</code>. Example: <code>data-start-date="2013-01-01"</code></p>
+        </li>
+    </ul>
+    <p>There are other configurations, some specific for Javascript, available on the <a target="_blank" href="http://js.ink.sapo.pt/docs/classes/Ink.UI.DatePicker.html">technical documentation</a>.</p>
+</section>
+</div>

@@ -9,53 +9,31 @@
             </div>
         </li>
 
-        {% for link in site.navigation %}
-        {% assign clean_url = page.url|remove:'index.html' %}
-        <li class="heading">{{link.text}}</li>
-        {% if link.sections %}
-        {% for section in link.sections %}
-        <li><a href="{{ section.url }}">{{section.text}}</a></li>        
-        {% endfor %}
-        {% endif %}
-        {% endfor %}
+{% for section in site.sections %}
+                {% assign section_uri = section.title | downcase | replace:' ','-' %}
+                
+                <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
+                    <a href="{{ page.site_root }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
+                </li>
+                {% endfor %}
 
-        <!-- <li class="heading">Getting started</li>
-        <li><a href="#">Practical Usage</a></li>
-        <li><a href="#">Adding space</a></li>
-        <li><a href="#">Aligning</a></li>
-        <li><a href="#">Multiple Screens</a></li>
-        <li><a href="#">Showing & hiding</a></li>
+{% assign current_section = page.url | split: '/' %}
 
-        <li class="heading">Typography</li>
-        <li><a href="#">Fonts</a></li>
-        <li><a href="#">Headings</a></li>
-        <li><a href="#">Body & Hypertext</a></li>
-        <li><a href="#">Lists</a></li>
-        <li><a href="#">Utility Classes</a></li>
-        <li><a href="#">Additional elements</a></li>
+{% if current_section[1] == 'ui-elements' %}
+  {% assign section = site.sections[0] %}
+{% elsif current_section[1] == 'javascript' %}
+  {% assign section = site.sections[1] %}
+{% elsif current_section[1] == 'cookbook' %}
+  {% assign section = site.sections[2] %}
+{% elsif current_section[1] == 'glossary' %}
+  {% assign section = site.sections[3] %}
+{% endif %}
 
-        <li class="heading">Glossary</li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">Javascript</a></li>
-
-        <li class="heading">Forms</li>
-        <li><a href="#">Form building</a></li>
-        <li><a href="#">Inline form</a></li>
-        <li><a href="#">Required fields & warning</a></li>
-        <li><a href="#">Checkboxes & radio buttons</a></li>
-        <li><a href="#">Buttons</a></li>
-        <li><a href="#">Prepended and appended inputs</a></li>
-
-        <li class="heading">Alerts</li>
-        <li><a href="#">Basic alerts</a></li>
-        <li><a href="#">Block alerts</a></li>
-
-        <li class="heading">Tables</li>
-        <li><a href="#">Table basics</a></li>
-        <li><a href="#">Alternating</a></li>
-        <li><a href="#">Highlight</a></li>
-        <li><a href="#">Full borders</a></li>
-        <li><a href="#">Combined</a></li> 
-        <li><a href="#">Special</a></li>  -->
+{% for component in section.components %}
+  <li class="heading"><a href="{{ page.site_root }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/" title="{{ component.title }}">{{ component.title }}</a>{% if component.topics %}</li>
+    {% for topic in component.topics %}    
+      <li><a href="{{ page.site_root }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/#{{ topic.title | downcase | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
+    {% endif %}
+{% endfor %}
     </ul>
 </div>

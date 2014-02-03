@@ -3,7 +3,6 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css','Ink.Dom.Element','Ink.Dom.Se
   var jsonIndex;
 
   var index = lunr(function () {
-    this.field('content', 1);
     this.field('title', 50);
     this.field('tags', 100);
     this.ref('url');
@@ -25,6 +24,7 @@ Ink.requireModules(['Ink.Net.Ajax_1','Ink.Dom.Css','Ink.Dom.Element','Ink.Dom.Se
     }
 
     var indexJson = j.stringify(index.toJSON());
+    
   }});
 
   var searchElm = Ink.s('#search');
