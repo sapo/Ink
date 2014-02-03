@@ -1,6 +1,7 @@
 // TABLES
 $table-cell-padding         : 5px 10px;
 $table-cell-borderColor     : #bbb;
-$table-alternating-rowColor : shade($body-background,3%);
+$table-alternating-rowColor : darken($body-background,2%);
 $table-row-line-height      : 2;
 $table-row-hoverColor       : #fefbd6;
+$table-border-radius        : $border-radius;
