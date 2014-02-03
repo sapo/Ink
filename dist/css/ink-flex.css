@@ -1427,7 +1427,7 @@
   float: left; }
 
 .push-center {
-  float: none;
+  float: none !important;
   margin-left: auto;
   margin-right: auto; }
 
@@ -1980,19 +1980,41 @@ table {
   .button-group > .ink-button {
     float: left;
     margin: 5px 0;
-    -webkit-border-radius: none;
-    -moz-border-radius: none;
-    -ms-border-radius: none;
-    -o-border-radius: none;
-    border-radius: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
     border-left: none; }
+    .button-group > .ink-button:hover, .button-group > .ink-button:active {
+      border-left: none; }
     .button-group > .ink-button:first-child {
-      border-bottom-left-radius: 2px;
+      -moz-border-radius-topright: 0;
+      -webkit-border-top-right-radius: 0;
+      border-top-right-radius: 0;
+      -moz-border-radius-bottomright: 0;
+      -webkit-border-bottom-right-radius: 0;
+      border-bottom-right-radius: 0;
+      -moz-border-radius-topleft: 2px;
+      -webkit-border-top-left-radius: 2px;
       border-top-left-radius: 2px;
+      -moz-border-radius-bottomleft: 2px;
+      -webkit-border-bottom-left-radius: 2px;
+      border-bottom-left-radius: 2px;
       border-left: 1px solid #ccc; }
     .button-group > .ink-button:last-child {
+      -moz-border-radius-topright: 2px;
+      -webkit-border-top-right-radius: 2px;
+      border-top-right-radius: 2px;
+      -moz-border-radius-bottomright: 2px;
+      -webkit-border-bottom-right-radius: 2px;
       border-bottom-right-radius: 2px;
-      border-top-right-radius: 2px; }
+      -moz-border-radius-topleft: 0;
+      -webkit-border-top-left-radius: 0;
+      border-top-left-radius: 0;
+      -moz-border-radius-bottomleft: 0;
+      -webkit-border-bottom-left-radius: 0;
+      border-bottom-left-radius: 0; }
   .button-group:after {
     content: "";
     display: table;
@@ -2025,7 +2047,7 @@ table {
   font-size: .875em;
   color: #909090;
   position: relative;
-  margin: .3em 0 0 0.1em; }
+  margin: .2em 0 0 0.1em; }
 .ink-form p.label {
   color: #555555;
   padding: 0;
@@ -2123,6 +2145,13 @@ table {
       content: "";
       display: table;
       clear: both; }
+    .ink-form .control-group .control > li {
+      margin: 0;
+      *zoom: 1; }
+      .ink-form .control-group .control > li:after {
+        content: "";
+        display: table;
+        clear: both; }
     .ink-form .control-group .control > input, .ink-form .control-group .control > select, .ink-form .control-group .control > textarea {
       width: 100%; }
       .ink-form .control-group .control > input + [class^="icon-"], .ink-form .control-group .control > input + [class*=" icon-"], .ink-form .control-group .control > select + [class^="icon-"], .ink-form .control-group .control > select + [class*=" icon-"], .ink-form .control-group .control > textarea + [class^="icon-"], .ink-form .control-group .control > textarea + [class*=" icon-"] {
@@ -4020,7 +4049,11 @@ html.flexbox .column-group {
     line-height: 1.7; }
     .ink-navigation .pills li a {
       display: block;
-      padding: 0.5em 1em; }
+      padding: 0.5em 1em;
+      -webkit-transition: background 140ms ease-in-out;
+      -moz-transition: background 140ms ease-in-out;
+      -o-transition: background 140ms ease-in-out;
+      transition: background 140ms ease-in-out; }
       .ink-navigation .pills li a:hover {
         text-decoration: none; }
     .ink-navigation .pills li.active a, .ink-navigation .pills li.disabled a {
@@ -4037,18 +4070,10 @@ html.flexbox .column-group {
     .ink-navigation ul.menu li {
       *height: 100%; }
       .ink-navigation ul.menu li a {
-        -webkit-transition-property: background;
-        -moz-transition-property: background;
-        -o-transition-property: background;
-        transition-property: background;
-        -webkit-transition-duration: 140ms;
-        -moz-transition-duration: 140ms;
-        -o-transition-duration: 140ms;
-        transition-duration: 140ms;
-        -webkit-transition-timing-function: ease-in-out;
-        -moz-transition-timing-function: ease-in-out;
-        -o-transition-timing-function: ease-in-out;
-        transition-timing-function: ease-in-out; }
+        -webkit-transition: background 140ms ease-in-out;
+        -moz-transition: background 140ms ease-in-out;
+        -o-transition: background 140ms ease-in-out;
+        transition: background 140ms ease-in-out; }
       .ink-navigation ul.menu li:hover ul.submenu {
         display: block; }
       .ink-navigation ul.menu li ul.submenu {
@@ -4135,6 +4160,9 @@ body {
 
 .slab {
   font-family: Roboto_slab, Arial, sans-serif; }
+
+.fa {
+  font-size: 14px; }
 
 a {
   color: #0069d6;
@@ -4330,24 +4358,21 @@ dl {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-transition-property: all;
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: 140ms;
-  -moz-transition-duration: 140ms;
-  -o-transition-duration: 140ms;
-  transition-duration: 140ms;
-  -webkit-transition-timing-function: ease-in-out;
-  -moz-transition-timing-function: ease-in-out;
-  -o-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out; }
+  -webkit-transition: all 140ms ease-in-out;
+  -moz-transition: all 140ms ease-in-out;
+  -o-transition: all 140ms ease-in-out;
+  transition: all 140ms ease-in-out; }
   .ink-button:hover, .ink-button:active {
     background: #cbcbcb;
     border: 1px solid #b2b2b2;
     -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px; }
+  .ink-button:focus {
+    outline: none;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px inset; }
   .ink-button[disabled] {
     background: #e5e5e5;
     border: none; }
@@ -4795,18 +4820,10 @@ dl {
         background: none;
         text-decoration: none; }
     .ink-navigation ul.pagination li a {
-      -webkit-transition-property: background;
-      -moz-transition-property: background;
-      -o-transition-property: background;
-      transition-property: background;
-      -webkit-transition-duration: 140ms;
-      -moz-transition-duration: 140ms;
-      -o-transition-duration: 140ms;
-      transition-duration: 140ms;
-      -webkit-transition-timing-function: ease-in-out;
-      -moz-transition-timing-function: ease-in-out;
-      -o-transition-timing-function: ease-in-out;
-      transition-timing-function: ease-in-out; }
+      -webkit-transition: background 140ms ease-in-out;
+      -moz-transition: background 140ms ease-in-out;
+      -o-transition: background 140ms ease-in-out;
+      transition: background 140ms ease-in-out; }
     .ink-navigation ul.pagination li:first-child, .ink-navigation ul.pagination li:first-child a {
       -moz-border-radius-topleft: 2px;
       -webkit-border-top-left-radius: 2px;
@@ -5020,8 +5037,10 @@ table.ink-table {
   table.ink-table tr th, table.ink-table tr td {
     border-bottom: #bbbbbb 1px solid;
     background: none; }
+  table.ink-table tfoot tr th, table.ink-table tfoot tr td {
+    border-top: #bbbbbb 1px solid; }
   table.ink-table.alternating tbody tr:nth-child(odd) {
-    background-color: #efefef; }
+    background-color: #f2f2f2; }
   table.ink-table.hover tbody tr:hover {
     background: #fefbd6; }
   table.ink-table.bordered {
