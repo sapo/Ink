@@ -41,6 +41,10 @@
         text-decoration: none;      // remove underline on anchor tags
     }
 
+    &:focus {
+        background: darken($button-background-color, 5%);
+    }
+
     &[disabled]{
         background: transparentize($button-background-color,0.4);
         border: none;
