@@ -1,6 +1,6 @@
 table.#{$table-class-name} {
 
-    background: none;
+    background: $table-background;
 
     tr {
         th, td {
