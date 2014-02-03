@@ -24,7 +24,7 @@
             font-size: .875em;
             color: tint($text-color,35%);
             position: relative;
-            margin: .3em 0 0 0.1em;
+            margin: .2em 0 0 0.1em;
         }
 
         &.label {
@@ -105,6 +105,11 @@
         .control {
             position: relative;
             @include pie-clearfix;
+
+            & > li {
+                margin: 0;
+                @include pie-clearfix;    
+            }
 
             & > input,
             & > select,
@@ -257,7 +262,7 @@
 
             li {
                 padding: 0;
-                
+
                 label {
                     margin-right: 1em;
                 }
