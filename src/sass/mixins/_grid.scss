@@ -375,8 +375,16 @@
 
         @if $position == null {
 
+            .space {
+                margin: $gutter-width;
+            }
+
             .#{$class-name}-space {
                 margin: $gutter-width;
+            }
+
+            .padding {
+                padding: $gutter-width;
             }
 
             .#{$class-name}-padding {
