@@ -94,10 +94,11 @@ module.exports = function(grunt) {
       minify: {
         expand: true,
         cwd: 'assets/css/',
-        src: ['*.css'],
+        src: ['*.css', "quick-start.css"],
         dest: 'assets/css/',
         ext: '.min.css',
         options: {
+          keepSpecialComments: 0,
           report: 'min'
         }
       }
@@ -108,6 +109,7 @@ module.exports = function(grunt) {
         files: ['src/**/*.scss'],
         tasks: ['css'],
         options: {
+          atBegin: true,
           spawn: false,
           // interrupt: true,
         }
@@ -116,6 +118,7 @@ module.exports = function(grunt) {
         files: ['src/js/**/*.js'],
         tasks: ['js'],
         options: {
+          atBegin: true,
           spawn: false,
           // interrupt: true,
         }

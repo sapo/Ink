@@ -25,6 +25,7 @@ css_path: ./assets/css/
 
 
 sections:
+  - title: Download
   - title: UI Elements
     components: 
       - title: Grid

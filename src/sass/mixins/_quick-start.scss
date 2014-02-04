@@ -5,9 +5,8 @@
     $class-name: nth($breakpoint,1);
     $minimum-width: nth($breakpoint,2);
     $maximum-width: nth($breakpoint,3);
-    $no-media-query: nth($breakpoint,5);
 
-    @if $minimum-width and not $maximum-width and not $no-media-query {
+    @if $minimum-width and not $maximum-width {
       /* for #{$class-name} screens */
       @media screen and (min-width: $minimum-width) {
         
@@ -16,7 +15,7 @@
       }
     }
 
-    @if $minimum-width and $maximum-width and not $no-media-query {
+    @if $minimum-width and $maximum-width {
       /* for #{$class-name} screens */
       @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
         
@@ -25,7 +24,7 @@
       }
     }
 
-    @if not $minimum-width and $maximum-width and not $no-media-query {
+    @if not $minimum-width and $maximum-width {
       /* for #{$class-name} screens */
       @media screen and (max-width: $maximum-width) {
         

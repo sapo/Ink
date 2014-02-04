@@ -1,7 +1,7 @@
 ---
 layout: documentation
 title: Grid
-description: Ink provides a layout grid system that is completely flexible. By using a human readable syntax, creating complex layouts that adapt to multiple screen size becomes incredibly simple and intuitive.
+description: Ink provides a layout grid system that is flexible, responsive and uses a human readable syntax, that makes creating complex layouts that adapt to multiple screen sizes incredibly simple and intuitive.
 tags: grid
 site_root: ../../
 ---
@@ -10,23 +10,257 @@ site_root: ../../
   <h1 class="fw-300">Introduction</h1>
   <p class="fw-300">Our layout grid was built to allow precise control on how horizontal space is divided and on targeting several screen sizes. To accomplish this we use percentages as our base units and css @media queries to allow you to decide what width should an element take when viewed in a specific screen size.</p>
   <p class="fw-300">Our default layout breakpoints are:</p>
-  <ul class="unstyled">
+  <ul class="unstyled" id="breakpoints">
     <li><code>tiny</code> for screens widths up to 320px.</li>
     <li><code>small</code> for screen widths between 321 and 600 pixels.</li>
     <li><code>medium</code> for screen widths between 601 and 960 pixels.</li>
     <li><code>large</code> for screen widths between 961 and 1200 pixels.</li>
     <li><code>extra-large</code> for screen widths above 1201 pixels.</li>
   </ul>
-  <p>In many situations in Ink you'll find that you can use the breakpoint name as a css class prefix to apply a certain behavior based on screen size, e.g. <code>.large-align-right</code> will cause text to be aligned to the right when the screen width is between 961 and 1200 pixels.</p>
-  <p><i class="fa fa-leaf"></i> To use the grid you'll need a block level element, usually a div, with the <code>.ink-grid</code> class.</p>
+  <table class="props css">
+    <caption>CSS CLASSES</caption>
+    <thead>
+      <tr>
+        <th>Class name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>ink-grid</code></td>
+          <td>The grid root class. <span class="label mandatory"></span></td>
+        </tr>
+        <tr>
+          <td><code>column-group</code></td>
+          <td>Groups layout columns. <span class="label mandatory"></span></td>
+        </tr>
+        <tr>
+          <td><code>gutters</code></td>
+          <td>Add space between layout columns. <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></td>
+        </tr>
+        <tr>
+          <td><code>all-x%</code></td>
+          <td>Sets x% element width for all breakpoints.</td>
+        </tr>
+        <tr>
+          <td><code>tiny-x%</code></td>
+          <td>Sets x% element width for the '<a href="#breakpoints">tiny</a>' breakpoint.</td>
+        </tr>
+        <tr>
+          <td><code>small-x%</code></td>
+          <td>Sets x% element width for the '<a href="#breakpoints">small</a>' breakpoint.</td>
+        </tr>
+        <tr>
+          <td><code>medium-x%</code></td>
+          <td>Sets x% element width for the '<a href="#breakpoints">medium</a>' breakpoint.</td>            
+        </tr>
+        <tr>
+          <td><code>large-x%</code></td>
+          <td>Sets x% element width for the '<a href="#breakpoints">large</a>' breakpoint.</td>           
+        </tr>
+        <tr>
+          <td><code>extra-large-x%</code></td>
+          <td>Sets element x% width for the '<a href="#breakpoints">extra-large</a>' breakpoint.</td> 
+        </tr>
+    </tbody>    
+  </table>
+  <ul class="unstyled">
+    <li><span class="label mandatory"></span>: This class must be used for the {{page.title | downcase }} to work.</li>
+    <li><span class="label breakpoint-aware"></span>: This class has breakpoint dependent variants, e.g. <code>large-class-name</code>.</li>
+    <li><span class="label halves-quarters"></span>: This class has half and quarter size variants, e.g. <code>half-class-name</code>.</li>
+  </ul>
 </section>
-<section>
+<section id="dividing-space">
   <h1>Dividing space</h1>
-  <p>We have 22 width units, that we'll call columns, ranging from <code>5%</code> to <code>100%</code> in 5% increments as well as <code>33%</code> and <code>66%</code> for one and two thirds respectively.</p>
-  <p>Additionally we have a grid class that is used to group columns so they always stay together and don't get tangled with other layout elements. All these grid units are available as css classes that are prefixed with the breakpoints names:</p>
+  <ul class="css props">
+    <li class="heading">Css classes: </li>
+    <li class="prop">all-%</li>
+    <li class="prop">tiny-%</li>
+    <li class="prop">small-%</li>
+    <li class="prop">medium-%</li>
+    <li class="prop">large-%</li>
+    <li class="prop">extra-large-%</li>
+  </ul>
+  <p>We have 22 width units, that we'll call columns, ranging from 5% to 100% in 5% increments as well as 33% and 66% for one and two thirds respectively.</p>
+  <p><i class="fa fa-leaf"></i> All column elements must be inside a <code>column-group</code> element:</p>
+
+
 {% highlight html %}
-<div class="extra-large-50 large-50 medium-50 small-100 tiny-100">
-  ...
+<div class="ink-grid">
+  <div class="column-group">
+    <div class="all-50">
+      ...
+    </div>
+    <div class="all-50">
+      ...
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+
+<p class="example-title">Example</p>
+<div class="example">
+  <div class="ink-grid">
+    <div class="column-group">
+      <div class="all-50">
+        <div class="column align-left">
+          50%
+        </div>
+      </div>
+      <div class="all-50">
+        <div class="column align-left">
+          50%
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>The example above creates a 50/50 two column layout for all screens.</p>
+<p>Grid elements can be nested to create complex layouts:</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group">
+    <div class="all-50">
+      <div class="column-group">
+        <div class="all-33">...</div>
+        <div class="all-33">...</div>
+        <div class="all-33">...</div>
+      </div>
+    </div>
+    <div class="all-50">
+      <div class="column-group">
+        <div class="all-25">...</div>
+        <div class="all-25">...</div>
+        <div class="all-25">...</div>
+        <div class="all-25">...</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+  <div class="ink-grid">
+  <div class="column-group">
+    <div class="all-50">
+      <div class="column-group">
+        <div class="all-33">
+          <div class="column">33%</div>
+        </div>
+        <div class="all-33">
+          <div class="column">33%</div>
+        </div>
+        <div class="all-33">
+          <div class="column">33%</div>
+        </div>
+      </div>
+    </div>
+    <div class="all-50">
+      <div class="column-group">
+        <div class="all-25">
+          <div class="column">25%</div>
+        </div>
+        <div class="all-25">
+          <div class="column">25%</div>
+        </div>
+        <div class="all-25">
+          <div class="column">25%</div>
+        </div>
+        <div class="all-25">
+          <div class="column">25%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<p>The example above further divides each of the 50% columns in to 3 thirds and 4 fourths.</p>
+</section>
+<section id="gutters">
+  <h1>Gutters</h1>
+  <ul class="css props">
+    <li class="heading">Css classes:</li>
+    <li><code>gutters</code> <span class="label breakpoint-aware"></span><span class="label halves-quarters"></span></li>
+  </ul>
+  <p>Gutters are the space between columns of printed text. In ink we use the term to describe the space between layout columns.</p>
+  <p>Horizontal spacing is created by adding padding to the left of the columns and using the <a href="http://quirksmode.org/css/user-interface/boxsizing.html">border-box</a> box model. Vertical spacing is created with a bottom margin. So, if you want to add a background to a column, you'll need to add an additional element inside it.</p>
+  <p>To add space between a group of columns in your layout add the <code>gutters</code> class to the parent <code>column-group</code> element. You can also choose the amount of gutter space by using <code>half-gutters</code> or <code>quarter-gutters</code> classes to halve or quarter your column gutters.</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group gutters">
+    <div class="all-50">
+      ...
+    </div>
+    <div class="all-50">
+      ...
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+  <div class="ink-grid">
+    <div class="column-group gutters">
+      <div class="all-50">
+        <div class="column">50%</div>
+      </div>
+      <div class="all-50">
+        <div class="column">50%</div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>Gutters are applied only to the <code>column-group</code> direct children, so that nested elements are left untouched.</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group large-half-gutters">
+    <div class="all-50">
+      ...
+    </div>
+    <div class="all-50">
+      ...
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+  <div class="ink-grid">
+  <div class="column-group large-half-gutters">
+    <div class="all-50">
+      <div class="column">50%</div>
+    </div>
+    <div class="all-50">
+      <div class="column">50%</div>
+    </div>
+  </div>
+</div>
+</div>
+<p>In the example above half sized gutters are added on the <a href="#breakpoints">large</a> breakpoint only.</p>
+</section>
+<section id="multiple-screen-sizes">
+  <h1>Multiple screen sizes</h1>
+  <ul class="css props">
+    <li class="heading">Css classes: </li>
+    <li class="prop">all-%</li>
+    <li class="prop">tiny-%</li>
+    <li class="prop">small-%</li>
+    <li class="prop">medium-%</li>
+    <li class="prop">large-%</li>
+    <li class="prop">extra-large-%</li>
+  </ul>
+  <p>Handling layout changes for multiple screen sizes is as simple as adding a few more classes onto your markup.</p>
+{% highlight html %}
+<div class="ink-grid">
+  <div class="column-group gutters">
+    <div class="all-50 large-70">
+      <div class="column">50%</div>
+    </div>
+    <div class="all-50 large-30">
+      <div class="column">50%</div>
+    </div>
+  </div>
 </div>
 {% endhighlight %}
 </section>
