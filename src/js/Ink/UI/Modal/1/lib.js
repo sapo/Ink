@@ -318,6 +318,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _resizeContainer: function() {
+            // [3.0.0] drop this because everyone should have the new CSS now, which has this rule already with .ink-modal-is-open.
             this._contentElement.style.overflow = this._contentElement.style.overflowX = this._contentElement.style.overflowY = 'hidden';
             var containerHeight = InkElement.elementHeight(this._modalDiv);
 
