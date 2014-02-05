@@ -50,11 +50,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
         var opts = this._options = Common.options({
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
-            initialPage:   ['Integer', 0],
+            initialPage:    ['Integer', 0],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
-            pagination:     ['Object', null],
+            pagination:     ['String', null],
             onChange:       ['Function', null],
             swipe:          ['Boolean', true]
             // TODO exponential swipe
@@ -148,13 +148,6 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._numPages = numPages;
             this._deltaLength = this._slidesPerPage * this._elLength;
             
-            if (this._isY) {
-                this._element.style.width = size(this._liEls[0], true) + 'px';
-                this._ulEl.style.width  = size(this._liEls[0], true) + 'px';
-            } else {
-                this._ulEl.style.height = size(this._liEls[0], true) + 'px';
-            }
-
             this._center();
             this._updateHider();
             this._IE7();
