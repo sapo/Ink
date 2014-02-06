@@ -22,7 +22,7 @@
         li {
             
             @include box-shadow(none);
-            @include border-radius(0);
+            @include border-radius(none);
             width: auto;
             height: auto;
             min-height: auto;
