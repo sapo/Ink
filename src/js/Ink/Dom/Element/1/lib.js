@@ -17,6 +17,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         return div.getElementsByTagName('tbody').length !== 0;
     }());
 
+    function getDimensions(elem){
+        var dimensions = {};
+        try {
+            dimensions = elem.getBoundingClientRect();
+        } catch(e){
+            dimensions = { top: elem.offsetTop, left: elem.offsetLeft };
+        }
+        return dimensions;
+    }
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -197,7 +207,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var res = [0, 0];
             var doc = el.ownerDocument,
                 docElem = doc.documentElement,
-                box = el.getBoundingClientRect(),
+                box = getDimensions(el),
                 body = doc.body,
                 clientTop  = docElem.clientTop  || body.clientTop  || 0,
                 clientLeft = docElem.clientLeft || body.clientLeft || 0,
