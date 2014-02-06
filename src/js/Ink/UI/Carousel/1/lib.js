@@ -13,6 +13,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *  keyboardSupport
      */
 
+    function limitRange(n, min, max) {
+        return Math.min(max, Math.max(min, n));
+    }
+
     var requestAnimationFrame = window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -24,8 +28,10 @@ Ink.createModule('Ink.UI.Carousel', '1',
      *
      * @param {String|DOMElement} selector
      * @param {Object} [options]
+     *  @param {Integer} [autoAdvance=0] The number of milliseconds to wait between auto-advancing pages. Set to 0 to disable auto-advance.
      *  @param {String} [options.axis='x'] Can be `'x'` or `'y'`, for a horizontal or vertical carousel
      *  @param {Boolean} [options.center=false] Center the carousel.
+     *  @param {Number} [options.initialPage=0] When initialized, set the page to this.
      *  @TODO @param {Boolean} [options.keyboardSupport=false] Enable keyboard support
      *  @param {Boolean} [options.swipe=true] Enable swipe support where available
      *  @param {String|DOMElement|Ink.UI.Pagination_1} [options.pagination] Either an `<ul>` element to add pagination markup to, or an `Ink.UI.Pagination` instance to use.
@@ -34,24 +40,26 @@ Ink.createModule('Ink.UI.Carousel', '1',
     var Carousel = function(selector, options) {
         this._handlers = {
             paginationChange: Ink.bindMethod(this, '_onPaginationChange'),
-            windowResize:     Ink.bindMethod(this, 'refit')
+            windowResize:     InkEvent.throttle(Ink.bindMethod(this, 'refit'), 200)
         };
 
         InkEvent.observe(window, 'resize', this._handlers.windowResize);
 
         var element = this._element = Common.elOrSelector(selector, '1st argument');
 
-        var opts = this._options = Ink.extendObj({
-            axis:           'x',
-            hideLast:       false,
-            center:         false,
-            keyboardSupport:false,
-            pagination:     null,
-            onChange:       null,
-            swipe:          true
+        var opts = this._options = Common.options({
+            autoAdvance:    ['Integer', 0],
+            axis:           ['String', 'x'],
+            initialPage:    ['Integer', 0],
+            hideLast:       ['Boolean', false],
+            center:         ['Boolean', false],
+            keyboardSupport:['Boolean', false],
+            pagination:     ['String', null],
+            onChange:       ['Function', null],
+            swipe:          ['Boolean', true]
             // TODO exponential swipe
-            // TODO specify break point for next slide
-        }, options || {}, InkElement.data(element));
+            // TODO specify break point for next page when moving finger
+        }, options || {}, element);
 
         this._isY = (opts.axis === 'y');
 
@@ -92,14 +100,20 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 pagination = this._pagination = opts.pagination;
                 this._pagination._options.onChange = this._handlers.paginationChange;
                 this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
+                this._pagination.setCurrent(opts.initialPage || 0);
             }
+        } else {
+            this._currentPage = opts.initialPage || 0;
         }
 
         if (opts.swipe) {
             InkEvent.observe(element, 'touchstart', Ink.bindMethod(this, '_onTouchStart'));
             InkEvent.observe(element, 'touchmove', Ink.bindMethod(this, '_onTouchMove'));
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
+        }
+
+        if (opts.autoAdvance) {
+            this._setUpAutoAdvance();
         }
     };
 
@@ -124,36 +138,39 @@ Ink.createModule('Ink.UI.Carousel', '1',
             };
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
-            var numItems = this._liEls.length;
+            var numSlides = this._liEls.length;
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
-            this._itemsPerPage = Math.floor( this._ctnLength / this._elLength  );
+            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  );
 
-            var numPages = Math.ceil( numItems / this._itemsPerPage );
+            var numPages = Math.ceil( numSlides / this._slidesPerPage );
             var numPagesChanged = this._numPages !== numPages;
             this._numPages = numPages;
-            this._deltaLength = this._itemsPerPage * this._elLength;
+            this._deltaLength = this._slidesPerPage * this._elLength;
             
-            if (this._isY) {
-                this._element.style.width = size(this._liEls[0], true) + 'px';
-                this._ulEl.style.width  = size(this._liEls[0], true) + 'px';
-            } else {
-                this._ulEl.style.height = size(this._liEls[0], true) + 'px';
-            }
-
             this._center();
             this._updateHider();
             this._IE7();
             
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(0);
             }
+            this.setPage(limitRange(this.getPage(), 1, this._numPages));
+        },
+
+        _setUpAutoAdvance: function () {
+            var self = this;
+            function autoAdvance() {
+                self.nextPage(true /* wrap */);
+                setTimeout(autoAdvance, self._options.autoAdvance);
+            }
+
+            setTimeout(autoAdvance, this._options.autoAdvance);
         },
 
         _center: function() {
             if (!this._options.center) { return; }
-            var gap = Math.floor( (this._ctnLength - (this._elLength * this._itemsPerPage) ) / 2 );
+            var gap = Math.floor( (this._ctnLength - (this._elLength * this._slidesPerPage) ) / 2 );
 
             var pad;
             if (this._isY) {
@@ -168,7 +185,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _updateHider: function() {
             if (!this._hiderEl) { return; }
             if ((!this._pagination) || this._pagination.getCurrent() === 0) {
-                var gap = Math.floor( this._ctnLength - (this._elLength * this._itemsPerPage) );
+                var gap = Math.floor( this._ctnLength - (this._elLength * this._slidesPerPage) );
                 if (this._options.center) {
                     gap /= 2;
                 }
@@ -275,11 +292,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _onTouchEnd: function (event) {
             if (this._swipeData && this._swipeData.pointerPos && !this._scrolling && !this._touchMoveIsFirstTouchMove) {
-                var snapToNext = 0.1;  // move 10% of the way to change page
+                var snapToNext = 0.1;  // swipe 10% of the way to change page
                 var progress = - this._swipeData.lastUlPos;
 
                 var curPage = this._pagination.getCurrent();
-                var estimatedPage = progress / this._elLength / this._itemsPerPage;
+                var estimatedPage = progress / this._elLength / this._slidesPerPage;
 
                 if (Math.round(estimatedPage) === curPage) {
                     var diff = estimatedPage - curPage;
@@ -291,10 +308,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
                     curPage = Math.round(estimatedPage);
                 }
 
-                // set the left/top positions in _onPaginationChange
-                if (!isNaN(curPage)) {
-                    this._pagination.setCurrent(curPage);
-                }
+                this.setPage(curPage);
 
                 event.stopPropagation();
                 // event.preventDefault();
@@ -308,13 +322,59 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         _onPaginationChange: function(pgn) {
             var currPage = pgn.getCurrent();
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', currPage * this._deltaLength, 'px'].join('');
+            this.setPage(currPage);
+        },
+
+        /**
+         * Get the currently displayed page.
+         * @method getPage
+         **/
+        getPage: function () {
+            if (this._pagination) {
+                return this._pagination.getCurrent();
+            } else {
+                return this._currentPage;
+            }
+        },
+
+        /**
+         * Set the current page to `page`
+         * @method setPage
+         * @param page
+         * @param [wrap=false] Wrap over the first and last pages. (For example, going to the 5th page when there are only 4 pages goes to the 1st page)
+         **/
+        setPage: function (page, wrap) {
+            if (wrap) {
+                // Pages outside the range [0..this._numPages] are wrapped.
+                page = page % this._numPages;
+                if (page < 0) { page = this._numPages - page; }
+            }
+            page = limitRange(page, 0, this._numPages - 1);
+            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', page * this._deltaLength, 'px'].join('');
             if (this._options.onChange) {
-                this._options.onChange.call(this, currPage);
+                this._options.onChange.call(this, page);
             }
 
+            this._currentPage = page;
+
             this._updateHider();
-        }
+        },
+
+        /**
+         * Change to the next page
+         * @method nextPage
+         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
+         **/
+        nextPage: function (wrap) {
+            this.setPage(this.getPage() + 1, wrap);
+        },
+
+        /**
+         * Change to the previous page
+         * @method previousPage
+         * @param {Boolean} [wrap=false] If true, going to the page after the last page takes you to the first page.
+         **/
+        previousPage: function (wrap) { this.setPage(this.getPage() - 1, wrap); }
     };
 
     function setTransitionProperty(el, newTransition) {

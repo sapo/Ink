@@ -1367,7 +1367,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          *
          *     <div id="target"></div>
          *
-         * call this function to wrap:
+         * call this function to wrap #target with a wrapper div.
          *
          *     InkElement.wrap('target', InkElement.create('div', {id: 'container'});
          * 
@@ -1391,6 +1391,44 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             }
 
             return container;
+        },
+
+        /**
+         * Pulls an element out of its wrapper.
+         *
+         * @method unwrap
+         * @param elem The element you're trying to unwrap. This should be a child of the wrapper.
+         * @param {String} [wrapperSelector] Use this if you want to find your wrapper (if `elem` is inside several layers of wrappers).
+         *
+         * @example
+         *
+         * When you have this:
+         *
+         *      <div id="wrapper">
+         *          <div id="unwrapMe"></div>
+         *      </div>
+         *
+         * If you do this:
+         *
+         *      InkElement.unwrap('unwrapMe');
+         *
+         * You get this:
+         *
+         *      <div id="unwrapMe"></div>
+         *      <div id="wrapper"></div>
+         *      
+         **/
+        unwrap: function (elem, wrapperSelector) {
+            elem = Ink.i(elem);
+            var wrapper;
+            if (wrapperSelector) {
+                wrapper = InkElement.findUpwardsBySelector(elem, wrapperSelector);
+            } else {
+                wrapper = elem.parentNode;
+            }
+            if (!wrapper || !wrapper.parentNode) { return; }
+
+            InkElement.insertBefore(elem, wrapper);
         },
 
         /**
