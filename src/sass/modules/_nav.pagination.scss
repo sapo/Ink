@@ -17,6 +17,90 @@
             }
 
             @include clearfix;
+
+            &.dotted {
+
+                li {
+            
+                    a {
+                        display: block;
+                        height: 1em;
+                        width: 1em;
+                        margin-right: .6em;
+                        padding: 0; 
+                        @include border-radius(50%);
+                    }
+
+                    &:first-child,
+                    &:last-child {
+                        a { 
+                            height: auto;
+                            width: auto;
+                            background: none;
+                        }
+                    }
+
+                    &.previous,
+                    &.next {
+                        a { display: none }
+                    }
+            
+                }
+            }
+
+            &.chevron {
+
+                li {
+                    
+                    display: none;
+
+                    &.next,
+                    &.previous { 
+                        
+                        display: block;
+
+                        a {
+                            position: absolute;
+                            display: block;
+                            margin-right: .6em;
+                            padding: 0; 
+                            margin: 0;
+                            @include border-radius(50%);
+                            font-family: FontAwesome;
+                            font-size: 4em;
+                            @include transition(compact(color 140ms ease-in-out));
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            color: rgba($white,0.6);
+                            @include text-shadow(none);
+                            &:hover,
+                            &:focus {
+                                color: rgba($white,0.6);    
+                            }
+                        }
+                    }
+                    
+                    &.previous {
+                        a {
+                            top: 35%;
+                            left: .5em;
+                            &:after { content: "\f137"; }
+                        }
+                    }
+
+                    &.next {
+                        a {
+                            top: 35%;
+                            right: .5em;
+                            &:after { content: "\f138"; }
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

@@ -243,6 +243,54 @@
                     }
                 }
             }
+
+
+            &.dotted {
+
+                li {
+            
+                    a { background: $grey-15; }
+                    
+                    &:hover,
+                    &.active {
+                        a { background: darken($grey-15,10%); }
+                    }
+            
+                }
+            }
+
+
+            &.chevron {
+
+                li {
+
+                    &.next,
+                    &.previous { 
+
+                        a {
+                            color: rgba($white,0.6);
+                            
+                            &:hover,
+                            &:focus,
+                            &.active {
+                                color: rgba($white,0.8);
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            color: rgba($white,0.6);
+                            @include text-shadow(none);
+                            &:hover,
+                            &:focus {
+                                color: rgba($white,0.6);    
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
