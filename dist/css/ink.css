@@ -2508,8 +2508,14 @@ table {
 .large-align-right {
   text-align: right; }
 
+.space {
+  margin: 1.75em; }
+
 .large-space {
   margin: 1.75em; }
+
+.padding {
+  padding: 1.75em; }
 
 .large-padding {
   padding: 1.75em; }
@@ -3019,8 +3025,14 @@ td.show-large {
   .extra-large-align-right {
     text-align: right; }
 
+  .space {
+    margin: 2em; }
+
   .extra-large-space {
     margin: 2em; }
+
+  .padding {
+    padding: 2em; }
 
   .extra-large-padding {
     padding: 2em; }
@@ -3529,8 +3541,14 @@ td.show-large {
   .medium-align-right {
     text-align: right; }
 
+  .space {
+    margin: 1.5em; }
+
   .medium-space {
     margin: 1.5em; }
+
+  .padding {
+    padding: 1.5em; }
 
   .medium-padding {
     padding: 1.5em; }
@@ -4039,8 +4057,14 @@ td.show-large {
   .small-align-right {
     text-align: right; }
 
+  .space {
+    margin: 1.25em; }
+
   .small-space {
     margin: 1.25em; }
+
+  .padding {
+    padding: 1.25em; }
 
   .small-padding {
     padding: 1.25em; }
@@ -4549,8 +4573,14 @@ td.show-large {
   .tiny-align-right {
     text-align: right; }
 
+  .space {
+    margin: 1em; }
+
   .tiny-space {
     margin: 1em; }
+
+  .padding {
+    padding: 1em; }
 
   .tiny-padding {
     padding: 1em; }
@@ -5137,13 +5167,10 @@ td.show-large {
           white-space: nowrap; }
           .ink-dropdown ul.dropdown-menu li.submenu > a:after {
             content: "\f0da";
-            float: right;
             width: auto;
             margin-left: 0.8em;
             font-family: FontAwesome;
-            color: #b3b3b3;
-            clear: both;
-            text-align: right; }
+            color: #b3b3b3; }
         .ink-dropdown ul.dropdown-menu li.submenu:hover > a {
           background: #f2f2f2;
           text-decoration: none; }
@@ -5166,6 +5193,59 @@ td.show-large {
       padding: 0.5em 1em;
       display: block;
       float: left; }
+  .ink-navigation ul.pagination.dotted li a {
+    display: block;
+    height: 1em;
+    width: 1em;
+    margin-right: .6em;
+    padding: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%; }
+  .ink-navigation ul.pagination.dotted li:first-child a, .ink-navigation ul.pagination.dotted li:last-child a {
+    height: auto;
+    width: auto;
+    background: none; }
+  .ink-navigation ul.pagination.dotted li.previous a, .ink-navigation ul.pagination.dotted li.next a {
+    display: none; }
+  .ink-navigation ul.pagination.chevron li {
+    display: none; }
+    .ink-navigation ul.pagination.chevron li.next, .ink-navigation ul.pagination.chevron li.previous {
+      display: block; }
+      .ink-navigation ul.pagination.chevron li.next a, .ink-navigation ul.pagination.chevron li.previous a {
+        position: absolute;
+        display: block;
+        margin-right: .6em;
+        padding: 0;
+        margin: 0;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        font-family: FontAwesome;
+        font-size: 4em;
+        -webkit-transition: color 140ms ease-in-out;
+        -moz-transition: color 140ms ease-in-out;
+        -o-transition: color 140ms ease-in-out;
+        transition: color 140ms ease-in-out; }
+    .ink-navigation ul.pagination.chevron li.disabled a {
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: none; }
+      .ink-navigation ul.pagination.chevron li.disabled a:hover, .ink-navigation ul.pagination.chevron li.disabled a:focus {
+        color: rgba(255, 255, 255, 0.6); }
+    .ink-navigation ul.pagination.chevron li.previous a {
+      top: 35%;
+      left: .5em; }
+      .ink-navigation ul.pagination.chevron li.previous a:after {
+        content: "\f137"; }
+    .ink-navigation ul.pagination.chevron li.next a {
+      top: 35%;
+      right: .5em; }
+      .ink-navigation ul.pagination.chevron li.next a:after {
+        content: "\f138"; }
 
 @media screen and (max-width: 650px) {
   html body .ink-navigation .pagination li a {
@@ -5439,6 +5519,41 @@ dl {
     margin: 0; }
   dl.inline dd {
     margin: .5em 0 .5em 200px; }
+
+.ink-carousel {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block; }
+  .ink-carousel .stage {
+    left: 0;
+    height: auto !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style-type: none;
+    white-space: nowrap;
+    position: relative;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease; }
+    .ink-carousel .stage .slide {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      white-space: normal;
+      margin: 0;
+      float: none;
+      zoom: 1;
+      *display: inline; }
+  .ink-carousel .hider {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: white;
+    margin: 0; }
 
 .ink-badge {
   -webkit-border-radius: 8em;
@@ -6078,6 +6193,20 @@ dl {
         background: #9a0d0d; }
   .ink-navigation ul.pagination.black li.disabled a:hover, .ink-navigation ul.pagination.grey li.disabled a:hover, .ink-navigation ul.pagination.white li.disabled a:hover, .ink-navigation ul.pagination.blue li.disabled a:hover, .ink-navigation ul.pagination.green li.disabled a:hover, .ink-navigation ul.pagination.orange li.disabled a:hover, .ink-navigation ul.pagination.red li.disabled a:hover {
     background: none; }
+  .ink-navigation ul.pagination.dotted li a {
+    background: #d9d9d9; }
+  .ink-navigation ul.pagination.dotted li:hover a, .ink-navigation ul.pagination.dotted li.active a {
+    background: #bfbfbf; }
+  .ink-navigation ul.pagination.chevron li.next a, .ink-navigation ul.pagination.chevron li.previous a {
+    color: rgba(255, 255, 255, 0.6); }
+    .ink-navigation ul.pagination.chevron li.next a:hover, .ink-navigation ul.pagination.chevron li.next a:focus, .ink-navigation ul.pagination.chevron li.next a.active, .ink-navigation ul.pagination.chevron li.previous a:hover, .ink-navigation ul.pagination.chevron li.previous a:focus, .ink-navigation ul.pagination.chevron li.previous a.active {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none; }
+  .ink-navigation ul.pagination.chevron li.disabled a {
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: none; }
+    .ink-navigation ul.pagination.chevron li.disabled a:hover, .ink-navigation ul.pagination.chevron li.disabled a:focus {
+      color: rgba(255, 255, 255, 0.6); }
 
 .ink-navigation ul.pills li {
   background: white;

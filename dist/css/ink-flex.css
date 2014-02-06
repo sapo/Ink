@@ -4003,13 +4003,10 @@ html.flexbox .column-group {
           white-space: nowrap; }
           .ink-dropdown ul.dropdown-menu li.submenu > a:after {
             content: "\f0da";
-            float: right;
             width: auto;
             margin-left: 0.8em;
             font-family: FontAwesome;
-            color: #b3b3b3;
-            clear: both;
-            text-align: right; }
+            color: #b3b3b3; }
         .ink-dropdown ul.dropdown-menu li.submenu:hover > a {
           background: #f2f2f2;
           text-decoration: none; }
@@ -4032,6 +4029,59 @@ html.flexbox .column-group {
       padding: 0.5em 1em;
       display: block;
       float: left; }
+  .ink-navigation ul.pagination.dotted li a {
+    display: block;
+    height: 1em;
+    width: 1em;
+    margin-right: .6em;
+    padding: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%; }
+  .ink-navigation ul.pagination.dotted li:first-child a, .ink-navigation ul.pagination.dotted li:last-child a {
+    height: auto;
+    width: auto;
+    background: none; }
+  .ink-navigation ul.pagination.dotted li.previous a, .ink-navigation ul.pagination.dotted li.next a {
+    display: none; }
+  .ink-navigation ul.pagination.chevron li {
+    display: none; }
+    .ink-navigation ul.pagination.chevron li.next, .ink-navigation ul.pagination.chevron li.previous {
+      display: block; }
+      .ink-navigation ul.pagination.chevron li.next a, .ink-navigation ul.pagination.chevron li.previous a {
+        position: absolute;
+        display: block;
+        margin-right: .6em;
+        padding: 0;
+        margin: 0;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        font-family: FontAwesome;
+        font-size: 4em;
+        -webkit-transition: color 140ms ease-in-out;
+        -moz-transition: color 140ms ease-in-out;
+        -o-transition: color 140ms ease-in-out;
+        transition: color 140ms ease-in-out; }
+    .ink-navigation ul.pagination.chevron li.disabled a {
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: none; }
+      .ink-navigation ul.pagination.chevron li.disabled a:hover, .ink-navigation ul.pagination.chevron li.disabled a:focus {
+        color: rgba(255, 255, 255, 0.6); }
+    .ink-navigation ul.pagination.chevron li.previous a {
+      top: 35%;
+      left: .5em; }
+      .ink-navigation ul.pagination.chevron li.previous a:after {
+        content: "\f137"; }
+    .ink-navigation ul.pagination.chevron li.next a {
+      top: 35%;
+      right: .5em; }
+      .ink-navigation ul.pagination.chevron li.next a:after {
+        content: "\f138"; }
 
 @media screen and (max-width: 650px) {
   html body .ink-navigation .pagination li a {
