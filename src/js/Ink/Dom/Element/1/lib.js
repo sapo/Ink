@@ -17,22 +17,14 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         return div.getElementsByTagName('tbody').length !== 0;
     }());
 
-    // Shorthand for element.getBoundingClientRect();
-    function rect(elem) {
+    function rect(elem){
+        var dimensions = {};
         try {
-            return elem.getBoundingClientRect();
-        } catch(e) {
-            var left = elem.offsetLeft || 0;
-            var top = elem.offsetTop || 0;
-            var h = elem.offsetHeight || 0;
-            var w = elem.offsetWidth || 0;
-            return {
-                left: left,
-                top: top,
-                bottom: top + h,
-                right: left + w
-            };
+            dimensions = elem.getBoundingClientRect();
+        } catch(e){
+            dimensions = { top: elem.offsetTop, left: elem.offsetLeft };
         }
+        return dimensions;
     }
 
     /**
