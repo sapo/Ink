@@ -249,4 +249,23 @@ Ink.requireModules(['Ink.Dom.Element_1', 'Ink.Dom.Selector_1', 'Ink.Dom.Css_1'],
 
         document.body.removeChild(elm);
     });
+
+    test('outerDimensions in an element detached from the DOM', function () {
+        var elm = InkElement.create('div');
+
+        elm.style.width = '30px';
+        elm.style.paddingRight = '5px';
+        elm.style.marginRight = '5px';
+
+        elm.style.height = '10px';
+        elm.style.paddingBottom = '5px';
+        elm.style.marginBottom = '5px';
+
+        equal(InkElement.outerDimensions(elm).length, 2);
+        notStrictEqual(InkElement.outerDimensions(elm)[0], NaN);
+        notStrictEqual(InkElement.outerDimensions(elm)[1], NaN);
+        equal(typeof InkElement.outerDimensions(elm)[0], 'number');
+        equal(typeof InkElement.outerDimensions(elm)[1], 'number');
+
+    });
 });
