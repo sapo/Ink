@@ -28,7 +28,7 @@
                 }
 
                 a {
-                    @include transition(compact(background 140ms ease-in-out));
+                    @include transition(compact(all 140ms ease-in-out));
                 }
 
                 &:first-child,
@@ -245,21 +245,33 @@
             }
 
 
+            
+            // defines dotted pagination themes
             &.dotted {
 
                 li {
+                    background: none;
             
-                    a { background: $grey-15; }
+                    a { 
+                        background: $grey-40; 
+                        @include opacity(.5)
+                    }
                     
                     &:hover,
                     &.active {
-                        a { background: darken($grey-15,10%); }
+                        a { @include opacity(1); }
                     }
-            
                 }
+
+                &.black li a    { background: $grey-90; }
+                &.white li a    { background: $white; }
+                &.blue li a     { background: desaturate($blue,10%); }
+                &.green li a    { background: desaturate($green,10%); }
+                &.orange li a   { background: desaturate($orange,10%); }
+                &.red li a      { background: desaturate($red,10%); }
             }
 
-
+            // defines chevron pagination theme
             &.chevron {
 
                 li {
@@ -268,26 +280,79 @@
                     &.previous { 
 
                         a {
-                            color: rgba($white,0.6);
+                            color: $white;
+                            @include opacity(.6);
                             
                             &:hover,
                             &:focus,
                             &.active {
-                                color: rgba($white,0.8);
+                                @include opacity(.8);
                                 text-decoration: none;
+                                background: none;
                             }
                         }
                     }
 
                     &.disabled {
                         a {
-                            color: rgba($white,0.6);
+                            color: $white;
+                            @include opacity(.6);
                             @include text-shadow(none);
                             &:hover,
                             &:focus {
-                                color: rgba($white,0.6);    
+                                color: $white;
+                                @include opacity(.6);
                             }
                         }
+                    }
+                }
+
+                &.black li {
+                    &.next ,
+                    &.previous,
+                    &.disabled {
+                        a { color: $grey-90; }
+                    }
+                }
+                
+                &.grey li {
+                    &.next ,
+                    &.previous,
+                    &.disabled {
+                        a { color: $grey-15; }
+                    }
+                }
+
+                &.blue li {
+                    
+                    &.next ,
+                    &.previous,
+                    &.disabled {
+                        a { color: desaturate($blue,10%); }
+                    }
+                }
+
+                &.green li {
+                    &.next ,
+                    &.previous,
+                    &.disabled {
+                        a { color: desaturate($green,10%); }
+                    }
+                }
+
+                &.orange li {
+                    &.next ,
+                    &.previous,
+                    &.disabled {
+                        a { color: desaturate($orange,10%); }
+                    }
+                }
+
+                &.red li {
+                    &.next ,
+                    &.previous,
+                    &.disabled {
+                        a { color: desaturate($red,10%); }
                     }
                 }
             }

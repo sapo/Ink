@@ -62,13 +62,11 @@
                         a {
                             position: absolute;
                             display: block;
-                            margin-right: .6em;
                             padding: 0; 
                             margin: 0;
-                            @include border-radius(50%);
                             font-family: FontAwesome;
                             font-size: 4em;
-                            @include transition(compact(color 140ms ease-in-out));
+                            @include transition(compact(all 140ms ease-in-out));
                         }
                     }
 
@@ -87,7 +85,7 @@
                         a {
                             top: 35%;
                             left: .5em;
-                            &:after { content: "\f137"; }
+                            &:after { content: $fa-var-chevron-circle-left; }
                         }
                     }
 
@@ -95,7 +93,7 @@
                         a {
                             top: 35%;
                             right: .5em;
-                            &:after { content: "\f138"; }
+                            &:after { content: $fa-var-chevron-circle-right; }
                         }
                     }
 
