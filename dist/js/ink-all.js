@@ -2730,6 +2730,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         return div.getElementsByTagName('tbody').length !== 0;
     }());
 
+    function rect(elem){
+        var dimensions = {};
+        try {
+            dimensions = elem.getBoundingClientRect();
+        } catch(e){
+            dimensions = { top: elem.offsetTop, left: elem.offsetLeft };
+        }
+        return dimensions;
+    }
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -2910,7 +2920,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var res = [0, 0];
             var doc = el.ownerDocument,
                 docElem = doc.documentElement,
-                box = el.getBoundingClientRect(),
+                box = rect(el),
                 body = doc.body,
                 clientTop  = docElem.clientTop  || body.clientTop  || 0,
                 clientLeft = docElem.clientLeft || body.clientLeft || 0,
@@ -3343,7 +3353,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Array} Array with element width and height.
          */
         outerDimensions: function (element) {
-            var bbox = element.getBoundingClientRect();
+            var bbox = rect(element);
 
             var Css = Ink.getModule('Ink.Dom.Css_1');
             var getStyle = Ink.bindMethod(Css, 'getStyle', element);
@@ -3363,7 +3373,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Boolean}
          */
         inViewport: function (element, partial) {
-            var rect = Ink.i(element).getBoundingClientRect();
+            var rect = rect(Ink.i(element));
             if (partial) {
                 return  rect.bottom > 0                        && // from the top
                         rect.left < InkElement.viewportWidth()    && // from the right
@@ -18703,6 +18713,12 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
     'use strict';
+
+    var opacitySupported = (function (div) {
+        div.style.opacity = 'invalid';
+        return div.style.opacity !== 'invalid';
+    }(InkElement.create('div', {style: 'opacity: 1'})));
+
     /**
      * @class Ink.UI.Modal
      * @constructor
@@ -18758,7 +18774,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      */
 
     function upName(dimension) {
-        return dimension[0].toUpperCase() + dimension.replace(/^./, '');
+        // omg IE
+        var firstCharacter = dimension.match(/^./)[0];
+        return firstCharacter.toUpperCase() + dimension.replace(/^./, '');
     }
     function maxName(dimension) {
         return 'max' + upName(dimension);
@@ -19076,6 +19094,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._modalShadowStyle.display = this._modalDivStyle.display = 'block';
             setTimeout(Ink.bind(function() {
                 Css.addClassName( this._modalShadow, 'visible' );
+                console.log(this._modalShadow.className)
                 Css.addClassName( this._modalDiv, 'visible' );
             }, this), 100);
 
@@ -19213,6 +19232,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Specific to this._element
          */
         _waitForFade: function (elem, callback) {
+            if (!opacitySupported) { return callback(); }
+
             var transitionEndEventNames = [
                 'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
             var classicName;
