@@ -69,8 +69,11 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'node':   ['String', 'li'],
             'child':  ['String','ul'],
             'parentClass': ['String','parent'],
-            'openClass': ['String','icon icon-minus-circle'],
-            'closedClass': ['String','icon icon-plus-circle'],
+            // [3.0.0] use these classes because you'll have font-awesome 4
+            // 'openClass': ['String','fa fa-minus-circle'],
+            // 'closedClass': ['String','fa fa-plus-circle'],
+            'openClass': ['String','icon-minus-sign'],
+            'closedClass': ['String','icon-plus-sign'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
