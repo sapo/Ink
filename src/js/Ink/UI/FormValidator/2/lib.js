@@ -901,11 +901,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
                     var paragraph = document.createElement('p');
                     Css.addClassName(paragraph,'tip');
-                    if (controlGroupElement && !controlElement) {
-                        controlGroupElement.appendChild(paragraph);
+                    if (controlElement || controlGroupElement) {
+                        (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {
-                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
+                        Element.insertAfter(paragraph, formElement.getElement());
                     }
+
                     var errors = formElement.getErrors();
                     var errorArr = [];
                     for (var k in errors) {
