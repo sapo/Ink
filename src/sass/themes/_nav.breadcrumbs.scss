@@ -4,134 +4,20 @@
     ul {
 
         &.breadcrumbs {
-
-            // defines default theme
             font-weight: $navigation-font-weight;
             @include border-radius($navigation-border-radius);
+            
+            // defines default theme
+            @include nav-breadcrumbs();
 
-            li {
-                &.active {
-                    a { 
-                        background: none;
-                        color: $grey-40; 
-                        &:hover {
-                            cursor: default;
-                            text-decoration: none;
-                        }
-                    }
-                }
-                a {
-                    &:hover {
-                        background: none;
-                        text-decoration: underline;
-                    }
-                }
-            }
-
-            // defines white theme
-            &.white {
-                background: $white;
-                li {
-                    a,
-                    &:after { 
-                        color: $text-color; 
-                    }
-                    &.active a { 
-                        color: $grey-40;
-                        @include text-shadow(lighten($grey-40,40%) 0 1px, 0);
-                    }
-                }
-            }
-
-            // defines grey theme
-            &.grey {
-                background: $grey-15;
-                li {
-                    a,
-                    &:after {
-                        color: $text-color;
-                    }
-                    &.active a { 
-                        color: $grey-40;
-                        @include text-shadow(lighten($grey-40,40%) 0 1px, 0);
-                    }
-                }
-            }
-
-            // defines black theme
-            &.black {
-                background: $grey-90;
-                li {
-                    a,
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: $grey-60; 
-                        @include text-shadow($black 0 -1px 0);
-                    }
-                }
-            }
-
-            // defines orange them
-            &.orange {
-                background: desaturate($orange,10%);
-                li {
-                    a,
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: darken($orange,20%); 
-                        @include text-shadow(lighten($orange,8%) 0 1px 0);
-                    }
-                }
-            }
-
-            // defines blue theme
-            &.blue {
-                background: desaturate($blue,10%);
-                li {
-                    a,
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: darken($blue,20%); 
-                        @include text-shadow(lighten($blue,8%) 0 1px 0);
-                    }
-                }
-            }
-
-            // defines green theme
-            &.green {
-                background: desaturate($green,10%);
-                li {
-                    a,
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: darken($green,20%); 
-                        @include text-shadow(lighten($green,6%) 0 1px 0);
-                    }
-                }
-            }
-
-            // defines red theme
-            &.red {
-                background: desaturate($red,10%);
-                li {
-                    a,
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: darken($red,25%); 
-                        @include text-shadow(lighten($red,8%) 0 1px 0);
-                    }
-                }
-            }
+            // defines custom themes
+            &.white     { @include nav-breadcrumbs($white); }
+            &.grey      { @include nav-breadcrumbs($grey-15); }
+            &.black     { @include nav-breadcrumbs($grey-90); }
+            &.blue      { @include nav-breadcrumbs($blue); }
+            &.orange    { @include nav-breadcrumbs($orange); }
+            &.green     { @include nav-breadcrumbs($green); }
+            &.red       { @include nav-breadcrumbs($red); }
         }
     }
 }

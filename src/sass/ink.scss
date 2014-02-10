@@ -37,7 +37,11 @@
 @import "mixins/buttons";
 @import "mixins/grid";
 @import "mixins/forms";
-@import "mixins/navigation";
+@import "mixins/nav.pills";
+@import "mixins/nav.breadcrumbs";
+@import "mixins/nav.pagination";
+@import "mixins/nav.menu";
+@import "mixins/nav.dropdown";
 @import "mixins/spacing";
 @import "mixins/typography";
 @import "mixins/utils";

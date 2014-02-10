@@ -60,9 +60,10 @@
                         display: block;
 
                         a {
-                            position: absolute;
                             display: block;
-                            padding: 0; 
+                            position: absolute;
+                            top: 35%;
+                            padding: 0 .5em; 
                             margin: 0;
                             font-family: FontAwesome;
                             font-size: 4em;
@@ -83,16 +84,14 @@
                     
                     &.previous {
                         a {
-                            top: 35%;
-                            left: .5em;
+                            left: 0;
                             &:after { content: $fa-var-chevron-circle-left; }
                         }
                     }
 
                     &.next {
                         a {
-                            top: 35%;
-                            right: .5em;
+                            right: 0;
                             &:after { content: $fa-var-chevron-circle-right; }
                         }
                     }
