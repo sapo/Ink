@@ -4756,7 +4756,8 @@ dl {
     border-bottom-left-radius: 2px;
     -moz-border-radius-bottomright: 2px;
     -webkit-border-bottom-right-radius: 2px;
-    border-bottom-right-radius: 2px; }
+    border-bottom-right-radius: 2px;
+    background: white; }
     .ink-navigation ul.menu.horizontal > li ul.submenu li:last-child {
       -moz-border-radius-bottomleft: 2px;
       -webkit-border-bottom-left-radius: 2px;
