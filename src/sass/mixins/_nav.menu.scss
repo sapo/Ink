@@ -118,6 +118,7 @@
                     &.submenu {
 
                         @include border-bottom-radius($navigation-border-radius);
+                        background: $white;
 
                         li {
 
