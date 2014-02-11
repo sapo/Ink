@@ -30,7 +30,7 @@
 @mixin generate-column-group-container($gutter-width, $class-name) {
 
     .#{$grid-column-group-class-name} {        
-        @include clearfix;
+        @include pie-clearfix;
     }
 
     .#{$grid-column-group-class-name}.#{$grid-gutters-class-name} {
@@ -106,6 +106,51 @@
 
 }
 
+@mixin generate-grid-all-divisions () {
+    // iteration counter
+    $i: 5;
+
+    // define the step size (this is the minimum column width percentage)
+    $step-size: 5;
+
+    .#{$grid-column-group-class-name} > [class*=all-] {
+      float: left;
+      clear: none;
+    }
+
+    // iterate to generate the width classes
+    @while $i <= 100 {
+        // generate the 33% width
+        @if $i > 30 and $i <= 35 {
+            .all-33 {
+                width: 33.33%;
+            }
+        }
+        
+        // generate the 66% width
+        @if $i > 65 and $i <= 70 {
+            .all-66 {
+                width: 66.66%;
+            }
+        }
+        
+        
+        .all-#{$i} {
+            width: $i * 1%;            
+        }
+
+        @if $i == 100 {
+            [class*=all-#{$i}] {
+                float: none;
+                clear: both;
+            }
+        }
+
+        // increment the counter
+        $i: $i + $step-size;
+    }
+}
+
 @mixin generate-grid-divisions ($class-name) {
     // iteration counter
     $i: 5;
@@ -125,17 +170,11 @@
             .#{$class-name}-33 {
                 width: 33.33%;
             }
-            .all-#{$i} {
-                width: 33.33%;
-            }
         }
         
         // generate the 66% width
         @if $i > 65 and $i <= 70 {
             .#{$class-name}-66 {
-                width: 66.66%;
-            }
-            .all-#{$i} {
                 width: 66.66%;
             }
         }
@@ -145,9 +184,6 @@
             width: $i * 1%;
         }
         
-        .all-#{$i} {
-            width: $i * 1%;            
-        }
 
         @if $i == 100 {
             [class*=#{$class-name}-#{$i}] {
@@ -420,6 +456,33 @@
     }
 }
 
+@mixin generate-ie-grid ($breakpoints) {
+
+    .#{$grid-class-name} {
+        width: auto;
+        max-width: $grid-max-width;
+        margin: 0 auto;
+    }
+
+    @each $breakpoint in $breakpoints {
+
+        $class-name: nth($breakpoint,1);
+        $minimum-width: nth($breakpoint,2);
+        $maximum-width: nth($breakpoint,3);
+        $gutter-width: nth($breakpoint,4);
+        $base-font-size: nth($breakpoint,5);
+        $no-media-query: nth($breakpoint,6);
+
+        @if $no-media-query {
+              @include generate-grid-container($grid-class-name, $gutter-width);
+              @include generate-grid-divisions($class-name);
+              @include generate-column-group-container($gutter-width,$class-name);
+              @include generate-grid-helper-classes($class-name,$gutter-width);
+              @include generate-visibility-classes($class-name);
+        }
+    }
+}
+
 @mixin generate-grid ($breakpoints) {
 
     .#{$grid-class-name} {
@@ -437,7 +500,7 @@
         $base-font-size: nth($breakpoint,5);
         $no-media-query: nth($breakpoint,6);
 
-        @if $minimum-width and not $maximum-width and not $no-media-query {
+        @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
                 @include generate-grid-container($grid-class-name, $gutter-width);
                 @include generate-grid-divisions($class-name);
@@ -447,7 +510,7 @@
             }
         }
 
-        @if $minimum-width and $maximum-width and not $no-media-query {
+        @if $minimum-width and $maximum-width {
             @media screen and (min-width: $minimum-width) and (max-width: $maximum-width) {
                 @include generate-grid-container($grid-class-name, $gutter-width);
                 @include generate-grid-divisions($class-name);
@@ -457,7 +520,7 @@
             }
         }
 
-        @if not $minimum-width and $maximum-width and not $no-media-query {
+        @if not $minimum-width and $maximum-width {
             @media screen and (max-width: $maximum-width) {
                 @include generate-grid-container($grid-class-name, $gutter-width);
                 @include generate-grid-divisions($class-name);
@@ -465,13 +528,7 @@
                 @include generate-visibility-classes($class-name);
             }
         }
-
-        @if $no-media-query {
-              @include generate-grid-container($grid-class-name, $gutter-width);
-              @include generate-grid-divisions($class-name);
-              @include generate-column-group-container($gutter-width,$class-name);
-              @include generate-grid-helper-classes($class-name,$gutter-width);
-              @include generate-visibility-classes($class-name);
-        }
     }
+
+    @include generate-grid-all-divisions();
 }
