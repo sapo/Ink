@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "modernizr": "~2.6.2",
-    "font-awesome": "~4.0.3",
+    "font-awesome": "~3.2.1",
     "html5shiv": "~3.7.0",
     "animate.css": "~3.0.0"
   },
