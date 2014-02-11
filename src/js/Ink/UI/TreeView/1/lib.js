@@ -23,7 +23,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
      * @param {Boolean} [options.stopDefault=true] Stops the default behavior of the click handler.
      * @example
      *      <ul class="ink-tree-view">
-     *        <li class="open"><a href="#">root</a>
+     *        <li data-open="true"><a href="#">root</a>
      *          <ul>
      *            <li><a href="#">child 1</a></li>
      *            <li><a href="#">child 2</a>
@@ -78,18 +78,14 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * @private
          */
         _init: function(){
-
             this._handlers = {
                 click: Ink.bindEvent(this._onClick,this)
             };
 
-            Event.observe(this._element, 'click', this._handlers.click);
+            Event.on(this._element, 'click', this._options.node, this._handlers.click);
 
-            var nodes = Selector.select(this._options.node,this._element);
-            InkArray.each(nodes, Ink.bind(function(item){
-                var child = this._getChild(item);
-
-                if( child ) {
+            InkArray.each(Ink.ss(this._options.node, this._element), Ink.bind(function(item){
+                if( this._isParent(item) ) {
                     Css.addClassName(item, this._options.parentClass);
 
                     var isOpen = this.isOpen(item);
@@ -114,6 +110,8 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             return Element.data(node).open === 'true' ||
                 Css.hasClassName(node, this._options.openNodeClass);
         },
+
+        isParent: function (node) { return this._getChild(node) != null; },
 
         _setNodeOpen: function (node, beOpen) {
             var child = this._getChild(node);
@@ -158,24 +156,24 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
          * @param {Event} event
          * @private
          */
-        _onClick: function(event){
+        _onClick: function(ev){
             /**
              * Summary:
              * If the clicked element is a "node" as defined in the options, will check if it has any "child".
              * If so, will toggle its state and stop the event's default behavior if the stopDefault option is true.
-             *
-             */
-            var node = Event.element(event);
+             **/
 
-            node = Element.findUpwardsBySelector(node, this._options.node);
-
-            if (!node || !this._getChild(node)) { return; }
-
-            if(this._options.stopDefault){
-                Event.stop(event);
+            if (!this.isParent(ev.currentTarget) ||
+                    Selector.matchesSelector(ev.target, this._options.node) ||
+                    Selector.matchesSelector(ev.target, this._options.child)) {
+                return;
             }
 
-            this.toggle(node);
+            if (this._options.stopDefault){
+                ev.preventDefault();
+            }
+
+            this.toggle(ev.currentTarget);
         }
     };
 
