@@ -1,6 +1,7 @@
 # General
-output_style = :expanded
+output_style = :nested
 relative_assets = true
+line_comments = false
 project_path = "./"
 sass_dir = 'src/sass'
 css_dir = "dist/css"
