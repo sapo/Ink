@@ -419,7 +419,6 @@
         $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
-        $no-media-query: nth($breakpoint,6);
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
@@ -471,15 +470,19 @@
         $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
-        $no-media-query: nth($breakpoint,6);
 
-        @if $no-media-query {
+        @if length($breakpoint) > 5 {
+            
+            $no-media-query: nth($breakpoint,6);
+
+            @if $no-media-query {
               @include generate-grid-container($grid-class-name, $gutter-width);
               @include generate-grid-divisions($class-name);
               @include generate-column-group-container($gutter-width,$class-name);
               @include generate-grid-helper-classes($class-name,$gutter-width);
               @include generate-visibility-classes($class-name);
-        }
+            }
+        }       
     }
 }
 
@@ -490,6 +493,8 @@
         max-width: $grid-max-width;
         margin: 0 auto;
     }
+    
+    @include generate-grid-all-divisions();
 
     @each $breakpoint in $breakpoints {
 
@@ -498,7 +503,6 @@
         $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
-        $no-media-query: nth($breakpoint,6);
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
@@ -530,5 +534,4 @@
         }
     }
 
-    @include generate-grid-all-divisions();
 }

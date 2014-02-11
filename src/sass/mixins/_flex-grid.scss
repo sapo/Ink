@@ -238,7 +238,6 @@
       $minimum-width: nth($breakpoint,2);
       $maximum-width: nth($breakpoint,3);
       $gutter-width: nth($breakpoint,4);
-      $no-media-query: nth($breakpoint,6);
       $all-class-names: ".#{$class-name}, #{$all-class-names}"; 
 
       @if $minimum-width and not $maximum-width {
