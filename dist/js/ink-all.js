@@ -2730,6 +2730,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         return div.getElementsByTagName('tbody').length !== 0;
     }());
 
+    function rect(elem){
+        var dimensions = {};
+        try {
+            dimensions = elem.getBoundingClientRect();
+        } catch(e){
+            dimensions = { top: elem.offsetTop, left: elem.offsetLeft };
+        }
+        return dimensions;
+    }
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -2910,7 +2920,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var res = [0, 0];
             var doc = el.ownerDocument,
                 docElem = doc.documentElement,
-                box = el.getBoundingClientRect(),
+                box = rect(el),
                 body = doc.body,
                 clientTop  = docElem.clientTop  || body.clientTop  || 0,
                 clientLeft = docElem.clientLeft || body.clientLeft || 0,
@@ -3343,7 +3353,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Array} Array with element width and height.
          */
         outerDimensions: function (element) {
-            var bbox = element.getBoundingClientRect();
+            var bbox = rect(element);
 
             var Css = Ink.getModule('Ink.Dom.Css_1');
             var getStyle = Ink.bindMethod(Css, 'getStyle', element);
@@ -3363,7 +3373,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Boolean}
          */
         inViewport: function (element, partial) {
-            var rect = Ink.i(element).getBoundingClientRect();
+            var rect = rect(Ink.i(element));
             if (partial) {
                 return  rect.bottom > 0                        && // from the top
                         rect.left < InkElement.viewportWidth()    && // from the right
@@ -13368,11 +13378,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
         var opts = this._options = Common.options({
             autoAdvance:    ['Integer', 0],
             axis:           ['String', 'x'],
-            initialPage:   ['Integer', 0],
+            initialPage:    ['Integer', 0],
             hideLast:       ['Boolean', false],
             center:         ['Boolean', false],
             keyboardSupport:['Boolean', false],
-            pagination:     ['Object', null],
+            pagination:     ['String', null],
             onChange:       ['Function', null],
             swipe:          ['Boolean', true]
             // TODO exponential swipe
@@ -13459,20 +13469,13 @@ Ink.createModule('Ink.UI.Carousel', '1',
             var numSlides = this._liEls.length;
             this._ctnLength = size(this._element);
             this._elLength = size(this._liEls[0]);
-            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  );
+            this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  ) || 1;
 
             var numPages = Math.ceil( numSlides / this._slidesPerPage );
             var numPagesChanged = this._numPages !== numPages;
             this._numPages = numPages;
             this._deltaLength = this._slidesPerPage * this._elLength;
             
-            if (this._isY) {
-                this._element.style.width = size(this._liEls[0], true) + 'px';
-                this._ulEl.style.width  = size(this._liEls[0], true) + 'px';
-            } else {
-                this._ulEl.style.height = size(this._liEls[0], true) + 'px';
-            }
-
             this._center();
             this._updateHider();
             this._IE7();
@@ -17353,6 +17356,13 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var inputType = (elm.getAttribute('type') || '').toLowerCase();
             var value = this._trim(elm.value);
 
+            // When we're analyzing emails, telephones, etc, and the field is
+            // empty, we check if it is required. If not required, it's valid.
+            if (fieldType !== 'ink-fv-required' &&
+                    inputType !== 'checkbox' && inputType !== 'radio' &&
+                    value === '') {
+                return !Css.hasClassName(elm, 'ink-fv-required');
+            }
 
             switch(fieldType) {
                 case 'ink-fv-required':
@@ -17477,16 +17487,12 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 errorMsg.innerHTML = error.custom[0].msg;
             }
 
-            // TODO stop not inserting the error message when we can get CSS to work with us.
-            // This is terrible. CSS should be fixed instead
-            // This check should be removed.
-            // The lines after this add the "validation error" classes, so that the radios and checkboxes still appear in red.
-            // But that won't be removed because _clearError will iterate the error messages.
-            var type = (curElm.getAttribute('type') + '').toLowerCase();
-            if (type !== 'radio' && type !== 'checkbox') {
-                InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
+            var target = (controlElm || controlGroupElm);
+            if (target) {
+                target.appendChild(errorMsg);
+            } else {
+                InkElement.insertAfter(errorMsg, curElm);
             }
-            // Whatever
 
             if (controlElm) {
                 if(error.errors[0] === 'ink-fv-required') {
@@ -18457,11 +18463,12 @@ Ink.createModule('Ink.UI.FormValidator', '2', [ 'Ink.UI.Common_1','Ink.Dom.Eleme
 
                     var paragraph = document.createElement('p');
                     Css.addClassName(paragraph,'tip');
-                    if (controlGroupElement && !controlElement) {
-                        controlGroupElement.appendChild(paragraph);
+                    if (controlElement || controlGroupElement) {
+                        (controlElement || controlGroupElement).appendChild(paragraph);
                     } else {
-                        Element.insertAfter(paragraph, controlElement || formElement.getElement());
+                        Element.insertAfter(paragraph, formElement.getElement());
                     }
+
                     var errors = formElement.getErrors();
                     var errorArr = [];
                     for (var k in errors) {
@@ -18703,6 +18710,12 @@ Ink.createModule('Ink.UI.ImageQuery', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
  */
 Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1'], function(Common, Event, Css, InkElement, Selector, InkArray ) {
     'use strict';
+
+    var opacitySupported = (function (div) {
+        div.style.opacity = 'invalid';
+        return div.style.opacity !== 'invalid';
+    }(InkElement.create('div', {style: 'opacity: 1'})));
+
     /**
      * @class Ink.UI.Modal
      * @constructor
@@ -18758,7 +18771,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      */
 
     function upName(dimension) {
-        return dimension[0].toUpperCase() + dimension.replace(/^./, '');
+        // omg IE
+        var firstCharacter = dimension.match(/^./)[0];
+        return firstCharacter.toUpperCase() + dimension.replace(/^./, '');
     }
     function maxName(dimension) {
         return 'max' + upName(dimension);
@@ -19213,6 +19228,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * Specific to this._element
          */
         _waitForFade: function (elem, callback) {
+            if (!opacitySupported) { return callback(); }
+
             var transitionEndEventNames = [
                 'transitionEnd', 'oTransitionEnd', 'webkitTransitionEnd'];
             var classicName;
@@ -23521,8 +23538,11 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'node':   ['String', 'li'],
             'child':  ['String','ul'],
             'parentClass': ['String','parent'],
-            'openClass': ['String','icon icon-minus-circle'],
-            'closedClass': ['String','icon icon-plus-circle'],
+            // [3.0.0] use these classes because you'll have font-awesome 4
+            // 'openClass': ['String','fa fa-minus-circle'],
+            // 'closedClass': ['String','fa fa-plus-circle'],
+            'openClass': ['String','icon-minus-sign'],
+            'closedClass': ['String','icon-plus-sign'],
             'hideClass': ['String','hide-all'],
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]

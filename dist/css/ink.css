@@ -2469,6 +2469,7 @@ footer {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
+  font-size: 14px;
   text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
   *margin-right: .3em;
@@ -6216,11 +6217,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   *height: 100%;
 }
 .ink-navigation ul.menu li a {
-  -webkit-transition-property: 'background';
-  -moz-transition-property: 'background';
-  -o-transition-property: 'background';
-  -ms-transition-property: 'background';
-  transition-property: 'background';
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  -o-transition-property: background;
+  -ms-transition-property: background;
+  transition-property: background;
   -webkit-transition-duration: 140ms;
   -moz-transition-duration: 140ms;
   -o-transition-duration: 140ms;

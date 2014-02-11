@@ -2730,6 +2730,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         return div.getElementsByTagName('tbody').length !== 0;
     }());
 
+    function rect(elem){
+        var dimensions = {};
+        try {
+            dimensions = elem.getBoundingClientRect();
+        } catch(e){
+            dimensions = { top: elem.offsetTop, left: elem.offsetLeft };
+        }
+        return dimensions;
+    }
+
     /**
      * @module Ink.Dom.Element_1
      */
@@ -2910,7 +2920,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var res = [0, 0];
             var doc = el.ownerDocument,
                 docElem = doc.documentElement,
-                box = el.getBoundingClientRect(),
+                box = rect(el),
                 body = doc.body,
                 clientTop  = docElem.clientTop  || body.clientTop  || 0,
                 clientLeft = docElem.clientLeft || body.clientLeft || 0,
@@ -3343,7 +3353,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Array} Array with element width and height.
          */
         outerDimensions: function (element) {
-            var bbox = element.getBoundingClientRect();
+            var bbox = rect(element);
 
             var Css = Ink.getModule('Ink.Dom.Css_1');
             var getStyle = Ink.bindMethod(Css, 'getStyle', element);
@@ -3363,7 +3373,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Boolean}
          */
         inViewport: function (element, partial) {
-            var rect = Ink.i(element).getBoundingClientRect();
+            var rect = rect(Ink.i(element));
             if (partial) {
                 return  rect.bottom > 0                        && // from the top
                         rect.left < InkElement.viewportWidth()    && // from the right

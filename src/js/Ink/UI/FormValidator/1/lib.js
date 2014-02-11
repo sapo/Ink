@@ -503,6 +503,13 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
             var inputType = (elm.getAttribute('type') || '').toLowerCase();
             var value = this._trim(elm.value);
 
+            // When we're analyzing emails, telephones, etc, and the field is
+            // empty, we check if it is required. If not required, it's valid.
+            if (fieldType !== 'ink-fv-required' &&
+                    inputType !== 'checkbox' && inputType !== 'radio' &&
+                    value === '') {
+                return !Css.hasClassName(elm, 'ink-fv-required');
+            }
 
             switch(fieldType) {
                 case 'ink-fv-required':
@@ -627,16 +634,12 @@ Ink.createModule('Ink.UI.FormValidator', '1', ['Ink.Dom.Element_1', 'Ink.Dom.Css
                 errorMsg.innerHTML = error.custom[0].msg;
             }
 
-            // TODO stop not inserting the error message when we can get CSS to work with us.
-            // This is terrible. CSS should be fixed instead
-            // This check should be removed.
-            // The lines after this add the "validation error" classes, so that the radios and checkboxes still appear in red.
-            // But that won't be removed because _clearError will iterate the error messages.
-            var type = (curElm.getAttribute('type') + '').toLowerCase();
-            if (type !== 'radio' && type !== 'checkbox') {
-                InkElement.insertAfter(errorMsg, controlElm || controlGroupElm || curElm);
+            var target = (controlElm || controlGroupElm);
+            if (target) {
+                target.appendChild(errorMsg);
+            } else {
+                InkElement.insertAfter(errorMsg, curElm);
             }
-            // Whatever
 
             if (controlElm) {
                 if(error.errors[0] === 'ink-fv-required') {
