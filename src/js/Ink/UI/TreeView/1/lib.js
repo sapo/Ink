@@ -85,7 +85,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             Event.on(this._element, 'click', this._options.node, this._handlers.click);
 
             InkArray.each(Ink.ss(this._options.node, this._element), Ink.bind(function(item){
-                if( this._isParent(item) ) {
+                if( this.isParent(item) ) {
                     Css.addClassName(item, this._options.parentClass);
 
                     var isOpen = this.isOpen(item);
@@ -111,7 +111,10 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
                 Css.hasClassName(node, this._options.openNodeClass);
         },
 
-        isParent: function (node) { return this._getChild(node) != null; },
+        isParent: function (node) {
+            return Css.hasClassName(node, this._options.parentClass) ||
+                this._getChild(node) != null;
+        },
 
         _setNodeOpen: function (node, beOpen) {
             var child = this._getChild(node);
