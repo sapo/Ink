@@ -2,7 +2,6 @@
 exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", ".travis.yml", "src", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
 
 destination: ./_site
-baseurl: ./
 
 name: Ink
 url: http://localhost:4000
@@ -40,10 +39,11 @@ sections:
       - title: Navigation
         topics:
           - title: Introduction
-          - title: Dividing space
-          - title: Gutters
-          - title: Vertical spacing
-          - title: Multiple screen sizes
+          - title: Menus
+          - title: Breadcrumbs
+          - title: Pagination
+          - title: Pills
+          - title: Dropdowns
   - title: Javascript
     components: 
       - title: Dom
