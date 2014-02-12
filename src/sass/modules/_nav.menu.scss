@@ -51,8 +51,8 @@
                         margin-top: .3em;
                     }
                     ul.submenu {
-                        min-width: inherit;
-                        top: $navigation-line-height + $navigation-v-padding * 2;
+                        min-width: 100%;
+                        //top: $navigation-line-height + $navigation-v-padding * 2;
                         left: 0;
                         z-index: $layer-50;
                         li {
@@ -78,7 +78,8 @@
                             position: absolute;
                             min-width: 8em;
                             top: 0;
-                            left: 100%;
+                            &.left  { right: 100%; }
+                            &.right { left: 100%; }
                         }
                     }
                 }
