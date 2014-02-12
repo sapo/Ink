@@ -1,183 +1,23 @@
+// INK:NAVIGATION:BREADCRUMBS
 .#{$navigation-class-name} {
 
     ul {
 
-        // INK:NAVIGATION:BREADCRUMBS
         &.breadcrumbs {
+            font-weight: $navigation-font-weight;
+            @include border-radius($navigation-border-radius);
+            
+            // defines default theme
+            @include nav-breadcrumbs();
 
-            // defaults
-            li {
-                &.active {
-                    a { 
-                        background: none;
-                        color: $grey-40; 
-                        &:hover {
-                            cursor: default;
-                            text-decoration: none;
-                        }
-                    }
-                }
-                a {
-                    &:hover {
-                        background: none;
-                        text-decoration: underline;
-                    }
-                }
-            }
-
-            // white theme
-            &.white {
-                @include navigation(white);
-                li {
-                    a {
-                        color: $text-color;
-                    }
-                    &:after {
-                        color: $text-color;
-                    }
-                    &.active a { 
-                        color: $grey-40;
-                        @include text-shadow(tint($grey-40,40%) 0 1px 0);
-                    }
-                }
-            }
-
-            // grey theme
-            &.grey {
-                @include navigation(grey);
-                li {
-                    a {
-                        color: $text-color;
-                    }
-                    &:after {
-                        color: $text-color;
-                    }
-                    &.active a { 
-                        color: $grey-40;
-                        @include text-shadow(tint($grey-40,40%) 0 1px 0);
-                    }
-                }
-            }
-
-            // black theme
-            &.black {
-                @include navigation(black);
-                li {
-                    a {
-                        color: $white;
-                    }
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: $grey-60; 
-                        @include text-shadow($black 0 -1px 0);
-                    }
-                }
-            }
-
-            // orange them
-            &.orange {
-                @include navigation(orange);
-                li {
-                    a {
-                        color: $white;
-                    }
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: shade($orange,20%); 
-                        @include text-shadow(tint($orange,8%) 0 1px 0);
-                    }
-                }
-            }
-
-            // blue theme
-            &.blue {
-                @include navigation(blue);
-                li {
-                    a {
-                        color: $white;
-                    }
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: shade($blue,20%); 
-                        @include text-shadow(tint($blue,8%) 0 1px 0);
-                    }
-                }
-            }
-
-            // green theme
-            &.green {
-                @include navigation(green);
-                li {
-                    a {
-                        color: $white;
-                    }
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: shade($green,20%); 
-                        @include text-shadow(tint($green,6%) 0 1px 0);
-                    }
-                }
-            }
-
-            // red theme
-            &.red {
-                @include navigation(red);
-                li {
-                    a {
-                        color: $white;
-                    }
-                    &:after {
-                        color: $white;
-                    }
-                    &.active a { 
-                        color: shade($red,25%); 
-                        @include text-shadow(tint($red,8%) 0 1px 0);
-                    }
-                }
-            }
-
-            // remove gradients
-            &.flat {
-                // default white theme
-                background: $white;
-                filter: none;
-
-                // grey theme
-                &.grey { background: $grey-15; }
-
-                // black theme
-                &.black { background: $black; }
-
-                // blue theme
-                &.orange { background: desaturate($orange,10%); }
-
-                // blue theme
-                &.blue { background: desaturate($blue,10%); }
-
-                // green theme
-                &.green { background: desaturate($green,10%); }
-
-                // red theme
-                &.red { background: desaturate($red,10%); }
-            }
-
-            // adds rounded corners
-            &.rounded {
-                @include border-radius($navigation-border-radius);
-            }
-
-            // adds shadow
-            &.shadowed {
-                @include box-shadow(fade-out($black,0.3) 0 1px 2px 0);
-            }
+            // defines custom themes
+            &.white     { @include nav-breadcrumbs($white); }
+            &.grey      { @include nav-breadcrumbs($grey-15); }
+            &.black     { @include nav-breadcrumbs($grey-90); }
+            &.blue      { @include nav-breadcrumbs($blue); }
+            &.orange    { @include nav-breadcrumbs($orange); }
+            &.green     { @include nav-breadcrumbs($green); }
+            &.red       { @include nav-breadcrumbs($red); }
         }
     }
 }

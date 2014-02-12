@@ -4,282 +4,42 @@
 
         &.pagination {
             
-            //defaults
-            li {
-                
-                &.active a { text-decoration: underline; }
-                
-                &.disabled {
-                    a {
-                        color: $grey-30;
-                        @include text-shadow(lighten($grey-40,40%) 0 1px 0);
+            @include nav-pagination();
+            
+            // defines default pagination themes
+            &.white     { @include nav-pagination(null,$white); }
+            &.grey      { @include nav-pagination(null,$grey-15 ); }
+            &.black     { @include nav-pagination(null,$grey-90); }
+            &.orange    { @include nav-pagination(null,$orange); }
+            &.blue      { @include nav-pagination(null,$blue); }
+            &.green     { @include nav-pagination(null,$green); }
+            &.red       { @include nav-pagination(null,$red); }
 
-                        &:hover {
-                            background: none;
-                        }
-                    }
-                }
+            // defines dotted pagination themes
+            &.dotted {
+
+                @include nav-pagination(dotted);
+
+                &.black     { @include nav-pagination(dotted,$grey-90); }
+                &.white     { @include nav-pagination(dotted,$white); }
+                &.blue      { @include nav-pagination(dotted,desaturate($blue,10%)); }
+                &.green     { @include nav-pagination(dotted,desaturate($green,10%)); }
+                &.orange    { @include nav-pagination(dotted,desaturate($orange,10%)); }
+                &.red       { @include nav-pagination(dotted,desaturate($red,10%)); }
             }
 
-            // white
-            &.white {
-                li {
-                    
-                    @include navigation (white);
+            // defines chevron pagination theme
+            &.chevron {
 
-                    &.active a { background: lighten($black,85%); }
+                @include nav-pagination(chevron);
 
-                    &.disabled {
-                        a {
-                            color: $grey-40;
-                            background: fade($black,0%);
-                            @include text-shadow(lighten($grey-40,40%) 0 1px 0);
-                        }
-                    }
-
-                    a {
-                        color: $text-color;
-                        text-decoration: none;
-
-                        &:hover {                            
-                            background: lighten($black,85%);
-                        }
-                    }
-                }
-            }
-
-            // grey theme
-            &.grey {
-                li {
-                    
-                    @include navigation(grey);
-
-                    &.active {
-                        a { 
-                            background: lighten($black,70%);
-                            color: $text-color;
-                        }
-                    }
-
-                    &.disabled {
-                        a {
-                            color: $grey-40;
-                            background: fade($black,0%);
-                            @include text-shadow(lighten($grey-40,40%) 0 1px 0);
-                        }
-                    }
-                    
-                    a {
-                        color: $text-color;
-                        text-decoration: none;
-
-                        &:hover {
-                            background: lighten($black,70%);                                              
-                        }
-                    }
-                }
-            }
-
-            // black theme
-            &.black {
-                li {
-                    
-                    @include navigation (black);
-
-                    &.active a { background: lighten($black,20%); }
-
-                    &.disabled {
-                        a {
-                            color: $grey-60;
-                            background: fade($black,0%);
-                            @include text-shadow ($black 0 -1px 0);
-                        }
-                    }
-
-                    a {
-                        color: $white;
-                        text-decoration: none;
-
-                        &:hover {
-                            background: lighten($black,20%);                                        
-                        }
-                    }
-                }
-            }
-
-            // orange theme
-            &.orange {
-                li {
-
-                    @include navigation(orange);
-                    
-                    &.active a { background: darken($orange,15%); }
-
-                    &.disabled {
-                        a {
-                            color: darken($orange,20%);
-                            background: fade($black,0%);
-                            @include text-shadow(lighten($orange,8%) 0 1px 0);
-                        }
-                    }
-
-                    a {
-                        color: $white;
-                        text-decoration: none;
-
-                        &:hover {
-                            background: darken($orange,15%);
-                        }
-                    }
-                }
-            }
-
-            // blue theme
-            &.blue {
-                li {
-
-                    @include navigation(blue);
-
-                    &.active a { background: darken($blue,15%); }
-
-                    &.disabled {
-                        a {
-                            color: darken($blue,20%); 
-                            background: fade($black,0%);
-                            @include text-shadow(lighten($blue,8%) 0 1px 0);
-                        }
-                    }
-
-                    a {
-                        color: $white;
-                        text-decoration: none;
-
-                        &:hover {
-                            background: darken($blue,15%);
-                        }
-                    }
-                }
-            }
-
-            // green theme
-            &.green {
-                li {
-                    
-                    @include navigation (green);
-                    
-                    &.active a { background: darken($green,15%); }
-
-                    &.disabled {
-                        a {
-                            color: darken($green,20%);
-                            background: fade($black,0%);
-                            @include text-shadow(lighten($green,6%) 0 1px 0);
-                        }
-                    }
-
-                    a {
-                        color: $white;
-                        text-decoration: none;
-
-                        &:hover {
-                            background: darken($green,15%);
-                        }
-                    }
-                }
-            }
-
-            // red theme
-            &.red {
-                li {
-                    
-                    @include navigation (red);
-                    
-                    &.active a { background: darken($red,15%); }
-
-                    &.disabled {
-                        a {
-                            color: darken($red,25%); 
-                            background: fade($black,0%);
-                            @include text-shadow(lighten($red,8%) 0 1px 0);
-                        }
-                    }
-
-                    a {
-                        color: $white;
-                        text-decoration: none;
-
-                        &:hover {
-                            background: darken($red,15%);
-                        }
-                    }
-                }
-            }
-
-            // remove gradients
-            &.flat {
-                // white theme
-                &.white li  { 
-                    background: $white; 
-                    filter: none;
-                }
-                
-                // grey theme
-                &.grey li   { 
-                    background: $grey-15; 
-                    filter: none;
-                }
-
-                // black theme
-                &.black li  { 
-                    background: $black; 
-                    filter: none;
-                }
-
-                // blue theme
-                &.orange li { 
-                    background: desaturate($orange,10%); 
-                    filter: none;
-                }
-
-                // blue theme
-                &.blue li   { 
-                    background: desaturate($blue,10%); 
-                    filter: none;
-                }
-
-                // green theme
-                &.green li  { 
-                    background: desaturate($green,10%); 
-                    filter: none;
-                }
-
-                // red theme
-                &.red li    { 
-                    background: desaturate($red,10%); 
-                    filter: none;
-                }
-            }
-                
-
-            // adds rounded corners
-            &.rounded {
-                li {
-                    &:first-child,
-                    &:first-child a {
-                        @include border-left-radius($navigation-border-radius);
-                    }
-                    &:last-child, 
-                    &:last-child a {
-                        @include border-right-radius($navigation-border-radius);
-                    }
-                }
-            }
-
-            // adds shadow
-            &.shadowed {
-                li a {
-                    @include box-shadow(fade($black,30%) 0px 1px 2px 0);
-                }
+                &.black     { @include nav-pagination(chevron,$grey-90); }
+                &.grey      { @include nav-pagination(chevron,$grey-15); }
+                &.blue      { @include nav-pagination(chevron,desaturate($blue,10%)); }
+                &.green     { @include nav-pagination(chevron,desaturate($green,10%)); }
+                &.orange    { @include nav-pagination(chevron,desaturate($orange,10%)); }
+                &.red       { @include nav-pagination(chevron,desaturate($red,10%)); }
+            
             }
         }
     }

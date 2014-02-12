@@ -4,6 +4,7 @@
         border: none;
         margin-bottom: 1.5em;
         padding: 0;
+        margin: 0;
 
         legend {
             font-size: 1.438em;
@@ -23,7 +24,7 @@
             font-size: .875em;
             color: tint($text-color,35%);
             position: relative;
-            margin: .3em 0 0 0.1em;
+            margin: .2em 0 0 0.1em;
         }
 
         &.label {
@@ -53,7 +54,6 @@
         padding: $form-field-padding;
         border: 1px solid shade($form-field-borderColor,10%);
         resize: none;
-        font-size: $form-field-fontSize;
         background: $form-field-bg;
         vertical-align: middle;
 
@@ -80,7 +80,7 @@
         }
     }
 
-    .ink-button {
+    .#{$button-class-name} {
         margin: 0 5px;
     }
 
@@ -100,11 +100,16 @@
     .control-group {
         line-height: 2;
         margin-bottom: 1em;
-        @include clearfix;
+        @include pie-clearfix;
 
         .control {
             position: relative;
-            @include clearfix;
+            @include pie-clearfix;
+
+            & > li {
+                margin: 0;
+                @include pie-clearfix;    
+            }
 
             & > input,
             & > select,
@@ -152,12 +157,14 @@
                     & > select,
                     & > textarea {
                         @include border-left-radius($border-radius);
+                        @include border-right-radius(0);
                     }
                 }
                 
-                .ink-button {
+                .#{$button-class-name} {
                     margin: 0;
                     @include border-right-radius($border-radius);
+                    @include border-left-radius(0);
                     border-left: none;
                 }
             }
@@ -174,12 +181,14 @@
                     & > select,
                     & > textarea {
                         @include border-right-radius($border-radius);
+                        @include border-left-radius(0);
                     }
                 }
                 
-                .ink-button {
+                .#{$button-class-name} {
                     margin: 0;
                     @include border-left-radius($border-radius);
+                    @include border-right-radius(0);
                     border-right: none;
                 }
             }
@@ -231,25 +240,32 @@
 
         input[type="radio"],
         input[type="checkbox"] {
-            line-height: 2;
+            //line-height: 2;
             padding: 0;
+            margin: .55em 0;
             border: none;
-            margin-top: 0.55em;
+            //margin-top: 0.55em;
             clear: left;
             float: left;
             cursor: pointer;
 
             & + label {
                 float: left;
-                line-height: 2.5;
-                margin-left: 0.55em;
-                margin-top: -.4em;
+                //line-height: 2.5;
+                //margin-left: 0.55em;
+                //margin-top: -.4em;
+                margin: .25em 0 .25em .4em;
             }
         }
 
         .inline {
-            label {
-                margin-right: 1em;
+
+            li {
+                padding: 0;
+
+                label {
+                    margin-right: 1em;
+                }
             }
         }
 

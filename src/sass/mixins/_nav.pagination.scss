@@ -13,6 +13,7 @@
 // PAGINATION
 @mixin nav-pagination($pagination-type:null, $nav-color: null) {
 
+    // PAGINATION:DEFAULT
     @if $pagination-type == null and $nav-color == null {
 
         @include border-radius($navigation-border-radius);
@@ -78,6 +79,91 @@
         }
     }
 
+    @if $pagination-type == null and $nav-color != null and lightness($nav-color) <= 10% {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: lighten($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: lighten($nav-color,20%); 
+                    background: fade($black,0%);
+                    @include text-shadow(darken($nav-color,20%) 0 -1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,10%);
+                }
+            }
+        }
+    }
+
+    @if $pagination-type == null and $nav-color != null and lightness($nav-color) > 32% and lightness($nav-color) <= 80% {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%); 
+                    background: fade($black,0%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,10%);
+                }
+            }
+        }
+    }
+
+    @if $pagination-type == null and $nav-color != null and lightness($nav-color) > 80% {
+        
+        li {
+
+            background: desaturate($nav-color,10%);
+
+            &.active a { background: darken($nav-color,10%); }
+
+            &.disabled {
+                a {
+                    color: darken($nav-color,20%); 
+                    background: fade($black,0%);
+                    @include text-shadow(lighten($nav-color,8%) 0 1px 0);
+                    &:hover { background: none; }
+                }
+            }
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($nav-color,10%);
+                }
+            }
+        }
+    }
+
+    // PAGINATION:CHEVRON
     @if $pagination-type == chevron and $nav-color == null {
 
         li {
@@ -125,6 +211,7 @@
         }
     }
 
+    // PAGINATION:DOTTED
     @if $pagination-type == dotted and $nav-color == null {
 
         li {

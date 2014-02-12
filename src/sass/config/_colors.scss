@@ -1,49 +1,49 @@
 // BODY
-$body-background            : #f7f7f7;
+$body-background            : #f7f7f7 !default;
 
 // PLAIN TEXT
-$text-color                 : #555;
+$text-color                 : #555 !default;
 
 // HEADINGS
-$headings-color             : #404040;
+$headings-color             : #404040 !default;
 
 // LINKS
-$link-color                 : #6998C9;
-$link-visited-color         : #808080;
-$link-active-color          : shade(red,5%);
-$link-hover-color           : #007ED5;
-$link-focus-color           : $link-color;
+$link-color                 : #6998C9 !default;
+$link-visited-color         : #808080 !default;
+$link-active-color          : shade(red,5%) !default;
+$link-hover-color           : #007ED5 !default;
+$link-focus-color           : $link-color !default;
 
-$white                      : #fff;
-$black                      : #000;
-$orange                     : #ff9c00;
-$red                        : #c91111;
-$green                      : #4a9b17;
-$blue                       : #0f75da;
-$yellow                     : #ffd500;
+$white                      : #fff !default;
+$black                      : #000 !default;
+$orange                     : #ff9c00 !default;
+$red                        : #c91111 !default;
+$green                      : #4a9b17 !default;
+$blue                       : #0f75da !default;
+$yellow                     : #ffd500 !default;
 
-$warning-bg                 : $orange;
-$caution-bg                 : $red;
-$error-bg                   : $red;
-$success-bg                 : $green;
-$info-bg                    : $blue;
+$warning-bg                 : $orange !default;
+$caution-bg                 : $red !default;
+$error-bg                   : $red !default;
+$success-bg                 : $green !default;
+$info-bg                    : $blue !default;
 
-$grey-95                    : tint($black, 5%);
-$grey-90                    : tint($black, 10%);
-$grey-85                    : tint($black, 15%);
-$grey-80                    : tint($black, 20%);
-$grey-75                    : tint($black, 25%);
-$grey-70                    : tint($black, 30%);
-$grey-65                    : tint($black, 35%);
-$grey-60                    : tint($black, 40%);
-$grey-55                    : tint($black, 45%);
-$grey-50                    : tint($black, 50%);
-$grey-45                    : tint($black, 55%);
-$grey-40                    : tint($black, 60%);
-$grey-35                    : tint($black, 65%);
-$grey-30                    : tint($black, 70%);
-$grey-25                    : tint($black, 75%);
-$grey-20                    : tint($black, 80%);
-$grey-15                    : tint($black, 85%);
-$grey-10                    : tint($black, 90%);
-$grey-5                     : tint($black, 95%);
+$grey-95                    : lighten($black, 5%) !default;
+$grey-90                    : lighten($black, 10%) !default;
+$grey-85                    : lighten($black, 15%) !default;
+$grey-80                    : lighten($black, 20%) !default;
+$grey-75                    : lighten($black, 25%) !default;
+$grey-70                    : lighten($black, 30%) !default;
+$grey-65                    : lighten($black, 35%) !default;
+$grey-60                    : lighten($black, 40%) !default;
+$grey-55                    : lighten($black, 45%) !default;
+$grey-50                    : lighten($black, 50%) !default;
+$grey-45                    : lighten($black, 55%) !default;
+$grey-40                    : lighten($black, 60%) !default;
+$grey-35                    : lighten($black, 65%) !default;
+$grey-30                    : lighten($black, 70%) !default;
+$grey-25                    : lighten($black, 75%) !default;
+$grey-20                    : lighten($black, 80%) !default;
+$grey-15                    : lighten($black, 85%) !default;
+$grey-10                    : lighten($black, 90%) !default;
+$grey-5                     : lighten($black, 95%) !default;
