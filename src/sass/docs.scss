@@ -3,7 +3,6 @@
 @import "contrib/compass/utilities";
 @import "contrib/compass/typography";
 
-
 // Import Ink
 @import "config/common";
 @import "config/colors"; 
@@ -40,20 +39,18 @@ $code-border: darken($code-background,8%);
     width: 100%;
     background: $topbar-bgColor;
     // -webkit-transform: scale3d(1,1,1); // Solves weird “redraw behavior” involving anchor links and fixed positioned elements in chrome.
-    &:after {
-            @include clearfix;
-        }
+    @include pie-clearfix;
     
     .ink-navigation {
     
         ul {
         
             li {
+    
                 font-size: $topbar-fontSize;
+    
                 a {
-                    @include transition-property(color);
-                    @include transition-duration(140ms);
-                    @include transition-timing-function(ease-in);
+                    @include transition(compact(color 140ms ease-in));
                     padding: .7em 1em;
                     color:$topbar-color;
                     text-transform: uppercase;
@@ -103,20 +100,10 @@ $code-border: darken($code-background,8%);
                 }
             }
         }
-
-        &:after {
-            @include clearfix;
-        }
-
+        
+        @include pie-clearfix;
     }
 
-    .border {
-        @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
-        clear: both;
-        margin: 0;
-        height:.3em;
-        background: url("#{$img-path}home_bkg.png") center 0px;
-    }
 }
 
 .sidebar {
@@ -293,27 +280,6 @@ body.ink-drawer {
     }
 }
 
-.page-content {
-    p {
-
-    }
-}
-
-//.highlighttable {
-//    width: 100%;
-//    tr {
-//        .linenos {
-//            width:auto;
-//            text-align: left;
-//            background: pink;
-//        }
-//
-//        .code {
-//            background:red;
-//        }
-//    }
-//}
-
 .highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; }
 .highlight pre      { margin: 0; font-size: .9em; }
 .highlight .c       { color: #999988; font-style: italic; } /* Comment */
@@ -383,9 +349,19 @@ body.ink-drawer {
     padding: 3.5em 0 2em;
     font-size: 1.25em;
 
+    h1 { margin-bottom: 0 }
+
     p {
         margin-top:.5em;
         font-weight: 300;
+    }
+
+    .border {
+        @include background-image(linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57));
+        clear: both;
+        margin: 0;
+        height:.3em;
+        background: url("#{$img-path}home_bkg.png") center 0px;
     }
 }
 
@@ -397,8 +373,6 @@ section {
 
     & + section {
         margin-top: 2em;
-        
-
         padding-top: 1.5em;
         border-top: 1px solid $code-border;
     }
