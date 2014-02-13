@@ -1371,7 +1371,7 @@
  * Sets the grids maximum width
  * @var $grid-max-width (pixels|ems|percentage)
  */
-/**
+/*!
  * Sets the grids breakpoint
  * 
  * To add a new break point you'll need to add an element to the list.
@@ -4139,8 +4139,7 @@ html.flexbox .column-group {
       .ink-navigation ul.menu.horizontal li .control {
         margin-top: .3em; }
       .ink-navigation ul.menu.horizontal li ul.submenu {
-        min-width: inherit;
-        top: 2.7em;
+        min-width: 100%;
         left: 0;
         z-index: 50; }
         .ink-navigation ul.menu.horizontal li ul.submenu li {
@@ -4159,7 +4158,16 @@ html.flexbox .column-group {
           position: absolute;
           min-width: 8em;
           top: 0;
-          left: 100%; }
+          left: 100%;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          -ms-border-radius: 2px;
+          -o-border-radius: 2px;
+          border-radius: 2px; }
+          .ink-navigation ul.menu.vertical li ul.submenu.flyout.left {
+            right: 100%; }
+          .ink-navigation ul.menu.vertical li ul.submenu.flyout.right {
+            left: 100%; }
 
 table.ink-table {
   width: 100%;
@@ -4208,7 +4216,7 @@ body {
   font-size: 14px; }
 
 a {
-  color: #0069d6;
+  color: #6998c9;
   text-decoration: none;
   cursor: pointer; }
   a:hover {
@@ -4239,8 +4247,9 @@ h5 {
 h6 {
   font-size: 1em; }
 
-h3, h4, h5, h6 {
-  line-height: 1.3; }
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  margin-bottom: 1em; }
 
 h1 small {
   font-size: .6em;
