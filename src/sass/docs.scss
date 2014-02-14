@@ -14,8 +14,8 @@ $topbar-bgColor             : #222;
 $topbar-color               : #BBB;
 $topbar-colorHover          : $white;
 $img-path                   : "../img/";
-$code-background: #EEEBE5;
-$code-border: darken($code-background,8%);
+$code-background            : #EEEBE5;
+$code-border                : darken($code-background,8%);
 
 .fw-100 { font-weight: 100; }
 .fw-300 { font-weight: 300; }
@@ -432,18 +432,17 @@ span.tip {
 
 ul {
     &.props {
-        //margin: 0;
+        margin: .5em 0;
         padding: 0;
         list-style-type: none;
-        li { display: inline; }
+        
         li.heading {
             @extend .fw-700;
             text-transform: uppercase;            
         }
+        
         li.prop {
             @extend .slab-400;
-            margin: 0 2px;
-            padding: 0 5px;
             background-color: $code-background;
             font-size: .95em;
             &.breakpoint-aware {
