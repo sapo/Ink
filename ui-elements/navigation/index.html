@@ -76,14 +76,17 @@ site_root: ../../
 
 </section>
 
-<section id="dividing-space">
+<section id="menus">
     <h1>Menus</h1>
-    <h2>Horizontal</h2>
-    <ul class="css props">
+    <ul class="css props inline">
         <li class="heading">Css classes: </li>
         <li class="prop">ink-navigation</li>
         <li class="prop">menu</li>
         <li class="prop">horizontal</li>
+        <li class="prop">vertical</li>
+        <li class="prop">heading</li>
+        <li class="prop">disabled</li>
+        <li class="prop">active</li>
         <li class="prop">submenu</li>
         <li class="prop">white</li>
         <li class="prop">grey</li>
@@ -93,6 +96,8 @@ site_root: ../../
         <li class="prop">orange</li>
         <li class="prop">red</li>
     </ul>
+    
+    <h2>Horizontal</h2>
 
     {% highlight html %}
     <nav class="ink-navigation">
@@ -113,6 +118,7 @@ site_root: ../../
     <div class="example">
         <nav class="ink-navigation">
             <ul class="menu horizontal black">
+                <li class="heading"><a href="#">Heading</a></li>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Videos</a></li>
                 <li><a href="#">Fotos</a></li>
@@ -124,28 +130,12 @@ site_root: ../../
                         <li><a href="#">Apps</a></li>
                     </ul>
                 </li>
+                <li class="disabled"><a href="#">Disabled link</a></li>
             </ul>
         </nav>
     </div>
 
     <h2 class="top-space">Vertical</h2>
-    <ul class="css props">
-        <li class="heading">Css classes: </li>
-        <li class="prop">ink-navigation</li>
-        <li class="prop">menu</li>
-        <li class="prop">vertical</li>
-        <li class="prop">submenu</li>
-        <li class="prop">flyout</li>
-        <li class="prop">left</li>
-        <li class="prop">right</li>
-        <li class="prop">white</li>
-        <li class="prop">grey</li>
-        <li class="prop">black</li>
-        <li class="prop">blue</li>
-        <li class="prop">green</li>
-        <li class="prop">orange</li>
-        <li class="prop">red</li>
-    </ul>
 
     <div class="column-group gutters">
         <div class="all-50 small-100 tiny-100">
@@ -153,7 +143,16 @@ site_root: ../../
 <nav class="ink-navigation">
     <ul class="menu vertical">
         <li><a href="#">...</a></li>
-        <li><a href="#">...</a></li>
+        <li>
+            <a href="#">...</a>
+            <li>
+            <a href="#">...</a>
+                <ul class="submenu flyout left">
+                    <li>...</li>
+                    <li>...</li>
+                </ul>
+            </li>
+        </li>
         <li>
             <a href="#">...</a>
             <ul class="submenu">
@@ -170,9 +169,18 @@ site_root: ../../
             <div class="example">
                 <nav class="ink-navigation">
                     <ul class="menu vertical black">
+                        <li class="heading"><a href="#">Heading</a></li>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Videos</a></li>
-                        <li><a href="#">Fotos</a></li>
+                        <li>
+                            <a href="#">Fotos</a>
+                            <ul class="submenu flyout left">
+                                <li><a href="#">Arquitecture</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Wild life</a></li>
+                                <li><a href="#">Sports</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="#">More...</a>
                             <ul class="submenu">
@@ -181,12 +189,146 @@ site_root: ../../
                                 <li><a href="#">Apps</a></li>
                             </ul>
                         </li>
+                        <li class="disabled"><a href="#">Disabled link</a></li>
                     </ul>
                 </nav>
             </div>
+            <p>To obtain a flyout style submenu add the <code>flyout</code> class to the <code>submenu</code> as shown in the example above.</p>
+            <p><code>heading</code>, <code>disabled</code> and <code>active</code> classes can be added to the <code>&lt;li&gt;</code> to achieve the desired state.</p>
         </div>
     </div>
+</section>
 
-    <p>To obtain a flyout style submenu use <code>flyout</code> class instead of <code>submenu</code>.</p>
+<section class="breadcrumbs">
+
+    <h1>Bredcrumbs</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-navigation</li>
+        <li class="prop">breadcrumbs</li>
+        <li class="prop">active</li>
+        <li class="prop">white</li>
+        <li class="prop">grey</li>
+        <li class="prop">black</li>
+        <li class="prop">blue</li>
+        <li class="prop">green</li>
+        <li class="prop">orange</li>
+        <li class="prop">red</li>
+    </ul>
+
+    {% highlight html %}
+<nav class="ink-navigation">
+    <ul class="breadcrumbs black">
+        <li><a href="#">Start</a></li>
+        <li><a href="#">Level 1</a></li>
+        <li><a href="#">Level 2</a></li>
+        <li class="active"><a href="#">Current item</a></li>
+    </ul>
+</nav>{% endhighlight %}
+
+    <p class="example-title">Example</p>
+    <div class="example">
+        <nav class="ink-navigation">
+            <ul class="breadcrumbs black">
+                <li><a href="#">Start</a></li>
+                <li><a href="#">Level 1</a></li>
+                <li><a href="#">Level 2</a></li>
+                <li class="active"><a href="#">Current item</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</section>
+
+
+<section id="pagination">
+
+    <h1>Pagination</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-navigation</li>
+        <li class="prop">pagination</li>
+        <li class="prop">chevron</li>
+        <li class="prop">dotted</li>
+        <li class="prop">active</li>
+        <li class="prop">disabled</li>
+        <li class="prop">previous</li>
+        <li class="prop">next</li>
+        <li class="prop">white</li>
+        <li class="prop">grey</li>
+        <li class="prop">black</li>
+        <li class="prop">blue</li>
+        <li class="prop">green</li>
+        <li class="prop">orange</li>
+        <li class="prop">red</li>
+    </ul>
+
+    {% highlight html %}
+<nav class="ink-navigation">
+    <ul class="pagination black">
+        <li class="previous disabled"><a href="#">Previous</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li class="next"><a href="#">Next</a></li>
+    </ul>
+</nav>{% endhighlight %}
+    
+    <p class="example-title">Example</p>
+    <div class="example">
+        <nav class="ink-navigation">
+            <ul class="pagination black">
+                <li class="previous disabled"><a href="#">Previous</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li class="next"><a href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</section>
+
+<section id="pills">
+
+    <h1>Pills</h1>
+    <ul class="css props inline">
+        <li class="heading">Css classes: </li>
+        <li class="prop">ink-navigation</li>
+        <li class="prop">pills</li>
+        <li class="prop">active</li>
+        <li class="prop">disabled</li>
+        <li class="prop">white</li>
+        <li class="prop">grey</li>
+        <li class="prop">black</li>
+        <li class="prop">blue</li>
+        <li class="prop">green</li>
+        <li class="prop">orange</li>
+        <li class="prop">red</li>
+    </ul>
+
+    {% highlight html %}
+<nav class="ink-navigation">
+    <ul class="pagination pills black">
+        <li class="disabled"><a href="#">Pill disabled</a></li>
+        <li class="active"><a href="#">Pill 1</a></li>
+        <li><a href="#">Pill 2</a></li>
+        <li><a href="#">Pill 3</a></li>
+        <li><a href="#">Pill 4</a></li>
+    </ul>
+</nav>{% endhighlight %}
+    
+    <p class="example-title">Example</p>
+    <div class="example">
+        <nav class="ink-navigation">
+            <ul class="pagination pills black">
+                <li class="disabled"><a href="#">Pill disabled</a></li>
+                <li class="active"><a href="#">Pill 1</a></li>
+                <li><a href="#">Pill 2</a></li>
+                <li><a href="#">Pill 3</a></li>
+                <li><a href="#">Pill 4</a></li>
+            </ul>
+        </nav>
+    </div>
 
 </section>
