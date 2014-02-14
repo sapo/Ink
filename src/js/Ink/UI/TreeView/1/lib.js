@@ -7,14 +7,14 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
     'use strict';
 
     /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * Shows elements in a tree-like hierarchical structure.
      * 
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
      * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
-     * @param {String} [options.child='ul'] Selector to define which elements are represented as children.
+     * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
      * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
      * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
      * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
@@ -53,7 +53,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
         this._options = Common.options('Treeview', {
             'node':   ['String', 'li'],
+            // [3.0.1] Deprecate this terrible, terrible name
             'child':  ['String','ul'],
+            'children':  ['String','ul'],
             'parentClass': ['String','parent'],
             // [3.0.0] use these classes because you'll have font-awesome 4
             // 'openClass': ['String','fa fa-minus-circle'],
@@ -65,6 +67,11 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
         }, options || {}, this._element);
+
+        if (this._options.child) {
+            Ink.warn('Ink.UI.TreeView: options.child is being renamed to options.children.');
+            this._options.children = this._options.child;
+        }
 
         this._init();
     };
@@ -99,7 +106,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         },
 
         _getIcon: function (node) {
-            return Selector.select('> ' + this._options.iconTag, node)[0] || null;
+            return Ink.s('> ' + this._options.iconTag, node);
         },
 
         isOpen: function (node) {

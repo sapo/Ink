@@ -36,7 +36,7 @@
                     <h2>TreeView #1 - Default Markup</h2>
                 </header>
 
-                <p>A TreeView is built with "node"s and "child"s. "node"s are <code>&lt;li&gt;</code> tags, and "child"s are <code>&lt;ul&gt;</code> tags.</p>
+                <p>A TreeView is built with "node"s and "children". "node"s are <code>&lt;li&gt;</code> tags, and "children" are <code>&lt;ul&gt;</code> tags.</p>
 
                 <p>You can build your TreeView out of a regular UL and LI element structure which you already use to display lists with several levels.</p>
 
@@ -80,21 +80,21 @@
                 <header>
                     <h2>TreeView #2 - Different Markup... Same behavior</h2>
                 </header>
-                <p>By using the <code>child</code> and <code>node</code> options, you can choose what is a "node" and what is a "child". This way you are not limited to using <code>ul</code>s and <code>li</code>s</p>
-                <div class="ink-tree-view" data-child=".child" data-node=".node">
+                <p>By using the <code>children</code> and <code>node</code> options, you can choose what is a "node" and what is a "children". This way you are not limited to using <code>ul</code>s and <code>li</code>s</p>
+                <div class="ink-tree-view" data-children=".children" data-node=".node">
                     <div data-open="true" class="node">
                         <a href="#">root</a>
-                        <div class="child">
+                        <div class="children">
                             <div class="node">
                                 <a href="#">child 1</a>
                             </div>
                             <div class="node">
                                 <a href="#">child 2</a>
-                                <div class="child">
+                                <div class="children">
                                     <div class="node"><a href="#">grandchild 2a</a></div>
                                     <div class="node">
                                         <a href="#">grandchild 2b</a>
-                                        <div class="child">
+                                        <div class="children">
                                             <div class="node">
                                                 <a href="#">grandgrandchild 1bA</a>
                                             </div>
