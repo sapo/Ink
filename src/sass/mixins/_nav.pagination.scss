@@ -85,7 +85,7 @@
 
             background: desaturate($nav-color,10%);
 
-            &.active a { background: darken($nav-color,10%); }
+            &.active a { background: lighten($nav-color,10%); }
 
             &.disabled {
                 a {
@@ -101,7 +101,7 @@
                 text-decoration: none;
 
                 &:hover {
-                    background: darken($nav-color,10%);
+                    background: lighten($nav-color,5%);
                 }
             }
         }
@@ -129,7 +129,7 @@
                 text-decoration: none;
 
                 &:hover {
-                    background: darken($nav-color,10%);
+                    background: darken($nav-color,5%);
                 }
             }
         }
@@ -157,7 +157,7 @@
                 text-decoration: none;
 
                 &:hover {
-                    background: darken($nav-color,10%);
+                    background: darken($nav-color,5%);
                 }
             }
         }

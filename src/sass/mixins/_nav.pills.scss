@@ -41,7 +41,7 @@
         li {
             background: desaturate($nav-color,10%);
 
-            &.active a { background: darken($nav-color,10%); }
+            &.active a { background: lighten($nav-color,10%); }
             
             &.disabled {
                 a {
@@ -53,7 +53,7 @@
             
             a { 
                 color: $white; 
-                &:hover { background: darken($nav-color,10%); }
+                &:hover { background: lighten($nav-color,5%); }
             }
         }
     }
@@ -74,7 +74,7 @@
             
             a { 
                 color: $white; 
-                &:hover { background: darken($nav-color,10%); }
+                &:hover { background: darken($nav-color,5%); }
             }
         }
     }
@@ -95,7 +95,7 @@
             
             a { 
                 color: $text-color; 
-                &:hover { background: darken($nav-color,10%); }
+                &:hover { background: darken($nav-color,5%); }
             }
         }
     }
