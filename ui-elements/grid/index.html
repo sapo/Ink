@@ -62,6 +62,14 @@ site_root: ../../
           <td><code>extra-large-x%</code></td>
           <td>Sets element x% width for the '<a href="#breakpoints">extra-large</a>' breakpoint.</td> 
         </tr>
+        <tr>
+          <td><code>show</code></td>
+          <td>Shows a previously hidden element. <span class="label breakpoint-aware"></span></td> 
+        </tr>
+        <tr>
+          <td><code>hide</code></td>
+          <td>Hides an element. <span class="label breakpoint-aware"></span></td> 
+        </tr>
     </tbody>    
   </table>
   <ul class="unstyled">
@@ -211,7 +219,7 @@ site_root: ../../
     </div>
   </div>
 </div>
-<p>Gutters are applied only to the <code>column-group</code> direct children, so that nested elements are left untouched.</p>
+<p>Gutters are applied only to the <code>column-group</code> direct children. Nested elements are left untouched.</p>
 {% highlight html %}
 <div class="ink-grid">
   <div class="column-group large-half-gutters">
@@ -250,17 +258,41 @@ site_root: ../../
     <li class="prop">large-%</li>
     <li class="prop">extra-large-%</li>
   </ul>
-  <p>Handling layout changes for multiple screen sizes is as simple as adding a few more classes onto your markup.</p>
+  <p>Handling layout changes for multiple screen sizes is as simple as adding a few more classes to your markup.</p>
 {% highlight html %}
 <div class="ink-grid">
   <div class="column-group gutters">
-    <div class="all-50 large-70">
+    <div class="medium-50 large-70 all-100">
       <div class="column">50%</div>
     </div>
-    <div class="all-50 large-30">
+    <div class="medium-50 large-30 all-100">
       <div class="column">50%</div>
     </div>
   </div>
 </div>
 {% endhighlight %}
+<p class="example-title">Example</p>
+<div class="example">
+  <div class="ink-grid">
+    <div class="column-group gutters">
+      <div class="medium-50 large-70 all-100">
+        <div class="column">
+          <span class="hide-all show-medium">medium 50%</span>
+          <span class="hide-all show-large">large 70%</span>
+          <span class="hide-medium hide-large">all 100%</span>
+      </div>
+      </div>
+      <div class="medium-50 large-30 all-100">
+        <div class="column">
+          <span class="hide-all show-medium">medium 50%</span>
+          <span class="hide-all show-large">large 30%</span>
+          <span class="hide-medium hide-large">all 100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>To set the width of a grid column just add the desired width percentage class for the targeted breakpoint: <code>large-50 small-100 ...</code></p>
+<p>You can also set a width for all breakpoints by using the <code>all-</code> prefix. Since Ink requires you to declare the width for all existing breakpoints, this is usefull to either set widths for all breakpoints or, if you have exceptions, to reduce the number of necessary classes: {% highlight html %}<div class="all-50 small-100"></div>{% endhighlight %}</p>
+<p>If you can, play with your browsers window width to see it working.</p>
 </section>

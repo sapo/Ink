@@ -18,23 +18,23 @@
  *                 outside a @media query let's you use the grid in IE8.
  *  
  */
-/*! for extra-large screens */
+/* for extra-large screens */
 @media screen and (min-width: 1401px) {
-  /*! your css for extra-large screens goes here ... */
+  /* your css for extra-large screens goes here ... */
 }
-/*! for large screens */
+/* for large screens */
 @media screen and (min-width: 961px) and (max-width: 1400px) {
-  /*! your css for large screens goes here ... */
+  /* your css for large screens goes here ... */
 }
-/*! for medium screens */
+/* for medium screens */
 @media screen and (min-width: 601px) and (max-width: 960px) {
-  /*! your css for medium screens goes here ... */
+  /* your css for medium screens goes here ... */
 }
-/*! for small screens */
+/* for small screens */
 @media screen and (min-width: 321px) and (max-width: 600px) {
-  /*! your css for small screens goes here ... */
+  /* your css for small screens goes here ... */
 }
-/*! for tiny screens */
+/* for tiny screens */
 @media screen and (max-width: 320px) {
-  /*! your css for tiny screens goes here ... */
+  /* your css for tiny screens goes here ... */
 }

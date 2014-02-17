@@ -40,9 +40,6 @@ body {
           &.show {
             display: block;
           }
-
-          @include clearfix;
-
         }  
 
         &.push {

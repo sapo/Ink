@@ -1,8 +1,7 @@
 # JEKYLL
-exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", ".travis.yml", "src", "less", "presskit", "Makefile", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
+exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", ".travis.yml", "src", "VERSION", "LICENSE", "README.md", "icon.png", "node_modules"]
 
 destination: ./_site
-baseurl: ./
 
 name: Ink
 url: http://localhost:4000
@@ -31,7 +30,6 @@ sections:
     components: 
       - title: Grid
         topics:
-          - title: Introduction
           - title: Dividing space
           - title: Gutters
           - title: Vertical spacing
@@ -39,11 +37,26 @@ sections:
           - title: Customizations
       - title: Navigation
         topics:
-          - title: Introduction
-          - title: Dividing space
-          - title: Gutters
-          - title: Vertical spacing
-          - title: Multiple screen sizes
+          - title: Horizontal menu
+          - title: Vertical menu
+          - title: Breadcrumbs
+          - title: Pagination
+          - title: Pills
+      - title: Typography
+        topics:
+          - title: Horizontal menu
+      - title: Forms
+        topics:
+          - title: Horizontal menu
+      - title: Alerts
+        topics:
+          - title: Horizontal menu
+      - title: Helpers
+        topics:
+          - title: Element alignment
+          - title: Content alignment
+          - title: Element spacing
+          - title: Element visibility
   - title: Javascript
     components: 
       - title: Dom

@@ -2764,6 +2764,104 @@ table {
   margin: 0 auto;
 }
 
+.column-group > [class*=all-] {
+  float: left;
+  clear: none;
+}
+
+.all-5 {
+  width: 5%;
+}
+
+.all-10 {
+  width: 10%;
+}
+
+.all-15 {
+  width: 15%;
+}
+
+.all-20 {
+  width: 20%;
+}
+
+.all-25 {
+  width: 25%;
+}
+
+.all-30 {
+  width: 30%;
+}
+
+.all-33 {
+  width: 33.33%;
+}
+
+.all-35 {
+  width: 35%;
+}
+
+.all-40 {
+  width: 40%;
+}
+
+.all-45 {
+  width: 45%;
+}
+
+.all-50 {
+  width: 50%;
+}
+
+.all-55 {
+  width: 55%;
+}
+
+.all-60 {
+  width: 60%;
+}
+
+.all-65 {
+  width: 65%;
+}
+
+.all-66 {
+  width: 66.66%;
+}
+
+.all-70 {
+  width: 70%;
+}
+
+.all-75 {
+  width: 75%;
+}
+
+.all-80 {
+  width: 80%;
+}
+
+.all-85 {
+  width: 85%;
+}
+
+.all-90 {
+  width: 90%;
+}
+
+.all-95 {
+  width: 95%;
+}
+
+.all-100 {
+  width: 100%;
+}
+
+[class*=all-100] {
+  float: none;
+  clear: both;
+}
+
 @media screen and (min-width: 1401px) {
   .ink-grid {
     padding: 0 2em;
@@ -4613,104 +4711,6 @@ table {
     display: table-cell;
   }
 }
-.column-group > [class*=all-] {
-  float: left;
-  clear: none;
-}
-
-.all-5 {
-  width: 5%;
-}
-
-.all-10 {
-  width: 10%;
-}
-
-.all-15 {
-  width: 15%;
-}
-
-.all-20 {
-  width: 20%;
-}
-
-.all-25 {
-  width: 25%;
-}
-
-.all-30 {
-  width: 30%;
-}
-
-.all-33 {
-  width: 33.33%;
-}
-
-.all-35 {
-  width: 35%;
-}
-
-.all-40 {
-  width: 40%;
-}
-
-.all-45 {
-  width: 45%;
-}
-
-.all-50 {
-  width: 50%;
-}
-
-.all-55 {
-  width: 55%;
-}
-
-.all-60 {
-  width: 60%;
-}
-
-.all-65 {
-  width: 65%;
-}
-
-.all-66 {
-  width: 66.66%;
-}
-
-.all-70 {
-  width: 70%;
-}
-
-.all-75 {
-  width: 75%;
-}
-
-.all-80 {
-  width: 80%;
-}
-
-.all-85 {
-  width: 85%;
-}
-
-.all-90 {
-  width: 90%;
-}
-
-.all-95 {
-  width: 95%;
-}
-
-.all-100 {
-  width: 100%;
-}
-
-[class*=all-100] {
-  float: none;
-  clear: both;
-}
-
 @media screen and (min-width: 1401px) {
   html {
     font-size: 1.1em;
@@ -7037,8 +7037,6 @@ body.ink-drawer .right-drawer {
   overflow-y: auto;
   overflow-x: hidden;
   display: none;
-  overflow: hidden;
-  *zoom: 1;
 }
 body.ink-drawer .left-drawer.show,
 body.ink-drawer .right-drawer.show {
