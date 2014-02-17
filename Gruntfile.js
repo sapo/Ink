@@ -1,6 +1,10 @@
 module.exports = function (grunt) {
     var path = require('path');
 
+    require('jit-grunt')(grunt, {
+        'bower': 'grunt-bower-task'
+    });
+
     var jshintFile = './src/js/.jshintrc';
 
     // Folder containing the Ink source files, Ink/*
@@ -337,8 +341,6 @@ module.exports = function (grunt) {
             }
         }
     });
-
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
     grunt.registerTask('test', ['connect', 'qunit']);
