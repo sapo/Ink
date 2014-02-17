@@ -94,7 +94,7 @@ module.exports = function(grunt) {
       minify: {
         expand: true,
         cwd: 'assets/css/',
-        src: ['*.css', "quick-start.css"],
+        src: ['*.css', "!quick-start.css"],
         dest: 'assets/css/',
         ext: '.min.css',
         options: {

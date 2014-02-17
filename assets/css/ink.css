@@ -8098,8 +8098,6 @@ body.ink-drawer .right-drawer {
   overflow-y: auto;
   overflow-x: hidden;
   display: none;
-  overflow: hidden;
-  *zoom: 1;
 }
 body.ink-drawer .left-drawer.show,
 body.ink-drawer .right-drawer.show {
