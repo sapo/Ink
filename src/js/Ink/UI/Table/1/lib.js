@@ -53,21 +53,62 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
-     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
-     *     @param {Function}  [options.createEndpointUrl] Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort ({ order: 'asc' or 'desc', field: fieldname }) and page ({ page: page number, size: items per page })
-     *     @param {Function}  [options.getDataFromEndPoint] Callback to allow the user to retrieve the data himself given an URL. Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
-     *     @param {Function}  [options.processJSONRows] Retrieve an array of rows from the data which came from AJAX.
-     *     @param {Function}  [options.processJSONHeaders] Get an object with all the headers' names as keys, and a { label, sortable } object as value. Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`. Takes an argument, the JSON response.
-     *     @param {Function}  [options.processJSONRow] Process a row object before it gets on the table.
-     *     @param {Function}  [options.processJSONField] Process the field data before putting it on the table. You can return HTML, a DOM element, or a string here. Arguments you receive: `(column, fieldData, rowIndex)`.
-     *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
-     *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
-     *     @param {Object}    [options.tdClassNames] An object mapping each field to what classes it gets. Example: `{ name: "large-10", isBoss: "hide-small" }`
-     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
-     *     @param {Object}    [options.paginationOptions] Override the options with which we instantiate the Ink.UI.Pagination.
-     *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
-     *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
+     *     @param {Number}    [options.pageSize]
+     *      Number of rows per page. Omit to avoid paginating.
+     *
+     *     @param {String}    [options.endpoint]
+     *      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *
+     *     @param {Function}  [options.createEndpointUrl]
+     *      Callback to customise what URL the AJAX endpoint is at. Receives three
+     *      arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`)
+     *      and page ({ page: page number, size: items per page })
+     *
+     *     @param {Function}  [options.getDataFromEndPoint]
+     *      Callback to allow the user to retrieve the data himself given an URL.
+     *      Must accept two arguments: `url` and `callback`. This `callback` will
+     *      take as a single argument a JavaScript object.
+     *
+     *     @param {Function}  [options.processJSONRows]
+     *      Retrieve an array of rows from the data which came from AJAX.
+     *
+     *     @param {Function}  [options.processJSONHeaders]
+     *      Get an object with all the headers' names as keys, and a { label, sortable }
+     *      object as value.
+     *      Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.
+     *      Takes a single argument, the JSON response.
+     *
+     *     @param {Function}  [options.processJSONRow]
+     *      Process a row object before it gets on the table.
+     *
+     *     @param {Function}  [options.processJSONField]
+     *      Process the field data before putting it on the table.
+     *      You can return HTML, a DOM element, or a string here.
+     *      Arguments you receive: `(column, fieldData, rowIndex)`.
+     *
+     *     @param {Function}  [options.processJSONField.(field_name)]
+     *      The same as processJSONField, but for each field.
+     *
+     *     @param {Function}  [options.processJSONTotalRows]
+     *      A callback where you have a chance to say how many rows
+     *      are in the dataset (not only on this page) you have on the
+     *      collection. You get as an argument the JSON response.
+     *
+     *     @param {Object}    [options.tdClassNames]
+     *      An object mapping each field to what classes it gets.
+     *      Example: `{ name: "large-10", isBoss: "hide-small" }`
+     *
+     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination]
+     *      Pagination instance or element.
+     *
+     *     @param {Object}    [options.paginationOptions]
+     *      Override the options with which we instantiate the Ink.UI.Pagination.
+     *
+     *     @param {Boolean}   [options.allowResetSorting]
+     *      Allow sort order to be set to "none" in addition to "ascending" and "descending"
+     *
+     *     @param {String|Array} [options.visibleFields]
+     *      Set of fields which get shown on the table
      * @example
      *      <table class="ink-table alternating" data-page-size="6">
      *          <thead>
@@ -143,7 +184,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
-            throw '[Ink.UI.Table] :: The element is not a table';
+            throw new Error('[Ink.UI.Table] :: The element is not a table');
         }
 
         this._options = Common.options({
