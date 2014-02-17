@@ -8632,9 +8632,17 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         _sort: function( index ){
             // TODO this is THE worst way to declare field names. Incompatible with i18n and a lot of other things.
             var fieldName = Element.textContent(this._headers[index]);
-            var keyFunction = this._options.getSortKey ? (
-                this._options.getSortKey[fieldName] ||
-                this._options.getSortKey) : false;
+            var keyFunction = this._options.getSortKey;
+
+            if (keyFunction) {
+                keyFunction =
+                    typeof keyFunction[fieldName] === 'function' ?
+                        keyFunction[fieldName] :
+                    typeof keyFunction === 'function' ?
+                        keyFunction :
+                        null;
+            }
+
             var self = this;
 
             this._data.sort(function (trA, trB) {
