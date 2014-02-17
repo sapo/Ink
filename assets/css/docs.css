@@ -62,27 +62,24 @@
   z-index: 100;
   width: 100%;
   background: #222222;
+  *zoom: 1;
 }
 #topbar:after {
-  overflow: hidden;
+  content: "";
+  display: table;
+  clear: both;
+}
+#topbar .ink-navigation {
   *zoom: 1;
 }
 #topbar .ink-navigation ul li {
   font-size: 14px;
 }
 #topbar .ink-navigation ul li a {
-  -webkit-transition-property: color;
-  -moz-transition-property: color;
-  -o-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 140ms;
-  -moz-transition-duration: 140ms;
-  -o-transition-duration: 140ms;
-  transition-duration: 140ms;
-  -webkit-transition-timing-function: ease-in;
-  -moz-transition-timing-function: ease-in;
-  -o-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
+  -webkit-transition: color 140ms ease-in;
+  -moz-transition: color 140ms ease-in;
+  -o-transition: color 140ms ease-in;
+  transition: color 140ms ease-in;
   padding: .7em 1em;
   color: #bbbbbb;
   text-transform: uppercase;
@@ -122,19 +119,9 @@
   filter: none;
 }
 #topbar .ink-navigation:after {
-  overflow: hidden;
-  *zoom: 1;
-}
-#topbar .border {
-  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
-  background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-  background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-  background-image: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
-  background-image: linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  content: "";
+  display: table;
   clear: both;
-  margin: 0;
-  height: .3em;
-  background: url("../img/home_bkg.png") center 0px;
 }
 
 .sidebar.ink-navigation ul.menu.vertical li {
@@ -199,11 +186,11 @@
 }
 
 .panel {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
   -webkit-box-shadow: #dddddd 0 1px 1px 0;
   -moz-box-shadow: #dddddd 0 1px 1px 0;
   box-shadow: #dddddd 0 1px 1px 0;
@@ -639,9 +626,23 @@ body.ink-drawer .right-drawer li.active > a {
   padding: 3.5em 0 2em;
   font-size: 1.25em;
 }
+.page-header h1 {
+  margin-bottom: 0;
+}
 .page-header p {
   margin-top: .5em;
   font-weight: 300;
+}
+.page-header .border {
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
+  background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background-image: -o-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  background-image: linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
+  clear: both;
+  margin: 0;
+  height: .3em;
+  background: url("../img/home_bkg.png") center 0px;
 }
 
 section h1, section p, section ul, section ol, section table {
@@ -696,19 +697,14 @@ span.tip {
 }
 
 ul.props {
-  margin: 0;
+  margin: .5em 0;
   padding: 0;
   list-style-type: none;
-}
-ul.props li {
-  display: inline;
 }
 ul.props li.heading {
   text-transform: uppercase;
 }
 ul.props li.prop {
-  margin: 0 2px;
-  padding: 0 5px;
   background-color: #eeebe5;
   font-size: .95em;
 }
@@ -735,6 +731,11 @@ span.label.mandatory:after {
 span.label.breakpoint-aware:after {
   color: #4a9b17;
   content: "Breakpoint aware";
+  text-transform: uppercase;
+}
+span.label.context-aware:after {
+  color: #4a9b17;
+  content: "Context aware";
   text-transform: uppercase;
 }
 span.label.halves-quarters:after {

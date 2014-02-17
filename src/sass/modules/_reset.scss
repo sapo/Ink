@@ -388,6 +388,8 @@ sub {
 
 img {
     border: 0;
+    width: auto;
+    max-width: 100%;
     @if $legacy-support-for-ie7 {
         /* Improve image quality when scaled in IE 7. */
         -ms-interpolation-mode: bicubic;
@@ -539,10 +541,8 @@ input[type="checkbox"],
 input[type="radio"] {
     @include box-sizing(border-box); /* 1 */
     padding: 0; /* 2 */
-    @if $legacy-support-for-ie7 {
-        *height: 13px; /* 3 */
-        *width: 13px; /* 3 */
-    }
+    width: 13px; /* 3 */
+    height: 13px; /* 3 */
 }
 
 /**

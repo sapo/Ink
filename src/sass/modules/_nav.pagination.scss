@@ -14,31 +14,97 @@
                     display: block;
                     float: left;
                 }
-
-                &:last-child {
-                    a {
-                        border: none;
-                    }
-                }
-
-                &.disabled {
-                    a {
-                        &:hover {
-                            cursor: default;
-                            text-decoration: none;                  
-                        }
-                    }
-                }
             }
 
             @include clearfix;
+
+            &.dotted {
+
+                li {
+            
+                    a {
+                        display: block;
+                        height: 1em;
+                        width: 1em;
+                        margin-right: .6em;
+                        padding: 0; 
+                        @include border-radius(50%);
+                    }
+
+                    &:first-child,
+                    &:last-child {
+                        a { 
+                            height: auto;
+                            width: auto;
+                            background: none;
+                        }
+                    }
+
+                    &.previous,
+                    &.next {
+                        a { display: none }
+                    }
+            
+                }
+            }
+
+            &.chevron {
+
+                li {
+                    
+                    display: none;
+
+                    &.next,
+                    &.previous { 
+                        
+                        display: block;
+
+                        a {
+                            display: block;
+                            position: absolute;
+                            top: 35%;
+                            padding: 0 .5em; 
+                            margin: 0;
+                            font-family: FontAwesome;
+                            font-size: 4em;
+                            @include transition(compact(all 140ms ease-in-out));
+                        }
+                    }
+
+                    &.disabled {
+                        a {
+                            color: rgba($white,0.6);
+                            @include text-shadow(none);
+                            &:hover,
+                            &:focus {
+                                color: rgba($white,0.6);    
+                            }
+                        }
+                    }
+                    
+                    &.previous {
+                        a {
+                            left: 0;
+                            &:after { content: $fa-var-chevron-circle-left; }
+                        }
+                    }
+
+                    &.next {
+                        a {
+                            right: 0;
+                            &:after { content: $fa-var-chevron-circle-right; }
+                        }
+                    }
+
+                }
+            }
         }
     }
 }
 
 @media screen and (max-width: 650px) {
 
-    html body .ink-navigation {
+    html body .#{$navigation-class-name} {
         
         .pagination {
         

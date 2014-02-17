@@ -273,9 +273,19 @@
 
         @if $position == horizontal {
 
+            .#{$position}-space {
+                margin-left: $gutter-width;
+                margin-right: $gutter-width;
+            }
+
             .#{$class-name}-#{$position}-space {
                 margin-left: $gutter-width;
                 margin-right: $gutter-width;
+            }
+
+            .#{$position}-padding {
+                padding-left: $gutter-width;
+                padding-right: $gutter-width;
             }
 
             .#{$class-name}-#{$position}-padding {
@@ -287,9 +297,19 @@
                 $sub-division-class-name: nth($sub-division,1);
                 $sub-division-unit: nth($sub-division,2);
 
+                .#{$sub-division-class-name}-#{$position}-space {
+                    margin-left: $gutter-width / $sub-division-unit;
+                    margin-right: $gutter-width / $sub-division-unit;
+                }
+
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
                     margin-left: $gutter-width / $sub-division-unit;
                     margin-right: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-#{$position}-padding {
+                    padding-left: $gutter-width / $sub-division-unit;
+                    padding-right: $gutter-width / $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
@@ -302,9 +322,19 @@
 
         @if $position == vertical {
 
+            .#{$position}-space {
+                margin-top: $gutter-width;
+                margin-bottom: $gutter-width;
+            }
+
             .#{$class-name}-#{$position}-space {
                 margin-top: $gutter-width;
                 margin-bottom: $gutter-width;
+            }
+
+            .#{$position}-padding {
+                padding-top: $gutter-width;
+                padding-bottom: $gutter-width;
             }
 
             .#{$class-name}-#{$position}-padding {
@@ -316,9 +346,19 @@
                 $sub-division-class-name: nth($sub-division,1);
                 $sub-division-unit: nth($sub-division,2);   
 
+                .#{$sub-division-class-name}-#{$position}-space {
+                    margin-top: $gutter-width / $sub-division-unit;
+                    margin-bottom: $gutter-width / $sub-division-unit;
+                }
+
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
                     margin-top: $gutter-width / $sub-division-unit;
                     margin-bottom: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-#{$position}-padding {
+                    padding-top: $gutter-width / $sub-division-unit;
+                    padding-bottom: $gutter-width / $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
@@ -331,8 +371,16 @@
 
         @if $position != horizontal and $position != vertical and $position != null {
 
+            .#{$position}-space {
+                margin-#{$position}: $gutter-width;
+            }
+
             .#{$class-name}-#{$position}-space {
                 margin-#{$position}: $gutter-width;
+            }
+
+            .#{$position}-padding {
+                padding-#{$position}: $gutter-width;
             }
 
             .#{$class-name}-#{$position}-padding {
@@ -343,8 +391,16 @@
                 $sub-division-class-name: nth($sub-division,1);
                 $sub-division-unit: nth($sub-division,2);
 
+                .#{$sub-division-class-name}-#{$position}-space {
+                    margin-#{$position}: $gutter-width / $sub-division-unit;
+                }
+
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-space {
                     margin-#{$position}: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-#{$position}-padding {
+                    padding-#{$position}: $gutter-width / $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-#{$position}-padding {
@@ -355,8 +411,16 @@
 
         @if $position == null {
 
+            .space {
+                margin: $gutter-width;
+            }
+
             .#{$class-name}-space {
                 margin: $gutter-width;
+            }
+
+            .padding {
+                padding: $gutter-width;
             }
 
             .#{$class-name}-padding {
@@ -367,8 +431,16 @@
                 $sub-division-class-name: nth($sub-division,1);
                 $sub-division-unit: nth($sub-division,2);
 
+                .#{$sub-division-class-name}-space {
+                    margin: $gutter-width / $sub-division-unit;
+                }
+
                 .#{$class-name}-#{$sub-division-class-name}-space {
                     margin: $gutter-width / $sub-division-unit;
+                }
+
+                .#{$sub-division-class-name}-padding {
+                    padding: $gutter-width / $sub-division-unit;
                 }
 
                 .#{$class-name}-#{$sub-division-class-name}-padding {
@@ -419,6 +491,7 @@
         $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
+        $no-media-query: nth($breakpoint,6);
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
@@ -470,19 +543,15 @@
         $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
+        $no-media-query: nth($breakpoint,6);
 
-        @if length($breakpoint) > 5 {
-            
-            $no-media-query: nth($breakpoint,6);
-
-            @if $no-media-query {
+        @if $no-media-query {
               @include generate-grid-container($grid-class-name, $gutter-width);
               @include generate-grid-divisions($class-name);
               @include generate-column-group-container($gutter-width,$class-name);
               @include generate-grid-helper-classes($class-name,$gutter-width);
               @include generate-visibility-classes($class-name);
-            }
-        }       
+        }
     }
 }
 
@@ -493,8 +562,6 @@
         max-width: $grid-max-width;
         margin: 0 auto;
     }
-    
-    @include generate-grid-all-divisions();
 
     @each $breakpoint in $breakpoints {
 
@@ -503,6 +570,7 @@
         $maximum-width: nth($breakpoint,3);
         $gutter-width: nth($breakpoint,4);
         $base-font-size: nth($breakpoint,5);
+        $no-media-query: nth($breakpoint,6);
 
         @if $minimum-width and not $maximum-width {
             @media screen and (min-width: $minimum-width) {
@@ -529,9 +597,11 @@
                 @include generate-grid-container($grid-class-name, $gutter-width);
                 @include generate-grid-divisions($class-name);
                 @include generate-column-group-container($gutter-width,$class-name);
+                @include generate-grid-helper-classes($class-name,$gutter-width);
                 @include generate-visibility-classes($class-name);
             }
         }
     }
 
+    @include generate-grid-all-divisions();
 }

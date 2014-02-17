@@ -30,6 +30,7 @@ sections:
     components: 
       - title: Grid
         topics:
+          - title: Introduction
           - title: Dividing space
           - title: Gutters
           - title: Vertical spacing
@@ -42,6 +43,7 @@ sections:
           - title: Breadcrumbs
           - title: Pagination
           - title: Pills
+          - title: Dropdowns
       - title: Typography
         topics:
           - title: Horizontal menu
@@ -56,7 +58,7 @@ sections:
           - title: Element alignment
           - title: Content alignment
           - title: Element spacing
-          - title: Element visibility
+          - title: Element visibility  
   - title: Javascript
     components: 
       - title: Dom
