@@ -23,7 +23,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         return ( ( a > b ) ? 1 : -1 );
     }
     // cmp function for comparing data which might be a number.
-    function numberishEnabledCmp (index, a, b) {
+    function numberishEnabledCmp (a, b, index) {
         var aValue = maybeTurnIntoNumber(Element.textContent(a));
         var bValue = maybeTurnIntoNumber(Element.textContent(b));
 
@@ -340,8 +340,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 Common.cleanChildren(tbody);
                 InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
 
-                this._pagination.setCurrent(0);
-                this._paginate(1);
+                if (this._pagination) {
+                    this._pagination.setCurrent(0);
+                    this._paginate(1);
+                }
             }
         },
 
@@ -434,6 +436,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _sort: function( index ){
+            // TODO this is THE worst way to declare field names. Incompatible with i18n and a lot of other things.
             var fieldName = Element.textContent(this._headers[index]);
             var keyFunction = this._options.getSortKey;
 
@@ -616,7 +619,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
-                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                if (this._pagination) {
+                    this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                }
             }
         },
 
