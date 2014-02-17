@@ -14,7 +14,7 @@
   font-weight: 500;
 }
 
-.fw-700, ul.props li.heading {
+.fw-700, .mosaic .title, ul.props li.heading {
   font-weight: 700;
 }
 
@@ -55,6 +55,10 @@
 .slab-700 {
   font-weight: 700;
   font-family: Roboto_slab;
+}
+
+.uppercase, .mosaic .title {
+  text-transform: uppercase;
 }
 
 #topbar {
@@ -205,7 +209,7 @@ body.ink-drawer .right-drawer {
 }
 body.ink-drawer .left-drawer ul,
 body.ink-drawer .right-drawer ul {
-  margin: 0;
+  margin: 60px 0 0 0;
   padding: 0;
   list-style-type: none;
 }
@@ -294,6 +298,33 @@ body.ink-drawer .left-drawer li.active > a,
 body.ink-drawer .right-drawer li.active > a {
   background: #333;
   color: #FFF;
+}
+
+.mosaic {
+  padding: 1em;
+  display: block;
+  border: 1px solid #d9d9d9;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+.mosaic .title {
+  margin: .5em 0;
+}
+.mosaic .description {
+  margin: 0;
+  font-size: .875em;
+  color: #555555;
+}
+.mosaic:hover {
+  text-decoration: none;
+  border: 1px solid #bfbfbf;
+  background: #fcfcfc;
+}
+.mosaic:hover .description {
+  text-transform: none;
 }
 
 .highlight {
@@ -634,6 +665,7 @@ body.ink-drawer .right-drawer li.active > a {
   font-weight: 300;
 }
 .page-header .border {
+  background-image: url("../img/home_bkg.png") center 0px;
   background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e65d5b), color-stop(14%, #f3af32), color-stop(28%, #e6d168), color-stop(40%, #7bd369), color-stop(55%, #50c6a2), color-stop(70%, #a7d37c), color-stop(85%, #a7b958), color-stop(100%, #e35c57));
   background-image: -webkit-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
   background-image: -moz-linear-gradient(left, #e65d5b, #f3af32 14%, #e6d168 28%, #7bd369 40%, #50c6a2 55%, #a7d37c 70%, #a7b958 85%, #e35c57);
@@ -642,7 +674,6 @@ body.ink-drawer .right-drawer li.active > a {
   clear: both;
   margin: 0;
   height: .3em;
-  background: url("../img/home_bkg.png") center 0px;
 }
 
 section h1, section p, section ul, section ol, section table {

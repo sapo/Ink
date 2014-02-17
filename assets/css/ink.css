@@ -6521,6 +6521,10 @@ a {
   color: #6998c9;
   text-decoration: none;
   cursor: pointer;
+  -webkit-transition: all 140ms ease-in-out;
+  -moz-transition: all 140ms ease-in-out;
+  -o-transition: all 140ms ease-in-out;
+  transition: all 140ms ease-in-out;
 }
 a:hover {
   color: #007ed5;
@@ -7288,7 +7292,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.white li a:hover {
-  background: #e6e6e6;
+  background: #f2f2f2;
 }
 .ink-navigation ul.menu.grey {
   background: #d9d9d9;
@@ -7318,7 +7322,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.grey li a:hover {
-  background: #bfbfbf;
+  background: #cccccc;
 }
 .ink-navigation ul.menu.black {
   background: #1a1a1a;
@@ -7337,7 +7341,7 @@ dl.inline dd {
   background: none;
 }
 .ink-navigation ul.menu.black li.active {
-  background: black;
+  background: #333333;
 }
 .ink-navigation ul.menu.black li.disabled a {
   color: #4d4d4d;
@@ -7348,7 +7352,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.black li a:hover {
-  background: black;
+  background: #262626;
 }
 .ink-navigation ul.menu.blue {
   background: #1b75ce;
@@ -7378,7 +7382,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.blue li a:hover {
-  background: #0c5baa;
+  background: #0d68c2;
 }
 .ink-navigation ul.menu.green {
   background: #4c9220;
@@ -7408,7 +7412,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.green li a:hover {
-  background: #356f10;
+  background: #3f8514;
 }
 .ink-navigation ul.menu.orange {
   background: #f2990d;
@@ -7438,7 +7442,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.orange li a:hover {
-  background: #cc7d00;
+  background: #e68c00;
 }
 .ink-navigation ul.menu.red {
   background: #be1c1c;
@@ -7468,7 +7472,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.menu.red li a:hover {
-  background: #9a0d0d;
+  background: #b10f0f;
 }
 
 .ink-navigation ul.pagination {
@@ -7555,7 +7559,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.white li a:hover {
-  background: #e6e6e6;
+  background: #f2f2f2;
 }
 .ink-navigation ul.pagination.grey li {
   background: #d9d9d9;
@@ -7597,7 +7601,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.grey li a:hover {
-  background: #bfbfbf;
+  background: #cccccc;
 }
 .ink-navigation ul.pagination.black li {
   background: #1a1a1a;
@@ -7624,7 +7628,7 @@ dl.inline dd {
   background: #1a1a1a;
 }
 .ink-navigation ul.pagination.black li.active a {
-  background: black;
+  background: #333333;
 }
 .ink-navigation ul.pagination.black li.disabled a {
   color: #4d4d4d;
@@ -7639,7 +7643,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.black li a:hover {
-  background: black;
+  background: #262626;
 }
 .ink-navigation ul.pagination.orange li {
   background: #f2990d;
@@ -7681,7 +7685,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.orange li a:hover {
-  background: #cc7d00;
+  background: #e68c00;
 }
 .ink-navigation ul.pagination.blue li {
   background: #1b75ce;
@@ -7723,7 +7727,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.blue li a:hover {
-  background: #0c5baa;
+  background: #0d68c2;
 }
 .ink-navigation ul.pagination.green li {
   background: #4c9220;
@@ -7765,7 +7769,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.green li a:hover {
-  background: #356f10;
+  background: #3f8514;
 }
 .ink-navigation ul.pagination.red li {
   background: #be1c1c;
@@ -7807,7 +7811,7 @@ dl.inline dd {
   text-decoration: none;
 }
 .ink-navigation ul.pagination.red li a:hover {
-  background: #9a0d0d;
+  background: #b10f0f;
 }
 .ink-navigation ul.pagination.dotted li {
   background: none;
@@ -7923,13 +7927,13 @@ dl.inline dd {
   color: #555555;
 }
 .ink-navigation ul.pills.grey li a:hover {
-  background: #bfbfbf;
+  background: #cccccc;
 }
 .ink-navigation ul.pills.black li {
   background: #1a1a1a;
 }
 .ink-navigation ul.pills.black li.active a {
-  background: black;
+  background: #333333;
 }
 .ink-navigation ul.pills.black li.disabled a {
   color: #4d4d4d;
@@ -7942,7 +7946,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.black li a:hover {
-  background: black;
+  background: #262626;
 }
 .ink-navigation ul.pills.blue li {
   background: #1b75ce;
@@ -7961,7 +7965,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.blue li a:hover {
-  background: #0c5baa;
+  background: #0d68c2;
 }
 .ink-navigation ul.pills.green li {
   background: #4c9220;
@@ -7980,7 +7984,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.green li a:hover {
-  background: #356f10;
+  background: #3f8514;
 }
 .ink-navigation ul.pills.orange li {
   background: #f2990d;
@@ -7999,7 +8003,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.orange li a:hover {
-  background: #cc7d00;
+  background: #e68c00;
 }
 .ink-navigation ul.pills.red li {
   background: #be1c1c;
@@ -8018,7 +8022,7 @@ dl.inline dd {
   color: white;
 }
 .ink-navigation ul.pills.red li a:hover {
-  background: #9a0d0d;
+  background: #b10f0f;
 }
 
 table.ink-table {
