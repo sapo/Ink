@@ -8,6 +8,7 @@
     display: inline-block;
     vertical-align: middle;
     white-space: nowrap;
+    line-height: normal;
     
     & + .#{$button-class-name} {
         margin-left: $button-margin;
