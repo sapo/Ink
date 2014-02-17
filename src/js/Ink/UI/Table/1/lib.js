@@ -340,8 +340,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 Common.cleanChildren(tbody);
                 InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
 
-                this._pagination.setCurrent(0);
-                this._paginate(1);
+                if (this._pagination) {
+                    this._pagination.setCurrent(0);
+                    this._paginate(1);
+                }
             }
         },
 
@@ -617,7 +619,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
-                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                if (this._pagination) {
+                    this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                }
             }
         },
 
