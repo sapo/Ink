@@ -3,7 +3,7 @@ exclude: [".gitignore", ".git", "config.rb", "package.json", "Gruntfile.js", ".t
 
 destination: ./_site
 
-url: http://oss.sapo.pt/Ink/
+url: http://localhost:4000/
 
 # SITE TITLE
 title: Ink
@@ -13,12 +13,14 @@ version: 3.0.0
 
 # URLS
 download_url: https://github.com/sapo/Ink/archive/
-repo_url: https://github.com/sapo/Ink/
+repo_url: https://github.com/sapo/Ink
 
 # ASSETS PATHS
 images_path: ./assets/img/
 js_path: ./assets/js/
 css_path: ./assets/css/
+# fonts_path: assets/font/
+
 
 sections:
   - title: UI Elements

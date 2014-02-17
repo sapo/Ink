@@ -7,11 +7,13 @@
                 <li class="logoPlaceholder"><a href="{{ page.site_root }}" class="logoPlaceholder">Ink</a></li>
             </ul>
             <ul class="menu horizontal flat black push-right hide-small hide-tiny hide-medium">
+                <li>
+                    <a href="{{ site.download_url }}{{ site.version }}.zip">Download</a>
+                </li>
                 {% for section in site.sections %}
-                {% assign section_uri = section.title | downcase | replace:' ','-' %}
-                
+                {% assign section_uri = section.title | downcase | replace:' ','-' %}                
                 <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
-                    <a href="{{ page.site_root }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
+                    <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
