@@ -52,7 +52,6 @@ $code-border                : darken($code-background,8%);
                 font-size: $topbar-fontSize;
     
                 a {
-                    @include transition(compact(color 140ms ease-in));
                     padding: .7em 1em;
                     color:$topbar-color;
                     text-transform: uppercase;
@@ -62,6 +61,17 @@ $code-border                : darken($code-background,8%);
                     
                     &:hover {
                         color:$topbar-colorHover;
+                    }
+
+                    &.ink-button {
+                        color: $white;
+                        padding: 4px 12px;
+                        margin: 5px 1em;
+                        font-size: .875em;
+
+                        &:hover {
+                            background: #0d68c2;
+                        }
                     }
 
                     &.logoPlaceholder {
@@ -196,7 +206,7 @@ $code-border                : darken($code-background,8%);
 body.ink-drawer {
     .left-drawer,
     .right-drawer {
-        background: #222;
+        background: #1e1e1e;
 
         ul {
             margin: 0;
@@ -212,7 +222,7 @@ body.ink-drawer {
             &.search {
                     
                 position: relative;
-                margin: 15px;
+                margin: 59px 15px 15px;
                 
                 input[type=search] {
                     @include border-radius(2px);
@@ -245,10 +255,13 @@ body.ink-drawer {
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
                 color: #f0f0f0;
                 text-transform: uppercase;
-                // padding: 15px;
-                // margin-top: 1em;
+                margin-top: 1em;
                 font-weight: 700;
-                font-size: 1.125em;
+                
+                a {
+                    font-size: 1em;
+                    margin-top: 1em;
+                }
 
                 &:first-child {
                     margin-top: 0;
@@ -257,25 +270,38 @@ body.ink-drawer {
             }
             
             & > a {
-                @include transition-property(color, background);
-                @include transition-duration(140ms);
-                @include transition-timing-function(ease-in);
+                @include transition(compact(all 140ms ease-in-out));
                 display: block;
                 padding: 6px 15px;
                 color: #bbb;
                 text-decoration: none;
                 text-transform: uppercase;
-                text-shadow: 0 1px 0 #000;
+                font-size: .875em;
 
                 &:hover {
                     background: #333;
                     color: #FFF;
+                }
+
+                &.ink-button {
+                    color: $white;
+                    padding: 4px 12px;
+                    margin: 1em;
+
+                    &:hover {
+                        background: #0d68c2;
+                    }
                 }
             }
 
             &.active > a {
                 background: #333;
                 color: #FFF;
+            }
+
+            &:last-child {
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 1em;
             }
         }
     }
