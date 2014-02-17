@@ -16,19 +16,18 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         }
         return value;
     }
+    function cmp (a, b) {
+        if( a === b ){
+            return 0;
+        }
+        return ( ( a > b ) ? 1 : -1 );
+    }
     // cmp function for comparing data which might be a number.
     function numberishEnabledCmp (index, a, b) {
-        var aValue = Element.textContent(Selector.select('td',a)[index]),
-            bValue = Element.textContent(Selector.select('td',b)[index]);
+        var aValue = maybeTurnIntoNumber(Element.textContent(a));
+        var bValue = maybeTurnIntoNumber(Element.textContent(b));
 
-        aValue = maybeTurnIntoNumber(aValue);
-        bValue = maybeTurnIntoNumber(bValue);
-
-        if( aValue === bValue ){
-            return 0;
-        } else {
-            return ( ( aValue > bValue ) ? 1 : -1 );
-        }
+        return cmp(aValue, bValue);
     }
     // Object.keys polyfill
     function keys(obj) {
@@ -86,13 +85,26 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      *      You can return HTML, a DOM element, or a string here.
      *      Arguments you receive: `(column, fieldData, rowIndex)`.
      *
-     *     @param {Function}  [options.processJSONField.(field_name)]
-     *      The same as processJSONField, but for each field.
+     *          @param {Function}  [options.processJSONField.(field_name)]
+     *           The same as processJSONField, but for a particular field.
      *
      *     @param {Function}  [options.processJSONTotalRows]
      *      A callback where you have a chance to say how many rows
      *      are in the dataset (not only on this page) you have on the
      *      collection. You get as an argument the JSON response.
+     *
+     *     @param {Function}  [options.getSortKey=null]
+     *      A function taking a `{ columnIndex, columnName, data, element }`
+     *      object and returning a value which serves as a sort key for the
+     *      sorting operation. For example, if you want to sort by a
+     *      `data-sort-key` atribute, set `getSortKey` to:
+     *
+     *          function (cell) {
+     *              return cell.element.getAttribute('data-sort-key');
+     *          }
+     *
+     *          @param {Function} [options.getSortKey.(field_name)]
+     *           Same as `options.getSortKey`, but for a particular field.
      *
      *     @param {Object}    [options.tdClassNames]
      *      An object mapping each field to what classes it gets.
@@ -197,6 +209,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             processJSONField: ['Function', sameSame],
             processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
             processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
+            getSortKey: ['Function', null],
             pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],
             visibleFields: ['String', null],
@@ -210,7 +223,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._markupMode = !this._options.endpoint;
 
         if( this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
+            this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
         }
 
         this._thead = this._rootElement.tHead || this._rootElement.createTHead();
@@ -421,7 +434,30 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _sort: function( index ){
-            this._data.sort(Ink.bind(numberishEnabledCmp, false, index));
+            var fieldName = Element.textContent(this._headers[index]);
+            var keyFunction = this._options.getSortKey ? (
+                this._options.getSortKey[fieldName] ||
+                this._options.getSortKey) : false;
+            var self = this;
+
+            this._data.sort(function (trA, trB) {
+                var elementA = Ink.ss('td', trA)[index];
+                var elementB = Ink.ss('td', trB)[index];
+                if (keyFunction) {
+                    return cmp(userKey(elementA), userKey(elementB));
+                } else {
+                    return numberishEnabledCmp(elementA, elementB, index);
+                }
+            });
+
+            function userKey(element) {
+                return keyFunction.call(self, {
+                    columnIndex: index,
+                    columnName: fieldName,
+                    data: Element.textContent(element),
+                    element: element
+                });
+            }
         },
 
         /**
