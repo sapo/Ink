@@ -205,11 +205,11 @@
                         padding-right: $form-append-width;
                     }
 
-                    & > [class^="icon-"],
-                    & > [class*=" icon-"] {
+                    & > [class^="fa-"],
+                    & > [class*=" fa-"] {
                         position: absolute;
                         right: 1em;
-                        top: .15em;
+                        top: .86em;
                         pointer-events: none;
                     }
                 }
@@ -227,11 +227,11 @@
                         padding-left: $form-append-width;
                     }
                     
-                    & > [class^="icon-"],
-                    & > [class*=" icon-"] {
+                    & > [class^="fa-"],
+                    & > [class*=" fa-"] {
                         position: absolute;
                         left: 1em;
-                        top: .15em;
+                        top: .86em;
                         pointer-events: none;
                     }
                 }
