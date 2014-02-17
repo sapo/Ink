@@ -34,6 +34,7 @@ a {
     color: $link-color; 
     text-decoration: none;
     cursor: pointer;
+    @include transition (compact(all 140ms ease-in-out));
     
     &:hover {
         color: $link-hover-color; 
