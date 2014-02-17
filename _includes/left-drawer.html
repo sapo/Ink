@@ -13,26 +13,16 @@
                 {% assign section_uri = section.title | downcase | replace:' ','-' %}
                 
                 <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
-                    <a href="{{ page.site_root }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
+                    <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
                 </li>
                 {% endfor %}
 
-{% assign current_section = page.url | split: '/' %}
-
-{% if current_section[1] == 'ui-elements' %}
-  {% assign section = site.sections[1] %}
-{% elsif current_section[1] == 'javascript' %}
-  {% assign section = site.sections[2] %}
-{% elsif current_section[1] == 'cookbook' %}
-  {% assign section = site.sections[3] %}
-{% elsif current_section[1] == 'glossary' %}
-  {% assign section = site.sections[4] %}
-{% endif %}
+{% include section-selector.html %}
 
 {% for component in section.components %}
-  <li class="heading"><a href="{{ page.site_root }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/" title="{{ component.title }}">{{ component.title }}</a>{% if component.topics %}</li>
+  <li class="heading"><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/" title="{{ component.title }}">{{ component.title }}</a>{% if component.topics %}</li>
     {% for topic in component.topics %}    
-      <li><a href="{{ page.site_root }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/#{{ topic.title | downcase | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
+      <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/#{{ topic.title | downcase | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
     {% endif %}
 {% endfor %}
     </ul>

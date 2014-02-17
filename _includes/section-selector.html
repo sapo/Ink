@@ -1,0 +1,11 @@
+{% assign current_section = page.url | split: '/' %}
+
+{% if current_section[1] == 'ui-elements' %}
+  {% assign section = site.sections[0] %}
+{% elsif current_section[1] == 'javascript' %}
+  {% assign section = site.sections[1] %}
+{% elsif current_section[1] == 'cookbook' %}
+  {% assign section = site.sections[2] %}
+{% elsif current_section[1] == 'glossary' %}
+  {% assign section = site.sections[3] %}
+{% endif %}

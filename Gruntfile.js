@@ -151,6 +151,23 @@ module.exports = function(grunt) {
       },
     },
 
+    jekyll: {
+      dev: {
+        options: {
+          config: '_config.dev.yml',
+          serve: true,
+          watch: true,
+          host: 'localhost',
+          port: 4000,
+        }
+      },
+      prod: {
+        options: {
+          config: '_config.yml'
+        }
+      }
+    }
+
   });
 
   grunt.loadNpmTasks('grunt-jekyll');
