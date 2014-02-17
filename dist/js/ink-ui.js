@@ -8219,7 +8219,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         return ( ( a > b ) ? 1 : -1 );
     }
     // cmp function for comparing data which might be a number.
-    function numberishEnabledCmp (index, a, b) {
+    function numberishEnabledCmp (a, b, index) {
         var aValue = maybeTurnIntoNumber(Element.textContent(a));
         var bValue = maybeTurnIntoNumber(Element.textContent(b));
 
