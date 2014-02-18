@@ -30,7 +30,7 @@ sections:
           - title: Gutters
           - title: Vertical spacing
           - title: Multiple screen sizes
-          - title: Customizations
+          - title: Customizing
       - title: Navigation
         topics:
           - title: Horizontal menu

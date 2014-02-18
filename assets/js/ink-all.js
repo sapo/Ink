@@ -16117,7 +16117,12 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     },
 
     _addEvents: function(){
-      Event.on(document.body, 'click', this._triggers, this._handlers.click); 
+      Event.on(document.body, 'click', this._triggers, this._handlers.click);
+      window.addEventListener("touchmove", function(ev) {
+        if (Css.hasClassName(document.body,'push') || Css.hasClassName(document.body,'over')) {
+          ev.preventDefault();
+        }
+      }, false);
     },
 
     open: function(direction) {
