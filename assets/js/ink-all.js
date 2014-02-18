@@ -16111,10 +16111,14 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onTouchMove: function (ev) {
 
-        console.log('move');
+        if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){        
+          console.log(ev.currentTarget);
+        }
 
         if( this._isOpen ) {
-         ev.preventDefault();
+          console.log('open');
+          console.log(ev);
+          ev.preventDefault();
         }
     },
 
@@ -16131,11 +16135,11 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     _addEvents: function () {
       Event.on(document.body, 'click', this._triggers, this._handlers.click);
 
-      for ( var i = 0; i < this._contentDrawers.length; i++ ) {
-        Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
-      }
+      // for ( var i = 0; i < this._contentDrawers.length; i++ ) {
+      //   Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
+      // }
 
-      // Event.on(window,'touchmove', this._handlers.touchmove);
+      Event.on(document,'touchmove', this._handlers.touchmove);
     },
 
     open: function(direction) {
