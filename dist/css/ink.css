@@ -2482,7 +2482,7 @@ footer {
 }
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
-  font-size: 1.3333333333333333em;
+  font-size: 1.33333333em;
 }
 /* makes sure icons active on rollover in links */
 a [class^="icon-"],
@@ -2493,16 +2493,16 @@ a [class*=" icon-"] {
 [class^="icon-"].icon-fixed-width,
 [class*=" icon-"].icon-fixed-width {
   display: inline-block;
-  width: 1.1428571428571428em;
+  width: 1.14285714em;
   text-align: right;
-  padding-right: 0.2857142857142857em;
+  padding-right: 0.28571429em;
 }
 [class^="icon-"].icon-fixed-width.icon-large,
 [class*=" icon-"].icon-fixed-width.icon-large {
-  width: 1.4285714285714286em;
+  width: 1.42857143em;
 }
 .icons-ul {
-  margin-left: 2.142857142857143em;
+  margin-left: 2.14285714em;
   list-style-type: none;
 }
 .icons-ul > li {
@@ -2510,8 +2510,8 @@ a [class*=" icon-"] {
 }
 .icons-ul .icon-li {
   position: absolute;
-  left: -2.142857142857143em;
-  width: 2.142857142857143em;
+  left: -2.14285714em;
+  width: 2.14285714em;
   text-align: center;
   line-height: inherit;
 }
@@ -7786,7 +7786,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .ink-form input[type="tel"]:focus,
 .ink-form input[type="color"]:focus {
   outline: none;
-  border-color: rgba(153, 153, 153, 0.8999999999999999);
+  border-color: rgba(153, 153, 153, 0.9);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(153, 153, 153, 0.6);
@@ -8005,7 +8005,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .ink-form .control-group.validation.warning textarea,
 .ink-form .control-group.validation.warning select {
   outline: none;
-  border-color: rgba(255, 156, 0, 0.8999999999999999);
+  border-color: rgba(255, 156, 0, 0.9);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 156, 0, 0.6);
@@ -8297,7 +8297,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-left: 0.4em solid transparent;
   border-right: 0.4em solid transparent;
   border-top: 0.4em solid #f0f0f0;
-  bottom: -0.36363636363636365em;
+  bottom: -0.36363636em;
   left: 50%;
   margin-left: -0.2em;
 }
@@ -8306,7 +8306,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-bottom: 0.4em solid transparent;
   border-left: 0.4em solid #f0f0f0;
   top: 50%;
-  right: -0.36363636363636365em;
+  right: -0.36363636em;
   margin-top: -0.4em;
 }
 .ink-tooltip > .arrow.left {
@@ -8314,7 +8314,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-bottom: 0.4em solid transparent;
   border-right: 0.4em solid #f0f0f0;
   top: 50%;
-  left: -0.36363636363636365em;
+  left: -0.36363636em;
   margin-top: -0.4em;
 }
 .ink-tooltip.blue > .content {
@@ -8877,7 +8877,7 @@ table.ink-table.bordered tr td:first-child {
   border-radius: 4px;
   text-align: center;
   padding: 0.3em;
-  min-width: 17.400000000000002em;
+  min-width: 17.4em;
   font-size: 13px;
   -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.4);
@@ -9461,21 +9461,22 @@ html.ink-modal-is-open .ink-calendar {
   width: 100%;
   position: relative;
   overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  display: inline-block;
+  display: block;
 }
 .ink-carousel .stage {
-  white-space: nowrap;
-  font-size: 0;
-  position: relative;
-  top: 0;
   left: 0;
-  -webkit-transition-property: left, top;
-  -moz-transition-property: left, top;
-  -o-transition-property: left, top;
-  -ms-transition-property: left, top;
-  transition-property: left, top;
+  height: auto !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+  white-space: nowrap;
+  position: relative;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
   -webkit-transition-duration: 0.5s;
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
@@ -9495,19 +9496,19 @@ html.ink-modal-is-open .ink-calendar {
 .ink-carousel .stage .slide {
   position: relative;
   display: inline-block;
-  overflow: hidden;
-  font-size: 16px;
+  vertical-align: top;
   white-space: normal;
+  margin: 0;
   float: none;
   zoom: 1;
   *display: inline;
 }
 .ink-carousel .hider {
-  -webkit-transition-property: width, height;
-  -moz-transition-property: width, height;
-  -o-transition-property: width, height;
-  -ms-transition-property: width, height;
-  transition-property: width, height;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
   -webkit-transition-duration: 0.5s;
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
@@ -9726,4 +9727,3 @@ figcaption.dark {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   opacity: 1;
 }
-/*# sourceMappingURL=../.././dist/css/ink.css.map */
