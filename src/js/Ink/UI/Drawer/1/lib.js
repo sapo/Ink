@@ -92,10 +92,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       this._handlers = {
         click:   Ink.bindEvent(this._onClick, this),
-        afterTransition: Ink.bindEvent(this._afterTransition, this)
+        afterTransition: Ink.bindEvent(this._afterTransition, this),
+        touchmove: Ink.bindEvent(this._onTouchMove, this),
       };
+
       this._delay = 10;
       this._addEvents();
+
     },
 
     _onClick: function(ev){                
@@ -119,7 +122,16 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       }
     },
 
-    _afterTransition: function(){
+    _onTouchMove: function (ev) {
+
+        console.log('move');
+
+        if( this._isOpen ) {
+         ev.preventDefault();
+        }
+    },
+
+    _afterTransition: function() {
       if(!this._isOpen){
         if(this._direction == 'left') {
           Css.removeClassName(this._leftDrawer,'show');
@@ -129,16 +141,14 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       }
     },
 
-    _addEvents: function(){
+    _addEvents: function () {
       Event.on(document.body, 'click', this._triggers, this._handlers.click);
 
-      for ( var i=0; i<this._contentDrawers.length; i++ ) {
-        this._contentDrawers[i].addEventListener("touchmove", function(ev) {
-          if (Css.hasClassName(document.body,'push') || Css.hasClassName(document.body,'over')) {
-            ev.preventDefault();
-          }
-        }, false);
+      for ( var i = 0; i < this._contentDrawers.length; i++ ) {
+        Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
       }
+
+      // Event.on(window,'touchmove', this._handlers.touchmove);
     },
 
     open: function(direction) {
