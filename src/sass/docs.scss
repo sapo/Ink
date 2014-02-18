@@ -341,7 +341,7 @@ body.ink-drawer {
 
 
 // Code highlight
-.highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; }
+.highlight          { padding: 1em; background: $code-background; margin-bottom: 1.5em; @include border-radius($border-radius);}
 .highlight pre      { margin: 0; font-size: .9em; }
 .highlight .c       { color: #999988; font-style: italic; } /* Comment */
 .highlight .err     { background-color: #e3d2d2; color: #a61717; } /* Error */
@@ -567,8 +567,10 @@ p.example-title {
     margin: 0;
 }
 .example {
-    background: $code-background;
     padding: 1em;
+    background: $code-background;
+    @include border-radius($border-radius);
+
 
     .ink-grid {
         padding: 0;
@@ -578,6 +580,63 @@ p.example-title {
             background: #E5EBF0;
             text-align: center;
             line-height: 150px;
+        }
+    }
+}
+
+footer {
+
+    border-top: 1px solid #DDD;
+    background: #f0f0f0;
+
+    .socialplugins {
+        background: $grey-10;
+        padding: 1em;
+        border: 1px solid #afafaf;
+        @include border-radius($border-radius);
+    }
+
+    .copyright {
+        
+        .SAPOlogo {
+            background: url("#{$img-path}SAPOlogo.png") no-repeat scroll 0 0 transparent;
+            text-indent: -9999px;
+            display: block;
+            width: 101px;
+            height: 30px;
+            margin-bottom: 1em;
+        }
+
+        .PTClogo {
+            font-size: .875em;
+
+            a {
+                background: url("#{$img-path}icon_Sprite.png") no-repeat 0 top;
+                text-indent: -9999px;
+                display: block;
+                float: left;
+                width: 41px;
+                height: 43px;
+                margin-right:1em;
+            }
+        }
+    }
+
+    h5 { margin-top: .5em; }
+    .credits { margin: 0 }
+
+    .ink-navigation {
+        ul.menu.horizontal {
+
+            li {
+                a {
+                    padding: .5em 1em .5em 0;
+                    display: inline-block;
+                    &.license {
+                        padding: .5em 0;    
+                    }
+                }
+            }
         }
     }
 }
