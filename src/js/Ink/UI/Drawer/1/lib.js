@@ -124,14 +124,15 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onTouchMove: function (ev) {
 
-        if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){        
-          console.log(ev.currentTarget);
-        }
-
         if( this._isOpen ) {
           console.log('open');
-          console.log(ev);
-          ev.preventDefault();
+          // console.log(ev);
+
+          if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){        
+            ev.preventDefault();
+            ev.stopPropagation();
+          }
+
         }
     },
 
@@ -148,11 +149,16 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     _addEvents: function () {
       Event.on(document.body, 'click', this._triggers, this._handlers.click);
 
-      // for ( var i = 0; i < this._contentDrawers.length; i++ ) {
-      //   Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
-      // }
+      for ( var i = 0; i < this._contentDrawers.length; i++ ) {
+        Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
+      }
+      Event.on(this._leftDrawer,'touchmove',function(ev){
+        console.log('scroll coiso');
+        ev.preventDefault();
+        ev.stopPropagation();
+      });
 
-      Event.on(document,'touchmove', this._handlers.touchmove);
+      // Event.on(document,'touchmove', this._handlers.touchmove);
     },
 
     open: function(direction) {
