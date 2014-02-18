@@ -92,10 +92,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       this._handlers = {
         click:   Ink.bindEvent(this._onClick, this),
-        afterTransition: Ink.bindEvent(this._afterTransition, this)
+        afterTransition: Ink.bindEvent(this._afterTransition, this),
+        touchmove: Ink.bindEvent(this._onTouchMove, this),
       };
+
       this._delay = 10;
       this._addEvents();
+
     },
 
     _onClick: function(ev){                
@@ -119,7 +122,21 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       }
     },
 
-    _afterTransition: function(){
+    _onTouchMove: function (ev) {
+
+        if( this._isOpen ) {
+          console.log('open');
+          // console.log(ev);
+
+          if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){        
+            ev.preventDefault();
+            ev.stopPropagation();
+          }
+
+        }
+    },
+
+    _afterTransition: function() {
       if(!this._isOpen){
         if(this._direction == 'left') {
           Css.removeClassName(this._leftDrawer,'show');
@@ -129,8 +146,19 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       }
     },
 
-    _addEvents: function(){
-      Event.on(document.body, 'click', this._triggers, this._handlers.click); 
+    _addEvents: function () {
+      Event.on(document.body, 'click', this._triggers, this._handlers.click);
+
+      for ( var i = 0; i < this._contentDrawers.length; i++ ) {
+        Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
+      }
+      Event.on(this._leftDrawer,'touchmove',function(ev){
+        console.log('scroll coiso');
+        // ev.preventDefault();
+        // ev.stopPropagation();
+      });
+
+      // Event.on(document,'touchmove', this._handlers.touchmove);
     },
 
     open: function(direction) {

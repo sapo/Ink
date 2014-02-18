@@ -154,7 +154,7 @@ module.exports = function(grunt) {
     jekyll: {
       dev: {
         options: {
-          config: '_config.dev.yml',
+          config: '_config.yml,_config.dev.yml',
           serve: true,
           watch: true,
           host: 'localhost',

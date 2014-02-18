@@ -6,11 +6,11 @@
   font-weight: 300;
 }
 
-.fw-400 {
+.fw-400, .sidebar.ink-navigation ul.menu.vertical li.heading ul a {
   font-weight: 400;
 }
 
-.fw-500 {
+.fw-500, .sidebar.ink-navigation ul.menu.vertical li.heading {
   font-weight: 500;
 }
 
@@ -143,9 +143,9 @@
 .sidebar.ink-navigation ul.menu.vertical li.heading {
   margin-top: 1em;
   border-top: 1px solid #ddd;
-  font-weight: normal;
 }
 .sidebar.ink-navigation ul.menu.vertical li.heading a {
+  font-size: 1.2em;
   padding: 1em 0 0;
   color: #555555;
 }
@@ -161,7 +161,7 @@
   color: #6998c9;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: .875em;
+  font-size: 1em;
 }
 .sidebar.ink-navigation ul.menu.vertical li.search {
   position: relative;
@@ -680,6 +680,9 @@ body.ink-drawer .right-drawer li:last-child {
 .page-header p {
   margin-top: .5em;
   font-weight: 300;
+}
+.page-header p.section-title {
+  margin: 0 0 0.3em 0;
 }
 .page-header .border {
   background-image: url("../img/home_bkg.png") center 0px;

@@ -135,9 +135,10 @@ $code-border                : darken($code-background,8%);
                 &.heading {
                     margin-top: 1em;
                     border-top: 1px solid #ddd;
-                    font-weight: normal;
+                    @extend .fw-500;
 
                     a { 
+                        font-size: 1.2em;
                         padding: 1em 0 0;
                         color: $text-color; 
                         &:hover { text-decoration: none; }
@@ -154,7 +155,8 @@ $code-border                : darken($code-background,8%);
                             color: $link-color;
                             text-decoration: none;
                             text-transform: uppercase;
-                            font-size: .875em;
+                            font-size: 1em;
+                            @extend .fw-400;
                         }
                     }
                 }
@@ -415,6 +417,10 @@ body.ink-drawer {
     p {
         margin-top:.5em;
         font-weight: 300;
+
+        &.section-title {
+            margin: 0 0 0.3em 0;
+        }
     }
 
     .border {

@@ -1,6 +1,6 @@
 ---
 layout: documentation
-title: Grid
+title: "Grid"
 description: Ink provides a layout grid system that is flexible, responsive and uses a human readable syntax, that makes creating complex layouts that adapt to multiple screen sizes incredibly simple and intuitive.
 tags: grid
 site_root: ../../
@@ -262,10 +262,10 @@ site_root: ../../
 {% highlight html %}
 <div class="ink-grid">
   <div class="column-group gutters">
-    <div class="medium-50 large-70 all-100">
+    <div class="extra-large-30 large-40 medium-50 small-70 tiny-100">
       <div class="column">50%</div>
     </div>
-    <div class="medium-50 large-30 all-100">
+    <div class="extra-large-70 large-60 medium-50 small-30 tiny-100">
       <div class="column">50%</div>
     </div>
   </div>
@@ -275,24 +275,32 @@ site_root: ../../
 <div class="example">
   <div class="ink-grid">
     <div class="column-group gutters">
-      <div class="medium-50 large-70 all-100">
+      <div class="extra-large-30 large-40 medium-50 small-70 tiny-100">
         <div class="column">
+          <span class="hide-all show-extra-large">extra large 30%</span>
+          <span class="hide-all show-large">large 40%</span>
           <span class="hide-all show-medium">medium 50%</span>
-          <span class="hide-all show-large">large 70%</span>
-          <span class="hide-medium hide-large">all 100%</span>
+          <span class="hide-all show-small">small 70%</span>
+          <span class="hide-all show-tiny">tiny 100%</span>
       </div>
       </div>
-      <div class="medium-50 large-30 all-100">
+      <div class="extra-large-70 large-60 medium-50 small-30 tiny-100">
         <div class="column">
+          <span class="hide-all show-extra-large">extra large 70%</span>
+          <span class="hide-all show-large">large 60%</span>
           <span class="hide-all show-medium">medium 50%</span>
-          <span class="hide-all show-large">large 30%</span>
-          <span class="hide-medium hide-large">all 100%</span>
+          <span class="hide-all show-small">small 30%</span>
+          <span class="hide-all show-tiny">tiny 100%</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 <p>To set the width of a grid column just add the desired width percentage class for the targeted breakpoint: <code>large-50 small-100 ...</code></p>
-<p>You can also set a width for all breakpoints by using the <code>all-</code> prefix. Since Ink requires you to declare the width for all existing breakpoints, this is usefull to either set widths for all breakpoints or, if you have exceptions, to reduce the number of necessary classes: {% highlight html %}<div class="all-50 small-100"></div>{% endhighlight %}</p>
-<p>If you can, play with your browsers window width to see it working.</p>
+<p><i class="fa fa-leaf"></i> If you need your layout to work on multiple screens, you'll have to declare the width for all available breakpoints.</p>
+<p>You can also set a width for all breakpoints by using the <code>all-</code> prefix: {% highlight html %}<div class="all-50 small-100"></div>{% endhighlight %}</p>
+<p>Try resizing your browser window to see it working.</p>
+</section>
+<section>
+  
 </section>
