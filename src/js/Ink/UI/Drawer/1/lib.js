@@ -154,8 +154,8 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       }
       Event.on(this._leftDrawer,'touchmove',function(ev){
         console.log('scroll coiso');
-        ev.preventDefault();
-        ev.stopPropagation();
+        // ev.preventDefault();
+        // ev.stopPropagation();
       });
 
       // Event.on(document,'touchmove', this._handlers.touchmove);
