@@ -9,21 +9,24 @@
             </div>
         </li>
 
-{% for section in site.sections %}
-                {% assign section_uri = section.title | downcase | replace:' ','-' %}
-                
-                <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
-                    <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
-                </li>
-                {% endfor %}
+        {% for section in site.sections %}
+        {% assign section_uri = section.title | downcase | replace:' ','-' %}
+        
+        <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
+            <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
+        </li>
+        {% endfor %}
 
-{% include section-selector.html %}
+        {% include section-selector.html %}
 
-{% for component in section.components %}
-  <li class="heading"><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/" title="{{ component.title }}">{{ component.title }}</a>{% if component.topics %}</li>
-    {% for topic in component.topics %}    
-      <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/#{{ topic.title | downcase | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
-    {% endif %}
-{% endfor %}
+        {% for component in section.components %}
+          <li class="heading"><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/" title="{{ component.title }}">{{ component.title }}</a>{% if component.topics %}</li>
+            {% for topic in component.topics %}    
+              <li><a href="{{ site.url }}{{ section.title | downcase | replace: ' ','-' }}/{{ component.title | downcase | replace: ' ','-' }}/#{{ topic.title | downcase | replace: ' ','-' }}" title="{{ topic.title }}">{{ topic.title }}</a></li>{% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        <li><a class="ink-button blue" href="{{ site.download_url }}{{ site.version }}.zip">Download</a></li>
+
     </ul>
 </div>
