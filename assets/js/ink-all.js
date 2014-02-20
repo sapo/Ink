@@ -15997,7 +15997,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       this._name = 'Ink Drawer',
 
-      this._options = Ink.extendObj(
+      this._options = Common.options (
       {
         parentSelector: ['String','.ink-drawer'],
         leftDrawer: ['String','.left-drawer'],
@@ -16014,18 +16014,18 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       // make sure we have the required elements acording to the config options
 
-      this._contentDrawers = Ink.ss(this._options.contentDrawer[1]);
+      this._contentDrawers = Ink.ss(this._options.contentDrawer);
 
-      this._leftDrawer = Ink.s(this._options.leftDrawer[1]);
-      this._leftTriggers = Ink.ss(this._options.leftTrigger[1]);
+      this._leftDrawer = Ink.s(this._options.leftDrawer);
+      this._leftTriggers = Ink.ss(this._options.leftTrigger);
 
-      this._rightDrawer = Ink.s(this._options.rightDrawer[1]);
-      this._rightTriggers = Ink.ss(this._options.rightTrigger[1]);
+      this._rightDrawer = Ink.s(this._options.rightDrawer);
+      this._rightTriggers = Ink.ss(this._options.rightTrigger);
 
 
 
       if(this._contentDrawers.length == 0) {
-        console.warn( this._name + ': Could not find any "' + this._options.contentDrawer[1] + '" elements on this page. Please make sure you have at least one.' );
+        console.warn( this._name + ': Could not find any "' + this._options.contentDrawer + '" elements on this page. Please make sure you have at least one.' );
       }
 
       switch (this._options.sides) {
@@ -16033,43 +16033,43 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         case 'both':
 
         if( !this._leftDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer + '" element on this page. Please make sure it exists.' );            
         } 
 
         if(this._leftTriggers.length == 0){
-          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger + '" element on this page. Please make sure it exists.' );            
         } 
 
         if( !this._rightDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer + '" element on this page. Please make sure it exists.' );            
         } 
 
         if( this._rightTriggers.length == 0 ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger + '" element on this page. Please make sure it exists.' );            
         }
-        this._triggers =  this._options.leftTrigger[1] + ', ' + this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
+        this._triggers =  this._options.leftTrigger + ', ' + this._options.rightTrigger + ', ' + this._options.contentDrawer;
         break;
 
         case 'left':
         if( !this._leftDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftDrawer + '" element on this page. Please make sure it exists.' );            
         } 
 
         if(this._leftTriggers.length == 0){
-          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.leftTrigger + '" element on this page. Please make sure it exists.' );            
         }
-        this._triggers = this._options.leftTrigger[1] + ', ' + this._options.contentDrawer[1];
+        this._triggers = this._options.leftTrigger + ', ' + this._options.contentDrawer;
         break;
 
         case 'right':
         if( !this._rightDrawer ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightDrawer + '" element on this page. Please make sure it exists.' );            
         } 
 
         if( this._rightTriggers.length == 0 ){
-          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger[1] + '" element on this page. Please make sure it exists.' );            
+          console.warn( this._name + ': Could not find the "' + this._options.rightTrigger + '" element on this page. Please make sure it exists.' );            
         } 
-        this._triggers = this._options.rightTrigger[1] + ', ' + this._options.contentDrawer[1];
+        this._triggers = this._options.rightTrigger + ', ' + this._options.contentDrawer;
         break;
       }
 
@@ -16090,19 +16090,19 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onClick: function(ev){                
 
-      if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger[1])){
+      if(Selector.matchesSelector(ev.currentTarget,this._options.leftTrigger)){
         if(this._isOpen) {
           this.close();
         } else {
           this.open('left');
         }            
-      } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger[1])){
+      } else if(Selector.matchesSelector(ev.currentTarget,this._options.rightTrigger)){
         if(this._isOpen) {
           this.close();
         } else {
           this.open('right');
         }          
-      } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){
+      } else if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){
         if(this._options.closeOnContentClick && this._isOpen) {
           this.close();
         }
@@ -16111,11 +16111,15 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onTouchMove: function (ev) {
 
+        console.log(' you touched me');
+
         if( this._isOpen ) {
           console.log('open');
           // console.log(ev);
 
-          if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer[1])){        
+          // ev.preventDefault();
+
+          if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){        
             ev.preventDefault();
             ev.stopPropagation();
           }
@@ -16136,14 +16140,28 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     _addEvents: function () {
       Event.on(document.body, 'click', this._triggers, this._handlers.click);
 
-      for ( var i = 0; i < this._contentDrawers.length; i++ ) {
-        Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
-      }
-      Event.on(this._leftDrawer,'touchmove',function(ev){
-        console.log('scroll coiso');
-        // ev.preventDefault();
-        // ev.stopPropagation();
-      });
+      Event.on(window,'touchmove', this._options.contentDrawer + document.body, this._handlers.touchmove);
+
+      // for ( var i = 0; i < this._contentDrawers.length; i++ ) {
+      //   Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
+      // }
+
+      // var that = this;
+
+      // Event.on(this._leftDrawer,'touchmove', function(ev){
+
+      //   var height = that._leftDrawer.offetHeight;
+      //   var scrollHeight = that._leftDrawer.scrollHeight;
+      //   var offsetTop = that._leftDrawer.scrollTop;
+
+      //   console.log('debug');
+
+      //   if((offsetTop + height) >= scrollHeight ) {
+      //     Event.stop(ev);
+      //     console.log('debug');
+      //   }
+
+      // });
 
       // Event.on(document,'touchmove', this._handlers.touchmove);
     },
