@@ -8102,6 +8102,7 @@ body.ink-drawer .right-drawer {
   overflow-y: auto;
   overflow-x: hidden;
   display: none;
+  -webkit-overflow-scrolling: touch;
 }
 body.ink-drawer .left-drawer.show,
 body.ink-drawer .right-drawer.show {

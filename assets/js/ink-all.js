@@ -16076,20 +16076,15 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
       this._isOpen = false;
       this._direction = undefined;
-      this._touchDevice = false;
-      this._scrollStartPos = 0;
-
 
       this._handlers = {
         click:   Ink.bindEvent(this._onClick, this),
         afterTransition: Ink.bindEvent(this._afterTransition, this),
         touchmove: Ink.bindEvent(this._onTouchMove, this),
-        touchstart: Ink.bindEvent(this._onTouchStart, this),
       };
 
       this._delay = 10;
       this._addEvents();
-      this._isTouchDevice();
 
     },
 
@@ -16116,35 +16111,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onTouchMove: function (ev) {
 
-        console.log('touchmove');
-        this.scrollTop=this._scrollStartPos-event.touches[0].pageY;
+        console.log(ev.currentTartget);
 
         if( this._isOpen ) {
-          event.preventDefault();          
+          if( ! Selector.matchesSelector(ev.currentTarget,'.left-drawer, .right-drawer') ){        
+            // ev.preventDefault();
+          }
         }
-    },
-
-    _onTouchStart: function (ev) {
-
-        console.log('touchstart');
-        console.log(ev.currentTarget);
-
-
-        this._scrollStartPos = this._leftDrawer.scrollTop+ev.touches[0].pageY;
-        
-
-        if( this._isOpen ) {
-          event.preventDefault();  
-        }
-    },
-
-    _isTouchDevice: function() {
-      try{
-        document.createEvent("TouchEvent");
-        this._touchDevice == true;
-      } catch(e){
-        this._touchDevice == true;
-      }
     },
 
     _afterTransition: function() {
@@ -16159,31 +16132,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _addEvents: function () {
       Event.on( document.body, 'click', this._triggers, this._handlers.click);
-      Event.on( document, 'touchstart', this._handlers.touchstart );
-      Event.on( document, 'touchmove', this._handlers.touchmove );
-
-      // for ( var i = 0; i < this._contentDrawers.length; i++ ) {
-      //   Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);
-      // }
-
-      // var that = this;
-
-      // Event.on(this._leftDrawer,'touchmove', function(ev){
-
-      //   var height = that._leftDrawer.offetHeight;
-      //   var scrollHeight = that._leftDrawer.scrollHeight;
-      //   var offsetTop = that._leftDrawer.scrollTop;
-
-      //   console.log('debug');
-
-      //   if((offsetTop + height) >= scrollHeight ) {
-      //     Event.stop(ev);
-      //     console.log('debug');
-      //   }
-
-      // });
-
-      // Event.on(document,'touchmove', this._handlers.touchmove);
+      Event.on( document, 'touchmove', '.left-drawer, .right-drawer, body', this._handlers.touchmove );
     },
 
     open: function(direction) {
