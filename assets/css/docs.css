@@ -348,6 +348,11 @@ body.ink-drawer .right-drawer li:last-child {
   padding: 1em;
   background: #eeebe5;
   margin-bottom: 1.5em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
 
 .highlight pre {
@@ -807,8 +812,13 @@ p.example-title {
 }
 
 .example {
-  background: #eeebe5;
   padding: 1em;
+  background: #eeebe5;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
 }
 .example .ink-grid {
   padding: 0;
@@ -819,4 +829,52 @@ p.example-title {
   background: #E5EBF0;
   text-align: center;
   line-height: 150px;
+}
+
+footer {
+  border-top: 1px solid #DDD;
+  background: #f0f0f0;
+}
+footer .socialplugins {
+  background: #e6e6e6;
+  padding: 1em;
+  border: 1px solid #afafaf;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+footer .copyright .SAPOlogo {
+  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+  text-indent: -9999px;
+  display: block;
+  width: 101px;
+  height: 30px;
+  margin-bottom: 1em;
+}
+footer .copyright .PTClogo {
+  font-size: .875em;
+}
+footer .copyright .PTClogo a {
+  background: url("../img/icon_Sprite.png") no-repeat 0 top;
+  text-indent: -9999px;
+  display: block;
+  float: left;
+  width: 41px;
+  height: 43px;
+  margin-right: 1em;
+}
+footer h5 {
+  margin-top: .5em;
+}
+footer .credits {
+  margin: 0;
+}
+footer .ink-navigation ul.menu.horizontal li a {
+  padding: .5em 1em .5em 0;
+  display: inline-block;
+}
+footer .ink-navigation ul.menu.horizontal li a.license {
+  padding: .5em 0;
 }

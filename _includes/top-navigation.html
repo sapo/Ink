@@ -1,22 +1,21 @@
 {% assign current_section = page.url | split: '/' %}
-<div class="">
-    <div id="topbar">
-        <nav class="ink-navigation ink-grid ie7">
-            <ul class="menu horizontal flat black push-left">
-                <li class="hide-all show-tiny show-small show-medium"><a href="#" class="fa fa-bars left-drawer-trigger"></a></li>
-                <li class="logoPlaceholder"><a href="{{ site.url }}" class="logoPlaceholder">Ink</a></li>
-            </ul>
-            <ul class="menu horizontal flat black push-right hide-small hide-tiny hide-medium">
-                <li>
-                    <a class="ink-button blue" href="{{ site.download_url }}{{ site.version }}.zip">Download</a>
-                </li>
-                {% for section in site.sections %}
-                {% assign section_uri = section.title | downcase | replace:' ','-' %}                
-                <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
-                    <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </nav>
-    </div>
+<div id="topbar">
+    <nav class="ink-navigation ink-grid ie7">
+        <ul class="menu horizontal flat black push-left">
+            <li class="hide-all show-tiny show-small show-medium"><a href="#" class="fa fa-bars left-drawer-trigger"></a></li>
+            <li class="logoPlaceholder"><a href="{{ site.url }}/" class="logoPlaceholder">Ink</a></li>
+        </ul>
+        <ul class="menu horizontal flat black push-right hide-small hide-tiny hide-medium">
+            <li>
+                <a class="ink-button blue" href="{{ site.download_url }}{{ site.version }}.zip">Download</a>
+            </li>
+            {% for section in site.sections %}
+            {% assign section_uri = section.title | downcase | replace:' ','-' %}                
+            <li{% if current_section[1] == section_uri %} class="active"{% endif %}>
+                <a href="{{ site.url }}{{ section.title | downcase | replace:' ','-' }}/" title="{{ section.title }}">{{ section.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
 </div>
+
