@@ -16115,13 +16115,13 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onTouchMove: function (ev) {
 
-        console.log('_onTouchMove');
-        console.log(ev);
-        console.log(ev.currentTartget);
+        // console.log('_onTouchMove');
+        // console.log(ev);
+        // console.log(ev.currentTartget);
 
         if( this._isOpen ) {
           if( ! Selector.matchesSelector(ev.currentTarget,'.left-drawer') ){        
-            ev.preventDefault();
+            // ev.preventDefault();
           }
         }
     },
@@ -16163,7 +16163,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         Css.addClassName(document.body, this._options.mode + ' '  + direction);
       },this), this._delay);
 
-      this._contentDrawers[0].style.height = "620px"
+      this._contentDrawers[0].style.height = "620px";
 
     },
 
