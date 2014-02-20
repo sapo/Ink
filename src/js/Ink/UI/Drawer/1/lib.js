@@ -176,7 +176,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         Css.addClassName(document.body, this._options.mode + ' '  + direction);
       },this), this._delay);
 
-      this._contentDrawers[0].style.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px';
+      // this._contentDrawers[0].style.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px';
 
     },
 
