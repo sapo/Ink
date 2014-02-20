@@ -6885,6 +6885,7 @@ body.ink-drawer .right-drawer.show {
 }
 body.ink-drawer.push {
   overflow: hidden;
+  -webkit-user-drag: none;
 }
 body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
   -webkit-transform: translate3d(220px, 0, 0);
@@ -6902,6 +6903,7 @@ body.ink-drawer.push.right .right-drawer, body.ink-drawer.push.right .content-dr
 }
 body.ink-drawer.over {
   overflow: hidden;
+  -webkit-user-drag: none;
 }
 body.ink-drawer.over.left .left-drawer {
   -webkit-transform: translate3d(220px, 0, 0);

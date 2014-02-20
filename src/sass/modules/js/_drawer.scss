@@ -45,6 +45,8 @@ body {
 
         &.push {
           overflow: hidden;
+          -webkit-user-drag: none;
+          
 
           &.left {
             .left-drawer, .content-drawer {
@@ -62,6 +64,8 @@ body {
 
         &.over {
           overflow: hidden;
+          -webkit-user-drag: none;
+          
           &.left {
             .left-drawer {
               @include translate3d($width,0,0);
