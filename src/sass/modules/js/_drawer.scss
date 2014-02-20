@@ -47,6 +47,10 @@ body {
 
           overflow: hidden;
 
+          .content-drawer {
+            overflow: hidden;
+          }
+
           &.left {
             .left-drawer, .content-drawer {
               @include translate3d($width,0,0);

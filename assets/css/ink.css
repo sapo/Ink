@@ -8111,6 +8111,9 @@ body.ink-drawer .right-drawer.show {
 body.ink-drawer.push {
   overflow: hidden;
 }
+body.ink-drawer.push .content-drawer {
+  overflow: hidden;
+}
 body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
   -webkit-transform: translate3d(220px, 0, 0);
   -moz-transform: translate3d(220px, 0, 0);

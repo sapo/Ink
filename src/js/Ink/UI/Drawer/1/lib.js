@@ -154,7 +154,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
       // if(this._options.sides == 'both'){        
         // Event.on( document, 'touchmove', this._options.leftDrawer, + ', ' + this._options.rightDrawer + ', body', this._handlers.touchmove );
       // } else if (this._options.sides == 'left') {
-        Event.on( document.body, 'touchmove', this._handlers.touchmove );
+      Event.on( document.body, 'touchmove', this._handlers.touchmove );
       // } else if (this._options.sides == 'right') {
         // Event.on( document, 'touchmove', this._options.rightDrawer + ', body', this._handlers.touchmove );
       // }
@@ -176,7 +176,7 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
         Css.addClassName(document.body, this._options.mode + ' '  + direction);
       },this), this._delay);
 
-      this._contentDrawers[0].style.height = "620px";
+      this._contentDrawers[0].style.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 'px';
 
     },
 
