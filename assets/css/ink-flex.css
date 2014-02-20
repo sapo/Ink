@@ -6871,14 +6871,14 @@ body.ink-drawer .content-drawer {
 }
 body.ink-drawer .left-drawer,
 body.ink-drawer .right-drawer {
-  width: 220px;
   position: absolute;
   top: 0;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  z-index: 0;
   display: none;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 220px;
+  height: 100%;
 }
 body.ink-drawer .left-drawer.show,
 body.ink-drawer .right-drawer.show {
@@ -6886,7 +6886,6 @@ body.ink-drawer .right-drawer.show {
 }
 body.ink-drawer.push {
   overflow: hidden;
-  -webkit-user-drag: none;
 }
 body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
   -webkit-transform: translate3d(220px, 0, 0);

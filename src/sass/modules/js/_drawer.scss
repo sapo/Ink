@@ -27,16 +27,15 @@ body {
         }
 
         .left-drawer,
-        .right-drawer {
-
-          width: $width; 
+        .right-drawer { 
           position: absolute;
           top: 0;
-          height: 100%;
-          overflow-y: auto;
-          overflow-x: hidden;
+          z-index: 0;
           display: none;
-          -webkit-overflow-scrolling: touch;
+          overflow-x: hidden;
+          overflow-y: auto;
+          width: $width;
+          height: 100%;
 
           &.show {
             display: block;
@@ -45,9 +44,8 @@ body {
         }  
 
         &.push {
-          overflow: hidden;
-          -webkit-user-drag: none;
 
+          overflow: hidden;
 
           &.left {
             .left-drawer, .content-drawer {
