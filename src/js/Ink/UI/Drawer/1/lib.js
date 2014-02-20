@@ -124,18 +124,23 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
 
     _onTouchMove: function (ev) {
 
-        console.log(' you touched me');
+        // console.log(' you touched me');
+        console.log(ev.currentTarget);
 
         if( this._isOpen ) {
-          console.log('open');
-          // console.log(ev);
+          console.log('Drawer is open');
 
-          // ev.preventDefault();
 
-          if(Selector.matchesSelector(ev.currentTarget,this._options.contentDrawer)){        
+          if( ! Selector.matchesSelector(ev.currentTarget,'.left-drawer, .right-drawer') ){        
             ev.preventDefault();
-            ev.stopPropagation();
+            // console.log('Content drawer');
+            console.log(ev.currentTarget);
           }
+
+          // if( Selector.matchesSelector(ev.currentTarget, '.left-drawer') ) {
+          //   // console.log('Body');
+          //   // console.log(ev.currentTarget);
+          // }
 
         }
     },
@@ -151,9 +156,9 @@ Ink.createModule('Ink.UI.Drawer', '1', ['Ink.UI.Common_1', 'Ink.Dom.Loaded_1', '
     },
 
     _addEvents: function () {
-      Event.on(document.body, 'click', this._triggers, this._handlers.click);
+      Event.on( document.body, 'click', this._triggers, this._handlers.click);
 
-      Event.on(window,'touchmove', this._options.contentDrawer + document.body, this._handlers.touchmove);
+      Event.on( document, 'touchmove', '.left-drawer, .right-drawer, body', this._handlers.touchmove );
 
       // for ( var i = 0; i < this._contentDrawers.length; i++ ) {
       //   Event.on(this._contentDrawers[i],'touchmove',this._handlers.touchmove);

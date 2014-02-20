@@ -6884,7 +6884,7 @@ body.ink-drawer .right-drawer.show {
   display: block;
 }
 body.ink-drawer.push {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 body.ink-drawer.push.left .left-drawer, body.ink-drawer.push.left .content-drawer {
   -webkit-transform: translate3d(220px, 0, 0);
@@ -6901,7 +6901,7 @@ body.ink-drawer.push.right .right-drawer, body.ink-drawer.push.right .content-dr
   transform: translate3d(-220px, 0, 0);
 }
 body.ink-drawer.over {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 body.ink-drawer.over.left .left-drawer {
   -webkit-transform: translate3d(220px, 0, 0);
