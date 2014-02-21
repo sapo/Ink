@@ -134,6 +134,16 @@ if (window.console && window.console.error) {
             equal(module.my, 'module');
         });
     });
+
+    test('requireModules + _moduleRenames', function () {
+        sinon.spy(Ink, 'warn');
+        Ink._moduleRenames['My.ModulesOldName_1'] = 'My.Module_1'
+        Ink.requireModules(['My.ModulesOldName_1'], function (module) {
+            equal(module.my, 'module');
+            ok(Ink.warn.calledOnce)
+        });
+        Ink.warn.restore();
+    })
 }());
 
 test('createModule makes the module available immediately when there are no dependencies', function () {
