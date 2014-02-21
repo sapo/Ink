@@ -121,6 +121,7 @@ module.exports = function (grunt) {
                     cwd: '<%= ink.folders.js.src %>',
                     src: [
                         '1/**/lib.js',
+                        // Don't include autoload
                         'Net/**/lib.js',
                         'Dom/**/lib.js',
                         'Util/**/lib.js',
@@ -173,6 +174,23 @@ module.exports = function (grunt) {
                     }
                 }
                 ]
+            },
+
+            autoload: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= ink.folders.js.src %>Autoload',
+                    src: ['**/lib.js'],
+                    dest: '<%= ink.folders.js.dist %>',
+                    rename: function (dest, src) {
+                        var version = src.split('/')[0];
+                        if (version === '1') {
+                            return dest + 'autoload.js'
+                        } else {
+                            return dest + 'autoload-' + version + '.js';
+                        }
+                    }
+                }]
             }
         },
 
@@ -203,7 +221,7 @@ module.exports = function (grunt) {
                 // inject: 'js/tests/assets/phantom.js',
                 urls: ['http://localhost:8000/js/tests/index.html']
             },
-            files: ['<%= ink.folders.js.src %>/tests/unit/*.html']
+            files: ['<%= ink.folders.js.src %>/tests/unit/**/*.html']
         },
 
         connect: {
