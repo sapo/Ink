@@ -1,4 +1,6 @@
 Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', 'Ink.UI.SmoothScroller_1', 'Ink.UI.Close_1'], function( Selector, Loaded, Scroller, Close ){
+    'use strict';
+
     var Autoload = {
         selectors: {
             /* Match module names to element classes (or more complex selectors)
@@ -30,10 +32,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Dom.Loaded_1', '
             }
 
             function autoload() {
-                for( var mod in Autoload.selectors ){
-                    if( !Autoload.selectors.hasOwnProperty(mod) ){
-                        continue;
-                    }
+                for(var mod in Autoload.selectors) if (Autoload.selectors.hasOwnProperty(mod)) {
                     // `elements` need to be in a closure because requireModules is async.
                     findElements(mod);
                 }
