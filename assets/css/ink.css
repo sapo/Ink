@@ -1831,7 +1831,7 @@
 }
 
 .hide-all {
-  display: none;
+  display: none !important;
 }
 
 .push-left {
@@ -2450,6 +2450,7 @@ table {
   display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
+  line-height: normal;
 }
 .ink-button + .ink-button {
   margin-left: 5px;
@@ -2754,10 +2755,10 @@ table {
 .ink-form .control-group .control.append-symbol span > input, .ink-form .control-group .control.append-symbol span > select, .ink-form .control-group .control.append-symbol span > textarea {
   padding-right: 2.5em;
 }
-.ink-form .control-group .control.append-symbol span > [class^="icon-"], .ink-form .control-group .control.append-symbol span > [class*=" icon-"] {
+.ink-form .control-group .control.append-symbol span > [class^="fa-"], .ink-form .control-group .control.append-symbol span > [class*=" fa-"] {
   position: absolute;
   right: 1em;
-  top: .15em;
+  top: .86em;
   pointer-events: none;
 }
 .ink-form .control-group .control.prepend-symbol span {
@@ -2766,10 +2767,10 @@ table {
 .ink-form .control-group .control.prepend-symbol span > input, .ink-form .control-group .control.prepend-symbol span > select, .ink-form .control-group .control.prepend-symbol span > textarea {
   padding-left: 2.5em;
 }
-.ink-form .control-group .control.prepend-symbol span > [class^="icon-"], .ink-form .control-group .control.prepend-symbol span > [class*=" icon-"] {
+.ink-form .control-group .control.prepend-symbol span > [class^="fa-"], .ink-form .control-group .control.prepend-symbol span > [class*=" fa-"] {
   position: absolute;
   left: 1em;
-  top: .15em;
+  top: .86em;
   pointer-events: none;
 }
 .ink-form .control-group input[type="radio"],
@@ -3394,11 +3395,11 @@ table {
   }
 
   .hide-large {
-    display: none;
+    display: none !important;
   }
 
   .show-large {
-    display: inherit;
+    display: inherit !important;
   }
 
   table.show-large {
@@ -3985,11 +3986,11 @@ table {
   }
 
   .hide-extra-large {
-    display: none;
+    display: none !important;
   }
 
   .show-extra-large {
-    display: inherit;
+    display: inherit !important;
   }
 
   table.show-extra-large {
@@ -4576,11 +4577,11 @@ table {
   }
 
   .hide-medium {
-    display: none;
+    display: none !important;
   }
 
   .show-medium {
-    display: inherit;
+    display: inherit !important;
   }
 
   table.show-medium {
@@ -5167,11 +5168,11 @@ table {
   }
 
   .hide-small {
-    display: none;
+    display: none !important;
   }
 
   .show-small {
-    display: inherit;
+    display: inherit !important;
   }
 
   table.show-small {
@@ -5758,11 +5759,11 @@ table {
   }
 
   .hide-tiny {
-    display: none;
+    display: none !important;
   }
 
   .show-tiny {
-    display: inherit;
+    display: inherit !important;
   }
 
   table.show-tiny {
@@ -6385,10 +6386,10 @@ table {
   *height: 100%;
 }
 .ink-navigation ul.menu li a {
-  -webkit-transition: background 140ms ease-in-out;
-  -moz-transition: background 140ms ease-in-out;
-  -o-transition: background 140ms ease-in-out;
-  transition: background 140ms ease-in-out;
+  -webkit-transition: all 140ms ease-in-out;
+  -moz-transition: all 140ms ease-in-out;
+  -o-transition: all 140ms ease-in-out;
+  transition: all 140ms ease-in-out;
 }
 .ink-navigation ul.menu li:hover ul.submenu {
   display: block;
@@ -6811,6 +6812,8 @@ dl.inline dd {
   transition: all 140ms ease-in-out;
 }
 .ink-button:hover, .ink-button:active {
+  text-decoration: none;
+  color: black;
   background: #cccccc;
   border: 1px solid #b3b3b3;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
