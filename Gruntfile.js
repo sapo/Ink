@@ -185,7 +185,7 @@ module.exports = function (grunt) {
                     rename: function (dest, src) {
                         var version = src.split('/')[0];
                         if (version === '1') {
-                            return dest + 'autoload.js'
+                            return dest + 'autoload.js';
                         } else {
                             return dest + 'autoload-' + version + '.js';
                         }
@@ -274,7 +274,14 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.js.dist %><%= pkg.name %>.min.js'
             },
             ink_all: {
-                src: ['<%= ink.folders.js.src %>**/lib.js'],
+                src: [
+                    '<%= ink.folders.js.src %>1/**/lib.js',
+                    // Do not include autoload
+                    '<%= ink.folders.js.src %>Net/**/lib.js',
+                    '<%= ink.folders.js.src %>Dom/**/lib.js',
+                    '<%= ink.folders.js.src %>UI/**/lib.js',
+                    '<%= ink.folders.js.src %>Util/**/lib.js',
+                ],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js.map',
                     sourceMappingURL: '<%= pkg.name %>-all.js.map'
