@@ -453,12 +453,12 @@
 
 
 @mixin generate-visibility-classes ($breakpoint) {
-
+    
     .hide-#{$breakpoint} {
-        display: none;
+        display: none !important;
     }
     .show-#{$breakpoint} {
-        display: inherit;
+        display: inherit !important;
     }
     
     table.show-#{$breakpoint} {
