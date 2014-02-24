@@ -47,14 +47,20 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             'draggedClass': ['String', 'hide-all'],
             'draggingClass': ['String', 'dragging'],
             'dragSelector': ['String', 'li'],
-            'dragObject': ['String', false], // Deprecated. Use dragSelector instead
+            'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
             'handleSelector': ['String', null],
             'moveSelector': ['String', false],
             'swap': ['Boolean', false],
             'cancelMouseOut': ['Boolean', false]
         }, options || {}, this._element);
 
-        this._options.dragSelector = this._options.dragObject || this._options.dragSelector; // Backwards compatibility
+        if (this._options.dragObject != null) {
+            // [3.0.0] Remove this deprecation notice and stop providing backwards compatibility
+            Ink.warn('Ink.UI.SortableList: options.dragObject is now deprecated. ' +
+                    'Please use options.handleSelector instead.')
+            this._options.handleSelector =
+                this._options.handleSelector || this._options.dragObject;
+        }
 
         this._handlers = {
             down: Ink.bind(this._onDown, this),
