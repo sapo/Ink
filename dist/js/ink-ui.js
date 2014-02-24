@@ -329,12 +329,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
         _setUpAutoAdvance: function () {
             if (!this._options.autoAdvance) { return; }
             var self = this;
-            function autoAdvance() {
+
+            setTimeout(function autoAdvance() {
                 self.nextPage(true /* wrap */);
                 setTimeout(autoAdvance, self._options.autoAdvance);
-            }
-
-            setTimeout(autoAdvance, this._options.autoAdvance);
+            }, this._options.autoAdvance);
         },
 
         _setUpHider: function () {
