@@ -687,7 +687,12 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             var w = element.offsetWidth, 
                 h = element.offsetHeight,
                 force = (element.tagName.toLowerCase() === 'tr');
-                return (w===0 && h===0 && !force) ? true : (w!==0 && h!==0 && !force) ? false : element.getStyle('display').toLowerCase() === 'none';
+
+            var Css = Ink.getModule('Ink.Dom.Css_1');
+
+            return (w===0 && h===0 && !force) ? true :
+                (w!==0 && h!==0 && !force) ? false :
+                Css.getStyle(element, 'display').toLowerCase() === 'none';
          },
 
         /**
