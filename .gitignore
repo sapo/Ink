@@ -30,6 +30,7 @@ ink_to_prod_dir
 
 node_modules/*
 bower_components/*
+.sass-cache
 
 src/js/builds
 src/js/report

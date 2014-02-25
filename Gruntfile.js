@@ -1,6 +1,10 @@
 module.exports = function (grunt) {
     var path = require('path');
 
+    require('jit-grunt')(grunt, {
+        'bower': 'grunt-bower-task'
+    });
+
     var jshintFile = './src/js/.jshintrc';
 
     // Folder containing the Ink source files, Ink/*
@@ -117,6 +121,7 @@ module.exports = function (grunt) {
                     cwd: '<%= ink.folders.js.src %>',
                     src: [
                         '1/**/lib.js',
+                        // Don't include autoload
                         'Net/**/lib.js',
                         'Dom/**/lib.js',
                         'Util/**/lib.js',
@@ -169,6 +174,23 @@ module.exports = function (grunt) {
                     }
                 }
                 ]
+            },
+
+            autoload: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= ink.folders.js.src %>Autoload',
+                    src: ['**/lib.js'],
+                    dest: '<%= ink.folders.js.dist %>',
+                    rename: function (dest, src) {
+                        var version = src.split('/')[0];
+                        if (version === '1') {
+                            return dest + 'autoload.js';
+                        } else {
+                            return dest + 'autoload-' + version + '.js';
+                        }
+                    }
+                }]
             }
         },
 
@@ -199,7 +221,7 @@ module.exports = function (grunt) {
                 // inject: 'js/tests/assets/phantom.js',
                 urls: ['http://localhost:8000/js/tests/index.html']
             },
-            files: ['<%= ink.folders.js.src %>/tests/unit/*.html']
+            files: ['<%= ink.folders.js.src %>/tests/unit/**/*.html']
         },
 
         connect: {
@@ -252,7 +274,14 @@ module.exports = function (grunt) {
                 dest: '<%= ink.folders.js.dist %><%= pkg.name %>.min.js'
             },
             ink_all: {
-                src: ['<%= ink.folders.js.src %>**/lib.js'],
+                src: [
+                    '<%= ink.folders.js.src %>1/**/lib.js',
+                    // Do not include autoload
+                    '<%= ink.folders.js.src %>Net/**/lib.js',
+                    '<%= ink.folders.js.src %>Dom/**/lib.js',
+                    '<%= ink.folders.js.src %>UI/**/lib.js',
+                    '<%= ink.folders.js.src %>Util/**/lib.js',
+                ],
                 options: {
                     sourceMap: '<%= ink.folders.js.dist %><%= pkg.name %>-all.js.map',
                     sourceMappingURL: '<%= pkg.name %>-all.js.map'
@@ -337,8 +366,6 @@ module.exports = function (grunt) {
             }
         }
     });
-
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['bower', 'copy', 'clean:css', 'less', 'clean:js', 'concat', 'uglify']);
     grunt.registerTask('test', ['connect', 'qunit']);

@@ -355,7 +355,12 @@
             }
 
             for (i = 0; i < f; ++i) {
-                dep = deps[i];
+                if (Ink._moduleRenames[deps[i]]) {
+                    Ink.warn(deps[i] + ' was renamed to ' + Ink._moduleRenames[deps[i]]);
+                    dep = Ink._moduleRenames[deps[i]];
+                } else {
+                    dep = deps[i];
+                }
                 mod = modules[dep];
                 if (mod) {
                     o.args[i] = mod;
@@ -374,6 +379,10 @@
             else {
                 cbFn.apply(true, o.args);
             }
+        },
+
+        _moduleRenames: {
+            'Ink.UI.Aux_1': 'Ink.UI.Common_1'
         },
 
         /**
@@ -13387,7 +13396,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             swipe:          ['Boolean', true]
             // TODO exponential swipe
             // TODO specify break point for next page when moving finger
-        }, options || {}, element);
+        }, options || {}, element, this);
 
         this._isY = (opts.axis === 'y');
 
@@ -13396,42 +13405,11 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
         InkElement.removeTextNodeChildren(ulEl);
 
-        if (opts.hideLast) {
-            var hiderEl = InkElement.create('div', {
-                className: 'hider',
-                insertBottom: this._element
-            });
-            hiderEl.style.position = 'absolute';
-            hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
-            hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
-            hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
-            this._hiderEl = hiderEl;
-        }
-
-        this.refit();
+        this.refit(); // recalculate this._numPages
 
         if (this._isY) {
             // Override white-space: no-wrap which is only necessary to make sure horizontal stuff stays horizontal, but breaks stuff intended to be vertical.
             this._ulEl.style.whiteSpace = 'normal';
-        }
-
-        var pagination;
-        if (opts.pagination) {
-            if (Common.isDOMElement(opts.pagination) || typeof opts.pagination === 'string') {
-                // if dom element or css selector string...
-                pagination = this._pagination = new Pagination(opts.pagination, {
-                    size:     this._numPages,
-                    onChange: this._handlers.paginationChange
-                });
-            } else {
-                // assumes instantiated pagination
-                pagination = this._pagination = opts.pagination;
-                this._pagination._options.onChange = this._handlers.paginationChange;
-                this._pagination.setSize(this._numPages);
-                this._pagination.setCurrent(opts.initialPage || 0);
-            }
-        } else {
-            this._currentPage = opts.initialPage || 0;
         }
 
         if (opts.swipe) {
@@ -13440,9 +13418,9 @@ Ink.createModule('Ink.UI.Carousel', '1',
             InkEvent.observe(element, 'touchend', Ink.bindMethod(this, '_onTouchEnd'));
         }
 
-        if (opts.autoAdvance) {
-            this._setUpAutoAdvance();
-        }
+        this._setUpPagination();
+        this._setUpAutoAdvance();
+        this._setUpHider();
     };
 
     Carousel.prototype = {
@@ -13467,7 +13445,9 @@ Ink.createModule('Ink.UI.Carousel', '1',
 
             this._liEls = Ink.ss('li.slide', this._ulEl);
             var numSlides = this._liEls.length;
-            this._ctnLength = size(this._element);
+
+            var contRect = this._ulEl.getBoundingClientRect();
+            this._ctnLength = _isY ? contRect.bottom - contRect.top : contRect.right - contRect.left;
             this._elLength = size(this._liEls[0]);
             this._slidesPerPage = Math.floor( this._ctnLength / this._elLength  ) || 1;
 
@@ -13479,21 +13459,56 @@ Ink.createModule('Ink.UI.Carousel', '1',
             this._center();
             this._updateHider();
             this._IE7();
-            
+
             if (this._pagination && numPagesChanged) {
                 this._pagination.setSize(this._numPages);
             }
             this.setPage(limitRange(this.getPage(), 1, this._numPages));
         },
 
+        _setUpPagination: function () {
+            if (this._options.pagination) {
+                if (Common.isDOMElement(this._options.pagination) ||
+                        typeof this._options.pagination === 'string') {
+                    // if dom element or css selector string...
+                    this._pagination = new Pagination(this._options.pagination, {
+                        size:     this._numPages,
+                        onChange: this._handlers.paginationChange
+                    });
+                } else {
+                    // assumes instantiated pagination
+                    this._pagination = this._options.pagination;
+                    this._pagination._options.onChange = this._handlers.paginationChange;
+                    this._pagination.setSize(this._numPages);
+                }
+                this._pagination.setCurrent(this._options.initialPage || 0);
+            } else {
+                this._currentPage = this._options.initialPage || 0;
+            }
+        },
+
         _setUpAutoAdvance: function () {
+            if (!this._options.autoAdvance) { return; }
             var self = this;
-            function autoAdvance() {
+
+            setTimeout(function autoAdvance() {
                 self.nextPage(true /* wrap */);
                 setTimeout(autoAdvance, self._options.autoAdvance);
-            }
+            }, this._options.autoAdvance);
+        },
 
-            setTimeout(autoAdvance, this._options.autoAdvance);
+        _setUpHider: function () {
+            if (this._options.hideLast) {
+                var hiderEl = InkElement.create('div', {
+                    className: 'hider',
+                    insertBottom: this._element
+                });
+                hiderEl.style.position = 'absolute';
+                hiderEl.style[ this._isY ? 'left' : 'top' ] = '0';  // fix to top..
+                hiderEl.style[ this._isY ? 'right' : 'bottom' ] = '0';  // and bottom...
+                hiderEl.style[ this._isY ? 'bottom' : 'right' ] = '0';  // and move to the end.
+                this._hiderEl = hiderEl;
+            }
         },
 
         _center: function() {
@@ -13586,11 +13601,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
             if (!this._scrolling && this._swipeData) {
                 event.preventDefault();
 
-                if (!this._isY) {
-                    this._swipeData.pointerPos = pointerX;
-                } else {
-                    this._swipeData.pointerPos = pointerY;
-                }
+                this._swipeData.pointerPos = this._isY ? pointerY : pointerX;
             }
 
             event.stopPropagation();
@@ -13649,8 +13660,7 @@ Ink.createModule('Ink.UI.Carousel', '1',
         },
 
         _onPaginationChange: function(pgn) {
-            var currPage = pgn.getCurrent();
-            this.setPage(currPage);
+            this._setPage(pgn.getCurrent());
         },
 
         /**
@@ -13678,7 +13688,18 @@ Ink.createModule('Ink.UI.Carousel', '1',
                 if (page < 0) { page = this._numPages - page; }
             }
             page = limitRange(page, 0, this._numPages - 1);
-            this._ulEl.style[ this._options.axis === 'y' ? 'top' : 'left'] = ['-', page * this._deltaLength, 'px'].join('');
+
+            if (this._pagination) {
+                this._pagination.setCurrent(page);
+            } else {
+                this._setPage(page);
+            }
+        },
+
+        _setPage: function (page) {
+            this._ulEl.style[ this._isY ? 'top' : 'left'] =
+                ['-', page * this._deltaLength, 'px'].join('');
+
             if (this._options.onChange) {
                 this._options.onChange.call(this, page);
             }
@@ -20201,14 +20222,20 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
             'draggedClass': ['String', 'hide-all'],
             'draggingClass': ['String', 'dragging'],
             'dragSelector': ['String', 'li'],
-            'dragObject': ['String', false], // Deprecated. Use dragSelector instead
+            'dragObject': ['String', null], // Deprecated. Use handleSelector instead.
             'handleSelector': ['String', null],
             'moveSelector': ['String', false],
             'swap': ['Boolean', false],
             'cancelMouseOut': ['Boolean', false]
         }, options || {}, this._element);
 
-        this._options.dragSelector = this._options.dragObject || this._options.dragSelector; // Backwards compatibility
+        if (this._options.dragObject != null) {
+            // [3.0.0] Remove this deprecation notice and stop providing backwards compatibility
+            Ink.warn('Ink.UI.SortableList: options.dragObject is now deprecated. ' +
+                    'Please use options.handleSelector instead.')
+            this._options.handleSelector =
+                this._options.handleSelector || this._options.dragObject;
+        }
 
         this._handlers = {
             down: Ink.bind(this._onDown, this),
@@ -21364,19 +21391,18 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         }
         return value;
     }
-    // cmp function for comparing data which might be a number.
-    function numberishEnabledCmp (index, a, b) {
-        var aValue = Element.textContent(Selector.select('td',a)[index]),
-            bValue = Element.textContent(Selector.select('td',b)[index]);
-
-        aValue = maybeTurnIntoNumber(aValue);
-        bValue = maybeTurnIntoNumber(bValue);
-
-        if( aValue === bValue ){
+    function cmp (a, b) {
+        if( a === b ){
             return 0;
-        } else {
-            return ( ( aValue > bValue ) ? 1 : -1 );
         }
+        return ( ( a > b ) ? 1 : -1 );
+    }
+    // cmp function for comparing data which might be a number.
+    function numberishEnabledCmp (a, b) {
+        var aValue = maybeTurnIntoNumber(Element.textContent(a));
+        var bValue = maybeTurnIntoNumber(Element.textContent(b));
+
+        return cmp(aValue, bValue);
     }
     // Object.keys polyfill
     function keys(obj) {
@@ -21401,21 +21427,75 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @version 1
      * @param {String|DOMElement} selector
      * @param {Object} [options] Options
-     *     @param {Number}    [options.pageSize]      Number of rows per page. Omit to avoid paginating.
-     *     @param {String}    [options.endpoint]      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
-     *     @param {Function}  [options.createEndpointUrl] Callback to customise what URL the AJAX endpoint is at. Receives three arguments: base (the "endpoint" option), sort ({ order: 'asc' or 'desc', field: fieldname }) and page ({ page: page number, size: items per page })
-     *     @param {Function}  [options.getDataFromEndPoint] Callback to allow the user to retrieve the data himself given an URL. Must accept two arguments: `url` and `callback`. This `callback` will take as a single argument a JavaScript object.
-     *     @param {Function}  [options.processJSONRows] Retrieve an array of rows from the data which came from AJAX.
-     *     @param {Function}  [options.processJSONHeaders] Get an object with all the headers' names as keys, and a { label, sortable } object as value. Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`. Takes an argument, the JSON response.
-     *     @param {Function}  [options.processJSONRow] Process a row object before it gets on the table.
-     *     @param {Function}  [options.processJSONField] Process the field data before putting it on the table. You can return HTML, a DOM element, or a string here. Arguments you receive: `(column, fieldData, rowIndex)`.
-     *     @param {Function}  [options.processJSONField.(field_name)] The same as processJSONField, but for each field.
-     *     @param {Function}  [options.processJSONTotalRows] A callback where you have a chance to say how many rows are in the dataset (not only on this page) you have on the collection. You get as an argument the JSON response.
-     *     @param {Object}    [options.tdClassNames] An object mapping each field to what classes it gets. Example: `{ name: "large-10", isBoss: "hide-small" }`
-     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination] Pagination instance or element.
-     *     @param {Object}    [options.paginationOptions] Override the options with which we instantiate the Ink.UI.Pagination.
-     *     @param {Boolean}   [options.allowResetSorting] Allow sort order to be set to "none" in addition to "ascending" and "descending"
-     *     @param {String|Array} [options.visibleFields] Set of fields which get shown on the table
+     *     @param {Number}    [options.pageSize]
+     *      Number of rows per page. Omit to avoid paginating.
+     *
+     *     @param {String}    [options.endpoint]
+     *      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
+     *
+     *     @param {Function}  [options.createEndpointUrl]
+     *      Callback to customise what URL the AJAX endpoint is at. Receives three
+     *      arguments: base (the "endpoint" option), sort (`{ order: 'asc' or 'desc', field: fieldname }`)
+     *      and page ({ page: page number, size: items per page })
+     *
+     *     @param {Function}  [options.getDataFromEndPoint]
+     *      Callback to allow the user to retrieve the data himself given an URL.
+     *      Must accept two arguments: `url` and `callback`. This `callback` will
+     *      take as a single argument a JavaScript object.
+     *
+     *     @param {Function}  [options.processJSONRows]
+     *      Retrieve an array of rows from the data which came from AJAX.
+     *
+     *     @param {Function}  [options.processJSONHeaders]
+     *      Get an object with all the headers' names as keys, and a { label, sortable }
+     *      object as value.
+     *      Example: `{col1: {label: "Column 1"}, col2: {label: "Column 2", sortable: true}`.
+     *      Takes a single argument, the JSON response.
+     *
+     *     @param {Function}  [options.processJSONRow]
+     *      Process a row object before it gets on the table.
+     *
+     *     @param {Function}  [options.processJSONField]
+     *      Process the field data before putting it on the table.
+     *      You can return HTML, a DOM element, or a string here.
+     *      Arguments you receive: `(column, fieldData, rowIndex)`.
+     *
+     *          @param {Function}  [options.processJSONField.(field_name)]
+     *           The same as processJSONField, but for a particular field.
+     *
+     *     @param {Function}  [options.processJSONTotalRows]
+     *      A callback where you have a chance to say how many rows
+     *      are in the dataset (not only on this page) you have on the
+     *      collection. You get as an argument the JSON response.
+     *
+     *     @param {Function}  [options.getSortKey=null]
+     *      A function taking a `{ columnIndex, columnName, data, element }`
+     *      object and returning a value which serves as a sort key for the
+     *      sorting operation. For example, if you want to sort by a
+     *      `data-sort-key` atribute, set `getSortKey` to:
+     *
+     *          function (cell) {
+     *              return cell.element.getAttribute('data-sort-key');
+     *          }
+     *
+     *          @param {Function} [options.getSortKey.(field_name)]
+     *           Same as `options.getSortKey`, but for a particular field.
+     *
+     *     @param {Object}    [options.tdClassNames]
+     *      An object mapping each field to what classes it gets.
+     *      Example: `{ name: "large-10", isBoss: "hide-small" }`
+     *
+     *     @param {String|DomElement|Ink.UI.Pagination} [options.pagination]
+     *      Pagination instance or element.
+     *
+     *     @param {Object}    [options.paginationOptions]
+     *      Override the options with which we instantiate the Ink.UI.Pagination.
+     *
+     *     @param {Boolean}   [options.allowResetSorting]
+     *      Allow sort order to be set to "none" in addition to "ascending" and "descending"
+     *
+     *     @param {String|Array} [options.visibleFields]
+     *      Set of fields which get shown on the table
      * @example
      *      <table class="ink-table alternating" data-page-size="6">
      *          <thead>
@@ -21491,7 +21571,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._rootElement = Common.elOrSelector(selector, 'Ink.UI.Table :');
 
         if( this._rootElement.nodeName.toLowerCase() !== 'table' ){
-            throw '[Ink.UI.Table] :: The element is not a table';
+            throw new Error('[Ink.UI.Table] :: The element is not a table');
         }
 
         this._options = Common.options({
@@ -21504,6 +21584,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             processJSONField: ['Function', sameSame],
             processJSONHeaders: ['Function', function (dt) { return dt.fields; }],
             processJSONTotalRows: ['Function', function (dt) { return dt.length || dt.totalRows; }],
+            getSortKey: ['Function', null],
             pagination: ['Element', null],
             allowResetSorting: ['Boolean', false],
             visibleFields: ['String', null],
@@ -21517,7 +21598,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         this._markupMode = !this._options.endpoint;
 
         if( this._options.visibleFields ){
-            this._options.visibleFields = this._options.visibleFields.split(/[, ]+/g);
+            this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
         }
 
         this._thead = this._rootElement.tHead || this._rootElement.createTHead();
@@ -21634,8 +21715,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 Common.cleanChildren(tbody);
                 InkArray.each(this._data, Ink.bindMethod(tbody, 'appendChild'));
 
-                this._pagination.setCurrent(0);
-                this._paginate(1);
+                if (this._pagination) {
+                    this._pagination.setCurrent(0);
+                    this._paginate(1);
+                }
             }
         },
 
@@ -21728,7 +21811,39 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
          * @private
          */
         _sort: function( index ){
-            this._data.sort(Ink.bind(numberishEnabledCmp, false, index));
+            // TODO this is THE worst way to declare field names. Incompatible with i18n and a lot of other things.
+            var fieldName = Element.textContent(this._headers[index]);
+            var keyFunction = this._options.getSortKey;
+
+            if (keyFunction) {
+                keyFunction =
+                    typeof keyFunction[fieldName] === 'function' ?
+                        keyFunction[fieldName] :
+                    typeof keyFunction === 'function' ?
+                        keyFunction :
+                        null;
+            }
+
+            var self = this;
+
+            this._data.sort(function (trA, trB) {
+                var elementA = Ink.ss('td', trA)[index];
+                var elementB = Ink.ss('td', trB)[index];
+                if (keyFunction) {
+                    return cmp(userKey(elementA), userKey(elementB));
+                } else {
+                    return numberishEnabledCmp(elementA, elementB, index);
+                }
+            });
+
+            function userKey(element) {
+                return keyFunction.call(self, {
+                    columnIndex: index,
+                    columnName: fieldName,
+                    data: Element.textContent(element),
+                    element: element
+                });
+            }
         },
 
         /**
@@ -21879,7 +21994,9 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         setEndpoint: function( endpoint, currentPage ){
             if( !this._markupMode ){
                 this._options.endpoint = endpoint;
-                this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                if (this._pagination) {
+                    this._pagination.setCurrent((!!currentPage) ? parseInt(currentPage,10) : 0 );
+                }
             }
         },
 
@@ -23476,14 +23593,14 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
     'use strict';
 
     /**
-     * TreeView is an Ink's component responsible for presenting a defined set of elements in a tree-like hierarchical structure
+     * Shows elements in a tree-like hierarchical structure.
      * 
      * @class Ink.UI.TreeView
      * @constructor
      * @version 1
      * @param {String|DOMElement} selector
      * @param {String} [options.node='li'] Selector to define which elements are seen as nodes.
-     * @param {String} [options.child='ul'] Selector to define which elements are represented as children.
+     * @param {String} [options.children='ul'] Selector to define which elements are represented as children.
      * @param {String} [options.parentClass='parent'] Classes to be added to the parent node.
      * @param {String} [options.openClass='icon icon-minus-circle'] Classes to be added to the icon when a parent is open.
      * @param {String} [options.closedClass='icon icon-plus-circle'] Classes to be added to the icon when a parent is closed.
@@ -23522,7 +23639,9 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
 
         this._options = Common.options('Treeview', {
             'node':   ['String', 'li'],
+            // [3.0.1] Deprecate this terrible, terrible name
             'child':  ['String','ul'],
+            'children':  ['String','ul'],
             'parentClass': ['String','parent'],
             // [3.0.0] use these classes because you'll have font-awesome 4
             // 'openClass': ['String','fa fa-minus-circle'],
@@ -23534,6 +23653,11 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
             'iconTag': ['String', 'i'],
             'stopDefault' : ['Boolean', true]
         }, options || {}, this._element);
+
+        if (this._options.child) {
+            Ink.warn('Ink.UI.TreeView: options.child is being renamed to options.children.');
+            this._options.children = this._options.child;
+        }
 
         this._init();
     };
@@ -23568,7 +23692,7 @@ Ink.createModule('Ink.UI.TreeView', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','I
         },
 
         _getIcon: function (node) {
-            return Selector.select('> ' + this._options.iconTag, node)[0] || null;
+            return Ink.s('> ' + this._options.iconTag, node);
         },
 
         isOpen: function (node) {

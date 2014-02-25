@@ -9461,21 +9461,22 @@ html.ink-modal-is-open .ink-calendar {
   width: 100%;
   position: relative;
   overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  display: inline-block;
+  display: block;
 }
 .ink-carousel .stage {
-  white-space: nowrap;
-  font-size: 0;
-  position: relative;
-  top: 0;
   left: 0;
-  -webkit-transition-property: left, top;
-  -moz-transition-property: left, top;
-  -o-transition-property: left, top;
-  -ms-transition-property: left, top;
-  transition-property: left, top;
+  height: auto !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+  white-space: nowrap;
+  position: relative;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
   -webkit-transition-duration: 0.5s;
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
@@ -9495,19 +9496,19 @@ html.ink-modal-is-open .ink-calendar {
 .ink-carousel .stage .slide {
   position: relative;
   display: inline-block;
-  overflow: hidden;
-  font-size: 16px;
+  vertical-align: top;
   white-space: normal;
+  margin: 0;
   float: none;
   zoom: 1;
   *display: inline;
 }
 .ink-carousel .hider {
-  -webkit-transition-property: width, height;
-  -moz-transition-property: width, height;
-  -o-transition-property: width, height;
-  -ms-transition-property: width, height;
-  transition-property: width, height;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
   -webkit-transition-duration: 0.5s;
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;

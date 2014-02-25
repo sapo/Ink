@@ -134,6 +134,32 @@ if (window.console && window.console.error) {
             equal(module.my, 'module');
         });
     });
+
+    test('requireModules + _moduleRenames', function () {
+        sinon.stub(Ink, 'warn');
+        Ink._moduleRenames['My.ModulesOldName_1'] = 'My.Module_1'
+        Ink.requireModules(['My.ModulesOldName_1'], function (module) {
+            equal(module.my, 'module');
+            ok(Ink.warn.calledOnce)
+        });
+        Ink.warn.restore();
+    })
+
+    test('getting Ink.UI.Common when asking for Ink.UI.Aux should be enabled by default', function () {
+        var clock = sinon.useFakeTimers();
+        sinon.stub(Ink, 'warn');
+        sinon.stub(Ink, 'loadScript');
+
+        Ink.requireModules(['Ink.UI.Aux_1'], sinon.stub());
+        clock.tick(1); // loadScript is not called immediately
+
+        ok(Ink.loadScript.called)
+        ok(Ink.loadScript.calledWithExactly('Ink.UI.Common_1'));
+
+        Ink.loadScript.restore();
+        Ink.warn.restore();
+        clock.restore();
+    });
 }());
 
 test('createModule makes the module available immediately when there are no dependencies', function () {
