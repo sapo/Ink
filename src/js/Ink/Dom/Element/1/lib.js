@@ -660,18 +660,46 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
          * @return {Boolean}
          */
         inViewport: function (element, partial) {
-            var rect = rect(Ink.i(element));
+            var dims = rect(Ink.i(element));
             if (partial) {
-                return  rect.bottom > 0                        && // from the top
-                        rect.left < InkElement.viewportWidth()    && // from the right
-                        rect.top < InkElement.viewportHeight()    && // from the bottom
-                        rect.right  > 0;                          // from the left
+                return  dims.bottom > 0                        && // from the top
+                        dims.left < InkElement.viewportWidth()    && // from the right
+                        dims.top < InkElement.viewportHeight()    && // from the bottom
+                        dims.right  > 0;                          // from the left
             } else {
-                return  rect.top > 0                           && // from the top
-                        rect.right < InkElement.viewportWidth()   && // from the right
-                        rect.bottom < InkElement.viewportHeight() && // from the bottom
-                        rect.left  > 0;                           // from the left
+                return  dims.top > 0                           && // from the top
+                        dims.right < InkElement.viewportWidth()   && // from the right
+                        dims.bottom < InkElement.viewportHeight() && // from the bottom
+                        dims.left  > 0;                           // from the left
             }
+        },
+
+        /**
+         * Check whether an element is hidden 
+         * Taken from Mootools Element extras ( https://gist.github.com/cheeaun/73342 )
+         * Does not take into account visibility:hidden
+         * @method isHidden
+         * @param {DOMElement} element Element to check
+         * @return {Boolean}
+         */
+
+        isHidden: function (element) {
+            var w = element.offsetWidth, 
+                h = element.offsetHeight,
+                force = (element.tagName.toLowerCase() === 'tr');
+                return (w===0 && h===0 && !force) ? true : (w!==0 && h!==0 && !force) ? false : element.getStyle('display').toLowerCase() === 'none';
+         },
+
+        /**
+         * Check whether an element is visible 
+         *
+         * @method isVisible
+         * @param {DOMElement} element Element to check
+         * @return {Boolean}
+         */
+
+        isVisible: function (element) {
+            return !this.isHidden(element);
         },
 
         /**
