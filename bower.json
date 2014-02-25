@@ -14,12 +14,12 @@
     "modernizr": "~2.6.2",
     "font-awesome": "~3.2.1",
     "html5shiv": "~3.7.0",
-    "animate.css": "~3.0.0",
-    "legacy-syn": "https://github.com/bitovi/legacy-syn"
+    "animate.css": "~3.0.0"
   },
   "devDependencies": {
     "qunit": "~1.12.0",
     "sinonjs-built": "~1.8.2",
-    "sinon-qunit": "~1.0.0"
+    "sinon-qunit": "~1.0.0",
+    "syn": "~0.0.2"
   }
 }
