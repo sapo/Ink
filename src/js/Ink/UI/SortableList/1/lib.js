@@ -57,7 +57,7 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
         if (this._options.dragObject != null) {
             // [3.0.0] Remove this deprecation notice and stop providing backwards compatibility
             Ink.warn('Ink.UI.SortableList: options.dragObject is now deprecated. ' +
-                    'Please use options.handleSelector instead.')
+                    'Please use options.handleSelector instead.');
             this._options.handleSelector =
                 this._options.handleSelector || this._options.dragObject;
         }
