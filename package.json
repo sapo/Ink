@@ -16,11 +16,8 @@
     "framework"
   ],
   "devDependencies": {
-    "less": "~1.5.1",
     "async": "~0.2.9",
     "fs-extra": "~0.8.1",
-    "jshint": "~2.3.0",
-    "uglify-js": "~2.4.7",
     "grunt": "~0.4.2",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-concat": "~0.3.0",
