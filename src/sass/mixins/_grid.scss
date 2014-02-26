@@ -563,6 +563,8 @@
         margin: 0 auto;
     }
 
+    @include generate-grid-all-divisions();
+
     @each $breakpoint in $breakpoints {
 
         $class-name: nth($breakpoint,1);
@@ -603,5 +605,5 @@
         }
     }
 
-    @include generate-grid-all-divisions();
+    
 }

@@ -455,7 +455,6 @@ p, ul {
 }
 
 code {
-    @extend .slab-400;
     text-wrap: nowrap;
 }
 
@@ -604,27 +603,30 @@ footer {
 
     .copyright {
         
+        @include pie-clearfix();
+
         .SAPOlogo {
-            background: url("#{$img-path}SAPOlogo.png") no-repeat scroll 0 0 transparent;
+            background: url("#{$img-path}SAPOlogo.png") no-repeat;
             text-indent: -9999px;
             display: block;
             width: 101px;
-            height: 30px;
-            margin-bottom: 1em;
+            height: 43px;
+            margin-top: .2em;
+            margin-right: 2em;
         }
 
         .PTClogo {
-            font-size: .875em;
+            background: url("#{$img-path}icon_Sprite.png") no-repeat 0 top;
+            display: block;
+            height: 43px;
+            padding-left: 60px;
+            text-decoration: none;   
 
-            a {
-                background: url("#{$img-path}icon_Sprite.png") no-repeat 0 top;
-                text-indent: -9999px;
+            small {
                 display: block;
-                float: left;
-                width: 41px;
-                height: 43px;
-                margin-right:1em;
+                line-height: 1.6;
             }
+
         }
     }
 
