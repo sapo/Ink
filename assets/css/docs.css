@@ -47,7 +47,7 @@
   font-family: Roboto_slab;
 }
 
-.slab-400, code, ul.props li.prop {
+.slab-400, ul.props li.prop {
   font-weight: 400;
   font-family: Roboto_slab;
 }
@@ -845,25 +845,33 @@ footer .socialplugins {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
+footer .copyright {
+  *zoom: 1;
+}
+footer .copyright:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 footer .copyright .SAPOlogo {
-  background: url("../img/SAPOlogo.png") no-repeat scroll 0 0 transparent;
+  background: url("../img/SAPOlogo.png") no-repeat;
   text-indent: -9999px;
   display: block;
   width: 101px;
-  height: 30px;
-  margin-bottom: 1em;
+  height: 43px;
+  margin-top: .2em;
+  margin-right: 2em;
 }
 footer .copyright .PTClogo {
-  font-size: .875em;
-}
-footer .copyright .PTClogo a {
   background: url("../img/icon_Sprite.png") no-repeat 0 top;
-  text-indent: -9999px;
   display: block;
-  float: left;
-  width: 41px;
   height: 43px;
-  margin-right: 1em;
+  padding-left: 60px;
+  text-decoration: none;
+}
+footer .copyright .PTClogo small {
+  display: block;
+  line-height: 1.6;
 }
 footer h5 {
   margin-top: .5em;
