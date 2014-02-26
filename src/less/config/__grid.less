@@ -10,17 +10,20 @@
 @grid-gutters-class-name: gutters;
 @grid-half-gutters-class-name: half-gutters;
 @grid-quarter-gutters-class-name: quarter-gutters;
+@grid-double-gutters-class-name: double-gutters;
 
 @grid-horizontal-gutters-class-name: horizontal-gutters;
 @grid-half-horizontal-gutters-class-name: half-horizontal-gutters;
 @grid-quarter-horizontal-gutters-class-name: quarter-horizontal-gutters;
+@grid-double-horizontal-gutters-class-name: double-horizontal-gutters;
 
 @grid-vertical-gutters-class-name: vertical-gutters;
 @grid-half-vertical-gutters-class-name: half-vertical-gutters;
-@grid-quarter-vertical-gutters-class-name: half-vertical-gutters;
+@grid-quarter-vertical-gutters-class-name: quarter-vertical-gutters;
+@grid-double-vertical-gutters-class-name: double-vertical-gutters;
 
 // site width
-@site-width: 1200px ;
+@site-width: 1400px ;
 
 // subpixel rounding for IE
 @subpixel-rounding: (0.5 / (@site-width * 100 * 1%));
@@ -29,6 +32,12 @@
 
 // gutter width
 @gutter-width: 2em;
+
+// grid for extra-large screens
+@extra-large-class-prefix: extra-large;
+@extra-large-min-width: 1200px;
+@extra-large-max-width: 0px;
+@extra-large-gutter-width: @gutter-width  * 1.25;
 
 // grid for large screens
 @large-class-prefix: large;
@@ -48,5 +57,9 @@
 @small-max-width: 649px;
 @small-gutter-width: @gutter-width * 0.5;
 
-// STUFF
+@tiny-class-prefix: tiny;
+@tiny-min-width: 0px;
+@tiny-max-width: 320px;
+@tiny-gutter-width: @gutter-width * 0.25;
+
 @border-radius: 4px;

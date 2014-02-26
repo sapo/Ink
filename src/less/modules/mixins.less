@@ -119,27 +119,17 @@
                 }
 
                 // pulls the grid columns left to correct for gutter horizontal spacing                
-                .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
+                .@{grid-column-group-class-name}.@{grid-gutters-class-name},
+                .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name}  {
                     margin-left: -@gutter-width;
                 }
                     // pulls the grid columns left to correct for gutter horizontal spacing
-                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
-                    margin-left: -(@gutter-width / 2);
-                }
-                // pulls the grid columns left to correct for gutter horizontal spacing
-                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} {
-                    margin-left: -(@gutter-width / 4);
-                }
-
-                // pulls the grid columns left to correct for gutter horizontal spacing                
-                .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} {
-                    margin-left: -@gutter-width;
-                }
-                    // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name},
                 .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} {
                     margin-left: -(@gutter-width / 2);
                 }
                 // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name},
                 .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} {
                     margin-left: -(@gutter-width / 4);
                 }
@@ -166,41 +156,62 @@
                     }
                 }
 
-                .@{grid-column-group-class-name}.@{grid-gutters-class-name} {
-                    padding-right: @gutter-width;
-                    margin-left: -@gutter-width;
-                    overflow: visible;
-                }
-
-                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name} {
-                    padding-right: (@gutter-width / 2);
-                    margin-left: -(@gutter-width / 2);
-                    overflow: visible;
-                }
-
-                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name} {
-                    padding-right: (@gutter-width / 4);
-                    margin-left: -(@gutter-width / 4);
-                    overflow: visible;
-                }
-
+                .@{grid-column-group-class-name}.@{grid-gutters-class-name},
                 .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} {
                     padding-right: @gutter-width;
                     margin-left: -@gutter-width;
                     overflow: visible;
                 }
 
+                .@{grid-column-group-class-name}.@{grid-half-gutters-class-name},
                 .@{grid-column-group-class-name}.@{grid-half-horizontal-gutters-class-name} {
                     padding-right: (@gutter-width / 2);
                     margin-left: -(@gutter-width / 2);
                     overflow: visible;
                 }
 
+                .@{grid-column-group-class-name}.@{grid-quarter-gutters-class-name},
                 .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} {
                     padding-right: (@gutter-width / 4);
                     margin-left: -(@gutter-width / 4);
                     overflow: visible;
-                } 
+                }
+
+                .@{grid-column-group-class-name}.@{grid-double-gutters-class-name},
+                .@{grid-column-group-class-name}.@{grid-double-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width * 2);
+                    margin-left: -(@gutter-width * 2);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-gutters-class-name},
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-horizontal-gutters-class-name} {
+                    padding-right: @gutter-width;
+                    margin-left: -@gutter-width;
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-half-gutters-class-name},
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-half-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width / 2);
+                    margin-left: -(@gutter-width / 2);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-quarter-gutters-class-name},
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-quarter-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width / 4);
+                    margin-left: -(@gutter-width / 4);
+                    overflow: visible;
+                }
+
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-double-gutters-class-name},
+                .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-double-horizontal-gutters-class-name} {
+                    padding-right: (@gutter-width * 2);
+                    margin-left: -(@gutter-width * 2);
+                    overflow: visible;
+                }
+
             }
 
             // Generate the grid column division classes
@@ -281,6 +292,12 @@
                     margin-bottom: (@gutter-width / 4);
                 }
 
+                // creates horizontal and vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-double-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width * 2);
+                    margin-bottom: (@gutter-width * 2);
+                }
+
                 // creates horizontal gutter spacing between grid elements
                 .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
                     padding-left: @gutter-width;
@@ -296,6 +313,11 @@
                     padding-left: (@gutter-width / 4);
                 }
 
+                // creates horizontal quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-double-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width * 2);
+                }
+
                 // creates vertical gutter spacing between grid elements
                 .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
                     margin-bottom: @gutter-width;
@@ -309,6 +331,75 @@
                 // creates vertical quarter gutter spacing between grid elements
                 .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
                     margin-bottom: (@gutter-width / 4);
+                }
+
+                // creates vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-double-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width * 2);
+                }
+
+                // creates horizontal and vertical gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: @gutter-width;
+                    margin-bottom: @gutter-width;
+                }
+
+                // creates horizontal and vertical half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-half-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 2);
+                    margin-bottom: (@gutter-width / 2);
+                }
+
+                // creates horizontal and vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-quarter-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 4);
+                    margin-bottom: (@gutter-width / 4);
+                }
+
+                // creates horizontal and vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-double-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width * 2);
+                    margin-bottom: (@gutter-width * 2);
+                }
+
+                // creates horizontal gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: @gutter-width;
+                }
+
+                // creates horizontal half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-half-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 2);
+                }
+
+                // creates horizontal quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-quarter-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width / 4);
+                }
+
+                // creates horizontal quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{grid-double-horizontal-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    padding-left: (@gutter-width * 2);
+                }
+
+                // creates vertical gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: @gutter-width;
+                }
+
+                // creates vertical half gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-half-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 2);
+                }
+
+                // creates vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-quarter-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width / 4);
+                }
+
+                // creates vertical quarter gutter spacing between grid elements
+                .@{grid-class-name} .@{grid-column-group-class-name}.@{breakpoint-alias}-@{grid-double-vertical-gutters-class-name} > [class*="@{breakpoint-alias}-"] {
+                    margin-bottom: (@gutter-width * 2);
                 }
 
 
@@ -610,12 +701,15 @@
                 .@{breakpoint-alias}-push-right {
                     float: right;
                 }
+
                 .@{breakpoint-alias}-align-left {
                     text-align: left;
                 }
+
                 .@{breakpoint-alias}-align-center {
                     text-align: center;
                 }
+
                 .@{breakpoint-alias}-align-right {
                     text-align: right;
                 }
@@ -632,15 +726,27 @@
                     margin: (@gutter-width/4);
                 }
 
-                .vspace {
-                    margin-top: @gutter-width;
-                    margin-bottom: @gutter-width;
-                }
-                .hspace {
-                    margin-left: @gutter-width;
-                    margin-right: @gutter-width;
+                .double-space {
+                    margin: (@gutter-width * 2);
                 }
 
+                .@{breakpoint-alias}-space {
+                    margin: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-space {
+                    margin: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-space {
+                    margin: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-space {
+                    margin: (@gutter-width * 2);
+                }
+
+                .vspace,
                 .vertical-space {
                     margin-top: @gutter-width;
                     margin-bottom: @gutter-width;
@@ -656,6 +762,12 @@
                     margin-bottom: (@gutter-width/4);
                 }
 
+                .double-vertical-space {
+                    margin-top: (@gutter-width * 2);
+                    margin-bottom: (@gutter-width * 2);
+                }
+
+                .hspace,
                 .horizontal-space {
                     margin-left: @gutter-width;
                     margin-right: @gutter-width;
@@ -671,6 +783,55 @@
                     margin-right: (@gutter-width/4);
                 }
 
+                .double-horizontal-space {
+                    margin-left: (@gutter-width * 2);
+                    margin-right: (@gutter-width * 2);
+                }
+
+
+
+                .@{breakpoint-alias}-vspace,
+                .@{breakpoint-alias}-vertical-space {
+                    margin-top: @gutter-width;
+                    margin-bottom: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-vertical-space {
+                    margin-top: (@gutter-width/2);
+                    margin-bottom: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-vertical-space {
+                    margin-top: (@gutter-width/4);
+                    margin-bottom: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-vertical-space {
+                    margin-top: (@gutter-width * 2);
+                    margin-bottom: (@gutter-width * 2);
+                }
+
+                .@{breakpoint-alias}-hspace,
+                .@{breakpoint-alias}-horizontal-space {
+                    margin-left: @gutter-width;
+                    margin-right: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-horizontal-space {
+                    margin-left: (@gutter-width/2);
+                    margin-right: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-horizontal-space {
+                    margin-left: (@gutter-width/4);
+                    margin-right: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-horizontal-space {
+                    margin-left: (@gutter-width * 2);
+                    margin-right: (@gutter-width * 2);
+                }
+
                 .top-space {
                     margin-top: @gutter-width;
                 }
@@ -681,6 +842,26 @@
 
                 .quarter-top-space {
                     margin-top: (@gutter-width/4);
+                }
+
+                .double-top-space {
+                    margin-top: (@gutter-width * 2);
+                }
+
+                .@{breakpoint-alias}-top-space {
+                    margin-top: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-top-space {
+                    margin-top: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-top-space {
+                    margin-top: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-top-space {
+                    margin-top: (@gutter-width * 2);
                 }
 
                 .right-space {
@@ -695,6 +876,26 @@
                     margin-right: (@gutter-width/4);
                 }
 
+                .double-right-space {
+                    margin-right: (@gutter-width * 2);
+                }
+
+                .@{breakpoint-alias}-right-space {
+                    margin-right: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-right-space {
+                    margin-right: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-right-space {
+                    margin-right: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-right-space {
+                    margin-right: (@gutter-width * 2);
+                }
+
                 .bottom-space {
                     margin-bottom: @gutter-width;
                 }
@@ -707,6 +908,26 @@
                     margin-bottom: (@gutter-width/4);
                 }
 
+                .double-bottom-space {
+                    margin-bottom: (@gutter-width * 2);
+                }
+
+                .@{breakpoint-alias}-bottom-space {
+                    margin-bottom: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-bottom-space {
+                    margin-bottom: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-bottom-space {
+                    margin-bottom: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-bottom-space {
+                    margin-bottom: (@gutter-width * 2);
+                }
+
                 .left-space {
                     margin-left: @gutter-width;
                 }
@@ -716,6 +937,26 @@
                 }
 
                 .quarter-left-space {
+                    margin-left: (@gutter-width/4);
+                }
+
+                .double-left-space {
+                    margin-left: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-left-space {
+                    margin-left: @gutter-width;
+                }
+
+                .@{breakpoint-alias}-half-left-space {
+                    margin-left: (@gutter-width/2);
+                }
+
+                .@{breakpoint-alias}-quarter-left-space {
+                    margin-left: (@gutter-width/4);
+                }
+
+                .@{breakpoint-alias}-double-left-space {
                     margin-left: (@gutter-width/4);
                 }
 
