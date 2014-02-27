@@ -3,6 +3,44 @@
     ul {
 
         &.pagination {
+
+            #ink > #navigation > .pagination();
+            
+            // defines default pagination themes
+            &.white     { #ink > #navigation > .pagination('',@white); }
+            &.grey      { #ink > #navigation > .pagination('',@grey-15 ); }
+            &.black     { #ink > #navigation > .pagination('',@grey-90); }
+            &.orange    { #ink > #navigation > .pagination('',@orange); }
+            &.blue      { #ink > #navigation > .pagination('',@blue); }
+            &.green     { #ink > #navigation > .pagination('',@green); }
+            &.red       { #ink > #navigation > .pagination('',@red); }
+
+            // defines dotted pagination themes
+            &.dotted {
+
+                #ink > #navigation > .pagination('dotted','');
+
+                &.black     { #ink > #navigation > .pagination('dotted',@grey-90); }
+                &.white     { #ink > #navigation > .pagination('dotted',@white); }
+                &.blue      { #ink > #navigation > .pagination('dotted',desaturate(@blue,10%)); }
+                &.green     { #ink > #navigation > .pagination('dotted',desaturate(@green,10%)); }
+                &.orange    { #ink > #navigation > .pagination('dotted',desaturate(@orange,10%)); }
+                &.red       { #ink > #navigation > .pagination('dotted',desaturate(@red,10%)); }
+            }
+
+            // defines chevron pagination theme
+            &.chevron {
+
+                #ink > #navigation > .pagination('chevron','');
+
+                &.black     { #ink > #navigation > .pagination('chevron',@grey-90); }
+                &.grey      { #ink > #navigation > .pagination('chevron',@grey-15); }
+                &.blue      { #ink > #navigation > .pagination('chevron',desaturate(@blue,10%)); }
+                &.green     { #ink > #navigation > .pagination('chevron',desaturate(@green,10%)); }
+                &.orange    { #ink > #navigation > .pagination('chevron',desaturate(@orange,10%)); }
+                &.red       { #ink > #navigation > .pagination('chevron',desaturate(@red,10%)); }
+            
+            }
             
             //defaults
             li {

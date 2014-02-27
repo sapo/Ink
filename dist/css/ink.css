@@ -4434,6 +4434,81 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   cursor: default;
   text-decoration: none;
 }
+.ink-navigation ul.pagination li.dotted li a {
+  display: block;
+  height: 1em;
+  width: 1em;
+  margin-right: .6em;
+  padding: 0;
+  border-radius: 50%;
+}
+.ink-navigation ul.pagination li.dotted li:first-child a,
+.ink-navigation ul.pagination li.dotted li:last-child a {
+  height: auto;
+  width: auto;
+  background: none;
+}
+.ink-navigation ul.pagination li.dotted li.previous a,
+.ink-navigation ul.pagination li.dotted li.next a {
+  display: none;
+}
+.ink-navigation ul.pagination li.chevron li {
+  display: none;
+}
+.ink-navigation ul.pagination li.chevron li.next,
+.ink-navigation ul.pagination li.chevron li.previous {
+  display: block;
+}
+.ink-navigation ul.pagination li.chevron li.next a,
+.ink-navigation ul.pagination li.chevron li.previous a {
+  display: block;
+  position: absolute;
+  top: 35%;
+  padding: 0 .5em;
+  margin: 0;
+  font-family: FontAwesome;
+  font-size: 4em;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 140ms;
+  -moz-transition-duration: 140ms;
+  -o-transition-duration: 140ms;
+  -ms-transition-duration: 140ms;
+  transition-duration: 140ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -ms-transition-delay: 0;
+  transition-delay: 0;
+}
+.ink-navigation ul.pagination li.chevron li.disabled a {
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
+}
+.ink-navigation ul.pagination li.chevron li.disabled a:hover,
+.ink-navigation ul.pagination li.chevron li.disabled a:focus {
+  color: rgba(255, 255, 255, 0.6);
+}
+.ink-navigation ul.pagination li.chevron li.previous a {
+  left: 0;
+}
+.ink-navigation ul.pagination li.chevron li.previous a:after {
+  content: "\f137";
+}
+.ink-navigation ul.pagination li.chevron li.next a {
+  right: 0;
+}
+.ink-navigation ul.pagination li.chevron li.next a:after {
+  content: "\f138";
+}
 .ink-navigation ul.pagination:after {
   content: " ";
   display: block;
