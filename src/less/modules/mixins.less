@@ -1372,5 +1372,229 @@
             .green  () { #ink > #gradients > .gradient (desaturate(@green,10%), darken(desaturate(@green,10%),10%), 150%); }
             .red    () { #ink > #gradients > .gradient (desaturate(@red,10%), darken(desaturate(@red,10%),10%), 150%); }
         }
+
+        
+        // PAGINATION:CHEVRON
+        .pagination(@type, @nav-color) when (@type = chevron) and not (@nav-color) {
+
+            li {
+
+                &.next,
+                &.previous { 
+
+                    a {
+                        color: @white;
+                        #ink > #effects > .opacity(.6);
+                        
+                        &:hover,
+                        &:focus,
+                        &.active {
+                            #ink > #effects > .opacity(.8);
+                            text-decoration: none;
+                            background: none;
+                        }
+                    }
+                }
+
+                &.disabled {
+                    a {
+                        color: @white;
+                        #ink > #effects > .opacity(.6);
+                        #ink > #shadows > .no-text-shadow();
+                        &:hover,
+                        &:focus {
+                            color: @white;
+                            #ink > #effects > .opacity(.6);
+                        }
+                    }
+                }
+            }
+        }
+
+        .pagination(@type, @nav-color) when (@type = chevron) and not (@nav-color) {
+            
+            li {
+                &.next ,
+                &.previous,
+                &.disabled {
+                    a { color: @nav-color; }
+                }
+            }
+        }
+
+        // PAGINATION:DOTTED
+        .pagination(@type, @nav-color) when (@type = dotted ) and  not (@nav-color) {
+
+            li {
+                background: none;
+        
+                a { 
+                    background: @grey-40; 
+                    #ink > #effects > .opacity(.5);
+                }
+                
+                &:hover,
+                &.active {
+                    a { #ink > #effects > .opacity(1); }
+                }
+            }
+        }
+
+        .pagination(@type, @nav-color) when (@type = dotted ) and  not (@nav-color) {
+            li a { background: @nav-color; }
+        }
+    
+
+        .pagination(@type, @nav-color) when (@type = '') and (iscolor(@nav-color)) and (lightness(@nav-color) > 80%) {
+
+            li {
+
+                background: desaturate(@nav-color,10%);
+
+                &.active a { background: darken(@nav-color,10%); }
+
+                &.disabled {
+                    a {
+                        color: darken(@nav-color,20%); 
+                        background: fade(@black,0%);
+                        #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+                        &:hover { background: none; }
+                    }
+                }
+
+                a {
+                    color: @text-color;
+                    text-decoration: none;
+
+                    &:hover {
+                        background: darken(@nav-color,5%);
+                    }
+                }
+            }
+        }
+
+        .pagination(@type, @nav-color) when not (@type) and (iscolor(@nav-color)) and (lightness(@nav-color) > 32%) and (lightness(@nav-color) <= 80%) {
+
+            li {
+
+                background: desaturate(@nav-color,10%);
+
+                &.active a { background: darken(@nav-color,10%); }
+
+                &.disabled {
+                    a {
+                        color: darken(@nav-color,20%); 
+                        background: fade(@black,0%);
+                        #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+                        &:hover { background: none; }
+                    }
+                }
+
+                a {
+                    color: @white;
+                    text-decoration: none;
+
+                    &:hover {
+                        background: darken(@nav-color,5%);
+                    }
+                }
+            }
+        }
+
+        .pagination(@type, @nav-color) when not (@type) and (iscolor(@nav-color)) and (lightness(@nav-color) <= 10% ) {
+
+            li {
+
+                background: desaturate(@nav-color,10%);
+
+                &.active a { background: lighten(@nav-color,10%); }
+
+                &.disabled {
+                    a {
+                        color: lighten(@nav-color,20%); 
+                        background: fade(@black,0%);
+                        #ink > #shadows > .text-shadow(darken(@nav-color,20%), 0, -1px, 0);
+                        &:hover { background: none; }
+                    }
+                }
+
+                a {
+                    color: @white;
+                    text-decoration: none;
+
+                    &:hover {
+                        background: lighten(@nav-color,5%);
+                    }
+                }
+            }
+        }
+
+
+        .pagination(@type, @nav-color) when not (@type) and (iscolor(@nav-color)) {
+
+            li {
+
+                background: desaturate(@nav-color,10%);
+
+                &.active a { background: darken(@nav-color,10%); }
+
+                &.disabled {
+                    a {
+                        color: darken(@nav-color,20%); 
+                        background: fade(@black,0%);
+                        #ink > #shadows > .text-shadow(lighten(@nav-color,8%), 0, 1px, 0);
+                        &:hover { background: none; }
+                    }
+                }
+
+                a {
+                    color: @white;
+                    text-decoration: none;
+
+                    &:hover {
+                        background: darken(@nav-color,10%);
+                    }
+                }
+            }
+        }
+        
+        .pagination() {
+
+            #ink > #border-radius > .all(@navigation-border-radius);
+
+            li {
+
+                font-weight: @navigation-font-weight;
+                
+                &.active a { text-decoration: underline; }
+                
+                &.disabled {
+                    a {
+                        color: @grey-30;
+                        #ink > #shadows > .text-shadow(lighten(@grey-40,40%), 0, 1px, 0);
+
+                        &:hover {
+                            cursor: default;
+                            background: none;
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                a { #ink > #effects > .transition(all ,140ms, ease-in-out); }
+
+                &:first-child,
+                &:first-child a {
+                    #ink > #border-radius > .left(@navigation-border-radius);
+                }
+
+                &:last-child, 
+                &:last-child a {
+                    #ink > #border-radius > .right(@navigation-border-radius);
+                }
+            }
+        }
     }
 }
+
+
