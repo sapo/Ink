@@ -32,7 +32,7 @@
 }
 .ink-grid {
   width: auto;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 3%;
 }
@@ -99,71 +99,71 @@
   overflow: visible;
 }
 .large-100 {
-  width: 99.99999642857144% !important;
+  width: 99.99999583333333% !important;
   clear: both;
 }
 .large-95 {
-  width: 92.1499965357143% !important;
+  width: 92.14999595833332% !important;
 }
 .large-90 {
-  width: 87.29999653571429% !important;
+  width: 87.29999595833333% !important;
 }
 .large-85 {
-  width: 82.44999653571429% !important;
+  width: 82.44999595833333% !important;
 }
 .large-80 {
-  width: 77.5999965357143% !important;
+  width: 77.59999595833332% !important;
 }
 .large-75 {
-  width: 72.74999653571429% !important;
+  width: 72.74999595833333% !important;
 }
 .large-70 {
-  width: 67.8999965357143% !important;
+  width: 67.89999595833332% !important;
 }
 .large-66 {
-  width: 65.66999644642858% !important;
+  width: 65.66999585416666% !important;
 }
 .large-65 {
-  width: 63.04999653571429% !important;
+  width: 63.04999595833333% !important;
 }
 .large-60 {
-  width: 58.199996535714284% !important;
+  width: 58.19999595833333% !important;
 }
 .large-55 {
-  width: 53.34999653571428% !important;
+  width: 53.34999595833334% !important;
 }
 .large-50 {
-  width: 48.49999653571428% !important;
+  width: 48.499995958333336% !important;
 }
 .large-45 {
-  width: 43.64999653571429% !important;
+  width: 43.649995958333335% !important;
 }
 .large-40 {
-  width: 38.799996535714286% !important;
+  width: 38.799995958333334% !important;
 }
 .large-33 {
-  width: 31.316996610714284% !important;
+  width: 31.316996045833335% !important;
 }
 .large-35 {
-  width: 33.949996535714284% !important;
+  width: 33.94999595833333% !important;
 }
 .large-30 {
-  width: 29.099996535714286% !important;
+  width: 29.09999595833333% !important;
 }
 .large-25 {
-  width: 24.249996535714285% !important;
+  width: 24.249995958333333% !important;
 }
 .large-20 {
-  width: 19.399996535714283% !important;
+  width: 19.39999595833333% !important;
 }
 .large-15 {
-  width: 14.549996535714286% !important;
+  width: 14.549995958333334% !important;
 }
 .large-10 {
-  width: 9.699996535714286% !important;
+  width: 9.699995958333332% !important;
 }
 .large-5 {
-  width: 4.849996535714285% !important;
+  width: 4.849995958333333% !important;
 }
 [class*="large-"] {
   float: left;
@@ -177,7 +177,7 @@ td[class*="large-"] {
 }
 .ink-grid .column-group.gutters > .large-100,
 .ink-grid .column-group.horizontal-gutters > .large-100 {
-  width: 99.99999642857144% !important;
+  width: 99.99999583333333% !important;
 }
 .ink-grid .column-group.gutters > .large-95,
 .ink-grid .column-group.horizontal-gutters > .large-95 {
@@ -205,11 +205,11 @@ td[class*="large-"] {
 }
 .ink-grid .column-group.gutters > .large-66,
 .ink-grid .column-group.horizontal-gutters > .large-66 {
-  width: 63.00000000000001% !important;
+  width: 63% !important;
 }
 .ink-grid .column-group.gutters > .large-65,
 .ink-grid .column-group.horizontal-gutters > .large-65 {
-  width: 62.00000000000001% !important;
+  width: 62% !important;
 }
 .ink-grid .column-group.gutters > .large-60,
 .ink-grid .column-group.horizontal-gutters > .large-60 {
@@ -237,7 +237,7 @@ td[class*="large-"] {
 }
 .ink-grid .column-group.gutters > .large-33,
 .ink-grid .column-group.horizontal-gutters > .large-33 {
-  width: 30% !important;
+  width: 30.000000000000004% !important;
 }
 .ink-grid .column-group.gutters > .large-30,
 .ink-grid .column-group.horizontal-gutters > .large-30 {
@@ -260,30 +260,30 @@ td[class*="large-"] {
   width: 2% !important;
 }
 .ink-grid .column-group.gutters > [class*="large-"] {
-  margin-left: 2.9999964285714285%;
+  margin-left: 2.999995833333333%;
   margin-bottom: 3%;
   padding-left: 0px !important;
 }
 .ink-grid .column-group.half-gutters > [class*="large-"] {
-  margin-left: 1.4999982142857142%;
+  margin-left: 1.4999979166666666%;
   margin-bottom: 1.5%;
   padding-left: 0px !important;
 }
 .ink-grid .column-group.quarter-gutters > [class*="large-"] {
-  margin-left: 0.7499991071428571%;
+  margin-left: 0.7499989583333333%;
   margin-bottom: 0.75%;
   padding-left: 0px !important;
 }
 .ink-grid .column-group.horizontal-gutters > [class*="large-"] {
-  margin-left: 2.9999964285714285%;
+  margin-left: 2.999995833333333%;
   padding-left: 0px !important;
 }
 .ink-grid .column-group.half-horizontal-gutters > [class*="large-"] {
-  margin-left: 1.4999982142857142%;
+  margin-left: 1.4999979166666666%;
   padding-left: 0px !important;
 }
 .ink-grid .column-group.quarter-horizontal-gutters > [class*="large-"] {
-  margin-left: 0.7499991071428571%;
+  margin-left: 0.7499989583333333%;
   padding-left: 0px !important;
 }
 .ink-grid .column-group.vertical-gutters > [class*="large-"] {
@@ -310,7 +310,7 @@ td[class*="large-"] {
 .ink-form [class*="large-"] input,
 .ink-form [class*="large-"] textarea {
   width: 98.5% !important;
-  margin-left: -2.9999964285714285%;
+  margin-left: -2.999995833333333%;
   padding-left: 0;
   padding-right: 0;
 }
