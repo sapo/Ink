@@ -177,7 +177,7 @@ table {
 @font-face {
   font-family: 'Ubuntu';
   src: url('../font/ubuntu-b-webfont.eot');
-  src: local('Ubuntu bold') local('Ubuntu'), url('../font/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-b-webfont.woff') format('woff'), url('../font/ubuntu-b-webfont.ttf') format('truetype'), url('../font/ubuntu-b-webfont.svg#ubuntubold') format('svg');
+  src: local('Ubuntu bold'), local('Ubuntu'), url('../font/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-b-webfont.woff') format('woff'), url('../font/ubuntu-b-webfont.ttf') format('truetype'), url('../font/ubuntu-b-webfont.svg#ubuntubold') format('svg');
   font-weight: 700;
   font-style: normal;
 }
