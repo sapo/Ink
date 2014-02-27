@@ -429,13 +429,25 @@ td[class*="large-"] {
 .top-space {
   margin-top: 3%;
 }
+.top-space:first-child {
+  margin-top: 3%;
+}
 .half-top-space {
+  margin-top: 1.5%;
+}
+.half-top-space:first-child {
   margin-top: 1.5%;
 }
 .quarter-top-space {
   margin-top: 0.75%;
 }
+.quarter-top-space:first-child {
+  margin-top: 0.75%;
+}
 .double-top-space {
+  margin-top: 6%;
+}
+.double-top-space:first-child {
   margin-top: 6%;
 }
 .large-top-space {
