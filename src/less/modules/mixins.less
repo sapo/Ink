@@ -134,6 +134,12 @@
                     margin-left: -(@gutter-width / 4);
                 }
 
+                // pulls the grid columns left to correct for gutter horizontal spacing
+                .@{grid-column-group-class-name}.@{grid-double-gutters-class-name},
+                .@{grid-column-group-class-name}.@{grid-double-horizontal-gutters-class-name} {
+                    margin-left: -(@gutter-width * 2);
+                }
+
 
             }
 
@@ -834,18 +840,30 @@
 
                 .top-space {
                     margin-top: @gutter-width;
+                    &:first-child {
+                        margin-top: @gutter-width;                        
+                    }
                 }
 
                 .half-top-space {
                     margin-top: (@gutter-width/2);
+                    &:first-child {
+                        margin-top: (@gutter-width/2);                        
+                    }
                 }
 
                 .quarter-top-space {
                     margin-top: (@gutter-width/4);
+                    &:first-child {
+                        margin-top: (@gutter-width/4);                        
+                    }
                 }
 
                 .double-top-space {
                     margin-top: (@gutter-width * 2);
+                    &:first-child {
+                        margin-top: (@gutter-width * 2);                        
+                    }
                 }
 
                 .@{breakpoint-alias}-top-space {

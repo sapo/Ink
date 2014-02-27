@@ -2,10 +2,10 @@
 
 // Sets assets default paths
 @img-path                   	: "../img/";
-@fonts-path  					: "../font/";
-@config-path                   	: "./config/";
-@modules-path                   : "./modules/";
-@contrib-path                   : "./contrib/";
+@fonts-path  					        : "../font/";
+@config-path                  : "./config/";
+@modules-path                 : "./modules/";
+@contrib-path                 : "./contrib/";
 
 // imports the config files
 // config file names start with __ (double underscore) and are located in the config directory.
@@ -32,11 +32,9 @@
 // import the webfont stuff
 @import (less) "@{modules-path}fonts.less";
 
-// the grid
-@import (less) "@{modules-path}grid.less";
-
 // typography
 @import (less) "@{modules-path}typography.less";
+
 
 // labels
 @import (less) "@{modules-path}labels.less";
@@ -72,6 +70,9 @@
 
 // tables
 @import (less) "@{modules-path}tables.less";
+
+// the grid
+@import (less) "@{modules-path}grid.less";
 
 // widgets
 @import (less) "@{modules-path}js.animate.less";
