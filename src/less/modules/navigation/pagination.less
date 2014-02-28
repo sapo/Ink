@@ -35,7 +35,7 @@
             &.dotted {
 
                     li {
-                
+                                        
                         a {
                             display: block;
                             height: 1em;
@@ -43,6 +43,7 @@
                             margin-right: .6em;
                             padding: 0; 
                             #ink > #border-radius > .all(50%);
+                            text-indent: -99999px;
                         }
 
                         &:first-child,
@@ -56,8 +57,8 @@
 
                         &.previous,
                         &.next {
-                            // a { display: none }
-                        }            
+                            a { display: none }
+                        }
                     }
                 }
 
@@ -66,6 +67,10 @@
                     li {
                         
                         display: none;
+
+                        a {
+                            font-size: 0;
+                        }
 
                         &.next,
                         &.previous { 
