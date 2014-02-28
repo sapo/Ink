@@ -1375,12 +1375,12 @@
 
         
         // PAGINATION:CHEVRON
-        .pagination(@type, @nav-color) when (@type = chevron) and not (@nav-color) {
+        .pagination(@type) when (isstring(@type)) {
 
-            li {
+            li when (@type = 'chevron') {
 
                 &.next,
-                &.previous { 
+                &.previous {
 
                     a {
                         color: @white;
@@ -1409,23 +1409,8 @@
                     }
                 }
             }
-        }
 
-        .pagination(@type, @nav-color) when (@type = chevron) and not (@nav-color) {
-            
-            li {
-                &.next ,
-                &.previous,
-                &.disabled {
-                    a { color: @nav-color; }
-                }
-            }
-        }
-
-        // PAGINATION:DOTTED
-        .pagination(@type, @nav-color) when (@type = dotted ) and  not (@nav-color) {
-
-            li {
+            li when (@type = 'dotted' ) {
                 background: none;
         
                 a { 
@@ -1437,17 +1422,28 @@
                 &.active {
                     a { #ink > #effects > .opacity(1); }
                 }
+            }           
+        }
+
+        .pagination(@type, @nav-color) when (isstring(@type)) and (iscolor(@nav-color)) {
+            
+            li when (@type = 'chevron')  {
+                &.next ,
+                &.previous,
+                &.disabled {
+                    a { color: @nav-color; }
+                }
             }
         }
 
-        .pagination(@type, @nav-color) when (@type = dotted ) and  not (@nav-color) {
-            li a { background: @nav-color; }
+
+        .pagination(@type, @nav-color) when (isstring(@type)) and (iscolor(@nav-color)) {
+            li a when (@type = 'dotted' ) { background: @nav-color; }
         }
-    
 
-        .pagination(@type, @nav-color) when (@type = '') and (iscolor(@nav-color)) and (lightness(@nav-color) > 80%) {
+        .pagination(@nav-color) when ( iscolor(@nav-color) ) {
 
-            li {
+            li when ( lightness(@nav-color) > 80% ) {
 
                 background: desaturate(@nav-color,10%);
 
@@ -1473,9 +1469,9 @@
             }
         }
 
-        .pagination(@type, @nav-color) when not (@type) and (iscolor(@nav-color)) and (lightness(@nav-color) > 32%) and (lightness(@nav-color) <= 80%) {
+        .pagination(@nav-color) when (iscolor(@nav-color)) {
 
-            li {
+            li when (lightness(@nav-color) > 32%) and (lightness(@nav-color) <= 80%) {
 
                 background: desaturate(@nav-color,10%);
 
@@ -1501,9 +1497,9 @@
             }
         }
 
-        .pagination(@type, @nav-color) when not (@type) and (iscolor(@nav-color)) and (lightness(@nav-color) <= 10% ) {
+        .pagination(@nav-color) when (iscolor(@nav-color)) {
 
-            li {
+            li when (lightness(@nav-color) <= 10% ) {
 
                 background: desaturate(@nav-color,10%);
 
@@ -1530,7 +1526,9 @@
         }
 
 
-        .pagination(@type, @nav-color) when not (@type) and (iscolor(@nav-color)) {
+
+
+        .pagination(@nav-color) when (iscolor(@nav-color)) {
 
             li {
 
@@ -1560,37 +1558,25 @@
         
         .pagination() {
 
-            #ink > #border-radius > .all(@navigation-border-radius);
+            display: inline-block;
 
             li {
-
-                font-weight: @navigation-font-weight;
                 
+                a {
+                    text-decoration: none;
+                }
+
                 &.active a { text-decoration: underline; }
                 
                 &.disabled {
                     a {
                         color: @grey-30;
-                        #ink > #shadows > .text-shadow(lighten(@grey-40,40%), 0, 1px, 0);
+                        #ink > #shadows > .text-shadow (0, 1px, 0, lighten(@grey-40,40%));
 
                         &:hover {
-                            cursor: default;
                             background: none;
-                            text-decoration: none;
                         }
                     }
-                }
-
-                a { #ink > #effects > .transition(all ,140ms, ease-in-out); }
-
-                &:first-child,
-                &:first-child a {
-                    #ink > #border-radius > .left(@navigation-border-radius);
-                }
-
-                &:last-child, 
-                &:last-child a {
-                    #ink > #border-radius > .right(@navigation-border-radius);
                 }
             }
         }
