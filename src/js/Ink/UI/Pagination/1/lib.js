@@ -32,18 +32,30 @@ Ink.createModule('Ink.UI.Pagination', '1',
      * @param {String|DOMElement} selector
      * @param {Object} options Options
      * @param {Number}   [options.size]              number of pages.
-     * @param {Number}   [options.maxSize]           if passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
+     * @param {Number}   [options.totalItemCount]    Total numeber of items to display
+     * @param {Number}   [options.itemsPerPage]      number of items per page.
+     * @param {Number}   [options.maxSize]           If passed, only shows at most maxSize items. displays also first|prev page and next page|last buttons
      * @param {Number}   [options.start]             start page. defaults to 1
-     * @param {String}   [options.previousLabel]     label to display on previous page button
-     * @param {String}   [options.nextLabel]         label to display on next page button
+     * @param {String}   [options.firstLabel]        label to display on first page button
+     * @param {String}   [options.lastLabel]         label to display on last page button
+     * @param {String}   [options.previousLabel]     label to display on previous button
+     * @param {String}   [options.nextLabel]         label to display on next button
      * @param {String}   [options.previousPageLabel] label to display on previous page button
      * @param {String}   [options.nextPageLabel]     label to display on next page button
-     * @param {String}   [options.firstLabel]        label to display on previous page button
-     * @param {String}   [options.lastLabel]         label to display on next page button
      * @param {Function} [options.onChange]          optional callback. Called with `(thisPaginator, newPageNumber)`.
-     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
-     * @xparam {Boolean}  [options.setHash]           if true, sets hashParameter on the location.hash. default is disabled
      * @param {String}   [options.hashParameter]     parameter to use on setHash. by default uses 'page'
+     * @param {String}   [options.parentTag]         HTML Tag used as the parent node.
+     * @param {String}   [options.childTag]          HTML Tag used as the child nodes.
+     * @param {String}   [options.wrapperClass]      CSS Class used in the wrapper element
+     * @param {String}   [options.paginationClass]   CSS Class used in the pagination element
+     * @param {String}   [options.activeClass]       CSS Class used to mark page as active
+     * @param {String}   [options.disabledClass]     CSS Class used to mark page as disabled
+     * @param {String}   [options.hideClass]         CSS Class used to hide elements
+     * @param {String}   [options.previousClass]     CSS Class used in the previous element
+     * @param {String}   [options.previousPageClass] CSS Class used in the previous page element
+     * @param {String}   [options.nextClass]         CSS Class used in the next element
+     * @param {String}   [options.nextPageClass]     CSS Class used in the next page element
+     * @param {Function} [options.numberFormatter]   optional function which takes and 0-indexed number and returns the string which appears on a numbered button
      */
     var Pagination = function(selector, options) {
 
@@ -59,8 +71,9 @@ Ink.createModule('Ink.UI.Pagination', '1',
             lastLabel:         ['String', 'Last'],
             previousLabel:     ['String', 'Previous'],
             nextLabel:         ['String', 'Next'],
+            previousPageLabel: ['String', null],
+            nextPageLabel:     ['String', null],
             onChange:          ['Function', undefined],
-            // setHash:        ['Boolean', false],
             hashParameter:     ['String', 'page'],
             parentTag:         ['String', 'ul'],
             childTag:          ['String', 'li'],
@@ -78,11 +91,11 @@ Ink.createModule('Ink.UI.Pagination', '1',
         }, options || {}, this._element);
 
         if (!this._options.previousPageLabel) {
-            this._options.previousPageLabel = 'Previous ' + this._options.maxSize;
+            this._options.previousPageLabel = this._options.previousLabel + ' ' + this._options.maxSize;
         }
 
         if (!this._options.nextPageLabel) {
-            this._options.nextPageLabel = 'Next ' + this._options.maxSize;
+            this._options.nextPageLabel = this._options.nextLabel + ' ' + this._options.maxSize;
         }
 
         this._handlers = {
